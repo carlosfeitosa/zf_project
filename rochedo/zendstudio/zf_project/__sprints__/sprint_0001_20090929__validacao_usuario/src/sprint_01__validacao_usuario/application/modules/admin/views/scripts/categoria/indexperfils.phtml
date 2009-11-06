@@ -1,0 +1,31 @@
+<?php
+echo "<H3>list of all perfil items for the categoria with ID </H3>";
+echo "<TABLE class='admin'>";
+echo "<TR>";
+echo "<TD class='header'>nome</TD>";
+echo "<TD class='header'>descricao</TD>";
+echo "<TD class='header'>ativo</TD>";
+
+echo "<TD class='header'>modify</TD>";
+echo "<TD class='header'>delete</TD>";
+echo "</TR>";
+foreach($this->perfils as $item)
+{
+    echo "<TR>";
+
+    echo "<TD class='admin'>$item->nome</TD>";
+    echo "<TD class='admin'>$item->descricao</TD>";
+    echo "<TD class='admin'>$item->ativo</TD>";
+    echo "<TD class='admin'><a href='/admin/categoria/modifyperfil/categoriaid/$item->categoria/id/$item->id'>modify</a></TD>";
+    echo "<TD class='admin'><a onClick='return confirm(\"are you sure you want to delete this object\");' href='/admin/categoria/deleteperfil/id/$item->id'>delete</a></TD>";
+    echo "</TR>";
+}
+echo "</TABLE>";
+
+//#BlockStart number=57 id=_Nc6e4LQVEd6GpeUiAfYANw_#_0
+      
+//start block for manually written code
+        
+//end block for manually written code
+
+//#BlockEnd number=57

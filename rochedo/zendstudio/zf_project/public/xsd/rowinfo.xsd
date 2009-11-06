@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="rowinfo">
+    
+    
+    <xs:element name="xml_data"><xs:complexType><xs:sequence><xs:element name="header"><xs:complexType>
+        <xs:attribute name="applicationName" use="required" type="xs:string"></xs:attribute>
+        <xs:attribute name="applicationVersion" use="required" type="xs:float"></xs:attribute>
+    </xs:complexType>
+    </xs:element>
+        <xs:element name="rowInfo"><xs:complexType><xs:sequence>
+            <xs:element name="generic"><xs:complexType><xs:sequence>
+                <xs:element name="dateTimeLastModified" type="xs:dateTime"></xs:element>
+                <xs:element name="idLoginLastModified" type="xs:integer"></xs:element>
+                <xs:element name="dateTimeCreation" type="xs:dateTime"></xs:element><xs:element name="idLoginCreation" type="xs:integer"></xs:element></xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            <xs:element name="login" minOccurs="0"><xs:complexType><xs:sequence><xs:element name="dateTimeLastReset" type="xs:dateTime" minOccurs="0"></xs:element>
+            </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+</xs:schema>

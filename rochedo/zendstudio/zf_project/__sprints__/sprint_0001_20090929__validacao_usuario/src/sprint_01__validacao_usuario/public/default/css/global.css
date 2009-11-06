@@ -1,0 +1,35 @@
+
+/* emx_nav_left.css                            */
+/* Use with template Halo_leftNav.html         */
+/***********************************************/
+
+/***********************************************/
+/* HTML tag styles                             */
+/***********************************************/
+*
+{
+	font-family: Arial;
+	color: #333333;
+	font-size:13px;
+}
+body{
+	font-family: Arial,sans-serif;
+	color: #333333;
+	margin: 0px;
+	padding: 0px;
+	background-image: url("/default/img/bg_grad2.jpg");
+	background-color: #cccccc;
+}
+
+#content
+{
+	min-height: 360px;
+}
+
+#footer
+{
+	position: relative;
+	width: 100%;
+	float: left;
+	text-align: center;
+}

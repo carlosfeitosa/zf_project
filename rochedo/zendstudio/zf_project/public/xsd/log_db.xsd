@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="logdb">
+    
+    
+    <xs:element name="xml_data"><xs:complexType><xs:sequence><xs:element name="header"><xs:complexType>
+        <xs:attribute name="applicationName" use="required" type="xs:string"></xs:attribute>
+        <xs:attribute name="applicationVersion" use="required" type="xs:float"></xs:attribute>
+    </xs:complexType>
+    </xs:element>
+        <xs:element name="log"><xs:complexType><xs:sequence><xs:element name="applicationInfo"><xs:complexType><xs:sequence><xs:element name="module" type="xs:string"></xs:element>
+            <xs:element name="request" type="xs:string"></xs:element>
+        </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+            <xs:element name="userInfo"><xs:complexType><xs:sequence><xs:element name="agent" type="xs:string"></xs:element>
+                <xs:element name="ip" type="xs:string"></xs:element>
+            </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            <xs:element name="eventInfo"><xs:complexType><xs:sequence><xs:element name="dateTime" type="xs:dateTime"></xs:element>
+                <xs:element name="description" type="xs:string"></xs:element>
+            </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            <xs:element name="dbInfo" minOccurs="0"><xs:complexType><xs:sequence><xs:element name="sql" minOccurs="0" type="xs:string"></xs:element>
+            </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+</xs:schema>

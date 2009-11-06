@@ -1,0 +1,25 @@
+<?php
+// First, set the action on the form
+$this->form->setAction($this->url(array('action' => 'modify')));
+echo "<h3>Modify an existing categoria item</h3>";
+echo $this->form;
+
+echo "<a href='/admin/categoria/addemail/categoriaid/".$this->categoriaid."/'>Add emails</a>";
+echo $this->render('/categoria/indexemails.phtml');
+
+echo "<a href='/admin/categoria/addcategoriaFilha/categoriaid/".$this->categoriaid."/'>Add categoriaFilhas</a>";
+echo $this->render('/categoria/indexcategoriaFilhas.phtml');
+
+echo "<a href='/admin/categoria/addlog/categoriaid/".$this->categoriaid."/'>Add logs</a>";
+echo $this->render('/categoria/indexlogs.phtml');
+
+echo "<a href='/admin/categoria/addperfil/categoriaid/".$this->categoriaid."/'>Add perfils</a>";
+echo $this->render('/categoria/indexperfils.phtml');
+
+//#BlockStart number=45 id=_0N60kKoIEd687LtTWUTtuQ_#_0
+      
+//start block for manually written code
+        
+//end block for manually written code
+
+//#BlockEnd number=45

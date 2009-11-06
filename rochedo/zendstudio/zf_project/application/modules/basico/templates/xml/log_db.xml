@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:xml_data xmlns:ns1="logdb"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="logdb file:/Users/fumato/Documents/desenvolvimento%20de%20software/facepe/AgilFAP/2.0/xsd/log_db.xsd">
+    <header applicationName="applicationName0" applicationVersion="0"/>
+    <log>
+        <applicationInfo>
+            <module>module0</module>
+            <request>request0</request>
+        </applicationInfo>
+        <userInfo>
+            <agent>agent0</agent>
+            <ip>ip0</ip>
+        </userInfo>
+        <eventInfo>
+            <dateTime>2006-05-04T18:13:51.0Z</dateTime>
+            <description>description0</description>
+        </eventInfo>
+    </log>
+</ns1:xml_data>
