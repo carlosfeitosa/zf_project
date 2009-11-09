@@ -1,5 +1,6 @@
 <?php
 
+require_once("configs/application.php");
 require_once("consts/consts.php");
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
