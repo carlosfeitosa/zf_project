@@ -12,7 +12,7 @@
  * @uses       Default_Model_LogMapper
  * @subpackage Model
  */
-class Default_Model_Log
+class Basico_Model_Log
 {
 	/**
 	* @var int
@@ -321,13 +321,8 @@ class Default_Model_Log
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 	
-
-//#BlockStart number=82 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=82
-
+	public function escreveLogFS($mensagem)
+	{
+//	    $logHeader = 
+	}
 }
