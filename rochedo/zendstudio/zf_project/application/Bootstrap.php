@@ -11,7 +11,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION.' ('.APPLICATION_ENV.')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
-        define('APPLICATION_TITLE', 'Ambiente de Gestão de Informação e Logística.');
         
         $autoloader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'Core',
