@@ -5,11 +5,8 @@
  */
  
 /**
- * Log model
+ * Util model
  *
- * Utilizes the Data Mapper pattern to persist data.
- * 
- * @uses       Default_Model_LogMapper
  * @subpackage Model
  */
 class Basico_Model_Util
@@ -30,5 +27,6 @@ class Basico_Model_Util
         catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
+        return false;
     }
 }
