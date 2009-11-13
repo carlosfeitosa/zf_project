@@ -6,12 +6,12 @@
  * @uses       Zend_Db_Table_Abstract
  * @subpackage Model
  */
-class Default_Model_DbTable_MensagemEmail extends Zend_Db_Table_Abstract
+class Basico_Model_DbTable_MensagemEmail extends Zend_Db_Table_Abstract
 {
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'mensagememail';
+    protected $_name = 'mensagem_email';
     
 
 //#BlockStart number=141 id=_l3UeAK0fEd6Tgc0yakCadQ_#_0

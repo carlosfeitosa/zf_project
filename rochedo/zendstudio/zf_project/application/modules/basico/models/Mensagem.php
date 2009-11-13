@@ -12,7 +12,7 @@
  * @uses       Default_Model_MensagemMapper
  * @subpackage Model
  */
-class Default_Model_Mensagem
+class Basico_Model_Mensagem
 {
 	/**
 	* @var int

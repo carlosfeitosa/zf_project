@@ -41,8 +41,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         $view->dojo()->setDjConfigOption('usePlainJson', true)
         			 ->addStylesheetModule('dijit.themes.tundra')
-        			 ->addStylesheet('../../js/dojox/grid/_grid/tundraGrid.css')
-        			 ->setLocalPath('../../js/dojo/dojo.js')
+        			 ->addStylesheet('../../../js/dojox/grid/_grid/tundraGrid.css')
+        			 ->setLocalPath('../../../js/dojo/dojo.js')
         			 //->addLayer('Custon code Ex: /js/paste/main.js')
         			 //->addJavascript('Custon code Ex: paste.main.init();')
         			 ->disable();

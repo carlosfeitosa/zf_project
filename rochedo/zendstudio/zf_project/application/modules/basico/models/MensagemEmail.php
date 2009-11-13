@@ -12,7 +12,7 @@
  * @uses       Default_Model_MensagemEmailMapper
  * @subpackage Model
  */
-class Default_Model_MensagemEmail
+class Basico_Model_MensagemEmail
 {
 	/**
 	* @var int
@@ -202,7 +202,7 @@ class Default_Model_MensagemEmail
      */
     public function getMensagemObject()
     {
-        $model = new Default_Model_Mensagem();
+        $model = new Basico_Model_Mensagem();
         $object = $model->find($this->_mensagem);
         return $object;
     }
@@ -251,7 +251,7 @@ class Default_Model_MensagemEmail
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Default_Model_MensagemEmailMapper());
+			$this->setMapper(new Basico_Model_MensagemEmailMapper());
 		}
 		return $this->_mapper;
 	}

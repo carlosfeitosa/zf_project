@@ -13,7 +13,7 @@
  * @uses       Default_Model_DbTable_MensagemEmail
  * @subpackage Model
  */
-class Default_Model_MensagemEmailMapper
+class Basico_Model_MensagemEmailMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -48,7 +48,7 @@ class Default_Model_MensagemEmailMapper
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_MensagemEmail');
+            $this->setDbTable('Basico_Model_DbTable_MensagemEmail');
         }
         return $this->_dbTable;
     }

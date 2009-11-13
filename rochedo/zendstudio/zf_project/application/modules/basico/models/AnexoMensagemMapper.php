@@ -13,7 +13,7 @@
  * @uses       Default_Model_DbTable_AnexoMensagem
  * @subpackage Model
  */
-class Default_Model_AnexoMensagemMapper
+class Basico_Model_AnexoMensagemMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -48,7 +48,7 @@ class Default_Model_AnexoMensagemMapper
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_AnexoMensagem');
+            $this->setDbTable('Basico_Model_DbTable_AnexoMensagem');
         }
         return $this->_dbTable;
     }
@@ -62,12 +62,12 @@ class Default_Model_AnexoMensagemMapper
     public function save(Default_Model_AnexoMensagem $object)
     {
         $data = array(
-				'nomeOriginal'   => $object->getNomeOriginal(),
-				'nomeSugestao'   => $object->getNomeSugestao(),
+				'nome_original'   => $object->getNomeOriginal(),
+				'nome_sugestao'   => $object->getNomeSugestao(),
 				'descricao'   => $object->getDescricao(),
 				'arquivo'   => $object->getArquivo(),
-				'mimeType'   => $object->getMimeType(),
-              'mensagem'   => $object->getMensagem(),
+				'mime_type'   => $object->getMimeType(),
+              'id_mensagem'   => $object->getMensagem(),
 
         );
 
@@ -96,7 +96,7 @@ class Default_Model_AnexoMensagemMapper
      * @param  Default_Model_AnexoMensagem $object 
      * @return void
      */
-    public function find($id, Default_Model_AnexoMensagem $object)
+    public function find($id, Basico_Model_AnexoMensagem $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -105,12 +105,12 @@ class Default_Model_AnexoMensagemMapper
         $row = $result->current();
         $object->setId($row->id)
 
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
+				->setNomeOriginal($row->nome_original)
+				->setNomeSugestao($row->nome_sugestao)
 				->setDescricao($row->descricao)
 				->setArquivo($row->arquivo)
-				->setMimeType($row->mimeType)
-                ->setMensagem($row->mensagem);
+				->setMimeType($row->mime_type)
+                ->setMensagem($row->id_mensagem);
     }
 
 	/**
@@ -124,15 +124,15 @@ class Default_Model_AnexoMensagemMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_AnexoMensagem();
+			$entry = new Basico_Model_AnexoMensagem();
 			$entry->setId($row->id)
 
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
+				->setNomeOriginal($row->nome_original)
+				->setNomeSugestao($row->nome_sugestao)
 				->setDescricao($row->descricao)
 				->setArquivo($row->arquivo)
-				->setMimeType($row->mimeType)
-                ->setMensagem($row->mensagem)
+				->setMimeType($row->mime_type)
+                ->setMensagem($row->id_mensagem)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -153,12 +153,12 @@ class Default_Model_AnexoMensagemMapper
 			$entry = new Default_Model_AnexoMensagem();
 			$entry->setId($row->id)
 
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
+				->setNomeOriginal($row->nome-original)
+				->setNomeSugestao($row->nome_sugestao)
 				->setDescricao($row->descricao)
 				->setArquivo($row->arquivo)
-				->setMimeType($row->mimeType)
-                ->setMensagem($row->mensagem)
+				->setMimeType($row->mime_type)
+                ->setMensagem($row->id_mensagem)
 				->setMapper($this);
 			$entries[] = $entry;
 		}

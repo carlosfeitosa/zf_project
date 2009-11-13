@@ -12,7 +12,7 @@
  * @uses       Default_Model_AnexoMensagemMapper
  * @subpackage Model
  */
-class Default_Model_AnexoMensagem
+class Basico_Model_AnexoMensagem
 {
 	/**
 	* @var int
@@ -254,7 +254,7 @@ class Default_Model_AnexoMensagem
      */
     public function getMensagemObject()
     {
-        $model = new Default_Model_Mensagem();
+        $model = new Basico_Model_Mensagem();
         $object = $model->find($this->_mensagem);
         return $object;
     }
@@ -303,7 +303,7 @@ class Default_Model_AnexoMensagem
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Default_Model_AnexoMensagemMapper());
+			$this->setMapper(new Basico_Model_AnexoMensagemMapper());
 		}
 		return $this->_mapper;
 	}

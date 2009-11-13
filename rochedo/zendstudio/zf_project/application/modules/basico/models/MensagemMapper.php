@@ -13,7 +13,7 @@
  * @uses       Default_Model_DbTable_Mensagem
  * @subpackage Model
  */
-class Default_Model_MensagemMapper
+class Basico_Model_MensagemMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -48,7 +48,7 @@ class Default_Model_MensagemMapper
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_Mensagem');
+            $this->setDbTable('Basico_Model_DbTable_Mensagem');
         }
         return $this->_dbTable;
     }
@@ -63,9 +63,9 @@ class Default_Model_MensagemMapper
     {
         $data = array(
 				'remetente'   => $object->getRemetente(),
-				'destinatario'   => $object->getDestinatario(),
+				'destinatarios'   => $object->getDestinatarios(),
 				'assunto'   => $object->getAssunto(),
-				'dataHora'   => $object->getDataHora(),
+				'datahora'   => $object->getDataHora(),
 				'mensagem'   => $object->getMensagem(),
 
         );
@@ -105,9 +105,9 @@ class Default_Model_MensagemMapper
         $object->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatario)
+				->setDestinatario($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->dataHora)
+				->setDataHora($row->datahora)
 				->setMensagem($row->mensagem);
     }
 
@@ -126,9 +126,9 @@ class Default_Model_MensagemMapper
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatario)
+				->setDestinatario($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->dataHora)
+				->setDataHora($row->datahora)
 				->setMensagem($row->mensagem)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -151,9 +151,9 @@ class Default_Model_MensagemMapper
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatario)
+				->setDestinatario($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->dataHora)
+				->setDataHora($row->datahora)
 				->setMensagem($row->mensagem)
 				->setMapper($this);
 			$entries[] = $entry;

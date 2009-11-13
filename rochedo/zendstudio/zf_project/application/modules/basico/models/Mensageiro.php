@@ -12,7 +12,7 @@
  * @uses       Default_Model_MensageiroMapper
  * @subpackage Model
  */
-class Default_Model_Mensageiro
+class Basico_Model_Mensageiro
 {
 	/**
 	* @var int
@@ -135,7 +135,7 @@ class Default_Model_Mensageiro
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Default_Model_MensageiroMapper());
+			$this->setMapper(new Basico_Model_MensageiroMapper());
 		}
 		return $this->_mapper;
 	}

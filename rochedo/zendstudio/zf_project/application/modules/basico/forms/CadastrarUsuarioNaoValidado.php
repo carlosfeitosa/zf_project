@@ -42,7 +42,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         											 'captcha' => array(
                                                          'captcha' => 'image',
                                                          'imgDir' => '../public/images/captcha/',
-                                                         'imgUrl' => '../../../public/images/captcha/',
+                                                         'imgUrl' => '../../../../public/images/captcha/',
                                                          'wordLen' => 6,
         												 'width' => 250,
         												 'height' => 80,
