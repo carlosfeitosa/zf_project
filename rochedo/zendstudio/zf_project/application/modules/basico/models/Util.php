@@ -29,4 +29,16 @@ class Basico_Model_Util
         }
         return false;
     }
+    
+    public static function getFileContent($filename)
+    {        
+        return file_get_contents($filename);
+    }
+    
+    public static function getUrlContent($uri)
+    {
+        $encodedUri = urldecode($uri);
+        
+        return file_get_contents($encodedUri);
+    }
 }

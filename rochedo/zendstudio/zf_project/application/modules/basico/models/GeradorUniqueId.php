@@ -80,7 +80,7 @@ class Basico_Model_GeradorUniqueId
 	    $uniqueId = md5(uniqid(rand(), true));
 	    $buscaUniqueId = $modelo->fetchList("{$nomeDoCampoBancoDeDados} = '{$uniqueId}'", null, 1, 0);
 
-	    while ($buscaUniqueId[0]->id)
+	    while (isset($buscaUniqueId[0]->id))
 	    {
             $uniqueId = md5(uniqid(rand(), true));
 	        $buscaUniqueId = $modelo->fetchList("{$nomeDoCampoBancoDeDados} = '{$uniqueId}'", null, 1, 0);

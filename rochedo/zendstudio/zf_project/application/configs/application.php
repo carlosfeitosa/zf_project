@@ -7,10 +7,12 @@ define('APPLICATION_TITLE', 'Ambiente de Gestão de Informação e Logística.')
 
 // PATHS & FILENAMES
 
-$logFileName = "error_log_" . date('Ym') . ".log";
+$logYearMonth = date('Ym');
 
 define("LOG_PATH", APPLICATION_PATH . "/logs/");
-define("LOG_FILENAME", $logFileName);
+define("LOG_FILENAME_PREFIX", "error_log_");
+define("LOG_FILENAME_SULFIX", ".log");
+define("LOG_FILENAME", LOG_FILENAME_PREFIX . $logYearMonth . LOG_FILENAME_SULFIX);
 define("LOG_FULL_FILENAME", LOG_PATH . LOG_FILENAME);
 
 // INFORMATION

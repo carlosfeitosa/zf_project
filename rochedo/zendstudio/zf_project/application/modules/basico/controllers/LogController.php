@@ -36,8 +36,13 @@ class Basico_LogController
 	    $this->logFS->log($mensagem, $prioridade);
 	}
 	
-	public function leLogFS()
+	public function leLogFS($ano = null, $mes = null)
 	{
+	    if (!isset($ano) or !isset($mes))
+	        $arquivoLog = LOG_FULL_FILENAME;
+	    else
+	        $arquivoLog = LOG_FILENAME_PREFIX . (String) $ano . (String) $mes . LOG_FILENAME_SULFIX;
 	    
+	    Basico_Model_Util::getFileContent($arquivoLog);
 	}
 }
