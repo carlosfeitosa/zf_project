@@ -193,6 +193,10 @@ class Basico_Model_Mensageiro
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 	
+	public function enviar($tipoMensagem, Basico_Model_Mensagem $mensagem) {
+		
+		
+	}
 
 //#BlockStart number=112 id=_b8TuAKx9Ed6l74B_OiRrsA_#_0
       
