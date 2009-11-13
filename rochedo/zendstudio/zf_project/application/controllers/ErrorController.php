@@ -6,10 +6,14 @@ class ErrorController extends Zend_Controller_Action
     {
         $errors = $this->_getParam('error_handler');
         
+        $bootstrap = $this->getInvokeArg('bootstrap');
+        $requestString = var_export($errors->request->getParams(), true);
+        $bootstrap->logger->salvaLogFS("exception: {$errors->exception} | request: {$requestString}");
+        
         switch ($errors->type) { 
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
-        
+
                 // 404 error -- controller or action not found
                 $this->getResponse()->setHttpResponseCode(404);
                 $this->view->message = MSG_ERRO_PAGINA_NAO_ENCONTRADA;

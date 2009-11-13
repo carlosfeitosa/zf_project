@@ -320,9 +320,4 @@ class Basico_Model_Log
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-	
-	public function escreveLogFS($mensagem)
-	{
-//	    $logHeader = 
-	}
 }

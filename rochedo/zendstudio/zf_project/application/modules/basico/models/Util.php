@@ -11,7 +11,7 @@
  */
 class Basico_Model_Util
 {
-    public function mkdir_recursive($caminho, $folderRights=0777)
+    public static function mkdir_recursive($caminho, $folderRights = 0777)
     {
         try {
     	    $dirs = explode('/', $caminho);

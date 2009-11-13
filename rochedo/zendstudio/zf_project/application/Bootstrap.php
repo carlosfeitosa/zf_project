@@ -1,17 +1,25 @@
 <?php
 
+// INCLUDES
 require_once("configs/application.php");
 require_once("consts/consts.php");
+require_once("modules/basico/controllers/LogController.php");
+require_once("modules/basico/models/Log.php");
+require_once("modules/basico/models/Util.php");
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
+    public $logger;
+        
     protected function _initAutoload()
     {
+        $this->logger = Basico_LogController::init();
+        
         if ('production' != APPLICATION_ENV)
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION.' ('.APPLICATION_ENV.')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
-        
+       
         $autoloader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'Core',
             'basePath'  => dirname(__FILE__),
@@ -34,8 +42,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         			 //->addLayer('Custon code Ex: /js/paste/main.js')
         			 //->addJavascript('Custon code Ex: paste.main.init();')
         			 ->disable();
-        			 
-        
         
         $viewRender = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRender->setView($view);
