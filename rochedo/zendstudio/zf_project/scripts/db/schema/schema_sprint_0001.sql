@@ -89,6 +89,47 @@ create table [dbo].[tipo_categoria] (
 ) on [primary]
 go
 
+create table [dbo].[mensagem] ( 
+	[id]       	int identity not null,
+	[remetente]	varchar(220) not null,
+	[destinatarios]	varchar(2000) not null,
+	[assunto]  	varchar(200) not null,
+	[datahora] 	timestamp not null,
+	[mensagem] 	varchar(2000) not null,
+	[id_categoria] int not null
+)on [primary]
+go
+
+
+
+create  unique  index [ix_mensagem_assunto] on [dbo].[mensagem]([assunto]) on [primary]
+go
+create  unique  index [ix_mensagem_remetente] on [dbo].[mensagem]([remetente]) on [primary]
+go
+
+create table [dbo].[mensagem_email] ( 
+	[id]       	int identity not null,
+	[destinatarios_copia_carbonada]	varchar(2000) not null,
+	[destinatarios_copia_carbonada_cega]	varchar(2000) not null,
+	[responder_para] varchar(200) not null,
+    [id_mensagem] int not null
+)on [primary]
+go
+
+create  unique  index [ix_responder_para] on [dbo].[mensagem_email]([responder_para]) on [primary]
+go
+
+create table [dbo].[anexo_mensagem] ( 
+	[id]           	int identity not null,
+	[nome_original]	varchar(200) not null,
+	[nome_sugestao]	varchar(200) not null,
+	[descricao]    	varchar(400) not null,
+	[arquivo]      	binary not null,
+	[mime_type]    	varchar(100) not null,
+	[id_mensagem]  	int not null	
+)
+go
+
 alter table [dbo].[categoria] with nocheck add 
 	constraint [pk_categoria] primary key  clustered 
 	(
@@ -291,4 +332,53 @@ alter table [dbo].[pessoas_perfis] add
 		[id]
 	)
 go
+
+alter table [dbo].[mensagem] with nocheck add 
+	constraint [pk_mensagem] primary key  clustered 
+	(
+		[id]
+	)  on [primary] 
+go
+
+alter table [dbo].[mensagem] with nocheck add 
+    constraint [fk_id_mensagem_categoria]	foreign key(
+    [id_categoria]
+    )
+	references [dbo].[categoria](
+	[id]
+	)
+go
+
+alter table [dbo].[mensagem_email] with nocheck add 
+	constraint [pk_mensagem_email] primary key  clustered 
+	(
+		[id]
+	)  on [primary] 
+go
+
+alter table [dbo].[mensagem_email] with nocheck add 
+    constraint [fk_id_mensagem]	foreign key(
+    [id_mensagem]
+    )
+	references [dbo].[mensagem](
+	[id]
+	)
+go
+
+alter table [dbo].[anexo_mensagem] with nocheck add 
+	constraint [pk_anexo_mensagem] primary key  clustered 
+	(
+		[id]
+	)  on [primary] 
+go
+
+alter table [dbo].[anexo_mensagem] add 
+    constraint [fk_id_mensagem_anexo] foreign key (
+    [id_mensagem]
+    )
+	references [dbo].[mensagem](
+	[id]
+	)
+go
+
 
