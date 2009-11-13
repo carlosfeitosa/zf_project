@@ -68,7 +68,7 @@ class Basico_Model_Log
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		$this->$method($value);
 	}
@@ -84,7 +84,7 @@ class Basico_Model_Log
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		return $this->$method();
 	}
