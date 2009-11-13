@@ -193,9 +193,22 @@ class Basico_Model_Mensageiro
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 	
-	public function enviar($tipoMensagem, Basico_Model_Mensagem $mensagem) {
+	public function enviar($tipoMensagem=null, $remetente, $destinatario, $assunto, Basico_Model_Mensagem $mensagem) {
 		
-		
+		if ($tipoMensagem === null){
+			$tipoMensagem = MENSAGEM_EMAIL_SIMPLES;
+		}
+		if ($tipoMensagem == MENSAGEM_EMAIL_SIMPLES) {
+			
+			$novaMensagem = new Basico_Model_Mensagem();
+	        $novaMensagem->setRemetente($remetente);
+	        $novaMensagem->setAssunto($assunto);
+	        $novaMensagem->setDestinatario($this->getRequest()->getParam('email'));
+	            
+	        $corpoMensagem = "Para continuar o seu cadastro no Rochedo Project, clique no link abaixo:";
+	                
+            
+		}
 	}
 
 //#BlockStart number=112 id=_b8TuAKx9Ed6l74B_OiRrsA_#_0
