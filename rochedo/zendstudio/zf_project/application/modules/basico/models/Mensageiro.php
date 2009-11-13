@@ -193,7 +193,7 @@ class Basico_Model_Mensageiro
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 	
-	public function enviar($tipoMensagem=null, $remetente, $destinatario, $assunto, Basico_Model_Mensagem $mensagem) {
+	public function enviar($remetente, Basico_Model_Email $destinatario, $assunto, $corpoMensagem, $tipoMensagem=null) {
 		
 		if ($tipoMensagem === null){
 			$tipoMensagem = MENSAGEM_EMAIL_SIMPLES;
@@ -204,8 +204,8 @@ class Basico_Model_Mensageiro
 	        $novaMensagem->setRemetente($remetente);
 	        $novaMensagem->setAssunto($assunto);
 	        $novaMensagem->setDestinatario($this->getRequest()->getParam('email'));
-	            
-	        $corpoMensagem = "Para continuar o seu cadastro no Rochedo Project, clique no link abaixo:";
+	        $novaMensagem->setMensagem($corpoMensagem);
+	        $novaMensagem->set
 	                
             
 		}
