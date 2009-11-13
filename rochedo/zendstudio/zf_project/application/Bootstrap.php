@@ -10,16 +10,20 @@ require_once("modules/basico/models/Util.php");
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     public $logger;
-        
-    protected function _initAutoload()
+    
+    protected function _initApplication()
     {
+        // instancia a classe de Log
         $this->logger = Basico_LogController::init();
-        
+                
         if ('production' != APPLICATION_ENV)
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION.' ('.APPLICATION_ENV.')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
-       
+    }
+        
+    protected function _initAutoload()
+    {      
         $autoloader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'Core',
             'basePath'  => dirname(__FILE__),
