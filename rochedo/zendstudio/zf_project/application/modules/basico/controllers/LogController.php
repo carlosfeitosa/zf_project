@@ -35,4 +35,9 @@ class Basico_LogController
 	{
 	    $this->logFS->log($mensagem, $prioridade);
 	}
+	
+	public function leLogFS()
+	{
+	    
+	}
 }
