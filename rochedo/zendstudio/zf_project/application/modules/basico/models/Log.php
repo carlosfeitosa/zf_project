@@ -130,18 +130,6 @@ class Basico_Model_Log
 	{
 		return $this->_dataHoraEvento;
 	}
-     
-	/**
-	* Set xml
-	* 
-	* @param String $xml 
-	* @return Default_Model_Xml
-	*/
-	public function setXml($xml)
-	{
-		$this->_xml = (String) $xml;
-		return $this;
-	}
 
 	/**
 	* Get xml

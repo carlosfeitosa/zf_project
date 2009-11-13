@@ -15,7 +15,7 @@ class Basico_LogController
 		if (!file_exists(LOG_PATH))
 		    Basico_Model_Util::mkdir_recursive(LOG_PATH);
 		
-        $logFormatter = new Zend_Log_Formatter_Simple('[%timestamp% - %priorityName% (%priority%)]: %message%' . PHP_EOL);
+        $logFormatter = new Zend_Log_Formatter_Simple(LOG_FORMAT);
 
         $logWriterFS = new Zend_Log_Writer_Stream(LOG_FULL_FILENAME);      
         $logWriterFS->setFormatter($logFormatter);
