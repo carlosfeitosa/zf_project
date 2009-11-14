@@ -210,6 +210,8 @@ class Basico_Model_Mensageiro
 	        $novaMensagem->setAssunto($assunto);
 	        $novaMensagem->setDestinatario($destinatario);
 	        $novaMensagem->setMensagem($corpoMensagem);
+	        $novaMensagem->setDataHora(getdate(time()));
+	        $novaMensagem->setIdCategoria(2);
 	        $novaMensagem->save();
 	        
 	        $zendMail = new Zend_Mail();

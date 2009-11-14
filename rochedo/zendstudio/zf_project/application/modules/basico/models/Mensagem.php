@@ -18,6 +18,11 @@ class Basico_Model_Mensagem
 	* @var int
 	*/
 	protected $_id;
+	
+	/**
+	* @var int
+	*/
+	protected $_idCategoria;
 
 	/**
 	 * @var Default_Model_MensagemMapper
@@ -232,6 +237,7 @@ class Basico_Model_Mensagem
 		$this->_id = (int) $id;
 		return $this;
 	}
+	
 
 	/**
 	* Retrieve entry id
@@ -242,7 +248,29 @@ class Basico_Model_Mensagem
 	{
 		return $this->_id;
 	}
-
+	
+	/**
+	* Set entry idCategoria
+	* 
+	* @param  int $idCategoria 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setIdCategoria($idCategoria)
+	{
+		$this->_id = (int) $idCategoria;
+		return $this;
+	}
+	
+    /**
+	* Retrieve entry idCategoria
+	* 
+	* @return null|int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+	
 	/**
 	* Set data mapper
 	* 
