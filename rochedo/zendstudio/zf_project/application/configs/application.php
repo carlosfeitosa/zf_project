@@ -17,3 +17,8 @@ define("LOG_FULL_FILENAME", LOG_PATH . LOG_FILENAME);
 
 // INFORMATION
 define("SUPPORT_EMAIL", "agil@facepe.br");
+
+// SENDING MAIL
+global $tr;
+$tr = new Zend_Mail_Transport_Smtp('mail.rochedoproject.com');
+Zend_Mail::setDefaultTransport($tr);

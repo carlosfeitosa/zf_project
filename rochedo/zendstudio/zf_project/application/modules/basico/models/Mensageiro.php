@@ -193,19 +193,33 @@ class Basico_Model_Mensageiro
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 	
-	public function enviar($remetente, Basico_Model_Email $destinatario, $assunto, $corpoMensagem, $tipoMensagem=null) {
+	public function enviar($remetente, $nomeRemetente, $destinatario, $nomeDestinatario,
+	                       $assunto, $corpoMensagem, $tipoMensagem=null) {
 		
 		if ($tipoMensagem === null){
 			$tipoMensagem = MENSAGEM_EMAIL_SIMPLES;
 		}
 		if ($tipoMensagem == MENSAGEM_EMAIL_SIMPLES) {
 			
+			if ($remetente === null) {
+				$remetente = 'sistema@rochedoproject.com';
+			}
 			$novaMensagem = new Basico_Model_Mensagem();
 	        $novaMensagem->setRemetente($remetente);
+	        $novaMensagem->setDestinatario($destinatario);
 	        $novaMensagem->setAssunto($assunto);
-	        $novaMensagem->setDestinatario($this->getRequest()->getParam('email'));
+	        $novaMensagem->setDestinatario($destinatario);
 	        $novaMensagem->setMensagem($corpoMensagem);
-	        $novaMensagem->set
+	        $novaMensagem->save();
+	        
+	        $zendMail = new Zend_Mail();
+	        $zendMail->setFrom($remetente, $nomeRemetente);
+	        $zendMail->addTo($destinatario, $nomeDestinatario );
+	        $zendMail->setSubject($assunto);
+	        $zendMail->setBodyHtml($corpoMensagem);
+	        $zendMail->send($tr);
+	        
+	        
 	                
             
 		}

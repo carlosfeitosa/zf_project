@@ -265,7 +265,7 @@ class Basico_Model_Mensagem
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Default_Model_MensagemMapper());
+			$this->setMapper(new Basico_Model_MensagemMapper());
 		}
 		return $this->_mapper;
 	}

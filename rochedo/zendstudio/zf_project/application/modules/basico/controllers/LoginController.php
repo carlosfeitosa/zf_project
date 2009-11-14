@@ -142,7 +142,11 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->rowinfo   = $rowinfo->getXml();
             $controladorEmail->salvarEmail($novoEmail);
 
+            $mensageiro = new Basico_Model_Mensageiro();
             
+            $mensageiro->enviar('sistema@rochedoproject.com', 'Rochedo Project', 
+                                 $novoEmail->getEmail(), $this->getRequest()->getParam('nome'), 
+                                 'Confirmação de email - Rochedo Project', 'Frozen', null);
             
             
         } catch (Exception $e) {
