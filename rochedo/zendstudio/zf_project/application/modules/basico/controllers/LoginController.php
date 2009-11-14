@@ -140,7 +140,11 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->validado  = 0;
             $novoEmail->ativo     = 0;
             $novoEmail->rowinfo   = $rowinfo->getXml();
-            $controladorEmail->salvarEmail($novoEmail);            
+            $controladorEmail->salvarEmail($novoEmail);
+
+            
+            
+            
         } catch (Exception $e) {
             $db->rollback();
             throw new Exception($e->getMessage());
