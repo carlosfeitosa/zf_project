@@ -59,11 +59,11 @@ class Basico_Model_MensagemMapper
      * @param  Default_Model_Mensagem $object
      * @return void
      */
-    public function save(Default_Model_Mensagem $object)
+    public function save(Basico_Model_Mensagem $object)
     {
         $data = array(
 				'remetente'   => $object->getRemetente(),
-				'destinatarios'   => $object->getDestinatarios(),
+				'destinatarios'   => $object->getDestinatario(),
 				'assunto'   => $object->getAssunto(),
 				'datahora'   => $object->getDataHora(),
 				'mensagem'   => $object->getMensagem(),
