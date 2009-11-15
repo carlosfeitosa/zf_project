@@ -5,6 +5,7 @@ require_once("EmailController.php");
 require_once("PessoaController.php");
 require_once("DadosPessoaisController.php");
 require_once("CategoriaController.php");
+require_once("MensageiroController.php");
 
 class Basico_LoginController extends Zend_Controller_Action
 {
@@ -142,11 +143,9 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->rowinfo   = $rowinfo->getXml();
             $controladorEmail->salvarEmail($novoEmail);
 
-            $mensageiro = new Basico_Model_Mensageiro();
-            
-            $mensageiro->enviar('sistema@rochedoproject.com', 'Rochedo Project', 
+            Basico_MensageiroController::enviar('sistema@rochedoproject.com', 'Rochedo Project', 
                                  $novoEmail->getEmail(), $this->getRequest()->getParam('nome'), 
-                                 'Confirmação de email - Rochedo Project', 'Frozen', null);
+                                 'Confirmação de email - Rochedo Project', 'Frozen', '');
             
             
         } catch (Exception $e) {
