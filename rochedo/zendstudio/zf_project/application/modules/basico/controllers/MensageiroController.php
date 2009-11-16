@@ -57,11 +57,8 @@ class Basico_MensageiroController extends Zend_Controller_Action {
 		        
 		       
 		        // SENDING MAIL
-				$config = array('auth' => 'login',
-                'username' => 'info@rochedoproject.com',
-                'password' => '@info#rochedo@');
 				
-				$tr = new Zend_Mail_Transport_Smtp('mail.rochedoproject.com', $config);
+		        $tr = Basico_MensageiroController::retornaTransport();
 				Zend_Mail::setDefaultTransport($tr);
 				
 		        $zendMail = new Zend_Mail();
@@ -88,6 +85,17 @@ class Basico_MensageiroController extends Zend_Controller_Action {
 		$mensagem = new Basico_Model_Mensagem();
 		$mensagem = $novaMensagem;
 		$mensagem->save();
+		
+	}
+	
+	public function retornaTransport() {
+		
+		$config = array('auth' => 'login',
+                'username' => 'info@rochedoproject.com',
+                'password' => '@info#rochedo@');
+				
+		$tr = new Zend_Mail_Transport_Smtp('mail.rochedoproject.com', $config);
+		return $tr;
 		
 	}
 }
