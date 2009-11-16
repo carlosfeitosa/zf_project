@@ -18,3 +18,14 @@ define("LOG_FULL_FILENAME", LOG_PATH . LOG_FILENAME);
 // INFORMATION
 define("SUPPORT_EMAIL", "agil@facepe.br");
 
+global $smtpServer;
+global $smtpAuth;
+global $smtpLogin;
+global $smtpPassword;
+
+$smtpServer = 'mail.rochedoproject.com';
+$smtpAuth = 'login';
+$smtpLogin = 'info@rochedoproject.com';
+$smtpPassword = '@info#rochedo@';
+
+
