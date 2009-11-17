@@ -114,16 +114,11 @@ class Basico_LoginController extends Zend_Controller_Action
         
         try {
             // PREENCHER ROWINFO E RECUPERAR O LOGIN DO SISTEMA
-            $data = new Zend_Date();
             $rowinfo = new Basico_Model_RowInfo();
-            
-            $rowinfo->genericDateTimeCreation = $data;
-            $rowinfo->genericIdLoginCreation = $this->getIdSistema();
-            $rowinfo->genericDateTimeLastModified = $data;
-            $rowinfo->genericIdLoginLastModified = $this->getIdSistema();
             
             //  NOVA PESSOA ARMAZENADA NO SISTEMA
             $novaPessoa = new Basico_Model_Pessoa();
+            $rowinfo->prepareXml($novaPessoa, true);
             $novaPessoa->rowinfo = $rowinfo->getXml();
             $controladorPessoa->salvarPessoa($novaPessoa);
             
@@ -140,7 +135,7 @@ class Basico_LoginController extends Zend_Controller_Action
 
             // UNIQUEID GERADO
             $uniqueIdValido = $controladorEmail->retornaUniqueIdEmail();
-                    
+
             //  NOVA EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
             $novoEmail = new Basico_Model_Email();
             $novoEmail->pessoa    = $novaPessoa->id;
@@ -150,14 +145,11 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->validado  = 0;
             $novoEmail->ativo     = 0;
             $novoEmail->rowinfo   = $rowinfo->getXml();
-            $controladorEmail->salvarEmail($novoEmail);
+            $controladorEmail->salvarEmail($novoEmail);  
 
-            
             Basico_MensageiroController::enviar('info@rochedoproject.com', 'Rochedo Project', 
                                  $this->getRequest()->getParam('email'), $this->getRequest()->getParam('nome'), 
                                  'Cadastro no Rochedo Project', 'Frozen', 'EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
-            
-            
         } catch (Exception $e) {
             $db->rollback();
             throw new Exception($e->getMessage());
@@ -167,18 +159,6 @@ class Basico_LoginController extends Zend_Controller_Action
         
         $this->_helper->redirector('SucessoSalvarUsuarioNaoValidado');
     }
-    
-	public function getIdSistema()
-	{
-	    $login = new Basico_Model_Login();
-	    $applicationSystemLogin = APPLICATION_SYSTEM_LOGIN;
-	    $loginSistema = $login->fetchList("login = '{$applicationSystemLogin}'", null, 1, 0);
-	    
-	    if ($loginSistema[0]->id)
-	        return $loginSistema[0]->id;
-	    else
-	        throw new Exception(MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO);
-	}
     
     public function sucessosalvarusuarionaovalidadoAction()
     {
@@ -238,5 +218,10 @@ class Basico_LoginController extends Zend_Controller_Action
         Zend_Auth::getInstance()->clearIdentity();
         $this->_helper->redirector('index'); // back to login page
 */
+    }
+    
+    static public function retornaLoginUsuarioLogado()
+    {
+        return null;
     }
 }

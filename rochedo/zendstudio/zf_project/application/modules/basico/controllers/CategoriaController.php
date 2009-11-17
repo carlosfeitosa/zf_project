@@ -33,4 +33,12 @@ class Basico_CategoriaController
     	    return $catergoriaEmailPrimario;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO);
 	}
+	
+	public function retornaCategoriaEmailValidacaoPlainText()
+	{
+	    $catergoriaEmailValidacaoPlainText = $this->retornaCategoria(EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	    if (isset($catergoriaEmailValidacaoPlainText))
+    	    return $catergoriaEmailValidacaoPlainText;
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	}
 }

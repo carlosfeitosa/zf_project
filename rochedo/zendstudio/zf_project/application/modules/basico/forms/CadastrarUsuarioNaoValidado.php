@@ -28,10 +28,12 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                     ->setInvalidMessage('Preencha o campo e-mail!')
                     ->setRequired(true)
                     ->setLabel('E-mail:')
-    				->addValidator('EmailAddress')
- //   				->addValidator('EmailAddress', true, array('mx' => true,
-   // 				                                           'deep' => true,));
  					->setAttrib('size', 80);
+
+        if (FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX)
+            $elements[1]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
+        else
+            $elements[1]->addValidator('EmailAddress');
            
         if($options!=null)
            $elements[1]->setValue($options->email);
@@ -42,7 +44,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         											 'captcha' => array(
                                                          'captcha' => 'image',
                                                          'imgDir' => '../public/images/captcha/',
-                                                         'imgUrl' => '../../../../public/images/captcha/',
+                                                         'imgUrl' => '../../../public/images/captcha/',
                                                          'wordLen' => 6,
         												 'width' => 250,
         												 'height' => 80,

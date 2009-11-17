@@ -5,14 +5,14 @@
  */
  
 /**
- * Log model
+ * Perfil model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_LogMapper
+ * @uses       Basico_Model_PerfilMapper
  * @subpackage Model
  */
-class Basico_Model_Log
+class Basico_Model_Perfil
 {
 	/**
 	* @var int
@@ -20,23 +20,22 @@ class Basico_Model_Log
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_LogMapper
+	 * @var Basico_Model_PerfilMapper
 	 */
 	protected $_mapper;
 
 	/**
-	 * @var Date
+	 * @var String
 	 */
-	protected $_dataHoraEvento;
+	protected $_nome;
 	/**
 	 * @var String
 	 */
-	protected $_xml;
-    /**
-     * @var Integer
-     */
-    protected $_pessoasperfis;
-
+	protected $_descricao;
+	/**
+	 * @var Boolean
+	 */
+	protected $_ativo;
     /**
      * @var Integer
      */
@@ -93,7 +92,7 @@ class Basico_Model_Log
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Log
+	 * @return Basico_Model_Perfil
 	 */
 	public function setOptions(array $options)
 	{
@@ -110,70 +109,71 @@ class Basico_Model_Log
 	}
     
 	/**
-	* Set dataHoraEvento
+	* Set nome
 	* 
-	* @param String $dataHoraEvento 
-	* @return Basico_Model_DataHoraEvento
+	* @param String $nome 
+	* @return Basico_Model_Nome
 	*/
-	public function setDataHoraEvento($dataHoraEvento)
+	public function setNome($nome)
 	{
-		$this->_dataHoraEvento = (String) $dataHoraEvento;
+		$this->_nome = (String) $nome;
 		return $this;
 	}
 
 	/**
-	* Get dataHoraEvento
+	* Get nome
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraEvento()
+	public function getNome()
 	{
-		return $this->_dataHoraEvento;
-	}
-
-	/**
-	* Get xml
-	* 
-	* @return null|String
-	*/
-	public function getXml()
-	{
-		return $this->_xml;
+		return $this->_nome;
 	}
      
 	/**
-	* Set pessoasperfis
+	* Set descricao
 	* 
-	* @param int $pessoasperfis 
-	* @return Basico_Model_Pessoasperfis
+	* @param String $descricao 
+	* @return Basico_Model_Descricao
 	*/
-	public function setPessoasperfis($pessoasperfis)
+	public function setDescricao($descricao)
 	{
-		$this->_pessoasperfis = (int) $pessoasperfis;
+		$this->_descricao = (String) $descricao;
 		return $this;
 	}
 
 	/**
-	* Get pessoasperfis
+	* Get descricao
 	* 
-	* @return null|int
+	* @return null|String
 	*/
-	public function getPessoasperfis()
+	public function getDescricao()
 	{
-		return $this->_pessoasperfis;
+		return $this->_descricao;
 	}
- 
-    /**
-     * Get pessoasperfis object
-     * @return null|PessoasPerfis
-     */
-    public function getPessoasperfisObject()
-    {
-        $model = new Basico_Model_Pessoasperfis();
-        $object = $model->find($this->_pessoasperfis);
-        return $object;
-    }
-    
+     
+	/**
+	* Set ativo
+	* 
+	* @param Boolean $ativo 
+	* @return Basico_Model_Ativo
+	*/
+	public function setAtivo($ativo)
+	{
+		$this->_ativo = (Boolean) $ativo;
+		return $this;
+	}
+
+	/**
+	* Get ativo
+	* 
+	* @return null|Boolean
+	*/
+	public function getAtivo()
+	{
+		return $this->_ativo;
+	}
+     
 	/**
 	* Set categoria
 	* 
@@ -211,7 +211,7 @@ class Basico_Model_Log
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Log
+	* @return Basico_Model_Perfil
 	*/
 	public function setId($id)
 	{
@@ -233,7 +233,7 @@ class Basico_Model_Log
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Log
+	* @return Basico_Model_Perfil
 	*/
 	public function setMapper($mapper)
 	{
@@ -244,14 +244,14 @@ class Basico_Model_Log
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_LogMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_PerfilMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_LogMapper
+	* @return Basico_Model_PerfilMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_LogMapper());
+			$this->setMapper(new Basico_Model_PerfilMapper());
 		}
 		return $this->_mapper;
 	}
@@ -281,7 +281,7 @@ class Basico_Model_Log
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Log
+	* @return Basico_Model_Perfil
 	*/
 	public function find($id)
 	{

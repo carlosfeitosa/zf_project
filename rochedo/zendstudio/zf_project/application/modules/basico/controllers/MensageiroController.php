@@ -1,7 +1,6 @@
 <?php
 
 class Basico_MensageiroController extends Zend_Controller_Action {
-
 		
     public function enviar($remetente, $nomeRemetente, $destinatarios, $nomeDestinatario,
 		                   $assunto, $corpoMensagem, $categoriaMensagem) {
@@ -10,28 +9,25 @@ class Basico_MensageiroController extends Zend_Controller_Action {
 		$data = new Zend_Date();
 		
 		//  INICIALIZANDO CONTROLADORES
-        $controladorCategoria     = Basico_CategoriaController::init();  
+        $controladorCategoria = Basico_CategoriaController::init();
         
         // CAPTURANDO RESOURCE DO DB
         $db = $this->getInvokeArg('bootstrap')->getResource('db');
 
         try {	
         	// PREENCHER ROWINFO E RECUPERAR O LOGIN DO SISTEMA
-            $rowInfo = new Basico_Model_RowInfo();
-            $rowInfo->genericDateTimeCreation     = $data;
-            $rowInfo->genericIdLoginCreation      = Basico_LoginController::getIdSistema();
-            $rowInfo->genericDateTimeLastModified = $data;
-            $rowInfo->genericIdLoginLastModified  = Basico_LoginController::getIdSistema();	
-		                       	
+            $rowInfo = new Basico_Model_RowInfo();                 	
 			
 			switch ($categoriaMensagem) {
 				case 'EMAIL_VALIDACAO_USUARIO_PLAINTEXT' : 
 
 					//capturando o objeto categoria
-					$idCategoria = $controladorCategoria->retornaCategoria('EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
+					$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
 					
 					//SALVANDO A MENSAGEM
 					$mensagem = new Basico_Model_Mensagem();
+					$rowInfo->prepareXml($mensagem, true);
+					
 			        $mensagem->remetente     = $remetente;
 			        $mensagem->destinatarios = $destinatarios;
 			        $mensagem->assunto       = $assunto;
@@ -39,7 +35,7 @@ class Basico_MensageiroController extends Zend_Controller_Action {
 			        $mensagem->dataHora      = $data;
 			        $mensagem->rowInfo       = $rowInfo->getXml();
 			        $mensagem->idCategoria   = $idCategoria->id;
-			        $mensagem->save();
+//			        $mensagem->save();
 			        
 			        // SENDING MAIL
 					$tr = Basico_MensageiroController::retornaTransportSmtp('login', 'info@rochedoproject.com', 

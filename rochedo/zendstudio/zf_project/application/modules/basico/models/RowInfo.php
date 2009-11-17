@@ -220,4 +220,23 @@ class Basico_Model_RowInfo
     {
         return new Basico_Model_Gerador();
     }
+    
+	/**
+	* Prepare xml
+	* 
+	* @return null|Boolean
+	*/
+	public function prepareXml($modelo, $utilizarUsuarioSistema = false)
+	{
+	    if ($utilizarUsuarioSistema)
+	        $idPessoaPerfil = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+
+        if (!isset($modelo->id))
+        {
+            $this->setGenericDateTimeCreation(Zend_Date::now());
+            $this->setGenericIdLoginCreation($idPessoaPerfil);
+        }
+        $this->setGenericDateTimeLastModified(Zend_Date::now());
+        $this->setGenericIdLoginLastModified($idPessoaPerfil);
+	}
 }
