@@ -43,12 +43,12 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                                                      'required' => true,
         											 'captcha' => array(
                                                          'captcha' => 'image',
-                                                         'imgDir' => '../public/images/captcha/',
-                                                         'imgUrl' => '../../../public/images/captcha/',
+                                                         'imgDir' => CAPTCHA_IMAGE_DIR,
+                                                         'imgUrl' => CAPTCHA_IMAGE_URL,
                                                          'wordLen' => 6,
         												 'width' => 250,
         												 'height' => 80,
-														 'font' => '../public/fonts/typewcond_bold.otf',
+														 'font' => CAPTCHA_FONT_PATH,
                                                          'fontSize' => 50,        
                                                          'expiration' => 300,
                                                          'gcFreq' => 100,),));

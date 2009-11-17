@@ -20,13 +20,12 @@ define("SUPPORT_EMAIL", "agil@facepe.br");
 // E-MAIL VALIDATION
 define("FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX", false);
 
-// SMTP SETTINGS
-global $smtpServer;
-global $smtpAuth;
-global $smtpLogin;
-global $smtpPassword;
+//CAPTCHA IMAGES/FONTS FOLDERS
+define("CAPTCHA_IMAGE_DIR","../public/images/captcha/");
+define("CAPTCHA_IMAGE_URL", "../../../public/images/captcha/");
+define("CAPTCHA_FONT_PATH", "../public/fonts/typewcond_bold.otf");
 
-$smtpServer = 'mail.rochedoproject.com';
-$smtpAuth = 'login';
-$smtpLogin = 'info@rochedoproject.com';
-$smtpPassword = '@info#rochedo@';
+//DOJO DIRECTORIES
+define("DOJO_LOCAL_PATH", "../../js/dojo/dojo.js");
+define("DOJO_STYLE_SHEET_PATH", "../../js/dojox/grid/_grid/tundraGrid.css");
+define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.tundra");

@@ -40,9 +40,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Dojo::enableView($view);
         
         $view->dojo()->setDjConfigOption('usePlainJson', true)
-        			 ->addStylesheetModule('dijit.themes.tundra')
-        			 ->addStylesheet('../../../js/dojox/grid/_grid/tundraGrid.css')
-        			 ->setLocalPath('../../../js/dojo/dojo.js')
+        			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
+        			 ->addStylesheet(DOJO_STYLE_SHEET_PATH)
+        			 ->setLocalPath(DOJO_LOCAL_PATH)
         			 //->addLayer('Custon code Ex: /js/paste/main.js')
         			 //->addJavascript('Custon code Ex: paste.main.init();')
         			 ->disable();
