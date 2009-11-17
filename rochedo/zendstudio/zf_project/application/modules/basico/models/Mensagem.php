@@ -36,7 +36,7 @@ class Basico_Model_Mensagem
 	/**
 	 * @var String
 	 */
-	protected $_destinatario;
+	protected $_destinatarios;
 	/**
 	 * @var String
 	 */
@@ -49,6 +49,8 @@ class Basico_Model_Mensagem
 	 * @var String
 	 */
 	protected $_mensagem;
+	
+	protected $_rowInfo;
 	/**
 	 * Constructor
 	 * 
@@ -144,9 +146,9 @@ class Basico_Model_Mensagem
 	* @param String $destinatario 
 	* @return Default_Model_Destinatario
 	*/
-	public function setDestinatario($destinatario)
+	public function setDestinatarios($destinatarios)
 	{
-		$this->_destinatario = (String) $destinatario;
+		$this->_destinatarios = (String) $destinatarios;
 		return $this;
 	}
 
@@ -155,9 +157,9 @@ class Basico_Model_Mensagem
 	* 
 	* @return null|String
 	*/
-	public function getDestinatario()
+	public function getDestinatarios()
 	{
-		return $this->_destinatario;
+		return $this->_destinatarios;
 	}
      
 	/**
@@ -269,6 +271,28 @@ class Basico_Model_Mensagem
 	public function getIdCategoria()
 	{
 		return $this->_idCategoria;
+	}
+	
+	/**
+	* Set entry idCategoria
+	* 
+	* @param  int $idCategoria 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setRowInfo($rowInfo)
+	{
+		$this->_rowInfo = (String) $rowInfo;
+		return $this;
+	}
+	
+    /**
+	* Retrieve entry rowInfo
+	* 
+	* @return null|string
+	*/
+	public function getRowInfo()
+	{
+		return $this->_rowInfo;
 	}
 	
 	/**

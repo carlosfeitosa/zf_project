@@ -87,7 +87,7 @@ class Basico_LoginController extends Zend_Controller_Action
                                                         $this->getRequest()->getParam('email'), 
                                                         $this->getRequest()->getParam('nome'), 
                                                         'Cadastro no Rochedo Project', 'Frozen', 
-                                                        EMAIL_VALIDACAO_USUARIO);
+                                                        EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 	            	
 	            	$this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 	            	
@@ -155,7 +155,7 @@ class Basico_LoginController extends Zend_Controller_Action
             
             Basico_MensageiroController::enviar('info@rochedoproject.com', 'Rochedo Project', 
                                  $this->getRequest()->getParam('email'), $this->getRequest()->getParam('nome'), 
-                                 'Cadastro no Rochedo Project', 'Frozen', EMAIL_VALIDACAO_USUARIO);
+                                 'Cadastro no Rochedo Project', 'Frozen', 'EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
             
             
         } catch (Exception $e) {

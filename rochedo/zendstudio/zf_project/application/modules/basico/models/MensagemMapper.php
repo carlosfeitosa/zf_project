@@ -62,11 +62,13 @@ class Basico_Model_MensagemMapper
     public function save(Basico_Model_Mensagem $object)
     {
         $data = array(
-				'remetente'   => $object->getRemetente(),
-				'destinatarios'   => $object->getDestinatario(),
-				'assunto'   => $object->getAssunto(),
-				'datahora'   => $object->getDataHora(),
-				'mensagem'   => $object->getMensagem(),
+				'remetente'     => $object->getRemetente(),
+				'destinatarios' => $object->getDestinatarios(),
+				'assunto'       => $object->getAssunto(),
+                'mensagem'      => $object->getMensagem(),
+				'id_categoria'  => $object->getIdCategoria(),
+                'rowinfo'       => $object->getRowInfo(),
+                'datahora'      => $object->getDataHora(),
 
         );
 
@@ -105,10 +107,11 @@ class Basico_Model_MensagemMapper
         $object->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatarios)
+				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
 				->setDataHora($row->datahora)
-				->setMensagem($row->mensagem);
+				->setMensagem($row->mensagem)
+				->setRowInfo($row->rowinfo);
     }
 
 	/**
@@ -126,10 +129,11 @@ class Basico_Model_MensagemMapper
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatarios)
+				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
 				->setDataHora($row->datahora)
 				->setMensagem($row->mensagem)
+				->setRowInfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -151,10 +155,11 @@ class Basico_Model_MensagemMapper
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatarios)
+				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
 				->setDataHora($row->datahora)
 				->setMensagem($row->mensagem)
+				->setRowInfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
