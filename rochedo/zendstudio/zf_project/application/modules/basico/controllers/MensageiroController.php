@@ -19,7 +19,7 @@ class Basico_MensageiroController extends Zend_Controller_Action {
             $rowInfo = new Basico_Model_RowInfo();                 	
 			
 			switch ($categoriaMensagem) {
-				case 'EMAIL_VALIDACAO_USUARIO_PLAINTEXT' : 
+				case EMAIL_VALIDACAO_USUARIO_PLAINTEXT : 
 
 					//capturando o objeto categoria
 					$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();

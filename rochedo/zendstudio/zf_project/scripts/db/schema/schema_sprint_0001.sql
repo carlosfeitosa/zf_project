@@ -96,7 +96,8 @@ create table [dbo].[mensagem] (
 	[assunto]  	varchar(200) not null,
 	[datahora] 	timestamp not null,
 	[mensagem] 	varchar(2000) not null,
-	[id_categoria] int not null
+	[id_categoria] int not null,
+	[rowinfo] [varchar] (2000) collate latin1_general_ci_ai not null
 )on [primary]
 go
 
@@ -112,7 +113,8 @@ create table [dbo].[mensagem_email] (
 	[destinatarios_copia_carbonada]	varchar(2000) not null,
 	[destinatarios_copia_carbonada_cega]	varchar(2000) not null,
 	[responder_para] varchar(200) not null,
-    [id_mensagem] int not null
+    [id_mensagem] int not null,
+    [rowinfo] [varchar] (2000) collate latin1_general_ci_ai not null
 )on [primary]
 go
 
@@ -126,7 +128,8 @@ create table [dbo].[anexo_mensagem] (
 	[descricao]    	varchar(400) not null,
 	[arquivo]      	binary not null,
 	[mime_type]    	varchar(100) not null,
-	[id_mensagem]  	int not null	
+	[id_mensagem]  	int not null,
+	[rowinfo] [varchar] (2000) collate latin1_general_ci_ai not null
 )
 go
 
