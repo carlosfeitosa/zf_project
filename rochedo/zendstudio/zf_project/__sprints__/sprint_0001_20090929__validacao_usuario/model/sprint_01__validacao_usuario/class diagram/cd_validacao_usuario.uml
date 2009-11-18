@@ -517,4 +517,14 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Mz_FMdOnEd6HgL0enKsn3Q" value="1"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_BS5kkNSMEd6kBqmVozfVEw" name="anexoMensagem_possui_rowinfo" memberEnd="_BTKqUNSMEd6kBqmVozfVEw _BTL4cdSMEd6kBqmVozfVEw">
+    <ownedEnd xmi:id="_BTKqUNSMEd6kBqmVozfVEw" name="anexoMensagem" type="_bDB3EMSvEd6vnL5X62mZVw" association="_BS5kkNSMEd6kBqmVozfVEw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BTL4cNSMEd6kBqmVozfVEw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BTLRYNSMEd6kBqmVozfVEw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_BTL4cdSMEd6kBqmVozfVEw" name="rowinfo" type="_09ynwKoHEd687LtTWUTtuQ" association="_BS5kkNSMEd6kBqmVozfVEw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BTMfgNSMEd6kBqmVozfVEw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BTL4ctSMEd6kBqmVozfVEw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>

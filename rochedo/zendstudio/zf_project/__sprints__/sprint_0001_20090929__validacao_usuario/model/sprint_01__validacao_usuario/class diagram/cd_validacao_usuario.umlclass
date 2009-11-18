@@ -1748,9 +1748,41 @@
       <styles xmi:type="notation:RoutingStyle" xmi:id="_M0DWodOnEd6HgL0enKsn3Q"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_M0DWotOnEd6HgL0enKsn3Q" fontName="Bitstream Vera Sans"/>
       <element xmi:type="uml:Association" href="cd_validacao_usuario.uml#_Mz8o8NOnEd6HgL0enKsn3Q"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M0DWo9OnEd6HgL0enKsn3Q" points="[-1, 0, -365, 501]$[-59, 0, -423, 501]$[-59, -308, -423, 193]$[-59, -493, -423, 8]$[347, -501, -17, 0]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M0DWo9OnEd6HgL0enKsn3Q" points="[-1, 0, -365, 501]$[-59, 0, -423, 501]$[-59, -308, -423, 193]$[-59, -501, -423, 0]$[347, -501, -17, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M0L5gNOnEd6HgL0enKsn3Q" id="(0.0033444816053511705,0.3557692307692308)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M0L5gdOnEd6HgL0enKsn3Q" id="(0.17,0.7945205479452054)"/>
+    </edges>
+    <edges xmi:type="notation:Edge" xmi:id="_BUxM0NSMEd6kBqmVozfVEw" type="4005" source="_bEVeoMSvEd6vnL5X62mZVw" target="_0-ImAKoHEd687LtTWUTtuQ">
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUxz4NSMEd6kBqmVozfVEw" type="6003">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUxz4dSMEd6kBqmVozfVEw" x="-73" y="5"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUya8NSMEd6kBqmVozfVEw" type="6004">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUya8dSMEd6kBqmVozfVEw" x="-96" y="52"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUya8tSMEd6kBqmVozfVEw" type="6005">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUya89SMEd6kBqmVozfVEw" x="57" y="5"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUya9NSMEd6kBqmVozfVEw" type="6006">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUya9dSMEd6kBqmVozfVEw" y="-30"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUya9tSMEd6kBqmVozfVEw" type="6007">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUya99SMEd6kBqmVozfVEw" y="-30"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUya-NSMEd6kBqmVozfVEw" type="6008">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUya-dSMEd6kBqmVozfVEw" y="15"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUya-tSMEd6kBqmVozfVEw" type="6009">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUzCANSMEd6kBqmVozfVEw" y="15"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BUzCAdSMEd6kBqmVozfVEw" type="6019">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BUzCAtSMEd6kBqmVozfVEw" y="40"/>
+      </children>
+      <styles xmi:type="notation:RoutingStyle" xmi:id="_BUxM0dSMEd6kBqmVozfVEw"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_BUxM0tSMEd6kBqmVozfVEw" fontName="Bitstream Vera Sans"/>
+      <element xmi:type="uml:Association" href="cd_validacao_usuario.uml#_BS5kkNSMEd6kBqmVozfVEw"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BUxM09SMEd6kBqmVozfVEw" points="[0, -16, 253, 471]$[0, -455, 253, 32]$[-253, -455, 0, 32]$[-253, -484, 0, 3]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BVEu0NSMEd6kBqmVozfVEw" id="(0.5257142857142857,0.11764705882352941)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BVEu0dSMEd6kBqmVozfVEw" id="(0.6,0.958904109589041)"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_NjnXoK0hEd6Tgc0yakCadQ" type="UMLClass" measurementUnit="Pixel">
