@@ -44,7 +44,7 @@ class Basico_MensageiroController extends Zend_Controller_Action {
 					
 			        $zendMail = new Zend_Mail();
 			        $zendMail->setFrom($remetente, $nomeRemetente);
-			        $zendMail->addTo($destinatarios, $nomeDestinatario );
+			        $zendMail->addTo($destinatarios, $nomeDestinatario);
 			        $zendMail->setSubject($assunto);
 			        $zendMail->setBodyText($corpoMensagem);
 			        $zendMail->setDate($data);
