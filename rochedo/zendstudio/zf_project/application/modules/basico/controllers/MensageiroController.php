@@ -2,12 +2,8 @@
 
 class Basico_MensageiroController 
 {
-	private $mensagem;
-	private $controladorMensagem;
-	
 	public function init() {
-		$this->mensagem = new Basico_Model_Mensagem();
-		$this->controladorMensagem = new Basico_MesagemController();
+		
 	}
 		
     public function enviar(Basico_Model_Mensagem $mensagem) {
