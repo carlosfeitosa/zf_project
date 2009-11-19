@@ -1,76 +1,38 @@
 <?php
 
-class Basico_MensageiroController extends Zend_Controller_Action {
+class Basico_MensageiroController 
+{
+	private $mensagem;
+	private $controladorMensagem;
+	
+	public function init() {
+		$this->mensagem = new Basico_Model_Mensagem();
+		$this->controladorMensagem = new Basico_MesagemController();
+	}
 		
-    public function enviar($remetente, $nomeRemetente, $destinatarios, $nomeDestinatario,
-		                   $assunto, $corpoMensagem, $categoriaMensagem) {
+    public function enviar(Basico_Model_Mensagem $mensagem) {
         
-		// CAPTURANDO DATA LOCAL ATUAL
-		$data = new Zend_Date();
-		
-		//  INICIALIZANDO CONTROLADORES
-        $controladorCategoria = Basico_CategoriaController::init();
-        
-        // CAPTURANDO RESOURCE DO DB
-        $db = $this->getInvokeArg('bootstrap')->getResource('db');
-
-        try {	
-        	// PREENCHER ROWINFO E RECUPERAR O LOGIN DO SISTEMA
-            $rowInfo = new Basico_Model_RowInfo();                 	
+    	try {
+            //SENDING MAIL
+			$tr = Basico_MensageiroController::retornaTransportSmtp('login', 'info@rochedoproject.com', 
+	                                                                '@info#rochedo@', 'mail.rochedoproject.com');
+			Zend_Mail::setDefaultTransport($tr);
 			
-			switch ($categoriaMensagem) {
-				case EMAIL_VALIDACAO_USUARIO_PLAINTEXT : 
+	        $zendMail = new Zend_Mail();
+	        $zendMail->setFrom($remetente, $nomeRemetente);
+	        $zendMail->addTo($destinatarios, $nomeDestinatario);
+	        $zendMail->setSubject($assunto);
+	        $zendMail->setBodyText($corpoMensagem);
+	        $zendMail->setDate($data);
+	        
+                $zendMail->send($tr);
 
-					//capturando o objeto categoria
-					$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
-					
-					//SALVANDO A MENSAGEM
-					$mensagem = new Basico_Model_Mensagem();
-					$rowInfo->prepareXml($mensagem, true);
-					
-			        $mensagem->remetente     = $remetente;
-			        $mensagem->destinatarios = $destinatarios;
-			        $mensagem->assunto       = $assunto;
-			        $mensagem->mensagem      = $corpoMensagem;
-			        $mensagem->dataHora      = $data;
-			        $mensagem->rowInfo       = $rowInfo->getXml();
-			        $mensagem->idCategoria   = $idCategoria->id;
-//			        $mensagem->save();
-			        
-			        // SENDING MAIL
-					$tr = Basico_MensageiroController::retornaTransportSmtp('login', 'info@rochedoproject.com', 
-			                                                                '@info#rochedo@', 'mail.rochedoproject.com');
-					Zend_Mail::setDefaultTransport($tr);
-					
-			        $zendMail = new Zend_Mail();
-			        $zendMail->setFrom($remetente, $nomeRemetente);
-			        $zendMail->addTo($destinatarios, $nomeDestinatario);
-			        $zendMail->setSubject($assunto);
-			        $zendMail->setBodyText($corpoMensagem);
-			        $zendMail->setDate($data);
-			        
-	                $zendMail->send($tr);
-				    break;
-				    
-	            default:
-	            	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_INVALIDA);
-                	    
-			}
-				
 	    }catch(Exception $e){
 			
             throw new Exception($e->getMessage());
 	    }
 	    
 	   
-	}
-	
-	public function salvarMensagem($novaMensagem) {
-		
-		$mensagem = new Basico_Model_Mensagem();
-		$mensagem = $novaMensagem;
-		$mensagem->save();
-		
 	}
 	
 	public function retornaTransportSmtp($tipoAutenticacao, $username, $senha, $smtpServer) {
