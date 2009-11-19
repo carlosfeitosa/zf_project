@@ -64,8 +64,8 @@ class Default_Model_LogMapper
         $data = array(
 				'dataHoraEvento'   => $object->getDataHoraEvento(),
 				'xml'   => $object->getXml(),
-              'pessoasperfis'   => $object->getPessoasperfis(),
               'categoria'   => $object->getCategoria(),
+              'pessoaPerfil'   => $object->getPessoaPerfil(),
 
         );
 
@@ -105,8 +105,8 @@ class Default_Model_LogMapper
 
 				->setDataHoraEvento($row->dataHoraEvento)
 				->setXml($row->xml)
-                ->setPessoasperfis($row->pessoasperfis)
-                ->setCategoria($row->categoria);
+                ->setCategoria($row->categoria)
+                ->setPessoaPerfil($row->pessoaPerfil);
     }
 
 	/**
@@ -125,8 +125,8 @@ class Default_Model_LogMapper
 
 				->setDataHoraEvento($row->dataHoraEvento)
 				->setXml($row->xml)
-                ->setPessoasperfis($row->pessoasperfis)
                 ->setCategoria($row->categoria)
+                ->setPessoaPerfil($row->pessoaPerfil)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -149,8 +149,8 @@ class Default_Model_LogMapper
 
 				->setDataHoraEvento($row->dataHoraEvento)
 				->setXml($row->xml)
-                ->setPessoasperfis($row->pessoasperfis)
                 ->setCategoria($row->categoria)
+                ->setPessoaPerfil($row->pessoaPerfil)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -158,12 +158,12 @@ class Default_Model_LogMapper
 	}
 
 
-//#BlockStart number=83 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
+//#BlockStart number=71 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
       
 //start block for manually written code
         
 //end block for manually written code
 
-//#BlockEnd number=83
+//#BlockEnd number=71
 
 }

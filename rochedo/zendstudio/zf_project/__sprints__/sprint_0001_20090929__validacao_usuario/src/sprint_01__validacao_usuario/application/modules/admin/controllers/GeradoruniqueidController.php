@@ -7,13 +7,13 @@ class Admin_GeradorUniqueIdController extends Admin_IndexController
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=136 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_0
+//#BlockStart number=124 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=136
+//#BlockEnd number=124
 
 	}
 
@@ -37,13 +37,13 @@ class Admin_GeradorUniqueIdController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=137 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_1
+//#BlockStart number=125 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=137
+//#BlockEnd number=125
 
 	}
     
@@ -105,12 +105,12 @@ class Admin_GeradorUniqueIdController extends Admin_IndexController
 	}
 	
 
-//#BlockStart number=138 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_2
+//#BlockStart number=126 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=138
+//#BlockEnd number=126
 
 }

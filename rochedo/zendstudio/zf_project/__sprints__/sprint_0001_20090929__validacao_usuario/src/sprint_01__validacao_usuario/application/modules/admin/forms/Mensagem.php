@@ -20,8 +20,8 @@ class Admin_Form_Mensagem extends Zend_Form
         if($options!=null)
             $elements[0]->setValue($options->remetente);
 
-		$elements[1] = new Zend_Form_Element_Text('destinatario');
-		$elements[1]->setLabel('Destinatario')
+		$elements[1] = new Zend_Form_Element_Text('destinatarios');
+		$elements[1]->setLabel('Destinatarios')
 		  		->setAttrib('size', 40)
 				->setRequired(true)
 				->addFilter('StripTags')
@@ -29,7 +29,7 @@ class Admin_Form_Mensagem extends Zend_Form
 				->addValidator('NotEmpty');
 
         if($options!=null)
-            $elements[1]->setValue($options->destinatario);
+            $elements[1]->setValue($options->destinatarios);
 
 		$elements[2] = new Zend_Form_Element_Text('assunto');
 		$elements[2]->setLabel('Assunto')
@@ -42,8 +42,8 @@ class Admin_Form_Mensagem extends Zend_Form
         if($options!=null)
             $elements[2]->setValue($options->assunto);
 
-        $elements[3] = new Zend_Form_Element_Text('dataHora');
-        $elements[3]->setLabel('DataHora')
+        $elements[3] = new Zend_Form_Element_Text('dataHoraMensagem');
+        $elements[3]->setLabel('DataHoraMensagem')
                 ->setAttrib('size', 15)
                 ->setAttrib('id', 'date')
                 ->setRequired(true)
@@ -51,7 +51,7 @@ class Admin_Form_Mensagem extends Zend_Form
                 ->addFilter('StringTrim');
 
         if($options!=null)
-            $elements[3]->setValue($options->dataHora);
+            $elements[3]->setValue($options->dataHoraMensagem);
 
 		$elements[4] = new Zend_Form_Element_Text('mensagem');
 		$elements[4]->setLabel('Mensagem')

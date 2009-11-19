@@ -35,12 +35,12 @@ class Default_Model_Log
     /**
      * @var Integer
      */
-    protected $_pessoasperfis;
+    protected $_categoria;
 
     /**
      * @var Integer
      */
-    protected $_categoria;
+    protected $_pessoaPerfil;
 
 	/**
 	 * Constructor
@@ -154,39 +154,6 @@ class Default_Model_Log
 	}
      
 	/**
-	* Set pessoasperfis
-	* 
-	* @param int $pessoasperfis 
-	* @return Default_Model_Pessoasperfis
-	*/
-	public function setPessoasperfis($pessoasperfis)
-	{
-		$this->_pessoasperfis = (int) $pessoasperfis;
-		return $this;
-	}
-
-	/**
-	* Get pessoasperfis
-	* 
-	* @return null|int
-	*/
-	public function getPessoasperfis()
-	{
-		return $this->_pessoasperfis;
-	}
- 
-    /**
-     * Get pessoasperfis object
-     * @return null|PessoasPerfis
-     */
-    public function getPessoasperfisObject()
-    {
-        $model = new Default_Model_Pessoasperfis();
-        $object = $model->find($this->_pessoasperfis);
-        return $object;
-    }
-    
-	/**
 	* Set categoria
 	* 
 	* @param int $categoria 
@@ -216,6 +183,39 @@ class Default_Model_Log
     {
         $model = new Default_Model_Categoria();
         $object = $model->find($this->_categoria);
+        return $object;
+    }
+    
+	/**
+	* Set pessoaPerfil
+	* 
+	* @param int $pessoaPerfil 
+	* @return Default_Model_PessoaPerfil
+	*/
+	public function setPessoaPerfil($pessoaPerfil)
+	{
+		$this->_pessoaPerfil = (int) $pessoaPerfil;
+		return $this;
+	}
+
+	/**
+	* Get pessoaPerfil
+	* 
+	* @return null|int
+	*/
+	public function getPessoaPerfil()
+	{
+		return $this->_pessoaPerfil;
+	}
+ 
+    /**
+     * Get pessoaPerfil object
+     * @return null|a_pessoa_possui_perfil
+     */
+    public function getPessoaPerfilObject()
+    {
+        $model = new Default_Model_PessoaPerfil();
+        $object = $model->find($this->_pessoaPerfil);
         return $object;
     }
 
@@ -322,12 +322,12 @@ class Default_Model_Log
 	}
 	
 
-//#BlockStart number=82 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
+//#BlockStart number=70 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=82
+//#BlockEnd number=70
 
 }

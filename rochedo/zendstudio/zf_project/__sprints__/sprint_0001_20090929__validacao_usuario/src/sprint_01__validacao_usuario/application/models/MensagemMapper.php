@@ -63,9 +63,9 @@ class Default_Model_MensagemMapper
     {
         $data = array(
 				'remetente'   => $object->getRemetente(),
-				'destinatario'   => $object->getDestinatario(),
+				'destinatarios'   => $object->getDestinatarios(),
 				'assunto'   => $object->getAssunto(),
-				'dataHora'   => $object->getDataHora(),
+				'dataHoraMensagem'   => $object->getDataHoraMensagem(),
 				'mensagem'   => $object->getMensagem(),
 
         );
@@ -105,9 +105,9 @@ class Default_Model_MensagemMapper
         $object->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatario)
+				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->dataHora)
+				->setDataHoraMensagem($row->dataHoraMensagem)
 				->setMensagem($row->mensagem);
     }
 
@@ -126,9 +126,9 @@ class Default_Model_MensagemMapper
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatario)
+				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->dataHora)
+				->setDataHoraMensagem($row->dataHoraMensagem)
 				->setMensagem($row->mensagem)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -151,9 +151,9 @@ class Default_Model_MensagemMapper
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
-				->setDestinatario($row->destinatario)
+				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->dataHora)
+				->setDataHoraMensagem($row->dataHoraMensagem)
 				->setMensagem($row->mensagem)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -162,12 +162,12 @@ class Default_Model_MensagemMapper
 	}
 
 
-//#BlockStart number=149 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
+//#BlockStart number=128 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
       
 //start block for manually written code
         
 //end block for manually written code
 
-//#BlockEnd number=149
+//#BlockEnd number=128
 
 }

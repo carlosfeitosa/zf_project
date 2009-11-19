@@ -7,13 +7,13 @@ class Admin_MensagemEmailController extends Admin_IndexController
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=145 id=_l3UeAK0fEd6Tgc0yakCadQ_#_0
+//#BlockStart number=154 id=_myPMYNOmEd6HgL0enKsn3Q_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=145
+//#BlockEnd number=154
 
 	}
 
@@ -37,13 +37,13 @@ class Admin_MensagemEmailController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=146 id=_l3UeAK0fEd6Tgc0yakCadQ_#_1
+//#BlockStart number=155 id=_myPMYNOmEd6HgL0enKsn3Q_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=146
+//#BlockEnd number=155
 
 	}
     
@@ -105,12 +105,12 @@ class Admin_MensagemEmailController extends Admin_IndexController
 	}
 	
 
-//#BlockStart number=147 id=_l3UeAK0fEd6Tgc0yakCadQ_#_2
+//#BlockStart number=156 id=_myPMYNOmEd6HgL0enKsn3Q_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=147
+//#BlockEnd number=156
 
 }

@@ -31,7 +31,7 @@ class Default_Model_Mensagem
 	/**
 	 * @var String
 	 */
-	protected $_destinatario;
+	protected $_destinatarios;
 	/**
 	 * @var String
 	 */
@@ -39,7 +39,7 @@ class Default_Model_Mensagem
 	/**
 	 * @var Date
 	 */
-	protected $_dataHora;
+	protected $_dataHoraMensagem;
 	/**
 	 * @var String
 	 */
@@ -134,25 +134,25 @@ class Default_Model_Mensagem
 	}
      
 	/**
-	* Set destinatario
+	* Set destinatarios
 	* 
-	* @param String $destinatario 
-	* @return Default_Model_Destinatario
+	* @param String $destinatarios 
+	* @return Default_Model_Destinatarios
 	*/
-	public function setDestinatario($destinatario)
+	public function setDestinatarios($destinatarios)
 	{
-		$this->_destinatario = (String) $destinatario;
+		$this->_destinatarios = (String) $destinatarios;
 		return $this;
 	}
 
 	/**
-	* Get destinatario
+	* Get destinatarios
 	* 
 	* @return null|String
 	*/
-	public function getDestinatario()
+	public function getDestinatarios()
 	{
-		return $this->_destinatario;
+		return $this->_destinatarios;
 	}
      
 	/**
@@ -178,25 +178,25 @@ class Default_Model_Mensagem
 	}
      
 	/**
-	* Set dataHora
+	* Set dataHoraMensagem
 	* 
-	* @param String $dataHora 
-	* @return Default_Model_DataHora
+	* @param String $dataHoraMensagem 
+	* @return Default_Model_DataHoraMensagem
 	*/
-	public function setDataHora($dataHora)
+	public function setDataHoraMensagem($dataHoraMensagem)
 	{
-		$this->_dataHora = (String) $dataHora;
+		$this->_dataHoraMensagem = (String) $dataHoraMensagem;
 		return $this;
 	}
 
 	/**
-	* Get dataHora
+	* Get dataHoraMensagem
 	* 
 	* @return null|String
 	*/
-	public function getDataHora()
+	public function getDataHoraMensagem()
 	{
-		return $this->_dataHora;
+		return $this->_dataHoraMensagem;
 	}
      
 	/**
@@ -324,12 +324,12 @@ class Default_Model_Mensagem
 	}
 	
 
-//#BlockStart number=148 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
+//#BlockStart number=127 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=148
+//#BlockEnd number=127
 
 }

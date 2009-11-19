@@ -204,17 +204,6 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_51V6oKoJEd687LtTWUTtuQ" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_nKZzkKoLEd687LtTWUTtuQ" name="PessoasPerfis"/>
-  <packagedElement xmi:type="uml:Association" xmi:id="_A7Ss0KoOEd687LtTWUTtuQ" name="a_pessoaperfil" memberEnd="_A7XlUKoOEd687LtTWUTtuQ _A7XlU6oOEd687LtTWUTtuQ">
-    <ownedEnd xmi:id="_A7XlUKoOEd687LtTWUTtuQ" name="pessoaperfil" type="_nKZzkKoLEd687LtTWUTtuQ" association="_A7Ss0KoOEd687LtTWUTtuQ">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A7XlUqoOEd687LtTWUTtuQ" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A7XlUaoOEd687LtTWUTtuQ" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_A7XlU6oOEd687LtTWUTtuQ" name="pessoaperfil" type="_51RCIKoJEd687LtTWUTtuQ" association="_A7Ss0KoOEd687LtTWUTtuQ">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A7YMYaoOEd687LtTWUTtuQ" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A7YMYKoOEd687LtTWUTtuQ" value="1"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_de8LQKsFEd6HKaJ1-3wo0A" name="a_categoria_possui_rowinfo" memberEnd="_de9ZYKsFEd6HKaJ1-3wo0A _de-AcqsFEd6HKaJ1-3wo0A">
     <ownedEnd xmi:id="_de9ZYKsFEd6HKaJ1-3wo0A" name="categoria" type="_0N60kKoIEd687LtTWUTtuQ" association="_de8LQKsFEd6HKaJ1-3wo0A">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_de-AcasFEd6HKaJ1-3wo0A" value="1"/>
@@ -251,16 +240,6 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_7gJngKw2Ed6jTJH7GgbZHg" name="a_pessoasperfils_possui_log" memberEnd="_7gK1oKw2Ed6jTJH7GgbZHg _7gMDwaw2Ed6jTJH7GgbZHg">
-    <ownedEnd xmi:id="_7gK1oKw2Ed6jTJH7GgbZHg" name="pessoasperfis" type="_nKZzkKoLEd687LtTWUTtuQ" association="_7gJngKw2Ed6jTJH7GgbZHg">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7gMDwKw2Ed6jTJH7GgbZHg" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7gLcsKw2Ed6jTJH7GgbZHg" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_7gMDwaw2Ed6jTJH7GgbZHg" name="log" type="_ahwT0Kw2Ed6jTJH7GgbZHg" association="_7gJngKw2Ed6jTJH7GgbZHg">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7gMDw6w2Ed6jTJH7GgbZHg" value="*"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7gMDwqw2Ed6jTJH7GgbZHg"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_Cx0PkKw9Ed68D_d-n4iFew" name="TipoCategoria">
     <ownedAttribute xmi:id="_T7tvwKw9Ed68D_d-n4iFew" name="nome" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
@@ -287,16 +266,6 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
     <ownedEnd xmi:id="_AGUnwqw_Ed68D_d-n4iFew" name="categoriaFilha" type="_0N60kKoIEd687LtTWUTtuQ" association="_AGRkcKw_Ed68D_d-n4iFew">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AGVO0Kw_Ed68D_d-n4iFew" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AGUnw6w_Ed68D_d-n4iFew"/>
-    </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_0lWpgKw_Ed68D_d-n4iFew" name="a_pessoasperfis_possui_rowinfo" memberEnd="_0lZFwKw_Ed68D_d-n4iFew _0lZs0qw_Ed68D_d-n4iFew">
-    <ownedEnd xmi:id="_0lZFwKw_Ed68D_d-n4iFew" name="pessoasperfis" type="_nKZzkKoLEd687LtTWUTtuQ" association="_0lWpgKw_Ed68D_d-n4iFew">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0lZs0aw_Ed68D_d-n4iFew" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0lZs0Kw_Ed68D_d-n4iFew" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_0lZs0qw_Ed68D_d-n4iFew" name="rowinfo" type="_09ynwKoHEd687LtTWUTtuQ" association="_0lWpgKw_Ed68D_d-n4iFew">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0lZs1Kw_Ed68D_d-n4iFew" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0lZs06w_Ed68D_d-n4iFew" value="1"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_1xS6YKxOEd68D_d-n4iFew" name="a_log_possui_categoria" memberEnd="_1xV9sKxOEd68D_d-n4iFew _1xWkwaxOEd68D_d-n4iFew">
@@ -374,7 +343,6 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GvI3UK0aEd6Tgc0yakCadQ" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_l3UeAK0fEd6Tgc0yakCadQ" name="MensagemPessoaPerfilCategoria"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_NcxU8LQVEd6GpeUiAfYANw" name="a_perfil_possui_categoria" memberEnd="_Nc6e4LQVEd6GpeUiAfYANw _Nc7F8LQVEd6GpeUiAfYANw">
     <ownedEnd xmi:id="_Nc6e4LQVEd6GpeUiAfYANw" name="perfil" type="_K_IikKoJEd687LtTWUTtuQ" association="_NcxU8LQVEd6GpeUiAfYANw">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Nc6e4rQVEd6GpeUiAfYANw" value="*"/>
@@ -389,13 +357,13 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
     <ownedAttribute xmi:id="_LnUYAMIzEd6r_uu4CwoKLQ" name="remetente" isOrdered="true" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_ToxQgMI0Ed6r_uu4CwoKLQ" name="destinatario" aggregation="composite">
+    <ownedAttribute xmi:id="_ToxQgMI0Ed6r_uu4CwoKLQ" name="destinatarios" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_ZfX3gMI0Ed6r_uu4CwoKLQ" name="assunto" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_mEmSoMI0Ed6r_uu4CwoKLQ" name="dataHora" type="_qZpIwK0WEd6Tgc0yakCadQ" aggregation="composite"/>
+    <ownedAttribute xmi:id="_mEmSoMI0Ed6r_uu4CwoKLQ" name="dataHoraMensagem" type="_qZpIwK0WEd6Tgc0yakCadQ" aggregation="composite"/>
     <ownedAttribute xmi:id="_tAWj0MI0Ed6r_uu4CwoKLQ" name="mensagem" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
@@ -455,46 +423,6 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8SW7wMorEd6v-rwJANCYjQ" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_zVxxANOcEd6HgL0enKsn3Q" name="mensagem_possui_mensagemPessoPerfilCategoria" memberEnd="_zVzmMNOcEd6HgL0enKsn3Q _zV00UdOcEd6HgL0enKsn3Q">
-    <ownedEnd xmi:id="_zVzmMNOcEd6HgL0enKsn3Q" name="mensagem" type="_kDO0oMIwEd6r_uu4CwoKLQ" association="_zVxxANOcEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zV00UNOcEd6HgL0enKsn3Q" value="*"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zV0NQNOcEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_zV00UdOcEd6HgL0enKsn3Q" name="mensagemPessoaPerfilCategoria" type="_l3UeAK0fEd6Tgc0yakCadQ" association="_zVxxANOcEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zV1bYdOcEd6HgL0enKsn3Q" value="*"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zV1bYNOcEd6HgL0enKsn3Q" value="2"/>
-    </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_e8gVUNOdEd6HgL0enKsn3Q" name="pessoaPerfis_possui_mensagemPessoaPerfilCategoria" memberEnd="_e8g8YNOdEd6HgL0enKsn3Q _e8hjcdOdEd6HgL0enKsn3Q">
-    <ownedEnd xmi:id="_e8g8YNOdEd6HgL0enKsn3Q" name="pessoaperfis" type="_nKZzkKoLEd687LtTWUTtuQ" association="_e8gVUNOdEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e8hjcNOdEd6HgL0enKsn3Q" value="*"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e8g8YdOdEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_e8hjcdOdEd6HgL0enKsn3Q" name="mensagemPessoaPerfilCategoria" type="_l3UeAK0fEd6Tgc0yakCadQ" association="_e8gVUNOdEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e8iKgNOdEd6HgL0enKsn3Q" value="*"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e8hjctOdEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_RhWs4NOfEd6HgL0enKsn3Q" name="mensagemPessoaPerfilCategoria_possui_categoria" memberEnd="_RhWs4dOfEd6HgL0enKsn3Q _RhXT8tOfEd6HgL0enKsn3Q">
-    <ownedEnd xmi:id="_RhWs4dOfEd6HgL0enKsn3Q" name="mensagemPessoaPerfilCategoria" type="_l3UeAK0fEd6Tgc0yakCadQ" association="_RhWs4NOfEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RhXT8dOfEd6HgL0enKsn3Q" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RhXT8NOfEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_RhXT8tOfEd6HgL0enKsn3Q" name="categoria" type="_0N60kKoIEd687LtTWUTtuQ" association="_RhWs4NOfEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RhX7ANOfEd6HgL0enKsn3Q" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RhXT89OfEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_CXfVUNOgEd6HgL0enKsn3Q" name="mensagemPessoaPerfilCategoria_possui_rowinfo" memberEnd="_CXf8YNOgEd6HgL0enKsn3Q _CXgjcdOgEd6HgL0enKsn3Q">
-    <ownedEnd xmi:id="_CXf8YNOgEd6HgL0enKsn3Q" name="mensagemPessoaPerfilCategoria" type="_l3UeAK0fEd6Tgc0yakCadQ" association="_CXfVUNOgEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CXgjcNOgEd6HgL0enKsn3Q" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CXf8YdOgEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_CXgjcdOgEd6HgL0enKsn3Q" name="rowinfo" type="_09ynwKoHEd687LtTWUTtuQ" association="_CXfVUNOgEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CXhKgNOgEd6HgL0enKsn3Q" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CXgjctOgEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_myPMYNOmEd6HgL0enKsn3Q" name="MensagemEmail">
     <generalization xmi:id="_0wZwYNOmEd6HgL0enKsn3Q" general="_kDO0oMIwEd6r_uu4CwoKLQ"/>
     <ownedAttribute xmi:id="_obg3UNOmEd6HgL0enKsn3Q" name="destinatariosCopiaCarbonada" aggregation="composite">
@@ -507,17 +435,7 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_Mz8o8NOnEd6HgL0enKsn3Q" name="mensagemEmail_possui_rowinfo" memberEnd="_Mz93ENOnEd6HgL0enKsn3Q _Mz_FMNOnEd6HgL0enKsn3Q">
-    <ownedEnd xmi:id="_Mz93ENOnEd6HgL0enKsn3Q" name="mensagemEmail" type="_myPMYNOmEd6HgL0enKsn3Q" association="_Mz8o8NOnEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Mz-eIdOnEd6HgL0enKsn3Q" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Mz-eINOnEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_Mz_FMNOnEd6HgL0enKsn3Q" name="rowinfo" type="_09ynwKoHEd687LtTWUTtuQ" association="_Mz8o8NOnEd6HgL0enKsn3Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Mz_FMtOnEd6HgL0enKsn3Q" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Mz_FMdOnEd6HgL0enKsn3Q" value="1"/>
-    </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_BS5kkNSMEd6kBqmVozfVEw" name="anexoMensagem_possui_rowinfo" memberEnd="_BTKqUNSMEd6kBqmVozfVEw _BTL4cdSMEd6kBqmVozfVEw">
+  <packagedElement xmi:type="uml:Association" xmi:id="_BS5kkNSMEd6kBqmVozfVEw" name="a_anexoMensagem_possui_rowinfo" memberEnd="_BTKqUNSMEd6kBqmVozfVEw _BTL4cdSMEd6kBqmVozfVEw">
     <ownedEnd xmi:id="_BTKqUNSMEd6kBqmVozfVEw" name="anexoMensagem" type="_bDB3EMSvEd6vnL5X62mZVw" association="_BS5kkNSMEd6kBqmVozfVEw">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BTL4cNSMEd6kBqmVozfVEw" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BTLRYNSMEd6kBqmVozfVEw" value="1"/>
@@ -526,5 +444,79 @@ Estas classes não serão geradas automaticamente e não devem ser geradas manua
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BTMfgNSMEd6kBqmVozfVEw" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BTL4ctSMEd6kBqmVozfVEw" value="1"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_XYNo4NUbEd62Mtz24ycbtw" name="a_pessoaPerfil_possui_log" memberEnd="_XYPeENUbEd62Mtz24ycbtw _XYQsMdUbEd62Mtz24ycbtw">
+    <ownedEnd xmi:id="_XYPeENUbEd62Mtz24ycbtw" name="log" type="_ahwT0Kw2Ed6jTJH7GgbZHg" association="_XYNo4NUbEd62Mtz24ycbtw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XYQsMNUbEd62Mtz24ycbtw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XYQFINUbEd62Mtz24ycbtw"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_XYQsMdUbEd62Mtz24ycbtw" name="pessoaPerfil" type="_51RCIKoJEd687LtTWUTtuQ" association="_XYNo4NUbEd62Mtz24ycbtw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XYRTQNUbEd62Mtz24ycbtw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XYQsMtUbEd62Mtz24ycbtw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_68NQYNUcEd62Mtz24ycbtw" name="a_pessoaPerfil_possui_rowinfo" memberEnd="_68N3cNUcEd62Mtz24ycbtw _68OegtUcEd62Mtz24ycbtw">
+    <ownedEnd xmi:id="_68N3cNUcEd62Mtz24ycbtw" name="pessoaPerfil" type="_51RCIKoJEd687LtTWUTtuQ" association="_68NQYNUcEd62Mtz24ycbtw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_68OegdUcEd62Mtz24ycbtw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_68OegNUcEd62Mtz24ycbtw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_68OegtUcEd62Mtz24ycbtw" name="rowinfo" type="_09ynwKoHEd687LtTWUTtuQ" association="_68NQYNUcEd62Mtz24ycbtw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_68PFkdUcEd62Mtz24ycbtw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_68PFkNUcEd62Mtz24ycbtw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_8TWkUNUuEd6QYqXIpZyWbg" name="a_pessoaPerfil_possui_mensagem" memberEnd="_8TXLYNUuEd6QYqXIpZyWbg _8TXycNUuEd6QYqXIpZyWbg">
+    <ownedEnd xmi:id="_8TXLYNUuEd6QYqXIpZyWbg" name="pessoaPerfil" type="_51RCIKoJEd687LtTWUTtuQ" association="_8TWkUNUuEd6QYqXIpZyWbg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8TXLYtUuEd6QYqXIpZyWbg" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8TXLYdUuEd6QYqXIpZyWbg" value="2"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_8TXycNUuEd6QYqXIpZyWbg" name="mensagem" type="_kDO0oMIwEd6r_uu4CwoKLQ" association="_8TWkUNUuEd6QYqXIpZyWbg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8TXyctUuEd6QYqXIpZyWbg" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8TXycdUuEd6QYqXIpZyWbg"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_zhrd4NUvEd6QYqXIpZyWbg" name="a_mensagemPessoaPerfil_possui_categoria" memberEnd="_zhssANUvEd6QYqXIpZyWbg _zhtTEtUvEd6QYqXIpZyWbg">
+    <ownedEnd xmi:id="_zhssANUvEd6QYqXIpZyWbg" name="categoria" type="_0N60kKoIEd687LtTWUTtuQ" association="_zhrd4NUvEd6QYqXIpZyWbg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zhtTEdUvEd6QYqXIpZyWbg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zhtTENUvEd6QYqXIpZyWbg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_zhtTEtUvEd6QYqXIpZyWbg" name="pessoaPerfilMensagem" type="_8TWkUNUuEd6QYqXIpZyWbg" association="_zhrd4NUvEd6QYqXIpZyWbg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zht6IdUvEd6QYqXIpZyWbg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zht6INUvEd6QYqXIpZyWbg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ddFv4NUwEd6QYqXIpZyWbg" name="Util">
+    <ownedOperation xmi:id="__cE94NUwEd6QYqXIpZyWbg" name="mkdir_recursive">
+      <ownedParameter xmi:id="_PdvDoNUxEd6QYqXIpZyWbg" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Boolean"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PdvDodUxEd6QYqXIpZyWbg" name="caminho">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_PdvDotUxEd6QYqXIpZyWbg"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PdvDo9UxEd6QYqXIpZyWbg" name="folderRights">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_PdvDpNUxEd6QYqXIpZyWbg"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_WTO70NUxEd6QYqXIpZyWbg" name="getFileContent">
+      <ownedParameter xmi:id="_iZN2MNUxEd6QYqXIpZyWbg" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_iZN2MdUxEd6QYqXIpZyWbg" name="filename">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_iZN2MtUxEd6QYqXIpZyWbg"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_jC_L8NUxEd6QYqXIpZyWbg" name="getUrlContent">
+      <ownedParameter xmi:id="_oNKx0NUxEd6QYqXIpZyWbg" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_oNKx0dUxEd6QYqXIpZyWbg" name="url">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_oNKx0tUxEd6QYqXIpZyWbg"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_oxjRQNUxEd6QYqXIpZyWbg" name="retornaIdPessoaPerfilSistema">
+      <ownedParameter xmi:id="_uTAHoNUxEd6QYqXIpZyWbg" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
   </packagedElement>
 </uml:Model>

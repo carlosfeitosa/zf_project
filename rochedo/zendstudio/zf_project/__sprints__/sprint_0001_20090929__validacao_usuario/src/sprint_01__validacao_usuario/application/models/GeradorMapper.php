@@ -142,12 +142,12 @@ class Default_Model_GeradorMapper
 	}
 
 
-//#BlockStart number=122 id=_bPfn4K0YEd6Tgc0yakCadQ_#_0
+//#BlockStart number=110 id=_bPfn4K0YEd6Tgc0yakCadQ_#_0
       
 //start block for manually written code
         
 //end block for manually written code
 
-//#BlockEnd number=122
+//#BlockEnd number=110
 
 }

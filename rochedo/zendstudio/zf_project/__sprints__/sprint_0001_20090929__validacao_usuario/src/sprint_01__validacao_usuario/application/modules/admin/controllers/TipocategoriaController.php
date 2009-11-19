@@ -7,13 +7,13 @@ class Admin_TipoCategoriaController extends Admin_IndexController
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=100 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
+//#BlockStart number=88 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=100
+//#BlockEnd number=88
 
 	}
 
@@ -37,13 +37,13 @@ class Admin_TipoCategoriaController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=101 id=_Cx0PkKw9Ed68D_d-n4iFew_#_1
+//#BlockStart number=89 id=_Cx0PkKw9Ed68D_d-n4iFew_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=101
+//#BlockEnd number=89
 
 	}
     
@@ -153,12 +153,12 @@ class Admin_TipoCategoriaController extends Admin_IndexController
         $this->_redirect('/admin/tipocategoria/modify/id/'.$tipocategoriaid.'/');
     }
 
-//#BlockStart number=102 id=_Cx0PkKw9Ed68D_d-n4iFew_#_2
+//#BlockStart number=90 id=_Cx0PkKw9Ed68D_d-n4iFew_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=102
+//#BlockEnd number=90
 
 }

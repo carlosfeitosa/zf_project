@@ -14,13 +14,13 @@ class Default_Model_DbTable_GeradorUniqueId extends Zend_Db_Table_Abstract
     protected $_name = 'geradoruniqueid';
     
 
-//#BlockStart number=132 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_0
+//#BlockStart number=120 id=_SQ_mYK0ZEd6Tgc0yakCadQ_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=132
+//#BlockEnd number=120
 
 }
 ?>

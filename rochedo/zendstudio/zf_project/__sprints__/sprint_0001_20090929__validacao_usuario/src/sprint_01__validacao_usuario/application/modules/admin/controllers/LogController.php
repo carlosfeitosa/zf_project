@@ -7,13 +7,13 @@ class Admin_LogController extends Admin_IndexController
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=88 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
+//#BlockStart number=76 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=88
+//#BlockEnd number=76
 
 	}
 
@@ -37,13 +37,13 @@ class Admin_LogController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=89 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_1
+//#BlockStart number=77 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=89
+//#BlockEnd number=77
 
 	}
     
@@ -105,12 +105,12 @@ class Admin_LogController extends Admin_IndexController
 	}
 	
 
-//#BlockStart number=90 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_2
+//#BlockStart number=78 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=90
+//#BlockEnd number=78
 
 }

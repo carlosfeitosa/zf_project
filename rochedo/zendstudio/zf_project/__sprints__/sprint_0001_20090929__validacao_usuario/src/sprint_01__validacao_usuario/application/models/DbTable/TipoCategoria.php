@@ -14,13 +14,13 @@ class Default_Model_DbTable_TipoCategoria extends Zend_Db_Table_Abstract
     protected $_name = 'tipocategoria';
     
 
-//#BlockStart number=93 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
+//#BlockStart number=81 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=93
+//#BlockEnd number=81
 
 }
 ?>

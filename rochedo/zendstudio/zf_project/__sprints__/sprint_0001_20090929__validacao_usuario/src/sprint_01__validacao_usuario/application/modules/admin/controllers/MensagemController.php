@@ -7,13 +7,13 @@ class Admin_MensagemController extends Admin_IndexController
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=157 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
+//#BlockStart number=136 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=157
+//#BlockEnd number=136
 
 	}
 
@@ -23,7 +23,7 @@ class Admin_MensagemController extends Admin_IndexController
 		$mensagem = new Default_Model_Mensagem();
 		if($this->getRequest()->getParam("search")!=null)
         {
-            $this->view->mensagem_items = $mensagem->fetchList("remetente LIKE '%".$this->getRequest()->getParam("search")."%'  OR destinatario LIKE '%".$this->getRequest()->getParam("search")."%'  OR assunto LIKE '%".$this->getRequest()->getParam("search")."%'  OR mensagem LIKE '%".$this->getRequest()->getParam("search")."%' ");
+            $this->view->mensagem_items = $mensagem->fetchList("remetente LIKE '%".$this->getRequest()->getParam("search")."%'  OR destinatarios LIKE '%".$this->getRequest()->getParam("search")."%'  OR assunto LIKE '%".$this->getRequest()->getParam("search")."%'  OR mensagem LIKE '%".$this->getRequest()->getParam("search")."%' ");
         }
         else
             $this->view->mensagem_items = $mensagem->fetchAll();
@@ -37,13 +37,13 @@ class Admin_MensagemController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=158 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_1
+//#BlockStart number=137 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=158
+//#BlockEnd number=137
 
 	}
     
@@ -153,12 +153,12 @@ class Admin_MensagemController extends Admin_IndexController
         $this->_redirect('/admin/mensagem/modify/id/'.$mensagemid.'/');
     }
 
-//#BlockStart number=159 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_2
+//#BlockStart number=138 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=159
+//#BlockEnd number=138
 
 }

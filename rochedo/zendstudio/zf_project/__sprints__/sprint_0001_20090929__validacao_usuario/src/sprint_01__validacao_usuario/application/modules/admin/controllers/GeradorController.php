@@ -7,13 +7,13 @@ class Admin_GeradorController extends Admin_IndexController
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=127 id=_bPfn4K0YEd6Tgc0yakCadQ_#_0
+//#BlockStart number=115 id=_bPfn4K0YEd6Tgc0yakCadQ_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=127
+//#BlockEnd number=115
 
 	}
 
@@ -37,13 +37,13 @@ class Admin_GeradorController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=128 id=_bPfn4K0YEd6Tgc0yakCadQ_#_1
+//#BlockStart number=116 id=_bPfn4K0YEd6Tgc0yakCadQ_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=128
+//#BlockEnd number=116
 
 	}
     
@@ -105,12 +105,12 @@ class Admin_GeradorController extends Admin_IndexController
 	}
 	
 
-//#BlockStart number=129 id=_bPfn4K0YEd6Tgc0yakCadQ_#_2
+//#BlockStart number=117 id=_bPfn4K0YEd6Tgc0yakCadQ_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=129
+//#BlockEnd number=117
 
 }

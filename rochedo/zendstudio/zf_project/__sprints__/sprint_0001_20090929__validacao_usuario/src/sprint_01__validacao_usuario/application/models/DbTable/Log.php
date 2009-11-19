@@ -14,13 +14,13 @@ class Default_Model_DbTable_Log extends Zend_Db_Table_Abstract
     protected $_name = 'log';
     
 
-//#BlockStart number=84 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
+//#BlockStart number=72 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=84
+//#BlockEnd number=72
 
 }
 ?>

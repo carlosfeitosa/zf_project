@@ -31,13 +31,13 @@ class Admin_Form_Log extends Zend_Form
         if($options!=null)
             $elements[1]->setValue($options->xml);
 
-        $elements[2] = new Zend_Form_Element_Hidden('pessoasperfis');
+        $elements[2] = new Zend_Form_Element_Hidden('categoria');
         if($options!=null)
-            $elements[2]->setValue($options->pessoasperfis);
+            $elements[2]->setValue($options->categoria);
 
-        $elements[3] = new Zend_Form_Element_Hidden('categoria');
+        $elements[3] = new Zend_Form_Element_Hidden('pessoaperfil');
         if($options!=null)
-            $elements[3]->setValue($options->categoria);
+            $elements[3]->setValue($options->pessoaPerfil);
 
 		$elements[4] = new Zend_Form_Element_Submit('submit');
 		$elements[4]->setAttrib('id', 'submitbutton');

@@ -1,33 +1,33 @@
 <?php
 require_once ('IndexController.php');
-class Admin_DadosPessoaisController extends Admin_IndexController
+class Admin_UtilController extends Admin_IndexController
 {
 	public function init()
 	{
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=97 id=_-kOg4KxUEd68D_d-n4iFew_#_0
+//#BlockStart number=163 id=_ddFv4NUwEd6QYqXIpZyWbg_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=97
+//#BlockEnd number=163
 
 	}
 
 	public function indexAction()
 	{
-		//list all existing dadospessoais items
-		$dadospessoais = new Default_Model_DadosPessoais();
+		//list all existing util items
+		$util = new Default_Model_Util();
 		if($this->getRequest()->getParam("search")!=null)
         {
-            $this->view->dadospessoais_items = $dadospessoais->fetchList("nome LIKE '%".$this->getRequest()->getParam("search")."%' ");
+            $this->view->util_items = $util->fetchList("");
         }
         else
-            $this->view->dadospessoais_items = $dadospessoais->fetchAll();
-		$form = new Admin_Form_DadosPessoaisSearch();
+            $this->view->util_items = $util->fetchAll();
+		$form = new Admin_Form_UtilSearch();
 		$form->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'table')),'Form'));
         $form->setElementDecorators(array('ViewHelper', 'Errors',
                                 array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element')),
@@ -37,19 +37,19 @@ class Admin_DadosPessoaisController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=98 id=_-kOg4KxUEd68D_d-n4iFew_#_1
+//#BlockStart number=164 id=_ddFv4NUwEd6QYqXIpZyWbg_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=98
+//#BlockEnd number=164
 
 	}
     
 	public function addAction()
 	{
-		$this->view->title = ": Add new dadospessoais";
+		$this->view->title = ": Add new util";
 		$this->view->headTitle($this->view->title, 'APPEND');
 		$this->showForm('Add', NULL);
 	}
@@ -57,10 +57,10 @@ class Admin_DadosPessoaisController extends Admin_IndexController
 	public function modifyAction()
 	{
 	    if($this->getRequest()->getParam("id")==null)
-            $this->_redirect('/admin/dadospessoais/index');
-        $this->view->title = ": Modify a dadospessoais item";
+            $this->_redirect('/admin/util/index');
+        $this->view->title = ": Modify a util item";
         $this->view->headTitle($this->view->title, 'APPEND');
-        $model = new Default_Model_DadosPessoais();
+        $model = new Default_Model_Util();
         $item = $model->find($this->getRequest()->getParam("id"));
         $this->view->questionid = $item->id;
 
@@ -69,7 +69,7 @@ class Admin_DadosPessoaisController extends Admin_IndexController
 	
 	public function showForm($label='Add', $item=NULL)
 	{
-	    $form = new Admin_Form_DadosPessoais($item);
+	    $form = new Admin_Form_Util($item);
         $form->submit->setLabel($label);
         $form->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'table')),'Form'));
         $form->setElementDecorators(array('ViewHelper', 'Errors',
@@ -79,17 +79,17 @@ class Admin_DadosPessoaisController extends Admin_IndexController
         ));
         $form->getElement('submit')->removeDecorator('Label');
         if($item!=NULL)
-            $this->view->dadospessoaisid = $item->id;
+            $this->view->utilid = $item->id;
         $this->view->form = $form;
         if ($this->getRequest()->isPost()) 
         {
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData))
             {
-                $dadospessoais = new Default_Model_DadosPessoais($formData);
-                $dadospessoais->save();
+                $util = new Default_Model_Util($formData);
+                $util->save();
 
-                $this->_redirect('/admin/dadospessoais/index');
+                $this->_redirect('/admin/util/index');
             }
             else
                 $form->populate($formData);
@@ -98,19 +98,19 @@ class Admin_DadosPessoaisController extends Admin_IndexController
 	
 	public function deleteAction()
 	{
-		$model = new Default_Model_DadosPessoais();
+		$model = new Default_Model_Util();
 		$item = $model->find($this->getRequest()->getParam("id"));
 		$item->delete();
-		$this->_redirect('/admin/dadospessoais/index');
+		$this->_redirect('/admin/util/index');
 	}
 	
 
-//#BlockStart number=99 id=_-kOg4KxUEd68D_d-n4iFew_#_2
+//#BlockStart number=165 id=_ddFv4NUwEd6QYqXIpZyWbg_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=99
+//#BlockEnd number=165
 
 }

@@ -150,12 +150,12 @@ class Default_Model_TipoCategoriaMapper
 	}
 
 
-//#BlockStart number=92 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
+//#BlockStart number=80 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
       
 //start block for manually written code
         
 //end block for manually written code
 
-//#BlockEnd number=92
+//#BlockEnd number=80
 
 }

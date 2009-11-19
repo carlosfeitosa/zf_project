@@ -7,13 +7,13 @@ class Admin_AnexoMensagemController extends Admin_IndexController
 		//use the parent initialization
 		parent::init();
 
-//#BlockStart number=166 id=_bDB3EMSvEd6vnL5X62mZVw_#_0
+//#BlockStart number=145 id=_bDB3EMSvEd6vnL5X62mZVw_#_0
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=166
+//#BlockEnd number=145
 
 	}
 
@@ -37,13 +37,13 @@ class Admin_AnexoMensagemController extends Admin_IndexController
             $form->search->setValue($this->getRequest()->getParam("search"));
         $this->view->form = $form;
 
-//#BlockStart number=167 id=_bDB3EMSvEd6vnL5X62mZVw_#_1
+//#BlockStart number=146 id=_bDB3EMSvEd6vnL5X62mZVw_#_1
       
         //start block for manually written code
         
         //end block for manually written code
 
-//#BlockEnd number=167
+//#BlockEnd number=146
 
 	}
     
@@ -105,12 +105,12 @@ class Admin_AnexoMensagemController extends Admin_IndexController
 	}
 	
 
-//#BlockStart number=168 id=_bDB3EMSvEd6vnL5X62mZVw_#_2
+//#BlockStart number=147 id=_bDB3EMSvEd6vnL5X62mZVw_#_2
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=168
+//#BlockEnd number=147
 
 }

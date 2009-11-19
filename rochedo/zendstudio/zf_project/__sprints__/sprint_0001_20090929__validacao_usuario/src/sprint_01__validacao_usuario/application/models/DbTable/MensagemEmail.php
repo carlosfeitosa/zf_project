@@ -14,13 +14,13 @@ class Default_Model_DbTable_MensagemEmail extends Zend_Db_Table_Abstract
     protected $_name = 'mensagememail';
     
 
-//#BlockStart number=141 id=_l3UeAK0fEd6Tgc0yakCadQ_#_0
+//#BlockStart number=150 id=_myPMYNOmEd6HgL0enKsn3Q_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=141
+//#BlockEnd number=150
 
 }
 ?>

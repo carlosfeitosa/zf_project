@@ -14,13 +14,13 @@ class Default_Model_DbTable_DadosPessoais extends Zend_Db_Table_Abstract
     protected $_name = 'dadospessoais';
     
 
-//#BlockStart number=105 id=_-kOg4KxUEd68D_d-n4iFew_#_0
+//#BlockStart number=93 id=_-kOg4KxUEd68D_d-n4iFew_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=105
+//#BlockEnd number=93
 
 }
 ?>

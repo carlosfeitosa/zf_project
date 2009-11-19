@@ -5,14 +5,14 @@
  */
  
 /**
- * Gerador model
+ * Util model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Default_Model_GeradorMapper
+ * @uses       Default_Model_UtilMapper
  * @subpackage Model
  */
-class Default_Model_Gerador
+class Default_Model_Util
 {
 	/**
 	* @var int
@@ -20,7 +20,7 @@ class Default_Model_Gerador
 	protected $_id;
 
 	/**
-	 * @var Default_Model_GeradorMapper
+	 * @var Default_Model_UtilMapper
 	 */
 	protected $_mapper;
 
@@ -75,7 +75,7 @@ class Default_Model_Gerador
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Default_Model_Gerador
+	 * @return Default_Model_Util
 	 */
 	public function setOptions(array $options)
 	{
@@ -95,7 +95,7 @@ class Default_Model_Gerador
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Default_Model_Gerador
+	* @return Default_Model_Util
 	*/
 	public function setId($id)
 	{
@@ -117,7 +117,7 @@ class Default_Model_Gerador
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Default_Model_Gerador
+	* @return Default_Model_Util
 	*/
 	public function setMapper($mapper)
 	{
@@ -128,14 +128,14 @@ class Default_Model_Gerador
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Default_Model_GeradorMapper instance if no mapper registered.
+	* Lazy loads Default_Model_UtilMapper instance if no mapper registered.
 	* 
-	* @return Default_Model_GeradorMapper
+	* @return Default_Model_UtilMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Default_Model_GeradorMapper());
+			$this->setMapper(new Default_Model_UtilMapper());
 		}
 		return $this->_mapper;
 	}
@@ -165,7 +165,7 @@ class Default_Model_Gerador
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Default_Model_Gerador
+	* @return Default_Model_Util
 	*/
 	public function find($id)
 	{
@@ -194,12 +194,12 @@ class Default_Model_Gerador
 	}
 	
 
-//#BlockStart number=109 id=_bPfn4K0YEd6Tgc0yakCadQ_#_0
+//#BlockStart number=157 id=_ddFv4NUwEd6QYqXIpZyWbg_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=109
+//#BlockEnd number=157
 
 }

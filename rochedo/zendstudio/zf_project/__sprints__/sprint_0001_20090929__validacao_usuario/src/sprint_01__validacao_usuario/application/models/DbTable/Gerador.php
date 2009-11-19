@@ -14,13 +14,13 @@ class Default_Model_DbTable_Gerador extends Zend_Db_Table_Abstract
     protected $_name = 'gerador';
     
 
-//#BlockStart number=123 id=_bPfn4K0YEd6Tgc0yakCadQ_#_0
+//#BlockStart number=111 id=_bPfn4K0YEd6Tgc0yakCadQ_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=123
+//#BlockEnd number=111
 
 }
 ?>

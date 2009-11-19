@@ -246,12 +246,12 @@ class Default_Model_TipoCategoria
 	}
 	
 
-//#BlockStart number=91 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
+//#BlockStart number=79 id=_Cx0PkKw9Ed68D_d-n4iFew_#_0
       
     //start block for manually written code
         
     //end block for manually written code
 
-//#BlockEnd number=91
+//#BlockEnd number=79
 
 }

@@ -5,15 +5,15 @@
  */
  
 /**
- * AnexoMensagem data mapper
+ * Util data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_AnexoMensagem
+ * @uses       Default_Model_DbTable_Util
  * @subpackage Model
  */
-class Default_Model_AnexoMensagemMapper
+class Default_Model_UtilMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +24,7 @@ class Default_Model_AnexoMensagemMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_AnexoMensagemMapper
+     * @return Default_Model_UtilMapper
      */
     public function setDbTable($dbTable)
     {
@@ -41,33 +41,27 @@ class Default_Model_AnexoMensagemMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_AnexoMensagem if no instance registered
+     * Lazy loads Default_Model_DbTable_Util if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_AnexoMensagem');
+            $this->setDbTable('Default_Model_DbTable_Util');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a AnexoMensagem entry
+     * Save a Util entry
      * 
-     * @param  Default_Model_AnexoMensagem $object
+     * @param  Default_Model_Util $object
      * @return void
      */
-    public function save(Default_Model_AnexoMensagem $object)
+    public function save(Default_Model_Util $object)
     {
         $data = array(
-				'nomeOriginal'   => $object->getNomeOriginal(),
-				'nomeSugestao'   => $object->getNomeSugestao(),
-				'descricao'   => $object->getDescricao(),
-				'arquivo'   => $object->getArquivo(),
-				'mimeType'   => $object->getMimeType(),
-              'mensagem'   => $object->getMensagem(),
 
         );
 
@@ -80,23 +74,23 @@ class Default_Model_AnexoMensagemMapper
     }
     
 	/**
-	* Delete a AnexoMensagem entry
-	* @param Default_Model_AnexoMensagem $object
+	* Delete a Util entry
+	* @param Default_Model_Util $object
 	* @return void
 	*/
-	public function delete(Default_Model_AnexoMensagem $object)
+	public function delete(Default_Model_Util $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a AnexoMensagem entry by id
+     * Find a Util entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_AnexoMensagem $object 
+     * @param  Default_Model_Util $object 
      * @return void
      */
-    public function find($id, Default_Model_AnexoMensagem $object)
+    public function find($id, Default_Model_Util $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -104,17 +98,11 @@ class Default_Model_AnexoMensagemMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
-				->setDescricao($row->descricao)
-				->setArquivo($row->arquivo)
-				->setMimeType($row->mimeType)
-                ->setMensagem($row->mensagem);
+;
     }
 
 	/**
-	 * Fetch all anexomensagem entries
+	 * Fetch all util entries
 	 * 
 	 * @return array
 	 */
@@ -124,15 +112,9 @@ class Default_Model_AnexoMensagemMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_AnexoMensagem();
+			$entry = new Default_Model_Util();
 			$entry->setId($row->id)
 
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
-				->setDescricao($row->descricao)
-				->setArquivo($row->arquivo)
-				->setMimeType($row->mimeType)
-                ->setMensagem($row->mensagem)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -140,7 +122,7 @@ class Default_Model_AnexoMensagemMapper
 	}
 	
 	/**
-	 * Fetch all anexomensagem entries
+	 * Fetch all util entries
 	 * 
 	 * @return array
 	 */
@@ -150,15 +132,9 @@ class Default_Model_AnexoMensagemMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_AnexoMensagem();
+			$entry = new Default_Model_Util();
 			$entry->setId($row->id)
 
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
-				->setDescricao($row->descricao)
-				->setArquivo($row->arquivo)
-				->setMimeType($row->mimeType)
-                ->setMensagem($row->mensagem)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -166,12 +142,12 @@ class Default_Model_AnexoMensagemMapper
 	}
 
 
-//#BlockStart number=140 id=_bDB3EMSvEd6vnL5X62mZVw_#_0
+//#BlockStart number=158 id=_ddFv4NUwEd6QYqXIpZyWbg_#_0
       
 //start block for manually written code
         
 //end block for manually written code
 
-//#BlockEnd number=140
+//#BlockEnd number=158
 
 }
