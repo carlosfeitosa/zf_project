@@ -26,7 +26,7 @@ class Basico_PerfilController
     	return NULL;
 	}
 	
-	public function retornaPerfilEmailPrimario()
+	public function retornaPerfilUsuarioNaoValidado()
 	{
 	    $perfilUsuarioNaoValidado = $this->retornaPerfil(PERFIL_USUARIO_NAO_VALIDADO);
 	    if (isset($perfilUsuarioNaoValidado))

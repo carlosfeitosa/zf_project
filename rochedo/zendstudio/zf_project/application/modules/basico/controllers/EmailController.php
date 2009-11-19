@@ -49,7 +49,19 @@ class Basico_EmailController
 	
 	public function salvarEmail($novoEmail)
 	{
-	    $email = $novoEmail;
-		$email->save();
+		try {
+	    	$auxDb = Zend_Registry::get('db');
+	    	$auxDb->beginTransaction();
+	    	try{
+	    		$this->email = $novoEmail;
+				$this->email->save();
+				$auxDb->commit();
+	    	} catch (Exception $e) {
+	    		$auxDb->rollback();
+	    	}
+	    } catch (Exception $e) {
+	    	$this->email = $novoEmail;
+			$this->email->save();
+	    }
 	}
 }

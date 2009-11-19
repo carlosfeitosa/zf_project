@@ -3,6 +3,8 @@
 // INCLUDES
 require_once("EmailController.php");
 require_once("PessoaController.php");
+require_once("PerfilController.php");
+require_once("PessoaPerfilController.php");
 require_once("DadosPessoaisController.php");
 require_once("CategoriaController.php");
 require_once("MensageiroController.php");
@@ -58,7 +60,7 @@ class Basico_LoginController extends Zend_Controller_Action
         return true;
 	}
     
-    //  ACTIONS
+    // ACTIONS
     public function indexAction()
     {
         $this->view->form = $this->getForm();
@@ -82,13 +84,14 @@ class Basico_LoginController extends Zend_Controller_Action
 	                $this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
 				}
 	            else{
-	                // envia mensagem de validação
-	                Basico_MensageiroController::enviar('info@rochedoproject.com', 'Rochedo Project', 
+	                // ENVIAR MENSAGEM D VALIDAÇÃO
+	                /*
+	            	Basico_MensageiroController::enviar('info@rochedoproject.com', 'Rochedo Project', 
                                                         $this->getRequest()->getParam('email'), 
                                                         $this->getRequest()->getParam('nome'), 
                                                         'Cadastro no Rochedo Project', 'Frozen', 
                                                         EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
-	            	
+	            	*/
 	            	$this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 	            	
 	            	
@@ -101,42 +104,55 @@ class Basico_LoginController extends Zend_Controller_Action
     
     public function salvarusuarionaovalidadoAction()
     {
-        //  CONTROLADORES
+        // CONTROLADORES
         $controladorPessoa = Basico_PessoaController::init();
         $controladorDadosPessoais = Basico_DadosPessoaisController::init();
         $controladorCategoria = Basico_CategoriaController::init();
         $controladorEmail = Basico_EmailController::init();
+        $controladorPerfil = Basico_PerfilController::init();
+        $controladorPessoaPerfil = Basico_PessoaPerfilController::init();
         
-        
-        //  TRANSACAO BD
+        // INSTANCIAR BD
         $db = $this->getInvokeArg('bootstrap')->getResource('db');
+        // REGISTRAR DB
+        Zend_Registry::set('db', $db);
+        // INICIAR TRANSAÇÃO
         $db->beginTransaction();
         
         try {
             // PREENCHER ROWINFO E RECUPERAR O LOGIN DO SISTEMA
             $rowinfo = new Basico_Model_RowInfo();
             
-            //  NOVA PESSOA ARMAZENADA NO SISTEMA
+            // NOVA PESSOA ARMAZENADA NO SISTEMA
             $novaPessoa = new Basico_Model_Pessoa();
             $rowinfo->prepareXml($novaPessoa, true);
             $novaPessoa->rowinfo = $rowinfo->getXml();
             $controladorPessoa->salvarPessoa($novaPessoa);
             
-            //  DADOS PESSOAIS DA NOVA PESSOA
+            // RETORNAR PERFIL DE USUARIO NÃO-VALIDADO
+            $perfilUsuarioNaoValidado = $controladorPerfil->retornaPerfilUsuarioNaoValidado();
+            
+            // RELACIONAR PERFIL E PESSOA
+            $novaPessoaPerfil = new Basico_Model_PessoaPerfil();
+            $novaPessoaPerfil->pessoa = $novaPessoa->id;
+            $novaPessoaPerfil->perfil = $perfilUsuarioNaoValidado->id;
+            $controladorPessoaPerfil->salvarPessoaPerfil($novaPessoaPerfil); 
+            
+            // DADOS PESSOAIS DA NOVA PESSOA
             $novoDadosPessoais = new Basico_Model_DadosPessoais();
             $novoDadosPessoais->idPessoa = $novaPessoa->id;
             $novoDadosPessoais->nome     = $this->getRequest()->getParam('nome');
             $novoDadosPessoais->rowinfo  = $rowinfo->getXml();
             $controladorDadosPessoais->salvarDadosPessoais($novoDadosPessoais);
             
-            //  CATEGORIA DO EMAIL  
+            // CATEGORIA DO EMAIL  
             $categoriaEmailPrimario = $controladorCategoria->retornaCategoriaEmailPrimario();
           	$idCategoria = $categoriaEmailPrimario->id;
 
             // UNIQUEID GERADO
             $uniqueIdValido = $controladorEmail->retornaUniqueIdEmail();
 
-            //  NOVA EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
+            // NOVA EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
             $novoEmail = new Basico_Model_Email();
             $novoEmail->pessoa    = $novaPessoa->id;
             $novoEmail->uniqueId  = $uniqueIdValido;
@@ -146,16 +162,17 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->ativo     = 0;
             $novoEmail->rowinfo   = $rowinfo->getXml();
             $controladorEmail->salvarEmail($novoEmail);  
-
+            
+            $db->commit();
+        
             Basico_MensageiroController::enviar('info@rochedoproject.com', 'Rochedo Project', 
-                                 $this->getRequest()->getParam('email'), $this->getRequest()->getParam('nome'), 
-                                 'Cadastro no Rochedo Project', 'Frozen', 'EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
+                                                $this->getRequest()->getParam('email'), $this->getRequest()->getParam('nome'), 
+                                                'Cadastro no Rochedo Project', 'Frozen', 'EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
+            	                                
         } catch (Exception $e) {
             $db->rollback();
             throw new Exception($e->getMessage());
         }
-        
-        $db->commit();
         
         $this->_helper->redirector('SucessoSalvarUsuarioNaoValidado');
     }
