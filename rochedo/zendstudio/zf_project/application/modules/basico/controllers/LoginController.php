@@ -84,14 +84,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	                $this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
 				}
 	            else{
-	                // ENVIAR MENSAGEM D VALIDAÇÃO
-	                /*
-	            	Basico_MensageiroController::enviar('info@rochedoproject.com', 'Rochedo Project', 
-                                                        $this->getRequest()->getParam('email'), 
-                                                        $this->getRequest()->getParam('nome'), 
-                                                        'Cadastro no Rochedo Project', 'Frozen', 
-                                                        EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
-	            	*/
+	               
 	            	$this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 	            	
 	            	
@@ -161,13 +154,48 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->validado  = 0;
             $novoEmail->ativo     = 0;
             $novoEmail->rowinfo   = $rowinfo->getXml();
-            $controladorEmail->salvarEmail($novoEmail);  
+            $controladorEmail->salvarEmail($novoEmail); 
+
+             //ID DA CATEGORIA DA TEMPLATE DE MENSAGEM DE VALIDACAO DE USUARIO
+            $categoriaMensagemTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
+            $idCategoriaMensagemTemplate = $categoriaMensagemTemplate->id;
+            //CAPTURANDO REMETENTE E CORPO DA MENSAGEM DA TEMPLATE
+            $novaMensagem = $controladorMensagem->retornaTemplateValidacaoUsuarioPlainText($idCategoriaMensagemTemplate);
+            //SETANDO RESTANTE DA MENSAGEM
+            $novaMensagem->setDestinatarios($this->getRequest()->getParam('email'));
+            $idCategoriaPlainText = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
+            $novaMensagem->setCategoria($idCategoriaPlainText->id);
+            //GERANDO ROWINFO PRA MENSAGEM
+            $rowinfo->prepareXml($novaMensagem, true);
+            $novaMensagem->setRowinfo($rowinfo->getXml());
+            //GERANDO E SETANDO DATA ATUAL
+            $data = new Zend_Date();
+            $novaMensagem->setDataHora($data);
+            //SALVANDO A MENSAGEM
+           //var_dump($novaMensagem);
+            //exit;
+            $controladorMensagem->salvarMensagem($novaMensagem);
+            
+            //SALVANDO PESSOA_PERFIL_MENSAGEM_CATEGORIA
+            $novaPessoaPerfilMensagemCategoria = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $novaPessoaPerfilMensagemCategoria->setIdPessoaPerfil($novaPessoa->id);
+            $novaPessoaPerfilMensagemCategoria->setIdMensagem($novaMensagem->id);
+            $novaPessoaPerfilMensagemCategoria->setIdCategoria($idCategoriaPlainText->id);
+            //GERANDO ROWINFO PRA PESSOA_PERFIL_MENSAGEM_CATEGORIA
+            $rowinfo->prepareXml($novaMensagem, true);
+            $novaPessoaPerfilMensagemCategoria->setRowinfo($rowinfo->getXml());
+            
+            var_dump($novaPessoaPerfilMensagemCategoria);
+            exit;
+            $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria);
+            
+            
+            //ENVIANDO MENSAGEM
+            $controladorMensageiro->enviar($novaMensagem);
             
             $db->commit();
         
-            Basico_MensageiroController::enviar('info@rochedoproject.com', 'Rochedo Project', 
-                                                $this->getRequest()->getParam('email'), $this->getRequest()->getParam('nome'), 
-                                                'Cadastro no Rochedo Project', 'Frozen', 'EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
+            
             	                                
         } catch (Exception $e) {
             $db->rollback();
