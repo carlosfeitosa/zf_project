@@ -383,5 +383,3 @@ alter table [dbo].[anexo_mensagem] add
 	[id]
 	)
 go
-
-

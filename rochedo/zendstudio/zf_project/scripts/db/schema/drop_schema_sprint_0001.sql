@@ -10,5 +10,3 @@ drop table anexo_mensagem
 drop table mensagem
 drop table categoria
 drop table tipo_categoria
-
-
