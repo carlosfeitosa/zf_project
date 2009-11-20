@@ -24,7 +24,7 @@ class Basico_Model_MensagemMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_MensagemMapper
+     * @return Basico_Model_MensagemMapper
      */
     public function setDbTable($dbTable)
     {
@@ -62,13 +62,13 @@ class Basico_Model_MensagemMapper
     public function save(Basico_Model_Mensagem $object)
     {
         $data = array(
-				'remetente'     => $object->getRemetente(),
-				'destinatarios' => $object->getDestinatarios(),
-				'assunto'       => $object->getAssunto(),
-                'mensagem'      => $object->getMensagem(),
-				'id_categoria'  => $object->getIdCategoria(),
-                'rowinfo'       => $object->getRowInfo(),
-                'datahora'      => $object->getDataHora(),
+				'remetente'         => $object->getRemetente(),
+				'destinatarios'     => $object->getDestinatarios(),
+				'assunto'           => $object->getAssunto(),
+                'mensagem'          => $object->getMensagem(),
+				'id_categoria'      => $object->getCategoria(),
+                'rowinfo'           => $object->getRowinfo(),
+                'datahora_mensagem' => $object->getDataHoraMensagem(),
 
         );
 
@@ -85,7 +85,7 @@ class Basico_Model_MensagemMapper
 	* @param Default_Model_Mensagem $object
 	* @return void
 	*/
-	public function delete(Default_Model_Mensagem $object)
+	public function delete(Basico_Model_Mensagem $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
@@ -97,7 +97,7 @@ class Basico_Model_MensagemMapper
      * @param  Default_Model_Mensagem $object 
      * @return void
      */
-    public function find($id, Default_Model_Mensagem $object)
+    public function find($id, Basico_Model_Mensagem $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -109,9 +109,10 @@ class Basico_Model_MensagemMapper
 				->setRemetente($row->remetente)
 				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->datahora)
+				->setDataHoraMensagem($row->datahora_mensagem)
+				->setCategoria($row->id_categoria)
 				->setMensagem($row->mensagem)
-				->setRowInfo($row->rowinfo);
+				->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -125,15 +126,16 @@ class Basico_Model_MensagemMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_Mensagem();
+			$entry = new Basico_Model_Mensagem();
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
 				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->datahora)
+				->setDataHoraMensagem($row->datahora_mensagem)
 				->setMensagem($row->mensagem)
-				->setRowInfo($row->rowinfo)
+				->setCategoria($row->id_categoria)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -151,15 +153,16 @@ class Basico_Model_MensagemMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_Mensagem();
+			$entry = new Basico_Model_Mensagem();
 			$entry->setId($row->id)
 
 				->setRemetente($row->remetente)
 				->setDestinatarios($row->destinatarios)
 				->setAssunto($row->assunto)
-				->setDataHora($row->datahora)
+				->setDataHoraMensagem($row->datahora_mensagem)
 				->setMensagem($row->mensagem)
-				->setRowInfo($row->rowinfo)
+				->setCategoria($row->id_categoria)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}

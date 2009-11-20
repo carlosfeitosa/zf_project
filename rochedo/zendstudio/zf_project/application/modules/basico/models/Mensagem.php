@@ -22,7 +22,7 @@ class Basico_Model_Mensagem
 	/**
 	* @var int
 	*/
-	protected $_idCategoria;
+	protected $_categoria;
 
 	/**
 	 * @var Default_Model_MensagemMapper
@@ -44,13 +44,13 @@ class Basico_Model_Mensagem
 	/**
 	 * @var Date
 	 */
-	protected $_dataHora;
+	protected $_dataHoraMensagem;
 	/**
 	 * @var String
 	 */
 	protected $_mensagem;
 	
-	protected $_rowInfo;
+	protected $_rowinfo;
 	/**
 	 * Constructor
 	 * 
@@ -190,7 +190,7 @@ class Basico_Model_Mensagem
 	* @param String $dataHora 
 	* @return Default_Model_DataHora
 	*/
-	public function setDataHora($dataHora)
+	public function setDataHoraMensagem($dataHoraMensagem)
 	{
 		$this->_dataHora = (String) $dataHora;
 		return $this;
@@ -257,9 +257,9 @@ class Basico_Model_Mensagem
 	* @param  int $idCategoria 
 	* @return Basico_Model_Mensagem
 	*/
-	public function setIdCategoria($idCategoria)
+	public function setCategoria($categoria)
 	{
-		$this->_id = (int) $idCategoria;
+		$this->_categoria = (int) $categoria;
 		return $this;
 	}
 	
@@ -270,7 +270,7 @@ class Basico_Model_Mensagem
 	*/
 	public function getIdCategoria()
 	{
-		return $this->_idCategoria;
+		return $this->_categoria;
 	}
 	
 	/**
@@ -279,9 +279,9 @@ class Basico_Model_Mensagem
 	* @param  int $idCategoria 
 	* @return Basico_Model_Mensagem
 	*/
-	public function setRowInfo($rowInfo)
+	public function setRowinfo($rowinfo)
 	{
-		$this->_rowInfo = (String) $rowInfo;
+		$this->_rowinfo = (String) $rowinfo;
 		return $this;
 	}
 	
@@ -290,9 +290,9 @@ class Basico_Model_Mensagem
 	* 
 	* @return null|string
 	*/
-	public function getRowInfo()
+	public function getRowinfo()
 	{
-		return $this->_rowInfo;
+		return $this->_rowinfo;
 	}
 	
 	/**
