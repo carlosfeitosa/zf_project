@@ -2,8 +2,14 @@
 
 class Basico_MensageiroController 
 {
-	public function init() {
+	static private $singleton;
 		
+    static public function init()
+	{
+		if(self::$singleton == NULL){
+			self::$singleton = new Basico_MensageiroController();
+		}
+		return self::$singleton;
 	}
 		
     public function enviar(Basico_Model_Mensagem $mensagem) {
@@ -15,11 +21,11 @@ class Basico_MensageiroController
 			Zend_Mail::setDefaultTransport($tr);
 			
 	        $zendMail = new Zend_Mail();
-	        $zendMail->setFrom($remetente, $nomeRemetente);
-	        $zendMail->addTo($destinatarios, $nomeDestinatario);
-	        $zendMail->setSubject($assunto);
-	        $zendMail->setBodyText($corpoMensagem);
-	        $zendMail->setDate($data);
+	        $zendMail->setFrom($mensagem->remente, '');
+	        $zendMail->addTo($mensagem->destinatarios, '');
+	        $zendMail->setSubject($mensagem->assunto());
+	        $zendMail->setBodyText($mensagem->mensagem);
+	        $zendMail->setDate($mensagem->dataHora);
 	        
                 $zendMail->send($tr);
 

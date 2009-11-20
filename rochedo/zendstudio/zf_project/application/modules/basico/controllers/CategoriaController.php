@@ -41,4 +41,12 @@ class Basico_CategoriaController
     	    return $catergoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 	}
+	
+    public function retornaCategoriaEmailValidacaoPlainTextTemplate()
+	{
+	    $catergoriaEmailValidacaoPlainText = $this->retornaCategoria(EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);
+	    if (isset($catergoriaEmailValidacaoPlainText))
+    	    return $catergoriaEmailValidacaoPlainText;
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);
+	}
 }
