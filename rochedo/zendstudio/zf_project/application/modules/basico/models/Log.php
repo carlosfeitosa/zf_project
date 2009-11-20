@@ -20,7 +20,7 @@ class Basico_Model_Log
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_LogMapper
+	 * @var Default_Model_LogMapper
 	 */
 	protected $_mapper;
 
@@ -35,7 +35,7 @@ class Basico_Model_Log
     /**
      * @var Integer
      */
-    protected $_pessoasperfis;
+    protected $_pessoaperfil;
 
     /**
      * @var Integer
@@ -68,7 +68,7 @@ class Basico_Model_Log
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
+			throw new Exception('Invalid property specified');
 		}
 		$this->$method($value);
 	}
@@ -84,7 +84,7 @@ class Basico_Model_Log
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
+			throw new Exception('Invalid property specified');
 		}
 		return $this->$method();
 	}
@@ -93,7 +93,7 @@ class Basico_Model_Log
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Log
+	 * @return Default_Model_Log
 	 */
 	public function setOptions(array $options)
 	{
@@ -113,7 +113,7 @@ class Basico_Model_Log
 	* Set dataHoraEvento
 	* 
 	* @param String $dataHoraEvento 
-	* @return Basico_Model_DataHoraEvento
+	* @return Default_Model_DataHoraEvento
 	*/
 	public function setDataHoraEvento($dataHoraEvento)
 	{
@@ -130,6 +130,18 @@ class Basico_Model_Log
 	{
 		return $this->_dataHoraEvento;
 	}
+     
+	/**
+	* Set xml
+	* 
+	* @param String $xml 
+	* @return Default_Model_Xml
+	*/
+	public function setXml($xml)
+	{
+		$this->_xml = (String) $xml;
+		return $this;
+	}
 
 	/**
 	* Get xml
@@ -145,32 +157,32 @@ class Basico_Model_Log
 	* Set pessoasperfis
 	* 
 	* @param int $pessoasperfis 
-	* @return Basico_Model_Pessoasperfis
+	* @return Default_Model_Pessoasperfis
 	*/
-	public function setPessoasperfis($pessoasperfis)
+	public function setPessoaPerfil($pessoaperfil)
 	{
-		$this->_pessoasperfis = (int) $pessoasperfis;
+		$this->_pessoaperfil = (int) $pessoaperfil;
 		return $this;
 	}
 
 	/**
-	* Get pessoasperfis
+	* Get pessoaperfil
 	* 
 	* @return null|int
 	*/
-	public function getPessoasperfis()
+	public function getPessoaPerfil()
 	{
-		return $this->_pessoasperfis;
+		return $this->_pessoaperfil;
 	}
  
     /**
-     * Get pessoasperfis object
+     * Get pessoaperfil object
      * @return null|PessoasPerfis
      */
-    public function getPessoasperfisObject()
+    public function getPessoaPerfilObject()
     {
-        $model = new Basico_Model_Pessoasperfis();
-        $object = $model->find($this->_pessoasperfis);
+        $model = new Basico_Model_PessoaPerfil();
+        $object = $model->find($this->_pessoaperfil);
         return $object;
     }
     
@@ -178,7 +190,7 @@ class Basico_Model_Log
 	* Set categoria
 	* 
 	* @param int $categoria 
-	* @return Basico_Model_Categoria
+	* @return Default_Model_Categoria
 	*/
 	public function setCategoria($categoria)
 	{
@@ -211,7 +223,7 @@ class Basico_Model_Log
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Log
+	* @return Default_Model_Log
 	*/
 	public function setId($id)
 	{
@@ -233,7 +245,7 @@ class Basico_Model_Log
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Log
+	* @return Default_Model_Log
 	*/
 	public function setMapper($mapper)
 	{
@@ -244,9 +256,9 @@ class Basico_Model_Log
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_LogMapper instance if no mapper registered.
+	* Lazy loads Default_Model_LogMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_LogMapper
+	* @return Default_Model_LogMapper
 	*/
 	public function getMapper()
 	{
@@ -281,7 +293,7 @@ class Basico_Model_Log
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Log
+	* @return Default_Model_Log
 	*/
 	public function find($id)
 	{
@@ -308,4 +320,14 @@ class Basico_Model_Log
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
+	
+
+//#BlockStart number=82 id=_ahwT0Kw2Ed6jTJH7GgbZHg_#_0
+      
+    //start block for manually written code
+        
+    //end block for manually written code
+
+//#BlockEnd number=82
+
 }

@@ -114,16 +114,6 @@ class Basico_Model_RowInfo
 	}
 
 	/**
-	* Get xml
-	* 
-	* @return null|String
-	*/
-	public function getXml()
-	{
-        return $this->getGeradorObject()->getGeradorXmlObject()->gerar($this, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
-	}
-	
-	/**
 	* Set genericDateTimeLastModified
 	* 
 	* @param String $genericDateTimeLastModified
@@ -221,22 +211,5 @@ class Basico_Model_RowInfo
         return new Basico_Model_Gerador();
     }
     
-	/**
-	* Prepare xml
-	* 
-	* @return null|Boolean
-	*/
-	public function prepareXml($modelo, $utilizarUsuarioSistema = false)
-	{
-	    if ($utilizarUsuarioSistema)
-	        $idPessoaPerfil = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-
-        if (!isset($modelo->id))
-        {
-            $this->setGenericDateTimeCreation(Zend_Date::now());
-            $this->setGenericIdLoginCreation($idPessoaPerfil);
-        }
-        $this->setGenericDateTimeLastModified(Zend_Date::now());
-        $this->setGenericIdLoginLastModified($idPessoaPerfil);
-	}
+	
 }

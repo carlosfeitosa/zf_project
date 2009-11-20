@@ -64,7 +64,7 @@ class Basico_Model_LogMapper
         $data = array(
 				'datahora_evento'   => $object->getDataHoraEvento(),
 				'xml'               => $object->getXml(),
-                'id_perfil_pessoa'  => $object->getPessoasperfis(),
+                'id_perfil_pessoa'  => $object->getPessoaPerfil(),
                 'id_categoria'      => $object->getCategoria(),
         );
 
@@ -103,7 +103,7 @@ class Basico_Model_LogMapper
         $object->setId($row->id)
 				->setDataHoraEvento($row->dataHoraEvento)
 				->setXml($row->xml)
-                ->setPessoasperfis($row->pessoasperfis)
+                ->setPessoaPerfil($row->pessoasperfis)
                 ->setCategoria($row->categoria);
     }
 
@@ -122,7 +122,7 @@ class Basico_Model_LogMapper
 			$entry->setId($row->id)
    				  ->setDataHoraEvento($row->datahora_evento)
     			  ->setXml($row->xml)
-                  ->setPessoasperfis($row->id_perfil_pessoa)
+                  ->setPessoaPerfil($row->id_perfil_pessoa)
                   ->setCategoria($row->id_categoria)
     	  	      ->setMapper($this);
 			$entries[] = $entry;
@@ -145,7 +145,7 @@ class Basico_Model_LogMapper
 			$entry->setId($row->id)
 				  ->setDataHoraEvento($row->datahora_evento)
 				  ->setXml($row->xml)
-                  ->setPessoasperfis($row->id_perfil_pessoa)
+                  ->setPessoaPerfil($row->id_perfil_pessoa)
                   ->setCategoria($row->id_categoria)
 				  ->setMapper($this);
 			$entries[] = $entry;

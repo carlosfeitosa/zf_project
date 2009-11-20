@@ -1,16 +1,16 @@
 <?php
 
-// INCLUDES
-
 class Basico_LogController
 {
 	static private $singleton;
 	private $log;
 	private $logFS;
+	private $gerador;
 	
 	private function __construct()
 	{
 		$this->log = new Basico_Model_Log();
+		//$this->gerador = new Basico_Model_Gerador();
 		
 		if (!file_exists(LOG_PATH))
 		    Basico_Model_Util::mkdir_recursive(LOG_PATH);
@@ -44,5 +44,28 @@ class Basico_LogController
 	        $arquivoLog = LOG_FILENAME_PREFIX . (String) $ano . (String) $mes . LOG_FILENAME_SULFIX;
 	    
 	    Basico_Model_Util::getFileContent($arquivoLog);
+	}
+	
+	public function getXml()
+	{
+        return $this->gerador->getGeradorXmlObject()->gerar($this, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');
+	}
+	
+	public function salvarLog($novoLog)
+	{
+		try {
+	    	$auxDb = Zend_Registry::get('db');
+	    	$auxDb->beginTransaction();
+	    	try{
+	    		$this->log = $novoLog;
+				$this->log->save();
+				$auxDb->commit();
+	    	} catch (Exception $e) {
+	    		$auxDb->rollback();
+	    	}
+	    } catch (Exception $e) {
+	    	$this->log = $novoLog;
+			$this->log->save();
+	    }
 	}
 }

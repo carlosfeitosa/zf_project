@@ -8,6 +8,8 @@ require_once("PessoaPerfilController.php");
 require_once("DadosPessoaisController.php");
 require_once("CategoriaController.php");
 require_once("MensageiroController.php");
+require_once("LogController.php");
+require_once("RowinfoController.php");
 
 class Basico_LoginController extends Zend_Controller_Action
 {
@@ -84,11 +86,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	                $this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
 				}
 	            else{
-	               
-	            	$this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
-	            	
-	            	
-	            }
+	               $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
+	           	}
 	        }
 	        
 	        $this->salvarusuarionaovalidadoAction();
@@ -98,12 +97,14 @@ class Basico_LoginController extends Zend_Controller_Action
     public function salvarusuarionaovalidadoAction()
     {
         // CONTROLADORES
-        $controladorPessoa = Basico_PessoaController::init();
+        $controladorPessoa        = Basico_PessoaController::init();
         $controladorDadosPessoais = Basico_DadosPessoaisController::init();
-        $controladorCategoria = Basico_CategoriaController::init();
-        $controladorEmail = Basico_EmailController::init();
-        $controladorPerfil = Basico_PerfilController::init();
-        $controladorPessoaPerfil = Basico_PessoaPerfilController::init();
+        $controladorCategoria     = Basico_CategoriaController::init();
+        $controladorEmail         = Basico_EmailController::init();
+        $controladorPerfil        = Basico_PerfilController::init();
+        $controladorPessoaPerfil  = Basico_PessoaPerfilController::init();
+        $controladorLog           = Basico_LogController::init();
+        $controladorRowInfo       = Basico_RowInfoController::init();
         
         // INSTANCIAR BD
         $db = $this->getInvokeArg('bootstrap')->getResource('db');
@@ -118,8 +119,8 @@ class Basico_LoginController extends Zend_Controller_Action
             
             // NOVA PESSOA ARMAZENADA NO SISTEMA
             $novaPessoa = new Basico_Model_Pessoa();
-            $rowinfo->prepareXml($novaPessoa, true);
-            $novaPessoa->rowinfo = $rowinfo->getXml();
+            $controladorRowInfo->prepareXml($novaPessoa, true);
+            $novaPessoa->rowinfo = $controladorRowInfo->getXml();
             $controladorPessoa->salvarPessoa($novaPessoa);
             
             // RETORNAR PERFIL DE USUARIO NÃO-VALIDADO
@@ -135,12 +136,12 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoDadosPessoais = new Basico_Model_DadosPessoais();
             $novoDadosPessoais->idPessoa = $novaPessoa->id;
             $novoDadosPessoais->nome     = $this->getRequest()->getParam('nome');
-            $novoDadosPessoais->rowinfo  = $rowinfo->getXml();
+            $novoDadosPessoais->rowinfo  = $controladorRowInfo->getXml();
             $controladorDadosPessoais->salvarDadosPessoais($novoDadosPessoais);
             
             // CATEGORIA DO EMAIL  
             $categoriaEmailPrimario = $controladorCategoria->retornaCategoriaEmailPrimario();
-          	$idCategoria = $categoriaEmailPrimario->id;
+          	$idCategoria            = $categoriaEmailPrimario->id;
 
             // UNIQUEID GERADO
             $uniqueIdValido = $controladorEmail->retornaUniqueIdEmail();
@@ -153,50 +154,22 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->email     = $this->getRequest()->getParam('email');
             $novoEmail->validado  = 0;
             $novoEmail->ativo     = 0;
-            $novoEmail->rowinfo   = $rowinfo->getXml();
-            $controladorEmail->salvarEmail($novoEmail); 
-
-             //ID DA CATEGORIA DA TEMPLATE DE MENSAGEM DE VALIDACAO DE USUARIO
-            $categoriaMensagemTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
-            $idCategoriaMensagemTemplate = $categoriaMensagemTemplate->id;
-            //CAPTURANDO REMETENTE E CORPO DA MENSAGEM DA TEMPLATE
-            $novaMensagem = $controladorMensagem->retornaTemplateValidacaoUsuarioPlainText($idCategoriaMensagemTemplate);
-            //SETANDO RESTANTE DA MENSAGEM
-            $novaMensagem->setDestinatarios($this->getRequest()->getParam('email'));
-            $idCategoriaPlainText = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
-            $novaMensagem->setCategoria($idCategoriaPlainText->id);
-            //GERANDO ROWINFO PRA MENSAGEM
-            $rowinfo->prepareXml($novaMensagem, true);
-            $novaMensagem->setRowinfo($rowinfo->getXml());
-            //GERANDO E SETANDO DATA ATUAL
-            $data = new Zend_Date();
-            $novaMensagem->setDataHora($data);
-            //SALVANDO A MENSAGEM
-           //var_dump($novaMensagem);
-            //exit;
-            $controladorMensagem->salvarMensagem($novaMensagem);
+            $novoEmail->rowinfo   = $controladorRowInfo->getXml();
+            $controladorEmail->salvarEmail($novoEmail);  
             
-            //SALVANDO PESSOA_PERFIL_MENSAGEM_CATEGORIA
-            $novaPessoaPerfilMensagemCategoria = new Basico_Model_PessoaPerfilMensagemCategoria();
-            $novaPessoaPerfilMensagemCategoria->setIdPessoaPerfil($novaPessoa->id);
-            $novaPessoaPerfilMensagemCategoria->setIdMensagem($novaMensagem->id);
-            $novaPessoaPerfilMensagemCategoria->setIdCategoria($idCategoriaPlainText->id);
-            //GERANDO ROWINFO PRA PESSOA_PERFIL_MENSAGEM_CATEGORIA
-            $rowinfo->prepareXml($novaMensagem, true);
-            $novaPessoaPerfilMensagemCategoria->setRowinfo($rowinfo->getXml());
+            // CATEGORIA DO LOG  
+            $categoriaLog   = $controladorCategoria->retornaCategoria(LOG_VALIDACAO_USUARIO);
+          	$idCategoriaLog = $categoriaLog->id;
             
-            var_dump($novaPessoaPerfilMensagemCategoria);
-            exit;
-            $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria);
-            
-            
-            //ENVIANDO MENSAGEM
-            $controladorMensageiro->enviar($novaMensagem);
+            $novoLog = new Basico_Model_Log();
+            $novoLog->pessoaperfil   = $novaPessoaPerfil->id;
+            $novoLog->categoria      = $idCategoriaLog;
+            $novoLog->dataHoraEvento = Zend_Date::now();
+            $novoLog->xml            = "teste"; 
+            $controladorLog->salvarLog($novoLog);
             
             $db->commit();
-        
-            
-            	                                
+
         } catch (Exception $e) {
             $db->rollback();
             throw new Exception($e->getMessage());
