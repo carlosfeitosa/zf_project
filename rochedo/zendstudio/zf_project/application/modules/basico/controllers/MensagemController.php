@@ -19,10 +19,21 @@ class Basico_MensagemController
     
     public function salvarMensagem($novaMensagem) 
     {
-		$mensagem = $novaMensagem;
-		print_r($mensagem);
-		exit;
-		$mensagem->save();	
+    try {
+	    	$auxDb = Zend_Registry::get('db');
+	    	$auxDb->beginTransaction();
+	    	try{
+	    		$this->mensagem = $novaMensagem;
+				$this->mensagem->save();
+				$auxDb->commit();
+	    	} catch (Exception $e) {
+	    		$auxDb->rollback();
+	    	}
+	    } catch (Exception $e) {
+	    	$this->mensagem = $novaMensagem;
+			$this->mensagem->save();
+	    }
+		
 	}
 	
 	public function retornaTemplateValidacaoUsuarioPlainText($idCategoria) {
