@@ -1,4 +1,4 @@
-create table [dbo].[categoria] (
+7create table [dbo].[categoria] (
 	[id] [int] identity (1, 1) not null ,
 	[id_tipo_categoria] [int] not null ,
 	[id_categoria_pai] [int] null ,
@@ -383,3 +383,27 @@ alter table [dbo].[anexo_mensagem] add
 	[id]
 	)
 go
+
+CREATE TABLE [dbo].[pessoas_perfis_mensagem_categoria] ( 
+	[id]              	int IDENTITY NOT NULL,
+	[id_mensagem]     	int NOT NULL,
+	[id_categoria]    	int NOT NULL,
+	[id_pessoa_perfil]	int NOT NULL,
+	[rowinfo]         	varchar(2000) NOT NULL,
+	CONSTRAINT [pk_pessoas_perfis_mensagem_categoria] PRIMARY KEY([id])
+)
+GO
+ALTER TABLE [dbo].[pessoas_perfis_mensagem_categoria]
+	ADD CONSTRAINT [fk_pessoa_perfil]
+	FOREIGN KEY([id_pessoa_perfil])
+	REFERENCES [dbo].[pessoas_perfis]([id])
+GO
+ALTER TABLE [dbo].[pessoas_perfis_mensagem_categoria]
+	ADD CONSTRAINT [fk_mensagem]
+	FOREIGN KEY([id_mensagem])
+	REFERENCES [dbo].[mensagem]([id])
+GO
+ALTER TABLE [dbo].[pessoas_perfis_mensagem_categoria]
+	ADD CONSTRAINT [fk_categoria]
+	FOREIGN KEY([id_categoria])
+	REFERENCES [dbo].[categoria]([id])
