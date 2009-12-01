@@ -94,7 +94,7 @@ create table [dbo].[mensagem] (
 	[remetente]	varchar(220) not null,
 	[destinatarios]	varchar(2000) not null,
 	[assunto]  	varchar(200) not null,
-	[datahora] 	timestamp not null,
+	[datahora_mensagem] datetime not null,
 	[mensagem] 	varchar(2000) not null,
 	[id_categoria] int not null,
 	[rowinfo] [varchar] (2000) collate latin1_general_ci_ai not null
