@@ -44,7 +44,7 @@ class Basico_Model_Mensagem
 	/**
 	 * @var Date
 	 */
-	protected $_dataHoraMensagem;
+	protected $_datahoraMensagem;
 	/**
 	 * @var String
 	 */
@@ -190,9 +190,9 @@ class Basico_Model_Mensagem
 	* @param String $dataHora 
 	* @return Default_Model_DataHora
 	*/
-	public function setDataHoraMensagem($dataHoraMensagem)
+	public function setDatahoraMensagem($datahoraMensagem)
 	{
-		$this->_dataHora = (String) $dataHora;
+		$this->_datahoraMensagem = (String) $datahoraMensagem;
 		return $this;
 	}
 
@@ -201,9 +201,9 @@ class Basico_Model_Mensagem
 	* 
 	* @return null|String
 	*/
-	public function getDataHora()
+	public function getDatahoraMensagem()
 	{
-		return $this->_dataHora;
+		return $this->_datahoraMensagem;
 	}
      
 	/**
