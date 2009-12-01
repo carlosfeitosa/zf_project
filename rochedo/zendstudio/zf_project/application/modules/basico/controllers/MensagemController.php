@@ -36,7 +36,7 @@ class Basico_MensagemController
 		
 	}
 	
-	public function retornaTemplateValidacaoUsuarioPlainText($idCategoria) {
+	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria) {
 		
 		
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);

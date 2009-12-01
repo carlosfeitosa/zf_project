@@ -8,6 +8,7 @@ require_once("PessoaPerfilController.php");
 require_once("DadosPessoaisController.php");
 require_once("CategoriaController.php");
 require_once("MensageiroController.php");
+require_once("MensagemController.php");
 require_once("LogController.php");
 require_once("RowinfoController.php");
 
@@ -105,6 +106,8 @@ class Basico_LoginController extends Zend_Controller_Action
         $controladorPessoaPerfil  = Basico_PessoaPerfilController::init();
         $controladorLog           = Basico_LogController::init();
         $controladorRowInfo       = Basico_RowInfoController::init();
+        $controladorMensagem      = Basico_MensagemController::init();
+        $controladorMensageiro    = Basico_MensageiroController::init();
         
         // INSTANCIAR BD
         $db = $this->getInvokeArg('bootstrap')->getResource('db');
@@ -167,6 +170,23 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoLog->dataHoraEvento = Zend_Date::now();
             $novoLog->xml            = "teste"; 
             $controladorLog->salvarLog($novoLog);
+            
+            //DATA ATUAL E CATEGORIA DA MENSAGEM A SER ENVIADA
+            $data = new Zend_Date();
+            $categoriaMensagem = $controladorCategoria->retornaCategoria('EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
+            
+            //SALVANDO MENSAGEM
+            $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
+            $novaMensagem      = retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate);
+            $novaMensagem->destinatarios = $this->getRequest()->getParam('email');
+            $novaMensagem->datahoraMensagem = $data;
+            $novaMensagem->categoria = $categoriaMensagem;
+            $controladorRowInfo->prepareXml($novaMensagem, true);
+            $novaMensagem->rowinfo = $controladorRowInfo->getXml();
+            $novaMensagem->setRowinfo();
+            $controladorMensagem->salvarMensagem($novaMensagem);
+            
+            $controladorMensageiro->enviar($novaMensagem);
             
             $db->commit();
 
