@@ -2,6 +2,7 @@ drop table email
 drop table log
 drop table login
 drop table dados_pessoais
+drop table pessoas_perfis_mensagem_categoria
 drop table pessoas_perfis
 drop table pessoa
 drop table perfil
