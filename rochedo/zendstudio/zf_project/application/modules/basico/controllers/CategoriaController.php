@@ -24,6 +24,7 @@ class Basico_CategoriaController
 		if (isset($auxCategoria[0]))
     	    return $auxCategoria[0];
     	return NULL;
+    	
 	}
 	
 	public function retornaCategoriaEmailPrimario()
@@ -36,7 +37,7 @@ class Basico_CategoriaController
 	
 	public function retornaCategoriaEmailValidacaoPlainText()
 	{
-	    $catergoriaEmailValidacaoPlainText = $this->retornaCategoria(EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	    $catergoriaEmailValidacaoPlainText = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 	    if (isset($catergoriaEmailValidacaoPlainText))
     	    return $catergoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);

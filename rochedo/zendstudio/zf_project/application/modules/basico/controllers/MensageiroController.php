@@ -25,7 +25,7 @@ class Basico_MensageiroController
 	        $zendMail->addTo($mensagem->destinatarios, '');
 	        $zendMail->setSubject($mensagem->assunto());
 	        $zendMail->setBodyText($mensagem->mensagem);
-	        $zendMail->setDate($mensagem->dataHora);
+	        $zendMail->setDate($mensagem->datahoraMensagem);
 	        
                 $zendMail->send($tr);
 

@@ -173,19 +173,18 @@ class Basico_LoginController extends Zend_Controller_Action
             
             //DATA ATUAL E CATEGORIA DA MENSAGEM A SER ENVIADA
             $data = new Zend_Date();
-            $categoriaMensagem = $controladorCategoria->retornaCategoria('EMAIL_VALIDACAO_USUARIO_PLAINTEXT');
+            $categoriaMensagem = $controladorCategoria->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
             
             //SALVANDO MENSAGEM
-            $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
-            $novaMensagem      = retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate);
-            $novaMensagem->destinatarios = $this->getRequest()->getParam('email');
+            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText();
+            $novaMensagem->destinatarios    = $this->getRequest()->getParam('email');
             $novaMensagem->datahoraMensagem = $data;
-            $novaMensagem->categoria = $categoriaMensagem;
+            $novaMensagem->categoria        = $categoriaMensagem->id;
             $controladorRowInfo->prepareXml($novaMensagem, true);
-            $novaMensagem->rowinfo = $controladorRowInfo->getXml();
-            $novaMensagem->setRowinfo();
+            $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
             $controladorMensagem->salvarMensagem($novaMensagem);
             
+            //ENVIANDO MENSAGEM
             $controladorMensageiro->enviar($novaMensagem);
             
             $db->commit();

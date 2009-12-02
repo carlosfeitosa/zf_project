@@ -268,7 +268,7 @@ class Basico_Model_Mensagem
 	* 
 	* @return null|int
 	*/
-	public function getIdCategoria()
+	public function getCategoria()
 	{
 		return $this->_categoria;
 	}

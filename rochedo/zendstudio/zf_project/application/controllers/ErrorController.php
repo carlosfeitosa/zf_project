@@ -27,5 +27,6 @@ class ErrorController extends Zend_Controller_Action
         
         $this->view->exception = $errors->exception;
         $this->view->request   = $errors->request;
+        
     }
 }
