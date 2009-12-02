@@ -39,9 +39,9 @@ class Basico_MensagemController
 		
 		
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
-		$this->mensagem->setAssunto($mensagemTemplate[0]->assunto);
-		$this->mensagem->setRemetente($mensagemTemplate[0]->remetente);
-		$this->mensagem->setMensagem($mensagemTemplate[0]->mensagem);
+		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
+		$this->mensagem->setRemetente($mensagemTemplate[0]->getRemetente());
+		$this->mensagem->setMensagem($mensagemTemplate[0]->getMensagem());
 		
 		return $this->mensagem;
 		

@@ -15,16 +15,22 @@ class Basico_MensageiroController
     public function enviar(Basico_Model_Mensagem $mensagem) {
         
     	try {
-            //SENDING MAIL
+            //CARREGANDO O TRANSPORTER
 			$tr = Basico_MensageiroController::retornaTransportSmtp('login', 'info@rochedoproject.com', 
 	                                                                '@info#rochedo@', 'mail.rochedoproject.com');
 			Zend_Mail::setDefaultTransport($tr);
 			
-			$remetenteEmail = strstr($mensagem->getRemetente(), strpos($mensagem->getRemetente(), '<', strpos($mensagem->getRemetente(), '>', 0)));
-			$remetenteNome  = strstr($mensagem->getRemetente(), 0, strstr($mensagem->getRemetente(), '<', 0)-1);
+			//SEPARANDO EMAIL REMETENTE
+			$remetente = $mensagem->getRemetente();
+			$remetenteEmailAux  = strrchr($remetente, '['); 
+			$remetenteEmail = substr($remetenteEmailAux, strpos($remetenteEmailAux, '[')+1, strpos($remetenteEmailAux, ']')-1 ); 
 			
+			//SEPARANDO NOME REMETENTE
+			$remetenteNome = substr($remetente, 0, strpos($remetente, '[')-1);
+
+			//ENVIANDO EMAIL
 	        $zendMail = new Zend_Mail();
-	        $zendMail->setFrom($mensagem->getRemetente);
+	        $zendMail->setFrom($remetenteEmail, $remetenteNome);
 	        $zendMail->addTo($mensagem->getDestinatarios());
 	        $zendMail->setSubject($mensagem->getAssunto());
 	        $zendMail->setBodyText($mensagem->getMensagem());

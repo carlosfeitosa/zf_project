@@ -87,7 +87,16 @@ class Basico_LoginController extends Zend_Controller_Action
 	                $this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
 				}
 	            else{
-	               $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
+	            	//INICIALIZANDO CONTROLADORES
+	            	$controladorCategoria     = Basico_CategoriaController::init();
+	            	$controladorMensageiro    = Basico_MensageiroController::init();
+	            	$controladorMensagem      = Basico_MensagemController::init();
+	            	$controladorRowInfo       = Basico_RowInfoController::init();
+	            	 
+	                
+		            
+		            //REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
+	                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 	           	}
 	        }
 	        
@@ -181,7 +190,10 @@ class Basico_LoginController extends Zend_Controller_Action
             $novaMensagem->setDestinatarios($novoEmail->email);
             $novaMensagem->setDatahoraMensagem($data);
             $novaMensagem->setCategoria($categoriaMensagem->id);
-            $novaMensagem->mensagem .= 'www.rochedoproject.com/' . $novoEmail->uniqueId;
+            $corpoMensagemTemplate = $novaMensagem->mensagem;
+            $corpoMensagemTemplate = str_replace('[nome_usuario]', $this->getRequest()->getParam('nome'), $corpoMensagemTemplate);
+            $corpoMensagemTemplate = str_replace('[link]', "www.rochedoproject.com/{$novoEmail->uniqueId}", $corpoMensagemTemplate);
+            $novaMensagem->setMensagem($corpoMensagemTemplate);
             $controladorRowInfo->prepareXml($novaMensagem, true);
             $novaMensagem->setRowinfo($controladorRowInfo->getXml());
            
