@@ -1,4 +1,4 @@
-7create table [dbo].[categoria] (
+create table [dbo].[categoria] (
 	[id] [int] identity (1, 1) not null ,
 	[id_tipo_categoria] [int] not null ,
 	[id_categoria_pai] [int] null ,
