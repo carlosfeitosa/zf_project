@@ -8,7 +8,7 @@ class Basico_PessoaPerfilMensagemCategoriaController
 	    $this->pessoaPerfilMensagemCategoria = new Basico_Model_PessoaPerfilMensagemCategoria();	
 	}
 	
-	public function init() {
+	static public function init() {
 		if(self::$singleton == NULL){
 			self::$singleton = new Basico_PessoaPerfilMensagemCategoriaController();
 		}
@@ -28,7 +28,7 @@ class Basico_PessoaPerfilMensagemCategoriaController
 	    		$auxDb->rollback();
 	    	}
 	    } catch (Exception $e) {
-	    	$this->pessoaPerfilMensagemCategoria = $novaMensagem;
+	    	$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;
 			$this->pessoaPerfilMensagemCategoria->save();
 	    }
 		
