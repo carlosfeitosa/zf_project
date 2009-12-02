@@ -12,7 +12,7 @@
  * @uses       Default_Model_PessoaPerfilMensagemMapper
  * @subpackage Model
  */
-class Default_Model_PessoaPerfilMensagem
+class Default_Model_PessoaPerfilMensagemCategoria
 {
     /**
     * @var int
