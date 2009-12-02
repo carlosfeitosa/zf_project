@@ -5,14 +5,14 @@
  */
  
 /**
- * PessoaPerfilMensagem model
+ * PessoaPerfilMensagemCategoria model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Default_Model_PessoaPerfilMensagemMapper
+ * @uses       Basico_Model_PessoaPerfilMensagemCategoriaMapper
  * @subpackage Model
  */
-class Default_Model_PessoaPerfilMensagemCategoria
+class Basico_Model_PessoaPerfilMensagemCategoria
 {
     /**
     * @var int
@@ -20,7 +20,7 @@ class Default_Model_PessoaPerfilMensagemCategoria
     protected $_id;
 
     /**
-     * @var Default_Model_PessoaPerfilMensagemMapper
+     * @var Basico_Model_PessoaPerfilMensagemCategoriaMapper
      */
     protected $_mapper;
 
@@ -34,6 +34,11 @@ class Default_Model_PessoaPerfilMensagemCategoria
      */
     protected $_mensagem;
 
+    /**
+     * @var Categoria
+     */
+    protected $_categoria;
+    
     /**
      * Constructor
      * 
@@ -85,7 +90,7 @@ class Default_Model_PessoaPerfilMensagemCategoria
      * Set object state
      * 
      * @param  array $options 
-     * @return Default_Model_PessoaPerfilMensagem
+     * @return Basico_Model_PessoaPerfilMensagemCategoria
      */
     public function setOptions(array $options)
     {
@@ -105,7 +110,7 @@ class Default_Model_PessoaPerfilMensagemCategoria
     * Set pessoaperfil
     * 
     * @param int $ 
-    * @return Default_Model_PessoaPerfil
+    * @return Basico_Model_PessoaPerfil
     */
     public function setPessoaPerfil($pessoaperfil)
     {
@@ -129,7 +134,7 @@ class Default_Model_PessoaPerfilMensagemCategoria
      */
     public function getPessoaPerfilObject()
     {
-        $model = new Default_Model_a_pessoa_possui_perfil();
+        $model = new Basico_Model_PessoaPerfil();
         $object = $model->find($this->_pessoaperfil);
         return $object;
     }
@@ -138,7 +143,7 @@ class Default_Model_PessoaPerfilMensagemCategoria
     * Set mensagem
     * 
     * @param int $ 
-    * @return Default_Model_Mensagem
+    * @return Basico_Model_Mensagem
     */
     public function setMensagem($mensagem)
     {
@@ -155,24 +160,56 @@ class Default_Model_PessoaPerfilMensagemCategoria
     {
         return $this->_mensagem;
     }
- 
+    
     /**
      * Get mensagem object
      * @return null|Mensagem
      */
     public function getMensagemObject()
     {
-        $model = new Default_Model_Mensagem();
+        $model = new Basico_Model_Mensagem();
         $object = $model->find($this->_mensagem);
         return $object;
     }
     
+    /**
+    * Set categoria
+    * 
+    * @param int $ 
+    * @return Basico_Model_Categoria
+    */
+    public function setCategoria($categoria)
+    {
+        $this->_categoria = (int) $categoria;
+        return $this;
+    }
 
+    /**
+    * Get Categoria
+    * 
+    * @return null|int
+    */
+    public function getCategoria()
+    {
+        return $this->_categoria;
+    }
+ 
+    /**
+     * Get categoria object
+     * @return null|Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = $model->find($this->_categoria);
+        return $object;
+    }
+    
     /**
     * Set entry id
     * 
     * @param  int $id 
-    * @return Default_Model_PessoaPerfilMensagem
+    * @return Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setId($id)
     {
@@ -194,7 +231,7 @@ class Default_Model_PessoaPerfilMensagemCategoria
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Default_Model_PessoaPerfilMensagem
+    * @return Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setMapper($mapper)
     {
@@ -205,14 +242,14 @@ class Default_Model_PessoaPerfilMensagemCategoria
     /**
     * Get data mapper
     *
-    * Lazy loads Default_Model_PessoaPerfilMensagemMapper instance if no mapper registered.
+    * Lazy loads Default_Model_PessoaPerfilMensagemCategoriaMapper instance if no mapper registered.
     * 
-    * @return Default_Model_PessoaPerfilMensagemMapper
+    * @return Basico_Model_PessoaPerfilMensagemCategoriaMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Default_Model_PessoaPerfilMensagemMapper());
+            $this->setMapper(new Basico_Model_PessoaPerfilMensagemCategoriaMapper());
         }
         return $this->_mapper;
     }
@@ -242,7 +279,7 @@ class Default_Model_PessoaPerfilMensagemCategoria
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Default_Model_PessoaPerfilMensagem
+    * @return Basico_Model_PessoaPerfilMensagemCategoria
       
     */
     public function find($id)

@@ -200,6 +200,8 @@ class Basico_LoginController extends Zend_Controller_Action
             
             //SALVANDO E ENVIANDO MENSAGEM
             $controladorMensagem->salvarMensagem($novaMensagem);
+            
+            //ENVIANDO A MENSAGEM
             $controladorMensageiro->enviar($novaMensagem);
             
             $db->commit();
