@@ -11,7 +11,7 @@ class Basico_Model_DbTable_PessoaPerfilMensagemCategoria extends Zend_Db_Table_A
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'pessoa_perfil_mensagem_categoria';
+    protected $_name = 'pessoas_perfis_mensagem_categoria';
     
 
 //#BlockStart number=150 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0

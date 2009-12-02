@@ -40,6 +40,11 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     protected $_categoria;
     
     /**
+     * @var Rowinfo
+     */
+    protected $_rowinfo;
+    
+    /**
      * Constructor
      * 
      * @param  array|null $options 
@@ -225,6 +230,28 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     public function getId()
     {
         return $this->_id;
+    }
+    
+    /**
+    * Set entry rowinfo
+    * 
+    * @param  rowinfo $rowinfo 
+    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    */
+    public function setRowinfo($rowinfo)
+    {
+        $this->_id = (String) $rowinfo;
+        return $this;
+    }
+
+    /**
+    * Retrieve entry rowinfo
+    * 
+    * @return null|string
+    */
+    public function getRowinfo()
+    {
+        return $this->_rowinfo;
     }
 
     /**

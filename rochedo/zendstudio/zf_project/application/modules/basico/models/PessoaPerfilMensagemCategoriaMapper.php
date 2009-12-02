@@ -62,8 +62,11 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
     public function save(Basico_Model_PessoaPerfilMensagemCategoria $object)
     {
         $data = array(
-                'pessoa_perfil' => $object->getPessoaPerfil(),
-                'mensagem' => $object->getMensagem(),
+                'id_mensagem'      => $object->getMensagem(),
+                'id_categoria'     => $object->getCategoria(),
+                'id_pessoa_perfil' => $object->getPessoaPerfil(),
+                'rowinfo'          => $object->getRowinfo(),
+                
         );
 
         if (null === ($id = $object->getId())) {
@@ -99,8 +102,10 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setPessoaPerfil($row->pessoaperfil)
-               ->setMensagem($row->mensagem);
+               ->setMensagem($row->id_mensagem)
+               ->setCategoria($row->id_categoria)
+               ->setPessoaPerfil($row->id_pessoa_perfil)
+               ->setRowinfo($row->rowinfo);
     }
 
     /**
@@ -116,9 +121,11 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         {
             $entry = new Basico_Model_PessoaPerfilMensagemCategoria();
             $entry->setId($row->id)
-                ->setPessoaPerfil($row->pessoaperfil)
-                ->setMensagem($row->mensagem)
-                ->setMapper($this);
+                  ->setMensagem($row->id_mensagem)
+                  ->setCategoria($row->id_categoria)
+                  ->setPessoaPerfil($row->id_pessoa_perfil)
+                  ->setRowinfo($row->rowinfo)
+                  ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
@@ -137,8 +144,10 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         {
             $entry = new Basico_Model_PessoaPerfilMensagemCategoria();
             $entry->setId($row->id)
-                  ->setPessoaPerfil($row->pessoaperfil)
-                  ->setMensagem($row->mensagem)
+                  ->setMensagem($row->id_mensagem)
+                  ->setCategoria($row->id_categoria)
+                  ->setPessoaPerfil($row->id_pessoa_perfil)
+                  ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
         }
