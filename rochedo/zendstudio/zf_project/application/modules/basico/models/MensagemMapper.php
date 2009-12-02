@@ -71,12 +71,12 @@ class Basico_Model_MensagemMapper
                 'rowinfo'           => $object->getRowinfo(),
          
         );
-
+        
         if (null === ($id = $object->getId())) {
-            unset($data['id']);
+        	unset($data['id']);
             $object->setId($this->getDbTable()->insert($data));
         } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
+        	$this->getDbTable()->update($data, array('id = ?' => $id));
         }
     }
     

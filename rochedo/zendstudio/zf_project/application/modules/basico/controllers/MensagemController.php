@@ -19,13 +19,13 @@ class Basico_MensagemController
     
     public function salvarMensagem($novaMensagem) 
     {
-    try {
+      try {
 	    	$auxDb = Zend_Registry::get('db');
 	    	$auxDb->beginTransaction();
 	    	try{
 	    		$this->mensagem = $novaMensagem;
 				$this->mensagem->save();
-				$auxDb->commit();
+			    $auxDb->commit();
 	    	} catch (Exception $e) {
 	    		$auxDb->rollback();
 	    	}
@@ -33,15 +33,12 @@ class Basico_MensagemController
 	    	$this->mensagem = $novaMensagem;
 			$this->mensagem->save();
 	    }
-		
 	}
 	
-	public function retornaTemplateMensagemValidacaoUsuarioPlainText() {
+	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria) {
 		
 		
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT'", null, 1, 0);
-		//var_dump($mensagemTemplate);
-		//exit;
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 		$this->mensagem->setAssunto($mensagemTemplate[0]->assunto);
 		$this->mensagem->setRemetente($mensagemTemplate[0]->remetente);
 		$this->mensagem->setMensagem($mensagemTemplate[0]->mensagem);

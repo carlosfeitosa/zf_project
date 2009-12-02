@@ -20,14 +20,17 @@ class Basico_MensageiroController
 	                                                                '@info#rochedo@', 'mail.rochedoproject.com');
 			Zend_Mail::setDefaultTransport($tr);
 			
+			$remetenteEmail = strstr($mensagem->getRemetente(), strpos($mensagem->getRemetente(), '<', strpos($mensagem->getRemetente(), '>', 0)));
+			$remetenteNome  = strstr($mensagem->getRemetente(), 0, strstr($mensagem->getRemetente(), '<', 0)-1);
+			
 	        $zendMail = new Zend_Mail();
-	        $zendMail->setFrom($mensagem->remente, '');
-	        $zendMail->addTo($mensagem->destinatarios, '');
-	        $zendMail->setSubject($mensagem->assunto());
-	        $zendMail->setBodyText($mensagem->mensagem);
-	        $zendMail->setDate($mensagem->datahoraMensagem);
+	        $zendMail->setFrom($mensagem->getRemetente);
+	        $zendMail->addTo($mensagem->getDestinatarios());
+	        $zendMail->setSubject($mensagem->getAssunto());
+	        $zendMail->setBodyText($mensagem->getMensagem());
+	        $zendMail->setDate($mensagem->getDatahoraMensagem());
 	        
-                $zendMail->send($tr);
+            $zendMail->send($tr);
 
 	    }catch(Exception $e){
 			

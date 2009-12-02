@@ -103,9 +103,9 @@ go
 
 
 
-create  unique  index [ix_mensagem_assunto] on [dbo].[mensagem]([assunto]) on [primary]
+create index [ix_mensagem_assunto] on [dbo].[mensagem]([assunto]) on [primary]
 go
-create  unique  index [ix_mensagem_remetente] on [dbo].[mensagem]([remetente]) on [primary]
+create index [ix_mensagem_remetente] on [dbo].[mensagem]([remetente]) on [primary]
 go
 
 create table [dbo].[mensagem_email] ( 

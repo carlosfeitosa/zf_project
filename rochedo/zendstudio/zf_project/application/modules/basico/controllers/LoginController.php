@@ -171,20 +171,23 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoLog->xml            = "teste"; 
             $controladorLog->salvarLog($novoLog);
             
-            //DATA ATUAL E CATEGORIA DA MENSAGEM A SER ENVIADA
+            //DATA, CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM
             $data = new Zend_Date();
             $categoriaMensagem = $controladorCategoria->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+            $categoriaTemplate = $controladorCategoria->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
             
             //SALVANDO MENSAGEM
-            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText();
-            $novaMensagem->destinatarios    = $this->getRequest()->getParam('email');
-            $novaMensagem->datahoraMensagem = $data;
-            $novaMensagem->categoria        = $categoriaMensagem->id;
+            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id);
+            $novaMensagem->setDestinatarios($novoEmail->email);
+            $novaMensagem->setDatahoraMensagem($data);
+            $novaMensagem->setCategoria($categoriaMensagem->id);
+            $novaMensagem->mensagem .= 'www.rochedoproject.com/' . $novoEmail->uniqueId;
             $controladorRowInfo->prepareXml($novaMensagem, true);
-            $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
-            $controladorMensagem->salvarMensagem($novaMensagem);
+            $novaMensagem->setRowinfo($controladorRowInfo->getXml());
+           
             
-            //ENVIANDO MENSAGEM
+            //SALVANDO E ENVIANDO MENSAGEM
+            $controladorMensagem->salvarMensagem($novaMensagem);
             $controladorMensageiro->enviar($novaMensagem);
             
             $db->commit();
