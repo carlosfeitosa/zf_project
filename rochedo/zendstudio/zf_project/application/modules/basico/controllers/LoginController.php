@@ -11,6 +11,7 @@ require_once("MensageiroController.php");
 require_once("MensagemController.php");
 require_once("LogController.php");
 require_once("RowinfoController.php");
+require_once("PessoaPerfilMensagemCategoriaController.php");
 
 class Basico_LoginController extends Zend_Controller_Action
 {
@@ -117,6 +118,7 @@ class Basico_LoginController extends Zend_Controller_Action
         $controladorRowInfo       = Basico_RowInfoController::init();
         $controladorMensagem      = Basico_MensagemController::init();
         $controladorMensageiro    = Basico_MensageiroController::init();
+        $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();
         
         // INSTANCIAR BD
         $db = $this->getInvokeArg('bootstrap')->getResource('db');
@@ -200,6 +202,16 @@ class Basico_LoginController extends Zend_Controller_Action
             
             //SALVANDO E ENVIANDO MENSAGEM
             $controladorMensagem->salvarMensagem($novaMensagem);
+            
+            //SALVANDO NA TABELA RELACIONAMENTE PESSOA_PERFIL_MENSAGEM_CATEGORIA
+            $pessoaPerfilMensagemCategoria = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $pessoaPerfilMensagemCategoria->setMensagem($novaMensagem->id);
+            $pessoaPerfilMensagemCategoria->setCategoria($categoriaMensagem->id);
+            $pessoaPerfilMensagemCategoria->setPessoaPerfil($novaPessoaPerfil->id);
+            $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoria, true);
+            $pessoaPerfilMensagemCategoria->setRowinfo($controladorRowInfo->getXml());
+            $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoria);
+            
             
             //ENVIANDO A MENSAGEM
             $controladorMensageiro->enviar($novaMensagem);
