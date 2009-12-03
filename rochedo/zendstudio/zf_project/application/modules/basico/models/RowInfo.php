@@ -210,6 +210,4 @@ class Basico_Model_RowInfo
     {
         return new Basico_Model_Gerador();
     }
-    
-	
 }

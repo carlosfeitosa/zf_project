@@ -2,7 +2,6 @@
 
 class Basico_RowInfoController
 {
-
 	static private $singleton;
 	private $rowinfo;
 	private $gerador;
@@ -38,15 +37,21 @@ class Basico_RowInfoController
 	*/
 	public function prepareXml($modelo, $utilizarUsuarioSistema = false)
 	{
-	    if ($utilizarUsuarioSistema)
-	        $idPessoaPerfil = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-
-        if (!isset($modelo->id))
-        {
-            $this->rowinfo->setGenericDateTimeCreation(Zend_Date::now());
-            $this->rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
-        }
-        $this->rowinfo->setGenericDateTimeLastModified(Zend_Date::now());
-        $this->rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
+		try {
+			    if ($utilizarUsuarioSistema)
+			        $idPessoaPerfil = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+		
+		        if (!isset($modelo->id))
+		        {
+		            $this->rowinfo->setGenericDateTimeCreation(Zend_Date::now());
+		            $this->rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
+		        }
+		        $this->rowinfo->setGenericDateTimeLastModified(Zend_Date::now());
+		        $this->rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
+		        
+		        return true;	
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 	}
 }

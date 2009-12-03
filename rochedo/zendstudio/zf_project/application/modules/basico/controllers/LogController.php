@@ -10,7 +10,7 @@ class Basico_LogController
 	private function __construct()
 	{
 		$this->log = new Basico_Model_Log();
-		//$this->gerador = new Basico_Model_Gerador();
+//		$this->gerador = new Basico_Model_Gerador();
 		
 		if (!file_exists(LOG_PATH))
 		    Basico_Model_Util::mkdir_recursive(LOG_PATH);
@@ -67,5 +67,27 @@ class Basico_LogController
 	    	$this->log = $novoLog;
 			$this->log->save();
 	    }
+	}
+	
+	/**
+	* Prepare xml
+	* 
+	* @return null|Boolean
+	*/
+	public function prepareXml($modelo)
+	{
+		try {
+		        if (!isset($modelo->id))
+		        {
+		            $this->rowinfo->setGenericDateTimeCreation(Zend_Date::now());
+		            $this->rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
+		        }
+		        $this->rowinfo->setGenericDateTimeLastModified(Zend_Date::now());
+		        $this->rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
+		        
+		        return true;	
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 	}
 }
