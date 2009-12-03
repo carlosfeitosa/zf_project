@@ -91,8 +91,6 @@ go
 
 create table [dbo].[mensagem] ( 
 	[id]       	int identity not null,
-	[remetente]	varchar(220) not null,
-	[destinatarios]	varchar(2000) not null,
 	[assunto]  	varchar(200) not null,
 	[datahora_mensagem] datetime not null,
 	[mensagem] 	varchar(2000) not null,
@@ -101,11 +99,7 @@ create table [dbo].[mensagem] (
 )on [primary]
 go
 
-
-
 create index [ix_mensagem_assunto] on [dbo].[mensagem]([assunto]) on [primary]
-go
-create index [ix_mensagem_remetente] on [dbo].[mensagem]([remetente]) on [primary]
 go
 
 create table [dbo].[mensagem_email] ( 
