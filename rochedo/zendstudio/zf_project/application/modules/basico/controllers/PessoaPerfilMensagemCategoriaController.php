@@ -17,20 +17,20 @@ class Basico_PessoaPerfilMensagemCategoriaController
 	
 	public function salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria) {
 	
-	try {
-	    	$auxDb = Zend_Registry::get('db');
-	    	$auxDb->beginTransaction();
-	    	try{
+	//try {
+	    	//$auxDb = Zend_Registry::get('db');
+	    	//$auxDb->beginTransaction();
+	    	//try{
 	    		$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;
 				$this->pessoaPerfilMensagemCategoria->save();
-			    $auxDb->commit();
-	    	} catch (Exception $e) {
-	    		$auxDb->rollback();
-	    	}
-	    } catch (Exception $e) {
-	    	$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;
-			$this->pessoaPerfilMensagemCategoria->save();
-	    }
+			    //$auxDb->commit();
+	    	//} catch (Exception $e) {
+	    		//$auxDb->rollback();
+	    	//}
+	   // } catch (Exception $e) {
+	    //	$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;
+		//	$this->pessoaPerfilMensagemCategoria->save();
+	    //}
 		
 	}
 }

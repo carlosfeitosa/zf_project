@@ -240,7 +240,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setRowinfo($rowinfo)
     {
-        $this->_id = (String) $rowinfo;
+        $this->_rowinfo = (String) $rowinfo;
         return $this;
     }
 

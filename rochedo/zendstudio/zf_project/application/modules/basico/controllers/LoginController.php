@@ -199,11 +199,10 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorRowInfo->prepareXml($novaMensagem, true);
             $novaMensagem->setRowinfo($controladorRowInfo->getXml());
            
-            
             //SALVANDO E ENVIANDO MENSAGEM
             $controladorMensagem->salvarMensagem($novaMensagem);
             
-            //SALVANDO NA TABELA RELACIONAMENTE PESSOA_PERFIL_MENSAGEM_CATEGORIA
+            //SALVANDO NA TABELA RELACIONAMENTE PESSOAS_PERFIS_MENSAGEM_CATEGORIA
             $pessoaPerfilMensagemCategoria = new Basico_Model_PessoaPerfilMensagemCategoria();
             $pessoaPerfilMensagemCategoria->setMensagem($novaMensagem->id);
             $pessoaPerfilMensagemCategoria->setCategoria($categoriaMensagem->id);
@@ -211,7 +210,6 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoria, true);
             $pessoaPerfilMensagemCategoria->setRowinfo($controladorRowInfo->getXml());
             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoria);
-            
             
             //ENVIANDO A MENSAGEM
             $controladorMensageiro->enviar($novaMensagem);
