@@ -184,8 +184,8 @@ class Basico_LoginController extends Zend_Controller_Action
             
             //DATA, CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM
             $data = new Zend_Date();
-            $categoriaMensagem = $controladorCategoria->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
-            $categoriaTemplate = $controladorCategoria->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+            $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
+            $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
             
             //SALVANDO MENSAGEM
             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id);
