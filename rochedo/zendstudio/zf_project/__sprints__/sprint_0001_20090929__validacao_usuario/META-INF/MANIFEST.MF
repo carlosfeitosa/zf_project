@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: agilfap2_sprint1_validacao_usuario
-Bundle-SymbolicName: agilfap2_umls
-Bundle-Version: 0.1.0
-Require-Bundle: org.eclipse.emf.ecore
