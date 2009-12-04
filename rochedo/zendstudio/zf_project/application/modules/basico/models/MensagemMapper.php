@@ -63,7 +63,7 @@ class Basico_Model_MensagemMapper
     {
         $data = array(
 				'remetente'         => $object->getRemetente(),
-				'destinatarios'     => $object->getDestinatarios(),
+				'destinatarios'     => $object->getDestinatariosString(),
 				'assunto'           => $object->getAssunto(),
                 'datahora_mensagem' => $object->getDatahoraMensagem(),
                 'mensagem'          => $object->getMensagem(),

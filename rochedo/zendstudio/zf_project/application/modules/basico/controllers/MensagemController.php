@@ -1,4 +1,6 @@
 <?php
+//INCLUINDO CONTROLADORES
+require_once("EmailController.php");
 
 class Basico_MensagemController
 {
@@ -37,12 +39,17 @@ class Basico_MensagemController
 	
 	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria) {
 		
+		//INICIALIZANDO CONTROLADORES
+		$controladorEmail = Basico_EmailController::init();
 		
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
-		$this->mensagem->setRemetente($mensagemTemplate[0]->getRemetente());
 		$this->mensagem->setMensagem($mensagemTemplate[0]->getMensagem());
 		
+		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
+		$emailSistema = $controladorEmail->retornaEmailSistema();
+		$this->mensagem->setRemetente($emailSistema->email);
+		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
 		return $this->mensagem;
 		
 	}

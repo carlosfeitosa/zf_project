@@ -1,4 +1,6 @@
 <?php
+require_once("CategoriaController.php");
+
 class Basico_EmailController 
 {
 	static private $singleton;
@@ -63,5 +65,23 @@ class Basico_EmailController
 	    	$this->email = $novoEmail;
 			$this->email->save();
 	    }
+	}
+	
+	
+	//FUNCAO QUE RETORNA O EMAIL DO SISTEMA
+	public function retornaEmailSistema()
+    {
+    	//INICIALIZANDO CONTROLADOR CATEGORIA
+		$controladorCategoria = Basico_CategoriaController::init();
+		
+		//BUSCANDO EMAIL DO SISTEMA
+		$categoriaEmailSistema = $controladorCategoria->retornaCategoriaEmailSistema();
+		$emailSistema = self::$singleton->email->fetchList("id_categoria = {$categoriaEmailSistema->id}", null, 1, 0);
+		
+		//RETORNADO EMAIL DO SISTEMA
+		if (isset($emailSistema[0]))
+    	    return $emailSistema[0];
+    	else
+    	    return NULL;
 	}
 }

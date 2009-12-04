@@ -33,10 +33,17 @@ class Basico_Model_Mensagem
 	 * @var String
 	 */
 	protected $_remetente;
+	
+	/**
+	 * @var String
+	 */
+	protected $_remetenteNome;
+	
 	/**
 	 * @var String
 	 */
 	protected $_destinatarios;
+	
 	/**
 	 * @var String
 	 */
@@ -139,6 +146,28 @@ class Basico_Model_Mensagem
 	{
 		return $this->_remetente;
 	}
+	
+/**
+	* Set remetenteNome
+	* 
+	* @param String $remetenteNome 
+	* @return Default_Model_Remetente
+	*/
+	public function setRemetenteNome($remetenteNome)
+	{
+		$this->_remetenteNome = (String) $remetenteNome;
+		return $this;
+	}
+
+	/**
+	* Get remetenteNome
+	* 
+	* @return null|String
+	*/
+	public function getRemetenteNome()
+	{
+		return $this->_remetenteNome;
+	}
      
 	/**
 	* Set destinatario
@@ -148,18 +177,29 @@ class Basico_Model_Mensagem
 	*/
 	public function setDestinatarios($destinatarios)
 	{
-		$this->_destinatarios = (String) $destinatarios;
+		$this->_destinatarios = implode(';', $destinatarios);
 		return $this;
 	}
 
 	/**
-	* Get destinatario
+	* Get destinatario string
 	* 
 	* @return null|String
 	*/
-	public function getDestinatarios()
+	public function getDestinatariosString()
 	{
 		return $this->_destinatarios;
+	}
+	
+    /**
+	* Get destinatario array
+	* 
+	* @return null|String
+	*/
+	public function getDestinatariosArray()
+	{
+		$destinatarios = explode(';', $this->_destinatarios);
+		return $destinatarios;
 	}
      
 	/**

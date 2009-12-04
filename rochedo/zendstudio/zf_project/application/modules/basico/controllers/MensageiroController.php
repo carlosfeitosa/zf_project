@@ -20,18 +20,17 @@ class Basico_MensageiroController
 	                                                                '@info#rochedo@', 'mail.rochedoproject.com');
 			Zend_Mail::setDefaultTransport($tr);
 			
-			//SEPARANDO EMAIL REMETENTE
-			$remetente = $mensagem->getRemetente();
-			$remetenteEmailAux  = strrchr($remetente, '['); 
-			$remetenteEmail = substr($remetenteEmailAux, strpos($remetenteEmailAux, '[')+1, strpos($remetenteEmailAux, ']')-1 ); 
-			
-			//SEPARANDO NOME REMETENTE
-			$remetenteNome = substr($remetente, 0, strpos($remetente, '[')-1);
-
 			//ENVIANDO EMAIL
 	        $zendMail = new Zend_Mail();
-	        $zendMail->setFrom($remetenteEmail, $remetenteNome);
-	        $zendMail->addTo($mensagem->getDestinatarios());
+	        $zendMail->setFrom($mensagem->getRemetente(), $mensagem->getRemetenteNome());
+	        
+	        //ADICIONANDO DESTINATARIOS
+	        $destinatarios = $mensagem->getDestinatariosArray();
+	        
+	        foreach($destinatarios as $destinatario) {
+	            $zendMail->addTo($destinatario);	
+	        }
+	        
 	        $zendMail->setSubject($mensagem->getAssunto());
 	        $zendMail->setBodyText($mensagem->getMensagem());
 	        $zendMail->setDate($mensagem->getDatahoraMensagem());

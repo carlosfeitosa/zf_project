@@ -21,4 +21,5 @@ class Basico_DadosPessoaisController
 	    $dadosPessoais = $novoDadosPessoais;
 		$dadosPessoais->save();
 	}
+	
 }

@@ -91,6 +91,8 @@ go
 
 create table [dbo].[mensagem] ( 
 	[id]       	int identity not null,
+	[remetente] varchar(200) not null, 
+	[destinatarios] varchar(3000) not null,
 	[assunto]  	varchar(200) not null,
 	[datahora_mensagem] datetime not null,
 	[mensagem] 	varchar(2000) not null,
