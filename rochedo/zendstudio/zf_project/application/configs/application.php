@@ -3,7 +3,7 @@
 // APPLICATION
 define("APPLICATION_NAME", "Rochedo Project");
 define("APPLICATION_VERSION", "1.0");
-define('APPLICATION_TITLE', 'Software Super Ultra Power Rochedo!!!.');
+define('APPLICATION_TITLE', 'Super Ultra Power Rochedo Softwares!!!.');
 
 // PATHS & FILENAMES
 $logSequence = date('Ym');
