@@ -1,9 +1,9 @@
 <?php
 
 // APPLICATION
-define("APPLICATION_NAME", "AgilFAP");
-define("APPLICATION_VERSION", "2.0");
-define('APPLICATION_TITLE', 'Ambiente de Gestão de Informação e Logística.');
+define("APPLICATION_NAME", "Rochedo Project");
+define("APPLICATION_VERSION", "1.0");
+define('APPLICATION_TITLE', 'Software Super Ultra Power Rochedo!!!.');
 
 // PATHS & FILENAMES
 $logSequence = date('Ym');
