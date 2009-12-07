@@ -88,12 +88,6 @@ class Basico_LoginController extends Zend_Controller_Action
 	                $this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
 				}
 	            else{
-	            	//INICIALIZANDO CONTROLADORES
-	            	$controladorCategoria     = Basico_CategoriaController::init();
-	            	$controladorMensageiro    = Basico_MensageiroController::init();
-	            	$controladorMensagem      = Basico_MensagemController::init();
-	            	$controladorRowInfo       = Basico_RowInfoController::init();
-		            
 		            //REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
 	                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 	           	}
@@ -125,10 +119,7 @@ class Basico_LoginController extends Zend_Controller_Action
         // INICIAR TRANSAÇÃO
         $db->beginTransaction();
         
-        try {
-            // PREENCHER ROWINFO E RECUPERAR O LOGIN DO SISTEMA
-            $rowinfo = new Basico_Model_RowInfo();
-            
+        try {           
             // NOVA PESSOA ARMAZENADA NO SISTEMA
             $novaPessoa = new Basico_Model_Pessoa();
             $controladorRowInfo->prepareXml($novaPessoa, true);
