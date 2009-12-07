@@ -27,7 +27,7 @@ class Basico_RowInfoController
 	*/
 	public function getXml()
 	{
-        return $this->gerador->getGeradorXmlObject()->gerar($this, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
+        return $this->gerador->getGeradorXmlObject()->gerar($this->rowinfo, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
 	}
 	
 	/**
@@ -41,6 +41,7 @@ class Basico_RowInfoController
 			    if ($utilizarUsuarioSistema)
 			        $idPessoaPerfil = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 		
+			    // CASO NAO EXISTA ID, SETAR VALORES PARA NOVA LINHA
 		        if (!isset($modelo->id))
 		        {
 		            $this->rowinfo->setGenericDateTimeCreation(Zend_Date::now());

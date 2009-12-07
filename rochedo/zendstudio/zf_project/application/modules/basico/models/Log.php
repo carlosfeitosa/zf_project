@@ -32,6 +32,10 @@ class Basico_Model_Log
 	 * @var String
 	 */
 	protected $_xml;
+	/**
+	 * @var String
+	 */
+	protected $_descricao;
     /**
      * @var Integer
      */
@@ -151,6 +155,28 @@ class Basico_Model_Log
 	public function getXml()
 	{
 		return $this->_xml;
+	}
+	
+	/**
+	* Set descricao
+	* 
+	* @param String $xml 
+	* @return Default_Model_Xml
+	*/
+	public function setDescricao($descricao)
+	{
+		$this->_descricao = (String) $descricao;
+		return $this;
+	}
+
+	/**
+	* Get descricao
+	* 
+	* @return null|String
+	*/
+	public function getDescricao()
+	{
+		return $this->_descricao;
 	}
      
 	/**

@@ -93,8 +93,6 @@ class Basico_LoginController extends Zend_Controller_Action
 	            	$controladorMensageiro    = Basico_MensageiroController::init();
 	            	$controladorMensagem      = Basico_MensagemController::init();
 	            	$controladorRowInfo       = Basico_RowInfoController::init();
-	            	 
-	                
 		            
 		            //REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
 	                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
@@ -155,7 +153,6 @@ class Basico_LoginController extends Zend_Controller_Action
             
             // CATEGORIA DO EMAIL  
             $categoriaEmailPrimario = $controladorCategoria->retornaCategoriaEmailPrimario();
-          	$idCategoria            = $categoriaEmailPrimario->id;
 
             // UNIQUEID GERADO
             $uniqueIdValido = $controladorEmail->retornaUniqueIdEmail();
@@ -164,38 +161,25 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail = new Basico_Model_Email();
             $novoEmail->pessoa    = $novaPessoa->id;
             $novoEmail->uniqueId  = $uniqueIdValido;
-            $novoEmail->categoria = $idCategoria;
+            $novoEmail->categoria = $categoriaEmailPrimario->id;
             $novoEmail->email     = $this->getRequest()->getParam('email');
             $novoEmail->validado  = 0;
             $novoEmail->ativo     = 0;
             $novoEmail->rowinfo   = $controladorRowInfo->getXml();
             $controladorEmail->salvarEmail($novoEmail);  
-            
-            // CATEGORIA DO LOG  
-            $categoriaLog   = $controladorCategoria->retornaCategoria(LOG_VALIDACAO_USUARIO);
-          	$idCategoriaLog = $categoriaLog->id;
-            
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = $novaPessoaPerfil->id;
-            $novoLog->categoria      = $idCategoriaLog;
-            $novoLog->dataHoraEvento = Zend_Date::now();
-            $novoLog->xml            = "teste"; 
-            $controladorLog->salvarLog($novoLog);
-            
-            //DATA ATUAL, CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM E O EMAIL DO SISTEMA
-            $data = new Zend_Date();
+                        
+            //CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM E O EMAIL DO SISTEMA
             $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
-            
             
             //SALVANDO MENSAGEM
             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id);          
             $novaMensagem->setDestinatarios(array($novoEmail->email));
-            $novaMensagem->setDatahoraMensagem($data);
+            $novaMensagem->setDatahoraMensagem(Zend_Date::now());
             $novaMensagem->setCategoria($categoriaMensagem->id);
             $corpoMensagemTemplate = $novaMensagem->mensagem;
             $corpoMensagemTemplate = str_replace('[nome_usuario]', $this->getRequest()->getParam('nome'), $corpoMensagemTemplate);
-            $corpoMensagemTemplate = str_replace('[link]', "www.rochedoproject.com/{$novoEmail->uniqueId}", $corpoMensagemTemplate);
+            $corpoMensagemTemplate = str_replace('[link]', "http://www.rochedoproject.com/{$novoEmail->uniqueId}", $corpoMensagemTemplate);
             $novaMensagem->setMensagem($corpoMensagemTemplate);
             $controladorRowInfo->prepareXml($novaMensagem, true);
             $novaMensagem->setRowinfo($controladorRowInfo->getXml());
@@ -214,6 +198,16 @@ class Basico_LoginController extends Zend_Controller_Action
             
             //ENVIANDO A MENSAGEM
             $controladorMensageiro->enviar($novaMensagem);
+            
+            // CATEGORIA DO LOG VALIDACAO USUARIO
+            $categoriaLog   = $controladorCategoria->retornaCategoriaLogValidacaoUsuario();
+            
+            $novoLog = new Basico_Model_Log();
+            $novoLog->pessoaperfil   = $novaPessoaPerfil->id;
+            $novoLog->categoria      = $categoriaLog->id;
+            $novoLog->dataHoraEvento = Zend_Date::now();
+            $novoLog->descricao      = LOG_MSG_VALIDACAO_USUARIO;
+            $controladorLog->salvarLog($novoLog);
             
             $db->commit();
 

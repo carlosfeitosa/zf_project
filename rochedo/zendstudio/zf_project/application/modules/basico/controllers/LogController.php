@@ -1,5 +1,7 @@
 <?php
 
+require_once(APPLICATION_PATH . "/modules/basico/models/Gerador.php");
+
 class Basico_LogController
 {
 	static private $singleton;
@@ -10,7 +12,7 @@ class Basico_LogController
 	private function __construct()
 	{
 		$this->log = new Basico_Model_Log();
-//		$this->gerador = new Basico_Model_Gerador();
+		$this->gerador = new Basico_Model_Gerador();
 		
 		if (!file_exists(LOG_PATH))
 		    Basico_Model_Util::mkdir_recursive(LOG_PATH);
@@ -46,11 +48,6 @@ class Basico_LogController
 	    Basico_Model_Util::getFileContent($arquivoLog);
 	}
 	
-	public function getXml()
-	{
-        return $this->gerador->getGeradorXmlObject()->gerar($this, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');
-	}
-	
 	public function salvarLog($novoLog)
 	{
 		try {
@@ -58,6 +55,7 @@ class Basico_LogController
 	    	$auxDb->beginTransaction();
 	    	try{
 	    		$this->log = $novoLog;
+	    		$this->prepareXml($novoLog);
 				$this->log->save();
 				$auxDb->commit();
 	    	} catch (Exception $e) {
@@ -74,17 +72,14 @@ class Basico_LogController
 	* 
 	* @return null|Boolean
 	*/
-	public function prepareXml($modelo)
+	private function prepareXml($modelo)
 	{
 		try {
-		        if (!isset($modelo->id))
-		        {
-		            $this->rowinfo->setGenericDateTimeCreation(Zend_Date::now());
-		            $this->rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
-		        }
-		        $this->rowinfo->setGenericDateTimeLastModified(Zend_Date::now());
-		        $this->rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
-		        
+				$logXml = new Basico_Model_LogXml(array("eventDateTime"    => $modelo->dataHoraEvento,
+														"eventDescription" => $modelo->descricao,));
+				
+				$this->log->xml = $this->gerador->getGeradorXmlObject()->gerar($logXml, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');
+
 		        return true;	
 		} catch (Exception $e) {
 			throw new Exception($e);

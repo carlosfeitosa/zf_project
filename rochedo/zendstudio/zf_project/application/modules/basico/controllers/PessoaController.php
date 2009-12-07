@@ -19,7 +19,26 @@ class Basico_PessoaController
 	
 	public function salvarPessoa($novaPessoa)
 	{
-	    $this->pessoa = $novaPessoa;
-		$this->pessoa->save();
+		try {
+			$this->pessoa = $novaPessoa;
+			$this->pessoa->save();
+			
+			// INICIALIZACAO DOS CONTROLLERS
+			$controladorCategoria = Basico_CategoriaController::init();
+			$controladorLog       = Basico_LogController::init();
+			
+            // CATEGORIA DO LOG VALIDACAO USUARIO
+            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaPessoa();
+
+            $novoLog = new Basico_Model_Log();
+            $novoLog->pessoaperfil   = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+            $novoLog->categoria      = $categoriaLog->id;
+            $novoLog->dataHoraEvento = Zend_Date::now();
+            $novoLog->descricao      = LOG_MSG_NOVA_PESSOA;
+            $controladorLog->salvarLog($novoLog);
+			
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 	}
 }

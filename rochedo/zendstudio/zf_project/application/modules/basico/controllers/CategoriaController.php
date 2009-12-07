@@ -27,6 +27,7 @@ class Basico_CategoriaController
     	
 	}
 	
+	// CATEGORIAS DE E-MAIL
 	public function retornaCategoriaEmailPrimario()
 	{
 	    $catergoriaEmailPrimario = $this->retornaCategoria(EMAIL_PRIMARIO);
@@ -57,5 +58,55 @@ class Basico_CategoriaController
 	    if (isset($catergoriaEmailValidacaoPlainText))
     	    return $catergoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_SISTEMA_EMAIL);
+	}
+	
+	// CATEGORIAS DE LOG
+	
+	public function retornaCategoriaLogValidacaoUsuario()
+	{
+		$categoriaLogValidacaoUsuario = $this->retornaCategoria(LOG_VALIDACAO_USUARIO);
+		if (isset($categoriaLogValidacaoUsuario))
+			return $categoriaLogValidacaoUsuario;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_VALIDACAO_USUARIO);
+	}
+	
+	public function retornaCategoriaLogNovaPessoa()
+	{
+		$categoriaLogNovaPessoa = $this->retornaCategoria(LOG_NOVA_PESSOA);
+		if (isset($categoriaLogNovaPessoa))
+			return $categoriaLogNovaPessoa;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA);
+	}
+	
+	public function retornaCategoriaLogNovaPessoaPerfil()
+	{
+		$categoriaLogNovaPessoaPerfil = $this->retornaCategoria(LOG_NOVA_PESSOA_PERFIL);
+		if (isset($categoriaLogNovaPessoaPerfil))
+			return $categoriaLogNovaPessoaPerfil;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL);
+	}
+	
+	public function retornaCategoriaLogNovoDadosPessoais()
+	{
+		$categoriaLogNovoDadosPessoais = $this->retornaCategoria(LOG_NOVO_DADOS_PESSOAIS);
+		if (isset($categoriaLogNovoDadosPessoais))
+			return $categoriaLogNovoDadosPessoais;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
+	}
+	
+	public function retornaCategoriaLogNovoEmail()
+	{
+		$categoriaLogNovoEmail = $this->retornaCategoria(LOG_NOVO_EMAIL);
+		if (isset($categoriaLogNovoEmail))
+			return $categoriaLogNovoEmail;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL);
+	}
+	
+	public function retornaCategoriaLogNovaMensagem()
+	{
+		$categoriaLogNovaMensagem = $this->retornaCategoria(LOG_NOVA_MENSAGEM);
+		if (isset($categoriaLogNovaMensagem))
+			return $categoriaLogNovaMensagem;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM);
 	}
 }

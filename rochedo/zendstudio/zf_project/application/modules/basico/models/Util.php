@@ -68,4 +68,31 @@ class Basico_Model_Util
 
         return $pessoaPerfilSistema[0]->id;
 	}
+	
+	public static function retornaUserIp()
+	{
+		if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+			$userIp = $_SERVER["HTTP_CLIENT_IP"];
+		else if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+			$userIp = $_SERVER["HTTP_X_FORWARDED_FOR"];
+		else
+			$userIp = $_SERVER["REMOTE_ADDR"];
+			
+		return $userIp;
+	}
+	
+	public static function retornaUserConnectionType()
+	{
+		return $_SERVER["HTTP_CONNECTION"];
+	}
+	
+	public static function retornaUserAgent()
+	{
+		return $_SERVER["HTTP_USER_AGENT"];
+	}
+	
+	public static function retornaUserRequest()
+	{
+		return Zend_Controller_Front::getInstance()->getRequest();
+	}
 }

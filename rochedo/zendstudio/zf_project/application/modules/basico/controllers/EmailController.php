@@ -49,22 +49,33 @@ class Basico_EmailController
 		    return NULL;
 	}
 	
-	public function salvarEmail($novoEmail)
+	public function salvarEmail($novoEmail, $idPessoaPerfilCriador = null)
 	{
-		try {
-	    	$auxDb = Zend_Registry::get('db');
-	    	$auxDb->beginTransaction();
-	    	try{
-	    		$this->email = $novoEmail;
-				$this->email->save();
-				$auxDb->commit();
-	    	} catch (Exception $e) {
-	    		$auxDb->rollback();
-	    	}
-	    } catch (Exception $e) {
-	    	$this->email = $novoEmail;
+    	try{
+    		// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+	    		
+    		$this->email = $novoEmail;
 			$this->email->save();
-	    }
+			
+			// INICIALIZACAO DOS CONTROLLERS
+			$controladorCategoria = Basico_CategoriaController::init();
+			$controladorLog       = Basico_LogController::init();
+			
+            // CATEGORIA DO LOG VALIDACAO USUARIO
+            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoEmail();
+
+            $novoLog = new Basico_Model_Log();
+            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
+            $novoLog->categoria      = $categoriaLog->id;
+            $novoLog->dataHoraEvento = Zend_Date::now();
+            $novoLog->descricao      = LOG_MSG_NOVO_EMAIL;
+            $controladorLog->salvarLog($novoLog);
+			
+    	} catch (Exception $e) {
+    		throw new Exception($e);
+    	}
 	}
 	
 	

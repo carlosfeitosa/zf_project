@@ -18,23 +18,32 @@ class Basico_PessoaPerfilController
 	}
 	
 	
-	public function salvarPessoaPerfil($novaPessoaPerfil)
+	public function salvarPessoaPerfil($novaPessoaPerfil, $idPessoaPerfilCriador = null)
 	{
 	    try {
-	    	$auxDb = Zend_Registry::get('db');
-	    	$auxDb->beginTransaction();
-	    	
-	    	try{
-	    		$this->pessoaPerfil = $novaPessoaPerfil;
-				$this->pessoaPerfil->save();
-				$auxDb->commit();
-				
-	    	} catch (Exception $e) {
-	    		$auxDb->rollback();
-	    	}
-	    } catch (Exception $e) {
-	    	$this->pessoaPerfil = $novaPessoaPerfil;
+	    	// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+
+    		$this->pessoaPerfil = $novaPessoaPerfil;
 			$this->pessoaPerfil->save();
-	    }
+			
+			// INICIALIZACAO DOS CONTROLLERS
+			$controladorCategoria = Basico_CategoriaController::init();
+			$controladorLog       = Basico_LogController::init();
+			
+            // CATEGORIA DO LOG VALIDACAO USUARIO
+            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaPessoaPerfil();
+
+            $novoLog = new Basico_Model_Log();
+            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
+            $novoLog->categoria      = $categoriaLog->id;
+            $novoLog->dataHoraEvento = Zend_Date::now();
+            $novoLog->descricao      = LOG_MSG_NOVA_PESSOA_PERFIL;
+            $controladorLog->salvarLog($novoLog);
+			
+    	} catch (Exception $e) {
+    		throw new Exception($e);
+    	}
 	}
 }

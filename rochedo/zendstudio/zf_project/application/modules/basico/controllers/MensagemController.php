@@ -19,21 +19,31 @@ class Basico_MensagemController
 		return self::$singleton;
 	}
     
-    public function salvarMensagem($novaMensagem) 
+    public function salvarMensagem($novaMensagem, $idPessoaPerfilCriador = null) 
     {
-      try {
-	    	$auxDb = Zend_Registry::get('db');
-	    	$auxDb->beginTransaction();
-	    	try{
-	    		$this->mensagem = $novaMensagem;
-				$this->mensagem->save();
-			    $auxDb->commit();
-	    	} catch (Exception $e) {
-	    		$auxDb->rollback();
-	    	}
-	    } catch (Exception $e) {
+	    try{
+	    	// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+	    		
 	    	$this->mensagem = $novaMensagem;
 			$this->mensagem->save();
+			
+			// INICIALIZACAO DOS CONTROLLERS
+			$controladorCategoria = Basico_CategoriaController::init();
+			$controladorLog       = Basico_LogController::init();
+			
+            // CATEGORIA DO LOG VALIDACAO USUARIO
+            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaMensagem();
+
+            $novoLog = new Basico_Model_Log();
+            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
+            $novoLog->categoria      = $categoriaLog->id;
+            $novoLog->dataHoraEvento = Zend_Date::now();
+            $novoLog->descricao      = LOG_MSG_NOVA_MENSAGEM;
+            $controladorLog->salvarLog($novoLog);
+	    } catch (Exception $e) {
+	    	throw new Exception($e);
 	    }
 	}
 	
@@ -53,12 +63,4 @@ class Basico_MensagemController
 		return $this->mensagem;
 		
 	}
-//#BlockStart number=138 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_2
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=138
-
 }
