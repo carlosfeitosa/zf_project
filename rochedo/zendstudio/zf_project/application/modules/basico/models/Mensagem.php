@@ -177,7 +177,10 @@ class Basico_Model_Mensagem
 	*/
 	public function setDestinatarios($destinatarios)
 	{
-		$this->_destinatarios = implode(';', $destinatarios);
+		if (is_array($destinatarios))
+			$this->_destinatarios = implode(';', $destinatarios);
+		else
+			$this->_destinatarios = $destinatarios;
 		return $this;
 	}
 

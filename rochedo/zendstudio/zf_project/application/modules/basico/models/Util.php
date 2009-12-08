@@ -52,13 +52,13 @@ class Basico_Model_Util
 	    $applicationSystemPerfil = APPLICATION_SYSTEM_PERFIL;
 	    
 	    $loginSistema = $login->fetchList("login = '{$applicationSystemLogin}'", null, 1, 0);
-	    
-	    if (!$loginSistema[0]->id)
+	       
+	    if (count($loginSistema) === 0)
 	        throw new Exception(MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO);
 	        
         $perfilSistema = $perfil->fetchList("nome = '{$applicationSystemPerfil}'", null, 1, 0);
         
-        if (!$perfilSistema[0]->id)
+        if (count($perfilSistema) === 0)
 	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
 	        
         $pessoaPerfilSistema = $pessoaPerfil->fetchList("id_pessoa = {$loginSistema[0]->pessoa} and id_perfil = {$perfilSistema[0]->id}", null, 1, 0);
