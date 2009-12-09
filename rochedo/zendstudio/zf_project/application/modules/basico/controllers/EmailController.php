@@ -26,12 +26,30 @@ class Basico_EmailController
 		return $unique;
 	}
 	
-	public function retornaUniqueIdEmail()
+	public function retornaNovoUniqueIdEmail()
 	{
 		return $this->gerarUniqueIdEmail();
 	}
 	
+	public function retornaUniqueIdEmail($email) 
+	{
+		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
+		if (isset($auxEmail[0]))
+    	    return $auxEmail[0];
+    	else
+    	    return NULL;
+	}
+	
 	private function retornaEmail($email)
+	{
+		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
+		if (isset($auxEmail[0]))
+    	    return $auxEmail[0];
+    	else
+    	    return NULL;
+	}
+	
+	public function retornaIdPessoaEmail($email)
 	{
 		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
 		if (isset($auxEmail[0]))

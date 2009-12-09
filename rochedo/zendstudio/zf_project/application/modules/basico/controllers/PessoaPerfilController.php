@@ -46,4 +46,13 @@ class Basico_PessoaPerfilController
     		throw new Exception($e);
     	}
 	}
+	
+	public function retornaIdPessoaPerfilPessoa($idPessoa) {
+		
+		$idPessoaPerfil = self::$singleton->pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
+		if (isset($idPessoaPerfil[0]))
+    	    return $idPessoaPerfil[0];
+    	else
+    	    return NULL;
+	}
 }

@@ -30,33 +30,57 @@ class Basico_CategoriaController
 	// CATEGORIAS DE E-MAIL
 	public function retornaCategoriaEmailPrimario()
 	{
-	    $catergoriaEmailPrimario = $this->retornaCategoria(EMAIL_PRIMARIO);
-	    if (isset($catergoriaEmailPrimario))
-    	    return $catergoriaEmailPrimario;
+	    $categoriaEmailPrimario = $this->retornaCategoria(EMAIL_PRIMARIO);
+	    if (isset($categoriaEmailPrimario))
+    	    return $categoriaEmailPrimario;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO);
 	}
 	
 	public function retornaCategoriaEmailValidacaoPlainText()
 	{
-	    $catergoriaEmailValidacaoPlainText = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
-	    if (isset($catergoriaEmailValidacaoPlainText))
-    	    return $catergoriaEmailValidacaoPlainText;
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	    if (isset($categoriaEmailValidacaoPlainText))
+    	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	}
+	
+    public function retornaCategoriaEmailValidacaoPlainTextReenvio()
+	{
+	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	    if (isset($categoriaEmailValidacaoPlainTextReenvio))
+    	    return $categoriaEmailValidacaoPlainTextReenvio;
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	}
+	
+	public function retornaCategoriaRemetente()
+	{
+		$categoriaRemetente = $this->retornaCategoria(REMETENTE);
+	    if (isset($categoriaRemetente))
+    	    return $categoriaRemetente;
+    	throw new Exception(MSG_ERRO_REMETENTE);
+	}
+	
+    public function retornaCategoriaDestinatario()
+	{
+		$categoriaDestinatario = $this->retornaCategoria(DESTINATARIO);
+	    if (isset($categoriaDestinatario))
+    	    return $categoriaDestinatario;
+    	throw new Exception(MSG_ERRO_DESTINATARIO);
 	}
 	
     public function retornaCategoriaEmailValidacaoPlainTextTemplate()
 	{
-	    $catergoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
-	    if (isset($catergoriaEmailValidacaoPlainText))
-    	    return $catergoriaEmailValidacaoPlainText;
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+	    if (isset($categoriaEmailValidacaoPlainText))
+    	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);
 	}
 	
     public function retornaCategoriaEmailSistema()
 	{
-	    $catergoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_EMAIL);
-	    if (isset($catergoriaEmailValidacaoPlainText))
-    	    return $catergoriaEmailValidacaoPlainText;
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_EMAIL);
+	    if (isset($categoriaEmailValidacaoPlainText))
+    	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_SISTEMA_EMAIL);
 	}
 	

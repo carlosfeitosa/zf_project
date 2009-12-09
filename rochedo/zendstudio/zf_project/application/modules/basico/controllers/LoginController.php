@@ -88,8 +88,92 @@ class Basico_LoginController extends Zend_Controller_Action
 	                $this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
 				}
 	            else{
-		            //REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
-	                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
+	            	
+	            	//INSTANCIAR BD
+           			$db = $this->getInvokeArg('bootstrap')->getResource('db');
+              		//REGISTRAR DB
+        			Zend_Registry::set('db', $db);
+			        //INICIAR TRANSAÇÃO
+                    $db->beginTransaction();
+                    
+	            	//try {
+		            	 //INICIALIZANDO CONTROLADORES
+		            	 $controladorEmail         = Basico_EmailController::init();
+	                     $controladorPessoaPerfil  = Basico_PessoaPerfilController::init();
+	                     $controladorLog           = Basico_LogController::init();
+	                     $controladorRowInfo       = Basico_RowInfoController::init();
+	                     $controladorMensagem      = Basico_MensagemController::init();
+	                     $controladorMensageiro    = Basico_MensageiroController::init();
+	                     $controladorCategoria     = Basico_CategoriaController::init();
+	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();	            	 
+		            	 //POPULANDO CATEGORIAS
+		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
+			             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
+			            
+			             //POPULANDO VARIAVEIS
+			             $email    = $this->getRequest()->getParam('email');
+			             $nome     = $this->getRequest()->getParam('nome');
+			             $uniqueId = $controladorEmail->retornaUniqueIdEmail($email);
+			             $idPessoa = $controladorEmail->retornaIdPessoaEmail($email);
+			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa->pessoa);
+			             
+			             //SALVANDO MENSAGEM
+			             $nomeDestinatario = $nome;
+			             $link = LINK_VALIDACAO_USUARIO . $uniqueId->uniqueId;
+			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id, $nomeDestinatario, $link);          
+			             $novaMensagem->setDestinatarios(array($email));
+			             $novaMensagem->setDatahoraMensagem(Zend_Date::now());
+			             $novaMensagem->setCategoria($categoriaMensagem->id);
+			             $controladorRowInfo->prepareXml($novaMensagem, true);
+			             $novaMensagem->setRowinfo($controladorRowInfo->getXml());
+			             
+			             //SALVANDO E ENVIANDO MENSAGEM
+			             $controladorMensagem->salvarMensagem($novaMensagem);
+			             
+			             //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
+			             $idPessoaPerfilSistema = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+			             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
+			             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
+			             $pessoaPerfilMensagemCategoriaRemetente->setMensagem($novaMensagem->id);
+			             $pessoaPerfilMensagemCategoriaRemetente->setCategoria($categoriaRemetente->id);
+			             $pessoaPerfilMensagemCategoriaRemetente->setPessoaPerfil($idPessoaPerfilSistema);
+			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaRemetente, true);
+			             $pessoaPerfilMensagemCategoriaRemetente->setRowinfo($controladorRowInfo->getXml());
+			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
+						             
+			             //SALVANDO DESTINATARIOS NA TABELA RELACIONAMENTE PESSOAS_PERFIS_MENSAGEM_CATEGORIA
+			             $categoriaDestinatario = $controladorCategoria->retornaCategoriaDestinatario();
+			             $pessoaPerfilMensagemCategoriaDestinatario = new Basico_Model_PessoaPerfilMensagemCategoria();
+			             $pessoaPerfilMensagemCategoriaDestinatario->setMensagem($novaMensagem->id);
+			             $pessoaPerfilMensagemCategoriaDestinatario->setCategoria($categoriaDestinatario->id);
+			             $pessoaPerfilMensagemCategoriaDestinatario->setPessoaPerfil($idPessoaPerfil->id);
+			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
+			             $pessoaPerfilMensagemCategoriaDestinatario->setRowinfo($controladorRowInfo->getXml());
+
+			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);
+			            
+			             //ENVIANDO A MENSAGEM
+			             $controladorMensageiro->enviar($novaMensagem);
+			            
+			             // CATEGORIA DO LOG VALIDACAO USUARIO
+			             $categoriaLog   = $controladorCategoria->retornaCategoriaLogValidacaoUsuario();
+			            
+			             $novoLog = new Basico_Model_Log();
+			             $novoLog->pessoaperfil   = $idPessoaPerfil;
+			             $novoLog->categoria      = $categoriaLog->id;
+			             $novoLog->dataHoraEvento = Zend_Date::now();
+			             $novoLog->descricao      = LOG_MSG_VALIDACAO_USUARIO;
+			             $controladorLog->salvarLog($novoLog);
+			            
+			             $db->commit();
+		            	
+			            //REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
+		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
+		                
+	            	//}catch(Exception $e) {
+	            		//$db->rollback();
+	            	//	throw new Exception($e->getMessage());
+	            //	}
 	           	}
 	        }
 	        
@@ -146,7 +230,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $categoriaEmailPrimario = $controladorCategoria->retornaCategoriaEmailPrimario();
 
             // UNIQUEID GERADO
-            $uniqueIdValido = $controladorEmail->retornaUniqueIdEmail();
+            $uniqueIdValido = $controladorEmail->retornaNovoUniqueIdEmail();
 
             // NOVA EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
             $novoEmail = new Basico_Model_Email();
@@ -176,14 +260,26 @@ class Basico_LoginController extends Zend_Controller_Action
             //SALVANDO E ENVIANDO MENSAGEM
             $controladorMensagem->salvarMensagem($novaMensagem);
             
-            //SALVANDO NA TABELA RELACIONAMENTE PESSOAS_PERFIS_MENSAGEM_CATEGORIA
-            $pessoaPerfilMensagemCategoria = new Basico_Model_PessoaPerfilMensagemCategoria();
-            $pessoaPerfilMensagemCategoria->setMensagem($novaMensagem->id);
-            $pessoaPerfilMensagemCategoria->setCategoria($categoriaMensagem->id);
-            $pessoaPerfilMensagemCategoria->setPessoaPerfil($novaPessoaPerfil->id);
-            $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoria, true);
-            $pessoaPerfilMensagemCategoria->setRowinfo($controladorRowInfo->getXml());
-            $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoria);
+            //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
+            $idPessoaPerfilSistema = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+            $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
+            $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $pessoaPerfilMensagemCategoriaRemetente->setMensagem($novaMensagem->id);
+            $pessoaPerfilMensagemCategoriaRemetente->setCategoria($categoriaRemetente->id);
+            $pessoaPerfilMensagemCategoriaRemetente->setPessoaPerfil($idPessoaPerfilSistema);
+            $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaRemetente, true);
+            $pessoaPerfilMensagemCategoriaRemetente->setRowinfo($controladorRowInfo->getXml());
+            $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
+            
+            //SALVANDO DESTINATARIO NA TABELA DE RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
+            $categoriaDestinatario = $controladorCategoria->retornaCategoriaDestinatario();
+            $pessoaPerfilMensagemCategoriaDestinatario = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $pessoaPerfilMensagemCategoriaDestinatario->setMensagem($novaMensagem->id);
+            $pessoaPerfilMensagemCategoriaDestinatario->setCategoria($categoriaDestinatario->id);
+            $pessoaPerfilMensagemCategoriaDestinatario->setPessoaPerfil($novaPessoaPerfil->id);
+            $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
+            $pessoaPerfilMensagemCategoriaDestinatario->setRowinfo($controladorRowInfo->getXml());
+            $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);
             
             //ENVIANDO A MENSAGEM
             $controladorMensageiro->enviar($novaMensagem);
