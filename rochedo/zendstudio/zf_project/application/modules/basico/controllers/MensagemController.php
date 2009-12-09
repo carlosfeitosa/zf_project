@@ -47,7 +47,7 @@ class Basico_MensagemController
 	    }
 	}
 	
-	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria) {
+	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria, $nomeDestinatario, $link) {
 		
 		//INICIALIZANDO CONTROLADORES
 		$controladorEmail = Basico_EmailController::init();
@@ -55,6 +55,10 @@ class Basico_MensagemController
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
 		$this->mensagem->setMensagem($mensagemTemplate[0]->getMensagem());
+		$corpoMensagemTemplate = $this->mensagem->getMensagem();
+        $corpoMensagemTemplate = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace('[link]', $link, $corpoMensagemTemplate);
+        $novaMensagem->setMensagem($corpoMensagemTemplate);
 		
 		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
 		$emailSistema = $controladorEmail->retornaEmailSistema();

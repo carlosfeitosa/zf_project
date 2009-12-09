@@ -164,14 +164,12 @@ class Basico_LoginController extends Zend_Controller_Action
             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
             
             //SALVANDO MENSAGEM
-            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id);          
+            $nomeDestinatario = $this->getRequest()->getParam('nome');
+            $link = LINK_VALIDACAO_USUARIO . $novoEmail->getUniqueId();
+            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id, $nomeDestinatario, $link);          
             $novaMensagem->setDestinatarios(array($novoEmail->email));
             $novaMensagem->setDatahoraMensagem(Zend_Date::now());
             $novaMensagem->setCategoria($categoriaMensagem->id);
-            $corpoMensagemTemplate = $novaMensagem->mensagem;
-            $corpoMensagemTemplate = str_replace('[nome_usuario]', $this->getRequest()->getParam('nome'), $corpoMensagemTemplate);
-            $corpoMensagemTemplate = str_replace('[link]', "http://www.rochedoproject.com/{$novoEmail->uniqueId}", $corpoMensagemTemplate);
-            $novaMensagem->setMensagem($corpoMensagemTemplate);
             $controladorRowInfo->prepareXml($novaMensagem, true);
             $novaMensagem->setRowinfo($controladorRowInfo->getXml());
            
