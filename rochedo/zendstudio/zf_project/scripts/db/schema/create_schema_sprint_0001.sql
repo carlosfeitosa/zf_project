@@ -220,7 +220,7 @@ alter table [dbo].[login] add
 	constraint [df_login_travado] default (0) for [travado],
 	constraint [df_login_resetado] default (0) for [resetado],
 	constraint [df_login_pode_expirar] default (1) for [pode_expirar],
-	constraint [df_login_datahora_proxima_expiracao] default (dateadd(month,12,getdate())) for [datahora_proxima_expiracao],
+	constraint [df_login_datahora_proxima_expiracao] default (dateadd(month,12,getdate())) for [datahora_proxima_expiracao]
 	
 go
 
