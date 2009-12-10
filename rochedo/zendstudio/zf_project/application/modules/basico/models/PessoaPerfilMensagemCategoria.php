@@ -27,7 +27,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     /**
      * @var PessoaPerfil
      */
-    protected $_pessoaperfil;
+    protected $_pessoaPerfil;
     
     /**
      * @var Mensagem
@@ -117,9 +117,9 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     * @param int $ 
     * @return Basico_Model_PessoaPerfil
     */
-    public function setPessoaPerfil($pessoaperfil)
+    public function setPessoaPerfil($pessoaPerfil)
     {
-        $this->_pessoaperfil = (int) $pessoaperfil;
+        $this->_pessoaPerfil = (int) $pessoaPerfil;
         return $this;
     }
 
@@ -130,7 +130,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function getPessoaPerfil()
     {
-        return $this->_pessoaperfil;
+        return $this->_pessoaPerfil;
     }
  
     /**
@@ -140,7 +140,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     public function getPessoaPerfilObject()
     {
         $model = new Basico_Model_PessoaPerfil();
-        $object = $model->find($this->_pessoaperfil);
+        $object = $model->find($this->_pessoaPerfil);
         return $object;
     }
     

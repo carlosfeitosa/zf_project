@@ -115,41 +115,38 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $nome     = $this->getRequest()->getParam('nome');
 			             $uniqueId = $controladorEmail->retornaUniqueIdEmail($email);
 			             $idPessoa = $controladorEmail->retornaIdPessoaEmail($email);
-			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa->pessoa);
+			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa->id);
 			             
 			             //SALVANDO MENSAGEM
 			             $nomeDestinatario = $nome;
 			             $link = LINK_VALIDACAO_USUARIO . $uniqueId->uniqueId;
 			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id, $nomeDestinatario, $link);          
-			             $novaMensagem->setDestinatarios(array($email));
-			             $novaMensagem->setDatahoraMensagem(Zend_Date::now());
-			             $novaMensagem->setCategoria($categoriaMensagem->id);
+			             $novaMensagem->destinatarios    = array($email);
+			             $novaMensagem->datahoraMensagem = Zend_Date::now();
+			             $novaMensagem->categoria        = $categoriaMensagem->id;
 			             $controladorRowInfo->prepareXml($novaMensagem, true);
-			             $novaMensagem->setRowinfo($controladorRowInfo->getXml());
-			             
-			             //SALVANDO E ENVIANDO MENSAGEM
-			             $controladorMensagem->salvarMensagem($novaMensagem);
+			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
+                         $controladorMensagem->salvarMensagem($novaMensagem);
 			             
 			             //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
 			             $idPessoaPerfilSistema = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 			             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
 			             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
-			             $pessoaPerfilMensagemCategoriaRemetente->setMensagem($novaMensagem->id);
-			             $pessoaPerfilMensagemCategoriaRemetente->setCategoria($categoriaRemetente->id);
-			             $pessoaPerfilMensagemCategoriaRemetente->setPessoaPerfil($idPessoaPerfilSistema);
+			             $pessoaPerfilMensagemCategoriaRemetente->mensagem     = $novaMensagem->id;
+			             $pessoaPerfilMensagemCategoriaRemetente->categoria    = $categoriaRemetente->id;
+			             $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil = $idPessoaPerfilSistema;
 			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaRemetente, true);
-			             $pessoaPerfilMensagemCategoriaRemetente->setRowinfo($controladorRowInfo->getXml());
+			             $pessoaPerfilMensagemCategoriaRemetente->rowinfo      = $controladorRowInfo->getXml();
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
 						             
 			             //SALVANDO DESTINATARIOS NA TABELA RELACIONAMENTE PESSOAS_PERFIS_MENSAGEM_CATEGORIA
 			             $categoriaDestinatario = $controladorCategoria->retornaCategoriaDestinatario();
 			             $pessoaPerfilMensagemCategoriaDestinatario = new Basico_Model_PessoaPerfilMensagemCategoria();
-			             $pessoaPerfilMensagemCategoriaDestinatario->setMensagem($novaMensagem->id);
-			             $pessoaPerfilMensagemCategoriaDestinatario->setCategoria($categoriaDestinatario->id);
-			             $pessoaPerfilMensagemCategoriaDestinatario->setPessoaPerfil($idPessoaPerfil->id);
+			             $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $novaMensagem->id;
+			             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $categoriaDestinatario->id;
+			             $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfil->id;
 			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
-			             $pessoaPerfilMensagemCategoriaDestinatario->setRowinfo($controladorRowInfo->getXml());
-
+			             $pessoaPerfilMensagemCategoriaDestinatario->rowinfo      = $controladorRowInfo->getXml();
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);
 			            
 			             //ENVIANDO A MENSAGEM
@@ -159,7 +156,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $categoriaLog   = $controladorCategoria->retornaCategoriaLogValidacaoUsuario();
 			            
 			             $novoLog = new Basico_Model_Log();
-			             $novoLog->pessoaperfil   = $idPessoaPerfil;
+			             $novoLog->pessoaperfil   = $idPessoaPerfil->id;
 			             $novoLog->categoria      = $categoriaLog->id;
 			             $novoLog->dataHoraEvento = Zend_Date::now();
 			             $novoLog->descricao      = LOG_MSG_VALIDACAO_USUARIO;
@@ -249,13 +246,13 @@ class Basico_LoginController extends Zend_Controller_Action
             
             //SALVANDO MENSAGEM
             $nomeDestinatario = $this->getRequest()->getParam('nome');
-            $link = LINK_VALIDACAO_USUARIO . $novoEmail->getUniqueId();
+            $link = LINK_VALIDACAO_USUARIO . $novoEmail->uniqueId;
             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id, $nomeDestinatario, $link);          
-            $novaMensagem->setDestinatarios(array($novoEmail->email));
-            $novaMensagem->setDatahoraMensagem(Zend_Date::now());
-            $novaMensagem->setCategoria($categoriaMensagem->id);
+            $novaMensagem->destinatarios       = array($novoEmail->email);
+            $novaMensagem->datahoraMensagem    = Zend_Date::now();
+            $novaMensagem->categoria           = $categoriaMensagem->id;
             $controladorRowInfo->prepareXml($novaMensagem, true);
-            $novaMensagem->setRowinfo($controladorRowInfo->getXml());
+            $novaMensagem->rowinfo             = $controladorRowInfo->getXml();
            
             //SALVANDO E ENVIANDO MENSAGEM
             $controladorMensagem->salvarMensagem($novaMensagem);
@@ -264,21 +261,21 @@ class Basico_LoginController extends Zend_Controller_Action
             $idPessoaPerfilSistema = Basico_Model_Util::retornaIdPessoaPerfilSistema();
             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
-            $pessoaPerfilMensagemCategoriaRemetente->setMensagem($novaMensagem->id);
-            $pessoaPerfilMensagemCategoriaRemetente->setCategoria($categoriaRemetente->id);
-            $pessoaPerfilMensagemCategoriaRemetente->setPessoaPerfil($idPessoaPerfilSistema);
+            $pessoaPerfilMensagemCategoriaRemetente->mensagem        = $novaMensagem->id;
+            $pessoaPerfilMensagemCategoriaRemetente->categoria       = $categoriaRemetente->id;
+            $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil    = $idPessoaPerfilSistema;
             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaRemetente, true);
-            $pessoaPerfilMensagemCategoriaRemetente->setRowinfo($controladorRowInfo->getXml());
+            $pessoaPerfilMensagemCategoriaRemetente->rowinfo         = $controladorRowInfo->getXml();
             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
             
             //SALVANDO DESTINATARIO NA TABELA DE RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
             $categoriaDestinatario = $controladorCategoria->retornaCategoriaDestinatario();
             $pessoaPerfilMensagemCategoriaDestinatario = new Basico_Model_PessoaPerfilMensagemCategoria();
-            $pessoaPerfilMensagemCategoriaDestinatario->setMensagem($novaMensagem->id);
-            $pessoaPerfilMensagemCategoriaDestinatario->setCategoria($categoriaDestinatario->id);
-            $pessoaPerfilMensagemCategoriaDestinatario->setPessoaPerfil($novaPessoaPerfil->id);
+            $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $novaMensagem->id;
+            $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $categoriaDestinatario->id;
+            $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $novaPessoaPerfil->id;
             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
-            $pessoaPerfilMensagemCategoriaDestinatario->setRowinfo($controladorRowInfo->getXml());
+            $pessoaPerfilMensagemCategoriaDestinatario->rowinfo      = $controladorRowInfo->getXml();
             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);
             
             //ENVIANDO A MENSAGEM

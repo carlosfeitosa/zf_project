@@ -27,4 +27,4 @@ define("RESPONDER_PARA", "RESPONDER_PARA");
 define("SISTEMA_EMAIL", "SISTEMA_EMAIL");
 
 //LINKS DO SISTEMA
-define("LINK_VALIDACAO_USUARIO", "http://localhost/rochedo_project/public/CadastroUsuario.php?");
+define("LINK_VALIDACAO_USUARIO", "http://localhost/rochedo_project/public/basico/CadastroUsuario.php?");

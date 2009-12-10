@@ -84,7 +84,7 @@ class Basico_Model_Mensagem
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		$this->$method($value);
 	}
@@ -100,7 +100,7 @@ class Basico_Model_Mensagem
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		return $this->$method();
 	}
@@ -417,14 +417,5 @@ class Basico_Model_Mensagem
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-	
-
-//#BlockStart number=148 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=148
 
 }
