@@ -114,7 +114,7 @@ create table [dbo].[mensagem_email] (
 )on [primary]
 go
 
-create index [ix_responder_para] on [dbo].[mensagem_email]([responder_para]) on [primary]
+create  index [ix_responder_para] on [dbo].[mensagem_email]([responder_para]) on [primary]
 go
 
 create table [dbo].[anexo_mensagem] ( 
@@ -221,7 +221,6 @@ alter table [dbo].[login] add
 	constraint [df_login_resetado] default (0) for [resetado],
 	constraint [df_login_pode_expirar] default (1) for [pode_expirar],
 	constraint [df_login_datahora_proxima_expiracao] default (dateadd(month,12,getdate())) for [datahora_proxima_expiracao]
-	
 go
 
  create  unique  index [ix_login] on [dbo].[login]([login]) on [primary]
