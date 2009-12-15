@@ -96,7 +96,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			        //INICIAR TRANSAÇÃO
                     $db->beginTransaction();
                     
-	            	//try {
+	            	try {
 		            	 //INICIALIZANDO CONTROLADORES
 		            	 $controladorEmail         = Basico_EmailController::init();
 	                     $controladorPessoaPerfil  = Basico_PessoaPerfilController::init();
@@ -167,10 +167,10 @@ class Basico_LoginController extends Zend_Controller_Action
 			            //REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
 		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 		                
-	            	//}catch(Exception $e) {
-	            		//$db->rollback();
-	            	//	throw new Exception($e->getMessage());
-	            //	}
+	            	}catch(Exception $e) {
+	            	    $db->rollback();
+	            		throw new Exception($e->getMessage());
+	            	}
 	           	}
 	        }
 	        
