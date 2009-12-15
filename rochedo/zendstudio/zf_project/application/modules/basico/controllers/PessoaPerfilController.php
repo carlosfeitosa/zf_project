@@ -47,6 +47,7 @@ class Basico_PessoaPerfilController
     	}
 	}
 	
+	//RETORNA ID PESSOA PERFIL PELO ID DA PESSOA
 	public function retornaIdPessoaPerfilPessoa($idPessoa) {
 		
 		$idPessoaPerfil = self::$singleton->pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
