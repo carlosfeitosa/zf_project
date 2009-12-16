@@ -23,7 +23,11 @@ require_once("PessoaPerfilMensagemCategoriaController.php");
 
 class Basico_LoginController extends Zend_Controller_Action
 {
-    private $request;
+    
+	/**
+	* @var object resource
+	*/
+	private $request;
 	
     /**
 	 * Inicializa controlador Login
