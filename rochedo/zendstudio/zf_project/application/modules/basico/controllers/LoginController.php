@@ -1,6 +1,14 @@
 <?php
+/**
+ * Login Controller
+ *
+ * Controla Ações de Login/Logout e Cadastro do sistema.
+ * 
+ * @uses       Default_Model_Login
+ * @subpackage Controller
+ */
 
-// INCLUDES
+//INCLUINDO CONTROLADORES
 require_once("EmailController.php");
 require_once("PessoaController.php");
 require_once("PerfilController.php");
@@ -17,16 +25,29 @@ class Basico_LoginController extends Zend_Controller_Action
 {
     private $request;
 	
+    /**
+	 * Inicializa controlador Login
+	 * 
+	 *  
+	 * 
+	 */
 	public function init()
     {
         $this->request = Zend_Controller_Front::getInstance()->getRequest();
     }
 
+    /**
+	 * Retorna Formulário de Cadastro de Novo Usuario
+	 * 
+	 * 
+	 * @return Basico_Form_CadastrarUsuarioNaoValidado
+	 */
     public function getFormCadastroUsuarioLoginNaoValidado()
     {                  
         return new Basico_Form_CadastrarUsuarioNaoValidado();
     }
 
+    
     public function getAuthAdapter(array $params)
     {
 /*      $authAdapter = new Zend_Auth_Adapter_DbTable($db);
@@ -52,6 +73,12 @@ class Basico_LoginController extends Zend_Controller_Action
 */
     }
 
+    /**
+	 * Valida Formulário de Cadastro de Novo Usuário.
+	 * 
+	 * @param  Basico_Form_CadastrarUsuarioNaoValidado $formEntrada 
+	 * @return Bollean ou redireciona de volta ao formulário
+	 */
 	private function validaForm($formEntrada)
 	{
 		if (!$this->getRequest()->isPost()) {
@@ -64,17 +91,34 @@ class Basico_LoginController extends Zend_Controller_Action
         return true;
 	}
     
-    // ACTIONS
+    /**
+	 * Ação principal do controlador Login.
+	 * 
+	 *  
+	 * 
+	 */
     public function indexAction()
     {
         $this->view->form = $this->getForm();
     }
     
+    /**
+	 * Carrega formulário de cadastro de novo usuário no atributo form da view.
+	 * 
+	 *  
+	 * 
+	 */
     public function cadastrarusuarionaovalidadoAction()
     {   
         $this->view->form = $this->getFormCadastroUsuarioLoginNaoValidado();
     }
     
+    /**
+	 * Verifica a existência ou não do email a ser cadastrado no sistema e toma uma das seguintes ações: 
+	 * Cadastro, Re-envio de email ou mensagem alertando sobre email existente e já validado.
+	 * 
+	 * @param  Basico_Form_CadastrarUsuarioNaoValidado $form
+	 */
     public function verificanovologinAction()
     {
         $form = $this->getFormCadastroUsuarioLoginNaoValidado();
@@ -178,9 +222,16 @@ class Basico_LoginController extends Zend_Controller_Action
         } 
     }
     
+    /**
+	 * Inseri os dados do novo usuário no banco de dados, envia mensagem de confirmação e email e salva 
+	 * log da operação.
+	 * 
+	 * @param  Basico_Form_CadastrarUsuarioNaoValidado $formEntrada 
+	 * 
+	 */
     public function salvarusuarionaovalidadoAction()
     {
-        // CONTROLADORES
+        //INICIALIZANDO CONTROLADORES
         $controladorPessoa        = Basico_PessoaController::init();
         $controladorDadosPessoais = Basico_DadosPessoaisController::init();
         $controladorCategoria     = Basico_CategoriaController::init();
@@ -229,7 +280,7 @@ class Basico_LoginController extends Zend_Controller_Action
             // UNIQUEID GERADO
             $uniqueIdValido = $controladorEmail->retornaNovoUniqueIdEmail();
 
-            // NOVA EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
+            // NOVO EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
             $novoEmail = new Basico_Model_Email();
             $novoEmail->pessoa    = $novaPessoa->id;
             $novoEmail->uniqueId  = $uniqueIdValido;
@@ -281,7 +332,7 @@ class Basico_LoginController extends Zend_Controller_Action
             //ENVIANDO A MENSAGEM
             $controladorMensageiro->enviar($novaMensagem);
             
-            // CATEGORIA DO LOG VALIDACAO USUARIO
+            //CATEGORIA DO LOG VALIDACAO USUARIO
             $categoriaLog   = $controladorCategoria->retornaCategoriaLogValidacaoUsuario();
             
             $novoLog = new Basico_Model_Log();
@@ -301,16 +352,31 @@ class Basico_LoginController extends Zend_Controller_Action
         $this->_helper->redirector('SucessoSalvarUsuarioNaoValidado');
     }
     
+    /**
+	 * Redireciona para view sucessosalvarusuarionaovalidadoAction
+	 * 
+	 * 
+	 */
     public function sucessosalvarusuarionaovalidadoAction()
     {
         
     }
 	
+    /**
+	 * Redireciona para view erroemailvalidadoexistentenosistemaAction
+	 * 
+	 * 
+	 */
     public function erroemailvalidadoexistentenosistemaAction()
     {
         
     }
-
+    
+    /**
+	 * Redireciona para view erroemailnaovalidadoexistentenosistemaAction
+	 * 
+	 * 
+	 */
     public function erroemailnaovalidadoexistentenosistemaAction()
     {
         
