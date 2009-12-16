@@ -25,7 +25,7 @@ class Basico_LoginController extends Zend_Controller_Action
 {
     
 	/**
-	* @var object resource
+	* @var object
 	*/
 	private $request;
 	

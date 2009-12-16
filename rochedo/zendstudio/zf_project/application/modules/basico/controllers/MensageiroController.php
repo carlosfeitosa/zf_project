@@ -9,12 +9,12 @@ class Basico_MensageiroController
 {
 	/**
 	 * 
-	 * @var object resource
+	 * @var object
 	 */
 	static private $singleton;
 		
 	/**
-	 * 
+	 * Inicializa Controlador Mensageiro
 	 * @return Basico_MensageiroController $singleton
 	 */
     static public function init()
@@ -26,7 +26,7 @@ class Basico_MensageiroController
 	}
 		
 	/**
-	 * 
+	 * Envia Mensagem
 	 * @param Basico_Model_Mensagem $mensagem
 	 * @return void
 	 */
@@ -64,7 +64,7 @@ class Basico_MensageiroController
 	}
 	
 	/**
-	 * 
+	 * Retorna instância da classe Zend_Mail_Transport_Smtp
 	 * @param $tipoAutenticacao
 	 * @param $username
 	 * @param $senha
