@@ -1,9 +1,22 @@
 <?php
-
+/**
+ * Mensageiro Controller
+ *
+ * Responsável pelo envio e recebimento de mensagem no sistema.
+ * @subpackage Controller
+ */
 class Basico_MensageiroController 
 {
+	/**
+	 * 
+	 * @var object resource
+	 */
 	static private $singleton;
 		
+	/**
+	 * 
+	 * @return Basico_MensageiroController $singleton
+	 */
     static public function init()
 	{
 		if(self::$singleton == NULL){
@@ -12,6 +25,11 @@ class Basico_MensageiroController
 		return self::$singleton;
 	}
 		
+	/**
+	 * 
+	 * @param Basico_Model_Mensagem $mensagem
+	 * @return void
+	 */
     public function enviar(Basico_Model_Mensagem $mensagem) {
         
     	try {
@@ -45,6 +63,14 @@ class Basico_MensageiroController
 	   
 	}
 	
+	/**
+	 * 
+	 * @param $tipoAutenticacao
+	 * @param $username
+	 * @param $senha
+	 * @param $smtpServer
+	 * @return Zend_Mail_Transport_Smtp $tr
+	 */
 	public function retornaTransportSmtp($tipoAutenticacao, $username, $senha, $smtpServer) {
 		
 		$config = array('auth'     => $tipoAutenticacao,
