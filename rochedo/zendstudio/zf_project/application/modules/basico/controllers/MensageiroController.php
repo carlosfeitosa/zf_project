@@ -9,7 +9,7 @@ class Basico_MensageiroController
 {
 	/**
 	 * 
-	 * @var object
+	 * @var Basico_MensageiroController $singleton
 	 */
 	static private $singleton;
 		
@@ -65,10 +65,10 @@ class Basico_MensageiroController
 	
 	/**
 	 * Retorna instância da classe Zend_Mail_Transport_Smtp
-	 * @param $tipoAutenticacao
-	 * @param $username
-	 * @param $senha
-	 * @param $smtpServer
+	 * @param String $tipoAutenticacao
+	 * @param String $username
+	 * @param String $senha
+	 * @param String $smtpServer
 	 * @return Zend_Mail_Transport_Smtp $tr
 	 */
 	public function retornaTransportSmtp($tipoAutenticacao, $username, $senha, $smtpServer) {
