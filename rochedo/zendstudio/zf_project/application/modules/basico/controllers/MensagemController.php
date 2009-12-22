@@ -2,16 +2,38 @@
 //INCLUINDO CONTROLADORES
 require_once("EmailController.php");
 
+/**
+ * Controlador Mensagem
+ * 
+ * @author João Vasconcelos
+ * @uses Basico_Model_Mensagem
+ */
 class Basico_MensagemController
 {
+	/**
+	 * 
+	 * @var Basico_MensagemController object
+	 */
 	static private $singleton;
+	
+	/**
+	 * @var Basico_Model_Mensagem object
+	 */
 	private $mensagem;
 	
+	/**
+	 * Construtor do Controlador Mensagem
+	 * @return Basico_Model_Mensagem $mensagem
+	 */
 	public function __construct()
 	{
     	$this->mensagem = new Basico_Model_Mensagem();
 	}
 	
+	/**
+	 * Retorna o objeto da Classe MensagemController
+	 * @return Basico_MensagemController $singleton
+	 */
 	static public function init() {
 		if(self::$singleton == NULL){
 			self::$singleton = new Basico_MensagemController();
@@ -19,6 +41,12 @@ class Basico_MensagemController
 		return self::$singleton;
 	}
     
+	/**
+	 * Salva a mensagem e todos as suas dependencias.
+	 * @param Basico_Model_Mensagem $novaMensagem
+	 * @param Int $idPessoaPerfilCriador
+	 * @return void
+	 */
     public function salvarMensagem($novaMensagem, $idPessoaPerfilCriador = null) 
     {
 	    try{
@@ -47,6 +75,15 @@ class Basico_MensagemController
 	    }
 	}
 	
+	/**
+	 * Retorna a Mensagem carregada com os dados da template de Email de Validação de Usuario PlainText,  
+	 * incluindo o texto da mensagem já com os nomes e links inseridos.
+	 * 
+	 * @param Int $idCategoria
+	 * @param String $nomeDestinatario
+	 * @param String $link
+	 * @return unknown_type
+	 */
 	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria, $nomeDestinatario, $link) {
 		
 		//INICIALIZANDO CONTROLADORES
