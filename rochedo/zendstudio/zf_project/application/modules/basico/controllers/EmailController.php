@@ -1,16 +1,39 @@
 <?php
 require_once("CategoriaController.php");
-
+/**
+ * Controlador Email
+ * 
+ * @uses Basico_Model_Email
+ */
 class Basico_EmailController 
 {
+	/**
+	 * 
+	 * @var Basico_EmailController
+	 */
 	static private $singleton;
+	
+	/**
+	 * 
+	 * @var Basico_Model_Email
+	 */
 	private $email;
 	
+	/**
+	 * Construtor do Controlador Email
+	 * 
+	 * @return void
+	 */
 	private function __construct()
 	{
 		$this->email = new Basico_Model_Email();
 	}
 	
+	/**
+	 * Inicializa o controlador Email.
+	 * 
+	 * @return Basico_EmailController
+	 */
 	static public function init()
 	{
 		if(self::$singleton == NULL){
@@ -19,6 +42,10 @@ class Basico_EmailController
 		return self::$singleton;
 	}
 	
+	/**
+	 * Retorna um novo UniqueId
+	 * @return String
+	 */
 	private function gerarUniqueIdEmail()
 	{
 		$uniqueId = new Basico_Model_Gerador();
@@ -26,11 +53,20 @@ class Basico_EmailController
 		return $unique;
 	}
 	
+	/**
+	 * Retorna um novo UniqueId
+	 * @return String 
+	 */
 	public function retornaNovoUniqueIdEmail()
 	{
 		return $this->gerarUniqueIdEmail();
 	}
 	
+	/**
+	 * Retorna o UniqueId do email passado como parametro. 
+	 * @param String $email
+	 * @return NULL|Basico_Model_Email
+	 */
 	public function retornaUniqueIdEmail($email) 
 	{
 		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
@@ -40,6 +76,11 @@ class Basico_EmailController
     	    return NULL;
 	}
 	
+	/**
+	 * Retorna email
+	 * @param String $email
+	 * @return NULL|Basico_Model_Email
+	 */
 	private function retornaEmail($email)
 	{
 		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
@@ -49,6 +90,11 @@ class Basico_EmailController
     	    return NULL;
 	}
 	
+	/**
+	 * 
+	 * @param String $email
+	 * @return NULL|Basico_Model_Email
+	 */
 	public function retornaIdPessoaEmail($email)
 	{
 		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
@@ -58,6 +104,11 @@ class Basico_EmailController
     	    return NULL;
 	}
 	
+	/**
+	 * 
+	 * @param String $email
+	 * @return unknown_type
+	 */
 	public function verificaEmailExistente($email)
 	{
 		$auxEmail = $this->retornaEmail($email);
@@ -67,6 +118,12 @@ class Basico_EmailController
 		    return NULL;
 	}
 	
+	/**
+	 * Salva novo email no banco
+	 * @param String $novoEmail
+	 * @param Int|NULL $idPessoaPerfilCriador
+	 * @return void
+	 */
 	public function salvarEmail($novoEmail, $idPessoaPerfilCriador = null)
 	{
     	try{
@@ -97,7 +154,10 @@ class Basico_EmailController
 	}
 	
 	
-	//FUNCAO QUE RETORNA O EMAIL DO SISTEMA
+	/**
+	 * Retorna o email do Sistema
+	 * @return Basico_Model_Email
+	 */
 	public function retornaEmailSistema()
     {
     	//INICIALIZANDO CONTROLADOR CATEGORIA
