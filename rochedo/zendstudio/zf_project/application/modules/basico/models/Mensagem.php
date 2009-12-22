@@ -1,15 +1,10 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * Mensagem model
  *
- * Utilizes the Data Mapper pattern to persist data.
+ * Utiliza o Mapper para persistir os dados.
  * 
- * @uses       Default_Model_MensagemMapper
+ * @uses Basico_Model_MensagemMapper
  * @subpackage Model
  */
 class Basico_Model_Mensagem
@@ -57,9 +52,14 @@ class Basico_Model_Mensagem
 	 */
 	protected $_mensagem;
 	
-	protected $_rowinfo;
 	/**
-	 * Constructor
+	 * 
+	 * @var String
+	 */
+	protected $_rowinfo;
+	
+	/**
+	 * Construtor
 	 * 
 	 * @param  array|null $options 
 	 * @return void

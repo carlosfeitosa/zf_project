@@ -23,7 +23,7 @@ class Basico_MensagemController
 	
 	/**
 	 * Construtor do Controlador Mensagem
-	 * @return Basico_Model_Mensagem $mensagem
+	 * @return Basico_Model_Mensagem
 	 */
 	public function __construct()
 	{
@@ -32,7 +32,7 @@ class Basico_MensagemController
 	
 	/**
 	 * Retorna o objeto da Classe MensagemController
-	 * @return Basico_MensagemController $singleton
+	 * @return Basico_MensagemController
 	 */
 	static public function init() {
 		if(self::$singleton == NULL){
@@ -43,7 +43,7 @@ class Basico_MensagemController
     
 	/**
 	 * Salva a mensagem e todos as suas dependencias.
-	 * @param Basico_Model_Mensagem $novaMensagem
+	 * @param Basico_Model_Mensagem
 	 * @param Int $idPessoaPerfilCriador
 	 * @return void
 	 */
@@ -82,7 +82,7 @@ class Basico_MensagemController
 	 * @param Int $idCategoria
 	 * @param String $nomeDestinatario
 	 * @param String $link
-	 * @return unknown_type
+	 * @return Basico_Model_Mensagem
 	 */
 	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria, $nomeDestinatario, $link) {
 		

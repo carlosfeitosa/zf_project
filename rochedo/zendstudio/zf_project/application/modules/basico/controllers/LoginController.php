@@ -98,7 +98,7 @@ class Basico_LoginController extends Zend_Controller_Action
     /**
 	 * Ação principal do controlador Login.
 	 * 
-	 *  
+	 *  Seta o form na view
 	 * 
 	 */
     public function indexAction()

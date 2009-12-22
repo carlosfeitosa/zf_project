@@ -9,7 +9,7 @@ class Basico_MensageiroController
 {
 	/**
 	 * 
-	 * @var Basico_MensageiroController $singleton
+	 * @var Basico_MensageiroController 
 	 */
 	static private $singleton;
 		
