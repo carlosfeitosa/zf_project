@@ -293,7 +293,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->validado  = 0;
             $novoEmail->ativo     = 0;
             $novoEmail->rowinfo   = $controladorRowInfo->getXml();
-            $controladorEmail->salvarEmail($novoEmail);  
+            $controladorEmail->salvarEmail($novoEmail);
                         
             //CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM E O EMAIL DO SISTEMA
             $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();

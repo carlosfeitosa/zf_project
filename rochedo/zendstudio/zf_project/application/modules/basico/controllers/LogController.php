@@ -63,6 +63,7 @@ class Basico_LogController
 	    	}
 	    } catch (Exception $e) {
 	    	$this->log = $novoLog;
+	    	$this->prepareXml($novoLog);
 			$this->log->save();
 	    }
 	}

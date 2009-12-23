@@ -74,7 +74,7 @@ class Basico_CategoriaController
 	 */
 	public function retornaCategoriaEmailValidacaoPlainText()
 	{
-	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
 	    if (isset($categoriaEmailValidacaoPlainText))
     	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
@@ -86,7 +86,7 @@ class Basico_CategoriaController
 	 */
     public function retornaCategoriaEmailValidacaoPlainTextReenvio()
 	{
-	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 	    if (isset($categoriaEmailValidacaoPlainTextReenvio))
     	    return $categoriaEmailValidacaoPlainTextReenvio;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
@@ -98,10 +98,10 @@ class Basico_CategoriaController
 	 */
 	public function retornaCategoriaRemetente()
 	{
-		$categoriaRemetente = $this->retornaCategoria(REMETENTE);
+		$categoriaRemetente = $this->retornaCategoria(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
 	    if (isset($categoriaRemetente))
     	    return $categoriaRemetente;
-    	throw new Exception(MSG_ERRO_REMETENTE);
+    	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
 	}
 	
 	/**
@@ -110,10 +110,10 @@ class Basico_CategoriaController
 	 */
     public function retornaCategoriaDestinatario()
 	{
-		$categoriaDestinatario = $this->retornaCategoria(DESTINATARIO);
+		$categoriaDestinatario = $this->retornaCategoria(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
 	    if (isset($categoriaDestinatario))
     	    return $categoriaDestinatario;
-    	throw new Exception(MSG_ERRO_DESTINATARIO);
+    	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
 	}
 	
 	/**

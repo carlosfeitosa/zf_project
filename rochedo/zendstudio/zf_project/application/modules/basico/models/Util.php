@@ -95,4 +95,9 @@ class Basico_Model_Util
 	{
 		return Zend_Controller_Front::getInstance()->getRequest();
 	}
+	
+	public static function ambienteDesenvolvimento()
+	{
+		return (strpos(APPLICATION_ENV, 'development') !== false);
+	}
 }

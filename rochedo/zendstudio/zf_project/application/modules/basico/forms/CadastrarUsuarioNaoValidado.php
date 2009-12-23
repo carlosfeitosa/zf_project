@@ -38,7 +38,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         if($options!=null)
            $elements[1]->setValue($options->email);
 
-        if ('development' <> APPLICATION_ENV)
+        if (!Basico_Model_Util::ambienteDesenvolvimento())
             $elements[2] = new Zend_Form_Element_Captcha('captcha', array(
                                                          'label' => "Por favor digite o código de 6 caracteres abaixo:",
                                                          'required' => true,

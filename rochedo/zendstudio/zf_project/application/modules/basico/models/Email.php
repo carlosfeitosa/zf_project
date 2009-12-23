@@ -178,7 +178,7 @@ class Basico_Model_Email
 	*/
 	public function setValidado($validado)
 	{
-		$this->_validado = (Boolean) $validado;
+		$this->_validado = (int) $validado;
 		return $this;
 	}
 
@@ -222,7 +222,7 @@ class Basico_Model_Email
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = (Boolean) $ativo;
+		$this->_ativo = (int) $ativo;
 		return $this;
 	}
 
