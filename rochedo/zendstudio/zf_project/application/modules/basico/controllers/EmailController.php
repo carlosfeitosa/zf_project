@@ -105,9 +105,9 @@ class Basico_EmailController
 	}
 	
 	/**
-	 * 
+	 * Verifica se o email existe, se existir retorna o atributo 'validado' do email.
 	 * @param String $email
-	 * @return unknown_type
+	 * @return NULL|Boolean
 	 */
 	public function verificaEmailExistente($email)
 	{
