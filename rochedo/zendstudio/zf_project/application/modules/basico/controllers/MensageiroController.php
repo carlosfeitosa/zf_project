@@ -39,7 +39,7 @@ class Basico_MensageiroController
 			Zend_Mail::setDefaultTransport($tr);
 			
 			//ENVIANDO EMAIL
-	        $zendMail = new Zend_Mail();
+	        $zendMail = new Zend_Mail('UTF-8');
 	        $zendMail->setFrom($mensagem->getRemetente(), $mensagem->getRemetenteNome());
 	        
 	        //ADICIONANDO DESTINATARIOS
