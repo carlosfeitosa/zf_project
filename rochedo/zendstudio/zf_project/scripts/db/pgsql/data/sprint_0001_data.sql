@@ -1,7 +1,7 @@
 /*
 * SCRIPT DE POPULACAO DAS TABELAS DO SPRINT 0001
 * 
-* versao: 1.0 (POSTGRESQL)
+* versao: 1.0 (POSTGRESQL 8.4.1)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 14/12/2009
 * ultima modificacao: 14/12/2009
