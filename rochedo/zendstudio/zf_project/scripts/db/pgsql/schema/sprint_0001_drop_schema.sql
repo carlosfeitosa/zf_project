@@ -4,13 +4,16 @@
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 13/12/2009
-* ultima modificacao: 13/12/2009
+* ultimas modificacoes: 
+* 				      	- 13/12/2009
+* 						- 29/12/2009 - drop table dados_pessoas_perfis;
 */
 
 drop table email;
 drop table log;
 drop table login;
 drop table dados_pessoais;
+drop table dados_pessoas_perfis;
 drop table pessoas_perfis_mensagem_categoria;
 drop table pessoas_perfis;
 drop table pessoa;

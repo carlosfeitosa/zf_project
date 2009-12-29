@@ -4,7 +4,11 @@
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 13/12/2009
-* ultima modificacao: 14/12/2009
+* ultimas modificacoes: 
+* 						- 14/12/2009
+* 						- 29/12/2009 - adicao do campo login.datahora_expiracao_senha timestamp with time zone;
+* 									 - adicao de nova tabela (dados_pessoas_perfis);
+* 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null; 
 */
 
 // CRIACAO DAS TABELAS
@@ -77,6 +81,7 @@ create table login (
 	pode_expirar smallint not null ,
 	datahora_proxima_expiracao timestamp with time zone ,
 	datahora_ultima_expiracao timestamp with time zone ,
+	datahora_expiracao_senha timestamp with time zone ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -109,7 +114,8 @@ alter table pessoa owner to rochedo_user;
 create table pessoas_perfis (
 	id serial not null ,
 	id_pessoa integer not null ,
-	id_perfil integer not null 
+	id_perfil integer not null ,
+	rowinfo character varying (2000) not null 
 )
 with (
   oids = false
@@ -182,6 +188,17 @@ with (
 );
 alter table anexo_mensagem owner to rochedo_user;
 
+create table dados_pessoas_perfis (
+	id serial not null ,
+	id_pessoa_perfil int not null ,
+	assinatura_mensagem_email character varying (2000) ,
+	rowinfo character varying (2000) not null
+)
+with (
+	oids = false
+);
+alter table dados_pessoas_perfis owner to rochedo_user;
+
 
 // CRIACAO DAS CHAVES PRIMARIAS
 
@@ -210,6 +227,8 @@ alter table mensagem_email add constraint pk_mensagem_email primary key (id);
 alter table anexo_mensagem add constraint pk_anexo_mensagem primary key (id);
 
 alter table pessoas_perfis_mensagem_categoria add constraint pk_pessoas_perfis_mensagem_categoria primary key (id);
+
+alter table dados_pessoas_perfis add constraint pk_dados_pessoas_perfis primary key (id);
 
 
 // CRIACAO DOS VALORES DEFAULT
@@ -329,3 +348,6 @@ alter table pessoas_perfis_mensagem_categoria
 
 alter table pessoas_perfis_mensagem_categoria
   add constraint fk_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  
+alter table dados_pessoas_perfis
+  add constraint fk_dados_pessoas_perfis_pessoas_perfis foreign key (id_pessoa_perfil) references pessoas_perfis (id) on update no action on delete no action;

@@ -1,10 +1,15 @@
 /*
 * SCRIPT DE POPULACAO DAS TABELAS DO SPRINT 0001
 * 
-* versao: 1.0 (POSTGRESQL 8.4.1)
+* versao: 1.0 (MSSQL 2000)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 14/12/2009
-* ultima modificacao: 14/12/2009
+* ultimas modificacoes:
+* 						- 14/12/2009
+* 						- 29/12/2009 - insert da assinatura de mensagem e-mail da pessoa_perfil do sistema;
+* 									 - correcao da categoria SISTEMA_MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO (SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+* 									 - insert da template de mensagem de email de validacao de usuario plaintext reenvio;
+* 									 - insert de rowinfo em pessoas_perfis;
 */
 
 // DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA)
@@ -62,7 +67,7 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO' AS nome, 'Reenvio de mensagens do tipo e-mail PLAIN TEXT de validação de usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO' AS nome, 'Reenvio de mensagens do tipo e-mail PLAIN TEXT de validação de usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
@@ -84,6 +89,23 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT';
+
+INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
+SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Reenvio de confirmação de Registro' AS assunto,
+'Prezado(a) sr.(a) [nome_usuario], 
+
+Para continuar o seu registro em nosso servico, por favor clique no link abaixo, ou copie e cole o endereco em seu navegador: 
+[link]
+
+
+Caso voce nao tenha solicitado este registro, por favor apenas ignore esta mensagem.
+
+Atenciosamente, 
+[assinatura_mensagem]' as mensagem, c.id AS id_categoria, getdate() AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'LOG' AS nome, 'Histórico de operações do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -232,14 +254,17 @@ WHERE t.nome = 'EMAIL';
 INSERT INTO pessoa (rowinfo)
 VALUES ('SYSTEM_STARTUP');
 
-INSERT INTO pessoas_perfis (id_pessoa, id_perfil)
-SELECT @@IDENTITY, perf.id
+INSERT INTO pessoas_perfis (id_pessoa, id_perfil, rowinfo)
+SELECT @@IDENTITY AS id_pessoa, perf.id AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
 FROM perfil perf
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
 LEFT JOIN tipo_categoria tipo_cat ON (cat.id_tipo_categoria = tipo_cat.id)
 WHERE tipo_cat.nome = 'SISTEMA'
 AND cat.nome = 'SISTEMA_USUARIO'
 AND perf.nome = 'SISTEMA';
+
+INSERT INTO dados_pessoas_perfis (id_pessoa_perfil, assinatura_mensagem_email, rowinfo)
+VALUES (@@IDENTITY, 'Equipe ROCHEDO project', 'SYSTEM_STARTUP');
 
 declare @login varchar(100), @password varchar(100)
 set @login=''

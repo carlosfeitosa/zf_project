@@ -86,7 +86,7 @@ class Basico_CategoriaController
 	 */
     public function retornaCategoriaEmailValidacaoPlainTextReenvio()
 	{
-	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 	    if (isset($categoriaEmailValidacaoPlainTextReenvio))
     	    return $categoriaEmailValidacaoPlainTextReenvio;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);

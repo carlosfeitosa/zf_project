@@ -4,7 +4,11 @@
 * versao: 1.0 (MSSQL 2000)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 13/12/2009
-* ultima modificacao: 28/12/2009
+* ultimas modificacoes: 
+*						- 28/12/2009
+* 						- 29/12/2009 - adicao do campo login.datahora_expiracao_senha timestamp with time zone;
+* 									 - adicao de nova tabela (dados_pessoas_perfis);
+* 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null;
 */
 
 // CRIACAO DAS TABELAS
@@ -61,6 +65,7 @@ create table login (
 	pode_expirar bit not null ,
 	datahora_proxima_expiracao datetime null ,
 	datahora_ultima_expiracao datetime null ,
+	datahora_expiracao_senha datetime null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -81,7 +86,8 @@ create table pessoa (
 create table pessoas_perfis (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
-	id_perfil int not null 
+	id_perfil int not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
 create table tipo_categoria (
@@ -130,6 +136,13 @@ create table pessoas_perfis_mensagem_categoria (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
+create table dados_pessoas_perfis (
+	id int identity not null ,
+	id_pessoa_perfil int not null ,
+	assinatura_mensagem_email varchar (2000) collate latin1_general_ci_ai ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
 
 // CRIACAO DAS CHAVES PRIMARIAS
 
@@ -158,6 +171,8 @@ alter table mensagem_email with nocheck add constraint pk_mensagem_email primary
 alter table anexo_mensagem with nocheck add constraint pk_anexo_mensagem primary key clustered (id) on [primary];
 
 alter table pessoas_perfis_mensagem_categoria with nocheck add constraint pk_pessoas_perfis_mensagem_categoria primary key clustered (id) on [primary];
+
+alter table dados_pessoas_perfis with nocheck add constraint pk_dados_pessoas_perfis primary key clustered (id) on [primary];
 
 
 // CRIACAO DOS VALORES DEFAULT
@@ -349,3 +364,10 @@ alter table pessoas_perfis_mensagem_categoria add
     ) references categoria (
         id
     );
+    
+alter table dados_pessoas_perfis add
+	constraint fk_dados_pessoas_perfis_pessoas_perfis foreign key (
+		id_pessoa_perfil
+	) references pessoas_perfis (
+		id
+	);

@@ -163,7 +163,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $nome     = $this->getRequest()->getParam('nome');
 			             $uniqueId = $controladorEmail->retornaUniqueIdEmail($email);
 			             $idPessoa = $controladorEmail->retornaIdPessoaEmail($email);
-			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa->id);
+			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa->pessoa);
 			             
 			             //SALVANDO MENSAGEM
 			             $nomeDestinatario = $nome;
@@ -196,7 +196,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
 			             $pessoaPerfilMensagemCategoriaDestinatario->rowinfo      = $controladorRowInfo->getXml();
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);
-			            
+
 			             //ENVIANDO A MENSAGEM
 			             $controladorMensageiro->enviar($novaMensagem);
 			            
@@ -269,6 +269,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $novaPessoaPerfil = new Basico_Model_PessoaPerfil();
             $novaPessoaPerfil->pessoa = $novaPessoa->id;
             $novaPessoaPerfil->perfil = $perfilUsuarioNaoValidado->id;
+            $novaPessoaPerfil->rowinfo = $controladorRowInfo->getXml();
             $controladorPessoaPerfil->salvarPessoaPerfil($novaPessoaPerfil); 
             
             // DADOS PESSOAIS DA NOVA PESSOA

@@ -23,6 +23,11 @@ class Basico_Model_PessoaPerfil
      * @var Basico_Model_PessoaPerfilMapper
      */
     protected $_mapper;
+    
+    /**
+	 * @var String
+	 */
+	protected $_rowinfo;
 
     /**
      * @var Pessoa
@@ -189,6 +194,28 @@ class Basico_Model_PessoaPerfil
     {
         return $this->_id;
     }
+    
+	/**
+	* Set rowinfo
+	* 
+	* @param String $xml 
+	* @return Basico_Model_Pessoa
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
     /**
     * Set data mapper

@@ -64,6 +64,7 @@ class Basico_Model_PessoaPerfilMapper
         $data = array(
                 'id_pessoa' => $object->getPessoa(),
                 'id_perfil' => $object->getPerfil(),
+        		'rowinfo'   => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -100,7 +101,8 @@ class Basico_Model_PessoaPerfilMapper
         $row = $result->current();
         $object->setId($row->id)
                ->setPessoa($row->id_pessoa)
-               ->setPerfil($row->id_perfil);
+               ->setPerfil($row->id_perfil)
+               ->setRowinfo($row->rowinfo);
     }
 
     /**
@@ -118,6 +120,7 @@ class Basico_Model_PessoaPerfilMapper
             $entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
                 ->setPerfil($row->id_perfil)
+                ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
         }
@@ -139,6 +142,7 @@ class Basico_Model_PessoaPerfilMapper
             $entry->setId($row->id)
                   ->setPessoa($row->id_pessoa)
                   ->setPerfil($row->id_perfil)
+                  ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
         }

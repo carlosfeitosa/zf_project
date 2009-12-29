@@ -100,4 +100,15 @@ class Basico_Model_Util
 	{
 		return (strpos(APPLICATION_ENV, 'development') !== false);
 	}
+	
+	public static function emailCharsetAmbienteDesenvolvimento()
+	{
+		switch (APPLICATION_ENV){
+			case 'development_pgsql':
+				return "UTF-8";
+				break;
+			default:
+				return "iso-8859-1";
+		}
+	}
 }

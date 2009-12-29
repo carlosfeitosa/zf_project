@@ -39,7 +39,7 @@ class Basico_MensageiroController
 			Zend_Mail::setDefaultTransport($tr);
 			
 			//ENVIANDO EMAIL
-	        $zendMail = new Zend_Mail('UTF-8');
+	        $zendMail = new Zend_Mail(Basico_Model_Util::emailCharsetAmbienteDesenvolvimento());
 	        $zendMail->setFrom($mensagem->getRemetente(), $mensagem->getRemetenteNome());
 	        
 	        //ADICIONANDO DESTINATARIOS
@@ -59,8 +59,6 @@ class Basico_MensageiroController
 			
             throw new Exception($e->getMessage());
 	    }
-	    
-	   
 	}
 	
 	/**
