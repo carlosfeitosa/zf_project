@@ -15,7 +15,7 @@ class Basico_LogController
 		$this->gerador = new Basico_Model_Gerador();
 		
 		if (!file_exists(LOG_PATH))
-		    Basico_Model_Util::mkdir_recursive(LOG_PATH);
+		    Basico_Model_Util::mkdirRecursive(LOG_PATH);
 		
         $logFormatter = new Zend_Log_Formatter_Simple(LOG_FORMAT);
 
