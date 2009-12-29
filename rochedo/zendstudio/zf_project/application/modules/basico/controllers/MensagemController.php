@@ -1,6 +1,8 @@
 <?php
 //INCLUINDO CONTROLADORES
 require_once("EmailController.php");
+require_once("CategoriaController.php");
+require_once("DadosPessoaisController.php");
 
 /**
  * Controlador Mensagem
@@ -78,18 +80,53 @@ class Basico_MensagemController
 	/**
 	 * Retorna a Mensagem carregada com os dados da template de Email de Validação de Usuario PlainText,  
 	 * incluindo o texto da mensagem já com os nomes e links inseridos.
-	 * 
-	 * @param Int $idCategoria
+	 *
 	 * @param String $nomeDestinatario
 	 * @param String $link
 	 * @return Basico_Model_Mensagem
 	 */
-	public function retornaTemplateMensagemValidacaoUsuarioPlainText($idCategoria, $nomeDestinatario, $link) {
+	public function retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link) {
 		
 		//INICIALIZANDO CONTROLADORES
 		$controladorEmail = Basico_EmailController::init();
+		$controladorCategoria = Basico_CategoriaController::init();
+
+		$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
 		
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);
+		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
+		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem(); 
+        $corpoMensagemTemplate = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace('[link]', $link, $corpoMensagemTemplate);
+        $this->mensagem->setMensagem($corpoMensagemTemplate);
+		
+		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
+		$emailSistema = $controladorEmail->retornaEmailSistema();
+		$this->mensagem->setRemetente($emailSistema->email);
+		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
+		return $this->mensagem;
+		
+	}
+	
+	/**
+	 * Retorna a mensagem carregada com os dados da template de Mensagem de email validação usuario
+	 * plaintext reenvio.
+	 * 
+	 * @param Int $idPessoa
+	 * @param String $link
+	 * @return Basico_Model_Mensagem 
+	 */
+    public function retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) {
+		
+		//INICIALIZANDO CONTROLADORES
+		$controladorEmail         = Basico_EmailController::init();
+		$controladorCategoria     = Basico_CategoriaController::init();
+		$controladorDadosPessoais = Basico_DadosPessoaisController::init();
+
+		$idCategoria      = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
+		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
+				
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
 		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem(); 
         $corpoMensagemTemplate = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);

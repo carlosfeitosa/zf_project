@@ -40,4 +40,17 @@ class Basico_DadosPessoaisController
         $controladorLog->salvarLog($novoLog);
 	}
 	
+	/**
+	 * 
+	 * @param Int $idPessoa
+	 * @return String
+	 */
+	public function retornaNomePessoa($idPessoa) {
+		
+		$dadosPessoais = self::$singleton->dadosPessoais->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+		if (isset($dadosPessoais[0])) 
+    	    return $dadosPessoais[0]->nome;
+		throw new Exception(MSG_ERRO_NOME_PESSOA_NAO_ENCONTRADA_NO_SISTEMA);
+	}
+	
 }

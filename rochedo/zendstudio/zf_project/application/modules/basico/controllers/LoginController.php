@@ -160,15 +160,13 @@ class Basico_LoginController extends Zend_Controller_Action
 			            
 			             //POPULANDO VARIAVEIS
 			             $email    = $this->getRequest()->getParam('email');
-			             $nome     = $this->getRequest()->getParam('nome');
 			             $uniqueId = $controladorEmail->retornaUniqueIdEmail($email);
 			             $idPessoa = $controladorEmail->retornaIdPessoaEmail($email);
 			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa->pessoa);
 			             
 			             //SALVANDO MENSAGEM
-			             $nomeDestinatario = $nome;
 			             $link = LINK_VALIDACAO_USUARIO . $uniqueId->uniqueId;
-			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id, $nomeDestinatario, $link);          
+			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa->pessoa, $link);          
 			             $novaMensagem->destinatarios    = array($email);
 			             $novaMensagem->datahoraMensagem = Zend_Date::now();
 			             $novaMensagem->categoria        = $categoriaMensagem->id;
