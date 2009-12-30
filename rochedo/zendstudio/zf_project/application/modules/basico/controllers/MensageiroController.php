@@ -39,7 +39,7 @@ class Basico_MensageiroController
 			Zend_Mail::setDefaultTransport($tr);
 			
 			//ENVIANDO EMAIL
-	        $zendMail = new Zend_Mail(Basico_Model_Util::emailCharsetAmbienteDesenvolvimento());
+	        $zendMail = new Zend_Mail(EMAIL_CHARSET);
 	        $zendMail->setFrom($mensagem->getRemetente(), $mensagem->getRemetenteNome());
 	        
 	        //ADICIONANDO DESTINATARIOS
