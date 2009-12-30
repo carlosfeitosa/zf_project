@@ -153,7 +153,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	                     $controladorMensagem      = Basico_MensagemController::init();
 	                     $controladorMensageiro    = Basico_MensageiroController::init();
 	                     $controladorCategoria     = Basico_CategoriaController::init();
-	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();	            	 
+	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();
+	                     	            	 
 		            	 //POPULANDO CATEGORIAS
 		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
 			             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
@@ -301,7 +302,7 @@ class Basico_LoginController extends Zend_Controller_Action
             //SALVANDO MENSAGEM
             $nomeDestinatario = $this->getRequest()->getParam('nome');
             $link = LINK_VALIDACAO_USUARIO . $novoEmail->uniqueId;
-            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($categoriaTemplate->id, $nomeDestinatario, $link);          
+            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $novaMensagem->destinatarios       = array($novoEmail->email);
             $novaMensagem->datahoraMensagem    = Zend_Date::now();
             $novaMensagem->categoria           = $categoriaMensagem->id;

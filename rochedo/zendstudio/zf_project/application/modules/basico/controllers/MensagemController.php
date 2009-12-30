@@ -3,6 +3,7 @@
 require_once("EmailController.php");
 require_once("CategoriaController.php");
 require_once("DadosPessoaisController.php");
+require_once("DadosPessoasPerfisController.php");
 
 /**
  * Controlador Mensagem
@@ -88,17 +89,21 @@ class Basico_MensagemController
 	public function retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link) {
 		
 		//INICIALIZANDO CONTROLADORES
-		$controladorEmail = Basico_EmailController::init();
-		$controladorCategoria = Basico_CategoriaController::init();
+		$controladorEmail              = Basico_EmailController::init();
+		$controladorCategoria          = Basico_CategoriaController::init();
+		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisController::init();
 
 		$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
 		
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
-		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem(); 
-        $corpoMensagemTemplate = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
-        $corpoMensagemTemplate = str_replace('[link]', $link, $corpoMensagemTemplate);
+		$corpoMensagemTemplate  = $mensagemTemplate[0]->getMensagem(); 
+        $corpoMensagemTemplate  = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
+        $corpoMensagemTemplate  = str_replace('[link]', $link, $corpoMensagemTemplate);
+        $assinatura             = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+        $corpoMensagemTemplate  = str_replace('[assinatura_mensagem]', $assinatura, $corpoMensagemTemplate);  
         $this->mensagem->setMensagem($corpoMensagemTemplate);
+        
 		
 		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
 		$emailSistema = $controladorEmail->retornaEmailSistema();
@@ -122,6 +127,7 @@ class Basico_MensagemController
 		$controladorEmail         = Basico_EmailController::init();
 		$controladorCategoria     = Basico_CategoriaController::init();
 		$controladorDadosPessoais = Basico_DadosPessoaisController::init();
+		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisController::init();
 
 		$idCategoria      = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
 		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
@@ -131,7 +137,10 @@ class Basico_MensagemController
 		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem(); 
         $corpoMensagemTemplate = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
         $corpoMensagemTemplate = str_replace('[link]', $link, $corpoMensagemTemplate);
+        $assinatura            = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+        $corpoMensagemTemplate = str_replace('[assinatura_mensagem]', $assinatura, $corpoMensagemTemplate);
         $this->mensagem->setMensagem($corpoMensagemTemplate);
+        
 		
 		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
 		$emailSistema = $controladorEmail->retornaEmailSistema();
