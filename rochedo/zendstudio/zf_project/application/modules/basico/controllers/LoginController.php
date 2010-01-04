@@ -4,7 +4,7 @@
  *
  * Controla Ações de Login/Logout e Cadastro do sistema.
  * 
- * @uses       Default_Model_Login
+ * @uses       Basico_Model_Login
  * @subpackage Controller
  */
 

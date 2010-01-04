@@ -1,14 +1,36 @@
 <?php
+/**
+ * Controlador Dados Pessoais
+ * 
+ * @uses Basico_Model_DadosPessoais
+ */
 class Basico_DadosPessoaisController
 {
+	/**
+	 * 
+	 * @var Basico_DadosPessoaisController
+	 */
 	static private $singleton;
+	
+	/**
+	 * 
+	 * @var Basico_Model_DadosPessoais
+	 */
 	private $dadosPessoais;
 	
+	/**
+	 * Carrega a variavel dadosPessoais com um novo objeto Basico_Model_DadosPessoais
+	 * @return void
+	 */
 	private function __construct()
 	{
 		$this->dadosPessoais = new Basico_Model_DadosPessoais();
 	}
 	
+	/**
+	 * Inicializa Controlador Dados Pessoais.
+	 * @return Basico_DadosPessoaisController
+	 */
 	static public function init()
 	{
 		if(self::$singleton == NULL){
@@ -16,6 +38,13 @@ class Basico_DadosPessoaisController
 		}
 		return self::$singleton;
 	}
+	
+	/**
+	 * Salva os dados pessoais.
+	 * @param Basico_Model_DadosPessoais $novoDadosPessoais
+	 * @param int $idPessoaPerfilCriador
+	 * @return void
+	 */
 	public function salvarDadosPessoais($novoDadosPessoais, $idPessoaPerfilCriador = null)
 	{
 		// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
@@ -41,7 +70,7 @@ class Basico_DadosPessoaisController
 	}
 	
 	/**
-	 * 
+	 * Retorna o nome da pessoa cujo o id foi passado como parâmetro.
 	 * @param Int $idPessoa
 	 * @return String
 	 */
