@@ -71,13 +71,13 @@ class Basico_EmailController
 	{
 		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
 		if (isset($auxEmail[0]))
-    	    return $auxEmail[0];
+    	    return $auxEmail[0]->uniqueId;
     	else
     	    return NULL;
 	}
 	
 	/**
-	 * Retorna email
+	 * Retorna o objeto email carregado ou null se o email passado não existir no banco. 
 	 * @param String $email
 	 * @return NULL|Basico_Model_Email
 	 */
@@ -91,7 +91,7 @@ class Basico_EmailController
 	}
 	
 	/**
-	 * 
+	 * Retorna o id da pessoa pelo email passado como parâmetro.
 	 * @param String $email
 	 * @return NULL|Basico_Model_Email
 	 */
@@ -99,7 +99,7 @@ class Basico_EmailController
 	{
 		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
 		if (isset($auxEmail[0]))
-    	    return $auxEmail[0];
+    	    return $auxEmail[0]->pessoa;
     	else
     	    return NULL;
 	}
@@ -169,7 +169,7 @@ class Basico_EmailController
 		
 		//RETORNADO EMAIL DO SISTEMA
 		if (isset($emailSistema[0]))
-    	    return $emailSistema[0];
+    	    return $emailSistema[0]->email;
     	else
     	    return NULL;
 	}

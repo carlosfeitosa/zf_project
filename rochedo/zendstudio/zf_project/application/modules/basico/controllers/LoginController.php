@@ -163,11 +163,11 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $email    = $this->getRequest()->getParam('email');
 			             $uniqueId = $controladorEmail->retornaUniqueIdEmail($email);
 			             $idPessoa = $controladorEmail->retornaIdPessoaEmail($email);
-			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa->pessoa);
+			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa);
 			             
 			             //SALVANDO MENSAGEM
-			             $link = LINK_VALIDACAO_USUARIO . $uniqueId->uniqueId;
-			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa->pessoa, $link);          
+			             $link = LINK_VALIDACAO_USUARIO . $uniqueId;
+			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
 			             $novaMensagem->destinatarios    = array($email);
 			             $novaMensagem->datahoraMensagem = Zend_Date::now();
 			             $novaMensagem->categoria        = $categoriaMensagem->id;

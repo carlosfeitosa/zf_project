@@ -107,7 +107,7 @@ class Basico_MensagemController
 		
 		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
 		$emailSistema = $controladorEmail->retornaEmailSistema();
-		$this->mensagem->setRemetente($emailSistema->email);
+		$this->mensagem->setRemetente($emailSistema);
 		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
 		return $this->mensagem;
 		
@@ -144,7 +144,7 @@ class Basico_MensagemController
 		
 		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
 		$emailSistema = $controladorEmail->retornaEmailSistema();
-		$this->mensagem->setRemetente($emailSistema->email);
+		$this->mensagem->setRemetente($emailSistema);
 		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
 		return $this->mensagem;
 		

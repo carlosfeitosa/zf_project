@@ -41,9 +41,10 @@ class Basico_CategoriaController
 	}
 	
 	/**
-	 * 
-	 * @param $nomeCategoria
-	 * @return Basico_Model_Categoria $auxCategoria or NULL
+	 * Retorna o objeto categoria carregado com os dados da categoria passada como parâmetro ou NULL se
+	 * ela não existir no banco.
+	 * @param String $nomeCategoria
+	 * @return Basico_Model_Categoria or NULL
 	 */
 	public function retornaCategoria($nomeCategoria)
 	{
