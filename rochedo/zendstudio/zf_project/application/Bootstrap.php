@@ -43,9 +43,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
         			 ->addStylesheet(DOJO_STYLE_SHEET_PATH)
         			 ->setLocalPath(DOJO_LOCAL_PATH)
-        			 //->addLayer('Custon code Ex: /js/paste/main.js')
+        			 ->addLayer('/js/default_scripts.js')
         			 //->addJavascript('Custon code Ex: paste.main.init();')
         			 ->disable();
+        
+        ZendX_JQuery::enableView($view);
         
         $viewRender = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRender->setView($view);
