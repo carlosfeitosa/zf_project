@@ -43,7 +43,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
         			 ->addStylesheet(DOJO_STYLE_SHEET_PATH)
         			 ->setLocalPath(DOJO_LOCAL_PATH)
-        			 ->addLayer('/js/default_scripts.js')
+        			 ->addLayer('../../js/default_scripts.js')
         			 //->addJavascript('Custon code Ex: paste.main.init();')
         			 ->disable();
         
