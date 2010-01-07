@@ -17,7 +17,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                     ->setInvalidMessage('Preencha o campo Nome!')
                     ->setRequired(true)
                     ->setLabel('Nome:')
- 					->setAttrib('size', 80);
+ 					->setAttrib('size', 100);
 
         if($options!=null)
            $elements[0]->setValue($options->nome);

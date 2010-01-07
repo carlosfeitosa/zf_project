@@ -27,7 +27,7 @@ define("CAPTCHA_FONT_PATH", "../public/fonts/typewcond_bold.otf");
 
 //DOJO DIRECTORIES
 define("DOJO_LOCAL_PATH", "../../js/dojo/dojo.js");
-define("DOJO_STYLE_SHEET_PATH", "../../js/dojox/grid/_grid/tundraGrid.css");
+define("DOJO_STYLE_SHEET_PATH", "../../js/dijit/themes/tundra/tundra.css");
 define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.tundra");
 
 //JAVASCRIPT FILES
