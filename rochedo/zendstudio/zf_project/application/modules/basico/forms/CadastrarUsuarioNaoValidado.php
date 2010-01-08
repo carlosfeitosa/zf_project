@@ -14,7 +14,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[0] = $this->createElement('ValidationTextBox', 'nome');
 		$elements[0]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
-                    ->setInvalidMessage('Preencha o campo Nome!')
+                    ->setInvalidMessage('Preencha este campo com seu nome completo.')
                     ->setRequired(true)
                     ->setLabel('Nome:')
  					->setAttrib('size', 100);
@@ -25,7 +25,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[1] = $this->createElement('ValidationTextBox', 'email');
 		$elements[1]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
-                    ->setInvalidMessage('Preencha o campo e-mail!')
+                    ->setInvalidMessage('Preencha este campo com seu e-mail.')
                     ->setRequired(true)
                     ->setLabel('E-mail:')
  					->setAttrib('size', 80);
