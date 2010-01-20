@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * PessoaPerfilMensagemCategoria model
  *
  * Utilizes the Data Mapper pattern to persist data.
@@ -269,7 +264,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     /**
     * Get data mapper
     *
-    * Lazy loads Default_Model_PessoaPerfilMensagemCategoriaMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_PessoaPerfilMensagemCategoriaMapper instance if no mapper registered.
     * 
     * @return Basico_Model_PessoaPerfilMensagemCategoriaMapper
     */
@@ -334,9 +329,5 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     {
         return $this->getMapper()->fetchList($where, $order, $count, $offset);
     }
-      
-    //start block for manually written code
-        
-    //end block for manually written code
 
 }

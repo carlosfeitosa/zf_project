@@ -1,15 +1,10 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * AnexoMensagem model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Default_Model_AnexoMensagemMapper
+ * @uses       Basico_Model_AnexoMensagemMapper
  * @subpackage Model
  */
 class Basico_Model_AnexoMensagem
@@ -20,7 +15,7 @@ class Basico_Model_AnexoMensagem
 	protected $_id;
 
 	/**
-	 * @var Default_Model_AnexoMensagemMapper
+	 * @var Basico_Model_AnexoMensagemMapper
 	 */
 	protected $_mapper;
 
@@ -100,7 +95,7 @@ class Basico_Model_AnexoMensagem
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Default_Model_AnexoMensagem
+	 * @return Basico_Model_AnexoMensagem
 	 */
 	public function setOptions(array $options)
 	{
@@ -120,7 +115,7 @@ class Basico_Model_AnexoMensagem
 	* Set nomeOriginal
 	* 
 	* @param String $nomeOriginal 
-	* @return Default_Model_NomeOriginal
+	* @return Basico_Model_NomeOriginal
 	*/
 	public function setNomeOriginal($nomeOriginal)
 	{
@@ -142,7 +137,7 @@ class Basico_Model_AnexoMensagem
 	* Set nomeSugestao
 	* 
 	* @param String $nomeSugestao 
-	* @return Default_Model_NomeSugestao
+	* @return Basico_Model_NomeSugestao
 	*/
 	public function setNomeSugestao($nomeSugestao)
 	{
@@ -164,7 +159,7 @@ class Basico_Model_AnexoMensagem
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Default_Model_Descricao
+	* @return Basico_Model_Descricao
 	*/
 	public function setDescricao($descricao)
 	{
@@ -208,7 +203,7 @@ class Basico_Model_AnexoMensagem
 	* Set mimeType
 	* 
 	* @param String $mimeType 
-	* @return Default_Model_MimeType
+	* @return Basico_Model_MimeType
 	*/
 	public function setMimeType($mimeType)
 	{
@@ -230,7 +225,7 @@ class Basico_Model_AnexoMensagem
 	* Set mensagem
 	* 
 	* @param int $mensagem 
-	* @return Default_Model_Mensagem
+	* @return Basico_Model_Mensagem
 	*/
 	public function setMensagem($mensagem)
 	{
@@ -263,7 +258,7 @@ class Basico_Model_AnexoMensagem
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Default_Model_AnexoMensagem
+	* @return Basico_Model_AnexoMensagem
 	*/
 	public function setId($id)
 	{
@@ -285,7 +280,7 @@ class Basico_Model_AnexoMensagem
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Default_Model_AnexoMensagem
+	* @return Basico_Model_AnexoMensagem
 	*/
 	public function setMapper($mapper)
 	{
@@ -296,9 +291,9 @@ class Basico_Model_AnexoMensagem
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Default_Model_AnexoMensagemMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_AnexoMensagemMapper instance if no mapper registered.
 	* 
-	* @return Default_Model_AnexoMensagemMapper
+	* @return Basico_Model_AnexoMensagemMapper
 	*/
 	public function getMapper()
 	{
@@ -333,7 +328,7 @@ class Basico_Model_AnexoMensagem
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Default_Model_AnexoMensagem
+	* @return Basico_Model_AnexoMensagem
 	*/
 	public function find($id)
 	{
@@ -360,14 +355,5 @@ class Basico_Model_AnexoMensagem
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-	
-
-//#BlockStart number=163 id=_bDB3EMSvEd6vnL5X62mZVw_#_0
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=163
 
 }

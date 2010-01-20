@@ -1,5 +1,4 @@
 <?php
-
 /**
  * DadosPessoasPerfis table data gateway
  *

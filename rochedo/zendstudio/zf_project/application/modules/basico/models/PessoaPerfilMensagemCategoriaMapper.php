@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * PessoaPerfilMensagemCategoria data mapper
  *
  * Implements the Data Mapper design pattern:
@@ -154,7 +149,3 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         return $entries;
     }
 }
-      
-//start block for manually written code
-        
-//end block for manually written code

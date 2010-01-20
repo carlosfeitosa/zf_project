@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Perfil table data gateway
  *

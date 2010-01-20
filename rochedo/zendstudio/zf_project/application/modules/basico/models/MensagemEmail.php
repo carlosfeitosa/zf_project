@@ -1,15 +1,10 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * MensagemEmail model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Default_Model_MensagemEmailMapper
+ * @uses       Basico_Model_MensagemEmailMapper
  * @subpackage Model
  */
 class Basico_Model_MensagemEmail
@@ -20,7 +15,7 @@ class Basico_Model_MensagemEmail
 	protected $_id;
 
 	/**
-	 * @var Default_Model_MensagemEmailMapper
+	 * @var Basico_Model_MensagemEmailMapper
 	 */
 	protected $_mapper;
 
@@ -92,7 +87,7 @@ class Basico_Model_MensagemEmail
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Default_Model_MensagemEmail
+	 * @return Basico_Model_MensagemEmail
 	 */
 	public function setOptions(array $options)
 	{
@@ -112,7 +107,7 @@ class Basico_Model_MensagemEmail
 	* Set destinatariosCopiaCarbonada
 	* 
 	* @param String $destinatariosCopiaCarbonada 
-	* @return Default_Model_DestinatariosCopiaCarbonada
+	* @return Basico_Model_DestinatariosCopiaCarbonada
 	*/
 	public function setDestinatariosCopiaCarbonada($destinatariosCopiaCarbonada)
 	{
@@ -134,7 +129,7 @@ class Basico_Model_MensagemEmail
 	* Set destinatariosCopiaCarbonadaCega
 	* 
 	* @param String $destinatariosCopiaCarbonadaCega 
-	* @return Default_Model_DestinatariosCopiaCarbonadaCega
+	* @return Basico_Model_DestinatariosCopiaCarbonadaCega
 	*/
 	public function setDestinatariosCopiaCarbonadaCega($destinatariosCopiaCarbonadaCega)
 	{
@@ -156,7 +151,7 @@ class Basico_Model_MensagemEmail
 	* Set responderPara
 	* 
 	* @param String $responderPara 
-	* @return Default_Model_ResponderPara
+	* @return Basico_Model_ResponderPara
 	*/
 	public function setResponderPara($responderPara)
 	{
@@ -178,7 +173,7 @@ class Basico_Model_MensagemEmail
 	* Set mensagem
 	* 
 	* @param int $mensagem 
-	* @return Default_Model_Mensagem
+	* @return Basico_Model_Mensagem
 	*/
 	public function setMensagem($mensagem)
 	{
@@ -211,7 +206,7 @@ class Basico_Model_MensagemEmail
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Default_Model_MensagemEmail
+	* @return Basico_Model_MensagemEmail
 	*/
 	public function setId($id)
 	{
@@ -233,7 +228,7 @@ class Basico_Model_MensagemEmail
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Default_Model_MensagemEmail
+	* @return Basico_Model_MensagemEmail
 	*/
 	public function setMapper($mapper)
 	{
@@ -244,9 +239,9 @@ class Basico_Model_MensagemEmail
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Default_Model_MensagemEmailMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_MensagemEmailMapper instance if no mapper registered.
 	* 
-	* @return Default_Model_MensagemEmailMapper
+	* @return Basico_Model_MensagemEmailMapper
 	*/
 	public function getMapper()
 	{
@@ -281,7 +276,7 @@ class Basico_Model_MensagemEmail
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Default_Model_MensagemEmail
+	* @return Basico_Model_MensagemEmail
 	*/
 	public function find($id)
 	{
@@ -308,14 +303,5 @@ class Basico_Model_MensagemEmail
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-	
-
-//#BlockStart number=139 id=_l3UeAK0fEd6Tgc0yakCadQ_#_0
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=139
 
 }

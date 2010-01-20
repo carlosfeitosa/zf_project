@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * GeradorXml model
  *
  * Utilizes the Data Mapper pattern to persist data.
@@ -75,6 +70,17 @@ class Basico_Model_GeradorXml
 		return $this;
 	}
 	
+	/**
+	 * Gera XML.
+	 * @param $objeto
+	 * @param $domElement
+	 * @param $DOMDocument
+	 * @param $rootNamespace
+	 * @param $rootElement
+	 * @param $xsdNamespace
+	 * @param $xsdLocation
+	 * @return unknown_type
+	 */
     public function gerar($objeto, $domElement = NULL, $DOMDocument = NULL, $rootNamespace = NULL, $rootElement = NULL, $xsdNamespace = NULL, $xsdLocation = NULL)
     {
         if(is_null($DOMDocument)){
@@ -148,7 +154,12 @@ class Basico_Model_GeradorXml
             }
         }
     }
-	    
+	
+    /**
+     * limpaChavesArrayAtributosObjeto
+     * @param $arrayAtributosObjeto
+     * @return unknown_type
+     */
     private function limpaChavesArrayAtributosObjeto($arrayAtributosObjeto = array())
     {
         $arrayResultados = array();
@@ -162,6 +173,11 @@ class Basico_Model_GeradorXml
         return $arrayResultados;
     }
 	
+    /**
+     * 
+     * @param $xml
+     * @return unknown_type
+     */
 	public function ler($xml)
     {    
         

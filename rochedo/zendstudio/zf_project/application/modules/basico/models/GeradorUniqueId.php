@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * GeradorUniqueId model
  *
  * Utilizes the Data Mapper pattern to persist data.
@@ -75,6 +70,12 @@ class Basico_Model_GeradorUniqueId
 		return $this;
 	}
 	
+	/**
+	 * Gera e retorna um uniqueId.
+	 * @param Basico_Model $modelo
+	 * @param String $nomeDoCampoBancoDeDados
+	 * @return String $uniqueId
+	 */
 	public function gerar($modelo, $nomeDoCampoBancoDeDados)
 	{
 	    $uniqueId = md5(uniqid(rand(), true));

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Categoria table data gateway
  *

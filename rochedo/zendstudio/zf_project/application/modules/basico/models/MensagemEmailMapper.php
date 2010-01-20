@@ -1,16 +1,11 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * MensagemEmail data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_MensagemEmail
+ * @uses       Basico_Model_DbTable_MensagemEmail
  * @subpackage Model
  */
 class Basico_Model_MensagemEmailMapper
@@ -24,7 +19,7 @@ class Basico_Model_MensagemEmailMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_MensagemEmailMapper
+     * @return Basico_Model_MensagemEmailMapper
      */
     public function setDbTable($dbTable)
     {
@@ -41,7 +36,7 @@ class Basico_Model_MensagemEmailMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_MensagemEmail if no instance registered
+     * Lazy loads Basico_Model_DbTable_MensagemEmail if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
@@ -56,7 +51,7 @@ class Basico_Model_MensagemEmailMapper
     /**
      * Save a MensagemEmail entry
      * 
-     * @param  Default_Model_MensagemEmail $object
+     * @param  Basico_Model_MensagemEmail $object
      * @return void
      */
     public function save(Default_Model_MensagemEmail $object)
@@ -79,7 +74,7 @@ class Basico_Model_MensagemEmailMapper
     
 	/**
 	* Delete a MensagemEmail entry
-	* @param Default_Model_MensagemEmail $object
+	* @param Basico_Model_MensagemEmail $object
 	* @return void
 	*/
 	public function delete(Default_Model_MensagemEmail $object)
@@ -91,7 +86,7 @@ class Basico_Model_MensagemEmailMapper
      * Find a MensagemEmail entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_MensagemEmail $object 
+     * @param  Basico_Model_MensagemEmail $object 
      * @return void
      */
     public function find($id, Default_Model_MensagemEmail $object)
@@ -156,14 +151,5 @@ class Basico_Model_MensagemEmailMapper
 		}
 		return $entries;
 	}
-
-
-//#BlockStart number=140 id=_l3UeAK0fEd6Tgc0yakCadQ_#_0
-      
-//start block for manually written code
-        
-//end block for manually written code
-
-//#BlockEnd number=140
 
 }

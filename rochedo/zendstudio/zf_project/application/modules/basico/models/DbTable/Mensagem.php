@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Mensagem table data gateway
  *
@@ -13,14 +12,5 @@ class Basico_Model_DbTable_Mensagem extends Zend_Db_Table_Abstract
      */
     protected $_name = 'mensagem';
     
-
-//#BlockStart number=150 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=150
-
 }
 ?>

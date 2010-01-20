@@ -1,16 +1,11 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * AnexoMensagem data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_AnexoMensagem
+ * @uses       Basico_Model_DbTable_AnexoMensagem
  * @subpackage Model
  */
 class Basico_Model_AnexoMensagemMapper
@@ -24,7 +19,7 @@ class Basico_Model_AnexoMensagemMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_AnexoMensagemMapper
+     * @return Basico_Model_AnexoMensagemMapper
      */
     public function setDbTable($dbTable)
     {
@@ -41,7 +36,7 @@ class Basico_Model_AnexoMensagemMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_AnexoMensagem if no instance registered
+     * Lazy loads Basico_Model_DbTable_AnexoMensagem if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
@@ -56,10 +51,10 @@ class Basico_Model_AnexoMensagemMapper
     /**
      * Save a AnexoMensagem entry
      * 
-     * @param  Default_Model_AnexoMensagem $object
+     * @param  Basico_Model_AnexoMensagem $object
      * @return void
      */
-    public function save(Default_Model_AnexoMensagem $object)
+    public function save(Basico_Model_AnexoMensagem $object)
     {
         $data = array(
 				'nome_original'   => $object->getNomeOriginal(),
@@ -81,10 +76,10 @@ class Basico_Model_AnexoMensagemMapper
     
 	/**
 	* Delete a AnexoMensagem entry
-	* @param Default_Model_AnexoMensagem $object
+	* @param Basico_Model_AnexoMensagem $object
 	* @return void
 	*/
-	public function delete(Default_Model_AnexoMensagem $object)
+	public function delete(Basico_Model_AnexoMensagem $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
@@ -93,7 +88,7 @@ class Basico_Model_AnexoMensagemMapper
      * Find a AnexoMensagem entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_AnexoMensagem $object 
+     * @param  Basico_Model_AnexoMensagem $object 
      * @return void
      */
     public function find($id, Basico_Model_AnexoMensagem $object)
@@ -150,7 +145,7 @@ class Basico_Model_AnexoMensagemMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_AnexoMensagem();
+			$entry = new Basico_Model_AnexoMensagem();
 			$entry->setId($row->id)
 
 				->setNomeOriginal($row->nome-original)
@@ -164,14 +159,5 @@ class Basico_Model_AnexoMensagemMapper
 		}
 		return $entries;
 	}
-
-
-//#BlockStart number=164 id=_bDB3EMSvEd6vnL5X62mZVw_#_0
-      
-//start block for manually written code
-        
-//end block for manually written code
-
-//#BlockEnd number=164
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * DadosPessoais table data gateway
  *

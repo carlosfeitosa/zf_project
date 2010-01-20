@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Mensagem table data gateway
  *
@@ -12,15 +11,6 @@ class Basico_Model_DbTable_PessoaPerfilMensagemCategoria extends Zend_Db_Table_A
      * @var string Name of the database table
      */
     protected $_name = 'pessoas_perfis_mensagem_categoria';
-    
-
-//#BlockStart number=150 id=_kDO0oMIwEd6r_uu4CwoKLQ_#_0
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=150
 
 }
-?>
+

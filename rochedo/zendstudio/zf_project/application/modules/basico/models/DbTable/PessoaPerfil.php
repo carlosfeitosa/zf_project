@@ -1,5 +1,4 @@
 <?php
-
 /**
  * PessoaPerfil table data gateway
  *

@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * Log model
  *
  * Utilizes the Data Mapper pattern to persist data.
@@ -20,7 +15,7 @@ class Basico_Model_Log
 	protected $_id;
 
 	/**
-	 * @var Default_Model_LogMapper
+	 * @var Basico_Model_LogMapper
 	 */
 	protected $_mapper;
 
@@ -97,7 +92,7 @@ class Basico_Model_Log
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Default_Model_Log
+	 * @return Basico_Model_Log
 	 */
 	public function setOptions(array $options)
 	{
@@ -117,7 +112,7 @@ class Basico_Model_Log
 	* Set dataHoraEvento
 	* 
 	* @param String $dataHoraEvento 
-	* @return Default_Model_DataHoraEvento
+	* @return Basico_Model_DataHoraEvento
 	*/
 	public function setDataHoraEvento($dataHoraEvento)
 	{
@@ -139,7 +134,7 @@ class Basico_Model_Log
 	* Set xml
 	* 
 	* @param String $xml 
-	* @return Default_Model_Xml
+	* @return Basico_Model_Xml
 	*/
 	public function setXml($xml)
 	{
@@ -161,7 +156,7 @@ class Basico_Model_Log
 	* Set descricao
 	* 
 	* @param String $xml 
-	* @return Default_Model_Xml
+	* @return Basico_Model_Xml
 	*/
 	public function setDescricao($descricao)
 	{
@@ -183,7 +178,7 @@ class Basico_Model_Log
 	* Set pessoasperfis
 	* 
 	* @param int $pessoasperfis 
-	* @return Default_Model_Pessoasperfis
+	* @return Basico_Model_Pessoasperfis
 	*/
 	public function setPessoaPerfil($pessoaperfil)
 	{
@@ -216,7 +211,7 @@ class Basico_Model_Log
 	* Set categoria
 	* 
 	* @param int $categoria 
-	* @return Default_Model_Categoria
+	* @return Basico_Model_Categoria
 	*/
 	public function setCategoria($categoria)
 	{
@@ -249,7 +244,7 @@ class Basico_Model_Log
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Default_Model_Log
+	* @return Basico_Model_Log
 	*/
 	public function setId($id)
 	{
@@ -271,7 +266,7 @@ class Basico_Model_Log
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Default_Model_Log
+	* @return Basico_Model_Log
 	*/
 	public function setMapper($mapper)
 	{
@@ -282,9 +277,9 @@ class Basico_Model_Log
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Default_Model_LogMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_LogMapper instance if no mapper registered.
 	* 
-	* @return Default_Model_LogMapper
+	* @return Basico_Model_LogMapper
 	*/
 	public function getMapper()
 	{
@@ -319,7 +314,7 @@ class Basico_Model_Log
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Default_Model_Log
+	* @return Basico_Model_Log
 	*/
 	public function find($id)
 	{

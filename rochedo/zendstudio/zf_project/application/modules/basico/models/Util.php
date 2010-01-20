@@ -1,16 +1,17 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * Util model
  *
  * @subpackage Model
  */
 class Basico_Model_Util
 {
+	/**
+	 * Cria diretorios recursivamente.
+	 * @param String $caminho
+	 * @param int $folderRights
+	 * @return Boolean
+	 */
     public static function mkdirRecursive($caminho, $folderRights = 0777)
     {
         try {
@@ -30,11 +31,21 @@ class Basico_Model_Util
         return false;
     }
     
+    /**
+     * Retorna Conteúdo de Arquivo.
+     * @param String $filename
+     * @return String
+     */
     public static function getFileContent($filename)
     {        
         return file_get_contents($filename);
     }
     
+    /**
+     * Retorna conteúdo de uma uri passada como parametro.
+     * @param String $uri
+     * @return String
+     */
     public static function getUrlContent($uri)
     {
         $encodedUri = urldecode($uri);
@@ -42,6 +53,10 @@ class Basico_Model_Util
         return file_get_contents($encodedUri);
     }
     
+    /**
+     * Retorna o id da PessoaPefil do sistema.
+     * @return Int
+     */
 	public static function retornaIdPessoaPerfilSistema()
 	{
 	    $login = new Basico_Model_Login();
@@ -69,6 +84,10 @@ class Basico_Model_Util
         return $pessoaPerfilSistema[0]->id;
 	}
 	
+	/**
+	 * Retorna IP do usuário.
+	 * @return String
+	 */
 	public static function retornaUserIp()
 	{
 		if (!empty($_SERVER["HTTP_CLIENT_IP"]))
@@ -81,21 +100,37 @@ class Basico_Model_Util
 		return $userIp;
 	}
 	
+	/**
+	 * Retorna tipo da conexão do usuário.
+	 * @return String
+	 */
 	public static function retornaUserConnectionType()
 	{
 		return $_SERVER["HTTP_CONNECTION"];
 	}
 	
+	/**
+	 * Retorna o nome do browser, sistema operacional utilizado.
+	 * @return String
+	 */
 	public static function retornaUserAgent()
 	{
 		return $_SERVER["HTTP_USER_AGENT"];
 	}
 	
+	/**
+	 * Retorna requisição do usuário.
+	 * @return Array
+	 */
 	public static function retornaUserRequest()
 	{
 		return Zend_Controller_Front::getInstance()->getRequest();
 	}
 	
+	/**
+	 * Checa se está no ambiente de desenvolvimento
+	 * @return Boolean
+	 */
 	public static function ambienteDesenvolvimento()
 	{
 		return (strpos(APPLICATION_ENV, 'development') !== false);

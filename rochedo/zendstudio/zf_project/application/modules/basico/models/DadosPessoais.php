@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * DadosPessoais model
  *
  * Utilizes the Data Mapper pattern to persist data.

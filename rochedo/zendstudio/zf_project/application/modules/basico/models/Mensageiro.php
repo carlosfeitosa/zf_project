@@ -1,15 +1,10 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * Mensageiro model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Default_Model_MensageiroMapper
+ * @uses       Basico_Model_MensageiroMapper
  * @subpackage Model
  */
 class Basico_Model_Mensageiro
@@ -20,7 +15,7 @@ class Basico_Model_Mensageiro
 	protected $_id;
 
 	/**
-	 * @var Default_Model_MensageiroMapper
+	 * @var Basico_Model_MensageiroMapper
 	 */
 	protected $_mapper;
 
@@ -75,7 +70,7 @@ class Basico_Model_Mensageiro
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Default_Model_Mensageiro
+	 * @return Basico_Model_Mensageiro
 	 */
 	public function setOptions(array $options)
 	{
@@ -95,7 +90,7 @@ class Basico_Model_Mensageiro
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Default_Model_Mensageiro
+	* @return Basico_Model_Mensageiro
 	*/
 	public function setId($id)
 	{
@@ -117,7 +112,7 @@ class Basico_Model_Mensageiro
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Default_Model_Mensageiro
+	* @return Basico_Model_Mensageiro
 	*/
 	public function setMapper($mapper)
 	{
@@ -128,9 +123,9 @@ class Basico_Model_Mensageiro
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Default_Model_MensageiroMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_MensageiroMapper instance if no mapper registered.
 	* 
-	* @return Default_Model_MensageiroMapper
+	* @return Basico_Model_MensageiroMapper
 	*/
 	public function getMapper()
 	{
@@ -165,7 +160,7 @@ class Basico_Model_Mensageiro
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Default_Model_Mensageiro
+	* @return Basico_Model_Mensageiro
 	*/
 	public function find($id)
 	{
@@ -192,15 +187,5 @@ class Basico_Model_Mensageiro
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-	
-	
-
-//#BlockStart number=112 id=_b8TuAKx9Ed6l74B_OiRrsA_#_0
-      
-    //start block for manually written code
-        
-    //end block for manually written code
-
-//#BlockEnd number=112
 
 }

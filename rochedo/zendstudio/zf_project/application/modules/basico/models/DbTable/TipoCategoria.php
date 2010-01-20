@@ -1,5 +1,4 @@
 <?php
-
 /**
  * TipoCategoria table data gateway
  *
@@ -13,4 +12,4 @@ class Basico_Model_DbTable_TipoCategoria extends Zend_Db_Table_Abstract
      */
     protected $_name = 'tipo_categoria';
 }
-?>
+

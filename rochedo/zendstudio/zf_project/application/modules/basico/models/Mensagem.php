@@ -20,7 +20,7 @@ class Basico_Model_Mensagem
 	protected $_categoria;
 
 	/**
-	 * @var Default_Model_MensagemMapper
+	 * @var Basico_Model_MensagemMapper
 	 */
 	protected $_mapper;
 
@@ -109,7 +109,7 @@ class Basico_Model_Mensagem
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Default_Model_Mensagem
+	 * @return Basico_Model_Mensagem
 	 */
 	public function setOptions(array $options)
 	{
@@ -129,7 +129,7 @@ class Basico_Model_Mensagem
 	* Set remetente
 	* 
 	* @param String $remetente 
-	* @return Default_Model_Remetente
+	* @return Basico_Model_Remetente
 	*/
 	public function setRemetente($remetente)
 	{
@@ -151,7 +151,7 @@ class Basico_Model_Mensagem
 	* Set remetenteNome
 	* 
 	* @param String $remetenteNome 
-	* @return Default_Model_Remetente
+	* @return Basico_Model_Remetente
 	*/
 	public function setRemetenteNome($remetenteNome)
 	{
@@ -173,7 +173,7 @@ class Basico_Model_Mensagem
 	* Set destinatario
 	* 
 	* @param String $destinatario 
-	* @return Default_Model_Destinatario
+	* @return Basico_Model_Destinatario
 	*/
 	public function setDestinatarios($destinatarios)
 	{
@@ -209,7 +209,7 @@ class Basico_Model_Mensagem
 	* Set assunto
 	* 
 	* @param String $assunto 
-	* @return Default_Model_Assunto
+	* @return Basico_Model_Assunto
 	*/
 	public function setAssunto($assunto)
 	{
@@ -231,7 +231,7 @@ class Basico_Model_Mensagem
 	* Set dataHora
 	* 
 	* @param String $dataHora 
-	* @return Default_Model_DataHora
+	* @return Basico_Model_DataHora
 	*/
 	public function setDatahoraMensagem($datahoraMensagem)
 	{
@@ -253,7 +253,7 @@ class Basico_Model_Mensagem
 	* Set mensagem
 	* 
 	* @param String $mensagem 
-	* @return Default_Model_Mensagem
+	* @return Basico_Model_Mensagem
 	*/
 	public function setMensagem($mensagem)
 	{
@@ -275,7 +275,7 @@ class Basico_Model_Mensagem
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Default_Model_Mensagem
+	* @return Basico_Model_Mensagem
 	*/
 	public function setId($id)
 	{
@@ -342,7 +342,7 @@ class Basico_Model_Mensagem
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Default_Model_Mensagem
+	* @return Basico_Model_Mensagem
 	*/
 	public function setMapper($mapper)
 	{
@@ -353,9 +353,9 @@ class Basico_Model_Mensagem
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Default_Model_MensagemMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_MensagemMapper instance if no mapper registered.
 	* 
-	* @return Default_Model_MensagemMapper
+	* @return Basico_Model_MensagemMapper
 	*/
 	public function getMapper()
 	{
@@ -390,7 +390,7 @@ class Basico_Model_Mensagem
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Default_Model_Mensagem
+	* @return Basico_Model_Mensagem
 	*/
 	public function find($id)
 	{

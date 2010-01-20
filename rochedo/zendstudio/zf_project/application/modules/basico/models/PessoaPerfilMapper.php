@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * PessoaPerfil data mapper
  *
  * Implements the Data Mapper design pattern:
