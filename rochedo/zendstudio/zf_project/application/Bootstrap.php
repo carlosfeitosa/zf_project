@@ -1,16 +1,31 @@
 <?php
 
-// INCLUDES
+/**
+ * Inclui arquivos do sistema.
+ */
 require_once("configs/application.php");
 require_once("consts/consts.php");
 require_once("modules/basico/controllers/LogController.php");
 require_once("modules/basico/models/Log.php");
 require_once("modules/basico/models/Util.php");
 
+/**
+ * Bootstrap primário do sistema.
+ * 
+ *
+ */
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
+	/**
+	 * recebe a instância do controlador Log.
+	 * @var Basico_LogController
+	 */
     public $logger;
     
+    /**
+     * Inicializa a aplicação.
+     * @return void
+     */
     protected function _initApplication()
     {
         // instancia a classe de Log
@@ -21,7 +36,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
     }
-        
+
+    /**
+     * Inicializa o Autoload do sistema.
+     * @return Zend_Application_Module_Autoloader
+     */
     protected function _initAutoload()
     {      
         $autoloader = new Zend_Application_Module_Autoloader(array(
@@ -31,6 +50,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         return $autoloader;
     }
 
+    /**
+     * Inicializa a camada view do sistema.
+     * @return Zend_View $view
+     */
     protected function _initView()
     {   
         $view = new Zend_View();

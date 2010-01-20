@@ -1,17 +1,42 @@
 <?php
-
+/**
+ * Controlador Rowinfo
+ *
+ */
 class Basico_RowInfoController
 {
+	/**
+	 * Instância do controlador Rowinfo
+	 * @var Basico_RowInfoController
+	 */
 	static private $singleton;
+	
+	/**
+	 * Instância do Modelo RowInfo
+	 * @var Basico_Model_RowInfo
+	 */
 	private $rowinfo;
+	
+	/**
+	 * Instância do modelo Gerador
+	 * @var Basico_Model_Gerador
+	 */
 	private $gerador;
 	
+	/**
+	 * Construtor.
+	 * @return unknown_type
+	 */
 	private function __construct()
 	{
 		$this->rowinfo = new Basico_Model_RowInfo();
 		$this->gerador = new Basico_Model_Gerador();
 	}
 	
+	/**
+	 * Retorna instância do controlador RowInfo
+	 * @return Basico_RowInfoController
+	 */
 	static public function init()
 	{
 		if(self::$singleton == NULL){

@@ -1,7 +1,15 @@
 <?php
-
+/**
+ * 
+ * Controlador de Erros do sistema.
+ *
+ */
 class ErrorController extends Zend_Controller_Action
 {
+	/**
+	 * Ação default para erros do sistema.
+	 * @return unknown_type
+	 */
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');

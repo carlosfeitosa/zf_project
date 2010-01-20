@@ -1,14 +1,35 @@
 <?php
+/**
+ * Controlador Pessoa.
+ *
+ */
 class Basico_PessoaController
 {
+	/**
+	 * Instância do Controlador Pessoa
+	 * @var Basico_PessoaController
+	 */
 	static private $singleton;
+	
+	/**
+	 * Instância do Modelo Pessoa.
+	 * @var Basico_Model_Pessoa
+	 */
 	private $pessoa;
 	
+	/**
+	 * Construtor do Controlador Pessoa.
+	 * @return void
+	 */
 	private function __construct()
 	{
 		$this->pessoa = new Basico_Model_Pessoa();
 	}
 	
+	/**
+	 * Retorna instância do Controlador Pessoa.
+	 * @return Basico_PessoaController
+	 */
 	static public function init()
 	{
 		if(self::$singleton == NULL){
@@ -17,6 +38,11 @@ class Basico_PessoaController
 		return self::$singleton;
 	}
 	
+	/**
+	 * Salva objeto no Banco de dados.
+	 * @param Basico_Model_Pessoa $novaPessoa
+	 * @return void
+	 */
 	public function salvarPessoa($novaPessoa)
 	{
 		try {

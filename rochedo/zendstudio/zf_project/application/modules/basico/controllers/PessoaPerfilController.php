@@ -1,14 +1,35 @@
 <?php
+/**
+ * Controlador PessoaPerfil
+ *
+ */
 class Basico_PessoaPerfilController 
 {
+	/**
+	 * Instância do Controlador PessoaPerfil
+	 * @var Basico_PessoaPerfilController
+	 */
 	static private $singleton;
+	
+	/**
+	 * Instância do Modelo PessoaPerfil
+	 * @var Basico_Model_PessoaPerfil
+	 */
 	private $pessoaPerfil;
 	
+	/**
+	 * Construtor do controlador PessoaPerfil
+	 * @return Basico_Model_PessoaPerfil
+	 */
 	private function __construct()
 	{
 		$this->pessoaPerfil = new Basico_Model_PessoaPerfil();
 	}
 	
+	/**
+	 * Retorna instância do Controlador PessoaPerfil
+	 * @return Basico_PessoaPerfilController
+	 */
 	public static function init()
 	{
 		if(self::$singleton == NULL){
@@ -17,7 +38,12 @@ class Basico_PessoaPerfilController
 		return self::$singleton;
 	}
 	
-	
+	/**
+	 * Salva pessoaPefil no banco de dados.
+	 * @param Basico_Model_PessoaPerfil $novaPessoaPerfil
+	 * @param int $idPessoaPerfilCriador
+	 * @return void
+	 */
 	public function salvarPessoaPerfil($novaPessoaPerfil, $idPessoaPerfilCriador = null)
 	{
 	    try {
@@ -47,7 +73,11 @@ class Basico_PessoaPerfilController
     	}
 	}
 	
-	//RETORNA ID PESSOA PERFIL PELO ID DA PESSOA
+	/**
+	 * Retorna id da pessoaPerfil utilizando o id de pessoa como parametro para busca.
+	 * @param int $idPessoa
+	 * @return Basico_Model_PessoaPefil
+	 */
 	public function retornaIdPessoaPerfilPessoa($idPessoa) {
 		
 		$idPessoaPerfil = self::$singleton->pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);

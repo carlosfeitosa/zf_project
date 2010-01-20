@@ -1,5 +1,7 @@
 <?php 
-// application/layouts/scripts/layout.phtml
+/**
+ * Layout padrão do sistema.
+ */
 
 $this->doctype('XHTML1_STRICT');
 $this->headTitle(APPLICATION_NAME_AND_VERSION);
@@ -28,7 +30,7 @@ if ('production' != APPLICATION_ENV)
     <?php echo $this->headScript() ?>
     <?php echo $this->dojo();?>  
 </head> 
-<body class="tundra"">
+<body class="tundra">
 <div id="header">
     <div id="header-logo">
         <?php echo "<a href=" . "'" . $applicationHttpHome."'"."a>" . APPLICATION_NAME_AND_VERSION."</a>" ?>
