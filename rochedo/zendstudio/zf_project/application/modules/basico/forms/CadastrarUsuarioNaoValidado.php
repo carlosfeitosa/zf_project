@@ -1,6 +1,16 @@
 <?php
+/**
+ * Form para iniciar cadastro de novos usuarios.
+ * 
+ *
+ */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
+	/**
+	 * Construtor do Form.
+	 * @param array $options
+	 * @return Basico_Form_CadastrarUsuarioNaoValidado
+	 */
     public function __construct($options = null)
     {      
         parent::__construct($options);

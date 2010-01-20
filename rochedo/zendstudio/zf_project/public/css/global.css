@@ -79,3 +79,11 @@ div#footer_poweredby
 {
 	float: right;
 }
+
+div#loading_img
+{
+	background: url(../images/loading.gif);
+	width: 205px;
+	height: 100px;
+	
+}
