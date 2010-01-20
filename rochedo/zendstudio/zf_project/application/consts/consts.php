@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Arquivo para definição de contantes da lógica do sistema.
+ */
 require_once("error_consts.php");
 require_once("log_consts.php");
 

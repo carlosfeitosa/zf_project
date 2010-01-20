@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Arquivo para definição de constantes de log do sistema.
+ */
 // PRIORIDADES
 define("LOG_PRIORITY_EMERGENCIA", Zend_Log::EMERG);
 define("LOG_PRIORITY_ALERTA",     Zend_Log::ALERT);

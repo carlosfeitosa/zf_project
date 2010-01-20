@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Arquivo para definição de constantes de Mensagens de erro do sistema.
+ */
 // APPLICATION
 define("MSG_ERRO_PAGINA_NAO_ENCONTRADA", "Página não encontrada.");
 define("MSG_ERRO_APLICACAO", "Erro na aplicação.");

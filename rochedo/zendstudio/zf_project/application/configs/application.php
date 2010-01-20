@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Arquivo para definição de constantes de configuração do sistema.
+ */
 // APPLICATION
 define("APPLICATION_NAME", "Rochedo Project");
 define("APPLICATION_VERSION", "1.0");
