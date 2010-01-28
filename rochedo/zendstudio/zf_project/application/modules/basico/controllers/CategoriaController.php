@@ -203,6 +203,14 @@ class Basico_CategoriaController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL);
 	}
 	
+    public function retornaCategoriaLogNovoToken()
+	{
+		$categoriaLogNovoToken = $this->retornaCategoria(LOG_NOVO_EMAIL);
+		if (isset($categoriaLogNovoEmail))
+			return $categoriaLogNovoEmail;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL);
+	}
+	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_MENSAGEM
 	 * @return Basico_Model_Categoria $categoriaLogNovaMensagem
