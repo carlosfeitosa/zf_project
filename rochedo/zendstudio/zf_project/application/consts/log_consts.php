@@ -21,4 +21,5 @@ define("LOG_MSG_NOVA_PESSOA_PERFIL", "Nova associacao de pessoa perfil inserida 
 define("LOG_MSG_NOVO_DADOS_PESSOAIS", "Novos dados pessoais inseridos no banco de dados.");
 define("LOG_MSG_NOVO_EMAIL", "Novo e-mail inserido no banco de dados.");
 define("LOG_MSG_NOVA_MENSAGEM", "Nova mensagem inserida no banco de dados.");
+define("LOG_MSG_NOVO_TOKEN", "Novo token inserido no banco de dados.");
 define("LOG_MSG_VALIDACAO_USUARIO", "Tentativa de validacao de e-mail de usuario.");

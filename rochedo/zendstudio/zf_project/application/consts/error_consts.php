@@ -19,6 +19,10 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL", "Categoria de log nova pesso
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS", "Categoria de log novo dados pessoais nao encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL", "Categoria de log novo e-mail nao encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM", "Categoria de log nova mensagem nao encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN", "Categoria de log novo token nao encontrada no banco de dados");
+
+//TOKEN
+define("MSG_ERRO_TOKEN_CHECK_CONSTRAINT","Constraint token id_generico não confere");
 
 // LOGIN
 define("MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO", "Usuário master não encontrado no sistema.");

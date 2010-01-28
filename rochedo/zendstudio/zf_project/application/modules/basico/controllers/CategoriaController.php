@@ -205,10 +205,10 @@ class Basico_CategoriaController
 	
     public function retornaCategoriaLogNovoToken()
 	{
-		$categoriaLogNovoToken = $this->retornaCategoria(LOG_NOVO_EMAIL);
-		if (isset($categoriaLogNovoEmail))
-			return $categoriaLogNovoEmail;
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL);
+		$categoriaLogNovoToken = $this->retornaCategoria(LOG_TOKEN_VALIDACAO_USUARIO);
+		if (isset($categoriaLogNovoToken))
+			return $categoriaLogNovoToken;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN);
 	}
 	
 	/**

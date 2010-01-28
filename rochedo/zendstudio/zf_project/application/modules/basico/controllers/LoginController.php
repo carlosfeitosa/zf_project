@@ -20,6 +20,8 @@ require_once("MensagemController.php");
 require_once("LogController.php");
 require_once("RowinfoController.php");
 require_once("PessoaPerfilMensagemCategoriaController.php");
+require_once("TokenController.php");
+require_once("CategoriaChaveEstrangeiraController.php");
 
 class Basico_LoginController extends Zend_Controller_Action
 {
@@ -154,17 +156,29 @@ class Basico_LoginController extends Zend_Controller_Action
 	                     $controladorMensageiro    = Basico_MensageiroController::init();
 	                     $controladorCategoria     = Basico_CategoriaController::init();
 	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();
+	                     $controladorToken         = Basico_TokenController::init();
 	                     	            	 
 		            	 //POPULANDO CATEGORIAS
 		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
 			             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
 			            
 			             //POPULANDO VARIAVEIS
-			             $email    = $this->getRequest()->getParam('email');
-			             $uniqueId = $controladorEmail->retornaUniqueIdEmail($email);
-			             $idPessoa = $controladorEmail->retornaIdPessoaEmail($email);
-			             $idPessoaPerfil = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa);
+			             $email            = $this->getRequest()->getParam('email');
+			             $uniqueId         = $controladorEmail->retornaUniqueIdEmail($email);
+			             $idEmail          = $controladorEmail->retornaIdEmail($email);
+			             $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
+			             $idPessoa         = $controladorEmail->retornaIdPessoaEmail($email);
+			             $idPessoaPerfil   = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa);
 			             
+			             //SALVANDO TOKEN
+			             $novoToken = new Basico_Model_Token();
+			             $novoToken->token       = $controladorToken->gerarToken($novoToken, 'token');
+			             $novoToken->idGenerico  = $idEmail->id;
+			             $novoToken->categoria   = $idCategoriaToken->id;
+			             $controladorRowInfo->prepareXml($novoToken, true);
+			             $novoToken->rowinfo     = $controladorRowInfo->getXml();
+			             $controladorToken->salvarToken($novoToken);
+ 			             
 			             //SALVANDO MENSAGEM
 			             $link = LINK_VALIDACAO_USUARIO . $uniqueId;
 			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
