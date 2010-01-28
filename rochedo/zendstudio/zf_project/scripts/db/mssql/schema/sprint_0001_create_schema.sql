@@ -9,6 +9,7 @@
 * 						- 29/12/2009 - adicao do campo login.datahora_expiracao_senha timestamp with time zone;
 * 									 - adicao de nova tabela (dados_pessoas_perfis);
 * 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null;
+* 						- 28/01/2010 - adicao das tabelas categoria_chave_estrangeira e token;
 */
 
 // CRIACAO DAS TABELAS
@@ -143,6 +144,22 @@ create table dados_pessoas_perfis (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
+create table categoria_chave_estrangeira (
+	id int identity not null ,
+	id_categoria int not null ,
+	tabela_estrangeira varchar (100) collate latin1_general_ci_ai not null ,
+	campo_estrangeiro varchar (100) collate latin1_general_ci_ai not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
+create table token (
+	id int identity not null ,
+	id_generico int not null ,
+	token varchar (100) collate latin1_general_ci_ai not null ,
+	datahora_expiracao datetime null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
 
 // CRIACAO DAS CHAVES PRIMARIAS
 
@@ -174,6 +191,10 @@ alter table pessoas_perfis_mensagem_categoria with nocheck add constraint pk_pes
 
 alter table dados_pessoas_perfis with nocheck add constraint pk_dados_pessoas_perfis primary key clustered (id) on [primary];
 
+alter table categoria_chave_estrangeira with nocheck add constraint pk_categoria_chave_estrangeira primary key clustered (id) on [primary];
+
+alter table token with nocheck add constraint pk_token primary key clustered (id) on [primary];
+
 
 // CRIACAO DOS VALORES DEFAULT
 
@@ -195,6 +216,9 @@ alter table login add
 	constraint df_login_resetado default (0) for resetado,
 	constraint df_login_pode_expirar default (1) for pode_expirar,
 	constraint df_login_datahora_proxima_expiracao default (dateadd(month,12,getdate())) for datahora_proxima_expiracao;
+	
+alter table token add
+	constraint df_token_datahora_expiracao default (dateadd(hour, 36, getdate())) for datahora_expiracao;
 
 
 // CRIACAO DOS INDICES
@@ -214,6 +238,10 @@ create unique index ix_login_login on login (login) on [primary];
 create unique index ix_tipo_categoria_nome on tipo_categoria (nome) on [primary];
 
 create index ix_mensagem_email_responder_para on mensagem_email (responder_para) on [primary];
+
+create unique index ix_categoria_chave_estrangeira_id_categoria on categoria_chave_estrangeira (id_categoria) on [primary];
+
+create unique index ix_token_token on token (token) on [primary];
 
 
 // CRIACAO DAS CONSTRAINTS UNIQUE

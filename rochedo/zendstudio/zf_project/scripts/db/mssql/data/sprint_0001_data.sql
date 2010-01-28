@@ -10,6 +10,8 @@
 * 									 - correcao da categoria SISTEMA_MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO (SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 * 									 - insert da template de mensagem de email de validacao de usuario plaintext reenvio;
 * 									 - insert de rowinfo em pessoas_perfis;
+* 						- 28/01/2010 - insert da categoria LOG_TOKEN_VALIDACAO_USUARIO;
+* 									 - insert em categoria_chave_estrangeira (email)
 */
 
 // DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA)
@@ -114,6 +116,13 @@ WHERE t.nome = 'SISTEMA';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_VALIDACAO_USUARIO' AS nome, 'Operações de validação de usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_TOKEN_VALIDACAO_USUARIO' AS nome, 'Operações de validação de usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
@@ -322,3 +331,10 @@ LEFT JOIN tipo_categoria tipo_cat ON (cat.id_tipo_categoria = tipo_cat.id)
 WHERE perf.nome = 'SISTEMA'
 AND cat.nome = 'SISTEMA_USUARIO'
 AND perf.nome = 'SISTEMA';
+
+INSERT INTO categoria_chave_estrangeira (id_categoria, tabela_estrangeira, campo_estrangeiro, rowinfo)
+SELECT c.id AS id_categoria, 'email' AS tabela_estrangeira, 'id' AS campo_estrangeiro, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'MENSAGEM'
+AND c.nome = 'MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT';

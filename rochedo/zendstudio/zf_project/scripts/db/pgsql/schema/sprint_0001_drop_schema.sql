@@ -7,8 +7,11 @@
 * ultimas modificacoes: 
 * 				      	- 13/12/2009
 * 						- 29/12/2009 - drop table dados_pessoas_perfis;
+* 						- 29/01/2010 - drop table categoria_chave_estrangeira e token;
 */
 
+drop table token;
+drop table categoria_chave_estrangeira;
 drop table email;
 drop table log;
 drop table login;

@@ -8,7 +8,8 @@
 * 						- 14/12/2009
 * 						- 29/12/2009 - adicao do campo login.datahora_expiracao_senha timestamp with time zone;
 * 									 - adicao de nova tabela (dados_pessoas_perfis);
-* 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null; 
+* 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null;
+*						- 28/01/2010 - adicao das tabelas categoria_chave_estrangeira e token; 
 */
 
 // CRIACAO DAS TABELAS
@@ -199,6 +200,29 @@ with (
 );
 alter table dados_pessoas_perfis owner to rochedo_user;
 
+create table categoria_chave_estrangeira (
+	id serial not null ,
+	id_categoria int not null ,
+	tabela_estrangeira character varying (100) not null ,
+	campo_estrangeiro character varying (100) not null ,
+	rowinfo character varying (2000) not null
+)
+with (
+	oids = false
+);
+alter table categoria_chave_estrangeira owner to rochedo_user;
+
+create table token (
+	id serial not null ,
+	id_generico int not null ,
+	token character varying (100) not null ,
+	datahora_expiracao timestamp with time zone null ,
+	rowinfo character varying (2000) not null
+)with (
+	oids = false
+);
+alter table token owner to rochedo_user;
+
 
 // CRIACAO DAS CHAVES PRIMARIAS
 
@@ -230,6 +254,10 @@ alter table pessoas_perfis_mensagem_categoria add constraint pk_pessoas_perfis_m
 
 alter table dados_pessoas_perfis add constraint pk_dados_pessoas_perfis primary key (id);
 
+alter table categoria_chave_estrangeira add constraint pk_categoria_chave_estrangeira primary key (id);
+
+alter table token add constraint pk_token primary key (id);
+
 
 // CRIACAO DOS VALORES DEFAULT
 
@@ -251,6 +279,9 @@ alter table login
 	alter column resetado set default 0 ,
 	alter column pode_expirar set default 1 ,
 	alter column datahora_proxima_expiracao set default (current_timestamp + interval '12 months');
+	
+alter table token
+	alter column datahora_expiracao set default (current_timestamp + interval '36 hours');
 
 
 // CRIACAO DOS INDICES
@@ -278,6 +309,12 @@ create index ix_tipo_categoria_nome
   
 create index ix_mensagem_email_responder_para 
   on mensagem_email using btree (responder_para asc nulls last);
+  
+create index ix_categoria_chave_estrangeira_id_categoria
+  on categoria_chave_estrangeira using btree (id_categoria asc nulls last);
+  
+create index ix_token_id_generico
+  on token using btree (id_generico asc nulls last);
 
 
 // CRIACAO DAS CONSTRAINTS UNIQUE
@@ -302,6 +339,12 @@ alter table login
 
 alter table pessoas_perfis
   add constraint ix_pessoas_perfis unique (id_pessoa, id_perfil);
+  
+alter table categoria_chave_estrangeira
+  add constraint ix_categoria_chave_estrangeira unique (id_categoria);
+  
+alter table token
+  add constraint ix_token unique (id_generico);
 
 
 // CRIACAO DAS CHAVES ESTRANGEIRAS
