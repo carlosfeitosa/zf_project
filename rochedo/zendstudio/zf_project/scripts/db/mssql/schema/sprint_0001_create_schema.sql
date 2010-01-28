@@ -154,6 +154,7 @@ create table categoria_chave_estrangeira (
 
 create table token (
 	id int identity not null ,
+	id_categoria int not null ,
 	id_generico int not null ,
 	token varchar (100) collate latin1_general_ci_ai not null ,
 	datahora_expiracao datetime null ,
@@ -397,5 +398,12 @@ alter table dados_pessoas_perfis add
 	constraint fk_dados_pessoas_perfis_pessoas_perfis foreign key (
 		id_pessoa_perfil
 	) references pessoas_perfis (
+		id
+	);
+
+alter table token add
+	constraint fk_token_categoria foreign key (
+		id_categoria
+	) references categoria (
 		id
 	);

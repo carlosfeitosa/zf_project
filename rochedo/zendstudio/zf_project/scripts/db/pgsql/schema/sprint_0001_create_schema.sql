@@ -214,6 +214,7 @@ alter table categoria_chave_estrangeira owner to rochedo_user;
 
 create table token (
 	id serial not null ,
+	id_categoria int not null ,
 	id_generico int not null ,
 	token character varying (100) not null ,
 	datahora_expiracao timestamp with time zone null ,
@@ -313,8 +314,8 @@ create index ix_mensagem_email_responder_para
 create index ix_categoria_chave_estrangeira_id_categoria
   on categoria_chave_estrangeira using btree (id_categoria asc nulls last);
   
-create index ix_token_id_generico
-  on token using btree (id_generico asc nulls last);
+create index ix_token_token
+  on token using btree (token asc nulls last);
 
 
 // CRIACAO DAS CONSTRAINTS UNIQUE
@@ -344,7 +345,7 @@ alter table categoria_chave_estrangeira
   add constraint ix_categoria_chave_estrangeira unique (id_categoria);
   
 alter table token
-  add constraint ix_token unique (id_generico);
+  add constraint ix_token unique (token);
 
 
 // CRIACAO DAS CHAVES ESTRANGEIRAS
@@ -394,3 +395,6 @@ alter table pessoas_perfis_mensagem_categoria
   
 alter table dados_pessoas_perfis
   add constraint fk_dados_pessoas_perfis_pessoas_perfis foreign key (id_pessoa_perfil) references pessoas_perfis (id) on update no action on delete no action;
+
+alter table token
+  add constraint fk_token_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
