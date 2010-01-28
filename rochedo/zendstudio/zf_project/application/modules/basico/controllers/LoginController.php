@@ -162,6 +162,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
 			             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
 			            
+			                  
 			             //POPULANDO VARIAVEIS
 			             $email            = $this->getRequest()->getParam('email');
 			             $uniqueId         = $controladorEmail->retornaUniqueIdEmail($email);
@@ -169,6 +170,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
 			             $idPessoa         = $controladorEmail->retornaIdPessoaEmail($email);
 			             $idPessoaPerfil   = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa);
+			             
 			             
 			             //SALVANDO TOKEN
 			             $novoToken = new Basico_Model_Token();
@@ -178,7 +180,8 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorRowInfo->prepareXml($novoToken, true);
 			             $novoToken->rowinfo     = $controladorRowInfo->getXml();
 			             $controladorToken->salvarToken($novoToken);
- 			             
+ 			             echo  "Frozen!";
+                          exit; 
 			             //SALVANDO MENSAGEM
 			             $link = LINK_VALIDACAO_USUARIO . $uniqueId;
 			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
@@ -268,13 +271,15 @@ class Basico_LoginController extends Zend_Controller_Action
         // INICIAR TRANSAÇÃO
         $db->beginTransaction();
         
-        try {           
+        try {   
+        	 echo "Frozen!";
+             exit;        
             // NOVA PESSOA ARMAZENADA NO SISTEMA
             $novaPessoa = new Basico_Model_Pessoa();
             $controladorRowInfo->prepareXml($novaPessoa, true);
             $novaPessoa->rowinfo = $controladorRowInfo->getXml();
             $controladorPessoa->salvarPessoa($novaPessoa);
-            
+           
             // RETORNAR PERFIL DE USUARIO NÃO-VALIDADO
             $perfilUsuarioNaoValidado = $controladorPerfil->retornaPerfilUsuarioNaoValidado();
             
@@ -308,6 +313,17 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->ativo     = 0;
             $novoEmail->rowinfo   = $controladorRowInfo->getXml();
             $controladorEmail->salvarEmail($novoEmail);
+            
+            //SALVANDO TOKEN
+            $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
+            
+            $novoToken = new Basico_Model_Token();
+            $novoToken->token       = $controladorToken->gerarToken($novoToken, 'token');
+            $novoToken->idGenerico  = $novoEmail->id;
+            $novoToken->categoria   = $idCategoriaToken->id;
+            $controladorRowInfo->prepareXml($novoToken, true);
+            $novoToken->rowinfo     = $controladorRowInfo->getXml();
+            $controladorToken->salvarToken($novoToken);
                         
             //CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM E O EMAIL DO SISTEMA
             $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
