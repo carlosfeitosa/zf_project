@@ -31,7 +31,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // instancia a classe de Log
         $this->logger = Basico_LogController::init();
                 
-        if ('production' != APPLICATION_ENV)
+        if (Basico_Model_Util::ambienteDesenvolvimento())
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION.' ('.APPLICATION_ENV.')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
