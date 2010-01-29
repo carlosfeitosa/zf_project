@@ -398,6 +398,8 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
 
     protected function _setRequestParams($request, $params)
     {
+    	print_r($request);
+    	exit;
         foreach ($params as $param => $value) {
 
             $request->setParam($param, $value);
