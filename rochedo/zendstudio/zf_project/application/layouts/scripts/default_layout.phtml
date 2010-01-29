@@ -12,7 +12,7 @@ $this->headLink()->appendStylesheet($this->baseUrl('/css/global.css'));
 $applicationHttpHome = $this->url(array('controller'=>'index'), null, true);
 $applicationHttpImagesHome = $this->baseUrl('/images');
 
-if ('production' != APPLICATION_ENV)
+if (Basico_Model_Util::ambienteDesenvolvimento())
 {
     $request = Zend_Controller_Front::getInstance()->getRequest();
     
