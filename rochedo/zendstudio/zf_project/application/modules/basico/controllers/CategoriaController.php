@@ -69,13 +69,14 @@ class Basico_CategoriaController
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO);
 	}
 	
+	
 	/**
 	 * Retorna o objeto carregado com a categoria MENSAGEM_EMAIL_VALIDACAO_USUARIO
 	 * @return Basico_Model_Categoria $categoriaEmailValidacaoPlainText
 	 */
 	public function retornaCategoriaEmailValidacaoPlainText()
 	{
-	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 	    if (isset($categoriaEmailValidacaoPlainText))
     	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
@@ -85,7 +86,7 @@ class Basico_CategoriaController
 	 * Retorna o objeto carregado com a categoria MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO
 	 * @return Basico_Model_Categoria $categoriaEmailValidacaoPlainTextReenvio
 	 */
-    public function retornaCategoriaEmailValidacaoPlainTextReenvio()
+    public function retornaCategoriaEmailTemplateValidacaoPlainTextReenvio()
 	{
 	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 	    if (isset($categoriaEmailValidacaoPlainTextReenvio))

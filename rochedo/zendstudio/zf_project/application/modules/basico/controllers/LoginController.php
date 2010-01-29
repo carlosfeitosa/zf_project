@@ -159,8 +159,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	                     $controladorToken         = Basico_TokenController::init();
 	                     	            	 
 		            	 //POPULANDO CATEGORIAS
-		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
-			             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
+		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
+			             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
 			            
 			                  
 			             //POPULANDO VARIAVEIS
@@ -175,15 +175,14 @@ class Basico_LoginController extends Zend_Controller_Action
 			             //SALVANDO TOKEN
 			             $novoToken = new Basico_Model_Token();
 			             $novoToken->token       = $controladorToken->gerarToken($novoToken, 'token');
-			             $novoToken->idGenerico  = $idEmail->id;
+			             $novoToken->idGenerico  = $idEmail;
 			             $novoToken->categoria   = $idCategoriaToken->id;
 			             $controladorRowInfo->prepareXml($novoToken, true);
 			             $novoToken->rowinfo     = $controladorRowInfo->getXml();
 			             $controladorToken->salvarToken($novoToken);
- 			             echo  "Frozen!";
-                          exit; 
+ 			            
 			             //SALVANDO MENSAGEM
-			             $link = LINK_VALIDACAO_USUARIO . $uniqueId;
+			             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
 			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
 			             $novaMensagem->destinatarios    = array($email);
 			             $novaMensagem->datahoraMensagem = Zend_Date::now();
@@ -263,6 +262,7 @@ class Basico_LoginController extends Zend_Controller_Action
         $controladorMensagem      = Basico_MensagemController::init();
         $controladorMensageiro    = Basico_MensageiroController::init();
         $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();
+        $controladorToken         = Basico_TokenController::init();
         
         // INSTANCIAR BD
         $db = $this->getInvokeArg('bootstrap')->getResource('db');
@@ -272,8 +272,7 @@ class Basico_LoginController extends Zend_Controller_Action
         $db->beginTransaction();
         
         try {   
-        	 echo "Frozen!";
-             exit;        
+        	      
             // NOVA PESSOA ARMAZENADA NO SISTEMA
             $novaPessoa = new Basico_Model_Pessoa();
             $controladorRowInfo->prepareXml($novaPessoa, true);
@@ -318,11 +317,12 @@ class Basico_LoginController extends Zend_Controller_Action
             $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
             
             $novoToken = new Basico_Model_Token();
-            $novoToken->token       = $controladorToken->gerarToken($novoToken, 'token');
-            $novoToken->idGenerico  = $novoEmail->id;
-            $novoToken->categoria   = $idCategoriaToken->id;
+            $novoToken->setToken($controladorToken->gerarToken($novoToken, 'token'));
+            $novoToken->setIdGenerico($novoEmail->id);
+            $novoToken->setCategoria($idCategoriaToken->id);
             $controladorRowInfo->prepareXml($novoToken, true);
-            $novoToken->rowinfo     = $controladorRowInfo->getXml();
+            $novoToken->setRowinfo($controladorRowInfo->getXml());
+           
             $controladorToken->salvarToken($novoToken);
                         
             //CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM E O EMAIL DO SISTEMA
@@ -331,7 +331,7 @@ class Basico_LoginController extends Zend_Controller_Action
             
             //SALVANDO MENSAGEM
             $nomeDestinatario = $this->getRequest()->getParam('nome');
-            $link = LINK_VALIDACAO_USUARIO . $novoEmail->uniqueId;
+            $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $novaMensagem->destinatarios       = array($novoEmail->email);
             $novaMensagem->datahoraMensagem    = Zend_Date::now();

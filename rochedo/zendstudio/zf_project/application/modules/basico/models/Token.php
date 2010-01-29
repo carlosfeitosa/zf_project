@@ -228,6 +228,28 @@ class Basico_Model_Token
 	{
 		return $this->_id;
 	}
+	
+    /**
+	* Set entry rowinfo
+	* 
+	* @param  String $rowinfo 
+	* @return Basico_Model_Token
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
+
+	/**
+	* Retrieve entry rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
 	/**
 	* Set data mapper

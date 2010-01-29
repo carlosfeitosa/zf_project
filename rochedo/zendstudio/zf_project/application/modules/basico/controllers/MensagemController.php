@@ -93,7 +93,7 @@ class Basico_MensagemController
 		$controladorCategoria          = Basico_CategoriaController::init();
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisController::init();
 
-		$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
+		$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
 		
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
@@ -129,7 +129,7 @@ class Basico_MensagemController
 		$controladorDadosPessoais = Basico_DadosPessoaisController::init();
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisController::init();
 
-		$idCategoria      = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextReenvio();
+		$idCategoria      = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
 		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
 				
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);

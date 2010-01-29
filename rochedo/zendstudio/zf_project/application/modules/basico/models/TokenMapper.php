@@ -58,7 +58,6 @@ class Basico_Model_TokenMapper
     {
         $data = array(
 				'token'              => $object->getToken(),
-				'datahora_expiracao' => $object->getDatahoraExpiracao(),
 				'id_generico'        => $object->getIdGenerico(),
                 'id_categoria'       => $object->getCategoria(),
                 'rowinfo'            => $object->getRowinfo(),

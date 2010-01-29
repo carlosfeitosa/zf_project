@@ -58,16 +58,20 @@ class Basico_TokenController
 	{
 		//CONSULTANDO TABELA DE CHAVE ESTRANGEIRA
 		$categoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
-		$tabela = $categoriaChaveEstrangeira->fetchList("id_categoria = {$novoToken->id_categoria}", null, 1, 0);
-		$nomeTabela  = $tabela[0]->tabela_estrangeira;
-		$campoTabela = $tabela[0]->campo_tabela;
+		$tabela = $categoriaChaveEstrangeira->fetchList("id_categoria = {$novoToken->categoria}", null, 1, 0);
+		
+		if (!isset($tabela[0])){
+			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
+		}
+		
+		$nomeTabela  = $tabela[0]->tabelaEstrangeira;
+		$campoTabela = $tabela[0]->campoEstrangeiro;
 		
 		$auxDb = Zend_Registry::get('db');
-		$auxDb->query("SELECT ? FROM ? WHERE ? = ?", array($campoTabela, $nomeTabela, $campoTabela, $novoToken->id_generico));
 		
-		$checkConstraint = $auxDb->fetchColumn();
+		$checkConstraint = $auxDb->fetchAll("SELECT {$campoTabela} FROM {$nomeTabela} WHERE {$campoTabela} = ?", array($novoToken->idGenerico));
 		
-		if ( (isset($tabela[0])) and (isset($checkConstraint)) ) {
+		if ((isset($checkConstraint)) and ($checkConstraint != false))  {
 	    	
 			try{
 	    		// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
@@ -96,6 +100,6 @@ class Basico_TokenController
 	    	}
 		}else{
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
-		}
+		}	
 	}
 }
