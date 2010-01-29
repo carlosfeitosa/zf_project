@@ -160,12 +160,9 @@ class Basico_LoginController extends Zend_Controller_Action
 	                     	            	 
 		            	 //POPULANDO CATEGORIAS
 		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
-			             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
-			            
-			                  
+			             			                  
 			             //POPULANDO VARIAVEIS
 			             $email            = $this->getRequest()->getParam('email');
-			             $uniqueId         = $controladorEmail->retornaUniqueIdEmail($email);
 			             $idEmail          = $controladorEmail->retornaIdEmail($email);
 			             $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
 			             $idPessoa         = $controladorEmail->retornaIdPessoaEmail($email);
