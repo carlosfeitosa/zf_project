@@ -9,7 +9,7 @@ require_once(APPLICATION_PATH . "/modules/basico/models/Gerador.php");
  * Controlador de Logs do sistema.
  *
  */
-class Basico_LogController
+class Basico_LogControllerController
 {
 	/**
 	 * Instância do controlador Log.
@@ -62,7 +62,7 @@ class Basico_LogController
 	static public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_LogController();
+			self::$singleton = new Basico_LogControllerController();
 		}
 		return self::$singleton;
 	}

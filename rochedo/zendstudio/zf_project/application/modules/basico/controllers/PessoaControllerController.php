@@ -3,7 +3,7 @@
  * Controlador Pessoa.
  *
  */
-class Basico_PessoaController
+class Basico_PessoaControllerController
 {
 	/**
 	 * Instância do Controlador Pessoa
@@ -33,7 +33,7 @@ class Basico_PessoaController
 	static public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_PessoaController();
+			self::$singleton = new Basico_PessoaControllerController();
 		}
 		return self::$singleton;
 	}
@@ -50,8 +50,8 @@ class Basico_PessoaController
 			$this->pessoa->save();
 			
 			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaController::init();
-			$controladorLog       = Basico_LogController::init();
+			$controladorCategoria = Basico_CategoriaControllerController::init();
+			$controladorLog       = Basico_LogControllerController::init();
 			
             // CATEGORIA DO LOG VALIDACAO USUARIO
             $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaPessoa();

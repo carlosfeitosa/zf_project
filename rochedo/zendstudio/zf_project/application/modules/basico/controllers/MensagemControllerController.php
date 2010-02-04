@@ -1,9 +1,9 @@
 <?php
 //INCLUINDO CONTROLADORES
-require_once("EmailController.php");
-require_once("CategoriaController.php");
-require_once("DadosPessoaisController.php");
-require_once("DadosPessoasPerfisController.php");
+require_once("EmailControllerController.php");
+require_once("CategoriaControllerController.php");
+require_once("DadosPessoaisControllerController.php");
+require_once("DadosPessoasPerfisControllerController.php");
 
 /**
  * Controlador Mensagem
@@ -11,7 +11,7 @@ require_once("DadosPessoasPerfisController.php");
  * @author João Vasconcelos
  * @uses Basico_Model_Mensagem
  */
-class Basico_MensagemController
+class Basico_MensagemControllerController
 {
 	/**
 	 * 
@@ -39,7 +39,7 @@ class Basico_MensagemController
 	 */
 	static public function init() {
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_MensagemController();
+			self::$singleton = new Basico_MensagemControllerController();
 		}
 		return self::$singleton;
 	}
@@ -61,8 +61,8 @@ class Basico_MensagemController
 			$this->mensagem->save();
 			
 			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaController::init();
-			$controladorLog       = Basico_LogController::init();
+			$controladorCategoria = Basico_CategoriaControllerController::init();
+			$controladorLog       = Basico_LogControllerController::init();
 			
             // CATEGORIA DO LOG VALIDACAO USUARIO
             $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaMensagem();
@@ -89,9 +89,9 @@ class Basico_MensagemController
 	public function retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link) {
 		
 		//INICIALIZANDO CONTROLADORES
-		$controladorEmail              = Basico_EmailController::init();
-		$controladorCategoria          = Basico_CategoriaController::init();
-		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisController::init();
+		$controladorEmail              = Basico_EmailControllerController::init();
+		$controladorCategoria          = Basico_CategoriaControllerController::init();
+		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
 		$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
 		
@@ -124,10 +124,10 @@ class Basico_MensagemController
     public function retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) {
 		
 		//INICIALIZANDO CONTROLADORES
-		$controladorEmail         = Basico_EmailController::init();
-		$controladorCategoria     = Basico_CategoriaController::init();
-		$controladorDadosPessoais = Basico_DadosPessoaisController::init();
-		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisController::init();
+		$controladorEmail         = Basico_EmailControllerController::init();
+		$controladorCategoria     = Basico_CategoriaControllerController::init();
+		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
+		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
 		$idCategoria      = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
 		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);

@@ -5,7 +5,7 @@
  * 
  * @uses Basico_Model_Categoria
  */
-class Basico_CategoriaController 
+class Basico_CategoriaControllerController
 {
 	/**
 	 *  
@@ -35,7 +35,7 @@ class Basico_CategoriaController
 	static public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_CategoriaController();
+			self::$singleton = new Basico_CategoriaControllerController();
 		}
 		return self::$singleton;
 	}

@@ -22,7 +22,9 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM", "Categoria de log nova mensagem n
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN", "Categoria de log novo token nao encontrada no banco de dados");
 
 //TOKEN
-define("MSG_ERRO_TOKEN_CHECK_CONSTRAINT","Constraint token id_generico não confere");
+define("MSG_ERRO_TOKEN_CHECK_CONSTRAINT","Chave estrangeira do token não confere.");
+define("MSG_ERRO_TOKEN_SESSAO_NAO_ENCONTRADO", "Não foi encontrado a requisição solicitada.");
+define("MSG_ERRO_TOKEN_ARRAYURLS_INEXISTENTE", "Não foi encontrado a listagem de endereços válidos para acesso.");
 
 // LOGIN
 define("MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO", "Usuário master não encontrado no sistema.");

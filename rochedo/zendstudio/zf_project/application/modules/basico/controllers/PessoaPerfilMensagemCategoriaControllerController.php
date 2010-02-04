@@ -3,7 +3,7 @@
  * Controlador PessoaPerfilMensagemCategoria
  *
  */
-class Basico_PessoaPerfilMensagemCategoriaController 
+class Basico_PessoaPerfilMensagemCategoriaControllerController
 {
 	/**
 	 * Instância do Controlador PessoaPerfilMensagemCategoria.
@@ -31,7 +31,7 @@ class Basico_PessoaPerfilMensagemCategoriaController
 	 */
 	static public function init() {
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_PessoaPerfilMensagemCategoriaController();
+			self::$singleton = new Basico_PessoaPerfilMensagemCategoriaControllerController();
 		}
 		return self::$singleton;
 	}

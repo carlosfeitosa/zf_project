@@ -1,10 +1,10 @@
 <?php
 /**
- * Controlador DadosPessoasPerfisController
+ * Controlador DadosPessoasPerfisControllerController
  * 
  * @uses Basico_Model_DadosPessoasPerfis
  */
-class Basico_DadosPessoasPerfisController 
+class Basico_DadosPessoasPerfisControllerController
 {
     /**
      * 
@@ -32,7 +32,7 @@ class Basico_DadosPessoasPerfisController
 	 */
 	static public function init() {
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_DadosPessoasPerfisController();
+			self::$singleton = new Basico_DadosPessoasPerfisControllerController();
 		}
 		return self::$singleton;
 	}

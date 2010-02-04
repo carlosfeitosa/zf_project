@@ -70,6 +70,21 @@ class Basico_Model_Gerador
 		return $this;
 	}
 	
+	/**
+	 * Gera e retorna um uniqueId.
+	 * @param Array $blacklist
+	 * @return String $uniqueId
+	 */
+	public function gerarToken($blacklist)
+	{
+	    $token = md5(uniqid(rand(), true));
+
+	    while (array_search($token, $blacklist) !== false)
+            $token = md5(uniqid(rand(), true));
+	    
+	    return $token;
+	}
+	
     /**
      * Get geradorUniqueId object
      * @return null|GeradorUniqueId

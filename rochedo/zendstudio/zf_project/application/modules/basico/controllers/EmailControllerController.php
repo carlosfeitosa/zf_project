@@ -1,11 +1,11 @@
 <?php
-require_once("CategoriaController.php");
+require_once("CategoriaControllerController.php");
 /**
  * Controlador Email
  * 
  * @uses Basico_Model_Email
  */
-class Basico_EmailController 
+class Basico_EmailControllerController
 {
 	/**
 	 * 
@@ -36,8 +36,8 @@ class Basico_EmailController
 	 */
 	static public function init()
 	{
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_EmailController();
+		if (self::$singleton == NULL){
+			self::$singleton = new Basico_EmailControllerController();
 		}
 		return self::$singleton;
 	}
@@ -149,8 +149,8 @@ class Basico_EmailController
 			$this->email->save();
 			
 			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaController::init();
-			$controladorLog       = Basico_LogController::init();
+			$controladorCategoria = Basico_CategoriaControllerController::init();
+			$controladorLog       = Basico_LogControllerController::init();
 			
             // CATEGORIA DO LOG VALIDACAO USUARIO
             $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoEmail();
@@ -175,7 +175,7 @@ class Basico_EmailController
 	public function retornaEmailSistema()
     {
     	//INICIALIZANDO CONTROLADOR CATEGORIA
-		$controladorCategoria = Basico_CategoriaController::init();
+		$controladorCategoria = Basico_CategoriaControllerController::init();
 		
 		//BUSCANDO EMAIL DO SISTEMA
 		$categoriaEmailSistema = $controladorCategoria->retornaCategoriaEmailSistema();

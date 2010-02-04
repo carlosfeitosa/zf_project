@@ -4,7 +4,7 @@
  * 
  * @uses Basico_Model_DadosPessoais
  */
-class Basico_DadosPessoaisController
+class Basico_DadosPessoaisControllerController
 {
 	/**
 	 * 
@@ -34,7 +34,7 @@ class Basico_DadosPessoaisController
 	static public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_DadosPessoaisController();
+			self::$singleton = new Basico_DadosPessoaisControllerController();
 		}
 		return self::$singleton;
 	}
@@ -55,8 +55,8 @@ class Basico_DadosPessoaisController
 		$dadosPessoais->save();
 		
 		// INICIALIZACAO DOS CONTROLLERS
-		$controladorCategoria = Basico_CategoriaController::init();
-		$controladorLog       = Basico_LogController::init();
+		$controladorCategoria = Basico_CategoriaControllerController::init();
+		$controladorLog       = Basico_LogControllerController::init();
 		
         // CATEGORIA DO LOG VALIDACAO USUARIO
         $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoDadosPessoais();

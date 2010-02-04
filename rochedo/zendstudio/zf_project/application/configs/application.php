@@ -7,7 +7,7 @@ define("APPLICATION_NAME", "Rochedo Project");
 define("APPLICATION_VERSION", "1.0");
 define('APPLICATION_TITLE', 'ROCHEDO software');
 
-// PATHS & FILENAMES
+// LOG PATHS & FILENAMES
 $logSequence = date('Ym');
 
 define("LOG_PATH", APPLICATION_PATH . "/logs/");
@@ -15,6 +15,9 @@ define("LOG_FILENAME_PREFIX", "error_log_");
 define("LOG_FILENAME_SULFIX", ".log");
 define("LOG_FILENAME", LOG_FILENAME_PREFIX . $logSequence . LOG_FILENAME_SULFIX);
 define("LOG_FULL_FILENAME", LOG_PATH . LOG_FILENAME);
+
+// MODULO BASICO PATHS & FILENAMES
+define("BASICO_VIEW_HELPERS_PATH", APPLICATION_PATH . "/modules/basico/views/helpers");
 
 // INFORMATION
 define("SUPPORT_EMAIL", "agil@facepe.br");

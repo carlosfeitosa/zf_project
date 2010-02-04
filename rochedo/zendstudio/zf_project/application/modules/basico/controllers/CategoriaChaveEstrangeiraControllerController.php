@@ -1,6 +1,6 @@
 <?php
 
-class Basico_CategoriaChaveEstrangeiraController
+class Basico_CategoriaChaveEstrangeiraControllerController
 {
 	/**
 	 * @var Basico_CategoriaChaveEstrangeira
@@ -28,7 +28,7 @@ class Basico_CategoriaChaveEstrangeiraController
 	public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_CategoriaChaveEstrangeiraController();
+			self::$singleton = new Basico_CategoriaChaveEstrangeiraControllerController();
 		}
 		return self::$singleton;
 	}

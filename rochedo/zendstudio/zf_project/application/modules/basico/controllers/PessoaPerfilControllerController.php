@@ -3,7 +3,7 @@
  * Controlador PessoaPerfil
  *
  */
-class Basico_PessoaPerfilController 
+class Basico_PessoaPerfilControllerController
 {
 	/**
 	 * Instância do Controlador PessoaPerfil
@@ -33,7 +33,7 @@ class Basico_PessoaPerfilController
 	public static function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_PessoaPerfilController();
+			self::$singleton = new Basico_PessoaPerfilControllerController();
 		}
 		return self::$singleton;
 	}
@@ -55,8 +55,8 @@ class Basico_PessoaPerfilController
 			$this->pessoaPerfil->save();
 			
 			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaController::init();
-			$controladorLog       = Basico_LogController::init();
+			$controladorCategoria = Basico_CategoriaControllerController::init();
+			$controladorLog       = Basico_LogControllerController::init();
 			
             // CATEGORIA DO LOG VALIDACAO USUARIO
             $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaPessoaPerfil();

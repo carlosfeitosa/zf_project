@@ -9,33 +9,27 @@
  */
 
 //INCLUINDO CONTROLADORES
-require_once("EmailController.php");
-require_once("PessoaController.php");
-require_once("PerfilController.php");
-require_once("PessoaPerfilController.php");
-require_once("DadosPessoaisController.php");
-require_once("CategoriaController.php");
-require_once("MensageiroController.php");
-require_once("MensagemController.php");
-require_once("LogController.php");
-require_once("RowinfoController.php");
-require_once("PessoaPerfilMensagemCategoriaController.php");
-require_once("TokenController.php");
-require_once("CategoriaChaveEstrangeiraController.php");
+require_once("EmailControllerController.php");
+require_once("PessoaControllerController.php");
+require_once("PerfilControllerController.php");
+require_once("PessoaPerfilControllerController.php");
+require_once("DadosPessoaisControllerController.php");
+require_once("CategoriaControllerController.php");
+require_once("MensageiroControllerController.php");
+require_once("MensagemControllerController.php");
+require_once("LogControllerController.php");
+require_once("RowinfoControllerController.php");
+require_once("PessoaPerfilMensagemCategoriaControllerController.php");
 
 class Basico_LoginController extends Zend_Controller_Action
 {
-    
 	/**
 	* @var object
 	*/
 	private $request;
 	
     /**
-	 * Inicializa controlador Login
-	 * 
-	 *  
-	 * 
+	 * Inicializa controlador Login 
 	 */
 	public function init()
     {
@@ -130,7 +124,7 @@ class Basico_LoginController extends Zend_Controller_Action
         $form = $this->getFormCadastroUsuarioLoginNaoValidado();
         if($this->validaForm($form) == true){
         
-	        $controladorEmail = Basico_EmailController::init();
+	        $controladorEmail = Basico_EmailControllerController::init();
 	        $emailParaValidacao = $controladorEmail->verificaEmailExistente($this->getRequest()->getParam('email'));
 	        
 	        if ($emailParaValidacao !== NULL){
@@ -148,15 +142,15 @@ class Basico_LoginController extends Zend_Controller_Action
                     
 	            	try {
 		            	 //INICIALIZANDO CONTROLADORES
-		            	 $controladorEmail         = Basico_EmailController::init();
-	                     $controladorPessoaPerfil  = Basico_PessoaPerfilController::init();
-	                     $controladorLog           = Basico_LogController::init();
-	                     $controladorRowInfo       = Basico_RowInfoController::init();
-	                     $controladorMensagem      = Basico_MensagemController::init();
-	                     $controladorMensageiro    = Basico_MensageiroController::init();
-	                     $controladorCategoria     = Basico_CategoriaController::init();
-	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();
-	                     $controladorToken         = Basico_TokenController::init();
+		            	 $controladorEmail                         = Basico_EmailControllerController::init();
+	                     $controladorPessoaPerfil                  = Basico_PessoaPerfilControllerController::init();
+	                     $controladorLog                           = Basico_LogControllerController::init();
+	                     $controladorRowInfo                       = Basico_RowInfoControllerController::init();
+	                     $controladorMensagem                      = Basico_MensagemControllerController::init();
+	                     $controladorMensageiro                    = Basico_MensageiroControllerController::init();
+	                     $controladorCategoria                     = Basico_CategoriaControllerController::init();
+	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::init();
+	                     $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
 	                     	            	 
 		            	 //POPULANDO CATEGORIAS
 		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
@@ -248,18 +242,18 @@ class Basico_LoginController extends Zend_Controller_Action
     public function salvarusuarionaovalidadoAction()
     {
         //INICIALIZANDO CONTROLADORES
-        $controladorPessoa        = Basico_PessoaController::init();
-        $controladorDadosPessoais = Basico_DadosPessoaisController::init();
-        $controladorCategoria     = Basico_CategoriaController::init();
-        $controladorEmail         = Basico_EmailController::init();
-        $controladorPerfil        = Basico_PerfilController::init();
-        $controladorPessoaPerfil  = Basico_PessoaPerfilController::init();
-        $controladorLog           = Basico_LogController::init();
-        $controladorRowInfo       = Basico_RowInfoController::init();
-        $controladorMensagem      = Basico_MensagemController::init();
-        $controladorMensageiro    = Basico_MensageiroController::init();
-        $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaController::init();
-        $controladorToken         = Basico_TokenController::init();
+        $controladorPessoa                        = Basico_PessoaControllerController::init();
+        $controladorDadosPessoais                 = Basico_DadosPessoaisControllerController::init();
+        $controladorCategoria                     = Basico_CategoriaControllerController::init();
+        $controladorEmail                         = Basico_EmailControllerController::init();
+        $controladorPerfil                        = Basico_PerfilControllerController::init();
+        $controladorPessoaPerfil                  = Basico_PessoaPerfilControllerController::init();
+        $controladorLog                           = Basico_LogControllerController::init();
+        $controladorRowInfo                       = Basico_RowInfoControllerController::init();
+        $controladorMensagem                      = Basico_MensagemControllerController::init();
+        $controladorMensageiro                    = Basico_MensageiroControllerController::init();
+        $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::init();
+        $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
         
         // INSTANCIAR BD
         $db = $this->getInvokeArg('bootstrap')->getResource('db');

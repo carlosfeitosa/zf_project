@@ -5,7 +5,7 @@
  * Responsável pelo envio e recebimento de mensagem no sistema.
  * @subpackage Controller
  */
-class Basico_MensageiroController 
+class Basico_MensageiroControllerController 
 {
 	/**
 	 * 
@@ -20,7 +20,7 @@ class Basico_MensageiroController
     static public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_MensageiroController();
+			self::$singleton = new Basico_MensageiroControllerController();
 		}
 		return self::$singleton;
 	}
@@ -34,7 +34,7 @@ class Basico_MensageiroController
         
     	try {
             //CARREGANDO O TRANSPORTER
-			$tr = Basico_MensageiroController::retornaTransportSmtp('login', 'info@rochedoproject.com', 
+			$tr = Basico_MensageiroControllerController::retornaTransportSmtp('login', 'info@rochedoproject.com', 
 	                                                                '@info#rochedo@', 'mail.rochedoproject.com');
 			Zend_Mail::setDefaultTransport($tr);
 			

@@ -32,3 +32,6 @@ define("SISTEMA_EMAIL", "SISTEMA_EMAIL");
 
 //LINKS DO SISTEMA
 define("LINK_VALIDACAO_USUARIO", "http://localhost/rochedo_project/public/basico/CadastroUsuario.php?t=");
+
+//LINK PARA CONTROLADOR DE TOKENS
+define("LINK_CONTROLADOR_TOKENS", "/basico/token/decode/t/");

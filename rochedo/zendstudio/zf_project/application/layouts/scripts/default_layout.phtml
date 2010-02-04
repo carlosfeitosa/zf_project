@@ -9,7 +9,7 @@ $this->headTitle()->setSeparator(' - ');
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headLink()->appendStylesheet($this->baseUrl('/css/global.css'));
 
-$applicationHttpHome = $this->url(array('controller'=>'index'), null, true);
+$applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
 $applicationHttpImagesHome = $this->baseUrl('/images');
 
 if (Basico_Model_Util::ambienteDesenvolvimento())
@@ -36,10 +36,10 @@ if (Basico_Model_Util::ambienteDesenvolvimento())
         <?php echo "<a href=" . "'" . $applicationHttpHome."'"."a>" . APPLICATION_NAME_AND_VERSION."</a>" ?>
     </div>
     <div id="header-navigation">
-        <a href="<?php echo $this->url(
-                                       array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
-                                       null, 
-                                       true) ?>">registre-se</a>
+        <a href="<?php echo $this->urlEncrypt($this->url(
+                                                         array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
+                                                         null, 
+                                                         true)) ?>">registre-se</a>
     </div>
 </div>
 

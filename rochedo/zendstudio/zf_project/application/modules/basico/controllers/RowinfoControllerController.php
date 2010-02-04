@@ -3,7 +3,7 @@
  * Controlador Rowinfo
  *
  */
-class Basico_RowInfoController
+class Basico_RowInfoControllerController
 {
 	/**
 	 * Instância do controlador Rowinfo
@@ -40,7 +40,7 @@ class Basico_RowInfoController
 	static public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_RowInfoController();
+			self::$singleton = new Basico_RowInfoControllerController();
 		}
 		return self::$singleton;
 	}

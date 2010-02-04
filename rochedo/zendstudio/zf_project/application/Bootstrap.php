@@ -5,7 +5,8 @@
  */
 require_once("configs/application.php");
 require_once("consts/consts.php");
-require_once("modules/basico/controllers/LogController.php");
+require_once("modules/basico/controllers/LogControllerController.php");
+require_once("modules/basico/controllers/TokenControllerController.php");
 require_once("modules/basico/models/Log.php");
 require_once("modules/basico/models/Util.php");
 
@@ -23,13 +24,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     public $logger;
     
     /**
+	* recebe a instância do controlador Token.
+	* @var Basico_TokenController
+	*/
+    public $tokenizer;
+    
+    /**
      * Inicializa a aplicação.
      * @return void
      */
     protected function _initApplication()
-    {
-        // instancia a classe de Log
-        $this->logger = Basico_LogController::init();
+    {    
+        // instancia a classe controladora de log
+        $this->logger = Basico_LogControllerController::init();
+        // instancia a classe controladora de token
+        $this->tokenizer = Basico_TokenControllerController::init();
                 
         if (Basico_Model_Util::ambienteDesenvolvimento())
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION.' ('.APPLICATION_ENV.')');
@@ -57,6 +66,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initView()
     {   
         $view = new Zend_View();
+        
+        // Localiza os helpers dos modulos e adiciona os paths caso eles existam
+        if (file_exists(BASICO_VIEW_HELPERS_PATH))
+            $view->addHelperPath(BASICO_VIEW_HELPERS_PATH, 'Basico_View_Helper');
+        
         $view->addHelperPath('ZendX/JQuery/View/Helper/', 'ZendX_JQuery_View_Helper');
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
@@ -76,5 +90,5 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $viewRender->setView($view);
         
         return $view;
-    }
+    }    
 }

@@ -2,7 +2,7 @@
 /**
  * Controlador dos perfis do sistema.
  */
-class Basico_PerfilController 
+class Basico_PerfilControllerController
 {
 	/**
 	 * Instância do Controlador Perfil.
@@ -32,7 +32,7 @@ class Basico_PerfilController
 	static public function init()
 	{
 		if(self::$singleton == NULL){
-			self::$singleton = new Basico_PerfilController();
+			self::$singleton = new Basico_PerfilControllerController();
 		}
 		return self::$singleton;
 	}
