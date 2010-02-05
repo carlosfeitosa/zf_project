@@ -31,9 +31,9 @@ define("CAPTCHA_IMAGE_URL", "../../../public/images/captcha/");
 define("CAPTCHA_FONT_PATH", "../public/fonts/typewcond_bold.otf");
 
 //DOJO DIRECTORIES
-define("DOJO_LOCAL_PATH", "../../js/dojo/dojo.js");
-define("DOJO_STYLE_SHEET_PATH", "../../js/dijit/themes/tundra/tundra.css");
+define("DOJO_LOCAL_PATH", "../../../js/dojo/dojo.js");
+define("DOJO_STYLE_SHEET_PATH", "../../../js/dijit/themes/tundra/tundra.css");
 define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.tundra");
 
 //JAVASCRIPT FILES
-define("DEFAULT_JAVASCRIPT_FILE_PATH", "../../js/default_scripts.js");
+define("DEFAULT_JAVASCRIPT_FILE_PATH", "../../../js/default_scripts.js");
