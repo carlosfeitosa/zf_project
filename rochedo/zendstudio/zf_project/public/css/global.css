@@ -80,10 +80,9 @@ div#footer_poweredby
 	float: right;
 }
 
-div#loading_img
-{
-	background: url(../images/loading.gif);
-	width: 205px;
-	height: 100px;
-	
+div.loading {
+    background-image: url(../images/blue_loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;
 }
+

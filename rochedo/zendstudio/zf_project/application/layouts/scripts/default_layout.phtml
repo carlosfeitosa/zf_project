@@ -9,6 +9,13 @@ $this->headTitle()->setSeparator(' - ');
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headLink()->appendStylesheet($this->baseUrl('/css/global.css'));
 
+$this->dojo()->setDjConfigOption('usePlainJson', true)
+        			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
+        			 ->addStylesheet(DOJO_STYLE_SHEET_PATH)
+        			 ->setLocalPath(DOJO_LOCAL_PATH)
+        			 ->addLayer(DEFAULT_JAVASCRIPT_FILE_PATH);
+        			 
+        			 
 $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
 $applicationHttpImagesHome = $this->baseUrl('/images');
 
@@ -25,18 +32,19 @@ if (Basico_Model_Util::ambienteDesenvolvimento())
 <head>
     <?php echo $this->headTitle() ?>
     <?php echo $this->headMeta() ?>
+  
     <?php echo $this->headLink() ?> 
     <?php echo $this->headStyle() ?>
-    <?php echo $this->headScript() ?>
-    <?php echo $this->dojo();?>  
+    <?php echo $this->headScript()?>
+    <?php echo $this->dojo();?> 
 </head> 
 <body class="tundra">
 <div id="header">
     <div id="header-logo">
-        <?php echo "<a href=" . "'" . $applicationHttpHome."'"."a>" . APPLICATION_NAME_AND_VERSION."</a>" ?>
+        <?php echo "<a onClick='loading()' href=" . "'" . $applicationHttpHome."'".">" . APPLICATION_NAME_AND_VERSION."</a>" ?>
     </div>
     <div id="header-navigation">
-        <a href="<?php echo $this->urlEncrypt($this->url(
+        <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
                                                          null, 
                                                          true)) ?>">registre-se</a>

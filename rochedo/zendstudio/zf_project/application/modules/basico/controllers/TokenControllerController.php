@@ -73,8 +73,10 @@ class Basico_TokenControllerController
 	        self::$arrayTokensUrls[$token] = $url;
 	        $session->arrayTokensUrls = self::$arrayTokensUrls;
 	    }
+	    //echo Zend_Controller_Front::getInstance()->getBaseUrl();exit;
 	    
-        return Zend_Controller_Front::getInstance()->getBaseUrl() . LINK_CONTROLADOR_TOKENS . $token;
+	    $baseUrl = str_replace("/index2.php", '',Zend_Controller_Front::getInstance()->getBaseUrl());
+        return $baseUrl . LINK_CONTROLADOR_TOKENS . $token;
 	}
 	
     /**
@@ -95,8 +97,11 @@ class Basico_TokenControllerController
             $url = self::$arrayTokensUrls[$token];
         else
             throw new Exception(MSG_ERRO_TOKEN_SESSAO_NAO_ENCONTRADO);
+            
         
-        $url = str_replace(Zend_Controller_Front::getInstance()->getBaseUrl(), '', $url);
+        
+        $baseUrl = str_replace("/index2.php", "", Zend_Controller_Front::getInstance()->getBaseUrl());
+        $url     = str_replace($baseUrl, '', $url);
         
         return $url;
 	}

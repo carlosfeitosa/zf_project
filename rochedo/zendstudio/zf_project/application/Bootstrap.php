@@ -75,17 +75,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
         Zend_Dojo::enableView($view);
-        
-        $view->dojo()->setDjConfigOption('usePlainJson', true)
-        			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
-        			 ->addStylesheet(DOJO_STYLE_SHEET_PATH)
-        			 ->setLocalPath(DOJO_LOCAL_PATH)
-        			 ->addLayer(DEFAULT_JAVASCRIPT_FILE_PATH)
-        			 //->addJavascript('Custon code Ex: paste.main.init();')
-        			 ->disable();
-        
         ZendX_JQuery::enableView($view);
-        
         $viewRender = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRender->setView($view);
         

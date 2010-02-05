@@ -17,7 +17,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $this->setMethod('post');
         $this->setAction('verificaNovoLogin');
         $this->setName('CadastrarUsuarioNaoValidado');
-        $this->addAttribs(array('onSubmit'=>"return(validateForm('CadastrarUsuarioNaoValidado'))"));
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))"));
         
         $elements = array();
         
