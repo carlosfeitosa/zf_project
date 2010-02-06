@@ -80,9 +80,12 @@ div#footer_poweredby
 	float: right;
 }
 
-div.loading {
-    background-image: url(../images/blue_loading.gif);
+div.loading 
+{
+    background-image: url(http://localhost/rochedo_project/public/images/loading_gif.gif);
     background-repeat: no-repeat;
     background-position: center;
+	width: 50px;
+	height: 50px;
 }
 
