@@ -3,7 +3,8 @@ dojo.require("dijit.form.Button");
 dojo.require("dijit.Form");
 
 var underlay;
-function loading() {
+function loading() 
+{
     underlay = new dijit.DialogUnderlay({'class': 'loading'});
     underlay.show();
 }
