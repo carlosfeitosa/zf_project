@@ -1,6 +1,6 @@
 <?php
 /**
- * Arquivo para defini‹o de constantes de configura‹o do sistema.
+ * Arquivo para definiÃ§Ã£oo de constantes de configuraÃ§Ã£o do sistema.
  */
 // APPLICATION
 define("APPLICATION_NAME", "Rochedo Project");
@@ -9,8 +9,6 @@ define('APPLICATION_TITLE', 'ROCHEDO software');
 
 // LOG PATHS & FILENAMES
 $logSequence = date('Ym');
-define("LOCAL_HOST", "http://localhost");
-define("LOCAL_HOST_PORT", ":10088");
 define("LOG_PATH", APPLICATION_PATH . "/logs/");
 define("LOG_FILENAME_PREFIX", "error_log_");
 define("LOG_FILENAME_SULFIX", ".log");
@@ -32,9 +30,9 @@ define("CAPTCHA_IMAGE_URL", "../../../public/images/captcha/");
 define("CAPTCHA_FONT_PATH", "../public/fonts/typewcond_bold.otf");
 
 //DOJO DIRECTORIES
-define("DOJO_LOCAL_PATH", LOCAL_HOST.LOCAL_HOST_PORT."/rochedo_project/public/js/dojo/dojo.js");
-define("DOJO_STYLE_SHEET_PATH", LOCAL_HOST.LOCAL_HOST_PORT."/rochedo_project/public/js/dijit/themes/tundra/tundra.css");
+define("DOJO_LOCAL_PATH", "/js/dojo/dojo.js");
+define("DOJO_STYLE_SHEET_PATH", "/js/dijit/themes/tundra/tundra.css");
 define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.tundra");
 
 //JAVASCRIPT FILES
-define("DEFAULT_JAVASCRIPT_FILE_PATH", LOCAL_HOST.LOCAL_HOST_PORT."/rochedo_project/public/js/default_scripts.js");
+define("DEFAULT_JAVASCRIPT_FILE_PATH", "/js/default_scripts.js");
