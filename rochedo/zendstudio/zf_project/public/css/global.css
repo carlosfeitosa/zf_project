@@ -50,7 +50,9 @@ div#more-information
 
 div#header
 {
-	height: 18px; border-bottom: solid; border-width: thin;
+	height: 18px;
+	border-bottom: solid;
+	border-width: thin;
 }
 
 div#header-logo
@@ -72,7 +74,9 @@ div#content
 
 div#footer
 {
-	height: 18px; border-top: solid; border-width: thin;
+	height: 18px;
+	border-top: solid;
+	border-width: thin;
 }
 
 div#footer_poweredby
@@ -82,8 +86,8 @@ div#footer_poweredby
 
 div.loading 
 {
-    background-image: url("../images/loading.gif");
+    background-image: url('../images/loading.gif');
     background-repeat: no-repeat;
     background-position: center;
+	visibility: visible;
 }
-
