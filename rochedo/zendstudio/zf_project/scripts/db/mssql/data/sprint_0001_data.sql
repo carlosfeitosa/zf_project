@@ -79,11 +79,11 @@ INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria,
 SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Confirmação de Registro' AS assunto,
 'Prezado(a) sr.(a) [nome_usuario], 
 
-Para continuar o seu registro em nosso servico, por favor clique no link abaixo, ou copie e cole o endereco em seu navegador: 
+Para continuar o seu registro em nosso serviço, por favor clique no link abaixo, ou copie e cole o endereco abaixo em seu navegador: 
 [link]
 
 
-Caso voce nao tenha solicitado este registro, por favor apenas ignore esta mensagem.
+Caso voce não tenha solicitado este registro, apenas ignore esta mensagem.
 
 Atenciosamente, 
 [assinatura_mensagem]' as mensagem, c.id AS id_categoria, getdate() AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
@@ -96,11 +96,11 @@ INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria,
 SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Reenvio de confirmação de Registro' AS assunto,
 'Prezado(a) sr.(a) [nome_usuario], 
 
-Para continuar o seu registro em nosso servico, por favor clique no link abaixo, ou copie e cole o endereco em seu navegador: 
+Para continuar o seu registro em nosso serviço, por favor clique no link abaixo, ou copie e cole o endereco abaixo em seu navegador: 
 [link]
 
 
-Caso voce nao tenha solicitado este registro, por favor apenas ignore esta mensagem.
+Caso voce não tenha solicitado este registro, apenas ignore esta mensagem.
 
 Atenciosamente, 
 [assinatura_mensagem]' as mensagem, c.id AS id_categoria, getdate() AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
