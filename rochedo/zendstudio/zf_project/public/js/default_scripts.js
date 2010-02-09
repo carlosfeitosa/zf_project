@@ -1,6 +1,6 @@
 dojo.require("dijit.Dialog");
 dojo.require("dijit.form.Button");
-dojo.require("dijit.Form");
+dojo.require("dijit.form.Form");
 
 var underlay;
 function loading() 
