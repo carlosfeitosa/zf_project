@@ -10,6 +10,7 @@
 * 									 - adicao de nova tabela (dados_pessoas_perfis);
 * 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null;
 * 						- 28/01/2010 - adicao das tabelas categoria_chave_estrangeira e token;
+* 						- 22/02/2010 - adicao da tabela dicionario_expressao;
 */
 
 // CRIACAO DAS TABELAS
@@ -161,6 +162,13 @@ create table token (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
+create table dicionario_expressao (
+	id int identity not null ,
+	id_categoria int not null ,
+	constante_textual varchar (200) collate latin1_general_ci_ai not null,
+	traducao varchar (7000) collate latin1_general_ci_ai not null
+) on [primary];
+
 
 // CRIACAO DAS CHAVES PRIMARIAS
 
@@ -195,6 +203,8 @@ alter table dados_pessoas_perfis with nocheck add constraint pk_dados_pessoas_pe
 alter table categoria_chave_estrangeira with nocheck add constraint pk_categoria_chave_estrangeira primary key clustered (id) on [primary];
 
 alter table token with nocheck add constraint pk_token primary key clustered (id) on [primary];
+
+alter table dicionario_expressao with nocheck add constraint pk_dicionario_expressao primary key clustered (id) on [primary];
 
 
 // CRIACAO DOS VALORES DEFAULT
@@ -244,6 +254,8 @@ create unique index ix_categoria_chave_estrangeira_id_categoria on categoria_cha
 
 create unique index ix_token_token on token (token) on [primary];
 
+create index ix_dicionario_expressao_constante_textual on dicionario_expressao (constante_textual) on [primary];
+
 
 // CRIACAO DAS CONSTRAINTS UNIQUE
 
@@ -266,6 +278,12 @@ alter table pessoas_perfis add constraint ix_pessoas_perfis unique nonclustered
         id_pessoa,
 		id_perfil
 	)  on [primary];
+	
+alter table dicionario_expressao add constraint ix_dicionario_expressao unique nonclustered
+	(
+		id_categoria,
+		constante_textual
+	) on [primary];
 
 
 // CRIACAO DAS CHAVES ESTRANGEIRAS
@@ -403,6 +421,13 @@ alter table dados_pessoas_perfis add
 
 alter table token add
 	constraint fk_token_categoria foreign key (
+		id_categoria
+	) references categoria (
+		id
+	);
+	
+alter table dicionario_expressao add
+	constraint fk_dicionario_expressao_categoria foreign key (
 		id_categoria
 	) references categoria (
 		id

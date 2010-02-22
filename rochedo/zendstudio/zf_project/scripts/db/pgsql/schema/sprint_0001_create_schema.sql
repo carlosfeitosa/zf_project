@@ -9,7 +9,8 @@
 * 						- 29/12/2009 - adicao do campo login.datahora_expiracao_senha timestamp with time zone;
 * 									 - adicao de nova tabela (dados_pessoas_perfis);
 * 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null;
-*						- 28/01/2010 - adicao das tabelas categoria_chave_estrangeira e token; 
+*						- 28/01/2010 - adicao das tabelas categoria_chave_estrangeira e token;
+* 						- 22/02/2010 - adicao da tabela dicionario_expressao;
 */
 
 // CRIACAO DAS TABELAS
@@ -224,6 +225,13 @@ create table token (
 );
 alter table token owner to rochedo_user;
 
+create table dicionario_expressao (
+	id serial not null ,
+	id_categoria int not null ,
+	constante_textual character varying (200) not null,
+	traducao character varying (7000) not null
+) on [primary];
+
 
 // CRIACAO DAS CHAVES PRIMARIAS
 
@@ -258,6 +266,8 @@ alter table dados_pessoas_perfis add constraint pk_dados_pessoas_perfis primary 
 alter table categoria_chave_estrangeira add constraint pk_categoria_chave_estrangeira primary key (id);
 
 alter table token add constraint pk_token primary key (id);
+
+alter table dicionario_expressao add constraint pk_dicionario_expressao primary key (id);
 
 
 // CRIACAO DOS VALORES DEFAULT
@@ -316,6 +326,9 @@ create index ix_categoria_chave_estrangeira_id_categoria
   
 create index ix_token_token
   on token using btree (token asc nulls last);
+  
+create index ix_dicionario_expressao_constante_textual
+  on dicionario_expressao using btree (constante_textual asc nulls last);
 
 
 // CRIACAO DAS CONSTRAINTS UNIQUE
@@ -346,6 +359,9 @@ alter table categoria_chave_estrangeira
   
 alter table token
   add constraint ix_token unique (token);
+  
+alter table dicionario_expressao 
+  add constraint ix_dicionario_expressao unique (id_categoria, constante_textual);
 
 
 // CRIACAO DAS CHAVES ESTRANGEIRAS
@@ -398,3 +414,6 @@ alter table dados_pessoas_perfis
 
 alter table token
   add constraint fk_token_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  
+alter table dicionario_expressao
+  add constraint fk_dicionario_expressao_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
