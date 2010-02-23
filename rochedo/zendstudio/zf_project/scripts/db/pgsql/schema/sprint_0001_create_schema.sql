@@ -220,7 +220,8 @@ create table token (
 	token character varying (100) not null ,
 	datahora_expiracao timestamp with time zone null ,
 	rowinfo character varying (2000) not null
-)with (
+)
+with (
 	oids = false
 );
 alter table token owner to rochedo_user;
@@ -230,7 +231,11 @@ create table dicionario_expressao (
 	id_categoria int not null ,
 	constante_textual character varying (200) not null,
 	traducao character varying (7000) not null
-) on [primary];
+)
+with (
+	oids = false
+);
+alter table dicionario_expressao owner to rochedo_user;
 
 
 // CRIACAO DAS CHAVES PRIMARIAS
