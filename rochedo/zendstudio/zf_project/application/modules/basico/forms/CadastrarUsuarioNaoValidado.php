@@ -26,7 +26,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                     ->addValidator('NotEmpty')
                     ->setInvalidMessage('Preencha este campo com seu nome completo.')
                     ->setRequired(true)
-                    ->setLabel('Nome:')
+                    ->setLabel($this->getView()->tradutor(FORM_NOME, DEFAULT_USER_LANGUAGE))
  					->setAttrib('size', 100);
 
         if($options!=null)
@@ -37,7 +37,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                     ->addValidator('NotEmpty')
                     ->setInvalidMessage('Preencha este campo com seu e-mail.')
                     ->setRequired(true)
-                    ->setLabel('E-mail:')
+                    ->setLabel($this->getView()->tradutor(FORM_EMAIL, DEFAULT_USER_LANGUAGE))
  					->setAttrib('size', 80);
 
         if (FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX)

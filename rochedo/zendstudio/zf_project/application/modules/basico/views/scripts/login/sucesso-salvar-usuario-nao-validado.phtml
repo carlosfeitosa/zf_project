@@ -1,6 +1,11 @@
 <?php
+
+$tituloView = $this->tradutor(TITULO_SUCESSO_ENVIO_CONFIRMACAO_USUARIO, DEFAULT_USER_LANGUAGE);
+$subtituloView = $this->tradutor(SUBTITULO_SUCESSO_ENVIO_CONFIRMACAO_USUARIO, DEFAULT_USER_LANGUAGE);
+$mensagemView = $this->tradutor(MENSAGEM_SUCESSO_ENVIO_CONFIRMACAO_USUARIO, DEFAULT_USER_LANGUAGE);
+
 echo <<<TEXT
-<h3>Sucesso!</h3>
-<h4>Um e-mail de confirmação foi enviado para o endereço por você informado.<h4>
-<h5>Acesse sua caixa postal e siga as instruções contidas na mensagem para validar seu cadastro no sistema.</h5>
+<h3>{$tituloView}</h3>
+<h4>{$subtituloView}<h4>
+<h5>{$mensagemView}</h5>
 TEXT;

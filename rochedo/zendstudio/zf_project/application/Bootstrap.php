@@ -3,8 +3,8 @@
 /**
  * Inclui arquivos do sistema.
  */
-require_once("configs/application.php");
 require_once("consts/consts.php");
+require_once("configs/application.php");
 require_once("modules/basico/controllers/LogControllerController.php");
 require_once("modules/basico/controllers/TokenControllerController.php");
 require_once("modules/basico/models/Log.php");
@@ -41,7 +41,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->tokenizer = Basico_TokenControllerController::init();
                 
         if (Basico_Model_Util::ambienteDesenvolvimento())
-            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION.' ('.APPLICATION_ENV.')');
+            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . DEFAULT_USER_LANGUAGE . ')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
     }

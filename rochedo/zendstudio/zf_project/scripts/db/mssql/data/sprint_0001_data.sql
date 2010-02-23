@@ -14,6 +14,7 @@
 * 									 - insert em categoria_chave_estrangeira (email);
 * 						- 22/02/2010 - insert do tipo categoria LINGUAGEM;
 * 									 - insert das categorias filhas de linguagem, assumindo o padrão ANSI de codificação;
+* 						- 23/02/2010 - insert de dados no dicionario de expressões;
 */
 
 // DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA)
@@ -946,3 +947,212 @@ INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'zu' AS nome, 'Zulu.' AS descricao, 'SYSTEM_STARTUP'
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
+
+
+// DICIONARIO DE EXPRESSÕES
+// (Português do Brasil - PT_BR)
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_REGISTRO_NOVO_USUARIO' AS constante_textual, 'Registro de novo usuário:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_REGISTRO_NOVO_USUARIO'  AS constante_textual, 'Preencha os dados abaixo para iniciar seu processo de registro.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'Atenção!'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'Um novo e-mail de confirmação foi enviado para o endereço por você informado.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'Acesse sua caixa postal e siga as instruções contidas na mensagem para validar seu cadastro no sistema.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'Atenção!'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'Usuário já cadastrado e validado no sistema.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'Utilize suas credenciais de acesso ou tente resetar sua senha.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'Sucesso!'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'Um e-mail de confirmação foi enviado para o endereço por você informado.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'Acesse sua caixa postal e siga as instruções contidas na mensagem para validar seu cadastro no sistema.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'REGISTRE_SE'  AS constante_textual, 'Registre-se'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'REGISTRE_SE'  AS constante_textual, 'Registre-se'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_NOME'  AS constante_textual, 'Nome:'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_EMAIL'  AS constante_textual, 'E-mail:'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+// (Inglês dos E.U.A. - EN_US)
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_REGISTRO_NOVO_USUARIO' AS constante_textual, 'New user registry:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_REGISTRO_NOVO_USUARIO'  AS constante_textual, 'Fill the fields below to start you registration process.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'Warning!'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'A new confirmation e-mail was sent to the address provided by you.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'Access you mailbox and follow the e-mail instructions to validate your registry in our system.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'Warning!'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'User already registered and validated on system.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'Use your credentials ou try to reset you password.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'TITULO_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'Sucess!'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBTITULO_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'A confirmation e-mail was sent to the address provided by you.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'Access you mailbox and follow the e-mail instructions to validate your registry in our system.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'REGISTRE_SE'  AS constante_textual, 'Register'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_NOME'  AS constante_textual, 'Name:'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_EMAIL'  AS constante_textual, 'E-mail:'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';

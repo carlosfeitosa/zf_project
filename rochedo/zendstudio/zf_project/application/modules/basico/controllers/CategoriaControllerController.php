@@ -222,5 +222,17 @@ class Basico_CategoriaControllerController
 		if (isset($categoriaLogNovaMensagem))
 			return $categoriaLogNovaMensagem;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM);
-	}	
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria da linguagem 
+	 * @return Basico_Model_Categoria $categoriaLinguagem
+	 */
+	public function retornaCategoriaLinguagem($constanteLinguagem)
+	{
+		$categoriaLinguagem = $this->retornaCategoria($constanteLinguagem);
+		if (isset($categoriaLinguagem))
+			return $categoriaLinguagem;
+		throw new Exception(MSG_ERRO_CATEGORIA_LINGUAGEM);
+	}
 }

@@ -1,8 +1,10 @@
 <?php
+
+$tituloView = $this->tradutor(TITULO_REGISTRO_NOVO_USUARIO, DEFAULT_USER_LANGUAGE);
+$subtituloView = $this->tradutor(SUBTITULO_REGISTRO_NOVO_USUARIO, DEFAULT_USER_LANGUAGE);
+
 echo <<<TEXT
-<h3>Registro de novo usuário:</h3>
-<h5>Preencha os dados abaixo para iniciar seu processo de registro.</h5>
+<h3>{$tituloView}</h3>
+<h5>{$subtituloView}</h5>
 TEXT;
 echo $this->form;
-
-

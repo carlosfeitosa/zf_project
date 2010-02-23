@@ -1,6 +1,11 @@
 <?php
+
+$tituloView = $this->tradutor(TITULO_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE, DEFAULT_USER_LANGUAGE);
+$subtituloView = $this->tradutor(SUBTITULO_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE, DEFAULT_USER_LANGUAGE);
+$mensagemView = $this->tradutor(MENSAGEM_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE, DEFAULT_USER_LANGUAGE);
+
 echo <<<TEXT
-<h3>Atenção!</h3>
-<h4>Usuário já cadastrado e validado no sistema.<h4>
-<h5>Utilize suas credenciais de acesso ou tente resetar sua senha.</h5>
+<h3>{$tituloView}</h3>
+<h4>{$subtituloView}<h4>
+<h5>{$mensagemView}</h5>
 TEXT;
