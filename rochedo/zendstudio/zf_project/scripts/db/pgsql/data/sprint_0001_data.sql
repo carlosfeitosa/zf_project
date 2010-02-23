@@ -322,3 +322,609 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'MENSAGEM'
 AND c.nome = 'MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT';
+
+
+// LINGUAGEM
+
+INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+VALUES ('LINGUAGEM', 'Linguagens utilizadas pelo sistema.', 'SYSTEM_STARTUP');
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'af' AS nome, 'Afrikaans.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sq' AS nome, 'Albanian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-sa' AS nome, 'Arabic (Saudi Arabia).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-iq' AS nome, 'Arabic (Iraq).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-eg' AS nome, 'Arabic (Egypt).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-ly' AS nome, 'Arabic (Libya).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-dz' AS nome, 'Arabic (Algeria).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-ma' AS nome, 'Arabic (Morocco).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-tn' AS nome, 'Arabic (Tunisia).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-om' AS nome, 'Arabic (Oman).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-ye' AS nome, 'Arabic (Yemen).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-sy' AS nome, 'Arabic (Syria).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-jo' AS nome, 'Arabic (Jordan).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-lb' AS nome, 'Arabic (Lebanon).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-kw' AS nome, 'Arabic (Kuwait).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-ae' AS nome, 'Arabic (U.A.E.).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-bh' AS nome, 'Arabic (Bahrain).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ar-qa' AS nome, 'Arabic (Qatar).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'eu' AS nome, 'Basque.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'bg' AS nome, 'Bulgarian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'be' AS nome, 'Belarusian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ca' AS nome, 'Catalan.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'zh-tw' AS nome, 'Chinese (Taiwan).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'zh-cn' AS nome, 'Chinese (PRC).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'zh-hk' AS nome, 'Chinese (Hong Kong SAR).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'zh-sg' AS nome, 'Chinese (Singapore).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'hr' AS nome, 'Croatian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'cs' AS nome, 'Czech.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'da' AS nome, 'Danish.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'nl' AS nome, 'Dutch (Standard).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'nl-be' AS nome, 'Dutch (Belgium).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en' AS nome, 'English / English (Caribbean).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-us' AS nome, 'English (United States).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-gb' AS nome, 'English (United Kingdom).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-au' AS nome, 'English (Australia).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-ca' AS nome, 'English (Canada).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-nz' AS nome, 'English (New Zealand).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-ie' AS nome, 'English (Ireland).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-za' AS nome, 'English (South Africa).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-jm' AS nome, 'English (Jamaica).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-bz' AS nome, 'English (Belize).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'en-tt' AS nome, 'English (Trinidad).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'et' AS nome, 'Estonian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fo' AS nome, 'Faeroese.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fa' AS nome, 'Farsi.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fi' AS nome, 'Finnish.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fr' AS nome, 'French (Standard).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fr-be' AS nome, 'French (Belgium).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fr-ca' AS nome, 'French (Canada).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fr-ch' AS nome, 'French (Switzerland).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'fr-lu' AS nome, 'French (Luxembourg).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'gd' AS nome, 'Gaelic (Scotland).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ga' AS nome, 'Irish.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'de' AS nome, 'German (Standard).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'de-ch' AS nome, 'German (Switzerland).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'de-at' AS nome, 'German (Austria).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'de-lu' AS nome, 'German (Luxembourg).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'de-li' AS nome, 'German (Liechtenstein).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'el' AS nome, 'Greek.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'he' AS nome, 'Hebrew.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'hi' AS nome, 'Hindi.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'hu' AS nome, 'Hungarian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'is' AS nome, 'Icelandic.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'id' AS nome, 'Indonesian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'it' AS nome, 'Italian (Standard).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'it-ch' AS nome, 'Italian (Switzerland).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ja' AS nome, 'Japanese.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ko' AS nome, 'Korean / Korean (Johab).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'lv' AS nome, 'Latvian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'lt' AS nome, 'Lithuanian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'mk' AS nome, 'Macedonian (FYROM).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ms' AS nome, 'Malaysian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'mt' AS nome, 'Maltese.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'no' AS nome, 'Norwegian (Bokmal) / Norwegian (Nynorsk).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'pl' AS nome, 'Polish.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'pt-br' AS nome, 'Portuguese (Brazil).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'pt' AS nome, 'Portuguese (Portugal).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'rm' AS nome, 'Rhaeto-Romanic.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ro' AS nome, 'Romanian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ro-mo' AS nome, 'Romanian (Republic of Moldova).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ru' AS nome, 'Russian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ru-mo' AS nome, 'Russian (Republic of Moldova).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sz' AS nome, 'Sami (Lappish).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sr' AS nome, 'Serbian (Cyrillic) / Serbian (Latin).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sk' AS nome, 'Slovak.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sl' AS nome, 'Slovenian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sb' AS nome, 'Sorbian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es' AS nome, 'Spanish (Spain).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-mx' AS nome, 'Spanish (Mexico).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-gt' AS nome, 'Spanish (Guatemala).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-cr' AS nome, 'Spanish (Costa Rica).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-pa' AS nome, 'Spanish (Panama).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-do' AS nome, 'Spanish (Dominican Republic).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-ve' AS nome, 'Spanish (Venezuela).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-co' AS nome, 'Spanish (Colombia).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-pe' AS nome, 'Spanish (Peru).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-ar' AS nome, 'Spanish (Argentina).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-ec' AS nome, 'Spanish (Ecuador).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-cl' AS nome, 'Spanish (Chile).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-uy' AS nome, 'Spanish (Uruguay).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-py' AS nome, 'Spanish (Paraguay).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-bo' AS nome, 'Spanish (Bolivia).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-sv' AS nome, 'Spanish (El Salvador).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-hn' AS nome, 'Spanish (Honduras).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-ni' AS nome, 'Spanish (Nicaragua).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'es-pr' AS nome, 'Spanish (Puerto Rico).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sx' AS nome, 'Sutu.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sv' AS nome, 'Swedish.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'sv-fi' AS nome, 'Swedish (Finland).' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'th' AS nome, 'Thai.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ts' AS nome, 'Tsonga.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'tn' AS nome, 'Tswana.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'tr' AS nome, 'Turkish.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'uk' AS nome, 'Ukrainian.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ur' AS nome, 'Urdu.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 've' AS nome, 'Venda.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'vi' AS nome, 'Vietnamese.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'xh' AS nome, 'Xhosa.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'ji' AS nome, 'Yiddish.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'zu' AS nome, 'Zulu.' AS descricao, 'SYSTEM_STARTUP'
+FROM tipo_categoria t
+WHERE t.nome = 'LINGUAGEM';
