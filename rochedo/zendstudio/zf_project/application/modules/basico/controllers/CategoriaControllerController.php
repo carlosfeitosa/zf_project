@@ -55,6 +55,27 @@ class Basico_CategoriaControllerController
     	
 	}
 	
+    /**
+	 * Retorna o objeto categoria carregado com os dados da categoria passada como parâmetro se esta estiver ATIVA
+	 * ou NULL se ela não existir no banco.
+	 * @param String $nomeCategoria
+	 * @return Basico_Model_Categoria or NULL
+	 */
+	public function retornaCategoriaAtiva($nomeCategoria)
+	{
+		$auxCategoria = self::$singleton->categoria->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
+		if (isset($auxCategoria[0])) {
+			
+			if ($auxCategoria[0]->ativo == 1)
+			   return $auxCategoria[0];	
+		    throw new Exception(MSG_ERRO_CATEGORIA_NAO_ATIVA);
+		    
+		}else{
+    	    return NULL;
+		}
+    	
+	}
+	
 	/** CATEGORIAS DE E-MAIL */
 	
 	/**
@@ -63,7 +84,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaEmailPrimario()
 	{
-	    $categoriaEmailPrimario = $this->retornaCategoria(EMAIL_PRIMARIO);
+	    $categoriaEmailPrimario = $this->retornaCategoriaAtiva(EMAIL_PRIMARIO);
 	    if (isset($categoriaEmailPrimario))
     	    return $categoriaEmailPrimario;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO);
@@ -76,7 +97,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaEmailValidacaoPlainText()
 	{
-	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoriaAtiva(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 	    if (isset($categoriaEmailValidacaoPlainText))
     	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
@@ -88,7 +109,7 @@ class Basico_CategoriaControllerController
 	 */
     public function retornaCategoriaEmailTemplateValidacaoPlainTextReenvio()
 	{
-	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	    $categoriaEmailValidacaoPlainTextReenvio = $this->retornaCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 	    if (isset($categoriaEmailValidacaoPlainTextReenvio))
     	    return $categoriaEmailValidacaoPlainTextReenvio;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
@@ -100,7 +121,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaRemetente()
 	{
-		$categoriaRemetente = $this->retornaCategoria(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
+		$categoriaRemetente = $this->retornaCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
 	    if (isset($categoriaRemetente))
     	    return $categoriaRemetente;
     	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
@@ -112,7 +133,7 @@ class Basico_CategoriaControllerController
 	 */
     public function retornaCategoriaDestinatario()
 	{
-		$categoriaDestinatario = $this->retornaCategoria(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
+		$categoriaDestinatario = $this->retornaCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
 	    if (isset($categoriaDestinatario))
     	    return $categoriaDestinatario;
     	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
@@ -124,7 +145,7 @@ class Basico_CategoriaControllerController
 	 */
     public function retornaCategoriaEmailValidacaoPlainTextTemplate()
 	{
-	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
 	    if (isset($categoriaEmailValidacaoPlainText))
     	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);
@@ -136,7 +157,7 @@ class Basico_CategoriaControllerController
 	 */
     public function retornaCategoriaEmailSistema()
 	{
-	    $categoriaEmailValidacaoPlainText = $this->retornaCategoria(SISTEMA_EMAIL);
+	    $categoriaEmailValidacaoPlainText = $this->retornaCategoriaAtiva(SISTEMA_EMAIL);
 	    if (isset($categoriaEmailValidacaoPlainText))
     	    return $categoriaEmailValidacaoPlainText;
     	throw new Exception(MSG_ERRO_CATEGORIA_SISTEMA_EMAIL);
@@ -150,7 +171,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaLogValidacaoUsuario()
 	{
-		$categoriaLogValidacaoUsuario = $this->retornaCategoria(LOG_VALIDACAO_USUARIO);
+		$categoriaLogValidacaoUsuario = $this->retornaCategoriaAtiva(LOG_VALIDACAO_USUARIO);
 		if (isset($categoriaLogValidacaoUsuario))
 			return $categoriaLogValidacaoUsuario;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_VALIDACAO_USUARIO);
@@ -162,7 +183,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaLogNovaPessoa()
 	{
-		$categoriaLogNovaPessoa = $this->retornaCategoria(LOG_NOVA_PESSOA);
+		$categoriaLogNovaPessoa = $this->retornaCategoriaAtiva(LOG_NOVA_PESSOA);
 		if (isset($categoriaLogNovaPessoa))
 			return $categoriaLogNovaPessoa;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA);
@@ -174,7 +195,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaLogNovaPessoaPerfil()
 	{
-		$categoriaLogNovaPessoaPerfil = $this->retornaCategoria(LOG_NOVA_PESSOA_PERFIL);
+		$categoriaLogNovaPessoaPerfil = $this->retornaCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL);
 		if (isset($categoriaLogNovaPessoaPerfil))
 			return $categoriaLogNovaPessoaPerfil;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL);
@@ -186,7 +207,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaLogNovoDadosPessoais()
 	{
-		$categoriaLogNovoDadosPessoais = $this->retornaCategoria(LOG_NOVO_DADOS_PESSOAIS);
+		$categoriaLogNovoDadosPessoais = $this->retornaCategoriaAtiva(LOG_NOVO_DADOS_PESSOAIS);
 		if (isset($categoriaLogNovoDadosPessoais))
 			return $categoriaLogNovoDadosPessoais;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
@@ -198,7 +219,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaLogNovoEmail()
 	{
-		$categoriaLogNovoEmail = $this->retornaCategoria(LOG_NOVO_EMAIL);
+		$categoriaLogNovoEmail = $this->retornaCategoriaAtiva(LOG_NOVO_EMAIL);
 		if (isset($categoriaLogNovoEmail))
 			return $categoriaLogNovoEmail;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL);
@@ -206,7 +227,7 @@ class Basico_CategoriaControllerController
 	
     public function retornaCategoriaLogNovoToken()
 	{
-		$categoriaLogNovoToken = $this->retornaCategoria(LOG_TOKEN_VALIDACAO_USUARIO);
+		$categoriaLogNovoToken = $this->retornaCategoriaAtiva(LOG_TOKEN_VALIDACAO_USUARIO);
 		if (isset($categoriaLogNovoToken))
 			return $categoriaLogNovoToken;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN);
@@ -218,7 +239,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaLogNovaMensagem()
 	{
-		$categoriaLogNovaMensagem = $this->retornaCategoria(LOG_NOVA_MENSAGEM);
+		$categoriaLogNovaMensagem = $this->retornaCategoriaAtiva(LOG_NOVA_MENSAGEM);
 		if (isset($categoriaLogNovaMensagem))
 			return $categoriaLogNovaMensagem;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM);
@@ -230,7 +251,7 @@ class Basico_CategoriaControllerController
 	 */
 	public function retornaCategoriaLinguagem($constanteLinguagem)
 	{
-		$categoriaLinguagem = $this->retornaCategoria($constanteLinguagem);
+		$categoriaLinguagem = $this->retornaCategoriaAtiva($constanteLinguagem);
 		if (isset($categoriaLinguagem))
 			return $categoriaLinguagem;
 		throw new Exception(MSG_ERRO_CATEGORIA_LINGUAGEM);
