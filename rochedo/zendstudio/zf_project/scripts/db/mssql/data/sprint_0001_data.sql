@@ -1060,7 +1060,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBTITULO_REGISTRO_NOVO_USUARIO'  AS constante_textual, 'Fill the fields below to start you registration process.'  AS traducao
+SELECT c.id, 'SUBTITULO_REGISTRO_NOVO_USUARIO'  AS constante_textual, 'Fill the fields below to start your registration process.'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1081,7 +1081,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'MENSAGEM_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'Access you mailbox and follow the e-mail instructions to validate your registry in our system.'  AS traducao
+SELECT c.id, 'MENSAGEM_REENVIO_EMAIL_CONFIRMACAO_NOVO_USUARIO'  AS constante_textual, 'Access your mailbox and follow the e-mail instructions to validate your registry in our system.'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1102,7 +1102,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'MENSAGEM_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'Use your credentials ou try to reset you password.'  AS traducao
+SELECT c.id, 'MENSAGEM_EMAIL_CONFIRMACAO_USUARIO_JA_EXISTENTE'  AS constante_textual, 'Use your credentials or try to reset your password.'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1123,7 +1123,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'MENSAGEM_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'Access you mailbox and follow the e-mail instructions to validate your registry in our system.'  AS traducao
+SELECT c.id, 'MENSAGEM_SUCESSO_ENVIO_CONFIRMACAO_USUARIO'  AS constante_textual, 'Access your mailbox and follow the e-mail instructions to validate your registry in our system.'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
