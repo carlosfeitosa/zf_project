@@ -1,12 +1,23 @@
 <?php
 
+/**
+ * TestCase de Classe
+ * 
+ * @testCase: Basico_Model_Perfil_Test
+ * @class: Basico_Model_Perfil
+ * @filesource: /rochedo_project/application/modules/basico/models/Perfil.php
+ * @tester: Adriano Duprat Lemos
+ * 
+ */
+
 require_once 'tests/application/includePathConfig.php';
 require_once 'application/modules/basico/models/Perfil.php';
+require_once 'application/consts/error_consts.php';
 
 /**
  * Basico_Model_Perfil test case.
  */
-class Basico_Model_PerfilTest extends PHPUnit_Framework_TestCase {
+class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	
 	/**
 	 * @var Basico_Model_Perfil
@@ -18,12 +29,8 @@ class Basico_Model_PerfilTest extends PHPUnit_Framework_TestCase {
 	 */
 	protected function setUp() {
 		parent::setUp ();
-		
 		// TODO Auto-generated Basico_Model_PerfilTest::setUp()
-		
-
-		$this->Basico_Model_Perfil = new Basico_Model_Perfil(/* parameters */);
-	
+		$this->Basico_Model_Perfil = new Basico_Model_Perfil();	
 	}
 	
 	/**
@@ -31,10 +38,7 @@ class Basico_Model_PerfilTest extends PHPUnit_Framework_TestCase {
 	 */
 	protected function tearDown() {
 		// TODO Auto-generated Basico_Model_PerfilTest::tearDown()
-		
-
 		$this->Basico_Model_Perfil = null;
-		
 		parent::tearDown ();
 	}
 	
@@ -51,11 +55,9 @@ class Basico_Model_PerfilTest extends PHPUnit_Framework_TestCase {
 	public function test__construct() {
 		// TODO Auto-generated Basico_Model_PerfilTest->test__construct()
 		//$this->markTestIncomplete ( "__construct test not implemented" );
-	    $arrayOptionsTest[0] = 'teste';
-	    $arrayOptionsTest[1] = 'teste1';
-	    $arrayOptionsTest[2] = 'teste2'; 
-		$this->anything($this->Basico_Model_Perfil->__construct($arrayOptionsTest));
-		$this->assertArrayHasKey($this->Basico_Model_Perfil->__construct($arrayOptionsTest));
+
+	    $this->isNull( $this->Basico_Model_Perfil->__construct() );
+		
 	}
 	
 	/**
@@ -63,9 +65,32 @@ class Basico_Model_PerfilTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test__set() {
 		// TODO Auto-generated Basico_Model_PerfilTest->test__set()
-		$this->markTestIncomplete ( "__set test not implemented" );
-		$this->Basico_Model_Perfil->__set(/* parameters */);
-	
+		
+		//Array de Teste
+		$arrayTest[0] = 'Foo Bar Baz';
+		$arrayTest[1] = 10;
+		$arrayTest[2] = 100.00;
+		$arrayTest[3] = 400000000000000000000000;
+		$arrayTest[4] = '15/12/2009';
+		$arrayTest[5] = '12/15/2009';
+		$arrayTest[6] = true;
+		$arrayTest[7] = false;
+		$arrayTest[8] = array('teste');		
+		
+		//Contar tamanho do array
+	    $arrayCounter = count($arrayTest);   
+		
+	    			    
+		for ($i=0;$i<$arrayCounter;$i++){
+			
+			$this->isNull($this->Basico_Model_Perfil->__set('options',$arrayTest[8]));		
+		    $this->isNull($this->Basico_Model_Perfil->__set('nome',$arrayTest[$i]));
+		    $this->isNull($this->Basico_Model_Perfil->__set('descricao',$arrayTest[$i]));
+		    $this->isNull($this->Basico_Model_Perfil->__set('ativo',$arrayTest[$i]));
+		    $this->isNull($this->Basico_Model_Perfil->__set('id',$arrayTest[$i]));
+		    $this->isNull($this->Basico_Model_Perfil->__set('categoria',$arrayTest[$i]));		    
+		
+		}
 	}
 	
 	/**
