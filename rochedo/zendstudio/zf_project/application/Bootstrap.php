@@ -35,8 +35,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      */
     protected function _initApplication()
     {    
-        // instancia a classe controladora de log
-        $this->logger = Basico_LogControllerController::init();
+        try {
+            // instancia a classe controladora de log
+            $this->logger = Basico_LogControllerController::init();	        	
+        } catch (Exception $e) {
+            throw new Exception (MSG_ERRO_ABRIR_LOG_FS . $e->getMessage());
+        }
+        
         // instancia a classe controladora de token
         $this->tokenizer = Basico_TokenControllerController::init();
                 

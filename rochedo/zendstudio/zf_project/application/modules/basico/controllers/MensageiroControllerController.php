@@ -34,8 +34,8 @@ class Basico_MensageiroControllerController
         
     	try {
             //CARREGANDO O TRANSPORTER
-			$tr = Basico_MensageiroControllerController::retornaTransportSmtp();
-			Zend_Mail::setDefaultTransport($tr);
+			$transport = Basico_MensageiroControllerController::retornaTransportSmtp();
+			Zend_Mail::setDefaultTransport($transport);
 			
 			//ENVIANDO EMAIL
 	        $zendMail = new Zend_Mail(EMAIL_CHARSET);
@@ -52,11 +52,10 @@ class Basico_MensageiroControllerController
 	        $zendMail->setBodyText($mensagem->getMensagem());
 	        $zendMail->setDate($mensagem->getDatahoraMensagem());
 	        
-            $zendMail->send($tr);
+            $zendMail->send($transport);
 
 	    }catch(Exception $e){
-			
-            throw new Exception($e->getMessage());
+            throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }
 	}
 	
@@ -73,9 +72,13 @@ class Basico_MensageiroControllerController
 		$config = array('auth'     => $tipoAutenticacao,
                         'username' => $username,
                         'password' => $senha);
-				
-		$tr = new Zend_Mail_Transport_Smtp($smtpServer, $config);
-		return $tr;
-		
+
+		try {
+			$transport = new Zend_Mail_Transport_Smtp($smtpServer, $config);
+		} catch (Exception $e) {
+		    throw new Exception(MSG_ERRO_TRANSPORT_INVALIDO . $e->getMessage());
+		}
+
+		return $transport;
 	}
 }
