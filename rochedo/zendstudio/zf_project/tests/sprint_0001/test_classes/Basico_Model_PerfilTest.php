@@ -1,13 +1,7 @@
 <?php
 
-set_include_path(get_include_path()
-				 . PATH_SEPARATOR . '/usr/local/zend/apache2/htdocs/rochedo_project'
-                 . PATH_SEPARATOR . '/usr/local/zend/apache2/htdocs/rochedo_project/library'
-                 //. PATH_SEPARATOR . '/usr/local/zend/apache2/htdocs/rochedo_project/tests/library'
-);
-
+require_once 'tests/application/includePathConfig.php';
 require_once 'application/modules/basico/models/Perfil.php';
-
 
 /**
  * Basico_Model_Perfil test case.
@@ -56,9 +50,12 @@ class Basico_Model_PerfilTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test__construct() {
 		// TODO Auto-generated Basico_Model_PerfilTest->test__construct()
-		$this->markTestIncomplete ( "__construct test not implemented" );
-		$this->Basico_Model_Perfil->__construct(/* parameters */);
-	
+		//$this->markTestIncomplete ( "__construct test not implemented" );
+	    $arrayOptionsTest[0] = 'teste';
+	    $arrayOptionsTest[1] = 'teste1';
+	    $arrayOptionsTest[2] = 'teste2'; 
+		$this->anything($this->Basico_Model_Perfil->__construct($arrayOptionsTest));
+		$this->assertArrayHasKey($this->Basico_Model_Perfil->__construct($arrayOptionsTest));
 	}
 	
 	/**
