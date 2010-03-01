@@ -34,8 +34,7 @@ class Basico_MensageiroControllerController
         
     	try {
             //CARREGANDO O TRANSPORTER
-			$tr = Basico_MensageiroControllerController::retornaTransportSmtp('login', 'info@rochedoproject.com', 
-	                                                                '@info#rochedo@', 'mail.rochedoproject.com');
+			$tr = Basico_MensageiroControllerController::retornaTransportSmtp();
 			Zend_Mail::setDefaultTransport($tr);
 			
 			//ENVIANDO EMAIL
@@ -69,7 +68,7 @@ class Basico_MensageiroControllerController
 	 * @param String $smtpServer
 	 * @return Zend_Mail_Transport_Smtp $tr
 	 */
-	public function retornaTransportSmtp($tipoAutenticacao, $username, $senha, $smtpServer) {
+	public function retornaTransportSmtp($tipoAutenticacao = SMTP_SERVER_AUTH_METHOD, $username = SMTP_USERNAME, $senha = SMTP_PASSWORD, $smtpServer = SMTP_SERVER_HOST) {
 		
 		$config = array('auth'     => $tipoAutenticacao,
                         'username' => $username,

@@ -18,11 +18,17 @@ define("LOG_FULL_FILENAME", LOG_PATH . LOG_FILENAME);
 // MODULO BASICO PATHS & FILENAMES
 define("BASICO_VIEW_HELPERS_PATH", APPLICATION_PATH . "/modules/basico/views/helpers");
 
-// INFORMATION
+// SUPPORT E-MAIL INFO
 define("SUPPORT_EMAIL", "agil@facepe.br");
 
 // E-MAIL VALIDATION
 define("FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX", false);
+
+// E-MAIL CONFIG
+define("SMTP_SERVER_AUTH_METHOD", "login");
+define("SMTP_SERVER_HOST", "mail.rochedoproject.com");
+define("SMTP_USERNAME", "info@rochedoproject.com");
+define("SMTP_PASSWORD", "@info#rochedo@");
 
 //CAPTCHA IMAGES/FONTS FOLDERS
 define("CAPTCHA_IMAGE_DIR","../public/images/captcha/");
