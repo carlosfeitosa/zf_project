@@ -3,16 +3,17 @@
 /**
  * TestCase de Classe
  * 
- * @testCase: Basico_Model_Perfil_Test
- * @class: Basico_Model_Perfil
- * @filesource: /rochedo_project/application/modules/basico/models/Perfil.php
- * @tester: Adriano Duprat Lemos
+ * @test : Basico_Model_Perfil_Test
+ * @class : Basico_Model_Perfil
+ * @filesource : /rochedo_project/application/modules/basico/models/Perfil.php
+ * @testEngineer : Adriano Duprat Lemos
  * 
  */
 
 require_once 'tests/application/includePathConfig.php';
-require_once 'application/modules/basico/models/Perfil.php';
 require_once 'application/consts/error_consts.php';
+require_once 'application/modules/basico/models/Perfil.php';
+
 
 /**
  * Basico_Model_Perfil test case.
@@ -29,7 +30,9 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	 */
 	protected function setUp() {
 		parent::setUp ();
+		
 		// TODO Auto-generated Basico_Model_PerfilTest::setUp()
+		
 		$this->Basico_Model_Perfil = new Basico_Model_Perfil();	
 	}
 	
@@ -56,7 +59,7 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 		// TODO Auto-generated Basico_Model_PerfilTest->test__construct()
 		//$this->markTestIncomplete ( "__construct test not implemented" );
 
-	    $this->isNull( $this->Basico_Model_Perfil->__construct() );
+	    //$this->isNull( $this->Basico_Model_Perfil->__construct() );
 		
 	}
 	
@@ -64,9 +67,13 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	 * Tests Basico_Model_Perfil->__set()
 	 */
 	public function test__set() {
+		
 		// TODO Auto-generated Basico_Model_PerfilTest->test__set()
 		
-		//Array de Teste
+		
+		$this->markTestIncomplete('REFAZER ARRAY');
+		
+		//Array de Teste    
 		$arrayTest[0] = 'Foo Bar Baz';
 		$arrayTest[1] = 10;
 		$arrayTest[2] = 100.00;
@@ -75,32 +82,42 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 		$arrayTest[5] = '12/15/2009';
 		$arrayTest[6] = true;
 		$arrayTest[7] = false;
-		$arrayTest[8] = array('teste');		
+		//$arrayTest[8] = array('');		
 		
 		//Contar tamanho do array
 	    $arrayCounter = count($arrayTest);   
 		
-	    			    
+	    //executar testes com os valores do Array			    
 		for ($i=0;$i<$arrayCounter;$i++){
-			
-			$this->isNull($this->Basico_Model_Perfil->__set('options',$arrayTest[8]));		
-		    $this->isNull($this->Basico_Model_Perfil->__set('nome',$arrayTest[$i]));
-		    $this->isNull($this->Basico_Model_Perfil->__set('descricao',$arrayTest[$i]));
-		    $this->isNull($this->Basico_Model_Perfil->__set('ativo',$arrayTest[$i]));
-		    $this->isNull($this->Basico_Model_Perfil->__set('id',$arrayTest[$i]));
-		    $this->isNull($this->Basico_Model_Perfil->__set('categoria',$arrayTest[$i]));		    
 		
-		}
+		    $this->assertNull($this->Basico_Model_Perfil->__set('nome',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
+            $this->assertNull($this->Basico_Model_Perfil->__set('descricao',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
+            $this->assertNull($this->Basico_Model_Perfil->__set('ativo',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
+            $this->assertNull($this->Basico_Model_Perfil->__set('id',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
+            $this->assertNull($this->Basico_Model_Perfil->__set('categoria',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');		    
+		}	
 	}
 	
 	/**
 	 * Tests Basico_Model_Perfil->__get()
 	 */
 	public function test__get() {
-		// TODO Auto-generated Basico_Model_PerfilTest->test__get()
-		$this->markTestIncomplete ( "__get test not implemented" );		
-		$this->Basico_Model_Perfil->__get(/* parameters */);
-	
+		
+		// TODO Auto-generated Basico_Model_PerfilTest->test__get()		
+	    //Array de Teste
+	    
+	    $this->Basico_Model_Perfil->__set('nome','adriano');
+	    $this->Basico_Model_Perfil->__set('descricao','he');
+	    $this->Basico_Model_Perfil->__set('ativo',1);
+	    $this->Basico_Model_Perfil->__set('id', 666);
+	    $this->Basico_Model_Perfil->__set('categoria',666);		    
+
+	    $this->assertEquals('adriano',$this->Basico_Model_Perfil->__get('nome'));
+	    $this->assertEquals('he',$this->Basico_Model_Perfil->__get('descricao'));
+	    $this->assertEquals(true,$this->Basico_Model_Perfil->__get('ativo'));
+	    $this->assertEquals(666,$this->Basico_Model_Perfil->__get('id'));
+	    $this->assertEquals(666,$this->Basico_Model_Perfil->__get('categoria'));
+
 	}
 	
 	/**
@@ -108,8 +125,78 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	 */
 	public function testSetOptions() {
 		// TODO Auto-generated Basico_Model_PerfilTest->testSetOptions()
-		$this->markTestIncomplete ( "setOptions test not implemented" );		
-		$this->Basico_Model_Perfil->setOptions(/* parameters */);
+		
+		//tamanho da persistência		
+		$maxLoopSize = 2500;
+		
+		//definição de valores
+		$a_big_string = (String) '';
+		$a_big_int = (Int) 0;
+		$a_big_float = (Float) 0.0;
+		$a_bool_value = (Boolean) false;
+		
+		//formatando data mínima para montagem array de data		
+		$firstDayOfTime = new DateTime('01-01-0000');
+		
+		//Populando Arrays de Teste; 
+		for($i=0; $i<$maxLoopSize;$i++)
+		{
+			//adicionando strings
+			$a_big_string .=' it\'s briefcase full of guts '; 
+			$mockArrayString[$i] = $a_big_string;
+			
+			//adicionando integers
+			$a_big_int += (Int) 1;
+			$mockArrayInt[$i] = $a_big_int;
+			
+			//adicionando float points
+			$a_big_float = (Float) $a_big_float + 6.6666;
+			$mockArrayFloat[$i] = $a_big_float;
+			
+			//adicionando dates
+			$firstDayOfTime->format('d/m/Y');
+		    $firstDayOfTime->modify('+1 day');			
+			$a_sum_of_date = $firstDayOfTime->format('d/m/Y');
+			$mockArrayDateTime[$i] = $a_sum_of_date ;
+			
+			//adicionando booleans
+			if( false === $a_bool_value )
+			{
+				$a_bool_value = (Boolean) true;
+				$mockArrayBool[$i] =  $a_bool_value;
+			}
+			else
+			{
+			    $a_bool_value = (Boolean) false;
+				$mockArrayBool[$i] = (Boolean) $a_bool_value;
+			}	
+		}
+						
+		
+		//Checando
+		for($i=0; $i<$maxLoopSize; $i++)
+		{
+			
+			$mockArray['nome'] = $mockArrayString[$i];
+			$mockArray['mapper'] = $mockArrayString[$i];
+	        $mockArray['id'] = $mockArrayString[$i];
+	        $mockArray['descricao'] = $mockArrayString[$i];
+	        $mockArray['ativo'] = $mockArrayString[$i];
+	        $mockArray['categoria'] = $mockArrayString[$i];
+			
+	        $mockObject = new Basico_Model_Perfil($mockArray);
+
+	        $this->assertType('string', $mockObject->getNome());
+		    $this->assertType('string', $mockObject->getDescricao());
+	        $this->assertType('integer', $mockObject->getId());
+	        $this->assertType('boolean', $mockObject->getAtivo());
+	        $this->assertType('resource',$mockObject->getMapper());
+	        
+		}
+		
+
+		
+	
 	
 	}
 	
