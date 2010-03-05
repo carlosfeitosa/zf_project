@@ -15,6 +15,7 @@
 * 						- 22/02/2010 - insert do tipo categoria LINGUAGEM;
 * 									 - insert das categorias filhas de linguagem, assumindo o padrão ANSI de codificação;
 * 						- 23/02/2010 - insert de dados no dicionario de expressões;
+* 						- 05/03/2010 - insert de dados no dicionario de expressões: form hints;
 */
 
 // DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA)
@@ -1026,7 +1027,21 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_NOME_HINT'  AS constante_textual, 'Preencha este campo com seu nome completo.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_EMAIL'  AS constante_textual, 'E-mail:'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_EMAIL_HINT'  AS constante_textual, 'Preencha este campo com seu e-mail.'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1131,7 +1146,21 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_NOME_HINT'  AS constante_textual, 'Fill this field with you complete name.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_EMAIL'  AS constante_textual, 'E-mail:'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_EMAIL_HINT'  AS constante_textual, 'Fill this field with you e-mail address.'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

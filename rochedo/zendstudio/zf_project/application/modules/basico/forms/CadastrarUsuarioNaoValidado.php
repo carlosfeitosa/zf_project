@@ -14,7 +14,9 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     public function __construct($options = null)
     {
         $labelCampoNome  = $this->getView()->tradutor(FORM_FIELD_NOME, DEFAULT_USER_LANGUAGE);
+        $labelCampoNomeHint = $this->getView()->tradutor(FORM_FIELD_NOME_HINT, DEFAULT_USER_LANGUAGE);
         $labelCampoEmail = $this->getView()->tradutor(FORM_FIELD_EMAIL, DEFAULT_USER_LANGUAGE);
+        $labelCampoEmailHint = $this->getView()->tradutor(FORM_FIELD_EMAIL_HINT, DEFAULT_USER_LANGUAGE);
         parent::__construct($options);
         $this->setMethod('post');
         $this->setAction('verificaNovoLogin');
@@ -26,7 +28,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[0] = $this->createElement('ValidationTextBox', 'nome');
 		$elements[0]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
-                    ->setInvalidMessage('Preencha este campo com seu nome completo.')
+                    ->setInvalidMessage($labelCampoNomeHint)
                     ->setRequired(true)
                     ->setLabel($labelCampoNome)
  					->setAttrib('size', 100);
@@ -37,7 +39,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[1] = $this->createElement('ValidationTextBox', 'email');
 		$elements[1]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
-                    ->setInvalidMessage('Preencha este campo com seu e-mail.')
+                    ->setInvalidMessage($labelCampoEmailHint)
                     ->setRequired(true)
                     ->setLabel($labelCampoEmail)
  					->setAttrib('size', 80);
