@@ -8,6 +8,8 @@
  *A função deste módulo é fazer com que o PHPUnit se integre aos módulos do framework da aplicação
  *
  */
+//Define Timezone do PHPUnit
+date_default_timezone_set('America/Recife');
 
 // Define path to application library directory
 defined('APPLICATION_PATH_LIBRARY')
