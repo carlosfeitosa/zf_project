@@ -3,16 +3,23 @@
 /**
  * TestCase de Classe
  * 
- * @test : Basico_Model_Perfil_Test
- * @class : Basico_Model_Perfil
- * @filesource : /rochedo_project/application/modules/basico/models/Perfil.php
- * @testEngineer : Adriano Duprat Lemos
+ * @test        Basico_Model_Perfil_Test
+ * @class       Basico_Model_Perfil
+ * @filesource  /rochedo_project/application/modules/basico/models/Perfil.php
+ * @author      Adriano Duprat Lemos
  * 
  */
 
+require_once 'tests/application/fixtures/fixture_arrays.php';
 require_once 'tests/application/includePathConfig.php';
 require_once 'application/consts/error_consts.php';
 require_once 'application/modules/basico/models/Perfil.php';
+require_once 'application/modules/basico/models/PerfilMapper.php';
+require_once 'application/modules/basico/models/Categoria.php';
+require_once 'application/modules/basico/models/CategoriaMapper.php';
+//require_once 'Zend/Db/Table/Abstract.php';
+//require_once 'Zend/Db/Adapter/Pdo/Dblib.php';
+//require_once 'application/modules/basico/models/DbTable/Perfil.php';
 
 
 /**
@@ -26,14 +33,22 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	private $Basico_Model_Perfil;
 	
 	/**
+	 * @var Fixture_Arrays
+	 */
+	private $Fixtures_Arrays;	
+	
+	/**
 	 * Prepares the environment before running a test.
 	 */
 	protected function setUp() {
-		parent::setUp ();
 		
-		// TODO Auto-generated Basico_Model_PerfilTest::setUp()
+		//$this->bootstrap = array($this, 'appBootstrap');
+        parent::setUp();    	
+      
+		$this->Basico_Model_Perfil = new Basico_Model_Perfil();
+		$this->Fixtures_Arrays = new Fixture_Arrays(22,'666');
+ 
 		
-		$this->Basico_Model_Perfil = new Basico_Model_Perfil();	
 	}
 	
 	/**
@@ -41,7 +56,10 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	 */
 	protected function tearDown() {
 		// TODO Auto-generated Basico_Model_PerfilTest::tearDown()
+		
 		$this->Basico_Model_Perfil = null;
+		$this->Fixtures_Arrays = null;		
+		
 		parent::tearDown ();
 	}
 	
@@ -58,9 +76,7 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	public function test__construct() {
 		// TODO Auto-generated Basico_Model_PerfilTest->test__construct()
 		//$this->markTestIncomplete ( "__construct test not implemented" );
-
-	    //$this->isNull( $this->Basico_Model_Perfil->__construct() );
-		
+	    //$this->isNull( $this->Basico_Model_Perfil->__construct() );	
 	}
 	
 	/**
@@ -68,33 +84,55 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	 */
 	public function test__set() {
 		
-		// TODO Auto-generated Basico_Model_PerfilTest->test__set()
-		
-		
-		$this->markTestIncomplete('REFAZER ARRAY');
-		
-		//Array de Teste    
-		$arrayTest[0] = 'Foo Bar Baz';
-		$arrayTest[1] = 10;
-		$arrayTest[2] = 100.00;
-		$arrayTest[3] = 400000000000000000000000;
-		$arrayTest[4] = '15/12/2009';
-		$arrayTest[5] = '12/15/2009';
-		$arrayTest[6] = true;
-		$arrayTest[7] = false;
-		//$arrayTest[8] = array('');		
-		
-		//Contar tamanho do array
-	    $arrayCounter = count($arrayTest);   
-		
-	    //executar testes com os valores do Array			    
-		for ($i=0;$i<$arrayCounter;$i++){
-		
-		    $this->assertNull($this->Basico_Model_Perfil->__set('nome',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
-            $this->assertNull($this->Basico_Model_Perfil->__set('descricao',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
-            $this->assertNull($this->Basico_Model_Perfil->__set('ativo',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
-            $this->assertNull($this->Basico_Model_Perfil->__set('id',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');
-            $this->assertNull($this->Basico_Model_Perfil->__set('categoria',$arrayTest[$i]),'Esta função está retornando valor, quando não deveria retornar nada');		    
+		// TODO Auto-generated Basico_Model_PerfilTest->test__set()			    
+	    $Strings = $this->Fixtures_Arrays->mockArrayString();
+	    $Integers = $this->Fixtures_Arrays->mockArrayInt();
+	    $Float = $this->Fixtures_Arrays->mockArrayFloat();
+	    $Bool = $this->Fixtures_Arrays->mockArrayBool();
+	    $DateTime = $this->Fixtures_Arrays->mockArrayDateTime();
+	    
+		for ($i=0; $i < $this->Fixtures_Arrays->_maxLoopSize; $i++ ){
+			
+			//teste com Strings		
+			$this->assertNull($this->Basico_Model_Perfil->__set('nome',$Strings[$i]));	
+			$this->assertNull($this->Basico_Model_Perfil->__set('descricao',$Strings[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('ativo',$Strings[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('categoria',$Strings[$i]));			
+			$this->assertNull($this->Basico_Model_Perfil->__set('id',$Strings[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__set('mapper',$Strings[$i]));
+			
+			//teste com Integers
+			$this->assertNull($this->Basico_Model_Perfil->__set('nome',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('descricao',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('ativo',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('categoria',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('id',$Integers[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__set('mapper',$Integers[$i]));
+			
+			//teste com Floats
+			$this->assertNull($this->Basico_Model_Perfil->__set('nome',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('descricao',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('ativo',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('categoria',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('id',$Float[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__set('mapper',$Float[$i]));
+			
+			//teste com Bools
+			$this->assertNull($this->Basico_Model_Perfil->__set('nome',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('descricao',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('ativo',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('categoria',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('id',$Bool[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__set('mapper',$Bool[$i]));
+			
+			//teste com DateTime
+			$this->assertNull($this->Basico_Model_Perfil->__set('nome',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('descricao',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('ativo',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('categoria',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__set('id',$DateTime[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__set('mapper',$DateTime[$i]));
+			
 		}	
 	}
 	
@@ -104,20 +142,61 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	public function test__get() {
 		
 		// TODO Auto-generated Basico_Model_PerfilTest->test__get()		
-	    //Array de Teste
+	        
+	    $Strings = $this->Fixtures_Arrays->mockArrayString();
+	    $Integers = $this->Fixtures_Arrays->mockArrayInt();
+	    $Float = $this->Fixtures_Arrays->mockArrayFloat();
+	    $Bool = $this->Fixtures_Arrays->mockArrayBool();
+	    $DateTime = $this->Fixtures_Arrays->mockArrayDateTime();  
+	
 	    
-	    $this->Basico_Model_Perfil->__set('nome','adriano');
-	    $this->Basico_Model_Perfil->__set('descricao','he');
-	    $this->Basico_Model_Perfil->__set('ativo',1);
-	    $this->Basico_Model_Perfil->__set('id', 666);
-	    $this->Basico_Model_Perfil->__set('categoria',666);		    
-
-	    $this->assertEquals('adriano',$this->Basico_Model_Perfil->__get('nome'));
-	    $this->assertEquals('he',$this->Basico_Model_Perfil->__get('descricao'));
-	    $this->assertEquals(true,$this->Basico_Model_Perfil->__get('ativo'));
-	    $this->assertEquals(666,$this->Basico_Model_Perfil->__get('id'));
-	    $this->assertEquals(666,$this->Basico_Model_Perfil->__get('categoria'));
-
+		for ($i=0; $i < $this->Fixtures_Arrays->_maxLoopSize; $i++ ){
+			//teste com Strings			
+			$this->assertNull($this->Basico_Model_Perfil->__get('nome',$Strings[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('descricao',$Strings[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('ativo',$Strings[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('categoria',$Strings[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('categoriaobject',$Strings[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('id',$Strings[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('mapper',$Strings[$i]));
+			
+			//teste com Integers
+			$this->assertNull($this->Basico_Model_Perfil->__get('nome',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('descricao',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('ativo',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('categoria',$Integers[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('categoriaobject',$Integers[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('id',$Integers[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('mapper',$Integers[$i]));
+			
+			//teste com Floats
+			$this->assertNull($this->Basico_Model_Perfil->__get('nome',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('descricao',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('ativo',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('categoria',$Float[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('categoriaobject',$Float[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('id',$Float[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('mapper',$Float[$i]));
+			
+			//teste com Bools
+			$this->assertNull($this->Basico_Model_Perfil->__get('nome',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('descricao',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('ativo',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('categoria',$Bool[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('categoriaobject',$Bool[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('id',$Bool[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('mapper',$Bool[$i]));
+			
+			//teste com DateTime
+			$this->assertNull($this->Basico_Model_Perfil->__get('nome',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('descricao',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('ativo',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('categoria',$DateTime[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('categoriaobject',$DateTime[$i]));
+			$this->assertNull($this->Basico_Model_Perfil->__get('id',$DateTime[$i]));
+			//$this->assertNull($this->Basico_Model_Perfil->__get('mapper',$DateTime[$i]));
+			
+		}	
 	}
 	
 	/**
@@ -125,64 +204,24 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	 */
 	public function testSetOptions() {
 		// TODO Auto-generated Basico_Model_PerfilTest->testSetOptions()
+
 		
-		//tamanho da persistência		
-		$maxLoopSize = 2500;
+	    $Strings = $this->Fixtures_Arrays->mockArrayString();
+	    $Integers = $this->Fixtures_Arrays->mockArrayInt();
+	    $Float = $this->Fixtures_Arrays->mockArrayFloat();
+	    $Bool = $this->Fixtures_Arrays->mockArrayBool();
+	    $DateTime = $this->Fixtures_Arrays->mockArrayDateTime();  
 		
-		//definição de valores
-		$a_big_string = (String) '';
-		$a_big_int = (Int) 0;
-		$a_big_float = (Float) 0.0;
-		$a_bool_value = (Boolean) false;
 		
-		//formatando data mínima para montagem array de data		
-		$firstDayOfTime = new DateTime('01-01-0000');
-		
-		//Populando Arrays de Teste; 
-		for($i=0; $i<$maxLoopSize;$i++)
-		{
-			//adicionando strings
-			$a_big_string .=' it\'s briefcase full of guts '; 
-			$mockArrayString[$i] = $a_big_string;
-			
-			//adicionando integers
-			$a_big_int += (Int) 1;
-			$mockArrayInt[$i] = $a_big_int;
-			
-			//adicionando float points
-			$a_big_float = (Float) $a_big_float + 6.6666;
-			$mockArrayFloat[$i] = $a_big_float;
-			
-			//adicionando dates
-			$firstDayOfTime->format('d/m/Y');
-		    $firstDayOfTime->modify('+1 day');			
-			$a_sum_of_date = $firstDayOfTime->format('d/m/Y');
-			$mockArrayDateTime[$i] = $a_sum_of_date ;
-			
-			//adicionando booleans
-			if( false === $a_bool_value )
-			{
-				$a_bool_value = (Boolean) true;
-				$mockArrayBool[$i] =  $a_bool_value;
-			}
-			else
-			{
-			    $a_bool_value = (Boolean) false;
-				$mockArrayBool[$i] = (Boolean) $a_bool_value;
-			}	
-		}
-						
-		
-		//Checando
-		for($i=0; $i<$maxLoopSize; $i++)
-		{
-			
-			$mockArray['nome'] = $mockArrayString[$i];
-			$mockArray['mapper'] = $mockArrayString[$i];
-	        $mockArray['id'] = $mockArrayString[$i];
-	        $mockArray['descricao'] = $mockArrayString[$i];
-	        $mockArray['ativo'] = $mockArrayString[$i];
-	        $mockArray['categoria'] = $mockArrayString[$i];
+		//Checando STRINGS
+		for($i=0; $i< $this->Fixtures_Arrays->_maxLoopSize; $i++)
+		{		
+			$mockArray['nome'] = $Strings[$i];
+			$mockArray['mapper'] = $Strings[$i];
+	        $mockArray['id'] = $Strings[$i];
+	        $mockArray['descricao'] = $Strings[$i];
+	        $mockArray['ativo'] = $Strings[$i];
+	        $mockArray['categoria'] = $Strings[$i];
 			
 	        $mockObject = new Basico_Model_Perfil($mockArray);
 
@@ -190,14 +229,87 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 		    $this->assertType('string', $mockObject->getDescricao());
 	        $this->assertType('integer', $mockObject->getId());
 	        $this->assertType('boolean', $mockObject->getAtivo());
-	        $this->assertType('resource',$mockObject->getMapper());
+	        //$this->assertType('resource',$mockObject->getMapper());
+	        
+		} 
+		//Checando INTEGER
+		for($i=0; $i< $this->Fixtures_Arrays->_maxLoopSize; $i++)
+		{		
+			$mockArray['nome'] = $Integers[$i];
+			$mockArray['mapper'] = $Integers[$i];
+	        $mockArray['id'] = $Integers[$i];
+	        $mockArray['descricao'] = $Integers[$i];
+	        $mockArray['ativo'] = $Integers[$i];
+	        $mockArray['categoria'] = $Integers[$i];
+			
+	        $mockObject = new Basico_Model_Perfil($mockArray);
+
+	        $this->assertType('string', $mockObject->getNome());
+		    $this->assertType('string', $mockObject->getDescricao());
+	        $this->assertType('integer', $mockObject->getId());
+	        $this->assertType('boolean', $mockObject->getAtivo());
+	        //$this->assertType('resource',$mockObject->getMapper());
+	        
+		} 
+		
+		//Checando FLOAT
+		for($i=0; $i< $this->Fixtures_Arrays->_maxLoopSize; $i++)
+		{		
+			$mockArray['nome'] = $Float[$i];
+			$mockArray['mapper'] = $Float[$i];
+	        $mockArray['id'] = $Float[$i];
+	        $mockArray['descricao'] = $Float[$i];
+	        $mockArray['ativo'] = $Float[$i];
+	        $mockArray['categoria'] = $Float[$i];
+			
+	        $mockObject = new Basico_Model_Perfil($mockArray);
+
+	        $this->assertType('string', $mockObject->getNome());
+		    $this->assertType('string', $mockObject->getDescricao());
+	        $this->assertType('integer', $mockObject->getId());
+	        $this->assertType('boolean', $mockObject->getAtivo());
+	        //$this->assertType('resource',$mockObject->getMapper());
+	        
+		} 
+		//Checando BOOLEAN
+		for($i=0; $i< $this->Fixtures_Arrays->_maxLoopSize; $i++)
+		{		
+			$mockArray['nome'] = $Bool[$i];
+			$mockArray['mapper'] = $Bool[$i];
+	        $mockArray['id'] = $Bool[$i];
+	        $mockArray['descricao'] = $Bool[$i];
+	        $mockArray['ativo'] = $Bool[$i];
+	        $mockArray['categoria'] = $Bool[$i];
+			
+	        $mockObject = new Basico_Model_Perfil($mockArray);
+
+	        $this->assertType('string', $mockObject->getNome());
+		    $this->assertType('string', $mockObject->getDescricao());
+	        $this->assertType('integer', $mockObject->getId());
+	        $this->assertType('boolean', $mockObject->getAtivo());
+	        //$this->assertType('resource',$mockObject->getMapper());
 	        
 		}
-		
 
-		
-	
-	
+		//Checando DateTime
+		for($i=0; $i< $this->Fixtures_Arrays->_maxLoopSize; $i++)
+		{		
+			$mockArray['nome'] = $DateTime[$i];
+			$mockArray['mapper'] = $DateTime[$i];
+	        $mockArray['id'] = $DateTime[$i];
+	        $mockArray['descricao'] = $DateTime[$i];
+	        $mockArray['ativo'] = $DateTime[$i];
+	        $mockArray['categoria'] = $DateTime[$i];
+			
+	        $mockObject = new Basico_Model_Perfil($mockArray);
+
+	        $this->assertType('string', $mockObject->getNome());
+		    $this->assertType('string', $mockObject->getDescricao());
+	        $this->assertType('integer', $mockObject->getId());
+	        $this->assertType('boolean', $mockObject->getAtivo());
+	        //$this->assertType('resource',$mockObject->getMapper());
+	        
+		}
 	}
 	
 	/**
@@ -205,9 +317,25 @@ class Basico_Model_Perfil_Test extends PHPUnit_Framework_TestCase {
 	 */
 	public function testSetNome() {
 		// TODO Auto-generated Basico_Model_PerfilTest->testSetNome()
-		$this->markTestIncomplete ( "setNome test not implemented" );		
-		$this->Basico_Model_Perfil->setNome(/* parameters */);
-	
+				
+	    $Strings = $this->Fixtures_Arrays->mockArrayString();
+	    $Integers = $this->Fixtures_Arrays->mockArrayInt();
+	    $Float = $this->Fixtures_Arrays->mockArrayFloat();
+	    $Bool = $this->Fixtures_Arrays->mockArrayBool();
+	    $DateTime = $this->Fixtures_Arrays->mockArrayDateTime();  
+		
+
+		for($i=0; $i< $this->Fixtures_Arrays->_maxLoopSize; $i++)
+		{		
+			var_dump($this->Basico_Model_Perfil->setNome($Strings[$i]));
+			exit;
+			
+			$this->assertNull($this->Basico_Model_Perfil->setNome($Strings[$i]),"Erro ao setar String:$Strings[$i]");
+			$this->assertNull($this->Basico_Model_Perfil->setNome($Integers[$i]),"Erro ao setar Integer:$Integers[$i]");
+			$this->assertNull($this->Basico_Model_Perfil->setNome($Float[$i]),"Erro ao setar Float:$Float[$i]");
+			$this->assertNull($this->Basico_Model_Perfil->setNome($Bool[$i]),"Erro ao setar Boolean:$Bool[$i]");
+			$this->assertNull($this->Basico_Model_Perfil->setNome($DateTime[$i]),"Erro ao setar DateTime:$DateTime[$i]");
+		}
 	}
 	
 	/**
