@@ -86,7 +86,8 @@ class Basico_LoginController extends Zend_Controller_Action
         }
 		if (!$formEntrada->isValid($this->getRequest()->getPost())) {
             $this->view->form = $formEntrada;
-            return $this->render($formEntrada->getName());
+            //return $this->render($formEntrada->getName());
+            return;
         }
         return true;
 	}
@@ -110,7 +111,21 @@ class Basico_LoginController extends Zend_Controller_Action
 	 */
     public function cadastrarusuarionaovalidadoAction()
     {   
-        $this->view->form = $this->getFormCadastroUsuarioLoginNaoValidado();
+        //Carrega as mensagens
+    	$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO, DEFAULT_USER_LANGUAGE);
+    	$subtituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO, DEFAULT_USER_LANGUAGE);
+    	
+    	$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+    	
+    	//Carrega as mensagens na view
+        $this->view->cabecalho = $cabecalho;
+		
+		//Carrega o formulario na view
+    	$this->view->form = $this->getFormCadastroUsuarioLoginNaoValidado();
+		
+		//Renderiza a view no script global
+		$this->_helper->Renderizar->renderizar();
+		
     }
     
     /**
@@ -121,7 +136,18 @@ class Basico_LoginController extends Zend_Controller_Action
 	 */
     public function verificanovologinAction()
     {
-        $form = $this->getFormCadastroUsuarioLoginNaoValidado();
+        
+    	//Carrega as mensagens
+    	$tituloView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO, DEFAULT_USER_LANGUAGE);
+    	$subtituloView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO, DEFAULT_USER_LANGUAGE);
+    	$mensagemView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM, DEFAULT_USER_LANGUAGE);
+    	
+    	$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+    	
+    	//Carrega as mensagens na view
+		$this->view->cabecalho = $cabecalho;
+    	
+    	$form = $this->getFormCadastroUsuarioLoginNaoValidado();
         if($this->validaForm($form) == true){
         
 	        $controladorEmail = Basico_EmailControllerController::init();
@@ -129,7 +155,22 @@ class Basico_LoginController extends Zend_Controller_Action
 	        
 	        if ($emailParaValidacao !== NULL){
 	            if ($emailParaValidacao == true){
-	                $this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
+					
+	            	// ErroEmailValidadoExistenteNoSistema
+	            	
+	            	//Carrega as mensagens
+	            	$tituloView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO, DEFAULT_USER_LANGUAGE);
+	            	$subtituloView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO, DEFAULT_USER_LANGUAGE);
+	            	$mensagemView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM, DEFAULT_USER_LANGUAGE);
+	            	
+	            	$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+	            	
+	            	//Carrega as mensagens na view
+					$this->view->cabecalho = $cabecalho;
+					
+					//Renderiza a view no script global
+					$this->_helper->Renderizar->renderizar();
+					
 				}
 	            else{
 	            	
@@ -217,9 +258,19 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorLog->salvarLog($novoLog);
 			            
 			             $db->commit();
-		            	
-			            //REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
-		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
+		                
+		                //Carrega as mensagens
+		                $tituloView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO, DEFAULT_USER_LANGUAGE);
+		                $subtituloView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO, DEFAULT_USER_LANGUAGE);
+			            $mensagemView = $this->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM, DEFAULT_USER_LANGUAGE);
+			            
+			            $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+	            	
+		            	//Carrega as mensagens na view
+						$this->view->cabecalho = $cabecalho;
+						
+						//Renderiza a view no script global
+						$this->_helper->Renderizar->renderizar();
 		                
 	            	}catch(Exception $e) {
 	            	    $db->rollback();
@@ -229,7 +280,10 @@ class Basico_LoginController extends Zend_Controller_Action
 	        }
 	        
 	        $this->salvarusuarionaovalidadoAction();
-        } 
+        }
+        					
+		//Renderiza a view no script global
+        $this->_helper->Renderizar->renderizar();
     }
     
     /**
@@ -374,7 +428,19 @@ class Basico_LoginController extends Zend_Controller_Action
             throw new Exception($e->getMessage());
         }
         
-        $this->_helper->redirector('SucessoSalvarUsuarioNaoValidado');
+		//Carrega as mensagens
+		$tituloView = $this->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO, DEFAULT_USER_LANGUAGE);
+		$subtituloView = $this->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO, DEFAULT_USER_LANGUAGE);
+		$mensagemView = $this->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM, DEFAULT_USER_LANGUAGE);
+		            
+		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+	            
+	    //Carrega as mensagens na view
+		$this->view->cabecalho = $cabecalho;
+		
+		//Renderiza a view no script global
+		$this->_helper->Renderizar->renderizar();		
+	     
     }
     
     /**

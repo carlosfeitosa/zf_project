@@ -73,5 +73,17 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[4] = new Zend_Form_Element_Hash('token', 'csrf', array('ignore' => true, 'salt' => 'unique',));
 
         $this->addElements($elements);
+
+		/*Submit via backgroung.(ajax)
+		 * parametro boleano postOnBackground
+		*/
+		$this->setDecorators(array(
+		    'FormElements',
+		    array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
+		    //array('AjaxForm', array('load' => new Zend_Json_Expr('alert("form submitted!")'))),
+			array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),
+		));	
+        
+
     }
 }

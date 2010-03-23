@@ -1,0 +1,16 @@
+<?php
+//print_r($this);
+if($this->form->postOnBackground == true){	
+	
+	//JAVASCRIPT FORMAT OBJECT
+	echo "alert('submit ajax....') \n";
+	
+}else{
+	if(isset($this->cabecalho['tituloView'])){ echo "<h3>".$this->cabecalho['tituloView']."<h3>";}
+	if(isset($this->cabecalho['subtituloView'])){ echo "<h4>".$this->cabecalho['subtituloView']."</h4>";}
+	if(isset($this->cabecalho['mensagemView'])){ echo "<h5>".$this->cabecalho['mensagemView']."</h5>";}
+	echo $this->form;
+	if(isset($this->rodape['tituloView'])){ echo $this->rodape['tituloView'];}
+	if(isset($this->rodape['subtituloView'])){ echo $this->rodape['subtituloView'];}
+	if(isset($this->rodape['mensagemView'])){ echo $this->rodape['mensagemView'];}
+}

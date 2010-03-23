@@ -17,6 +17,8 @@ define("LOG_FULL_FILENAME", LOG_PATH . LOG_FILENAME);
 
 // MODULO BASICO PATHS & FILENAMES
 define("BASICO_VIEW_HELPERS_PATH", APPLICATION_PATH . "/modules/basico/views/helpers");
+define("BASICO_CONTROLLER_HELPERS_PATH", APPLICATION_PATH . "/modules/basico/controllers/helpers");
+#define("BASICO_CONTROLLER_FORMS_PATH", APPLICATION_PATH . "/modules/basico/forms");
 
 // SUPPORT E-MAIL INFO
 define("SUPPORT_EMAIL", "agil@facepe.br");

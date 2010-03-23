@@ -44,7 +44,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         // instancia a classe controladora de token
         $this->tokenizer = Basico_TokenControllerController::init();
-                
+
+        
+        // Localiza os helpers dos controllers e adiciona os paths caso eles existam
+        if (file_exists(BASICO_CONTROLLER_HELPERS_PATH))
+        Zend_Controller_Action_HelperBroker::addPath(BASICO_CONTROLLER_HELPERS_PATH, 'Basico_Controller_Action_Helper');
+        
         if (Basico_Model_Util::ambienteDesenvolvimento())
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . DEFAULT_USER_LANGUAGE . ')');
         else
