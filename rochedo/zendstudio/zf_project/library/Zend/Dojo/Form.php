@@ -33,7 +33,19 @@ require_once 'Zend/Form.php';
  * @version    $Id: Form.php 16204 2009-06-21 18:58:29Z thomas $
  */
 class Zend_Dojo_Form extends Zend_Form
-{
+{	
+	/**
+     * Post the form on the background using AJAX
+     * @var bool
+     */
+	public $postOnBackground = false;
+	
+	/**
+     * Options for posting the form on the background using AJAX
+     * @var array
+     */
+	public $postOnBackgroundOptions = array ( );
+	
     /**
      * Constructor
      * 
@@ -65,10 +77,12 @@ class Zend_Dojo_Form extends Zend_Form
         if (empty($decorators)) {
             $this->addDecorator('FormElements')
                  ->addDecorator('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo'))
-                 ->addDecorator('DijitForm');
+                 
+                 //->addDecorator('DijitForm');
+                 ->addDecorator('DijitForm', array('postOnBackground' => $this->postOnBackground, 'postOnBackgroundOptions' => $this->postOnBackgroundOptions));
         }
     }
-
+	    
     /**
      * Set the view object
      *

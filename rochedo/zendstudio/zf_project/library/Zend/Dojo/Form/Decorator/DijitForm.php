@@ -53,6 +53,47 @@ class Zend_Dojo_Form_Decorator_DijitForm extends Zend_Dojo_Form_Decorator_DijitC
             return $content;
         }
 
+        //#########################################
+        //PATH AJAX DOJO
+        //#########################################
+        if ($this->getOption('postOnBackground')) {
+        	echo "post background";
+
+        	$postOnBackgroundOptions = $this->getOption('postOnBackgroundOptions');
+        	
+        	$errorHandlerFunction = (!empty($postOnBackgroundOptions['errorHandler'])) ? 
+        		$postOnBackgroundOptions['errorHandler'] 
+        		: 'console.warn("error!",args);';
+        		
+        	$successHandlerFunction = (!empty($postOnBackgroundOptions['successHandler'])) ? 
+        		$postOnBackgroundOptions['successHandler'] 
+        		: '';
+        		
+        	$content  .= '<script type="dojo/method" event="onSubmit">' . "\n"
+					   . 'if (this.validate()) {' . "\n"	       
+        	           . '  dojo.xhrPost({' . "\n"
+        			   . '    form: this.domNode,' . "\n"
+        			   . '    handleAs: "text",' . "\n"
+        			   . '    handle: function(data,args)     {' . "\n"
+        			   . '               if(data.name == "Error"){' . "\n"
+        			   . '                  ' . $errorHandlerFunction . "\n"
+        			   . '               } else {' . "\n"
+        			   . '                  ' . $successHandlerFunction . "\n"
+        			   . '               }' . "\n"
+        			   . '            }' . "\n"
+        			   . '  });' . "\n"
+        			   . '}' . "\n"
+        			   . 'return false;' . "\n"
+        			   . '</script>' . "\n";
+			$this->removeOption('postOnBackground');
+			$this->removeOption('postOnBackgroundOptions');
+        }else{
+        	echo "no background submit";
+        }
+        //#########################################
+        //END PATH AJAX DOJO
+        //#########################################
+
         $dijitParams = $this->getDijitParams();
         $attribs     = array_merge($this->getAttribs(), $this->getOptions());
 
