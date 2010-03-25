@@ -34,17 +34,6 @@ require_once 'Zend/Form.php';
  */
 class Zend_Dojo_Form extends Zend_Form
 {	
-	/**
-     * Post the form on the background using AJAX
-     * @var bool
-     */
-	public $postOnBackground = false;
-	
-	/**
-     * Options for posting the form on the background using AJAX
-     * @var array
-     */
-	public $postOnBackgroundOptions = array ( );
 	
     /**
      * Constructor
@@ -79,7 +68,7 @@ class Zend_Dojo_Form extends Zend_Form
                  ->addDecorator('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo'))
                  
                  //->addDecorator('DijitForm');
-                 ->addDecorator('DijitForm', array('postOnBackground' => $this->postOnBackground, 'postOnBackgroundOptions' => $this->postOnBackgroundOptions));
+                 ->addDecorator('DijitForm', array('_postOnBackground' => $this->postOnBackground, '_postOnBackgroundOptions' => $this->postOnBackgroundOptions));
         }
     }
 	    

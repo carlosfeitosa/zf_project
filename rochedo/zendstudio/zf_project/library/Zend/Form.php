@@ -208,6 +208,19 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      * @var Zend_View_Interface
      */
     protected $_view;
+    
+    /**
+     * Post the form on the background using AJAX
+     * @var bool
+     */
+	protected $_postOnBackground = false;
+	
+	/**
+     * Options for posting the form on the background using AJAX
+     * @var array
+     */
+	protected $_postOnBackgroundOptions = array ( );
+	
 
     /**
      * Constructor

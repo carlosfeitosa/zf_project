@@ -26,12 +26,12 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		$controller->getHelper('layout')->disableLayout(true);
     		
     		//Seta o tipo de requisição para a view
-    		$controller->view->form->postOnBackground = true;
+    		$controller->view->form->_postOnBackground = true;
     	}else{
     		//NORMAL REQUEST
     		
     		//Seta o tipo de requisição para a view
-    		$controller->view->form->postOnBackground = false;
+    		//$controller->view->form->_postOnBackground = false;
     	}
     	
     	if(!$viewScript)
@@ -39,7 +39,5 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		$controller->renderScript('global.phtml');
     	else
     		$controller->renderScript($viewScript);
-    			
-    	return;
     }  
 }  
