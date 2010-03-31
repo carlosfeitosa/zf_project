@@ -57,7 +57,7 @@ class Zend_Dojo_Form_Decorator_DijitForm extends Zend_Dojo_Form_Decorator_DijitC
         //PATH AJAX DOJO
         //#########################################
         if ($this->getOption('postOnBackground')) {
-        	echo "post background";
+        	//echo "post background";
 
         	$postOnBackgroundOptions = $this->getOption('postOnBackgroundOptions');
         	
@@ -88,7 +88,7 @@ class Zend_Dojo_Form_Decorator_DijitForm extends Zend_Dojo_Form_Decorator_DijitC
 			$this->removeOption('postOnBackground');
 			$this->removeOption('postOnBackgroundOptions');
         }else{
-        	echo "no background submit";
+        	//echo "no background submit";
         }
         //#########################################
         //END PATH AJAX DOJO
