@@ -202,22 +202,6 @@ class Basico_LoginController extends Zend_Controller_Action
 		
 		//Carrega o formulario na view
     	$this->view->form = $this->getFormCadastroUsuarioLoginNaoValidado();
-		
-    	
-    	var_dump($this->_helper->contextSwitch()->getContexts());
-    	
-    	/*colocar no bootstrap
-    	$ajaxContext = new ZendControllerActionHelperAjaxContext();
-        ZendControllerAction_HelperBroker::addHelper($ajaxContext);
-        */
-        
-    	//sobre demanda
-    	//$this->_helper->ajaxContext->initContext('html');
-    	
-    	//$this->request->setParam('format', 'json');
- 		//var_dump($this->request->getContexts);
- 		//var_dump($this->request);
- 		//exit;
     	
 		//Renderiza a view no script global
 		$this->_helper->Renderizar->renderizar();
