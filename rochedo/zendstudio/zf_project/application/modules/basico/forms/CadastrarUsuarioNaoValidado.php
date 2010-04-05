@@ -21,7 +21,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $this->setMethod('post');
         $this->setAction('verificaNovoLogin');
         $this->setName('CadastrarUsuarioNaoValidado');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))"));
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))", 'legal'=>'muitobom'));
         
         $elements = array();
         
@@ -80,8 +80,8 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 		$this->setDecorators(array(
 		    'FormElements',
 		    array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
-		    //array('AjaxForm', array('load' => new Zend_Json_Expr('alert("form submitted!")'))),
-			array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),
+		    //array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),
+			array('DijitForm', array("postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),
 		));	
         
 

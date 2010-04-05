@@ -8,9 +8,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     /**
     * Renderiza as views do sistema
     * 
-    * @param None do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml' 
+    * @param None do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml'
     */
-    public function renderizar($viewScript = null)  
+    public function renderizar($viewScript = null )  
     {
     	
     	$controller = $this->_actionController;
@@ -26,18 +26,26 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		$controller->getHelper('layout')->disableLayout(true);
     		
     		//Seta o tipo de requisição para a view
-    		$controller->view->form->_postOnBackground = true;
+    		//$controller->view->form->_postOnBackground = true;
+    		$controller->view->postOnBackground = true;
+    		
     	}else{
     		//NORMAL REQUEST
     		
-    		//Seta o tipo de requisição para a view
-    		//$controller->view->form->_postOnBackground = false;
+    		$controller->view->postOnBackground = false;
+    		
+
     	}
+
+    	
     	
     	if(!$viewScript)
 	    	//Renderiza para a view global
     		$controller->renderScript('global.phtml');
     	else
     		$controller->renderScript($viewScript);
-    }  
+    	
+    
+    	
+    }
 }  
