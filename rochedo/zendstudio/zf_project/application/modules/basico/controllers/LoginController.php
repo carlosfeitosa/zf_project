@@ -29,92 +29,39 @@ class Basico_LoginController extends Zend_Controller_Action
 	private $request;
 	
 	
-	public $ajaxable = array('feedback'=>array('json'));
+	//public $ajaxable = array('feedback'=>array('json'));
 	
     /**
-	 * Inicializa controlador Login 
+	 * Inicializa controlador Login
 	 */
 	public function init()
     {
         $this->request = Zend_Controller_Front::getInstance()->getRequest();
-     
-        /*
-		$ajaxContext = $this->_helper->getHelper('AjaxContext');
-		$ajaxContext->addActionContext('testeFunction', 'xml')
-			        ->addActionContext('verificanovologin', 'xml')
-			        ->addActionContext('sent', 'html')
-			        ->addActionContext('recipients','html')
-			        ->addActionContext('inbox', 'html')
-			        ->addActionContext('sendsuccess','html')
-			        ->initContext();
-		*/
+        
+        
         
         /*
+         * Definição de contextos
+         */
+		$pdfParametros = array('suffix' => 'pdf', 'headers' => array('Content-Type' => 'application/pdf'));
+		$xlsParametros = array('suffix' => 'xls', 'headers' => array('Content-Type' => 'application/xls'));
+		$plaintextParametros = array('suffix' => 'plaintext', 'headers' => array('Content-Type' => 'application/plaintext'));
+		$impressaoParametros = array('suffix' => 'impressao', 'headers' => array('Content-Type' => 'application/impressao'));
         
-		$this->_helper->contextSwitch()
-                      ->addActionContext('testeFunction', array('xml', 'json'))
-                      //->addActionContext('cadastrarusuarionaovalidado', array('xml', 'json'))
-                      ->setAutoJsonSerialization(true)
-                      ->initContext();
-		*/
 		
 		/*
-		$ajaxContext = $this->_helper->getHelper('AjaxContext');
-        $ajaxContext->addActionContext('verificanovologin', 'html')
-                    //->addActionContext('form', 'html')
-                    //->addActionContext('process', 'json')
-                    ->initContext();
-        */
-        
-		$spec = array('suffix' => 'pdf',
-						'headers'   => array('Content-Type' => 'application/pdf')
-						);
-                
-        
+		 * Adiciona os contextos e define os contextos permitidos por Ação.
+		 */
     	$this->_helper->contextSwitch()
-					//->addContext('pdf', $spec)
-                      ->addActionContext('testeContexto', array('xml', 'json'))
-                      //->addActionContext('testecontexto', 'xml')
-                      //->addActionContext('cadastrarusuarionaovalidado', array('xml', 'json'))
-                      ->setAutoJsonSerialization(true)
-                      ->initContext();
+    					->addContext('pdf', $pdfParametros)
+    					->addContext('xls', $xlsParametros)
+    					->addContext('plaintext', $plaintextParametros)
+    					->addContext('impressao', $impressaoParametros)
+        	            ->addActionContext('cadastrarusuarionaovalidado', array('pdf', 'plaintext', 'impressao'))
+						->setAutoJsonSerialization(true)
+						->initContext();
         
     }
-    
- 
-    
-    public function testecontextoAction()
-    {
-        
-    	//var_dump($this->_helper->contextSwitch()->getContexts());
-    	
-
-        
-        //echo "<br><br><br>";
-        //var_dump($this->_helper->contextSwitch()->getContexts());
-    	//exit;
-    	
-    	
-    	$this->view->team = 'teste';
-    	//$this->view->team = var_dump($this->request->getContexts);
-    	
-        $this->view->players = array(
-            'David James',
-            'Ashley Cole',
-            'John Terry',
-            'Rio Ferdinand',
-            'Glen Johnson',
-            'Joe Cole',
-            'Steven Gerrard',
-            'Frank Lampard',
-            'David Beckham',
-            'Wayne Rooney',
-            'Michael Owen',
-        );
-        
-        //$this->_helper->Renderizar->renderizar();
-    }
-    
 
     /**
 	 * Retorna Formulário de Cadastro de Novo Usuario
@@ -203,7 +150,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		//Carrega o formulario na view
     	$this->view->form = $this->getFormCadastroUsuarioLoginNaoValidado();
     	
-		//Renderiza a view no script global
+		//Renderiza a view no script default
 		$this->_helper->Renderizar->renderizar();
 		
     }

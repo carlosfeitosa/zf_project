@@ -9,11 +9,17 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     * Renderiza as views do sistema
     * 
     * @param None do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml'
+    * @param Ativa a renderizarção do leiaute
     */
-    public function renderizar($viewScript = null )  
+    public function renderizar($viewScript = null, $disableLayout = false)  
     {
-    	
+    	//Instancia a controlador
     	$controller = $this->_actionController;
+    	
+    	//Seta o tipo de contexto da view  
+    	$contexto = $controller->getRequest()->getParam('format');
+    	//$currentContexto = $controller->getHelper('contextSwitch')->getCurrentContext();
+    	//$defaultContexto = $controller->getHelper('contextSwitch')->getDefaultContext();
     	
     	//Verifica o tipo de requisição http
     	if($controller->getRequest()->isXmlHttpRequest()){
@@ -29,23 +35,50 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		//$controller->view->form->_postOnBackground = true;
     		$controller->view->postOnBackground = true;
     		
+    		$contexto = 'ajax';
     	}else{
     		//NORMAL REQUEST
     		
+    		//Seta o tipo de requisição para a view
     		$controller->view->postOnBackground = false;
-    		
-
     	}
+    	
+    	if($disableLayout)
+    		$controller->getHelper('layout')->disableLayout(true);
 
-    	
-    	
-    	if(!$viewScript)
-	    	//Renderiza para a view global
-    		$controller->renderScript('global.phtml');
-    	else
+    	if(!$viewScript){
+    		
+    		/*
+    		 * Renderiza a view baseada no contexto
+    		 * Contextos permitidos: HTML, PDF, XLS, XML, AJAX, PLAINTEXT, IMPRESSAO
+    		 */
+	    	switch ($contexto){
+
+	    		case 'pdf' : $controller->renderScript('default.pdf.phtml');
+	    			break;
+
+	    		case 'xls' : $controller->renderScript('default.xls.phtml');
+	    			break;
+
+	    		case 'xml' : $controller->renderScript('default.xml.phtml');
+	    			break;
+	    		
+	    		case 'ajax' : $controller->renderScript('default.ajax.phtml');
+	    			break;
+
+	    		case 'plaintext' : $controller->renderScript('default.plaintext.phtml');
+	    			break;
+
+	    		case 'impressao' : $controller->renderScript('default.impressao.phtml');
+	    			break;
+
+	    		//Renderiza para a view defult HTML
+	    		default : $controller->renderScript('default.html.phtml');
+	    	}
+	    	
+    	}else{
     		$controller->renderScript($viewScript);
-    	
-    
+    	}
     	
     }
-}  
+}
