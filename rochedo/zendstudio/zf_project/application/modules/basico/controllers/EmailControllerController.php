@@ -104,6 +104,20 @@ class Basico_EmailControllerController
     	    return NULL;
 	}
 	
+    /**
+	 * Retorna o email pelo id passado ou null se o id passado não existir no banco. 
+	 * @param Integer $id
+	 * @return NULL|Basico_Model_Email
+	 */
+	public function retornaEmailId($id)
+	{
+		$auxEmail = self::$singleton->email->fetchList("id = '{$id}'", null, 1, 0);
+		if (isset($auxEmail[0]))
+    	    return $auxEmail[0];
+    	else
+    	    return NULL;
+	}
+	
 	/**
 	 * Retorna o id da pessoa pelo email passado como parâmetro.
 	 * @param String $email

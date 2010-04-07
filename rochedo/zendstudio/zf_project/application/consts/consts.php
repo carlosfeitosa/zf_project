@@ -35,7 +35,7 @@ define("SISTEMA_EMAIL", "SISTEMA_EMAIL");
 define("EMAIL_CHARSET", "utf-8");
 
 //LINKS DO SISTEMA
-define("LINK_VALIDACAO_USUARIO", "http://localhost/rochedo_project/public/basico/CadastroUsuario.php?t=");
+define("LINK_VALIDACAO_USUARIO", "http://localhost/rochedo_project/public/basico/email/validarEmail/t/");
 
 //LINK PARA CONTROLADOR DE TOKENS
 define("LINK_CONTROLADOR_TOKENS", "/basico/token/decode/t/");

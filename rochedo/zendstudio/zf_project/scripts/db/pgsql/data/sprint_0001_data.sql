@@ -1055,6 +1055,21 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
+//Titulo e subtitulo da tela de validação e de cadastro de novos usuarios
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT(c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO' AS constante_textual, 'Email validado com sucesso.' AS traducao)
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT(c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO' AS constante_textual, 'Preencha os campos abaixo para continuar o seu cadastro.' AS traducao)
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
 // (Inglês dos E.U.A. - EN_US)
 // registro de novo usuário
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)

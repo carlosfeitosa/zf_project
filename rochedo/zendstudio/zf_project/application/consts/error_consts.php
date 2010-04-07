@@ -52,6 +52,10 @@ define("MSG_ERRO_ASSINATURA_MENSAGEM_EMAIL_SISTEMA", "Assinatura de Mensagem de 
 define("MSG_ERRO_TRANSPORT_INVALIDO", "Problemas na inicialização do transporte SMTP: ");
 define("MSG_ERRO_ENVIAR_EMAIL", "Não foi possível enviar o e-mail: ");
 
+//EMAIL
+define("MSG_ERRO_EMAIL_JA_VALIDADO", "Email já validado no sistema.");
+define("MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO", "Mensagem para validação expirada, recomeçe o seu cadastro.");
+
 //TRADUTOR
 define("MSG_ERRO_TRADUCAO_NAO_ENCONTRADA", "Tradução não encontrada para a expressão especificada.");
 define("MSG_ERRO_UTILIZANDO_LINGUA_PADRAO_TRADUCAO_NAO_ENCONTRADA", "(Translation not avaliable)");

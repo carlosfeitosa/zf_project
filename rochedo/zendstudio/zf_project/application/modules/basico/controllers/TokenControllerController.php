@@ -42,7 +42,7 @@ class Basico_TokenControllerController
 	 * Inicializa o controlador Basico_TokenControllerController
 	 * @return Basico_TokenControllerController
 	 */
-	public function init()
+	static public function init()
 	{
 		if (self::$singleton == NULL){
 			self::$singleton = new Basico_TokenControllerController();
@@ -166,5 +166,21 @@ class Basico_TokenControllerController
 		}else{
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
 		}	
+	}
+	
+	/**
+	 * Retorna o id generico do token
+	 * @return Integer
+	 */
+	public function retornaTokenEmail($token)
+	{
+		// INICIALIZACAO DOS CONTROLLERS
+	    $controladorCategoria = Basico_CategoriaControllerController::init();
+	    
+		$categoriaTokenEmail = $controladorCategoria->retornaCategoriaAtiva(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+		$tokenObj = self::$singleton->token->fetchList("id_categoria = {$categoriaTokenEmail->id} and token = '{$token}'", null, 1, 0);
+		if (isset($tokenObj[0]))
+    	    return $tokenObj[0];
+    	return NULL;
 	}
 }
