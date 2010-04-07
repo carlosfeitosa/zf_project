@@ -1057,18 +1057,19 @@ AND c.nome = 'pt-br';
 
 //Titulo e subtitulo da tela de validação e de cadastro de novos usuarios
 INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
-SELECT(c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO' AS constante_textual, 'Email validado com sucesso.' AS traducao)
+SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO' AS constante_textual, 'Email validado com sucesso.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
-SELECT(c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO' AS constante_textual, 'Preencha os campos abaixo para continuar o seu cadastro.' AS traducao)
+SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO' AS constante_textual, 'Preencha o formulário abaixo para continuar o seu cadastro.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
+
 
 // (Inglês dos E.U.A. - EN_US)
 // registro de novo usuário
@@ -1184,6 +1185,21 @@ AND c.nome = 'en-us';
 // ítens de menus
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'MENU_ITEM_REGISTRE_SE'  AS constante_textual, 'Register'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+//Titulo e subtitulo da tela de validação e de cadastro de novos usuarios
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'  AS constante_textual, 'Email sucessfully checked!' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'  AS constante_textual, 'Fill this form below to continue your registration.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
