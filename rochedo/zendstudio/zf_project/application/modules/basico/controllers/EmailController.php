@@ -38,29 +38,27 @@ class Basico_EmailController extends Zend_Controller_Action
     	$idEmail  = $tokenObj->idGenerico;
     	$email = $controladorEmail->retornaEmailId($idEmail);
     	$dataHoraExpiracao = $tokenObj->getDatahoraExpiracao();
-    	$dataAtual         = Zend_Date::now();
+    	$dataAtual         = date('Y-m-d H:i:s');
     	
     	if ($email != NULL) {
     		
-    		//CHECA SE O EMAIL JÁ FOI VALIDADO
-	    	if ($email->validado == 1) {
-	    		throw new Exception(MSG_ERRO_EMAIL_JA_VALIDADO);
-	    	}
-	    	
-	    	//CHECA SE O TOKEN JÁ EXPIROU
-	    	if ($dataHoraExpiracao >= $dataAtual){
-	    		throw new Exception(MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO);     		
+    		//CHECA SE O TOKEN JÁ EXPIROU
+    		//var_dump($dataHoraExpiracao, ' - ', $dataAtual); exit;
+    		
+	    	if ($dataHoraExpiracao <= $dataAtual){
+	    		$this->_helper->redirector('errotokenexpirado');   		
 	    	}
 	    	
 	    	//VALIDA O EMAIL NO BANCO
 	    	$email->datahoraUltimaValidacao = Zend_Date::now();
 	    	$email->validado = 1;
+	    	$email->ativo    = 1;
 	    	
 	    	$controladorEmail->salvarEmail($email);
     	
     	    //Carrega as mensagens
-		    $tituloView = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO, DEFAULT_USER_LANGUAGE);
-		    $subtituloView = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO, DEFAULT_USER_LANGUAGE);
+		    $tituloView     = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO, DEFAULT_USER_LANGUAGE);
+		    $subtituloView  = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO, DEFAULT_USER_LANGUAGE);
 		    //$mensagemView = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_MENSAGEM, DEFAULT_USER_LANGUAGE);
 		    
 		    $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
@@ -68,9 +66,23 @@ class Basico_EmailController extends Zend_Controller_Action
 		    //Carrega as mensagens na view
 			$this->view->cabecalho = $cabecalho;
 			
+			$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
+			$this->view->form = $formCadastrarUsuarioValidado;
 			//Renderiza a view no script global
 			$this->_helper->Renderizar->renderizar();
     	}
     }
     
+    public function errotokenexpiradoAction() 
+    {
+        $tituloView     = MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO;
+        $mensagemView   = "<a href='../login/cadastrarUsuarioNaoValidado/'>Clique aqui para recomeçar o seu cadastro.</a>";
+    	$cabecalho =  array('tituloView' => $tituloView, 'mensagemView' => $mensagemView);
+    
+	    //Carrega as mensagens na view
+		$this->view->cabecalho = $cabecalho;
+		
+		//Renderiza a view no script global
+		$this->_helper->Renderizar->renderizar();
+    }    
 }

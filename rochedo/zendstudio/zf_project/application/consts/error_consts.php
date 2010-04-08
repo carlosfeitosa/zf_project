@@ -54,7 +54,7 @@ define("MSG_ERRO_ENVIAR_EMAIL", "Não foi possível enviar o e-mail: ");
 
 //EMAIL
 define("MSG_ERRO_EMAIL_JA_VALIDADO", "Email já validado no sistema.");
-define("MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO", "Mensagem para validação expirada, recomeçe o seu cadastro.");
+define("MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO", "Link para validação expirado, recomeçe o seu cadastro.");
 
 //TRADUTOR
 define("MSG_ERRO_TRADUCAO_NAO_ENCONTRADA", "Tradução não encontrada para a expressão especificada.");
