@@ -2,6 +2,9 @@ dojo.require("dijit.Dialog");
 dojo.require("dijit.form.Button");
 dojo.require("dijit.form.Form");
 dojo.require("dijit.DialogUnderlay");
+dojo.require("dojox.form.PasswordValidator");
+
+
 
 var underlay;
 function loading() 

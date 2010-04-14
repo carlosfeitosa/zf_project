@@ -135,4 +135,18 @@ class Basico_Model_Util
 	{
 		return (strpos(APPLICATION_ENV, 'development') !== false);
 	}
+	
+	/**
+	 * Retorna a data passada em timestamp ou timestamp atual se não for passado nenhum parametro
+	 * @param $data
+	 * @return Integer
+	 */
+	public static function retornaTimestamp($data = null)
+	{
+		if ($data != null) {
+			return strtotime($data);
+		}else{
+		    return Zend_Date::now()->getTimestamp();	
+		}
+	}
 }

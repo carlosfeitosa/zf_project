@@ -67,19 +67,30 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
  		if($options!=null)
            $elements[1]->setValue($options->nomeUsuario);
 
-        $elements[2] = $this->createElement('PasswordTextBox', 'senha');
+        $elements[2] = $this->createElement('PasswordValidator', 'senha');
         $elements[2]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
                     ->setInvalidMessage($labelCampoSenhaHint)
                     ->setRequired(true)
                     ->setLabel($labelCampoSenha)
  					->setAttrib('size', 80)
- 					->setAttrib('pwType', 'old');
+ 					->setAttrib('pwType', 'new');
  		if($options!=null)
            $elements[2]->setValue($options->senha);
+           
+        $elements[3] = $this->createElement('PasswordValidator', 'senhaVerify');
+        $elements[3]->addFilters(array('StringTrim', 'StripTags'))
+                    ->addValidator('NotEmpty')
+                    ->setInvalidMessage($labelCampoSenhaConfirmacaoHint)
+                    ->setRequired(true)
+                    ->setLabel($labelCampoSenhaConfirmacao)
+ 					->setAttrib('size', 80)
+ 					->setAttrib('pwType', 'verify');
+ 		if($options!=null)
+           $elements[3]->setValue($options->senha);
  					
         if (!Basico_Model_Util::ambienteDesenvolvimento())
-            $elements[3] = new Zend_Form_Element_Captcha('captcha', array(
+            $elements[4] = new Zend_Form_Element_Captcha('captcha', array(
                                                          'label' => "Por favor digite o código de 6 caracteres abaixo:",
                                                          'required' => true,
             											 'captcha' => array(
@@ -94,9 +105,9 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
                                                              'expiration' => 300,
                                                              'gcFreq' => 100,),));
         
-        $elements[4] = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
+        $elements[5] = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
         
-        $elements[5] = new Zend_Form_Element_Hash('token', 'csrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[6] = new Zend_Form_Element_Hash('token', 'csrf', array('ignore' => true, 'salt' => 'unique',));
 
         $this->addElements($elements);
 

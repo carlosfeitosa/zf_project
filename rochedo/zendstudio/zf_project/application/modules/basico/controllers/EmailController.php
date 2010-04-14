@@ -32,20 +32,20 @@ class Basico_EmailController extends Zend_Controller_Action
     	$controladorEmail     = Basico_EmailControllerController::init();
     	$controladorToken     = Basico_TokenControllerController::init();
     	
-    	$token = $this->request->getParam('t');
+    	$token             = $this->request->getParam('t');
     	    	
-    	$tokenObj = $controladorToken->retornaTokenEmail($token);
-    	$idEmail  = $tokenObj->idGenerico;
-    	$email = $controladorEmail->retornaEmailId($idEmail);
-    	$dataHoraExpiracao = $tokenObj->getDatahoraExpiracao();
-    	$dataAtual         = date('Y-m-d H:i:s');
+    	$tokenObj                       = $controladorToken->retornaTokenEmail($token);
+    	$idEmail                        = $tokenObj->idGenerico;
+    	$email                          = $controladorEmail->retornaEmailId($idEmail);
+    	$dataHoraExpiracaoUnixTimeStamp = Basico_Model_Util::retornaTimestamp($tokenObj->datahoraExpiracao);
     	
+    	$dataHoraAtualUnixTimeStamp = Basico_Model_Util::retornaTimestamp();
+    	    	
     	if ($email != NULL) {
     		
-    		//CHECA SE O TOKEN JÁ EXPIROU
-    		//var_dump($dataHoraExpiracao, ' - ', $dataAtual); exit;
-    		
-	    	if ($dataHoraExpiracao <= $dataAtual){
+    		//CHECA SE O TOKEN JÁ EXPIRO
+    		 
+	    	if ($dataHoraExpiracaoUnixTimeStamp < $dataHoraAtualUnixTimeStamp){
 	    		$this->_helper->redirector('errotokenexpirado');   		
 	    	}
 	    	
@@ -75,8 +75,9 @@ class Basico_EmailController extends Zend_Controller_Action
     
     public function errotokenexpiradoAction() 
     {
-        $tituloView     = MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO;
-        $mensagemView   = "<a href='../login/cadastrarUsuarioNaoValidado/'>Clique aqui para recomeçar o seu cadastro.</a>";
+        $tituloView            = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO, DEFAULT_USER_LANGUAGE);
+        $linkRecomecarCadastro =$this->view->tradutor(LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO, DEFAULT_USER_LANGUAGE);
+        $mensagemView   = "<a href='../login/cadastrarUsuarioNaoValidado/'>{$linkRecomecarCadastro}</a>";
     	$cabecalho =  array('tituloView' => $tituloView, 'mensagemView' => $mensagemView);
     
 	    //Carrega as mensagens na view
