@@ -46,7 +46,12 @@ if (Basico_Model_Util::ambienteDesenvolvimento())
         <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
                                                          null, 
-                                                         true)) ?>"><?php echo $this->tradutor(MENU_ITEM_REGISTRE_SE, DEFAULT_USER_LANGUAGE) ?></a>
+                                                         true)) ?>"><?php echo $this->tradutor(MENU_ITEM_REGISTRE_SE, DEFAULT_USER_LANGUAGE) ?></a> |
+		<a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
+                                                         array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'cadastrardadosusuario'), 
+                                                         null, 
+                                                         true)) ?>"><?php echo "Meu Perfil"//$this->tradutor(MENU_ITEM_REGISTRE_SE, DEFAULT_USER_LANGUAGE) ?></a>
+    </di                                                         
     </div>
 </div>
 

@@ -12,7 +12,6 @@ class Basico_DadosUsuarioController extends Zend_Controller_Action
 	private $request;
 	
 	/**
-	 * Função que inicializa o action controller
 	 * @see library/Zend/Controller/Zend_Controller_Action#init()
 	 */
 	public function init()
@@ -25,5 +24,6 @@ class Basico_DadosUsuarioController extends Zend_Controller_Action
 	    $formCadastrarDadosUsuario = new Basico_Form_CadastrarDadosUsuario();
 		$this->view->form = $formCadastrarDadosUsuario;			//Renderiza a view no script global
 		$this->_helper->Renderizar->renderizar();
-    }  
+    }     
+
 }

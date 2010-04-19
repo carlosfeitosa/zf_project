@@ -1,5 +1,5 @@
 <?php 
-     class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
+     class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
       {
           /**
            * Options to use with select elements
@@ -318,7 +318,7 @@
                                   ' ',
                           ),
                           'rightDecorationDijit' => 'VerticalRule',
-                          'rightDecorationContainer' => 'rightContainer',
+                          'rightDecorationContainer' => Action'rightContainer',
                           'rightDecorationLabels' => array(
                                   '0%',
                                   '50%',
