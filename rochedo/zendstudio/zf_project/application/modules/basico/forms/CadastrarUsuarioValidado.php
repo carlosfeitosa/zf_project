@@ -41,8 +41,8 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         parent::__construct($options);
         $this->setMethod('post');
         $this->setAction('verificaNovoLogin');
-        $this->setName('CadastrarUsuarioNaoValidado');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))"));
+        $this->setName('CadastrarUsuarioValidado');
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioValidado'))"));
         
         $elements = array();
         
@@ -57,40 +57,51 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         if($options!=null)
            $elements[0]->setValue($options->nomeConfirmacao);
 
-        $elements[1] = $this->createElement('ValidationTextBox', 'nomeUsuario');
+        $elements[1] = $this->createElement('DateTextBox', 'dataNascimento');
 		$elements[1]->addFilters(array('StringTrim', 'StripTags'))
+                    ->addValidator('NotEmpty')
+                    ->setInvalidMessage($labelCampoDataNascimentoHint)
+                    ->setRequired(true)
+                    ->setLabel($labelCampoDataNascimento)
+ 					->setAttrib('size', 80);
+ 		if($options!=null)
+           $elements[1]->setValue($options->nomeUsuario);
+           
+        $elements[2] = $this->createElement('ValidationTextBox', 'nomeUsuario');
+		$elements[2]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
                     ->setInvalidMessage($labelCampoNomeUsuarioHint)
                     ->setRequired(true)
                     ->setLabel($labelCampoNomeUsuario)
  					->setAttrib('size', 80);
  		if($options!=null)
-           $elements[1]->setValue($options->nomeUsuario);
+           $elements[2]->setValue($options->nomeUsuario);  
 
-        $elements[2] = $this->createElement('PasswordValidator', 'senha');
-        $elements[2]->addFilters(array('StringTrim', 'StripTags'))
+        $elements[3] = $this->createElement('PasswordTextBox', 'senha');
+        $elements[3]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
                     ->setInvalidMessage($labelCampoSenhaHint)
                     ->setRequired(true)
                     ->setLabel($labelCampoSenha)
- 					->setAttrib('size', 80)
- 					->setAttrib('pwType', 'new');
+ 					->setAttrib('size', 80);
  		if($options!=null)
-           $elements[2]->setValue($options->senha);
+           $elements[3]->setValue($options->senha);
            
-        $elements[3] = $this->createElement('PasswordValidator', 'senhaVerify');
-        $elements[3]->addFilters(array('StringTrim', 'StripTags'))
+          
+        $elements[4] = $this->createElement('PasswordTextBox', 'senhaConfirmacao');
+        $elements[4]->addFilters(array('StringTrim', 'StripTags'))
                     ->addValidator('NotEmpty')
+                    ->addValidator(new Zend_Validate_StringLength(6,12))
+                    ->addValidator(new Zend_Validate_Identical(Zend_Controller_Front::getInstance()->getRequest()->getParam('senha')))
                     ->setInvalidMessage($labelCampoSenhaConfirmacaoHint)
                     ->setRequired(true)
                     ->setLabel($labelCampoSenhaConfirmacao)
- 					->setAttrib('size', 80)
- 					->setAttrib('pwType', 'verify');
+ 					->setAttrib('size', 80);
  		if($options!=null)
-           $elements[3]->setValue($options->senha);
+           $elements[4]->setValue($options->senha);
  					
         if (!Basico_Model_Util::ambienteDesenvolvimento())
-            $elements[4] = new Zend_Form_Element_Captcha('captcha', array(
+            $elements[5] = new Zend_Form_Element_Captcha('captcha', array(
                                                          'label' => "Por favor digite o código de 6 caracteres abaixo:",
                                                          'required' => true,
             											 'captcha' => array(
@@ -105,9 +116,9 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
                                                              'expiration' => 300,
                                                              'gcFreq' => 100,),));
         
-        $elements[5] = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
+        $elements[6] = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
         
-        $elements[6] = new Zend_Form_Element_Hash('token', 'csrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[7] = new Zend_Form_Element_Hash('token', 'csrf', array('ignore' => true, 'salt' => 'unique',));
 
         $this->addElements($elements);
 
