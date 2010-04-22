@@ -21,26 +21,28 @@
           public function init()
           {
               $this->setMethod('post');
-              $this->setAttribs(array(
-                  'name'  => 'masterForm',
-              ));
+              $this->setName('CadastrarDadosUsuario');
+              $this->setAction('verificaNovoLogin');
               $this->setDecorators(array(
                   'FormElements',
                   array('TabContainer', array(
-                      'id' => 'tabContainer',
-                      'style' => 'width: 600px; height: 500px;',
+                      'id' => 'tabDadosUsuario',
+                      'style' => 'width: 850px; height: 600px;',
                       'dijitParams' => array(
                           'tabPosition' => 'top'
                       ),
                   )),
                   'DijitForm',
               ));
+              
+              
               $textForm = new Zend_Dojo_Form_SubForm();
+              $textForm->setName('CadastrarDadosPessoais');
+              
               $textForm->setAttribs(array(
-                  'name'   => 'textboxtab',
-                  'legend' => 'Text Elements',
+                  'legend' => 'Dados Pessoais',
                   'dijitParams' => array(
-                      'title' => 'Text Elements',
+                      'title' => 'Dados Pessoais',
                   ),
               ));
               $textForm->addElement(
@@ -119,11 +121,11 @@
                       )
                   );
               $editorForm = new Zend_Dojo_Form_SubForm();
+              $editorForm->setName('CadastrarDadosProfissionais');
               $editorForm->setAttribs(array(
-                  'name'   => 'editortab',
-                  'legend' => 'Editor',
+                  'legend' => 'Dados Profissionais',
                   'dijitParams' => array(
-                      'title' => 'Editor'
+                      'title' => 'Dados Profissionais'
                   ),
               ));
               $editorForm->addElement(
@@ -136,9 +138,9 @@
               );
        
               $toggleForm = new Zend_Dojo_Form_SubForm();
+              $editorForm->setName('CadastrarDadosAcademicos');
               $toggleForm->setAttribs(array(
-                  'name'   => 'toggletab',
-                  'legend' => 'Toggle Elements',
+                  'legend' => 'Dados Acadêmicos',
               ));
               
               $toggleForm->addElement(
@@ -190,10 +192,11 @@
                       )
                   );
               $selectForm = new Zend_Dojo_Form_SubForm();
+              $selectForm->setName('CadastrarOutrosDados');
               $selectForm->setAttribs(array(
-                  'name'   => 'selecttab',
-                  'legend' => 'Select Elements',
+                  'legend' => 'Outros dados',
               ));
+                            
               $selectForm->addElement(
                       'ComboBox',
                       'comboboxselect',
@@ -244,10 +247,18 @@
                           ),
                       )
                   );
+              
+              	  $button = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
+                  
+              	  $selectForm->addElement($button);
+                  
+
+                                
               $sliderForm = new Zend_Dojo_Form_SubForm();
+              $selectForm->setName('CadastrarDadosBiometricos');
               $sliderForm->setAttribs(array(
-                  'name'   => 'slidertab',
-                  'legend' => 'Slider Elements',
+               //   'name'   => 'dadosbiometricos',
+                  'legend' => 'Dados Biometricos',
               ));
               $sliderForm->addElement(
                       'HorizontalSlider',
@@ -318,7 +329,7 @@
                                   ' ',
                           ),
                           'rightDecorationDijit' => 'VerticalRule',
-                          'rightDecorationContainer' => Action'rightContainer',
+                          'rightDecorationContainer' => 'rightContainer',
                           'rightDecorationLabels' => array(
                                   '0%',
                                   '50%',
@@ -327,10 +338,10 @@
                       )
                   );
        
-              $this->addSubForm($textForm, 'textboxtab')
-                   ->addSubForm($editorForm, 'editortab')
-                   ->addSubForm($toggleForm, 'toggletab')
-                   ->addSubForm($selectForm, 'selecttab')
-                   ->addSubForm($sliderForm, 'slidertab');
+              $this->addSubForm($textForm, 'dadospessoai')
+                   ->addSubForm($editorForm, 'dadosprofissionais')
+                   ->addSubForm($toggleForm, 'dadosacademicos')
+                   ->addSubForm($selectForm, 'outrosdados')
+                   ->addSubForm($sliderForm, 'dadosbiometricos');
           }
       }
