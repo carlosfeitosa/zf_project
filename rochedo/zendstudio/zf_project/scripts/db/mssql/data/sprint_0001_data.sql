@@ -4,18 +4,19 @@
 * versao: 1.0 (MSSQL 2000)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 14/12/2009
-* ultimas modificacoes:
+* ultimas modificacoes: 
 * 						- 14/12/2009
 * 						- 29/12/2009 - insert da assinatura de mensagem e-mail da pessoa_perfil do sistema;
 * 									 - correcao da categoria SISTEMA_MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO (SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 * 									 - insert da template de mensagem de email de validacao de usuario plaintext reenvio;
 * 									 - insert de rowinfo em pessoas_perfis;
 * 						- 28/01/2010 - insert da categoria LOG_TOKEN_VALIDACAO_USUARIO;
-* 									 - insert em categoria_chave_estrangeira (email);
+* 									 - insert em categoria_chave_estrangeira (email)
 * 						- 22/02/2010 - insert do tipo categoria LINGUAGEM;
 * 									 - insert das categorias filhas de linguagem, assumindo o padrão ANSI de codificação;
 * 						- 23/02/2010 - insert de dados no dicionario de expressões;
 * 						- 05/03/2010 - insert de dados no dicionario de expressões: form hints;
+* 						- 22/04/2010 - insert de dados no dicionario de expressões: subforms TAB legends; 
 */
 
 // DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA)
@@ -90,7 +91,7 @@ Para continuar o seu registro em nosso serviço, por favor clique no link abaixo
 Caso voce não tenha solicitado este registro, apenas ignore esta mensagem.
 
 Atenciosamente, 
-[assinatura_mensagem]' as mensagem, c.id AS id_categoria, getdate() AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+[assinatura_mensagem]' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
@@ -107,7 +108,7 @@ Para continuar o seu registro em nosso serviço, por favor clique no link abaixo
 Caso voce não tenha solicitado este registro, apenas ignore esta mensagem.
 
 Atenciosamente, 
-[assinatura_mensagem]' as mensagem, c.id AS id_categoria, getdate() AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+[assinatura_mensagem]' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
@@ -268,7 +269,7 @@ INSERT INTO pessoa (rowinfo)
 VALUES ('SYSTEM_STARTUP');
 
 INSERT INTO pessoas_perfis (id_pessoa, id_perfil, rowinfo)
-SELECT @@IDENTITY AS id_pessoa, perf.id AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
+SELECT lastval() AS id_pessoa, perf.id AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
 FROM perfil perf
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
 LEFT JOIN tipo_categoria tipo_cat ON (cat.id_tipo_categoria = tipo_cat.id)
@@ -277,27 +278,11 @@ AND cat.nome = 'SISTEMA_USUARIO'
 AND perf.nome = 'SISTEMA';
 
 INSERT INTO dados_pessoas_perfis (id_pessoa_perfil, assinatura_mensagem_email, rowinfo)
-VALUES (@@IDENTITY, 'Equipe ROCHEDO project', 'SYSTEM_STARTUP');
-
-declare @login varchar(100), @password varchar(100)
-set @login=''
-select @login=@login+char(n) from
-(
-	select top 100 number  as n from master..spt_values 
-	where type='p' and number between 48 and 122
-	order by newid()
-) as t
-set @password=''
-select @password=@password+char(n) from
-(
-	select top 100 number  as n from master..spt_values 
-	where type='p' and number between 48 and 122
-	order by newid()
-) as t
+VALUES (lastval(), 'Equipe ROCHEDO project', 'SYSTEM_STARTUP');
 
 INSERT INTO login (id_pessoa, login, senha, pode_expirar, datahora_proxima_expiracao, rowinfo)
-SELECT pp.id_pessoa, @login AS login, 
-       @password AS password, 0, NULL, 'SYSTEM_STARTUP'
+SELECT pp.id_pessoa, LPAD(MD5(RANDOM()::TEXT), 100, MD5(RANDOM()::TEXT)) AS login, 
+       LPAD(MD5(RANDOM()::TEXT), 100, MD5(RANDOM()::TEXT)) AS password, 0, NULL, 'SYSTEM_STARTUP'
 FROM pessoas_perfis pp
 LEFT JOIN perfil perf ON (pp.id_perfil = perf.id)
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
@@ -327,7 +312,7 @@ AND perf.nome = 'SISTEMA';
 INSERT INTO email (id_pessoa, id_categoria, unique_id, email, validado, datahora_ultima_validacao, ativo, rowinfo)
 SELECT pp.id_pessoa,
        (SELECT id FROM categoria WHERE nome = 'SISTEMA_EMAIL') AS id_categoria,
-       'SYSTEM_STARTUP' AS unique_id, 'info@rochedoproject.com' AS email, 1 AS validado, getdate() AS datahora_ultima_validacao, 1 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+       'SYSTEM_STARTUP' AS unique_id, 'info@rochedoproject.com' AS email, 1 AS validado, current_timestamp AS datahora_ultima_validacao, 1 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM pessoas_perfis pp
 LEFT JOIN perfil perf ON (pp.id_perfil = perf.id)
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
@@ -1231,6 +1216,79 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
+// SubForm Legends TAB
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PESSOAIS'  AS constante_textual, 'Dados Pessoais'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PROFISSIONAIS'  AS constante_textual, 'Dados Profissionais'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_ACADEMICOS'  AS constante_textual, 'Dados Acadêmicos'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_BIOMETRICOS'  AS constante_textual, 'Dados Biométricos'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS'  AS constante_textual, 'Informações Bancárias'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PJ'  AS constante_textual, 'Dados PJ'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_PERFIL'  AS constante_textual, 'Perfil'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_RESUMO'  AS constante_textual, 'Resumo'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+// ítens de menus
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENU_ITEM_REGISTRE_SE'  AS constante_textual, 'Registre-se'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+//Titulo e subtitulo da tela de validação e de cadastro de novos usuarios
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO' AS constante_textual, 'Email validado com sucesso.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
 //mensagem token email de validacao expirado
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id , 'LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO' AS constante_textual, 'Clique aqui para recomeçar o seu cadastro.' AS traducao
@@ -1246,13 +1304,13 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-// ítens de menus
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'MENU_ITEM_REGISTRE_SE'  AS constante_textual, 'Registre-se'  AS traducao
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO' AS constante_textual, 'Preencha o formulário abaixo para continuar o seu cadastro.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
+
 
 // (Inglês dos E.U.A. - EN_US)
 // registro de novo usuário
@@ -1274,7 +1332,35 @@ AND c.nome = 'en-us';
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO'  AS constante_textual, 'Warning!'  AS traducao
 FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categorINSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_PESSOAIS'  AS constante_textual, 'Personals Informations'  AS traducao
+FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_PROFISSIONAIS'  AS constante_textual, 'Professionals Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_ACADEMICOS'  AS constante_textual, 'Academics Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_BIOMETRICOS'  AS constante_textual, 'Biometrics Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+ia)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
@@ -1366,7 +1452,35 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_NOME_CONFIRMACAO'  AS constante_textual, 'Confirm your name:'  AS traducao
+SELECT c.id, 'FORM_FIELD_NOME_CONFIRMACAO'  AS coINSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_PESSOAIS'  AS constante_textual, 'Personals Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_PROFISSIONAIS'  AS constante_textual, 'Professionals Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_ACADEMICOS'  AS constante_textual, 'Academics Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TAB_DADOS_BIOMETRICOS'  AS constante_textual, 'Biometrics Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+nstante_textual, 'Confirm your name:'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1528,6 +1642,63 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CNH_HINT'  AS constante_textual, 'Type your driver`s license number.'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+// SubForm Legends TAB
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PESSOAIS'  AS constante_textual, 'Personals Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PROFISSIONAIS'  AS constante_textual, 'Professionals Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_ACADEMICOS'  AS constante_textual, 'Academics Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_BIOMETRICOS'  AS constante_textual, 'Biometrics Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS'  AS constante_textual, 'Banking Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PJ'  AS constante_textual, 'Institutional Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_PERFIL'  AS constante_textual, 'Profile'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_RESUMO'  AS constante_textual, 'Summary'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

@@ -16,6 +16,7 @@
 * 									 - insert das categorias filhas de linguagem, assumindo o padrão ANSI de codificação;
 * 						- 23/02/2010 - insert de dados no dicionario de expressões;
 * 						- 05/03/2010 - insert de dados no dicionario de expressões: form hints;
+* 						- 22/04/2010 - insert de dados no dicionario de expressões: subforms TAB legends; 
 */
 
 // DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA)
@@ -1217,28 +1218,56 @@ AND c.nome = 'pt-br';
 
 // SubForm Legends TAB
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_PESSOAIS'  AS constante_textual, 'Dados Pessoais'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PESSOAIS'  AS constante_textual, 'Dados Pessoais'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_PROFISSIONAIS'  AS constante_textual, 'Dados Profissionais'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PROFISSIONAIS'  AS constante_textual, 'Dados Profissionais'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_ACADEMICOS'  AS constante_textual, 'Dados Acadêmicos'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_ACADEMICOS'  AS constante_textual, 'Dados Acadêmicos'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_BIOMETRICOS'  AS constante_textual, 'Dados Biométricos'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_BIOMETRICOS'  AS constante_textual, 'Dados Biométricos'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS'  AS constante_textual, 'Informações Bancárias'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PJ'  AS constante_textual, 'Dados PJ'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_PERFIL'  AS constante_textual, 'Perfil'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_RESUMO'  AS constante_textual, 'Resumo'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1620,28 +1649,56 @@ AND c.nome = 'en-us';
 
 // SubForm Legends TAB
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_PESSOAIS'  AS constante_textual, 'Personals Informations'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PESSOAIS'  AS constante_textual, 'Personals Informations'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_PROFISSIONAIS'  AS constante_textual, 'Professionals Informations'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PROFISSIONAIS'  AS constante_textual, 'Professionals Informations'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_ACADEMICOS'  AS constante_textual, 'Academics Informations'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_ACADEMICOS'  AS constante_textual, 'Academics Informations'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBFORM_TAB_DADOS_BIOMETRICOS'  AS constante_textual, 'Biometrics Informations'  AS traducao
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_BIOMETRICOS'  AS constante_textual, 'Biometrics Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS'  AS constante_textual, 'Banking Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PJ'  AS constante_textual, 'Institutional Informations'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_PERFIL'  AS constante_textual, 'Profile'  AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_TABTITLE_RESUMO'  AS constante_textual, 'Summary'  AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
