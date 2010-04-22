@@ -257,7 +257,6 @@
               $sliderForm = new Zend_Dojo_Form_SubForm();
               $selectForm->setName('CadastrarDadosBiometricos');
               $sliderForm->setAttribs(array(
-               //   'name'   => 'dadosbiometricos',
                   'legend' => 'Dados Biométricos',
               ));
               $sliderForm->addElement(
