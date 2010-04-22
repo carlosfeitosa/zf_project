@@ -19,7 +19,16 @@
            * @return void
            */
           public function init()
-          {
+          {	  //contantes	
+          	  $labelSubformTabTitleDadosPessoais = $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_PESSOAIS, DEFAULT_USER_LANGUAGE);
+          	  $labelSubformTabTitleDadosProfissionais = $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_PROFISSIONAIS, DEFAULT_USER_LANGUAGE);          	  
+          	  $labelSubformTabTitleDadosAcademicos = $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_ACADEMICOS, DEFAULT_USER_LANGUAGE);
+          	  $labelSubformTabTitleDadosBiometricos = $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_BIOMETRICOS, DEFAULT_USER_LANGUAGE);
+          	  $labelSubformTabTitleInformacoesBancarias = $this->getView()->tradutor(SUBFORM_TABTITLE_INFORMACOES_BANCARIAS, DEFAULT_USER_LANGUAGE);          	  
+          	  $labelSubformTabTitleDadosPJ = $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_PJ, DEFAULT_USER_LANGUAGE);
+          	  $labelSubformTabTitlePerfil = $this->getView()->tradutor(SUBFORM_TABTITLE_PERFIL, DEFAULT_USER_LANGUAGE);
+			  $labelSubformTabTitleResumo = $this->getView()->tradutor(SUBFORM_TABTITLE_RESUMO, DEFAULT_USER_LANGUAGE);
+          	            	  
               $this->setMethod('post');
               $this->setName('CadastrarDadosUsuario');
               $this->setAction('verificaNovoLogin');
@@ -36,16 +45,16 @@
               ));
               
               
-              $textForm = new Zend_Dojo_Form_SubForm();
-              $textForm->setName('CadastrarDadosPessoais');
+              $dadosPessoaisForm = new Zend_Dojo_Form_SubForm();
+              $dadosPessoaisForm->setName('CadastrarDadosPessoais');
               
-              $textForm->setAttribs(array(
+              $dadosPessoaisForm->setAttribs(array(
                   'legend' => 'Dados Pessoais',
                   'dijitParams' => array(
-                      'title' => 'Dados Pessoais',
+                      'title' => $labelSubformTabTitleDadosPessoais,
                   ),
               ));
-              $textForm->addElement(
+              $dadosPessoaisForm->addElement(
                       'TextBox',
                       'textbox',
                       array(
@@ -120,15 +129,12 @@
                           'style'    => 'width: 200px;',
                       )
                   );
-              $editorForm = new Zend_Dojo_Form_SubForm();
-              $editorForm->setName('CadastrarDadosProfissionais');
-              $editorForm->setAttribs(array(
-                  'legend' => 'Dados Profissionais',
-                  'dijitParams' => array(
-                      'title' => 'Dados Profissionais'
-                  ),
+              $dadosProfissionaisForm = new Zend_Dojo_Form_SubForm();
+              $dadosProfissionaisForm->setName('CadastrarDadosProfissionais');
+              $dadosProfissionaisForm->setAttribs(array(
+                  'legend' => $labelSubformTabTitleDadosProfissionais,
               ));
-              $editorForm->addElement(
+              $dadosProfissionaisForm->addElement(
                   'Editor',
                   'wysiwyg',
                   array(
@@ -137,13 +143,13 @@
                   )
               );
        
-              $toggleForm = new Zend_Dojo_Form_SubForm();
-              $editorForm->setName('CadastrarDadosAcademicos');
-              $toggleForm->setAttribs(array(
-                  'legend' => 'Dados Acadêmicos',
+              $dadosAcademicosForm = new Zend_Dojo_Form_SubForm();
+              $dadosAcademicosForm->setName('CadastrarDadosAcademicos');
+              $dadosAcademicosForm->setAttribs(array(
+                  'legend' => $labelSubformTabTitleDadosAcademicos,
               ));
               
-              $toggleForm->addElement(
+              $dadosAcademicosForm->addElement(
                       'NumberSpinner',
                       'ns',
                       array(
@@ -166,8 +172,6 @@
                           'label' => 'Button',
                       )
                   )         
-                //  protected $_selectOptions = array(
-                  
                   ->addElement(
                       'CheckBox',
                       'checkbox',
@@ -191,13 +195,13 @@
                           'value' => 'bar',
                       )
                   );
-              $selectForm = new Zend_Dojo_Form_SubForm();
-              $selectForm->setName('CadastrarOutrosDados');
-              $selectForm->setAttribs(array(
-                  'legend' => 'Outros dados',
+              $dadosPjForm = new Zend_Dojo_Form_SubForm();
+              $dadosPjForm->setName('CadastrarDadosPJ');
+              $dadosPjForm->setAttribs(array(
+                  'legend' => $labelSubformTabTitleDadosPJ,
               ));
                             
-              $selectForm->addElement(
+              $dadosPjForm->addElement(
                       'ComboBox',
                       'comboboxselect',
                       array(
@@ -248,18 +252,15 @@
                       )
                   );
               
-              	  $button = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
-                  
-              	  $selectForm->addElement($button);
                   
 
                                 
-              $sliderForm = new Zend_Dojo_Form_SubForm();
-              $selectForm->setName('CadastrarDadosBiometricos');
-              $sliderForm->setAttribs(array(
-                  'legend' => 'Dados Biométricos',
+              $dadosBiometricosForm = new Zend_Dojo_Form_SubForm();
+              $dadosBiometricosForm->setName('CadastrarDadosBiometricos');
+              $dadosBiometricosForm->setAttribs(array(
+                  'legend' => $labelSubformTabTitleDadosBiometricos,
               ));
-              $sliderForm->addElement(
+              $dadosBiometricosForm->addElement(
                       'HorizontalSlider',
                       'horizontal',
                       array(
@@ -336,11 +337,37 @@
                           ),
                       )
                   );
-       
-              $this->addSubForm($textForm, 'CadastrarDadosPessoais')
-                   ->addSubForm($editorForm, 'CadastrarDadosProfissionais')
-                   ->addSubForm($toggleForm, 'CadastrarDadosAcademicos')
-                   ->addSubForm($selectForm, 'CadastrarOutrosDados')
-                   ->addSubForm($sliderForm, 'CadastrarDadosBiometricos');
+
+              $informacoesBancariasForm = new Zend_Dojo_Form_SubForm();
+              $informacoesBancariasForm->setName('CadastrarInformacoesBancarias');
+              $informacoesBancariasForm->setAttribs(array(
+                  'legend' => $labelSubformTabTitleInformacoesBancarias,
+              ));
+              
+              
+              $perfilForm = new Zend_Dojo_Form_SubForm();
+              $perfilForm->setName('CadastrarPerfil');
+              $perfilForm->setAttribs(array(
+                  'legend' => $labelSubformTabTitlePerfil,
+              ));
+              
+              $resumoForm = new Zend_Dojo_Form_SubForm();
+              $resumoForm->setName('CadastrarResumo');
+              $resumoForm->setAttribs(array(
+                  'legend' => $labelSubformTabTitleResumo,
+              ));
+              
+              $button = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
+                  
+              $this->addElement($button);
+              
+              $this->addSubForm($dadosPessoaisForm, 'CadastrarDadosPessoais')
+                   ->addSubForm($dadosProfissionaisForm, 'CadastrarDadosProfissionais')
+                   ->addSubForm($dadosAcademicosForm, 'CadastrarDadosAcademicos')
+                   ->addSubForm($dadosPjForm, 'CadastrarDadosPJ')
+                   ->addSubForm($dadosBiometricosForm, 'CadastrarDadosBiometricos')
+				   ->addSubForm($informacoesBancariasForm, 'CadastrarInformacoesBancarias')
+				   ->addSubForm($perfilForm, 'CadastrarPerfil')
+				   ->addSubForm($resumoForm, 'CadastrarResumo');                   
           }
       }
