@@ -338,10 +338,10 @@
                       )
                   );
        
-              $this->addSubForm($textForm, 'dadospessoai')
-                   ->addSubForm($editorForm, 'dadosprofissionais')
-                   ->addSubForm($toggleForm, 'dadosacademicos')
-                   ->addSubForm($selectForm, 'outrosdados')
-                   ->addSubForm($sliderForm, 'dadosbiometricos');
+              $this->addSubForm($textForm, 'CadastrarDadosPessoais')
+                   ->addSubForm($editorForm, 'CadastrarDadosProfissionais')
+                   ->addSubForm($toggleForm, 'CadastrarDadosAcademicos')
+                   ->addSubForm($selectForm, 'CadastrarOutrosDados')
+                   ->addSubForm($sliderForm, 'CadastrarDadosBiometricos');
           }
       }
