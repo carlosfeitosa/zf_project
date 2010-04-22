@@ -258,7 +258,7 @@
               $selectForm->setName('CadastrarDadosBiometricos');
               $sliderForm->setAttribs(array(
                //   'name'   => 'dadosbiometricos',
-                  'legend' => 'Dados Biometricos',
+                  'legend' => 'Dados Biométricos',
               ));
               $sliderForm->addElement(
                       'HorizontalSlider',
