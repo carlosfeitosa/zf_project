@@ -19,10 +19,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
         $this->request = Zend_Controller_Front::getInstance()->getRequest();
     }
 
-    public function cadastrardadosusuarioAction()
+    public function dadosusuarioAction()
     {
-	    $formCadastrarDadosUsuario = new Basico_Form_CadastrarDadosUsuario();
-		$this->view->form = $formCadastrarDadosUsuario;			
+	    $formDadosUsuario = new Basico_Form_DadosUsuario();
+		$this->view->form = $formDadosUsuario;			
 		
 		//Renderiza a view no script global
 		$this->_helper->Renderizar->renderizar();

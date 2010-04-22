@@ -1,5 +1,5 @@
 <?php 
-     class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
+     class Basico_Form_DadosUsuario extends Zend_Dojo_Form
       {
           /**
            * Options to use with select elements
