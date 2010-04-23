@@ -35,6 +35,11 @@ class Basico_EmailController extends Zend_Controller_Action
     	$token             = $this->request->getParam('t');
     	    	
     	$tokenObj                       = $controladorToken->retornaTokenEmail($token);
+    	
+    	if ($tokenObj == NULL){
+    		$this->_helper->redirector('errotokeninvalido');  
+    	}
+    	
     	$idEmail                        = $tokenObj->idGenerico;
     	$email                          = $controladorEmail->retornaEmailId($idEmail);
     	$dataHoraExpiracaoUnixTimeStamp = Basico_Model_Util::retornaTimestamp($tokenObj->datahoraExpiracao);
@@ -82,6 +87,18 @@ class Basico_EmailController extends Zend_Controller_Action
         $linkRecomecarCadastro =$this->view->tradutor(LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO, DEFAULT_USER_LANGUAGE);
         $mensagemView   = "<a href='../login/cadastrarUsuarioNaoValidado/'>{$linkRecomecarCadastro}</a>";
     	$cabecalho =  array('tituloView' => $tituloView, 'mensagemView' => $mensagemView);
+    
+	    //Carrega as mensagens na view
+		$this->view->cabecalho = $cabecalho;
+		
+		//Renderiza a view no script global
+		$this->_helper->Renderizar->renderizar();
+    }    
+    
+    public function errotokeninvalidoAction() 
+    {
+        $tituloView            = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO, DEFAULT_USER_LANGUAGE);
+        $cabecalho =  array('tituloView' => $tituloView);
     
 	    //Carrega as mensagens na view
 		$this->view->cabecalho = $cabecalho;
