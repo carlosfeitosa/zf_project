@@ -59,7 +59,8 @@ class Basico_PessoaControllerController
             $novoLog = new Basico_Model_Log();
             $novoLog->pessoaperfil   = Basico_Model_Util::retornaIdPessoaPerfilSistema();
             $novoLog->categoria      = $categoriaLog->id;
-            $novoLog->dataHoraEvento = Zend_Date::now();
+
+            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
             $novoLog->descricao      = LOG_MSG_NOVA_PESSOA;
             $controladorLog->salvarLog($novoLog);
 			

@@ -156,7 +156,7 @@ class Basico_TokenControllerController
 	            $novoLog = new Basico_Model_Log();
 	            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
 	            $novoLog->categoria      = $categoriaLog->id;
-	            $novoLog->dataHoraEvento = Zend_Date::now();
+	            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
 	            $novoLog->descricao      = LOG_MSG_NOVO_TOKEN;
 	            $controladorLog->salvarLog($novoLog);
 				

@@ -155,7 +155,7 @@ class Basico_Model_Util
 	 * @param $data
 	 * @return Integer
 	 */
-	public static function retornaDateTime()
+	public static function retornaDateTimeAtual()
 	{
 	    return Zend_Date::now('en-us');
 	}

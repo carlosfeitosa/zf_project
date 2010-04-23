@@ -69,10 +69,10 @@ class Basico_RowInfoControllerController
 			    // CASO NAO EXISTA ID, SETAR VALORES PARA NOVA LINHA
 		        if (!isset($modelo->id))
 		        {
-		            $this->rowinfo->setGenericDateTimeCreation(Zend_Date::now());
+		            $this->rowinfo->setGenericDateTimeCreation(Basico_Model_Util::retornaDateTimeAtual());
 		            $this->rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
 		        }
-		        $this->rowinfo->setGenericDateTimeLastModified(Zend_Date::now());
+		        $this->rowinfo->setGenericDateTimeLastModified(Basico_Model_Util::retornaDateTimeAtual());
 		        $this->rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
 		        
 		        return true;	

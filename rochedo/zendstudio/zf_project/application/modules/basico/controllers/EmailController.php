@@ -50,7 +50,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	}
 	    	
 	    	//VALIDA O EMAIL NO BANCO
-	    	$email->datahoraUltimaValidacao = Zend_Date::now();
+	    	$email->datahoraUltimaValidacao = Basico_Model_Util::retornaDateTimeAtual();
 	    	$email->validado = 1;
 	    	$email->ativo    = 1;
 	    	

@@ -218,7 +218,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
 			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
 			             $novaMensagem->destinatarios    = array($email);
-			             $novaMensagem->datahoraMensagem = Zend_Date::now();
+			             $novaMensagem->datahoraMensagem = Basico_Model_Util::retornaDateTimeAtual();
 			             $novaMensagem->categoria        = $categoriaMensagem->id;
 			             $controladorRowInfo->prepareXml($novaMensagem, true);
 			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
@@ -254,7 +254,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $novoLog = new Basico_Model_Log();
 			             $novoLog->pessoaperfil   = $idPessoaPerfil->id;
 			             $novoLog->categoria      = $categoriaLog->id;
-			             $novoLog->dataHoraEvento = Zend_Date::now();
+			             $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
 			             $novoLog->descricao      = LOG_MSG_VALIDACAO_USUARIO;
 			             $controladorLog->salvarLog($novoLog);
 			            
@@ -375,12 +375,13 @@ class Basico_LoginController extends Zend_Controller_Action
             $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
             $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
             
+            
             //SALVANDO MENSAGEM
             $nomeDestinatario = $this->getRequest()->getParam('nome');
             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $novaMensagem->destinatarios       = array($novoEmail->email);
-            $novaMensagem->datahoraMensagem    = Zend_Date::now();
+            $novaMensagem->datahoraMensagem    = Basico_Model_Util::retornaDateTimeAtual();
             $novaMensagem->categoria           = $categoriaMensagem->id;
             $controladorRowInfo->prepareXml($novaMensagem, true);
             $novaMensagem->rowinfo             = $controladorRowInfo->getXml();
@@ -418,7 +419,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoLog = new Basico_Model_Log();
             $novoLog->pessoaperfil   = $novaPessoaPerfil->id;
             $novoLog->categoria      = $categoriaLog->id;
-            $novoLog->dataHoraEvento = Zend_Date::now();
+            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
             $novoLog->descricao      = LOG_MSG_VALIDACAO_USUARIO;
             $controladorLog->salvarLog($novoLog);
             
