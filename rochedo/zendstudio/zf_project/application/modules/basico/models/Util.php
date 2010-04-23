@@ -149,4 +149,14 @@ class Basico_Model_Util
 		    return Zend_Date::now()->getTimestamp();	
 		}
 	}
+	
+	/**
+	 * Retorna a datetime atual
+	 * @param $data
+	 * @return Integer
+	 */
+	public static function retornaDateTime()
+	{
+	    return Zend_Date::now('en-us');
+	}
 }
