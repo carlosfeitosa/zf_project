@@ -68,7 +68,7 @@ class Basico_EmailController extends Zend_Controller_Action
 			
 			$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
 			
-			$titlePane = "<div dojoType='dijit.TitlePane' open='true' title='Dados Básicos'>";
+			$titlePane = "<div dojoType='dijit.TitlePane' open='true' title='Dados Básicos' style='width:500px;'>";
 			$titlePaneClose = "</div>";
 			$this->view->form = $titlePane . $formCadastrarUsuarioValidado . $titlePaneClose;
 			//Renderiza a view no script global

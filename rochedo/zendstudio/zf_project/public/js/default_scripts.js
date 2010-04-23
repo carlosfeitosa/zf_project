@@ -14,14 +14,14 @@ function loading()
     underlay.show();
 }
 
-function exibirFormDocumentos()
+function exibirFormDocumentos(fileUrl)
 {
 	formDocumentos = dijit.byId("formDocumentos");
     
 	if (!formDocumentos) {
 		var thisdialog = new dijit.Dialog({ 
                             title: "Documentos de Identificação", 
-                            href: "http://localhost/rochedo_project/application/modules/basico/forms/DocumentosIdentificacao.php",
+                            href: fileUrl,
                             id: "formDocumentos"
 		                             });
 			thisdialog.startup();

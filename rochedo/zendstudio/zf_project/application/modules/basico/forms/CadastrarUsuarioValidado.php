@@ -87,10 +87,13 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
  					->setAttrib('size', 80);
  		if($options!=null)
            $elements[2]->setValue($options->dataNascimento);
-           
+
+        $formDocumentosFileUrl      = "http://localhost/rochedo_project/application/modules/basico/forms/DocumentosIdentificacao.php";   
+        $tokenFileUrl = $this->getView()->urlEncrypt($formDocumentosFileUrl);
+ 
         $elements[3] = $this->createElement('Button', 'documentos');
         $elements[3]->setLabel('Adicionar Documento de Identificação')
-                    ->setAttrib('onClick', "exibirFormDocumentos()"); 
+                    ->setAttrib('onClick', "exibirFormDocumentos('$tokenFileUrl')"); 
            
         $elements[4] = $this->createElement('ValidationTextBox', 'nomeUsuario');
 		$elements[4]->addFilters(array('StringTrim', 'StripTags'))

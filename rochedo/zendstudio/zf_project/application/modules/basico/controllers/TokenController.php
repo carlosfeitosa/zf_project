@@ -30,4 +30,18 @@ class Basico_TokenController extends Zend_Controller_Action
         
         $this->_redirect($url);
     }
+    
+    public function retornaDialogContent() 
+    {
+    	$token = $this->getRequest()->getParam('t');
+    	
+    	$controladorToken = Basico_TokenControllerController::init();
+        
+        $url = $controladorToken->decodeTokenUrl($token);
+        
+        $fileContent = Basico_Model_Util::getUrlContent($url);
+        
+        return $fileContent;
+    	
+    }
 }
