@@ -1,9 +1,10 @@
 dojo.require("dijit.Dialog");
 dojo.require("dijit.form.Button");
-dojo.require("dijit.form.Form");
+dojo.require("dijit.form.TextBox");
 dojo.require("dijit.DialogUnderlay");
 dojo.require("dojox.form.PasswordValidator");
-
+dojo.require("dijit.TitlePane");
+dojo.require("dijit.form.TimeTextBox");
 
 
 var underlay;
@@ -11,6 +12,23 @@ function loading()
 {
     underlay = new dijit.DialogUnderlay({'class': 'loading'});
     underlay.show();
+}
+
+function exibirFormDocumentos()
+{
+	formDocumentos = dijit.byId("formDocumentos");
+    
+	if (!formDocumentos) {
+		var thisdialog = new dijit.Dialog({ 
+                            title: "Documentos de Identificação", 
+                            href: "http://localhost/rochedo_project/application/modules/basico/forms/DocumentosIdentificacao.php",
+                            id: "formDocumentos"
+		                             });
+			thisdialog.startup();
+			thisdialog.show();
+	}else{
+	    formDocumentos.show();	
+	}
 }
 
 function validateForm(formid) 
