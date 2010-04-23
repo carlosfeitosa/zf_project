@@ -268,8 +268,11 @@ WHERE t.nome = 'EMAIL';
 INSERT INTO pessoa (rowinfo)
 VALUES ('SYSTEM_STARTUP');
 
+INSERT INTO pessoa (rowinfo)
+VALUES ('SYSTEM_STARTUP');
+
 INSERT INTO pessoas_perfis (id_pessoa, id_perfil, rowinfo)
-SELECT lastval() AS id_pessoa, perf.id AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
+SELECT @@IDENTITY AS id_pessoa, perf.id AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
 FROM perfil perf
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
 LEFT JOIN tipo_categoria tipo_cat ON (cat.id_tipo_categoria = tipo_cat.id)
@@ -278,11 +281,27 @@ AND cat.nome = 'SISTEMA_USUARIO'
 AND perf.nome = 'SISTEMA';
 
 INSERT INTO dados_pessoas_perfis (id_pessoa_perfil, assinatura_mensagem_email, rowinfo)
-VALUES (lastval(), 'Equipe ROCHEDO project', 'SYSTEM_STARTUP');
+VALUES (@@IDENTITY, 'Equipe ROCHEDO project', 'SYSTEM_STARTUP');
+
+declare @login varchar(100), @password varchar(100)
+set @login=''
+select @login=@login+char(n) from
+(
+	select top 100 number  as n from master..spt_values 
+	where type='p' and number between 48 and 122
+	order by newid()
+) as t
+set @password=''
+select @password=@password+char(n) from
+(
+	select top 100 number  as n from master..spt_values 
+	where type='p' and number between 48 and 122
+	order by newid()
+) as t
 
 INSERT INTO login (id_pessoa, login, senha, pode_expirar, datahora_proxima_expiracao, rowinfo)
-SELECT pp.id_pessoa, LPAD(MD5(RANDOM()::TEXT), 100, MD5(RANDOM()::TEXT)) AS login, 
-       LPAD(MD5(RANDOM()::TEXT), 100, MD5(RANDOM()::TEXT)) AS password, 0, NULL, 'SYSTEM_STARTUP'
+SELECT pp.id_pessoa, @login AS login, 
+       @password AS password, 0, NULL, 'SYSTEM_STARTUP'
 FROM pessoas_perfis pp
 LEFT JOIN perfil perf ON (pp.id_perfil = perf.id)
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
