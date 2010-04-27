@@ -4,7 +4,7 @@
               $dadosPjForm->setAttribs(array(
                   'legend' => $labelSubformTabTitleDadosPJ,
               ));
-                            
+                /*            
               $dadosPjForm->addElement(
                       'ComboBox',
                       'comboboxselect',
@@ -54,7 +54,7 @@
                               'searchAttr' => 'name',
                           ),
                       )
-                  );
+                  );*/
               
                   $this->addSubForm($dadosPjForm, 'CadastrarDadosPJ');
 

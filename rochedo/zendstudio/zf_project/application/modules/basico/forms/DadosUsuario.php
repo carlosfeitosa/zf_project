@@ -1,18 +1,7 @@
 <?php 
-     class Basico_Form_DadosUsuario extends Zend_Dojo_Form
-      {
-          /**
-           * Options to use with select elements
-           */
-          protected $_selectOptions = array(
-              'red'    => 'Rouge',
-              'blue'   => 'Bleu',
-              'white'  => 'Blanc',
-              'orange' => 'Orange',
-              'black'  => 'Noir',
-              'green'  => 'Vert',
-          );
-       
+
+class Basico_Form_DadosUsuario extends Zend_Dojo_Form
+{
           /**
            * Form initialization
            *
@@ -34,10 +23,19 @@
                       'dijitParams' => array(
                           'tabPosition' => 'top'
                       ),
-                  )),
-                  'DijitForm',
-              ));
+                  )),  array('DijitForm', 
+					          array("postOnBackgroundOptions"=> 
+					                 array('successHandler'=>"dojo.eval(data);")
+					          )
+					   )
+              	));
+              	
+              $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuario'))"));
               
+              $button = new Zend_Form_Element_Submit('salvar', array('label' => 'Salvar',));
+                  
+              $this->addElement($button);
+
               //inclusão de SubForms
               require_once("DadosPessoais.php");
               require_once("DadosProfissionais.php");              
@@ -46,13 +44,8 @@
               require_once("DadosBiometricos.php");
               require_once("InformacoesBancarias.php");              
               require_once("Perfil.php");              
-              require_once("Resumo.php");              
+              require_once("Resumo.php");
+                            
               
-              $button = new Zend_Form_Element_Submit('salvar', array('label' => 'Salvar',));
-                  
-              $this->addElement($button);
-
           }
-      }
-
-      
+}     
