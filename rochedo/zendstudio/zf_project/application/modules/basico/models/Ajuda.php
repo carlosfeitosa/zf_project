@@ -1,13 +1,13 @@
 <?php
 /**
- * AnexoMensagem model
+ * Ajuda model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AnexoMensagemMapper
+ * @uses       Basico_Model_AjudaMapper
  * @subpackage Model
  */
-class Basico_Model_AnexoMensagem
+class Basico_Model_Ajuda
 {
 	/**
 	* @var int
@@ -15,34 +15,46 @@ class Basico_Model_AnexoMensagem
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_AnexoMensagemMapper
+	 * @var Basico_Model_AjudaMapper
 	 */
 	protected $_mapper;
 
 	/**
 	 * @var String
 	 */
-	protected $_nomeOriginal;
-	/**
-	 * @var String
-	 */
-	protected $_nomeSugestao;
+	protected $_nome;
 	/**
 	 * @var String
 	 */
 	protected $_descricao;
-	/**
-	 * @var File
-	 */
-	protected $_arquivo;
+	
 	/**
 	 * @var String
 	 */
-	protected $_mimeType;
+	protected $_constanteTextualAjuda;
+	
+	/**
+	 * @var String
+	 */
+	protected $_constanteTextualHint;
+	/**
+	 * @var String
+	 */
+	protected $_url;
     /**
      * @var Integer
      */
-    protected $_mensagem;
+    protected $_formulario;
+
+    /**
+     * @var Integer
+     */
+    protected $_formularioElemento;
+    
+    /**
+     * @var String
+     */
+    protected $_rowinfo;
 
 	/**
 	 * Constructor
@@ -95,7 +107,7 @@ class Basico_Model_AnexoMensagem
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_AnexoMensagem
+	 * @return Basico_Model_Ajuda
 	 */
 	public function setOptions(array $options)
 	{
@@ -112,54 +124,54 @@ class Basico_Model_AnexoMensagem
 	}
     
 	/**
-	* Set nomeOriginal
+	* Set constanteTextualAjuda
 	* 
-	* @param String $nomeOriginal 
-	* @return Basico_Model_NomeOriginal
+	* @param String $constanteTextualAjuda 
+	* @return Basico_Model_Ajuda
 	*/
-	public function setNomeOriginal($nomeOriginal)
+	public function setConstanteTextualAjuda($constanteTextualAjuda)
 	{
-		$this->_nomeOriginal = (String) $nomeOriginal;
+		$this->_constanteTextualAjuda = (String) $constanteTextualAjuda;
 		return $this;
 	}
 
 	/**
-	* Get nomeOriginal
+	* Get constanteTextualAjuda
 	* 
 	* @return null|String
 	*/
-	public function getNomeOriginal()
+	public function getConstanteTextualAjuda()
 	{
-		return $this->_nomeOriginal;
+		return $this->_constanteTextualAjuda;
 	}
-     
-	/**
-	* Set nomeSugestao
+	
+    /**
+	* Set nome
 	* 
-	* @param String $nomeSugestao 
-	* @return Basico_Model_NomeSugestao
+	* @param String $nome
+	* @return Basico_Model_Ajuda
 	*/
-	public function setNomeSugestao($nomeSugestao)
+	public function setNome($nome)
 	{
-		$this->_nomeSugestao = (String) $nomeSugestao;
+		$this->_nome = (String) $nome;
 		return $this;
 	}
 
 	/**
-	* Get nomeSugestao
+	* Get nome
 	* 
 	* @return null|String
 	*/
-	public function getNomeSugestao()
+	public function getNome()
 	{
-		return $this->_nomeSugestao;
+		return $this->_nome;
 	}
-     
-	/**
+	
+    /**
 	* Set descricao
 	* 
-	* @param String $descricao 
-	* @return Basico_Model_Descricao
+	* @param String $descricao
+	* @return Basico_Model_Ajuda
 	*/
 	public function setDescricao($descricao)
 	{
@@ -178,87 +190,142 @@ class Basico_Model_AnexoMensagem
 	}
      
 	/**
-	* Set arquivo
+	* Set constanteTextualHint
 	* 
-	* @param String $arquivo 
-	* @return Default_Model_Arquivo
+	* @param String $constanteTextualHint 
+	* @return Basico_Model_Ajuda
 	*/
-	public function setArquivo($arquivo)
+	public function setConstanteTextualHint($constanteTextualHint)
 	{
-		$this->_arquivo = (String) $arquivo;
+		$this->_constanteTextualHint = (String) $constanteTextualHint;
 		return $this;
 	}
 
 	/**
-	* Get arquivo
+	* Get constanteTextualHint
 	* 
 	* @return null|String
 	*/
-	public function getArquivo()
+	public function getConstanteTextualHint()
 	{
-		return $this->_arquivo;
+		return $this->_constanteTextualHint;
 	}
      
 	/**
-	* Set mimeType
+	* Set url
 	* 
-	* @param String $mimeType 
-	* @return Basico_Model_MimeType
+	* @param String $url 
+	* @return Basico_Model_Ajuda
 	*/
-	public function setMimeType($mimeType)
+	public function setUrl($url)
 	{
-		$this->_mimeType = (String) $mimeType;
+		$this->_url = (String) $url;
 		return $this;
 	}
 
 	/**
-	* Get mimeType
+	* Get url
 	* 
 	* @return null|String
 	*/
-	public function getMimeType()
+	public function getUrl()
 	{
-		return $this->_mimeType;
+		return $this->_url;
 	}
      
 	/**
-	* Set mensagem
+	* Set formulario
 	* 
-	* @param int $mensagem 
-	* @return Basico_Model_Mensagem
+	* @param int $formulario 
+	* @return Basico_Model_Ajuda
 	*/
-	public function setMensagem($mensagem)
+	public function setFormulario($formulario)
 	{
-		$this->_mensagem = (int) $mensagem;
+		$this->_formulario = (int) $formulario;
 		return $this;
 	}
 
 	/**
-	* Get mensagem
+	* Get formulario
 	* 
 	* @return null|int
 	*/
-	public function getMensagem()
+	public function getFormulario()
 	{
-		return $this->_mensagem;
+		return $this->_formulario;
 	}
  
     /**
-     * Get mensagem object
-     * @return null|Mensagem
+     * Get formulario object
+     * @return null|Formulario
      */
-    public function getMensagemObject()
+    public function getFormularioObject()
     {
-        $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
+        $model = new Basico_Model_Formulario();
+        $object = $model->find($this->_formulario);
         return $object;
     }
+    
+	/**
+	* Set formularioElemento
+	* 
+	* @param int $formularioElemento 
+	* @return Default_Model_FormularioElemento
+	*/
+	public function setFormularioElemento($formularioElemento)
+	{
+		$this->_formularioElemento = (int) $formularioElemento;
+		return $this;
+	}
+
+	/**
+	* Get formularioElemento
+	* 
+	* @return null|int
+	*/
+	public function getFormularioElemento()
+	{
+		return $this->_formularioElemento;
+	}
+ 
+    /**
+     * Get formularioElemento object
+     * @return null|FormularioElemento
+     */
+    public function getFormularioElementoObject()
+    {
+        $model = new Basico_Model_FormularioElemento();
+        $object = $model->find($this->_formularioElemento);
+        return $object;
+    }
+    
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_Ajuda
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Default_Model_Ajuda
 	*/
 	public function setId($id)
 	{
@@ -280,7 +347,7 @@ class Basico_Model_AnexoMensagem
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_AnexoMensagem
+	* @return Default_Model_Ajuda
 	*/
 	public function setMapper($mapper)
 	{
@@ -291,14 +358,14 @@ class Basico_Model_AnexoMensagem
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AnexoMensagemMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_AjudaMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AnexoMensagemMapper
+	* @return Basico_Model_AjudaMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AnexoMensagemMapper());
+			$this->setMapper(new Basico_Model_AjudaMapper());
 		}
 		return $this->_mapper;
 	}
@@ -328,7 +395,7 @@ class Basico_Model_AnexoMensagem
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_Ajuda
 	*/
 	public function find($id)
 	{

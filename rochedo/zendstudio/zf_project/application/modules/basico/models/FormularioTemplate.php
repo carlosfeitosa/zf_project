@@ -1,13 +1,13 @@
 <?php
 /**
- * AnexoMensagem model
+ * FormularioTemplate model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AnexoMensagemMapper
+ * @uses       Basico_Model_FormularioTemplateMapper
  * @subpackage Model
  */
-class Basico_Model_AnexoMensagem
+class Basico_Model_FormularioTemplate
 {
 	/**
 	* @var int
@@ -15,35 +15,36 @@ class Basico_Model_AnexoMensagem
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_AnexoMensagemMapper
+	 * @var Basico_Model_FormularioTemplateMapper
 	 */
 	protected $_mapper;
 
 	/**
 	 * @var String
 	 */
-	protected $_nomeOriginal;
-	/**
-	 * @var String
-	 */
-	protected $_nomeSugestao;
+	protected $_nome;
 	/**
 	 * @var String
 	 */
 	protected $_descricao;
 	/**
-	 * @var File
+	 * @var String
 	 */
-	protected $_arquivo;
+	protected $_styleSheetFullFileName;
 	/**
 	 * @var String
 	 */
-	protected $_mimeType;
-    /**
-     * @var Integer
-     */
-    protected $_mensagem;
-
+	protected $_javaScriptFullFileName;
+	/**
+	 * @var Integer
+	 */
+	protected $_idOutput;
+	
+	/**
+	 * @var String
+	 */
+	protected $_rowinfo;
+	
 	/**
 	 * Constructor
 	 * 
@@ -95,7 +96,7 @@ class Basico_Model_AnexoMensagem
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_AnexoMensagem
+	 * @return Basico_Model_FormularioTemplate
 	 */
 	public function setOptions(array $options)
 	{
@@ -112,47 +113,25 @@ class Basico_Model_AnexoMensagem
 	}
     
 	/**
-	* Set nomeOriginal
+	* Set nome
 	* 
-	* @param String $nomeOriginal 
-	* @return Basico_Model_NomeOriginal
+	* @param String $nome 
+	* @return Basico_Model_Nome
 	*/
-	public function setNomeOriginal($nomeOriginal)
+	public function setNome($nome)
 	{
-		$this->_nomeOriginal = (String) $nomeOriginal;
+		$this->_nome = (String) $nome;
 		return $this;
 	}
 
 	/**
-	* Get nomeOriginal
+	* Get nome
 	* 
 	* @return null|String
 	*/
-	public function getNomeOriginal()
+	public function getNome()
 	{
-		return $this->_nomeOriginal;
-	}
-     
-	/**
-	* Set nomeSugestao
-	* 
-	* @param String $nomeSugestao 
-	* @return Basico_Model_NomeSugestao
-	*/
-	public function setNomeSugestao($nomeSugestao)
-	{
-		$this->_nomeSugestao = (String) $nomeSugestao;
-		return $this;
-	}
-
-	/**
-	* Get nomeSugestao
-	* 
-	* @return null|String
-	*/
-	public function getNomeSugestao()
-	{
-		return $this->_nomeSugestao;
+		return $this->_nome;
 	}
      
 	/**
@@ -178,87 +157,98 @@ class Basico_Model_AnexoMensagem
 	}
      
 	/**
-	* Set arquivo
+	* Set styleSheetFullFileName
 	* 
-	* @param String $arquivo 
-	* @return Default_Model_Arquivo
+	* @param String $styleSheetFullFileName
+	* @return Basico_Model_StyleSheetFile
 	*/
-	public function setArquivo($arquivo)
+	public function setStyleSheetFullFileName($styleSheetFullFileName)
 	{
-		$this->_arquivo = (String) $arquivo;
+		$this->_styleSheetFullFileName = (String) $styleSheetFullFileName;
 		return $this;
 	}
 
 	/**
-	* Get arquivo
+	* Get styleSheetFile
 	* 
 	* @return null|String
 	*/
-	public function getArquivo()
+	public function getStyleSheetFullFileName()
 	{
-		return $this->_arquivo;
+		return $this->_styleSheetFullFileName;
 	}
      
 	/**
-	* Set mimeType
+	* Set javaScriptFullFileName
 	* 
-	* @param String $mimeType 
-	* @return Basico_Model_MimeType
+	* @param String $javaScriptFullFileName 
+	* @return Basico_Model_JavaScriptFile
 	*/
-	public function setMimeType($mimeType)
+	public function setJavaScriptFullFileName($javaScriptFullFileName)
 	{
-		$this->_mimeType = (String) $mimeType;
+		$this->_javaScriptFullFileName = (String) $javaScriptFullFileName;
 		return $this;
 	}
 
 	/**
-	* Get mimeType
+	* Get javaScriptFullFileName
 	* 
 	* @return null|String
 	*/
-	public function getMimeType()
+	public function getJavaScriptFullFileName()
 	{
-		return $this->_mimeType;
+		return $this->_javaScriptFullFileName;
 	}
      
 	/**
-	* Set mensagem
+	* Set outputType
 	* 
-	* @param int $mensagem 
-	* @return Basico_Model_Mensagem
+	* @param Integer $outputType 
+	* @return Basico_Model_FormularioTemplate
 	*/
-	public function setMensagem($mensagem)
+	public function setIdOutput($idOutput)
 	{
-		$this->_mensagem = (int) $mensagem;
+		$this->_idOutput = (Integer) $idOutput;
 		return $this;
 	}
 
 	/**
-	* Get mensagem
+	* Get outputType
 	* 
-	* @return null|int
+	* @return null|Integer
 	*/
-	public function getMensagem()
+	public function getIdOutput()
 	{
-		return $this->_mensagem;
+		return $this->_idOutput;
+	}
+	
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_FormularioTemplate
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
 	}
  
-    /**
-     * Get mensagem object
-     * @return null|Mensagem
-     */
-    public function getMensagemObject()
-    {
-        $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
-        return $object;
-    }
-
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_FormularioTemplate
 	*/
 	public function setId($id)
 	{
@@ -280,7 +270,7 @@ class Basico_Model_AnexoMensagem
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_FormularioTemplate
 	*/
 	public function setMapper($mapper)
 	{
@@ -291,14 +281,14 @@ class Basico_Model_AnexoMensagem
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AnexoMensagemMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_FormularioTemplateMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AnexoMensagemMapper
+	* @return Basico_Model_FormularioTemplateMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AnexoMensagemMapper());
+			$this->setMapper(new Basico_Model_FormularioTemplateMapper());
 		}
 		return $this->_mapper;
 	}
@@ -328,7 +318,7 @@ class Basico_Model_AnexoMensagem
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_FormularioTemplate
 	*/
 	public function find($id)
 	{

@@ -1,13 +1,13 @@
 <?php
 /**
- * AnexoMensagem model
+ * FormularioElementoValidador model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AnexoMensagemMapper
+ * @uses       Basico_Model_FormularioElementoValidadorMapper
  * @subpackage Model
  */
-class Basico_Model_AnexoMensagem
+class Basico_Model_FormularioElementoValidador
 {
 	/**
 	* @var int
@@ -15,35 +15,28 @@ class Basico_Model_AnexoMensagem
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_AnexoMensagemMapper
+	 * @var Basico_Model_FormularioElementoValidadorMapper
 	 */
 	protected $_mapper;
 
 	/**
 	 * @var String
 	 */
-	protected $_nomeOriginal;
-	/**
-	 * @var String
-	 */
-	protected $_nomeSugestao;
+	protected $_nome;
 	/**
 	 * @var String
 	 */
 	protected $_descricao;
 	/**
-	 * @var File
+	 * @var String
 	 */
-	protected $_arquivo;
+	protected $_validator;
+	
 	/**
 	 * @var String
 	 */
-	protected $_mimeType;
-    /**
-     * @var Integer
-     */
-    protected $_mensagem;
-
+	protected $_rowinfo;
+	
 	/**
 	 * Constructor
 	 * 
@@ -95,7 +88,7 @@ class Basico_Model_AnexoMensagem
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_AnexoMensagem
+	 * @return Basico_Model_FormularioElementoValidador
 	 */
 	public function setOptions(array $options)
 	{
@@ -112,54 +105,32 @@ class Basico_Model_AnexoMensagem
 	}
     
 	/**
-	* Set nomeOriginal
+	* Set nome
 	* 
-	* @param String $nomeOriginal 
-	* @return Basico_Model_NomeOriginal
+	* @param String $nome 
+	* @return String
 	*/
-	public function setNomeOriginal($nomeOriginal)
+	public function setNome($nome)
 	{
-		$this->_nomeOriginal = (String) $nomeOriginal;
+		$this->_nome = (String) $nome;
 		return $this;
 	}
 
 	/**
-	* Get nomeOriginal
+	* Get nome
 	* 
 	* @return null|String
 	*/
-	public function getNomeOriginal()
+	public function getNome()
 	{
-		return $this->_nomeOriginal;
-	}
-     
-	/**
-	* Set nomeSugestao
-	* 
-	* @param String $nomeSugestao 
-	* @return Basico_Model_NomeSugestao
-	*/
-	public function setNomeSugestao($nomeSugestao)
-	{
-		$this->_nomeSugestao = (String) $nomeSugestao;
-		return $this;
-	}
-
-	/**
-	* Get nomeSugestao
-	* 
-	* @return null|String
-	*/
-	public function getNomeSugestao()
-	{
-		return $this->_nomeSugestao;
+		return $this->_nome;
 	}
      
 	/**
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Basico_Model_Descricao
+	* @return Default_Model_Descricao
 	*/
 	public function setDescricao($descricao)
 	{
@@ -178,87 +149,54 @@ class Basico_Model_AnexoMensagem
 	}
      
 	/**
-	* Set arquivo
+	* Set validator
 	* 
-	* @param String $arquivo 
-	* @return Default_Model_Arquivo
+	* @param String $validator 
+	* @return Default_Model_Validator
 	*/
-	public function setArquivo($arquivo)
+	public function setValidator($validator)
 	{
-		$this->_arquivo = (String) $arquivo;
+		$this->_validator = (String) $validator;
 		return $this;
 	}
 
 	/**
-	* Get arquivo
+	* Get validator
 	* 
 	* @return null|String
 	*/
-	public function getArquivo()
+	public function getValidator()
 	{
-		return $this->_arquivo;
-	}
-     
-	/**
-	* Set mimeType
-	* 
-	* @param String $mimeType 
-	* @return Basico_Model_MimeType
-	*/
-	public function setMimeType($mimeType)
-	{
-		$this->_mimeType = (String) $mimeType;
-		return $this;
-	}
-
-	/**
-	* Get mimeType
-	* 
-	* @return null|String
-	*/
-	public function getMimeType()
-	{
-		return $this->_mimeType;
-	}
-     
-	/**
-	* Set mensagem
-	* 
-	* @param int $mensagem 
-	* @return Basico_Model_Mensagem
-	*/
-	public function setMensagem($mensagem)
-	{
-		$this->_mensagem = (int) $mensagem;
-		return $this;
-	}
-
-	/**
-	* Get mensagem
-	* 
-	* @return null|int
-	*/
-	public function getMensagem()
-	{
-		return $this->_mensagem;
+		return $this->_validator;
 	}
  
     /**
-     * Get mensagem object
-     * @return null|Mensagem
-     */
-    public function getMensagemObject()
-    {
-        $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
-        return $object;
-    }
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return String
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
 
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
+	
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_FormularioElementoValidador
 	*/
 	public function setId($id)
 	{
@@ -280,7 +218,7 @@ class Basico_Model_AnexoMensagem
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_FormularioElementoValidador
 	*/
 	public function setMapper($mapper)
 	{
@@ -291,14 +229,14 @@ class Basico_Model_AnexoMensagem
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AnexoMensagemMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_FormularioElementoValidadorMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AnexoMensagemMapper
+	* @return Basico_Model_FormularioElementoValidadorMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AnexoMensagemMapper());
+			$this->setMapper(new Basico_Model_FormularioElementoValidadorMapper());
 		}
 		return $this->_mapper;
 	}
@@ -328,7 +266,7 @@ class Basico_Model_AnexoMensagem
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_FormularioElementoValidador
 	*/
 	public function find($id)
 	{

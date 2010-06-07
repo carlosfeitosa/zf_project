@@ -1,13 +1,13 @@
 <?php
 /**
- * PessoaPerfilMensagemCategoria model
+ * TemplateSaidaFormulario model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_PessoaPerfilMensagemCategoriaMapper
+ * @uses       Basico_Model_TemplateSaidaFormularioMapper
  * @subpackage Model
  */
-class Basico_Model_PessoaPerfilMensagemCategoria
+class Basico_Model_TemplateSaidaFormulario
 {
     /**
     * @var int
@@ -15,30 +15,25 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     protected $_id;
 
     /**
-     * @var Basico_Model_PessoaPerfilMensagemCategoriaMapper
+     * @var Basico_Model_TemplateSaidaFormularioMapper
      */
     protected $_mapper;
 
     /**
-     * @var PessoaPerfil
+     * @var TemplateSaida
      */
-    protected $_pessoaPerfil;
+    protected $_templateSaida;
     
     /**
-     * @var Mensagem
+     * @var Formulario
      */
-    protected $_mensagem;
+    protected $_formulario;
+    
+    /**
+	 * @var String
+	 */
+	protected $_rowinfo;
 
-    /**
-     * @var Categoria
-     */
-    protected $_categoria;
-    
-    /**
-     * @var Rowinfo
-     */
-    protected $_rowinfo;
-    
     /**
      * Constructor
      * 
@@ -90,7 +85,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_PessoaPerfilMensagemCategoria
+     * @return Basico_Model_TemplateSaidaFormulario
      */
     public function setOptions(array $options)
     {
@@ -107,109 +102,98 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     }
     
     /**
-    * Set pessoaperfil
+    * Set templatesaida
     * 
     * @param int $ 
-    * @return Basico_Model_PessoaPerfil
+    * @return Basico_Model_TemplateSaida
     */
-    public function setPessoaPerfil($pessoaPerfil)
+    public function setTemplateSaida($templateSaida)
     {
-        $this->_pessoaPerfil = (int) $pessoaPerfil;
+        $this->_templateSaida = (int) $templateSaida;
         return $this;
     }
 
     /**
-    * Get pessoaperfil
+    * Get templatesaida
     * 
     * @return null|int
     */
-    public function getPessoaPerfil()
+    public function getTemplateSaida()
     {
-        return $this->_pessoaPerfil;
+        return $this->_templateSaida;
     }
  
     /**
-     * Get pessoaperfil object
-     * @return null|PessoaPerfil
+     * Get templatesaida object
+     * @return null|TemplateSaida
      */
-    public function getPessoaPerfilObject()
+    public function getTemplateSaidaObject()
     {
-        $model = new Basico_Model_PessoaPerfil();
-        $object = $model->find($this->_pessoaPerfil);
+        $model = new Basico_Model_FormularioTemplate();
+        $object = $model->find($this->_templateSaida);
         return $object;
     }
     
     /**
-    * Set mensagem
+    * Set formulario
     * 
     * @param int $ 
-    * @return Basico_Model_Mensagem
+    * @return Basico_Model_Formulario
     */
-    public function setMensagem($mensagem)
+    public function setFormulario($formulario)
     {
-        $this->_mensagem = (int) $mensagem;
+        $this->_formulario = (int) $formulario;
         return $this;
     }
 
     /**
-    * Get mensagem
+    * Get formulario
     * 
     * @return null|int
     */
-    public function getMensagem()
+    public function getFormulario()
     {
-        return $this->_mensagem;
-    }
-    
-    /**
-     * Get mensagem object
-     * @return null|Mensagem
-     */
-    public function getMensagemObject()
-    {
-        $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
-        return $object;
-    }
-    
-    /**
-    * Set categoria
-    * 
-    * @param int $ 
-    * @return Basico_Model_Categoria
-    */
-    public function setCategoria($categoria)
-    {
-        $this->_categoria = (int) $categoria;
-        return $this;
-    }
-
-    /**
-    * Get Categoria
-    * 
-    * @return null|int
-    */
-    public function getCategoria()
-    {
-        return $this->_categoria;
+        return $this->_formulario;
     }
  
     /**
-     * Get categoria object
-     * @return null|Categoria
+     * Get formulario object
+     * @return null|Formulario
      */
-    public function getCategoriaObject()
+    public function getFormularioObject()
     {
-        $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $model = new Basico_Model_Formulario();
+        $object = $model->find($this->_formulario);
         return $object;
     }
     
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_TemplateSaidaFormulario
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
+
     /**
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_TemplateSaidaFormulario
     */
     public function setId($id)
     {
@@ -226,34 +210,12 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     {
         return $this->_id;
     }
-    
-    /**
-    * Set entry rowinfo
-    * 
-    * @param  rowinfo $rowinfo 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
-    */
-    public function setRowinfo($rowinfo)
-    {
-        $this->_rowinfo = (String) $rowinfo;
-        return $this;
-    }
-
-    /**
-    * Retrieve entry rowinfo
-    * 
-    * @return null|string
-    */
-    public function getRowinfo()
-    {
-        return $this->_rowinfo;
-    }
 
     /**
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_TemplateSaidaFormulario
     */
     public function setMapper($mapper)
     {
@@ -264,14 +226,14 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_PessoaPerfilMensagemCategoriaMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_TemplateSaidaFormularioMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_PessoaPerfilMensagemCategoriaMapper
+    * @return Default_Model_TemplateSaidaFormularioMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_PessoaPerfilMensagemCategoriaMapper());
+            $this->setMapper(new Basico_Model_TemplateSaidaFormularioMapper());
         }
         return $this->_mapper;
     }
@@ -301,7 +263,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_TemplateSaidaFormulario
       
     */
     public function find($id)

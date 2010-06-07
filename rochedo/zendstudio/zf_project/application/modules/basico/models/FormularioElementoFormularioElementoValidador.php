@@ -1,13 +1,13 @@
 <?php
 /**
- * PessoaPerfilMensagemCategoria model
+ * FormularioElementoFormularioElementoValidador model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_PessoaPerfilMensagemCategoriaMapper
+ * @uses       Basico_Model_FormularioElementoFormularioElementoValidadorMapper
  * @subpackage Model
  */
-class Basico_Model_PessoaPerfilMensagemCategoria
+class Basico_Model_FormularioElementoFormularioElementoValidador
 {
     /**
     * @var int
@@ -15,30 +15,25 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     protected $_id;
 
     /**
-     * @var Basico_Model_PessoaPerfilMensagemCategoriaMapper
+     * @var Basico_Model_FormularioElementoFormularioElementoValidadorMapper
      */
     protected $_mapper;
 
     /**
-     * @var PessoaPerfil
+     * @var FormularioElementoValidador
      */
-    protected $_pessoaPerfil;
+    protected $_formularioElementoValidador;
     
     /**
-     * @var Mensagem
+     * @var FormularioElemento
      */
-    protected $_mensagem;
-
-    /**
-     * @var Categoria
-     */
-    protected $_categoria;
+    protected $_formularioElemento;
     
     /**
-     * @var Rowinfo
+     * @var rowinfo
      */
     protected $_rowinfo;
-    
+
     /**
      * Constructor
      * 
@@ -90,7 +85,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_PessoaPerfilMensagemCategoria
+     * @return Basico_Model_FormularioElementoFormularioElementoValidador
      */
     public function setOptions(array $options)
     {
@@ -107,109 +102,98 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     }
     
     /**
-    * Set pessoaperfil
+    * Set formularioelementovalidador
     * 
     * @param int $ 
-    * @return Basico_Model_PessoaPerfil
+    * @return Basico_Model_FormularioElementoValidador
     */
-    public function setPessoaPerfil($pessoaPerfil)
+    public function setFormularioElementoValidador($formularioElementoValidador)
     {
-        $this->_pessoaPerfil = (int) $pessoaPerfil;
+        $this->_formularioElementoValidador = (int) $formularioElementoValidador;
         return $this;
     }
 
     /**
-    * Get pessoaperfil
+    * Get formularioelementovalidador
     * 
     * @return null|int
     */
-    public function getPessoaPerfil()
+    public function getFormularioElementoValidador()
     {
-        return $this->_pessoaPerfil;
+        return $this->_formularioElementoValidador;
     }
  
     /**
-     * Get pessoaperfil object
-     * @return null|PessoaPerfil
+     * Get formularioelementovalidador object
+     * @return null|FormularioElementoValidador
      */
-    public function getPessoaPerfilObject()
+    public function getFormularioElementoValidadorObject()
     {
-        $model = new Basico_Model_PessoaPerfil();
-        $object = $model->find($this->_pessoaPerfil);
+        $model = new Basico_Model_FormularioElementoValidador();
+        $object = $model->find($this->_formularioElementoValidador);
         return $object;
     }
     
     /**
-    * Set mensagem
+    * Set formularioelemento
     * 
     * @param int $ 
-    * @return Basico_Model_Mensagem
+    * @return Basico_Model_FormularioElemento
     */
-    public function setMensagem($mensagem)
+    public function setFormularioElemento($formularioElemento)
     {
-        $this->_mensagem = (int) $mensagem;
+        $this->_formularioElemento = (int) $formularioElemento;
         return $this;
     }
 
     /**
-    * Get mensagem
+    * Get formularioelemento
     * 
     * @return null|int
     */
-    public function getMensagem()
+    public function getFormularioElemento()
     {
-        return $this->_mensagem;
-    }
-    
-    /**
-     * Get mensagem object
-     * @return null|Mensagem
-     */
-    public function getMensagemObject()
-    {
-        $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
-        return $object;
-    }
-    
-    /**
-    * Set categoria
-    * 
-    * @param int $ 
-    * @return Basico_Model_Categoria
-    */
-    public function setCategoria($categoria)
-    {
-        $this->_categoria = (int) $categoria;
-        return $this;
-    }
-
-    /**
-    * Get Categoria
-    * 
-    * @return null|int
-    */
-    public function getCategoria()
-    {
-        return $this->_categoria;
+        return $this->_formularioElemento;
     }
  
     /**
-     * Get categoria object
-     * @return null|Categoria
+     * Get formularioelemento object
+     * @return null|FormularioElemento
      */
-    public function getCategoriaObject()
+    public function getFormularioElementoObject()
     {
-        $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $model = new Basico_Model_FormularioElemento();
+        $object = $model->find($this->_formularioElemento);
         return $object;
     }
     
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_FormularioTemplate
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
+
     /**
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_FormularioElementoFormularioElementoValidador
     */
     public function setId($id)
     {
@@ -226,34 +210,12 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     {
         return $this->_id;
     }
-    
-    /**
-    * Set entry rowinfo
-    * 
-    * @param  rowinfo $rowinfo 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
-    */
-    public function setRowinfo($rowinfo)
-    {
-        $this->_rowinfo = (String) $rowinfo;
-        return $this;
-    }
-
-    /**
-    * Retrieve entry rowinfo
-    * 
-    * @return null|string
-    */
-    public function getRowinfo()
-    {
-        return $this->_rowinfo;
-    }
 
     /**
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_FormularioElementoFormularioElementoValidador
     */
     public function setMapper($mapper)
     {
@@ -264,14 +226,14 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_PessoaPerfilMensagemCategoriaMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_FormularioElementoFormularioElementoValidadorMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_PessoaPerfilMensagemCategoriaMapper
+    * @return Basico_Model_FormularioElementoFormularioElementoValidadorMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_PessoaPerfilMensagemCategoriaMapper());
+            $this->setMapper(new Basico_Model_FormularioElementoFormularioElementoValidadorMapper());
         }
         return $this->_mapper;
     }
@@ -301,7 +263,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_FormularioElementoFormularioElementoValidador
       
     */
     public function find($id)

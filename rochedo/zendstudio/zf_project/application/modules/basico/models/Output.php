@@ -1,13 +1,13 @@
 <?php
 /**
- * AnexoMensagem model
+ * Output model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AnexoMensagemMapper
+ * @uses       Basico_Model_OutputMapper
  * @subpackage Model
  */
-class Basico_Model_AnexoMensagem
+class Basico_Model_Output
 {
 	/**
 	* @var int
@@ -15,35 +15,24 @@ class Basico_Model_AnexoMensagem
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_AnexoMensagemMapper
+	 * @var Basico_Model_OutputMapper
 	 */
 	protected $_mapper;
 
 	/**
 	 * @var String
 	 */
-	protected $_nomeOriginal;
-	/**
-	 * @var String
-	 */
-	protected $_nomeSugestao;
+	protected $_nome;
 	/**
 	 * @var String
 	 */
 	protected $_descricao;
-	/**
-	 * @var File
-	 */
-	protected $_arquivo;
+	
 	/**
 	 * @var String
 	 */
-	protected $_mimeType;
-    /**
-     * @var Integer
-     */
-    protected $_mensagem;
-
+	protected $_rowinfo;
+	
 	/**
 	 * Constructor
 	 * 
@@ -95,7 +84,7 @@ class Basico_Model_AnexoMensagem
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_AnexoMensagem
+	 * @return Basico_Model_Output
 	 */
 	public function setOptions(array $options)
 	{
@@ -112,47 +101,25 @@ class Basico_Model_AnexoMensagem
 	}
     
 	/**
-	* Set nomeOriginal
+	* Set nome
 	* 
-	* @param String $nomeOriginal 
-	* @return Basico_Model_NomeOriginal
+	* @param String $nome 
+	* @return Basico_Model_Nome
 	*/
-	public function setNomeOriginal($nomeOriginal)
+	public function setNome($nome)
 	{
-		$this->_nomeOriginal = (String) $nomeOriginal;
+		$this->_nome = (String) $nome;
 		return $this;
 	}
 
 	/**
-	* Get nomeOriginal
+	* Get nome
 	* 
 	* @return null|String
 	*/
-	public function getNomeOriginal()
+	public function getNome()
 	{
-		return $this->_nomeOriginal;
-	}
-     
-	/**
-	* Set nomeSugestao
-	* 
-	* @param String $nomeSugestao 
-	* @return Basico_Model_NomeSugestao
-	*/
-	public function setNomeSugestao($nomeSugestao)
-	{
-		$this->_nomeSugestao = (String) $nomeSugestao;
-		return $this;
-	}
-
-	/**
-	* Get nomeSugestao
-	* 
-	* @return null|String
-	*/
-	public function getNomeSugestao()
-	{
-		return $this->_nomeSugestao;
+		return $this->_nome;
 	}
      
 	/**
@@ -176,89 +143,34 @@ class Basico_Model_AnexoMensagem
 	{
 		return $this->_descricao;
 	}
-     
-	/**
-	* Set arquivo
+	
+    /**
+	* Set rowinfo
 	* 
-	* @param String $arquivo 
-	* @return Default_Model_Arquivo
+	* @param String $rowinfo 
+	* @return Basico_Model_Output
 	*/
-	public function setArquivo($arquivo)
+	public function setRowinfo($rowinfo)
 	{
-		$this->_arquivo = (String) $arquivo;
+		$this->_rowinfo = (String) $rowinfo;
 		return $this;
 	}
 
 	/**
-	* Get arquivo
+	* Get rowinfo
 	* 
 	* @return null|String
 	*/
-	public function getArquivo()
+	public function getRowinfo()
 	{
-		return $this->_arquivo;
-	}
-     
-	/**
-	* Set mimeType
-	* 
-	* @param String $mimeType 
-	* @return Basico_Model_MimeType
-	*/
-	public function setMimeType($mimeType)
-	{
-		$this->_mimeType = (String) $mimeType;
-		return $this;
-	}
-
-	/**
-	* Get mimeType
-	* 
-	* @return null|String
-	*/
-	public function getMimeType()
-	{
-		return $this->_mimeType;
-	}
-     
-	/**
-	* Set mensagem
-	* 
-	* @param int $mensagem 
-	* @return Basico_Model_Mensagem
-	*/
-	public function setMensagem($mensagem)
-	{
-		$this->_mensagem = (int) $mensagem;
-		return $this;
-	}
-
-	/**
-	* Get mensagem
-	* 
-	* @return null|int
-	*/
-	public function getMensagem()
-	{
-		return $this->_mensagem;
+		return $this->_rowinfo;
 	}
  
-    /**
-     * Get mensagem object
-     * @return null|Mensagem
-     */
-    public function getMensagemObject()
-    {
-        $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
-        return $object;
-    }
-
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_Output
 	*/
 	public function setId($id)
 	{
@@ -280,7 +192,7 @@ class Basico_Model_AnexoMensagem
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_Output
 	*/
 	public function setMapper($mapper)
 	{
@@ -291,14 +203,14 @@ class Basico_Model_AnexoMensagem
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AnexoMensagemMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_OutputMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AnexoMensagemMapper
+	* @return Basico_Model_OutputMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AnexoMensagemMapper());
+			$this->setMapper(new Basico_Model_OutputMapper());
 		}
 		return $this->_mapper;
 	}
@@ -328,7 +240,7 @@ class Basico_Model_AnexoMensagem
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
+	* @return Basico_Model_Output
 	*/
 	public function find($id)
 	{
@@ -355,5 +267,25 @@ class Basico_Model_AnexoMensagem
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
+	   
+    /**
+    * fetch list of entries satisfying the parameters but allowing a join
+    *
+    * @return array
+    */
+    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
+    {
+        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
+    }
+    
+    /**
+    * fetch joined list of entries that satisfy the parameters
+    *
+    * @return array
+    */
+    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
+    {
+        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
+    }
 
 }

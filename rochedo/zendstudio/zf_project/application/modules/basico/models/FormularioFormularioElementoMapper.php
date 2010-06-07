@@ -1,14 +1,14 @@
 <?php
 /**
- * PessoaPerfilMensagemCategoria data mapper
+ * FormularioFormularioElemento data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_PessoaPerfilMensagemCategoria
+ * @uses       Basico_Model_DbTable_FormularioFormularioElemento
  * @subpackage Model
  */
-class Basico_Model_PessoaPerfilMensagemCategoriaMapper
+class Basico_Model_FormularioFormularioElementoMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_PessoaPerfilMensagemCategoriaMapper
+     * @return Basico_Model_FormularioFormularioElementoMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_PessoaPerfilMensagemCategoria if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormularioFormularioElemento if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_PessoaPerfilMensagemCategoria');
+            $this->setDbTable('Basico_Model_DbTable_FormularioFormularioElemento');
         }
         return $this->_dbTable;
     }
@@ -51,17 +51,15 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_PessoaPerfilMensagemCategoria $object
+     * @param  Basico_Model_FormularioFormularioElemento $object
      * @return void
      */
-    public function save(Basico_Model_PessoaPerfilMensagemCategoria $object)
+    public function save(Basico_Model_FormularioFormularioElemento $object)
     {
         $data = array(
-                'id_mensagem'      => $object->getMensagem(),
-                'id_categoria'     => $object->getCategoria(),
-                'id_pessoa_perfil' => $object->getPessoaPerfil(),
-                'rowinfo'          => $object->getRowinfo(),
-                
+                'formulario'          => $object->getFormulario(),
+                'formulario_elemento' => $object->getFormularioElemento(),
+                'rowinfo'             => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -73,11 +71,11 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
     }
     
     /**
-    * Delete a PessoaPerfilMensagemCategoria entry
-    * @param Basico_Model_PessoaPerfilMensagemCategoria $object
+    * Delete a FormularioFormularioElemento entry
+    * @param Basico_Model_FormularioFormularioElemento $object
     * @return void
     */
-    public function delete(Basico_Model_PessoaPerfilMensagemCategoria $object)
+    public function delete(Basico_Model_FormularioFormularioElemento $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -86,10 +84,10 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_PessoaPerfilMensagemCategoria $object 
+     * @param  Basico_Model_FormularioFormularioElemento $object 
      * @return void
      */
-    public function find($id, Basico_Model_PessoaPerfilMensagemCategoria $object)
+    public function find($id, Basico_Model_FormularioFormularioElemento $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -97,14 +95,13 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setMensagem($row->id_mensagem)
-               ->setCategoria($row->id_categoria)
-               ->setPessoaPerfil($row->id_pessoa_perfil)
+               ->setFormulario($row->formulario)
+               ->setFormularioElemento($row->formulario_elemento)
                ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all PessoaPerfilMensagemCategoria entries
+     * Fetch all FormularioFormularioElemento entries
      * 
      * @return array
      */
@@ -114,13 +111,12 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $entry = new Basico_Model_FormularioFormularioElemento();
             $entry->setId($row->id)
-                  ->setMensagem($row->id_mensagem)
-                  ->setCategoria($row->id_categoria)
-                  ->setPessoaPerfil($row->id_pessoa_perfil)
-                  ->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
+                ->setFormulario($row->formulario)
+                ->setFormularioElemento($row->formulario_elemento)
+                ->setRowinfo($row->rowinfo)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
@@ -137,11 +133,10 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $entry = new Basico_Model_FormularioFormularioElemento();
             $entry->setId($row->id)
-                  ->setMensagem($row->id_mensagem)
-                  ->setCategoria($row->id_categoria)
-                  ->setPessoaPerfil($row->id_pessoa_perfil)
+                  ->setFormulario($row->formulario)
+                  ->setFormularioElemento($row->formulario_elemento)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

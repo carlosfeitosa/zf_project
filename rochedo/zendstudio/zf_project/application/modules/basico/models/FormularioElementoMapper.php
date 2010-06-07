@@ -1,14 +1,14 @@
 <?php
 /**
- * MensagemEmail data mapper
+ * FormularioElemento data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_MensagemEmail
+ * @uses       Basico_Model_DbTable_FormularioElemento
  * @subpackage Model
  */
-class Basico_Model_MensagemEmailMapper
+class Basico_Model_FormularioElementoMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_MensagemEmailMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_MensagemEmailMapper
+     * @return Basico_Model_FormularioElementoMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,31 +36,33 @@ class Basico_Model_MensagemEmailMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_MensagemEmail if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormularioElemento if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_MensagemEmail');
+            $this->setDbTable('Basico_Model_DbTable_FormularioElemento');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a MensagemEmail entry
+     * Save a FormularioElemento entry
      * 
-     * @param  Basico_Model_MensagemEmail $object
+     * @param  Basico_Model_FormularioElemento $object
      * @return void
      */
-    public function save(Default_Model_MensagemEmail $object)
+    public function save(Basico_Model_FormularioElemento $object)
     {
         $data = array(
-				'destinatariosCopiaCarbonada'   => $object->getDestinatariosCopiaCarbonada(),
-				'destinatariosCopiaCarbonadaCega'   => $object->getDestinatariosCopiaCarbonadaCega(),
-				'responderPara'   => $object->getResponderPara(),
-              'mensagem'   => $object->getMensagem(),
+				'nome'   => $object->getNome(),
+				'descricao'   => $object->getDescricao(),
+				'constanteTextualLabel'   => $object->getConstanteTextualLabel(),
+				'elementName'   => $object->getElementName(),
+				'element'   => $object->getElement(),
+                'rowinfo'   => $object->getRowinfo(),
 
         );
 
@@ -73,23 +75,23 @@ class Basico_Model_MensagemEmailMapper
     }
     
 	/**
-	* Delete a MensagemEmail entry
-	* @param Basico_Model_MensagemEmail $object
+	* Delete a FormularioElemento entry
+	* @param Basico_Model_FormularioElemento $object
 	* @return void
 	*/
-	public function delete(Default_Model_MensagemEmail $object)
+	public function delete(Basico_Model_FormularioElemento $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a MensagemEmail entry by id
+     * Find a FormularioElemento entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_MensagemEmail $object 
+     * @param  Basico_Model_FormularioElemento $object 
      * @return void
      */
-    public function find($id, Default_Model_MensagemEmail $object)
+    public function find($id, Basico_Model_FormularioElemento $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -98,14 +100,16 @@ class Basico_Model_MensagemEmailMapper
         $row = $result->current();
         $object->setId($row->id)
 
-				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaCega($row->destinatariosCopiaCarbonadaCega)
-				->setResponderPara($row->responderPara)
-                ->setMensagem($row->mensagem);
+				->setNome($row->nome)
+				->setDescricao($row->descricao)
+				->setConstanteTextualLabel($row->constanteTextualLabel)
+				->setElementName($row->elementName)
+				->setElement($row->element)
+				->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all mensagememail entries
+	 * Fetch all formularioelemento entries
 	 * 
 	 * @return array
 	 */
@@ -115,13 +119,15 @@ class Basico_Model_MensagemEmailMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_MensagemEmail();
+			$entry = new Basico_Model_FormularioElemento();
 			$entry->setId($row->id)
 
-				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaCega($row->destinatariosCopiaCarbonadaCega)
-				->setResponderPara($row->responderPara)
-                ->setMensagem($row->mensagem)
+				->setNome($row->nome)
+				->setDescricao($row->descricao)
+				->setConstanteTextualLabel($row->constanteTextualLabel)
+				->setElementName($row->elementName)
+				->setElement($row->element)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -129,7 +135,7 @@ class Basico_Model_MensagemEmailMapper
 	}
 	
 	/**
-	 * Fetch all mensagememail entries
+	 * Fetch all formularioelemento entries
 	 * 
 	 * @return array
 	 */
@@ -139,13 +145,15 @@ class Basico_Model_MensagemEmailMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_MensagemEmail();
+			$entry = new Basico_Model_FormularioElemento();
 			$entry->setId($row->id)
 
-				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaCega($row->destinatariosCopiaCarbonadaCega)
-				->setResponderPara($row->responderPara)
-                ->setMensagem($row->mensagem)
+				->setNome($row->nome)
+				->setDescricao($row->descricao)
+				->setConstanteTextualLabel($row->constanteTextualLabel)
+				->setElementName($row->elementName)
+				->setElement($row->element)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
