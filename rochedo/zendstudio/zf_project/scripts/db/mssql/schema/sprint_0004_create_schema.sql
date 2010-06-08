@@ -9,7 +9,7 @@
 
 // CRIACAO DAS FUNCOES
 
-create function fn_CheckConstanteTextualExists(@constante_textual varchar(200))
+create function fn_CheckConstanteTextualExists(@constante_textual varchar (200))
 returns int
 as
 begin
