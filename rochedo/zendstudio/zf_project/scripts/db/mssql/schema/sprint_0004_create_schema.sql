@@ -99,6 +99,7 @@ create table formulario (
 	form_action varchar (100) collate latin1_general_ci_ai not null ,
 	form_target varchar (100) collate latin1_general_ci_ai null ,
 	form_enctype varchar (100) collate latin1_general_ci_ai null ,
+	form_attribs varchar (1000) collate latin1_general_ci_ai null ,
 	validade_inicio datetime null ,
 	validade_termino datetime null ,
 	data_desativacao datetime null ,
