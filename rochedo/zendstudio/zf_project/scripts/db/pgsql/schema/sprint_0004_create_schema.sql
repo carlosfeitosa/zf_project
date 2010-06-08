@@ -116,6 +116,7 @@ create table formulario (
 	form_action character varying (100) not null ,
 	form_target character varying (100) null ,
 	form_enctype character varying (100) null ,
+	form_attribs character varying (1000) null ,
 	validade_inicio timestamp with time zone null ,
 	validade_termino timestamp with time zone null ,
 	data_desativacao timestamp with time zone null ,
