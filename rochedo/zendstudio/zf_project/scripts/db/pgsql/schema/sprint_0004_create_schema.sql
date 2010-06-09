@@ -28,7 +28,7 @@ create table decorator (
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table decorator owner to rochedo_user;
 
 create table ajuda (
 	id serial not null ,
@@ -43,7 +43,7 @@ create table ajuda (
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table ajuda owner to rochedo_user;
 
 create table output (
 	id serial not null ,
@@ -55,7 +55,7 @@ create table output (
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table output owner to rochedo_user;
 
 create table formulario_template (
 	id serial not null ,
@@ -70,12 +70,13 @@ create table formulario_template (
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table formulario_template owner to rochedo_user;
 
 create table formulario_elemento (
 	id serial not null ,
 	id_categoria int not null ,
 	id_ajuda int null ,
+	id_formulario_elemento_filter int null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
 	constante_textual_label character varying (200) null ,
@@ -86,9 +87,9 @@ create table formulario_elemento (
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table formulario_elemento owner to rochedo_user;
 
-create table formulario_elemento_validador (
+create table formulario_elemento_validator (
 	id serial not null ,
 	id_categoria int not null ,
 	nome character varying (100) not null ,
@@ -99,7 +100,20 @@ create table formulario_elemento_validador (
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table formulario_elemento_validator owner to rochedo_user;
+
+create table formulario_elemento_filter (
+    id serial not null ,
+    id_categoria int not null ,
+	nome character varying (100) null ,
+	descricao character varying (2000) null ,
+	filter character varying (1000) not null ,
+	rowinfo character varying (2000) not null
+)
+with (
+  oids = false
+);
+alter table formulario_elemento_filter owner to rochedo_user;
 
 create table formulario (
 	id serial not null ,
@@ -121,13 +135,13 @@ create table formulario (
 	validade_termino timestamp with time zone null ,
 	data_desativacao timestamp with time zone null ,
 	data_auto_reativar timestamp with time zone null ,
-	motivo_desativacao character varying (2000) null ,
+	motivo_desativacao character varying (1000) null ,
 	rowinfo character varying (2000) not null 
 )
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table formulario owner to rochedo_user;
 
 create table formulario_formulario_elemento (
 	id serial not null ,
@@ -139,18 +153,18 @@ create table formulario_formulario_elemento (
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table formulario_formulario_elemento owner to rochedo_user;
 
-create table formulario_elemento_formulario_elemento_validador (
+create table formulario_elemento_formulario_elemento_validator (
 	id serial not null ,
 	id_formulario_elemento int not null ,
-	id_formulario_elemento_validador int not null ,
+	id_formulario_elemento_validator int not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
   oids = false
 );
-alter table categoria owner to rochedo_user;
+alter table formulario_elemento_formulario_elemento_validator owner to rochedo_user;
 
 
 // CRIACAO DAS CHAVES PRIMARIAS
@@ -165,13 +179,15 @@ alter table formulario_template add constraint pk_formulario_template primary ke
 
 alter table formulario_elemento add constraint pk_formulario_elemento primary key (id);
 
-alter table formulario_elemento_validador add constraint pk_formulario_elemento_validador primary key (id);
+alter table formulario_elemento_validator add constraint pk_formulario_elemento_validator primary key (id);
+
+alter table formulario_elemento_filter add constraint pk_formulario_elemento_filter primary key (id);
 
 alter table formulario add constraint pk_formulario primary key (id);
 
 alter table formulario_formulario_elemento add constraint pk_formulario_formulario_elemento primary key (id);
 
-alter table formulario_elemento_formulario_elemento_validador add constraint pk_formulario_elemento_formulario_elemento_validador primary key (id);
+alter table formulario_elemento_formulario_elemento_validator add constraint pk_formulario_elemento_formulario_elemento_validator primary key (id);
 
 
 // CRIACAO DOS VALORES DEFAULT
@@ -197,8 +213,11 @@ create index ix_formulario_template_nome
 create index ix_formulario_elemento_nome
   on formulario_elemento using btree (nome asc nulls last);
 
-create index ix_formulario_elemento_validador_nome
-  on formulario_elemento_validador using btree (nome asc nulls last);
+create index ix_formulario_elemento_validator_nome
+  on formulario_elemento_validator using btree (nome asc nulls last);
+
+create index ix_formulario_elemento_filter_nome
+  on formulario_elemento_filter using btree (nome asc nulls last);
 
 create index ix_formulario_nome 
   on formulario using btree (nome asc nulls last);
@@ -224,8 +243,11 @@ alter table formulario_template
 alter table formulario_elemento
   add constraint ix_formulario_elemento_categoria_nome unique (id_categoria, nome);
 
-alter table formulario_elemento_validador
-  add constraint ix_formulario_elemento_validador_categoria_nome unique (id_categoria, nome);
+alter table formulario_elemento_validator
+  add constraint ix_formulario_elemento_validator_categoria_nome unique (id_categoria, nome);
+
+alter table formulario_elemento_filter
+  add constraint ix_formulario_elemento_filter_categoria_nome unique (id_categoria, nome);
 
 alter table formulario
   add constraint ix_formulario_categoria_nome unique (id_categoria, nome);
@@ -233,8 +255,8 @@ alter table formulario
 alter table formulario_formulario_elemento
   add constraint ix_formulario_formulario_elemento_formulario_formulario_elemento unique (id_formulario, id_formulario_elemento);
 
-alter table formulario_elemento_formulario_elemento_validador
-  add constraint ix_formulario_elemento_formulario_elemento_validador_formulario_elemento_formulario_elemento_validador unique (id_formulario_elemento, id_formulario_elemento_validador);
+alter table formulario_elemento_formulario_elemento_validator
+  add constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique (id_formulario_elemento, id_formulario_elemento_validator);
 
 
 // CRIACAO DAS CHAVES ESTRANGEIRAS
@@ -254,10 +276,14 @@ alter table formulario_template
 
 alter table formulario_elemento
   add constraint fk_formulario_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action;
+  add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action,
+  add constraint fk_formulario_elemento_formulario_elemento_filter foreign key (id_formulario_elemento_filter) references formulario_elemento_filter (id) on update no action on delete no action;
 
-alter table formulario_elemento_validador
-  add constraint fk_formulario_elemento_validador_categoria foreign key	(id_categoria) references categoria (id) on update no action on delete no action;
+alter table formulario_elemento_validator
+  add constraint fk_formulario_elemento_validator_categoria foreign key	(id_categoria) references categoria (id) on update no action on delete no action;
+
+alter table formulario_elemento_filter
+  add constraint fk_formulario_elemento_filter_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 	
 alter table formulario
   add constraint fk_formulario_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
@@ -269,9 +295,9 @@ alter table formulario_formulario_elemento
   add constraint fk_formulario_formulario_elemento_formulario foreign key (id_formulario) references formulario (id) on update no action on delete no action,
   add constraint fk_formulario_formulario_elemento_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action;
 
-alter table formulario_elemento_formulario_elemento_validador 
-  add constraint fk_formulario_elemento_formulario_elemento_validador_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
-  add constraint fk2_formulario_elemento_formulario_elemento_validador_formulario_elemento_validador foreign key (id_formulario_elemento_validador) references formulario_elemento_validador (id) on update no action on delete no action;
+alter table formulario_elemento_formulario_elemento_validator 
+  add constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
+  add constraint fk2_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
 
 
 // CRIACAO DOS CHECK CONSTRAINTS

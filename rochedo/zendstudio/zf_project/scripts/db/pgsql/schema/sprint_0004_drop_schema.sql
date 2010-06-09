@@ -9,9 +9,10 @@
 
 drop table formulario_template;
 drop table formulario_formulario_elemento;
-drop table formulario_elemento_formulario_elemento_validador;
+drop table formulario_elemento_formulario_elemento_validator;
 drop table formulario_elemento;
-drop table formulario_elemento_validador;
+drop table formulario_elemento_validator;
+drop table formulario_elemento_filter;
 drop table formulario;
 drop table decorator;
 drop table ajuda;

@@ -67,6 +67,7 @@ create table formulario_elemento (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_ajuda int null ,
+    id_formulario_elemento_filter int null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
@@ -75,13 +76,22 @@ create table formulario_elemento (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_elemento_validador (
+create table formulario_elemento_validator (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	validator varchar (1000) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
+) on [primary];
+
+create table formulario_elemento_filter (
+    id int identity (1, 1) not null ,
+    id_categoria int not null ,
+	nome varchar (100) collate latin1_general_ci_ai not null ,
+	descricao varchar (2000) collate latin1_general_ci_ai null ,
+	filter varchar (1000) collate latin1_general_ci_ai not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
 create table formulario (
@@ -104,7 +114,7 @@ create table formulario (
 	validade_termino datetime null ,
 	data_desativacao datetime null ,
 	data_auto_reativar datetime null ,
-	motivo_desativacao varchar (2000) collate latin1_general_ci_ai null ,
+	motivo_desativacao varchar (1000) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -116,12 +126,13 @@ create table formulario_formulario_elemento (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_elemento_formulario_elemento_validador (
+create table formulario_elemento_formulario_elemento_validator (
 	id int identity (1, 1) not null ,
 	id_formulario_elemento int not null ,
-	id_formulario_elemento_validador int not null ,
+	id_formulario_elemento_validator int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
+
 
 
 // CRIACAO DAS CHAVES PRIMARIAS
@@ -136,13 +147,15 @@ alter table formulario_template with nocheck add constraint pk_formulario_templa
 
 alter table formulario_elemento with nocheck add constraint pk_formulario_elemento primary key clustered (id) on [primary];
 
-alter table formulario_elemento_validador with nocheck add constraint pk_formulario_elemento_validador primary key clustered (id) on [primary];
+alter table formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_validator primary key clustered (id) on [primary];
+
+alter table formulario_elemento_filter with nocheck add constraint pk_formulario_elemento_filter primary key clustered (id) on [primary];
 
 alter table formulario with nocheck add constraint pk_formulario primary key clustered (id) on [primary];
 
 alter table formulario_formulario_elemento with nocheck add constraint pk_formulario_formulario_elemento primary key clustered (id) on [primary];
 
-alter table formulario_elemento_formulario_elemento_validador with nocheck add constraint pk_formulario_elemento_formulario_elemento_validador primary key clustered (id) on [primary];
+alter table formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
 
 
 // CRIACAO DOS VALORES DEFAULT
@@ -163,7 +176,9 @@ create index ix_formulario_template_nome on formulario_template (nome) on [prima
 
 create index ix_formulario_elemento_nome on formulario_elemento (nome) on [primary];
 
-create index ix_formulario_elemento_validador_nome on formulario_elemento_validador (nome) on [primary];
+create index ix_formulario_elemento_validator_nome on formulario_elemento_validator (nome) on [primary];
+
+create index ix_formulario_elemento_filter_nome on formulario_elemento_filter (nome) on [primary];
 
 create index ix_formulario_nome on formulario (nome) on [primary];
 
@@ -207,8 +222,15 @@ alter table formulario_elemento add
 		nome
 	) on [primary];
 
-alter table formulario_elemento_validador add
-	constraint ix_formulario_elemento_validador_categoria_nome unique nonclustered
+alter table formulario_elemento_validator add
+	constraint ix_formulario_elemento_validator_categoria_nome unique nonclustered
+	(
+		id_categoria,
+		nome
+	) on [primary];
+
+alter table formulario_elemento_filter add
+	constraint ix_formulario_elemento_filter_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
@@ -228,11 +250,11 @@ alter table formulario_formulario_elemento add
         id_formulario_elemento
     ) on [primary];
 
-alter table formulario_elemento_formulario_elemento_validador add
-    constraint ix_formulario_elemento_formulario_elemento_validador_formulario_elemento_formulario_elemento_validador unique nonclustered
+alter table formulario_elemento_formulario_elemento_validator add
+    constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique nonclustered
     (
         id_formulario_elemento,
-        id_formulario_elemento_validador
+        id_formulario_elemento_validator
     ) on [primary];
 
 
@@ -288,10 +310,24 @@ alter table formulario_elemento add
 		id_ajuda
 	) references ajuda (
 		id
+	),
+    constraint fk_formulario_elemento_formulario_elemento_filter foreign key
+	(
+		id_formulario_elemento_filter
+	) references formulario_elemento_filter (
+		id
 	);
 
-alter table formulario_elemento_validador add
-	constraint fk_formulario_elemento_validador_categoria foreign key
+alter table formulario_elemento_validator add
+	constraint fk_formulario_elemento_validator_categoria foreign key
+	(
+		id_categoria
+	) references categoria (
+		id
+	);
+
+alter table formulario_elemento_filter add
+	constraint fk_formulario_elemento_filter_categoria foreign key
 	(
 		id_categoria
 	) references categoria (
@@ -338,17 +374,17 @@ alter table formulario_formulario_elemento add
 		id
 	);
 
-alter table formulario_elemento_formulario_elemento_validador add 
-	constraint fk_formulario_elemento_formulario_elemento_validador_formulario_elemento foreign key 
+alter table formulario_elemento_formulario_elemento_validator add 
+	constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key 
 	(
 		id_formulario_elemento
 	) references formulario_elemento (
 		id
 	),
-	constraint fk_formulario_elemento_formulario_elemento_validador_formulario_elemento_validador foreign key 
+	constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key 
 	(
-		id_formulario_elemento_validador
-	) references formulario_elemento_validador (
+		id_formulario_elemento_validator
+	) references formulario_elemento_validator (
 		id
 	);
 
