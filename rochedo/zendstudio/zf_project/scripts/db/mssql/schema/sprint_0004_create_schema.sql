@@ -7,7 +7,7 @@
 * ultimas modificacoes:
 */
 
-// CRIACAO DAS FUNCOES
+/* CRIACAO DAS FUNCOES */
 
 create function fn_CheckConstanteTextualExists(@constante_textual varchar (200))
 returns int
@@ -22,7 +22,7 @@ end
 GO
 
 
-// CRIACAO DAS TABELAS
+/* CRIACAO DAS TABELAS */
 
 create table decorator (
 	id int identity (1, 1) not null ,
@@ -137,7 +137,7 @@ create table formulario_elemento_formulario_elemento_validator (
 
 
 
-// CRIACAO DAS CHAVES PRIMARIAS
+/* CRIACAO DAS CHAVES PRIMARIAS */
 
 alter table decorator with nocheck add constraint pk_decorator primary key clustered (id) on [primary];
 
@@ -160,13 +160,13 @@ alter table formulario_formulario_elemento with nocheck add constraint pk_formul
 alter table formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
 
 
-// CRIACAO DOS VALORES DEFAULT
+/* CRIACAO DOS VALORES DEFAULT */
 
 alter table formulario add 
 	constraint df_formulario_validade_inicio default (getdate()) for validade_inicio;
 
 
-// CRIACAO DOS INDICES
+/* CRIACAO DOS INDICES */
 
 create index ix_decorator_nome on decorator (nome) on [primary];
 
@@ -187,7 +187,7 @@ create index ix_formulario_nome on formulario (nome) on [primary];
 create unique index ix_formulario_form_name on formulario (form_name) on [primary];
 
 
-// CRIACAO DAS CONSTRAINTS UNIQUE
+/* CRIACAO DAS CONSTRAINTS UNIQUE */
 
 alter table decorator add
 	constraint ix_decorator_categoria_nome unique nonclustered
@@ -260,7 +260,7 @@ alter table formulario_elemento_formulario_elemento_validator add
     ) on [primary];
 
 
-// CRIACAO DAS CHAVES ESTRANGEIRAS
+/* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table decorator add
 	constraint fk_decorator_categoria foreign key
@@ -391,7 +391,7 @@ alter table formulario_elemento_formulario_elemento_validator add
 	);
 
 
-// CRIACAO DOS CHECK CONSTRAINTS
+/* CRIACAO DOS CHECK CONSTRAINTS */
 
 alter table ajuda add
     constraint ck_ajuda_constante_textual_ajuda check

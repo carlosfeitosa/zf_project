@@ -7,7 +7,7 @@
 * ultimas modificacoes:
 */
 
-// CRIACAO DAS FUNCOES
+/* CRIACAO DAS FUNCOES */
 
 create function fn_CheckConstanteTextualExists(character varying (200))
 returns int as 
@@ -15,7 +15,7 @@ returns int as
 language 'sql';
 
 
-// CRIACAO DAS TABELAS
+/* CRIACAO DAS TABELAS */
 
 create table decorator (
 	id serial not null ,
@@ -169,7 +169,7 @@ with (
 alter table formulario_elemento_formulario_elemento_validator owner to rochedo_user;
 
 
-// CRIACAO DAS CHAVES PRIMARIAS
+/* CRIACAO DAS CHAVES PRIMARIAS */
 
 alter table decorator add constraint pk_decorator primary key (id);
 
@@ -192,13 +192,13 @@ alter table formulario_formulario_elemento add constraint pk_formulario_formular
 alter table formulario_elemento_formulario_elemento_validator add constraint pk_formulario_elemento_formulario_elemento_validator primary key (id);
 
 
-// CRIACAO DOS VALORES DEFAULT
+/* CRIACAO DOS VALORES DEFAULT */
 
 alter table formulario
     alter column validade_inicio set default (current_timestamp);
 
 
-// CRIACAO DOS INDICES
+/* CRIACAO DOS INDICES */
 
 create index ix_decorator_nome
   on decorator using btree (nome asc nulls last);
@@ -228,7 +228,7 @@ create unique index ix_formulario_form_name
   on formulario using btree (form_name);
 
 
-// CRIACAO DAS CONSTRAINTS UNIQUE
+/* CRIACAO DAS CONSTRAINTS UNIQUE */
 
 alter table decorator 
   add constraint ix_decorator_categoria_nome unique (id_categoria, nome);
@@ -261,7 +261,7 @@ alter table formulario_elemento_formulario_elemento_validator
   add constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique (id_formulario_elemento, id_formulario_elemento_validator);
 
 
-// CRIACAO DAS CHAVES ESTRANGEIRAS
+/* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table decorator
   add constraint fk_decorator_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
@@ -302,7 +302,7 @@ alter table formulario_elemento_formulario_elemento_validator
   add constraint fk2_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
 
 
-// CRIACAO DOS CHECK CONSTRAINTS
+/* CRIACAO DOS CHECK CONSTRAINTS */
 
 alter table ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
