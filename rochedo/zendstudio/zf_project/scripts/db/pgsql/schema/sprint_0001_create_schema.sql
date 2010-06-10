@@ -13,7 +13,7 @@
 * 						- 22/02/2010 - adicao da tabela dicionario_expressao;
 */
 
-// CRIACAO DAS TABELAS
+/* CRIACAO DAS TABELAS */
 
 create table categoria (
 	id serial not null ,
@@ -238,7 +238,7 @@ with (
 alter table dicionario_expressao owner to rochedo_user;
 
 
-// CRIACAO DAS CHAVES PRIMARIAS
+/* CRIACAO DAS CHAVES PRIMARIAS */
 
 alter table categoria add constraint pk_categoria primary key (id);
 
@@ -275,7 +275,7 @@ alter table token add constraint pk_token primary key (id);
 alter table dicionario_expressao add constraint pk_dicionario_expressao primary key (id);
 
 
-// CRIACAO DOS VALORES DEFAULT
+/* CRIACAO DOS VALORES DEFAULT */
 
 alter table categoria
 	alter column nivel set default 1 ,
@@ -300,7 +300,7 @@ alter table token
 	alter column datahora_expiracao set default (current_timestamp + interval '36 hours');
 
 
-// CRIACAO DOS INDICES
+/* CRIACAO DOS INDICES */
 
 create index ix_email_unique_id
   on email using btree (unique_id asc nulls last);
@@ -336,7 +336,7 @@ create index ix_dicionario_expressao_constante_textual
   on dicionario_expressao using btree (constante_textual asc nulls last);
 
 
-// CRIACAO DAS CONSTRAINTS UNIQUE
+/* CRIACAO DAS CONSTRAINTS UNIQUE */
 
 alter table tipo_categoria
   add constraint un_tipo_categoria_nome unique (nome);
@@ -369,7 +369,7 @@ alter table dicionario_expressao
   add constraint ix_dicionario_expressao unique (id_categoria, constante_textual);
 
 
-// CRIACAO DAS CHAVES ESTRANGEIRAS
+/* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table categoria
   add constraint fk_categoria_categoria foreign key (id_categoria_pai) references categoria (id) on update no action on delete no action ,
