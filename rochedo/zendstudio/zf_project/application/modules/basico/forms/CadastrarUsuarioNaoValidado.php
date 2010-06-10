@@ -52,11 +52,10 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         if($options!=null)
             $elements[1]->setValue($options->email);
 
-        if (!Basico_Model_Util::ambienteDesenvolvimento())
+//        if (!Basico_Model_Util::ambienteDesenvolvimento())
             $elements[2] = $this->createElement('captcha', 'captcha', 
                                                 array('required'=>true,
-                                                'captcha'=>array('label'  => "Por favor digite o código de 6 caracteres abaixo",
-                                                                 'captcha'=>'Image',
+                                                'captcha'=>array('captcha'=>'Image',
                                                                  'imgDir' => CAPTCHA_IMAGE_DIR,
                                                                  'imgUrl' => CAPTCHA_IMAGE_URL,
                                                                  'wordLen'=> 6,
@@ -66,7 +65,8 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                                                                  'fontSize' => 50,
                                             	                 'expiration' => 300,
                                                                  'gcFreq'     => 100 
-                                                                ),));
+                                                                ),))
+                                                ->setLabel("Por favor digite o código de 6 caracteres abaixo:");
                                                     
         $elements[3] = $this->createElement('submit', 'enviar', array('label' => 'Enviar',));
         
