@@ -72,6 +72,7 @@ create table formulario_elemento (
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
 	element_name varchar (100) collate latin1_general_ci_ai not null ,
+	element_attribs varchar (1000) collate latin1_general_ci_ai null ,
 	element varchar (1000) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
@@ -122,6 +123,7 @@ create table formulario_formulario_elemento (
 	id int identity (1, 1) not null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
+	element_required bit not null ,
 	ordem int not null ,	
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];

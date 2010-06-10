@@ -81,6 +81,7 @@ create table formulario_elemento (
 	descricao character varying (2000) null ,
 	constante_textual_label character varying (200) null ,
 	element_name character varying (100) not null ,
+	element_attribs character varying (1000) null ,
 	element character varying (1000) not null ,
 	rowinfo character varying (2000) not null 
 )
@@ -147,6 +148,7 @@ create table formulario_formulario_elemento (
 	id serial not null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
+	element_required smallint not null ,
 	ordem int not null ,	
 	rowinfo character varying (2000) not null 
 )
