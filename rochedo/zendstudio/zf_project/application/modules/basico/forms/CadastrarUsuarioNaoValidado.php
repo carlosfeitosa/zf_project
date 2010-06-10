@@ -50,27 +50,27 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
             $elements[1]->addValidator('EmailAddress');
 
         if($options!=null)
-           $elements[1]->setValue($options->email);
+            $elements[1]->setValue($options->email);
 
         if (!Basico_Model_Util::ambienteDesenvolvimento())
-            $elements[2] = new Zend_Form_Element_Captcha('captcha', array(
-                                                         'label' => "Por favor digite o código de 6 caracteres abaixo:",
-                                                         'required' => true,
-            											 'captcha' => array(
-                                                             'captcha' => 'image',
-                                                             'imgDir' => CAPTCHA_IMAGE_DIR,
-                                                             'imgUrl' => CAPTCHA_IMAGE_URL,
-                                                             'wordLen' => 6,
-            												 'width' => 250,
-            												 'height' => 80,
-    														 'font' => CAPTCHA_FONT_PATH,
-                                                             'fontSize' => 50,        
-                                                             'expiration' => 300,
-                                                             'gcFreq' => 100,),));
+            $elements[2] = $this->createElement('captcha', 'captcha', 
+                                                array('required'=>true,
+                                                'captcha'=>array('label'  => "Por favor digite o código de 6 caracteres abaixo",
+                                                                 'captcha'=>'Image',
+                                                                 'imgDir' => CAPTCHA_IMAGE_DIR,
+                                                                 'imgUrl' => CAPTCHA_IMAGE_URL,
+                                                                 'wordLen'=> 6,
+                                                                 'width'  => 250,
+                                                                 'height' => 80,
+                                                                 'font'   => CAPTCHA_FONT_PATH,
+                                                                 'fontSize' => 50,
+                                            	                 'expiration' => 300,
+                                                                 'gcFreq'     => 100 
+                                                                ),));
+                                                    
+        $elements[3] = $this->createElement('submit', 'enviar', array('label' => 'Enviar',));
         
-        $elements[3] = new Zend_Form_Element_Submit('enviar', array('label' => 'Enviar',));
-        
-        $elements[4] = new Zend_Form_Element_Hash('token', 'csrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[4] = $this->createElement('hash', 'csrf', array('ignore' => true, 'salt' => 'unique',));
 
         $this->addElements($elements);
 
