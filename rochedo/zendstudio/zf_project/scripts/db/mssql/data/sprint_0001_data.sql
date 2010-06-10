@@ -19,13 +19,13 @@
 * 						- 22/04/2010 - insert de dados no dicionario de expressões: subforms TAB legends; 
 */
 
-// DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA)
+/* DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA) */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('SISTEMA', 'Tipo de categorias de sistema (imutáveis).', 'SYSTEM_STARTUP');
 
 
-// DADOS DO SISTEMA (FILHOS DE TIPO CATEGORIA SISTEMA)
+/* DADOS DO SISTEMA (FILHOS DE TIPO CATEGORIA SISTEMA) */
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id, 'SISTEMA_USUARIO' AS nome, 'Usuários utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -176,7 +176,7 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'LOG';
 
 
-// DADOS DE PERFIL
+/* DADOS DE PERFIL */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('PERFIL', 'Perfis.', 'SYSTEM_STARTUP');
@@ -187,7 +187,7 @@ FROM tipo_categoria t
 WHERE t.nome = 'PERFIL';
 
 
-// DADOS DE MENSAGENS
+/* DADOS DE MENSAGENS */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES('MENSAGEM', 'Mensagens.', 'SYSTEM_STARTUP');
@@ -252,7 +252,7 @@ WHERE t.nome = 'MENSAGEM'
 AND c.nome = 'MENSAGEM_PESSOAS_ENVOLVIDAS';
 
 
-// DADOS DE E-MAIL
+/* DADOS DE E-MAIL */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('EMAIL', 'Endereços de e-mail.', 'SYSTEM_STARTUP');
@@ -263,7 +263,7 @@ FROM tipo_categoria t
 WHERE t.nome = 'EMAIL';
 
 
-// DADOS DO USUARIO DO SISTEMA (MASTER)
+/* DADOS DO USUARIO DO SISTEMA (MASTER) */
 
 INSERT INTO pessoa (rowinfo)
 VALUES ('SYSTEM_STARTUP');
@@ -348,7 +348,7 @@ WHERE t.nome = 'MENSAGEM'
 AND c.nome = 'MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT';
 
 
-// LINGUAGEM
+/* LINGUAGEM */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('LINGUAGEM', 'Linguagens utilizadas pelo sistema.', 'SYSTEM_STARTUP');
@@ -954,10 +954,12 @@ FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 
-// DICIONARIO DE EXPRESSÕES
+/* DICIONARIO DE EXPRESSÕES */
 
-// (Português do Brasil - PT_BR)
-// registro de novo usuário
+/*
+ * (Português do Brasil - PT_BR)
+ * registro de novo usuário
+*/
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual, 'Registro de novo usuário:' AS traducao
 FROM tipo_categoria t
@@ -972,7 +974,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-// e-mail não validado já existente no sistema
+/* e-mail não validado já existente no sistema */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO' AS constante_textual, 'Atenção!' AS traducao
 FROM tipo_categoria t
@@ -994,7 +996,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-// e-mail já validado no sistema
+/* e-mail já validado no sistema */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO' AS constante_textual, 'Atenção!' AS traducao
 FROM tipo_categoria t
@@ -1016,7 +1018,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-// sucesso ao cadastrar usuário não validado
+/* sucesso ao cadastrar usuário não validado */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual, 'Sucesso!' AS traducao
 FROM tipo_categoria t
@@ -1038,7 +1040,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-// campos de formulários
+/* campos de formulários */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME' AS constante_textual, 'Nome:' AS traducao
 FROM tipo_categoria t
@@ -1235,7 +1237,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-// SubForm Legends TAB
+/* SubForm Legends TAB */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PESSOAIS' AS constante_textual, 'DADOS PESSOAIS' AS traducao
 FROM tipo_categoria t
@@ -1292,7 +1294,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-// ítens de menus
+/* ítens de menus */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'MENU_ITEM_REGISTRE_SE' AS constante_textual, 'Registre-se' AS traducao
 FROM tipo_categoria t
@@ -1300,7 +1302,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-//Titulo e subtitulo da tela de validação e de cadastro de novos usuarios
+/* Titulo e subtitulo da tela de validação e de cadastro de novos usuarios */
 INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO' AS constante_textual, 'Email validado com sucesso.' AS traducao
 FROM tipo_categoria t
@@ -1308,7 +1310,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-//mensagem token email de validacao expirado
+/* mensagem token email de validacao expirado */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id , 'LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO' AS constante_textual, 'Clique aqui para recomeçar o seu cadastro.' AS traducao
 FROM tipo_categoria t
@@ -1331,8 +1333,11 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 
-// (Inglês dos E.U.A. - EN_US)
-// registro de novo usuário
+ 
+/*
+ * (Inglês dos E.U.A. - EN_US)
+ * registro de novo usuário
+ */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual, 'New user registry:' AS traducao
 FROM tipo_categoria t
@@ -1347,7 +1352,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-// e-mail não validado já existente no sistema
+/* e-mail não validado já existente no sistema */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO' AS constante_textual, 'Warning!' AS traducao
 FROM tipo_categoria t
@@ -1369,7 +1374,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-// e-mail já validado no sistema
+/* e-mail já validado no sistema */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO' AS constante_textual, 'Warning!' AS traducao
 FROM tipo_categoria t
@@ -1391,7 +1396,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-// sucesso ao cadastrar usuário não validado
+/* sucesso ao cadastrar usuário não validado */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual, 'Success!' AS traducao
 FROM tipo_categoria t
@@ -1413,7 +1418,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-// campos de formulários
+/* campos de formulários */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME' AS constante_textual, 'Name:' AS traducao
 FROM tipo_categoria t
@@ -1610,7 +1615,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-// SubForm Legends TAB
+/* SubForm Legends TAB */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'SUBFORM_TABTITLE_DADOS_PESSOAIS' AS constante_textual, 'PERSONAL INFORMATION' AS traducao
 FROM tipo_categoria t
@@ -1668,7 +1673,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 
-// ítens de menus
+/* ítens de menus */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'MENU_ITEM_REGISTRE_SE' AS constante_textual, 'Register' AS traducao
 FROM tipo_categoria t
@@ -1676,7 +1681,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-//Titulo e subtitulo da tela de validação e de cadastro de novos usuarios
+/* Titulo e subtitulo da tela de validação e de cadastro de novos usuarios */
 INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO' AS constante_textual, 'Email sucessfully checked!' AS traducao
 FROM tipo_categoria t
@@ -1684,7 +1689,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-//mensagem token validacao email expirado
+/* mensagem token validacao email expirado */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO' AS constante_textual, 'Click here to restart your registration process.' AS traducao
 FROM tipo_categoria t

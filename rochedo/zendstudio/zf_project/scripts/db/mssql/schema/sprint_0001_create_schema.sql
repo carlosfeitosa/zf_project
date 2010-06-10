@@ -13,7 +13,7 @@
 * 						- 22/02/2010 - adicao da tabela dicionario_expressao;
 */
 
-// CRIACAO DAS TABELAS
+/* CRIACAO DAS TABELAS */
 
 create table categoria (
 	id int identity (1, 1) not null ,
@@ -170,7 +170,7 @@ create table dicionario_expressao (
 ) on [primary];
 
 
-// CRIACAO DAS CHAVES PRIMARIAS
+/* CRIACAO DAS CHAVES PRIMARIAS */
 
 alter table categoria with nocheck add constraint pk_categoria primary key clustered (id) on [primary];
 
@@ -207,7 +207,7 @@ alter table token with nocheck add constraint pk_token primary key clustered (id
 alter table dicionario_expressao with nocheck add constraint pk_dicionario_expressao primary key clustered (id) on [primary];
 
 
-// CRIACAO DOS VALORES DEFAULT
+/* CRIACAO DOS VALORES DEFAULT */
 
 alter table categoria add 
 	constraint df_categoria_nivel default (1) for nivel,
@@ -232,7 +232,7 @@ alter table token add
 	constraint df_token_datahora_expiracao default (dateadd(hour, 36, getdate())) for datahora_expiracao;
 
 
-// CRIACAO DOS INDICES
+/* CRIACAO DOS INDICES */
 
 create unique index ix_email_unique_id on email (unique_id) on [primary];
 
@@ -257,7 +257,7 @@ create unique index ix_token_token on token (token) on [primary];
 create index ix_dicionario_expressao_constante_textual on dicionario_expressao (constante_textual) on [primary];
 
 
-// CRIACAO DAS CONSTRAINTS UNIQUE
+/* CRIACAO DAS CONSTRAINTS UNIQUE */
 
 alter table categoria add
     constraint ix_categoria_tipo_categoria_nome unique nonclustered
@@ -286,7 +286,7 @@ alter table dicionario_expressao add constraint ix_dicionario_expressao unique n
 	) on [primary];
 
 
-// CRIACAO DAS CHAVES ESTRANGEIRAS
+/* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table categoria add 
 	constraint fk_categoria_categoria foreign key 
