@@ -59,8 +59,9 @@ class Basico_Model_FormularioElementoMapper
         $data = array(
 				'nome'   => $object->getNome(),
 				'descricao'   => $object->getDescricao(),
-				'constanteTextualLabel'   => $object->getConstanteTextualLabel(),
-				'elementName'   => $object->getElementName(),
+				'constante_textual_label'   => $object->getConstanteTextualLabel(),
+				'element_name'   => $object->getElementName(),
+                'element_attribs' => $object->getElementAttribs(),
 				'element'   => $object->getElement(),
                 'rowinfo'   => $object->getRowinfo(),
 
@@ -102,8 +103,9 @@ class Basico_Model_FormularioElementoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setConstanteTextualLabel($row->constanteTextualLabel)
-				->setElementName($row->elementName)
+				->setConstanteTextualLabel($row->constante_textual_label)
+				->setElementName($row->element_name)
+				->setElementAttribs($row->element_attribs)
 				->setElement($row->element)
 				->setRowinfo($row->rowinfo);
     }
@@ -124,8 +126,9 @@ class Basico_Model_FormularioElementoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setConstanteTextualLabel($row->constanteTextualLabel)
-				->setElementName($row->elementName)
+				->setConstanteTextualLabel($row->constante_textual_label)
+				->setElementName($row->element_name)
+				->setElementAttribs($row->element_attribs)
 				->setElement($row->element)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
@@ -150,8 +153,9 @@ class Basico_Model_FormularioElementoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setConstanteTextualLabel($row->constanteTextualLabel)
-				->setElementName($row->elementName)
+				->setConstanteTextualLabel($row->constante_textual_label)
+				->setElementName($row->element_name)
+				->setElementAttribs($row->element_attribs)
 				->setElement($row->element)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);

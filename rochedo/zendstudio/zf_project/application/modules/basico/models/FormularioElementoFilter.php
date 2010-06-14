@@ -1,13 +1,13 @@
 <?php
 /**
- * FormularioElemento model
+ * FormularioElementoFilter model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_FormularioElementoMapper
+ * @uses       Basico_Model_FormularioElementoFilterMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioElemento
+class Basico_Model_FormularioElementoFilter
 {
 	/**
 	* @var int
@@ -15,7 +15,7 @@ class Basico_Model_FormularioElemento
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_FormularioElementoMapper
+	 * @var Basico_Model_FormularioElementoFilterMapper
 	 */
 	protected $_mapper;
 
@@ -30,25 +30,12 @@ class Basico_Model_FormularioElemento
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextualLabel;
-	/**
-	 * @var String
-	 */
-	protected $_elementName;
-	/**
-	 * @var String
-	 */
-	protected $_elementAttribs;
-	/**
-	 * @var String
-	 */
-	protected $_element;
-	
-	/**
-	 * @var String
-	 */
-	protected $_rowinfo;
-	
+	protected $_filter;
+    /**
+     * @var Integer
+     */
+    protected $_formularioElemento;
+
 	/**
 	 * Constructor
 	 * 
@@ -100,7 +87,7 @@ class Basico_Model_FormularioElemento
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_FormularioElemento
+	 * @return Basico_Model_FormularioElementoFilter
 	 */
 	public function setOptions(array $options)
 	{
@@ -120,7 +107,7 @@ class Basico_Model_FormularioElemento
 	* Set nome
 	* 
 	* @param String $nome 
-	* @return String
+	* @return Default_Model_Nome
 	*/
 	public function setNome($nome)
 	{
@@ -142,7 +129,7 @@ class Basico_Model_FormularioElemento
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return String
+	* @return Default_Model_Descricao
 	*/
 	public function setDescricao($descricao)
 	{
@@ -161,120 +148,65 @@ class Basico_Model_FormularioElemento
 	}
      
 	/**
-	* Set constanteTextualLabel
+	* Set filter
 	* 
-	* @param String $constanteTextualLabel 
-	* @return String
+	* @param String $filter 
+	* @return Default_Model_Filter
 	*/
-	public function setConstanteTextualLabel($constanteTextualLabel)
+	public function setFilter($filter)
 	{
-		$this->_constanteTextualLabel = (String) $constanteTextualLabel;
+		$this->_filter = (String) $filter;
 		return $this;
 	}
 
 	/**
-	* Get constanteTextualLabel
+	* Get filter
 	* 
 	* @return null|String
 	*/
-	public function getConstanteTextualLabel()
+	public function getFilter()
 	{
-		return $this->_constanteTextualLabel;
+		return $this->_filter;
 	}
      
 	/**
-	* Set elementName
+	* Set formularioElemento
 	* 
-	* @param String $elementName 
-	* @return String
+	* @param int $formularioElemento 
+	* @return Default_Model_FormularioElemento
 	*/
-	public function setElementName($elementName)
+	public function setFormularioElemento($formularioElemento)
 	{
-		$this->_elementName = (String) $elementName;
+		$this->_formularioElemento = (int) $formularioElemento;
 		return $this;
 	}
 
 	/**
-	* Get elementName
+	* Get formularioElemento
 	* 
-	* @return null|String
+	* @return null|int
 	*/
-	public function getElementName()
+	public function getFormularioElemento()
 	{
-		return $this->_elementName;
-	}
-	
-    /**
-	* Set elementAttribs
-	* 
-	* @param String $elementAttribs
-	* @return String
-	*/
-	public function setElementAttribs($elementAttribs)
-	{
-		$this->_elementAttribs = (String) $elementAttribs;
-		return $this;
-	}
-
-	/**
-	* Get elementAttribs
-	* 
-	* @return null|String
-	*/
-	public function getElementAttribs()
-	{
-		return $this->_elementAttribs;
-	}
-     
-	/**
-	* Set element
-	* 
-	* @param String $element 
-	* @return String
-	*/
-	public function setElement($element)
-	{
-		$this->_element = (String) $element;
-		return $this;
-	}
-
-	/**
-	* Get element
-	* 
-	* @return null|String
-	*/
-	public function getElement()
-	{
-		return $this->_element;
-	}
-	
-    /**
-	* Set rowinfo
-	* 
-	* @param String $rowinfo 
-	* @return Basico_Model_FormularioElemento
-	*/
-	public function setRowinfo($rowinfo)
-	{
-		$this->_rowinfo = (String) $rowinfo;
-		return $this;
-	}
-
-	/**
-	* Get rowinfo
-	* 
-	* @return null|String
-	*/
-	public function getRowinfo()
-	{
-		return $this->_rowinfo;
+		return $this->_formularioElemento;
 	}
  
+    /**
+     * Get formularioElemento object
+     * @return null|FormularioElemento
+     */
+    public function getFormularioElementoObject()
+    {
+        $model = new Basico_Model_FormularioElemento();
+        $object = $model->find($this->_formularioElemento);
+        return $object;
+    }
+
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_FormularioElemento
+	* @return Basico_Model_FormularioElementoFilter
 	*/
 	public function setId($id)
 	{
@@ -296,7 +228,7 @@ class Basico_Model_FormularioElemento
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_FormularioElemento
+	* @return Basico_Model_FormularioElementoFilter
 	*/
 	public function setMapper($mapper)
 	{
@@ -307,14 +239,14 @@ class Basico_Model_FormularioElemento
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_FormularioElementoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_FormularioElementoFilterMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_FormularioElementoMapper
+	* @return Basico_Model_FormularioElementoFilterMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_FormularioElementoMapper());
+			$this->setMapper(new Basico_Model_FormularioElementoFilterMapper());
 		}
 		return $this->_mapper;
 	}
@@ -344,7 +276,7 @@ class Basico_Model_FormularioElemento
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_FormularioElemento
+	* @return Basico_Model_FormularioElementoFilter
 	*/
 	public function find($id)
 	{
@@ -371,5 +303,25 @@ class Basico_Model_FormularioElemento
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
+	   
+    /**
+    * fetch list of entries satisfying the parameters but allowing a join
+    *
+    * @return array
+    */
+    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
+    {
+        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
+    }
+    
+    /**
+    * fetch joined list of entries that satisfy the parameters
+    *
+    * @return array
+    */
+    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
+    {
+        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
+    }
 
 }

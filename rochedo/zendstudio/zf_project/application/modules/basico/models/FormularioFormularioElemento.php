@@ -30,6 +30,11 @@ class Basico_Model_FormularioFormularioElemento
     protected $_formularioElemento;
     
     /**
+     * @var ElementRequired
+     */
+    protected $_elementRequired;
+    
+    /**
      * @var rowinfo
      */
     protected $_rowinfo;
@@ -154,6 +159,28 @@ class Basico_Model_FormularioFormularioElemento
     public function getFormularioElemento()
     {
         return $this->_formularioElemento;
+    }
+    
+/**
+    * Set elementRequired
+    * 
+    * @param int $ 
+    * @return Basico_Model_FormularioElemento
+    */
+    public function setElementRequired($elementRequired)
+    {
+        $this->_elementRequired = (int) $elementRequired;
+        return $this;
+    }
+
+    /**
+    * Get elementRequired
+    * 
+    * @return null|int
+    */
+    public function getElementRequired()
+    {
+        return $this->_elementRequired;
     }
  
     /**
