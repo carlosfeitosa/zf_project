@@ -5,6 +5,7 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 14/06/2010
 * ultimas modificacoes: 
+* 						16/06/2010 - insercao de dados em formulario_perfil;
 */
 
 /* TIPO CATEGORIA */
@@ -540,3 +541,19 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_HASH'
         AND fe.nome = 'FORM_HASH') AS id_formulario_elemento, 1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo
+        
+INSERT INTO formulario_perfil (id_formulario, id_perfil, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
+        AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+       (SELECT p.id
+        FROM perfil p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'SISTEMA'
+        AND c.nome = 'SISTEMA_USUARIO'
+        AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo

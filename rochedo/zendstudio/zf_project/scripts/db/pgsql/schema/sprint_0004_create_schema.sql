@@ -5,6 +5,7 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 07/06/2010
 * ultimas modificacoes:
+* 						16/06/2010 - criacao da tabela formulario_perfil, pks e fks relacionadas;
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -168,6 +169,17 @@ with (
 );
 alter table formulario_elemento_formulario_elemento_validator owner to rochedo_user;
 
+create table formulario_perfil (
+	id serial not null ,
+	id_formulario int not null ,
+	id_perfil int not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table formulario_perfil owner to rochedo_user;
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
@@ -190,6 +202,8 @@ alter table formulario add constraint pk_formulario primary key (id);
 alter table formulario_formulario_elemento add constraint pk_formulario_formulario_elemento primary key (id);
 
 alter table formulario_elemento_formulario_elemento_validator add constraint pk_formulario_elemento_formulario_elemento_validator primary key (id);
+
+alter table formulario_perfil add constraint pk_formulario_perfil primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -260,6 +274,9 @@ alter table formulario_formulario_elemento
 alter table formulario_elemento_formulario_elemento_validator
   add constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique (id_formulario_elemento, id_formulario_elemento_validator);
 
+alter table formulario_perfil
+  add constraint ix_formulario_perfil_formulario_perfil unique (id_formulario, id_perfil);
+
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
@@ -300,6 +317,10 @@ alter table formulario_formulario_elemento
 alter table formulario_elemento_formulario_elemento_validator 
   add constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
   add constraint fk2_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
+
+alter table formulario_perfil
+  add constraint fk_formulario_perfil_formulario foreign key (id_formulario) references formulario (id) on update no action on delete no action,
+  add constraint fk_formulario_perfil_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
 
 
 /* CRIACAO DOS CHECK CONSTRAINTS */

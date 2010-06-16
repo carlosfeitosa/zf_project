@@ -5,6 +5,7 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 07/06/2010
 * ultimas modificacoes:
+* 						16/06/2010 - criacao da tabela formulario_perfil, pks e fks relacionadas;
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -135,6 +136,12 @@ create table formulario_elemento_formulario_elemento_validator (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
+create table formulario_perfil (
+	id int identity (1, 1) not null ,
+	id_formulario int not null ,
+	id_perfil int not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
+) on [primary];
 
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
@@ -158,6 +165,8 @@ alter table formulario with nocheck add constraint pk_formulario primary key clu
 alter table formulario_formulario_elemento with nocheck add constraint pk_formulario_formulario_elemento primary key clustered (id) on [primary];
 
 alter table formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
+
+alter table formulario_perfil with nocheck add constraint pk_formulario_perfil primary key (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -258,6 +267,13 @@ alter table formulario_elemento_formulario_elemento_validator add
         id_formulario_elemento,
         id_formulario_elemento_validator
     ) on [primary];
+
+alter table formulario_perfil add
+	constraint ix_formulario_perfil_formulario_perfil unique nonclustered
+	(
+		id_formulario,
+		id_perfil
+	) on [primary];
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
@@ -387,6 +403,20 @@ alter table formulario_elemento_formulario_elemento_validator add
 	(
 		id_formulario_elemento_validator
 	) references formulario_elemento_validator (
+		id
+	);
+
+alter table formulario_perfil add
+	constraint fk_formulario_perfil_formulario foreign key
+	(
+		id_formulario
+	) references formulario (
+		id
+	),
+	constraint fk_formulario_perfil_perfil foreign key
+	(
+		id_perfil
+	) references perfil (
 		id
 	);
 
