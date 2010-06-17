@@ -423,7 +423,7 @@ SELECT (SELECT fe.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
         AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
-       'SYSTEM_STARTUP' AS rowinfo
+       'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_elemento_formulario_elemento_validator (id_formulario_elemento, id_formulario_elemento_validator, rowinfo)
 SELECT (SELECT fe.id
@@ -440,7 +440,7 @@ SELECT (SELECT fe.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
         AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
-       'SYSTEM_STARTUP' AS rowinfo
+       'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_elemento_formulario_elemento_validator (id_formulario_elemento, id_formulario_elemento_validator, rowinfo)
 SELECT (SELECT fe.id
@@ -457,7 +457,7 @@ SELECT (SELECT fe.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
         AND fev.nome = 'EMAIL_ADDRESS_DEEP_MX') AS id_formulario_elemento_validator,
-       'SYSTEM_STARTUP' AS rowinfo
+       'SYSTEM_STARTUP' AS rowinfo;
 
 
 /* FORMULARIO x FORMULARIO ELEMENTO*/
@@ -476,7 +476,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FIELD_NOME_USUARIO') AS id_formulario_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo
+        AND fe.nome = 'FIELD_NOME_USUARIO') AS id_formulario_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -492,7 +492,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FIELD_EMAIL_USUARIO') AS id_formulario_elemento, 1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo
+        AND fe.nome = 'FIELD_EMAIL_USUARIO') AS id_formulario_elemento, 1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -508,7 +508,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA'
-        AND fe.nome = 'CAPTCHA_6') AS id_formulario_elemento, 1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo
+        AND fe.nome = 'CAPTCHA_6') AS id_formulario_elemento, 1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -524,7 +524,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
-        AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_formulario_elemento, 1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo
+        AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_formulario_elemento, 1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -540,7 +540,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_HASH'
-        AND fe.nome = 'FORM_HASH') AS id_formulario_elemento, 1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo
+        AND fe.nome = 'FORM_HASH') AS id_formulario_elemento, 1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_perfil (id_formulario, id_perfil, rowinfo)
 SELECT (SELECT f.id
@@ -556,4 +556,4 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_USUARIO'
-        AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
+        AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo;
