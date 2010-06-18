@@ -18,7 +18,8 @@ $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => DEFAULT_USE
         			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
         			 ->addStylesheet($applicationHttpBaseUrl . DOJO_STYLE_SHEET_PATH)
         			 ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
-        			 ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);
+        			 ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH)
+        			 ->addLayer($applicationHttpBaseUrl . MENU_JAVASCRIPT_FILE_PATH);
 
 if (Basico_Model_Util::ambienteDesenvolvimento())
 {
