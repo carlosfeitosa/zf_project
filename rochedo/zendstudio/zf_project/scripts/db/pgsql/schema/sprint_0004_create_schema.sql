@@ -6,6 +6,7 @@
 * criacao: 07/06/2010
 * ultimas modificacoes:
 * 						16/06/2010 - criacao da tabela formulario_perfil, pks e fks relacionadas;
+* 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -58,20 +59,21 @@ with (
 );
 alter table output owner to rochedo_user;
 
-create table formulario_template (
+create table template (
 	id serial not null ,
 	id_categoria int not null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
 	stylesheet_full_filename character varying(300) null ,
 	javascript_full_filename character varying(300) null ,
+	template character varying(2000) null ,
 	id_output integer not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
   oids = false
 );
-alter table formulario_template owner to rochedo_user;
+alter table template owner to rochedo_user;
 
 create table formulario_elemento (
 	id serial not null ,
@@ -189,7 +191,7 @@ alter table ajuda add constraint pk_ajuda primary key (id);
 
 alter table output add constraint pk_output primary key (id);
 
-alter table formulario_template add constraint pk_formulario_template primary key (id);
+alter table template add constraint pk_template primary key (id);
 
 alter table formulario_elemento add constraint pk_formulario_elemento primary key (id);
 
@@ -223,8 +225,8 @@ create index ix_ajuda_nome
 create index ix_output_nome
   on output using btree (nome asc nulls last);
 
-create index ix_formulario_template_nome
-  on formulario_template using btree (nome asc nulls last);
+create index ix_template_nome
+  on template using btree (nome asc nulls last);
 
 create index ix_formulario_elemento_nome
   on formulario_elemento using btree (nome asc nulls last);
@@ -253,8 +255,8 @@ alter table ajuda
 alter table output
   add constraint ix_output_categoria_nome unique (id_categoria, nome);
 
-alter table formulario_template
-  add constraint ix_formulario_template_categoria_nome unique (id_categoria, nome);
+alter table template
+  add constraint ix_template_categoria_nome unique (id_categoria, nome);
 
 alter table formulario_elemento
   add constraint ix_formulario_elemento_categoria_nome unique (id_categoria, nome);
@@ -289,9 +291,9 @@ alter table ajuda
 alter table output
   add constraint fk_output_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
-alter table formulario_template
-  add constraint fk_formulario_template_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
-  add constraint fk_formulario_template_output foreign key (id_output) references output (id) on update no action on delete no action;
+alter table template
+  add constraint fk_template_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+  add constraint fk_template_output foreign key (id_output) references output (id) on update no action on delete no action;
 
 alter table formulario_elemento
   add constraint fk_formulario_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,

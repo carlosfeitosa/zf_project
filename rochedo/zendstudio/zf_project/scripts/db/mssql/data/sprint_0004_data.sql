@@ -195,7 +195,7 @@ AND c.nome = 'FORMULARIO_OUTPUT_HTML';
 
 /* FORMULARIO TEMPLATE */
 
-INSERT INTO formulario_template (id_categoria, nome, descricao, id_output, rowinfo)
+INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_HTML' AS nome, 'Template HTML.' AS descricao,
        (SELECT o.id
         FROM output o

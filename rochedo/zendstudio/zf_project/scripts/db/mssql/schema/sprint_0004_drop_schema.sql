@@ -6,10 +6,11 @@
 * criacao: 07/06/2010
 * ultimas modificacoes:
 * 						17/06/2010 - drop da tabela formulario_perfil;
+* 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
 */
 
+drop table template;
 drop table formulario_perfil;
-drop table formulario_template;
 drop table formulario_formulario_elemento;
 drop table formulario_elemento_formulario_elemento_validator;
 drop table formulario_elemento;

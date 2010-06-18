@@ -6,6 +6,7 @@
 * criacao: 07/06/2010
 * ultimas modificacoes:
 * 						16/06/2010 - criacao da tabela formulario_perfil, pks e fks relacionadas;
+* 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -53,13 +54,14 @@ create table output (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table formulario_template (
+create table template (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	stylesheet_full_filename varchar(300) collate latin1_general_ci_ai null ,
 	javascript_full_filename varchar(300) collate latin1_general_ci_ai null ,
+	template varchar (2000) collate latin1_general_ci_ai null ,
 	id_output integer not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
@@ -152,7 +154,7 @@ alter table ajuda with nocheck add constraint pk_ajuda primary key clustered (id
 
 alter table output with nocheck add constraint pk_output primary key clustered (id) on [primary];
 
-alter table formulario_template with nocheck add constraint pk_formulario_template primary key clustered (id) on [primary];
+alter table template with nocheck add constraint pk_template primary key clustered (id) on [primary];
 
 alter table formulario_elemento with nocheck add constraint pk_formulario_elemento primary key clustered (id) on [primary];
 
@@ -183,7 +185,7 @@ create index ix_ajuda_nome on ajuda (nome) on [primary];
 
 create index ix_output_nome on output (nome) on [primary];
 
-create index ix_formulario_template_nome on formulario_template (nome) on [primary];
+create index ix_template_nome on template (nome) on [primary];
 
 create index ix_formulario_elemento_nome on formulario_elemento (nome) on [primary];
 
@@ -219,8 +221,8 @@ alter table output add
 		nome
 	) on [primary];
 
-alter table formulario_template add
-	constraint ix_formulario_template_categoria_nome unique nonclustered
+alter table template add
+	constraint ix_template_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
@@ -302,14 +304,14 @@ alter table output add
 		id
 	);
 
-alter table formulario_template add
-	constraint fk_formulario_template_categoria foreign key
+alter table template add
+	constraint fk_template_categoria foreign key
 	(
 		id_categoria
 	) references categoria (
 		id
 	),
-	constraint fk_formulario_template_output foreign key
+	constraint fk_template_output foreign key
 	(
 		id_output
 	) references output (
