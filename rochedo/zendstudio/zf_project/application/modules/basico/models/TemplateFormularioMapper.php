@@ -1,14 +1,14 @@
 <?php
 /**
- * TemplateSaidaFormulario data mapper
+ * TemplateFormulario data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_TemplateSaidaFormulario
+ * @uses       Basico_Model_DbTable_TemplateFormulario
  * @subpackage Model
  */
-class Basico_Model_TemplateSaidaFormularioMapper
+class Basico_Model_TemplateFormularioMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_TemplateSaidaFormularioMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_TemplateSaidaFormularioMapper
+     * @return Basico_Model_TemplateFormularioMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_TemplateSaidaFormularioMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_TemplateSaidaFormulario if no instance registered
+     * Lazy loads Basico_Model_DbTable_TemplateFormulario if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_TemplateSaidaFormulario');
+            $this->setDbTable('Basico_Model_DbTable_TemplateFormulario');
         }
         return $this->_dbTable;
     }
@@ -51,13 +51,13 @@ class Basico_Model_TemplateSaidaFormularioMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_TemplateSaidaFormulario $object
+     * @param  Basico_Model_TemplateFormulario $object
      * @return void
      */
-    public function save(Basico_Model_TemplateSaidaFormulario $object)
+    public function save(Basico_Model_TemplateFormulario $object)
     {
         $data = array(
-                'template_saida' => $object->getTemplateSaida(),
+                'template' => $object->getTemplate(),
                 'formulario' => $object->getFormulario(),
                 'rowinfo'    => $object->getRowinfo(),
         );
@@ -71,11 +71,11 @@ class Basico_Model_TemplateSaidaFormularioMapper
     }
     
     /**
-    * Delete a TemplateSaidaFormulario entry
-    * @param Basico_Model_TemplateSaidaFormulario $object
+    * Delete a TemplateFormulario entry
+    * @param Basico_Model_TemplateFormulario $object
     * @return void
     */
-    public function delete(Basico_Model_TemplateSaidaFormulario $object)
+    public function delete(Basico_Model_TemplateFormulario $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -84,10 +84,10 @@ class Basico_Model_TemplateSaidaFormularioMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_TemplateSaidaFormulario $object 
+     * @param  Basico_Model_TemplateFormulario $object 
      * @return void
      */
-    public function find($id, Basico_Model_TemplateSaidaFormulario $object)
+    public function find($id, Basico_Model_TemplateFormulario $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -95,13 +95,13 @@ class Basico_Model_TemplateSaidaFormularioMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setTemplateSaida($row->template_saida)
+               ->setTemplate($row->template)
                ->setFormulario($row->formulario)
                ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all TemplateSaidaFormulario entries
+     * Fetch all TemplateFormulario entries
      * 
      * @return array
      */
@@ -111,9 +111,9 @@ class Basico_Model_TemplateSaidaFormularioMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_TemplateSaidaFormulario();
+            $entry = new Basico_Model_TemplateFormulario();
             $entry->setId($row->id)
-                ->setTemplateSaida($row->template_saida)
+                ->setTemplate($row->template)
                 ->setFormulario($row->formulario)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
@@ -133,9 +133,9 @@ class Basico_Model_TemplateSaidaFormularioMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_TemplateSaidaFormulario();
+            $entry = new Basico_Model_TemplateFormulario();
             $entry->setId($row->id)
-                  ->setTemplateSaida($row->template_saida)
+                  ->setTemplate($row->template)
                   ->setFormulario($row->formulario)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);

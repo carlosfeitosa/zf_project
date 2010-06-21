@@ -1,13 +1,13 @@
 <?php
 /**
- * TemplateSaidaFormulario model
+ * TemplateFormulario model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_TemplateSaidaFormularioMapper
+ * @uses       Basico_Model_TemplateFormularioMapper
  * @subpackage Model
  */
-class Basico_Model_TemplateSaidaFormulario
+class Basico_Model_TemplateFormulario
 {
     /**
     * @var int
@@ -15,14 +15,14 @@ class Basico_Model_TemplateSaidaFormulario
     protected $_id;
 
     /**
-     * @var Basico_Model_TemplateSaidaFormularioMapper
+     * @var Basico_Model_TemplateFormularioMapper
      */
     protected $_mapper;
 
     /**
-     * @var TemplateSaida
+     * @var Template
      */
-    protected $_templateSaida;
+    protected $_template;
     
     /**
      * @var Formulario
@@ -85,7 +85,7 @@ class Basico_Model_TemplateSaidaFormulario
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_TemplateSaidaFormulario
+     * @return Basico_Model_TemplateFormulario
      */
     public function setOptions(array $options)
     {
@@ -102,35 +102,35 @@ class Basico_Model_TemplateSaidaFormulario
     }
     
     /**
-    * Set templatesaida
+    * Set template
     * 
     * @param int $ 
-    * @return Basico_Model_TemplateSaida
+    * @return Basico_Model_Template
     */
-    public function setTemplateSaida($templateSaida)
+    public function setTemplate($template)
     {
-        $this->_templateSaida = (int) $templateSaida;
+        $this->_template = (int) $template;
         return $this;
     }
 
     /**
-    * Get templatesaida
+    * Get template
     * 
     * @return null|int
     */
-    public function getTemplateSaida()
+    public function getTemplate()
     {
-        return $this->_templateSaida;
+        return $this->_template;
     }
  
     /**
-     * Get templatesaida object
-     * @return null|TemplateSaida
+     * Get template object
+     * @return null|Template
      */
-    public function getTemplateSaidaObject()
+    public function getTemplateObject()
     {
-        $model = new Basico_Model_FormularioTemplate();
-        $object = $model->find($this->_templateSaida);
+        $model = new Basico_Model_Template();
+        $object = $model->find($this->_template);
         return $object;
     }
     
@@ -167,11 +167,34 @@ class Basico_Model_TemplateSaidaFormulario
         return $object;
     }
     
+
+    /**
+    * Set entry id
+    * 
+    * @param  int $id 
+    * @return Basico_Model_TemplateFormulario
+    */
+    public function setId($id)
+    {
+        $this->_id = (int) $id;
+        return $this;
+    }
+
+    /**
+    * Retrieve entry id
+    * 
+    * @return null|int
+    */
+    public function getId()
+    {
+        return $this->_id;
+    }
+    
     /**
 	* Set rowinfo
 	* 
-	* @param String $rowinfo 
-	* @return Basico_Model_TemplateSaidaFormulario
+	* @param String $xml 
+	* @return Basico_Model_TemplateFormulario
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -190,32 +213,10 @@ class Basico_Model_TemplateSaidaFormulario
 	}
 
     /**
-    * Set entry id
-    * 
-    * @param  int $id 
-    * @return Basico_Model_TemplateSaidaFormulario
-    */
-    public function setId($id)
-    {
-        $this->_id = (int) $id;
-        return $this;
-    }
-
-    /**
-    * Retrieve entry id
-    * 
-    * @return null|int
-    */
-    public function getId()
-    {
-        return $this->_id;
-    }
-
-    /**
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_TemplateSaidaFormulario
+    * @return Basico_Model_TemplateFormulario
     */
     public function setMapper($mapper)
     {
@@ -226,14 +227,14 @@ class Basico_Model_TemplateSaidaFormulario
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_TemplateSaidaFormularioMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_TemplateFormularioMapper instance if no mapper registered.
     * 
-    * @return Default_Model_TemplateSaidaFormularioMapper
+    * @return Basico_Model_TemplateFormularioMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_TemplateSaidaFormularioMapper());
+            $this->setMapper(new Basico_Model_TemplateFormularioMapper());
         }
         return $this->_mapper;
     }
@@ -263,7 +264,7 @@ class Basico_Model_TemplateSaidaFormulario
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_TemplateSaidaFormulario
+    * @return Basico_Model_TemplateFormulario
       
     */
     public function find($id)
@@ -290,6 +291,26 @@ class Basico_Model_TemplateSaidaFormulario
     public function fetchList($where=null, $order=null, $count=null, $offset=null)
     {
         return $this->getMapper()->fetchList($where, $order, $count, $offset);
+    }
+        
+    /**
+    * fetch list of entries that satisfy the parameters but allowing a join
+    *
+    * @return array
+    */
+    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
+    {
+        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
+    }
+    
+    /**
+    * fetch joined list of entries that satisfy the parameters
+    *
+    * @return array
+    */
+    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
+    {
+        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
     }
 
 }
