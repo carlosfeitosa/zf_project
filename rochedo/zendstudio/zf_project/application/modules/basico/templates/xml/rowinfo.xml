@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml_data xmlns="rowinfo"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="rowinfo file:/Users/fumato/Documents/desenvolvimento%20de%20software/facepe/AgilFAP/2.0/xsd/rowinfo.xsd">
+    <header xmlns="" applicationName="applicationName0" applicationVersion="0"/>
+    <rowInfo xmlns="">
+        <generic>
+            <dateTimeLastModified>2006-05-04T18:13:51.0Z</dateTimeLastModified>
+            <idLoginLastModified>0</idLoginLastModified>
+            <dateTimeCreation>2006-05-04T18:13:51.0Z</dateTimeCreation>
+            <idLoginCreation>0</idLoginCreation>
+        </generic>
+    </rowInfo>
+</xml_data>
