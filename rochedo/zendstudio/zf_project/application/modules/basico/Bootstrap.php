@@ -1,9 +1,9 @@
 <?php
 /**
- * Bootstrap do módulo Basico.
+ * Bootstrap do módulo de Gestão de Conteúdo.
  *
  */
-class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
+class GC_Bootstrap extends Zend_Application_Module_Bootstrap
 {
 	/**
 	 * Inicializa Autoload.
@@ -12,7 +12,7 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
     protected function _initAutoload()
     {   
         $autoloader = new Zend_Application_Module_Autoloader(array(
-            'namespace' => 'Basico',
+            'namespace' => 'GC',
             'basePath'  => dirname(__FILE__),
         ));
         return $autoloader;
