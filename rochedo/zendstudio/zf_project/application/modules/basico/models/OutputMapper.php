@@ -158,7 +158,8 @@ class Basico_Model_OutputMapper
             ->from(array('table1' => 'output'),
                    array('id' => 'table1.id',
                         'nome' => 'table1.nome' ,
-                        'descricao' => 'table1.descricao' ))
+                        'descricao' => 'table1.descricao' ,
+                        'rowinfo'   => 'table1.rowinfo' ))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -172,6 +173,7 @@ class Basico_Model_OutputMapper
             $entry->setId($row['id'])
                 ->setNome($row['nome'])
                 ->setDescricao($row['descricao'])
+                ->setRowinfo($row['rowinfo'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -197,6 +199,7 @@ class Basico_Model_OutputMapper
             $entry->setId($row->id)
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
+				->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
         }

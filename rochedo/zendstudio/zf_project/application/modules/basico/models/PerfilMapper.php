@@ -61,6 +61,7 @@ class Basico_Model_PerfilMapper
 				'descricao'   => $object->getDescricao(),
 				'ativo'   => $object->getAtivo(),
                 'id_categoria'   => $object->getCategoria(),
+                'rowinfo'        => $object->getRowinfo(),
 
         );
 
@@ -100,7 +101,8 @@ class Basico_Model_PerfilMapper
 			   ->setNome($row->nome)
 			   ->setDescricao($row->descricao)
 			   ->setAtivo($row->ativo)
-               ->setCategoria($row->id_categoria);
+               ->setCategoria($row->id_categoria)
+               ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -120,6 +122,7 @@ class Basico_Model_PerfilMapper
 				  ->setDescricao($row->descricao)
 				  ->setAtivo($row->ativo)
                   ->setCategoria($row->id_categoria)
+                  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -143,6 +146,7 @@ class Basico_Model_PerfilMapper
 				  ->setDescricao($row->descricao)
 				  ->setAtivo($row->ativo)
                   ->setCategoria($row->id_categoria)
+                  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
 		}

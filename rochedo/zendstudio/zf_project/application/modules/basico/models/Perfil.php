@@ -35,6 +35,10 @@ class Basico_Model_Perfil
      * @var Integer
      */
     protected $_categoria;
+    /**
+     * @var String
+     */
+    protected $_rowinfo;
 
 	/**
 	 * Constructor
@@ -223,6 +227,28 @@ class Basico_Model_Perfil
 	{
 		return $this->_id;
 	}
+	
+    /**
+    * Set entry rowinfo
+    * 
+    * @param  int $id 
+    * @return Basico_Model_Perfil
+    */
+    public function setRowinfo($rowinfo)
+    {
+        $this->_rowinfo = (int) $rowinfo;
+        return $this;
+    }
+
+    /**
+    * Retrieve entry rowinfo
+    * 
+    * @return null|int
+    */
+    public function getRowinfo()
+    {
+        return $this->_rowinfo;
+    }
 
 	/**
 	* Set data mapper
