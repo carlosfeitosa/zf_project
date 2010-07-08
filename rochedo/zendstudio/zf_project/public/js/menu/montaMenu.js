@@ -9,7 +9,7 @@ myTest.addLabel('labelBullet', 'About Us', 1, 120, '#ffffff', '#0000aa', '', 'le
 myTest.addLabel('labelBullet', 'Products', 2, 120, '#ffffff', '#0000aa', '', 'left');
 myTest.addLabel('labelBullet', 'Services', 3, 120, '#ffffff', '#0000aa', '', 'left');
 myTest.addLabel('labelBullet', 'Support', 4, 120, '#ffffff', '#0000aa', 'test3.asp', 'left');
-myTest.height = 25;
+myTest.height = 16;
 
 menus[1] = new menu(135, 'vertical', '#cccccc', '#cccccc');
 menus[1].height = 25;
