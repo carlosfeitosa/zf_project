@@ -46,6 +46,12 @@ define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.tundra");
 define("DEFAULT_JAVASCRIPT_FILE_PATH", "/js/default_scripts.js");
 define("MENU_JAVASCRIPT_FILE_PATH", "/js/dhtmlMenu.js");
 
+//MENU JAVASCRIPT/CSS FILES
+define("MENU_API_JAVASCRIPT_FILE", "/js/menu/api.js");
+define("MENU_CODE_JAVASCRIPT_FILE", "/js/menu/menucode.js");
+define("MENU_MONTADOR_JAVASCRIPT_FILE", "/js/menu/montaMenu.js");
+define("MENU_CSS_FILE", "/css/menu.css");
+
 //LANGUAGE SETTINGS
 define("DEFAULT_SYSTEM_LANGUAGE", LANGUAGE_PT_BR);
 

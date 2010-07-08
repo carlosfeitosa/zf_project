@@ -17,9 +17,12 @@ $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => DEFAULT_USER_LANGUAGE))
         			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
         			 ->addStylesheet($applicationHttpBaseUrl . DOJO_STYLE_SHEET_PATH)
+        			 ->addStylesheet($applicationHttpBaseUrl . MENU_CSS_FILE)
         			 ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
         			 ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH)
-        			 ->addLayer($applicationHttpBaseUrl . MENU_JAVASCRIPT_FILE_PATH);
+        			 ->addLayer($applicationHttpBaseUrl . MENU_API_JAVASCRIPT_FILE)
+        			 ->addLayer($applicationHttpBaseUrl . MENU_CODE_JAVASCRIPT_FILE)
+        			 ->addLayer($applicationHttpBaseUrl . MENU_MONTADOR_JAVASCRIPT_FILE);
 
 if (Basico_Model_Util::ambienteDesenvolvimento())
 {
@@ -44,7 +47,6 @@ if (Basico_Model_Util::ambienteDesenvolvimento())
      	text-decoration: none;
      }
 </style>
-
     <?php echo $this->headScript()?>
     <?php echo $this->dojo();?> 
     

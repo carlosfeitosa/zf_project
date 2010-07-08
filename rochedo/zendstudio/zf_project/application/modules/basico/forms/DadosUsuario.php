@@ -19,7 +19,7 @@ class Basico_Form_DadosUsuario extends Zend_Dojo_Form
                   'FormElements',
                   array('TabContainer', array(
                       'id' => 'tabDadosUsuario',
-                      'style' => 'width: 850px; height: 600px;',
+                      'style' => 'width: 850px; height: 430px; position: relative;',
                       'dijitParams' => array(
                           'tabPosition' => 'top'
                       ),
