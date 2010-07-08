@@ -60,6 +60,10 @@ class GC_Model_Menu
 	 */
 	protected $_motivoDesativacao;
 	/**
+	 * @var Integer
+	 */
+	protected $_ordem;
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -372,7 +376,29 @@ class GC_Model_Menu
 		return $this->_id;
 	}
 	
-/**
+    /**
+	* Set entry ordem
+	* 
+	* @param  int $ordem 
+	* @return GC_Model_Menu
+	*/
+	public function setOrdem($ordem)
+	{
+		$this->_ordem = (int) $ordem;
+		return $this;
+	}
+
+	/**
+	* Retrieve entry ordem
+	* 
+	* @return null|int
+	*/
+	public function getOrdem()
+	{
+		return $this->_ordem;
+	}
+	
+    /**
 	* Set entry rowinfo
 	* 
 	* @param  String $rowinfo

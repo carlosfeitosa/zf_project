@@ -67,6 +67,7 @@ class GC_Model_MenuMapper
 				'data_desativacao'   => $object->getDataDesativacao(),
 				'data_auto_reativar'   => $object->getDataAutoReativar(),
 				'motivo_desativacao'   => $object->getMotivoDesativacao(),
+                'ordem'                => $object->getOrdem(),
                 'rowinfo'              => $object->getRowinfo(),
 
         );
@@ -115,6 +116,7 @@ class GC_Model_MenuMapper
 				->setDataDesativacao($row->data_desativacao)
 				->setDataAutoReativar($row->data_auto_reativar)
 				->setMotivoDesativacao($row->motivo_desativacao)
+				->setOrdem($row->ordem)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -142,6 +144,7 @@ class GC_Model_MenuMapper
 				->setDataDesativacao($row->data_desativacao)
 				->setDataAutoReativar($row->data_auto_reativar)
 				->setMotivoDesativacao($row->motivo_desativacao)
+				->setOrdem($row->ordem)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -173,6 +176,7 @@ class GC_Model_MenuMapper
 				->setDataDesativacao($row->data_desativacao)
 				->setDataAutoReativar($row->data_auto_reativar)
 				->setMotivoDesativacao($row->motivo_desativacao)
+				->setOrdem($row->ordem)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -198,6 +202,7 @@ class GC_Model_MenuMapper
                         'dataDesativacao' => 'table1.data_desativacao' ,
                         'dataAutoReativar' => 'table1.data_auto_reativar' ,
                         'motivoDesativacao' => 'table1.motivo_desativacao' ,
+                        'ordem'             => 'table1.ordem' ,
                         'rowinfo'           => 'table1.rowinfo' ))
             ->joinInner($join[0])
             ->where($where)
@@ -220,6 +225,7 @@ class GC_Model_MenuMapper
                 ->setDataDesativacao($row['data_desativacao'])
                 ->setDataAutoReativar($row['data_auto_reativar'])
                 ->setMotivoDesativacao($row['motivo_desativacao'])
+                ->setOrdem($row['ordem'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -253,6 +259,7 @@ class GC_Model_MenuMapper
 				->setDataDesativacao($row->data_desativacao)
 				->setDataAutoReativar($row->data_auto_reativar)
 				->setMotivoDesativacao($row->motivo_desativacao)
+				->setOrdem($row->ordem)
 				->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

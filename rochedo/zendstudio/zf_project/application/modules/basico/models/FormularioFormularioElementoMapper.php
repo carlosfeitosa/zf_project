@@ -60,6 +60,7 @@ class Basico_Model_FormularioFormularioElementoMapper
                 'formulario'          => $object->getFormulario(),
                 'formulario_elemento' => $object->getFormularioElemento(),
                 'element_required'    => $object->getElementRequired(),
+                'ordem'               => $object->getOrdem(),
                 'rowinfo'             => $object->getRowinfo(),
         );
 
@@ -99,6 +100,7 @@ class Basico_Model_FormularioFormularioElementoMapper
                ->setFormulario($row->formulario)
                ->setFormularioElemento($row->formulario_elemento)
                ->setElementRequired($row->element_required)
+               ->setOrdem($row->ordem)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -118,6 +120,7 @@ class Basico_Model_FormularioFormularioElementoMapper
                 ->setFormulario($row->formulario)
                 ->setFormularioElemento($row->formulario_elemento)
                 ->setElementRequired($row->element_required)
+                ->setOrdem($row->ordem)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
@@ -141,6 +144,7 @@ class Basico_Model_FormularioFormularioElementoMapper
                   ->setFormulario($row->formulario)
                   ->setFormularioElemento($row->formulario_elemento)
                   ->setElementRequired($row->element_required)
+                  ->setOrdem($row->ordem)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

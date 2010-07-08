@@ -35,6 +35,11 @@ class Basico_Model_FormularioFormularioElemento
     protected $_elementRequired;
     
     /**
+     * @var ordem
+     */
+    protected $_ordem;
+    
+    /**
      * @var rowinfo
      */
     protected $_rowinfo;
@@ -193,6 +198,29 @@ class Basico_Model_FormularioFormularioElemento
         $object = $model->find($this->_formularioElemento);
         return $object;
     }
+
+    /**
+	* Set ordem
+	* 
+	* @param Integer $ordem 
+	* @return Basico_Model_FormularioFormularioElemento
+	*/
+	public function setOrdem($ordem)
+	{
+		$this->_ordem = (Int) $ordem;
+		return $this;
+	}
+
+	/**
+	* Get ordem
+	* 
+	* @return null|String
+	*/
+	public function getOrdem()
+	{
+		return $this->_ordem;
+	}
+    
     
     /**
 	* Set rowinfo
