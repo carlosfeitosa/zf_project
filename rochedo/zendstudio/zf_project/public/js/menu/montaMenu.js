@@ -1,8 +1,8 @@
 sniffBrowsers();
 
-menuItemBullet = new bulletPoint("http://localhost:10088/rochedo_project/public/js/menu/bullets/one/menu_off.gif","http://localhost:10088/rochedo_project/public/js/menu/bullets/one/menu_on.gif");
-labelBullet = new bulletPoint("http://localhost:10088/rochedo_project/public/js/menu/bullets/one/header_off.gif","http://localhost:10088/rochedo_project/public/js/menu/bullets/one/header_on.gif");
-subMenuBullet = new bulletPoint("http://localhost:10088/rochedo_project/public/js/menu/bullets/one/sub_header_off.gif","http://localhost:10088/rochedo_project/public/js/menu/bullets/one/sub_header_on.gif");
+menuItemBullet = new bulletPoint("/rochedo_project/public/js/menu/bullets/one/menu_off.gif","/rochedo_project/public/js/menu/bullets/one/menu_on.gif");
+labelBullet = new bulletPoint("/rochedo_project/public/js/menu/bullets/one/header_off.gif","/rochedo_project/public/js/menu/bullets/one/header_on.gif");
+subMenuBullet = new bulletPoint("/rochedo_project/public/js/menu/bullets/one/sub_header_off.gif","/rochedo_project/public/js/menu/bullets/one/sub_header_on.gif");
 
 myTest = new menuBar('myTest',480, 'horizontal', '#cccccc', '#cccccc');
 myTest.addLabel('labelBullet', 'About Us', 1, 120, '#ffffff', '#0000aa', '', 'left');
