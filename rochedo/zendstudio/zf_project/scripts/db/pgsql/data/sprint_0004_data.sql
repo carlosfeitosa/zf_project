@@ -276,7 +276,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
 
-       'FORM_CADASTRO_USUARIO_NAO_VALIDADO' AS nome,
+       'FORM_CADASTRAR_USUARIO_NAO_VALIDADO' AS nome,
        'Formulário de cadastro de usuário não validado. É a porta de entrada para validação do usuário no sistema.' AS descricao, 
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo, 
