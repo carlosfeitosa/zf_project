@@ -6,6 +6,7 @@
 * criacao: 14/06/2010
 * ultimas modificacoes: 
 * 						16/06/2010 - insercao de dados em formulario_perfil;
+* 						09/07/2010 - insercao dos dados da tabela de modulos;
 */
 
 /* TIPO CATEGORIA */
@@ -118,6 +119,11 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'SISTEMA_MODULO' AS nome, 'Modulos do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+WHERE t.nome = 'SISTEMA';
 
 
 /* DICIONARIO DE EXPRESSOES
@@ -242,6 +248,19 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR';
+
+
+/* MODULO */
+
+INSERT INTO modulo (id_categoria, nome, descricao, versao, path, instalado, ativo, xml_autoria, rowinfo)
+SELECT c.id AS id_categoria, 'BASICO' AS nome,
+	   'Modulo basico. Necessario para funcionamento minimo do sistema.' AS descricao,
+	   '0.3' AS versao, 'basico/' AS path, 1 AS instalado, 1 AS ativo,
+	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MODULO';
 
 
 /* FORMULARIO */
@@ -557,3 +576,43 @@ SELECT (SELECT f.id
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_USUARIO'
         AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo;
+
+
+/* MODULO BASCIO x FORMULARIO FORM_CADASTRO_USUARIO_NAO_VALIDADO */
+
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
+		AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;
+
+
+/* MODULO BASCIO x PERFIL USUARIO_NAO_VALIDADO */
+
+INSERT INTO modulo_perfil (id_modulo, id_perfil, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT p.id
+		FROM perfil p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_USUARIO'
+		AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil,
+		'SYSTEM_STARTUP' AS rowinfo;

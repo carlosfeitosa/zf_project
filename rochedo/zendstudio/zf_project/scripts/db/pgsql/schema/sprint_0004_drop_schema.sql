@@ -7,6 +7,7 @@
 * ultimas modificacoes:
 * 						17/06/2010 - drop da tabela formulario_perfil;
 * 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
+* 						09/07/2010 - drop das tabelas modulo_formulario, modulo_perifl e modulo;
 */
 
 drop table template;
@@ -16,6 +17,9 @@ drop table formulario_elemento_formulario_elemento_validator;
 drop table formulario_elemento;
 drop table formulario_elemento_validator;
 drop table formulario_elemento_filter;
+drop table modulo_formulario;
+drop table modulo_perfil;
+drop table modulo;
 drop table formulario;
 drop table decorator;
 drop table ajuda;
