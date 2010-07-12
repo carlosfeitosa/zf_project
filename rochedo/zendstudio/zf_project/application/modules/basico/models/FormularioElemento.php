@@ -291,6 +291,17 @@ class Basico_Model_FormularioElemento
 	{
 		return $this->_id;
 	}
+	
+    /**
+     * Get formularioElementoFilter object
+     * @return null|formularioElementoFilter
+     */
+    public function getFormularioElementoFilterObject()
+    {
+        $model = new Basico_Model_FormularioElementoFilter();
+        $object = $model->find($this->_id);
+        return $object;
+    }
 
 	/**
 	* Set data mapper
