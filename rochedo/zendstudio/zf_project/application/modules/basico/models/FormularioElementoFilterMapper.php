@@ -60,7 +60,8 @@ class Basico_Model_FormularioElementoFilterMapper
 				'nome'        => $object->getNome(),
 				'descricao'   => $object->getDescricao(),
 				'filter'      => $object->getFilter(),
-                'formulario_elemento'   => $object->getFormularioElemento(),
+                'id_categoria'   => $object->getCategoria(),
+                'rowinfo'        => $object->getRowinfo(),
 
         );
 
@@ -101,7 +102,8 @@ class Basico_Model_FormularioElementoFilterMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setFilter($row->filter)
-                ->setFormularioElemento($row->formulario_elemento);
+                ->setCategoria($row->categoria)
+                ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -121,7 +123,8 @@ class Basico_Model_FormularioElementoFilterMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setFilter($row->filter)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setCategoria($row->categoria)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -145,7 +148,8 @@ class Basico_Model_FormularioElementoFilterMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setFilter($row->filter)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setCategoria($row->categoria)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -159,12 +163,13 @@ class Basico_Model_FormularioElementoFilterMapper
     public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
     {
         $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'formulario_elemento_filter'),
-                   array('id' => 'table1.id',
-                        'nome' => 'table1.nome' ,
+            ->from(array('table1'   => 'formulario_elemento_filter'),
+                   array('id'       => 'table1.id',
+                        'nome'      => 'table1.nome' ,
                         'descricao' => 'table1.descricao' ,
-                        'filter' => 'table1.filter' ,
-                        'formularioElemento' => 'table1.formulario_elemento)'))
+                        'filter'    => 'table1.filter' ,
+                        'categoria' => 'table1.id_categoria)' ,
+                        'rowinfo'   => 'table1.rowinfo'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -179,7 +184,8 @@ class Basico_Model_FormularioElementoFilterMapper
                 ->setNome($row['nome'])
                 ->setDescricao($row['descricao'])
                 ->setFilter($row['filter'])
-                ->setFormularioElemento($row['formulario_elemento'])
+                ->setCategoria($row['id_categoria'])
+                ->setRowinfo($row['rowinfo'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -206,8 +212,9 @@ class Basico_Model_FormularioElementoFilterMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setFilter($row->filter)
-                ->setFormularioElemento($row->formulario_elemento)
-                  ->setMapper($this);
+                ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

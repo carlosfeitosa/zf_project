@@ -35,6 +35,15 @@ class Basico_Model_FormularioElementoFilter
      * @var Integer
      */
     protected $_formularioElemento;
+    /**
+     * @var Integer
+     */
+    protected $_categoria;
+    /**
+     * @var String
+     */
+    protected $_rowinfo;
+    
 
 	/**
 	 * Constructor
@@ -223,7 +232,52 @@ class Basico_Model_FormularioElementoFilter
 	{
 		return $this->_id;
 	}
+	
+    /**
+	* Set entry categoria
+	* 
+	* @param  int $categoria 
+	* @return Basico_Model_FormularioElementoFilter
+	*/
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = (int) $categoria;
+		return $this;
+	}
 
+	/**
+	* Retrieve entry categoria
+	* 
+	* @return null|int
+	*/
+	public function getCategoria()
+	{
+		return $this->_categoria;
+	}
+
+	/**
+	* Set entry rowinfo
+	* 
+	* @param  string $rowinfo 
+	* @return Basico_Model_FormularioElementoFilter
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = (String) $rowinfo;
+		return $this;
+	}
+
+	/**
+	* Retrieve entry rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_Rowinfo;
+	}
+	
+	
 	/**
 	* Set data mapper
 	* 

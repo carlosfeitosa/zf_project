@@ -45,6 +45,21 @@ class Basico_Model_FormularioElemento
 	protected $_element;
 	
 	/**
+	 * @var Integer
+	 */
+	protected $_categoria;
+	
+	/**
+	 * @var Integer
+	 */
+	protected $_formularioElementoFilter;
+	
+	/**
+	 * @var Integer
+	 */
+	protected $_ajuda;
+	
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -269,27 +284,93 @@ class Basico_Model_FormularioElemento
 	{
 		return $this->_rowinfo;
 	}
- 
-	/**
-	* Set entry id
+	
+    /**
+	* Set entry categoria
 	* 
-	* @param  int $id 
+	* @param  int $categoria 
 	* @return Basico_Model_FormularioElemento
 	*/
-	public function setId($id)
+	public function setCategoria($categoria)
 	{
-		$this->_id = (int) $id;
+		$this->_categoria = (int) $categoria;
 		return $this;
 	}
 
 	/**
-	* Retrieve entry id
+	* Retrieve entry categoria
 	* 
 	* @return null|int
 	*/
-	public function getId()
+	public function getCategoria()
 	{
-		return $this->_id;
+		return $this->_categoria;
+	}
+	
+/**
+	* Set entry categoria
+	* 
+	* @param  int $categoria 
+	* @return Basico_Model_FormularioElemento
+	*/
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = (int) $categoria;
+		return $this;
+	}
+
+	/**
+	* Retrieve entry formularioElementoFilter
+	* 
+	* @return null|int
+	*/
+	public function getFormularioElementoFilter()
+	{
+		return $this->_formularioElementoFilter;
+	}
+ 
+	/**
+	* Set entry formularioElementoFilter
+	* 
+	* @param  int $formularioElementoFilter 
+	* @return Basico_Model_FormularioElemento
+	*/
+	public function setFormularioElementoFilter($formularioElementoFilter)
+	{
+		$this->_formularioElementoFilter = (int) $formularioElementoFilter;
+		return $this;
+	}
+
+	/**
+	* Retrieve entry formularioElementoFilter
+	* 
+	* @return null|int
+	*/
+	public function getFormularioElementoFilter()
+	{
+		return $this->_formularioElementoFilter;
+	}
+	
+    /**
+	* Set entry ajuda
+	* 
+	* @param  int $ajuda 
+	* @return Basico_Model_FormularioElemento
+	*/
+	public function setAjuda($ajuda)
+	{
+		$this->_ajuda = (int) $ajuda;
+		return $this;
+	}
+
+	/**
+	* Retrieve entry ajuda
+	* 
+	* @return null|int
+	*/
+	public function getAjuda()
+	{
+		return $this->_ajuda;
 	}
 	
     /**
