@@ -299,7 +299,7 @@ class Basico_Model_FormularioElemento
     public function getFormularioElementoFilterObject()
     {
         $model = new Basico_Model_FormularioElementoFilter();
-        $object = $model->find($this->_id);
+        $object = $model->find($this->_formularioElementoFilter);
         return $object;
     }
 
