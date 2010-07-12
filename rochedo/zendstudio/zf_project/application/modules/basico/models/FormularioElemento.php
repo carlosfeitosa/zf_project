@@ -308,14 +308,14 @@ class Basico_Model_FormularioElemento
 	}
 	
 /**
-	* Set entry categoria
+	* Set entry id
 	* 
-	* @param  int $categoria 
+	* @param  int $id
 	* @return Basico_Model_FormularioElemento
 	*/
-	public function setCategoria($categoria)
+	public function setId($id)
 	{
-		$this->_categoria = (int) $categoria;
+		$this->_id = (int) $id;
 		return $this;
 	}
 
@@ -324,9 +324,9 @@ class Basico_Model_FormularioElemento
 	* 
 	* @return null|int
 	*/
-	public function getFormularioElementoFilter()
+	public function getId()
 	{
-		return $this->_formularioElementoFilter;
+		return $this->_id;
 	}
  
 	/**
