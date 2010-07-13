@@ -28,6 +28,10 @@ class Basico_Model_Template
 	 */
 	protected $_descricao;
 	/**
+	 * @var Integer
+	 */
+	protected $_categoria;
+	/**
 	 * @var String
 	 */
 	protected $_styleSheetFullFilename;
@@ -154,6 +158,28 @@ class Basico_Model_Template
 	public function getDescricao()
 	{
 		return $this->_descricao;
+	}
+	
+    /**
+	* Set categoria
+	* 
+	* @param Integer $categoria 
+	* @return Basico_Model_categoria
+	*/
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = (Int) $categoria;
+		return $this;
+	}
+
+	/**
+	* Get categoria
+	* 
+	* @return null|String
+	*/
+	public function getCategoria()
+	{
+		return $this->_categoria;
 	}
      
 	/**

@@ -59,11 +59,12 @@ class Basico_Model_AjudaMapper
         $data = array(
                 'nome'                      => $object->getNome(),
                 'descricao'                 => $object->getDescricao(),
+                'id_categoria'                 => $object->getCategoria(),
 				'constante_textual_ajuda'   => $object->getConstanteTextualAjuda(),
 				'constante_textual_hint'    => $object->getConstanteTextualHint(),
 				'url'                       => $object->getUrl(),
-                'formulario'                => $object->getFormulario(),
-                'formulario_elemento'       => $object->getFormularioElemento(),
+                'id_formulario'                => $object->getFormulario(),
+                'id_formulario_elemento'       => $object->getFormularioElemento(),
                 'rowinfo'                   => $object->getRowinfo(),
 
         );
@@ -103,11 +104,12 @@ class Basico_Model_AjudaMapper
         $object->setId($row->id)
                 ->setNome($row->nome)
                 ->setDescricao($row->descricao)
+                ->setCategoria($row->id_categoria)
 				->setConstanteTextualAjuda($row->constante_textual_ajuda)
 				->setConstanteTextualHint($row->constante_textual_hint)
 				->setUrl($row->url)
-                ->setFormulario($row->formulario)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setFormulario($row->id_formulario)
+                ->setFormularioElemento($row->id_formulario_elemento)
                 ->setRowinfo($row->rowinfo);
     }
 
@@ -126,11 +128,12 @@ class Basico_Model_AjudaMapper
 			$entry->setId($row->id)
                 ->setNome($row->nome)
                 ->setDescricao($row->descricao)
+                ->setCategoria($row->id_categoria)
 				->setConstanteTextualAjuda($row->constante_textual_ajuda)
 				->setConstanteTextualHint($row->constante_textual_hint)
 				->setUrl($row->url)
-                ->setFormulario($row->formulario)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setFormulario($row->id_formulario)
+                ->setFormularioElemento($row->id_formulario_elemento)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -153,11 +156,12 @@ class Basico_Model_AjudaMapper
 			$entry->setId($row->id)
                 ->setNome($row->nome)
                 ->setDescricao($row->descricao)
+                ->setCategoria($row->id_categoria)
 				->setConstanteTextualAjuda($row->constante_textual_ajuda)
 				->setConstanteTextualHint($row->constante_textual_hint)
 				->setUrl($row->url)
-                ->setFormulario($row->formulario)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setFormulario($row->id_formulario)
+                ->setFormularioElemento($row->id_formulario_elemento)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

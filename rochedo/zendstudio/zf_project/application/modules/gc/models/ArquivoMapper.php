@@ -57,12 +57,13 @@ class GC_Model_ArquivoMapper
     public function save(GC_Model_Arquivo $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
+				'nome'                 => $object->getNome(),
+				'descricao'            => $object->getDescricao(),
+                'id_categoria'         => $object->getCategoria(),
 				'file_original_name'   => $object->getFileOriginalName(),
-				'file_size'   => $object->getFileSize(),
-				'file_name'   => $object->getFileName(),
-                'rowinfo'     => $object->getRowinfo(),
+				'file_size'            => $object->getFileSize(),
+				'file_name'            => $object->getFileName(),
+                'rowinfo'              => $object->getRowinfo(),
 
         );
 
@@ -221,7 +222,7 @@ class GC_Model_ArquivoMapper
 				->setFileSize($row->file_size)
 				->setFileName($row->file_name)
 				->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

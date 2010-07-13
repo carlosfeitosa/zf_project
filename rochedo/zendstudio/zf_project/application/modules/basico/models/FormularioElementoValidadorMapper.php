@@ -59,6 +59,7 @@ class Basico_Model_FormularioElementoValidadorMapper
         $data = array(
 				'nome'   => $object->getNome(),
 				'descricao'   => $object->getDescricao(),
+                'id_categoria'   => $object->getCategoria(),
 				'validator'   => $object->getValidator(),
                 'rowinfo'     => $object->rowinfo(),
 
@@ -100,6 +101,7 @@ class Basico_Model_FormularioElementoValidadorMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
+				->setCategoria($row->id_categoria)
 				->setValidator($row->validator)
 				->setRowinfo($row->rowinfo);
     }
@@ -120,6 +122,7 @@ class Basico_Model_FormularioElementoValidadorMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
+				->setCategoria($row->id_categoria)
 				->setValidator($row->validator)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
@@ -144,6 +147,7 @@ class Basico_Model_FormularioElementoValidadorMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
+				->setCategoria($row->id_categoria)
 				->setValidator($row->validator)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);

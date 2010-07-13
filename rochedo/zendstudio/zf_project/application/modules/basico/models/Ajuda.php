@@ -27,8 +27,11 @@ class Basico_Model_Ajuda
 	 * @var String
 	 */
 	protected $_descricao;
-	
 	/**
+	 * @var Integer
+	 */
+	protected $_categoria;
+    /**
 	 * @var String
 	 */
 	protected $_constanteTextualAjuda;
@@ -188,7 +191,30 @@ class Basico_Model_Ajuda
 	{
 		return $this->_descricao;
 	}
-     
+
+	/**
+	* Set categoria
+	* 
+	* @param Integer $categoria
+	* @return Basico_Model_Ajuda
+	*/
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = (Int) $categoria;
+		return $this;
+	}
+
+	/**
+	* Get categoria
+	* 
+	* @return null|String
+	*/
+	public function getCategoria()
+	{
+		return $this->_categoria;
+	}
+	
+	
 	/**
 	* Set constanteTextualHint
 	* 

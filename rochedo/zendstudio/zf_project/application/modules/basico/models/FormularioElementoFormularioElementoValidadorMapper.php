@@ -57,8 +57,8 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
     public function save(Basico_Model_FormularioElementoFormularioElementoValidador $object)
     {
         $data = array(
-                'formulario_elemento_validador' => $object->getFormularioElementoValidador(),
-                'formulario_elemento' => $object->getFormularioElemento(),
+                'id_formulario_elemento_validador' => $object->getFormularioElementoValidador(),
+                'id_formulario_elemento' => $object->getFormularioElemento(),
                 'rowinfo'             => $object->getRowinfo(),
         );
 
@@ -95,8 +95,8 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setFormularioElementoValidador($row->formulario_elemento_validador)
-               ->setFormularioElemento($row->formulario_elemento)
+               ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+               ->setFormularioElemento($row->id_formulario_elemento)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -113,8 +113,8 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
         {
             $entry = new Basico_Model_FormularioElementoFormularioElementoValidador();
             $entry->setId($row->id)
-                ->setFormularioElementoValidador($row->formulario_elemento_validador)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+                ->setFormularioElemento($row->id_formulario_elemento)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
@@ -135,8 +135,8 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
         {
             $entry = new Basico_Model_FormularioElementoFormularioElementoValidador();
             $entry->setId($row->id)
-                  ->setFormularioElementoValidador($row->formularioelementovalidador)
-                  ->setFormularioElemento($row->formularioelemento)
+                  ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+                  ->setFormularioElemento($row->id_formulario_elemento)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
