@@ -7,6 +7,10 @@
 * ultimas modificacoes: 
 * 						16/06/2010 - insercao de dados em formulario_perfil;
 * 						09/07/2010 - insercao dos dados da tabela de modulos;
+* 						13/07/2010 - insercao do ouput (categoria e template, tambem)
+* 									 DOJO;
+* 								   - insercao do valores TRUE para o campo element_reloadable
+* 									 na tabela formulario_elemento.
 */
 
 /* TIPO CATEGORIA */
@@ -24,6 +28,13 @@ INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id AS id_tipo_categoria, 'FORMULARIO_OUTPUT' AS nome, 'Tipo de saida de formulários.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria
 WHERE nome = 'FORMULARIO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_OUTPUT_DOJO' AS nome, 'Saida DOJO.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_OUTPUT';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_OUTPUT_HTML' AS nome, 'Saida HTML.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -192,6 +203,13 @@ AND c.nome = 'en-us';
 /* OUTPUT */
 
 INSERT INTO output (id_categoria, nome, descricao, rowinfo)
+SELECT c.id AS id_categoria, 'OUTPUT_DOJO' AS nome, 'Formato de saida DOJO.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_OUTPUT_DOJO';
+
+INSERT INTO output (id_categoria, nome, descricao, rowinfo)
 SELECT c.id AS id_categoria, 'OUTPUT_HTML' AS nome, 'Formato de saida HTML.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -200,6 +218,20 @@ AND c.nome = 'FORMULARIO_OUTPUT_HTML';
 
 
 /* FORMULARIO TEMPLATE */
+
+INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
+SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome, 'Template DOJO.' AS descricao,
+       (SELECT o.id
+        FROM output o
+        LEFT JOIN categoria c ON (o.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_OUTPUT_DOJO'
+        AND o.nome = 'OUTPUT_DOJO') AS id_output, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_TEMPLATE';
 
 INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_HTML' AS nome, 'Template HTML.' AS descricao,
@@ -334,7 +366,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
                                  nome, descricao, constante_textual_label, element_name,
-                                 element_attribs, element, rowinfo)
+                                 element_attribs, element, element_reloadable, rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -352,7 +384,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FIELD_NOME_USUARIO' AS nome, 'Elemento campo nome do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_NOME' AS constante_textual_label,
                               'nome' AS element_name, '''size'' => 100' AS element_attribs,
-                              '''ValidationTextBox'', ''nome''' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              '''ValidationTextBox'', ''nome''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -360,7 +392,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
                                  nome, descricao, constante_textual_label, element_name,
-                                 element_attribs, element, rowinfo)
+                                 element_attribs, element, element_reloadable, rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -378,7 +410,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FIELD_EMAIL_USUARIO' AS nome, 'Elemento campo e-mail do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_EMAIL' AS constante_textual_label,
                               'email' AS element_name, '''size'' => 80' AS element_attribs,
-                              '''ValidationTextBox'', ''email''' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              '''ValidationTextBox'', ''email''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -488,7 +520,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)
@@ -504,7 +536,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)
@@ -520,7 +552,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)
@@ -536,7 +568,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)
@@ -552,7 +584,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)
@@ -568,7 +600,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
        (SELECT p.id
         FROM perfil p
         LEFT JOIN categoria c ON (p.id_categoria = c.id)
@@ -578,7 +610,7 @@ SELECT (SELECT f.id
         AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo;
 
 
-/* MODULO BASCIO x FORMULARIO FORM_CADASTRO_USUARIO_NAO_VALIDADO */
+/* MODULO BASCIO x FORMULARIO FORM_CADASTRAR_USUARIO_NAO_VALIDADO */
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -594,7 +626,7 @@ SELECT (SELECT m.id
 		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-		AND f.nome = 'FORM_CADASTRO_USUARIO_NAO_VALIDADO') AS id_formulario,
+		AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
 		'SYSTEM_STARTUP' AS rowinfo;
 
 

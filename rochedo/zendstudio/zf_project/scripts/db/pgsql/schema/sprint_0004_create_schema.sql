@@ -9,6 +9,7 @@
 * 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
 * 						09/07/2010 - criacao das tabelas modulo, modulo_perfil, modulo_formulario,
 * 									 pk e fks relacionadas;
+* 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -126,6 +127,7 @@ create table formulario_elemento (
 	element_name character varying (100) not null ,
 	element_attribs character varying (1000) null ,
 	element character varying (1000) not null ,
+	element_reloadable smallint not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -262,6 +264,9 @@ alter table modulo
 
 alter table formulario
     alter column validade_inicio set default (current_timestamp);
+
+alter table formulario_elemento
+	alter column element_reloadable set default (0);
 
 
 /* CRIACAO DOS INDICES */
