@@ -101,25 +101,31 @@ class Basico_Model_GeradorFormulario
 	 */
     public function gerar(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM, array $excludeModulesNames = null)
     {
-    	$headerFormulario        = Basico_Model_Util::retornaStringComQuebraDeLinha(str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER));
-        $formBeginTag            = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_BEGIN_TAG);
-        $formClassExtendsTag     = 'extends';
-        $formClassExtendsClass   = $classToExtends;        
-        $formCodeBlockBeginTag   = Basico_Model_Util::retornaStringComQuebraDeLinha('{');      
-        $formCodeBlockEndTag     = Basico_Model_Util::retornaStringComQuebraDeLinha('}');
-        $headerConstructorForm   = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_HEADER);
-        $formConstructorCall     = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_CALL);
-        $formConstructorInherits = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_INHERITS);
-        $formConstructorComment  = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_COMMENT);
-        $formName                = Basico_Model_Util::retornaStringComQuebraDeLinha("\$this->setName('{$objFormulario->formName}');");
-        $formMethod              = Basico_Model_Util::retornaStringComQuebraDeLinha("\$this->setMethod('{$objFormulario->formMethod}');");
-        $formAction              = Basico_Model_Util::retornaStringComQuebraDeLinha("\$this->setAction('{$objFormulario->formAction}');");
-        $formAttribs             = Basico_Model_Util::retornaStringComQuebraDeLinha("\$this->addAttribs(array({$objFormulario->formAttribs}));");
+    	$filenameExtensionRecovery              = '.lkg';
+    	$headerFormulario                       = Basico_Model_Util::retornaStringComQuebraDeLinha(str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER));
+        $formBeginTag                           = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_BEGIN_TAG);
+        $formClassExtendsTag                    = 'extends';
+        $formClassExtendsClass                  = $classToExtends;        
+        $formCodeBlockBeginTag                  = Basico_Model_Util::retornaStringComQuebraDeLinha('{');      
+        $formCodeBlockEndTag                    = Basico_Model_Util::retornaStringComQuebraDeLinha('}');
+        $headerConstructorForm                  = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_HEADER);
+        $formConstructorCall                    = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_CALL);
+        $formConstructorInherits                = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_INHERITS);
+        $formConstructorComment                 = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_CONSTRUCTOR_COMMENT);
+        $formName                               = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_FORM_SETNAME . "('{$objFormulario->formName}');");
+        $formMethod                             = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');");
+        $formAction                             = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_FORM_SETACTION . "('{$objFormulario->formAction}');");
+        $formAttribs                            = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));");
+        
         if ($objFormulario->getDecoratorObject()->id)
-            $formDecorator           = Basico_Model_Util::retornaStringComQuebraDeLinha("\$this->setDecorators(array({$objFormulario->getDecoratorObject()->decorator}));"); 
-        $formElementsComment     = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_ADD_ELEMENTS_COMMENT);
-        $formArrayElements       = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_ELEMENTS . ' = array();'); 
-        $formEndTag              = FORM_END_TAG;
+            $formDecorator                      = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_FORM_SETDECORATORS . "(array({$objFormulario->getDecoratorObject()->decorator}));"); 
+
+        $formElementsComment                    = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_ADD_ELEMENTS_COMMENT);
+        $formArrayElements                      = Basico_Model_Util::retornaStringComQuebraDeLinha(FORM_GERADOR_ELEMENTS . ' = array();');
+        $formCodigoCheckAmbienteDesenvolvimento = FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP . $formCodeBlockBeginTag; 
+        $formEndTag                             = FORM_END_TAG;
+        
+        $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento = array('FORMULARIO_ELEMENTO_CAPTCHA');
         
         $resultado = false;
         $modulesPath = array();
@@ -147,7 +153,7 @@ class Basico_Model_GeradorFormulario
         	   
 				//Criando ponto de restauração do arquivo do formulário
 				if (file_exists($fullFileName)){
-					$podeContinuar = copy($fullFileName, $fullFileName . '.lkg');
+					$podeContinuar = copy($fullFileName, $fullFileName . $filenameExtensionRecovery);
 				    $arrayArquivosModificados[] = $fullFileName;
 				}
 				
@@ -194,70 +200,75 @@ class Basico_Model_GeradorFormulario
                 foreach ($formularioElementosObjects as $formularioElementoObject){
                 	$formElementLoop = str_replace('@contador', $contador, $formElement);
                 	
-                	// verificando se o é preciso determinar ambiente de desenvolvimento
-                	$nomesCategoriasCheckAmbienteDesenvolvimento = array('FORMULARIO_ELEMENTO_CAPTCHA'); 
-                	if (false !== array_search($formularioElementoObject->getCategoriaObject()->nome, $nomesCategoriasCheckAmbienteDesenvolvimento)){
+                	// verificando se o é preciso determinar ambiente de desenvolvimento 
+                	if (false !== array_search($formularioElementoObject->getCategoriaObject()->nome, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento)){
                         $elementoAmbienteDesenvolvimento = true;
-                	    fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . "if (!Basico_Model_Util::ambienteDesenvolvimento()){"));
+                	    fputs($fileResource, Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formCodigoCheckAmbienteDesenvolvimento);
                 	    $nivelIdentacao++;
                 	}
                 	else
                 	   $elementoAmbienteDesenvolvimento = false;
                 	
                 	// criando elemento
-                	fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . " = \$this->createElement({$formularioElementoObject->element});"));
+                	fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$formularioElementoObject->element});"));
                 	
                 	// setando atributos do elemento
                 	if ($formularioElementoObject->elementAttribs)
-                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->setAttribs(array({$formularioElementoObject->elementAttribs}));"));
+                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETATTRIBS . "(array({$formularioElementoObject->elementAttribs}));"));
                 	             	
                 	// descobrindo se o campo é requerido
                 	if ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true)
-                	    fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->setRequired(true);"));
+                	    fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";"));
                 	else
-                	    fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->setRequired(false);"));
+                	    fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_FALSE . ";"));
 
                 	// adicionando filtros
                 	if ($formularioElementoObject->getFormularioElementoFilterObject()->id)
-                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->addFilters(array({$formularioElementoObject->getFormularioElementoFilterObject()->filter}));"));
+                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDFILTERS . "(array({$formularioElementoObject->getFormularioElementoFilterObject()->filter}));"));
                     
                     // adicionando validadores
                     $arrayFormularioElementoValidators = $formularioElementoObject->getFormularioElementoValidatorsObjects();
                     
                     foreach($arrayFormularioElementoValidators as $formularioElementoValidator){
-                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->addValidator({$formularioElementoValidator->validator});"));
+                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR . "({$formularioElementoValidator->validator});"));
                     }
                     
                     // adicionando elementos label e ajuda
                     if ($formularioElementoObject->constanteTextualLabel){
-                    	// adiciona o decorator para os elementos que possuem label
-                    	fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->AddDecorator('Label', array('escape' => false));"));                  	
+                    	// adiciona o decorator para os elementos que possuem decorator
+                    	if ($formularioElementoObject->getDecoratorObject()->id)
+                    		fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});"));
+
+                    	// adicionando o link de ajuda
                     	if ($formularioElementoObject->getAjudaObject()->id){
-                    		$controladorTradutor = Basico_TradutorControllerController::init();
-                            $linkAjuda = "<a href=\"javascript:showDialogAlert(\'{$objFormulario->formName}\', \'Ajuda\', \'{$controladorTradutor->retornaTraducao($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, DEFAULT_USER_LANGUAGE)}\', 1)\"> (?)</a>";                    		
+                    		if ($formularioElementoObject->getAjudaObject()->url)
+								$urlAjuda = ' . "<br><br>URL: <a href=' . Basico_Model_Util::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->url, "\'") . ' target=' . Basico_Model_Util::retornaStringEntreCaracter('_blank', "\'") . '>' . $formularioElementoObject->getAjudaObject()->url . '</a>"';
+                    		else
+                    			$urlAjuda = '';
+                            $linkAjuda = "&nbsp;<a href=" . Basico_Model_Util::retornaStringEntreCaracter(Basico_Model_Util::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(' . DIALOG_HELP_TITLE . ', DEFAULT_USER_LANGUAGE)', '$this->getView()->tradutor(' . Basico_Model_Util::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'") . ', DEFAULT_USER_LANGUAGE)' . $urlAjuda), '"') . ">(?)</a>";
                     	}
                     	else
                     	   $linkAjuda = '';
                     	$linkAjuda = Basico_Model_Util::retornaStringEntreCaracter($linkAjuda, "'");
                     	
-                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->setLabel(\$this->getView()->tradutor('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE).{$linkAjuda});"));
+                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE).{$linkAjuda});"));
                     }
 
                     if ($formularioElementoObject->getAjudaObject()->id){
                         if ($formularioElementoObject->getAjudaObject()->constanteTextualHint)
-                            fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . "->setInvalidMessage(\$this->getView()->tradutor('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}', DEFAULT_USER_LANGUAGE));"));
+                            fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}', DEFAULT_USER_LANGUAGE));"));
                     }
                     
                     // verificando se o elemento pode ser carregando com dados
                     if ($formularioElementoObject->elementReloadable){
-                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . 'if ($options!=null)'));
-                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao+1) . $formElementLoop . "->setValue(\$options->{$formularioElementoObject->elementName});"));                    	
+                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE));
+                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao+1) . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(" . FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE . "{$formularioElementoObject->elementName});"));                    	
                     }
                     
                     // verificando se o é preciso determinar ambiente de desenvolvimento
                     if ($elementoAmbienteDesenvolvimento){
                         $nivelIdentacao--;                    	
-                        fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . "}"));
+                        fputs($fileResource, Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formCodeBlockEndTag);
                     }
                                   	
                     fputs($fileResource, QUEBRA_DE_LINHA);
@@ -265,7 +276,7 @@ class Basico_Model_GeradorFormulario
                 	$contador++;
                 }
                 
-                fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . "\$this->addElements(" . FORM_GERADOR_ELEMENTS . ");"));
+                fputs($fileResource, Basico_Model_Util::retornaStringComQuebraDeLinha(Basico_Model_Util::retornaIdentacao($nivelIdentacao) . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");"));
                 // nivel 1 de identação
                 $nivelIdentacao--;
                 fputs($fileResource, Basico_Model_Util::retornaIdentacao($nivelIdentacao) . $formCodeBlockEndTag);

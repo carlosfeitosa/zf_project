@@ -114,6 +114,29 @@ $header = <<<TEXT
 TEXT;
 define("FORM_GERADOR_ADD_ELEMENTS_COMMENT", $header);
 
+define("FORM_GERADOR_FORM_SETNAME", '$this->setName');
+define("FORM_GERADOR_FORM_SETMETHOD", '$this->setMethod');
+define("FORM_GERADOR_FORM_SETACTION", '$this->setAction');
+define("FORM_GERADOR_FORM_ADDATTRIBS", '$this->addAttribs');
+define("FORM_GERADOR_FORM_SETDECORATORS", '$this->setDecorators');
+define("FORM_GERADOR_FORM_ADDELEMENTS", '$this->addElements');
+
+define("FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP", 'if (!Basico_Model_Util::ambienteDesenvolvimento())');
+define("FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT", '$this->createElement');
+define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS", '->setAttribs');
+define("FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE", '->setRequired(true)');
+define("FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_FALSE", '->setRequired(false)');
+define("FORM_GERADOR_FORM_ELEMENT_ADDFILTERS", '->addFilters');
+define("FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR", '->addValidator');
+define("FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR", '->AddDecorator');
+define("FORM_GERADOR_FORM_ELEMENT_SETLABEL", '->setLabel');
+define("FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE", '->setInvalidMessage');
+define("FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE", 'if ($options!=null)');
+define("FORM_GERADOR_FORM_ELEMENT_SETVALUE", '->setValue');
+define("FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE", '$options->');
+
+define("FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL", '$this->getView()->tradutor');
+
 
 /**
  * EMAIL

@@ -195,4 +195,19 @@ class Basico_Model_Util
 	{
 		return $caracter . $string . $caracter;
 	}
+
+	/**
+	 * Retorna uma string contendo a chamada javascript para abrir uma
+	 * caixa de diálogo
+	 * @param $dialogName
+	 * @param $titulo
+	 * @param $mensagem
+	 * @param $exibeOkButton
+	 */
+	public static function retornaJavaScriptDialog($dialogName, $titulo, $mensagem, $exibeOkButton = true)
+	{
+		$exibeOkButton = (int) $exibeOkButton;
+		
+		return "javascript:showDialogAlert(\'{$dialogName}\', \'' . {$titulo} . '\', \'' . {$mensagem} . '\', {$exibeOkButton})";		
+	}	
 }

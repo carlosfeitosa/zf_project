@@ -34,10 +34,6 @@ class Basico_Model_Decorator
 	 * @var String
 	 */
 	protected $_decorator;
-	/**
-	 * @var Integer
-	 */
-	protected $_categoria;
     /**
      * 
      * @var String
@@ -243,28 +239,6 @@ class Basico_Model_Decorator
 		return $this->_id;
 	}
 	
-    /**
-    * Set entry categoria
-    * 
-    * @param  int $categoria 
-    * @return Basico_Model_Decorator
-    */
-    public function setCategoria($categoria)
-    {
-        $this->_categoria = (int) $categoria;
-        return $this;
-    }
-
-    /**
-    * Retrieve entry categoria
-    * 
-    * @return null|int
-    */
-    public function getCategoria()
-    {
-        return $this->_categoria;
-    }
-
 	/**
 	* Set data mapper
 	* 
