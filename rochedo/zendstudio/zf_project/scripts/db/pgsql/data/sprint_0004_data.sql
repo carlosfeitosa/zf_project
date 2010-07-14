@@ -10,7 +10,10 @@
 * 						13/07/2010 - insercao do ouput (categoria e template, tambem)
 * 									 DOJO;
 * 								   - insercao do valores TRUE para o campo element_reloadable
-* 									 na tabela formulario_elemento.
+* 									 na tabela formulario_elemento;
+* 						14/07/2010 - insercao da categoria FORMULARIO_ELEMENTO_DECORATOR;
+* 							       - insercao do decorator FORMULARIO_ELEMENTO_DECORATOR;
+* 								   - vinculacao de formulario_elemento com decorator.
 */
 
 /* TIPO CATEGORIA */
@@ -105,6 +108,13 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_VALIDATOR' AS nome, 'Validadores para elementos de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_DECORATOR' AS nome, 'Decorador para elementos de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -281,6 +291,14 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR';
 
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_LABEL_ESCAPE' AS nome, 'Decorator que permite escapar tags html dentro de um label de um campo no formulários.' AS descricao,
+       '''Label'', array(''escape'' => false)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR';
+
 
 /* MODULO */
 
@@ -365,8 +383,9 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 /* FORMULARIO ELEMENTO */
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
-                                 nome, descricao, constante_textual_label, element_name,
-                                 element_attribs, element, element_reloadable, rowinfo)
+								 id_decorator, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -381,6 +400,13 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS decorator,
                               'FIELD_NOME_USUARIO' AS nome, 'Elemento campo nome do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_NOME' AS constante_textual_label,
                               'nome' AS element_name, '''size'' => 100' AS element_attribs,
@@ -391,8 +417,9 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
-                                 nome, descricao, constante_textual_label, element_name,
-                                 element_attribs, element, element_reloadable, rowinfo)
+								 id_decorator, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -407,6 +434,13 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS decorator,
                               'FIELD_EMAIL_USUARIO' AS nome, 'Elemento campo e-mail do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_EMAIL' AS constante_textual_label,
                               'email' AS element_name, '''size'' => 80' AS element_attribs,

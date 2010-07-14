@@ -10,6 +10,7 @@
 * 						08/07/2010 - criacao das tabelas modulo, modulo_perfil, modulo_formulario,
 * 									 pk e fks relacionadas;
 * 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento
+* 						14/03/2010 - adicao do campo id_decorator na tabela formulario_elemento
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -103,6 +104,7 @@ create table formulario_elemento (
 	id_categoria int not null ,
 	id_ajuda int null ,
     id_formulario_elemento_filter int null ,
+    id_decorator int null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
@@ -446,6 +448,12 @@ alter table formulario_elemento add
 	(
 		id_formulario_elemento_filter
 	) references formulario_elemento_filter (
+		id
+	),
+	constraint fk_formulario_elemento_decorator foreign key
+	(
+		id_decorator
+	) references decorator (
 		id
 	);
 
