@@ -475,7 +475,7 @@ INSERT INTO formulario_elemento (id_categoria, nome, descricao, constante_textua
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, 'Botão para submissão de formulários.' AS descricao,
        'FORM_BUTTON_SUBMIT' AS constante_textual_label, 'enviar' AS element_name, 
-       '''submit'', ''enviar'', array(''label'' => ''Enviar'',)' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       '''submit'', ''enviar'',' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
