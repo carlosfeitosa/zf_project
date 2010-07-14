@@ -1,21 +1,20 @@
 <?php
-
 /**
- * FormularioElementoFormularioElementoValidador table data gateway
+ * FormularioElementoFormularioElementoValidator table data gateway
  *
  * @uses       Zend_Db_Table_Abstract
  * @subpackage Model
  */
-class Basico_Model_DbTable_FormularioElementoFormularioElementoValidador extends Zend_Db_Table_Abstract
+class Basico_Model_DbTable_FormularioElementoFormularioElementoValidator extends Zend_Db_Table_Abstract
 {
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formulario_elemento_formulario_elemento_validador';
+    protected $_name = 'formulario_elemento_formulario_elemento_validator';
     protected $_referenceMap    = array(
-        'FormularioElementoValidador' => array(
-            'columns'           => array('formulario_elemento_validador'),
-            'refTableClass'     => 'FormularioElementoValidador',
+        'FormularioElementoValidator' => array(
+            'columns'           => array('formulario_elemento_validator'),
+            'refTableClass'     => 'FormularioElementoValidator',
             'refColumns'        => array('id')
         ),
         'FormularioElemento' => array(

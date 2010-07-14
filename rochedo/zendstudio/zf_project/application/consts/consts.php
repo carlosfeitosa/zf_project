@@ -1,13 +1,27 @@
 <?php
 /**
  * Arquivo para definição de contantes da lógica do sistema.
+ * 
+ */
+
+
+/**
+ * REQUIRES
  */
 require_once("error_consts.php");
 require_once("log_consts.php");
 require_once("lang_consts.php");
 require_once("dictionary_consts.php");
 
-// CATEGORIAS
+/**
+ * APLICAÇÃO
+ */
+define("IDENTACAO_PADRAO", "    ");
+define("QUEBRA_DE_LINHA", PHP_EOL);
+
+/**
+ * CATEGORIAS
+ */
 define("MENSAGEM_EMAIL_SIMPLES", "MENSAGEM_EMAIL_SIMPLES");
 define("PERFIL_USUARIO_NAO_VALIDADO", "USUARIO_NAO_VALIDADO");
 define("APPLICATION_SYSTEM_PERFIL", "SISTEMA");
@@ -31,12 +45,88 @@ define("MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA_OCULTA", "MENSA
 define("MENSAGEM_PESSOAS_ENVOLVIDAS_RESPONDER_PARA", "MENSAGEM_PESSOAS_ENVOLVIDAS_RESPONDER_PARA");
 define("SISTEMA_EMAIL", "SISTEMA_EMAIL");
 
-// EMAIL
+/**
+ * FORMULÁRIOS
+ */
+define("LOG_NOVO_FORMULARIO", "LOG_NOVO_FORMULARIO");
+define("LOG_NOVO_FORMULARIO_ELEMENTO", "LOG_NOVO_FORMULARIO_ELEMENTO");
+define("LOG_NOVO_FORMULARIO_ELEMENTO_FILTER", "LOG_NOVO_FORMULARIO_ELEMENTO_FILTER");
+define("LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR", "LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR");
+define("LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR", "LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR");
+define("LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO", "LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO");
+define("LOG_NOVO_FORMULARIO_TEMPLATE", "LOG_NOVO_FORMULARIO_TEMPLATE");
+define("LOG_NOVO_OUTPUT", "LOG_NOVO_OUTPUT");
+
+$header = <<<TEXT
+/**
+* Rochedo Framework
+*
+* Formulário gerado automáticamente pelo Gerador rochedo
+* em: @data_criacao
+*
+* LICENÇA DE USO
+*
+* (implementar licença)
+*
+*
+* @category   RochedoProject
+* @package    @modulo
+* @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
+* @license    (implementar)
+* @version    0.1: 2010-07-09 17:00:00
+*/
+TEXT;
+define("FORM_GERADOR_HEADER", $header);
+
+define("FORM_BEGIN_TAG", "<?php");
+define("FORM_END_TAG", "?>");
+
+
+$header = <<<TEXT
+@identacao/**
+@identacao* Constructor do Form
+@identacao* @param array \$options
+@identacao* @return @nome_classe
+@identacao*/
+TEXT;
+define("FORM_GERADOR_CONSTRUCTOR_HEADER", $header);
+
+define("FORM_GERADOR_CONSTRUCTOR_CALL", 'public function __construct($options = null)');
+define("FORM_GERADOR_CONSTRUCTOR_INHERITS", 'parent::__construct($options);');
+
+
+$header = <<<TEXT
+@identacao/**
+@identacao* Inicializando o formulário.
+@identacao*/
+TEXT;
+define("FORM_GERADOR_CONSTRUCTOR_COMMENT", $header);
+
+define("FORM_GERADOR_ELEMENTS", '$elements');
+define("FORM_CLASS_EXTENDS_DOJO_FORM", "Zend_Dojo_Form");
+define("FORM_CLASS_EXTENDS_ZEND_FORM", "Zend_Form");
+
+
+$header = <<<TEXT
+@identacao/**
+@identacao* Adicionando array de elementos.
+@identacao*/
+TEXT;
+define("FORM_GERADOR_ADD_ELEMENTS_COMMENT", $header);
+
+
+/**
+ * EMAIL
+ */
 define("EMAIL_CHARSET", "utf-8");
 
-//LINKS DO SISTEMA
+/**
+ * LINKS DO SISTEMA 
+ */
 define("LINK_VALIDACAO_USUARIO", "http://localhost/rochedo_project/public/basico/email/validarEmail/t/");
 define("LINK_DIALOG_FORM", "http://localhost/rochedo_project/public/basico/token/retornaDialogContent/t/");
 
-//LINK PARA CONTROLADOR DE TOKENS
+/*
+ * LINK PARA CONTROLADOR DE TOKENS 
+ */
 define("LINK_CONTROLADOR_TOKENS", "/basico/token/decode/t/");

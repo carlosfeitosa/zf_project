@@ -4,7 +4,7 @@
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_GeradorUniqueXml
+ * @uses       Basico_Model_GeradorXml
  * @subpackage Model
  */
 class Basico_Model_GeradorXml
@@ -54,7 +54,7 @@ class Basico_Model_GeradorXml
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_GeradorUniqueId
+	 * @return Basico_Model_GeradorXml
 	 */
 	public function setOptions(array $options)
 	{

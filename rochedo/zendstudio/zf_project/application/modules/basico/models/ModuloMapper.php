@@ -63,9 +63,9 @@ class Basico_Model_ModuloMapper
 				'path'   => $object->getPath(),
 				'instalado'   => $object->getInstalado(),
 				'ativo'   => $object->getAtivo(),
-				'dataDepreciacao'   => $object->getDataDepreciacao(),
-				'xmlAutoria'   => $object->getXmlAutoria(),
-                'moduloPai'   => $object->getModuloPai(),
+				'data_depreciacao'   => $object->getDataDepreciacao(),
+				'xml_autoria'   => $object->getXmlAutoria(),
+                'id_modulo_pai'   => $object->getModuloPai(),
                 'rowinfo'     => $object->getRowinfo(),
 
         );
@@ -110,9 +110,9 @@ class Basico_Model_ModuloMapper
 				->setPath($row->path)
 				->setInstalado($row->instalado)
 				->setAtivo($row->ativo)
-				->setDataDepreciacao($row->dataDepreciacao)
-				->setXmlAutoria($row->xmlAutoria)
-                ->setModuloPai($row->moduloPai)
+				->setDataDepreciacao($row->data_depreciacao)
+				->setXmlAutoria($row->xml_autoria)
+                ->setModuloPai($row->id_modulo_pai)
                 ->setRowinfo($row->rowinfo);
     }
 
@@ -136,9 +136,9 @@ class Basico_Model_ModuloMapper
 				->setPath($row->path)
 				->setInstalado($row->instalado)
 				->setAtivo($row->ativo)
-				->setDataDepreciacao($row->dataDepreciacao)
-				->setXmlAutoria($row->xmlAutoria)
-                ->setModuloPai($row->moduloPai)
+				->setDataDepreciacao($row->data_depreciacao)
+				->setXmlAutoria($row->xml_autoria)
+                ->setModuloPai($row->id_modulo_pai)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -166,9 +166,9 @@ class Basico_Model_ModuloMapper
 				->setPath($row->path)
 				->setInstalado($row->instalado)
 				->setAtivo($row->ativo)
-				->setDataDepreciacao($row->dataDepreciacao)
-				->setXmlAutoria($row->xmlAutoria)
-                ->setModuloPai($row->moduloPai)
+				->setDataDepreciacao($row->data_depreciacao)
+				->setXmlAutoria($row->xml_autoria)
+                ->setModuloPai($row->id_modulo_pai)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -191,9 +191,9 @@ class Basico_Model_ModuloMapper
                         'path' => 'table1.path' ,
                         'instalado' => 'table1.instalado' ,
                         'ativo' => 'table1.ativo' ,
-                        'dataDepreciacao' => 'table1.dataDepreciacao' ,
-                        'xmlAutoria' => 'table1.xmlAutoria' ,
-                        'moduloPai' => 'table1.moduloPai', 
+                        'data_depreciacao' => 'table1.data_depreciacao' ,
+                        'xml_autoria' => 'table1.xml_autoria' ,
+                        'id_modulo_pai' => 'table1.id_modulo_pai', 
                         'rowinfo'   => 'table1.rowinfo' ))
             ->joinInner($join[0])
             ->where($where)
@@ -212,9 +212,9 @@ class Basico_Model_ModuloMapper
                 ->setPath($row['path'])
                 ->setInstalado($row['instalado'])
                 ->setAtivo($row['ativo'])
-                ->setDataDepreciacao($row['dataDepreciacao'])
-                ->setXmlAutoria($row['xmlAutoria'])
-                ->setModuloPai($row['moduloPai'])
+                ->setDataDepreciacao($row['data_depreciacao'])
+                ->setXmlAutoria($row['xml_autoria'])
+                ->setModuloPai($row['modulo_pai'])
                 ->setRowinfo($row['rowinfo'])
                 ->setMapper($this);
             $entries[] = $entry;
@@ -245,9 +245,9 @@ class Basico_Model_ModuloMapper
 				->setPath($row->path)
 				->setInstalado($row->instalado)
 				->setAtivo($row->ativo)
-				->setDataDepreciacao($row->dataDepreciacao)
-				->setXmlAutoria($row->xmlAutoria)
-                ->setModuloPai($row->moduloPai)
+				->setDataDepreciacao($row->data_depreciacao)
+				->setXmlAutoria($row->xml_autoria)
+                ->setModuloPai($row->id_modulo_pai)
                 ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

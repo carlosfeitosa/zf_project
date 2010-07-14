@@ -159,4 +159,40 @@ class Basico_Model_Util
 	{
 	    return Zend_Date::now('en-us');
 	}
+	
+	/**
+	 * Retorna espaços em branco, de acordo com o nível de identação
+	 * @param $nivel
+	 * @return String
+	 */
+	public static function retornaIdentacao($nivel)
+	{
+		$resultado = '';
+		
+		for ($i = 1; $i <= $nivel; $i++){
+			$resultado .= IDENTACAO_PADRAO;
+		}
+		
+		return $resultado;
+	}
+	
+	/**
+     * Retorna uma string com quebra de linha
+     * @param $string
+     * @return String
+     */
+	public static function retornaStringComQuebraDeLinha($string)
+	{
+		return $string . QUEBRA_DE_LINHA;
+	}
+	
+	/**
+	 * Retorna uma string entre o caracter passados por parametros
+	 * @param $string
+	 * @param $caracter
+	 */
+	public static function retornaStringEntreCaracter($string, $caracter)
+	{
+		return $caracter . $string . $caracter;
+	}
 }

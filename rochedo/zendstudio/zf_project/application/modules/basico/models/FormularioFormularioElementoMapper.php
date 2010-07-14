@@ -57,11 +57,11 @@ class Basico_Model_FormularioFormularioElementoMapper
     public function save(Basico_Model_FormularioFormularioElemento $object)
     {
         $data = array(
-                'formulario'          => $object->getFormulario(),
-                'formulario_elemento' => $object->getFormularioElemento(),
-                'element_required'    => $object->getElementRequired(),
-                'ordem'               => $object->getOrdem(),
-                'rowinfo'             => $object->getRowinfo(),
+                'id_formulario'          => $object->getFormulario(),
+                'id_formulario_elemento' => $object->getFormularioElemento(),
+                'element_required'       => $object->getElementRequired(),
+                'ordem'                  => $object->getOrdem(),
+                'rowinfo'                => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -97,8 +97,8 @@ class Basico_Model_FormularioFormularioElementoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setFormulario($row->formulario)
-               ->setFormularioElemento($row->formulario_elemento)
+               ->setFormulario($row->id_formulario)
+               ->setFormularioElemento($row->id_formulario_elemento)
                ->setElementRequired($row->element_required)
                ->setOrdem($row->ordem)
                ->setRowinfo($row->rowinfo);
@@ -117,8 +117,8 @@ class Basico_Model_FormularioFormularioElementoMapper
         {
             $entry = new Basico_Model_FormularioFormularioElemento();
             $entry->setId($row->id)
-                ->setFormulario($row->formulario)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setFormulario($row->id_formulario)
+                ->setFormularioElemento($row->id_formulario_elemento)
                 ->setElementRequired($row->element_required)
                 ->setOrdem($row->ordem)
                 ->setRowinfo($row->rowinfo)
@@ -141,8 +141,8 @@ class Basico_Model_FormularioFormularioElementoMapper
         {
             $entry = new Basico_Model_FormularioFormularioElemento();
             $entry->setId($row->id)
-                  ->setFormulario($row->formulario)
-                  ->setFormularioElemento($row->formulario_elemento)
+                  ->setFormulario($row->id_formulario)
+                  ->setFormularioElemento($row->id_formulario_elemento)
                   ->setElementRequired($row->element_required)
                   ->setOrdem($row->ordem)
                   ->setRowinfo($row->rowinfo)

@@ -4,10 +4,10 @@
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_FormularioElementoValidadorMapper
+ * @uses       Basico_Model_FormularioElementoValidatorMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoValidador
+class Basico_Model_FormularioElementoValidator
 {
 	/**
 	* @var int
@@ -15,7 +15,7 @@ class Basico_Model_FormularioElementoValidador
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_FormularioElementoValidadorMapper
+	 * @var Basico_Model_FormularioElementoValidatorMapper
 	 */
 	protected $_mapper;
 
@@ -92,7 +92,7 @@ class Basico_Model_FormularioElementoValidador
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_FormularioElementoValidador
+	 * @return Basico_Model_FormularioElementoValidator
 	 */
 	public function setOptions(array $options)
 	{
@@ -222,7 +222,7 @@ class Basico_Model_FormularioElementoValidador
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_FormularioElementoValidador
+	* @return Basico_Model_FormularioElementoValidator
 	*/
 	public function setId($id)
 	{
@@ -244,7 +244,7 @@ class Basico_Model_FormularioElementoValidador
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_FormularioElementoValidador
+	* @return Basico_Model_FormularioElementoValidator
 	*/
 	public function setMapper($mapper)
 	{
@@ -255,14 +255,14 @@ class Basico_Model_FormularioElementoValidador
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_FormularioElementoValidadorMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_FormularioElementoValidatorMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_FormularioElementoValidadorMapper
+	* @return Basico_Model_FormularioElementoValidatorMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_FormularioElementoValidadorMapper());
+			$this->setMapper(new Basico_Model_FormularioElementoValidatorMapper());
 		}
 		return $this->_mapper;
 	}
@@ -292,7 +292,7 @@ class Basico_Model_FormularioElementoValidador
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_FormularioElementoValidador
+	* @return Basico_Model_FormularioElementoValidator
 	*/
 	public function find($id)
 	{

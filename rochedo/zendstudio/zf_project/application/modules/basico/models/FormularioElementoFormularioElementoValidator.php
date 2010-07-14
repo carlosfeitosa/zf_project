@@ -1,13 +1,13 @@
 <?php
 /**
- * FormularioElementoFormularioElementoValidador model
+ * FormularioElementoFormularioElementoValidator model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_FormularioElementoFormularioElementoValidadorMapper
+ * @uses       Basico_Model_FormularioElementoFormularioElementoValidatorMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoFormularioElementoValidador
+class Basico_Model_FormularioElementoFormularioElementoValidator
 {
     /**
     * @var int
@@ -15,14 +15,14 @@ class Basico_Model_FormularioElementoFormularioElementoValidador
     protected $_id;
 
     /**
-     * @var Basico_Model_FormularioElementoFormularioElementoValidadorMapper
+     * @var Basico_Model_FormularioElementoFormularioElementoValidatorMapper
      */
     protected $_mapper;
 
     /**
-     * @var FormularioElementoValidador
+     * @var FormularioElementoValidator
      */
-    protected $_formularioElementoValidador;
+    protected $_formularioElementoValidator;
     
     /**
      * @var FormularioElemento
@@ -85,7 +85,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidador
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_FormularioElementoFormularioElementoValidador
+     * @return Basico_Model_FormularioElementoFormularioElementoValidator
      */
     public function setOptions(array $options)
     {
@@ -102,35 +102,35 @@ class Basico_Model_FormularioElementoFormularioElementoValidador
     }
     
     /**
-    * Set formularioelementovalidador
+    * Set formularioelementovalidator
     * 
     * @param int $ 
-    * @return Basico_Model_FormularioElementoValidador
+    * @return Basico_Model_FormularioElementoValidator
     */
-    public function setFormularioElementoValidador($formularioElementoValidador)
+    public function setFormularioElementoValidator($formularioElementoValidator)
     {
-        $this->_formularioElementoValidador = (int) $formularioElementoValidador;
+        $this->_formularioElementoValidator = (int) $formularioElementoValidator;
         return $this;
     }
 
     /**
-    * Get formularioelementovalidador
+    * Get formularioelementovalidator
     * 
     * @return null|int
     */
-    public function getFormularioElementoValidador()
+    public function getFormularioElementoValidator()
     {
-        return $this->_formularioElementoValidador;
+        return $this->_formularioElementoValidator;
     }
  
     /**
-     * Get formularioelementovalidador object
-     * @return null|FormularioElementoValidador
+     * Get formularioelementovalidator object
+     * @return null|FormularioElementoValidator
      */
-    public function getFormularioElementoValidadorObject()
+    public function getFormularioElementoValidatorObject()
     {
-        $model = new Basico_Model_FormularioElementoValidador();
-        $object = $model->find($this->_formularioElementoValidador);
+        $model = new Basico_Model_FormularioElementoValidator();
+        $object = $model->find($this->_formularioElementoValidator);
         return $object;
     }
     
@@ -193,7 +193,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidador
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_FormularioElementoFormularioElementoValidador
+    * @return Basico_Model_FormularioElementoFormularioElementoValidator
     */
     public function setId($id)
     {
@@ -215,7 +215,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidador
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_FormularioElementoFormularioElementoValidador
+    * @return Basico_Model_FormularioElementoFormularioElementoValidator
     */
     public function setMapper($mapper)
     {
@@ -226,14 +226,14 @@ class Basico_Model_FormularioElementoFormularioElementoValidador
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_FormularioElementoFormularioElementoValidadorMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_FormularioElementoFormularioElementoValidatorMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_FormularioElementoFormularioElementoValidadorMapper
+    * @return Basico_Model_FormularioElementoFormularioElementoValidatorMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_FormularioElementoFormularioElementoValidadorMapper());
+            $this->setMapper(new Basico_Model_FormularioElementoFormularioElementoValidatorMapper());
         }
         return $this->_mapper;
     }
@@ -263,7 +263,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidador
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_FormularioElementoFormularioElementoValidador
+    * @return Basico_Model_FormularioElementoFormularioElementoValidator
       
     */
     public function find($id)

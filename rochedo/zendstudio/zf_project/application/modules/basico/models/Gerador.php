@@ -102,4 +102,15 @@ class Basico_Model_Gerador
     {
         return new Basico_Model_GeradorXml();
     }
+    
+	
+	/**
+     * Get geradorFormulario object
+     * @return null|GeradorFormulario
+     */
+    public function getGeradorFormularioObject()
+    {
+        return new Basico_Model_GeradorFormulario();
+    }
+    
 }

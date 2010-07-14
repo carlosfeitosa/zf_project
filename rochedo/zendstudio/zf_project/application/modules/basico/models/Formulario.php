@@ -59,6 +59,14 @@ class Basico_Model_Formulario
 	 * @var Integer
 	 */
 	protected $_formularioPai;
+    /**
+     * @var String
+     */
+    protected $_formAttribs;
+    /**
+     * @var Integer
+     */
+    protected $_decorator;
 	/**
 	 * @var Date
 	 */
@@ -371,6 +379,50 @@ class Basico_Model_Formulario
 	{
 		return $this->_formularioPai;
 	}
+	
+    /**
+    * Set decorator
+    * 
+    * @param Integer $decorator 
+    * @return Integer
+    */
+    public function setDecorator($decorator)
+    {
+        $this->_decorator = (Integer) $decorator;
+        return $this;
+    }
+
+    /**
+    * Get decorator
+    * 
+    * @return null|Integer
+    */
+    public function getDecorator()
+    {
+        return $this->_decorator;
+    }
+	
+    /**
+    * Set formAttribs
+    * 
+    * @param String $formAttribs 
+    * @return String
+    */
+    public function setFormAttribs($formAttribs)
+    {
+        $this->_formAttribs = (String) $formAttribs;
+        return $this;
+    }
+
+    /**
+    * Get formAttribs
+    * 
+    * @return null|String
+    */
+    public function getFormAttribs()
+    {
+        return $this->_formAttribs;
+    }
      
 	/**
 	* Set validadeInicio
@@ -525,7 +577,76 @@ class Basico_Model_Formulario
 	{
 		return $this->_id;
 	}
-
+	
+    /**
+     * Get decorator object
+     * @return null|decorator
+     */
+    public function getDecoratorObject()
+    {
+        $model = new Basico_Model_Decorator();
+        $object = $model->find($this->_decorator);
+        return $object;
+    }
+	
+    /**
+     * Get modulo objects
+     * @return null|array
+     */
+    public function getModulosObjects(array $excludeModulesNames = null)
+    {
+        $modelModuloFormulario = new Basico_Model_ModuloFormulario();
+        $arrayModulosFormulariosObjects = $modelModuloFormulario->fetchList("id_formulario = {$this->_id}");
+        $modelModulo = new Basico_Model_Modulo();
+        
+        $arrayIdsModulos = array();
+        foreach ($arrayModulosFormulariosObjects as $moduloFormularioObject){
+            $arrayIdsModulos[] = $moduloFormularioObject->modulo;
+        }
+        
+        $stringIdsModulos = implode(',', $arrayIdsModulos);
+        
+        for ($contador = 0; $contador <= count($excludeModulesNames)-1; $contador++)
+            $excludeModulesNames[$contador] = Basico_Model_Util::retornaStringEntreCaracter($excludeModulesNames[$contador], "'"); 
+        
+        if ($excludeModulesNames)
+            $stringExcludeModulesNames = implode(',', $excludeModulesNames);
+        else
+            $stringExcludeModulesNames = null;
+        
+        if (($stringIdsModulos) and ($stringExcludeModulesNames)) 
+            $arrayObjects = $modelModulo->fetchList("id IN ({$stringIdsModulos}) and nome NOT IN ({$stringExcludeModulesNames})");
+        else if ($stringIdsModulos) 
+            $arrayObjects = $modelModulo->fetchList("id IN ({$stringIdsModulos})");            
+        else
+            $arrayObjects = array();
+        
+        return $arrayObjects;
+    }
+    
+    
+    /**
+     * Get formularioElemento objects
+     * @return null|array
+     */
+    public function getFormularioElementosObjects()
+    {
+        $modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$this->_id}");
+        $modelFormularioElemento = new Basico_Model_FormularioElemento();
+        
+        $arrayIdsFormularioElementos = array();
+        foreach ($arrayFormularioFormularioElementosObjects as $formularioElementoObject){
+            $arrayIdsFormularioElementos[] = $formularioElementoObject->formularioElemento;
+        }
+        
+        $stringIdsFormularioElementos = implode(',', $arrayIdsFormularioElementos);      
+        
+        $arrayObjects = $modelFormularioElemento->fetchList("id IN ({$stringIdsFormularioElementos})"); 
+        
+        return $arrayObjects;
+    }   
+	
 	/**
 	* Set data mapper
 	* 

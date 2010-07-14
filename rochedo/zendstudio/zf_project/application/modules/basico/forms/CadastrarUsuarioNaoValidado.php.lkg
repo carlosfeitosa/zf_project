@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 13/07/2010 17:30:43
+* em: 13/07/2010 17:25:45
 *
 * LICENÇA DE USO
 *
@@ -85,10 +85,12 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
             $elements[2]->setLabel($this->getView()->tradutor('FORM_FIELD_CAPTCHA_6', DEFAULT_USER_LANGUAGE).'');
         }
 
-        $elements[3] = $this->createElement('hash', 'csrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[3] = $this->createElement('submit', 'enviar', array('label' => 'Enviar',));
         $elements[3]->setRequired(true);
+        $elements[3]->AddDecorator('Label', array('escape' => false));
+        $elements[3]->setLabel($this->getView()->tradutor('FORM_BUTTON_SUBMIT', DEFAULT_USER_LANGUAGE).'');
 
-        $elements[4] = $this->createElement('submit', 'enviar', array('label' => 'Enviar',));
+        $elements[4] = $this->createElement('hash', 'csrf', array('ignore' => true, 'salt' => 'unique',));
         $elements[4]->setRequired(true);
 
         $this->addElements($elements);

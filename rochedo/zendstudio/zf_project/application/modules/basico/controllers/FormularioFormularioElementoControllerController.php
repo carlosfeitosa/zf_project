@@ -61,7 +61,7 @@ class Basico_FormularioFormularioElementoControllerController
             $novoLog->categoria      = $categoriaLog->id;
 
             $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVA_PESSOA;
+            $novoLog->descricao      = LOG_MSG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO;
             $controladorLog->salvarLog($novoLog);
 			
 		} catch (Exception $e) {

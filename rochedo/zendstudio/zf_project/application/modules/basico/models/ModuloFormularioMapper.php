@@ -57,8 +57,8 @@ class Basico_Model_ModuloFormularioMapper
     public function save(Basico_Model_ModuloFormulario $object)
     {
         $data = array(
-                'modulo'     => $object->getModulo(),
-                'formulario' => $object->getFormulario(),
+                'id_modulo'     => $object->getModulo(),
+                'id_formulario' => $object->getFormulario(),
                 'rowinfo'    => $object->getRowinfo(),
         );
 
@@ -95,8 +95,8 @@ class Basico_Model_ModuloFormularioMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setModulo($row->modulo)
-               ->setFormulario($row->formulario)
+               ->setModulo($row->id_modulo)
+               ->setFormulario($row->id_formulario)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -113,8 +113,8 @@ class Basico_Model_ModuloFormularioMapper
         {
             $entry = new Basico_Model_ModuloFormulario();
             $entry->setId($row->id)
-                ->setModulo($row->modulo)
-                ->setFormulario($row->formulario)
+                ->setModulo($row->id_modulo)
+                ->setFormulario($row->id_formulario)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
@@ -135,8 +135,8 @@ class Basico_Model_ModuloFormularioMapper
         {
             $entry = new Basico_Model_ModuloFormulario();
             $entry->setId($row->id)
-                  ->setModulo($row->modulo)
-                  ->setFormulario($row->formulario)
+                  ->setModulo($row->id_modulo)
+                  ->setFormulario($row->id_formulario)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

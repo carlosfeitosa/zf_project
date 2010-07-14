@@ -5,10 +5,10 @@
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_FormularioElementoValidador
+ * @uses       Basico_Model_DbTable_FormularioElementoValidator
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoValidadorMapper
+class Basico_Model_FormularioElementoValidatorMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_FormularioElementoValidadorMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_FormularioElementoValidadorMapper
+     * @return Basico_Model_FormularioElementoValidatorMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,25 +36,25 @@ class Basico_Model_FormularioElementoValidadorMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_FormularioElementoValidador if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormularioElementoValidator if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_FormularioElementoValidador');
+            $this->setDbTable('Basico_Model_DbTable_FormularioElementoValidator');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a FormularioElementoValidador entry
+     * Save a FormularioElementoValidator entry
      * 
-     * @param  Basico_Model_FormularioElementoValidador $object
+     * @param  Basico_Model_FormularioElementoValidator $object
      * @return void
      */
-    public function save(Basico_Model_FormularioElementoValidador $object)
+    public function save(Basico_Model_FormularioElementoValidator $object)
     {
         $data = array(
 				'nome'   => $object->getNome(),
@@ -74,23 +74,23 @@ class Basico_Model_FormularioElementoValidadorMapper
     }
     
 	/**
-	* Delete a FormularioElementoValidador entry
-	* @param Basico_Model_FormularioElementoValidador $object
+	* Delete a FormularioElementoValidator entry
+	* @param Basico_Model_FormularioElementoValidator $object
 	* @return void
 	*/
-	public function delete(Basico_Model_FormularioElementoValidador $object)
+	public function delete(Basico_Model_FormularioElementoValidator $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a FormularioElementoValidador entry by id
+     * Find a FormularioElementoValidator entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_FormularioElementoValidador $object 
+     * @param  Basico_Model_FormularioElementoValidator $object 
      * @return void
      */
-    public function find($id, Basico_Model_FormularioElementoValidador $object)
+    public function find($id, Basico_Model_FormularioElementoValidator $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -107,7 +107,7 @@ class Basico_Model_FormularioElementoValidadorMapper
     }
 
 	/**
-	 * Fetch all formularioelementovalidador entries
+	 * Fetch all formularioelementovalidator entries
 	 * 
 	 * @return array
 	 */
@@ -117,7 +117,7 @@ class Basico_Model_FormularioElementoValidadorMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_FormularioElementoValidador();
+			$entry = new Basico_Model_FormularioElementoValidator();
 			$entry->setId($row->id)
 
 				->setNome($row->nome)
@@ -132,7 +132,7 @@ class Basico_Model_FormularioElementoValidadorMapper
 	}
 	
 	/**
-	 * Fetch all formularioelementovalidador entries
+	 * Fetch all formularioelementovalidator entries
 	 * 
 	 * @return array
 	 */
@@ -142,7 +142,7 @@ class Basico_Model_FormularioElementoValidadorMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_FormularioElementoValidador();
+			$entry = new Basico_Model_FormularioElementoValidator();
 			$entry->setId($row->id)
 
 				->setNome($row->nome)

@@ -256,4 +256,58 @@ class Basico_CategoriaControllerController
 			return $categoriaLinguagem;
 		throw new Exception(MSG_ERRO_CATEGORIA_LINGUAGEM);
 	}
+	
+	
+	
+	
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormulario
+	 */
+	public function retornaCategoriaLogNovoFormulario()
+	{
+		$categoriaLogNovoFormulario = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO);
+		if (isset($categoriaLogNovoFormulario))
+			return $categoriaLogNovoFormulario;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElemento
+	 */
+	public function retornaCategoriaLogNovoFormularioElemento()
+	{
+		$categoriaLogNovoFormularioElemento = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO);
+		if (isset($categoriaLogNovoFormularioElemento))
+			return $categoriaLogNovoFormularioElemento;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO);
+	}
+	
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoFormularioElementoValidador
+	 */
+	public function retornaCategoriaLogNovoFormularioElementoFormularioElementoValidador()
+	{
+		$categoriaLogNovoFormularioElementoFormularioElementoValidador = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+		if (isset($categoriaLogNovoFormularioElementoFormularioElementoValidador))
+			return $categoriaLogNovoFormularioElementoFormularioElementoValidador;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
+	 */
+	public function retornaCategoriaLogNovoFormularioElementoValidador()
+	{
+		$categoriaLogNovoFormularioElementoValidador = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
+		if (isset($categoriaLogNovoFormularioElementoValidador))
+			return $categoriaLogNovoFormularioElementoValidador;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
 }

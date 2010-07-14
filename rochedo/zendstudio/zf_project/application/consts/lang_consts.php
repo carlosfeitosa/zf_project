@@ -1,6 +1,13 @@
 <?php
+/**
+ * Arquivo para definição de constantes de linguas do sistema.
+ * 
+ */
 
-//LINGUAS
+
+/*
+ * LINGUAS
+ */
 define("LANGUAGE_AF",    "af");
 define("LANGUAGE_AR_AE", "ar-ae");
 define("LANGUAGE_AR_BH", "ar-bh");

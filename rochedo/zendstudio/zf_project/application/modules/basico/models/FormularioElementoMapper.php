@@ -63,6 +63,7 @@ class Basico_Model_FormularioElementoMapper
 				'element_name'   => $object->getElementName(),
                 'element_attribs' => $object->getElementAttribs(),
 				'element'   => $object->getElement(),
+                'element_reloadable' => $object->getElementReloadable(),
                 'id_categoria' => $object->getCategoria(),
                 'id_ajuda'     => $object->getAjuda(),
                 'id_formulario_elemento_filter' => $object->getFormularioElementoFilter(),       
@@ -110,6 +111,7 @@ class Basico_Model_FormularioElementoMapper
 				->setElementName($row->element_name)
 				->setElementAttribs($row->element_attribs)
 				->setElement($row->element)
+				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
 				->setAjuda($row->id_ajuda)
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
@@ -136,6 +138,7 @@ class Basico_Model_FormularioElementoMapper
 				->setElementName($row->element_name)
 				->setElementAttribs($row->element_attribs)
 				->setElement($row->element)
+				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
 				->setAjuda($row->id_ajuda)
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
@@ -166,6 +169,7 @@ class Basico_Model_FormularioElementoMapper
 				->setElementName($row->element_name)
 				->setElementAttribs($row->element_attribs)
 				->setElement($row->element)
+				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
 				->setAjuda($row->id_ajuda)
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)

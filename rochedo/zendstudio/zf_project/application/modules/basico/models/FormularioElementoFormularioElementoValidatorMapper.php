@@ -1,14 +1,14 @@
 <?php
 /**
- * FormularioElementoFormularioElementoValidador data mapper
+ * FormularioElementoFormularioElementoValidator data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_FormularioElementoFormularioElementoValidador
+ * @uses       Basico_Model_DbTable_FormularioElementoFormularioElementoValidator
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
+class Basico_Model_FormularioElementoFormularioElementoValidatorMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_FormularioElementoFormularioElementoValidadorMapper
+     * @return Basico_Model_FormularioElementoFormularioElementoValidatorMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_FormularioElementoValidadorFormularioElemento if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormularioElementoValidatorFormularioElemento if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_FormularioElementoFormularioElementoValidador');
+            $this->setDbTable('Basico_Model_DbTable_FormularioElementoFormularioElementoValidator');
         }
         return $this->_dbTable;
     }
@@ -51,13 +51,13 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_FormularioElementoFormularioElementoValidador $object
+     * @param  Basico_Model_FormularioElementoFormularioElementoValidator $object
      * @return void
      */
-    public function save(Basico_Model_FormularioElementoFormularioElementoValidador $object)
+    public function save(Basico_Model_FormularioElementoFormularioElementoValidator $object)
     {
         $data = array(
-                'id_formulario_elemento_validador' => $object->getFormularioElementoValidador(),
+                'id_formulario_elemento_validator' => $object->getFormularioElementoValidator(),
                 'id_formulario_elemento' => $object->getFormularioElemento(),
                 'rowinfo'             => $object->getRowinfo(),
         );
@@ -71,11 +71,11 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
     }
     
     /**
-    * Delete a Basico_Model_FormularioElementoFormularioElementoValidador entry
-    * @param Basico_Model_FormularioElementoFormularioElementoValidador $object
+    * Delete a Basico_Model_FormularioElementoFormularioElementoValidator entry
+    * @param Basico_Model_FormularioElementoFormularioElementoValidator $object
     * @return void
     */
-    public function delete(Basico_Model_FormularioElementoFormularioElementoValidador $object)
+    public function delete(Basico_Model_FormularioElementoFormularioElementoValidator $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -84,10 +84,10 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_FormularioElementoFormularioElementoValidador $object 
+     * @param  Basico_Model_FormularioElementoFormularioElementoValidator $object 
      * @return void
      */
-    public function find($id, Basico_Model_FormularioElementoFormularioElementoValidador $object)
+    public function find($id, Basico_Model_FormularioElementoFormularioElementoValidator $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -95,13 +95,13 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+               ->setFormularioElementoValidator($row->id_formulario_elemento_validator)
                ->setFormularioElemento($row->id_formulario_elemento)
                ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all Basico_Model_FormularioElementoFormularioElementoValidador entries
+     * Fetch all Basico_Model_FormularioElementoFormularioElementoValidator entries
      * 
      * @return array
      */
@@ -111,9 +111,9 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_FormularioElementoFormularioElementoValidador();
+            $entry = new Basico_Model_FormularioElementoFormularioElementoValidator();
             $entry->setId($row->id)
-                ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+                ->setFormularioElementoValidator($row->id_formulario_elemento_validator)
                 ->setFormularioElemento($row->id_formulario_elemento)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
@@ -133,9 +133,9 @@ class Basico_Model_FormularioElementoFormularioElementoValidadorMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_FormularioElementoFormularioElementoValidador();
+            $entry = new Basico_Model_FormularioElementoFormularioElementoValidator();
             $entry->setId($row->id)
-                  ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+                  ->setFormularioElementoValidator($row->id_formulario_elemento_validator)
                   ->setFormularioElemento($row->id_formulario_elemento)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);

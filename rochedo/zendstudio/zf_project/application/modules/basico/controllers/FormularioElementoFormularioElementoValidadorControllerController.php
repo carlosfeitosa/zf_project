@@ -40,13 +40,13 @@ class Basico_FormularioElementoFormularioElementoValidadorControllerController
 	
 	/**
 	 * Salva objeto no Banco de dados.
-	 * @param Basico_Model_Formulario $novoFormulario
+	 * @param Basico_Model_Formulario $novoFormularioElementoFormularioElementoValidador
 	 * @return void
 	 */
-	public function salvarFormulario($novoFormulario)
+	public function salvarFormulario($novoFormularioElementoFormularioElementoValidador)
 	{
 		try {
-			$this->formulario = $novoFormulario;
+			$this->formulario = $novoFormularioElementoFormularioElementoValidador;
 			$this->formulario->save();
 			
 			// INICIALIZACAO DOS CONTROLLERS
@@ -54,14 +54,14 @@ class Basico_FormularioElementoFormularioElementoValidadorControllerController
 			$controladorLog       = Basico_LogControllerController::init();
 			
             // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaPessoa();
+            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoFormularioElementoFormularioElementoValidador();
 
             $novoLog = new Basico_Model_Log();
             $novoLog->pessoaperfil   = Basico_Model_Util::retornaIdPessoaPerfilSistema();
             $novoLog->categoria      = $categoriaLog->id;
 
             $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVA_PESSOA;
+            $novoLog->descricao      = LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR;
             $controladorLog->salvarLog($novoLog);
 			
 		} catch (Exception $e) {

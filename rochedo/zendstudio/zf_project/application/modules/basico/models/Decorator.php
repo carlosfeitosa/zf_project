@@ -18,7 +18,10 @@ class Basico_Model_Decorator
 	 * @var Basico_Model_DecoratorMapper
 	 */
 	protected $_mapper;
-
+    /**
+    * @var int
+    */
+    protected $_categoria;
 	/**
 	 * @var String
 	 */
@@ -31,16 +34,6 @@ class Basico_Model_Decorator
 	 * @var String
 	 */
 	protected $_decorator;
-    /**
-     * @var Integer
-     */
-    protected $_formulario;
-
-    /**
-     * @var Integer
-     */
-    protected $_formularioElemento;
-    
     /**
      * 
      * @var String
@@ -179,73 +172,7 @@ class Basico_Model_Decorator
 	{
 		return $this->_decorator;
 	}
-     
-	/**
-	* Set formulario
-	* 
-	* @param int $formulario 
-	* @return Basico_Model_Formulario
-	*/
-	public function setFormulario($formulario)
-	{
-		$this->_formulario = (int) $formulario;
-		return $this;
-	}
-
-	/**
-	* Get formulario
-	* 
-	* @return null|int
-	*/
-	public function getFormulario()
-	{
-		return $this->_formulario;
-	}
- 
-    /**
-     * Get formulario object
-     * @return null|Formulario
-     */
-    public function getFormularioObject()
-    {
-        $model = new Basico_Model_Formulario();
-        $object = $model->find($this->_formulario);
-        return $object;
-    }
-    
-	/**
-	* Set formularioElemento
-	* 
-	* @param int $formularioElemento 
-	* @return Basico_Model_FormularioElemento
-	*/
-	public function setFormularioElemento($formularioElemento)
-	{
-		$this->_formularioElemento = (int) $formularioElemento;
-		return $this;
-	}
-
-	/**
-	* Get formularioElemento
-	* 
-	* @return null|int
-	*/
-	public function getFormularioElemento()
-	{
-		return $this->_formularioElemento;
-	}
- 
-    /**
-     * Get formularioElemento object
-     * @return null|FormularioElemento
-     */
-    public function getFormularioElementoObject()
-    {
-        $model = new Basico_Model_FormularioElemento();
-        $object = $model->find($this->_formularioElemento);
-        return $object;
-    }
-
+       
     /**
 	* Set rowinfo
 	* 
@@ -289,6 +216,28 @@ class Basico_Model_Decorator
 	{
 		return $this->_id;
 	}
+	
+    /**
+    * Set entry categoria
+    * 
+    * @param  int $categoria 
+    * @return Basico_Model_Decorator
+    */
+    public function setCategoria($categoria)
+    {
+        $this->_categoria = (int) $categoria;
+        return $this;
+    }
+
+    /**
+    * Retrieve entry categoria
+    * 
+    * @return null|int
+    */
+    public function getCategoria()
+    {
+        return $this->_categoria;
+    }
 
 	/**
 	* Set data mapper

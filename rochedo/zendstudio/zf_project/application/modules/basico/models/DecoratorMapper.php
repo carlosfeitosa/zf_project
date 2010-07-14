@@ -57,11 +57,10 @@ class Basico_Model_DecoratorMapper
     public function save(Basico_Model_Decorator $object)
     {
         $data = array(
+                'id_categoria' => $object->getCategoria(),
 				'nome'   => $object->getNome(),
 				'descricao'   => $object->getDescricao(),
 				'decorator'   => $object->getDecorator(),
-                'formulario'   => $object->getFormulario(),
-                'formularioElemento'   => $object->getFormularioElemento(),
                 'rowinfo'              => $object->getRowinfo(),
 
         );
@@ -99,12 +98,10 @@ class Basico_Model_DecoratorMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
+                ->setCategoria($row->id_categoria)
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setDecorator($row->decorator)
-                ->setFormulario($row->formulario)
-                ->setFormularioElemento($row->formularioElemento)
                 ->setRowinfo($row->rowinfo);
     }
 
@@ -121,12 +118,10 @@ class Basico_Model_DecoratorMapper
 		{
 			$entry = new Basico_Model_Decorator();
 			$entry->setId($row->id)
-
+                ->setCategoria($row->id_categoria)
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setDecorator($row->decorator)
-                ->setFormulario($row->formulario)
-                ->setFormularioElemento($row->formularioElemento)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -147,12 +142,10 @@ class Basico_Model_DecoratorMapper
 		{
 			$entry = new Basico_Model_Decorator();
 			$entry->setId($row->id)
-
+                ->setCategoria($row->id_categoria)
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setDecorator($row->decorator)
-                ->setFormulario($row->formulario)
-                ->setFormularioElemento($row->formularioElemento)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

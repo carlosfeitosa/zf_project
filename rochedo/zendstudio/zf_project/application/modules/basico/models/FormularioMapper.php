@@ -66,7 +66,9 @@ class Basico_Model_FormularioMapper
 				'form_action'                   => $object->getFormAction(),
 				'form_target'                   => $object->getFormTarget(),
 				'form_enctype'                  => $object->getFormEncType(),
-				'formulario_pai'                => $object->getFormularioPai(),
+				'id_formulario_pai'             => $object->getFormularioPai(),
+                'form_attribs'                  => $object->getFormAttribs(),
+                'id_decorator'                  => $object->getDecorator(),
 				'validade_inicio'               => $object->getValidadeInicio(),
 				'validade_termino'              => $object->getValidadeTermino(),
 				'data_desativacao'              => $object->getDataDesativacao(),
@@ -119,7 +121,9 @@ class Basico_Model_FormularioMapper
 				->setFormAction($row->form_action)
 				->setFormTarget($row->form_target)
 				->setFormEncType($row->form_enctype)
-				->setFormularioPai($row->formulario_pai)
+				->setFormularioPai($row->id_formulario_pai)
+				->setFormAttribs($row->form_attribs)
+				->setDecorator($row->id_decorator)
 				->setValidadeInicio($row->validade_inicio)
 				->setValidadeTermino($row->validade_termino)
 				->setDataDesativacao($row->data_desativacao)
@@ -151,7 +155,9 @@ class Basico_Model_FormularioMapper
 				->setFormAction($row->form_action)
 				->setFormTarget($row->form_target)
 				->setFormEncType($row->form_enctype)
-				->setFormularioPai($row->formulario_pai)
+				->setFormularioPai($row->id_formulario_pai)
+				->setFormAttribs($row->form_attribs)
+                ->setDecorator($row->id_decorator)				
 				->setValidadeInicio($row->validade_inicio)
 				->setValidadeTermino($row->validade_termino)
 				->setDataDesativacao($row->data_desativacao)
@@ -187,7 +193,9 @@ class Basico_Model_FormularioMapper
 				->setFormAction($row->form_action)
 				->setFormTarget($row->form_target)
 				->setFormEncType($row->form_enctype)
-				->setFormularioPai($row->formulario_pai)
+				->setFormularioPai($row->id_formulario_pai)
+				->setFormAttribs($row->form_attribs)
+                ->setDecorator($row->id_decorator)				
 				->setValidadeInicio($row->validade_inicio)
 				->setValidadeTermino($row->validade_termino)
 				->setDataDesativacao($row->data_desativacao)

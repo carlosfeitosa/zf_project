@@ -43,7 +43,10 @@ class Basico_Model_FormularioElemento
 	 * @var String
 	 */
 	protected $_element;
-	
+    /**
+     * @var Boolean
+     */
+    protected $_elementReloadable;
 	/**
 	 * @var Integer
 	 */
@@ -264,6 +267,28 @@ class Basico_Model_FormularioElemento
 	}
 	
     /**
+    * Set element
+    * 
+    * @param String $element 
+    * @return String
+    */
+    public function setElementReloadable($elementReloadable)
+    {
+        $this->_elementReloadable = (Boolean) $elementReloadable;
+        return $this;
+    }
+
+    /**
+    * Get element
+    * 
+    * @return null|String
+    */
+    public function getElementReloadable()
+    {
+        return $this->_elementReloadable;
+    }
+	
+    /**
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
@@ -374,6 +399,17 @@ class Basico_Model_FormularioElemento
 	}
 	
     /**
+     * Get categoria object
+     * @return null|categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = $model->find($this->_categoria);
+        return $object;
+    }
+	
+    /**
      * Get formularioElementoFilter object
      * @return null|formularioElementoFilter
      */
@@ -382,6 +418,54 @@ class Basico_Model_FormularioElemento
         $model = new Basico_Model_FormularioElementoFilter();
         $object = $model->find($this->_formularioElementoFilter);
         return $object;
+    }
+    
+    /**
+     * Get ajuda object
+     * @return null|ajuda
+     */
+    public function getAjudaObject()
+    {
+        $model = new Basico_Model_Ajuda();
+        $object = $model->find($this->_ajuda);
+        return $object;
+    }
+      
+    /**
+     * Get formularioFormularioElemento object
+     * @return null|formularioFormularioElemento
+     */
+    public function getFormularioFormularioElementoObject()
+    {
+        $model = new Basico_Model_FormularioFormularioElemento();
+        $object = $model->fetchList("id_formulario_elemento = {$this->_id}");
+        return $object[0];
+    }
+    
+    /**
+     * Get formularioElementoValidators objects
+     * @return null|formularioElementoValidatods
+     */   
+    public function getFormularioElementoValidatorsObjects()
+    {
+    	$modelFormularioElementoFormularioElementoValidator = new Basico_Model_FormularioElementoFormularioElementoValidator();
+    	$arrayFormularioElementoFormularioElementoValidatorObjects = $modelFormularioElementoFormularioElementoValidator->fetchList("id_formulario_elemento = {$this->_id}");
+    	$modelFormularioElementoValidator = new Basico_Model_FormularioElementoValidator();
+
+        $arrayIdsFormularioElementoValidators = array();
+
+        foreach ($arrayFormularioElementoFormularioElementoValidatorObjects as $formularioElementoFormularioElementoValidatorObject){
+            $arrayIdsFormularioElementoValidators[] = $formularioElementoFormularioElementoValidatorObject->formularioElementoValidator;
+        }
+        
+        $stringIdsFormularioElementoValidators = implode(',', $arrayIdsFormularioElementoValidators);
+        
+        if ($stringIdsFormularioElementoValidators)
+            $arrayObjects = $modelFormularioElementoValidator->fetchList("id IN ({$stringIdsFormularioElementoValidators})");
+        else
+            $arrayObjects = array();
+       
+        return $arrayObjects; 	
     }
 
 	/**
