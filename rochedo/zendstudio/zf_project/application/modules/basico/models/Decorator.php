@@ -34,6 +34,10 @@ class Basico_Model_Decorator
 	 * @var String
 	 */
 	protected $_decorator;
+	/**
+	 * @var Integer
+	 */
+	protected $_categoria;
     /**
      * 
      * @var String
@@ -149,6 +153,28 @@ class Basico_Model_Decorator
 	public function getDescricao()
 	{
 		return $this->_descricao;
+	}
+	
+    /**
+	* Set categoria
+	* 
+	* @param Integer $categoria 
+	* @return Integer
+	*/
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = (Int) $categoria;
+		return $this;
+	}
+
+	/**
+	* Get categoria
+	* 
+	* @return null|Integer
+	*/
+	public function getCategoria()
+	{
+		return $this->_categoria;
 	}
      
 	/**

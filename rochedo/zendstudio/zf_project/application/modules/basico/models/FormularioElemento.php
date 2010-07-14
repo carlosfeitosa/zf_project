@@ -63,6 +63,11 @@ class Basico_Model_FormularioElemento
 	protected $_ajuda;
 	
 	/**
+	 * @var Integer
+	 */
+	protected $_decorator;
+	
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -332,7 +337,40 @@ class Basico_Model_FormularioElemento
 		return $this->_categoria;
 	}
 	
-/**
+    /**
+	* Set entry decorator
+	* 
+	* @param  int $decorator
+	* @return Basico_Model_FormularioElemento
+	*/
+	public function setDecorator($decorator)
+	{
+		$this->_decorator = (int) $decorator;
+		return $this;
+	}
+
+	/**
+	* Retrieve entry decorator
+	* 
+	* @return null|int
+	*/
+	public function getDecorator()
+	{
+		return $this->_decorator;
+	}
+	
+    /**
+     * Get formularioElementoDecorator object
+     * @return null|formularioElementoDecorator
+     */
+    public function getDecoratorObject()
+    {
+        $model = new Basico_Model_Decorator();
+        $object = $model->find($this->_decorator);
+        return $object;
+    }
+	
+    /**
 	* Set entry id
 	* 
 	* @param  int $id
