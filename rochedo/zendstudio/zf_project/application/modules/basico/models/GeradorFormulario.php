@@ -102,26 +102,26 @@ class Basico_Model_GeradorFormulario
     public function gerar(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM, array $excludeModulesNames = null)
     {
         $filenameExtensionRecovery              = '.lkg';
-        $headerFormulario                       = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . PHP_EOL;
-        $formBeginTag                           = FORM_BEGIN_TAG . PHP_EOL;
+        $headerFormulario                       = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
+        $formBeginTag                           = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
         $formClassExtendsTag                    = 'extends';
         $formClassExtendsClass                  = $classToExtends;        
-        $formCodeBlockBeginTag                  = '{' . PHP_EOL;      
-        $formCodeBlockEndTag                    = '}' . PHP_EOL;
-        $headerConstructorForm                  = FORM_GERADOR_CONSTRUCTOR_HEADER . PHP_EOL;
-        $formConstructorCall                    = FORM_GERADOR_CONSTRUCTOR_CALL . PHP_EOL;
-        $formConstructorInherits                = FORM_GERADOR_CONSTRUCTOR_INHERITS . PHP_EOL;
-        $formConstructorComment                 = FORM_GERADOR_CONSTRUCTOR_COMMENT . PHP_EOL;
-        $formName                               = FORM_GERADOR_FORM_SETNAME . "('{$objFormulario->formName}');" . PHP_EOL;
-        $formMethod                             = FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');" . PHP_EOL;
-        $formAction                             = FORM_GERADOR_FORM_SETACTION . "('{$objFormulario->formAction}');" . PHP_EOL;
-        $formAttribs                            = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . PHP_EOL;
+        $formCodeBlockBeginTag                  = '{' . QUEBRA_DE_LINHA;      
+        $formCodeBlockEndTag                    = '}' . QUEBRA_DE_LINHA;
+        $headerConstructorForm                  = FORM_GERADOR_CONSTRUCTOR_HEADER . QUEBRA_DE_LINHA;
+        $formConstructorCall                    = FORM_GERADOR_CONSTRUCTOR_CALL . QUEBRA_DE_LINHA;
+        $formConstructorInherits                = FORM_GERADOR_CONSTRUCTOR_INHERITS . QUEBRA_DE_LINHA;
+        $formConstructorComment                 = FORM_GERADOR_CONSTRUCTOR_COMMENT . QUEBRA_DE_LINHA;
+        $formName                               = FORM_GERADOR_FORM_SETNAME . "('{$objFormulario->formName}');" . QUEBRA_DE_LINHA;
+        $formMethod                             = FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');" . QUEBRA_DE_LINHA;
+        $formAction                             = FORM_GERADOR_FORM_SETACTION . "('{$objFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        $formAttribs                            = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
 
         if ($objFormulario->getDecoratorObject()->id)
-            $formDecorator                      = FORM_GERADOR_FORM_SETDECORATORS . "(array({$objFormulario->getDecoratorObject()->decorator}));" . PHP_EOL; 
+            $formDecorator                      = FORM_GERADOR_FORM_SETDECORATORS . "(array({$objFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
 
-        $formElementsComment                    = FORM_GERADOR_ADD_ELEMENTS_COMMENT . PHP_EOL;
-        $formArrayElements                      = FORM_GERADOR_ELEMENTS . ' = array();' . PHP_EOL;
+        $formElementsComment                    = FORM_GERADOR_ADD_ELEMENTS_COMMENT . QUEBRA_DE_LINHA;
+        $formArrayElements                      = FORM_GERADOR_ELEMENTS . ' = array();' . QUEBRA_DE_LINHA;
         $formCodigoCheckAmbienteDesenvolvimento = FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP . $formCodeBlockBeginTag; 
         $formEndTag                             = FORM_END_TAG;
 
@@ -136,7 +136,7 @@ class Basico_Model_GeradorFormulario
         
         foreach ($modulosObjects as $moduloObject){
             $modulesPath[$moduloObject->nome] = APPLICATION_MODULE_PATH . "/{$moduloObject->path}forms/";
-            $formClassInstances[$moduloObject->nome] = 'class ' . self::retornaNomeClasseForm($moduloObject, $objFormulario) . " {$formClassExtendsTag} {$formClassExtendsClass}" . PHP_EOL;
+            $formClassInstances[$moduloObject->nome] = 'class ' . self::retornaNomeClasseForm($moduloObject, $objFormulario) . " {$formClassExtendsTag} {$formClassExtendsClass}" . QUEBRA_DE_LINHA;
         }
 
         try {
@@ -183,17 +183,17 @@ class Basico_Model_GeradorFormulario
                 $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
                 fputs($fileResource, str_replace('@identacao', $identacao, $formConstructorComment));
                 fputs($fileResource, $identacao . $formConstructorInherits);
-                fputs($fileResource, PHP_EOL);
+                fputs($fileResource, QUEBRA_DE_LINHA);
                 fputs($fileResource, $identacao . $formName);
                 fputs($fileResource, $identacao . $formMethod);
                 fputs($fileResource, $identacao . $formAction);
                 fputs($fileResource, $identacao . $formAttribs);
                 fputs($fileResource, $identacao . $formDecorator);
-                fputs($fileResource, PHP_EOL);           
+                fputs($fileResource, QUEBRA_DE_LINHA);           
 
                 // adição dos elementos do formulário
-                fputs($fileResource, str_replace('@identacao', $identacao, $formElementsComment) . PHP_EOL);
-                fputs($fileResource, $identacao . $formArrayElements . PHP_EOL);
+                fputs($fileResource, str_replace('@identacao', $identacao, $formElementsComment) . QUEBRA_DE_LINHA);
+                fputs($fileResource, $identacao . $formArrayElements . QUEBRA_DE_LINHA);
 
                 $formularioElementosObjects = $objFormulario->getFormularioElementosObjects();
 
@@ -215,34 +215,34 @@ class Basico_Model_GeradorFormulario
                         $elementoAmbienteDesenvolvimento = false;
 
                     // criando elemento
-                    fputs($fileResource, $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$formularioElementoObject->element});" . PHP_EOL);
+                    fputs($fileResource, $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$formularioElementoObject->element});" . QUEBRA_DE_LINHA);
 
                     // setando atributos do elemento
                     if ($formularioElementoObject->elementAttribs)
-                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETATTRIBS . "(array({$formularioElementoObject->elementAttribs}));" . PHP_EOL);
+                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETATTRIBS . "(array({$formularioElementoObject->elementAttribs}));" . QUEBRA_DE_LINHA);
 
                     // descobrindo se o campo é requerido
                     if ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true)
-                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";" . PHP_EOL);
+                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";" . QUEBRA_DE_LINHA);
                     else
-                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_FALSE . ";" . PHP_EOL);
+                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_FALSE . ";" . QUEBRA_DE_LINHA);
 
                     // adicionando filtros
                     if ($formularioElementoObject->getFormularioElementoFilterObject()->id)
-                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDFILTERS . "(array({$formularioElementoObject->getFormularioElementoFilterObject()->filter}));" . PHP_EOL);
+                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDFILTERS . "(array({$formularioElementoObject->getFormularioElementoFilterObject()->filter}));" . QUEBRA_DE_LINHA);
 
                     // adicionando validadores
                     $arrayFormularioElementoValidators = $formularioElementoObject->getFormularioElementoValidatorsObjects();
 
                     foreach($arrayFormularioElementoValidators as $formularioElementoValidator){
-                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR . "({$formularioElementoValidator->validator});" . PHP_EOL);
+                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR . "({$formularioElementoValidator->validator});" . QUEBRA_DE_LINHA);
                     }
 
                     // adicionando elementos label e ajuda
                     if ($formularioElementoObject->constanteTextualLabel){
                         // adiciona o decorator para os elementos que possuem decorator
                         if ($formularioElementoObject->getDecoratorObject()->id)
-                            fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . PHP_EOL);
+                            fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA);
 
                         // adicionando o link de ajuda
                         if ($formularioElementoObject->getAjudaObject()->id){
@@ -261,21 +261,21 @@ class Basico_Model_GeradorFormulario
                             $linkAjuda = '';
 
                         $linkAjuda = Basico_Model_Util::retornaStringEntreCaracter($linkAjuda, "'");
-                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE).{$linkAjuda});" . PHP_EOL);
+                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE).{$linkAjuda});" . QUEBRA_DE_LINHA);
                     }
 
                     if ($formularioElementoObject->getAjudaObject()->id){
                         if ($formularioElementoObject->getAjudaObject()->constanteTextualHint)
-                            fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}', DEFAULT_USER_LANGUAGE));" . PHP_EOL);
+                            fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}', DEFAULT_USER_LANGUAGE));" . QUEBRA_DE_LINHA);
                     }
 
                     // verificando se o elemento pode ser carregando com dados
                     if ($formularioElementoObject->elementReloadable){
-                        fputs($fileResource, $identacao . FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE . PHP_EOL);
+                        fputs($fileResource, $identacao . FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE . QUEBRA_DE_LINHA);
 
                         $nivelIdentacao++; 
                         $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
-                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(" . FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE . "{$formularioElementoObject->elementName});" . PHP_EOL);
+                        fputs($fileResource, $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(" . FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE . "{$formularioElementoObject->elementName});" . QUEBRA_DE_LINHA);
 
                         $nivelIdentacao--;
                         $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
@@ -284,15 +284,15 @@ class Basico_Model_GeradorFormulario
                     // verificando se o é preciso determinar ambiente de desenvolvimento
                     if ($elementoAmbienteDesenvolvimento){
                         $nivelIdentacao--;
-                        $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);                   	
+                        $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
                         fputs($fileResource, $identacao . $formCodeBlockEndTag);
                     }
 
-                    fputs($fileResource, PHP_EOL);
+                    fputs($fileResource, QUEBRA_DE_LINHA);
                     $contador++;
                 }
 
-                fputs($fileResource, $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . PHP_EOL);
+                fputs($fileResource, $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA);
 
                 // nivel 1 de identação
                 $nivelIdentacao--;
@@ -321,13 +321,13 @@ class Basico_Model_GeradorFormulario
                     $arquivoOrigemRestore = $arquivoModificado . '.lkg';
                     copy($arquivoOrigemRestore, $arquivoModificado);
                 } catch (Exception $e) {
-                    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . PHP_EOL . $e);
+                    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
                 }
             }
-            throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . PHP_EOL . $e);       	
+            throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
         }
 
-        return $resultado;    
+        return $resultado;
     }
 
 }
