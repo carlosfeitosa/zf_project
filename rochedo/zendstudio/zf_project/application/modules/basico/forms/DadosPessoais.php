@@ -2,14 +2,28 @@
 			  $labelSubformTabTitleDadosPessoais = $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_PESSOAIS, DEFAULT_USER_LANGUAGE);
 			  
               $dadosPessoaisForm = new Zend_Dojo_Form_SubForm();
-              $dadosPessoaisForm->setName('CadastrarDadosPessoais');
+              //$dadosPessoaisForm->setName('CadastrarDadosPessoais');
               
               $dadosPessoaisForm->setAttribs(array(
-                  'legend' => 'Dados Pessoais',
-                  'dijitParams' => array(
-                      'title' => $labelSubformTabTitleDadosPessoais,
-                  ),
+                  //'name'   => 'CadastrarDadosPessoais',
+                  'action' => 'index.php',
+                  'method' => 'post',
+                  'title'  => $labelSubformTabTitleDadosPessoais,
               ));
+              $dadosPessoaisForm->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))"));
+              
+              
+              $dadosPessoaisForm->setDecorators(array(
+				    'FormElements',
+				    array('HtmlTag', array('tag' => 'dl')),
+				    'DijitForm'
+				));
+
+				
+				
+				
+		
+              // início dos elementos              
               $dadosPessoaisForm->addElement(
                       'TextBox',
                       'textbox',
@@ -20,6 +34,8 @@
                           'propercase' => true,
                       )
                   )
+                  
+                  
                   ->addElement(
                       'DateTextBox',
                       'datebox',
@@ -76,6 +92,7 @@
                           'invalidMessage' => 'Invalid non-space text.',
                       )
                   )
+                  
                   ->addElement(
                       'Textarea',
                       'textarea',
@@ -83,6 +100,15 @@
                           'label'    => 'Textarea',
                           'required' => true,
                           'style'    => 'width: 200px;',
+                      )
+                  )
+                  
+                  ->addElement(
+                      'Submit',
+                      'submit',
+                      array(
+                          'label' => 'Salvar',
+                          'required'  => true,
                       )
                   );
                   $this->addSubForm($dadosPessoaisForm, 'CadastrarDadosPessoais');
