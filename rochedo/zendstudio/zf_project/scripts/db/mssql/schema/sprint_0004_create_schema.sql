@@ -9,8 +9,9 @@
 * 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
 * 						08/07/2010 - criacao das tabelas modulo, modulo_perfil, modulo_formulario,
 * 									 pk e fks relacionadas;
-* 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento
-* 						14/03/2010 - adicao do campo id_decorator na tabela formulario_elemento
+* 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento;
+* 						14/03/2010 - adicao do campo id_decorator na tabela formulario_elemento;
+* 						23/07/2010 - criacao da tabela template_formulario;
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -96,6 +97,13 @@ create table modulo_perfil (
 	id int identity (1, 1) not null ,
 	id_modulo int not null ,
 	id_perfil int not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
+create table template_formulario (
+	id int identity (1, 1) not null ,
+	id_formulario int not null ,
+	id_template int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
@@ -197,6 +205,8 @@ alter table modulo_formulario with nocheck add constraint pk_modulo_formulario p
 
 alter table modulo_perfil with nocheck add constraint pk_modulo_perfil primary key clustered (id) on [primary];
 
+alter table template_formulario with nocheck add constraint pk_template_formulario primary key clustered (id) on [primary];
+
 alter table formulario_elemento with nocheck add constraint pk_formulario_elemento primary key clustered (id) on [primary];
 
 alter table formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_validator primary key clustered (id) on [primary];
@@ -297,6 +307,13 @@ alter table modulo_perfil add
 	(
 		id_modulo,
 		id_perfil
+	) on [primary];
+
+alter table template_formulario add
+	constraint ix_template_formulario_template_formulario unique nonclustered
+	(
+		id_formulario,
+		id_template
 	) on [primary];
 
 alter table formulario_elemento add
@@ -428,6 +445,20 @@ alter table modulo_perfil add
 	(
 		id_perfil
 	) references perfil (
+		id
+	);
+
+alter table template_formulario add
+	constraint fk_template_formulario_formulario foreign key
+	(
+		id_formulario
+	) references formulario (
+		id
+	),
+	constraint fk_template_formulario_template foreign key
+	(
+		id_template
+	) references template (
 		id
 	);
 

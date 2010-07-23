@@ -13,7 +13,8 @@
 * 									 na tabela formulario_elemento;
 * 						14/07/2010 - insercao da categoria FORMULARIO_ELEMENTO_DECORATOR;
 * 							       - insercao do decorator FORMULARIO_ELEMENTO_DECORATOR;
-* 								   - vinculacao de formulario_elemento com decorator.
+* 								   - vinculacao de formulario_elemento com decorator;
+* 						23/07/2010 - insercao dos dados da tabela template_formulario;
 */
 
 /* TIPO CATEGORIA */
@@ -241,7 +242,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_OUTPUT_HTML';
 
 
-/* FORMULARIO TEMPLATE */
+/* TEMPLATE */
 
 INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome, 'Template DOJO.' AS descricao,
@@ -350,6 +351,26 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
+
+
+/* FORMULARIO TEMPLATE */
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_TEMPLATE'
+		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+	   'SYSTEM_STARTUP' AS rowinfo;
 
 
 /* FORMULARIO ELEMENTO FILTER */

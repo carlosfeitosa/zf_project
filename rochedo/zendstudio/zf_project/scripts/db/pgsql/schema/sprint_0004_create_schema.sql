@@ -9,8 +9,9 @@
 * 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
 * 						09/07/2010 - criacao das tabelas modulo, modulo_perfil, modulo_formulario,
 * 									 pk e fks relacionadas;
-* 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento
-* 						14/03/2010 - adicao do campo id_decorator na tabela formulario_elemento
+* 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento;
+* 						14/03/2010 - adicao do campo id_decorator na tabela formulario_elemento;
+* 						23/07/2010 - criacao da tabela template_formulario;
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -116,6 +117,16 @@ create table modulo_perfil (
   oids = false
 );
 alter table modulo_perfil owner to rochedo_user;
+
+create table template_formulario (
+	id serial not null ,
+	id_formulario int not null ,
+	id_template int not null ,
+	rowinfo character varying (2000) not null
+) with (
+  oids = false
+);
+alter table template_formulario owner to rochedo_user;
 
 create table formulario_elemento (
 	id serial not null ,
@@ -243,6 +254,8 @@ alter table modulo_formulario add constraint pk_modulo_formulario primary key (i
 
 alter table modulo_perfil add constraint pk_modulo_perfil primary key (id);
 
+alter table template_formulario add constraint pk_template_formulario primary key (id);
+
 alter table formulario_elemento add constraint pk_formulario_elemento primary key (id);
 
 alter table formulario_elemento_validator add constraint pk_formulario_elemento_validator primary key (id);
@@ -327,6 +340,9 @@ alter table modulo_formulario
 alter table modulo_perfil
   add constraint ix_modulo_perfil_modulo_perfil unique (id_modulo, id_perfil);
 
+alter table template_formulario
+  add constraint ix_template_formulario_template_formulario unique (id_formulario, id_template);
+
 alter table formulario_elemento
   add constraint ix_formulario_elemento_categoria_nome unique (id_categoria, nome);
 
@@ -375,6 +391,10 @@ alter table modulo_formulario
 alter table modulo_perfil 
   add constraint fk_modulo_perfil_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action, 
   add constraint fk_modulo_perfil_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
+
+alter table template_formulario
+  add constraint fk_template_formulario_formulario foreign key (id_formulario) references formulario (id) on update no action on delete no action,
+  add constraint fk_template_formulario_template foreign key (id_template) references template (id) on update no action on delete no action;
 
 alter table formulario_elemento
   add constraint fk_formulario_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
