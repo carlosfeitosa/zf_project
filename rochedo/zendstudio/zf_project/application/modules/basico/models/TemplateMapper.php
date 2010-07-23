@@ -57,13 +57,14 @@ class Basico_Model_TemplateMapper
     public function save(Basico_Model_Template $object)
     {
         $data = array(
-				'nome'                   => $object->getNome(),
-				'descricao'              => $object->getDescricao(),
-                'id_categoria'           => $object->getCategoria(),
-				'styleSheetFullFilename' => $object->getStyleSheetFullFilename(),
-				'javaScriptFullFilename' => $object->getJavaScriptFullFilename(),
-				'template'               => $object->getTemplate(),
-                'rowinfo'                => $object->getRowinfo(),
+				'nome'                     => $object->getNome(),
+				'descricao'                => $object->getDescricao(),
+                'id_categoria'             => $object->getCategoria(),
+				'stylesheet_full_filename' => $object->getStyleSheetFullFilename(),
+				'javascript_full_filename' => $object->getJavaScriptFullFilename(),
+				'template'                 => $object->getTemplate(),
+        		'id_output'				   => $object->getOutput(),
+                'rowinfo'                  => $object->getRowinfo(),
 
         );
 
@@ -104,9 +105,10 @@ class Basico_Model_TemplateMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setCategoria($row->id_categoria)
-				->setStyleSheetFullFilename($row->styleSheetFullFilename)
-				->setJavaScriptFullFilename($row->javaScriptFullFilename)
+				->setStyleSheetFullFilename($row->stylesheet_full_filename)
+				->setJavaScriptFullFilename($row->javascript_full_filename)
 				->setTemplate($row->template)
+				->setOutput($row->id_output)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -127,9 +129,10 @@ class Basico_Model_TemplateMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setCategoria($row->id_categoria)
-				->setStyleSheetFullFilename($row->styleSheetFullFilename)
-				->setJavaScriptFullFilename($row->javaScriptFullFilename)
+				->setStyleSheetFullFilename($row->stylesheet_full_filename)
+				->setJavaScriptFullFilename($row->javascript_full_filename)
 				->setTemplate($row->template)
+				->setOutput($row->id_output)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -154,9 +157,10 @@ class Basico_Model_TemplateMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setCategoria($row->id_categoria)
-				->setStyleSheetFullFilename($row->styleSheetFullFilename)
-				->setJavaScriptFullFilename($row->javaScriptFullFilename)
+				->setStyleSheetFullFilename($row->stylesheet_full_filename)
+				->setJavaScriptFullFilename($row->javascript_full_filename)
 				->setTemplate($row->template)
+				->setOutput($row->id_output)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -176,9 +180,10 @@ class Basico_Model_TemplateMapper
                         'nome' => 'table1.nome' ,
                         'descricao' => 'table1.descricao' ,
                         'categoria' => 'table1.id_categoria' ,
-                        'styleSheetFullFilename' => 'table1.styleSheetFullFilename' ,
-                        'javaScriptFullFilename' => 'table1.javaScriptFullFilename' ,
+                        'styleSheetFullFilename' => 'table1.stylesheet_full_filename' ,
+                        'javaScriptFullFilename' => 'table1.javascript_full_filename' ,
                         'template' => 'table1.template' ,
+                   		'output' => 'table.id_output' ,
                         'rowinfo'  => 'table1.rowinfo'))
             ->joinInner($join[0])
             ->where($where)
@@ -194,9 +199,10 @@ class Basico_Model_TemplateMapper
                 ->setNome($row['nome'])
                 ->setDescricao($row['descricao'])
                 ->setCategoria($row['id_categoria'])
-                ->setStyleSheetFullFilename($row['styleSheetFullFilename'])
-                ->setJavaScriptFullFilename($row['javaScriptFullFilename'])
+                ->setStyleSheetFullFilename($row['stylesheet_full_filename'])
+                ->setJavaScriptFullFilename($row['javascript_full_filename'])
                 ->setTemplate($row['template'])
+				->setOutput($row['id_output'])
                 ->setRowinfo($row['rowinfo'])
                 ->setMapper($this);
             $entries[] = $entry;
@@ -224,8 +230,8 @@ class Basico_Model_TemplateMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setCategoria($row->id_categoria)
-				->setStyleSheetFullFilename($row->styleSheetFullFilename)
-				->setJavaScriptFullFilename($row->javaScriptFullFilename)
+				->setStyleSheetFullFilename($row->stylesheet_full_filename)
+				->setJavaScriptFullFilename($row->javascript_full_filename)
 				->setTemplate($row->template)
 				->setRowinfo($row->rowinfo)
                   ->setMapper($this);

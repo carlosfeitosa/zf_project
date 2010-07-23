@@ -43,7 +43,10 @@ class Basico_Model_Template
 	 * @var String
 	 */
 	protected $_template;
-	
+	/**
+	 * @var Integer
+	 */
+	protected $_output;
 	/**
 	 * @var String
 	 */
@@ -270,6 +273,28 @@ class Basico_Model_Template
 		return $this->_id;
 	}
 	
+    /**
+	* Set output
+	* 
+	* @param Integer $output
+	* @return Basico_Model_Output
+	*/
+	public function setOutput($output)
+	{
+		$this->_output = (Int) $output;
+		return $this;
+	}
+
+	/**
+	* Get output
+	* 
+	* @return null|String
+	*/
+	public function getOutput()
+	{
+		return $this->_output;
+	}
+	
 	/**
 	* Set rowinfo
 	* 
@@ -291,6 +316,17 @@ class Basico_Model_Template
 	{
 		return $this->_rowinfo;
 	}
+	
+    /**
+     * Get output object
+     * @return null|decorator
+     */
+    public function getOutputObject()
+    {
+        $model = new Basico_Model_Output();
+        $object = $model->find($this->_output);
+        return $object;
+    }
 
 	/**
 	* Set data mapper

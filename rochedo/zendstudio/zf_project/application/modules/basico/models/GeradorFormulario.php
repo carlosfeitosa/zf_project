@@ -77,7 +77,7 @@ class Basico_Model_GeradorFormulario
 
     /**
      * Retorna Nome do arquivo do formulário a partir do nome do formulário
-     * @param $nomeForm
+     * @param $objFormulario
      */
     private function retornaNomeArquivoForm(Basico_Model_Formulario &$objFormulario)
     {
@@ -88,23 +88,61 @@ class Basico_Model_GeradorFormulario
 
     /**
      * Retorna Nome da classe do formulário a partir dos nomes do módulo e formulário
-     * @param $nomeForm
+     * @param $objModulo
+     * @param $objFormulario
      */
     private function retornaNomeClasseForm(&$objModulo, &$objFormulario)
     {
         return ucfirst(strtolower($objModulo->nome)) . "_Form_" . $objFormulario->formName;
     }
 
-    /**
-     * Gera Formulário.
-     * @param $objFormulario
-     */
+	/**
+	 * Gera Formulário.
+	 * @param $objFormulario
+	 * @param $classToExtends
+	 * @param $excludeModulesNames
+	 */
     public function gerar(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM, array $excludeModulesNames = null)
+    {
+    	$tempReturn = true;
+    	
+    	$templatesPossiveis = $objFormulario->getTemplatesObjects();
+    	  	
+    	foreach($templatesPossiveis as $templateObject){
+    		if ($tempReturn){
+	    		if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_DOJO)
+	    			$tempReturn = self::gerarDOJO($objFormulario, $classToExtends, $excludeModulesNames);
+	    		else if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_HTML)
+	    			$tempReturn = self::gerarHTML($objFormulario, $classToExtends, $excludeModulesNames);
+    		}
+    	}
+    	
+    	return $tempReturn;
+    }
+    
+    /**
+     * Gera Formulário HTML.
+     * @param $objFormulario
+     * @param $classToExtends
+     * @param $excludeModulesNames
+     */
+    public function gerarHTML(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM, array $excludeModulesNames = null)
+    {
+    	return true;
+    }
+    
+    /**
+     * Gera Formulário DOJO.
+     * @param $objFormulario
+     * @param $classToExtends
+     * @param $excludeModulesNames
+     */
+    public function gerarDOJO(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM, array $excludeModulesNames = null)
     {
         $filenameExtensionRecovery              = '.lkg';
         $headerFormulario                       = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
         $formBeginTag                           = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
-        $formClassExtendsTag                    = 'extends';
+        $formClassExtendsTag                    = FORM_GERADOR_CLASS_EXTENDS_ELEMENT;
         $formClassExtendsClass                  = $classToExtends;        
         $formCodeBlockBeginTag                  = '{' . QUEBRA_DE_LINHA;      
         $formCodeBlockEndTag                    = '}' . QUEBRA_DE_LINHA;

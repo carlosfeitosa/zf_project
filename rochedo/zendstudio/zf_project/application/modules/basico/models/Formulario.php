@@ -645,7 +645,25 @@ class Basico_Model_Formulario
         $arrayObjects = $modelFormularioElemento->fetchList("id IN ({$stringIdsFormularioElementos})"); 
         
         return $arrayObjects;
-    }   
+    }
+
+    public function getTemplatesObjects()
+    {
+        $modelTemplateFormulario = new Basico_Model_TemplateFormulario();
+        $arrayTemplatesFormularios = $modelTemplateFormulario->fetchList("id_formulario = {$this->_id}");
+        $modelTemplate = new Basico_Model_Template();
+
+        $arrayIdsTemplates = array();
+        foreach($arrayTemplatesFormularios as $templateFormularioObject){
+        	$arrayIdsTemplates[] = $templateFormularioObject->template;
+        }
+        
+        $stringIdsTemplates = implode(',', $arrayIdsTemplates);
+
+        $arrayObjects = $modelTemplate->fetchList("id IN ({$stringIdsTemplates})"); 
+        
+        return $arrayObjects;
+    }
 	
 	/**
 	* Set data mapper
