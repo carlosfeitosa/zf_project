@@ -588,6 +588,27 @@ class Basico_Model_Formulario
         $object = $model->find($this->_decorator);
         return $object;
     }
+    
+    /**
+     * Get formulariosFilhos objects
+     * @return null|arrayFormulario
+     */
+    public function getFormulariosFilhosObjects()
+    {
+    	$modelFormulario = new Basico_Model_Formulario();
+    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$this->_id}");
+    	
+    	$arrayIdsFormularios = array();
+    	foreach ($arrayFormulariosObjects as $formularioObject){
+    		$arrayIdsFormularios[] = $formularioObject->id;
+    	}
+    	
+    	$stringIdsFormularios = implode(',', $arrayIdsFormularios);
+    	
+    	$arrayObjects = $modelFormulario->fetchList("id IN ({$stringIdsFormularios})"); 
+        
+        return $arrayObjects;
+    }
 	
     /**
      * Get modulo objects

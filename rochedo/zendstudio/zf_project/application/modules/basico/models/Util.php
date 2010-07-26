@@ -209,5 +209,40 @@ class Basico_Model_Util
 		$exibeOkButton = (int) $exibeOkButton;
 		
 		return "javascript:showDialogAlert(\'{$dialogName}\', \'' . {$titulo} . '\', \'' . {$mensagem} . '\', {$exibeOkButton})";		
-	}	
+	}
+	
+	/**
+	 * retorna resource do arquivo aberto
+	 * @param $fullFileName
+	 */
+	public static function abreArquivoLimpo($fullFileName)
+	{
+		return fopen($fullFileName, 'w+');
+	}
+	
+	/**
+	 * retorna true se conseguir escrever no arquivo
+	 * @param $fileResource
+	 * @param $linha
+	 */
+	public static function escreveLinhaFileResource($fileResource, $linha)
+	{
+		$tempReturn = false;
+		
+		$bytesEscritos = fputs($fileResource, $linha);
+		
+		if ($bytesEscritos)
+			$tempReturn = true;
+		
+		return ($tempReturn);
+	}
+	
+	/**
+	 * retorna true se conseguir fechar o arquivo
+	 * @param $fileResource
+	 */
+	public static function fechaArquivo($fileResource)
+	{
+		return fclose($fileResource);
+	}
 }

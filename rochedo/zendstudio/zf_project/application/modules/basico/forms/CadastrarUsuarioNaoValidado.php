@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 14/07/2010 17:16:56
+* em: 26/07/2010 17:19:39
 *
 * LICENÇA DE USO
 *
@@ -50,7 +50,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[0]->addFilters(array('StringTrim', 'StripTags'));
         $elements[0]->addValidator('NotEmpty');
         $elements[0]->AddDecorator('Label', array('escape' => false));
-        $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_NOME', DEFAULT_USER_LANGUAGE).'&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA', DEFAULT_USER_LANGUAGE) . "<br><br>URL: <a href=\'http://www.google.com\' target=\'_blank\'>http://www.google.com</a>" . '\', 1)">(?)</a>');
+        $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_NOME', DEFAULT_USER_LANGUAGE) . '&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA', DEFAULT_USER_LANGUAGE) . "<br><br>URL: <a href=\'http://www.google.com\' target=\'_blank\'>http://www.google.com</a>" . '\', 1)">(?)</a>');
         $elements[0]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT', DEFAULT_USER_LANGUAGE));
         if ($options!=null)
             $elements[0]->setValue($options->nome);
@@ -62,7 +62,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[1]->addValidator('NotEmpty');
         $elements[1]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
         $elements[1]->AddDecorator('Label', array('escape' => false));
-        $elements[1]->setLabel($this->getView()->tradutor('FORM_FIELD_EMAIL', DEFAULT_USER_LANGUAGE).'&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)">(?)</a>');
+        $elements[1]->setLabel($this->getView()->tradutor('FORM_FIELD_EMAIL', DEFAULT_USER_LANGUAGE) . '&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)">(?)</a>');
         $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT', DEFAULT_USER_LANGUAGE));
         if ($options!=null)
             $elements[1]->setValue($options->email);
@@ -81,12 +81,12 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                                              'expiration' => 300,
                                              'gcFreq' => 100),));
             $elements[2]->setRequired(true);
-            $elements[2]->setLabel($this->getView()->tradutor('FORM_FIELD_CAPTCHA_6', DEFAULT_USER_LANGUAGE).'');
+            $elements[2]->setLabel($this->getView()->tradutor('FORM_FIELD_CAPTCHA_6', DEFAULT_USER_LANGUAGE) . '');
         }
 
         $elements[3] = $this->createElement('submit', 'enviar');
         $elements[3]->setRequired(true);
-        $elements[3]->setLabel($this->getView()->tradutor('FORM_BUTTON_SUBMIT', DEFAULT_USER_LANGUAGE).'');
+        $elements[3]->setLabel($this->getView()->tradutor('FORM_BUTTON_SUBMIT', DEFAULT_USER_LANGUAGE) . '');
 
         $elements[4] = $this->createElement('hash', 'csrf', array('ignore' => true, 'salt' => 'unique',));
         $elements[4]->setRequired(true);
