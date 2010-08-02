@@ -248,7 +248,7 @@ class Basico_Model_Util
 	
 	
 	/**
-	 * Formata 
+	 * Formata a visualização do print_r() e var_dump() para melhor compreensão.
 	 * 
 	 * @param mixed $var Variável para debug.
 	 * @param bool $parar Parar o processamento.
