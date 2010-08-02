@@ -245,4 +245,26 @@ class Basico_Model_Util
 	{
 		return fclose($fileResource);
 	}
+	
+	
+	/**
+	 * 
+	 * @param $var - Variável para debug.
+	 * @param $parar - True/False - Interromper o processamento. 
+	 * @param $detalhar - Detalhar a variável
+	 */
+	public static function print_debub($var, $parar = false, $detalhar = false){
+		echo '<pre>';
+		
+		if($detalhar)
+		  var_dump($var);
+		else
+		  print_r($var);
+		
+        echo '<pre>';
+        
+        if($parar)
+            die();
+        
+	}
 }
