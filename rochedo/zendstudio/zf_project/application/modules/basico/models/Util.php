@@ -248,21 +248,30 @@ class Basico_Model_Util
 	
 	
 	/**
+	 * Formata 
 	 * 
-	 * @param $var - Variável para debug.
-	 * @param $parar - True/False - Interromper o processamento. 
-	 * @param $detalhar - Detalhar a variável
+	 * @param mixed $var Variável para debug.
+	 * @param bool $parar Parar o processamento.
+	 * @param bool $detalhar Detalhar conteúdo.
+	 * @param bool $export Exportar o debug em vez de imprimir.
+	 * @return string Conteúdo do debug.
 	 */
-	public static function print_debub($var, $parar = false, $detalhar = false){
-		echo '<pre>';
+	public static function print_debub($var, $parar = false, $detalhar = false, $export = false){
+		
+		$retorno = '<pre>';
 		
 		if($detalhar)
-		  var_dump($var);
+		  $retorno .= var_dump($var);
 		else
-		  print_r($var);
+		  $retorno .= print_r($var);
 		
-        echo '<pre>';
+        $retorno .= '<pre>';
         
+        if($export)
+            return $retorno;
+        else
+            echo $retorno;
+            
         if($parar)
             die();
         
