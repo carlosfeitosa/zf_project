@@ -251,29 +251,22 @@ class Basico_Model_Util
 	 * Formata a visualização do print_r() e var_dump() para melhor compreensão.
 	 * 
 	 * @param mixed $var Variável para debug.
-	 * @param bool $parar Parar o processamento.
 	 * @param bool $detalhar Detalhar conteúdo.
 	 * @param bool $export Exportar o debug em vez de imprimir.
 	 * @return string Conteúdo do debug.
 	 */
-	public static function print_debub($var, $parar = false, $detalhar = false, $export = false){
+	public static function print_debub($var, $detalhar = false, $export = false){
 		
-		$retorno = '<pre>';
+		if($export)
+            return var_export($var, true);
+		
+		echo '<pre>';
 		
 		if($detalhar)
-		  $retorno .= var_dump($var);
+		  echo var_dump($var);
 		else
-		  $retorno .= print_r($var);
+		  echo print_r($var);
 		
-        $retorno .= '<pre>';
-        
-        if($export)
-            return $retorno;
-        else
-            echo $retorno;
-            
-        if($parar)
-            die();
-        
+        echo '<pre>';     
 	}
 }
