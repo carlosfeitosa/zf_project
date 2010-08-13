@@ -8,7 +8,7 @@
  * @subpackage Model
  */
 
-// requires
+/* requires */
 require_once(APPLICATION_PATH . "/modules/basico/controllers/TradutorControllerController.php");
 
 class Basico_Model_GeradorFormulario
@@ -88,12 +88,22 @@ class Basico_Model_GeradorFormulario
 
     /**
      * Retorna Nome da classe do formulário a partir dos nomes do módulo e formulário
-     * @param $objModulo
-     * @param $objFormulario
+     * @param Basico_Model_Modulo $objModulo
+     * @param Basico_Model_Formulario $objFormulario
      */
     private function retornaNomeClasseForm(&$objModulo, &$objFormulario)
     {
         return ucfirst(strtolower($objModulo->nome)) . "_Form_" . $objFormulario->formName;
+    }
+
+    /**
+     * 
+     * @param Basico_Model_Modulo $objModulo
+     * @param Basico_Model_Formulario $objSubFormulario
+     */
+    private function retornaNomeVariavelSubForm(&$objModulo, &$objSubFormulario)
+    {
+		return "$" . strtolower($objModulo->nome) . ucfirst($objSubFormulario->formName) . "SubForm";
     }
 
 	/**
@@ -102,21 +112,31 @@ class Basico_Model_GeradorFormulario
 	 * @param $classToExtends
 	 * @param $excludeModulesNames
 	 */
-    public function gerar(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM, array $excludeModulesNames = null)
+    public function gerar(Basico_Model_Formulario $objFormulario, array $excludeModulesNames = null)
     {
     	$tempReturn = true;
     	
-    	$templatesPossiveis = $objFormulario->getTemplatesObjects();
-    	  	
-    	foreach($templatesPossiveis as $templateObject){
-    		if ($tempReturn){
-	    		if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_DOJO)
-	    			$tempReturn = self::gerarDOJO($objFormulario, $classToExtends, $excludeModulesNames);
-	    		else if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_HTML)
-	    			$tempReturn = self::gerarHTML($objFormulario, $classToExtends, $excludeModulesNames);
-    		}
-    	}
+    	// verifica se o objeto eh do tipo categoria FORMULARIO
+    	if ($objFormulario->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome != TIPO_CATEGORIA_FORMULARIO)
+    		throw new Exception(MSG_ERRO_FORMULARIO_TIPO_CATEGORIA);
     	
+    	// recupera templates do formulario
+		$templatesPossiveis = $objFormulario->getTemplatesObjects();
+		
+    	// veririca se existe templates
+    	if (count($templatesPossiveis)){
+	       	foreach($templatesPossiveis as $templateObject){
+	    		if ($tempReturn){
+		    		if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_DOJO)
+		    			$tempReturn = self::gerarDOJO($objFormulario, FORM_CLASS_EXTENDS_DOJO_FORM, $excludeModulesNames);
+		    		else if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_HTML)
+		    			$tempReturn = self::gerarHTML($objFormulario, FORM_CLASS_EXTENDS_ZEND_FORM, $excludeModulesNames);
+	    		}
+	    	}
+    	}
+    	else
+    		throw new Exception(MSG_ERRO_FORMULARIO_SEM_TEMPLATE);
+
     	return $tempReturn;
     }
     
@@ -141,11 +161,15 @@ class Basico_Model_GeradorFormulario
     {
     	// inicializacao do metodo
     	$arrayNomesCategoriasParaChecarAmbienteDesenvolvimento = array('FORMULARIO_ELEMENTO_CAPTCHA');
-    	$arrayInitForm = self::retornaArrayInitForm($objFormulario, $classToExtends);
-		$resultado = false;
-        $modulesPath = array();
-        $formClassInstances = array(); 
-    	
+    	$arrayInitForm      = self::retornaArrayInitForm($objFormulario, $classToExtends);
+		$resultado          = false;
+        $modulesPath        = array();
+        $formClassInstances = array();
+        $formMethod         = '';
+        $formAction         = '';
+        $formAttribs        = '';
+        $formDecorator      = '';
+        	
     	// inicializacao de atributos do formulario
         $filenameExtensionRecovery              = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY];
         $headerFormulario                       = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM];
@@ -159,10 +183,18 @@ class Basico_Model_GeradorFormulario
         $formConstructorInherits                = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_INHERITS];
         $formConstructorComment                 = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_COMMENT];
         $formName                               = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_NAME];
-        $formMethod                             = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_METHOD];
-        $formAction                             = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ACTION];
-        $formAttribs                            = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS];
+        
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_METHOD, $arrayInitForm))
+        	$formMethod                         = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_METHOD];
+        	
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_ACTION, $arrayInitForm))
+        	$formAction                         = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ACTION];
+        	
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS, $arrayInitForm))
+        	$formAttribs                        = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS];
+        	
         $formElementsComment                    = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ELEMENTS_COMMENT];
+        $formElementAddElementToFormComment     = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ADD_ELEMENTS_TO_FORM_COMMENT];
         $formArrayElements                      = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ARRAY_ELEMENTS];
         $formCodigoCheckAmbienteDesenvolvimento = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_CODIGO_CHECK_AMBIENTE_DESENVOLVIMENTO]; 
         $formEndTag                             = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_END_TAG];
@@ -173,6 +205,10 @@ class Basico_Model_GeradorFormulario
 
         // recuperando modulos relacionados com o formulario
         $modulosObjects = $objFormulario->getModulosObjects($excludeModulesNames);
+        // verificando se existem modulos relacionados com o formulario
+        if (!count($modulosObjects))
+        	throw new Exception(MSG_ERRO_FORMULARIO_SEM_MODULO);
+        
         // recuperando nome do arquivo do formulario que sera gerado
         $nomeArquivoSaida = self::retornaNomeArquivoForm($objFormulario);
         
@@ -185,13 +221,13 @@ class Basico_Model_GeradorFormulario
         try {
             $arrayArquivosModificados = array();
 
-            $podeContinuar = true;            
+            $podeContinuar = true;
 
             // loop para criar o formulario em diversos caminhos de modulos
-            foreach ($modulesPath as $moduleName => $modulePath) {
+            foreach ($modulesPath as $moduleName => $modulePath){
                 $fullFileName = $modulePath . $nomeArquivoSaida;
 
-                //Criando ponto de restauração do arquivo de formulário, caso exista.
+                // Criando ponto de restauração do arquivo de formulário, caso exista.
                 if (file_exists($fullFileName)){
                     $podeContinuar = self::gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery);
                     $arrayArquivosModificados[] = $fullFileName;
@@ -220,8 +256,22 @@ class Basico_Model_GeradorFormulario
                 $nivelIdentacao++;
                 Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaInicializacaoFormulario($nivelIdentacao, $formConstructorComment, $formConstructorInherits, $formName, $formMethod, $formAction, $formAttribs, $formDecorator));
 
-                // adição dos elementos do formulário
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $formCodeBlockEndTag));
+                // verifica se o formulario possui elementos
+                if ($objFormulario->existeElementos()){
+                	// adição dos elementos do formulário
+                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formElementAddElementToFormComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $formCodeBlockEndTag));
+                };
+                
+                // verificacao sobre formularios filhos
+                if ($objFormulario->existeFormulariosFilhos()){
+                	$formulariosFilhosObjects = $objFormulario->getFormulariosFilhosObjects();
+                	foreach ($formulariosFilhosObjects as $formularioFilhoObject){
+                		if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames))
+                			throw new Exception(MSG_ERRO_GERAR_SUB_FORMULARIO);
+
+                		Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaIncludeSubForm($nivelIdentacao, $formularioFilhoObject));
+                	}
+                }
 
                 // nivel 1 de identação
                 $nivelIdentacao--;
@@ -243,13 +293,233 @@ class Basico_Model_GeradorFormulario
             if ($fileResource)
                 Basico_Model_Util::fechaArquivo($fileResource);
 
-            //Revertendo para o ponto de restauração LKG (Last know good) do arquivo do formulário
+            // Revertendo para o ponto de restauração LKG (Last know good) do arquivo do formulário
             self::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
 
             throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
         }
 
         return $resultado;
+    }
+
+	/**
+	 * Gera Sub-Formulário.
+	 * @param $objFormulario
+	 * @param $classToExtends
+	 * @param $excludeModulesNames
+	 */
+    public function gerarSubForm(Basico_Model_Formulario $objSubFormulario, array $excludeModulesNames = null)
+    {
+		$tempReturn = true;
+		
+		// verifica se o formulario possui formulario pai
+    	if (!$objSubFormulario->formularioPai)
+    		throw new Exception(MSG_ERRO_SUBFORMULARIO_SEM_FORMULARIO_PAI);
+
+    	// verifica se o objeto eh da categoria FORMULARIO_SUB_FORMULARIO
+    	if ($objSubFormulario->getCategoriaObject()->getRootCategoriaPaiObject()->nome != FORMULARIO_SUB_FORMULARIO)
+    		throw new Exception(MSG_ERRO_FORMULARIO_SUB_FORMULARIO_CATEGORIA);
+
+    	$templatesPossiveis = $objSubFormulario->getTemplatesObjects();
+    	
+    	// veririca se existe templates
+    	if (count($templatesPossiveis)){
+	       	foreach($templatesPossiveis as $templateObject){
+	    		if ($tempReturn){
+		    		if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_DOJO)
+		    			$tempReturn = self::gerarSubDOJO($objSubFormulario, FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM, $excludeModulesNames);
+		    		else if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_HTML)
+		    			$tempReturn = self::gerarSubHTML($objSubFormulario, FORM_CLASS_EXTENDS_ZEND_FORM_SUB_FORM, $excludeModulesNames);
+	    		}
+	    	}
+    	}
+    	else
+    		throw new Exception(MSG_ERRO_SUBFORMULARIO_SEM_TEMPLATE);
+
+    	return $tempReturn;
+    }
+    
+    /**
+     * Gera Sub-Formulário HTML.
+     * @param Basico_Model_Formulario $objSubFormulario
+     * @param array $excludeModulesNames
+     */
+    public function gerarSubHTML(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM_SUB_FORM, array $excludeModulesNames = null)
+    {
+		return true;
+    }
+    
+    /**
+     * Gera Sub-Formulário DOJO.
+     * @param $objSubFormulario
+     * @param $excludeModulesNames
+     */
+    public function gerarSubDOJO(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM, array $excludeModulesNames = null)
+    {
+		// inicializacao do metodo
+    	$arrayNomesCategoriasParaChecarAmbienteDesenvolvimento = array();
+    	$arrayInitSubForm          = self::retornaArrayInitSubForm($objSubFormulario, $classToExtends);
+		$resultado                 = false;
+        $modulesPath               = array();
+        $subFormClassInstances     = array();
+        $subFormVariablesInstances = array();
+        $subFormMethod             = '';
+        $subFormAction             = '';
+        $subFormAttribs            = '';
+        $subFormDecorator          = '';
+        
+    	// inicializacao de atributos do formulario
+        $filenameExtensionRecovery                 = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY];
+        $headerSubFormulario                       = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM];
+        $subFormBeginTag                           = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_BEGIN_TAG];
+        $subFormClassExtendsTag                    = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CLASS_EXTENDS_TAG];
+        $subFormClassExtendsClass                  = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CLASS_EXTENDS_CLASS];
+        $subFormCodeBlockBeginTag                  = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_BEGIN_TAG];      
+        $subFormCodeBlockEndTag                    = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_END_TAG];
+        $subFormInitComment                        = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_INIT_COMMENT];
+
+        $subFormName                               = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_NAME];
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_METHOD, $arrayInitSubForm))
+        	$subFormMethod                         = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_METHOD];
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION, $arrayInitSubForm))
+        	$subFormAction                         = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION];
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS, $arrayInitSubForm))
+        	$subFormAttribs                        = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS];
+
+       	$subFormElementsComment                    = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ELEMENTS_COMMENT];
+       	$subFormElementAddElementToFormComment     = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ADD_ELEMENTS_TO_FORM_COMMENT];
+        $subFormArrayElements                      = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ARRAY_ELEMENTS];
+        $subFormCodigoCheckAmbienteDesenvolvimento = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODIGO_CHECK_AMBIENTE_DESENVOLVIMENTO];
+ 
+        $subFormEndTag                             = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_END_TAG];
+       
+        // verifica se existe decorator para o formulario
+        if ($objSubFormulario->getDecoratorObject()->id)
+            $subFormDecorator                   = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR];
+
+        // recuperando modulos relacionados com o formulario
+        $modulosObjects = $objSubFormulario->getModulosObjects($excludeModulesNames);
+        // verificando se existem modulos relacionados com o formulario
+        if (!count($modulosObjects))
+        	throw new Exception(MSG_ERRO_FORMULARIO_SEM_MODULO);
+        
+        // recuperando nome do arquivo do formulario que sera gerado
+        $nomeArquivoSaida = self::retornaNomeArquivoForm($objSubFormulario);
+        
+        // recuperando caminhos dos modulos e prefixos de nome de classes
+        foreach ($modulosObjects as $moduloObject){
+            $modulesPath[$moduloObject->nome] = APPLICATION_MODULE_PATH . "/{$moduloObject->path}forms/subForms/";
+            $subFormClassInstances[$moduloObject->nome] = self::retornaNomeVariavelSubForm($moduloObject, $objSubFormulario) . " {$subFormClassExtendsClass}" . QUEBRA_DE_LINHA;
+            $subFormVariablesInstances[$moduloObject->nome] = self::retornaNomeVariavelSubForm($moduloObject, $objSubFormulario);
+        }
+        try {
+            $arrayArquivosModificados = array();
+
+            $podeContinuar = true;
+
+            // loop para criar o formulario em diversos caminhos de modulos
+            foreach ($modulesPath as $moduleName => $modulePath){
+                $fullFileName = $modulePath . $nomeArquivoSaida;
+
+                // Criando ponto de restauração do arquivo de formulário, caso exista.
+                if (file_exists($fullFileName)){
+                    $podeContinuar = self::gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery);
+                    $arrayArquivosModificados[] = $fullFileName;
+                }
+
+                // verifica se a copia foi bem sucedida
+                if (!$podeContinuar)
+                    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_LEITURA . "'{$fullFileName}'");
+
+                // abre arquivo com permissoes de escrita
+                $fileResource = Basico_Model_Util::abreArquivoLimpo($fullFileName);
+
+                // verifica se o sistema conseguiu abrir o arquivo
+                if (!$fileResource)
+                    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_ESCRITA . "'{$fullFileName}'");
+
+                // nivel 0 de identação
+				$nivelIdentacao = 0;
+                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaInstanciamentoSubFormulario($nivelIdentacao, $subFormBeginTag, $moduleName, $headerSubFormulario, $subFormClassInstances[$moduleName]));
+                
+                // nivel 1 de identação
+                $nivelIdentacao++;
+                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName]));
+
+                // verifica se o formulario possui elementos
+                if ($objSubFormulario->existeElementos()){
+                	// adição dos elementos do formulário
+                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
+                };
+                        
+                // adicionar sub-formulario ao formulario pai
+                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName));
+
+                // nivel 0 de identação
+                $nivelIdentacao--;
+                $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+				Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $subFormEndTag));
+
+                if ($fileResource)
+                    $resultado = Basico_Model_Util::fechaArquivo($fileResource);
+            }
+
+        } catch (Exception $e) {
+
+            if ($fileResource)
+                Basico_Model_Util::fechaArquivo($fileResource);
+
+            // Revertendo para o ponto de restauração LKG (Last know good) do arquivo do formulário
+            self::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
+
+            throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
+        }
+		return true;
+        return $resultado;
+    }
+    
+    /**
+     * retorna array contendo variaveis de inicializacao do sub-formulario passado por parametro
+     * @param Basico_Model_Formulario $objFormulario
+     * @param string $classToExtends
+     */
+    private function retornaArrayInitSubForm(Basico_Model_Formulario &$objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM)
+    {
+    	$arrayReturn = array();
+    	
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = '.lkg';
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@versao', $objSubFormulario->versao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_Model_Util::retornaTimestamp($objSubFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_BEGIN_TAG]                         	  = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
+
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CLASS_EXTENDS_TAG]                     = FORM_GERADOR_CLASS_EXTENDS_ELEMENT;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CLASS_EXTENDS_CLASS]                   = "= new {$classToExtends}();";
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_BEGIN_TAG]                  = '{' . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_END_TAG]                    = '}' . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_INIT_COMMENT]                          = FORM_GERADOR_SUB_FORM_INIT_COMMENT . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_NAME]                                  = FORM_GERADOR_FORM_SUB_FORM_SETNAME . "('{$objSubFormulario->formName}');" . QUEBRA_DE_LINHA;
+        
+        if ($objSubFormulario->formMethod)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_METHOD]                            = FORM_GERADOR_FORM_SUB_FORM_SETMETHOD . "('{$objSubFormulario->formMethod}');" . QUEBRA_DE_LINHA;
+        	
+        if ($objSubFormulario->formAction)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        	
+        if ($objSubFormulario->formAttribs)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS]                           = FORM_GERADOR_FORM_SUB_FORM_ADDATTRIBS . "(array({$objSubFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
+
+        if ($objSubFormulario->getDecoratorObject()->id)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SUB_FORM_SETDECORATORS . "(array({$objSubFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
+
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ELEMENTS_COMMENT]                      = FORM_GERADOR_ADD_ELEMENTS_COMMENT . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ARRAY_ELEMENTS]                        = FORM_GERADOR_ELEMENTS . ' = array();' . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ADD_ELEMENTS_TO_FORM_COMMENT]          = FORM_GERADOR_ADD_ELEMENTS_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODIGO_CHECK_AMBIENTE_DESENVOLVIMENTO] = FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP . $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_BEGIN_TAG];
+
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_END_TAG]                               = FORM_END_TAG;
+
+        return $arrayReturn;
     }
     
     /**
@@ -263,6 +533,8 @@ class Basico_Model_GeradorFormulario
     	
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY]           = '.lkg';
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@versao', $objFormulario->versao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_Model_Util::retornaTimestamp($objFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_BEGIN_TAG]                             = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CLASS_EXTENDS_TAG]                     = FORM_GERADOR_CLASS_EXTENDS_ELEMENT;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CLASS_EXTENDS_CLASS]                   = $classToExtends;
@@ -273,14 +545,21 @@ class Basico_Model_GeradorFormulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_INHERITS]                  = FORM_GERADOR_CONSTRUCTOR_INHERITS . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_COMMENT]                   = FORM_GERADOR_CONSTRUCTOR_COMMENT . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_NAME]                                  = FORM_GERADOR_FORM_SETNAME . "('{$objFormulario->formName}');" . QUEBRA_DE_LINHA;
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_METHOD]                                = FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');" . QUEBRA_DE_LINHA;
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                                = FORM_GERADOR_FORM_SETACTION . "('{$objFormulario->formAction}');" . QUEBRA_DE_LINHA;
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                               = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
+        
+        if ($objFormulario->formMethod)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_METHOD]                            = FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');" . QUEBRA_DE_LINHA;
+        	
+        if ($objFormulario->formAction)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                            = FORM_GERADOR_FORM_SETACTION . "('{$objFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        	
+        if ($objFormulario->formAttribs)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
 
         if ($objFormulario->getDecoratorObject()->id)
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SETDECORATORS . "(array({$objFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
 
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ELEMENTS_COMMENT]                      = FORM_GERADOR_ADD_ELEMENTS_COMMENT . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ADD_ELEMENTS_TO_FORM_COMMENT]          = FORM_GERADOR_ADD_ELEMENTS_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ARRAY_ELEMENTS]                        = FORM_GERADOR_ELEMENTS . ' = array();' . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CODIGO_CHECK_AMBIENTE_DESENVOLVIMENTO] = FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP . $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CODE_BLOCK_BEGIN_TAG];
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_END_TAG]                               = FORM_END_TAG;
@@ -341,6 +620,27 @@ class Basico_Model_GeradorFormulario
 
 		return $tempReturn;
     }
+
+    /**
+     * retorna string contendo o instanciamento de uma classe de sub-formulario
+     * @param $nivelIdentacaoInicial
+     * @param $formBeginTag
+     * @param $moduleName
+     * @param $headerSubFormulario
+     * @param $subFormClassInstance
+     */
+    private function retornaInstanciamentoSubFormulario($nivelIdentacaoInicial, $subFormBeginTag, $moduleName, $headerSubFormulario, $subFormClassInstance)
+    {
+    	$tempReturn = '';
+    	
+		$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacaoInicial);
+		$tempReturn .= $identacao . $subFormBeginTag;
+		$tempReturn .= $identacao . str_replace('@modulo', $moduleName, $headerSubFormulario);
+		$identacao = Basico_Model_Util::retornaIdentacao(++$nivelIdentacaoInicial);
+		$tempReturn .= $identacao . $subFormClassInstance;
+
+		return $tempReturn;
+    }
     
     /**
      * retorna string contendo a chamada __construct do formulario
@@ -383,33 +683,72 @@ class Basico_Model_GeradorFormulario
     	$tempReturn .= $identacao . $formConstructorInherits;
     	$tempReturn .= QUEBRA_DE_LINHA;
     	$tempReturn .= $identacao . $formName;
-    	$tempReturn .= $identacao . $formMethod;
-    	$tempReturn .= $identacao . $formAction;
-    	$tempReturn .= $identacao . $formAttribs;
-    	$tempReturn .= $identacao . $formDecorator;
+    	if ($formMethod)
+    		$tempReturn .= $identacao . $formMethod;
+    	if ($formAction)
+    		$tempReturn .= $identacao . $formAction;
+    	if ($formAttribs)
+    		$tempReturn .= $identacao . $formAttribs;
+    	if ($formDecorator)
+    		$tempReturn .= $identacao . $formDecorator;
     	$tempReturn .= QUEBRA_DE_LINHA; 
+
+		return $tempReturn;
+    }
+
+    /**
+     * retorna string contendo a inicializacao do sub-formulario
+     * @param $nivelIdentacaoInicial
+     * @param $subFormInitComment
+     * @param $subFormName
+     * @param $subFormMethod
+     * @param $subFormAction
+     * @param $subFormAttribs
+     * @param $subFormDecorator
+     * @param $subFormVariableInstance
+     */
+    private function retornaInicializacaoSubFormulario($nivelIdentacaoInicial, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariableInstance)
+    {
+    	$tempReturn = '';
+    	
+    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacaoInicial);
+    	$tempReturn .= QUEBRA_DE_LINHA;
+    	$tempReturn .= str_replace('@identacao', $identacao, $subFormInitComment);
+    	$tempReturn .= $identacao . $subFormName;
+    	if ($subFormMethod)
+    		$tempReturn .= $identacao . $subFormMethod;
+    	if ($subFormAction)
+    		$tempReturn .= $identacao . $subFormAction;
+    	if ($subFormAttribs)
+    		$tempReturn .= $identacao . $subFormAttribs;
+    	if ($subFormDecorator)
+    		$tempReturn .= $identacao . $subFormDecorator;
+    	$tempReturn .= QUEBRA_DE_LINHA;
+    	$tempReturn = str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
 
 		return $tempReturn;
     }
     
     /**
      * retorna string contendo os elementos do formulario
-     * @param integer $nivelIdentacaoInicial
-     * @param string $formElementsComment
-     * @param string $formArrayElements
-     * @param objects $formularioElementosObjects
-     * @param array $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento
-     * @param string $formCodigoCheckAmbienteDesenvolvimento
-     * @param object $objFormulario
-     * @param string $formCodeBlockEndTag
+     * @param $nivelIdentacaoInicial
+     * @param $formElementsComment
+     * @param $formElementsAddToFormComment
+     * @param $formArrayElements
+     * @param $formularioElementosObjects
+     * @param $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento
+     * @param $formCodigoCheckAmbienteDesenvolvimento
+     * @param $objFormulario
+     * @param $formCodeBlockEndTag
+     * @param $subFormVariableInstance
      */
-    private function retornaElementosFormulario($nivelIdentacaoInicial, $formElementsComment, $formArrayElements, &$formularioElementosObjects, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $formCodeBlockEndTag)
+    private function retornaElementosFormulario($nivelIdentacaoInicial, $formElementsComment, $formElementsAddToFormComment, $formArrayElements, &$formularioElementosObjects, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $formCodeBlockEndTag, $subFormVariableInstance = null)
     {
     	$tempReturn = '';
 		$nivelIdentacao = $nivelIdentacaoInicial;
 
     	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
-    	$tempReturn .= str_replace('@identacao', $identacao, $formElementsComment) . QUEBRA_DE_LINHA;
+    	$tempReturn .= str_replace('@identacao', $identacao, $formElementsComment);
     	$tempReturn .= $identacao . $formArrayElements . QUEBRA_DE_LINHA;
     	
     	$contador = 0;
@@ -502,9 +841,54 @@ class Basico_Model_GeradorFormulario
             $contador++;
         }
         
-        $tempReturn .= $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
+        $tempReturn .= $identacao . $formElementsAddToFormComment;
+        
+        if (!$subFormVariableInstance)
+        	$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
+        else {
+        	$tempReturn .= $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA;
+        	
+        	$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
+        	$tempReturn =  str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
+        }
 
 		return $tempReturn;
+    }
+    
+    /**
+     * retorna string contendo a adicao do sub-formulario ao formulario pai
+     * @param $nivelIdentacao
+     * @param $subFormVariableInstance
+     * @param $subFormName
+     */
+    private function retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariableInstance, $subFormName)
+    {
+    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+    	
+    	return $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM . "({$subFormVariableInstance}, '{$subFormName}');" . QUEBRA_DE_LINHA;
+    }
+    
+    /**
+     * retorna string contendo o include de sub-formularios em formularios
+     * @param $nivelIdentacaoInicial
+     * @param $objSubFormulario
+     * @param $metodo
+     */
+    private function retornaIncludeSubForm($nivelIdentacaoInicial, $objSubFormulario, $metodo = INCLUDE_REQUIRE_ONCE)
+    {
+    	$tempReturn = '';
+    	
+    	$nivelIdentacao = $nivelIdentacaoInicial;
+    	
+    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+    	
+    	$nomeDoArquivo = self::retornaNomeArquivoForm($objSubFormulario);
+    	
+    	$tempReturn .= $identacao . FORM_GERADOR_INCLUDE_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
+    	
+    	$tempReturn .= "{$identacao}{$metodo} (\"{$nomeDoArquivo}\");" . QUEBRA_DE_LINHA;
+    	
+    	return $tempReturn;
     }
 
     /**

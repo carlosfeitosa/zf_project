@@ -232,13 +232,27 @@ class Basico_Model_Categoria
  
     /**
      * Get tipoCategoria object
-     * @return null|TipoCategoria
+     * @return null|Basico_Model_TipoCategoria
      */
     public function getTipoCategoriaObject()
     {
         $model = new Basico_Model_TipoCategoria();
         $object = $model->find($this->_tipoCategoria);
         return $object;
+    }
+    
+    /**
+     * Get tipoCategoriaRootCategoriaPai object
+     * @return null|Basico_Model_TipoCategoria
+     */
+    public function getTipoCategoriaRootCategoriaPaiObject()
+    {	
+    	$rootCategoriaPaiObject = $this->getRootCategoriaPaiObject();
+    	
+    	if ($rootCategoriaPaiObject)
+    		return $rootCategoriaPaiObject->getTipoCategoriaObject();
+    	else
+    		return $this->getTipoCategoriaObject();
     }
  
     /**
@@ -294,6 +308,30 @@ class Basico_Model_Categoria
 	public function getIdCategoriaPai()
 	{
 		return $this->_idCategoriaPai;
+	}
+	
+	/**
+	 * Get RootCategoriaPai Object
+	 * 
+	 * @return null|Basico_Model_Categoria
+	 */
+	public function getRootCategoriaPaiObject()
+	{
+		/* instancia modelo */
+		$rootCategoriaPaiObject = new Basico_Model_Categoria();
+		
+		/* localiza o id da categoria pai ou utiliza o id da propria categoria */
+		$idCategoriaParaLocalizar = ($this->_idCategoriaPai|$this->_id);
+		
+		/* localiza a categoria */
+		$rootCategoriaPaiObject->find($idCategoriaParaLocalizar);
+		
+		/* loop para chegar na categoria raiz */
+		while ($rootCategoriaPaiObject->idCategoriaPai) {
+			$rootCategoriaPaiObject->find($rootCategoriaPaiObject->idCategoriaPai);
+		}
+		
+		return $rootCategoriaPaiObject;
 	}
 	
 	/**

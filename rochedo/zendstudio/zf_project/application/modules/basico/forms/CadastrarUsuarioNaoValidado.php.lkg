@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 26/07/2010 17:15:21
+* em: 13/08/2010 10:23:49
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    0.1: 2010-07-09 17:00:00
+* @version    0.3: 02/08/2010 14:59:57
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -25,9 +25,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     */
     public function __construct($options = null)
     {
-        /**
-        * Inicializando o formulário.
-        */
+        // Inicializando o formulário.
         parent::__construct($options);
 
         $this->setName('CadastrarUsuarioNaoValidado');
@@ -38,10 +36,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                 array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
                 array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
 
-        /**
-        * Adicionando array de elementos.
-        */
-
+// Criando array de elementos.
         $elements = array();
 
         $elements[0] = $this->createElement('ValidationTextBox', 'nome');
@@ -50,7 +45,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[0]->addFilters(array('StringTrim', 'StripTags'));
         $elements[0]->addValidator('NotEmpty');
         $elements[0]->AddDecorator('Label', array('escape' => false));
-        $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_NOME', DEFAULT_USER_LANGUAGE) . '&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA', DEFAULT_USER_LANGUAGE) . "<br><br>URL: <a href=\'http://www.google.com\' target=\'_blank\'>http://www.google.com</a>" . '\', 1)">(?)</a>');
+        $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_NOME', DEFAULT_USER_LANGUAGE) . '&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)">(?)</a>');
         $elements[0]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT', DEFAULT_USER_LANGUAGE));
         if ($options!=null)
             $elements[0]->setValue($options->nome);
@@ -91,6 +86,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[4] = $this->createElement('hash', 'csrf', array('ignore' => true, 'salt' => 'unique',));
         $elements[4]->setRequired(true);
 
+        // Adicionando elementos ao formulario.
         $this->addElements($elements);
     }
 }

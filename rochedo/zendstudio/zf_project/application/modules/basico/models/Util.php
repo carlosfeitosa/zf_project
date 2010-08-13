@@ -253,10 +253,11 @@ class Basico_Model_Util
 	 * @param mixed $var Variável para debug.
 	 * @param bool $detalhar Detalhar conteúdo.
 	 * @param bool $export Exportar o debug em vez de imprimir.
+	 * @param bool $canDie Encerrar o script.
 	 * @return string Conteúdo do debug.
 	 */
-	public static function print_debub($var, $detalhar = false, $export = false){
-		
+	public static function print_debug($var, $detalhar = false, $export = false, $canDie = false)
+	{	
 		$retorno = '<pre>';
 
         if($detalhar)
@@ -265,10 +266,13 @@ class Basico_Model_Util
             $retorno .= print_r($var, true);
         
         $retorno .= '</pre>';
-        
+                
         if($export)
             return $retorno;
-        else
-            echo $retorno;     
+        else{
+        	echo $retorno;
+			if ($canDie)
+        		exit;
+        }
 	}
 }

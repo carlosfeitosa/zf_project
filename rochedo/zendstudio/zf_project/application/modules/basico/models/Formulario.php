@@ -20,6 +20,10 @@ class Basico_Model_Formulario
 	protected $_mapper;
 
 	/**
+	 * @var int
+	 */
+	protected $_categoria;
+	/**
 	 * @var String
 	 */
 	protected $_nome;
@@ -39,6 +43,10 @@ class Basico_Model_Formulario
 	 * @var String
 	 */
 	protected $_constanteTextualSubTitulo;
+	/**
+	 * @var float
+	 */
+	protected $_versao;
 	/**
 	 * @var String
 	 */
@@ -159,6 +167,28 @@ class Basico_Model_Formulario
 		}
 		return $this;
 	}
+	
+	/**
+	 * Set categoria
+	 * 
+	 * @param int $categoria
+	 * @return Basico_Model_Formulario
+	 */
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = (int) $categoria;
+		return $this;
+	}
+	
+	/**
+	 * Get categoria
+	 * 
+	 * @return null|int
+	 */
+	public function getCategoria()
+	{
+		return $this->_categoria;
+	}
     
 	/**
 	* Set nome
@@ -268,6 +298,28 @@ class Basico_Model_Formulario
 	public function getConstanteTextualSubTitulo()
 	{
 		return $this->_constanteTextualSubTitulo;
+	}
+	
+	/**
+	* Set versao
+	* 
+	* @param Float $versao 
+	* @return String
+	*/
+	public function setVersao($versao)
+	{
+		$this->_versao = (Float) $versao;
+		return $this;
+	}
+
+	/**
+	* Get versao
+	* 
+	* @return null|String
+	*/
+	public function getVersao()
+	{
+		return $this->_versao;
 	}
      
 	/**
@@ -578,6 +630,13 @@ class Basico_Model_Formulario
 		return $this->_id;
 	}
 	
+	public function getCategoriaObject()
+	{
+		$model = new Basico_Model_Categoria();
+		$object = $model->find($this->_categoria);
+		return $object;
+	}
+	
     /**
      * Get decorator object
      * @return null|decorator
@@ -587,6 +646,18 @@ class Basico_Model_Formulario
         $model = new Basico_Model_Decorator();
         $object = $model->find($this->_decorator);
         return $object;
+    }
+    
+    /**
+     * Return if exists formulario filho
+     * @return true|false
+     */
+    public function existeFormulariosFilhos()
+    {  	
+    	$modelFormulario = new Basico_Model_Formulario();
+    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$this->_id}");
+    	
+    	return (count($arrayFormulariosObjects) > 0);
     }
     
     /**
@@ -605,7 +676,7 @@ class Basico_Model_Formulario
     	
     	$stringIdsFormularios = implode(',', $arrayIdsFormularios);
     	
-    	$arrayObjects = $modelFormulario->fetchList("id IN ({$stringIdsFormularios})"); 
+    	$arrayObjects = $modelFormulario->fetchList("id IN ({$stringIdsFormularios})");
         
         return $arrayObjects;
     }
@@ -638,13 +709,24 @@ class Basico_Model_Formulario
         if (($stringIdsModulos) and ($stringExcludeModulesNames)) 
             $arrayObjects = $modelModulo->fetchList("id IN ({$stringIdsModulos}) and nome NOT IN ({$stringExcludeModulesNames})");
         else if ($stringIdsModulos) 
-            $arrayObjects = $modelModulo->fetchList("id IN ({$stringIdsModulos})");            
+            $arrayObjects = $modelModulo->fetchList("id IN ({$stringIdsModulos})");
         else
             $arrayObjects = array();
         
         return $arrayObjects;
     }
     
+    /**
+     * Return if exists elementos
+     * @return true|false
+     */
+   	public function existeElementos()
+   	{
+   		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$this->_id}");
+        
+        return (count($arrayFormularioFormularioElementosObjects) > 0);
+   	}
     
     /**
      * Get formularioElemento objects
@@ -661,9 +743,13 @@ class Basico_Model_Formulario
             $arrayIdsFormularioElementos[] = $formularioElementoObject->formularioElemento;
         }
         
-        $stringIdsFormularioElementos = implode(',', $arrayIdsFormularioElementos);      
+        $arrayObjects = array();
         
-        $arrayObjects = $modelFormularioElemento->fetchList("id IN ({$stringIdsFormularioElementos})"); 
+        if (count($arrayIdsFormularioElementos)){
+	        $stringIdsFormularioElementos = implode(',', $arrayIdsFormularioElementos);      
+	        
+	        $arrayObjects = $modelFormularioElemento->fetchList("id IN ({$stringIdsFormularioElementos})");
+        }         
         
         return $arrayObjects;
     }
@@ -679,9 +765,12 @@ class Basico_Model_Formulario
         	$arrayIdsTemplates[] = $templateFormularioObject->template;
         }
         
-        $stringIdsTemplates = implode(',', $arrayIdsTemplates);
-
-        $arrayObjects = $modelTemplate->fetchList("id IN ({$stringIdsTemplates})"); 
+        $arrayObjects = array();
+        
+        if (count($arrayIdsTemplates)){
+			$stringIdsTemplates = implode(',', $arrayIdsTemplates);
+        	$arrayObjects = $modelTemplate->fetchList("id IN ({$stringIdsTemplates})");
+        } 
         
         return $arrayObjects;
     }
