@@ -12,6 +12,11 @@
 * 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento;
 * 						14/03/2010 - adicao do campo id_decorator na tabela formulario_elemento;
 * 						23/07/2010 - criacao da tabela template_formulario;
+* 						02/08/2010 - modificacao da chamada a funcao fn_CheckConstanteTextualExists,
+* 									 permitindo que a variavel @constante_textual seja nula;
+* 								   - modificacao nos campos form_method e form_action da tabela
+* 									 formulario, permitindo que os mesmos sejam nulos;
+* 								   - criacao do campo "versao" na tabela "formulario";
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -185,11 +190,12 @@ create table formulario (
 	constante_textual_titulo character varying (200) null ,
 	constante_textual_subtitulo character varying (200) null ,
 	form_name character varying (100) not null ,
-	form_method character varying (100) not null ,
-	form_action character varying (100) not null ,
+	form_method character varying (100) null ,
+	form_action character varying (100) null ,
 	form_target character varying (100) null ,
 	form_enctype character varying (100) null ,
 	form_attribs character varying (1000) null ,
+	versao decimal (3, 3) not null ,
 	validade_inicio timestamp with time zone null ,
 	validade_termino timestamp with time zone null ,
 	data_desativacao timestamp with time zone null ,
@@ -353,7 +359,7 @@ alter table formulario_elemento_filter
   add constraint ix_formulario_elemento_filter_categoria_nome unique (id_categoria, nome);
 
 alter table formulario
-  add constraint ix_formulario_categoria_nome unique (id_categoria, nome);
+  add constraint ix_formulario_categoria_nome unique (id_categoria, nome, versao);
 
 alter table formulario_formulario_elemento
   add constraint ix_formulario_formulario_elemento_formulario_formulario_elemento unique (id_formulario, id_formulario_elemento);
@@ -431,16 +437,16 @@ alter table formulario_perfil
 
 alter table ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
-    (fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null);
+    ((constante_textual_ajuda is null) or (fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null));
 
 alter table ajuda add
     constraint ck_ajuda_constante_textual_hint check
-    (fn_CheckConstanteTextualExists(constante_textual_hint) is not null);
+    ((constante_textual_hint is null) or (fn_CheckConstanteTextualExists(constante_textual_hint) is not null));
 
 alter table formulario add
 	constraint ck_formulario_constante_textual_titulo check
-	(fn_CheckConstanteTextualExists(constante_textual_titulo) is not null);
+	((constante_textual_titulo is null) or (fn_CheckConstanteTextualExists(constante_textual_titulo) is not null));
 
 alter table formulario add
 	constraint ck_formulario_constante_textual_subtitulo check
-	(fn_CheckConstanteTextualExists(constante_textual_subtitulo) is not null);
+	((constante_textual_subtitulo is null) or (fn_CheckConstanteTextualExists(constante_textual_subtitulo) is not null));

@@ -12,6 +12,11 @@
 * 					    13/07/2010 - adicao do campo element_reloadable na tabela formulario_elemento;
 * 						14/03/2010 - adicao do campo id_decorator na tabela formulario_elemento;
 * 						23/07/2010 - criacao da tabela template_formulario;
+* 						02/08/2010 - modificacao da chamada a funcao fn_CheckConstanteTextualExists,
+* 									 permitindo que a variavel @constante_textual seja nula;
+* 								   - modificacao nos campos form_method e form_action da tabela
+* 									 formulario, permitindo que os mesmos sejam nulos;
+* 								   - criacao do campo "versao" na tabela "formulario";
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -152,11 +157,12 @@ create table formulario (
 	constante_textual_titulo varchar (200) collate latin1_general_ci_ai null ,
 	constante_textual_subtitulo varchar (200) collate latin1_general_ci_ai null ,
 	form_name varchar (100) collate latin1_general_ci_ai not null ,
-	form_method varchar (100) collate latin1_general_ci_ai not null ,
-	form_action varchar (100) collate latin1_general_ci_ai not null ,
+	form_method varchar (100) collate latin1_general_ci_ai null ,
+	form_action varchar (100) collate latin1_general_ci_ai null ,
 	form_target varchar (100) collate latin1_general_ci_ai null ,
 	form_enctype varchar (100) collate latin1_general_ci_ai null ,
 	form_attribs varchar (1000) collate latin1_general_ci_ai null ,
+	versao decimal (3, 3) not null ,
 	validade_inicio datetime null ,
 	validade_termino datetime null ,
 	data_desativacao datetime null ,
@@ -341,7 +347,8 @@ alter table formulario add
     constraint ix_formulario_categoria_nome unique nonclustered
     (
         id_categoria,
-        nome
+        nome,
+        versao
     ) on [primary];
 
 alter table formulario_formulario_elemento add
@@ -577,16 +584,16 @@ alter table formulario_perfil add
 
 alter table ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
-    (dbo.fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null);
+    (constante_textual_ajuda is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null));
 
 alter table ajuda add
     constraint ck_ajuda_constante_textual_hint check
-    (dbo.fn_CheckConstanteTextualExists(constante_textual_hint) is not null);
+    (constante_textual_hint is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_hint) is not null));
 
 alter table formulario add
 	constraint ck_formulario_constante_textual_titulo check
-	(dbo.fn_CheckConstanteTextualExists(constante_textual_titulo) is not null);
+	(constante_textual_titulo is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_titulo) is not null));
 
 alter table formulario add
 	constraint ck_formulario_constante_textual_subtitulo check
-	(dbo.fn_CheckConstanteTextualExists(constante_textual_subtitulo) is not null);
+	(constante_textual_subtitulo is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_subtitulo) is not null));

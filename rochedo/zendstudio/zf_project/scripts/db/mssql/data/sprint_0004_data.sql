@@ -15,6 +15,10 @@
 * 							       - insercao do decorator FORMULARIO_ELEMENTO_DECORATOR;
 * 								   - vinculacao de formulario_elemento com decorator;
 * 						23/07/2010 - insercao dos dados da tabela template_formulario;
+* 						02/08/2010 - insercao do decorator DECORATOR_FORM_TAB_CONTAINER1
+* 									 para formularios com abas (e suas categorias);
+* 								   - insercao do formulario do sprint 0003 DadosUsuario (com abas);
+* 						10/08/2010 - insercao da categoria FORMULARIO_SUB_FORMULARIO;
 */
 
 /* TIPO CATEGORIA */
@@ -70,6 +74,11 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_SUB_FORMULARIO' AS nome, 'Sub-formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id AS id_tipo_categoria, 'AJUDA_FORMULARIO' AS nome, 'Ajuda para preenchimento de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -141,6 +150,11 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_TAB_CONTAINER1_DECORATOR' AS nome, 'Decorator para sub-formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'SISTEMA_MODULO' AS nome, 'Modulos do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -314,6 +328,16 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR';
 
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_TAB_CONTAINER1' AS nome, 'Decorator para submissão de sub-formulários.' AS descricao,
+       '''FormElements'',
+                array(''TabContainer'', array(''id'' => ''TabContainer'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',
+                      ''dijitParams'' => array(''tabPosition'' => ''top''),)),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR';
+
 
 /* MODULO */
 
@@ -331,7 +355,7 @@ AND c.nome = 'SISTEMA_MODULO';
 /* FORMULARIO */
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
-                        constante_textual_titulo, constante_textual_subtitulo, 
+                        constante_textual_titulo, constante_textual_subtitulo, versao,
                         form_name, form_method, form_action, form_attribs, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
@@ -340,13 +364,29 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
-
        'FORM_CADASTRAR_USUARIO_NAO_VALIDADO' AS nome,
        'Formulário de cadastro de usuário não validado. É a porta de entrada para validação do usuário no sistema.' AS descricao, 
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual_titulo,
-       'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo, 
+       'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo, 0.1 AS versao,
        'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, 'verificaNovoLogin' AS form_action, 
        '''onSubmit''=>"loading();return(validateForm(''CadastrarUsuarioNaoValidado''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
+
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, versao, form_name, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
+       'FORM_DADOS_USUARIO' AS nome,
+       'Formulário de cadastro do usuário validado.' AS descricao,
+       0.1 AS versao,
+       'CadastrarDadosUsuario' AS form_name, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -363,6 +403,23 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_TEMPLATE'
+		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+	   'SYSTEM_STARTUP' AS rowinfo;
+	   
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
+        AND f.nome = 'FORM_DADOS_USUARIO') AS id_formulario,
        (SELECT p.id
 		FROM template p
 		LEFT JOIN categoria c ON (p.id_categoria = c.id)
@@ -679,7 +736,7 @@ SELECT (SELECT f.id
         AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo;
 
         
-/* MODULO BASCIO x FORMULARIO FORM_CADASTRAR_USUARIO_NAO_VALIDADO */
+/* MODULO BASICO x FORMULARIO FORM_CADASTRAR_USUARIO_NAO_VALIDADO */
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -696,6 +753,23 @@ SELECT (SELECT m.id
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
 		AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
+		AND f.nome = 'FORM_DADOS_USUARIO') AS id_formulario,
 		'SYSTEM_STARTUP' AS rowinfo;
 
 
