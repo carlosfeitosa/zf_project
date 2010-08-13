@@ -14,20 +14,22 @@ function loading()
     underlay.show();
 }
 
-function exibirFormDocumentos(fileUrl)
+function exibirForm(formName, Content)
 {
-	formDocumentos = dijit.byId("formDocumentos");
     
-	if (!formDocumentos) {
-		var thisdialog = new dijit.Dialog({ 
+	form = dijit.byId(formName);
+    
+	if (!form) {
+		var thisdialog = new dijit.Dialog({
                             title: "Documentos de Identificação", 
-                            href: fileUrl,
-                            id: "formDocumentos"
-		                             });
+                            content: Content,
+                            id: formName
+                            
+                            });
 			thisdialog.startup();
 			thisdialog.show();
 	}else{
-	    formDocumentos.show();	
+	    form.show();	
 	}
 }
 
