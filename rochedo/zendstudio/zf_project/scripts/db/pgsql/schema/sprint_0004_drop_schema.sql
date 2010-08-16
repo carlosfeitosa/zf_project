@@ -9,8 +9,10 @@
 * 						18/06/2010 - modificacao do nome da tabela formulario_template para template;
 * 						09/07/2010 - drop das tabelas modulo_formulario, modulo_perifl e modulo;
 * 						23/07/2010 - drop da tabela template_formulario;
+* 						16/08/2010 - drop da tabela formulario_formulario_elemento_formulario;
 */
 
+drop table formulario_formulario_elemento_formulario;
 drop table template_formulario;
 drop table template;
 drop table formulario_perfil;

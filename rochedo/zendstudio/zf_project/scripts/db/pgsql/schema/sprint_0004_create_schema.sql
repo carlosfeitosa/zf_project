@@ -386,7 +386,7 @@ alter table formulario_perfil
   add constraint ix_formulario_perfil_formulario_perfil unique (id_formulario, id_perfil);
   
 alter table formulario_formulario_elemento_formulario
-  add constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique (id_formulario_formulario_elemento, id_formulario);
+  add constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique (id_formulario_formulario_elemento);
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */

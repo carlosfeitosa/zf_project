@@ -386,8 +386,7 @@ alter table formulario_perfil add
 alter table formulario_formulario_elemento_formulario add
 	constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique nonclustered
 	(
-		id_formulario_formulario_elemento,
-		id_formulario
+		id_formulario_formulario_elemento
 	) on [primary];
 
 
