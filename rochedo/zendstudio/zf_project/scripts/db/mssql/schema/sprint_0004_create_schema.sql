@@ -17,6 +17,7 @@
 * 								   - modificacao nos campos form_method e form_action da tabela
 * 									 formulario, permitindo que os mesmos sejam nulos;
 * 								   - criacao do campo "versao" na tabela "formulario";
+* 						16/08/2010 - criacao da tabela formulario_formulario_elemento_formulario;
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -194,6 +195,14 @@ create table formulario_perfil (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
+create table formulario_formulario_elemento_formulario (
+	id int identity (1, 1) not null ,
+	id_formulario_formulario_elemento int not null ,
+	id_formulario int not null ,
+	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
@@ -226,6 +235,8 @@ alter table formulario_formulario_elemento with nocheck add constraint pk_formul
 alter table formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
 
 alter table formulario_perfil with nocheck add constraint pk_formulario_perfil primary key (id) on [primary];
+
+alter table formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -370,6 +381,13 @@ alter table formulario_perfil add
 	(
 		id_formulario,
 		id_perfil
+	) on [primary];
+
+alter table formulario_formulario_elemento_formulario add
+	constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique nonclustered
+	(
+		id_formulario_formulario_elemento,
+		id_formulario
 	) on [primary];
 
 
@@ -579,6 +597,20 @@ alter table formulario_perfil add
 		id
 	);
 
+alter table formulario_formulario_elemento_formulario add
+	constraint fk_formulario_formulario_elemento_formulario_formulario_elemento foreign key
+	(
+		id_formulario_formulario_elemento
+	) references formulario_formulario_elemento (
+		id
+	),
+	constraint fk_formulario_formulario_elemento_formulario_formulario foreign key
+	(
+		id_formulario
+	) references formulario (
+		id
+	);
+
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
@@ -597,3 +629,7 @@ alter table formulario add
 alter table formulario add
 	constraint ck_formulario_constante_textual_subtitulo check
 	(constante_textual_subtitulo is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_subtitulo) is not null));
+
+alter table formulario_formulario_elemento_formulario add
+	constraint ck_formulario_formulario_elemento_formulario_constante_textual_label check
+	(constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
