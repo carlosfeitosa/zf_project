@@ -505,6 +505,36 @@ class Basico_Model_FormularioElemento
        
         return $arrayObjects; 	
     }
+    
+    /**
+     * Get formularioElementoFormularioVinculado object
+     * @param $objFormulario
+     * @param $offset
+     * @return null|Basico_Model_Formulario
+     */
+    public function getFormularioElementoFormularioVinculadoObject(&$objFormulario, $offset)
+    {
+    	// instancia o modelo de FormularioFormularioElemento
+    	$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+    	
+    	// localiza o elemento na relacao de formulario com formulario elemento
+    	$objFormularioFormularioElemento = $modelFormularioFormularioElemento->fetchList("id_formulario = {$objFormulario->id} and id_formulario_elemento = {$this->_id}", "ordem", 1, $offset);
+    	
+    	// instancia o modelo de FormularioFormularioElementoFormulario
+    	$modelFormularioFormularioElementoFormulario = new Basico_Model_FormularioFormularioElementoFormulario();
+    	
+    	// localiza o formulario pelo id de FormularioElemento
+    	$objFormularioFormularioElementoFormulario = $modelFormularioFormularioElementoFormulario->fetchList("id_formulario_formulario_elemento = {$objFormularioFormularioElemento[0]->id}", null, 1, 1);
+    	
+    	if ($objFormularioFormularioElementoFormulario[0]->id){
+    		// instancia o modelo de formulario
+    		$modelFormulario = new Basico_Model_Formulario();
+    		
+    		return $modelFormulario->find($objFormularioFormularioElementoFormulario[0]->formulario);
+    	}
+    	else
+    		throw new Exception(MSG_ERRO_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_SEM_FORMULARIO);
+    }
 
 	/**
 	* Set data mapper

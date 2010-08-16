@@ -735,7 +735,7 @@ class Basico_Model_Formulario
     public function getFormularioElementosObjects()
     {
         $modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$this->_id}");
+        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$this->_id}", "ordem");
         $modelFormularioElemento = new Basico_Model_FormularioElemento();
         
         $arrayIdsFormularioElementos = array();
@@ -745,11 +745,10 @@ class Basico_Model_Formulario
         
         $arrayObjects = array();
         
-        if (count($arrayIdsFormularioElementos)){
-	        $stringIdsFormularioElementos = implode(',', $arrayIdsFormularioElementos);      
-	        
-	        $arrayObjects = $modelFormularioElemento->fetchList("id IN ({$stringIdsFormularioElementos})");
-        }         
+        foreach ($arrayIdsFormularioElementos as $idFormularioElemento) {
+        	$modelFormularioElemento = new Basico_Model_FormularioElemento();
+        	$arrayObjects[] = $modelFormularioElemento->find($idFormularioElemento);
+        }
         
         return $arrayObjects;
     }

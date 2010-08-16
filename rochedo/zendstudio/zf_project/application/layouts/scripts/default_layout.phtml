@@ -3,23 +3,6 @@
  * Layout padrão do sistema.
  */
 
-/*
-
-$objFormulario = new Basico_Model_Formulario();
-$objFormulario->find(1);
-echo $objFormulario->nome . '<BR><BR>';
-
-$geradorFormulario = Basico_Model_Gerador::getGeradorFormularioObject();
-
-if ($geradorFormulario::gerar($objFormulario, FORM_CLASS_EXTENDS_DOJO_FORM, array('GC')))
-  echo "deu certo";
-else
-  echo "nao deu certo";
-
-exit;
-*/
-
-
 $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
 $applicationHttpImagesHome = $this->baseUrl('/images/');
 $applicationHttpCSSHome = $this->baseUrl('/css/global.css');

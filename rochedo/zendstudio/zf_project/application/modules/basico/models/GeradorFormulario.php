@@ -259,7 +259,7 @@ class Basico_Model_GeradorFormulario
                 // verifica se o formulario possui elementos
                 if ($objFormulario->existeElementos()){
                 	// adição dos elementos do formulário
-                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formElementAddElementToFormComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $formCodeBlockEndTag));
+                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formElementAddElementToFormComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $moduloObject, $formCodeBlockEndTag));
                 };
                 
                 // verificacao sobre formularios filhos
@@ -449,7 +449,7 @@ class Basico_Model_GeradorFormulario
                 // verifica se o formulario possui elementos
                 if ($objSubFormulario->existeElementos()){
                 	// adição dos elementos do formulário
-                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
+                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $moduloObject, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
                 };
                         
                 // adicionar sub-formulario ao formulario pai
@@ -474,7 +474,6 @@ class Basico_Model_GeradorFormulario
 
             throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
         }
-		return true;
         return $resultado;
     }
     
@@ -739,10 +738,11 @@ class Basico_Model_GeradorFormulario
      * @param $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento
      * @param $formCodigoCheckAmbienteDesenvolvimento
      * @param $objFormulario
+     * @param $objModulo
      * @param $formCodeBlockEndTag
      * @param $subFormVariableInstance
      */
-    private function retornaElementosFormulario($nivelIdentacaoInicial, $formElementsComment, $formElementsAddToFormComment, $formArrayElements, &$formularioElementosObjects, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $formCodeBlockEndTag, $subFormVariableInstance = null)
+    private function retornaElementosFormulario($nivelIdentacaoInicial, $formElementsComment, $formElementsAddToFormComment, $formArrayElements, &$formularioElementosObjects, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $objModulo, $formCodeBlockEndTag, $subFormVariableInstance = null)
     {
     	$tempReturn = '';
 		$nivelIdentacao = $nivelIdentacaoInicial;
@@ -754,6 +754,7 @@ class Basico_Model_GeradorFormulario
     	$contador = 0;
     	$formElement = FORM_GERADOR_ELEMENTS . '[@contador]';
         $elementoAmbienteDesenvolvimento = false;
+        $totalFormularioElementoFormulariosVinculados = 0;
         
         foreach ($formularioElementosObjects as $formularioElementoObject){
         	$formElementLoop = str_replace('@contador', $contador, $formElement);
@@ -765,13 +766,55 @@ class Basico_Model_GeradorFormulario
                 $identacao = Basico_Model_Util::retornaIdentacao(++$nivelIdentacao);
             } else
             	$elementoAmbienteDesenvolvimento = false;
+            
+            // verifica se elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
+            if ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) {
+            	// localiza formulario vinculado
+            	$formularioElementoFormularioVinculado = $formularioElementoObject->getFormularioElementoFormularioVinculadoObject($objFormulario, $totalFormularioElementoFormulariosVinculados);
+            	
+            	// recuperando variaveis que serao utilizadas para instanciar o formulario vinculado
+            	$variavelSubForm = self::retornaNomeVariavelSubForm($objModulo, $formularioElementoFormularioVinculado) . "DOJO";
+            	$nomeClasseSubForm = self::retornaNomeClasseForm($objModulo, $formularioElementoFormularioVinculado);
+            	
+            	$tempReturn .= $identacao . "{$variavelSubForm} = new {$nomeClasseSubForm} ();" . QUEBRA_DE_LINHA;
+            	
+            	// escrevendo metodos de substituicao de tags/caracteres nao permitidos no formulario vinculado
+            	$tempReturn .= $identacao . "{$variavelSubForm} = str_replace(" . Basico_Model_Util::retornaStringEntreCaracter('"', "'") . ", " . Basico_Model_Util::retornaStringEntreCaracter('\\\\"', "'") . ", {$variavelSubForm});" . QUEBRA_DE_LINHA;
+            	$tempReturn .= $identacao . "{$variavelSubForm} = str_replace(" . Basico_Model_Util::retornaStringEntreCaracter("'", '"') . ", " . Basico_Model_Util::retornaStringEntreCaracter('\\\\"', "'") . ", {$variavelSubForm});" . QUEBRA_DE_LINHA;
+            	$tempReturn .= $identacao . "{$variavelSubForm} = str_replace(PHP_EOL, '');" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA;
+            	
+            	// incrementa variavel de offset
+            	$totalFormularioElementoFormulariosVinculados++;
+            }
+            else {
+            	if (isset($variavelSubForm))
+            		unset($variavelSubForm);
+            	
+            	if (isset($nomeClasseSubForm))
+            		unset($nomeClasseSubForm);
+            }
 
+            // faz substituicao de tags caso o elemento seja do tipo FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
+            if (isset($nomeClasseSubForm))
+            	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $formularioElementoObject->element);
+            else
+            	$tempFormElement = $formularioElementoObject->element;
+            
 			// criando elemento
-			$tempReturn .= $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$formularioElementoObject->element});" . QUEBRA_DE_LINHA;
+			$tempReturn .= $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$tempFormElement});" . QUEBRA_DE_LINHA;
 			
 			// setando atributos do elemento
-			if ($formularioElementoObject->elementAttribs)
-				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETATTRIBS . "(array({$formularioElementoObject->elementAttribs}));" . QUEBRA_DE_LINHA;
+			if ($formularioElementoObject->elementAttribs){
+				// faz substituicao de tags caso o elemento seja do tipo FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
+				if (isset($variavelSubForm) and isset($nomeClasseSubForm)) {
+					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_VARIABLE_INSTANCE_FORM, $variavelSubForm, $formularioElementoObject->elementAttribs);
+					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $tempFormAttribs);
+				}
+				else
+					$tempFormAttribs = $formularioElementoObject->elementAttribs;
+					
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETATTRIBS . "(array({$tempFormAttribs}));" . QUEBRA_DE_LINHA;
+			}
 
 			// descobrindo se o campo é requerido
             if ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true)
@@ -886,7 +929,7 @@ class Basico_Model_GeradorFormulario
     	
     	$tempReturn .= $identacao . FORM_GERADOR_INCLUDE_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
     	
-    	$tempReturn .= "{$identacao}{$metodo} (\"{$nomeDoArquivo}\");" . QUEBRA_DE_LINHA;
+    	$tempReturn .= "{$identacao}{$metodo}(\"subForms/{$nomeDoArquivo}\");" . QUEBRA_DE_LINHA;
     	
     	return $tempReturn;
     }

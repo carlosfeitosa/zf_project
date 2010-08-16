@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 13/08/2010 11:33:05
+* em: 16/08/2010 16:45:05
 *
 * LICENÇA DE USO
 *
@@ -38,6 +38,15 @@
     $elements[0]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT', DEFAULT_USER_LANGUAGE));
     if ($options!=null)
         $elements[0]->setValue($options->nome);
+
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = new Basico_Form_CadastrarUsuarioNaoValidado ();
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace('"', '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace("'", '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace(PHP_EOL, '');
+
+    $elements[1] = $this->createElement('Button', 'Basico_Form_CadastrarUsuarioNaoValidado');
+    $elements[1]->setAttribs(array('onClick', "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\");"));
+    $elements[1]->setRequired(false);
 
     // Adicionando elementos ao formulario.
     $basicoDadosPessoaisSubForm->addElements($elements);

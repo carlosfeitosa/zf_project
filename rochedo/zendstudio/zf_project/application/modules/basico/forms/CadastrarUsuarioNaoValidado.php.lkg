@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 13/08/2010 10:23:49
+* em: 13/08/2010 16:35:13
 *
 * LICENÇA DE USO
 *
@@ -36,7 +36,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                 array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
                 array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
 
-// Criando array de elementos.
+        // Criando array de elementos.
         $elements = array();
 
         $elements[0] = $this->createElement('ValidationTextBox', 'nome');
