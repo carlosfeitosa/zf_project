@@ -535,6 +535,29 @@ class Basico_Model_FormularioElemento
     	else
     		throw new Exception(MSG_ERRO_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_SEM_FORMULARIO);
     }
+    
+    /**
+     * Get constanteTextualTitulo string
+     * @param $objFormulario
+     * @param $offset
+     * @return null|string
+     */
+    public function getFormularioElementoConstanteTextualTitulo(&$objFormulario, $offset)
+    {
+    	// instancia o modelo de FormularioFormularioElemento
+    	$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+    	
+    	// localiza o elemento na relacao de formulario com formulario elemento
+    	$objFormularioFormularioElemento = $modelFormularioFormularioElemento->fetchList("id_formulario = {$objFormulario->id} and id_formulario_elemento = {$this->_id}", "ordem", 1, $offset);
+    	
+    	// instancia o modelo de FormularioFormularioElementoFormulario
+    	$modelFormularioFormularioElementoFormulario = new Basico_Model_FormularioFormularioElementoFormulario();
+    	
+    	// localiza o formulario pelo id de FormularioElemento
+    	$objFormularioFormularioElementoFormulario = $modelFormularioFormularioElementoFormulario->fetchList("id_formulario_formulario_elemento = {$objFormularioFormularioElemento[0]->id}", null, 1, 1);
+    	
+    	return $objFormularioFormularioElementoFormulario[0]->constanteTextualLabel;
+    }
 
 	/**
 	* Set data mapper

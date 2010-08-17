@@ -504,9 +504,15 @@ class Basico_Model_GeradorFormulario
         	
         if ($objSubFormulario->formAction)
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
+
+        $tempArraySubFormAttrib = array();
+        
+        $tempArraySubFormAttrib[] = "'title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$objSubFormulario->constanteTextualTitulo})";
         	
         if ($objSubFormulario->formAttribs)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS]                           = FORM_GERADOR_FORM_SUB_FORM_ADDATTRIBS . "(array({$objSubFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
+        	$tempArraySubFormAttrib[] = $objSubFormulario->formAttribs;        
+        	 
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS]                               = FORM_GERADOR_FORM_SUB_FORM_ADDATTRIBS . "(array(" . implode(",", $tempArraySubFormAttrib) . "));" . QUEBRA_DE_LINHA;
 
         if ($objSubFormulario->getDecoratorObject()->id)
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SUB_FORM_SETDECORATORS . "(array({$objSubFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
@@ -771,12 +777,13 @@ class Basico_Model_GeradorFormulario
             if ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) {
             	// localiza formulario vinculado
             	$formularioElementoFormularioVinculado = $formularioElementoObject->getFormularioElementoFormularioVinculadoObject($objFormulario, $totalFormularioElementoFormulariosVinculados);
-            	
+            	$formularioElementoConstanteTextualTitulo = $formularioElementoObject->getFormularioElementoConstanteTextualTitulo($objFormulario, $totalFormularioElementoFormulariosVinculados);
+      
             	// recuperando variaveis que serao utilizadas para instanciar o formulario vinculado
             	$variavelSubForm = self::retornaNomeVariavelSubForm($objModulo, $formularioElementoFormularioVinculado) . "DOJO";
             	$nomeClasseSubForm = self::retornaNomeClasseForm($objModulo, $formularioElementoFormularioVinculado);
             	
-            	$tempReturn .= $identacao . "{$variavelSubForm} = new {$nomeClasseSubForm} ();" . QUEBRA_DE_LINHA;
+            	$tempReturn .= $identacao . "{$variavelSubForm} = new {$nomeClasseSubForm}();" . QUEBRA_DE_LINHA;
             	
             	// escrevendo metodos de substituicao de tags/caracteres nao permitidos no formulario vinculado
             	$tempReturn .= $identacao . "{$variavelSubForm} = str_replace(" . Basico_Model_Util::retornaStringEntreCaracter('"', "'") . ", " . Basico_Model_Util::retornaStringEntreCaracter('\\\\"', "'") . ", {$variavelSubForm});" . QUEBRA_DE_LINHA;
@@ -792,11 +799,14 @@ class Basico_Model_GeradorFormulario
             	
             	if (isset($nomeClasseSubForm))
             		unset($nomeClasseSubForm);
+            	
+            	if (isset($formularioElementoConstanteTextualTitulo))
+            		unset($formularioElementoConstanteTextualTitulo);
             }
 
             // faz substituicao de tags caso o elemento seja do tipo FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
-            if (isset($nomeClasseSubForm))
-            	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $formularioElementoObject->element);
+            if (isset($formularioElementoConstanteTextualTitulo))
+            	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$formularioElementoConstanteTextualTitulo})", $formularioElementoObject->element);
             else
             	$tempFormElement = $formularioElementoObject->element;
             

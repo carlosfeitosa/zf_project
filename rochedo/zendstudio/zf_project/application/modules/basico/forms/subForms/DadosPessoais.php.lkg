@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 16/08/2010 16:41:21
+* em: 17/08/2010 11:12:54
 *
 * LICENÇA DE USO
 *
@@ -22,7 +22,7 @@
     $basicoDadosPessoaisSubForm->setName('DadosPessoais');
     $basicoDadosPessoaisSubForm->setMethod('post');
     $basicoDadosPessoaisSubForm->setAction('index.php');
-    $basicoDadosPessoaisSubForm->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))"));
+    $basicoDadosPessoaisSubForm->addAttribs(array('title' => $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_PESSOAIS),'onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))"));
     $basicoDadosPessoaisSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), 'DijitForm'));
 
     // Criando array de elementos.
@@ -39,13 +39,13 @@
     if ($options!=null)
         $elements[0]->setValue($options->nome);
 
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = new Basico_Form_CadastrarUsuarioNaoValidado ();
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = new Basico_Form_CadastrarUsuarioNaoValidado();
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace('"', '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace("'", '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace(PHP_EOL, '');
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace(PHP_EOL, '', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
 
-    $elements[1] = $this->createElement('Button', '@nomeForm');
-    $elements[1]->setAttribs(array('onClick', "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\");"));
+    $elements[1] = $this->createElement('Button', $this->getView()->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
+    $elements[1]->setAttribs(array('onClick' => "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\");"));
     $elements[1]->setRequired(false);
 
     // Adicionando elementos ao formulario.

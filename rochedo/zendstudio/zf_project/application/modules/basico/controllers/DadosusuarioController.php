@@ -21,7 +21,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
     public function dadosusuarioAction()
     {
-	    $formDadosUsuario = new Basico_Form_DadosUsuario();
+	    $formDadosUsuario = new Basico_Form_CadastrarDadosUsuario();
 		$this->view->form = $formDadosUsuario;			
 		
 		//Renderiza a view no script global
