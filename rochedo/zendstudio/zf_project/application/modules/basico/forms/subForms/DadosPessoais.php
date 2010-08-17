@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 16/08/2010 16:45:05
+* em: 17/08/2010 10:06:08
 *
 * LICENÇA DE USO
 *
@@ -42,7 +42,7 @@
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = new Basico_Form_CadastrarUsuarioNaoValidado ();
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace('"', '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace("'", '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace(PHP_EOL, '');
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace(PHP_EOL, '', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
 
     $elements[1] = $this->createElement('Button', 'Basico_Form_CadastrarUsuarioNaoValidado');
     $elements[1]->setAttribs(array('onClick', "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\");"));
