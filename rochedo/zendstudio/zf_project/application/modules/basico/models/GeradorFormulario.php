@@ -786,9 +786,7 @@ class Basico_Model_GeradorFormulario
             	$tempReturn .= $identacao . "{$variavelSubForm} = new {$nomeClasseSubForm}();" . QUEBRA_DE_LINHA;
             	
             	// escrevendo metodos de substituicao de tags/caracteres nao permitidos no formulario vinculado
-            	$tempReturn .= $identacao . "{$variavelSubForm} = str_replace(" . Basico_Model_Util::retornaStringEntreCaracter('"', "'") . ", " . Basico_Model_Util::retornaStringEntreCaracter('\\\\"', "'") . ", {$variavelSubForm});" . QUEBRA_DE_LINHA;
-            	$tempReturn .= $identacao . "{$variavelSubForm} = str_replace(" . Basico_Model_Util::retornaStringEntreCaracter("'", '"') . ", " . Basico_Model_Util::retornaStringEntreCaracter('\\\\"', "'") . ", {$variavelSubForm});" . QUEBRA_DE_LINHA;
-            	$tempReturn .= $identacao . "{$variavelSubForm} = str_replace(PHP_EOL, '', {$variavelSubForm});" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA;
+            	$tempReturn .= $identacao . "{$variavelSubForm} = Basico_Model_Util::escapaCaracteresFormDialogDOJO({$variavelSubForm});" . QUEBRA_DE_LINHA;
             	
             	// incrementa variavel de offset
             	$totalFormularioElementoFormulariosVinculados++;

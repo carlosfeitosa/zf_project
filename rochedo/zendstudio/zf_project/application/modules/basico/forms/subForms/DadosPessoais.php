@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 17/08/2010 11:20:56
+* em: 17/08/2010 14:16:19
 *
 * LICENÇA DE USO
 *
@@ -40,10 +40,7 @@
         $elements[0]->setValue($options->nome);
 
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = new Basico_Form_CadastrarUsuarioNaoValidado();
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace('"', '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace("'", '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace(PHP_EOL, '', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = Basico_Model_Util::escapaCaracteresFormDialogDOJO($basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
     $elements[1] = $this->createElement('Button', $this->getView()->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
     $elements[1]->setAttribs(array('onClick' => "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\");"));
     $elements[1]->setRequired(false);

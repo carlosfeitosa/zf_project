@@ -275,4 +275,15 @@ class Basico_Model_Util
         		exit;
         }
 	}
+	
+	public static function escapaCaracteresFormDialogDOJO($formHTMLString)
+	{
+		$tempReturn = $formHTMLString;
+		
+		$tempReturn = str_replace("'", '"', $tempReturn);
+		$tempReturn = str_replace('"', '\\"', $tempReturn);
+		$tempReturn = str_replace(PHP_EOL, '', $tempReturn);
+		        
+        return $tempReturn;
+	}
 }
