@@ -33,13 +33,13 @@ function exibirForm(formName, content, title)
 	}
 }
 
-function validateForm(formId, message) 
+function validateForm(formId, titulo, message) 
 {
     var form = dijit.byId(formId);
     
     if (!form.validate()) 
     {
-	    showDialogAlert(formId, message, 1);
+	    showDialogAlert(formId, titulo, message, 1);
 	    underlay.hide();
         return false;
     }
