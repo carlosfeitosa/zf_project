@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/08/2010 10:53:15
+* em: 18/08/2010 12:00:49
 *
 * LICENÇA DE USO
 *
@@ -31,7 +31,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $this->setName('CadastrarUsuarioNaoValidado');
         $this->setMethod('post');
         $this->setAction('verificaNovoLogin');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado', '@title', '@message'))"));
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado', '{$this->getView()->tradutor(FORM_VALIDATION_TITLE)}', 'mensagem'))"));
         $this->setDecorators(array('FormElements',
                 array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
                 array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
