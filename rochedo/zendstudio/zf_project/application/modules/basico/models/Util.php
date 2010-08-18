@@ -208,7 +208,6 @@ class Basico_Model_Util
 	{
 		$exibeOkButton = (int) $exibeOkButton;
 		
-		//return "javascript:showDialogAlert(\'{$dialogName}\', \'' . {$titulo} . '\', \'' . {$mensagem} . '\', {$exibeOkButton})";
 		return "showDialogAlert(\'{$dialogName}\', \'' . {$titulo} . '\', \'' . {$mensagem} . '\', {$exibeOkButton})";		
 	}
 	
