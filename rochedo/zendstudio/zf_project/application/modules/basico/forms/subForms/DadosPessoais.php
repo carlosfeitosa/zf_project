@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/08/2010 00:22:59
+* em: 18/08/2010 10:55:41
 *
 * LICENÇA DE USO
 *
@@ -22,7 +22,7 @@
     $basicoDadosPessoaisSubForm->setName('DadosPessoais');
     $basicoDadosPessoaisSubForm->setMethod('post');
     $basicoDadosPessoaisSubForm->setAction('index.php');
-    $basicoDadosPessoaisSubForm->addAttribs(array('title' => $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_PESSOAIS),'onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado'))"));
+    $basicoDadosPessoaisSubForm->addAttribs(array('title' => $this->getView()->tradutor(SUBFORM_TABTITLE_DADOS_PESSOAIS),'onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado', '@title', '@message'))"));
     $basicoDadosPessoaisSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), 'DijitForm'));
 
     // Criando array de elementos.
@@ -42,7 +42,7 @@
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = new Basico_Form_CadastrarUsuarioNaoValidado();
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = Basico_Model_Util::escapaCaracteresFormDialogDOJO($basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
     $elements[1] = $this->createElement('Button', $this->getView()->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
-    $elements[1]->setAttribs(array('onClick' => "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\");"));
+    $elements[1]->setAttribs(array('onClick' => "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\" , \"" . @tituloForm . "\");"));
     $elements[1]->setRequired(false);
 
     // Adicionando elementos ao formulario.

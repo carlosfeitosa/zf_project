@@ -858,7 +858,7 @@ class Basico_Model_GeradorFormulario
 
                     $constanteTextoAjuda = Basico_Model_Util::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'");
                     $chamadaJavaScriptDialog = Basico_Model_Util::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(' . DIALOG_HELP_TITLE . ', DEFAULT_USER_LANGUAGE)', '$this->getView()->tradutor(' . $constanteTextoAjuda . ', DEFAULT_USER_LANGUAGE)' . $urlAjuda);
-                    $linkAjuda = "&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">{$chamadaJavaScriptDialog}</script></button>";
+                    $linkAjuda = "&nbsp;" . FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG . AJUDA_BUTTON_LABEL . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG . $chamadaJavaScriptDialog . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG . FORM_GERADOR_AJUDA_BUTTON_END_TAG;
                 } else
                 	$linkAjuda = '';
 

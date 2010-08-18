@@ -3,6 +3,17 @@
  * Layout padrão do sistema.
  */
 
+/*
+$formulario = new Basico_Model_Formulario();
+$formulario->find(2);
+if (Basico_Model_GeradorFormulario::gerar($formulario))
+	echo "deu certo";
+else
+	echo "deu errado";
+
+exit;
+*/
+
 $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
 $applicationHttpImagesHome = $this->baseUrl('/images/');
 $applicationHttpCSSHome = $this->baseUrl('/css/global.css');
@@ -49,7 +60,7 @@ if (Basico_Model_Util::ambienteDesenvolvimento())
     <?php echo $this->dojo();?> 
     
 </head> 
-<body class="tundra">
+<body class="nihilo">
 <div class="loading"></div>
 <div id="header">
     <div id="header-logo">

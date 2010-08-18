@@ -221,6 +221,15 @@ define("FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_END_TAG", "FORM_GERADOR_ARRAY_INIT
 define("FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_VARIABLE_INSTANCE_FORM", "@variableInstaceForm");
 define("FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME", "@nomeForm");
 
+define("FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG", "<button dojoType=\"dijit.form.Button\" type=\"button\">");
+define("FORM_GERADOR_AJUDA_BUTTON_END_TAG", "</button>");
+
+define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG", "<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">");
+define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG", "</script>");
+
+// AJUDA
+define("AJUDA_BUTTON_LABEL", "?"); 
+
 /**
  * EMAIL
  */
