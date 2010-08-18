@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 17/08/2010 11:12:54
+* em: 18/08/2010 00:14:40
 *
 * LICENÇA DE USO
 *
@@ -34,16 +34,13 @@
     $elements[0]->addFilters(array('StringTrim', 'StripTags'));
     $elements[0]->addValidator('NotEmpty');
     $elements[0]->AddDecorator('Label', array('escape' => false));
-    $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_NOME', DEFAULT_USER_LANGUAGE) . '&nbsp;<a href="javascript:showDialogAlert(\'DadosPessoais\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)">(?)</a>');
+    $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_NOME', DEFAULT_USER_LANGUAGE) . '&nbsp;<button dojoType="dijit.form.Button" type="button">(?)<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'DadosPessoais\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE, DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)</script></button>');
     $elements[0]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT', DEFAULT_USER_LANGUAGE));
     if ($options!=null)
         $elements[0]->setValue($options->nome);
 
     $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = new Basico_Form_CadastrarUsuarioNaoValidado();
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace('"', '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace("'", '\\"', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = str_replace(PHP_EOL, '', $basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
-
+    $basicoCadastrarUsuarioNaoValidadoSubFormDOJO = Basico_Model_Util::escapaCaracteresFormDialogDOJO($basicoCadastrarUsuarioNaoValidadoSubFormDOJO);
     $elements[1] = $this->createElement('Button', $this->getView()->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
     $elements[1]->setAttribs(array('onClick' => "exibirForm(\"Basico_Form_CadastrarUsuarioNaoValidado\" , \"" . $basicoCadastrarUsuarioNaoValidadoSubFormDOJO . "\");"));
     $elements[1]->setRequired(false);
