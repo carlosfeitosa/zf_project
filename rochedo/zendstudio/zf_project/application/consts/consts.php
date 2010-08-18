@@ -164,6 +164,8 @@ define("FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM", '$this->addSubForm');
 define("FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP", 'if (!Basico_Model_Util::ambienteDesenvolvimento())');
 define("FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT", '$this->createElement');
 define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS", '->setAttribs');
+define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG", '@title');
+define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG", '@message');
 define("FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE", '->setRequired(true)');
 define("FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_FALSE", '->setRequired(false)');
 define("FORM_GERADOR_FORM_ELEMENT_ADDFILTERS", '->addFilters');

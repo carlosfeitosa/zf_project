@@ -557,8 +557,16 @@ class Basico_Model_GeradorFormulario
         if ($objFormulario->formAction)
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                            = FORM_GERADOR_FORM_SETACTION . "('{$objFormulario->formAction}');" . QUEBRA_DE_LINHA;
         	
-        if ($objFormulario->formAttribs)
+        if ($objFormulario->formAttribs){
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
+        	
+        	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
+        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "(" . FORM_VALIDATION_TITLE . ")}";
+        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "(" . FORM_VALIDATION_MESSAGE . ")}";
+        	// substituicao de tags para caixa de dialogo de validacao
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG, $tituloDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
+        }
 
         if ($objFormulario->getDecoratorObject()->id)
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SETDECORATORS . "(array({$objFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
