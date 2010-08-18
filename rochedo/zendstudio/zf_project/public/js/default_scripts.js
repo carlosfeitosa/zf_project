@@ -14,15 +14,15 @@ function loading()
     underlay.show();
 }
 
-function exibirForm(formName, Content)
+function exibirForm(formName, content, title)
 {
     
 	form = dijit.byId(formName);
     
 	if (!form) {
 		var thisdialog = new dijit.Dialog({
-                            title: "Documentos de Identificação", 
-                            content: Content,
+                            title: title, 
+                            content: content,
                             id: formName
                             
                             });
@@ -33,13 +33,13 @@ function exibirForm(formName, Content)
 	}
 }
 
-function validateForm(formid) 
+function validateForm(formId, message) 
 {
-    var form = dijit.byId(formid);
+    var form = dijit.byId(formId);
     
     if (!form.validate()) 
     {
-	    showDialogAlert(formid, "Atenção", "Por favor, preencha todos os campos antes de continuar.", 1);
+	    showDialogAlert(formId, message, 1);
 	    underlay.hide();
         return false;
     }
@@ -50,7 +50,7 @@ function showDialogAlert(txtDialogId, txtTitle, txtContent, botaoFechar)
 {
 	if (botaoFechar == 1)
 	{
-	    var botaoFechar = "<br><br><center><button dojoType='dijit.form.Button' type='submit' onclick='hideDialog('"+ txtDialogId +"')'>Ok</button></center>";
+	    var botaoFechar = "<br><br><center><button dojoType='dijit.form.Button' type='submit' onclick='hideDialog('"+ txtDialogId +"')'>OK</button></center>";
 	}else{
 		var botaoFechar = "";	
 	}
