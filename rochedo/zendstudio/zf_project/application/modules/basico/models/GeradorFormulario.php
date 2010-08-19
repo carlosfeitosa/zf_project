@@ -825,6 +825,7 @@ class Basico_Model_GeradorFormulario
 				if (isset($variavelSubForm) and isset($nomeClasseSubForm)) {
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_VARIABLE_INSTANCE_FORM, $variavelSubForm, $formularioElementoObject->elementAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $tempFormAttribs);
+					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_TITLE_DIALOG, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$formularioElementoConstanteTextualTitulo})", $tempFormAttribs);
 				}
 				else
 					$tempFormAttribs = $formularioElementoObject->elementAttribs;
