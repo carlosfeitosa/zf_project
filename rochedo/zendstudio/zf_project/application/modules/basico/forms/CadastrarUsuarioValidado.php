@@ -70,10 +70,10 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         if($options!=null)
            $elements[0]->setValue($options->nomeConfirmacao);
            
-        $elements[1] = $this->createElement('RadioButton','sexo');
-        $elements[1]->setLabel('Sexo:')
-                    ->setMultiOptions(array('M' => 'Masculino', 'F' => 'Feminino'))
-                    ->setValue('M');
+        $elements[1] = $this->createElement('RadioButton','sexo', array('multiOptions' => array('M' => 'Masculino', 'F' => 'Feminino')));
+        $elements[1]->setLabel('Sexo:');
+                   // ->setMultiOptions(array('M' => 'Masculino', 'F' => 'Feminino'))
+                    //->setValue('M');
                     
         if($options!=null)
            $elements[1]->setValue($options->sexo);
@@ -88,14 +88,14 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
  		if($options!=null)
            $elements[2]->setValue($options->dataNascimento);
         
-        $formDocumentos = new Basico_Form_DocumentosIdentificacao();
-        $formDocumentos = str_replace('"', '\\"', $formDocumentos);
-        $formDocumentos = str_replace("'", '\\"', $formDocumentos);
-        $formDocumentos = str_replace(PHP_EOL, '', $formDocumentos);
+        //$formDocumentos = new Basico_Form_DocumentosIdentificacao();
+        //$formDocumentos = str_replace('"', '\\"', $formDocumentos);
+        //$formDocumentos = str_replace("'", '\\"', $formDocumentos);
+        //$formDocumentos = str_replace(PHP_EOL, '', $formDocumentos);
                 
-        $elements[3] = $this->createElement('Button', 'documentos');
-        $elements[3]->setLabel('Adicionar Documento de Identificação')
-                    ->setAttrib('onClick', "exibirForm(\"DocumentosIdentificacao\" , \"" . $formDocumentos . "\");"); 
+        //$elements[3] = $this->createElement('Button', 'documentos');
+        //$elements[3]->setLabel('Adicionar Documento de Identificação')
+          //          ->setAttrib('onClick', "exibirForm(\"DocumentosIdentificacao\" , \"" . $formDocumentos . "\");"); 
            
         $elements[4] = $this->createElement('ValidationTextBox', 'nomeUsuario');
 		$elements[4]->addFilters(array('StringTrim', 'StripTags'))
