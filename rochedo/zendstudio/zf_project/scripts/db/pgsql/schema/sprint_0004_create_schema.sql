@@ -245,11 +245,11 @@ with (
 alter table formulario_perfil owner to rochedo_user;
 
 create table formulario_formulario_elemento_formulario (
-	id int identity (1, 1) not null ,
+	id serial not null ,
 	id_formulario_formulario_elemento int not null ,
 	id_formulario int not null ,
-	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
-	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+	constante_textual_label character varying (200) null ,
+	rowinfo character varying (2000) not null 
 )
 with (
   oids = false
@@ -289,7 +289,7 @@ alter table formulario_elemento_formulario_elemento_validator add constraint pk_
 
 alter table formulario_perfil add constraint pk_formulario_perfil primary key (id);
 
-alter table formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
+alter table formulario_formulario_elemento_formulario  add constraint pk_formulario_formulario_elemento_formulario primary key (id) ;
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -475,4 +475,4 @@ alter table formulario add
 
 alter table formulario_formulario_elemento_formulario add
 	constraint ck_formulario_formulario_elemento_formulario_constante_textual_label check
-	(constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
+	(constante_textual_label is null or (fn_CheckConstanteTextualExists(constante_textual_label) is not null));
