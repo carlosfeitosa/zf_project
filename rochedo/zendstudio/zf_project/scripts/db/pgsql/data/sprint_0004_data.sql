@@ -19,6 +19,7 @@
 * 									 para formularios com abas (e suas categorias);
 * 								   - insercao do formulario do sprint 0003 DadosUsuario (com abas);
 * 						10/08/2010 - insercao da categoria FORMULARIO_SUB_FORMULARIO;
+* 						25/08/2010 - insercao do elemento FORM_BUTTON_DIALOG_DOJO;
 */
 
 /* TIPO CATEGORIA */
@@ -616,6 +617,16 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HASH';
+
+INSERT INTO formulario_elemento (id_categoria, nome, descricao, element_name, element_attribs, element, element_reloadable, rowinfo)
+SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para chamar caixa de dialogo DOJO.' AS descricao,
+       'buttonDialogDojo' AS element_name, 
+       '''label'' => "{@tituloForm}", ''onClick'' => "exibirForm(\"@nomeForm\", \"{@variableInstaceForm}\", \"{@tituloForm}\")"' AS element_attribs,
+       '''button'', ''buttonDialogDojo@offset''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO';
 
 
 /* FORMULARIO ELEMENTO x FORMULARIO ELEMENTO VALIDATOR */
