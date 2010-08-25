@@ -811,8 +811,10 @@ class Basico_Model_GeradorFormulario
             }
 
             // faz substituicao de tags caso o elemento seja do tipo FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
-            if (isset($formularioElementoConstanteTextualTitulo))
+            if (isset($formularioElementoConstanteTextualTitulo)){
             	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$formularioElementoConstanteTextualTitulo})", $formularioElementoObject->element);
+            	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_OFFSET, $totalFormularioElementoFormulariosVinculados, $tempFormElement);
+            }  	
             else
             	$tempFormElement = $formularioElementoObject->element;
             
