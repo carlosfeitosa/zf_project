@@ -8,8 +8,8 @@
  * @subpackage Model
  */
 
-/* requires */
-require_once(APPLICATION_PATH . "/modules/basico/controllers/TradutorControllerController.php");
+///* requires */
+//require_once(APPLICATION_PATH . "/modules/basico/controllers/TradutorControllerController.php");
 
 class Basico_Model_GeradorFormulario
 {

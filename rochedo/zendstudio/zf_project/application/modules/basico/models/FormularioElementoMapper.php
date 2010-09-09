@@ -35,7 +35,7 @@ class Basico_Model_FormularioElementoMapper
 
     /**
      * Get registered Zend_Db_Table instance
-     *
+    *
      * Lazy loads Basico_Model_DbTable_FormularioElemento if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
@@ -57,12 +57,12 @@ class Basico_Model_FormularioElementoMapper
     public function save(Basico_Model_FormularioElemento $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-				'constante_textual_label'   => $object->getConstanteTextualLabel(),
-				'element_name'   => $object->getElementName(),
+                'nome'   => $object->getNome(),
+                'descricao'   => $object->getDescricao(),
+                'constante_textual_label'   => $object->getConstanteTextualLabel(),
+                'element_name'   => $object->getElementName(),
                 'element_attribs' => $object->getElementAttribs(),
-				'element'   => $object->getElement(),
+                'element'   => $object->getElement(),
                 'element_reloadable' => $object->getElementReloadable(),
                 'id_categoria' => $object->getCategoria(),
                 'id_ajuda'     => $object->getAjuda(),
@@ -80,15 +80,15 @@ class Basico_Model_FormularioElementoMapper
         }
     }
     
-	/**
-	* Delete a FormularioElemento entry
-	* @param Basico_Model_FormularioElemento $object
-	* @return void
-	*/
-	public function delete(Basico_Model_FormularioElemento $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
+    /**
+     * Delete a FormularioElemento entry
+     * @param Basico_Model_FormularioElemento $object
+     * @return void
+     */
+    public function delete(Basico_Model_FormularioElemento $object)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $object->id));
+    }
 
     /**
      * Find a FormularioElemento entry by id

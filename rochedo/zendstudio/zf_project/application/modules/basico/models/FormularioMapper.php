@@ -147,7 +147,7 @@ class Basico_Model_FormularioMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_Formulario();
+			$entry = new Basico_Model_Formulario();
 			$entry->setId($row->id)
 
         		->setCategoria($row->id_categoria)
