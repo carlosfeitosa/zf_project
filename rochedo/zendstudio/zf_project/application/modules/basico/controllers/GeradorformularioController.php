@@ -21,11 +21,9 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function init()
     {
         //Carrega as mensagens
-            //$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO, DEFAULT_USER_LANGUAGE);
-            //$subtituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO, DEFAULT_USER_LANGUAGE);
-        $tituloView    = 'Gerador formulário';
-        $subtituloView = '';
-                
+        $tituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
+        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO', DEFAULT_USER_LANGUAGE);
+                        
         $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
         
         //Carrega as mensagens na view
@@ -63,7 +61,6 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        
         //Instancia o formulario
         $formulario = $this->getFormGeradorFormulario();
         
@@ -76,6 +73,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         $this->view->form->selectFormulario->addMultiOptions($arrayFormularios);
         
         $this->_helper->Renderizar->renderizar();
+
     }
     
     
@@ -132,7 +130,6 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
                 //Carrega a mensagen de confirmação na view
                 $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
 		        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO', DEFAULT_USER_LANGUAGE);
-		        $mensagemView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_MENSAGEM', DEFAULT_USER_LANGUAGE);
 		        $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
 
 		        //Carrega as mensagens na view
