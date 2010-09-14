@@ -153,7 +153,7 @@ class Basico_Model_Util
 	/**
 	 * Retorna a datetime atual
 	 * @param $data
-	 * @return Integer
+	 * @return String
 	 */
 	public static function retornaDateTimeAtual()
 	{
@@ -245,8 +245,7 @@ class Basico_Model_Util
 	{
 		return fclose($fileResource);
 	}
-	
-	
+
 	/**
 	 * Formata a visualização do print_r(), var_dump(), var_export() para melhor compreensão.
 	 * 
@@ -276,6 +275,10 @@ class Basico_Model_Util
         }
 	}
 	
+	/**
+	 * escapa os caracteres HTML necessarios para visualizacao de formulario DOJO
+	 * @param $formHTMLString
+	 */
 	public static function escapaCaracteresFormDialogDOJO($formHTMLString)
 	{
 		$tempReturn = $formHTMLString;
@@ -286,4 +289,84 @@ class Basico_Model_Util
 		        
         return $tempReturn;
 	}
+	
+	/**
+	 * retorna o valor da chave primaria de um objeto
+	 * @param $objeto
+	 */
+    public static function retornaIdGenericoObjeto($objeto)
+    {
+    	// recuperando informacoes sobre a tabela vinculada ao objeto
+		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+		// recuperando o nome do campo da chave primaria da tabela vinculada ao objeto
+		$tablePrimaryKey = $tableInfo['primary'];
+		$tablePrimaryKey = $tablePrimaryKey[1];
+		// retornando o valor do id generico vindo do objeto
+		return $objeto->$tablePrimaryKey;
+    }
+    
+    /**
+     * retorna o nome da tabela vinculada a um objeto
+     * @param $objeto
+     */
+    public static function retornaTableNameObjeto($objeto)
+    {
+    	// recuperando informacoes sobre a tabela vinculada ao objeto
+		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+		// recuperando nome da tabela vinculada ao objeto
+		$tableName = $tableInfo['name'];
+		return $tableName;
+    }
+    
+    /**
+     * retorna o nome da chave primaria da tabela vinculada ao objeto
+     * @param $objeto
+     */
+    public static function retornaPrimaryKeyObjeto($objeto)
+    {
+    	// recuperando informacoes sobre a tabela vinculada ao objeto
+		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+		// recuperando o nome do campo da chave primaria da tabela vinculada ao objeto
+		$tablePrimaryKey = $tableInfo['primary'];
+		// retorna o nome do campo da chave primaria
+		return $tablePrimaryKey[1];
+    }
+    
+    public static function codificar($valor, $operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
+    {
+    	if ($operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
+    		return self::objectToEncodedString($valor);
+    	else if ($operacao = CODIFICAR_ENCODED_STRING_TO_ARRAY)
+    		return self::encodedStringToArray($valor);
+    	else
+    		throw new Exception(MSG_ERRO_CODIFICAR_SEM_OPERACAO);
+    }
+    
+    /**
+     * converte uma string codificada em um array
+     * @param String $encodedString
+     * 
+     * @return array
+     */
+    public static function encodedStringToArray($encodedString)
+    {
+    	return json_decode($encodedString, true);
+    }
+    
+    /**
+     * converte um objeto em uma string codificada
+     * @param Object $object
+     * 
+     * @return String
+     */
+    public static function objectToEncodedString($object)
+    {
+    	if (is_object($object)) {
+    		if (property_exists($object, 'mapper'))
+    			$object->setMapper(null);
+    		return json_encode((array) $object, JSON_FORCE_OBJECT);
+    	}
+    	else
+    		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+    }
 }

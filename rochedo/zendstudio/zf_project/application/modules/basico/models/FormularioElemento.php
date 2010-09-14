@@ -67,6 +67,11 @@ class Basico_Model_FormularioElemento
 	 */
 	protected $_decorator;
 	
+    /**
+     * @var Integer
+     */
+    protected $_componente;
+	
 	/**
 	 * @var String
 	 */
@@ -292,7 +297,40 @@ class Basico_Model_FormularioElemento
     {
         return $this->_elementReloadable;
     }
-	
+    
+	/**
+	* Set componente
+	* 
+	* @param int $componente 
+	* @return Basico_Model_Componente
+	*/
+	public function setComponente($componente)
+	{
+		$this->_componente = (int) $componente;
+		return $this;
+	}
+
+	/**
+	* Get componente
+	* 
+	* @return null|int
+	*/
+	public function getComponente()
+	{
+		return $this->_componente;
+	}
+
+    /**
+     * Get componente object
+     * @return null|componente
+     */
+    public function getComponenteObject()
+    {
+        $model = new Basico_Model_Componente();
+        $object = $model->find($this->_componente);
+        return $object;
+    }
+
     /**
 	* Set rowinfo
 	* 
@@ -314,7 +352,7 @@ class Basico_Model_FormularioElemento
 	{
 		return $this->_rowinfo;
 	}
-	
+
     /**
 	* Set entry categoria
 	* 

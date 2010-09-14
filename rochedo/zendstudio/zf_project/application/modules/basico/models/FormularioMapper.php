@@ -63,7 +63,6 @@ class Basico_Model_FormularioMapper
 				'form_name'                     => $object->getFormName(),
 				'constante_textual_titulo'      => $object->getConstanteTextualTitulo(),
 				'constante_textual_subtitulo'   => $object->getConstanteTextualSubTitulo(),
-        		'versao'						=> $object->getVersao(),
 				'form_method'                   => $object->getFormMethod(),
 				'form_action'                   => $object->getFormAction(),
 				'form_target'                   => $object->getFormTarget(),
@@ -120,7 +119,6 @@ class Basico_Model_FormularioMapper
 				->setFormName($row->form_name)
 				->setConstanteTextualTitulo($row->constante_textual_titulo)
 				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
-				->setVersao($row->versao)
 				->setFormMethod($row->form_method)
 				->setFormAction($row->form_action)
 				->setFormTarget($row->form_target)
@@ -156,7 +154,6 @@ class Basico_Model_FormularioMapper
 				->setFormName($row->form_name)
 				->setConstanteTextualTitulo($row->constante_textual_titulo)
 				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
-				->setVersao($row->versao)
 				->setFormMethod($row->form_method)
 				->setFormAction($row->form_action)
 				->setFormTarget($row->form_target)
@@ -196,7 +193,6 @@ class Basico_Model_FormularioMapper
 				->setFormName($row->form_name)
 				->setConstanteTextualTitulo($row->constante_textual_titulo)
 				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
-				->setVersao($row->versao)
 				->setFormMethod($row->form_method)
 				->setFormAction($row->form_action)
 				->setFormTarget($row->form_target)

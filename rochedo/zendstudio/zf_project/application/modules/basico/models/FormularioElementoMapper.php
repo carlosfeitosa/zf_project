@@ -67,7 +67,8 @@ class Basico_Model_FormularioElementoMapper
                 'id_categoria' => $object->getCategoria(),
                 'id_ajuda'     => $object->getAjuda(),
                 'id_formulario_elemento_filter' => $object->getFormularioElementoFilter(),
-                'id_decorator'                  => $object->getDecorator(),       
+                'id_decorator'                  => $object->getDecorator(),
+        		'id_componente'					=> $object->getComponente(),
                 'rowinfo'   => $object->getRowinfo(),
 
         );
@@ -117,6 +118,7 @@ class Basico_Model_FormularioElementoMapper
 				->setAjuda($row->id_ajuda)
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
+				->setComponente($row->id_componente)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -145,6 +147,7 @@ class Basico_Model_FormularioElementoMapper
 				->setAjuda($row->id_ajuda)
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
+				->setComponente($row->id_componente)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -177,6 +180,7 @@ class Basico_Model_FormularioElementoMapper
 				->setAjuda($row->id_ajuda)
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
+				->setComponente($row->id_componente)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

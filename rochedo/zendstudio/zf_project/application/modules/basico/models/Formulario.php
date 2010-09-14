@@ -44,10 +44,6 @@ class Basico_Model_Formulario
 	 */
 	protected $_constanteTextualSubTitulo;
 	/**
-	 * @var float
-	 */
-	protected $_versao;
-	/**
 	 * @var String
 	 */
 	protected $_formMethod;
@@ -300,28 +296,6 @@ class Basico_Model_Formulario
 		return $this->_constanteTextualSubTitulo;
 	}
 	
-	/**
-	* Set versao
-	* 
-	* @param Float $versao 
-	* @return String
-	*/
-	public function setVersao($versao)
-	{
-		$this->_versao = (Float) $versao;
-		return $this;
-	}
-
-	/**
-	* Get versao
-	* 
-	* @return null|String
-	*/
-	public function getVersao()
-	{
-		return $this->_versao;
-	}
-     
 	/**
 	* Set formMethod
 	* 

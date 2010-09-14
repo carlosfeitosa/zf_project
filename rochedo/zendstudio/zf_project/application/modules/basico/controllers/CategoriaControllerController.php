@@ -58,12 +58,19 @@ class Basico_CategoriaControllerController
     /**
 	 * Retorna o objeto categoria carregado com os dados da categoria passada como parâmetro se esta estiver ATIVA
 	 * ou NULL se ela não existir no banco.
+	 * Permite a indicacao do tipo de categoria
 	 * @param String $nomeCategoria
+	 * @param integer $tipoCategoria
 	 * @return Basico_Model_Categoria or NULL
 	 */
-	public function retornaCategoriaAtiva($nomeCategoria)
+	public function retornaCategoriaAtiva($nomeCategoria, $tipoCategoria = null)
 	{
-		$auxCategoria = self::$singleton->categoria->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
+		if ((isset($tipoCategoria)) and ($tipoCategoria >= 1))
+			$whereSQL = "nome = '{$nomeCategoria}' and id_tipo_categoria = {$tipoCategoria}";
+		else
+			$whereSQL = "nome = '{$nomeCategoria}'";
+		 
+		$auxCategoria = self::$singleton->categoria->fetchList($whereSQL, null, 1, 0);
 		if (isset($auxCategoria[0])) {
 			
 			if ($auxCategoria[0]->ativo == 1)
@@ -257,10 +264,6 @@ class Basico_CategoriaControllerController
 		throw new Exception(MSG_ERRO_CATEGORIA_LINGUAGEM);
 	}
 	
-	
-	
-	
-	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormulario
@@ -308,6 +311,27 @@ class Basico_CategoriaControllerController
 		if (isset($categoriaLogNovoFormularioElementoValidador))
 			return $categoriaLogNovoFormularioElementoValidador;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria CVC
+	 * @return Basico_Model_Categoria $categoriaCVC
+	 */
+	public function retornaCategoriaCVC()
+	{
+		// recuperando o id do tipo categoria CVC
+		$modelTipoCategoria = new Basico_Model_TipoCategoria();
+		$nomeTipoCategoriaCVC = TIPO_CATEGORIA_CVC;
+		$objTipoCategoriaCVC = $modelTipoCategoria->fetchList("nome = '{$nomeTipoCategoriaCVC}'", null, 1, 0);
+		if (isset($objTipoCategoriaCVC[0]))
+			$idTipoCategoriaCVC = $objTipoCategoriaCVC[0]->id;
+		else
+			throw new Exception(MSG_ERRO_TIPO_CATEGORIA_CVC);
+		
+		$categoriaCVC = $this->retornaCategoriaAtiva(CATEGORIA_CVC, $objTipoCategoriaCVC[0]->id);
+		if (isset($categoriaCVC))
+			return $categoriaCVC;
+		throw new Exception(MSG_ERRO_CATEGORIA_CVC);
 	}
 	
 }

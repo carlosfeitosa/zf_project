@@ -73,7 +73,6 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         $this->view->form->selectFormulario->addMultiOptions($arrayFormularios);
         
         $this->_helper->Renderizar->renderizar();
-
     }
     
     
