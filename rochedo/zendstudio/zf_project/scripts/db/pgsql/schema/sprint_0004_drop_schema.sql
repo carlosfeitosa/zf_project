@@ -10,6 +10,7 @@
 * 						09/07/2010 - drop das tabelas modulo_formulario, modulo_perifl e modulo;
 * 						23/07/2010 - drop da tabela template_formulario;
 * 						16/08/2010 - drop da tabela formulario_formulario_elemento_formulario;
+* 						14/09/2010 - drop da tabela componente;
 */
 
 drop table formulario_formulario_elemento_formulario;
@@ -21,6 +22,7 @@ drop table formulario_elemento_formulario_elemento_validator;
 drop table formulario_elemento;
 drop table formulario_elemento_validator;
 drop table formulario_elemento_filter;
+drop table componente;
 drop table modulo_formulario;
 drop table modulo_perfil;
 drop table modulo;

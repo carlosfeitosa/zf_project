@@ -18,6 +18,10 @@
 * 									 formulario, permitindo que os mesmos sejam nulos;
 * 								   - criacao do campo "versao" na tabela "formulario";
 * 						16/08/2010 - criacao da tabela formulario_formulario_elemento_formulario;
+* 						10/09/2010 - remocao do campo "versao" da tabela "formulario";
+* 						14/09/2010 - criacao da tabela "componente";
+* 						14/09/2010 - criacao do campo (e associacoes) "id_componente" na tabela
+* 									 "formulario_elemento";
 */
 
 /* CRIACAO DAS FUNCOES */
@@ -119,6 +123,7 @@ create table formulario_elemento (
 	id_ajuda int null ,
     id_formulario_elemento_filter int null ,
     id_decorator int null ,
+    id_componente int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
@@ -163,7 +168,6 @@ create table formulario (
 	form_target varchar (100) collate latin1_general_ci_ai null ,
 	form_enctype varchar (100) collate latin1_general_ci_ai null ,
 	form_attribs varchar (1000) collate latin1_general_ci_ai null ,
-	versao decimal (3, 3) not null ,
 	validade_inicio datetime null ,
 	validade_termino datetime null ,
 	data_desativacao datetime null ,
@@ -203,6 +207,20 @@ create table formulario_formulario_elemento_formulario (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
+create table componente (
+	id int identity (1, 1) not null ,
+	id_categoria int not null ,
+	nome varchar (100) collate latin1_general_ci_ai not null ,
+	descricao varchar (2000) collate latin1_general_ci_ai null ,
+	componente varchar (1000) collate latin1_general_ci_ai not null ,
+	validade_inicio datetime null ,
+	validade_termino datetime null ,
+	data_desativacao datetime null ,
+	data_auto_reativar datetime null ,
+	motivo_desativacao varchar (1000) collate latin1_general_ci_ai null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
@@ -238,6 +256,8 @@ alter table formulario_perfil with nocheck add constraint pk_formulario_perfil p
 
 alter table formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
 
+alter table componente with nocheck add constraint pk_componente primary key (id) on [primary];
+
 
 /* CRIACAO DOS VALORES DEFAULT */
 
@@ -250,6 +270,9 @@ alter table formulario add
 
 alter table formulario_elemento add
 	constraint df_formulario_elemento_element_realoadable default 0 for element_reloadable;
+
+alter table componente add
+	constraint df_componente_validade_inicio default (getdate()) for validade_inicio;
 
 
 /* CRIACAO DOS INDICES */
@@ -273,6 +296,8 @@ create index ix_formulario_elemento_filter_nome on formulario_elemento_filter (n
 create index ix_formulario_nome on formulario (nome) on [primary];
 
 create unique index ix_formulario_form_name on formulario (form_name) on [primary];
+
+create unique index ix_componente_nome on componente (nome) on [primary];
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
@@ -358,8 +383,7 @@ alter table formulario add
     constraint ix_formulario_categoria_nome unique nonclustered
     (
         id_categoria,
-        nome,
-        versao
+        nome
     ) on [primary];
 
 alter table formulario_formulario_elemento add
@@ -387,6 +411,13 @@ alter table formulario_formulario_elemento_formulario add
 	constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique nonclustered
 	(
 		id_formulario_formulario_elemento
+	) on [primary];
+
+alter table componente add
+	constraint ix_componente_categoria_componente unique nonclustered
+	(
+		id_categoria,
+		componente
 	) on [primary];
 
 
@@ -510,6 +541,12 @@ alter table formulario_elemento add
 		id_decorator
 	) references decorator (
 		id
+	),
+	constraint fk_formulario_elemento_componente foreign key
+	(
+		id_componente
+	) references componente (
+		id
 	);
 
 alter table formulario_elemento_validator add
@@ -607,6 +644,14 @@ alter table formulario_formulario_elemento_formulario add
 	(
 		id_formulario
 	) references formulario (
+		id
+	);
+	
+alter table componente add
+	constraint fk_componente_categoria foreign key
+	(
+		id_categoria
+	) references categoria (
 		id
 	);
 
