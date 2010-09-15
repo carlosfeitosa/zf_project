@@ -272,8 +272,9 @@ create table componente (
 	data_auto_reativar timestamp with time zone null ,
 	motivo_desativacao character varying (1000) null ,
 	rowinfo character varying (2000) not null
-) on [primary];
-
+) with (
+  oids = false
+);
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
