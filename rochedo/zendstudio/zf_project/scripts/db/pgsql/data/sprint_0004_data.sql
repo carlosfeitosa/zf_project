@@ -563,7 +563,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
                         form_name, form_method, form_action, form_attribs, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
@@ -751,7 +751,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
-                              AND d.nome = 'DOJO_ValidationTextBox') AS id_componente,
+                              AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
                               'FIELD_NOME_USUARIO' AS nome, 'Elemento campo nome do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_NOME' AS constante_textual_label,
                               'nome' AS element_name, '''size'' => 100' AS element_attribs,
@@ -792,7 +792,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
-                              AND d.nome = 'DOJO_ValidationTextBox') AS id_componente,
+                              AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
                               'FIELD_EMAIL_USUARIO' AS nome, 'Elemento campo e-mail do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_EMAIL' AS constante_textual_label,
                               'email' AS element_name, '''size'' => 80' AS element_attribs,
@@ -811,7 +811,7 @@ SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação huma
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_ZF'
-        AND d.nome = 'ZF_captcha') AS id_componente,
+        AND cp.nome = 'ZF_captcha') AS id_componente,
        'FORM_FIELD_CAPTCHA_6' AS constante_textual_label, 'captcha' AS element_name, 
        '''captcha'', 
                       array(''required''=>true,
@@ -839,7 +839,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, 'Botão para submiss�
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_DOJO'
-        AND d.nome = 'DOJO_submitButton') AS id_componente,
+        AND cp.nome = 'DOJO_submitButton') AS id_componente,
        'FORM_BUTTON_SUBMIT' AS constante_textual_label, 'enviar' AS element_name, 
        '''enviar''' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -855,7 +855,7 @@ SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, 'Botão para submissão de for
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_ZF'
-        AND d.nome = 'ZF_hash') AS id_componente,
+        AND cp.nome = 'ZF_hash') AS id_componente,
        'csrf' AS element_name, 
        '''csrf'', array(''ignore'' => true, ''salt'' => ''unique'',)' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -871,7 +871,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para cha
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_ZF'
-        AND d.nome = 'ZF_button') AS id_componente,
+        AND cp.nome = 'ZF_button') AS id_componente,
        'buttonDialogDojo' AS element_name, 
        '''label'' => "{@tituloForm}", ''onClick'' => "exibirForm(\"@nomeForm\", \"{@variableInstaceForm}\", \"{@tituloForm}\")"' AS element_attribs,
        '''buttonDialogDojo@offset''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
