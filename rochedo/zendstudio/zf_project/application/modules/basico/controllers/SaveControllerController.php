@@ -3,6 +3,8 @@
  * Controlador Save
  * 
  */
+require_once(APPLICATION_PATH . "/modules/basico/controllers/CVCControllerController.php");
+
 class Basico_SaveControllerController
 {
 	/**
