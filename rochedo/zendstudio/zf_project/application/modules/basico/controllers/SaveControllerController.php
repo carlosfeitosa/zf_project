@@ -15,7 +15,7 @@ class Basico_SaveControllerController
 		$ultimaVersao = Basico_Model_CVC::retornaUltimaVersao($mixed, true);
 		
 		// verificando se o objeto deve ser versionado ou ter sua ultima versao atualizada apenas
-		if (false !== self::isInatualizarVersaoList($mixed)) {
+		if (false !== self::isInAtualizarVersaoList($mixed)) {
 			// versionando objeto
 			$versaoVersionamento = Basico_Model_CVC::versionar($mixed);
 		}
@@ -34,7 +34,7 @@ class Basico_SaveControllerController
 		}
 	}
 	
-	static private function isInatualizarVersaoList($mixed)
+	static private function isInAtualizarVersaoList($mixed)
 	{
 		// inicializando array contendo o nome das tabelas que devem atualizar a versao apenas
 		$arrayAtualizarList = array();
