@@ -19,8 +19,6 @@ class Basico_CVCControllerController
     {
     	// recuperando o valor do id generico vindo do objeto
 		$idGenerico = Basico_Model_Util::retornaIdGenericoObjeto($objeto);
-	//	Basico_Model_Util::print_debug($objeto);
-		//echo $idGenerico."AKI";exit;
 		
 		// verificando se o valor de id generico existe
 		if (!$idGenerico) {
@@ -105,6 +103,13 @@ class Basico_CVCControllerController
 		}
     }
     
+    /**
+     * versiona um objeto.
+     * retorna o numero da versão
+     * @param objeto $objeto
+     * 
+     * @return integer
+     */
     public static function versionar($objeto)
     {
     	// instanciando o modelo de CVC
@@ -154,6 +159,14 @@ class Basico_CVCControllerController
     	return $modelCVC->versao;
     }
     
+    /**
+     * atualiza a versão de um objeto ja versionado
+     * retorna o numero da versão
+     * 
+     * @param object $objeto
+     * 
+     * @return integer
+     */
     public static function atualizaVersao($objeto)
     {
     	// recuperando id da relacao de categoria chave estrangeira
