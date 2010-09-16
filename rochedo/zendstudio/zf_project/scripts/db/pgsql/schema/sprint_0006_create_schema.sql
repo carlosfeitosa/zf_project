@@ -87,4 +87,5 @@ alter table categoria_chave_estrangeira add
 /* MODIFICACOES DOS SCRIPTS ANTERIORES */
 	
 /* dropando indice unico relacionado a categoria da tabela categoria_chave_estrangeira */
-drop index ix_categoria_chave_estrangeira_id_categoria;
+ALTER TABLE categoria_chave_estrangeira
+	DROP CONSTRAINT ix_categoria_chave_estrangeira CASCADE 
