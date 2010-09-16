@@ -14,16 +14,16 @@ class Basico_SaveControllerController
 	static public function save($mixed)
 	{
 		// recuperando o numero da ultima versao
-		$ultimaVersao = Basico_Model_CVC::retornaUltimaVersao($mixed, true);
+		$ultimaVersao = Basico_CVCControllerController::retornaUltimaVersao($mixed, true);
 		
 		// verificando se o objeto deve ser versionado ou ter sua ultima versao atualizada apenas
 		if (false !== self::isInAtualizarVersaoList($mixed)) {
 			// versionando objeto
-			$versaoVersionamento = Basico_Model_CVC::versionar($mixed);
+			$versaoVersionamento = Basico_CVCControllerController::versionar($mixed);
 		}
 		else {
 			// atualizando o objeto
-			$versaoVersionamento = Basico_Model_CVC::atualizaVersao($mixed);
+			$versaoVersionamento = Basico_CVCControllerController::atualizaVersao($mixed);
 		}
 		
 		// verificando se houve atualizacao da versao
