@@ -3,6 +3,8 @@
  * Controlador Pessoa.
  *
  */
+
+require_once(APPLICATION_PATH . "/modules/basico/controllers/SaveControllerController.php");
 class Basico_PessoaControllerController
 {
 	/**
@@ -46,8 +48,10 @@ class Basico_PessoaControllerController
 	public function salvarPessoa($novaPessoa)
 	{
 		try {
+			// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novaPessoa);
+			// atualizando o objeto
 			$this->pessoa = $novaPessoa;
-			$this->pessoa->save();
 			
 			// INICIALIZACAO DOS CONTROLLERS
 			$controladorCategoria = Basico_CategoriaControllerController::init();
