@@ -7,6 +7,22 @@
 class Basico_Model_Util
 {
 	/**
+	 * Muda as permissoes de uma pasta/arquivo, recursivamente
+	 * @param string $caminho
+	 * @param integer $modo
+	 * 
+	 * @return Boolean
+	 */
+	public static function chmodRecursive($caminho, $modo)
+	{
+		$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($caminho), RecursiveIteratorIterator::SELF_FIRST);
+		
+		foreach($iterator as $item) { 
+    		chmod($item, $modo);
+		}
+	}
+
+	/**
 	 * Cria diretorios recursivamente.
 	 * @param String $caminho
 	 * @param int $folderRights
