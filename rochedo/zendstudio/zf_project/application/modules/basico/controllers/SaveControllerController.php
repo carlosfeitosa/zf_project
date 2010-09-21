@@ -4,18 +4,35 @@
  * 
  */
 require_once(APPLICATION_PATH . "/modules/basico/controllers/CVCControllerController.php");
+require_once(APPLICATION_PATH . "/modules/basico/controllers/LogControllerController.php");
 
 class Basico_SaveControllerController
 {
 	/**
-	 * salva e versiona um objeto atraves do controlador/modelo
+	 * Salva e versiona um objeto atraves do controlador/modelo
+	 * 
+	 * Caso nao deseje salvar log, informe apenas o objeto sem informar o resto dos parametros
+	 * 
 	 * @param controller|object $mixed
+	 * @param integer $idPessoaPerfil
+	 * @param integer $idCategoriaLog
+	 * @param string $mensagemLog
+	 * @return true|false
 	 */
-	static public function save($mixed)
-	{
+	static public function save($mixed, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	{	
 		// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
-		if (!Basico_Model_Util::retornaIdGenericoObjeto($mixed));
-			$mixed->save();
+		if (!Basico_Model_Util::retornaIdGenericoObjeto($mixed)) {
+			if (method_exists($mixed, 'save')) {
+				// salvando o objeto
+				$mixed->save();
+				// criando log de operacoes
+				if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
+					Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+			}
+			else
+				throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
+		}
 		
 		// recuperando o numero da ultima versao
 		$ultimaVersao = Basico_CVCControllerController::retornaUltimaVersao($mixed, true);
@@ -32,7 +49,15 @@ class Basico_SaveControllerController
 		
 		// verificando se houve atualizacao da versao
 		if ($ultimaVersao !== $versaoVersionamento) {
-			$mixed->save();
+			if (method_exists($mixed, 'save')) {
+				// salvando o objeto
+				$mixed->save();
+				// criando log de operacoes
+				if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
+					Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+			}
+			else
+				throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
 			return true;
 		}
 		else {

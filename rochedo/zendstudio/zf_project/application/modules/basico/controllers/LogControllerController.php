@@ -95,44 +95,50 @@ class Basico_LogControllerController
 	}
 	
 	/**
-	 * 
+	 * salva um log de operacoes
 	 * @param $novoLog
-	 * @return unknown_type
+	 * @return true
 	 */
-	public function salvarLog($novoLog)
+	public static function salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog)
 	{
-		try {
-	    	$auxDb = Zend_Registry::get('db');
-	    	$auxDb->beginTransaction();
-	    	try{
-	    		$this->log = $novoLog;
-	    		$this->prepareXml($novoLog);
-				$this->log->save();
-				$auxDb->commit();
-	    	} catch (Exception $e) {
-	    		$auxDb->rollback();
-	    	}
-	    } catch (Exception $e) {
-	    	$this->log = $novoLog;
-	    	$this->prepareXml($novoLog);
-			$this->log->save();
-	    }
+		// verifica se existe pessoa perfil e categoria de log
+		if ((!isset($idPessoaPerfil)) or (!isset($idCategoriaLog)))
+			throw new Exception(MSG_ERRO_SAVE_SEM_PESSOAPERFIL_CATEGORIA);
+		
+		// instanciando controlador de log
+		$logController = Basico_LogControllerController::init();
+		
+		// preenchendo o modelo de log
+		$logController->log                 = new Basico_Model_Log();
+	    $logController->log->pessoaperfil   = $idPessoaPerfil;
+	    $logController->log->categoria      = $idCategoriaLog;
+	    $logController->log->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
+	    $logController->log->descricao      = $mensagemLog;
+	    
+	    // preparando o xml do log
+	    $logController->log->xml = self::prepareXml($logController->log);
+
+	    // salvando log
+		$logController->log->save();
+
+		return true;
 	}
 	
 	/**
-	* Prepare xml
+	* Prepara o xml
 	* 
-	* @return null|Boolean
+	* @return string|null
 	*/
 	private function prepareXml($modelo)
 	{
 		try {
+				// instanciando controlador de log
+				$logController = Basico_LogControllerController::init();
+			
 				$logXml = new Basico_Model_LogXml(array("eventDateTime"    => $modelo->dataHoraEvento,
 														"eventDescription" => $modelo->descricao,));
 				
-				$this->log->xml = $this->gerador->getGeradorXmlObject()->gerar($logXml, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');
-
-		        return true;	
+				return $logController->gerador->getGeradorXmlObject()->gerar($logXml, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');	
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

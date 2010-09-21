@@ -41,22 +41,21 @@ class Basico_PessoaPerfilMensagemCategoriaControllerController
 	 * @param Basico_Model_PessoaPerfilMensagemCategoria $novaPessoaPerfilMensagemCategoria
 	 * @return void
 	 */
-	public function salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria) {
-	
-	//try {
-	    	//$auxDb = Zend_Registry::get('db');
-	    	//$auxDb->beginTransaction();
-	    	//try{
-	    		$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;
-				$this->pessoaPerfilMensagemCategoria->save();
-			    //$auxDb->commit();
-	    	//} catch (Exception $e) {
-	    		//$auxDb->rollback();
-	    	//}
-	   // } catch (Exception $e) {
-	    //	$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;
-		//	$this->pessoaPerfilMensagemCategoria->save();
-	    //}
-		
+	public function salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria, $idPessoaPerfilCriador = null)
+	{
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+
+	    	// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novaPessoaPerfilMensagemCategoria);
+
+			// atualizando o objeto
+	    	$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;
+
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 	}
 }

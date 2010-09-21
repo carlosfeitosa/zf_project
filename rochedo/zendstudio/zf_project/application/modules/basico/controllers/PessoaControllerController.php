@@ -49,25 +49,10 @@ class Basico_PessoaControllerController
 	{
 		try {
 			// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novaPessoa);
+			Basico_SaveControllerController::save($novaPessoa, Basico_Model_Util::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
 			// atualizando o objeto
 			$this->pessoa = $novaPessoa;
-			
-			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaControllerController::init();
-			$controladorLog       = Basico_LogControllerController::init();
-			
-            // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaPessoa();
-
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-            $novoLog->categoria      = $categoriaLog->id;
-
-            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVA_PESSOA;
-            $controladorLog->salvarLog($novoLog);
-			
+						
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

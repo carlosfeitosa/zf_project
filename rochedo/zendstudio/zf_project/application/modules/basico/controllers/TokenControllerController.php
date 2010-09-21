@@ -73,7 +73,6 @@ class Basico_TokenControllerController
 	        self::$arrayTokensUrls[$token] = $url;
 	        $session->arrayTokensUrls = self::$arrayTokensUrls;
 	    }
-	    //echo Zend_Controller_Front::getInstance()->getBaseUrl();exit;
 	    
 	    $baseUrl = str_replace("/index2.php", '',Zend_Controller_Front::getInstance()->getBaseUrl());
         return $baseUrl . LINK_CONTROLADOR_TOKENS . $token;
@@ -97,8 +96,6 @@ class Basico_TokenControllerController
             $url = self::$arrayTokensUrls[$token];
         else
             throw new Exception(MSG_ERRO_TOKEN_SESSAO_NAO_ENCONTRADO);
-            
-        
         
         $baseUrl = str_replace("/index2.php", "", Zend_Controller_Front::getInstance()->getBaseUrl());
         $url     = str_replace($baseUrl, '', $url);
@@ -136,29 +133,18 @@ class Basico_TokenControllerController
 		
 		$checkConstraint = $auxDb->fetchAll("SELECT {$campoTabela} FROM {$nomeTabela} WHERE {$campoTabela} = ?", array($novoToken->idGenerico));
 		
-		if ((isset($checkConstraint)) and ($checkConstraint != false))  {
+		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
 	    	
 			try{
-	    		// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
+	    		// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 		    	if (!isset($idPessoaPerfilCriador))
 		    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-		    		
+
+				// salvando o objeto através do controlador Save
+				Basico_SaveControllerController::save($novoToken, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
+
+				// atualizando o objeto
 	    		$this->token = $novoToken;
-				$this->token->save();
-				
-				// INICIALIZACAO DOS CONTROLLERS
-				$controladorCategoria = Basico_CategoriaControllerController::init();
-				$controladorLog       = Basico_LogControllerController::init();
-				
-	            // CATEGORIA DO LOG VALIDACAO USUARIO
-	            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoToken();
-	
-	            $novoLog = new Basico_Model_Log();
-	            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
-	            $novoLog->categoria      = $categoriaLog->id;
-	            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-	            $novoLog->descricao      = LOG_MSG_NOVO_TOKEN;
-	            $controladorLog->salvarLog($novoLog);
 				
 	    	} catch (Exception $e) {
 	    		throw new Exception($e);

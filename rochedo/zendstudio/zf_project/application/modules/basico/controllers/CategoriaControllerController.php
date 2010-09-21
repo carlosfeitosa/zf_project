@@ -183,6 +183,18 @@ class Basico_CategoriaControllerController
 			return $categoriaLogValidacaoUsuario;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_VALIDACAO_USUARIO);
 	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_VALIDACAO_USUARIO
+	 * @return Basico_Model_Categoria $categoriaLogValidacaoUsuario
+	 */
+	public static function retornaIdCategoriaLogValidacaoUsuario()
+	{
+		$categoriaLogValidacaoUsuario = self::retornaCategoriaAtiva(LOG_VALIDACAO_USUARIO);
+		if (isset($categoriaLogValidacaoUsuario))
+			return (Int) $categoriaLogValidacaoUsuario->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_VALIDACAO_USUARIO);
+	}
 	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA
@@ -197,6 +209,18 @@ class Basico_CategoriaControllerController
 	}
 	
 	/**
+	 * Retorna o id da categoria LOG_NOVA_PESSOA
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovaPessoa()
+	{
+		$categoriaLogNovaPessoa = self::retornaCategoriaAtiva(LOG_NOVA_PESSOA);
+		if (isset($categoriaLogNovaPessoa))
+			return (Int) $categoriaLogNovaPessoa->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA);
+	}
+	
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL
 	 * @return Basico_Model_Categoria $categoriaLogNovaPessoaPerfil
 	 */
@@ -205,6 +229,18 @@ class Basico_CategoriaControllerController
 		$categoriaLogNovaPessoaPerfil = $this->retornaCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL);
 		if (isset($categoriaLogNovaPessoaPerfil))
 			return $categoriaLogNovaPessoaPerfil;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL
+	 * @return Basico_Model_Categoria $categoriaLogNovaPessoaPerfil
+	 */
+	public static function retornaIdCategoriaLogNovaPessoaPerfil()
+	{
+		$categoriaLogNovaPessoaPerfil = self::retornaCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL);
+		if (isset($categoriaLogNovaPessoaPerfil))
+			return (Int) $categoriaLogNovaPessoaPerfil->id;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL);
 	}
 	
@@ -217,6 +253,18 @@ class Basico_CategoriaControllerController
 		$categoriaLogNovoDadosPessoais = $this->retornaCategoriaAtiva(LOG_NOVO_DADOS_PESSOAIS);
 		if (isset($categoriaLogNovoDadosPessoais))
 			return $categoriaLogNovoDadosPessoais;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_DADOS_PESSOAIS
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovoDadosPessoais()
+	{
+		$categoriaLogNovoDadosPessoais = self::retornaCategoriaAtiva(LOG_NOVO_DADOS_PESSOAIS);
+		if (isset($categoriaLogNovoDadosPessoais))
+			return (Int) $categoriaLogNovoDadosPessoais->id;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
 	}
 	
@@ -232,11 +280,39 @@ class Basico_CategoriaControllerController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL);
 	}
 	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_EMAIL
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovoEmail()
+	{
+		$categoriaLogNovoEmail = self::retornaCategoriaAtiva(LOG_NOVO_EMAIL);
+		if (isset($categoriaLogNovoEmail))
+			return (Int) $categoriaLogNovoEmail->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_TOKEN_VALIDACAO_USUARIO
+	 * @return Basico_Model_Categoria $categoriaLogNovoToken
+	 */
     public function retornaCategoriaLogNovoToken()
 	{
 		$categoriaLogNovoToken = $this->retornaCategoriaAtiva(LOG_TOKEN_VALIDACAO_USUARIO);
 		if (isset($categoriaLogNovoToken))
 			return $categoriaLogNovoToken;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_TOKEN_VALIDACAO_USUARIO
+	 * @return Basico_Model_Categoria $categoriaLogNovoToken
+	 */
+    public static function retornaIdCategoriaLogNovoToken()
+	{
+		$categoriaLogNovoToken = self::retornaCategoriaAtiva(LOG_TOKEN_VALIDACAO_USUARIO);
+		if (isset($categoriaLogNovoToken))
+			return (Int) $categoriaLogNovoToken->id;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN);
 	}
 	
@@ -249,6 +325,18 @@ class Basico_CategoriaControllerController
 		$categoriaLogNovaMensagem = $this->retornaCategoriaAtiva(LOG_NOVA_MENSAGEM);
 		if (isset($categoriaLogNovaMensagem))
 			return $categoriaLogNovaMensagem;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVA_MENSAGEM
+	 * @return Basico_Model_Categoria $categoriaLogNovaMensagem
+	 */
+	public static function retornaIdCategoriaLogNovaMensagem()
+	{
+		$categoriaLogNovaMensagem = self::retornaCategoriaAtiva(LOG_NOVA_MENSAGEM);
+		if (isset($categoriaLogNovaMensagem))
+			return (Int) $categoriaLogNovaMensagem->id;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM);
 	}
 	
@@ -275,6 +363,18 @@ class Basico_CategoriaControllerController
 			return $categoriaLogNovoFormulario;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO);
 	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogNovoFormulario()
+	{
+		$categoriaLogNovoFormulario = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO);
+		if (isset($categoriaLogNovoFormulario))
+			return (Int) $categoriaLogNovoFormulario->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO);
+	}
 	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
@@ -287,7 +387,42 @@ class Basico_CategoriaControllerController
 			return $categoriaLogNovoFormularioElemento;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO);
 	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogNovoFormularioElemento()
+	{
+		$categoriaLogNovoFormularioElemento = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO);
+		if (isset($categoriaLogNovoFormularioElemento))
+			return (Int) $categoriaLogNovoFormularioElemento->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO);
+	}
 	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FILTER
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoFilter
+	 */
+	public function retornaCategoriaLogNovoFormularioElementoFilter()
+	{
+		$categoriaLogNovoFormularioElementoFilter = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
+		if (isset($categoriaLogNovoFormularioElementoFilter))
+			return $categoriaLogNovoFormularioElementoFilter;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogNovoFormularioElementoFilter()
+	{
+		$categoriaLogNovoFormularioElementoFilter = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
+		if (isset($categoriaLogNovoFormularioElementoFilter))
+			return (Int) $categoriaLogNovoFormularioElementoFilter->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
+	}
 	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
@@ -302,6 +437,18 @@ class Basico_CategoriaControllerController
 	}
 	
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovoFormularioElementoFormularioElementoValidador()
+	{
+		$categoriaLogNovoFormularioElementoFormularioElementoValidador = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+		if (isset($categoriaLogNovoFormularioElementoFormularioElementoValidador))
+			return (int) $categoriaLogNovoFormularioElementoFormularioElementoValidador->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
 	 */
@@ -311,6 +458,90 @@ class Basico_CategoriaControllerController
 		if (isset($categoriaLogNovoFormularioElementoValidador))
 			return $categoriaLogNovoFormularioElementoValidador;
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
+	 */
+	public static function retornaIdCategoriaLogNovoFormularioElementoValidador()
+	{
+		$categoriaLogNovoFormularioElementoValidador = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
+		if (isset($categoriaLogNovoFormularioElementoValidador))
+			return (Int) $categoriaLogNovoFormularioElementoValidador->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
+	 */
+	public function retornaCategoriaLogNovoFormularioFormularioElemento()
+	{
+		$categoriaLogNovoFormularioFormularioElemento = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
+		if (isset($categoriaLogNovoFormularioFormularioElemento))
+			return $categoriaLogNovoFormularioFormularioElemento;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
+	}
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
+	 */
+	public static function retornaIdCategoriaLogNovoFormularioFormularioElemento()
+	{
+		$categoriaLogNovoFormularioFormularioElemento = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
+		if (isset($categoriaLogNovoFormularioFormularioElemento))
+			return (Int) $categoriaLogNovoFormularioFormularioElemento->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_TEMPLATE
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioTemplate
+	 */
+	public function retornaCategoriaLogNovoFormularioTemplate()
+	{
+		$categoriaLogNovoFormularioTemplate = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
+		if (isset($categoriaLogNovoFormularioTemplate))
+			return $categoriaLogNovoFormularioTemplate;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_TEMPLATE
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogNovoFormularioTemplate()
+	{
+		$categoriaLogNovoFormularioTemplate = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
+		if (isset($categoriaLogNovoFormularioTemplate))
+			return (Int) $categoriaLogNovoFormularioTemplate->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_OUTPUT
+	 * @return Basico_Model_Categoria $categoriaLogNovoOutput
+	 */
+	public function retornaCategoriaLogNovoOutput()
+	{
+		$categoriaLogNovoOutput = $this->retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
+		if (isset($categoriaLogNovoOutput))
+			return $categoriaLogNovoOutput;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_OUTPUT
+	 * @return Basico_Model_Categoria $categoriaLogNovoOutput
+	 */
+	public function retornaIdCategoriaLogNovoOutput()
+	{
+		$categoriaLogNovoOutput = self::retornaCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
+		if (isset($categoriaLogNovoOutput))
+			return (Int) $categoriaLogNovoOutput->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
 	}
 	
 	/**

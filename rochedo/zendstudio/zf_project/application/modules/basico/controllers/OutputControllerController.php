@@ -43,26 +43,18 @@ class Basico_OutputControllerController
 	 * @param Basico_Model_Output $novoOutput
 	 * @return void
 	 */
-	public function salvarOutput($novoOutput)
+	public function salvarOutput($novoOutput, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+
+	    	// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novoOutput, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoOutput(), LOG_MSG_NOVO_OUTPUT);
+
+			// atualizando o objeto
 			$this->output = $novoOutput;
-			$this->output->save();
-			
-			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaControllerController::init();
-			$controladorLog       = Basico_LogControllerController::init();
-			
-            // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoOutput();
-
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-            $novoLog->categoria      = $categoriaLog->id;
-
-            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVO_OUTPUT;
-            $controladorLog->salvarLog($novoLog);
 			
 		} catch (Exception $e) {
 			throw new Exception($e);

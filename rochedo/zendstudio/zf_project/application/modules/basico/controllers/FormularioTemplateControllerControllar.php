@@ -43,26 +43,18 @@ class Basico_FormularioTemplateControllerController
 	 * @param Basico_Model_FormularioTemplate $novoFormularioTemplate
 	 * @return void
 	 */
-	public function salvarFormularioTemplate($novoFormularioTemplate)
+	public function salvarFormularioTemplate($novoFormularioTemplate, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+
+	    	// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novoFormularioTemplate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioTemplate(), LOG_MSG_NOVO_FORMULARIO_TEMPLATE);
+
+			// atualizando o objeto
 			$this->formularioTemplate = $novoFormularioTemplate;
-			$this->formularioTemplate->save();
-			
-			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaControllerController::init();
-			$controladorLog       = Basico_LogControllerController::init();
-			
-            // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoFormularioTemplate();
-
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-            $novoLog->categoria      = $categoriaLog->id;
-
-            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVO_FORMULARIO_TEMPLATE;
-            $controladorLog->salvarLog($novoLog);
 			
 		} catch (Exception $e) {
 			throw new Exception($e);

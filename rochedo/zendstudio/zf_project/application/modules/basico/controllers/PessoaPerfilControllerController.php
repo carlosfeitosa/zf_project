@@ -47,26 +47,15 @@ class Basico_PessoaPerfilControllerController
 	public function salvarPessoaPerfil($novaPessoaPerfil, $idPessoaPerfilCriador = null)
 	{
 	    try {
-	    	// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
+	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
 	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 
-    		$this->pessoaPerfil = $novaPessoaPerfil;
-			$this->pessoaPerfil->save();
-			
-			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaControllerController::init();
-			$controladorLog       = Basico_LogControllerController::init();
-			
-            // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaPessoaPerfil();
+			// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novaPessoaPerfil, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoaPerfil(), LOG_MSG_NOVA_PESSOA_PERFIL);
 
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
-            $novoLog->categoria      = $categoriaLog->id;
-            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVA_PESSOA_PERFIL;
-            $controladorLog->salvarLog($novoLog);
+			// atualizando o objeto
+    		$this->pessoaPerfil = $novaPessoaPerfil;
 			
     	} catch (Exception $e) {
     		throw new Exception($e);

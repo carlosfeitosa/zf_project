@@ -53,26 +53,16 @@ class Basico_MensagemControllerController
     public function salvarMensagem($novaMensagem, $idPessoaPerfilCriador = null) 
     {
 	    try{
-	    	// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
+	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
 	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-	    		
-	    	$this->mensagem = $novaMensagem;
-			$this->mensagem->save();
-			
-			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaControllerController::init();
-			$controladorLog       = Basico_LogControllerController::init();
-			
-            // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovaMensagem();
+	    	
+	    	// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novaMensagem, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
 
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
-            $novoLog->categoria      = $categoriaLog->id;
-            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVA_MENSAGEM;
-            $controladorLog->salvarLog($novoLog);
+			// atualizando o objeto	    		
+	    	$this->mensagem = $novaMensagem;
+
 	    } catch (Exception $e) {
 	    	throw new Exception($e);
 	    }

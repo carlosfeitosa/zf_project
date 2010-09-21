@@ -155,27 +155,16 @@ class Basico_EmailControllerController
 	public function salvarEmail($novoEmail, $idPessoaPerfilCriador = null)
 	{
     	try{
-    		// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
 	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-	    		
-    		$this->email = $novoEmail;
-			$this->email->save();
-			
-			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaControllerController::init();
-			$controladorLog       = Basico_LogControllerController::init();
-			
-            // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoEmail();
 
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
-            $novoLog->categoria      = $categoriaLog->id;
-            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVO_EMAIL;
-            $controladorLog->salvarLog($novoLog);
-			
+			// salvando o objeto através do controlador Save
+	    	Basico_SaveControllerController::save($novoEmail, Basico_Model_Util::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
+
+	    	// atualizando o objeto
+    		$this->email = $novoEmail;
+
     	} catch (Exception $e) {
     		throw new Exception($e);
     	}

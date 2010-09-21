@@ -43,27 +43,19 @@ class Basico_FormularioElementoControllerController
 	 * @param Basico_Model_FormularioElemento $novoFormularioElemento
 	 * @return void
 	 */
-	public function salvarFormularioElemento($novoFormularioElemento)
+	public function salvarFormularioElemento($novoFormularioElemento, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+	    	
+	    	// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novoFormularioElemento, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioElemento(), LOG_MSG_NOVO_FORMULARIO_ELEMENTO);
+
+			// atualizando o objeto
 			$this->formularioElemento = $novoFormularioElemento;
-			$this->formularioElemento->save();
-			
-			// INICIALIZACAO DOS CONTROLLERS
-			$controladorCategoria = Basico_CategoriaControllerController::init();
-			$controladorLog       = Basico_LogControllerController::init();
-			
-            // CATEGORIA DO LOG VALIDACAO USUARIO
-            $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoFormularioElemento();
 
-            $novoLog = new Basico_Model_Log();
-            $novoLog->pessoaperfil   = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-            $novoLog->categoria      = $categoriaLog->id;
-
-            $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-            $novoLog->descricao      = LOG_MSG_NOVO_FORMULARIO_ELEMENTO;
-            $controladorLog->salvarLog($novoLog);
-			
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

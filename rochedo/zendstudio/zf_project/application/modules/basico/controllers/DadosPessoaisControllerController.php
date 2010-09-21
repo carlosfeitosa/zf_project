@@ -47,26 +47,20 @@ class Basico_DadosPessoaisControllerController
 	 */
 	public function salvarDadosPessoais($novoDadosPessoais, $idPessoaPerfilCriador = null)
 	{
-		// VERIFICA SE A OPERACAO ESTA SENDO REALIZADA POR UM USUARIO OU PELO SISTEMA
-    	if (!isset($idPessoaPerfilCriador))
-    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
-	    		
-	    $dadosPessoais = $novoDadosPessoais;
-		$dadosPessoais->save();
-		
-		// INICIALIZACAO DOS CONTROLLERS
-		$controladorCategoria = Basico_CategoriaControllerController::init();
-		$controladorLog       = Basico_LogControllerController::init();
-		
-        // CATEGORIA DO LOG VALIDACAO USUARIO
-        $categoriaLog   = $controladorCategoria->retornaCategoriaLogNovoDadosPessoais();
-
-        $novoLog = new Basico_Model_Log();
-        $novoLog->pessoaperfil   = $idPessoaPerfilCriador;
-        $novoLog->categoria      = $categoriaLog->id;
-        $novoLog->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
-        $novoLog->descricao      = LOG_MSG_NOVO_DADOS_PESSOAIS;
-        $controladorLog->salvarLog($novoLog);
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+    			$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+    			
+			// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novoDadosPessoais, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoDadosPessoais(), LOG_MSG_NOVO_DADOS_PESSOAIS);
+			
+			// atualizando o objeto
+			$dadosPessoais = $novoDadosPessoais;
+						
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 	}
 	
 	/**

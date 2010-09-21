@@ -39,22 +39,22 @@ class Basico_MensageiroControllerController
 			
 			//ENVIANDO EMAIL
 	        $zendMail = new Zend_Mail(EMAIL_CHARSET);
-	        $zendMail->setFrom($mensagem->getRemetente(), $mensagem->getRemetenteNome());
+	        $zendMail->setFrom($mensagem->remetente, $mensagem->remetenteNome);
 	        
 	        //ADICIONANDO DESTINATARIOS
-	        $destinatarios = $mensagem->getDestinatariosArray();
+	        $destinatarios = $mensagem->destinatariosArray;
 	        
 	        foreach($destinatarios as $destinatario) {
 	            $zendMail->addTo($destinatario);	
 	        }
 	        
-	        $zendMail->setSubject($mensagem->getAssunto());
-	        $zendMail->setBodyText($mensagem->getMensagem());
-	        $zendMail->setDate($mensagem->getDatahoraMensagem());
+	        $zendMail->setSubject($mensagem->assunto);
+	        $zendMail->setBodyText($mensagem->mensagem);
+	        $zendMail->setDate($mensagem->datahoraMensagem);
 	        
             $zendMail->send($transport);
 
-	    }catch(Exception $e){
+		} catch(Exception $e){
             throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }
 	}
