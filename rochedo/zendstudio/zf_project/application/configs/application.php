@@ -43,8 +43,8 @@ define("FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX", false);
  */
 define("SMTP_SERVER_AUTH_METHOD", "login");
 define("SMTP_SERVER_HOST", "mail.rochedoproject.com");
-define("SMTP_USERNAME", "info@rochedoproject.com");
-define("SMTP_PASSWORD", "@info#rochedo@");
+define("SMTP_USERNAME", "nao_responda@rochedoproject.com");
+define("SMTP_PASSWORD", "@nao#rochedo#responda@");
 
 /*
  * CAPTCHA IMAGES/FONTS FOLDERS
