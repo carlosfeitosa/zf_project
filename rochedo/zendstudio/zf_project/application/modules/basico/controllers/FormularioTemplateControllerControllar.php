@@ -51,7 +51,7 @@ class Basico_FormularioTemplateControllerController
 	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoFormularioTemplate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioTemplate(), LOG_MSG_NOVO_FORMULARIO_TEMPLATE);
+			Basico_SaveControllerController::save($novoFormularioTemplate, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioTemplate(), LOG_MSG_NOVO_FORMULARIO_TEMPLATE);
 
 			// atualizando o objeto
 			$this->formularioTemplate = $novoFormularioTemplate;

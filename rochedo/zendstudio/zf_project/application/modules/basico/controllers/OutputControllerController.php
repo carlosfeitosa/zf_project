@@ -51,7 +51,7 @@ class Basico_OutputControllerController
 	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoOutput, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoOutput(), LOG_MSG_NOVO_OUTPUT);
+			Basico_SaveControllerController::save($novoOutput, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoOutput(), LOG_MSG_NOVO_OUTPUT);
 
 			// atualizando o objeto
 			$this->output = $novoOutput;

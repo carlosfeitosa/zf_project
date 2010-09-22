@@ -141,7 +141,7 @@ class Basico_TokenControllerController
 		    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 
 				// salvando o objeto através do controlador Save
-				Basico_SaveControllerController::save($novoToken, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
+				Basico_SaveControllerController::save($novoToken, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
 
 				// atualizando o objeto
 	    		$this->token = $novoToken;

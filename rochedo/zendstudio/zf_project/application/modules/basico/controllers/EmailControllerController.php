@@ -160,7 +160,7 @@ class Basico_EmailControllerController
 	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 
 			// salvando o objeto através do controlador Save
-	    	Basico_SaveControllerController::save($novoEmail, Basico_Model_Util::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
+	    	Basico_SaveControllerController::save($novoEmail, null, Basico_Model_Util::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
 
 	    	// atualizando o objeto
     		$this->email = $novoEmail;

@@ -58,7 +58,7 @@ class Basico_MensagemControllerController
 	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
 	    	
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novaMensagem, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
+			Basico_SaveControllerController::save($novaMensagem, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
 
 			// atualizando o objeto	    		
 	    	$this->mensagem = $novaMensagem;
