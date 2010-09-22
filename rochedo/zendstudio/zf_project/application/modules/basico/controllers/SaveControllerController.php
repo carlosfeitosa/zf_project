@@ -4,7 +4,6 @@
  * 
  */
 require_once("CVCControllerController.php");
-require_once("LogControllerController.php");
 
 class Basico_SaveControllerController
 {

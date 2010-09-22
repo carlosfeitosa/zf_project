@@ -7,7 +7,6 @@
 
 require_once("CategoriaControllerController.php");
 require_once("EmailControllerController.php");
-require_once("TokenControllerController.php");
 
 /**
  * Controlador Email

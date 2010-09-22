@@ -17,7 +17,6 @@ require_once("DadosPessoaisControllerController.php");
 require_once("CategoriaControllerController.php");
 require_once("MensageiroControllerController.php");
 require_once("MensagemControllerController.php");
-require_once("LogControllerController.php");
 require_once("RowinfoControllerController.php");
 require_once("PessoaPerfilMensagemCategoriaControllerController.php");
 
