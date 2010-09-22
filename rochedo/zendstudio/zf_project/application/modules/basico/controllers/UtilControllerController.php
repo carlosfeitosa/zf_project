@@ -1,21 +1,26 @@
 <?php
 /**
- * Util model
- *
- * @subpackage Model
+ * Controlador Util
+ * 
  */
-class Basico_Model_Util
+
+class Basico_UtilControllerController
 {
 	/**
 	 * Muda as permissoes de uma pasta/arquivo, recursivamente
 	 * @param string $caminho
 	 * @param integer $modo
+	 * @param boolean $recursivo
 	 * 
-	 * @return Boolean
+	 * @return void
 	 */
-	public static function chmodRecursive($caminho, $modo)
+	public static function chmod($caminho, $modo, $recursivo = false)
 	{
-		$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($caminho), RecursiveIteratorIterator::SELF_FIRST);
+		// verificando se as permissoes devem ser modificadas recursivamente
+		if ($recursivo)
+			$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($caminho), RecursiveIteratorIterator::SELF_FIRST);
+		else
+			$iterator = array($caminho);
 		
 		foreach($iterator as $item) { 
     		chmod($item, $modo);
@@ -229,10 +234,12 @@ class Basico_Model_Util
 	
 	/**
 	 * retorna resource do arquivo aberto
-	 * @param $fullFileName
+	 * @param string $fullFileName
+	 * 
+	 * @return Resource
 	 */
 	public static function abreArquivoLimpo($fullFileName)
-	{
+	{	
 		return fopen($fullFileName, 'w+');
 	}
 	

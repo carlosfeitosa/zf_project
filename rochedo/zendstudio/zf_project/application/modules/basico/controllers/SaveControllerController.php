@@ -3,8 +3,8 @@
  * Controlador Save
  * 
  */
-require_once(APPLICATION_PATH . "/modules/basico/controllers/CVCControllerController.php");
-require_once(APPLICATION_PATH . "/modules/basico/controllers/LogControllerController.php");
+require_once("CVCControllerController.php");
+require_once("LogControllerController.php");
 
 class Basico_SaveControllerController
 {
@@ -24,7 +24,7 @@ class Basico_SaveControllerController
 	static public function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{	
 		// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
-		if (!Basico_Model_Util::retornaIdGenericoObjeto($mixed)) {
+		if (!Basico_UtilControllerController::retornaIdGenericoObjeto($mixed)) {
 			if (method_exists($mixed, 'save')) {
 				// salvando o objeto
 				$mixed->save();
@@ -77,7 +77,7 @@ class Basico_SaveControllerController
 		$arrayAtualizarList = array();
 		
 		// retornando resultado da pesquisa da tabela relacionada ao objeto dentro do array de tabelas que devem atualizar a versao apenas
-		$resultadoArraySearch = array_search(Basico_Model_Util::retornaTableNameObjeto($mixed), $arrayAtualizarList);
-		return (false !== array_search(Basico_Model_Util::retornaTableNameObjeto($mixed), $arrayAtualizarList));
+		$resultadoArraySearch = array_search(Basico_UtilControllerController::retornaTableNameObjeto($mixed), $arrayAtualizarList);
+		return (false !== array_search(Basico_UtilControllerController::retornaTableNameObjeto($mixed), $arrayAtualizarList));
 	}
 }

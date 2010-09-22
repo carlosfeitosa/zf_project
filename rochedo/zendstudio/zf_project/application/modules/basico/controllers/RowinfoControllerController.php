@@ -18,19 +18,12 @@ class Basico_RowInfoControllerController
 	private $rowinfo;
 	
 	/**
-	 * Instância do modelo Gerador
-	 * @var Basico_Model_Gerador
-	 */
-	private $gerador;
-	
-	/**
 	 * Construtor.
 	 * @return unknown_type
 	 */
 	private function __construct()
 	{
 		$this->rowinfo = new Basico_Model_RowInfo();
-		$this->gerador = new Basico_Model_Gerador();
 	}
 	
 	/**
@@ -52,7 +45,7 @@ class Basico_RowInfoControllerController
 	*/
 	public function getXml()
 	{
-        return $this->gerador->getGeradorXmlObject()->gerar($this->rowinfo, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
+		return Basico_GeradorControllerController::geradorXmlGerarXml($this->rowinfo, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
 	}
 	
 	/**
@@ -64,15 +57,15 @@ class Basico_RowInfoControllerController
 	{
 		try {
 			    if ($utilizarUsuarioSistema)
-			        $idPessoaPerfil = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+			        $idPessoaPerfil = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 		
 			    // CASO NAO EXISTA ID, SETAR VALORES PARA NOVA LINHA
 		        if (!isset($modelo->id))
 		        {
-		            $this->rowinfo->setGenericDateTimeCreation(Basico_Model_Util::retornaDateTimeAtual());
+		            $this->rowinfo->setGenericDateTimeCreation(Basico_UtilControllerController::retornaDateTimeAtual());
 		            $this->rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
 		        }
-		        $this->rowinfo->setGenericDateTimeLastModified(Basico_Model_Util::retornaDateTimeAtual());
+		        $this->rowinfo->setGenericDateTimeLastModified(Basico_UtilControllerController::retornaDateTimeAtual());
 		        $this->rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
 		        
 		        return true;	

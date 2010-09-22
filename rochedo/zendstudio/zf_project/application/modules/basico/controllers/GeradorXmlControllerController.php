@@ -1,75 +1,10 @@
 <?php
 /**
- * GeradorXml model
- *
- * Utilizes the Data Mapper pattern to persist data.
- * 
- * @uses       Basico_Model_GeradorXml
- * @subpackage Model
+ * Controlador Gerador XML
  */
-class Basico_Model_GeradorXml
+
+class Basico_GeradorXmlControllerController
 {
-	public function __construct(array $options = null)
-	{
-		if (is_array($options)) 
-		{
-			$this->setOptions($options);
-		}
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @param  mixed $value 
-	 * @return void
-	 */
-	public function __set($name, $value)
-	{
-		$method = 'set' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		$this->$method($value);
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @return mixed
-	 */
-	public function __get($name)
-	{
-		$method = 'get' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		return $this->$method();
-	}
-
-	/**
-	 * Set object state
-	 * 
-	 * @param  array $options 
-	 * @return Basico_Model_GeradorXml
-	 */
-	public function setOptions(array $options)
-	{
-		$methods = get_class_methods($this);
-		foreach ($options as $key => $value) 
-		{
-			$method = 'set' . ucfirst($key);
-			if (in_array($method, $methods)) 
-			{
-			    $this->$method($value);
-			}
-		}
-		return $this;
-	}
-	
 	/**
 	 * Gera XML.
 	 * @param $objeto
@@ -79,9 +14,9 @@ class Basico_Model_GeradorXml
 	 * @param $rootElement
 	 * @param $xsdNamespace
 	 * @param $xsdLocation
-	 * @return unknown_type
+	 * @return void
 	 */
-    public function gerar($objeto, $domElement = NULL, $DOMDocument = NULL, $rootNamespace = NULL, $rootElement = NULL, $xsdNamespace = NULL, $xsdLocation = NULL)
+    public static function gerar($objeto, $domElement = NULL, $DOMDocument = NULL, $rootNamespace = NULL, $rootElement = NULL, $xsdNamespace = NULL, $xsdLocation = NULL)
     {
         if(is_null($DOMDocument)){
             $DOMDocument = new DOMDocument("1.0", "UTF-8");
@@ -99,7 +34,7 @@ class Basico_Model_GeradorXml
                 $root->appendChild($header);
             }
             
-            $this->gerar($objeto, $root, $DOMDocument);
+			self::gerar($objeto, $root, $DOMDocument);
             $DOMDocument->appendChild($root);
             return $DOMDocument->saveXML();
         }
@@ -117,7 +52,7 @@ class Basico_Model_GeradorXml
                 $arrayAtributosObjeto = (array) $objeto;
                 
                 $nomeObjeto = strtolower(substr($nomeObjeto, 0, 1)) . substr($nomeObjeto, 1, strlen($nomeObjeto)-1);
-                $arrayAtributosObjeto = $this->limpaChavesArrayAtributosObjeto($arrayAtributosObjeto);
+                $arrayAtributosObjeto = self::limpaChavesArrayAtributosObjeto($arrayAtributosObjeto);
                 
                 $mixed[$nomeObjeto] = $arrayAtributosObjeto;
     	    }
@@ -146,7 +81,7 @@ class Basico_Model_GeradorXml
                             $node = $singular;
                         }
                     }
-                    $this->gerar($mixedElement, $node, $DOMDocument);
+                    self::gerar($mixedElement, $node, $DOMDocument);
                 }
             }
             else{
@@ -171,15 +106,5 @@ class Basico_Model_GeradorXml
         }
 
         return $arrayResultados;
-    }
-	
-    /**
-     * 
-     * @param $xml
-     * @return unknown_type
-     */
-	public function ler($xml)
-    {    
-        
     }
 }

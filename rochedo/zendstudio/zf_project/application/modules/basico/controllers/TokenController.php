@@ -39,7 +39,7 @@ class Basico_TokenController extends Zend_Controller_Action
         
         $url = $controladorToken->decodeTokenUrl($token);
         
-        $fileContent = Basico_Model_Util::getUrlContent($url);
+        $fileContent = Basico_UtilControllerController::getUrlContent($url);
         
         return $fileContent;
     	

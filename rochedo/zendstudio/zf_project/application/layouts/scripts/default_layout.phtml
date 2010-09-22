@@ -21,7 +21,7 @@ $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => DEFAULT_USE
         			 ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
         			 ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);
 
-if (Basico_Model_Util::ambienteDesenvolvimento())
+if (Basico_UtilControllerController::ambienteDesenvolvimento())
 {
     $request = Zend_Controller_Front::getInstance()->getRequest();
     $requestTitle = '('.$request->getModuleName().': '.$request->getControllerName().'/'.$request->getActionName().')';    

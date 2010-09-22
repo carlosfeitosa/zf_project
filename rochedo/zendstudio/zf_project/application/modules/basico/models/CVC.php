@@ -211,7 +211,7 @@ class Basico_Model_CVC
 	public function setObjeto($objeto)
 	{
 		if (is_object($objeto)) {
-			$this->_objeto = Basico_Model_Util::codificar($objeto);
+			$this->_objeto = Basico_UtilControllerController::codificar($objeto);
 		}
 		else
 			$this->_objeto = $objeto;
@@ -236,7 +236,7 @@ class Basico_Model_CVC
 	 */
 	public function getObjetoArray()
 	{
-		return Basico_Model_Util::codificar($this->_objeto, CODIFICAR_ENCODED_STRING_TO_ARRAY);
+		return Basico_UtilControllerController::codificar($this->_objeto, CODIFICAR_ENCODED_STRING_TO_ARRAY);
 	}
      
 	/**

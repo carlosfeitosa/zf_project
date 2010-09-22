@@ -48,7 +48,7 @@ class Basico_FormularioElementoControllerController
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 	    	
 	    	// salvando o objeto através do controlador Save
 			Basico_SaveControllerController::save($novoFormularioElemento, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioElemento(), LOG_MSG_NOVO_FORMULARIO_ELEMENTO);

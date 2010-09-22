@@ -7,6 +7,9 @@
  * @uses       Basico_Model_GeradorFormulario
  * @subpackage Controller
  */
+
+require_once("GeradorControllerController.php");
+
 class Basico_GeradorFormularioController extends Zend_Controller_Action
 {
     /**
@@ -21,7 +24,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function init()
     {
         //Carrega as mensagens
-        $tituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
+        $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
         $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO', DEFAULT_USER_LANGUAGE);
                         
         $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
@@ -67,7 +70,6 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         //Carrega o formulario na view
         $this->view->form = $formulario;
         $formulario->selectFormulario->setValue(-1);
-        //$elements[0]->setValue(-1);
         //Popula o elemento select com o id e nome dos formulários
         $arrayFormularios = $this->retornaArrayNomeFormularios();
         $this->view->form->selectFormulario->addMultiOptions($arrayFormularios);
@@ -112,7 +114,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
             }
         }
         
-        //Valida os dados submetidos do formulário.
+        // Valida os dados submetidos do formulário.
         if ($formGeradorFormulario->isValid($_POST) and isset($_POST['enviar'])) {
         	$modeloFormulario = new Basico_Model_Formulario();
             $modeloFormulario->find($idFormulario);
@@ -123,8 +125,8 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
                 $excludeModulesNames = null;            	
             }
             
-            //Processa a geração do formulários
-            if (Basico_Model_GeradorFormulario::gerar($modeloFormulario, $excludeModulesNames)){
+            // Processa a geração do formulários
+            if (Basico_GeradorControllerController::geradorFormularioGerarFormulario($modeloFormulario, $excludeModulesNames)) {
                 
                 //Carrega a mensagen de confirmação na view
                 $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);

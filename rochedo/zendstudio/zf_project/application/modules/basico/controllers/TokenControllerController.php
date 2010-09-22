@@ -1,7 +1,14 @@
 <?php
+
+/**
+ * Controlador Token
+ *
+ */
+
 require_once('CategoriaControllerController.php');
 require_once('CategoriaChaveEstrangeiraControllerController.php');
 require_once('SessionControllerController.php');
+require_once('GeradorControllerController.php');
 require_once(APPLICATION_PATH . "/modules/basico/models/Token.php");
 
 /**
@@ -63,13 +70,11 @@ class Basico_TokenControllerController
 		    self::$arrayTokensUrls = $session->arrayTokensUrls;
 		else
             self::$arrayTokensUrls = array();
-	    
-	    $gerador = new Basico_Model_Gerador();
 	    	    
 	    $token = array_search($url, self::$arrayTokensUrls);
 	    
-	    if ($token === false){
-	        $token = $gerador->gerarToken(array_keys(self::$arrayTokensUrls));
+	    if ($token === false) {
+	        $token = Basico_GeradorControllerController::geradorTokenGerarToken(array_keys(self::$arrayTokensUrls));
 	        self::$arrayTokensUrls[$token] = $url;
 	        $session->arrayTokensUrls = self::$arrayTokensUrls;
 	    }
@@ -111,8 +116,7 @@ class Basico_TokenControllerController
      */
 	public function gerarToken($modelo, $nomeDoCampoBancoDeDados)
 	{
-		$gerador = new Basico_Model_Gerador();
-		$tokenString = $gerador->getGeradorUniqueIdObject()->gerar($modelo, $nomeDoCampoBancoDeDados);
+		$tokenString = Basico_GeradorControllerController::geradorUniqueIdGerarId($modelo, $nomeDoCampoBancoDeDados);
 		return $tokenString;
 	}
 
@@ -138,7 +142,7 @@ class Basico_TokenControllerController
 			try{
 	    		// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 		    	if (!isset($idPessoaPerfilCriador))
-		    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+		    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 
 				// salvando o objeto através do controlador Save
 				Basico_SaveControllerController::save($novoToken, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);

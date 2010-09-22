@@ -4,7 +4,6 @@
  *
  */
 
-require_once(APPLICATION_PATH . "/modules/basico/controllers/SaveControllerController.php");
 class Basico_PessoaControllerController
 {
 	/**
@@ -49,7 +48,7 @@ class Basico_PessoaControllerController
 	{
 		try {
 			// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novaPessoa, null, Basico_Model_Util::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
+			Basico_SaveControllerController::save($novaPessoa, null, Basico_UtilControllerController::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
 			// atualizando o objeto
 			$this->pessoa = $novaPessoa;
 						

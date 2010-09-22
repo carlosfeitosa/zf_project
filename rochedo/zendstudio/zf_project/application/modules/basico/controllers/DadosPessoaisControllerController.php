@@ -50,7 +50,7 @@ class Basico_DadosPessoaisControllerController
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+    			$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
     			
 			// salvando o objeto através do controlador Save
 			Basico_SaveControllerController::save($novoDadosPessoais, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoDadosPessoais(), LOG_MSG_NOVO_DADOS_PESSOAIS);

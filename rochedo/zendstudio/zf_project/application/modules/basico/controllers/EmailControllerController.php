@@ -1,5 +1,13 @@
 <?php
+
+/**
+ * Controlador Email
+ *
+ */
+
 require_once("CategoriaControllerController.php");
+require_once("GeradorControllerController.php");
+
 /**
  * Controlador Email
  * 
@@ -48,9 +56,7 @@ class Basico_EmailControllerController
 	 */
 	private function gerarUniqueIdEmail()
 	{
-		$uniqueId = new Basico_Model_Gerador();
-		$unique = $uniqueId->getGeradorUniqueIdObject()->gerar($this->email, 'unique_id');
-		return $unique;
+		return Basico_GeradorControllerController::geradorUniqueIdGerarId($this->email, 'unique_id');
 	}
 	
 	/**
@@ -157,10 +163,10 @@ class Basico_EmailControllerController
     	try{
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 
 			// salvando o objeto através do controlador Save
-	    	Basico_SaveControllerController::save($novoEmail, null, Basico_Model_Util::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
+	    	Basico_SaveControllerController::save($novoEmail, null, Basico_UtilControllerController::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
 
 	    	// atualizando o objeto
     		$this->email = $novoEmail;

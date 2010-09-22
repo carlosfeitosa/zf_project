@@ -1,79 +1,13 @@
 <?php
 /**
- * GeradorFormulario model
- *
- * Utilizes the Data Mapper pattern to persist data.
- * 
- * @uses       Basico_Model_GeradorFormulario
- * @subpackage Model
+ * Controlador Gerador Formulario
  */
 
-require_once(APPLICATION_PATH . "/modules/basico/controllers/CVCControllerController.php");
+require_once("CVCControllerController.php");
+require_once("FormularioControllerController.php");
 
-class Basico_Model_GeradorFormulario
+class Basico_GeradorFormularioControllerController
 {
-    public function __construct(array $options = null)
-    {
-        if (is_array($options)) 
-        {
-            $this->setOptions($options);
-        }
-    }
-
-    /**
-     * Overloading: allow property access
-     * 
-     * @param  string $name 
-     * @param  mixed $value 
-     * @return void
-     */
-    public function __set($name, $value)
-    {
-        $method = 'set' . $name;
-        if ('mapper' == $name || !method_exists($this, $method)) 
-        {
-            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-        }
-        $this->$method($value);
-    }
-
-    /**
-     * Overloading: allow property access
-     * 
-     * @param  string $name 
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        $method = 'get' . $name;
-        if ('mapper' == $name || !method_exists($this, $method)) 
-        {
-            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-        }
-        return $this->$method();
-    }
-
-    /**
-     * Set object state
-     * 
-     * @param  array $options 
-     * @return Basico_Model_GeradorFormulario
-     */
-    public function setOptions(array $options)
-    {
-        $methods = get_class_methods($this);
-        foreach ($options as $key => $value) 
-        {
-            $method = 'set' . ucfirst($key);
-            if (in_array($method, $methods)) 
-            {
-                $this->$method($value);
-            }
-        }
-        return $this;
-    }
-
-
     /**
      * Retorna Nome do arquivo do formulário a partir do nome do formulário
      * @param $objFormulario
@@ -111,7 +45,7 @@ class Basico_Model_GeradorFormulario
 	 * @param $classToExtends
 	 * @param $excludeModulesNames
 	 */
-    public function gerar(Basico_Model_Formulario $objFormulario, array $excludeModulesNames = null)
+    public static function gerar(Basico_Model_Formulario $objFormulario, array $excludeModulesNames = null)
     {
     	$tempReturn = true;
     	
@@ -237,7 +171,7 @@ class Basico_Model_GeradorFormulario
                     throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_LEITURA . "'{$fullFileName}'");
 
                 // abre arquivo com permissoes de escrita
-                $fileResource = Basico_Model_Util::abreArquivoLimpo($fullFileName);
+                $fileResource = Basico_UtilControllerController::abreArquivoLimpo($fullFileName);
 
                 // verifica se o sistema conseguiu abrir o arquivo
                 if (!$fileResource)
@@ -245,52 +179,52 @@ class Basico_Model_GeradorFormulario
 
                 // nivel 0 de identação
 				$nivelIdentacao = 0;
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaInstanciamentoClasseFormulario($nivelIdentacao, $formBeginTag, $moduleName, $headerFormulario, $formClassInstances[$moduleName], $formCodeBlockBeginTag));
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInstanciamentoClasseFormulario($nivelIdentacao, $formBeginTag, $moduleName, $headerFormulario, $formClassInstances[$moduleName], $formCodeBlockBeginTag));
                 
                 // nivel 1 de identação
                 $nivelIdentacao++;
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaChamadaDeInicializacaoFormulario($nivelIdentacao, $moduloObject, $objFormulario, $headerConstructorForm, $formConstructorCall, $formCodeBlockBeginTag));
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaChamadaDeInicializacaoFormulario($nivelIdentacao, $moduloObject, $objFormulario, $headerConstructorForm, $formConstructorCall, $formCodeBlockBeginTag));
                 
                 // nivel 2 de identação
                 $nivelIdentacao++;
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaInicializacaoFormulario($nivelIdentacao, $formConstructorComment, $formConstructorInherits, $formName, $formMethod, $formAction, $formAttribs, $formDecorator));
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoFormulario($nivelIdentacao, $formConstructorComment, $formConstructorInherits, $formName, $formMethod, $formAction, $formAttribs, $formDecorator));
 
                 // verifica se o formulario possui elementos
-                if ($objFormulario->existeElementos()){
+                if (Basico_FormularioControllerController::existeElementos($objFormulario->id)) {
                 	// adição dos elementos do formulário
-                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formElementAddElementToFormComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $moduloObject, $formCodeBlockEndTag));
+                	Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formElementAddElementToFormComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $moduloObject, $formCodeBlockEndTag));
                 };
                 
                 // verificacao sobre formularios filhos
-                if ($objFormulario->existeFormulariosFilhos()){
+                if (Basico_FormularioControllerController::existeFormulariosFilhos($objFormulario->id)) {
                 	$formulariosFilhosObjects = $objFormulario->getFormulariosFilhosObjects();
                 	foreach ($formulariosFilhosObjects as $formularioFilhoObject){
                 		if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames))
                 			throw new Exception(MSG_ERRO_GERAR_SUB_FORMULARIO);
 
-                		Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaIncludeSubForm($nivelIdentacao, $formularioFilhoObject));
+                		Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaIncludeSubForm($nivelIdentacao, $formularioFilhoObject));
                 	}
                 }
 
                 // nivel 1 de identação
                 $nivelIdentacao--;
-                $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaFimDeBloco($nivelIdentacao, $formCodeBlockEndTag));
+                $identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaFimDeBloco($nivelIdentacao, $formCodeBlockEndTag));
 
                 // nivel 0 de identação
                 $nivelIdentacao--;
-                $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
-				Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaFimDeBloco($nivelIdentacao, $formCodeBlockEndTag));
-				Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $formEndTag));
+                $identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
+				Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaFimDeBloco($nivelIdentacao, $formCodeBlockEndTag));
+				Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $formEndTag));
 
                 if ($fileResource)
-                    $resultado = Basico_Model_Util::fechaArquivo($fileResource);
+                    $resultado = Basico_UtilControllerController::fechaArquivo($fileResource);
             }
 
         } catch (Exception $e) {
 
             if ($fileResource)
-                Basico_Model_Util::fechaArquivo($fileResource);
+                Basico_UtilControllerController::fechaArquivo($fileResource);
 
             // Revertendo para o ponto de restauração LKG (Last know good) do arquivo do formulário
             self::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
@@ -307,7 +241,7 @@ class Basico_Model_GeradorFormulario
 	 * @param $classToExtends
 	 * @param $excludeModulesNames
 	 */
-    public function gerarSubForm(Basico_Model_Formulario $objSubFormulario, array $excludeModulesNames = null)
+    private function gerarSubForm(Basico_Model_Formulario $objSubFormulario, array $excludeModulesNames = null)
     {
 		$tempReturn = true;
 		
@@ -343,7 +277,7 @@ class Basico_Model_GeradorFormulario
      * @param Basico_Model_Formulario $objSubFormulario
      * @param array $excludeModulesNames
      */
-    public function gerarSubHTML(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM_SUB_FORM, array $excludeModulesNames = null)
+    private function gerarSubHTML(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM_SUB_FORM, array $excludeModulesNames = null)
     {
 		return true;
     }
@@ -353,7 +287,7 @@ class Basico_Model_GeradorFormulario
      * @param $objSubFormulario
      * @param $excludeModulesNames
      */
-    public function gerarSubDOJO(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM, array $excludeModulesNames = null)
+    private function gerarSubDOJO(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM, array $excludeModulesNames = null)
     {
 		// inicializacao do metodo
     	$arrayNomesCategoriasParaChecarAmbienteDesenvolvimento = array();
@@ -431,7 +365,7 @@ class Basico_Model_GeradorFormulario
                     throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_LEITURA . "'{$fullFileName}'");
 
                 // abre arquivo com permissoes de escrita
-                $fileResource = Basico_Model_Util::abreArquivoLimpo($fullFileName);
+                $fileResource = Basico_UtilControllerController::abreArquivoLimpo($fullFileName);
 
                 // verifica se o sistema conseguiu abrir o arquivo
                 if (!$fileResource)
@@ -439,34 +373,34 @@ class Basico_Model_GeradorFormulario
 
                 // nivel 0 de identação
 				$nivelIdentacao = 0;
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaInstanciamentoSubFormulario($nivelIdentacao, $subFormBeginTag, $moduleName, $headerSubFormulario, $subFormClassInstances[$moduleName]));
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInstanciamentoSubFormulario($nivelIdentacao, $subFormBeginTag, $moduleName, $headerSubFormulario, $subFormClassInstances[$moduleName]));
                 
                 // nivel 1 de identação
                 $nivelIdentacao++;
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName]));
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName]));
 
                 // verifica se o formulario possui elementos
                 if ($objSubFormulario->existeElementos()){
                 	// adição dos elementos do formulário
-                	Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $moduloObject, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
+                	Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $moduloObject, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
                 };
                         
                 // adicionar sub-formulario ao formulario pai
-                Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName));
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName));
 
                 // nivel 0 de identação
                 $nivelIdentacao--;
-                $identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
-				Basico_Model_Util::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $subFormEndTag));
+                $identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
+				Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $subFormEndTag));
 
                 if ($fileResource)
-                    $resultado = Basico_Model_Util::fechaArquivo($fileResource);
+                    $resultado = Basico_UtilControllerController::fechaArquivo($fileResource);
             }
 
         } catch (Exception $e) {
 
             if ($fileResource)
-                Basico_Model_Util::fechaArquivo($fileResource);
+                Basico_UtilControllerController::fechaArquivo($fileResource);
 
             // Revertendo para o ponto de restauração LKG (Last know good) do arquivo do formulário
             self::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
@@ -488,7 +422,7 @@ class Basico_Model_GeradorFormulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = '.lkg';
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::retornaUltimaVersao($objSubFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_Model_Util::retornaTimestamp($objSubFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_UtilControllerController::retornaTimestamp($objSubFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_BEGIN_TAG]                         	  = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
 
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CLASS_EXTENDS_TAG]                     = FORM_GERADOR_CLASS_EXTENDS_ELEMENT;
@@ -538,7 +472,7 @@ class Basico_Model_GeradorFormulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY]           = '.lkg';
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::retornaUltimaVersao($objFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_Model_Util::retornaTimestamp($objFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_UtilControllerController::retornaTimestamp($objFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_BEGIN_TAG]                             = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CLASS_EXTENDS_TAG]                     = FORM_GERADOR_CLASS_EXTENDS_ELEMENT;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CLASS_EXTENDS_CLASS]                   = $classToExtends;
@@ -624,7 +558,7 @@ class Basico_Model_GeradorFormulario
     {
     	$tempReturn = '';
     	
-		$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacaoInicial);
+		$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacaoInicial);
 		$tempReturn .= $identacao . $formBeginTag;
 		$tempReturn .= $identacao . str_replace('@modulo', $moduleName, $headerFormulario);
 		$tempReturn .= $identacao . $formClassInstance;
@@ -645,10 +579,10 @@ class Basico_Model_GeradorFormulario
     {
     	$tempReturn = '';
     	
-		$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacaoInicial);
+		$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacaoInicial);
 		$tempReturn .= $identacao . $subFormBeginTag;
 		$tempReturn .= $identacao . str_replace('@modulo', $moduleName, $headerSubFormulario);
-		$identacao = Basico_Model_Util::retornaIdentacao(++$nivelIdentacaoInicial);
+		$identacao = Basico_UtilControllerController::retornaIdentacao(++$nivelIdentacaoInicial);
 		$tempReturn .= $identacao . $subFormClassInstance;
 
 		return $tempReturn;
@@ -667,7 +601,7 @@ class Basico_Model_GeradorFormulario
     {
     	$tempReturn = '';
     	
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacaoInicial);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacaoInicial);
     	$tempReturn .= str_replace('@identacao', $identacao, str_replace('@nome_classe', self::retornaNomeClasseForm($moduloObject, $objFormulario), $headerConstructorForm));
 		$tempReturn .= $identacao . $formConstructorCall;
 		$tempReturn .= $identacao . $formCodeBlockBeginTag;
@@ -690,7 +624,7 @@ class Basico_Model_GeradorFormulario
     {
     	$tempReturn = '';
     	
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacaoInicial);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacaoInicial);
     	$tempReturn .= str_replace('@identacao', $identacao, $formConstructorComment);
     	$tempReturn .= $identacao . $formConstructorInherits;
     	$tempReturn .= QUEBRA_DE_LINHA;
@@ -723,7 +657,7 @@ class Basico_Model_GeradorFormulario
     {
     	$tempReturn = '';
     	
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacaoInicial);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacaoInicial);
     	$tempReturn .= QUEBRA_DE_LINHA;
     	$tempReturn .= str_replace('@identacao', $identacao, $subFormInitComment);
     	$tempReturn .= $identacao . $subFormName;
@@ -760,7 +694,7 @@ class Basico_Model_GeradorFormulario
     	$tempReturn = '';
 		$nivelIdentacao = $nivelIdentacaoInicial;
 
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
     	$tempReturn .= str_replace('@identacao', $identacao, $formElementsComment);
     	$tempReturn .= $identacao . $formArrayElements . QUEBRA_DE_LINHA;
     	
@@ -776,7 +710,7 @@ class Basico_Model_GeradorFormulario
         	if (false !== array_search($formularioElementoObject->getCategoriaObject()->nome, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento)){
 				$elementoAmbienteDesenvolvimento = true;
 				$tempReturn .= $identacao . $formCodigoCheckAmbienteDesenvolvimento;
-                $identacao = Basico_Model_Util::retornaIdentacao(++$nivelIdentacao);
+                $identacao = Basico_UtilControllerController::retornaIdentacao(++$nivelIdentacao);
             } else
             	$elementoAmbienteDesenvolvimento = false;
             
@@ -793,7 +727,7 @@ class Basico_Model_GeradorFormulario
             	$tempReturn .= $identacao . "{$variavelSubForm} = new {$nomeClasseSubForm}();" . QUEBRA_DE_LINHA;
             	
             	// escrevendo metodos de substituicao de tags/caracteres nao permitidos no formulario vinculado
-            	$tempReturn .= $identacao . "{$variavelSubForm} = Basico_Model_Util::escapaCaracteresFormDialogDOJO({$variavelSubForm});" . QUEBRA_DE_LINHA;
+            	$tempReturn .= $identacao . "{$variavelSubForm} = Basico_UtilControllerController::escapaCaracteresFormDialogDOJO({$variavelSubForm});" . QUEBRA_DE_LINHA;
             	
             	// incrementa variavel de offset
             	$totalFormularioElementoFormulariosVinculados++;
@@ -860,19 +794,19 @@ class Basico_Model_GeradorFormulario
 				// adicionando o link de ajuda
                 if ($formularioElementoObject->getAjudaObject()->id){
 					if ($formularioElementoObject->getAjudaObject()->url){
-						$href = Basico_Model_Util::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->url, "\'");
-                        $target = Basico_Model_Util::retornaStringEntreCaracter('_blank', "\'");
+						$href = Basico_UtilControllerController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->url, "\'");
+                        $target = Basico_UtilControllerController::retornaStringEntreCaracter('_blank', "\'");
                         $urlAjuda = ' . "<br><br>URL: <a href=' . $href . ' target=' . $target . '>' . $formularioElementoObject->getAjudaObject()->url . '</a>"';
                     }else
                         $urlAjuda = '';
 
-                    $constanteTextoAjuda = Basico_Model_Util::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'");
-                    $chamadaJavaScriptDialog = Basico_Model_Util::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(' . DIALOG_HELP_TITLE . ', DEFAULT_USER_LANGUAGE)', '$this->getView()->tradutor(' . $constanteTextoAjuda . ', DEFAULT_USER_LANGUAGE)' . $urlAjuda);
+                    $constanteTextoAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'");
+                    $chamadaJavaScriptDialog = Basico_UtilControllerController::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(' . DIALOG_HELP_TITLE . ', DEFAULT_USER_LANGUAGE)', '$this->getView()->tradutor(' . $constanteTextoAjuda . ', DEFAULT_USER_LANGUAGE)' . $urlAjuda);
                     $linkAjuda = "&nbsp;" . FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG . AJUDA_BUTTON_LABEL . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG . $chamadaJavaScriptDialog . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG . FORM_GERADOR_AJUDA_BUTTON_END_TAG;
                 } else
                 	$linkAjuda = '';
 
-                $linkAjuda = Basico_Model_Util::retornaStringEntreCaracter($linkAjuda, "'");
+                $linkAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($linkAjuda, "'");
                 $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE) . {$linkAjuda});" . QUEBRA_DE_LINHA;
                 	
 			}
@@ -885,16 +819,16 @@ class Basico_Model_GeradorFormulario
             	$tempReturn .= $identacao . FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE . QUEBRA_DE_LINHA;
 
             	$nivelIdentacao++;
-            	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+            	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(" . FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE . "{$formularioElementoObject->elementName});" . QUEBRA_DE_LINHA;
 				$nivelIdentacao--;
-				$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+				$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
 			}
 			
         	// verificando se o é preciso determinar ambiente de desenvolvimento
             if ($elementoAmbienteDesenvolvimento){
 				$nivelIdentacao--;
-				$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+				$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
 				$tempReturn .= $identacao . $formCodeBlockEndTag;
 			}
 
@@ -924,7 +858,7 @@ class Basico_Model_GeradorFormulario
      */
     private function retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariableInstance, $subFormName)
     {
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
     	
     	return $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM . "({$subFormVariableInstance}, '{$subFormName}');" . QUEBRA_DE_LINHA;
     }
@@ -941,7 +875,7 @@ class Basico_Model_GeradorFormulario
     	
     	$nivelIdentacao = $nivelIdentacaoInicial;
     	
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
     	
     	$nomeDoArquivo = self::retornaNomeArquivoForm($objSubFormulario);
     	
@@ -961,7 +895,7 @@ class Basico_Model_GeradorFormulario
     {
     	$nivelIdentacao = $nivelIdentacaoInicial;
 
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
     	
     	return $identacao . $formCodeBlockEndTag;
     }
@@ -975,7 +909,7 @@ class Basico_Model_GeradorFormulario
     {
     	$nivelIdentacao = $nivelIdentacaoInicial;
 
-    	$identacao = Basico_Model_Util::retornaIdentacao($nivelIdentacao);
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
     	
     	return $identacao . $formEndTag;
     }

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Controlador Tradutor
+ *
+ */
+
 class Basico_TradutorControllerController
 {
 	/**

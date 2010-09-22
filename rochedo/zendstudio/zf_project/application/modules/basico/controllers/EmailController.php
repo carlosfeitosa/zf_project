@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Controlador Email
+ *
+ */
+
 require_once("CategoriaControllerController.php");
 require_once("EmailControllerController.php");
 require_once("TokenControllerController.php");
@@ -42,9 +48,9 @@ class Basico_EmailController extends Zend_Controller_Action
     	
     	$idEmail                        = $tokenObj->idGenerico;
     	$email                          = $controladorEmail->retornaEmailId($idEmail);
-    	$dataHoraExpiracaoUnixTimeStamp = Basico_Model_Util::retornaTimestamp($tokenObj->datahoraExpiracao);
+    	$dataHoraExpiracaoUnixTimeStamp = Basico_UtilControllerController::retornaTimestamp($tokenObj->datahoraExpiracao);
     	
-    	$dataHoraAtualUnixTimeStamp = Basico_Model_Util::retornaTimestamp();
+    	$dataHoraAtualUnixTimeStamp = Basico_UtilControllerController::retornaTimestamp();
     	    	
     	if ($email != NULL) {
     		
@@ -55,7 +61,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	}
 	    	
 	    	//VALIDA O EMAIL NO BANCO
-	    	$email->datahoraUltimaValidacao = Basico_Model_Util::retornaDateTimeAtual();
+	    	$email->datahoraUltimaValidacao = Basico_UtilControllerController::retornaDateTimeAtual();
 	    	$email->validado = 1;
 	    	$email->ativo    = 1;
 	    	

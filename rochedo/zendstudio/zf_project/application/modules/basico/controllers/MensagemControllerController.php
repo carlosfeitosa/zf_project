@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Controlador Mensageiro
+ *
+ */
+
 //INCLUINDO CONTROLADORES
 require_once("EmailControllerController.php");
 require_once("CategoriaControllerController.php");
@@ -55,7 +61,7 @@ class Basico_MensagemControllerController
 	    try{
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 	    	
 	    	// salvando o objeto através do controlador Save
 			Basico_SaveControllerController::save($novaMensagem, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);

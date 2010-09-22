@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Controlador Categoria Chave Estrangeira
+ *
+ */
+
 class Basico_CategoriaChaveEstrangeiraControllerController
 {
 	/**

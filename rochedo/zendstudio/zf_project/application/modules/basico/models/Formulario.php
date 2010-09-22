@@ -623,18 +623,6 @@ class Basico_Model_Formulario
     }
     
     /**
-     * Return if exists formulario filho
-     * @return true|false
-     */
-    public function existeFormulariosFilhos()
-    {  	
-    	$modelFormulario = new Basico_Model_Formulario();
-    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$this->_id}");
-    	
-    	return (count($arrayFormulariosObjects) > 0);
-    }
-    
-    /**
      * Get formulariosFilhos objects
      * @return null|arrayFormulario
      */
@@ -673,7 +661,7 @@ class Basico_Model_Formulario
         $stringIdsModulos = implode(',', $arrayIdsModulos);
         
         for ($contador = 0; $contador <= count($excludeModulesNames)-1; $contador++)
-            $excludeModulesNames[$contador] = Basico_Model_Util::retornaStringEntreCaracter($excludeModulesNames[$contador], "'"); 
+            $excludeModulesNames[$contador] = Basico_UtilControllerController::retornaStringEntreCaracter($excludeModulesNames[$contador], "'"); 
         
         if ($excludeModulesNames)
             $stringExcludeModulesNames = implode(',', $excludeModulesNames);
@@ -689,19 +677,7 @@ class Basico_Model_Formulario
         
         return $arrayObjects;
     }
-    
-    /**
-     * Return if exists elementos
-     * @return true|false
-     */
-   	public function existeElementos()
-   	{
-   		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$this->_id}");
-        
-        return (count($arrayFormularioFormularioElementosObjects) > 0);
-   	}
-    
+
     /**
      * Get formularioElemento objects
      * @return null|array

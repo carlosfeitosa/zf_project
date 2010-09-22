@@ -7,8 +7,8 @@ require_once("consts/consts.php");
 require_once("configs/application.php");
 require_once("modules/basico/controllers/LogControllerController.php");
 require_once("modules/basico/controllers/TokenControllerController.php");
-require_once("modules/basico/models/Log.php");
-require_once("modules/basico/models/Util.php");
+require_once("modules/basico/controllers/UtilControllerController.php");
+require_once("modules/basico/controllers/SaveControllerController.php");
 
 /**
  * Bootstrap primário do sistema.
@@ -50,7 +50,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         if (file_exists(BASICO_CONTROLLER_HELPERS_PATH))
         Zend_Controller_Action_HelperBroker::addPath(BASICO_CONTROLLER_HELPERS_PATH, 'Basico_Controller_Action_Helper');
         
-        if (Basico_Model_Util::ambienteDesenvolvimento())
+        if (Basico_UtilControllerController::ambienteDesenvolvimento())
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . DEFAULT_USER_LANGUAGE . ')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);

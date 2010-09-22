@@ -217,14 +217,14 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
 			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
 			             $novaMensagem->destinatarios    = array($email);
-			             $novaMensagem->datahoraMensagem = Basico_Model_Util::retornaDateTimeAtual();
+			             $novaMensagem->datahoraMensagem = Basico_UtilControllerController::retornaDateTimeAtual();
 			             $novaMensagem->categoria        = $categoriaMensagem->id;
 			             $controladorRowInfo->prepareXml($novaMensagem, true);
 			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
                          $controladorMensagem->salvarMensagem($novaMensagem);
 			             
 			             //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
-			             $idPessoaPerfilSistema = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+			             $idPessoaPerfilSistema = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 			             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
 			             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaRemetente->mensagem     = $novaMensagem->id;
@@ -371,7 +371,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $novaMensagem->destinatarios       = array($novoEmail->email);
-            $novaMensagem->datahoraMensagem    = Basico_Model_Util::retornaDateTimeAtual();
+            $novaMensagem->datahoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
             $novaMensagem->categoria           = $categoriaMensagem->id;
             $controladorRowInfo->prepareXml($novaMensagem, true);
             $novaMensagem->rowinfo             = $controladorRowInfo->getXml();
@@ -380,7 +380,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorMensagem->salvarMensagem($novaMensagem);
 
             //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
-            $idPessoaPerfilSistema = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+            $idPessoaPerfilSistema = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
             $pessoaPerfilMensagemCategoriaRemetente->mensagem        = $novaMensagem->id;

@@ -1,8 +1,16 @@
 <?php
+
+/**
+ * Controlador Log
+ *
+ */
+
 /**
  * Inclui arquivos do sistema.
  */
-require_once(APPLICATION_PATH . "/modules/basico/models/Gerador.php");
+
+require_once("GeradorControllerController.php");
+require_once(APPLICATION_PATH . "/modules/basico/models/Log.php");
 
 /**
  * 
@@ -30,22 +38,15 @@ class Basico_LogControllerController
 	private $logFS;
 	
 	/**
-	 * Instância do Modelo Gerador
-	 * @var Basico_Model_Gerador
-	 */
-	private $gerador;
-	
-	/**
 	 * Construtor do Controlador de Log.
 	 * @return void
 	 */
 	private function __construct()
 	{
 		$this->log = new Basico_Model_Log();
-		$this->gerador = new Basico_Model_Gerador();
 		
 		if (!file_exists(LOG_PATH))
-		    Basico_Model_Util::mkdirRecursive(LOG_PATH);
+		    Basico_UtilControllerController::mkdirRecursive(LOG_PATH);
 		
         $logFormatter = new Zend_Log_Formatter_Simple(LOG_FORMAT);
 
@@ -91,7 +92,7 @@ class Basico_LogControllerController
 	    else
 	        $arquivoLog = LOG_FILENAME_PREFIX . (String) $ano . (String) $mes . LOG_FILENAME_SULFIX;
 	    
-	    Basico_Model_Util::getFileContent($arquivoLog);
+	    Basico_UtilControllerController::getFileContent($arquivoLog);
 	}
 	
 	/**
@@ -112,7 +113,7 @@ class Basico_LogControllerController
 		$logController->log                 = new Basico_Model_Log();
 	    $logController->log->pessoaperfil   = $idPessoaPerfil;
 	    $logController->log->categoria      = $idCategoriaLog;
-	    $logController->log->dataHoraEvento = Basico_Model_Util::retornaDateTimeAtual();
+	    $logController->log->dataHoraEvento = Basico_UtilControllerController::retornaDateTimeAtual();
 	    $logController->log->descricao      = $mensagemLog;
 	    
 	    // preparando o xml do log
@@ -137,8 +138,8 @@ class Basico_LogControllerController
 			
 				$logXml = new Basico_Model_LogXml(array("eventDateTime"    => $modelo->dataHoraEvento,
 														"eventDescription" => $modelo->descricao,));
-				
-				return $logController->gerador->getGeradorXmlObject()->gerar($logXml, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');	
+
+				return Basico_GeradorControllerController::geradorXmlGerarXml($logXml, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');	
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

@@ -4,7 +4,7 @@
  * 
  */
 
-require_once(APPLICATION_PATH . "/modules/basico/controllers/RowinfoControllerController.php");
+require_once("RowinfoControllerController.php");
 
 class Basico_CVCControllerController
 {
@@ -18,7 +18,7 @@ class Basico_CVCControllerController
     public static function retornaUltimaVersao($objeto, $forceVersioning = false)
     {
     	// recuperando o valor do id generico vindo do objeto
-		$idGenerico = Basico_Model_Util::retornaIdGenericoObjeto($objeto);
+		$idGenerico = Basico_UtilControllerController::retornaIdGenericoObjeto($objeto);
 		
 		// verificando se o valor de id generico existe
 		if (!$idGenerico) {
@@ -64,7 +64,7 @@ class Basico_CVCControllerController
     public static function retornaCategoriaChaveEstrangeira($objeto, $forceCreateRelationship = false)
     {
     	// recuperando o nome da tabela vinculada ao objeto
-    	$tableName = Basico_Model_Util::retornaTableNameObjeto($objeto);
+    	$tableName = Basico_UtilControllerController::retornaTableNameObjeto($objeto);
 		// instanciando o controlador de categorias
 		$categoriaController = Basico_CategoriaControllerController::init();
 		// recuperando categoria CVC
@@ -87,7 +87,7 @@ class Basico_CVCControllerController
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->categoria = $objCategoriaCVC->id;
 			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
-			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_Model_Util::retornaPrimaryKeyObjeto($objeto);
+			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_UtilControllerController::retornaPrimaryKeyObjeto($objeto);
 			
 			// preparando XML rowinfo
 			$controladorRowInfo->prepareXml($modelCategoriaChaveEstrangeira, true);
@@ -120,7 +120,7 @@ class Basico_CVCControllerController
     	
     	// preenchendo informacoes sobre o versionamento
     	$modelCVC->categoriaChaveEstrangeira = $relacaoCategoriaChaveEstrangeira->id;
-    	$modelCVC->idGenerico = Basico_Model_Util::retornaIdGenericoObjeto($objeto);
+    	$modelCVC->idGenerico = Basico_UtilControllerController::retornaIdGenericoObjeto($objeto);
     	$modelCVC->objeto = $objeto;
      	
     	// recuperando versao
@@ -172,14 +172,14 @@ class Basico_CVCControllerController
     	// recuperando id da relacao de categoria chave estrangeira
     	$categoriaChaveEstrangeira = self::retornaCategoriaChaveEstrangeira($objeto);
     	// recuperando id generico do objeto
-    	$idGenerico = Basico_Model_Util::retornaIdGenericoObjeto($objeto);
+    	$idGenerico = Basico_UtilControllerController::retornaIdGenericoObjeto($objeto);
     	
     	// recuperando objeto CVC contendo a ultima versao do objeto
     	$objUltimaVersao = self::retornaObjUltimaVersao($categoriaChaveEstrangeira->id, $idGenerico);
     	
     	// atualizando a versao
     	$objUltimaVersao->versao++;
-    	$objUltimaVersao->ultimaAtualizacao = Basico_Model_Util::retornaDateTimeAtual();
+    	$objUltimaVersao->ultimaAtualizacao = Basico_UtilControllerController::retornaDateTimeAtual();
     	$objUltimaVersao->objeto = $objeto;
     	    	
     	$objUltimaVersao->save();
@@ -192,7 +192,7 @@ class Basico_CVCControllerController
      */
     private function fechaValidadeVersao()
     {
-    	$this->setValidadeTermino(Basico_Model_Util::retornaDateTimeAtual());
+    	$this->setValidadeTermino(Basico_UtilControllerController::retornaDateTimeAtual());
     	$this->save();
     }
     
@@ -229,11 +229,11 @@ class Basico_CVCControllerController
     private function comparaObjetoObjetoUltimaVersao($objeto)
     {
     	// codificando objeto para comparacao
-    	$objetoCodificado = Basico_Model_Util::codificar($objeto);
+    	$objetoCodificado = Basico_UtilControllerController::codificar($objeto);
     	// recuperando id da relacao de categoria chave estrangeira
     	$categoriaChaveEstrangeira = self::retornaCategoriaChaveEstrangeira($objeto);
     	// recuperando id generico do objeto
-    	$idGenerico = Basico_Model_Util::retornaIdGenericoObjeto($objeto);
+    	$idGenerico = Basico_UtilControllerController::retornaIdGenericoObjeto($objeto);
     	
     	// recuperando objeto CVC contendo a ultima versao do objeto
     	$objUltimaVersao = self::retornaObjUltimaVersao($categoriaChaveEstrangeira->id, $idGenerico);

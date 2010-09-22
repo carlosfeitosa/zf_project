@@ -37,7 +37,35 @@ class Basico_FormularioControllerController
 		}
 		return self::$singleton;
 	}
-	
+
+    /**
+     * Returna se existe formulario filho
+     * @param integer $idFormulario
+     * 
+     * @return boolean
+     */
+    public static function existeFormulariosFilhos($idFormulario)
+    {  	   	
+    	$modelFormulario = new Basico_Model_Formulario();
+    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$idFormulario}");
+    	
+    	return (count($arrayFormulariosObjects) > 0);
+    }
+    
+    /**
+     * Returna se existe elementos
+     * @param integer $idFormulario
+     * 
+     * @return boolean
+     */
+   	public static function existeElementos($idFormulario)
+   	{
+   		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$idFormulario}");
+        
+        return (count($arrayFormularioFormularioElementosObjects) > 0);
+   	}
+
 	/**
 	 * Salva objeto no Banco de dados.
 	 * @param Basico_Model_Formulario $novoFormulario
@@ -48,7 +76,7 @@ class Basico_FormularioControllerController
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_Model_Util::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 
 			// salvando o objeto através do controlador Save
 			Basico_SaveControllerController::save($novoFormulario, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormulario(), LOG_MSG_NOVO_FORMULARIO);
@@ -60,5 +88,4 @@ class Basico_FormularioControllerController
 			throw new Exception($e);
 		}
 	}
-
 }
