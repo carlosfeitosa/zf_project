@@ -220,6 +220,18 @@ class Basico_CategoriaControllerController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA);
 	}
 	
+    /**
+	 * Retorna o id da categoria LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovaPessoaPerfilMensagemCategoria()
+	{
+		$categoriaLogNovaPessoa = self::retornaCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		if (isset($categoriaLogNovaPessoa))
+			return (Int) $categoriaLogNovaPessoa->id;
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+	}
+	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL
 	 * @return Basico_Model_Categoria $categoriaLogNovaPessoaPerfil

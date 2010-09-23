@@ -41,15 +41,11 @@ class Basico_PessoaPerfilMensagemCategoriaControllerController
 	 * @param Basico_Model_PessoaPerfilMensagemCategoria $novaPessoaPerfilMensagemCategoria
 	 * @return void
 	 */
-	public function salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria, $idPessoaPerfilCriador = null)
+	public function salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria)
 	{
 		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
-
-	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novaPessoaPerfilMensagemCategoria);
+			// salvando o objeto através do controlador Save
+			Basico_SaveControllerController::save($novaPessoaPerfilMensagemCategoria, Basico_UtilControllerController::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoaPerfilMensagemCategoria(), LOG_MSG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
 
 			// atualizando o objeto
 	    	$this->pessoaPerfilMensagemCategoria = $novaPessoaPerfilMensagemCategoria;

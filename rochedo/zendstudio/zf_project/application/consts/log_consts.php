@@ -25,6 +25,7 @@ define("LOG_FORMAT", '[%timestamp% - %priorityName% (%priority%)]: %message%' . 
  */
 define("LOG_MSG_NOVA_PESSOA", "Nova pessoa inserida no banco de dados.");
 define("LOG_MSG_NOVA_PESSOA_PERFIL", "Nova associacao de pessoa perfil inserida no banco de dados.");
+define("LOG_MSG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Nova pessoa perfil mensagem categoria inserida no banco de dados.");
 define("LOG_MSG_NOVO_DADOS_PESSOAIS", "Novos dados pessoais inseridos no banco de dados.");
 define("LOG_MSG_NOVO_EMAIL", "Novo e-mail inserido no banco de dados.");
 define("LOG_MSG_NOVA_MENSAGEM", "Nova mensagem inserida no banco de dados.");
