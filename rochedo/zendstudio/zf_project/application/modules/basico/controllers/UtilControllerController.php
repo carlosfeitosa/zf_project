@@ -26,6 +26,51 @@ class Basico_UtilControllerController
     		chmod($item, $modo);
 		}
 	}
+	
+	/**
+	 * Checa a conexão com o banco de dados, lança um erro no caso de não conseguir conectar.
+	 * @param Zend_Application $application
+	 * @return void
+	 */
+	private function checaConexaoBD(Zend_Application $application) 
+	{
+		//tentando conectar ao banco de dados
+        try {	    
+		    
+        	$bootstrap = $application->getBootstrap();
+            
+        	$bootstrap->bootstrap('db')->getResource('db')->getConnection();
+        	       
+        }catch (Exception $e) {
+            //escreve o erro na tela.
+        	self::escreveErro(MSG_ERRO_CONEXAO_BANCO, $e->getMessage());
+        	//salva o logFS do erro
+            $logController = Basico_LogControllerController::init();
+        	$mensagemLogFS = "EXCEPTION: " . MSG_ERRO_CONEXAO_BANCO . " MESSAGE: {$e->getMessage()} "; 
+        	$logController->salvaLogFS($mensagemLogFS, LOG_PRIORITY_ERRO);
+            exit;
+
+        }
+            
+	}
+	
+	private function escreveErro($erroConst, $mensagem)
+	{
+		echo "<h1>" . MSG_ERRO_APLICACAO . "</h1>";
+        	
+        $mensagemDesenv = "Erro:  {$erroConst}<br><h>Detalhes: {$mensagem}</h>";
+        
+        if (self::ambienteDesenvolvimento())
+        	   echo $mensagemDesenv; 
+	}
+	
+	public static function checaInit(Zend_Application $application) {
+		
+		self::checaConexaoBD($application);
+		
+	}
+	
+	
 
 	/**
 	 * Cria diretorios recursivamente.

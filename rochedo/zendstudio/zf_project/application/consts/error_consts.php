@@ -3,13 +3,14 @@
  * Arquivo para definição de constantes de Mensagens de erro do sistema.
  * 
  */
-
+require_once(APPLICATION_PATH . "/configs/application.php");
 
 /*
  * APPLICATION
  */
 define("MSG_ERRO_PAGINA_NAO_ENCONTRADA", "Página não encontrada.");
-define("MSG_ERRO_APLICACAO", "Erro na aplicação.");
+define("MSG_ERRO_CONEXAO_BANCO", "Falha na conexão com o banco de dados.");
+define("MSG_ERRO_APLICACAO", "Desculpe, ocorreu um erro na aplicação.<br>Contate o suporte: <a href='mailto'>" . SUPPORT_EMAIL . "</a>");
 define("MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA", "Propriedade especificada inválida.");
 define("MSG_ERRO_MANIPULACAO_ARQUIVO", "Erro na manipulação de arquivos: ");
 define("MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_LEITURA", "Erro ao tentar abrir arquivo para leitura: ");

@@ -8,9 +8,9 @@
 /**
  * REQUIRES
  */
+require_once("lang_consts.php");
 require_once("error_consts.php");
 require_once("log_consts.php");
-require_once("lang_consts.php");
 require_once("dictionary_consts.php");
 
 /**
@@ -23,6 +23,7 @@ define("INCLUDE_INCLUDE_ONCE", "include_once");
 define("INCLUDE_REQUIRE_ONCE", "require_once");
 define("CODIFICAR_OBJETO_TO_ENCODED_STRING", "CODIFICAR_OBJETO_TO_ENCODED_STRING");
 define("CODIFICAR_ENCODED_STRING_TO_ARRAY", "CODIFICAR_ENCODED_STRING_TO_ARRAY");
+
 
 /**
  * TIPO CATEGORIAS

@@ -3,6 +3,10 @@
  * Arquivo para definiçãoo de constantes de configuração do sistema.
  */
 
+/**
+ * Requires
+ */
+require_once(APPLICATION_PATH . "/consts/consts.php");
 
 /*
  * APPLICATION
@@ -81,3 +85,5 @@ define("DEFAULT_SYSTEM_LANGUAGE", LANGUAGE_PT_BR);
 
 if (!defined("DEFAULT_USER_LANGUAGE"))
     define("DEFAULT_USER_LANGUAGE", DEFAULT_SYSTEM_LANGUAGE);
+    
+    
