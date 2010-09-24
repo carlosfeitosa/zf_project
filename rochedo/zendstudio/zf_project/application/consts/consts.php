@@ -23,6 +23,7 @@ define("INCLUDE_INCLUDE_ONCE", "include_once");
 define("INCLUDE_REQUIRE_ONCE", "require_once");
 define("CODIFICAR_OBJETO_TO_ENCODED_STRING", "CODIFICAR_OBJETO_TO_ENCODED_STRING");
 define("CODIFICAR_ENCODED_STRING_TO_ARRAY", "CODIFICAR_ENCODED_STRING_TO_ARRAY");
+define("SESSION_DB", "SESSION_DB");
 
 
 /**
@@ -257,3 +258,9 @@ define("LINK_DIALOG_FORM", "http://localhost/rochedo_project/public/basico/token
  * LINK PARA CONTROLADOR DE TOKENS 
  */
 define("LINK_CONTROLADOR_TOKENS", "/basico/token/decode/t/");
+
+
+// TRANSACAO DE BANCO DE DADOS
+define("DB_BEGIN_TRANSACTION", 1);
+define("DB_COMMIT_TRANSACTION", 2);
+define("DB_ROLLBACK_TRANSACTION", 3);

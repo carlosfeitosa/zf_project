@@ -49,10 +49,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         if (file_exists(BASICO_CONTROLLER_HELPERS_PATH))
         	Zend_Controller_Action_HelperBroker::addPath(BASICO_CONTROLLER_HELPERS_PATH, 'Basico_Controller_Action_Helper');
         
+        // expondo o MVC para ambiente de desenvolvimento
         if (Basico_UtilControllerController::ambienteDesenvolvimento())
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . DEFAULT_USER_LANGUAGE . ')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
+            
+        // registrando a instancia do banco de dados na sessao
+        Basico_SaveControllerController::registraSessaoBD($this->getResource('db'));
     }
 
     /**

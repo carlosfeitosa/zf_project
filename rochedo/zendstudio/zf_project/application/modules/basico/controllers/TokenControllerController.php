@@ -122,7 +122,7 @@ class Basico_TokenControllerController
 
     public function salvarToken($novoToken, $idPessoaPerfilCriador = null)
 	{
-		//CONSULTANDO TABELA DE CHAVE ESTRANGEIRA
+		// consultando a tabela de chave estrangeira
 		$categoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
 		$tabela = $categoriaChaveEstrangeira->fetchList("id_categoria = {$novoToken->categoria}", null, 1, 0);
 		
@@ -133,7 +133,7 @@ class Basico_TokenControllerController
 		$nomeTabela  = $tabela[0]->tabelaEstrangeira;
 		$campoTabela = $tabela[0]->campoEstrangeiro;
 		
-		$auxDb = Zend_Registry::get('db');
+		$auxDb = Basico_SaveControllerController::recuperaBDSessao();
 		
 		$checkConstraint = $auxDb->fetchAll("SELECT {$campoTabela} FROM {$nomeTabela} WHERE {$campoTabela} = ?", array($novoToken->idGenerico));
 		

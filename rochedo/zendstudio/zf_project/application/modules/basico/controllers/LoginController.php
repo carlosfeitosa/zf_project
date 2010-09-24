@@ -27,18 +27,13 @@ class Basico_LoginController extends Zend_Controller_Action
 	*/
 	private $request;
 	
-	
-	//public $ajaxable = array('feedback'=>array('json'));
-	
     /**
 	 * Inicializa controlador Login
 	 */
 	public function init()
     {
         $this->request = Zend_Controller_Front::getInstance()->getRequest();
-        
-        
-        
+
         /*
          * Definição de contextos
          */
@@ -112,8 +107,6 @@ class Basico_LoginController extends Zend_Controller_Action
         }
 		if (!$formEntrada->isValid($this->getRequest()->getPost())) {
             $this->view->form = $formEntrada;
-            //return $this->render($formEntrada->getName());
-            return;
         }
         return true;
 	}
@@ -174,12 +167,8 @@ class Basico_LoginController extends Zend_Controller_Action
 				}
 	            else{
 	            	
-	            	//INSTANCIAR BD
-           			$db = $this->getInvokeArg('bootstrap')->getResource('db');
-              		//REGISTRAR DB
-        			Zend_Registry::set('db', $db);
-			        //INICIAR TRANSAÇÃO
-                    $db->beginTransaction();
+	            	// iniciando a transacao
+           			Basico_SaveControllerController::controlaTransacaoBD();
                     
 	            	try {
 		            	 //INICIALIZANDO CONTROLADORES
@@ -249,13 +238,16 @@ class Basico_LoginController extends Zend_Controller_Action
 			             // salvando log
 			             Basico_LogControllerController::salvarLog($idPessoaPerfil->id, Basico_CategoriaControllerController::retornaIdCategoriaLogValidacaoUsuario(), LOG_MSG_VALIDACAO_USUARIO);
 			            
-			             $db->commit();
+			             // salvando a transacao
+			             Basico_SaveControllerController::controlaTransacaoBD(DB_COMMIT_TRANSACTION);
 						
 						//REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
 		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 		                
 	            	}catch(Exception $e) {
-	            	    $db->rollback();
+	            		// cancelando a transacao
+	            		Basico_SaveControllerController::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+
 	            		throw new Exception($e->getMessage());
 	            	}
 	           	}
@@ -300,15 +292,10 @@ class Basico_LoginController extends Zend_Controller_Action
         $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::init();
         $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
         
-        // INSTANCIAR BD
-        $db = $this->getInvokeArg('bootstrap')->getResource('db');
-        // REGISTRAR DB
-        Zend_Registry::set('db', $db);
-        // INICIAR TRANSAÇÃO
-        $db->beginTransaction();
+        // iniciando transacao
+        Basico_SaveControllerController::controlaTransacaoBD();
         
-        try {   
-        	      
+        try {
             // NOVA PESSOA ARMAZENADA NO SISTEMA
             $novaPessoa = new Basico_Model_Pessoa();
             $controladorRowInfo->prepareXml($novaPessoa, true);
@@ -405,13 +392,17 @@ class Basico_LoginController extends Zend_Controller_Action
             // salvando log
             Basico_LogControllerController::salvarLog($novaPessoaPerfil->id, Basico_CategoriaControllerController::retornaIdCategoriaLogValidacaoUsuario(), LOG_MSG_VALIDACAO_USUARIO);
             
-            $db->commit();
+            // salvando a transacao
+            Basico_SaveControllerController::controlaTransacaoBD(DB_COMMIT_TRANSACTION);
 
         } catch (Exception $e) {
-            $db->rollback();
+        	// cancelando a transacao
+            Basico_SaveControllerController::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+            
             throw new Exception($e->getMessage());
         }
-
+        
+        // redirecionando para a view de sucesso na operacao
 		$this->_helper->redirector('SucessoSalvarUsuarioNaoValidado');
     }
     
