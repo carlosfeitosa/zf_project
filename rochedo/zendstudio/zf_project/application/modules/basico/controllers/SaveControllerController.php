@@ -44,8 +44,13 @@ class Basico_SaveControllerController
 						self::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
 					}
 						
-					throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
+					throw new Exception(MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO);
 				}
+			}
+			// verificando se, tratando-se de um update, foi informado a versao da tupla
+			else if ((!isset($versaoUpdate)) or ($versaoUpdate <= 0)){
+				
+				throw new Exception(MSG_ERRO_SAVE_UPDATE_SEM_INFORMACAO_SOBRE_VERSAO);
 			}
 			
 			// recuperando o numero da ultima versao
