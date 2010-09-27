@@ -8,7 +8,9 @@
 * 
 * 						
 * 						27/09/2010 - insercao de dados em formulario
-* 								   - insercao de template formulario 
+* 								   - insercao de template formulario
+* 								   - insercao de componentes do dojo
+* 
 * 
 */
 
@@ -39,7 +41,6 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
-
 /* FORMULARIO TEMPLATE */
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
@@ -54,7 +55,102 @@ SELECT (SELECT f.id
 		FROM template p
 		LEFT JOIN categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-		WHERE t.nome = 'FORMULARIO'
-		AND c.nome = 'FORMULARIO_TEMPLATE'
-		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
-	   'SYSTEM_STARTUP' AS rowinfo;	   
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_TEMPLATE'
+AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+'SYSTEM_STARTUP' AS rowinfo;
+	   
+/* COMPONENTE */
+	   
+INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id, 'DOJO_FilteringSelect' AS nome, 'Componente DOJO para ComboBox com filtragem' AS descricao, 
+		'''FilteringSelect''' AS componente, 'SYSTEM_STARTUP' as rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+		
+INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id, 'DOJO_MultiCheckbox' AS nome, 'Componente DOJO para multiplos CheckBoxs' AS descricao, 
+		'''MultiCheckbox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+
+
+/**** 
+ * 
+ * 
+ * AINDA NÃO FOI TERMINADO
+ * 
+ * 
+ * 
+ */
+/*
+/* FORMULARIO ELEMENTO */
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
+                              AND a.nome = 'AJUDA_CAMPO_NOME_USUARIO') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
+                              'FIELD_NOME_USUARIO' AS nome, 'Elemento campo nome do usuário, com filtro e validador.' AS descricao,
+                              'FORM_FIELD_NOME' AS constante_textual_label,
+                              'nome' AS element_name, '''size'' => 100' AS element_attribs,
+                              '''nome''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+
+
+
+
+
+	   
+/* FORMULARIO x FORMULARIO ELEMENTO*/
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO'
+AND fe.nome = 'FIELD_NOME_USUARIO') AS id_formulario_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+*/
