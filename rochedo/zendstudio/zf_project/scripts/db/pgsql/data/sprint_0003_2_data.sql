@@ -6,7 +6,6 @@
 * criacao: 27/09/2010
 * ultimas modificacoes: 
 * 
-* 					à partir daqui:
 * 						
 * 						27/09/2010 - insercao de dados em formulario
 * 								   - insercao de template formulario 
@@ -33,7 +32,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'SUBFORM_DADOS_ACADEMICOS' AS nome,
        'Formulário de submissão de dados acadêmicos.' AS descricao, 
        'SUBFORM_TABTITLE_DADOS_ACADEMICOS' AS constante_textual_titulo,
-       'CadastrarDadosUsuarioDadosAcademicos' AS form_name, 'post' AS form_method, '' AS form_action, 
+       'CadastrarDadosUsuarioDadosAcademicos' AS form_name, 'post' AS form_method, NULL AS form_action, 
        '''onSubmit''=>"loading();return(validateForm(''CadastrarDadosUsuarioDadosAcademicos''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
