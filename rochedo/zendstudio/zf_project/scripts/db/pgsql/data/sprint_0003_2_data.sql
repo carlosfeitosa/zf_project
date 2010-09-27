@@ -5,7 +5,6 @@
 * por: ADRIANO LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 27/09/2010
 * ultimas modificacoes: 
-
 * 
 * 					à partir daqui:
 * 						
