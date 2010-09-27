@@ -11,6 +11,8 @@
 * 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null;
 *						- 28/01/2010 - adicao das tabelas categoria_chave_estrangeira e token;
 * 						- 22/02/2010 - adicao da tabela dicionario_expressao;
+* 						- 27/09/2010 - modificacao da tabela "email": transformacao do campo "id_pessoa" em
+* 									   "id_generico_proprietario" (abstracao do dono);
 */
 
 /* CRIACAO DAS TABELAS */
@@ -43,7 +45,7 @@ alter table dados_pessoais owner to rochedo_user;
 
 create table email (
 	id serial not null ,
-	id_pessoa integer not null ,
+	id_generico_proprietario integer not null ,
 	id_categoria integer not null ,
 	unique_id character varying (100) not null ,
 	email character varying (100) not null ,
@@ -379,8 +381,7 @@ alter table dados_pessoais
   add constraint fk_dados_pessoais_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
 
 alter table email
-  add constraint fk_email_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
-  add constraint fk_email_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+  add constraint fk_email_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
 alter table log
   add constraint fk_log_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,

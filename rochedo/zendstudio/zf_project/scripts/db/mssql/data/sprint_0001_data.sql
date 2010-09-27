@@ -17,6 +17,8 @@
 * 						- 23/02/2010 - insert de dados no dicionario de expressões;
 * 						- 05/03/2010 - insert de dados no dicionario de expressões: form hints;
 * 						- 22/04/2010 - insert de dados no dicionario de expressões: subforms TAB legends; 
+* 						- 27/09/2010 - insert de categoria_chave_estrangeira para vincular o e-mail do sistema a pessoa "sistema";
+* 									 - insert de categoria_chave_estrangeira para vincular o e-mail do usuario ao done do e-mail;
 */
 
 /* DADOS DO SISTEMA (TIPO CATEGORIA SISTEMA) */
@@ -276,11 +278,15 @@ SELECT t.id AS id_tipo_categoria, 'EMAIL_PRIMARIO' AS nome, 'Endereços de e-mai
 FROM tipo_categoria t
 WHERE t.nome = 'EMAIL';
 
+INSERT INTO categoria_chave_estrangeira (id_categoria, tabela_estrangeira, campo_estrangeiro, rowinfo)
+SELECT c.id AS id_categoria, 'pessoa' AS tabela_estrangeira, 'id' AS campo_estrangeiro, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'EMAIL'
+AND c.nome = 'EMAIL_PRIMARIO';
+
 
 /* DADOS DO USUARIO DO SISTEMA (MASTER) */
-
-INSERT INTO pessoa (rowinfo)
-VALUES ('SYSTEM_STARTUP');
 
 INSERT INTO pessoa (rowinfo)
 VALUES ('SYSTEM_STARTUP');
@@ -342,10 +348,10 @@ WHERE perf.nome = 'SISTEMA'
 AND cat.nome = 'SISTEMA_USUARIO'
 AND perf.nome = 'SISTEMA';
 
-INSERT INTO email (id_pessoa, id_categoria, unique_id, email, validado, datahora_ultima_validacao, ativo, rowinfo)
-SELECT pp.id_pessoa,
+INSERT INTO email (id_generico_proprietario, id_categoria, unique_id, email, validado, datahora_ultima_validacao, ativo, rowinfo)
+SELECT pp.id_pessoa AS id_generico_proprietario,
        (SELECT id FROM categoria WHERE nome = 'SISTEMA_EMAIL') AS id_categoria,
-       'SYSTEM_STARTUP' AS unique_id, 'info@rochedoproject.com' AS email, 1 AS validado, current_timestamp AS datahora_ultima_validacao, 1 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+       'SYSTEM_STARTUP' AS unique_id, 'nao.responda@rochedoproject.com' AS email, 1 AS validado, current_timestamp AS datahora_ultima_validacao, 1 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM pessoas_perfis pp
 LEFT JOIN perfil perf ON (pp.id_perfil = perf.id)
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
@@ -360,6 +366,13 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'MENSAGEM'
 AND c.nome = 'MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT';
+
+INSERT INTO categoria_chave_estrangeira (id_categoria, tabela_estrangeira, campo_estrangeiro, rowinfo)
+SELECT c.id AS id_categoria, 'pessoa' AS tabela_estrangeira, 'id' AS campo_estrangeiro, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_EMAIL';
 
 
 /* LINGUAGEM */

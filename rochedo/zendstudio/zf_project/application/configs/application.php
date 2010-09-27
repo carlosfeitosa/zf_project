@@ -47,7 +47,7 @@ define("FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX", false);
  */
 define("SMTP_SERVER_AUTH_METHOD", "login");
 define("SMTP_SERVER_HOST", "mail.rochedoproject.com");
-define("SMTP_USERNAME", "nao_responda@rochedoproject.com");
+define("SMTP_USERNAME", "nao.responda@rochedoproject.com");
 define("SMTP_PASSWORD", "@nao#rochedo#responda@");
 
 /*

@@ -327,13 +327,13 @@ class Basico_LoginController extends Zend_Controller_Action
 
             // NOVO EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
             $novoEmail = new Basico_Model_Email();
-            $novoEmail->pessoa    = $novaPessoa->id;
-            $novoEmail->uniqueId  = $uniqueIdValido;
-            $novoEmail->categoria = $categoriaEmailPrimario->id;
-            $novoEmail->email     = $this->getRequest()->getParam('email');
-            $novoEmail->validado  = 0;
-            $novoEmail->ativo     = 0;
-            $novoEmail->rowinfo   = $controladorRowInfo->getXml();
+            $novoEmail->idGenericoProprietario = $novaPessoa->id;
+            $novoEmail->uniqueId  			   = $uniqueIdValido;
+            $novoEmail->categoria 			   = $categoriaEmailPrimario->id;
+            $novoEmail->email     			   = $this->getRequest()->getParam('email');
+            $novoEmail->validado  			   = 0;
+            $novoEmail->ativo     			   = 0;
+            $novoEmail->rowinfo   			   = $controladorRowInfo->getXml();
             $controladorEmail->salvarEmail($novoEmail);
 
             //SALVANDO TOKEN

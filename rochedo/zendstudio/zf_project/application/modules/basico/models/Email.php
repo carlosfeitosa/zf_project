@@ -13,17 +13,18 @@ class Basico_Model_Email
 	* @var int
 	*/
 	protected $_id;
-
 	/**
 	 * @var Basico_Model_EmailMapper
 	 */
 	protected $_mapper;
-		
+	/**
+	 * @var Integer
+	 */
+	protected $_idGenericoProprietario;
 	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
-
 	/**
 	 * @var String
 	 */
@@ -47,13 +48,8 @@ class Basico_Model_Email
     /**
      * @var Integer
      */
-    protected $_pessoa;
-
-    /**
-     * @var Integer
-     */
     protected $_categoria;
-
+ 
 	/**
 	 * Constructor
 	 * 
@@ -120,7 +116,29 @@ class Basico_Model_Email
 		}
 		return $this;
 	}
-    
+
+	/**
+	* Set idGenericoProprietario
+	* 
+	* @param Integer $idGenericoProprietario 
+	* @return Basico_Model_IdGenericoProprietario
+	*/
+	public function setIdGenericoProprietario($idGenericoProprietario)
+	{
+		$this->_idGenericoProprietario = (Integer) $idGenericoProprietario;
+		return $this;
+	}
+
+	/**
+	* Get idGenericoProprietario
+	* 
+	* @return null|Integer
+	*/
+	public function getIdGenericoProprietario()
+	{
+		return $this->_idGenericoProprietario;
+	}
+	
 	/**
 	* Set uniqueId
 	* 
@@ -230,39 +248,6 @@ class Basico_Model_Email
 	{
 		return $this->_ativo;
 	}
-     
-	/**
-	* Set pessoa
-	* 
-	* @param int $pessoa 
-	* @return Basico_Model_Pessoa
-	*/
-	public function setPessoa($pessoa)
-	{
-		$this->_pessoa = (int) $pessoa;
-		return $this;
-	}
-
-	/**
-	* Get pessoa
-	* 
-	* @return null|int
-	*/
-	public function getPessoa()
-	{
-		return $this->_pessoa;
-	}
- 
-    /**
-     * Get pessoa object
-     * @return null|Pessoa
-     */
-    public function getPessoaObject()
-    {
-        $model = new Basico_Model_Pessoa();
-        $object = $model->find($this->_pessoa);
-        return $object;
-    }
     
 	/**
 	* Set categoria
@@ -296,7 +281,7 @@ class Basico_Model_Email
         $object = $model->find($this->_categoria);
         return $object;
     }
-    
+
 	/**
 	* Set rowinfo
 	* 

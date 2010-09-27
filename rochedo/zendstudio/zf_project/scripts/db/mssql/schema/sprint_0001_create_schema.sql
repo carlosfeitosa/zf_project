@@ -11,6 +11,8 @@
 * 									 - adicao do campo pessoas_perfis.rowinfo character varying (2000) not null;
 * 						- 28/01/2010 - adicao das tabelas categoria_chave_estrangeira e token;
 * 						- 22/02/2010 - adicao da tabela dicionario_expressao;
+* 						- 27/09/2010 - modificacao da tabela "email": transformacao do campo "id_pessoa" em
+* 									   "id_generico_proprietario" (abstracao do dono);
 */
 
 /* CRIACAO DAS TABELAS */
@@ -35,7 +37,7 @@ create table dados_pessoais (
 
 create table email (
 	id int identity (1, 1) not null ,
-	id_pessoa int not null ,
+	id_generico_proprietario int not null ,
 	id_categoria int not null ,
 	unique_id varchar (100) collate latin1_general_ci_ai not null ,
 	email varchar (100) collate latin1_general_ci_ai not null ,
@@ -315,12 +317,6 @@ alter table email add
 	(
 		id_categoria
 	) references categoria (
-		id
-	),
-	constraint fk_email_pessoa foreign key 
-	(
-		id_pessoa
-	) references pessoa (
 		id
 	);
 

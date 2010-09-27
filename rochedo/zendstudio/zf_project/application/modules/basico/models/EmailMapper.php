@@ -57,7 +57,7 @@ class Basico_Model_EmailMapper
     public function save(Basico_Model_Email $object)
     {   
         $data = array(
-                      'id_pessoa' 				  => $object->getPessoa(),
+                      'id_generico_proprietario'  => $object->getIdGenericoProprietario(),
                       'id_categoria'              => $object->getCategoria(),
     			 	  'unique_id'                 => $object->getUniqueId(),
     				  'email'                     => $object->getEmail(),
@@ -100,7 +100,7 @@ class Basico_Model_EmailMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-                ->setPessoa($row->id_pessoa)
+                ->setIdGenericoProprietario($row->id_generico_proprietario)
                 ->setCategoria($row->id_categoria)
 				->setUniqueId($row->unique_id)
 				->setEmail($row->email)
@@ -123,7 +123,7 @@ class Basico_Model_EmailMapper
 		{
 			$entry = new Basico_Model_Email();
 			$entry->setId($row->id)
-                ->setPessoa($row->id_pessoa)
+                ->setIdGenericoProprietario($row->id_generico_proprietario)
                 ->setCategoria($row->id_categoria)
 				->setUniqueId($row->unique_id)
 				->setEmail($row->email)
@@ -150,7 +150,7 @@ class Basico_Model_EmailMapper
 		{
 			$entry = new Basico_Model_Email();
 			$entry->setId($row->id)
-                ->setPessoa($row->id_pessoa)
+                ->setIdGenericoProprietario($row->id_generico_proprietario)
                 ->setCategoria($row->id_categoria)
 				->setUniqueId($row->unique_id)
 				->setEmail($row->email)
