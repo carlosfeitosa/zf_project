@@ -79,21 +79,43 @@ WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
 
-/**** 
- * 
- * 
- * AINDA NÃO FOI TERMINADO
- * 
- * 
- * 
- */
 /*
+/* AJUDA */
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_CAMPO_CATEGORIA_BOLSA_CNPQ' AS nome, 'Texto de ajuda para o campo categoria de bolsa do cnpq.' AS descricao,
+       'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual_ajuda, 'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_HINT' AS constante_textual_hint, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+
+
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_CAMPO_EMAIL_USUARIO' AS nome, 'Texto de ajuda para o campo e-mail do usuário.' AS descricao,
+       'FORM_FIELD_EMAIL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_EMAIL_HINT' AS constante_textual_hint, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+
+
+/* DECORATOR */
+
+
+
+
+
 /* FORMULARIO ELEMENTO */
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
+
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -134,6 +156,8 @@ AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
 
 
+INSERT INTO "public"."formulario_elemento"("id_categoria", "id_ajuda", "id_formulario_elemento_filter", "id_decorator", "id_componente", "nome", "descricao", "constante_textual_label", "element_name", "element_attribs", "element", "element_reloadable", "rowinfo")
+VALUES(160, NULL, NULL, 2, 6, 'FORM_FIELD_CHECKBOX_MODULOS_FORMULARIO', 'Elemento Checkbox para seleção de módulos de um Formulário.', 'FORM_FIELD_CHECKBOX_MODULOS_FORMULARIO', 'modulosFormulario', '''size'' => 100', '''modulosFormulario''', 1, 'SYSTEM_STARTUP')
 
 	   
 /* FORMULARIO x FORMULARIO ELEMENTO*/
