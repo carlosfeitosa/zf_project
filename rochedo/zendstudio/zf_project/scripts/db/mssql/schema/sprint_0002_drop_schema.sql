@@ -3,7 +3,7 @@
 * 
 * versao: 1.0 (MSSQL 2000)
 * por: JOAO VASCONCELOS (joao.vasconcelos@rochedoproject.com)
-* criacao: 13/12/2009
+* criacao: 28/09/2010
 * ultimas modificacoes: 
 * 
 */
