@@ -71,15 +71,21 @@ WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 		
 INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
-SELECT c.id, 'DOJO_MultiCheckbox' AS nome, 'Componente DOJO para multiplos CheckBoxs' AS descricao, 
+SELECT c.id, 'ZF_MultiCheckbox' AS nome, 'Componente ZF para multiplos CheckBoxs' AS descricao, 
 		'''MultiCheckbox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_ZF';
+
+INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id, 'DOJO_CheckBox' AS nome, 'Componente DOJO para CheckBox' AS descricao, 
+		'''CheckBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
-
-/*
 /* AJUDA */
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
