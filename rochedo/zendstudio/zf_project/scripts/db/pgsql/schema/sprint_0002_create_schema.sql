@@ -14,7 +14,7 @@ create table documento_identificacao (
 	id serial not null ,
 	id_generico_proprietario integer not null ,
 	id_categoria integer not null ,
-	id_orgao_expedidor integer not null,
+	id_pessoa_juridica_orgao_expedidor integer not null,
 	identificador character varying (200) not null ,
 	data_emissao timestamp with time zone null ,
 	data_vencimento timestamp with time zone null ,
@@ -79,7 +79,7 @@ create table pais (
 	id serial not null ,
 	constante_textual_nome character varying (200) not null ,
 	sigla character varying (50) not null ,
-	codigo_ddi character varying (10) not null ,
+	codigo_ddi character varying (10) null ,
 	rowinfo character varying (2000) not null
 )
 with (
@@ -92,12 +92,15 @@ create table endereco (
 	id_generico_proprietario integer not null ,
 	id_pessoa_perfil_validador integer null ,
 	id_categoria integer not null ,
-	id_estado integer not null ,
-	id_pais integer not null ,
-	descricao character varying (2000) not null ,
-	logradouro character varying (15) not null ,
-	cep character varying (15) not null ,
+	id_estado integer null ,
+	id_pais integer null ,
+	descricao character varying (2000) null ,
+	logradouro character varying (15) null ,
+	numero character varying (15) null ,
+	complemento character varying (50) null ,
+	cep character varying (15) null ,
 	caixa_postal character varying (15) null ,
+	ponto_referencia character varying (300) null ,
 	data_validacao timestamp with time zone null ,
 	rowinfo character varying (2000) not null
 )
@@ -153,4 +156,42 @@ alter table documento_identificacao
   
 alter table mascara
   add constraint un_mascara_nome unique (nome, mascara);
+  
+alter table pessoa_juridica
+  add constraint un_pessoa_juridica_nome unique (nome);
+  
+alter table estado
+  add constraint un_estado_nome_pais unique (nome, id_pais);
+  
+alter table pais
+  add constraint un_pais_nome unique (nome);
+  
+alter table pais
+  add constraint un_pais_sigla unique (sigla);
+  
+/* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
+alter table documento_identificacao
+  add constraint fk_documento_identificacao_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
+  add constraint fk_documento_identificacao_pessoa_juridica foreign key (id_pessoa_juridica_orgao_expedidor) references pessoa_juridica (id) on update no action on delete no action;
+
+alter table mascara
+  add constraint fk_mascara_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  
+alter table dados_biometricos
+  add constraint fk_dados_biometricos_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+  
+alter table estado
+  add constraint fk_estado_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
+  
+alter table endereco
+  add constraint fk_endereco_pessoa_perfil foreign key (id_pessoa_perfil_validador) references pessoa_perfil (id) on update no action on delete no action ,
+  add constraint fk_endereco_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
+  add constraint fk_endereco_estado foreign key (id_estado) references estado (id) on update no action on delete no action ,
+  add constraint fk_endereco_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
+  
+/* CRIACAO DOS CHECK CONSTRAINTS */
+
+alter table pais add
+    constraint ck_pais_constante_textual_nome check
+    ((constante_textual_nome is null) or (fn_CheckConstanteTextualExists(constante_textual_nome) is not null));
