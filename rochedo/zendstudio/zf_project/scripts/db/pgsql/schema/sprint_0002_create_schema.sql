@@ -1,5 +1,5 @@
 /*
-* SCRIPT DE CRIACAO DAS TABELAS DO SPRINT 0001
+* SCRIPT DE CRIACAO DAS TABELAS DO SPRINT 0002
 * 
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoproject.com)
@@ -144,7 +144,7 @@ create index ix_estado_sigla
   on estado using btree (sigla asc nulls last);
   
 create index ix_pais_constante_textual_nome
-  on pais using btree (nome asc nulls last);
+  on pais using btree (constante_textual_nome asc nulls last);
   
 create index ix_pais_sigla
   on pais using btree (sigla asc nulls last);
@@ -152,10 +152,10 @@ create index ix_pais_sigla
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
 alter table documento_identificacao
-  add constraint un_documento_identificao_identificador_categoria_proprietario_expedidor unique (identificador, id_categoria, id_generico_proprietario, id_orgao_expedidor);
+  add constraint un_documento_identificao_identificador_categoria_proprietario_expedidor unique (identificador, id_categoria, id_generico_proprietario, id_pessoa_juridica_orgao_expedidor);
   
 alter table mascara
-  add constraint un_mascara_nome unique (nome, mascara);
+  add constraint un_mascara_nome_mascara unique (nome, mascara);
   
 alter table pessoa_juridica
   add constraint un_pessoa_juridica_nome unique (nome);
@@ -164,7 +164,7 @@ alter table estado
   add constraint un_estado_nome_pais unique (nome, id_pais);
   
 alter table pais
-  add constraint un_pais_nome unique (nome);
+  add constraint un_pais_constante_textual_nome unique (constante_textual_nome);
   
 alter table pais
   add constraint un_pais_sigla unique (sigla);
@@ -185,7 +185,7 @@ alter table estado
   add constraint fk_estado_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
   
 alter table endereco
-  add constraint fk_endereco_pessoa_perfil foreign key (id_pessoa_perfil_validador) references pessoa_perfil (id) on update no action on delete no action ,
+  add constraint fk_endereco_pessoa_perfil foreign key (id_pessoa_perfil_validador) references pessoas_perfis (id) on update no action on delete no action ,
   add constraint fk_endereco_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
   add constraint fk_endereco_estado foreign key (id_estado) references estado (id) on update no action on delete no action ,
   add constraint fk_endereco_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
