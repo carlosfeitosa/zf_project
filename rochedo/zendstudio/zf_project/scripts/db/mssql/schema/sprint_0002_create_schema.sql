@@ -11,7 +11,7 @@
 /* CRIACAO DAS TABELAS */
 
 create table documento_identificacao (
-	id identity (1, 1) not null ,
+	id int identity (1, 1) not null ,
 	id_generico_proprietario int not null ,
 	id_categoria int not null ,
 	id_pessoa_juridica_orgao_expedidor int not null,
@@ -23,7 +23,7 @@ create table documento_identificacao (
 ) on [primary];
 
 create table mascara (
-	id identity (1, 1) not null ,
+	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai not null ,
@@ -32,14 +32,14 @@ create table mascara (
 ) on [primary];
 
 create table dados_biometricos (
-	id identity (1, 1) not null ,
+	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	sexo int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
 create table pessoa_juridica (
-	id identity (1, 1) not null ,
+	id int identity (1, 1) not null ,
 	id_pessoa_juridica_pai int null ,
 	id_categoria int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
@@ -48,7 +48,7 @@ create table pessoa_juridica (
 ) on [primary];
 
 create table estado (
-	id identity (1, 1) not null ,
+	id int identity (1, 1) not null ,
 	id_pais int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	sigla varchar (50) collate latin1_general_ci_ai not null ,
@@ -56,7 +56,7 @@ create table estado (
 ) on [primary];
 
 create table pais (
-	id identity (1, 1) not null ,
+	id int identity (1, 1) not null ,
 	constante_textual_nome varchar (200) collate latin1_general_ci_ai not null ,
 	sigla varchar (50) collate latin1_general_ci_ai not null ,
 	codigo_ddi varchar (10) collate latin1_general_ci_ai null ,
@@ -64,7 +64,7 @@ create table pais (
 ) on [primary];
 
 create table endereco (
-	id identity (1, 1) not null ,
+	id int identity (1, 1) not null ,
 	id_generico_proprietario int not null ,
 	id_pessoa_perfil_validador int null ,
 	id_categoria int not null ,
