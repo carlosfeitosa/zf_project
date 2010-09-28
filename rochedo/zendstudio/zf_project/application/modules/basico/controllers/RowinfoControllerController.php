@@ -57,7 +57,7 @@ class Basico_RowInfoControllerController
 	{
 		try {
 			    if ($utilizarUsuarioSistema)
-			        $idPessoaPerfil = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+			        $idPessoaPerfil = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 		
 			    // CASO NAO EXISTA ID, SETAR VALORES PARA NOVA LINHA
 		        if (!isset($modelo->id))

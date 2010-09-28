@@ -48,7 +48,7 @@ class Basico_PessoaControllerController
 	{
 		try {
 			// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novaPessoa, null, Basico_UtilControllerController::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
+			Basico_PersistenceControllerController::bdSave($novaPessoa, null, Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
 			// atualizando o objeto
 			$this->pessoa = $novaPessoa;
 						

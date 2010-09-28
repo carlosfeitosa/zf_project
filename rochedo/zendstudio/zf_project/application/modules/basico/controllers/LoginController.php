@@ -168,7 +168,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	            else{
 	            	
 	            	// iniciando a transacao
-           			Basico_SaveControllerController::controlaTransacaoBD();
+           			Basico_PersistenceControllerController::bdControlaTransacao();
                     
 	            	try {
 		            	 //INICIALIZANDO CONTROLADORES
@@ -181,17 +181,17 @@ class Basico_LoginController extends Zend_Controller_Action
 	                     $controladorCategoria                     = Basico_CategoriaControllerController::init();
 	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::init();
 	                     $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
-	                     	            	 
+
 		            	 //POPULANDO CATEGORIAS
 		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
-			             			                  
+
 			             //POPULANDO VARIAVEIS
 			             $email            = $this->getRequest()->getParam('email');
 			             $idEmail          = $controladorEmail->retornaIdEmail($email);
 			             $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
 			             $idPessoa         = $controladorEmail->retornaIdPessoaEmail($email);
 			             $idPessoaPerfil   = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa);
-			             
+
 			             //SALVANDO TOKEN
 			             $novoToken = new Basico_Model_Token();
 			             $novoToken->token       = $controladorToken->gerarToken($novoToken, 'token');
@@ -200,7 +200,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorRowInfo->prepareXml($novoToken, true);
 			             $novoToken->rowinfo     = $controladorRowInfo->getXml();
 			             $controladorToken->salvarToken($novoToken);
- 			            
+
 			             //SALVANDO MENSAGEM
 			             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
 			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
@@ -210,9 +210,9 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorRowInfo->prepareXml($novaMensagem, true);
 			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
                          $controladorMensagem->salvarMensagem($novaMensagem);
-			             
+
 			             //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
-			             $idPessoaPerfilSistema = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+			             $idPessoaPerfilSistema = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 			             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
 			             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaRemetente->mensagem     = $novaMensagem->id;
@@ -239,19 +239,20 @@ class Basico_LoginController extends Zend_Controller_Action
 			             Basico_LogControllerController::salvarLog($idPessoaPerfil->id, Basico_CategoriaControllerController::retornaIdCategoriaLogValidacaoUsuario(), LOG_MSG_VALIDACAO_USUARIO);
 			            
 			             // salvando a transacao
-			             Basico_SaveControllerController::controlaTransacaoBD(DB_COMMIT_TRANSACTION);
+			             Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 						
 						//REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
 		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 		                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
-	            		Basico_SaveControllerController::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+	            		Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 
 	            		throw new Exception($e->getMessage());
 	            	}
 	           	}
-	        }else{
+	        }
+	        else {
 	            $this->salvarusuarionaovalidadoAction();
 	        }
         }       	
@@ -293,7 +294,7 @@ class Basico_LoginController extends Zend_Controller_Action
         $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
         
         // iniciando transacao
-        Basico_SaveControllerController::controlaTransacaoBD();
+        Basico_PersistenceControllerController::bdControlaTransacao();
         
         try {
             // NOVA PESSOA ARMAZENADA NO SISTEMA
@@ -366,7 +367,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorMensagem->salvarMensagem($novaMensagem);
 
             //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
-            $idPessoaPerfilSistema = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+            $idPessoaPerfilSistema = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
             $pessoaPerfilMensagemCategoriaRemetente->mensagem        = $novaMensagem->id;
@@ -393,11 +394,11 @@ class Basico_LoginController extends Zend_Controller_Action
             Basico_LogControllerController::salvarLog($novaPessoaPerfil->id, Basico_CategoriaControllerController::retornaIdCategoriaLogValidacaoUsuario(), LOG_MSG_VALIDACAO_USUARIO);
             
             // salvando a transacao
-            Basico_SaveControllerController::controlaTransacaoBD(DB_COMMIT_TRANSACTION);
+            Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
         } catch (Exception $e) {
         	// cancelando a transacao
-            Basico_SaveControllerController::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+            Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
             
             throw new Exception($e->getMessage());
         }

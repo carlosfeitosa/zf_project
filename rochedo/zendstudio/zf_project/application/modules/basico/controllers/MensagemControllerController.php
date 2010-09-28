@@ -61,10 +61,10 @@ class Basico_MensagemControllerController
 	    try{
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 	    	
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novaMensagem, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
+			Basico_PersistenceControllerController::bdSave($novaMensagem, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
 
 			// atualizando o objeto	    		
 	    	$this->mensagem = $novaMensagem;

@@ -39,7 +39,7 @@ class Basico_DadosPessoasPerfisControllerController
 	
 	public function retornaAssinaturaMensagemEmailSistema()
 	{
-		$idPessoaPerfilSistema = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+		$idPessoaPerfilSistema = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 	    $dadosPessoasPerfis    = self::$singleton->dadosPessoasPerfis->fetchList("id_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
 		if (isset($dadosPessoasPerfis[0]))
     	    return $dadosPessoasPerfis[0]->assinaturaMensagemEmail;

@@ -8,7 +8,7 @@ require_once("RowinfoControllerController.php");
 
 class Basico_CVCControllerController
 {
-  /**
+  	/**
      * retorna a versao de uma tupla
      * @param $objeto
      * @param $forceVersioning
@@ -18,7 +18,7 @@ class Basico_CVCControllerController
     public static function retornaUltimaVersao($objeto, $forceVersioning = false)
     {
     	// recuperando o valor do id generico vindo do objeto
-		$idGenerico = Basico_UtilControllerController::retornaIdGenericoObjeto($objeto);
+		$idGenerico = Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($objeto);
 		
 		// verificando se o valor de id generico existe
 		if (!$idGenerico) {
@@ -27,7 +27,7 @@ class Basico_CVCControllerController
 		else 
 		{
 			// recuperando a relacao categoria chave estrangeira
-			$categoriaChaveEstrangeira = self::retornaCategoriaChaveEstrangeira($objeto, true);
+			$categoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaCategoriaChaveEstrangeira($objeto, true);
 
 			// verificando se existe a relacao com categoria chave estrangeira
 			if (isset($categoriaChaveEstrangeira)) {
@@ -55,55 +55,6 @@ class Basico_CVCControllerController
     }
     
     /**
-     * retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
-     * @param object $objeto
-     * @param boolean $forceCreateRelationship
-     * 
-     * @return null|Basico_Model_CategoriaChaveEstrangeira
-     */
-    public static function retornaCategoriaChaveEstrangeira($objeto, $forceCreateRelationship = false)
-    {
-    	// recuperando o nome da tabela vinculada ao objeto
-    	$tableName = Basico_UtilControllerController::retornaTableNameObjeto($objeto);
-		// instanciando o controlador de categorias
-		$categoriaController = Basico_CategoriaControllerController::init();
-		// recuperando categoria CVC
-		$objCategoriaCVC = $categoriaController->retornaCategoriaCVC();
-
-		// instanciando o modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
-		
-		// recuperando a categoria chave estrangeira relacionada ao objeto
-		$arrayCategoriasChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$objCategoriaCVC->id} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
-		
-		// verificando se existe a relacao com categoria chave estrangeira
-		if (isset($arrayCategoriasChaveEstrangeira[0])) {
-			return $arrayCategoriasChaveEstrangeira[0];
-		}
-		else if ($forceCreateRelationship) {
-			// instanciando controlador de rowinfo
-			$controladorRowInfo = Basico_RowInfoControllerController::init();
-			
-			// cria relacao caso o haja o parametro para criacao de relacao
-			$modelCategoriaChaveEstrangeira->categoria = $objCategoriaCVC->id;
-			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
-			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_UtilControllerController::retornaPrimaryKeyObjeto($objeto);
-			
-			// preparando XML rowinfo
-			$controladorRowInfo->prepareXml($modelCategoriaChaveEstrangeira, true);
-			$modelCategoriaChaveEstrangeira->rowinfo = $controladorRowInfo->getXml();
-			
-			// salvando
-			$modelCategoriaChaveEstrangeira->save();
-
-			return $modelCategoriaChaveEstrangeira;
-		}
-		else {
-			return null;
-		}
-    }
-    
-    /**
      * versiona um objeto.
      * retorna o numero da versão
      * @param objeto $objeto
@@ -116,11 +67,11 @@ class Basico_CVCControllerController
     	$modelCVC = new Basico_Model_CVC();
     	
     	// recuperando relacao categoria chave estrangeira
-    	$relacaoCategoriaChaveEstrangeira = self::retornaCategoriaChaveEstrangeira($objeto, true);
+    	$relacaoCategoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaCategoriaChaveEstrangeira($objeto, true);
     	
     	// preenchendo informacoes sobre o versionamento
     	$modelCVC->categoriaChaveEstrangeira = $relacaoCategoriaChaveEstrangeira->id;
-    	$modelCVC->idGenerico = Basico_UtilControllerController::retornaIdGenericoObjeto($objeto);
+    	$modelCVC->idGenerico = Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($objeto);
     	$modelCVC->objeto = $objeto;
      	
     	// recuperando versao
@@ -231,9 +182,9 @@ class Basico_CVCControllerController
     	// codificando objeto para comparacao
     	$objetoCodificado = Basico_UtilControllerController::codificar($objeto);
     	// recuperando id da relacao de categoria chave estrangeira
-    	$categoriaChaveEstrangeira = self::retornaCategoriaChaveEstrangeira($objeto);
+    	$categoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaCategoriaChaveEstrangeira($objeto);
     	// recuperando id generico do objeto
-    	$idGenerico = Basico_UtilControllerController::retornaIdGenericoObjeto($objeto);
+    	$idGenerico = Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($objeto);
     	
     	// recuperando objeto CVC contendo a ultima versao do objeto
     	$objUltimaVersao = self::retornaObjUltimaVersao($categoriaChaveEstrangeira->id, $idGenerico);

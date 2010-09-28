@@ -1,11 +1,10 @@
 <?php
 /**
- * Controlador Save
+ * Controlador DB Save
  * 
  */
-require_once("CVCControllerController.php");
 
-class Basico_SaveControllerController
+class Basico_DBSaveControllerController
 {
 	/**
 	 * Salva e versiona um objeto atraves do controlador/modelo
@@ -23,11 +22,11 @@ class Basico_SaveControllerController
 	static public function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// iniciando/verificando transacao
-		$transacaoInicializada = self::controlaTransacaoBD();
+		$transacaoInicializada = Basico_PersistenceControllerController::bdControlaTransacao();
 		
 		try {			
 			// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
-			if (!Basico_UtilControllerController::retornaIdGenericoObjeto($mixed)) {
+			if (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)) {
 				if (method_exists($mixed, 'save')) {
 					// salvando o objeto
 					$mixed->save();
@@ -41,7 +40,7 @@ class Basico_SaveControllerController
 					// verificando se existe transacao iniciada
 					if ($transacaoInicializada) {
 						// cancelando a transacao
-						self::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+						Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 					}
 						
 					throw new Exception(MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO);
@@ -54,14 +53,14 @@ class Basico_SaveControllerController
 			}
 			
 			// recuperando o numero da ultima versao
-			$ultimaVersao = Basico_CVCControllerController::retornaUltimaVersao($mixed, true);
+			$ultimaVersao = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($mixed, true);
 			
 			// verificando se a versao para update eh diferente da ultima versao existente no repositorio CVC
 			if (isset($versaoUpdate) and ($ultimaVersao !== $versaoUpdate)) {
 				// verificando se existe transacao iniciada
 				if ($transacaoInicializada) {
 					// cancelando a transacao
-					self::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+					Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 				}
 				
 				throw new Exception(MSG_ERRO_SAVE_UPDATE_VERSAO_DESATUALIZADA);
@@ -70,11 +69,11 @@ class Basico_SaveControllerController
 			// verificando se o objeto deve ser versionado ou ter sua ultima versao atualizada apenas
 			if ((!self::isInBlackList($mixed)) and (self::isInAtualizarVersaoList($mixed))) {
 				// atualizando o objeto
-				$versaoVersionamento = Basico_CVCControllerController::atualizaVersao($mixed);			
+				$versaoVersionamento = Basico_PersistenceControllerController::bdAtualizaVersaoCVC($mixed);			
 			}
 			else if (!self::isInBlackList($mixed)) {
 				// versionando objeto
-				$versaoVersionamento = Basico_CVCControllerController::versionar($mixed);
+				$versaoVersionamento = Basico_PersistenceControllerController::bdVersionarCVC($mixed);
 			}
 			
 			// verificando se houve atualizacao da versao
@@ -90,7 +89,7 @@ class Basico_SaveControllerController
 					// verificando se existe transacao iniciada
 					if ($transacaoInicializada) {
 						// cancelando a transacao
-						self::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+						Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 					}
 						
 					throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
@@ -99,7 +98,7 @@ class Basico_SaveControllerController
 				// verificando se existe transacao iniciada
 				if ($transacaoInicializada) {
 					// salva a transacao
-					self::controlaTransacaoBD(DB_COMMIT_TRANSACTION);
+					Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 				}
 
 				return true;
@@ -108,11 +107,11 @@ class Basico_SaveControllerController
 				// verificando se houve insercao de nova tupla no banco de dados
 				if (($novaTupla) and ($transacaoInicializada)) {
 					// salvando a transacao
-					self::controlaTransacaoBD(DB_COMMIT_TRANSACTION);
+					Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 				}
 				else if ($transacaoInicializada) {
 					// cancelando a transacao
-					self::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+					Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 				}
 
 				return false;
@@ -122,7 +121,7 @@ class Basico_SaveControllerController
 			// verificando se existe transacao iniciada
 			if ($transacaoInicializada) {
 				// cancelando a transacao
-				self::controlaTransacaoBD(DB_ROLLBACK_TRANSACTION);
+				Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 			}
 			
 			return false;
@@ -135,15 +134,13 @@ class Basico_SaveControllerController
 	 * 
 	 * @return boolean
 	 */
-	static private function isInAtualizarVersaoList($mixed)
+	private function isInAtualizarVersaoList($mixed)
 	{
 		// inicializando array contendo o nome das tabelas que devem atualizar a versao apenas
 		$arrayAtualizarList = array();
 		
 		// retornando resultado da pesquisa da tabela relacionada ao objeto dentro do array de tabelas que devem atualizar a versao apenas
-		$resultadoArraySearch = array_search(Basico_UtilControllerController::retornaTableNameObjeto($mixed), $arrayAtualizarList);
-		
-		return (false !== array_search(Basico_UtilControllerController::retornaTableNameObjeto($mixed), $arrayAtualizarList));
+		return (false !== array_search(Basico_PersistenceControllerController::bdRetornaTableNameObjeto($mixed), $arrayAtualizarList));
 	}
 	
 	/**
@@ -152,120 +149,12 @@ class Basico_SaveControllerController
 	 * 
 	 * @return boolean
 	 */
-	static private function isInBlackList($mixed)
+	private function isInBlackList($mixed)
 	{
 		// inicializando array contendo o nome das tabelas que devem atualizar a versao apenas
 		$arrayBlackList = array();
 		
 		// retornando resultado da pesquisa da tabela relacionada ao objeto dentro do array de tabelas que devem atualizar a versao apenas
-		$resultadoArraySearch = array_search(Basico_UtilControllerController::retornaTableNameObjeto($mixed), $arrayBlackList);
-		
-		return (false !== array_search(Basico_UtilControllerController::retornaTableNameObjeto($mixed), $arrayBlackList));
+		return (false !== array_search(Basico_PersistenceControllerController::bdRetornaTableNameObjeto($mixed), $arrayBlackList));
 	}
-
-	/**
-	 * Registra o resource do banco de dados na sessao
-	 * @param resource $dbResource
-	 * 
-	 * @return boolean
-	 */
-	public static function registraSessaoBD($dbResource)
-	{
-		// registrando o resource do banco de dados na sessao do PHP
-		Zend_Registry::set(SESSION_DB, $dbResource);
-		
-		return true;
-	}
-	
-	/**
-	 * Retorna o resource do banco de dados registrado na sessao do PHP
-	 * 
-	 * @return resource
-	 */
-	public static function recuperaBDSessao()
-	{
-		// recuperando o resource do banco de dados da sessao do PHP
-		return Zend_Registry::get(SESSION_DB);
-	}
-	
-    /**
-     * Inicializa uma transacao no banco de dados
-     * 
-     * @return boolean
-     */
-    private function inicializaTransacaoBD()
-    {
-		// recuperando o resource do banco de dados
-		$dbResource = self::recuperaBDSessao();
-		
-		// tentando inicializar transacao do banco de dados
-		try {
-			$dbResource->beginTransaction();
-			
-			return true;
-		} catch (Exception $e) {
-			return false;
-		}
-    }
-    
-    /**
-     * Salva uma transacao aberta no banco de dados
-     * 
-     * @return boolean
-     */
-    private function salvaTransacaoBD()
-    {
-    	// recuperando o resource do banco de dados
-		$dbResource = self::recuperaBDSessao();
-		
-		// tentando inicializar transacao do banco de dados
-		try {
-			$dbResource->commit();
-			
-			return true;
-		} catch (Exception $e) {
-			return false;
-		}
-    }
-    
-    /**
-     * Cancela uma transacao aberta no banco de dados
-     * 
-     * @return boolean
-     */
-    private function voltaTransacaoBD()
-    {
-        // recuperando o resource do banco de dados
-		$dbResource = self::recuperaBDSessao();
-		
-		// tentando inicializar transacao do banco de dados
-		try {
-			$dbResource->rollback();
-			
-			return true;
-		} catch (Exception $e) {
-			return false;
-		}
-    }
-    
-    /**
-     * Controla transacoes no banco de dados
-     * 
-     * @param DB_BEGIN_TRANSACTION | DB_COMMIT_TRANSACTION | DB_ROLLBACK_TRANSACTION $tipoTransacao
-     * 
-     * @return boolean
-     */
-    public static function controlaTransacaoBD($tipoTransacao = DB_BEGIN_TRANSACTION)
-    {
-    	switch ($tipoTransacao) {
-    		case DB_BEGIN_TRANSACTION:
-    			return self::inicializaTransacaoBD();
-    		case DB_COMMIT_TRANSACTION:
-    			return self::salvaTransacaoBD();
-    		case DB_ROLLBACK_TRANSACTION:
-    			return self::voltaTransacaoBD();
-    		default:
-    			throw new Exception(MSG_ERRO_BD_TRANSACAO_OPERACAO_NAO_EXISTENTE);
-    	}
-    }
 }

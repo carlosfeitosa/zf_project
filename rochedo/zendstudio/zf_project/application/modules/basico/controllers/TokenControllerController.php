@@ -133,27 +133,28 @@ class Basico_TokenControllerController
 		$nomeTabela  = $tabela[0]->tabelaEstrangeira;
 		$campoTabela = $tabela[0]->campoEstrangeiro;
 		
-		$auxDb = Basico_SaveControllerController::recuperaBDSessao();
+		$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
 		
 		$checkConstraint = $auxDb->fetchAll("SELECT {$campoTabela} FROM {$nomeTabela} WHERE {$campoTabela} = ?", array($novoToken->idGenerico));
 		
 		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
-	    	
-			try{
+			try {
 	    		// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 		    	if (!isset($idPessoaPerfilCriador))
-		    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+		    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 
 				// salvando o objeto através do controlador Save
-				Basico_SaveControllerController::save($novoToken, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
+				Basico_PersistenceControllerController::bdSave($novoToken, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
 
 				// atualizando o objeto
 	    		$this->token = $novoToken;
 				
 	    	} catch (Exception $e) {
+	    		
 	    		throw new Exception($e);
 	    	}
 		}else{
+			
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
 		}	
 	}

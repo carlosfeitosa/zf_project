@@ -37,7 +37,7 @@ $application = new Zend_Application(
     APPLICATION_PATH . '/configs/application.ini'
 );
 
-
+// verificando se a aplicacao pode se inicializar
 Basico_UtilControllerController::checaInit($application);
 
 $application->bootstrap()

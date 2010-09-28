@@ -8,7 +8,7 @@ require_once("configs/application.php");
 require_once("modules/basico/controllers/LogControllerController.php");
 require_once("modules/basico/controllers/TokenControllerController.php");
 require_once("modules/basico/controllers/UtilControllerController.php");
-require_once("modules/basico/controllers/SaveControllerController.php");
+require_once("modules/basico/controllers/PersistenceControllerController.php");
 
 /**
  * Bootstrap primário do sistema.
@@ -56,7 +56,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
             
         // registrando a instancia do banco de dados na sessao
-        Basico_SaveControllerController::registraSessaoBD($this->getResource('db'));
+        Basico_PersistenceControllerController::bdRegistraSessao($this->getResource('db'));
     }
 
     /**

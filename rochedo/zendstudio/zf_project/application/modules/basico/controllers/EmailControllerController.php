@@ -133,7 +133,7 @@ class Basico_EmailControllerController
 	{
 		$auxEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
 		if (isset($auxEmail[0]))
-    	    return $auxEmail[0]->pessoa;
+    	    return $auxEmail[0]->idGenericoProprietario;
     	else
     	    return NULL;
 	}
@@ -160,13 +160,13 @@ class Basico_EmailControllerController
 	 */
 	public function salvarEmail($novoEmail, $idPessoaPerfilCriador = null)
 	{
-    	try{
+    	try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 
 			// salvando o objeto através do controlador Save
-	    	Basico_SaveControllerController::save($novoEmail, null, Basico_UtilControllerController::retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
+	    	Basico_PersistenceControllerController::bdSave($novoEmail, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
 
 	    	// atualizando o objeto
     		$this->email = $novoEmail;
