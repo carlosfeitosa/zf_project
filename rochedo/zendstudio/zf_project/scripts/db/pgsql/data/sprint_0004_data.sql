@@ -23,6 +23,8 @@
 *                       09/09/2010 - insercao do dicionario de expressoes do gerado_formulario;
 *						14/09/2010 - insercao dos componentes;
 * 						14/09/2010 - vinculacao dos componentes com formulario_elemento;
+* 						29/09/2010 - modificacao dos atributos do formulario "CadastrarUsuarioNaoValidado"
+* 									 para exibir mensagem de validacao javascript;
 */
 
 /* TIPO CATEGORIA */
@@ -573,7 +575,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
        'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, 'verificaNovoLogin' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''CadastrarUsuarioNaoValidado''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
