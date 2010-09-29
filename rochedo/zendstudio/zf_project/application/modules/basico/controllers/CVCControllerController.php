@@ -27,7 +27,7 @@ class Basico_CVCControllerController
 		else 
 		{
 			// recuperando a relacao categoria chave estrangeira
-			$categoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaCategoriaChaveEstrangeira($objeto, true);
+			$categoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
 
 			// verificando se existe a relacao com categoria chave estrangeira
 			if (isset($categoriaChaveEstrangeira)) {
@@ -67,7 +67,7 @@ class Basico_CVCControllerController
     	$modelCVC = new Basico_Model_CVC();
     	
     	// recuperando relacao categoria chave estrangeira
-    	$relacaoCategoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaCategoriaChaveEstrangeira($objeto, true);
+    	$relacaoCategoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
     	
     	// preenchendo informacoes sobre o versionamento
     	$modelCVC->categoriaChaveEstrangeira = $relacaoCategoriaChaveEstrangeira->id;
@@ -182,7 +182,7 @@ class Basico_CVCControllerController
     	// codificando objeto para comparacao
     	$objetoCodificado = Basico_UtilControllerController::codificar($objeto);
     	// recuperando id da relacao de categoria chave estrangeira
-    	$categoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaCategoriaChaveEstrangeira($objeto);
+    	$categoriaChaveEstrangeira = Basico_PersistenceControllerController::bdRetornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
     	// recuperando id generico do objeto
     	$idGenerico = Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($objeto);
     	

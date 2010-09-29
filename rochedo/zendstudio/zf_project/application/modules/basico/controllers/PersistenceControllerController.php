@@ -167,9 +167,36 @@ class Basico_PersistenceControllerController
      * 
      * @return null|Basico_Model_CategoriaChaveEstrangeira
      */
-    public static function bdRetornaCategoriaChaveEstrangeira($objeto, $forceCreateRelationship = false)
+    public static function bdRetornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship = false)
     {
     	// retornando o resultado do metodo "retornaCategoriaChaveEstrangeira" no controlador "Basico_DBUtilControllerController"
-    	return Basico_DBUtilControllerController::retornaCategoriaChaveEstrangeira($objeto, $forceCreateRelationship);
+    	return Basico_DBUtilControllerController::retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship);
+    }
+
+    /**
+     * Checa a existencia da relacao categoria chave estrangeira
+     * 
+     * @param integer $idCategoria
+     * 
+     * @return boolean
+     */
+    public static function bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($idCategoria)
+    {
+    	// retornando o resultado do metodo "checaExistenciaRelacaoCategoriaChaveEstrangeira" no controlador "Basico_DBUtilControllerController"
+    	return Basico_DBCheckControllerController::checaExistenciaRelacaoCategoriaChaveEstrangeira($idCategoria);
+    }
+
+    /**
+     * Checa a existencia de um valor em tabela estrangeira atraves da categoria
+     * 
+     * @param integer $idCategoria
+     * @param mixed $valor
+     * 
+     * @return boolean
+     */
+    public static function bdChecaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor)
+    {
+    	// retornando o resultado do metodo "checaExistenciaValorCategoriaChaveEstrangeira" no controlador "Basico_DBUtilControllerController"
+    	return Basico_DBCheckControllerController::checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor);
     }
 }

@@ -111,7 +111,7 @@ class Basico_DBUtilControllerController
      * 
      * @return null|Basico_Model_CategoriaChaveEstrangeira
      */
-    public static function retornaCategoriaChaveEstrangeira($objeto, $forceCreateRelationship = false)
+    public static function retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship = false)
     {
     	// recuperando o nome da tabela vinculada ao objeto
     	$tableName = self::retornaTableNameObjeto($objeto);

@@ -120,43 +120,39 @@ class Basico_TokenControllerController
 		return $tokenString;
 	}
 
-    public function salvarToken($novoToken, $idPessoaPerfilCriador = null)
+	/**
+	 * salva o Token no banco de dados
+	 * 
+	 * @param Basico_Model_Token $novoToken
+	 * @param integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+    public function salvarToken(Basico_Model_Token $novoToken, $idPessoaPerfilCriador = null)
 	{
-		// consultando a tabela de chave estrangeira
-		$categoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
-		$tabela = $categoriaChaveEstrangeira->fetchList("id_categoria = {$novoToken->categoria}", null, 1, 0);
-		
-		if (!isset($tabela[0])){
+		// verificando se existe a relacao de categoria
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($novoToken->categoria))
+			throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_TOKEN_SEM_RELACAO);
+
+		// verificando se existe o token existe na tabela de relacao
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($novoToken->categoria, $novoToken->idGenerico))
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
-		}
-		
-		$nomeTabela  = $tabela[0]->tabelaEstrangeira;
-		$campoTabela = $tabela[0]->campoEstrangeiro;
-		
-		$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-		
-		$checkConstraint = $auxDb->fetchAll("SELECT {$campoTabela} FROM {$nomeTabela} WHERE {$campoTabela} = ?", array($novoToken->idGenerico));
-		
-		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
-			try {
-	    		// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
-		    	if (!isset($idPessoaPerfilCriador))
-		    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 
-				// salvando o objeto através do controlador Save
-				Basico_PersistenceControllerController::bdSave($novoToken, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
-
-				// atualizando o objeto
-	    		$this->token = $novoToken;
-				
-	    	} catch (Exception $e) {
-	    		
-	    		throw new Exception($e);
-	    	}
-		}else{
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+    			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+    			
+			// salvando o objeto através do controlador Save
+			Basico_PersistenceControllerController::bdSave($novoToken, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
 			
-			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
-		}	
+			// atualizando o objeto
+			$this->token = $novoToken;
+						
+		} catch (Exception $e) {
+			
+			throw new Exception($e);
+		}				
 	}
 	
 	/**

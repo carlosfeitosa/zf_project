@@ -107,6 +107,7 @@ class Basico_LoginController extends Zend_Controller_Action
         }
 		if (!$formEntrada->isValid($this->getRequest()->getPost())) {
             $this->view->form = $formEntrada;
+            return;
         }
         return true;
 	}
