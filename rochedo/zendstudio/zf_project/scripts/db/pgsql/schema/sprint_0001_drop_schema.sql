@@ -9,6 +9,7 @@
 * 						- 29/12/2009 - drop table dados_pessoas_perfis;
 * 						- 29/01/2010 - drop table categoria_chave_estrangeira e token;
 * 						- 22/02/2010 - drop table dicionario_expressao;
+* 						- 28/09/2010 - drop das funcoes do CVC
 */
 
 drop table dicionario_expressao;
@@ -28,3 +29,5 @@ drop table anexo_mensagem;
 drop table mensagem;
 drop table categoria;
 drop table tipo_categoria;
+drop function fn_CheckCategoriaChaveEstrangeiraCategoriaExists(int);
+drop function fn_CheckCategoriaCVC(int);
