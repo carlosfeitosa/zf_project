@@ -162,7 +162,7 @@ class Basico_GeradorFormularioControllerController
 
                 // Criando ponto de restauração do arquivo de formulário, caso exista.
                 if (file_exists($fullFileName)){
-                    $podeContinuar = self::gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery);
+                    $podeContinuar = Basico_UtilControllerController::gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery);
                     $arrayArquivosModificados[] = $fullFileName;
                 }
 
@@ -227,7 +227,7 @@ class Basico_GeradorFormularioControllerController
                 Basico_UtilControllerController::fechaArquivo($fileResource);
 
             // Revertendo para o ponto de restauração LKG (Last know good) do arquivo do formulário
-            self::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
+            Basico_UtilControllerController::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
 
             throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
         }
@@ -356,7 +356,7 @@ class Basico_GeradorFormularioControllerController
 
                 // Criando ponto de restauração do arquivo de formulário, caso exista.
                 if (file_exists($fullFileName)){
-                    $podeContinuar = self::gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery);
+                    $podeContinuar = Basico_UtilControllerController::gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery);
                     $arrayArquivosModificados[] = $fullFileName;
                 }
 
@@ -403,7 +403,7 @@ class Basico_GeradorFormularioControllerController
                 Basico_UtilControllerController::fechaArquivo($fileResource);
 
             // Revertendo para o ponto de restauração LKG (Last know good) do arquivo do formulário
-            self::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
+            Basico_UtilControllerController::recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery);
 
             throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
         }
@@ -419,7 +419,7 @@ class Basico_GeradorFormularioControllerController
     {
     	$arrayReturn = array();
     	
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = '.lkg';
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::retornaUltimaVersao($objSubFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_UtilControllerController::retornaTimestamp($objSubFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
@@ -469,7 +469,7 @@ class Basico_GeradorFormularioControllerController
     {
     	$arrayReturn = array();
     	
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY]           = '.lkg';
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::retornaUltimaVersao($objFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_UtilControllerController::retornaTimestamp($objFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
@@ -496,7 +496,9 @@ class Basico_GeradorFormularioControllerController
         	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
         	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "(" . FORM_VALIDATION_TITLE . ")}";
         	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "(" . FORM_VALIDATION_MESSAGE . ")}";
+        	
         	// substituicao de tags para caixa de dialogo de validacao
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]						     = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG, $objFormulario->formName, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG, $tituloDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
         }
@@ -511,38 +513,6 @@ class Basico_GeradorFormularioControllerController
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_END_TAG]                               = FORM_END_TAG;
         
         return $arrayReturn;
-    }
-    
-    /**
-     * retorna true se conseguir gerar o ponto de restauracao
-     * @param $fullFileName
-     * @param $filenameExtensionRecovery
-     */
-    private function gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery)
-    {
-    	$tempReturn = false;
-    	
-    	if (file_exists($fullFileName))
-			$tempReturn = copy($fullFileName, $fullFileName . $filenameExtensionRecovery);
-
-		return $tempReturn;
-    }
-    
-    /**
-     * recupera os arquivos passados por parametros do ponto de restauracao
-     * @param $arrayArquivosModificados
-     * @param $filenameExtensionRecovery
-     */
-    private function recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery)
-    {
-		foreach ($arrayArquivosModificados as $arquivoModificado) {
-			try {
-				$arquivoOrigemRestore = $arquivoModificado . $filenameExtensionRecovery;
-	            copy($arquivoOrigemRestore, $arquivoModificado);
-			} catch (Exception $e) {
-				throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
-			}
-		}
     }
     
     /**

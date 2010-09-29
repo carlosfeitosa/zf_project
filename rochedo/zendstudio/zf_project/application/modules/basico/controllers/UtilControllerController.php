@@ -8,9 +8,10 @@ class Basico_UtilControllerController
 {
 	/**
 	 * Muda as permissoes de uma pasta/arquivo, recursivamente
-	 * @param string $caminho
-	 * @param integer $modo
-	 * @param boolean $recursivo
+	 * 
+	 * @param String $caminho
+	 * @param Integer $modo
+	 * @param Boolean $recursivo
 	 * 
 	 * @return void
 	 */
@@ -22,6 +23,7 @@ class Basico_UtilControllerController
 		else
 			$iterator = array($caminho);
 		
+		// muda as permissoes
 		foreach($iterator as $item) { 
     		chmod($item, $modo);
 		}
@@ -29,22 +31,31 @@ class Basico_UtilControllerController
 	
 	/**
 	 * Escreve um erro
-	 * @param integer $erroConst
-	 * @param string $mensagem
+	 * 
+	 * @param Integer $erroConst
+	 * @param String $mensagem
+	 * 
+	 * @return void
 	 */
 	public static function escreveErro($erroConst, $mensagem)
 	{
+		// escreve um cabecalho na pagina
 		echo "<h1>" . MSG_ERRO_APLICACAO . "</h1>";
-        	
-        $mensagemDesenv = "Erro:  {$erroConst}<br><h>Detalhes: {$mensagem}</h>";
+
+		// carrega mensagem para exibicao em ambiente de desenvolvimento
+        $mensagemDesenv = "Erro: {$erroConst}<br><h>Detalhes: {$mensagem}</h>";
         
+        // checa se a aplicacao esta rodando em ambiente de desenvolvimento para impressao dos detalhes
         if (self::ambienteDesenvolvimento())
-        	   echo $mensagemDesenv; 
+			echo $mensagemDesenv; 
 	}
 	
 	/**
 	 * Checa se a aplicacao pode iniciar
+	 * 
 	 * @param Zend_Application $application
+	 * 
+	 * @return void
 	 */
 	public static function checaInit(Zend_Application $application)
 	{	
@@ -54,24 +65,36 @@ class Basico_UtilControllerController
 
 	/**
 	 * Cria diretorios recursivamente.
+	 * 
 	 * @param String $caminho
-	 * @param int $folderRights
-	 * @return Boolean
+	 * @param Integer $folderRights
+	 * 
+	 * @return boolean
 	 */
     public static function mkdirRecursive($caminho, $folderRights = 0777)
     {
         try {
+        	// inicializando variaveis
+			$dir = '';
+        	// recuperando todos os niveis do caminho passado por parametro
     	    $dirs = explode('/', $caminho);
-    	    $dir='';
+
+    	    // loop de todas as pastas encontradas no caminho passado por parametro
     	    foreach ($dirs as $part) 
     	    {
+    	    	// montando pastas
     	        $dir.=$part.'/';
+
+				// verificando se o caminho eh um diretorio
     	        if (!is_dir($dir) && strlen($dir)>0)
+    	        	// criando pasta
                     mkdir($dir, $folderRights);
     	    }
+    	    
     	    return true;
         }
         catch (Exception $e) {
+        	
             throw new Exception($e->getMessage());
         }
         return false;
@@ -79,7 +102,9 @@ class Basico_UtilControllerController
     
     /**
      * Retorna Conteúdo de Arquivo.
+     * 
      * @param String $filename
+     * 
      * @return String
      */
     public static function getFileContent($filename)
@@ -89,7 +114,9 @@ class Basico_UtilControllerController
     
     /**
      * Retorna conteúdo de uma uri passada como parametro.
+     * 
      * @param String $uri
+     * 
      * @return String
      */
     public static function getUrlContent($uri)
@@ -101,6 +128,7 @@ class Basico_UtilControllerController
 	
 	/**
 	 * Retorna IP do usuário.
+	 * 
 	 * @return String
 	 */
 	public static function retornaUserIp()
@@ -349,5 +377,59 @@ class Basico_UtilControllerController
     	}
     	else
     		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+    }
+
+    
+    /**
+     * retorna true se conseguir gerar o ponto de restauracao
+     * @param $fullFileName
+     * @param $filenameExtensionRecovery
+     */
+    public static function gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery)
+    {
+    	// inicializando variaveis
+    	$tempReturn = false;
+    	
+    	// verificando se o arquivo existe
+    	if (file_exists($fullFileName))
+    	{
+    		// recuperando caminhos
+    		$caminhoArquivoOriginal = dirname($fullFileName);
+    		$caminhoArquivoCopia    = $caminhoArquivoOriginal . FORM_GERADOR_RECUPERACAO_PATH_SUFIXO;
+    		// recuperando o nome do arquivo
+    		$nomeArquivoOriginal    = basename($fullFileName);
+    		
+    		// copiando arquivo de recuperacao
+			$tempReturn = copy($fullFileName, $caminhoArquivoCopia . $nomeArquivoOriginal . $filenameExtensionRecovery);
+    	}
+
+		return $tempReturn;
+    }
+    
+    /**
+     * recupera os arquivos passados por parametros do ponto de restauracao
+     * @param $arrayArquivosModificados
+     * @param $filenameExtensionRecovery
+     */
+    public static function recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery)
+    {
+    	// loop dos arquivos que foram modificados
+		foreach ($arrayArquivosModificados as $arquivoModificado) {
+			try {
+				// recuperando caminho do arquivo de recuperacao
+				$caminhoRecuperacao = dirname($arquivoModificado) . FORM_GERADOR_RECUPERACAO_PATH_SUFIXO;
+				// recuperando o nome do arquivo a ser recuperado
+				$nomeArquivoOriginal = basename($arquivoModificado);
+				
+				// carregando nome do arquivo de restauracao
+				$arquivoOrigemRestore = $caminhoRecuperacao . $arquivoModificado . $filenameExtensionRecovery;
+				
+				// restaurando arquivo
+	            copy($arquivoOrigemRestore, $arquivoModificado);
+			} catch (Exception $e) {
+				
+				throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
+			}
+		}
     }
 }

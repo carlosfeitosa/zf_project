@@ -173,6 +173,7 @@ define("FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM", '$this->addSubForm');
 define("FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP", 'if (!Basico_UtilControllerController::ambienteDesenvolvimento())');
 define("FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT", '$this->createElement');
 define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS", '->setAttribs');
+define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG", "@nomeForm");
 define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG", '@title');
 define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG", '@message');
 define("FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE", '->setRequired(true)');
@@ -239,6 +240,9 @@ define("FORM_GERADOR_AJUDA_BUTTON_END_TAG", "</button>");
 
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG", "<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">");
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG", "</script>");
+
+define("FORM_GERADOR_RECUPERACAO_EXTENSAO", ".lkg");
+define("FORM_GERADOR_RECUPERACAO_PATH_SUFIXO", "/_lkg/");
 
 // AJUDA
 define("AJUDA_BUTTON_LABEL", "?"); 
