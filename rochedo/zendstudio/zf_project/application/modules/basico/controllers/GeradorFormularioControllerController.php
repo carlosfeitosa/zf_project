@@ -380,7 +380,7 @@ class Basico_GeradorFormularioControllerController
                 Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName]));
 
                 // verifica se o formulario possui elementos
-                if ($objSubFormulario->existeElementos()){
+                if (Basico_FormularioControllerController::existeElementos($objSubFormulario->id)){
                 	// adição dos elementos do formulário
                 	Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $moduloObject, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
                 };
