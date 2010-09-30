@@ -15,8 +15,45 @@
 */
 
 
+/* DICIONARIO DE EXPRESSÕES */
+
+/*
+ * (Português do Brasil - PT_BR)
+ * registro de usuário validado
+*/
+
+/**
+ * Titulo de dialog de Maior Titulação
+ */
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_DIALOG_MAIOR_TITULACAO' AS constante_textual, 'Maior Titulação:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+
+/*
+ * (Inglês Americano - EN_US)
+ * registro de usuário validado
+*/
+
+/**
+ * Titulo de dialog de Maior Titulação
+ */
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SUBFORM_DIALOG_MAIOR_TITULACAO' AS constante_textual, 'Highest academic degree:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+
+
 
 /* FORMULARIO */
+
+/* Subformulario de dados academicos */
 
 INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
@@ -41,6 +78,31 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
+/* Dialog de Maior Titulacao */
+
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
+                             (SELECT f.id
+                              FROM formulario f
+                              WHERE f.nome = 'SUBFORM_DADOS_ACADEMICOS'),                          
+       'SUBFORM_DIALOG_MAIOR_TITULACAO' AS nome,
+       'Dialog de edicao de dados de maior titulacao.' AS descricao, 
+       'SUBFORM_DIALOG_MAIOR_TITULACAO' AS constante_textual_titulo,
+       'CadastrarDadosUsuarioDadosAcademicosMaiortitulacao' AS form_name, 'post' AS form_method, NULL AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''CadastrarDadosUsuarioDadosAcademicosMaiortitulacao''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+
 /* FORMULARIO TEMPLATE */
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
@@ -59,7 +121,65 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE'
 AND p.nome = 'TEMPLATE_DOJO') AS id_template,
 'SYSTEM_STARTUP' AS rowinfo;
-	   
+
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND f.nome = 'SUBFORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_TEMPLATE'
+AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+'SYSTEM_STARTUP' AS rowinfo;
+
+/* MODULO BASICO x FORMULARIO */
+
+
+/* Subform dados academicos */
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+		AND f.nome = 'SUBFORM_DADOS_ACADEMICOS') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;	   
+
+/* Dialog maior titulacao */
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+		AND f.nome = 'SUBFORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;	   
+
+		
 /* COMPONENTE */
 	   
 INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
@@ -87,31 +207,15 @@ WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
 
+
+
+
+
+
+
+
+
 /*
-/* AJUDA */
-
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_CAMPO_CATEGORIA_BOLSA_CNPQ' AS nome, 'Texto de ajuda para o campo categoria de bolsa do cnpq.' AS descricao,
-       'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual_ajuda, 'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_HINT' AS constante_textual_hint, 
-       'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
-
-
-
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_CAMPO_EMAIL_USUARIO' AS nome, 'Texto de ajuda para o campo e-mail do usuário.' AS descricao,
-       'FORM_FIELD_EMAIL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_EMAIL_HINT' AS constante_textual_hint, 
-       'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
-
-
-
 
 /* DECORATOR */
 
@@ -187,4 +291,35 @@ SELECT (SELECT f.id
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO'
 AND fe.nome = 'FIELD_NOME_USUARIO') AS id_formulario_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+
+
+
+
+/* AJUDA */ em andamento
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_CAMPO_CATEGORIA_BOLSA_CNPQ' AS nome, 'Texto de ajuda para o campo categoria de bolsa do cnpq.' AS descricao,
+       'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual_ajuda, 'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_HINT' AS constante_textual_hint, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+
+
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_CAMPO_EMAIL_USUARIO' AS nome, 'Texto de ajuda para o campo e-mail do usuário.' AS descricao,
+       'FORM_FIELD_EMAIL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_EMAIL_HINT' AS constante_textual_hint, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+
 */
+
+
+
+
