@@ -440,7 +440,7 @@ class Basico_GeradorFormularioControllerController
 
         $tempArraySubFormAttrib = array();
         
-        $tempArraySubFormAttrib[] = "'title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$objSubFormulario->constanteTextualTitulo})";
+        $tempArraySubFormAttrib[] = "array('dijitParams' => 'title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$objSubFormulario->constanteTextualTitulo}))";
         	
         if ($objSubFormulario->formAttribs)
         	$tempArraySubFormAttrib[] = $objSubFormulario->formAttribs;        
