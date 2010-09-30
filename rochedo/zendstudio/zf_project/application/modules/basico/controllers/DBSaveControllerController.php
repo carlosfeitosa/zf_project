@@ -12,12 +12,13 @@ class Basico_DBSaveControllerController
 	 * O segundo parametro so deve ser diferente de null caso 
 	 * Caso nao deseje salvar log, ignore os tres ultimos parametros
 	 * 
-	 * @param controller|object $mixed
-	 * @param integer $versaoUpdate
-	 * @param integer $idPessoaPerfil
-	 * @param integer $idCategoriaLog
-	 * @param string $mensagemLog
-	 * @return true|false
+	 * @param Controller|Object $mixed
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfil
+	 * @param Integer $idCategoriaLog
+	 * @param String $mensagemLog
+	 * 
+	 * @return Boolean
 	 */
 	static public function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
@@ -129,10 +130,11 @@ class Basico_DBSaveControllerController
 	}
 	
 	/**
-	 * verifica se o objeto esta na lista de atualizacao
-	 * @param mixed $mixed
+	 * Verifica se o objeto esta na lista de atualizacao
 	 * 
-	 * @return boolean
+	 * @param Mixed $mixed
+	 * 
+	 * @return Boolean
 	 */
 	private function isInAtualizarVersaoList($mixed)
 	{
@@ -144,10 +146,11 @@ class Basico_DBSaveControllerController
 	}
 	
 	/**
-	 * verifica se o objeto esta na blacklist
-	 * @param mixed $mixed
+	 * Verifica se o objeto esta na blacklist
 	 * 
-	 * @return boolean
+	 * @param Mixed $mixed
+	 * 
+	 * @return Boolean
 	 */
 	private function isInBlackList($mixed)
 	{

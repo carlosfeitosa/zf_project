@@ -20,6 +20,7 @@ class Basico_PessoaControllerController
 	
 	/**
 	 * Construtor do Controlador Pessoa.
+	 * 
 	 * @return void
 	 */
 	private function __construct()
@@ -29,22 +30,27 @@ class Basico_PessoaControllerController
 	
 	/**
 	 * Retorna instância do Controlador Pessoa.
+	 * 
 	 * @return Basico_PessoaController
 	 */
 	static public function init()
 	{
+		// checando singleton
 		if(self::$singleton == NULL){
 			self::$singleton = new Basico_PessoaControllerController();
 		}
+		
 		return self::$singleton;
 	}
 	
 	/**
 	 * Salva objeto no Banco de dados.
+	 * 
 	 * @param Basico_Model_Pessoa $novaPessoa
+	 * 
 	 * @return void
 	 */
-	public function salvarPessoa($novaPessoa)
+	public function salvarPessoa(Basico_Model_Pessoa $novaPessoa)
 	{
 		try {
 			// salvando o objeto através do controlador Save

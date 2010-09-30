@@ -19,6 +19,7 @@ class Basico_CategoriaChaveEstrangeiraControllerController
 	
     /**
      * Construtor do Controller
+     * 
      * @return void
      */
 	private function __construct()
@@ -28,11 +29,14 @@ class Basico_CategoriaChaveEstrangeiraControllerController
 	
 	/**
 	 * Inicializa o controlador Basico_CategoriaChaveEstrangeira
+	 * 
 	 * @return Basico_CategoriaChaveEstrangeiraController
 	 */
 	public function init()
 	{
+		// verificando singleton
 		if(self::$singleton == NULL){
+			
 			self::$singleton = new Basico_CategoriaChaveEstrangeiraControllerController();
 		}
 		return self::$singleton;

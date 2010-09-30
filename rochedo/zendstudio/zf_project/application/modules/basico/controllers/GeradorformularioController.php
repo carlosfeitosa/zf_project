@@ -8,6 +8,7 @@
  * @subpackage Controller
  */
 
+// include de controladores
 require_once("GeradorControllerController.php");
 
 class Basico_GeradorFormularioController extends Zend_Controller_Action
@@ -23,13 +24,14 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
      */
     public function init()
     {
-        //Carrega as mensagens
+        // carregando titulo e subtitulo da view
         $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
         $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO', DEFAULT_USER_LANGUAGE);
-                        
+
+        // carregando array do cabecalho da view
         $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
         
-        //Carrega as mensagens na view
+        // carregando o cabecalho na view
         $this->view->cabecalho = $cabecalho;
     }
 
@@ -47,153 +49,187 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     /**
      * Retorna Formulário de Geração de Formulários
      * 
-     * 
      * @return Basico_Form_GeradorFormulario
      */
-    public function getFormGeradorFormulario($options = null)
-    {                  
+    public function getObjectFormGeradorFormulario($options = null)
+    {
+    	// retornando um novo modelo de gerador formulario
         return new Basico_Form_GeradorFormulario($options);
     }    
     
-    
     /**
-     * Ação principal do controlador.
+     * Ação principal do controlador (seta o form na view)
      * 
-     *  Seta o form na view
-     * 
+     * @return void
      */
     public function indexAction()
     {
-        //Instancia o formulario
-        $formulario = $this->getFormGeradorFormulario();
+        // recuperando o objeto formulario
+        $formulario = $this->getObjectFormGeradorFormulario();
         
-        //Carrega o formulario na view
+        // carregando o formulario na view
         $this->view->form = $formulario;
+        
+        // desmarcando a selecao padrao de formulario, obrigando o usuario a escolher um formulario
         $formulario->selectFormulario->setValue(-1);
-        //Popula o elemento select com o id e nome dos formulários
+        
+        // carregando no array os nomes e ids dos formulario
         $arrayFormularios = $this->retornaArrayNomeFormularios();
+        
+        // populando o elemento select com o id e nome dos formulários
         $this->view->form->selectFormulario->addMultiOptions($arrayFormularios);
         
+        // renderizando a view
         $this->_helper->Renderizar->renderizar();
     }
-    
     
     /**
      * Gera o formulário.
      * 
+     * return void|forward
      */
     public function gerarformularioAction()
     {   
-    	//varifica se a requisição é do tipo POST
+    	// verifica se a requisição é do tipo POST
     	if (!$this->getRequest()->isPost()) {
             return $this->_forward('index');
         }
         
-        //Retorna uma instancia do Modelo Formulario
-        $formGeradorFormulario = $this->getFormGeradorFormulario();
+        // recuperando o objeto form gerador formulario
+        $formGeradorFormulario = $this->getObjectFormGeradorFormulario();
         
-        //Recupera os elementos do formulário
+        // recuperando os elementos do formulario
         $elements = $formGeradorFormulario->getElements();
         
-        //Define o conteúdo do elemento 'selectFormulario' com o id e nome dos formulários
+        // definindo o conteúdo do elemento 'selectFormulario' com o id e nome dos formulários
         $elements['selectFormulario']->setMultiOptions($this->retornaArrayNomeFormularios());
         
-        //Recupera os dados dos elementod enviados no post do formulário
+        // recuperando os dados dos elementos enviados no post do formulário
         $formGeradorFormulario->populate($_POST);   	
         
+        // inicializando variaveis
         $idFormulario = 0;
         
         //verifica se existe valor no elemento selectFormulario enviado via post
         if (isset($_POST['selectFormulario']) ) {
+        	// recuperando o id do formulario
             $idFormulario = $_POST['selectFormulario'];
             
-            //Define o conteúdo do elemento 'modulosFormulario' com o id e nome dos modelos do formulário
+            // definindo o conteúdo do elemento 'modulosFormulario' com o id e nome dos modelos do formulário
             $arrayModulosFormulario = $this->retornaArrayNomesModulosFormulario($idFormulario);
+            
+            // verificando se existem modulos
             if ($arrayModulosFormulario) {
                 $elements['modulosFormulario']->setMultiOptions($arrayModulosFormulario);
             }
         }
         
-        // Valida os dados submetidos do formulário.
+        // checando se foi utilizado o metodo post e se botao 'enviar' foi acionado
         if ($formGeradorFormulario->isValid($_POST) and isset($_POST['enviar'])) {
+
+        	// instanciando modelo de formulario
         	$modeloFormulario = new Basico_Model_Formulario();
+        	// localizando o formulario
             $modeloFormulario->find($idFormulario);
         	
+            // verificando se foram selecionados modulos para exclusao da geracao
             if (isset($_POST['excludeModulesNames'])){
+            	// setando os modulos selecionados para exclusao
             	$excludeModulesNames = $_POST['modulosFormulario'];
             }else{
                 $excludeModulesNames = null;            	
             }
             
-            // Processa a geração do formulários
+            // gerando os formulários
             if (Basico_GeradorControllerController::geradorFormularioGerarFormulario($modeloFormulario, $excludeModulesNames)) {
                 
-                //Carrega a mensagen de confirmação na view
+                // carregando o titulo e subtitulo da view
                 $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
 		        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO', DEFAULT_USER_LANGUAGE);
+		        
+		        // carregando array do cabecalho da view
 		        $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
 
-		        //Carrega as mensagens na view
+		        // carregando o cabecalho na view
 		        $this->view->cabecalho = $cabecalho;
 
-		        //Renderiza a view
+		        // renderizando a view
                 $this->_helper->Renderizar->renderizar();
                 
                 return;
-            }else{
-                //Carrega as mensagen de erro
+            } else {
+                // carregando a mensagem de erro
                 $this->view->cabecalho['mensagemView'] = 'Não foi possível gerar o Formulário!';
             }
 
         }
         
-        //Devolve o formulário para a view
+        // carregando o formulario na view
         $this->view->form = $formGeradorFormulario;
         
-        //Renderiza o formulário na view
+        // renderizando a view
         $this->_helper->Renderizar->renderizar();
        
     }
-    
+
     /**
+     * Retorna array contendo o par id/nome de todos os formulários
      * 
-     * Retorna array contendo o par id/nome formulário
+     * @return Array
      */
-    public function retornaArrayNomeFormularios(){
+    public function retornaArrayNomeFormularios()
+    {
+    	// recuperando o modelo de formulario
         $modelFormulario = new Basico_Model_Formulario();
+        
+        // recuperando array de objetos contendo todos os formularios
         $arrayFormulariosObjects = $modelFormulario->fetchAll();
 
-        if ($arrayFormulariosObjects){
+        // verificando se o array foi recuperado
+        if ($arrayFormulariosObjects) {
         	//$arrayNomeFormularios[0] = null;
             foreach ($arrayFormulariosObjects as $formularioObject){
+            	// setando array com ids e nomes dos formularios
                 $arrayNomeFormularios[$formularioObject->id] = $formularioObject->formName;
             }
         }
+        
+        // retornando o array contendo o par id/nome dos formularios
         return $arrayNomeFormularios;
     }
-    
+
     /**
-     * 
      * Retorna uma array contendo o par id/modulo de um formulário
      * 
-     * @param $idFormulario
+     * @param Integer $idFormulario
+     * 
+     * @return Array|false
      */
-    public function retornaArrayNomesModulosFormulario($idFormulario){
-        
+    public function retornaArrayNomesModulosFormulario($idFormulario)
+    {
+		// recuperando o modelo de formulario
     	$modelFormulario = new Basico_Model_Formulario();
-        $arrayFormularioObject = $modelFormulario->fetchList("id = {$idFormulario}");
+    	
+    	// recuperando o formulario
+    	$modelFormulario->find($idFormulario);
         
-        if ($arrayFormularioObject != null){
-	        $arrayModulosFormularioObjects = $arrayFormularioObject[0]->getModulosObjects();
-	        if ($arrayModulosFormularioObjects != null){
-	            foreach ($arrayModulosFormularioObjects as $moduloObject){
+    	// verificando se o formulario foi recuperado
+        if (isset($modelFormulario->id)) {
+        	// recuperando modulos do formulario
+	        $arrayObjsModulosFormularioObjects = $modelFormulario->getModulosObjects();
+	        
+	        // verificando se houve recuperacao dos modulos
+	        if ($arrayObjsModulosFormularioObjects != null){
+	        	// loop para recuperar o nome dos modulos
+	            foreach ($arrayObjsModulosFormularioObjects as $moduloObject){
+	            	// setando o nome dos modulos
 	                $arrayModulos[$moduloObject->nome] = $moduloObject->nome;
 	            }
+	            
+	            // retornando array contendo os modulos associados ao fomulario
 	            return $arrayModulos;
 	        }
         }
         return false;
     }
-
- 
 }

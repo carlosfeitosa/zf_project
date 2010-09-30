@@ -27,44 +27,62 @@ class Basico_TradutorControllerController
 	}
 	
 	/**
-	 * Inicializa o controlador Basico_Tradutor
+	 * Inicializa o controlador Basico_TradutorControllerController
+	 * 
 	 * @return Basico_TradutorControllerController
 	 */
 	public function init()
 	{
-		if(self::$singleton == NULL){
+		// checando singleton
+		if (self::$singleton == NULL){
 			self::$singleton = new Basico_TradutorControllerController();
 		}
+		
 		return self::$singleton;
 	}
 	
 	/**
-	 * Retorna uma tradução de uma expressão, através de uma constante 
+	 * Retorna uma tradução de uma expressão, através de uma constante
 	 * e língua de destino.
+	 * 
 	 * @param String $constanteTextual
 	 * @param String $linguaDestino
+	 * 
 	 * @return String
 	 */
 	public function retornaTraducao($constanteTextual, $linguaDestino = DEFAULT_SYSTEM_LANGUAGE)
 	{
+		// instanciando controlador de categorias
         $categoriaControllerController = Basico_CategoriaControllerController::init();
-        $categoriaLinguagem = $categoriaControllerController->retornaCategoriaLinguagem($linguaDestino);
-        $idCategoriaLinguagem = $categoriaLinguagem->id;
-        
+        // recuperando objeto categoria de lingua passada por parametro
+        $objCategoriaLinguagem = $categoriaControllerController->retornaObjetoCategoriaLinguagem($linguaDestino);
+        // recuperando o id da categoria da lingua
+        $idCategoriaLinguagem = $objCategoriaLinguagem->id;
+
+        // recuperando traducao
         $traducao = $this->tradutor->fetchList("id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
-        
+
+        // verificando a traducao existe no banco de dados para a lingua passada por parametro
         if (isset($traducao[0]))
+        	// retornando traducao na lingua passada por parametro
             return $traducao[0]->traducao;
         else if ($linguaDestino !== DEFAULT_SYSTEM_LANGUAGE){
-            $categoriaLinguagem = $categoriaControllerController->retornaCategoriaLinguagem(DEFAULT_SYSTEM_LANGUAGE);
-            $idCategoriaLinguagem = $categoriaLinguagem->id;
-            
+        	// recuperando objeto categoria de lingua padrao do sistema
+            $objCategoriaLinguagem = $categoriaControllerController->retornaCategoriaLinguagem(DEFAULT_SYSTEM_LANGUAGE);
+            // recuperando o id da categoria de lingua padrao do sistema
+            $idCategoriaLinguagem = $objCategoriaLinguagem->id;
+
+            // recuperando traducao
             $traducao = $this->tradutor->fetchList("id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
-            
+
+            // verificando a traducao existe no banco de dados para a lingua padrao do sistema
             if (isset($traducao[0]))
+            	// retornando traducao na lingua padrao do sistema
                 return $traducao[0]->traducao . MSG_ERRO_UTILIZANDO_LINGUA_PADRAO_TRADUCAO_NAO_ENCONTRADA;
+
             throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '" . DEFAULT_SYSTEM_LANGUAGE . "'");
-        } 
+        }
+
         throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '{$linguaDestino}'.");
 	}
 }

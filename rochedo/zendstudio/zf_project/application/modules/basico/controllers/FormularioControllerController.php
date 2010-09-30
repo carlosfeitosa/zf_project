@@ -19,6 +19,7 @@ class Basico_FormularioControllerController
 	
 	/**
 	 * Construtor do Controlador Formulario.
+	 * 
 	 * @return void
 	 */
 	private function __construct()
@@ -28,10 +29,12 @@ class Basico_FormularioControllerController
 	
 	/**
 	 * Retorna instância do Controlador Formulario.
+	 * 
 	 * @return Basico_FormularioController
 	 */
 	static public function init()
 	{
+		// checando singleton
 		if(self::$singleton == NULL){
 			self::$singleton = new Basico_FormularioControllerController();
 		}
@@ -39,36 +42,47 @@ class Basico_FormularioControllerController
 	}
 
     /**
-     * Returna se existe formulario filho
-     * @param integer $idFormulario
+     * Retorna se existe formulario filho
      * 
-     * @return boolean
+     * @param Integer $idFormulario
+     * 
+     * @return Boolean
      */
     public static function existeFormulariosFilhos($idFormulario)
-    {  	   	
+    {
+    	// instanciando o modelo de formulario
     	$modelFormulario = new Basico_Model_Formulario();
+    	// recuperando array de formularios filhos
     	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$idFormulario}");
     	
+    	// retornando se existe(m) formulario(s) filho(s)
     	return (count($arrayFormulariosObjects) > 0);
     }
     
     /**
-     * Returna se existe elementos
-     * @param integer $idFormulario
+     * Retorna se existe elementos
      * 
-     * @return boolean
+     * @param Integer $idFormulario
+     * 
+     * @return Boolean
      */
    	public static function existeElementos($idFormulario)
    	{
+   		// instanciando o modelo de formulario
    		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+   		// recuperando array de formularios filhos
         $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$idFormulario}");
-        
+
+        // retornando se existe(m) elemento(s)
         return (count($arrayFormularioFormularioElementosObjects) > 0);
    	}
 
 	/**
 	 * Salva objeto no Banco de dados.
+	 * 
 	 * @param Basico_Model_Formulario $novoFormulario
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
 	 * @return void
 	 */
 	public function salvarFormulario($novoFormulario, $idPessoaPerfilCriador = null)

@@ -8,9 +8,10 @@ class Basico_DBTransactionControllerController
 {
 	/**
 	 * Registra o resource do banco de dados na sessao
-	 * @param resource $dbResource
 	 * 
-	 * @return boolean
+	 * @param Resource $dbResource
+	 * 
+	 * @return Boolean
 	 */
 	public static function registraSessaoBD($dbResource)
 	{
@@ -23,7 +24,7 @@ class Basico_DBTransactionControllerController
 	/**
 	 * Retorna o resource do banco de dados registrado na sessao do PHP
 	 * 
-	 * @return resource
+	 * @return Resource
 	 */
 	public static function recuperaBDSessao()
 	{
@@ -34,7 +35,7 @@ class Basico_DBTransactionControllerController
     /**
      * Inicializa uma transacao no banco de dados
      * 
-     * @return boolean
+     * @return Boolean
      */
     private function inicializaTransacaoBD()
     {
@@ -54,7 +55,7 @@ class Basico_DBTransactionControllerController
     /**
      * Salva uma transacao aberta no banco de dados
      * 
-     * @return boolean
+     * @return Boolean
      */
     private function salvaTransacaoBD()
     {
@@ -74,7 +75,7 @@ class Basico_DBTransactionControllerController
     /**
      * Cancela uma transacao aberta no banco de dados
      * 
-     * @return boolean
+     * @return Boolean
      */
     private function voltaTransacaoBD()
     {
@@ -96,7 +97,7 @@ class Basico_DBTransactionControllerController
      * 
      * @param DB_BEGIN_TRANSACTION | DB_COMMIT_TRANSACTION | DB_ROLLBACK_TRANSACTION $tipoTransacao
      * 
-     * @return boolean
+     * @return Boolean
      */
     public static function controlaTransacaoBD($tipoTransacao = DB_BEGIN_TRANSACTION)
     {

@@ -8,22 +8,24 @@ class Basico_DBUtilControllerController
 {
 	/**
 	 * Checa a conexão com o banco de dados, lança um erro no caso de não conseguir conectar.
+	 * 
 	 * @param Zend_Application $application
+	 * 
 	 * @return void
 	 */
 	public static function checaConexaoBD(Zend_Application $application) 
 	{
-		//tentando conectar ao banco de dados
         try {	    
-		    
+		    // recuperando o bootstrap
         	$bootstrap = $application->getBootstrap();
             
+        	// recuperando a conexao
         	$bootstrap->bootstrap('db')->getResource('db')->getConnection();
         	       
-        }catch (Exception $e) {
-            //escreve o erro na tela.
+		} catch (Exception $e) {
+            // escreve o erro na tela.
         	Basico_UtilControllerController::escreveErro(MSG_ERRO_CONEXAO_BANCO, $e->getMessage());
-        	//salva o logFS do erro
+        	// salva o logFS do erro
             $logController = Basico_LogControllerController::init();
         	$mensagemLogFS = "EXCEPTION: " . MSG_ERRO_CONEXAO_BANCO . " MESSAGE: {$e->getMessage()} "; 
         	$logController->salvaLogFS($mensagemLogFS, LOG_PRIORITY_ERRO);
@@ -33,81 +35,109 @@ class Basico_DBUtilControllerController
 	
     /**
      * Retorna o id da PessoaPefil do sistema.
+     * 
      * @return Int
      */
 	public static function retornaIdPessoaPerfilSistema()
 	{
-	    $login = new Basico_Model_Login();
-	    $perfil = new Basico_Model_Perfil();
-	    $pessoaPerfil = new Basico_Model_PessoaPerfil();
+		// instanciando modelos
+	    $modelLogin = new Basico_Model_Login();
+	    $modelPerfil = new Basico_Model_Perfil();
+	    $modelPessoaPerfil = new Basico_Model_PessoaPerfil();
 
+	    // recuperando login do sistema
 	    $applicationSystemLogin = APPLICATION_SYSTEM_LOGIN;
+	    // recuperando o perfil do sistema
 	    $applicationSystemPerfil = APPLICATION_SYSTEM_PERFIL;
 	    
-	    $loginSistema = $login->fetchList("login = '{$applicationSystemLogin}'", null, 1, 0);
-	       
-	    if (count($loginSistema) === 0)
+	    // recuperando o objeto login do sistema
+	    $objLoginSistema = $modelLogin->fetchList("login = '{$applicationSystemLogin}'", null, 1, 0);
+
+	    // verificando se o objeto login do sistema foi recuperado/existe
+	    if (count($objLoginSistema) === 0)
 	        throw new Exception(MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO);
-	        
-        $perfilSistema = $perfil->fetchList("nome = '{$applicationSystemPerfil}'", null, 1, 0);
+
+		// recuperando objeto perfil do sistema
+        $objPerfilSistema = $modelPerfil->fetchList("nome = '{$applicationSystemPerfil}'", null, 1, 0);
         
-        if (count($perfilSistema) === 0)
+        // verificando se o objeto perfil do sistema foi recuperao/existe
+        if (count($objPerfilSistema) === 0)
 	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
-	        
-        $pessoaPerfilSistema = $pessoaPerfil->fetchList("id_pessoa = {$loginSistema[0]->pessoa} and id_perfil = {$perfilSistema[0]->id}", null, 1, 0);
+
+	    // recuperando o objeto pessoa perfil do sistema
+        $objPessoaPerfilSistema = $modelPessoaPerfil->fetchList("id_pessoa = {$objLoginSistema[0]->pessoa} and id_perfil = {$objPerfilSistema[0]->id}", null, 1, 0);
         
-        if (!$pessoaPerfilSistema[0]->id)
+        // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
+        if (!$objPessoaPerfilSistema[0]->id)
             throw new Exception(MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO);
 
-        return $pessoaPerfilSistema[0]->id;
+        // retornando o id do objeto pessoa perfil do sistema
+        return $objPessoaPerfilSistema[0]->id;
 	}
 
 	/**
-	 * retorna o valor da chave primaria de um objeto
-	 * @param $objeto
+	 * Retorna o valor da chave primaria de um objeto
+	 * 
+	 * @param Object $objeto
+	 * 
+	 * @return String
 	 */
     public static function retornaValorIdGenericoObjeto($objeto)
     {
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+		
 		// recuperando o nome do campo da chave primaria da tabela vinculada ao objeto
 		$tablePrimaryKey = $tableInfo['primary'];
 		$tablePrimaryKey = $tablePrimaryKey[1];
+		
 		// retornando o valor do id generico vindo do objeto
 		return $objeto->$tablePrimaryKey;
     }
     
     /**
-     * retorna o nome da tabela vinculada a um objeto
-     * @param $objeto
+     * Retorna o nome da tabela vinculada a um objeto
+     * 
+     * @param Object $objeto
+     * 
+     * @return String
      */
     public static function retornaTableNameObjeto($objeto)
     {
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+		
 		// recuperando nome da tabela vinculada ao objeto
 		$tableName = $tableInfo['name'];
+		
+		// retornando o nome da tabela
 		return $tableName;
     }
     
     /**
-     * retorna o nome da chave primaria da tabela vinculada ao objeto
-     * @param $objeto
+     * Retorna o nome da chave primaria da tabela vinculada ao objeto
+     * 
+     * @param Object $objeto
+     * 
+     * @return String
      */
     public static function retornaPrimaryKeyObjeto($objeto)
     {
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+		
 		// recuperando o nome do campo da chave primaria da tabela vinculada ao objeto
 		$tablePrimaryKey = $tableInfo['primary'];
+		
 		// retorna o nome do campo da chave primaria
 		return $tablePrimaryKey[1];
     }
 
     /**
-     * retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
-     * @param object $objeto
-     * @param boolean $forceCreateRelationship
+     * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
+     * 
+     * @param Object $objeto
+     * @param Boolean $forceCreateRelationship
      * 
      * @return null|Basico_Model_CategoriaChaveEstrangeira
      */
@@ -118,7 +148,7 @@ class Basico_DBUtilControllerController
 		// instanciando o controlador de categorias
 		$categoriaController = Basico_CategoriaControllerController::init();
 		// recuperando categoria CVC
-		$objCategoriaCVC = $categoriaController->retornaCategoriaCVC();
+		$objCategoriaCVC = $categoriaController->retornaObjetoCategoriaCVC();
 
 		// instanciando o modelo de categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();

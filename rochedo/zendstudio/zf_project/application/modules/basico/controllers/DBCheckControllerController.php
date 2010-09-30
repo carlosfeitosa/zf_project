@@ -9,9 +9,9 @@ class Basico_DBCheckControllerController
     /**
      * Checa a existencia da relacao categoria chave estrangeira
      * 
-     * @param integer $idCategoria
+     * @param Integer $idCategoria
      * 
-     * @return boolean
+     * @return Boolean
      */
     public static function checaExistenciaRelacaoCategoriaChaveEstrangeira($idCategoria)
     {
@@ -30,10 +30,10 @@ class Basico_DBCheckControllerController
     /**
      * Checa a existencia de um valor em tabela estrangeira atraves da categoria
      * 
-     * @param integer $idCategoria
-     * @param mixed $valor
+     * @param Integer $idCategoria
+     * @param Mixed $valor
      * 
-     * @return boolean
+     * @return Boolean
      */
     public static function checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor)
     {
@@ -58,7 +58,8 @@ class Basico_DBCheckControllerController
 
 		// verificando a existencia do valor passado por parametro na tabela estrangeira recuperada
 		$checkConstraint = $auxDb->fetchAll("SELECT {$campoTabelaEstrangeira} FROM {$nomeTabelaEstrangeira} WHERE {$campoTabelaEstrangeira} = ?", array($valor));
-		
+
+		// checando verificacao obteve sucesso
 		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
 
 			return true;

@@ -108,7 +108,8 @@ class Basico_UtilControllerController
      * @return String
      */
     public static function getFileContent($filename)
-    {        
+    {
+    	// retornando o conteudo de um arquivo
         return file_get_contents($filename);
     }
     
@@ -121,8 +122,10 @@ class Basico_UtilControllerController
      */
     public static function getUrlContent($uri)
     {
+    	// codificando a URI
         $encodedUri = urldecode($uri);
         
+        // retornando o conteudo da URI
         return file_get_contents($encodedUri);
     }
 	
@@ -133,6 +136,7 @@ class Basico_UtilControllerController
 	 */
 	public static function retornaUserIp()
 	{
+		// verificando o IP do usuario atraves dos metodos HTTP_CLIENT_IP, HTTP_X_FORWARDED_FOR e REMOTE_ADDR
 		if (!empty($_SERVER["HTTP_CLIENT_IP"]))
 			$userIp = $_SERVER["HTTP_CLIENT_IP"];
 		else if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
@@ -145,245 +149,321 @@ class Basico_UtilControllerController
 	
 	/**
 	 * Retorna tipo da conexão do usuário.
+	 * 
 	 * @return String
 	 */
 	public static function retornaUserConnectionType()
 	{
+		// recuperando o tipo de conexao do usuario
 		return $_SERVER["HTTP_CONNECTION"];
 	}
 	
 	/**
 	 * Retorna o nome do browser, sistema operacional utilizado.
+	 * 
 	 * @return String
 	 */
 	public static function retornaUserAgent()
 	{
+		// retornando informacoes sobre o agente (browser/os) do usuario
 		return $_SERVER["HTTP_USER_AGENT"];
 	}
 	
 	/**
 	 * Retorna requisição do usuário.
+	 * 
 	 * @return Array
 	 */
 	public static function retornaUserRequest()
 	{
+		// retornando a requisicao efetuada pelo usuario
 		return Zend_Controller_Front::getInstance()->getRequest();
 	}
 	
 	/**
-	 * Checa se está no ambiente de desenvolvimento
+	 * Checa se a aplicacao está rodando em ambiente de desenvolvimento
+	 * 
 	 * @return Boolean
 	 */
 	public static function ambienteDesenvolvimento()
 	{
+		// verificando se o aplicacao esta rodando em ambiente de desenvolvimento
 		return (strpos(APPLICATION_ENV, 'development') !== false);
 	}
 	
 	/**
 	 * Retorna a data passada em timestamp ou timestamp atual se não for passado nenhum parametro
-	 * @param $data
+	 * 
+	 * @param String $data
+	 * 
 	 * @return Integer
 	 */
 	public static function retornaTimestamp($data = null)
 	{
+		// verificando se o parametro $data foi passado
 		if ($data != null) {
+			// retornando o resultado da conversao da data
 			return strtotime($data);
-		}else{
+		} else {
+			// retornando a datahora atual
 		    return Zend_Date::now()->getTimestamp();	
 		}
 	}
 	
 	/**
-	 * Retorna a datetime atual
-	 * @param $data
+	 * Retorna o datetime atual
+	 * 
 	 * @return String
 	 */
 	public static function retornaDateTimeAtual()
 	{
+		// retornando o datetime atual
 	    return Zend_Date::now('en-us');
 	}
 	
 	/**
 	 * Retorna espaços em branco, de acordo com o nível de identação
+	 * 
 	 * @param $nivel
+	 * 
 	 * @return String
 	 */
 	public static function retornaIdentacao($nivel)
 	{
+		// inicializando variaveis
 		$resultado = '';
 		
-		for ($i = 1; $i <= $nivel; $i++){
+		// loop para a quantidade de niveis
+		for ($i = 1; $i <= $nivel; $i++) {
+			// incrementando identacao
 			$resultado .= IDENTACAO_PADRAO;
 		}
 		
+		// retornando a identacao
 		return $resultado;
 	}
 	
 	/**
      * Retorna uma string com quebra de linha
-     * @param $string
+     * 
+     * @param String $string
+     * 
      * @return String
      */
 	public static function retornaStringComQuebraDeLinha($string)
 	{
+		// retornando a string com quebra de linha
 		return $string . QUEBRA_DE_LINHA;
 	}
 	
 	/**
 	 * Retorna uma string entre o caracter passados por parametros
-	 * @param $string
-	 * @param $caracter
+	 * 
+	 * @param String $string
+	 * @param String $caracter
+	 * 
+	 * @return String
 	 */
 	public static function retornaStringEntreCaracter($string, $caracter)
 	{
+		// retornando a string entre o caracter
 		return $caracter . $string . $caracter;
 	}
 
 	/**
 	 * Retorna uma string contendo a chamada javascript para abrir uma
 	 * caixa de diálogo
-	 * @param $dialogName
-	 * @param $titulo
-	 * @param $mensagem
-	 * @param $exibeOkButton
+	 * 
+	 * @param String $dialogName
+	 * @param String $titulo
+	 * @param String $mensagem
+	 * @param Boolean $exibeOkButton
+	 * 
+	 * @return String
 	 */
 	public static function retornaJavaScriptDialog($dialogName, $titulo, $mensagem, $exibeOkButton = true)
 	{
+		// verificando se deve exibir o botao OK
 		$exibeOkButton = (int) $exibeOkButton;
 		
+		// retornando a chamada javascript
 		return "showDialogAlert(\'{$dialogName}\', \'' . {$titulo} . '\', \'' . {$mensagem} . '\', {$exibeOkButton})";		
 	}
 	
 	/**
-	 * retorna resource do arquivo aberto
+	 * Retorna resource do arquivo aberto
+	 * 
 	 * @param string $fullFileName
 	 * 
 	 * @return Resource
 	 */
 	public static function abreArquivoLimpo($fullFileName)
 	{	
+		// retornando o resource de um arquivo aberto
 		return fopen($fullFileName, 'w+');
 	}
 	
 	/**
-	 * retorna true se conseguir escrever no arquivo
-	 * @param $fileResource
-	 * @param $linha
+	 * Retorna se conseguir escrever no arquivo
+	 * 
+	 * @param Resource $fileResource
+	 * @param String $linha
+	 * 
+	 * @return Boolean
 	 */
 	public static function escreveLinhaFileResource($fileResource, $linha)
 	{
+		// inicializando variaveis
 		$tempReturn = false;
-		
+
+		// escrevendo no arquivo e recuperando a quantidade de bytes escritos
 		$bytesEscritos = fputs($fileResource, $linha);
-		
+
+		// checando se foram escritos bytes (se conseguiu escrever ou nao)
 		if ($bytesEscritos)
 			$tempReturn = true;
 		
+		// retornando resultado
 		return ($tempReturn);
 	}
 	
 	/**
-	 * retorna true se conseguir fechar o arquivo
+	 * Retorna se conseguir fechar o arquivo
+	 * 
 	 * @param $fileResource
+	 * 
+	 * @return Boolean
 	 */
 	public static function fechaArquivo($fileResource)
 	{
+		// retorna se conseguiu fechar o arquivo
 		return fclose($fileResource);
 	}
 
 	/**
 	 * Formata a visualização do print_r(), var_dump(), var_export() para melhor compreensão.
 	 * 
-	 * @param mixed $var Variável para debug.
-	 * @param bool $detalhar Detalhar conteúdo.
-	 * @param bool $export Exportar o debug em vez de imprimir.
-	 * @param bool $canDie Encerrar o script.
-	 * @return string Conteúdo do debug.
+	 * @param Mixed $var Variável para debug.
+	 * @param Boolean $detalhar Detalhar conteúdo.
+	 * @param Boolean $export Exportar o debug em vez de imprimir.
+	 * @param Boolean $canDie Encerrar o script.
+	 * 
+	 * @return String
 	 */
 	public static function print_debug($var, $detalhar = false, $export = false, $canDie = false)
-	{	
+	{
+		// incrementando tag de impressao
 		$retorno = '<pre>';
 
-        if($detalhar)
+		// verificando se eh preciso detalhar o conteudo
+        if ($detalhar)
             $retorno .= var_export($var, true);
         else
             $retorno .= print_r($var, true);
-        
+
+		// incrementando tag de impressao
         $retorno .= '</pre>';
-                
-        if($export)
-            return $retorno;
-        else{
+
+        // verificando se o retorno deve ser exportado (retornado) ou imprimido
+        if ($export)
+        	// retornando o resultado
+			return $retorno;
+        else {
+        	// imprimindo o resultado
         	echo $retorno;
+        	
+        	// verificando se apos a impressao do resultado a aplicacao deve ser interrompida
 			if ($canDie)
+				// interrompendo execucao
         		exit;
         }
 	}
 	
 	/**
-	 * escapa os caracteres HTML necessarios para visualizacao de formulario DOJO
-	 * @param $formHTMLString
+	 * Escapa os caracteres HTML necessarios para visualizacao de formulario DOJO
+	 * 
+	 * @param String $formHTMLString
+	 * 
+	 * @return String
 	 */
 	public static function escapaCaracteresFormDialogDOJO($formHTMLString)
 	{
+		// inicializando variaveis
 		$tempReturn = $formHTMLString;
-		
+
+		// fazendo substituicoes de caracteres invalidos
 		$tempReturn = str_replace("'", '"', $tempReturn);
 		$tempReturn = str_replace('"', '\\"', $tempReturn);
 		$tempReturn = str_replace(PHP_EOL, '', $tempReturn);
-		        
+
+		// retornando o resultado
         return $tempReturn;
 	}
 
     /**
      * Codifica um valor
-     * @param mixed $valor
-     * @param integer $operacao
+     * 
+     * @param Mixed $valor
+     * @param Integer $operacao
+     * 
+     * @return String
      */
-    
     public static function codificar($valor, $operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
     {
+    	// verificando o tipo de operacao
     	if ($operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
+    		// retornando a codificacao do objeto em string codificada
     		return self::objectToEncodedString($valor);
     	else if ($operacao = CODIFICAR_ENCODED_STRING_TO_ARRAY)
+    		// retornando a codificacao de string codificada para array
     		return self::encodedStringToArray($valor);
     	else
     		throw new Exception(MSG_ERRO_CODIFICAR_SEM_OPERACAO);
     }
     
     /**
-     * converte uma string codificada em um array
+     * Converte uma string codificada em um array
+     * 
      * @param String $encodedString
      * 
-     * @return array
+     * @return Array
      */
     public static function encodedStringToArray($encodedString)
     {
+    	// retornando o array codificado a partir da string codificada
     	return json_decode($encodedString, true);
     }
     
     /**
-     * converte um objeto em uma string codificada
+     * Converte um objeto em uma string codificada
+     * 
      * @param Object $object
      * 
      * @return String
      */
     public static function objectToEncodedString($object)
     {
+    	// verificando se o parametro passado eh um objeto
     	if (is_object($object)) {
+    		// verificando se o objeto possui mapper
     		if (property_exists($object, 'mapper'))
+    			// removendo mapper
     			$object->setMapper(null);
+
+			// retornando string codificada apartir de um objeto
     		return json_encode((array) $object, JSON_FORCE_OBJECT);
     	}
     	else
     		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
     }
 
-    
     /**
-     * retorna true se conseguir gerar o ponto de restauracao
-     * @param $fullFileName
-     * @param $filenameExtensionRecovery
+     * Retorna se conseguir gerar o ponto de restauracao
+     * 
+     * @param String $fullFileName
+     * @param String $filenameExtensionRecovery
+     * 
+     * @return Boolean
      */
     public static function gerarPontoDeRestauracaoArquivo($fullFileName, $filenameExtensionRecovery)
     {
@@ -407,9 +487,12 @@ class Basico_UtilControllerController
     }
     
     /**
-     * recupera os arquivos passados por parametros do ponto de restauracao
-     * @param $arrayArquivosModificados
-     * @param $filenameExtensionRecovery
+     * Recupera os arquivos passados por parametros do ponto de restauracao
+     * 
+     * @param Array $arrayArquivosModificados
+     * @param String $filenameExtensionRecovery
+     * 
+     * @return void
      */
     public static function recuperarPontoDeRestauracaoArquivos($arrayArquivosModificados, $filenameExtensionRecovery)
     {

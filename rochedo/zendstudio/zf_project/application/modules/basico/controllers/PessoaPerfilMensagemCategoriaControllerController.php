@@ -27,21 +27,26 @@ class Basico_PessoaPerfilMensagemCategoriaControllerController
 	
 	/**
 	 * Retorna instância do controlador Basico_PessoaPerfilMensagemCategoriaController
-	 * @return Basico_PessoaPerfilMensagemCategoriaController
+	 * 
+	 * @return Basico_PessoaPerfilMensagemCategoriaControllerController
 	 */
 	static public function init() {
+		// checando singleton
 		if(self::$singleton == NULL){
 			self::$singleton = new Basico_PessoaPerfilMensagemCategoriaControllerController();
 		}
+		
 		return self::$singleton;
 	}
 	
 	/**
 	 * Salva o objeto PessoaPerfilMensagemCategoria no banco de dados.
+	 * 
 	 * @param Basico_Model_PessoaPerfilMensagemCategoria $novaPessoaPerfilMensagemCategoria
+	 * 
 	 * @return void
 	 */
-	public function salvarPessoaPerfilMensagemCategoria($novaPessoaPerfilMensagemCategoria)
+	public function salvarPessoaPerfilMensagemCategoria(Basico_Model_PessoaPerfilMensagemCategoria $novaPessoaPerfilMensagemCategoria)
 	{
 		try {
 			// salvando o objeto através do controlador Save

@@ -5,7 +5,7 @@
  *
  */
 
-//INCLUINDO CONTROLADORES
+// include de controladores
 require_once("EmailControllerController.php");
 require_once("CategoriaControllerController.php");
 require_once("DadosPessoaisControllerController.php");
@@ -32,6 +32,7 @@ class Basico_MensagemControllerController
 	
 	/**
 	 * Construtor do Controlador Mensagem
+	 * 
 	 * @return Basico_Model_Mensagem
 	 */
 	public function __construct()
@@ -41,22 +42,27 @@ class Basico_MensagemControllerController
 	
 	/**
 	 * Retorna o objeto da Classe MensagemController
+	 * 
 	 * @return Basico_MensagemController
 	 */
 	static public function init() {
+		// checando o singleton
 		if(self::$singleton == NULL){
 			self::$singleton = new Basico_MensagemControllerController();
 		}
+		
 		return self::$singleton;
 	}
     
 	/**
 	 * Salva a mensagem e todos as suas dependencias.
-	 * @param Basico_Model_Mensagem
-	 * @param Int $idPessoaPerfilCriador
+	 * 
+	 * @param Basico_Model_Mensagem $novaMensagem
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
 	 * @return void
 	 */
-    public function salvarMensagem($novaMensagem, $idPessoaPerfilCriador = null) 
+    public function salvarMensagem(Basico_Model_Mensagem $novaMensagem, $idPessoaPerfilCriador = null) 
     {
 	    try{
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -80,33 +86,44 @@ class Basico_MensagemControllerController
 	 *
 	 * @param String $nomeDestinatario
 	 * @param String $link
+	 * 
 	 * @return Basico_Model_Mensagem
 	 */
-	public function retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link) {
+	public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link) {
 		
-		//INICIALIZANDO CONTROLADORES
+		// instanciando controladores
 		$controladorEmail              = Basico_EmailControllerController::init();
 		$controladorCategoria          = Basico_CategoriaControllerController::init();
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
-		$idCategoria = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
+		// recuperando o id da categoria email validacao plain text template
+		$idCategoria = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
 		
+		// carregando a mensagem template
 		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);
+		// carregando assunto da mensagem
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
-		$corpoMensagemTemplate  = $mensagemTemplate[0]->getMensagem(); 
+		// carregando a mensagem
+		$corpoMensagemTemplate  = $mensagemTemplate[0]->getMensagem();
+        // carregando a assinatura da mensagem
+        $assinatura             = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+         
+		// substituindo tags
         $corpoMensagemTemplate  = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
         $corpoMensagemTemplate  = str_replace('[link]', $link, $corpoMensagemTemplate);
-        $assinatura             = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
-        $corpoMensagemTemplate  = str_replace('[assinatura_mensagem]', $assinatura, $corpoMensagemTemplate);  
+        $corpoMensagemTemplate  = str_replace('[assinatura_mensagem]', $assinatura, $corpoMensagemTemplate);
+
+        // carregando a mensagem no modelo
         $this->mensagem->setMensagem($corpoMensagemTemplate);
-        
 		
-		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
+		// recuperando o endereco do e-mail do sistema
 		$emailSistema = $controladorEmail->retornaEmailSistema();
+		// setando o remetente
 		$this->mensagem->setRemetente($emailSistema);
 		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
-		return $this->mensagem;
 		
+		// retornando a mensagem
+		return $this->mensagem;
 	}
 	
 	/**
@@ -115,34 +132,46 @@ class Basico_MensagemControllerController
 	 * 
 	 * @param Int $idPessoa
 	 * @param String $link
+	 * 
 	 * @return Basico_Model_Mensagem 
 	 */
-    public function retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) {
-		
-		//INICIALIZANDO CONTROLADORES
+    public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) 
+    {
+		// instanciando os controladores
 		$controladorEmail         = Basico_EmailControllerController::init();
 		$controladorCategoria     = Basico_CategoriaControllerController::init();
 		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
-		$idCategoria      = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		// recuperando o id da categoria email template validacao plain text reenvio
+		$objCategoria     = $controladorCategoria->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		// recuperando o nome do destinatario
 		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
-				
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);
+
+		// recuperando array de mensagem template
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$objCategoria->id}", null, 1, 0);
+		
+		// recuperando o assunto
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
-		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem(); 
+		// recuperando assinatura da mensagem
+		$assinatura            = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+		// recuperando a mensagem
+		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem();
+		// substituindo as tags 
         $corpoMensagemTemplate = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
         $corpoMensagemTemplate = str_replace('[link]', $link, $corpoMensagemTemplate);
-        $assinatura            = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
         $corpoMensagemTemplate = str_replace('[assinatura_mensagem]', $assinatura, $corpoMensagemTemplate);
-        $this->mensagem->setMensagem($corpoMensagemTemplate);
         
+        // carregando a mensagem no modelo
+        $this->mensagem->setMensagem($corpoMensagemTemplate);
 		
-		//PEGANDO EMAIL DO SISTEMA PARA SETAR O REMETENTE
+		// recuperando o endereco de e-mail do sistema
 		$emailSistema = $controladorEmail->retornaEmailSistema();
+		// setando remetente
 		$this->mensagem->setRemetente($emailSistema);
 		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
-		return $this->mensagem;
 		
+		// retornando a mensagem
+		return $this->mensagem;
 	}
 }

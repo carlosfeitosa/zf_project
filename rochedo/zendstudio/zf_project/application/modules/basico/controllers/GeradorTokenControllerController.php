@@ -6,8 +6,10 @@ class Basico_GeradorTokenControllerController
 {
 	/**
 	 * Gera e retorna um uniqueId.
+	 * 
 	 * @param Array $blacklist
-	 * @return String $uniqueId
+	 * 
+	 * @return String
 	 */
 	public static function gerarToken($blacklist)
 	{
@@ -16,6 +18,7 @@ class Basico_GeradorTokenControllerController
 
 	    // verifica se o token esta dentro do array de tokens em blacklist
 	    while (array_search($token, $blacklist) !== false)
+	    	// gerando token
             $token = md5(uniqid(rand(), true));
 	    
         // retorna o token

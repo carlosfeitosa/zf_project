@@ -5,6 +5,7 @@
  *
  */
 
+// includes
 require_once('CategoriaControllerController.php');
 require_once('CategoriaChaveEstrangeiraControllerController.php');
 require_once('SessionControllerController.php');
@@ -47,81 +48,109 @@ class Basico_TokenControllerController
 		
 	/**
 	 * Inicializa o controlador Basico_TokenControllerController
+	 * 
 	 * @return Basico_TokenControllerController
 	 */
 	static public function init()
 	{
+		// checando singleton
 		if (self::$singleton == NULL){
 			self::$singleton = new Basico_TokenControllerController();
 		}
+		
 		return self::$singleton;
 	}
 	
     /**
      * Gera um Token para uma URL, armazenando o endereço original na sessão
+     * 
      * @param String $url
+     * 
      * @return String
      */
 	static public function gerarTokenUrl($url)
-	{	    
+	{
+		// registrando/recuperando o namespace do token na sessao
         $session = Basico_SessionControllerController::registraSessaoToken();
-        
+
+        // recuperando array de tokens-url encontrados na sessao
 		if (isset($session->arrayTokensUrls))
 		    self::$arrayTokensUrls = $session->arrayTokensUrls;
 		else
             self::$arrayTokensUrls = array();
-	    	    
+
+		// verificando se o token ja existe na sessao
 	    $token = array_search($url, self::$arrayTokensUrls);
-	    
+
+	    // verificando o resultado da busca pelo token na sessao
 	    if ($token === false) {
+	    	// gerando token
 	        $token = Basico_GeradorControllerController::geradorTokenGerarToken(array_keys(self::$arrayTokensUrls));
+	        // colocando gerado token no array de tokens do controlador
 	        self::$arrayTokensUrls[$token] = $url;
+	        // registrando array de tokens do controlador na sessao
 	        $session->arrayTokensUrls = self::$arrayTokensUrls;
 	    }
+
+	    // montando url
+	    $baseUrl = str_replace("/index2.php", '', Zend_Controller_Front::getInstance()->getBaseUrl());
 	    
-	    $baseUrl = str_replace("/index2.php", '',Zend_Controller_Front::getInstance()->getBaseUrl());
+	    // retornando url codificada
         return $baseUrl . LINK_CONTROLADOR_TOKENS . $token;
 	}
 	
     /**
      * Transforma um Token em uma URL, utlizando o endereço original armazenado na sessão
+     * 
      * @param String $token
+     * 
      * @return String
      */
 	public function decodeTokenUrl($token)
 	{
+		// registrando/recuperando o namespace do token na sessao
 	    $session = Basico_SessionControllerController::registraSessaoToken();
-	    
+
+	    // recuperando array de tokens-url encontrados na sessao
 	    if (isset($session->arrayTokensUrls))
 		    self::$arrayTokensUrls = $session->arrayTokensUrls;
 		else
             self::$arrayTokensUrls = array();
-            
+
+		// verificando se o token existe na sessao
         if (array_key_exists($token, self::$arrayTokensUrls))
+        	// recuperando a url
             $url = self::$arrayTokensUrls[$token];
         else
             throw new Exception(MSG_ERRO_TOKEN_SESSAO_NAO_ENCONTRADO);
-        
+
+		// montando URL
         $baseUrl = str_replace("/index2.php", "", Zend_Controller_Front::getInstance()->getBaseUrl());
         $url     = str_replace($baseUrl, '', $url);
-        
+
+        // retornando url decodificada
         return $url;
 	}
 	
     /**
      * Gera um Token para qualquer modelo passado como parametro
+     * 
      * @param Object $modelo
      * @param String $nomeDoCampoBancoDeDados
+     * 
      * @return String
      */
 	public function gerarToken($modelo, $nomeDoCampoBancoDeDados)
 	{
+		// gerando uniqueId
 		$tokenString = Basico_GeradorControllerController::geradorUniqueIdGerarId($modelo, $nomeDoCampoBancoDeDados);
+		
+		// retornando uniqueId
 		return $tokenString;
 	}
 
 	/**
-	 * salva o Token no banco de dados
+	 * Salva o Token no banco de dados
 	 * 
 	 * @param Basico_Model_Token $novoToken
 	 * @param integer $idPessoaPerfilCriador
@@ -157,17 +186,26 @@ class Basico_TokenControllerController
 	
 	/**
 	 * Retorna o id generico do token
-	 * @return Integer
+	 * 
+	 * @param String $token
+	 * 
+	 * @return Integer|null
 	 */
-	public function retornaTokenEmail($token)
+	public function retornaObjetoTokenEmail($token)
 	{
-		// INICIALIZACAO DOS CONTROLLERS
+		// instanciando controlador de categoria
 	    $controladorCategoria = Basico_CategoriaControllerController::init();
 	    
+	    // recuperando objeto categoria do token-email
 		$categoriaTokenEmail = $controladorCategoria->retornaCategoriaAtiva(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+		// recuperando objeto token
 		$tokenObj = self::$singleton->token->fetchList("id_categoria = {$categoriaTokenEmail->id} and token = '{$token}'", null, 1, 0);
+
+		// verificando se o objeto do token existe
 		if (isset($tokenObj[0]))
+			// retornando objeto
     	    return $tokenObj[0];
-    	return NULL;
+
+    	return null;
 	}
 }

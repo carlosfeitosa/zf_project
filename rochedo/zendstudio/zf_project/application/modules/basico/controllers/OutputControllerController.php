@@ -19,6 +19,7 @@ class Basico_OutputControllerController
 	
 	/**
 	 * Construtor do Controlador Output.
+	 * 
 	 * @return void
 	 */
 	private function __construct()
@@ -28,6 +29,7 @@ class Basico_OutputControllerController
 	
 	/**
 	 * Retorna instância do Controlador Output.
+	 * 
 	 * @return Basico_OutputController
 	 */
 	static public function init()
@@ -40,10 +42,13 @@ class Basico_OutputControllerController
 	
 	/**
 	 * Salva objeto no Banco de dados.
+	 * 
 	 * @param Basico_Model_Output $novoOutput
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
 	 * @return void
 	 */
-	public function salvarOutput($novoOutput, $idPessoaPerfilCriador = null)
+	public function salvarOutput(Basico_Model_Output $novoOutput, $idPessoaPerfilCriador = null)
 	{
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

@@ -17,31 +17,27 @@ class Basico_TokenController extends Zend_Controller_Action
 	 */
 	public function init()
     {
+    	// recuperando requisicao
         $this->request = Zend_Controller_Front::getInstance()->getRequest();
     }
 	
+    /**
+     * Decodifica um token
+     * 
+     * @return void
+     */
     public function decodeAction()
     {
+    	// recuperando o token da requisicao
         $token = $this->getRequest()->getParam('t');
-        
+
+        // instanciando o controlador de token
         $controladorToken = Basico_TokenControllerController::init();
         
+        // decodificando url
         $url = $controladorToken->decodeTokenUrl($token);
         
+        // redirecionando para a url decodificada
         $this->_redirect($url);
-    }
-    
-    public function retornaDialogContent() 
-    {
-    	$token = $this->getRequest()->getParam('t');
-    	
-    	$controladorToken = Basico_TokenControllerController::init();
-        
-        $url = $controladorToken->decodeTokenUrl($token);
-        
-        $fileContent = Basico_UtilControllerController::getUrlContent($url);
-        
-        return $fileContent;
-    	
     }
 }

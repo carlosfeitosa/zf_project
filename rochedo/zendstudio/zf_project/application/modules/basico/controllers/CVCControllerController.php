@@ -4,16 +4,18 @@
  * 
  */
 
+// include dos controladores
 require_once("RowinfoControllerController.php");
 
 class Basico_CVCControllerController
 {
   	/**
-     * retorna a versao de uma tupla
-     * @param $objeto
-     * @param $forceVersioning
+     * Retorna a versao de uma tupla
      * 
-     * @return null|integer
+     * @param Object $objeto
+     * @param Boolean $forceVersioning
+     * 
+     * @return null|Integer
      */
     public static function retornaUltimaVersao($objeto, $forceVersioning = false)
     {
@@ -41,6 +43,7 @@ class Basico_CVCControllerController
 				}
 				else if ($forceVersioning)
 				{
+					// retorna a versao da tupla
 					return self::versionar($objeto);
 				}
 				else {
@@ -55,11 +58,11 @@ class Basico_CVCControllerController
     }
     
     /**
-     * versiona um objeto.
-     * retorna o numero da versão
-     * @param objeto $objeto
+     * Versiona um objeto e retorna o numero da versão
      * 
-     * @return integer
+     * @param Object $objeto
+     * 
+     * @return Integer
      */
     public static function versionar($objeto)
     {
@@ -94,7 +97,8 @@ class Basico_CVCControllerController
     		// tupla ainda nao versionada
     		$versao = 1;
     	}
-    		
+
+    	// setando a versao no modelo
     	$modelCVC->versao = $versao;
     	
 		// instanciando controlador de rowinfo
@@ -111,12 +115,11 @@ class Basico_CVCControllerController
     }
     
     /**
-     * atualiza a versão de um objeto ja versionado
-     * retorna o numero da versão
+     * Atualiza a versão de um objeto ja versionado e retorna o numero da versão
      * 
-     * @param object $objeto
+     * @param Object $objeto
      * 
-     * @return integer
+     * @return Integer
      */
     public static function atualizaVersao($objeto)
     {
@@ -132,25 +135,33 @@ class Basico_CVCControllerController
     	$objUltimaVersao->versao++;
     	$objUltimaVersao->ultimaAtualizacao = Basico_UtilControllerController::retornaDateTimeAtual();
     	$objUltimaVersao->objeto = $objeto;
-    	    	
+
+    	// salvando o objeto
     	$objUltimaVersao->save();
-    	
+
+    	// retornando a versao
     	return $objUltimaVersao->versao;
     }
     
     /**
      * Fecha a versao de uma tupla 
+     * 
+     * @return void
      */
     private function fechaValidadeVersao()
     {
+    	// setando a o termino da validade
     	$this->setValidadeTermino(Basico_UtilControllerController::retornaDateTimeAtual());
+    	
+    	// salvando o objeto
     	$this->save();
     }
     
     /**
-     * retorna o objeto CVC da ultima versao
-     * @param integer $idCategoriaChaveEstrangeira
-     * @param integer $idGenerico
+     * Retorna o objeto CVC da ultima versao
+     * 
+     * @param Integer $idCategoriaChaveEstrangeira
+     * @param Integer $idGenerico
      * 
      * @return null|Basico_Model_CVC
      */
@@ -170,12 +181,13 @@ class Basico_CVCControllerController
     }
     
     /**
-     * compara o objeto com o objeto da ultima versao
-     * retorna true se o objeto for igual a ultima versao contida no CVC.
+     * Compara o objeto com o objeto da ultima versao
+     * Retorna true se o objeto for igual a ultima versao contida no CVC.
      *         false se for diferente.
-     * @param object $objeto
+     *         
+     * @param Object $objeto
      * 
-     * @return true|false
+     * @return Boolean
      */
     private function comparaObjetoObjetoUltimaVersao($objeto)
     {
@@ -189,6 +201,7 @@ class Basico_CVCControllerController
     	// recuperando objeto CVC contendo a ultima versao do objeto
     	$objUltimaVersao = self::retornaObjUltimaVersao($categoriaChaveEstrangeira->id, $idGenerico);
 
+    	// retornando resultado da comparacao entre objetos
     	return (strcmp($objetoCodificado, $objUltimaVersao->objeto) === 0);
     } 
     

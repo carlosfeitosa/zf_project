@@ -19,6 +19,7 @@ class Basico_FormularioElementoValidadorControllerController
 	
 	/**
 	 * Construtor do Controlador FormularioElementoValidador.
+	 * 
 	 * @return void
 	 */
 	private function __construct()
@@ -28,11 +29,14 @@ class Basico_FormularioElementoValidadorControllerController
 	
 	/**
 	 * Retorna instância do Controlador FormularioElementoValidador.
+	 * 
 	 * @return Basico_FormularioElementoValidadorController
 	 */
 	static public function init()
 	{
+		// checando singleton
 		if(self::$singleton == NULL){
+			
 			self::$singleton = new Basico_FormularioElementoValidadorControllerController();
 		}
 		return self::$singleton;
@@ -40,7 +44,10 @@ class Basico_FormularioElementoValidadorControllerController
 	
 	/**
 	 * Salva objeto no Banco de dados.
+	 * 
 	 * @param Basico_Model_FormularioElementoValidador $novoFormularioElementoValidador
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
 	 * @return void
 	 */
 	public function salvarFormularioElementoValidador($novoFormularioElementoValidador, $idPessoaPerfilCriador = null)

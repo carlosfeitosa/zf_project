@@ -20,6 +20,7 @@ class Basico_DadosPessoaisControllerController
 	
 	/**
 	 * Carrega a variavel dadosPessoais com um novo objeto Basico_Model_DadosPessoais
+	 * 
 	 * @return void
 	 */
 	private function __construct()
@@ -29,11 +30,14 @@ class Basico_DadosPessoaisControllerController
 	
 	/**
 	 * Inicializa Controlador Dados Pessoais.
+	 * 
 	 * @return Basico_DadosPessoaisController
 	 */
 	static public function init()
 	{
+		// checando singleton
 		if(self::$singleton == NULL){
+			
 			self::$singleton = new Basico_DadosPessoaisControllerController();
 		}
 		return self::$singleton;
@@ -41,8 +45,10 @@ class Basico_DadosPessoaisControllerController
 	
 	/**
 	 * Salva os dados pessoais.
+	 * 
 	 * @param Basico_Model_DadosPessoais $novoDadosPessoais
-	 * @param int $idPessoaPerfilCriador
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
 	 * @return void
 	 */
 	public function salvarDadosPessoais($novoDadosPessoais, $idPessoaPerfilCriador = null)
@@ -65,15 +71,21 @@ class Basico_DadosPessoaisControllerController
 	
 	/**
 	 * Retorna o nome da pessoa cujo o id foi passado como parâmetro.
-	 * @param Int $idPessoa
+	 * 
+	 * @param Integer $idPessoa
+	 * 
 	 * @return String
 	 */
-	public function retornaNomePessoa($idPessoa) {
+	public function retornaNomePessoa($idPessoa) 
+	{
+		// recuperando o objeto dados pessoais
+		$objDadosPessoais = self::$singleton->dadosPessoais->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
 		
-		$dadosPessoais = self::$singleton->dadosPessoais->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
-		if (isset($dadosPessoais[0])) 
-    	    return $dadosPessoais[0]->nome;
+		// verificando se o objeto foi recuperado
+		if (isset($objDadosPessoais[0]))
+			// retorna o nome da pessoa
+    	    return $objDadosPessoais[0]->nome;
+
 		throw new Exception(MSG_ERRO_NOME_PESSOA_NAO_ENCONTRADA_NO_SISTEMA);
 	}
-	
 }

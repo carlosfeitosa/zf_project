@@ -8,7 +8,7 @@
  * @subpackage Controller
  */
 
-//INCLUINDO CONTROLADORES
+// include dos controladores
 require_once("EmailControllerController.php");
 require_once("PessoaControllerController.php");
 require_once("PerfilControllerController.php");
@@ -29,23 +29,21 @@ class Basico_LoginController extends Zend_Controller_Action
 	
     /**
 	 * Inicializa controlador Login
+	 * 
+	 * @return void
 	 */
 	public function init()
     {
+    	// recuperando a requisicao
         $this->request = Zend_Controller_Front::getInstance()->getRequest();
 
-        /*
-         * Definição de contextos
-         */
+		// definindo o contexto
 		$pdfParametros = array('suffix' => 'pdf', 'headers' => array('Content-Type' => 'application/pdf'));
 		$xlsParametros = array('suffix' => 'xls', 'headers' => array('Content-Type' => 'application/xls'));
 		$plaintextParametros = array('suffix' => 'plaintext', 'headers' => array('Content-Type' => 'application/plaintext'));
 		$impressaoParametros = array('suffix' => 'impressao', 'headers' => array('Content-Type' => 'application/impressao'));
         
-		
-		/*
-		 * Adiciona os contextos e define os contextos permitidos por Ação.
-		 */
+		// adicionando os contextos e definindo as permissoes por acao
     	$this->_helper->contextSwitch()
     					->addContext('pdf', $pdfParametros)
     					->addContext('xls', $xlsParametros)
@@ -54,12 +52,10 @@ class Basico_LoginController extends Zend_Controller_Action
         	            ->addActionContext('cadastrarusuarionaovalidado', array('pdf', 'plaintext', 'impressao'))
 						->setAutoJsonSerialization(true)
 						->initContext();
-        
     }
 
     /**
 	 * Retorna Formulário de Cadastro de Novo Usuario
-	 * 
 	 * 
 	 * @return Basico_Form_CadastrarUsuarioNaoValidado
 	 */
@@ -95,84 +91,96 @@ class Basico_LoginController extends Zend_Controller_Action
     }
 
     /**
-	 * Valida Formulário de Cadastro de Novo Usuário.
+	 * Valida Formulário de Cadastro de Novo Usuário nao validado.
 	 * 
 	 * @param  Basico_Form_CadastrarUsuarioNaoValidado $formEntrada 
-	 * @return Bollean ou redireciona de volta ao formulário
+	 * 
+	 * @return Boolean
 	 */
-	private function validaForm($formEntrada)
+	private function validaForm(Basico_Form_CadastrarUsuarioNaoValidado $formEntrada)
 	{
+		// verificando se a requisicao eh foi enviada por post
 		if (!$this->getRequest()->isPost()) {
+			// redirecionando para o proprio formulario
             return $this->_helper->redirector($formEntrada->getName());
         }
+        
+        // verificando se o formulario passou pela validacao
 		if (!$formEntrada->isValid($this->getRequest()->getPost())) {
+			// recuperando o formulario
             $this->view->form = $formEntrada;
+            
             return;
         }
         return true;
 	}
     
     /**
-	 * Ação principal do controlador Login.
+	 * Ação principal do controlador Login. Seta o form na view
 	 * 
-	 *  Seta o form na view
-	 * 
+	 * @return void
 	 */
     public function indexAction()
     {
+    	// setando o form na view
         $this->view->form = $this->getForm();
     }
     
     /**
 	 * Carrega formulário de cadastro de novo usuário no atributo form da view.
 	 * 
-	 *  
-	 * 
+	 * @return void 
 	 */
     public function cadastrarusuarionaovalidadoAction()
     {   
-        //Carrega as mensagens
+        // carregando o titulo e subtitulo da view
     	$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO, DEFAULT_USER_LANGUAGE);
     	$subtituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO, DEFAULT_USER_LANGUAGE);
     	
+    	// carregando array do cabelho
     	$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
     	
-    	//Carrega as mensagens na view
+    	// carregando o titulo e subtitulo na view
         $this->view->cabecalho = $cabecalho;
 		
-		//Carrega o formulario na view
+		// carrega o formulario na view
     	$this->view->form = $this->getFormCadastroUsuarioLoginNaoValidado();
     	
-		//Renderiza a view no script default
+		// renderiza a view no script default
 		$this->_helper->Renderizar->renderizar();
-		
     }
     
     /**
 	 * Verifica a existência ou não do email a ser cadastrado no sistema e toma uma das seguintes ações: 
-	 * Cadastro, Re-envio de email ou mensagem alertando sobre email existente e já validado.
+	 * Cadastro ou re-envio de email ou mensagem alertando sobre email existente e já validado.
 	 * 
-	 * @param  Basico_Form_CadastrarUsuarioNaoValidado $form
+	 * @return void
 	 */
     public function verificanovologinAction()
     {
+    	// carregando o formulario
     	$form = $this->getFormCadastroUsuarioLoginNaoValidado();
+    	
+    	// verificando se o formulario passou por sua validacao
         if($this->validaForm($form) == true){
-        
+        	// carregando o controlador de e-mail
 	        $controladorEmail = Basico_EmailControllerController::init();
+	        // verifica se o e-mail existe no banco de dados
 	        $emailParaValidacao = $controladorEmail->verificaEmailExistente($this->getRequest()->getParam('email'));
 	        
+	        // checando o resultado da verificacao de existencia do e-mail
 	        if ($emailParaValidacao !== NULL){
+	        	// checando se o e-mail ja foi validado
 	            if ($emailParaValidacao == true){
+	            	// redirecionando para view de e-mail ja validado no sistema
 	            	$this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
 				}
-	            else{
-	            	
+	            else {
 	            	// iniciando a transacao
            			Basico_PersistenceControllerController::bdControlaTransacao();
                     
 	            	try {
-		            	 //INICIALIZANDO CONTROLADORES
+		            	 // instanciando os controladores
 		            	 $controladorEmail                         = Basico_EmailControllerController::init();
 	                     $controladorPessoaPerfil                  = Basico_PessoaPerfilControllerController::init();
 	                     $controladorLog                           = Basico_LogControllerController::init();
@@ -183,28 +191,28 @@ class Basico_LoginController extends Zend_Controller_Action
 	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::init();
 	                     $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
 
-		            	 //POPULANDO CATEGORIAS
-		            	 $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		            	 // recuperando a categoria da mensagem
+		            	 $categoriaMensagem = $controladorCategoria->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
 
-			             //POPULANDO VARIAVEIS
-			             $email            = $this->getRequest()->getParam('email');
-			             $idEmail          = $controladorEmail->retornaIdEmail($email);
-			             $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
-			             $idPessoa         = $controladorEmail->retornaIdPessoaEmail($email);
-			             $idPessoaPerfil   = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa);
+			             // carregando parametros
+			             $email             = $this->getRequest()->getParam('email');
+			             $idEmail           = $controladorEmail->retornaIdEmail($email);
+			             $objCategoriaToken = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainText();
+			             $idPessoa          = $controladorEmail->retornaIdPessoaEmail($email);
+			             $idPessoaPerfil    = $controladorPessoaPerfil->retornaIdPessoaPerfilPessoa($idPessoa);
 
-			             //SALVANDO TOKEN
+			             // setando e salvando token
 			             $novoToken = new Basico_Model_Token();
 			             $novoToken->token       = $controladorToken->gerarToken($novoToken, 'token');
 			             $novoToken->idGenerico  = $idEmail;
-			             $novoToken->categoria   = $idCategoriaToken->id;
+			             $novoToken->categoria   = $objCategoriaToken->id;
 			             $controladorRowInfo->prepareXml($novoToken, true);
 			             $novoToken->rowinfo     = $controladorRowInfo->getXml();
 			             $controladorToken->salvarToken($novoToken);
 
-			             //SALVANDO MENSAGEM
+			             // setando e salvando mensagem
 			             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
-			             $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);          
+			             $novaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);       
 			             $novaMensagem->destinatarios    = array($email);
 			             $novaMensagem->datahoraMensagem = Basico_UtilControllerController::retornaDateTimeAtual();
 			             $novaMensagem->categoria        = $categoriaMensagem->id;
@@ -212,37 +220,34 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
                          $controladorMensagem->salvarMensagem($novaMensagem);
 
-			             //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
+			             // setando e salvando relacionando pessoa perfil mensagem categoria (remetente)
 			             $idPessoaPerfilSistema = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
-			             $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
+			             $objCategoriaRemetente = $controladorCategoria->retornaObjetoCategoriaRemetente();
 			             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaRemetente->mensagem     = $novaMensagem->id;
-			             $pessoaPerfilMensagemCategoriaRemetente->categoria    = $categoriaRemetente->id;
+			             $pessoaPerfilMensagemCategoriaRemetente->categoria    = $objCategoriaRemetente->id;
 			             $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil = $idPessoaPerfilSistema;
 			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaRemetente, true);
 			             $pessoaPerfilMensagemCategoriaRemetente->rowinfo      = $controladorRowInfo->getXml();
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
 						             
-			             //SALVANDO DESTINATARIOS NA TABELA RELACIONAMENTE PESSOAS_PERFIS_MENSAGEM_CATEGORIA
-			             $categoriaDestinatario = $controladorCategoria->retornaCategoriaDestinatario();
+			             // setando e salvando relacionando pessoa perfil mensagem categoria (destinatario)
+			             $objCategoriaDestinatario = $controladorCategoria->retornaObjetoCategoriaDestinatario();
 			             $pessoaPerfilMensagemCategoriaDestinatario = new Basico_Model_PessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $novaMensagem->id;
-			             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $categoriaDestinatario->id;
+			             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $objCategoriaDestinatario->id;
 			             $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfil->id;
 			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
 			             $pessoaPerfilMensagemCategoriaDestinatario->rowinfo      = $controladorRowInfo->getXml();
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);
 
-			             //ENVIANDO A MENSAGEM
+			             // enviando a mensagem
 			             $controladorMensageiro->enviar($novaMensagem);
-			             
-			             // salvando log
-			             Basico_LogControllerController::salvarLog($idPessoaPerfil->id, Basico_CategoriaControllerController::retornaIdCategoriaLogValidacaoUsuario(), LOG_MSG_VALIDACAO_USUARIO);
-			            
+			             		            
 			             // salvando a transacao
 			             Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 						
-						//REDIRECIONANDO PARA PÁGINA DA MENSAGEM DE ERRO
+						// redirecionando para a view de e-mail nao validado ja existente no sistema
 		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 		                
 	            	}catch(Exception $e) {
@@ -254,20 +259,22 @@ class Basico_LoginController extends Zend_Controller_Action
 	           	}
 	        }
 	        else {
+	        	// redirecionando para a acao de salvar usuario nao validado
 	            $this->salvarusuarionaovalidadoAction();
 	        }
         }       	
        	
-		//Carrega as mensagens
+		// carregando o titulo e subtitulo da view
     	$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO, DEFAULT_USER_LANGUAGE);
     	$subtituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO, DEFAULT_USER_LANGUAGE);
-		            
+
+    	// carregando array do cabecalho da view
 		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
 	            
-	    //Carrega as mensagens na view
+	    // setando o cabecalho na view
 		$this->view->cabecalho = $cabecalho;
 		
-		//Renderiza a view no script global
+		// renderizando a view
 		$this->_helper->Renderizar->renderizar();        
     }
     
@@ -275,12 +282,11 @@ class Basico_LoginController extends Zend_Controller_Action
 	 * Inseri os dados do novo usuário no banco de dados, envia mensagem de confirmação e email e salva 
 	 * log da operação.
 	 * 
-	 * @param  Basico_Form_CadastrarUsuarioNaoValidado $formEntrada 
-	 * 
+	 * @return void
 	 */
     public function salvarusuarionaovalidadoAction()
     {
-        //INICIALIZANDO CONTROLADORES
+        // instanciando controladores
         $controladorPessoa                        = Basico_PessoaControllerController::init();
         $controladorDadosPessoais                 = Basico_DadosPessoaisControllerController::init();
         $controladorCategoria                     = Basico_CategoriaControllerController::init();
@@ -298,36 +304,36 @@ class Basico_LoginController extends Zend_Controller_Action
         Basico_PersistenceControllerController::bdControlaTransacao();
         
         try {
-            // NOVA PESSOA ARMAZENADA NO SISTEMA
+            // setando e salvando uma nova pessoa
             $novaPessoa = new Basico_Model_Pessoa();
             $controladorRowInfo->prepareXml($novaPessoa, true);
             $novaPessoa->rowinfo = $controladorRowInfo->getXml();
             $controladorPessoa->salvarPessoa($novaPessoa);
 
-            // RETORNAR PERFIL DE USUARIO NÃO-VALIDADO
-            $perfilUsuarioNaoValidado = $controladorPerfil->retornaPerfilUsuarioNaoValidado();
+            // carregando o objeto perfil do usuario nao validado
+            $objPerfilUsuarioNaoValidado = $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado();
 
-            // RELACIONAR PERFIL E PESSOA
+            // setando e salvando a relacao de pessoa com perfil
             $novaPessoaPerfil = new Basico_Model_PessoaPerfil();
             $novaPessoaPerfil->pessoa = $novaPessoa->id;
-            $novaPessoaPerfil->perfil = $perfilUsuarioNaoValidado->id;
+            $novaPessoaPerfil->perfil = $objPerfilUsuarioNaoValidado->id;
             $novaPessoaPerfil->rowinfo = $controladorRowInfo->getXml();
             $controladorPessoaPerfil->salvarPessoaPerfil($novaPessoaPerfil); 
 
-            // DADOS PESSOAIS DA NOVA PESSOA
+            // setando e salvando os dados pessoais
             $novoDadosPessoais = new Basico_Model_DadosPessoais();
             $novoDadosPessoais->idPessoa = $novaPessoa->id;
             $novoDadosPessoais->nome     = $this->getRequest()->getParam('nome');
             $novoDadosPessoais->rowinfo  = $controladorRowInfo->getXml();
             $controladorDadosPessoais->salvarDadosPessoais($novoDadosPessoais);
 
-            // CATEGORIA DO EMAIL  
-            $categoriaEmailPrimario = $controladorCategoria->retornaCategoriaEmailPrimario();
+            // recuperando o objeto categoria de email primario
+            $categoriaEmailPrimario = $controladorCategoria->retornaObjetoCategoriaEmailPrimario();
 
-            // UNIQUEID GERADO
+            // recupera uniqueId
             $uniqueIdValido = $controladorEmail->retornaNovoUniqueIdEmail();
 
-            // NOVO EMAIL NÃO-VALIDADO ARMAZENADO NO SISTEMA 
+            // setando e salvando o e-mail 
             $novoEmail = new Basico_Model_Email();
             $novoEmail->idGenericoProprietario = $novaPessoa->id;
             $novoEmail->uniqueId  			   = $uniqueIdValido;
@@ -338,62 +344,57 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->rowinfo   			   = $controladorRowInfo->getXml();
             $controladorEmail->salvarEmail($novoEmail);
 
-            //SALVANDO TOKEN
-            $idCategoriaToken = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
+            // recuperando objeto categoria email validacao plain text template
+            $objCategoriaToken = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainText();
 
+            // setando e salvando o token
             $novoToken = new Basico_Model_Token();
             $novoToken->setToken($controladorToken->gerarToken($novoToken, 'token'));
             $novoToken->setIdGenerico($novoEmail->id);
-            $novoToken->setCategoria($idCategoriaToken->id);
+            $novoToken->setCategoria($objCategoriaToken->id);
             $controladorRowInfo->prepareXml($novoToken, true);
             $novoToken->setRowinfo($controladorRowInfo->getXml());
-
             $controladorToken->salvarToken($novoToken);
 
-            //CATEGORIA DA MENSAGEM A SER ENVIADA E DA TEMPLATE DE MENSAGEM E O EMAIL DO SISTEMA
-            $categoriaMensagem = $controladorCategoria->retornaCategoriaEmailValidacaoPlainText();
-            $categoriaTemplate = $controladorCategoria->retornaCategoriaEmailValidacaoPlainTextTemplate();
+            // recuperando as categorias de mensagem a ser enviada e template
+            $categoriaMensagem = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainText();
+            $categoriaTemplate = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
 
-            //SALVANDO MENSAGEM
+            // setando e salvando a mensagem
             $nomeDestinatario = $this->getRequest()->getParam('nome');
             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
-            $novaMensagem = $controladorMensagem->retornaTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
-            $novaMensagem->destinatarios       = array($novoEmail->email);
-            $novaMensagem->datahoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
-            $novaMensagem->categoria           = $categoriaMensagem->id;
-            $controladorRowInfo->prepareXml($novaMensagem, true);
-            $novaMensagem->rowinfo             = $controladorRowInfo->getXml();
+            $objNovaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
+            $objNovaMensagem->destinatarios       = array($novoEmail->email);
+            $objNovaMensagem->datahoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
+            $objNovaMensagem->categoria           = $categoriaMensagem->id;
+            $controladorRowInfo->prepareXml($objNovaMensagem, true);
+            $objNovaMensagem->rowinfo             = $controladorRowInfo->getXml();
+            $controladorMensagem->salvarMensagem($objNovaMensagem);
 
-            //SALVANDO E ENVIANDO MENSAGEM
-            $controladorMensagem->salvarMensagem($novaMensagem);
-
-            //SALVANDO REMETENTE NA TABELA RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
+            // setando e salvando remetente na relacao pessoas perfis mensagem categoria (remetente)
             $idPessoaPerfilSistema = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
-            $categoriaRemetente = $controladorCategoria->retornaCategoriaRemetente();
+            $categoriaRemetente = $controladorCategoria->retornaObjetoCategoriaRemetente();
             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
-            $pessoaPerfilMensagemCategoriaRemetente->mensagem        = $novaMensagem->id;
+            $pessoaPerfilMensagemCategoriaRemetente->mensagem        = $objNovaMensagem->id;
             $pessoaPerfilMensagemCategoriaRemetente->categoria       = $categoriaRemetente->id;
             $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil    = $idPessoaPerfilSistema;
             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaRemetente, true);
             $pessoaPerfilMensagemCategoriaRemetente->rowinfo         = $controladorRowInfo->getXml();
             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
 
-            //SALVANDO DESTINATARIO NA TABELA DE RELACIONAMENTO PESSOAS_PERFIS_MENSAGEM_CATEGORIA
-            $categoriaDestinatario = $controladorCategoria->retornaCategoriaDestinatario();
+            // setando e salvando remetente na relacao pessoas perfis mensagem categoria (destinatario)
+            $categoriaDestinatario = $controladorCategoria->retornaObjetoCategoriaDestinatario();
             $pessoaPerfilMensagemCategoriaDestinatario = new Basico_Model_PessoaPerfilMensagemCategoria();
-            $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $novaMensagem->id;
+            $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $objNovaMensagem->id;
             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $categoriaDestinatario->id;
             $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $novaPessoaPerfil->id;
             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
             $pessoaPerfilMensagemCategoriaDestinatario->rowinfo      = $controladorRowInfo->getXml();
             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);
 
-            //ENVIANDO A MENSAGEM
-            $controladorMensageiro->enviar($novaMensagem);
-
-            // salvando log
-            Basico_LogControllerController::salvarLog($novaPessoaPerfil->id, Basico_CategoriaControllerController::retornaIdCategoriaLogValidacaoUsuario(), LOG_MSG_VALIDACAO_USUARIO);
-            
+            // enviando a mensagem
+            $controladorMensageiro->enviar($objNovaMensagem);
+           
             // salvando a transacao
             Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
@@ -411,63 +412,66 @@ class Basico_LoginController extends Zend_Controller_Action
     /**
 	 * Redireciona para view sucessosalvarusuarionaovalidadoAction
 	 * 
-	 * 
+	 * @return void
 	 */
     public function sucessosalvarusuarionaovalidadoAction()
     {
-        //Carrega as mensagens
+        // carregando o titulo, subtitulo e mensagem da view
 		$tituloView = $this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO, DEFAULT_USER_LANGUAGE);
 		$subtituloView = $this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO, DEFAULT_USER_LANGUAGE);
 		$mensagemView = $this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM, DEFAULT_USER_LANGUAGE);
-		            
+
+		// carregando array cabecalho da view
 		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
 	            
-	    //Carrega as mensagens na view
+	    // setando o cabecalho da view
 		$this->view->cabecalho = $cabecalho;
 		
-		//Renderiza a view no script global
+		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
 	
     /**
 	 * Redireciona para view erroemailvalidadoexistentenosistemaAction
 	 * 
-	 * 
+	 * @return void
 	 */
     public function erroemailvalidadoexistentenosistemaAction()
     {
-        //Carrega as mensagens
+        // carregando o titulo, subtitulo e mensagem da view
 	    $tituloView = $this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO, DEFAULT_USER_LANGUAGE);
 	    $subtituloView = $this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO, DEFAULT_USER_LANGUAGE);
 	    $mensagemView = $this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM, DEFAULT_USER_LANGUAGE);
-	    
+
+	    // carregando array cabecalho da view
 	    $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
 	    
-	    //Carrega as mensagens na view
+	    // setando o cabecalho da view
 		$this->view->cabecalho = $cabecalho;
 		
-		//Renderiza a view no script global
+		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
     
     /**
 	 * Redireciona para view erroemailnaovalidadoexistentenosistemaAction
 	 * 
-	 * 
+	 * @return void
 	 */
     public function erroemailnaovalidadoexistentenosistemaAction()
     {
-		//Carrega as mensagens
+		// carregando o titulo, subtitulo e mensagem da view
 		$tituloView = $this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO, DEFAULT_USER_LANGUAGE);
 		$subtituloView = $this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO, DEFAULT_USER_LANGUAGE);
 		$mensagemView = $this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM, DEFAULT_USER_LANGUAGE);
-		
+
+		// carregando array cabecalho da view
 		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
 		
-		//Carrega as mensagens na view
+		// setando o cabecalho da view
 		$this->view->cabecalho = $cabecalho;
 		
-		//Renderiza a view no script global
+		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
 

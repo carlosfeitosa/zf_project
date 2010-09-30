@@ -7,14 +7,17 @@ class Basico_GeradorUniqueIdControllerController
 {
 	/**
 	 * Gera e retorna um uniqueId.
+	 * 
 	 * @param Basico_Model $modelo
 	 * @param String $nomeDoCampoBancoDeDados
-	 * @return String $uniqueId
+	 * 
+	 * @return String
 	 */
 	public static function gerar($modelo, $nomeDoCampoBancoDeDados)
 	{
 		// carrega um id randomico
 	    $uniqueId = md5(uniqid(rand(), true));
+	    
 	    // buscando pelo id no banco de dados
 	    $buscaUniqueId = $modelo->fetchList("{$nomeDoCampoBancoDeDados} = '{$uniqueId}'", null, 1, 0);
 

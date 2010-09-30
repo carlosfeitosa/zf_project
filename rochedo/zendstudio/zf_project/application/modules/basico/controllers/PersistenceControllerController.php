@@ -16,9 +16,10 @@ class Basico_PersistenceControllerController
 {
 	/**
 	 * Registra o resource do banco de dados na sessao
-	 * @param resource $dbResource
 	 * 
-	 * @return boolean
+	 * @param Resource $dbResource
+	 * 
+	 * @return Boolean
 	 */
 	public static function bdRegistraSessao($dbResource)
 	{
@@ -29,7 +30,7 @@ class Basico_PersistenceControllerController
 	/**
 	 * Retorna o resource do banco de dados registrado na sessao do PHP
 	 * 
-	 * @return resource
+	 * @return Resource
 	 */
 	public static function bdRecuperaBDSessao()
 	{
@@ -42,7 +43,7 @@ class Basico_PersistenceControllerController
      * 
      * @param DB_BEGIN_TRANSACTION | DB_COMMIT_TRANSACTION | DB_ROLLBACK_TRANSACTION $tipoTransacao
      * 
-     * @return boolean
+     * @return Boolean
      */
     public static function bdControlaTransacao($tipoTransacao = DB_BEGIN_TRANSACTION)
     {
@@ -51,11 +52,12 @@ class Basico_PersistenceControllerController
     }
 
   	/**
-     * retorna a versao de uma tupla
-     * @param $objeto
-     * @param $forceVersioning
+     * Retorna a versao de uma tupla
      * 
-     * @return null|integer
+     * @param Mixed $objeto
+     * @param Boolean $forceVersioning
+     * 
+     * @return null|Integer
      */
     public static function bdRetornaUltimaVersaoCVC($objeto, $forceVersioning = false)
     {
@@ -64,11 +66,11 @@ class Basico_PersistenceControllerController
     }
 
     /**
-     * versiona um objeto.
-     * retorna o numero da versão
+     * Versiona um objeto e retorna o numero da versão
+     * 
      * @param objeto $objeto
      * 
-     * @return integer
+     * @return Integer
      */
     public static function bdVersionarCVC($objeto)
     {
@@ -77,12 +79,11 @@ class Basico_PersistenceControllerController
     }
 
     /**
-     * atualiza a versão de um objeto ja versionado
-     * retorna o numero da versão
+     * Atualiza a versão de um objeto ja versionado e retorna o numero da versão
      * 
      * @param object $objeto
      * 
-     * @return integer
+     * @return Integer
      */
     public static function bdAtualizaVersaoCVC($objeto)
     {
@@ -97,11 +98,12 @@ class Basico_PersistenceControllerController
 	 * Caso nao deseje salvar log, ignore os tres ultimos parametros
 	 * 
 	 * @param controller|object $mixed
-	 * @param integer $versaoUpdate
-	 * @param integer $idPessoaPerfil
-	 * @param integer $idCategoriaLog
-	 * @param string $mensagemLog
-	 * @return true|false
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfil
+	 * @param Integer $idCategoriaLog
+	 * @param String $mensagemLog
+	 * 
+	 * @return True|False
 	 */
 	static public function bdSave($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
@@ -111,7 +113,9 @@ class Basico_PersistenceControllerController
 
 	/**
 	 * Checa a conexão com o banco de dados, lança um erro no caso de não conseguir conectar.
+	 * 
 	 * @param Zend_Application $application
+	 * 
 	 * @return void
 	 */
 	public static function bdChecaConexao(Zend_Application $application)
@@ -122,6 +126,7 @@ class Basico_PersistenceControllerController
 
     /**
      * Retorna o id da PessoaPefil do sistema.
+     * 
      * @return Int
      */
 	public static function bdRetornaIdPessoaPerfilSistema()
@@ -131,8 +136,11 @@ class Basico_PersistenceControllerController
 	}
 
 	/**
-	 * retorna o valor da chave primaria de um objeto
-	 * @param $objeto
+	 * Retorna o valor da chave primaria de um objeto
+	 * 
+	 * @param object $objeto
+	 * 
+	 * @return mixed
 	 */
     public static function bdRetornaValorIdGenericoObjeto($objeto)
     {
@@ -141,8 +149,11 @@ class Basico_PersistenceControllerController
     }
 
     /**
-     * retorna o nome da tabela vinculada a um objeto
-     * @param $objeto
+     * Retorna o nome da tabela vinculada a um objeto
+     * 
+     * @param object $objeto
+     * 
+     * @return String
      */
     public static function bdRetornaTableNameObjeto($objeto)
     {
@@ -151,8 +162,11 @@ class Basico_PersistenceControllerController
     }
 
     /**
-     * retorna o nome da chave primaria da tabela vinculada ao objeto
-     * @param $objeto
+     * Retorna o nome da chave primaria da tabela vinculada ao objeto
+     * 
+     * @param object $objeto
+     * 
+     * @return String
      */
     public static function bdRetornaPrimaryKeyObjeto($objeto)
     {
@@ -161,7 +175,8 @@ class Basico_PersistenceControllerController
     }
 
     /**
-     * retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
+     * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
+     * 
      * @param object $objeto
      * @param boolean $forceCreateRelationship
      * 

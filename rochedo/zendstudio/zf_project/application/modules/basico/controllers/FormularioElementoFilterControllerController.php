@@ -19,6 +19,7 @@ class Basico_FormularioElementoFilterControllerController
 	
 	/**
 	 * Construtor do Controlador FormularioElementoFilter.
+	 * 
 	 * @return void
 	 */
 	private function __construct()
@@ -28,11 +29,14 @@ class Basico_FormularioElementoFilterControllerController
 	
 	/**
 	 * Retorna instância do Controlador FormularioElementoFilter.
+	 * 
 	 * @return Basico_FormularioElementoFilterController
 	 */
 	static public function init()
 	{
+		// checando singleton
 		if(self::$singleton == NULL){
+			
 			self::$singleton = new Basico_FormularioElementoFilterControllerController();
 		}
 		return self::$singleton;
@@ -40,7 +44,10 @@ class Basico_FormularioElementoFilterControllerController
 	
 	/**
 	 * Salva objeto no Banco de dados.
+	 * 
 	 * @param Basico_Model_FormularioElementoFilter $novoFormularioElementoFilter
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
 	 * @return void
 	 */
 	public function salvarFormularioElementoFilter($novoFormularioElementoFilter, $idPessoaPerfilCriador = null)
