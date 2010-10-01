@@ -175,7 +175,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         	//$arrayNomeFormularios[0] = null;
             foreach ($arrayFormulariosObjects as $formularioObject){
             	// verificando o tipo de formulario
-            	if ($formularioObject->getCategoriaObject()->getRootCategoriaPaiObject()->nome != 'FORMULARIO_SUB_FORMULARIO')
+            	if (($formularioObject->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome == TIPO_CATEGORIA_FORMULARIO) and ($formularioObject->getCategoriaObject()->getRootCategoriaPaiObject()->nome != FORMULARIO_SUB_FORMULARIO))
 	            	// setando array com ids e nomes dos formularios
     	            $arrayNomeFormularios[$formularioObject->id] = $formularioObject->formName;
             }
