@@ -42,12 +42,7 @@ class Basico_Model_Categoria
     /**
      * @var Integer
      */
-    protected $_tipoCategoria;
-    /**
-     * @var Integer
-     */
-    protected $_idCategoriaPai;
-    
+    protected $_tipoCategoria;   
      /**
      * @var Integer
      */
@@ -289,28 +284,6 @@ class Basico_Model_Categoria
 	}
 	
 	/**
-	* Set idCategoriaPai
-	* 
-	* @param int $tipoCategoria 
-	* @return Basico_Model_CategoriaPai
-	*/
-	public function setIdCategoriaPai($idCategoriaPai)
-	{
-		$this->_idCategoriaPai = (int) $idCategoriaPai;
-		return $this;
-	}
-
-	/**
-	* Get idCategoriaPai
-	* 
-	* @return null|int
-	*/
-	public function getIdCategoriaPai()
-	{
-		return $this->_idCategoriaPai;
-	}
-	
-	/**
 	 * Get RootCategoriaPai Object
 	 * 
 	 * @return null|Basico_Model_Categoria
@@ -321,14 +294,17 @@ class Basico_Model_Categoria
 		$rootCategoriaPaiObject = new Basico_Model_Categoria();
 		
 		/* localiza o id da categoria pai ou utiliza o id da propria categoria */
-		$idCategoriaParaLocalizar = ($this->_idCategoriaPai|$this->_id);
+		if ($this->_categoria)
+			$idCategoriaParaLocalizar = $this->_categoria;
+		else
+			$idCategoriaParaLocalizar = $this->_id;
 		
 		/* localiza a categoria */
 		$rootCategoriaPaiObject->find($idCategoriaParaLocalizar);
 		
 		/* loop para chegar na categoria raiz */
-		while ($rootCategoriaPaiObject->idCategoriaPai) {
-			$rootCategoriaPaiObject->find($rootCategoriaPaiObject->idCategoriaPai);
+		while ($rootCategoriaPaiObject->categoria) {
+			$rootCategoriaPaiObject->find($rootCategoriaPaiObject->categoria);
 		}
 		
 		return $rootCategoriaPaiObject;

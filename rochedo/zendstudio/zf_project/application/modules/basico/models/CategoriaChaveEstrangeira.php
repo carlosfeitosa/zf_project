@@ -188,6 +188,17 @@ class Basico_Model_CategoriaChaveEstrangeira
 		return $this->_categoria;
 	}
 	
+    /**
+     * Get categoria object
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = $model->find($this->_categoria);
+        return $object;
+    }
+	
 	/**
 	 * Set rowinfo
 	 * @param String $rowinfo
