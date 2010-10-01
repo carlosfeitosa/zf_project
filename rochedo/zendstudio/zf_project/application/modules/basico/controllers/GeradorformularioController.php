@@ -64,23 +64,8 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        // recuperando o objeto formulario
-        $formulario = $this->getObjectFormGeradorFormulario();
-        
-        // carregando o formulario na view
-        $this->view->form = $formulario;
-        
-        // desmarcando a selecao padrao de formulario, obrigando o usuario a escolher um formulario
-        $formulario->selectFormulario->setValue(-1);
-        
-        // carregando no array os nomes e ids dos formulario
-        $arrayFormularios = $this->retornaArrayNomeFormularios();
-        
-        // populando o elemento select com o id e nome dos formulários
-        $this->view->form->selectFormulario->addMultiOptions($arrayFormularios);
-        
-        // renderizando a view
-        $this->_helper->Renderizar->renderizar();
+    	// redirecionando para a acao gerar formulario
+        return $this->_forward('gerarformulario');
     }
     
     /**
@@ -89,12 +74,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
      * return void|forward
      */
     public function gerarformularioAction()
-    {   
-    	// verifica se a requisição é do tipo POST
-    	if (!$this->getRequest()->isPost()) {
-            return $this->_forward('index');
-        }
-        
+    {        
         // recuperando o objeto form gerador formulario
         $formGeradorFormulario = $this->getObjectFormGeradorFormulario();
         
@@ -117,7 +97,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
             
             // definindo o conteúdo do elemento 'modulosFormulario' com o id e nome dos modelos do formulário
             $arrayModulosFormulario = $this->retornaArrayNomesModulosFormulario($idFormulario);
-            
+
             // verificando se existem modulos
             if ($arrayModulosFormulario) {
                 $elements['modulosFormulario']->setMultiOptions($arrayModulosFormulario);
@@ -125,7 +105,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         }
         
         // checando se foi utilizado o metodo post e se botao 'enviar' foi acionado
-        if ($formGeradorFormulario->isValid($_POST) and isset($_POST['enviar'])) {
+        if ((isset($_POST['enviar'])) and ($formGeradorFormulario->isValid($_POST))) {
 
         	// instanciando modelo de formulario
         	$modeloFormulario = new Basico_Model_Formulario();
@@ -169,7 +149,6 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         
         // renderizando a view
         $this->_helper->Renderizar->renderizar();
-       
     }
 
     /**
@@ -179,11 +158,17 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
      */
     public function retornaArrayNomeFormularios()
     {
+    	// inicializando variaveis
+    	$arrayNomeFormularios = array();
+    	
     	// recuperando o modelo de formulario
         $modelFormulario = new Basico_Model_Formulario();
         
         // recuperando array de objetos contendo todos os formularios
         $arrayFormulariosObjects = $modelFormulario->fetchAll();
+        
+        // adicionando elemento vazio, para forcar selecao
+        $arrayNomeFormularios[null] = '';
 
         // verificando se o array foi recuperado
         if ($arrayFormulariosObjects) {
@@ -209,12 +194,12 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     {
 		// recuperando o modelo de formulario
     	$modelFormulario = new Basico_Model_Formulario();
-    	
+
     	// recuperando o formulario
     	$modelFormulario->find($idFormulario);
-        
+
     	// verificando se o formulario foi recuperado
-        if (isset($modelFormulario->id)) {
+        if ($modelFormulario->id) {
         	// recuperando modulos do formulario
 	        $arrayObjsModulosFormularioObjects = $modelFormulario->getModulosObjects();
 	        
