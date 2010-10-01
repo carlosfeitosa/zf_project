@@ -1,6 +1,6 @@
 <?php
 /**
- * Arquivo para definição de contantes da lógica do sistema.
+ * Arquivo para definição de contantes do sistema.
  * 
  */
 
