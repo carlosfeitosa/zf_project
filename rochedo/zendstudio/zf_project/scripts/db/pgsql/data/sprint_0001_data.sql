@@ -84,15 +84,17 @@ AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
 
 INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
 SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Confirmação de Registro' AS assunto,
-'Prezado(a) sr.(a) [nome_usuario], 
+'Prezado(a) sr.(a) [nome_usuario],
 
-Para continuar o seu registro em nosso serviço, por favor clique no link abaixo, ou copie e cole o endereco abaixo em seu navegador: 
+Recentemente recebemos uma solicitação de registro em nosso sistema, relacionado ao seu endereço de e-mail a qual esta mensagem foi enviada.
+
+Caso você tenha feito esta solicitação, continue o seu registro clicando no link abaixo, ou copie/cole o endereço em seu navegador de preferência: 
 [link]
 
 
-Caso voce não tenha solicitado este registro, apenas ignore esta mensagem.
+Caso você não tenha solicitado este registro, por favor ignore esta mensagem.
 
-Atenciosamente, 
+Atenciosamente,
 [assinatura_mensagem]' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -101,15 +103,17 @@ AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT';
 
 INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
 SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Reenvio de confirmação de Registro' AS assunto,
-'Prezado(a) sr.(a) [nome_usuario], 
+'Prezado(a) sr.(a) [nome_usuario],
 
-Para continuar o seu registro em nosso serviço, por favor clique no link abaixo, ou copie e cole o endereco abaixo em seu navegador: 
+Recentemente recebemos uma solicitação de registro em nosso sistema, relacionado ao seu endereço de e-mail a qual esta mensagem foi enviada.
+
+Caso você tenha feito esta solicitação, continue o seu registro clicando no link abaixo, ou copie/cole o endereço em seu navegador de preferência: 
 [link]
 
 
-Caso voce não tenha solicitado este registro, apenas ignore esta mensagem.
+Caso você não tenha solicitado este registro, por favor ignore esta mensagem.
 
-Atenciosamente, 
+Atenciosamente,
 [assinatura_mensagem]' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
