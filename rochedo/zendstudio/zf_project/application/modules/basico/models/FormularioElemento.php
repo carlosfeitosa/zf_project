@@ -562,7 +562,7 @@ class Basico_Model_FormularioElemento
     	$modelFormularioFormularioElementoFormulario = new Basico_Model_FormularioFormularioElementoFormulario();
     	
     	// localiza o formulario pelo id de FormularioElemento
-    	$objFormularioFormularioElementoFormulario = $modelFormularioFormularioElementoFormulario->fetchList("id_formulario_formulario_elemento = {$objFormularioFormularioElemento[0]->id}", null, 1, 1);
+    	$objFormularioFormularioElementoFormulario = $modelFormularioFormularioElementoFormulario->fetchList("id_formulario_formulario_elemento = {$objFormularioFormularioElemento[0]->id}", null, 1, 0);
     	
     	if ($objFormularioFormularioElementoFormulario[0]->id){
     		// instancia o modelo de formulario
@@ -592,7 +592,7 @@ class Basico_Model_FormularioElemento
     	$modelFormularioFormularioElementoFormulario = new Basico_Model_FormularioFormularioElementoFormulario();
     	
     	// localiza o formulario pelo id de FormularioElemento
-    	$objFormularioFormularioElementoFormulario = $modelFormularioFormularioElementoFormulario->fetchList("id_formulario_formulario_elemento = {$objFormularioFormularioElemento[0]->id}", null, 1, 1);
+    	$objFormularioFormularioElementoFormulario = $modelFormularioFormularioElementoFormulario->fetchList("id_formulario_formulario_elemento = {$objFormularioFormularioElemento[0]->id}", null, 1, 0);
     	
     	return $objFormularioFormularioElementoFormulario[0]->constanteTextualLabel;
     }
