@@ -488,7 +488,7 @@ class Basico_GeradorFormularioControllerController
         $tempArraySubFormAttrib = array();
 
         // carregando atributos do formulario
-        $tempArraySubFormAttrib[] = "'dijitParams' => array('title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$objSubFormulario->constanteTextualTitulo}))";
+        $tempArraySubFormAttrib[] = "'dijitParams' => array('title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objSubFormulario->constanteTextualTitulo}'))";
 
         // verificando se o formulario possui atributos
         if ($objSubFormulario->formAttribs)
@@ -553,8 +553,8 @@ class Basico_GeradorFormularioControllerController
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
         	
         	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
-        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "(" . FORM_VALIDATION_TITLE . ")}";
-        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "(" . FORM_VALIDATION_MESSAGE . ")}";
+        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_TITLE . "')}";
+        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_MESSAGE . "')}";
         	
         	// substituicao de tags para caixa de dialogo de validacao
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]						     = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG, $objFormulario->formName, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
@@ -807,7 +807,7 @@ class Basico_GeradorFormularioControllerController
 
             // faz substituicao de tags caso o elemento seja do tipo FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
             if (isset($formularioElementoConstanteTextualTitulo)){
-            	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$formularioElementoConstanteTextualTitulo})", $formularioElementoObject->element);
+            	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoConstanteTextualTitulo}')", $formularioElementoObject->element);
             	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_OFFSET, $totalFormularioElementoFormulariosVinculados, $tempFormElement);
             }  	
             else
@@ -822,7 +822,7 @@ class Basico_GeradorFormularioControllerController
 				if (isset($variavelSubForm) and isset($nomeClasseSubForm)) {
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_VARIABLE_INSTANCE_FORM, $variavelSubForm, $formularioElementoObject->elementAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $tempFormAttribs);
-					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_TITLE_DIALOG, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "({$formularioElementoConstanteTextualTitulo})", $tempFormAttribs);
+					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_TITLE_DIALOG, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoConstanteTextualTitulo}')", $tempFormAttribs);
 				}
 				else
 					$tempFormAttribs = $formularioElementoObject->elementAttribs;
@@ -863,7 +863,7 @@ class Basico_GeradorFormularioControllerController
                         $urlAjuda = '';
 
                     $constanteTextoAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'");
-                    $chamadaJavaScriptDialog = Basico_UtilControllerController::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(' . DIALOG_HELP_TITLE . ', DEFAULT_USER_LANGUAGE)', '$this->getView()->tradutor(' . $constanteTextoAjuda . ', DEFAULT_USER_LANGUAGE)' . $urlAjuda);
+                    $chamadaJavaScriptDialog = Basico_UtilControllerController::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(\'' . DIALOG_HELP_TITLE . '\', DEFAULT_USER_LANGUAGE)', '$this->getView()->tradutor(' . $constanteTextoAjuda . ', DEFAULT_USER_LANGUAGE)' . $urlAjuda);
                     $linkAjuda = "&nbsp;" . FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG . AJUDA_BUTTON_LABEL . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG . $chamadaJavaScriptDialog . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG . FORM_GERADOR_AJUDA_BUTTON_END_TAG;
                 } else
                 	$linkAjuda = '';
