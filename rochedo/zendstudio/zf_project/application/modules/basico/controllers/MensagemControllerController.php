@@ -97,10 +97,10 @@ class Basico_MensagemControllerController
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
 		// recuperando o id da categoria email validacao plain text template
-		$idCategoria = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
+		$idCategoria = $controladorCategoria->retornaIdCategoriaEmailValidacaoPlainTextTemplate();
 		
 		// carregando a mensagem template
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria->id}", null, 1, 0);
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 		// carregando assunto da mensagem
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
 		// carregando a mensagem
@@ -144,12 +144,12 @@ class Basico_MensagemControllerController
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
 		// recuperando o id da categoria email template validacao plain text reenvio
-		$objCategoria     = $controladorCategoria->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		$idCategoria     = Basico_CategoriaControllerController::retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio();
 		// recuperando o nome do destinatario
 		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
 
 		// recuperando array de mensagem template
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$objCategoria->id}", null, 1, 0);
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 		
 		// recuperando o assunto
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());

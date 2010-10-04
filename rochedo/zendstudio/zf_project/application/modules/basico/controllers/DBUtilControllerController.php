@@ -147,14 +147,14 @@ class Basico_DBUtilControllerController
     	$tableName = self::retornaTableNameObjeto($objeto);
 		// instanciando o controlador de categorias
 		$categoriaController = Basico_CategoriaControllerController::init();
-		// recuperando categoria CVC
-		$objCategoriaCVC = $categoriaController->retornaObjetoCategoriaCVC();
+		// recuperando o id da categoria CVC
+		$idCategoriaCVC = Basico_CategoriaControllerController::retornaIdCategoriaCVC();
 
 		// instanciando o modelo de categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
 		
 		// recuperando a categoria chave estrangeira relacionada ao objeto
-		$arrayCategoriasChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$objCategoriaCVC->id} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
+		$arrayCategoriasChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
 		
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($arrayCategoriasChaveEstrangeira[0])) {
@@ -165,7 +165,7 @@ class Basico_DBUtilControllerController
 			$controladorRowInfo = Basico_RowInfoControllerController::init();
 			
 			// cria relacao caso o haja o parametro para criacao de relacao
-			$modelCategoriaChaveEstrangeira->categoria = $objCategoriaCVC->id;
+			$modelCategoriaChaveEstrangeira->categoria = $idCategoriaCVC;
 			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = self::retornaPrimaryKeyObjeto($objeto);
 			

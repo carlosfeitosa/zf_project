@@ -52,7 +52,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria or NULL
 	 */
-	public function retornaObjetoCategoria($nomeCategoria)
+	private function retornaObjetoCategoria($nomeCategoria)
 	{
 		// recuperando objeto categoria
 		$objCategoria = self::$singleton->categoria->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
@@ -106,7 +106,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaEmailPrimario
 	 */
-	public function retornaObjetoCategoriaEmailPrimario()
+	private function retornaObjetoCategoriaEmailPrimario()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailPrimario = self::retornaObjetoCategoriaAtiva(EMAIL_PRIMARIO);
@@ -119,13 +119,12 @@ class Basico_CategoriaControllerController
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO);
 	}
 	
-	
 	/**
 	 * Retorna o objeto carregado com a categoria MENSAGEM_EMAIL_VALIDACAO_USUARIO
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	public function retornaObjetoCategoriaEmailValidacaoPlainText()
+	private function retornaObjetoCategoriaEmailValidacaoPlainText()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
@@ -143,7 +142,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
+    private function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainTextReenvio = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
@@ -161,7 +160,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaRemetente()
+	private function retornaObjetoCategoriaRemetente()
 	{
 		// recuperando objeto categoria
 		$objCategoriaRemetente = self::retornaObjetoCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
@@ -179,7 +178,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public function retornaObjetoCategoriaDestinatario()
+    private function retornaObjetoCategoriaDestinatario()
 	{
 		// recuperando objeto categoria
 		$objCategoriaDestinatario = self::retornaObjetoCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
@@ -197,7 +196,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
+    private function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
@@ -215,7 +214,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public function retornaObjetoCategoriaEmailSistema()
+    private function retornaObjetoCategoriaEmailSistema()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_EMAIL);
@@ -235,7 +234,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogValidacaoUsuario()
+	private function retornaObjetoCategoriaLogValidacaoUsuario()
 	{
 		// recuperando objeto categoria
 		$objCategoriaLogValidacaoUsuario = self::retornaObjetoCategoriaAtiva(LOG_VALIDACAO_USUARIO);
@@ -253,7 +252,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovaPessoa()
+	private function retornaObjetoCategoriaLogNovaPessoa()
 	{
 		// recuperando objeto categoria
 		$objCategoriaLogNovaPessoa = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA);
@@ -271,7 +270,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	public function retornaObjetoCategoriaLogNovaPessoaPerfil()
+	private function retornaObjetoCategoriaLogNovaPessoaPerfil()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovaPessoaPerfil = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL);
@@ -289,7 +288,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovoDadosPessoais()
+	private function retornaObjetoCategoriaLogNovoDadosPessoais()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoDadosPessoais = self::retornaObjetoCategoriaAtiva(LOG_NOVO_DADOS_PESSOAIS);
@@ -307,7 +306,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	public function retornaObjetoCategoriaLogNovoEmail()
+	private function retornaObjetoCategoriaLogNovoEmail()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoEmail = self::retornaObjetoCategoriaAtiva(LOG_NOVO_EMAIL);
@@ -325,7 +324,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public function retornaObjetoCategoriaLogNovoToken()
+    private function retornaObjetoCategoriaLogNovoToken()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoToken = self::retornaObjetoCategoriaAtiva(LOG_TOKEN_VALIDACAO_USUARIO);
@@ -343,7 +342,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovaMensagem()
+	private function retornaObjetoCategoriaLogNovaMensagem()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovaMensagem = self::retornaObjetoCategoriaAtiva(LOG_NOVA_MENSAGEM);
@@ -361,7 +360,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLinguagem($constanteLinguagem)
+	private function retornaObjetoCategoriaLinguagem($constanteLinguagem)
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLinguagem = self::retornaObjetoCategoriaAtiva($constanteLinguagem);
@@ -379,7 +378,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormulario
 	 */
-	public function retornaObjetoCategoriaLogNovoFormulario()
+	private function retornaObjetoCategoriaLogNovoFormulario()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormulario = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO);
@@ -397,7 +396,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovoFormularioElemento()
+	private function retornaObjetoCategoriaLogNovoFormularioElemento()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElemento = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO);
@@ -415,7 +414,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoFilter
 	 */
-	public function retornaObjetoCategoriaLogNovoFormularioElementoFilter()
+	private function retornaObjetoCategoriaLogNovoFormularioElementoFilter()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElementoFilter = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
@@ -433,7 +432,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	public function retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador()
+	private function retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElementoFormularioElementoValidador = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
@@ -451,7 +450,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovoFormularioElementoValidador()
+	private function retornaObjetoCategoriaLogNovoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElementoValidador = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
@@ -469,7 +468,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
 	 */
-	public function retornaObjetoCategoriaLogNovoFormularioFormularioElemento()
+	private function retornaObjetoCategoriaLogNovoFormularioFormularioElemento()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioFormularioElemento = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
@@ -487,7 +486,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovoFormularioTemplate()
+	private function retornaObjetoCategoriaLogNovoFormularioTemplate()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioTemplate = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
@@ -505,7 +504,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovoOutput()
+	private function retornaObjetoCategoriaLogNovoOutput()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoOutput = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
@@ -523,7 +522,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria()
+	private function retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
@@ -541,7 +540,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaCVC
 	 */
-	public function retornaObjetoCategoriaCVC()
+	private function retornaObjetoCategoriaCVC()
 	{
 		// inicializando variaveis
 		$modelTipoCategoria = new Basico_Model_TipoCategoria();
@@ -557,14 +556,178 @@ class Basico_CategoriaControllerController
 			throw new Exception(MSG_ERRO_TIPO_CATEGORIA_CVC);
 
 		// recuperando o objeto categoria
-		$objCategoriaCVC = $this->retornaObjetoCategoriaAtiva(CATEGORIA_CVC, $objTipoCategoriaCVC[0]->id);
+		$objCategoriaCVC = self::retornaObjetoCategoriaAtiva(CATEGORIA_CVC, $objTipoCategoriaCVC[0]->id);
 		
 		// checando se objeto foi recuperado
 		if (isset($objCategoriaCVC))
 			// retornando objeto
 			return $objCategoriaCVC;
-			
+
 		throw new Exception(MSG_ERRO_CATEGORIA_CVC);
+	}
+
+	/*
+	 * Retorna o id da categoria CVC
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaCVC()
+	{
+		// recuperando objeto categoria
+		$objCategoriaCVC = self::retornaObjetoCategoriaCVC();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaCVC))
+			// retornando o id do objeto
+			return (Int)  $objCategoriaCVC->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_CVC);
+	}
+
+	/**
+	 * Retorna o id dcategoria MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO
+	 * 
+	 * @return Integer
+	 */
+    public static function retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio()
+	{
+		// recuperando objeto categoria
+	    $objCategoriaEmailValidacaoPlainTextReenvio = self::retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
+	    
+	    // verificando se o objeto foi recuperado
+	    if (isset($objCategoriaEmailValidacaoPlainTextReenvio))
+	    	// retornando o objeto
+    	    return (Int) $objCategoriaEmailValidacaoPlainTextReenvio->id;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria SISTEMA_EMAIL
+	 * 
+	 * @return Integer
+	 */
+    public static function retornaIdCategoriaEmailSistema()
+	{
+		// recuperando objeto categoria
+	    $objCategoriaEmailSistema = self::retornaObjetoCategoriaEmailSistema();
+	    
+	    // verificando se o objeto foi recuperado
+	    if (isset($objCategoriaEmailSistema))
+	    	// retornando o objeto
+    	    return (Int) $objCategoriaEmailSistema->id;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_SISTEMA_EMAIL);
+	}
+
+	/**
+	 * Retorna id da categoria DESTINATARIO
+	 * 
+	 * @return Integer
+	 */
+    public static function retornaIdCategoriaDestinatario()
+	{
+		// recuperando objeto categoria
+		$objCategoriaDestinatario = self::retornaObjetoCategoriaDestinatario();
+		
+		// verificando se o objeto foi recuperado
+	    if (isset($objCategoriaDestinatario))
+	    	// retornando o objeto
+    	    return (Int) $objCategoriaDestinatario->id;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
+	}
+
+	/**
+	 * Retorna o id da categoria REMETENTE
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaRemetente()
+	{
+		// recuperando objeto categoria
+		$objCategoriaRemetente = self::retornaObjetoCategoriaRemetente();
+
+		// verificando se o objeto foi recuperado
+	    if (isset($objCategoriaRemetente))
+	    	// retornando o objeto
+    	    return (Int) $objCategoriaRemetente->id;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
+	}
+
+	/**
+	 * Retorna o id da categoria MENSAGEM_EMAIL_VALIDACAO_USUARIO
+	 * 
+	 * @return Integer 
+	 */
+	public static function retornaIdCategoriaEmailValidacaoPlainText()
+	{
+		// recuperando objeto categoria
+	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaEmailValidacaoPlainText();;
+
+	    // verificando se o objeto foi recuperado
+	    if (isset($objCategoriaEmailValidacaoPlainText))
+	    	// retornando o objeto
+    	    return (Int) $objCategoriaEmailValidacaoPlainText->id;
+    	    
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	}
+
+	/**
+	 * Retorna o id da categoria EMAIL_PRIMARIO
+	 * 
+	 * @return Integer $categoriaEmailPrimario
+	 */
+	public static function retornaIdCategoriaEmailPrimario()
+	{
+		// recuperando objeto categoria
+	    $objCategoriaEmailPrimario = self::retornaObjetoCategoriaEmailPrimario();
+	    
+	    // verificando se o objeto foi recuperado
+	    if (isset($objCategoriaEmailPrimario))
+	    	// retornando o objeto
+    	    return (Int) $objCategoriaEmailPrimario->id;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO);
+	}
+
+	/**
+	 * Retorna o id da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT
+	 * 
+	 * @return Integer
+	 */
+    public static function retornaIdCategoriaEmailValidacaoPlainTextTemplate()
+	{
+		// recuperando objeto categoria
+	    $objCategoriaEmailValidacaoPlainTextTemplate = self::retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
+	    
+	    // verificando se o objeto foi recuperado
+	    if (isset($objCategoriaEmailValidacaoPlainTextTemplate))
+	    	// retornando o objeto
+    	    return (Int) $objCategoriaEmailValidacaoPlainTextTemplate->id;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);
+	}
+
+	/**
+	 * Retorna o id da categoria da linguagem
+	 *
+	 * @param String $constanteLinguagem
+	 * 
+	 * @return Integer
+	 */
+	static public function retornaIdCategoriaLinguagem($constanteLinguagem)
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLinguagem = self::retornaObjetoCategoriaLinguagem($constanteLinguagem);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLinguagem))
+			// retornando o id objeto
+			return (Int) $objCategoriaLinguagem->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LINGUAGEM);
 	}
 
 	/**

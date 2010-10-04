@@ -41,5 +41,32 @@ class Basico_CategoriaChaveEstrangeiraControllerController
 		}
 		return self::$singleton;
 	}
-	
+
+	/**
+	 * Retorna um array contendo todas as tabelas relacionadas com categoria chave estrangeira.
+	 * A chave do array contem o nome da tabela e o valor contem o nome do campo
+	 * 
+	 * @return Array
+	 */
+	public static function retornaArrayNomeCampoTabelasCategoriaChaveEstrangeira()
+	{
+		// inicializando variaveis
+		$arrayNomeCampoTabelasCategoriaChaveEstrangeira = array();
+		$idCategoriaCVC = Basico_CategoriaControllerController::retornaIdCategoriaCVC();
+
+		// instanciando modelo categoria chave estrangeira
+		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
+
+		// recuperando todas as tuplas
+		$objsCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchAll();
+
+		// loop para recuperar o nome das tabelas
+		foreach($objsCategoriaChaveEstrangeira as $objCategoriaChaveEstrangeira) {
+			// recupernado o nome das tabelas e colocando no array de resultados
+			$arrayNomeCampoTabelasCategoriaChaveEstrangeira[$objCategoriaChaveEstrangeira->tabelaEstrangeira] = $objCategoriaChaveEstrangeira->campoEstrangeiro;
+		}
+
+		// retornando o array de resultados
+		return $arrayNomeCampoTabelasCategoriaChaveEstrangeira;
+	}
 }

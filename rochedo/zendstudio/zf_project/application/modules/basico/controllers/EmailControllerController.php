@@ -229,12 +229,9 @@ class Basico_EmailControllerController
 	 */
 	public function retornaEmailSistema()
     {
-    	// instanciando o controlador de categoria
-		$controladorCategoria = Basico_CategoriaControllerController::init();
-		
 		// buscando o e-mail do sistema
-		$objCategoriaEmailSistema = $controladorCategoria->retornaObjetoCategoriaEmailSistema();
-		$emailSistema = self::$singleton->email->fetchList("id_categoria = {$objCategoriaEmailSistema->id}", null, 1, 0);
+		$idCategoriaEmailSistema = Basico_CategoriaControllerController::retornaIdCategoriaEmailSistema();
+		$emailSistema = self::$singleton->email->fetchList("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
 		if (isset($emailSistema[0]))

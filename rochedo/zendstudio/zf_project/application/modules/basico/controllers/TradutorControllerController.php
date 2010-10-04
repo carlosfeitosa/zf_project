@@ -54,10 +54,8 @@ class Basico_TradutorControllerController
 	{
 		// instanciando controlador de categorias
         $categoriaControllerController = Basico_CategoriaControllerController::init();
-        // recuperando objeto categoria de lingua passada por parametro
-        $objCategoriaLinguagem = $categoriaControllerController->retornaObjetoCategoriaLinguagem($linguaDestino);
         // recuperando o id da categoria da lingua
-        $idCategoriaLinguagem = $objCategoriaLinguagem->id;
+        $idCategoriaLinguagem = Basico_CategoriaControllerController::retornaIdCategoriaLinguagem($linguaDestino);
 
         // recuperando traducao
         $traducao = $this->tradutor->fetchList("id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
