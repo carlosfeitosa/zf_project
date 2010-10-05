@@ -71,6 +71,10 @@ class Basico_Model_Formulario
      * @var Integer
      */
     protected $_decorator;
+    /**
+     * @var Integer
+     */
+    protected $_ajuda;
 	/**
 	 * @var Date
 	 */
@@ -172,7 +176,7 @@ class Basico_Model_Formulario
 	 */
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (int) $categoria;
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 	
@@ -194,7 +198,7 @@ class Basico_Model_Formulario
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = (String) $nome;
+		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -216,7 +220,7 @@ class Basico_Model_Formulario
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = (String) $descricao;
+		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -238,7 +242,7 @@ class Basico_Model_Formulario
 	*/
 	public function setFormName($formName)
 	{
-		$this->_formName = (String) $formName;
+		$this->_formName = Basico_UtilControllerController::retornaValorTipado($formName, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -260,7 +264,7 @@ class Basico_Model_Formulario
 	*/
 	public function setConstanteTextualTitulo($constanteTextualTitulo)
 	{
-		$this->_constanteTextualTitulo = (String) $constanteTextualTitulo;
+		$this->_constanteTextualTitulo = Basico_UtilControllerController::retornaValorTipado($constanteTextualTitulo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -282,7 +286,7 @@ class Basico_Model_Formulario
 	*/
 	public function setConstanteTextualSubTitulo($constanteTextualSubTitulo)
 	{
-		$this->_constanteTextualSubTitulo = (String) $constanteTextualSubTitulo;
+		$this->_constanteTextualSubTitulo = Basico_UtilControllerController::retornaValorTipado($constanteTextualSubTitulo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -304,7 +308,7 @@ class Basico_Model_Formulario
 	*/
 	public function setFormMethod($formMethod)
 	{
-		$this->_formMethod = (String) $formMethod;
+		$this->_formMethod = Basico_UtilControllerController::retornaValorTipado($formMethod, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -326,7 +330,7 @@ class Basico_Model_Formulario
 	*/
 	public function setFormAction($formAction)
 	{
-		$this->_formAction = (String) $formAction;
+		$this->_formAction = Basico_UtilControllerController::retornaValorTipado($formAction, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -348,7 +352,7 @@ class Basico_Model_Formulario
 	*/
 	public function setFormTarget($formTarget)
 	{
-		$this->_formTarget = (String) $formTarget;
+		$this->_formTarget = Basico_UtilControllerController::retornaValorTipado($formTarget, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -370,7 +374,7 @@ class Basico_Model_Formulario
 	*/
 	public function setFormEncType($formEncType)
 	{
-		$this->_formEncType = (String) $formEncType;
+		$this->_formEncType = Basico_UtilControllerController::retornaValorTipado($formEncType, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -392,7 +396,7 @@ class Basico_Model_Formulario
 	*/
 	public function setFormularioPai($formularioPai)
 	{
-		$this->_formularioPai = (Integer) $formularioPai;
+		$this->_formularioPai = Basico_UtilControllerController::retornaValorTipado($formularioPai, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -414,7 +418,7 @@ class Basico_Model_Formulario
     */
     public function setDecorator($decorator)
     {
-        $this->_decorator = (Integer) $decorator;
+        $this->_decorator = Basico_UtilControllerController::retornaValorTipado($decorator, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -425,7 +429,30 @@ class Basico_Model_Formulario
     */
     public function getDecorator()
     {
-        return $this->_decorator;
+       	return $this->_decorator;
+    }
+
+    /**
+    * Set ajuda
+    * 
+    * @param Integer $ajuda
+    * 
+    * @return Integer
+    */
+    public function setAjuda($ajuda)
+    {
+        $this->_ajuda = Basico_UtilControllerController::retornaValorTipado($ajuda, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get ajuda
+    * 
+    * @return null|Integer
+    */
+    public function getAjuda()
+    {
+       	return $this->_ajuda;
     }
 	
     /**
@@ -436,7 +463,7 @@ class Basico_Model_Formulario
     */
     public function setFormAttribs($formAttribs)
     {
-        $this->_formAttribs = (String) $formAttribs;
+        $this->_formAttribs = Basico_UtilControllerController::retornaValorTipado($formAttribs, TIPO_STRING, true);
         return $this;
     }
 
@@ -447,7 +474,7 @@ class Basico_Model_Formulario
     */
     public function getFormAttribs()
     {
-        return $this->_formAttribs;
+       	return $this->_formAttribs;
     }
      
 	/**
@@ -458,7 +485,7 @@ class Basico_Model_Formulario
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
-		$this->_validadeInicio = (String) $validadeInicio;
+		$this->_validadeInicio = Basico_UtilControllerController::retornaValorTipado($validadeInicio, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -480,7 +507,7 @@ class Basico_Model_Formulario
 	*/
 	public function setValidadeTermino($validadeTermino)
 	{
-		$this->_validadeTermino = (String) $validadeTermino;
+		$this->_validadeTermino = Basico_UtilControllerController::retornaValorTipado($validadeTermino, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -502,7 +529,7 @@ class Basico_Model_Formulario
 	*/
 	public function setDataDesativacao($dataDesativacao)
 	{
-		$this->_dataDesativacao = (String) $dataDesativacao;
+		$this->_dataDesativacao = Basico_UtilControllerController::retornaValorTipado($dataDesativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -524,7 +551,7 @@ class Basico_Model_Formulario
 	*/
 	public function setDataAutoReativar($dataAutoReativar)
 	{
-		$this->_dataAutoReativar = (String) $dataAutoReativar;
+		$this->_dataAutoReativar = Basico_UtilControllerController::retornaValorTipado($dataAutoReativar, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -546,7 +573,7 @@ class Basico_Model_Formulario
 	*/
 	public function setMotivoDesativacao($motivoDesativacao)
 	{
-		$this->_motivoDesativacao = (String) $motivoDesativacao;
+		$this->_motivoDesativacao = Basico_UtilControllerController::retornaValorTipado($motivoDesativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -568,7 +595,7 @@ class Basico_Model_Formulario
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -590,7 +617,7 @@ class Basico_Model_Formulario
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -622,6 +649,17 @@ class Basico_Model_Formulario
         return $object;
     }
     
+    /**
+     * Get ajuda object
+     * @return null|decorator
+     */
+    public function getAjudaObject()
+    {
+        $model = new Basico_Model_Ajuda();
+        $object = $model->find($this->_ajuda);
+        return $object;
+    }
+
     /**
      * Get formulariosFilhos objects
      * @return null|arrayFormulario

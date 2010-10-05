@@ -515,4 +515,49 @@ class Basico_UtilControllerController
 			}
 		}
     }
+
+    /**
+     * Retorna um valor tipado, retornando null quando o valor for vazio
+     * 
+     * @param Mixed $valor
+     * @param Integer $tipo
+     * @param Boolean $checaNulidade
+     * 
+     * @return Mixed
+     */
+    public static function retornaValorTipado($valor, $tipo, $checaNulidade = false)
+    {
+    	// verificando o tipo informado
+    	switch ($tipo) {
+    	case TIPO_INTEIRO:
+    		// transformando o valor em inteiro, para comparacao
+    		$valorInteiro = (Int) $valor;
+    		
+    		// verificando se o valor eh do tipo informado
+    		if ((!is_integer($valorInteiro)) and ($valorInteiro == $valor))
+    			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO);
+
+    		// verificando a nulidade do valor
+			if (($checaNulidade) and (!$valor))
+				return null;
+			else
+				return (Int) $valor;
+
+    		break;
+    	case TIPO_STRING:
+			// verificando se o valor eh do tipo informado
+			if (!is_string($valor) and (!is_null($valor)))
+				throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_STRING);
+
+			// verificando nulidade do valor
+			if (($checaNulidade) and (!strlen($valor)))
+				return null;
+			else
+				return (String) $valor;
+
+    		break;
+    	default:
+    		throw new Exception(MSG_ERRO_TIPO_NAO_TRATADO);
+    	}
+    }
 }

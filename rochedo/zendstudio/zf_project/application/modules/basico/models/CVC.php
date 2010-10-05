@@ -144,7 +144,10 @@ class Basico_Model_CVC
 	*/
 	public function getIdGenerico()
 	{
-		return $this->_idGenerico;
+		if ($this->_idGenerico)
+			return $this->_idGenerico;
+		else
+			return null;
 	}
      
 	/**
@@ -166,7 +169,10 @@ class Basico_Model_CVC
 	*/
 	public function getVersao()
 	{
-		return $this->_versao;
+		if ($this->_versao)
+			return $this->_versao;
+		else
+			return null;
 	}
      
 	/**
@@ -188,7 +194,10 @@ class Basico_Model_CVC
 	*/
 	public function getCategoriaChaveEstrangeira()
 	{
-		return $this->_categoriaChaveEstrangeira;
+		if ($this->_categoriaChaveEstrangeira)
+			return $this->_categoriaChaveEstrangeira;
+		else
+			return null;
 	}
  
     /**
@@ -226,7 +235,10 @@ class Basico_Model_CVC
 	*/
 	public function getObjeto()
 	{
-		return $this->_objeto;
+		if (strlen($this->_objeto))
+			return $this->_objeto;
+		else
+			return null;
 	}
 	
 	/**
@@ -258,7 +270,10 @@ class Basico_Model_CVC
 	*/
 	public function getValidadeInicio()
 	{
-		return $this->_validadeInicio;
+		if (strlen($this->_validadeInicio))
+			return $this->_validadeInicio;
+		else
+			return null;
 	}
      
 	/**
@@ -281,7 +296,10 @@ class Basico_Model_CVC
 	*/
 	public function getValidadeTermino()
 	{
-		return $this->_validadeTermino;
+		if (strlen($this->_validadeTermino))
+			return $this->_validadeTermino;
+		else
+			return null;
 	}
 
 	/**
@@ -291,7 +309,10 @@ class Basico_Model_CVC
 	*/
 	public function getUltimaAtualizacao()
 	{
-		return $this->_ultimaAtualizacao;
+		if (strlen($this->_ultimaAtualizacao))
+			return $this->_ultimaAtualizacao;
+		else
+			return null;
 	}
 	
 	/**
@@ -325,7 +346,10 @@ class Basico_Model_CVC
 	*/
 	public function getRowinfo()
 	{
-		return $this->_rowinfo;
+		if (strlen($this->_rowinfo))
+			return $this->_rowinfo;
+		else
+			return null;
 	}
 
 	/**

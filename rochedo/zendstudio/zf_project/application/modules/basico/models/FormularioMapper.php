@@ -52,24 +52,26 @@ class Basico_Model_FormularioMapper
      * Save a Formulario entry
      * 
      * @param  Basico_Model_Formulario $object
+     * 
      * @return void
      */
     public function save(Basico_Model_Formulario $object)
     {
         $data = array(
-        		'categoria'						=> $object->getCategoria(),
+        		'id_categoria'					=> $object->getCategoria(),
+                'id_decorator'                  => $object->getDecorator(),
+        		'id_ajuda'						=> $object->getAjuda(),
+				'id_formulario_pai'             => $object->getFormularioPai(),
 				'nome'                          => $object->getNome(),
 				'descricao'                     => $object->getDescricao(),
-				'form_name'                     => $object->getFormName(),
 				'constante_textual_titulo'      => $object->getConstanteTextualTitulo(),
 				'constante_textual_subtitulo'   => $object->getConstanteTextualSubTitulo(),
+				'form_name'                     => $object->getFormName(),
 				'form_method'                   => $object->getFormMethod(),
 				'form_action'                   => $object->getFormAction(),
 				'form_target'                   => $object->getFormTarget(),
 				'form_enctype'                  => $object->getFormEncType(),
-				'id_formulario_pai'             => $object->getFormularioPai(),
                 'form_attribs'                  => $object->getFormAttribs(),
-                'id_decorator'                  => $object->getDecorator(),
 				'validade_inicio'               => $object->getValidadeInicio(),
 				'validade_termino'              => $object->getValidadeTermino(),
 				'data_desativacao'              => $object->getDataDesativacao(),

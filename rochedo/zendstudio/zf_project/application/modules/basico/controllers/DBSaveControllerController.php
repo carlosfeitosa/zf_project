@@ -106,7 +106,7 @@ class Basico_DBSaveControllerController
 			}
 			else {
 				// verificando se houve insercao de nova tupla no banco de dados
-				if (($novaTupla) and ($transacaoInicializada)) {
+				if (isset($novaTupla) and ($novaTupla) and ($transacaoInicializada)) {
 					// salvando a transacao
 					Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 				}

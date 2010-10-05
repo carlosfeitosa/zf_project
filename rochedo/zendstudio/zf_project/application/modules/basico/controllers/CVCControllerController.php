@@ -88,7 +88,7 @@ class Basico_CVCControllerController
 	    		// retornando objeto CVC da ultima versao
 	    		$objCVC = self::retornaObjUltimaVersao($modelCVC->categoriaChaveEstrangeira, $modelCVC->idGenerico);
 	    		// fechando a ultima versao
-				$objCVC->fechaValidadeVersao();
+	    		self::fechaValidadeVersao($objCVC);
     		}
 			else 
 				return $versao;
@@ -144,17 +144,19 @@ class Basico_CVCControllerController
     }
     
     /**
-     * Fecha a versao de uma tupla 
+     * Fecha a versao de uma tupla
+     * 
+     * @param Basico_Model_CVC $objCVC
      * 
      * @return void
      */
-    private function fechaValidadeVersao()
+    private function fechaValidadeVersao($objCVC)
     {
     	// setando a o termino da validade
-    	$this->setValidadeTermino(Basico_UtilControllerController::retornaDateTimeAtual());
+    	$objCVC->validadeTermino = Basico_UtilControllerController::retornaDateTimeAtual();
     	
     	// salvando o objeto
-    	$this->save();
+    	$objCVC->save();
     }
     
     /**
