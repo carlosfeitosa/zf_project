@@ -119,7 +119,7 @@ class Basico_Model_AnexoMensagem
 	*/
 	public function setNomeOriginal($nomeOriginal)
 	{
-		$this->_nomeOriginal = (String) $nomeOriginal;
+		$this->_nomeOriginal = Basico_UtilControllerController::retornaValorTipado($nomeOriginal,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -141,7 +141,7 @@ class Basico_Model_AnexoMensagem
 	*/
 	public function setNomeSugestao($nomeSugestao)
 	{
-		$this->_nomeSugestao = (String) $nomeSugestao;
+		$this->_nomeSugestao = Basico_UtilControllerController::retornaValorTipado($nomeSugestao,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -163,7 +163,7 @@ class Basico_Model_AnexoMensagem
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = (String) $descricao;
+		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -185,7 +185,7 @@ class Basico_Model_AnexoMensagem
 	*/
 	public function setArquivo($arquivo)
 	{
-		$this->_arquivo = (String) $arquivo;
+		$this->_arquivo = Basico_UtilControllerController::retornaValorTipado($arquivo,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -207,7 +207,7 @@ class Basico_Model_AnexoMensagem
 	*/
 	public function setMimeType($mimeType)
 	{
-		$this->_mimeType = (String) $mimeType;
+		$this->_mimeType = Basico_UtilControllerController::retornaValorTipado($mimeType,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -229,7 +229,7 @@ class Basico_Model_AnexoMensagem
 	*/
 	public function setMensagem($mensagem)
 	{
-		$this->_mensagem = (int) $mensagem;
+		$this->_mensagem = Basico_UtilControllerController::retornaValorTipado($mensagem,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -262,7 +262,7 @@ class Basico_Model_AnexoMensagem
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 

@@ -106,7 +106,7 @@ class Basico_Model_DadosPessoasPerfis
 	 */
 	public function setIdPessoaPerfil($idPessoaPerfil) 
 	{
-		$this->_idPessoaPerfil = (int) $idPessoaPerfil;
+		$this->_idPessoaPerfil = Basico_UtilControllerController::retornaValorTipado($idPessoaPerfil,TIPO_INTEIRO,true);
 		return $this;
 		
 	}
@@ -128,7 +128,7 @@ class Basico_Model_DadosPessoasPerfis
 	*/
 	public function setAssinaturaMensagemEmail($assinaturaMensagemEmail)
 	{
-		$this->_assinaturaMensagemEmail = (String) $assinaturaMensagemEmail;
+		$this->_assinaturaMensagemEmail = Basico_UtilControllerController::retornaValorTipado($assinaturaMensagemEmail,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -150,7 +150,7 @@ class Basico_Model_DadosPessoasPerfis
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 

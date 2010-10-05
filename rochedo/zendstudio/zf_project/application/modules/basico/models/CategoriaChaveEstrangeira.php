@@ -110,7 +110,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	*/
 	public function setTabelaEstrangeira($tabelaEstrangeira)
 	{
-		$this->_tabelaEstrangeira = (String) $tabelaEstrangeira;
+		$this->_tabelaEstrangeira = Basico_UtilControllerController::retornaValorTipado($tabelaEstrangeira,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -132,7 +132,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	*/
 	public function setCampoEstrangeiro($campoEstrangeiro)
 	{
-		$this->_campoEstrangeiro = (String) $campoEstrangeiro;
+		$this->_campoEstrangeiro = Basico_UtilControllerController::retornaValorTipado($campoEstrangeiro,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -154,7 +154,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -175,7 +175,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	 */
 	public function setCategoria($categoria)
 	{
-	   	$this->_categoria = (int) $categoria;
+	   	$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria,TIPO_INTEIRO,true);
 		return $this;
 	}
 	
@@ -206,7 +206,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	 */
 	public function setRowinfo($rowinfo)
 	{
-	    $this->_rowinfo = (String) $rowinfo;
+	    $this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 	    return $this;	
 	}
 	

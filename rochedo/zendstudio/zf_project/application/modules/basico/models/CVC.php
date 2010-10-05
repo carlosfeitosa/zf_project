@@ -133,7 +133,7 @@ class Basico_Model_CVC
 	*/
 	public function setIdGenerico($idGenerico)
 	{
-		$this->_idGenerico = (Integer) $idGenerico;
+		$this->_idGenerico = Basico_UtilControllerController::retornaValorTipado($idGenerico,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -158,7 +158,7 @@ class Basico_Model_CVC
 	*/
 	public function setVersao($versao)
 	{
-		$this->_versao = (Integer) $versao;
+		$this->_versao = Basico_UtilControllerController::retornaValorTipado($versao,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -183,9 +183,11 @@ class Basico_Model_CVC
 	*/
 	public function setCategoriaChaveEstrangeira($categoriaChaveEstrangeira)
 	{
-		$this->_categoriaChaveEstrangeira = (int) $categoriaChaveEstrangeira;
+		$this->_categoriaChaveEstrangeira = Basico_UtilControllerController::retornaValorTipado($categoriaChaveEstrangeira,TIPO_INTEIRO,true);
 		return $this;
 	}
+	
+	/** continuar daqui **/
 
 	/**
 	* Get categoriaChaveEstrangeira
@@ -259,7 +261,7 @@ class Basico_Model_CVC
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
-		$this->_validadeInicio = (String) $validadeInicio;
+		$this->_validadeInicio = Basico_UtilControllerController::retornaValorTipado($validadeInicio,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -285,7 +287,7 @@ class Basico_Model_CVC
 	public function setValidadeTermino($validadeTermino)
 	{
 		if (isset($validadeTermino))
-			$this->_validadeTermino = (String) $validadeTermino;
+			$this->_validadeTermino = Basico_UtilControllerController::retornaValorTipado($validadeTermino,TIPO_STRING,true);
 		return $this;
 	}
 	
@@ -323,7 +325,7 @@ class Basico_Model_CVC
 	*/
 	public function setUltimaAtualizacao($ultimaAtualizacao)
 	{
-		$this->_ultimaAtualizacao = (String) $ultimaAtualizacao;
+		$this->_ultimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($ultimaAtualizacao,TIPO_STRING,true);
 		return $this;
 	}
 	
@@ -335,7 +337,7 @@ class Basico_Model_CVC
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -360,7 +362,7 @@ class Basico_Model_CVC
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 
