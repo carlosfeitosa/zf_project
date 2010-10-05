@@ -127,7 +127,7 @@ class Basico_Model_Template
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = (String) $nome;
+		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -149,7 +149,7 @@ class Basico_Model_Template
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = (String) $descricao;
+		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -171,7 +171,7 @@ class Basico_Model_Template
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (Int) $categoria;
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -193,7 +193,7 @@ class Basico_Model_Template
 	*/
 	public function setStyleSheetFullFilename($styleSheetFullFilename)
 	{
-		$this->_styleSheetFullFilename = (String) $styleSheetFullFilename;
+		$this->_styleSheetFullFilename = Basico_UtilControllerController::retornaValorTipado($styleSheetFullFilename, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -215,7 +215,7 @@ class Basico_Model_Template
 	*/
 	public function setJavaScriptFullFilename($javaScriptFullFilename)
 	{
-		$this->_javaScriptFullFilename = (String) $javaScriptFullFilename;
+		$this->_javaScriptFullFilename = Basico_UtilControllerController::retornaValorTipado($javaScriptFullFilename, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -237,7 +237,7 @@ class Basico_Model_Template
 	*/
 	public function setTemplate($template)
 	{
-		$this->_template = (String) $template;
+		$this->_template = Basico_UtilControllerController::retornaValorTipado($template, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -259,7 +259,7 @@ class Basico_Model_Template
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -281,7 +281,7 @@ class Basico_Model_Template
 	*/
 	public function setOutput($output)
 	{
-		$this->_output = (Int) $output;
+		$this->_output = Basico_UtilControllerController::retornaValorTipado($output, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -303,7 +303,7 @@ class Basico_Model_Template
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

@@ -116,7 +116,7 @@ class Basico_Model_Token
 	*/
 	public function setToken($token)
 	{
-		$this->_token = (String) $token;
+		$this->_token = Basico_UtilControllerController::retornaValorTipado($token, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -138,7 +138,7 @@ class Basico_Model_Token
 	*/
 	public function setDatahoraExpiracao($datahoraExpiracao)
 	{
-		$this->_datahoraExpiracao = (String) $datahoraExpiracao;
+		$this->_datahoraExpiracao = Basico_UtilControllerController::retornaValorTipado($datahoraExpiracao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -160,7 +160,7 @@ class Basico_Model_Token
 	*/
 	public function setIdGenerico($idGenerico)
 	{
-		$this->_idGenerico = (Integer) $idGenerico;
+		$this->_idGenerico = Basico_UtilControllerController::retornaValorTipado($idGenerico, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -182,7 +182,7 @@ class Basico_Model_Token
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (int) $categoria;
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -215,7 +215,7 @@ class Basico_Model_Token
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -237,7 +237,7 @@ class Basico_Model_Token
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

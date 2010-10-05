@@ -99,7 +99,7 @@ class Basico_Model_Pessoa
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -121,7 +121,7 @@ class Basico_Model_Pessoa
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

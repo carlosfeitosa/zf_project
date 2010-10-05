@@ -109,7 +109,7 @@ class Basico_Model_PessoaPerfil
     */
     public function setPessoa($pessoa)
     {
-        $this->_pessoa = (int) $pessoa;
+        $this->_pessoa = Basico_UtilControllerController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -142,7 +142,7 @@ class Basico_Model_PessoaPerfil
     */
     public function setPerfil($perfil)
     {
-        $this->_perfil = (int) $perfil;
+        $this->_perfil = Basico_UtilControllerController::retornaValorTipado($perfil, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -176,7 +176,7 @@ class Basico_Model_PessoaPerfil
     */
     public function setId($id)
     {
-        $this->_id = (int) $id;
+        $this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -198,7 +198,7 @@ class Basico_Model_PessoaPerfil
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

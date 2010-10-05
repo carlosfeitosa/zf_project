@@ -108,7 +108,7 @@ class Basico_Model_TipoCategoria
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = (String) $nome;
+		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -130,7 +130,7 @@ class Basico_Model_TipoCategoria
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = (String) $descricao;
+		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -152,7 +152,7 @@ class Basico_Model_TipoCategoria
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -174,7 +174,7 @@ class Basico_Model_TipoCategoria
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

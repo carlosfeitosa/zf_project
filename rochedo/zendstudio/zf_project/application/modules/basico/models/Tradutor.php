@@ -112,7 +112,7 @@ class Basico_Model_Tradutor
 	*/
 	public function setConstanteTextual($constanteTextual)
 	{
-		$this->_constanteTextual = (String) $constanteTextual;
+		$this->_constanteTextual = Basico_UtilControllerController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -134,7 +134,7 @@ class Basico_Model_Tradutor
 	*/
 	public function setTraducao($traducao)
 	{
-		$this->_traducao = (String) $traducao;
+		$this->_traducao = Basico_UtilControllerController::retornaValorTipado($traducao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -156,7 +156,7 @@ class Basico_Model_Tradutor
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (int) $categoria;
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -189,7 +189,7 @@ class Basico_Model_Tradutor
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
