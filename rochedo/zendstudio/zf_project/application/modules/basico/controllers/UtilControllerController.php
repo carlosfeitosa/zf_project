@@ -534,14 +534,14 @@ class Basico_UtilControllerController
     		$valorInteiro = (Int) $valor;
     		
     		// verificando se o valor eh do tipo informado
-    		if ((!is_integer($valorInteiro)) and ($valorInteiro == $valor))
+    		if ((!is_integer($valorInteiro)) or ($valorInteiro == $valor))
     			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO);
 
     		// verificando a nulidade do valor
 			if (($checaNulidade) and (!$valor))
 				return null;
 			else
-				return (Int) $valor;
+				return (Int) $valorInteiro;
 
     		break;
     	case TIPO_STRING:
@@ -556,6 +556,20 @@ class Basico_UtilControllerController
 				return (String) $valor;
 
     		break;
+    	case TIPO_BOOLEAN:
+    		// transformando o valor em boolean, para comparacao
+    		$valorBoolean = (Boolean) $valor;
+
+    		// verificando se o valor eh do tipo informado
+    		if ((!is_bool($valorBoolean)) or ($valorBoolean == $valor))
+    			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_BOOLEAN);
+
+    		// verificando nulidade do valor
+    		if (($checaNulidade) and (is_null($valor)))
+    			return null;
+    		else
+    			return $valorBoolean;
+    		
     	default:
     		throw new Exception(MSG_ERRO_TIPO_NAO_TRATADO);
     	}
