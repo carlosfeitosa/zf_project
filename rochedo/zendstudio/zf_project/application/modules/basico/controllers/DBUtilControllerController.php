@@ -182,4 +182,205 @@ class Basico_DBUtilControllerController
 			return null;
 		}
     }
+    
+    /**
+     * Função para regerar o banco de dados
+     * @return Boolean
+     */
+    public static function resetaBD()
+    {
+    	self::dropDbTables();
+    	self::createDbTables();
+            
+    }
+    
+    /**
+     * Apaga todas as tabelas do banco que está sendo utilizado.
+     * @return Boolean
+     */
+    private function dropDbTables() {
+    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
+    	$dropScriptsFiles = self::retornaArrayFullFileNameDbDropScriptsFiles();
+    	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
+    	
+    	//inicializando variavel
+    	$fullDropScript = "";
+    	
+    	
+    	foreach ($dropScriptsFiles as $file) {
+    		$fullDropScript .= PHP_EOL . file_get_contents(self::retornaDBCreateScriptsPath(). $file);
+    	}
+    	
+    	Basico_UtilControllerController::print_debug($fullDropScript, true, false, false);
+    	// recuperando resource do bando de dados.
+    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+    	//$auxDb->fetchAll();
+    }
+
+    /**
+     * Apaga todas as tabelas do banco que está sendo utilizado.
+     * @return Boolean
+     */
+    private function createDbTables() {
+    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
+    	$createScriptsFiles = self::retornaArrayFullFileNameDbCreateScriptsFiles();
+    	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
+    	
+    	//inicializando variavel
+    	$fullCreateScript = "";
+    	foreach ($createScriptsFiles as $file) {
+    		$fullCreateScript .= PHP_EOL . file_get_contents(self::retornaDBCreateScriptsPath(). $file);
+    	}
+    	Basico_UtilControllerController::print_debug($fullCreateScript, true, false, true);
+    	// recuperando resource do bando de dados.
+    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+    	//$auxDb->fetchAll();
+    }
+    
+    private function insertDbData() {
+    	
+    }
+    
+    /**
+     * Retorna array com nomes dos arquivos de drop para o banco que está sendo utilizado
+     * @return array
+     */
+    private function retornaArrayFullFileNameDbDropScriptsFiles() 
+    {
+    	//recuperando o path dos arquivos de create do banco de dados.
+        $scriptsPath = self::retornaDBCreateScriptsPath();
+    	
+        // checando se o path existe
+    	if (!file_exists($scriptsPath)){
+    		throw new Exception(MSG_ERRO_BD_PATH_NAO_ENCONTRADO);
+    	}
+    	
+    	// carregando array com arquivos contidos no diretorio.
+    	$dropScriptsFilesArray = scandir($scriptsPath, 1);
+    	
+    	// retirando aquivos ocultos e os scripts de create do array de arquivos
+    	$i = 0;
+    	foreach ($dropScriptsFilesArray as $file) {
+    		// retirando arquivos ocultos
+    		if (strpos($file, '.') === 0) {
+    			unset($dropScriptsFilesArray[$i]);
+    		}
+    		// retirando arquivos de create
+    	    if (strpos($file, 'create') != false) {
+    			unset($dropScriptsFilesArray[$i]);
+    		}
+    		$i++;
+    	}
+    	return $dropScriptsFilesArray;
+    }
+    
+    /**
+     * Retorna array com nomes dos arquivos de create para o banco que está sendo utilizado
+     * @return unknown_type
+     */
+    private function retornaArrayFullFileNameDbCreateScriptsFiles() 
+    {
+    	//recuperando o path dos arquivos de create do banco de dados.
+        $scriptsPath = self::retornaDBCreateScriptsPath();
+    	
+        // checando se o path existe
+    	if (!file_exists($scriptsPath)){
+    		throw new Exception(MSG_ERRO_BD_PATH_NAO_ENCONTRADO);
+    	}
+    	
+    	// carregando array com arquivos contidos no diretorio.
+    	$createScriptsFilesArray = scandir($scriptsPath);
+    	
+    	// retirando aquivos ocultos e os scripts de create do array de arquivos
+    	$i = 0;
+    	foreach ($createScriptsFilesArray as $file) {
+    		// retirando arquivos ocultos
+    		if (strpos($file, '.') === 0) {
+    			unset($createScriptsFilesArray[$i]);
+    		}
+    		// retirando arquivos de create
+    	    if (strpos($file, 'drop') != false) {
+    			unset($createScriptsFilesArray[$i]);
+    		}
+    		$i++;
+    	}
+    	return $createScriptsFilesArray;
+    }
+    
+    /**
+    * Retorna array com nomes dos arquivos de insert de dados para o banco que está sendo utilizado
+    * @return unknown_type
+    */
+    private function retornaArrayFullFileNameDbDataScriptsFiles() 
+    {
+    	//recuperando o path dos arquivos de create do banco de dados.
+        $scriptsPath = self::retornaDBDataScriptsPath();
+    	
+        // checando se o path existe
+    	if (!file_exists($scriptsPath)){
+    		throw new Exception(MSG_ERRO_BD_PATH_NAO_ENCONTRADO);
+    	}
+    	
+    	// carregando array com arquivos contidos no diretorio.
+    	$dataScriptsFilesArray = scandir($scriptsPath);
+    	
+    	// retirando aquivos ocultos e os scripts de create do array de arquivos
+    	$i = 0;
+    	foreach ($dataScriptsFilesArray as $file) {
+    		// retirando arquivos ocultos
+    		if (strpos($file, '.') === 0) {
+    			unset($dataScriptsFilesArray[$i]);
+    		}
+    	}
+    	return $dataScriptsFilesArray;
+    }
+    
+    /**
+     * Retorna tipo do banco de dados que está sendo utilizado
+     * @return String
+     */
+    private function retornaPdoType() {
+    	//recuperando resource do bando de dados
+    	$dbResource = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+    	
+    	//retornando o tipo do banco de dados
+    	if ($dbResource instanceof Zend_Db_Adapter_Pdo_Pgsql){
+    		return "PGSQL";    		
+    	}else if ($dbResource instanceof Zend_Db_Adapter_Pdo_Dblib){
+    	    return "MSSQL";
+    	}
+    	
+    }
+    
+    /**
+     * Retorna o path dos arquivos de Create para o banco que está sendo utilizado.
+     * @return String
+     */
+    private function retornaDBCreateScriptsPath()
+    {
+    	//retornando o path dos scripts de banco de dados de acordo com o tipo do banco
+    	switch (self::retornaPdoType()) {
+    		case "PGSQL":
+    		    return BASICO_DB_PGSQL_CREATE_SCHEMA_SCRIPTS_PATH;
+    		case "MSSQL":
+    			return BASICO_DB_MSSQL_CREATE_SCHEMA_SCRIPTS_PATH;     
+    	}
+    	
+    }
+    
+    /**
+     * Retorna o path dos arquivos de insert de dados para o banco que está sendo utilizado.
+     * @return String
+     */
+    private function retornaDBDataScriptsPath()
+    {
+    	//retornando o path dos scripts de banco de dados de acordo com o tipo do banco
+    	switch (self::retornaPdoType()) {
+    		case "PGSQL":
+    		    return BASICO_DB_PGSQL_CREATE_DATA_SCRIPTS_PATH;
+    		case "MSSQL":
+    			return BASICO_DB_MSSQL_CREATE_DATA_SCRIPTS_PATH;     
+    	}
+    	
+    }
 }
