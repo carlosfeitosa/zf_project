@@ -119,7 +119,7 @@ class Basico_Model_FormularioFormularioElemento
     */
     public function setFormulario($formulario)
     {
-        $this->_formulario = (int) $formulario;
+    	$this->_formulario = Basico_UtilControllerController::retornaValorTipado($formulario, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -152,6 +152,7 @@ class Basico_Model_FormularioFormularioElemento
     */
     public function setFormularioElemento($formularioElemento)
     {
+    	$this->_formularioElemento = Basico_UtilControllerController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
         $this->_formularioElemento = (int) $formularioElemento;
         return $this;
     }
@@ -174,7 +175,7 @@ class Basico_Model_FormularioFormularioElemento
     */
     public function setElementRequired($elementRequired)
     {
-        $this->_elementRequired = (int) $elementRequired;
+    	$this->_elementRequired = Basico_UtilControllerController::retornaValorTipado($elementRequired, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -207,7 +208,7 @@ class Basico_Model_FormularioFormularioElemento
 	*/
 	public function setOrdem($ordem)
 	{
-		$this->_ordem = (Int) $ordem;
+		$this->_ordem = Basico_UtilControllerController::retornaValorTipado($ordem, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -230,7 +231,7 @@ class Basico_Model_FormularioFormularioElemento
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -252,7 +253,7 @@ class Basico_Model_FormularioFormularioElemento
     */
     public function setId($id)
     {
-        $this->_id = (int) $id;
+    	$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
         return $this;
     }
 

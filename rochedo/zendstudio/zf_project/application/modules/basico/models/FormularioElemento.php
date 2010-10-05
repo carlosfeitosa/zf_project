@@ -152,7 +152,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = (String) $nome;
+		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -174,7 +174,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = (String) $descricao;
+		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -196,7 +196,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setConstanteTextualLabel($constanteTextualLabel)
 	{
-		$this->_constanteTextualLabel = (String) $constanteTextualLabel;
+		$this->_constanteTextualLabel = Basico_UtilControllerController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -218,7 +218,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setElementName($elementName)
 	{
-		$this->_elementName = (String) $elementName;
+		$this->_elementName = Basico_UtilControllerController::retornaValorTipado($elementName, TIPO_STRING,true); 
 		return $this;
 	}
 
@@ -240,7 +240,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setElementAttribs($elementAttribs)
 	{
-		$this->_elementAttribs = (String) $elementAttribs;
+		$this->_elementAttribs = Basico_UtilControllerController::retornaValorTipado($elementAttribs, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -262,7 +262,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setElement($element)
 	{
-		$this->_element = (String) $element;
+		$this->_element = Basico_UtilControllerController::retornaValorTipado($element, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -284,7 +284,7 @@ class Basico_Model_FormularioElemento
     */
     public function setElementReloadable($elementReloadable)
     {
-        $this->_elementReloadable = (Boolean) $elementReloadable;
+    	$this->_elementReloadable = Basico_UtilControllerController::retornaValorTipado($elementReloadable, TIPO_STRING,true);
         return $this;
     }
 
@@ -306,7 +306,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setComponente($componente)
 	{
-		$this->_componente = (int) $componente;
+		$this->_componente = Basico_UtilControllerController::retornaValorTipado($componente, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -339,7 +339,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -361,7 +361,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (int) $categoria;
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -383,7 +383,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setDecorator($decorator)
 	{
-		$this->_decorator = (int) $decorator;
+		$this->_decorator = Basico_UtilControllerController::retornaValorTipado($decorator, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -416,7 +416,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -438,7 +438,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setFormularioElementoFilter($formularioElementoFilter)
 	{
-		$this->_formularioElementoFilter = (int) $formularioElementoFilter;
+		$this->_formularioElementoFilter = Basico_UtilControllerController::retornaValorTipado($formularioElementoFilter, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -460,7 +460,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setAjuda($ajuda)
 	{
-		$this->_ajuda = (int) $ajuda;
+		$this->_ajuda = Basico_UtilControllerController::retornaValorTipado($ajuda, TIPO_INTEIRO,true);
 		return $this;
 	}
 
