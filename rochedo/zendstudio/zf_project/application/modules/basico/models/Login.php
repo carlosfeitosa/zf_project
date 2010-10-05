@@ -149,7 +149,7 @@ class Basico_Model_Login
 	*/
 	public function setPessoa($pessoa)
 	{
-		$this->_pessoa = (int) $pessoa;
+		$this->_pessoa = Basico_UtilControllerController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -182,7 +182,7 @@ class Basico_Model_Login
 	*/
 	public function setLogin($login)
 	{
-		$this->_login = (String) $login;
+		$this->_login = Basico_UtilControllerController::retornaValorTipado($login, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -204,7 +204,7 @@ class Basico_Model_Login
 	*/
 	public function setSenha($senha)
 	{
-		$this->_senha = (String) $senha;
+		$this->_senha = Basico_UtilControllerController::retornaValorTipado($senha, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -226,7 +226,7 @@ class Basico_Model_Login
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = (Boolean) $ativo;
+		$this->_ativo = Basico_UtilControllerController::retornaValorTipado($ativo, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -248,7 +248,7 @@ class Basico_Model_Login
 	*/
 	public function setTentativasFalhas($tentativasFalhas)
 	{
-		$this->_tentativasFalhas = (Integer) $tentativasFalhas;
+		$this->_tentativasFalhas = Basico_UtilControllerController::retornaValorTipado($tentativasFalhas, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -270,7 +270,7 @@ class Basico_Model_Login
 	*/
 	public function setTravado($travado)
 	{
-		$this->_travado = (Boolean) $travado;
+		$this->_travado = Basico_UtilControllerController::retornaValorTipado($travado, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -292,7 +292,7 @@ class Basico_Model_Login
 	*/
 	public function setResetado($resetado)
 	{
-		$this->_resetado = (Boolean) $resetado;
+		$this->_resetado = Basico_UtilControllerController::retornaValorTipado($resetado, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -314,7 +314,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimoLogon($dataHoraUltimoLogon)
 	{
-		$this->_dataHoraUltimoLogon = (String) $dataHoraUltimoLogon;
+		$this->_dataHoraUltimoLogon = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimoLogon, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -336,7 +336,7 @@ class Basico_Model_Login
 	*/
 	public function setObservacoes($observacoes)
 	{
-		$this->_observacoes = (String) $observacoes;
+		$this->_observacoes = Basico_UtilControllerController::retornaValorTipado($observacoes, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -358,7 +358,7 @@ class Basico_Model_Login
 	*/
 	public function setPodeExpirar($podeExpirar)
 	{
-		$this->_podeExpirar = (Boolean) $podeExpirar;
+		$this->_podeExpirar = Basico_UtilControllerController::retornaValorTipado($podeExpirar, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -380,7 +380,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraProximaExpiracao($dataHoraProximaExpiracao)
 	{
-		$this->_dataHoraProximaExpiracao = (String) $dataHoraProximaExpiracao;
+		$this->_dataHoraProximaExpiracao = Basico_UtilControllerController::retornaValorTipado($dataHoraProximaExpiracao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -402,7 +402,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaExpiracao($dataHoraUltimaExpiracao)
 	{
-		$this->_dataHoraUltimaExpiracao = (String) $dataHoraUltimaExpiracao;
+		$this->_dataHoraUltimaExpiracao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaExpiracao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -424,7 +424,7 @@ class Basico_Model_Login
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -446,7 +446,7 @@ class Basico_Model_Login
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

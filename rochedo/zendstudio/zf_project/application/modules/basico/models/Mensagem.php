@@ -133,7 +133,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setRemetente($remetente)
 	{
-		$this->_remetente = (String) $remetente;
+		$this->_remetente = Basico_UtilControllerController::retornaValorTipado($remetente, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -155,7 +155,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setRemetenteNome($remetenteNome)
 	{
-		$this->_remetenteNome = (String) $remetenteNome;
+		$this->_remetenteNome = Basico_UtilControllerController::retornaValorTipado($remetenteNome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -180,7 +180,7 @@ class Basico_Model_Mensagem
 		if (is_array($destinatarios))
 			$this->_destinatarios = implode(';', $destinatarios);
 		else
-			$this->_destinatarios = $destinatarios;
+			$this->_destinatarios = Basico_UtilControllerController::retornaValorTipado($destinatarios, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -213,7 +213,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setAssunto($assunto)
 	{
-		$this->_assunto = (String) $assunto;
+		$this->_assunto = Basico_UtilControllerController::retornaValorTipado($assunto, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -235,7 +235,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setDatahoraMensagem($datahoraMensagem)
 	{
-		$this->_datahoraMensagem = (String) $datahoraMensagem;
+		$this->_datahoraMensagem = Basico_UtilControllerController::retornaValorTipado($datahoraMensagem, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -257,7 +257,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setMensagem($mensagem)
 	{
-		$this->_mensagem = (String) $mensagem;
+		$this->_mensagem = Basico_UtilControllerController::retornaValorTipado($mensagem, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -279,7 +279,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 	
@@ -302,7 +302,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (int) $categoria;
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 	
@@ -324,7 +324,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 	

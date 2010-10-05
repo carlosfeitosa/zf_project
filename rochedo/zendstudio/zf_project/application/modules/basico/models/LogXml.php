@@ -110,7 +110,7 @@ class Basico_Model_LogXml
 	*/
 	public function setApplicationInfo($applicationInfo)
 	{
-		$this->_applicationInfo = (String) $applicationInfo;
+		$this->_applicationInfo = Basico_UtilControllerController::retornaValorTipado($applicationInfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -132,7 +132,7 @@ class Basico_Model_LogXml
 	*/
 	public function setUserInfo($userInfo)
 	{
-		$this->_userInfo = (String) $userInfo;
+		$this->_userInfo = Basico_UtilControllerController::retornaValorTipado($userInfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -154,7 +154,7 @@ class Basico_Model_LogXml
 	*/
 	public function setEventInfo($eventInfo)
 	{
-		$this->_eventInfo = (String) $eventInfo;
+		$this->_eventInfo = Basico_UtilControllerController::retornaValorTipado($eventInfo, TIPO_STRING, true);
 		return $this;
 	}
 

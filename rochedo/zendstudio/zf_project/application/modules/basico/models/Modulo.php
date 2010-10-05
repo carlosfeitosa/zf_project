@@ -135,7 +135,7 @@ class Basico_Model_Modulo
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = (String) $nome;
+		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -157,7 +157,7 @@ class Basico_Model_Modulo
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = (String) $descricao;
+		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -179,7 +179,7 @@ class Basico_Model_Modulo
 	*/
 	public function setVersao($versao)
 	{
-		$this->_versao = (String) $versao;
+		$this->_versao = Basico_UtilControllerController::retornaValorTipado($versao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -201,7 +201,7 @@ class Basico_Model_Modulo
 	*/
 	public function setPath($path)
 	{
-		$this->_path = (String) $path;
+		$this->_path = Basico_UtilControllerController::retornaValorTipado($path, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -223,7 +223,7 @@ class Basico_Model_Modulo
 	*/
 	public function setInstalado($instalado)
 	{
-		$this->_instalado = (Boolean) $instalado;
+		$this->_instalado = Basico_UtilControllerController::retornaValorTipado($instalado, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -245,7 +245,7 @@ class Basico_Model_Modulo
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = (Boolean) $ativo;
+		$this->_ativo = Basico_UtilControllerController::retornaValorTipado($ativo, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -267,7 +267,7 @@ class Basico_Model_Modulo
 	*/
 	public function setDataDepreciacao($dataDepreciacao)
 	{
-		$this->_dataDepreciacao = (String) $dataDepreciacao;
+		$this->_dataDepreciacao = Basico_UtilControllerController::retornaValorTipado($dataDepreciacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -289,7 +289,7 @@ class Basico_Model_Modulo
 	*/
 	public function setXmlAutoria($xmlAutoria)
 	{
-		$this->_xmlAutoria = (String) $xmlAutoria;
+		$this->_xmlAutoria = Basico_UtilControllerController::retornaValorTipado($xmlAutoria, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -311,7 +311,7 @@ class Basico_Model_Modulo
 	*/
 	public function setModuloPai($moduloPai)
 	{
-		$this->_moduloPai = (int) $moduloPai;
+		$this->_moduloPai = Basico_UtilControllerController::retornaValorTipado($moduloPai, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -344,7 +344,7 @@ class Basico_Model_Modulo
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -366,7 +366,7 @@ class Basico_Model_Modulo
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

@@ -368,3 +368,138 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
+
+/* CATEGORIAS */
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id, 'COMPONENTE_AJAX_TERCEIROS' AS nome, 'Componentes ajax de terceiros utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'COMPONENTE';
+
+/* COMPONENTE */
+
+INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_PasswordTextBox' AS nome, 'Componente DOJO para caixas de texto do tipo Password.' AS descricao,
+	   '''PasswordTextBox''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+
+INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_PasswordTextBox_With_Checker' AS nome, 'Componente DOJO para caixas de texto do tipo Password com o componente Password strength checker acoplado.' AS descricao,
+	   '''PasswordTextBox''' AS componente, 'SYSTEM_STARTUP' AS rowinfo, '/componentes/ajax/strengthChecker/' as path
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_AJAX_TERCEIROS';
+
+INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_DateTextBox' AS nome, 'Componente DOJO para caixas de texto do tipo Date.' AS descricao,
+	   '''DateTextBox''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+
+INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_RadioButton' AS nome, 'Componente DOJO para RadioButtons.' AS descricao,
+	   '''RadioButton''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+
+INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_button' AS nome, 'Componente DOJO de botões.' AS descricao,
+	   '''button''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+
+/* FORMULARIO */
+
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
+                        constante_textual_titulo, constante_textual_subtitulo,
+                        form_name, form_method, form_action, form_attribs, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+       'FORM_CADASTRAR_VALIDADO' AS nome,
+       'Formulário de cadastro de usuário validado. É a etapa para confirmação dos dados e do cadastro.' AS descricao, 
+       'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_TITULO' AS constante_textual_titulo,
+       'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
+       'CadastrarUsuarioValidado' AS form_name, 'post' AS form_method, 'cadastrarUsuarioValidado' AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''CadastrarUsuarioValidado''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
+
+/*
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
+       'FORM_DADOS_USUARIO' AS nome,
+       'Formulário de cadastro do usuário validado.' AS descricao,
+       'CadastrarDadosUsuario' AS form_name, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
+
+*/
+
+/* FORMULARIO ELEMENTO 
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
+                              AND a.nome = 'AJUDA_CAMPO_NOME_USUARIO') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
+                              'FIELD_NOME_USUARIO' AS nome, 'Elemento campo nome do usuário, com filtro e validador.' AS descricao,
+                              'FORM_FIELD_NOME' AS constante_textual_label,
+                              'nome' AS element_name, '''size'' => 100' AS element_attribs,
+                              '''nome''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+*/
