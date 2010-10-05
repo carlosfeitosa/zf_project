@@ -200,7 +200,7 @@ class Basico_Model_Ajuda
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($descricao,TIPO_INTEIRO,true);
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria,TIPO_INTEIRO,true);
 		return $this;
 	}
 
