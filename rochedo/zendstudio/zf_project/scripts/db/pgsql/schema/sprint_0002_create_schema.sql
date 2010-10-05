@@ -8,6 +8,13 @@
 * 						
 */
 
+/* CRIACAO DAS FUNCOES */
+
+create function fn_CheckConstanteTextualExists(character varying (200))
+returns int as 
+'select id from dicionario_expressao where constante_textual = $1 limit 1'
+language 'sql';
+
 /* CRIACAO DAS TABELAS */
 
 create table documento_identificacao (

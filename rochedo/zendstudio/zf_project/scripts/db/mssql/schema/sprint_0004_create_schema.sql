@@ -24,20 +24,6 @@
 * 									 "formulario_elemento";
 */
 
-/* CRIACAO DAS FUNCOES */
-
-create function fn_CheckConstanteTextualExists(@constante_textual varchar (200))
-returns int
-as
-begin
-  declare @retval int
-  set @retval = (select top 1 id
-                 from dicionario_expressao
-                 where constante_textual = @constante_textual)
-  return @retval
-end
-GO
-
 
 /* CRIACAO DAS TABELAS */
 
