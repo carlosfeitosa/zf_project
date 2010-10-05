@@ -116,7 +116,7 @@ class Basico_Model_Log
 	*/
 	public function setDataHoraEvento($dataHoraEvento)
 	{
-		$this->_dataHoraEvento = (String) $dataHoraEvento;
+		$this->_dataHoraEvento = Basico_UtilControllerController::retornaValorTipado($dataHoraEvento, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -138,7 +138,7 @@ class Basico_Model_Log
 	*/
 	public function setXml($xml)
 	{
-		$this->_xml = (String) $xml;
+		$this->_xml = Basico_UtilControllerController::retornaValorTipado($xml, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -160,7 +160,7 @@ class Basico_Model_Log
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = (String) $descricao;
+		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -182,7 +182,7 @@ class Basico_Model_Log
 	*/
 	public function setPessoaPerfil($pessoaperfil)
 	{
-		$this->_pessoaperfil = (int) $pessoaperfil;
+		$this->_pessoaperfil = Basico_UtilControllerController::retornaValorTipado($pessoaperfil, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -215,7 +215,7 @@ class Basico_Model_Log
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (int) $categoria;
+		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -248,7 +248,7 @@ class Basico_Model_Log
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

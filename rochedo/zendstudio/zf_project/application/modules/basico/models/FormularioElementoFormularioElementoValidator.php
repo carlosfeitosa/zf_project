@@ -109,7 +109,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidator
     */
     public function setFormularioElementoValidator($formularioElementoValidator)
     {
-        $this->_formularioElementoValidator = (int) $formularioElementoValidator;
+        $this->_formularioElementoValidator = Basico_UtilControllerController::retornaValorTipado($formularioElementoValidator, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -142,7 +142,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidator
     */
     public function setFormularioElemento($formularioElemento)
     {
-        $this->_formularioElemento = (int) $formularioElemento;
+        $this->_formularioElemento = Basico_UtilControllerController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -175,7 +175,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidator
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -197,7 +197,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidator
     */
     public function setId($id)
     {
-        $this->_id = (int) $id;
+        $this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
         return $this;
     }
 
