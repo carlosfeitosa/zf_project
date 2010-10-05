@@ -230,6 +230,24 @@ class Basico_CategoriaControllerController
 	/** CATEGORIAS DE LOG */
 	
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_EMAIL
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private function retornaObjetoCategoriaLogEmail()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogEmail = self::retornaObjetoCategoriaAtiva(LOG_EMAIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogEmail))
+			// retornando o objeto
+			return $objCategoriaLogEmail;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_EMAIL);
+	}
+	
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_VALIDACAO_USUARIO
 	 * 
 	 * @return Basico_Model_Categoria
@@ -579,11 +597,29 @@ class Basico_CategoriaControllerController
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaCVC))
 			// retornando o id do objeto
-			return (Int)  $objCategoriaCVC->id;
+			return (Int) $objCategoriaCVC->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_CVC);
 	}
 
+	/**
+	 * Retorna o id da categoria LOG_EMAIL
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public static function retornaIdCategoriaLogEmail()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogEmail = self::retornaObjetoCategoriaLogEmail();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogEmail))
+			// retornando o objeto
+			return (Int) $objCategoriaLogEmail->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_EMAIL);
+	}
+	
 	/**
 	 * Retorna o id dcategoria MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO
 	 * 

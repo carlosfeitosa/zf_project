@@ -38,6 +38,9 @@ class Basico_MensageiroControllerController
     public function enviar(Basico_Model_Mensagem $mensagem) {
         
     	try {
+    		// salvando log de tentativa de envio de mensagem
+    		Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL);
+    		
             // recuperando o transporte SMTP
 			$transport = Basico_MensageiroControllerController::retornaTransportSmtp();
 			Zend_Mail::setDefaultTransport($transport);
@@ -65,9 +68,14 @@ class Basico_MensageiroControllerController
 	        
 	        // enviando a mensagem
             $zendMail->send($transport);
+            
+    		// salvando log de sucesso no envio de mensagem
+    		Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_SUCESSO);
 		} catch(Exception $e){
-			
-            throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
+
+			// salvando log de falha no envio de mensagem
+    		Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_FALHA . $e->getMessage());
+			throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }
 	}
 	

@@ -42,6 +42,9 @@ define("LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR", "Novo f
 define("LOG_MSG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR", "Novo formulario elemento validador inserido no banco de dados.");
 define("LOG_MSG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO", "Novo formulario formulario elemento inserido no banco de dados.");
 define("LOG_MSG_NOVO_FORMULARIO_TEMPLATE", "Novo formulario template inserido no banco de dados.");
+define("LOG_MSG_EMAIL", "Operação de envio de e-mail.");
+define("LOG_MSG_EMAIL_SUCESSO", "Operação de envio de e-mail SUCESSO.");
+define("LOG_MSG_EMAIL_FALHA", "Operação de envio de e-mail FALHA: ");
 
 /*
  * OUTPUT
