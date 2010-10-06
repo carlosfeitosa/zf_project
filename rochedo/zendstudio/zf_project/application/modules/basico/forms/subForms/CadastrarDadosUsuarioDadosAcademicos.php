@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2010 13:46:15
+* em: 06/10/2010 14:35:09
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 04/10/2010 15:58:47
+* @version    1: 06/10/2010 14:32:13
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -26,11 +26,19 @@
     // Criando array de elementos.
     $elements = array();
 
+    $elements[0] = $this->createElement('FilteringSelect', 'categoriaBolsaCnpq');
+    $elements[0]->setRequired(true);
+    $elements[0]->addFilters(array('StringTrim', 'StripTags'));
+    $elements[0]->AddDecorator('Label', array('escape' => false));
+    $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_CATEGORIA_BOLSA_CNPQ', DEFAULT_USER_LANGUAGE) . '');
+    if ($options!=null)
+        $elements[0]->setValue($options->categoriaBolsaCnpq);
+
     $basicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoSubFormDOJO = new Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao();
     $basicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoSubFormDOJO = Basico_UtilControllerController::escapaCaracteresFormDialogDOJO($basicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoSubFormDOJO);
-    $elements[0] = $this->createElement('button', 'buttonDialogDojo1');
-    $elements[0]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}", 'onClick' => "exibirForm(\"Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao\", \"{$basicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoSubFormDOJO}\", \"{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}\")"));
-    $elements[0]->setRequired(false);
+    $elements[1] = $this->createElement('button', 'buttonDialogDojo1');
+    $elements[1]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}", 'onClick' => "exibirForm(\"Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao\", \"{$basicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoSubFormDOJO}\", \"{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}\")"));
+    $elements[1]->setRequired(false);
 
     // Adicionando elementos ao formulario.
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->addElements($elements);
