@@ -189,9 +189,9 @@ class Basico_DBUtilControllerController
      */
     public static function resetaBD()
     {
-    	self::dropDbTables();
-    	//self::createDbTables();
-    	//self::insertDbData();
+    	//self::dropDbTables();
+    	self::createDbTables();
+    	self::insertDbData();
             
     }
     
@@ -199,56 +199,51 @@ class Basico_DBUtilControllerController
      * Apaga todas as tabelas do banco que está sendo utilizado.
      * @return Boolean
      */
-    private function dropDbTables() {
+    private function dropDbTables() 
+    {
     	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
     	$dropScriptsFiles = self::retornaArrayFullFileNameDbDropScriptsFiles();
     	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
     	
-    	//inicializando variavel
-    	$fullDropScript = "";
-    	
-    	
     	foreach ($dropScriptsFiles as $file) {
-    		$fullDropScript .= PHP_EOL . file_get_contents(self::retornaDBCreateScriptsPath(). $file);
+    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
     	}
     	
-    	self::executaScriptSQL($fullDropScript);
+    	
     }
 
     /**
      * Executa script de criação de todas as tabelas do banco que está sendo utilizado.
      * @return Boolean
      */
-    private function createDbTables() {
+    private function createDbTables() 
+    {
     	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
     	$createScriptsFiles = self::retornaArrayFullFileNameDbCreateScriptsFiles();
     	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
     	
-    	//inicializando variavel
-    	$fullCreateScript = "";
     	foreach ($createScriptsFiles as $file) {
-    		$fullCreateScript .= PHP_EOL . file_get_contents(self::retornaDBCreateScriptsPath(). $file);
+    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
     	}
-    	self::executaScriptSQL($fullCreateScript);
+    	
     }
     
     /**
      * Executa script de inserção dos dados básicos do sistema.
      * @return unknown_type
      */
-    private function insertDbData() {
+    private function insertDbData() 
+    {
     	
     	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
     	$dataScriptsFiles = self::retornaArrayFullFileNameDbDataScriptsFiles();
     	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
-    	
-    	//inicializando variavel
-    	$fullDataScript = "";
+        
     	foreach ($dataScriptsFiles as $file) {
-    		$fullDataScript .= PHP_EOL . file_get_contents(self::retornaDBDataScriptsPath(). $file);
+    		self::executaScriptSQL(file_get_contents(self::retornaDBDataScriptsPath(). $file));
     	}
     	
-    	self::executaScriptSQL($fullDataScript);
+    	
     	
     	
     }
@@ -263,7 +258,7 @@ class Basico_DBUtilControllerController
     	try {
     		//removendo comentarios do script SQL
     		$script = self::removeComentariosArquivo($script);
-    		
+    		//echo $script; exit;
 	    	// recuperando resource do bando de dados.
 	    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
 	    	//incializando transacao
@@ -290,7 +285,8 @@ class Basico_DBUtilControllerController
      */
     private function removeComentariosArquivo($string)
     {
-    	return preg_replace("@(/\*.*?\*/)@se", '',$string);
+    	$pattern = "@(/\*.*?\*/)@se";
+    	return preg_replace($pattern, '',$string);
     	
     }
     
@@ -384,6 +380,7 @@ class Basico_DBUtilControllerController
     		if (strpos($file, '.') === 0) {
     			unset($dataScriptsFilesArray[$i]);
     		}
+    		$i++;
     	}
     	return $dataScriptsFilesArray;
     }
