@@ -30,4 +30,3 @@ drop table formulario;
 drop table decorator;
 drop table ajuda;
 drop table output;
-drop function fn_CheckConstanteTextualExists(character varying (200));

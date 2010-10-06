@@ -135,6 +135,7 @@ define("MSG_ERRO_BD_TRANSACAO_OPERACAO_NAO_EXISTENTE", "Operação de transaçã
 
 // GERACAO BANDO DE DADOS
 define("MSG_ERRO_BD_PATH_NAO_ENCONTRADO", "Diretório de Scripts do Banco de Dados não encontrado.");
+define("MSG_ERRO_EXECUCAO_SCRIPT", "Erro na execução do script.");
 
 // CATEGORIA CHAVE ESTRANGEIRA
 define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_SEM_RELACAO", "Relação da categoria com chave estrangeira não encontrada.");

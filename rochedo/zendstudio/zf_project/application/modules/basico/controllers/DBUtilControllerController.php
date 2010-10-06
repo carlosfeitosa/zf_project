@@ -184,13 +184,14 @@ class Basico_DBUtilControllerController
     }
     
     /**
-     * Função para regerar o banco de dados
+     * Função para resetar o banco de dados
      * @return Boolean
      */
     public static function resetaBD()
     {
     	self::dropDbTables();
-    	self::createDbTables();
+    	//self::createDbTables();
+    	//self::insertDbData();
             
     }
     
@@ -211,14 +212,11 @@ class Basico_DBUtilControllerController
     		$fullDropScript .= PHP_EOL . file_get_contents(self::retornaDBCreateScriptsPath(). $file);
     	}
     	
-    	Basico_UtilControllerController::print_debug($fullDropScript, true, false, false);
-    	// recuperando resource do bando de dados.
-    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-    	//$auxDb->fetchAll();
+    	self::executaScriptSQL($fullDropScript);
     }
 
     /**
-     * Apaga todas as tabelas do banco que está sendo utilizado.
+     * Executa script de criação de todas as tabelas do banco que está sendo utilizado.
      * @return Boolean
      */
     private function createDbTables() {
@@ -231,13 +229,68 @@ class Basico_DBUtilControllerController
     	foreach ($createScriptsFiles as $file) {
     		$fullCreateScript .= PHP_EOL . file_get_contents(self::retornaDBCreateScriptsPath(). $file);
     	}
-    	Basico_UtilControllerController::print_debug($fullCreateScript, true, false, true);
-    	// recuperando resource do bando de dados.
-    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-    	//$auxDb->fetchAll();
+    	self::executaScriptSQL($fullCreateScript);
     }
     
+    /**
+     * Executa script de inserção dos dados básicos do sistema.
+     * @return unknown_type
+     */
     private function insertDbData() {
+    	
+    	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
+    	$dataScriptsFiles = self::retornaArrayFullFileNameDbDataScriptsFiles();
+    	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
+    	
+    	//inicializando variavel
+    	$fullDataScript = "";
+    	foreach ($dataScriptsFiles as $file) {
+    		$fullDataScript .= PHP_EOL . file_get_contents(self::retornaDBDataScriptsPath(). $file);
+    	}
+    	
+    	self::executaScriptSQL($fullDataScript);
+    	
+    	
+    }
+    
+    /**
+     * Executa um script de banco de dados
+     * @param $script
+     * @return Boolean
+     */
+    private function executaScriptSQL($script) 
+    {
+    	try {
+    		//removendo comentarios do script SQL
+    		$script = self::removeComentariosArquivo($script);
+    		
+	    	// recuperando resource do bando de dados.
+	    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+	    	//incializando transacao
+	    	Basico_PersistenceControllerController::bdControlaTransacao();
+	    	//executando script SQL
+	    	$auxDb->exec($script);
+	    	// confirmando execucao do script
+	    	Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+	    	return true;
+    	}catch(Exception $e) {
+    		// cancelando execucao do script
+    		Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . $e->getMessage());
+    		return false;
+    	}
+    	
+    }
+    
+    /**
+     * remove comentários de arquivos
+     * @param $string
+     * @param $enc
+     * @return unknown_type
+     */
+    private function removeComentariosArquivo($string)
+    {
+    	return preg_replace("@(/\*.*?\*/)@se", '',$string);
     	
     }
     
@@ -377,9 +430,9 @@ class Basico_DBUtilControllerController
     	//retornando o path dos scripts de banco de dados de acordo com o tipo do banco
     	switch (self::retornaPdoType()) {
     		case "PGSQL":
-    		    return BASICO_DB_PGSQL_CREATE_DATA_SCRIPTS_PATH;
+    		    return BASICO_DB_PGSQL_DATA_SCRIPTS_PATH;
     		case "MSSQL":
-    			return BASICO_DB_MSSQL_CREATE_DATA_SCRIPTS_PATH;     
+    			return BASICO_DB_MSSQL_DATA_SCRIPTS_PATH;     
     	}
     	
     }

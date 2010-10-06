@@ -31,3 +31,4 @@ drop table categoria;
 drop table tipo_categoria;
 drop function fn_CheckCategoriaChaveEstrangeiraCategoriaExists(int);
 drop function fn_CheckCategoriaCVC(int);
+drop function fn_CheckConstanteTextualExists(character varying (200));
