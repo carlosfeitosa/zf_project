@@ -187,6 +187,16 @@ class Basico_PersistenceControllerController
     	// retornando o resultado do metodo "retornaCategoriaChaveEstrangeira" no controlador "Basico_DBUtilControllerController"
     	return Basico_DBUtilControllerController::retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship);
     }
+    
+    /**
+     * Reseta o banco de dados que está sendo utilizado.
+     * @return boolean
+     */
+    public static function bdResetaBD()
+    {
+    	Basico_DBUtilControllerController::resetaBD();
+    	return true;
+    }
 
     /**
      * Checa a existencia da relacao categoria chave estrangeira

@@ -15,7 +15,7 @@
  * registro de usuário validado
 */
 
-/**
+/*
  * Titulo e Subtitulo do formulário de cadastro de usuarios validados.
  */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
@@ -32,7 +32,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
-/**
+/*
  * labels dos campos do formulario de cadastro de usuarios validados.
  */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
@@ -195,7 +195,7 @@ AND c.nome = 'pt-br';
  * registro de usuário validado
 */
 
-/**
+/*
  * Titulo e Subtitulo do formulário de cadastro de usuarios validados.
  */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
@@ -212,7 +212,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-/**
+/*
  * labels dos campos do formulario de cadastro de usuarios validados.
  */
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
@@ -376,7 +376,7 @@ SELECT id, 'COMPONENTE_AJAX_TERCEIROS' AS nome, 'Componentes ajax de terceiros u
 FROM tipo_categoria
 WHERE nome = 'COMPONENTE';
 
-/* COMPONENTE */
+/* COMPONENTE 
 
 INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_PasswordTextBox' AS nome, 'Componente DOJO para caixas de texto do tipo Password.' AS descricao,
@@ -418,7 +418,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
-/* FORMULARIO */
+/* FORMULARIO 
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,
@@ -441,7 +441,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
-/*
+
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d

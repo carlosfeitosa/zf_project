@@ -13,20 +13,20 @@
 * 						14/09/2010 - drop da tabela componente;
 */
 
-drop table formulario_formulario_elemento_formulario;
-drop table template_formulario;
-drop table template;
-drop table formulario_perfil;
-drop table formulario_formulario_elemento;
-drop table formulario_elemento_formulario_elemento_validator;
-drop table formulario_elemento;
-drop table formulario_elemento_validator;
-drop table formulario_elemento_filter;
-drop table componente;
-drop table modulo_formulario;
-drop table modulo_perfil;
-drop table modulo;
-drop table formulario;
-drop table decorator;
-drop table ajuda;
-drop table output;
+drop table if exists formulario_formulario_elemento_formulario;
+drop table if exists template_formulario;
+drop table if exists template;
+drop table if exists formulario_perfil;
+drop table if exists formulario_formulario_elemento;
+drop table if exists formulario_elemento_formulario_elemento_validator;
+drop table if exists formulario_elemento;
+drop table if exists formulario_elemento_validator;
+drop table if exists formulario_elemento_filter;
+drop table if exists componente;
+drop table if exists modulo_formulario;
+drop table if exists modulo_perfil;
+drop table if exists modulo;
+drop table if exists formulario;
+drop table if exists decorator;
+drop table if exists ajuda;
+drop table if exists output;

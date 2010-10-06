@@ -189,10 +189,11 @@ class Basico_DBUtilControllerController
      */
     public static function resetaBD()
     {
-    	//self::dropDbTables();
+    	self::dropDbTables();
     	self::createDbTables();
     	self::insertDbData();
-            
+
+    	return true;
     }
     
     /**
@@ -202,14 +203,13 @@ class Basico_DBUtilControllerController
     private function dropDbTables() 
     {
     	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
-    	$dropScriptsFiles = self::retornaArrayFullFileNameDbDropScriptsFiles();
+    	$dropScriptsFiles = self::retornaArrayFileNamesDbDropScriptsFiles();
     	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
     	
     	foreach ($dropScriptsFiles as $file) {
     		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
     	}
-    	
-    	
+    	return true;
     }
 
     /**
@@ -219,13 +219,13 @@ class Basico_DBUtilControllerController
     private function createDbTables() 
     {
     	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
-    	$createScriptsFiles = self::retornaArrayFullFileNameDbCreateScriptsFiles();
+    	$createScriptsFiles = self::retornaArrayFileNamesDbCreateScriptsFiles();
     	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
     	
     	foreach ($createScriptsFiles as $file) {
     		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
     	}
-    	
+    	return true;
     }
     
     /**
@@ -236,16 +236,13 @@ class Basico_DBUtilControllerController
     {
     	
     	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
-    	$dataScriptsFiles = self::retornaArrayFullFileNameDbDataScriptsFiles();
+    	$dataScriptsFiles = self::retornaArrayFileNamesDbDataScriptsFiles();
     	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
         
     	foreach ($dataScriptsFiles as $file) {
     		self::executaScriptSQL(file_get_contents(self::retornaDBDataScriptsPath(). $file));
     	}
-    	
-    	
-    	
-    	
+    	return true;
     }
     
     /**
@@ -256,45 +253,51 @@ class Basico_DBUtilControllerController
     private function executaScriptSQL($script) 
     {
     	try {
-    		//removendo comentarios do script SQL
-    		$script = self::removeComentariosArquivo($script);
-    		//echo $script; exit;
-	    	// recuperando resource do bando de dados.
-	    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-	    	//incializando transacao
-	    	Basico_PersistenceControllerController::bdControlaTransacao();
-	    	//executando script SQL
-	    	$auxDb->exec($script);
-	    	// confirmando execucao do script
-	    	Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-	    	return true;
+    		if (self::checkScriptIsAvailable($script)) {
+	            //removendo comentarios do script SQL
+	    		$script = Basico_UtilControllerController::removeComentariosArquivo($script);
+	            
+		    	// recuperando resource do bando de dados.
+		    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+		    	//incializando transacao
+		    	Basico_PersistenceControllerController::bdControlaTransacao();
+		    	//executando script SQL
+		    	$auxDb->getConnection()->exec($script);
+		    	// confirmando execucao do script
+		    	Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+				return true;
+    			
+    		}
+    		return false;
     	}catch(Exception $e) {
     		// cancelando execucao do script
     		Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . $e->getMessage());
-    		return false;
+            return false;
     	}
     	
     }
     
     /**
-     * remove comentários de arquivos
-     * @param $string
-     * @param $enc
-     * @return unknown_type
+     * Checa se o script está disponivel para ser gerado (Procura pela flag @exclude)
+     * @param $script
+     * @return Boolean
      */
-    private function removeComentariosArquivo($string)
+    private function checkScriptIsAvailable($script)
     {
-    	$pattern = "@(/\*.*?\*/)@se";
-    	return preg_replace($pattern, '',$string);
-    	
+    	//Checando se o script pode ser executado.
+    	if (strpos($script, "@exclude") === false) {
+    		return true;
+    	}else{
+    		return false;
+    	}
     }
-    
+        
     /**
      * Retorna array com nomes dos arquivos de drop para o banco que está sendo utilizado
      * @return array
      */
-    private function retornaArrayFullFileNameDbDropScriptsFiles() 
+    private function retornaArrayFileNamesDbDropScriptsFiles() 
     {
     	//recuperando o path dos arquivos de create do banco de dados.
         $scriptsPath = self::retornaDBCreateScriptsPath();
@@ -327,7 +330,7 @@ class Basico_DBUtilControllerController
      * Retorna array com nomes dos arquivos de create para o banco que está sendo utilizado
      * @return unknown_type
      */
-    private function retornaArrayFullFileNameDbCreateScriptsFiles() 
+    private function retornaArrayFileNamesDbCreateScriptsFiles() 
     {
     	//recuperando o path dos arquivos de create do banco de dados.
         $scriptsPath = self::retornaDBCreateScriptsPath();
@@ -336,7 +339,6 @@ class Basico_DBUtilControllerController
     	if (!file_exists($scriptsPath)){
     		throw new Exception(MSG_ERRO_BD_PATH_NAO_ENCONTRADO);
     	}
-    	
     	// carregando array com arquivos contidos no diretorio.
     	$createScriptsFilesArray = scandir($scriptsPath);
     	
@@ -360,7 +362,7 @@ class Basico_DBUtilControllerController
     * Retorna array com nomes dos arquivos de insert de dados para o banco que está sendo utilizado
     * @return unknown_type
     */
-    private function retornaArrayFullFileNameDbDataScriptsFiles() 
+    private function retornaArrayFileNamesDbDataScriptsFiles() 
     {
     	//recuperando o path dos arquivos de create do banco de dados.
         $scriptsPath = self::retornaDBDataScriptsPath();

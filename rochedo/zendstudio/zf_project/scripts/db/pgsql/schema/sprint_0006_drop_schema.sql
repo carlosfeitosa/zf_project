@@ -10,4 +10,4 @@
 * 									   do script 0001
 */
 
-drop table cvc;
+drop table if exists cvc;

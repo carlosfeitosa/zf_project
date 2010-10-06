@@ -1183,6 +1183,28 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
+/* MENSAGENS-LABELS DA AREA DE ADMINISTRACAO */
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_BD_RESET_SUCESSO' AS constante_textual, 'O banco de dados foi resetado com sucesso.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_INDEX_TITULO' AS constante_textual, 'Área de Administração do Sitema.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_BD_RESET_BUTTON_LABEL' AS constante_textual, 'Resetar Banco de Dados.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
 
 /* 
  * (Inglês dos E.U.A. - EN_US)
@@ -1388,6 +1410,28 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO' AS constante_textual, 'Fill this form below to continue your registration.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+/* MENSAGENS-LABELS DA AREA DE ADMINISTRACAO */
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_BD_RESET_SUCESSO' AS constante_textual, 'The database was regenerated with sucess.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_INDEX_TITULO' AS constante_textual, 'Adminstration Area.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_BD_RESET_BUTTON_LABEL' AS constante_textual, 'Reset Database' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

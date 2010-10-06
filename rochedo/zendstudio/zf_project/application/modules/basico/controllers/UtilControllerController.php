@@ -128,6 +128,19 @@ class Basico_UtilControllerController
         // retornando o conteudo da URI
         return file_get_contents($encodedUri);
     }
+    
+    /**
+     * remove comentários de arquivos
+     * @param $string
+     * @param $enc
+     * @return unknown_type
+     */
+    public static function removeComentariosArquivo($string)
+    {
+    	$pattern = "@(/\*.*?\*/)@se";
+    	return preg_replace($pattern, '',$string);
+    	
+    }
 	
 	/**
 	 * Retorna IP do usuário.

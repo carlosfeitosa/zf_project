@@ -12,23 +12,23 @@
 * 						- 28/09/2010 - drop das funcoes do CVC
 */
 
-drop table dicionario_expressao;
-drop table token;
-drop table categoria_chave_estrangeira;
-drop table email;
-drop table log;
-drop table login;
-drop table dados_pessoais;
-drop table dados_pessoas_perfis;
-drop table pessoas_perfis_mensagem_categoria;
-drop table pessoas_perfis;
-drop table pessoa;
-drop table perfil;
-drop table mensagem_email;
-drop table anexo_mensagem;
-drop table mensagem;
-drop table categoria;
-drop table tipo_categoria;
-drop function fn_CheckCategoriaChaveEstrangeiraCategoriaExists(int);
-drop function fn_CheckCategoriaCVC(int);
-drop function fn_CheckConstanteTextualExists(character varying (200));
+drop table if exists dicionario_expressao;
+drop table if exists token;
+drop table if exists categoria_chave_estrangeira;
+drop table if exists email;
+drop table if exists log;
+drop table if exists login;
+drop table if exists dados_pessoais;
+drop table if exists dados_pessoas_perfis;
+drop table if exists pessoas_perfis_mensagem_categoria;
+drop table if exists pessoas_perfis;
+drop table if exists pessoa;
+drop table if exists perfil;
+drop table if exists mensagem_email;
+drop table if exists anexo_mensagem;
+drop table if exists mensagem;
+drop table if exists categoria;
+drop table if exists tipo_categoria;
+drop function if exists fn_CheckCategoriaChaveEstrangeiraCategoriaExists(int);
+drop function if exists fn_CheckCategoriaCVC(int);
+drop function if exists fn_CheckConstanteTextualExists(character varying (200));
