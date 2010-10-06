@@ -410,7 +410,7 @@ class Basico_Model_Categoria
 	*/
 	public function find($id)
 	{
-		$this->getMapper()->find($id, $this);
+		$this->getMapper()->find((Int) $id, $this);
 		return $this;
 	}
 	

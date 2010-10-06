@@ -247,7 +247,7 @@ class Basico_Model_ModuloPerfil
     */
     public function find($id)
     {
-        $this->getMapper()->find($id, $this);
+        $this->getMapper()->find((Int) $id, $this);
         return $this;
     }
 

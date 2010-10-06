@@ -120,21 +120,7 @@ class Basico_Model_Mensageiro
 		return $this;
 	}
 	
-	/**
-	* Get data mapper
-	*
-	* Lazy loads Basico_Model_MensageiroMapper instance if no mapper registered.
-	* 
-	* @return Basico_Model_MensageiroMapper
-	*/
-	public function getMapper()
-	{
-		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_MensageiroMapper());
-		}
-		return $this->_mapper;
-	}
-
+	
 	/**
 	* Save the current entry
 	* 
@@ -164,7 +150,7 @@ class Basico_Model_Mensageiro
 	*/
 	public function find($id)
 	{
-		$this->getMapper()->find($id, $this);
+		$this->getMapper()->find((Int) $id, $this);
 		return $this;
 	}
 

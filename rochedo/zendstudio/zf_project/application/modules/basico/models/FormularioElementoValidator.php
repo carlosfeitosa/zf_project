@@ -296,7 +296,7 @@ class Basico_Model_FormularioElementoValidator
 	*/
 	public function find($id)
 	{
-		$this->getMapper()->find($id, $this);
+		$this->getMapper()->find((Int) $id, $this);
 		return $this;
 	}
 
