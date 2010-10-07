@@ -24,7 +24,7 @@ create table categoria (
 	nivel integer not null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) ,
-	ativo smallint not null ,
+	ativo boolean not null ,
 	rowinfo character varying (2000) not null
 )
 with (
@@ -49,9 +49,9 @@ create table email (
 	id_categoria integer not null ,
 	unique_id character varying (100) not null ,
 	email character varying (100) not null ,
-	validado smallint not null ,
+	validado boolean not null ,
 	datahora_ultima_validacao timestamp with time zone ,
-	ativo smallint not null ,
+	ativo boolean not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -76,13 +76,13 @@ create table login (
 	id_pessoa integer not null ,
 	login character varying (100) not null ,
 	senha character varying (100) not null ,
-	ativo smallint not null ,
+	ativo boolean not null ,
 	tentativas_falhas integer not null ,
-	travado smallint not null ,
-	resetado smallint not null ,
+	travado boolean not null ,
+	resetado boolean not null ,
 	datahora_ultimo_logon timestamp with time zone ,
 	observacoes character varying (2000) ,
-	pode_expirar smallint not null ,
+	pode_expirar boolean not null ,
 	datahora_proxima_expiracao timestamp with time zone ,
 	datahora_ultima_expiracao timestamp with time zone ,
 	datahora_expiracao_senha timestamp with time zone ,
@@ -98,7 +98,7 @@ create table perfil (
 	id_categoria integer not null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000)  ,
-	ativo smallint not null ,
+	ativo boolean not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -281,21 +281,21 @@ alter table dicionario_expressao add constraint pk_dicionario_expressao primary 
 
 alter table categoria
 	alter column nivel set default 1 ,
-	alter column ativo set default 1;
+	alter column ativo set default true;
 
 alter table email 
-	alter column validado set default 0 ,
-    alter column ativo set default 0;
+	alter column validado set default false ,
+    alter column ativo set default false;
 
 alter table perfil
-    alter column ativo set default 1;
+    alter column ativo set default true;
 
 alter table login 
-	alter column ativo set default 0 ,
+	alter column ativo set default false ,
 	alter column tentativas_falhas set default 0 ,
-	alter column travado set default 0 ,
-	alter column resetado set default 0 ,
-	alter column pode_expirar set default 1 ,
+	alter column travado set default false ,
+	alter column resetado set default false ,
+	alter column pode_expirar set default true ,
 	alter column datahora_proxima_expiracao set default (current_timestamp + interval '12 months');
 	
 alter table token

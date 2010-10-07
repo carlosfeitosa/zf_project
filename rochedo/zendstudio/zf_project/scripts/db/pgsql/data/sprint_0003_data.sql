@@ -400,7 +400,7 @@ AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR';
 INSERT INTO modulo (id_categoria, nome, descricao, versao, path, instalado, ativo, xml_autoria, rowinfo)
 SELECT c.id AS id_categoria, 'BASICO' AS nome,
 	   'Modulo basico. Necessario para funcionamento minimo do sistema.' AS descricao,
-	   '0.3' AS versao, 'basico/' AS path, 1 AS instalado, 1 AS ativo,
+	   '0.3' AS versao, 'basico/' AS path, true AS instalado, true AS ativo,
 	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -679,7 +679,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FIELD_CATEGORIA_BOLSA_CNPQ' AS nome, 'Elemento campo Categoria da bolsa do cnpq, com filtro.' AS descricao,
                               'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual_label,
                               'categoriaBolsaCnpq' AS element_name, NULL AS element_attribs,
-                              '''categoriaBolsaCnpq''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''categoriaBolsaCnpq''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -722,7 +722,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FIELD_MAIOR_TITULACAO' AS nome, 'Elemento campo Maior Titulação, com filtro.' AS descricao,
                               'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual_label,
                               'maiorTitulacao' AS element_name, NULL AS element_attribs,
-                              '''maiorTitulacao''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''maiorTitulacao''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -758,7 +758,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para cha
         AND cp.nome = 'ZF_button') AS id_componente,
        'buttonDialogDojo' AS element_name, 
        '''label'' => "{@tituloForm}", ''onClick'' => "exibirForm(\\"@nomeForm\\", \\"{@variableInstaceForm}\\", \\"{@tituloForm}\\")"' AS element_attribs,
-       '''buttonDialogDojo@offset''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+       '''buttonDialogDojo@offset''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -782,7 +782,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FIELD_CATEGORIA_BOLSA_CNPQ') AS id_formulario_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FIELD_CATEGORIA_BOLSA_CNPQ') AS id_formulario_elemento, true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -798,7 +798,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
-        AND fe.nome = 'FORM_BUTTON_DIALOG_DOJO') AS id_formulario_elemento, 0 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FORM_BUTTON_DIALOG_DOJO') AS id_formulario_elemento, false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -814,7 +814,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FIELD_MAIOR_TITULACAO') AS id_formulario_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FIELD_MAIOR_TITULACAO') AS id_formulario_elemento, true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 
 /* FORMULÁRIO X FORMULÁRIO ELEMENTO X FORMULÁRIO */

@@ -90,8 +90,8 @@ create table modulo (
 	descricao character varying (2000) null ,
 	versao character varying (200) null ,
 	path character varying (1000) null ,
-	instalado smallint not null ,
-	ativo smallint not null ,
+	instalado boolean not null ,
+	ativo boolean not null ,
 	data_depreciacao timestamp with time zone null ,
 	xml_autoria character varying (2000) not null ,
 	rowinfo character varying (2000) not null
@@ -143,7 +143,7 @@ create table formulario_elemento (
 	element_name character varying (100) not null ,
 	element_attribs character varying (1000) null ,
 	element character varying (1000) not null ,
-	element_reloadable smallint not null ,
+	element_reloadable boolean not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -209,7 +209,7 @@ create table formulario_formulario_elemento (
 	id serial not null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
-	element_required smallint not null ,
+	element_required boolean not null ,
 	ordem int not null ,	
 	rowinfo character varying (2000) not null 
 )
@@ -308,14 +308,14 @@ alter table componente add constraint pk_componente primary key (id);
 /* CRIACAO DOS VALORES DEFAULT */
 
 alter table modulo
-	alter column instalado set default 0,
-	alter column ativo set default 0;
+	alter column instalado set default false,
+	alter column ativo set default false;
 
 alter table formulario
     alter column validade_inicio set default (current_timestamp);
 
 alter table formulario_elemento
-	alter column element_reloadable set default (0);
+	alter column element_reloadable set default false;
 
 alter table componente
 	alter column validade_inicio set default (current_timestamp);
