@@ -5,5 +5,8 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 05/10/2010
 */
-
-drop table relacao_categoria_chave_estrangeira;
+if object_id('relacao_categoria_chave_estrangeira') is not null
+begin
+  drop table relacao_categoria_chave_estrangeira
+end
+;

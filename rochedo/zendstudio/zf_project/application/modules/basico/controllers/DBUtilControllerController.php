@@ -280,11 +280,15 @@ class Basico_DBUtilControllerController
      */
     private function resetaLoginUsuarioMaster()
     {
+    	//setando a mascara
     	$pattern = "@(SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . PHP_EOL . ")@";
-    	$replacement = 'SetEnv APPLICATION_SYSTEM_LOGIN ' . self::retornaLoginUsuarioMasterDB();
+    	//setando string de substituicao
+    	$replacement = 'SetEnv APPLICATION_SYSTEM_LOGIN ' . self::retornaLoginUsuarioMasterDB() . QUEBRA_DE_LINHA;
+    	//recuperando conteudo do arquivo htaccess
     	$conteudoHtaccess = Basico_UtilControllerController::retornaConteudoArquivo(HTACCESS_FULLFILENAME);
-
+        //recuperando o novo conteudo do arquivo htaccess
     	$conteudoNovoHtaccess = preg_replace($pattern, $replacement, $conteudoHtaccess, 1);
+    	//reescrevendo o arquivo htaccess
     	Basico_UtilControllerController::escreveConteudoArquivo(HTACCESS_FULLFILENAME, $conteudoNovoHtaccess);
     }
     
@@ -294,11 +298,15 @@ class Basico_DBUtilControllerController
      */
     private function retornaLoginUsuarioMasterDB() 
     {
-    	
+    	//recuperando o objeto pessoaPerfil do sistema
     	$pessoaPerfilSistema = self::retornaObjetoPessoaPerfilSistema();
+    	//criando objeto login
     	$objLogin = new Basico_Model_Login();
+    	//recuperando resource do banco de dados
     	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-    	$login = $objLogin->fetchList("id_pessoa = {$pessoaPerfilSistema->pessoa}", null, 1, 0); 
+    	//recuperando o login do usuario master do sistema
+    	$login = $objLogin->fetchList("id_pessoa = {$pessoaPerfilSistema->pessoa}", null, 1, 0);
+    	//retornando o login do usuario master do sistema
     	return $login[0]->login;
     }
        
