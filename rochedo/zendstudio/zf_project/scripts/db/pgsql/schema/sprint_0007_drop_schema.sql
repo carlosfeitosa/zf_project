@@ -6,4 +6,4 @@
 * criacao: 07/10/2010
 */
 
-drop table relacao_categoria_chave_estrangeira;
+drop table if exists relacao_categoria_chave_estrangeira;
