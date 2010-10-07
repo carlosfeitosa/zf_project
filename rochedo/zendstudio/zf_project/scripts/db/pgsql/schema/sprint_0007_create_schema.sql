@@ -21,7 +21,7 @@ alter table relacao_categoria_chave_estrangeira owner to rochedo_user;
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table relacao_categoria_chave_estrangeira add constraint pk_relacao_categoria_chave_estrangeira primary key clustered (id);
+alter table relacao_categoria_chave_estrangeira add constraint pk_relacao_categoria_chave_estrangeira primary key (id);
 
 
 /* CRIACAO DOS INDICES */
