@@ -111,6 +111,17 @@ class Basico_PersistenceControllerController
 		// retornando o resultado do metodo "save" do controlador "Basico_DBSaveControllerController"
 		return Basico_DBSaveControllerController::save($mixed, $versaoUpdate, $idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 	}
+	
+	 /**
+     * Retorna tipo do banco de dados que está sendo utilizado
+     * 
+     * @return String
+     */
+    public static function bdRetornaPdoType()
+    {	
+    	// retornando o resultado do metodo "retornaPdoType" no controlador "Basico_DBUtilControllerController"
+    	return Basico_DBUtilControllerController::retornaPdoTypeConexaoAtiva();
+    }
 
 	/**
 	 * Checa a conexão com o banco de dados, lança um erro no caso de não conseguir conectar.

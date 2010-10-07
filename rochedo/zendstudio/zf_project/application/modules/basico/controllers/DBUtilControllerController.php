@@ -422,9 +422,11 @@ class Basico_DBUtilControllerController
     
     /**
      * Retorna tipo do banco de dados que está sendo utilizado
+     * 
      * @return String
      */
-    private function retornaPdoType() {
+    public static function retornaPdoTypeConexaoAtiva()
+    {
     	//recuperando resource do bando de dados
     	$dbResource = Basico_PersistenceControllerController::bdRecuperaBDSessao();
     	
@@ -444,7 +446,7 @@ class Basico_DBUtilControllerController
     private function retornaDBCreateScriptsPath()
     {
     	//retornando o path dos scripts de banco de dados de acordo com o tipo do banco
-    	switch (self::retornaPdoType()) {
+    	switch (self::retornaPdoTypeConexaoAtiva()) {
     		case "PGSQL":
     		    return BASICO_DB_PGSQL_CREATE_SCHEMA_SCRIPTS_PATH;
     		case "MSSQL":
@@ -460,7 +462,7 @@ class Basico_DBUtilControllerController
     private function retornaDBDataScriptsPath()
     {
     	//retornando o path dos scripts de banco de dados de acordo com o tipo do banco
-    	switch (self::retornaPdoType()) {
+    	switch (self::retornaPdoTypeConexaoAtiva()) {
     		case "PGSQL":
     		    return BASICO_DB_PGSQL_DATA_SCRIPTS_PATH;
     		case "MSSQL":
