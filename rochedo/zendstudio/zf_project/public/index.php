@@ -3,6 +3,10 @@
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
+
+// Define path to application directory
+defined('PUBLIC_PATH')
+    || define('PUBLIC_PATH', realpath(dirname(__FILE__)));
     
 // Define path to application modules directory
 defined('APPLICATION_MODULE_PATH')

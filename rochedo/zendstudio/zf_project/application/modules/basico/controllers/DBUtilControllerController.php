@@ -74,6 +74,39 @@ class Basico_DBUtilControllerController
         // retornando o id do objeto pessoa perfil do sistema
         return $objPessoaPerfilSistema[0]->id;
 	}
+	
+    /**
+     * Retorna o objeto da PessoaPefil do sistema.
+     * 
+     * @return Int
+     */
+	public static function retornaObjetoPessoaPerfilSistema()
+	{
+		// instanciando modelos
+
+	    $modelPerfil = new Basico_Model_Perfil();
+	    $modelPessoaPerfil = new Basico_Model_PessoaPerfil();
+
+	    // recuperando o perfil do sistema
+	    $applicationSystemPerfil = APPLICATION_SYSTEM_PERFIL;
+	   
+		// recuperando objeto perfil do sistema
+        $objPerfilSistema = $modelPerfil->fetchList("nome = '{$applicationSystemPerfil}'", null, 1, 0);
+        
+        // verificando se o objeto perfil do sistema foi recuperao/existe
+        if (count($objPerfilSistema) === 0)
+	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
+
+	    // recuperando o objeto pessoa perfil do sistema
+        $objPessoaPerfilSistema = $modelPessoaPerfil->fetchList("id_perfil = {$objPerfilSistema[0]->id}", null, 1, 0);
+        
+        // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
+        if (!$objPessoaPerfilSistema[0]->id)
+            throw new Exception(MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO);
+
+        // retornando o id do objeto pessoa perfil do sistema
+        return $objPessoaPerfilSistema[0];
+	}
 
 	/**
 	 * Retorna o valor da chave primaria de um objeto
@@ -216,15 +249,25 @@ class Basico_DBUtilControllerController
      */
     public static function resetaBD()
     {
+    	self::resetaLoginUsuarioMaster();
+    	//checando se está no ambiente de desenvolvimento
     	if (Basico_UtilControllerController::ambienteDesenvolvimento()) {
-	    	
+    		//salvando log de inicio da operação
+	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_RESET_DB_INICIO);
 	    	//incializando transacao
 			Basico_PersistenceControllerController::bdControlaTransacao();
+			//dropando as tabelas do sistema
 	    	self::dropDbTables();
+	    	//criando as tabelas do sistema
 	    	self::createDbTables();
+	    	//inserindo os dados básicos do sistema
 	    	self::insertDbData();
 	    	// confirmando execucao dos scripts
 	        Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+	        //resetando login do usuario master no arquivo .htaccess
+	        self::resetaLoginUsuarioMaster();
+	        //salvando log de sucesso da operação
+	        Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_RESET_DB_SUCESSO);
 	        return true;
     	}else{
     	    return false;
@@ -232,18 +275,50 @@ class Basico_DBUtilControllerController
     }
     
     /**
+     * Reseta o login do usuário master do sistema no arquivo .htaccess
+     * @return Boolean
+     */
+    private function resetaLoginUsuarioMaster()
+    {
+    	$pattern = "@(SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . PHP_EOL . ")@";
+    	$replacement = 'SetEnv APPLICATION_SYSTEM_LOGIN ' . self::retornaLoginUsuarioMasterDB();
+    	$conteudoHtaccess = Basico_UtilControllerController::retornaConteudoArquivo(HTACCESS_FULLFILENAME);
+
+    	$conteudoNovoHtaccess = preg_replace($pattern, $replacement, $conteudoHtaccess, 1);
+    	Basico_UtilControllerController::escreveConteudoArquivo(HTACCESS_FULLFILENAME, $conteudoNovoHtaccess);
+    }
+    
+    /**
+     * Retorna o login do usuario master do sistema cadastrado no banco de dados
+     * @return String
+     */
+    private function retornaLoginUsuarioMasterDB() 
+    {
+    	
+    	$pessoaPerfilSistema = self::retornaObjetoPessoaPerfilSistema();
+    	$objLogin = new Basico_Model_Login();
+    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+    	$login = $objLogin->fetchList("id_pessoa = {$pessoaPerfilSistema->pessoa}", null, 1, 0); 
+    	return $login[0]->login;
+    }
+       
+    /**
      * Apaga todas as tabelas do banco que está sendo utilizado.
      * @return Boolean
      */
     private function dropDbTables() 
     {
+    	//salvando log de inicio da operação
+    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_INICIO);
     	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
     	$dropScriptsFiles = self::retornaArrayFileNamesDbDropScriptsFiles();
-    	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
     	
+    	//executando scripts de drop
     	foreach ($dropScriptsFiles as $file) {
     		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
     	}
+    	//salvando log de sucesso da operação
+    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_SUCESSO);
     	return true;
     }
 
@@ -253,13 +328,17 @@ class Basico_DBUtilControllerController
      */
     private function createDbTables() 
     {
+    	//salvando log de inicio da operação
+    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_INCIO);
     	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
     	$createScriptsFiles = self::retornaArrayFileNamesDbCreateScriptsFiles();
-    	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
-    	
+    	    	
+    	//executando scripts de create
     	foreach ($createScriptsFiles as $file) {
     		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
     	}
+    	//salvando log de sucesso da operação
+    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_SUCESSO);
     	return true;
     }
     
@@ -269,14 +348,17 @@ class Basico_DBUtilControllerController
      */
     private function insertDbData() 
     {
-    	
+    	//salvando log de inicio da operação
+    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
     	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
     	$dataScriptsFiles = self::retornaArrayFileNamesDbDataScriptsFiles();
-    	//Basico_UtilControllerController::print_debug($dropScriptsFiles, true, false, true);
-        
+    	        
+    	//executando scripts de insert
     	foreach ($dataScriptsFiles as $file) {
     		self::executaScriptSQL(file_get_contents(self::retornaDBDataScriptsPath(). $file));
     	}
+    	//salvando log de sucesso da operação
+    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
     	return true;
     }
     
@@ -305,6 +387,9 @@ class Basico_DBUtilControllerController
     	}catch(Exception $e) {
     		// cancelando execucao do script
     		Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+    		//salvando log do erro
+    		Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_ERRO_EXECUCAO_SCRIPT);
+    		//lançando o erro
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . $e->getMessage());
             return false;
     	}

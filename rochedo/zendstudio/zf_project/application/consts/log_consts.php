@@ -51,3 +51,17 @@ define("LOG_MSG_EMAIL_FALHA", "Operação de envio de e-mail FALHA: ");
  * OUTPUT
  */
 define("LOG_MSG_NOVO_OUTPUT", "Novo output inserido no banco de dados.");
+
+/*
+ * RESET BANCO DE DADOS
+ */
+define("LOG_MSG_RESET_DB_INICIO", "Início do reset do banco de dados.");
+define("LOG_MSG_RESET_DB_SUCESSO", "Banco de dados resetado com sucesso.");
+define("LOG_MSG_DROP_DB_INICIO", "Drop do banco de dados iniciado.");
+define("LOG_MSG_DROP_DB_SUCESSO", "Drop do banco de dados efetuado com sucesso.");
+define("LOG_MSG_CREATE_DB_INCIO", "Create do banco de dados iniciado.");
+define("LOG_MSG_CREATE_DB_SUCESSO", "Create do banco de dados efetuado com sucesso.");
+define("LOG_MSG_INSERT_DB_DATA_INICIO", "Insert dos dados no banco de dados iniciado.");
+define("LOG_MSG_INSERT_DB_DATA_SUCESSO", "Insert dos dados no banco de dados efetuado com sucesso.");
+define("LOG_MSG_ERRO_EXECUCAO_SCRIPT", "Erro na execução do script.");
+

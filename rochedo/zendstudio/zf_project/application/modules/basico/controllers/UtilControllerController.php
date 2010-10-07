@@ -141,6 +141,27 @@ class Basico_UtilControllerController
     	return preg_replace($pattern, '',$string);
     	
     }
+    
+    /**
+     * Retorna o conteudo do .htaccess
+     * @return String
+     */
+    public static function retornaConteudoArquivo($fullFileName)
+    {
+    	try {
+    		    return file_get_contents($fullFileName);
+    	}catch (Exception $e){
+    		    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . $e->getMessage());
+    	}
+    }
+    
+    public static function escreveConteudoArquivo($fullFileName, $conteudo) {
+	    try {
+	    	    return file_put_contents($fullFileName, $conteudo);
+	    	}catch (Exception $e){
+	    	    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . $e->getMessage());
+	    	}
+    }
 	
 	/**
 	 * Retorna IP do usuário.
