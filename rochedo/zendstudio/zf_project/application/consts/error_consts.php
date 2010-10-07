@@ -44,6 +44,7 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS", "Categoria de log novo dado
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL", "Categoria de log novo e-mail não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM", "Categoria de log nova mensagem não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_EMAIL", "Categoria de log e-mail não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA", "Categoria de relação categoria chave estrangeira e-mail não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LINGUAGEM", "Categoria da linguagem não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_CVC", "Categoria de CVC não encontrada no banco de dados");
 define("MSG_ERRO_TIPO_CATEGORIA_CVC", "Tipo de categoria de CVC não encontrada no banco de dados");
@@ -117,6 +118,7 @@ define("MSG_ERRO_ENVIAR_EMAIL", "Não foi possível enviar o e-mail: ");
  */
 define("MSG_ERRO_EMAIL_JA_VALIDADO", "Email já validado no sistema.");
 define("MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO", "Link para validação expirado, recomeçe o seu cadastro.");
+define("MSG_ERRO_EMAIL_CHECK_CONSTRAINT","Chave estrangeira do e-mail não confere.");
 
 /*
  * TRADUTOR
@@ -132,6 +134,8 @@ define("MSG_ERRO_ABRIR_LOG_FS", "Não foi possível abrir o arquivo de LOG: ");
 
 // TRANSACAO DE BANCO DE DADOS
 define("MSG_ERRO_BD_TRANSACAO_OPERACAO_NAO_EXISTENTE", "Operação de transação de banco de dados inválida.");
+define("MSG_ERRO_BD_TRANSACAO_ROLLBACK_SEM_TRANSACAO", "Rollback chamado sem transação inicializada.");
+define("MSG_ERRO_BD_TRANSACAO_COMMIT_SEM_TRANSACAO", "Commit chamado sem transação inicializada.");
 
 // GERACAO BANDO DE DADOS
 define("MSG_ERRO_BD_PATH_NAO_ENCONTRADO", "Diretório de Scripts do Banco de Dados não encontrado.");
@@ -140,3 +144,4 @@ define("MSG_ERRO_EXECUCAO_SCRIPT", "Erro na execução do script.");
 // CATEGORIA CHAVE ESTRANGEIRA
 define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_SEM_RELACAO", "Relação da categoria com chave estrangeira não encontrada.");
 define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_TOKEN_SEM_RELACAO", "Relação de token com categoria chave estrangeira não encontrada.");
+define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_EMAIL_SEM_RELACAO", "Relação de e-mail com categoria chave estrangeira não encontrada.");

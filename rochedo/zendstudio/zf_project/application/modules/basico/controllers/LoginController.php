@@ -221,21 +221,21 @@ class Basico_LoginController extends Zend_Controller_Action
 
 			             // setando e salvando relacionando pessoa perfil mensagem categoria (remetente)
 			             $idPessoaPerfilSistema = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
-			             $objCategoriaRemetente = Basico_CategoriaControllerController::retornaIdCategoriaRemetente();
+			             $idCategoriaRemetente = Basico_CategoriaControllerController::retornaIdCategoriaRemetente();
 			             $pessoaPerfilMensagemCategoriaRemetente = new Basico_Model_PessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaRemetente->mensagem     = $novaMensagem->id;
-			             $pessoaPerfilMensagemCategoriaRemetente->categoria    = $objCategoriaRemetente->id;
+			             $pessoaPerfilMensagemCategoriaRemetente->categoria    = $idCategoriaRemetente;
 			             $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil = $idPessoaPerfilSistema;
 			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaRemetente, true);
 			             $pessoaPerfilMensagemCategoriaRemetente->rowinfo      = $controladorRowInfo->getXml();
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
-						             
+
 			             // setando e salvando relacionando pessoa perfil mensagem categoria (destinatario)
-			             $objCategoriaDestinatario = Basico_CategoriaControllerController::retornaIdCategoriaDestinatario();
+			             $idCategoriaDestinatario = Basico_CategoriaControllerController::retornaIdCategoriaDestinatario();
 			             $pessoaPerfilMensagemCategoriaDestinatario = new Basico_Model_PessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $novaMensagem->id;
-			             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $objCategoriaDestinatario->id;
-			             $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfil->id;
+			             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $idCategoriaDestinatario;
+			             $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfil;
 			             $controladorRowInfo->prepareXml($pessoaPerfilMensagemCategoriaDestinatario, true);
 			             $pessoaPerfilMensagemCategoriaDestinatario->rowinfo      = $controladorRowInfo->getXml();
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaDestinatario);

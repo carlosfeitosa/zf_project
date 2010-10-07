@@ -76,6 +76,10 @@ class Basico_CategoriaControllerController
 	 */
 	private function retornaObjetoCategoriaAtiva($nomeCategoria, $tipoCategoria = null)
 	{
+		// verificando se o controlador foi instanciando
+		if (!self::$singleton)
+			self::init();
+
 		// checando o tipo de categoria e condicionando query
 		if ((isset($tipoCategoria)) and ($tipoCategoria >= 1))
 			$whereSQL = "nome = '{$nomeCategoria}' and id_tipo_categoria = {$tipoCategoria}";
@@ -554,6 +558,24 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private function retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = self::retornaObjetoCategoriaAtiva(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogRelacaoCategoriaChaveEstrangeira))
+			// retornando o objeto
+			return $objCategoriaLogRelacaoCategoriaChaveEstrangeira;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria CVC
 	 * 
 	 * @return Basico_Model_Categoria $categoriaCVC
@@ -600,6 +622,24 @@ class Basico_CategoriaControllerController
 			return (Int) $objCategoriaCVC->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_CVC);
+	}
+
+	/**
+	 * Retorna o id da categoria LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public static function retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = self::retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogRelacaoCategoriaChaveEstrangeira))
+			// retornando o objeto
+			return (Int) $objCategoriaLogRelacaoCategoriaChaveEstrangeira->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
 	}
 
 	/**

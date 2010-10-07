@@ -106,7 +106,7 @@ class Basico_DBUtilControllerController
     {
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
-		
+
 		// recuperando nome da tabela vinculada ao objeto
 		$tableName = $tableInfo['name'];
 		
@@ -131,6 +131,33 @@ class Basico_DBUtilControllerController
 		
 		// retorna o nome do campo da chave primaria
 		return $tablePrimaryKey[1];
+    }
+
+    /**
+     * Retorna o nome do campo que inicia-se com id_generico
+     * 
+     * @param Object $objeto
+     * 
+     * @return String|false
+     */
+    public static function retornaNomeCampoIdGenerico($objeto)
+    {
+		// recuperando informacoes sobre a tabela vinculada ao objeto
+		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+		
+		// recuperando as colunas
+		$arrayColunas = $tableInfo['cols'];
+
+		// loop para localizar a coluna de id generico
+		foreach ($arrayColunas as $coluna) {
+			// cortando o nome do campo para o tamanho da constante ID_GENERICO
+			$tempResult = substr($coluna, 0, strlen(ID_GENERICO));
+			
+			if ($tempResult == ID_GENERICO)
+				return $coluna;
+		}
+		
+		return false;
     }
 
     /**

@@ -125,6 +125,8 @@ class Basico_DBSaveControllerController
 				Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 			}
 			
+			throw new Exception($e->getMessage());
+			
 			return false;
 		}
 	}

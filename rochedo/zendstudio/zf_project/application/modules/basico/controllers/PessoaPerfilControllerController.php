@@ -81,7 +81,7 @@ class Basico_PessoaPerfilControllerController
 		// verificando se o objeto existe
 		if (isset($idPessoaPerfil[0]))
 			// retornando o objeto
-    	    return $idPessoaPerfil[0];
+    	    return (Int) $idPessoaPerfil[0]->id;
     	else
     	    return null;
 	}

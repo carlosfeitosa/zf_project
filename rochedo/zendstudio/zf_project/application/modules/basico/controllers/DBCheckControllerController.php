@@ -32,10 +32,13 @@ class Basico_DBCheckControllerController
      * 
      * @param Integer $idCategoria
      * @param Mixed $valor
+     * @param String $nomeTabelaOrigem
+     * @param String $nomeCampoOrigem
+     * @param Boolean $forceCreateRelationship
      * 
      * @return Boolean
      */
-    public static function checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor)
+    public static function checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem = null, $nomeCampoOrigem = null, $forceCreateRelationship = false)
     {
     	// instanciando modelo de categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
@@ -62,10 +65,18 @@ class Basico_DBCheckControllerController
 		// checando verificacao obteve sucesso
 		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
 
-			return true;
+			// instanciando controlador de relacao categoria chave estrangeira
+			$controllerRelacaoCategoriaChaveEstrangeira = Basico_RelacaoCategoriaChaveEstrangeiraControllerController::init();
+
+			// verificando se a tabela/campo esta relacionada em relacao categoria chave estrangeira e se o sistema deve guardar a tabela origem
+			if (($nomeCampoOrigem) and ($nomeCampoOrigem))
+				return $controllerRelacaoCategoriaChaveEstrangeira->checaRelacaoCategoriaChaveEstrangeira($nomeTabelaOrigem, $nomeCampoOrigem, $forceCreateRelationship);
+			else
+				return true;
+				
 		} else {
 
-			return true;
+			return false;
 		}	
     }
 
@@ -90,20 +101,20 @@ class Basico_DBCheckControllerController
 		
 		// recuperando o nome da tabela relacionada ao objeto
 		$nomeTabelaObjeto = Basico_PersistenceControllerController::bdRetornaTableNameObjeto($objeto);
-		
+
 		// recuperando array de objetos categoria chave estrangeira relacionados com a tabela do objeto
-		$arrayObjsCategoriaChaveEstrangeiraObjeto = $modelCategoriaChaveEstrangeira->fetchList("tabela_estrangeira = {$nomeTabelaObjeto}");
-		
+		$arrayObjsCategoriaChaveEstrangeiraObjeto = $modelCategoriaChaveEstrangeira->fetchList("tabela_estrangeira = '{$nomeTabelaObjeto}'");
+
 		// recuperando ids de categoria chave estrangeira
 		foreach ($arrayObjsCategoriaChaveEstrangeiraObjeto as $objCategoriaChaveEsrtrangeiraObjeto) {
 			// verificando se o tipo de categoria do objeto e o tipo da categoria da categoria pai nao eh do tipo SISTEMA
 			if (($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaObject()->nome != APPLICATION_SYSTEM_PERFIL) and ($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome != APPLICATION_SYSTEM_PERFIL))
 				// carregando ids de categoria chave estrangeira e valor do id do objeto
-				$arrayIdsCategoriaValorChaveEstrangeiraObjeto[$objCategoriaChaveEsrtrangeiraObjeto->categoria] = Basico_PersistenceControllerController::bdRetornaPrimaryKeyObjeto($objeto);
+				$arrayIdsCategoriaValorChaveEstrangeiraObjeto[$objCategoriaChaveEsrtrangeiraObjeto->categoria] = Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($objeto);
 		}
 
 		// retornando resultado da verificacao
-		return checaArrayIdsCategoriaValorCategoriaChaveEstrangeiraExisteRelacao($arrayIdsCategoriaValorChaveEstrangeiraObjeto);
+		return self::checaArrayIdsCategoriaValorCategoriaChaveEstrangeiraExisteRelacao($arrayIdsCategoriaValorChaveEstrangeiraObjeto);
 	}
 
 	/**
@@ -120,19 +131,19 @@ class Basico_DBCheckControllerController
 		$tempReturn = false;
 		
 		// recuperando array contendo o nome e campo das tabelas relacionadas em categoria chave estrangeira
-		$arrayNomeCampoTabelasCategoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::retornaArrayNomeCampoTabelasCategoriaChaveEstrangeira();
+		$arrayNomeCampoTabelasRelacionadasCategoriaChaveEstrangeira = Basico_RelacaoCategoriaChaveEstrangeiraControllerController::retornaArrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira();
 
 		// recuperando instancia do banco de dados
 		$bd = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-
+		
 		// loop para verificar se alguma categoria/valor de um objeto existe em uma tabela relacionada em categoria chave estrangeira
-		foreach ($arrayNomeCampoTabelasCategoriaChaveEstrangeira as $nomeTabelaEstrangeira => $campoTabelaEstrangeira) {
-			foreach ($arrayIdsCategoriaValorChaveEstrangeiraObjeto as $idCategoria => $valor) {
+		foreach ($arrayNomeCampoTabelasRelacionadasCategoriaChaveEstrangeira as $nomeTabelaOrigem => $campoTabelaOrigem) {
+			foreach ($arrayIdsCategoriaValorChaveEstrangeiraObjeto as $idCategoriaCategoriaChaveEstrangeira => $valorObjetoOrigem) {
 				// verificando se existe o valor do objeto na tabela relacionada
-				$arrayResultado = $bd->fetchAll("SELECT {$campoTabelaEstrangeira} FROM {$nomeTabelaEstrangeira} WHERE {$campoTabelaEstrangeira} = ? AND ID_CATEGORIA = ?", array($valor, $idCategoria));
+				$arrayResultado = $bd->fetchAll("SELECT {$campoTabelaOrigem} FROM {$nomeTabelaOrigem} WHERE {$campoTabelaOrigem} = ? AND ID_CATEGORIA = ?", array($valorObjetoOrigem, $idCategoriaCategoriaChaveEstrangeira));
 
 				// verificando se existe registro na tabela estrangeira
-				$tempReturn = (count($arrayResultado > 0));
+				$tempReturn = (count($arrayResultado) > 0);
 				
 				// verificando se houve localizacao de relacao
 				if ($tempReturn)
@@ -145,5 +156,22 @@ class Basico_DBCheckControllerController
 
 		// retornando resultado
 		return $tempReturn;
+	}
+	
+	/**
+	 * Retorna um array contendo os ids das categorias que nao devem checar por relacao
+	 * 
+	 * @return Array
+	 */
+	private function retornaArrayIdsCategoriasNaoChecarRelacao()
+	{
+		// inicializando variaveis
+		$arrayIdsCategoriasNaoChecarRelacao = array();
+		
+		// recuperando ids das categorias que devem ser excluidas de verificacao de relacao
+		$arrayIdsCategoriasNaoChecarRelacao[] = Basico_CategoriaControllerController::retornaIdCategoriaCVC();
+		
+		// retornando array
+		return $arrayIdsCategoriasNaoChecarRelacao;
 	}
 }

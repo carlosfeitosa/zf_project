@@ -11,6 +11,7 @@ require_once("DBCheckControllerController.php");
 require_once("DBSaveControllerController.php");
 require_once("DBDeleteControllerController.php");
 require_once("CVCControllerController.php");
+require_once("RelacaoCategoriaChaveEstrangeiraControllerController.php");
 
 class Basico_PersistenceControllerController
 {
@@ -46,9 +47,9 @@ class Basico_PersistenceControllerController
      * @return Boolean
      */
     public static function bdControlaTransacao($tipoTransacao = DB_BEGIN_TRANSACTION)
-    {
+    {  	
     	// retornando o resultado do metodo "controlaTransacaoBD" do controlador "Basico_DBTransactionControllerController"
-    	return Basico_DBTransactionControllerController::controlaTransacaoBD($tipoTransacao);
+    	return Basico_DBTransactionControllerController::init()->controlaTransacaoBD($tipoTransacao);
     }
 
   	/**
@@ -175,6 +176,19 @@ class Basico_PersistenceControllerController
     }
 
     /**
+     * Retorna o nome do campo que inicia-se com id_generico
+     * 
+     * @param Object $objeto
+     * 
+     * @return String|false
+     */
+    public static function bdRetornaNomeCampoIdGenericoObjeto($objeto)
+    {
+    	// retorna o resultado do metodo "retornaNomeCampoIdGenerico" no controlador "Basico_DBUtilControllerController"
+    	return Basico_DBUtilControllerController::retornaNomeCampoIdGenerico($objeto);
+    }
+
+    /**
      * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
      * 
      * @param object $objeto
@@ -214,14 +228,30 @@ class Basico_PersistenceControllerController
     /**
      * Checa a existencia de um valor em tabela estrangeira atraves da categoria
      * 
-     * @param integer $idCategoria
-     * @param mixed $valor
+     * @param Integer $idCategoria
+     * @param Mixed $valor
+     * @param String $nomeTabelaOrigem
+     * @param String $nomeCampoOrigem
+     * @param Boolean $forceCreateRelationship
      * 
-     * @return boolean
+     * @return Boolean
      */
-    public static function bdChecaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor)
+    public static function bdChecaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem = null, $nomeCampoOrigem = null, $forceCreateRelationship = false)
     {
     	// retornando o resultado do metodo "checaExistenciaValorCategoriaChaveEstrangeira" no controlador "Basico_DBUtilControllerController"
-    	return Basico_DBCheckControllerController::checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor);
+    	return Basico_DBCheckControllerController::checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem, $nomeCampoOrigem, $forceCreateRelationship);
     }
+
+    /*
+	 * Checa se existem registros filhos vinculados ao objeto atraves da classe categoriaChaveEstrangeira
+	 * 
+	 * @param Mixed $objeto
+	 * 
+	 * @return Boolean
+	 */
+	public static function bdChecaRegistrosFilhosCategoriaChaveEstrangeira($objeto) 
+	{
+		// retornando o resultado do metodo "checaRegistrosFilhosCategoriaChaveEstrangeira" no controlador "Basico_DBUtilControllerController"
+		return Basico_DBCheckControllerController::checaRegistrosFilhosCategoriaChaveEstrangeira($objeto);
+	}
 }

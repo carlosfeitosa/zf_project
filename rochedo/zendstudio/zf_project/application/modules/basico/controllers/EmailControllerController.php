@@ -198,13 +198,21 @@ class Basico_EmailControllerController
 	/**
 	 * Salva novo email no banco
 	 * 
-	 * @param String $novoEmail
+	 * @param Basico_Model_Email $novoEmail
 	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarEmail($novoEmail, $idPessoaPerfilCriador = null)
+	public function salvarEmail(Basico_Model_Email $novoEmail, $idPessoaPerfilCriador = null)
 	{
+		// verificando se existe a relacao de categoria
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($novoEmail->categoria))
+			throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_EMAIL_SEM_RELACAO);
+
+		// verificando se existe o token existe na tabela de relacao
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($novoEmail->categoria, $novoEmail->idGenericoProprietario, Basico_PersistenceControllerController::bdRetornaTableNameObjeto($novoEmail), Basico_PersistenceControllerController::bdRetornaNomeCampoIdGenericoObjeto($novoEmail), true))
+			throw new Exception(MSG_ERRO_EMAIL_CHECK_CONSTRAINT);
+
     	try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))

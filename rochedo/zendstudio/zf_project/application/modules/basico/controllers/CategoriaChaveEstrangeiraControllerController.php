@@ -46,23 +46,25 @@ class Basico_CategoriaChaveEstrangeiraControllerController
 	 * Retorna um array contendo todas as tabelas relacionadas com categoria chave estrangeira.
 	 * A chave do array contem o nome da tabela e o valor contem o nome do campo
 	 * 
+	 * @param Array $arrayIdsCategoriasExclusao
+	 * 
 	 * @return Array
 	 */
-	public static function retornaArrayNomeCampoTabelasCategoriaChaveEstrangeira()
+	public static function retornaArrayNomeCampoTabelasCategoriaChaveEstrangeira(array $arrayIdsCategoriasExclusao)
 	{
 		// inicializando variaveis
 		$arrayNomeCampoTabelasCategoriaChaveEstrangeira = array();
-		$idCategoriaCVC = Basico_CategoriaControllerController::retornaIdCategoriaCVC();
+		$stringImplodidaArrayIdsCategoriasExclusao = implode(',', $arrayIdsCategoriasExclusao);
 
 		// instanciando modelo categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
 
 		// recuperando todas as tuplas
-		$objsCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchAll();
-
+		$objsCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
+		
 		// loop para recuperar o nome das tabelas
 		foreach($objsCategoriaChaveEstrangeira as $objCategoriaChaveEstrangeira) {
-			// recupernado o nome das tabelas e colocando no array de resultados
+			// recupernado o nome das tabelas e colocando no array de resultados 
 			$arrayNomeCampoTabelasCategoriaChaveEstrangeira[$objCategoriaChaveEstrangeira->tabelaEstrangeira] = $objCategoriaChaveEstrangeira->campoEstrangeiro;
 		}
 

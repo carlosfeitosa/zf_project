@@ -7,6 +7,45 @@
 class Basico_DBTransactionControllerController
 {
 	/**
+	* @var int
+	*/
+	protected $_transactionCount;
+
+	/**
+	 * Instância do Controlador DBTransaction
+	 * 
+	 * @var Basico_DBTransactionControllerController
+	 */
+	static private $singleton;
+
+	/**
+	 * Construtor do Controlador DBTransaction.
+	 * 
+	 * @return void
+	 */
+	private function __construct()
+	{
+		// inicializando contador de transacao
+		self::resetaContadorTransacoes();
+	}
+
+	/**
+	 * Retorna instância do Controlador DBTransaction.
+	 * 
+	 * @return Basico_DBTransactionControllerController
+	 */
+	static public function init()
+	{
+		// verificando singleton
+		if(self::$singleton == NULL){
+
+			// retornando singleton
+			self::$singleton = new Basico_DBTransactionControllerController();
+		}
+		return self::$singleton;
+	}
+
+	/**
 	 * Registra o resource do banco de dados na sessao
 	 * 
 	 * @param Resource $dbResource
@@ -31,7 +70,73 @@ class Basico_DBTransactionControllerController
 		// recuperando o resource do banco de dados da sessao do PHP
 		return Zend_Registry::get(SESSION_DB);
 	}
-	
+
+	/**
+	 * Reseta o contador de transacoes inicializadas
+	 * 
+	 * @return true;
+	 */
+	private function resetaContadorTransacoes()
+	{
+		// resetando o numero de transacoes inicializadas
+		$this->_transactionCount = 0;
+		
+		return true;
+	}
+
+	/**
+	 * Incrementa o numero de transacoes inicializadas
+	 * 
+	 * @return true
+	 */
+	private function incrementaTransacao()
+	{
+		// incrementando o numero de transacoes ativas
+		$this->_transactionCount++;
+		
+		return true;
+	}
+
+	/**
+	 * Decrementa o numero de transacoes inicializadas
+	 * 
+	 * @return true
+	 */
+	private function decrementaTransacao()
+	{
+		// verificando se existe transacao inicializada
+		if ($this->_transactionCount > 0) {
+
+			// decrementando o numero de transacoes ativas
+			$this->_transactionCount--;
+			
+			return true;
+		} else
+			throw new Exception(MSG_ERRO_BD_TRANSACAO_ROLLBACK_SEM_TRANSACAO);
+	}
+
+	/**
+	 * Checa se existe transacao inicializada
+	 * 
+	 * @return Boolean
+	 */
+	private function checaTransacaoInicializada()
+	{
+		// retornando se existe transacao inicializada
+		return ($this->_transactionCount > 0);
+	}
+
+	/**
+	 * Retorna o numero de transacoes inicializadas
+	 * 
+	 * @return Integer
+	 */
+	private function retornaNumeroTransacoesInicializadas()
+	{
+		// retornando o numero de transacoes inicializadas
+		return (Int) $this->_transactionCount;
+	}
+
     /**
      * Inicializa uma transacao no banco de dados
      * 
@@ -39,17 +144,23 @@ class Basico_DBTransactionControllerController
      */
     private function inicializaTransacaoBD()
     {
-		// recuperando o resource do banco de dados
-		$dbResource = self::recuperaBDSessao();
-		
-		// tentando inicializar transacao do banco de dados
-		try {
-			$dbResource->beginTransaction();
+    	// verificando nao se existem transacoes inicializadas
+    	if (!self::checaTransacaoInicializada()) {
+    		
+    		// recuperando o resource do banco de dados
+			$dbResource = self::recuperaBDSessao();
+
+			// tentando inicializar transacao do banco de dados
+			try {
+				$dbResource->beginTransaction();
 			
-			return true;
-		} catch (Exception $e) {
-			return false;
-		}
+			} catch (Exception $e) {
+				
+				return false;
+			}
+    	}
+    	
+		return self::incrementaTransacao();
     }
     
     /**
@@ -59,17 +170,27 @@ class Basico_DBTransactionControllerController
      */
     private function salvaTransacaoBD()
     {
-    	// recuperando o resource do banco de dados
-		$dbResource = self::recuperaBDSessao();
-		
-		// tentando inicializar transacao do banco de dados
-		try {
-			$dbResource->commit();
+    	// verificando o numero de transacoes inicializadas
+    	if (self::retornaNumeroTransacoesInicializadas() > 1)
+    	
+    		// decrementando o numero de transacoes inicializadas
+    		return self::decrementaTransacao();
+    	else if (self::retornaNumeroTransacoesInicializadas() === 1) {
+
+	    	// recuperando o resource do banco de dados
+			$dbResource = self::recuperaBDSessao();
 			
-			return true;
-		} catch (Exception $e) {
-			return false;
-		}
+			// tentando salvar a transacao do banco de dados
+			try {
+				$dbResource->commit();
+				
+				// resetando o contador de transacoes inicializadas
+				return self::resetaContadorTransacoes();
+			} catch (Exception $e) {
+				return false;
+			}	
+    	} else
+    		throw new Exception(MSG_ERRO_BD_TRANSACAO_COMMIT_SEM_TRANSACAO);
     }
     
     /**
@@ -79,17 +200,26 @@ class Basico_DBTransactionControllerController
      */
     private function voltaTransacaoBD()
     {
-        // recuperando o resource do banco de dados
-		$dbResource = self::recuperaBDSessao();
-		
-		// tentando inicializar transacao do banco de dados
-		try {
-			$dbResource->rollback();
+    	// verificando o numero de transacoes inicializadas
+    	if (self::retornaNumeroTransacoesInicializadas() > 1)
+    	
+			// decrementando o numero de transacoes inicializadas
+    		return self::decrementaTransacao();
+    	else if (self::retornaNumeroTransacoesInicializadas() === 1) {
+
+	    	// recuperando o resource do banco de dados
+			$dbResource = self::recuperaBDSessao();
 			
-			return true;
-		} catch (Exception $e) {
-			return false;
-		}
+			// tentando inicializar transacao do banco de dados
+			try {
+				$dbResource->rollback();
+				
+				return self::resetaContadorTransacoes();
+			} catch (Exception $e) {
+				return false;
+			}
+    	} else
+    		throw new Exception(MSG_ERRO_BD_TRANSACAO_ROLLBACK_SEM_TRANSACAO);
     }
     
     /**
@@ -99,14 +229,18 @@ class Basico_DBTransactionControllerController
      * 
      * @return Boolean
      */
-    public static function controlaTransacaoBD($tipoTransacao = DB_BEGIN_TRANSACTION)
+    public function controlaTransacaoBD($tipoTransacao = DB_BEGIN_TRANSACTION)
     {
+    	// verificando o tipo de operacao de transcacao a executar
     	switch ($tipoTransacao) {
     		case DB_BEGIN_TRANSACTION:
+    			// inicializando transacao
     			return self::inicializaTransacaoBD();
     		case DB_COMMIT_TRANSACTION:
+    			// salvando transacao
     			return self::salvaTransacaoBD();
     		case DB_ROLLBACK_TRANSACTION:
+    			// voltando transacao
     			return self::voltaTransacaoBD();
     		default:
     			throw new Exception(MSG_ERRO_BD_TRANSACAO_OPERACAO_NAO_EXISTENTE);

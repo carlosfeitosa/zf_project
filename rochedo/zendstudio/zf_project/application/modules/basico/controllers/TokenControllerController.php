@@ -164,7 +164,7 @@ class Basico_TokenControllerController
 			throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_TOKEN_SEM_RELACAO);
 
 		// verificando se existe o token existe na tabela de relacao
-		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($novoToken->categoria, $novoToken->idGenerico))
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($novoToken->categoria, $novoToken->idGenerico, Basico_PersistenceControllerController::bdRetornaTableNameObjeto($novoToken), Basico_PersistenceControllerController::bdRetornaNomeCampoIdGenericoObjeto($novoToken), true))
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
 
 		try {

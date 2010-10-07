@@ -10,12 +10,18 @@ class Basico_DBDeleteControllerController
 	 * Deleta uma tupla de um objeto, mantendo as versoes existentes no CVC
 	 * 
 	 * @param Object $objeto
+	 * @param Boolean $forceCascade
 	 * 
 	 * @return Boolean
 	 */
-	static public function delete($objeto)
+	static public function delete($objeto, $forceCascade = false)
 	{
-		
+		// verificando se deve deletar em cascata
+		if ($forceCascade)
+			return self::deleteCascata();
+		else {
+			
+		}
 	}
 
 	/**
@@ -26,7 +32,7 @@ class Basico_DBDeleteControllerController
 	 * 
 	 * @return Boolean
 	 */
-	static public function deleteCascata($objeto)
+	private function deleteCascata($objeto)
 	{
 		
 	}
