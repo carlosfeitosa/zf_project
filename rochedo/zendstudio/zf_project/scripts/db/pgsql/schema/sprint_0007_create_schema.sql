@@ -13,8 +13,11 @@ create table relacao_categoria_chave_estrangeira (
 	tabela_origem character varying (100) not null ,
 	campo_origem character varying (100) not null ,
 	rowinfo character varying (2000) not null 
-) on [primary];
-
+)
+with (
+  oids = false
+);
+alter table relacao_categoria_chave_estrangeira owner to rochedo_user;
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
