@@ -1,5 +1,5 @@
 /*
-* SCRIPT DE CRIACAO DAS TABELAS DO SPRINT 0006
+* SCRIPT DE CRIACAO DAS TABELAS DO SPRINT 0007
 * 
 * versao: 1.0 (MSSQL 2000)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)

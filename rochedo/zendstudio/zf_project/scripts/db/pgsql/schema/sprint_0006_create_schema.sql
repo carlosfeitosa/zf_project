@@ -1,5 +1,5 @@
 /*
-* SCRIPT DE CRIACAO DAS TABELAS DO SPRINT 0004
+* SCRIPT DE CRIACAO DAS TABELAS DO SPRINT 0006
 * 
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
