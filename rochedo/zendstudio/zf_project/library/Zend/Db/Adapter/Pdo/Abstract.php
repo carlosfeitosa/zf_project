@@ -223,14 +223,15 @@ abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
         if (empty($bind) && $sql instanceof Zend_Db_Select) {
             $bind = $sql->getBind();
         }
-	    
-        // correcao do tipo booleano para inteiro
-        if (is_bool($value)) {
-			$bind[$name] = $value = $value ? 1 : 0;
-        }
-        
+
         if (is_array($bind)) {
             foreach ($bind as $name => $value) {
+            	
+				// correcao do tipo booleano para inteiro
+		        if (is_bool($value)) {
+					$bind[$name] = $value = $value ? 1 : 0;
+		        }
+    	
                 if (!is_int($name) && !preg_match('/^:/', $name)) {
                     $newName = ":$name";
                     unset($bind[$name]);
