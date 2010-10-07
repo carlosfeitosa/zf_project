@@ -8,11 +8,45 @@
 * 
 */
 
-drop table documento_identificacao;
-drop table pessoa_juridica;
-drop table endereco;
-drop table dados_biometricos;
-drop table estado;
-drop table pais;
-drop table mascara;
+if object_id('documento_identificacao') is not null
+begin
+  drop table documento_identificacao
+end
+;
+
+if object_id('pessoa_juridica') is not null
+begin
+  drop table pessoa_juridica
+end
+;
+
+if object_id('endereco') is not null
+begin
+  drop table endereco
+end
+;
+
+if object_id('dados_biometricos') is not null
+begin
+  drop table dados_biometricos
+end
+;
+
+if object_id('estado') is not null
+begin
+  drop table estado
+end
+;
+
+if object_id('pais') is not null
+begin
+  drop table pais
+end
+;
+
+if object_id('mascara') is not null
+begin
+  drop table mascara
+end
+;
 

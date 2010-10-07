@@ -14,38 +14,9 @@
 * 								 tupla de categoria_chave_estrangeira;
 */
 
-/* CRIACAO DAS FUNCOES */
-
-create function fn_CheckCategoriaChaveEstrangeiraCategoriaExists(@id_categoria int)
-returns int
-as
-begin
-  declare @retval int
-  set @retval = (select top 1 id
-                 from categoria_chave_estrangeira
-                 where id_categoria = @id_categoria)
-  return @retval
-end
-GO
-
-create function fn_CheckCategoriaCVC(@id_categoria int)
-returns int
-as
-begin
-  declare @retval int
-  set @retval = (select top 1 c.id
-                 from categoria c
-                 left join tipo_categoria t on (c.id_tipo_categoria = t.id)
-                 where c.id = @id_categoria
-                 and t.nome = 'CVC'
-                 and c.nome = 'CVC')
-  return @retval
-end
-GO
-
 /* CRIACAO DAS TABELAS */
 
-create table cvc (
+create table dbo.cvc (
 	id int identity (1, 1) not null ,
 	id_generico int not null ,
 	id_categoria_chave_estrangeira int not null ,
@@ -60,25 +31,25 @@ create table cvc (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table cvc with nocheck add constraint pk_cvc primary key clustered (id) on [primary];
+alter table dbo.cvc with nocheck add constraint pk_cvc primary key clustered (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table cvc add
+alter table dbo.cvc add
 	constraint df_cvc_validade_inicio default getdate() for validade_inicio,
 	constraint df_cvc_versao default 0.1 for versao;
 
 
 /* CRIACAO DOS INDICES */
 
-create index ix_cvc_id_generico on cvc (id_generico) on [primary];
-create index ix_cvc_id_categoria_chave_estrangeira on cvc (id_categoria_chave_estrangeira) on [primary];
+create index ix_cvc_id_generico on dbo.cvc (id_generico) on [primary];
+create index ix_cvc_id_categoria_chave_estrangeira on dbo.cvc (id_categoria_chave_estrangeira) on [primary];
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table cvc add
+alter table dbo.cvc add
 	constraint ix_cvc_id_generico_id_categoria_chave_estrangeira_versao unique nonclustered
 	(
 		id_generico,
@@ -89,18 +60,18 @@ alter table cvc add
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table cvc add
+alter table dbo.cvc add
 	constraint fk_cvc_id_categoria_chave_estrangeira foreign key
 	(
 		id_categoria_chave_estrangeira
-	) references categoria_chave_estrangeira (
+	) references dbo.categoria_chave_estrangeira (
 		id
 	);
 
 	
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
-alter table categoria_chave_estrangeira add
+alter table dbo.categoria_chave_estrangeira add
     constraint ck_categoria_chave_estrangeira_categoria check
     ((dbo.fn_CheckCategoriaCVC(id_categoria) > 0) or (dbo.fn_CheckCategoriaChaveEstrangeiraCategoriaExists(id_categoria) is null));
 
@@ -108,4 +79,4 @@ alter table categoria_chave_estrangeira add
 /* MODIFICACOES DOS SCRIPTS ANTERIORES */
 	
 /* dropando indice unico relacionado a categoria da tabela categoria_chave_estrangeira */
-drop index categoria_chave_estrangeira.ix_categoria_chave_estrangeira_id_categoria;
+drop index dbo.categoria_chave_estrangeira.ix_categoria_chave_estrangeira_id_categoria;

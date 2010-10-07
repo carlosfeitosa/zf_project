@@ -189,11 +189,19 @@ class Basico_DBUtilControllerController
      */
     public static function resetaBD()
     {
-    	self::dropDbTables();
-    	self::createDbTables();
-    	self::insertDbData();
-
-    	return true;
+    	if (Basico_UtilControllerController::ambienteDesenvolvimento()) {
+	    	
+	    	//incializando transacao
+			Basico_PersistenceControllerController::bdControlaTransacao();
+	    	self::dropDbTables();
+	    	self::createDbTables();
+	    	self::insertDbData();
+	    	// confirmando execucao dos scripts
+	        Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+	        return true;
+    	}else{
+    	    return false;
+    	}
     }
     
     /**
@@ -259,12 +267,10 @@ class Basico_DBUtilControllerController
 	            
 		    	// recuperando resource do bando de dados.
 		    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-		    	//incializando transacao
-		    	Basico_PersistenceControllerController::bdControlaTransacao();
+		    	
 		    	//executando script SQL
 		    	$auxDb->getConnection()->exec($script);
-		    	// confirmando execucao do script
-		    	Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+		    		    	
 				return true;
     			
     		}

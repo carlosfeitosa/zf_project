@@ -17,7 +17,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table categoria (
+create table dbo.categoria (
 	id int identity (1, 1) not null ,
 	id_tipo_categoria int not null ,
 	id_categoria_pai int null ,
@@ -28,14 +28,14 @@ create table categoria (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dados_pessoais (
+create table dbo.dados_pessoais (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table email (
+create table dbo.email (
 	id int identity (1, 1) not null ,
 	id_generico_proprietario int not null ,
 	id_categoria int not null ,
@@ -47,7 +47,7 @@ create table email (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table log (
+create table dbo.log (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_perfil_pessoa int not null ,
@@ -55,7 +55,7 @@ create table log (
 	xml varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table login (
+create table dbo.login (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	login varchar (100) collate latin1_general_ci_ai not null ,
@@ -73,7 +73,7 @@ create table login (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table perfil (
+create table dbo.perfil (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -82,26 +82,26 @@ create table perfil (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table pessoa (
+create table dbo.pessoa (
 	id int identity (1, 1) not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table pessoas_perfis (
+create table dbo.pessoas_perfis (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	id_perfil int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table tipo_categoria (
+create table dbo.tipo_categoria (
 	id int identity (1, 1) not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table mensagem ( 
+create table dbo.mensagem ( 
 	id int identity not null,
 	remetente varchar (200) collate latin1_general_ci_ai not null , 
 	destinatarios varchar (3000) collate latin1_general_ci_ai not null ,
@@ -112,7 +112,7 @@ create table mensagem (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table mensagem_email ( 
+create table dbo.mensagem_email ( 
 	id int identity not null,
 	destinatarios_copia_carbonada varchar (2000) collate latin1_general_ci_ai not null ,
 	destinatarios_copia_carbonada_cega varchar (2000) collate latin1_general_ci_ai not null ,
@@ -121,7 +121,7 @@ create table mensagem_email (
     rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table anexo_mensagem ( 
+create table dbo.anexo_mensagem ( 
 	id int identity not null ,
 	nome_original varchar (200) collate latin1_general_ci_ai not null ,
 	nome_sugestao varchar (200) collate latin1_general_ci_ai not null ,
@@ -132,7 +132,7 @@ create table anexo_mensagem (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table pessoas_perfis_mensagem_categoria ( 
+create table dbo.pessoas_perfis_mensagem_categoria ( 
 	id int identity not null ,
 	id_mensagem int not null ,
 	id_categoria int not null ,
@@ -140,14 +140,14 @@ create table pessoas_perfis_mensagem_categoria (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dados_pessoas_perfis (
+create table dbo.dados_pessoas_perfis (
 	id int identity not null ,
 	id_pessoa_perfil int not null ,
 	assinatura_mensagem_email varchar (2000) collate latin1_general_ci_ai ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table categoria_chave_estrangeira (
+create table dbo.categoria_chave_estrangeira (
 	id int identity not null ,
 	id_categoria int not null ,
 	tabela_estrangeira varchar (100) collate latin1_general_ci_ai not null ,
@@ -155,7 +155,7 @@ create table categoria_chave_estrangeira (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table token (
+create table dbo.token (
 	id int identity not null ,
 	id_categoria int not null ,
 	id_generico int not null ,
@@ -164,7 +164,7 @@ create table token (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dicionario_expressao (
+create table dbo.dicionario_expressao (
 	id int identity not null ,
 	id_categoria int not null ,
 	constante_textual varchar (200) collate latin1_general_ci_ai not null,
@@ -174,55 +174,55 @@ create table dicionario_expressao (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table categoria with nocheck add constraint pk_categoria primary key clustered (id) on [primary];
+alter table dbo.categoria with nocheck add constraint pk_categoria primary key clustered (id) on [primary];
 
-alter table dados_pessoais with nocheck add constraint pk_dados_pessoais primary key clustered (id) on [primary];
+alter table dbo.dados_pessoais with nocheck add constraint pk_dados_pessoais primary key clustered (id) on [primary];
 
-alter table email with nocheck add constraint pk_email primary key clustered (id)  on [primary];
+alter table dbo.email with nocheck add constraint pk_email primary key clustered (id)  on [primary];
 
-alter table log with nocheck add constraint pk_log primary key clustered (id) on [primary];
+alter table dbo.log with nocheck add constraint pk_log primary key clustered (id) on [primary];
 
-alter table login with nocheck add constraint pk_login primary key clustered (id) on [primary]; 
+alter table dbo.login with nocheck add constraint pk_login primary key clustered (id) on [primary]; 
 
-alter table perfil with nocheck add constraint pk_perfil primary key clustered (id) on [primary];
+alter table dbo.perfil with nocheck add constraint pk_perfil primary key clustered (id) on [primary];
 
-alter table pessoa with nocheck add constraint pk_pessoa primary key clustered (id) on [primary];
+alter table dbo.pessoa with nocheck add constraint pk_pessoa primary key clustered (id) on [primary];
 
-alter table pessoas_perfis with nocheck add constraint pk_pessoas_perfis primary key clustered (id) on [primary];
+alter table dbo.pessoas_perfis with nocheck add constraint pk_pessoas_perfis primary key clustered (id) on [primary];
 
-alter table tipo_categoria with nocheck add constraint pk_tipo_categoria primary key clustered (id) on [primary];
+alter table dbo.tipo_categoria with nocheck add constraint pk_tipo_categoria primary key clustered (id) on [primary];
 
-alter table mensagem with nocheck add constraint pk_mensagem primary key clustered (id)  on [primary];
+alter table dbo.mensagem with nocheck add constraint pk_mensagem primary key clustered (id)  on [primary];
 
-alter table mensagem_email with nocheck add constraint pk_mensagem_email primary key clustered (id) on [primary];
+alter table dbo.mensagem_email with nocheck add constraint pk_mensagem_email primary key clustered (id) on [primary];
 
-alter table anexo_mensagem with nocheck add constraint pk_anexo_mensagem primary key clustered (id) on [primary];
+alter table dbo.anexo_mensagem with nocheck add constraint pk_anexo_mensagem primary key clustered (id) on [primary];
 
-alter table pessoas_perfis_mensagem_categoria with nocheck add constraint pk_pessoas_perfis_mensagem_categoria primary key clustered (id) on [primary];
+alter table dbo.pessoas_perfis_mensagem_categoria with nocheck add constraint pk_pessoas_perfis_mensagem_categoria primary key clustered (id) on [primary];
 
-alter table dados_pessoas_perfis with nocheck add constraint pk_dados_pessoas_perfis primary key clustered (id) on [primary];
+alter table dbo.dados_pessoas_perfis with nocheck add constraint pk_dados_pessoas_perfis primary key clustered (id) on [primary];
 
-alter table categoria_chave_estrangeira with nocheck add constraint pk_categoria_chave_estrangeira primary key clustered (id) on [primary];
+alter table dbo.categoria_chave_estrangeira with nocheck add constraint pk_categoria_chave_estrangeira primary key clustered (id) on [primary];
 
-alter table token with nocheck add constraint pk_token primary key clustered (id) on [primary];
+alter table dbo.token with nocheck add constraint pk_token primary key clustered (id) on [primary];
 
-alter table dicionario_expressao with nocheck add constraint pk_dicionario_expressao primary key clustered (id) on [primary];
+alter table dbo.dicionario_expressao with nocheck add constraint pk_dicionario_expressao primary key clustered (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table categoria add 
+alter table dbo.categoria add 
 	constraint df_categoria_nivel default (1) for nivel,
 	constraint df_categoria_ativo default (1) for ativo;
 
-alter table email add 
+alter table dbo.email add 
 	constraint df_email_validado default (0) for validado,
 	constraint df_email_ativo default (0) for ativo;
 
-alter table perfil add 
+alter table dbo.perfil add 
 	constraint df_perfil_ativo default (1) for ativo;
 
-alter table login add 
+alter table dbo.login add 
 	constraint df_login_ativo default (0) for ativo,
 	constraint df_login_tentativas_falhas default (0) for tentativas_falhas,
 	constraint df_login_travado default (0) for travado,
@@ -230,58 +230,58 @@ alter table login add
 	constraint df_login_pode_expirar default (1) for pode_expirar,
 	constraint df_login_datahora_proxima_expiracao default (dateadd(month,12,getdate())) for datahora_proxima_expiracao;
 	
-alter table token add
+alter table dbo.token add
 	constraint df_token_datahora_expiracao default (dateadd(hour, 36, getdate())) for datahora_expiracao;
 
 
 /* CRIACAO DOS INDICES */
 
-create unique index ix_email_unique_id on email (unique_id) on [primary];
+create unique index ix_email_unique_id on dbo.email (unique_id) on [primary];
 
-create unique index ix_email_email on email (email) on [primary];
+create unique index ix_email_email on dbo.email (email) on [primary];
 
-create index ix_categoria_nome on categoria (nome) on [primary];
+create index ix_categoria_nome on dbo.categoria (nome) on [primary];
 
-create index ix_dados_pessoais_nome on dados_pessoais (nome) on [primary];
+create index ix_dados_pessoais_nome on dbo.dados_pessoais (nome) on [primary];
 
-create index ix_mensagem_assunto on mensagem (assunto) on [primary];
+create index ix_mensagem_assunto on dbo.mensagem (assunto) on [primary];
 
-create unique index ix_login_login on login (login) on [primary];
+create unique index ix_login_login on dbo.login (login) on [primary];
 
-create unique index ix_tipo_categoria_nome on tipo_categoria (nome) on [primary];
+create unique index ix_tipo_categoria_nome on dbo.tipo_categoria (nome) on [primary];
 
-create index ix_mensagem_email_responder_para on mensagem_email (responder_para) on [primary];
+create index ix_mensagem_email_responder_para on dbo.mensagem_email (responder_para) on [primary];
 
-create unique index ix_categoria_chave_estrangeira_id_categoria on categoria_chave_estrangeira (id_categoria) on [primary];
+create unique index ix_categoria_chave_estrangeira_id_categoria on dbo.categoria_chave_estrangeira (id_categoria) on [primary];
 
-create unique index ix_token_token on token (token) on [primary];
+create unique index ix_token_token on dbo.token (token) on [primary];
 
-create index ix_dicionario_expressao_constante_textual on dicionario_expressao (constante_textual) on [primary];
+create index ix_dicionario_expressao_constante_textual on dbo.dicionario_expressao (constante_textual) on [primary];
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table categoria add
+alter table dbo.categoria add
     constraint ix_categoria_tipo_categoria_nome unique nonclustered
     (
         id_tipo_categoria,
         nome
     ) on [primary];
 
-alter table perfil add
+alter table dbo.perfil add
     constraint ix_perfil_categoria_nome unique nonclustered
     (
         id_categoria,
         nome
     ) on [primary];
 
-alter table pessoas_perfis add constraint ix_pessoas_perfis unique nonclustered
+alter table dbo.pessoas_perfis add constraint ix_pessoas_perfis unique nonclustered
     (
         id_pessoa,
 		id_perfil
 	)  on [primary];
 	
-alter table dicionario_expressao add constraint ix_dicionario_expressao unique nonclustered
+alter table dbo.dicionario_expressao add constraint ix_dicionario_expressao unique nonclustered
 	(
 		id_categoria,
 		constante_textual
@@ -290,141 +290,143 @@ alter table dicionario_expressao add constraint ix_dicionario_expressao unique n
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table categoria add 
+alter table dbo.categoria add 
 	constraint fk_categoria_categoria foreign key 
 	(
 		id_categoria_pai
-	) references categoria (
+	) references dbo.categoria (
 		id
 	),
 	constraint fk_categoria_tipo_categoria foreign key 
 	(
 		id_tipo_categoria
-	) references tipo_categoria (
+	) references dbo.tipo_categoria (
 		id
 	);
 
-alter table dados_pessoais add 
+alter table dbo.dados_pessoais add 
 	constraint fk_dados_pessoais_pessoa foreign key 
 	(
 		id_pessoa
-	) references pessoa (
+	) references dbo.pessoa (
 		id
 	);
 
-alter table email add 
+alter table dbo.email add 
 	constraint fk_email_categoria foreign key 
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 
-alter table log add 
+alter table dbo.log add 
 	constraint fk_log_categoria foreign key 
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	),
 	constraint fk_log_pessoas_perfis foreign key 
 	(
 		id_perfil_pessoa
-	) references pessoas_perfis (
+	) references dbo.pessoas_perfis (
 		id
 	);
 
-alter table login add 
+alter table dbo.login add 
 	constraint fk_login_pessoa foreign key 
 	(
 		id_pessoa
-	) references pessoa (
+	) references dbo.pessoa (
 		id
 	);
 
-alter table perfil add 
+alter table dbo.perfil add 
 	constraint fk_perfil_categoria foreign key 
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 
-alter table pessoas_perfis add 
+alter table dbo.pessoas_perfis add 
 	constraint fk_pessoas_perfis_perfil foreign key 
 	(
 		id_perfil
-	) references perfil (
+	) references dbo.perfil (
 		id
 	),
 	constraint fk_pessoas_perfis_pessoa foreign key 
 	(
 		id_pessoa
-	) references pessoa (
+	) references dbo.pessoa (
 		id
 	);
 
-alter table mensagem with nocheck add 
+alter table dbo.mensagem with nocheck add 
     constraint fk_mensagem_categoria foreign key
     (
         id_categoria
-    ) references categoria (
+    ) references dbo.categoria (
         id
 	);
 
-alter table mensagem_email with nocheck add 
+alter table dbo.mensagem_email with nocheck add 
     constraint fk_mensagem_email_mensagem foreign key
     (
         id_mensagem
-    ) references mensagem (
+    ) references dbo.mensagem (
         id
 	);
 
-alter table anexo_mensagem add 
+alter table dbo.anexo_mensagem add 
     constraint fk_anexo_mensagem_mensagem foreign key (
         id_mensagem
-    ) references mensagem (
+    ) references dbo.mensagem (
         id
 	);
 
-alter table pessoas_perfis_mensagem_categoria add
+alter table dbo.pessoas_perfis_mensagem_categoria add
     constraint fk_pessoas_perfis_mensagem_categoria_pessoas_perfis foreign key (
         id_pessoa_perfil
-    ) references pessoas_perfis (
+    ) references dbo.pessoas_perfis (
         id
     );
 
-alter table pessoas_perfis_mensagem_categoria add
+alter table dbo.pessoas_perfis_mensagem_categoria add
     constraint fk_pessoas_perfis_mensagem_categoria_mensagem foreign key (
         id_mensagem
-    ) references mensagem (
+    ) references dbo.mensagem (
         id
     );
 
-alter table pessoas_perfis_mensagem_categoria add
+alter table dbo.pessoas_perfis_mensagem_categoria add
     constraint fk_pessoas_perfis_mensagem_categoria_categoria foreign key (
         id_categoria
-    ) references categoria (
+    ) references dbo.categoria (
         id
     );
     
-alter table dados_pessoas_perfis add
+alter table dbo.dados_pessoas_perfis add
 	constraint fk_dados_pessoas_perfis_pessoas_perfis foreign key (
 		id_pessoa_perfil
-	) references pessoas_perfis (
+	) references dbo.pessoas_perfis (
 		id
 	);
 
-alter table token add
+alter table dbo.token add
 	constraint fk_token_categoria foreign key (
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 	
-alter table dicionario_expressao add
+alter table dbo.dicionario_expressao add
 	constraint fk_dicionario_expressao_categoria foreign key (
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
+	
+	

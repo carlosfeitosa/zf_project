@@ -39,9 +39,13 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function indexAction() 
     {
-        // carregando o titulo e subtitulo da view
+    	// carregando o titulo e subtitulo da view
     	$tituloView = $this->view->tradutor(VIEW_ADMIN_INDEX_TITULO, DEFAULT_USER_LANGUAGE);
-        $subtituloView = "<a href='/rochedo_project/public/basico/administrador/resetadb'>" . $this->view->tradutor(VIEW_ADMIN_BD_RESET_BUTTON_LABEL, DEFAULT_USER_LANGUAGE) . "</a>";             
+        
+    	if (Basico_UtilControllerController::ambienteDesenvolvimento()) 
+    	    $subtituloView = "<a onClick='loading()' href='/rochedo_project/public/basico/administrador/resetadb'>" . $this->view->tradutor(VIEW_ADMIN_BD_RESET_BUTTON_LABEL, DEFAULT_USER_LANGUAGE) . "</a>";
+    	else
+    	    $subtituloView = NULL;
     	// carregando array do cabecalho da view
 		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
 	            
@@ -58,6 +62,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function resetadbAction()
     {
+    	$this->getHelper('layout')->disableLayout();
     	
     	if (Basico_PersistenceControllerController::bdResetaBD()) {
    
@@ -70,6 +75,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
 		    // setando o cabecalho na view
 			$this->view->cabecalho = $cabecalho;
 			
+			$this->getHelper('layout')->enableLayout();
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();   
     		

@@ -193,9 +193,9 @@ class Basico_PersistenceControllerController
      * @return boolean
      */
     public static function bdResetaBD()
-    {
-    	Basico_DBUtilControllerController::resetaBD();
-    	return true;
+    {	
+    	//retornando o resultado do metodo abaixo.
+    	return Basico_DBUtilControllerController::resetaBD();
     }
 
     /**

@@ -1,4 +1,5 @@
-/*
+
+/* @exclude
 * SCRIPT DE CRIACAO DAS TABELAS DO SPRINT 0005
 * 
 * versao: 1.0 (MSSQL 2000)

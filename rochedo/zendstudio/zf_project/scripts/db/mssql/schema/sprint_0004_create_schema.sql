@@ -27,7 +27,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table decorator (
+create table dbo.decorator (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -36,7 +36,7 @@ create table decorator (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table ajuda (
+create table dbo.ajuda (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -47,7 +47,7 @@ create table ajuda (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table output (
+create table dbo.output (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -55,7 +55,7 @@ create table output (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table template (
+create table dbo.template (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -67,7 +67,7 @@ create table template (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table modulo (
+create table dbo.modulo (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_modulo_pai int null ,
@@ -82,28 +82,28 @@ create table modulo (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table modulo_formulario (
+create table dbo.modulo_formulario (
 	id int identity (1, 1) not null ,
 	id_modulo int not null ,
 	id_formulario int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table modulo_perfil (
+create table dbo.modulo_perfil (
 	id int identity (1, 1) not null ,
 	id_modulo int not null ,
 	id_perfil int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table template_formulario (
+create table dbo.template_formulario (
 	id int identity (1, 1) not null ,
 	id_formulario int not null ,
 	id_template int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table formulario_elemento (
+create table dbo.formulario_elemento (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_ajuda int null ,
@@ -120,7 +120,7 @@ create table formulario_elemento (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_elemento_validator (
+create table dbo.formulario_elemento_validator (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -129,7 +129,7 @@ create table formulario_elemento_validator (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_elemento_filter (
+create table dbo.formulario_elemento_filter (
     id int identity (1, 1) not null ,
     id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -138,7 +138,7 @@ create table formulario_elemento_filter (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table formulario (
+create table dbo.formulario (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_decorator int null ,
@@ -162,7 +162,7 @@ create table formulario (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_formulario_elemento (
+create table dbo.formulario_formulario_elemento (
 	id int identity (1, 1) not null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
@@ -171,21 +171,21 @@ create table formulario_formulario_elemento (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_elemento_formulario_elemento_validator (
+create table dbo.formulario_elemento_formulario_elemento_validator (
 	id int identity (1, 1) not null ,
 	id_formulario_elemento int not null ,
 	id_formulario_elemento_validator int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_perfil (
+create table dbo.formulario_perfil (
 	id int identity (1, 1) not null ,
 	id_formulario int not null ,
 	id_perfil int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table formulario_formulario_elemento_formulario (
+create table dbo.formulario_formulario_elemento_formulario (
 	id int identity (1, 1) not null ,
 	id_formulario_formulario_elemento int not null ,
 	id_formulario int not null ,
@@ -193,7 +193,7 @@ create table formulario_formulario_elemento_formulario (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table componente (
+create table dbo.componente (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -210,456 +210,456 @@ create table componente (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table decorator with nocheck add constraint pk_decorator primary key clustered (id) on [primary];
+alter table dbo.decorator with nocheck add constraint pk_decorator primary key clustered (id) on [primary];
 
-alter table ajuda with nocheck add constraint pk_ajuda primary key clustered (id) on [primary];
+alter table dbo.ajuda with nocheck add constraint pk_ajuda primary key clustered (id) on [primary];
 
-alter table output with nocheck add constraint pk_output primary key clustered (id) on [primary];
+alter table dbo.output with nocheck add constraint pk_output primary key clustered (id) on [primary];
 
-alter table template with nocheck add constraint pk_template primary key clustered (id) on [primary];
+alter table dbo.template with nocheck add constraint pk_template primary key clustered (id) on [primary];
 
-alter table modulo with nocheck add constraint pk_modulo primary key clustered (id) on [primary];
+alter table dbo.modulo with nocheck add constraint pk_modulo primary key clustered (id) on [primary];
 
-alter table modulo_formulario with nocheck add constraint pk_modulo_formulario primary key clustered (id) on [primary];
+alter table dbo.modulo_formulario with nocheck add constraint pk_modulo_formulario primary key clustered (id) on [primary];
 
-alter table modulo_perfil with nocheck add constraint pk_modulo_perfil primary key clustered (id) on [primary];
+alter table dbo.modulo_perfil with nocheck add constraint pk_modulo_perfil primary key clustered (id) on [primary];
 
-alter table template_formulario with nocheck add constraint pk_template_formulario primary key clustered (id) on [primary];
+alter table dbo.template_formulario with nocheck add constraint pk_template_formulario primary key clustered (id) on [primary];
 
-alter table formulario_elemento with nocheck add constraint pk_formulario_elemento primary key clustered (id) on [primary];
+alter table dbo.formulario_elemento with nocheck add constraint pk_formulario_elemento primary key clustered (id) on [primary];
 
-alter table formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_validator primary key clustered (id) on [primary];
+alter table dbo.formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_validator primary key clustered (id) on [primary];
 
-alter table formulario_elemento_filter with nocheck add constraint pk_formulario_elemento_filter primary key clustered (id) on [primary];
+alter table dbo.formulario_elemento_filter with nocheck add constraint pk_formulario_elemento_filter primary key clustered (id) on [primary];
 
-alter table formulario with nocheck add constraint pk_formulario primary key clustered (id) on [primary];
+alter table dbo.formulario with nocheck add constraint pk_formulario primary key clustered (id) on [primary];
 
-alter table formulario_formulario_elemento with nocheck add constraint pk_formulario_formulario_elemento primary key clustered (id) on [primary];
+alter table dbo.formulario_formulario_elemento with nocheck add constraint pk_formulario_formulario_elemento primary key clustered (id) on [primary];
 
-alter table formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
+alter table dbo.formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
 
-alter table formulario_perfil with nocheck add constraint pk_formulario_perfil primary key (id) on [primary];
+alter table dbo.formulario_perfil with nocheck add constraint pk_formulario_perfil primary key (id) on [primary];
 
-alter table formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
+alter table dbo.formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
 
-alter table componente with nocheck add constraint pk_componente primary key (id) on [primary];
+alter table dbo.componente with nocheck add constraint pk_componente primary key (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table modulo add
+alter table dbo.modulo add
 	constraint df_modulo_instalado default 0 for instalado,
 	constraint df_modulo_ativo default 0 for ativo;
 
-alter table formulario add 
+alter table dbo.formulario add 
 	constraint df_formulario_validade_inicio default (getdate()) for validade_inicio;
 
-alter table formulario_elemento add
+alter table dbo.formulario_elemento add
 	constraint df_formulario_elemento_element_realoadable default 0 for element_reloadable;
 
-alter table componente add
+alter table dbo.componente add
 	constraint df_componente_validade_inicio default (getdate()) for validade_inicio;
 
 
 /* CRIACAO DOS INDICES */
 
-create index ix_decorator_nome on decorator (nome) on [primary];
+create index ix_decorator_nome on dbo.decorator (nome) on [primary];
 
-create index ix_ajuda_nome on ajuda (nome) on [primary];
+create index ix_ajuda_nome on dbo.ajuda (nome) on [primary];
 
-create index ix_output_nome on output (nome) on [primary];
+create index ix_output_nome on dbo.output (nome) on [primary];
 
-create index ix_template_nome on template (nome) on [primary];
+create index ix_template_nome on dbo.template (nome) on [primary];
 
-create index ix_modulo_nome on modulo (nome) on [primary];
+create index ix_modulo_nome on dbo.modulo (nome) on [primary];
 
-create index ix_formulario_elemento_nome on formulario_elemento (nome) on [primary];
+create index ix_formulario_elemento_nome on dbo.formulario_elemento (nome) on [primary];
 
-create index ix_formulario_elemento_validator_nome on formulario_elemento_validator (nome) on [primary];
+create index ix_formulario_elemento_validator_nome on dbo.formulario_elemento_validator (nome) on [primary];
 
-create index ix_formulario_elemento_filter_nome on formulario_elemento_filter (nome) on [primary];
+create index ix_formulario_elemento_filter_nome on dbo.formulario_elemento_filter (nome) on [primary];
 
-create index ix_formulario_nome on formulario (nome) on [primary];
+create index ix_formulario_nome on dbo.formulario (nome) on [primary];
 
-create unique index ix_formulario_form_name on formulario (form_name) on [primary];
+create unique index ix_formulario_form_name on dbo.formulario (form_name) on [primary];
 
-create unique index ix_componente_nome on componente (nome) on [primary];
+create unique index ix_componente_nome on dbo.componente (nome) on [primary];
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table decorator add
+alter table dbo.decorator add
 	constraint ix_decorator_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table ajuda add
+alter table dbo.ajuda add
 	constraint ix_ajuda_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 	
-alter table output add
+alter table dbo.output add
 	constraint ix_output_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table template add
+alter table dbo.template add
 	constraint ix_template_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table modulo add
+alter table dbo.modulo add
 	constraint ix_modulo_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table modulo_formulario add
+alter table dbo.modulo_formulario add
 	constraint ix_modulo_formulario_modulo_formulario unique nonclustered
 	(
 		id_modulo,
 		id_formulario
 	) on [primary];
 
-alter table modulo_perfil add
+alter table dbo.modulo_perfil add
 	constraint ix_modulo_perfil_modulo_perfil unique nonclustered
 	(
 		id_modulo,
 		id_perfil
 	) on [primary];
 
-alter table template_formulario add
+alter table dbo.template_formulario add
 	constraint ix_template_formulario_template_formulario unique nonclustered
 	(
 		id_formulario,
 		id_template
 	) on [primary];
 
-alter table formulario_elemento add
+alter table dbo.formulario_elemento add
 	constraint ix_formulario_elemento_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table formulario_elemento_validator add
+alter table dbo.formulario_elemento_validator add
 	constraint ix_formulario_elemento_validator_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table formulario_elemento_filter add
+alter table dbo.formulario_elemento_filter add
 	constraint ix_formulario_elemento_filter_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table formulario add
+alter table dbo.formulario add
     constraint ix_formulario_categoria_nome unique nonclustered
     (
         id_categoria,
         nome
     ) on [primary];
 
-alter table formulario_formulario_elemento add
+alter table dbo.formulario_formulario_elemento add
     constraint ix_formulario_formulario_elemento_formulario_formulario_elemento unique nonclustered
     (
         id_formulario,
         id_formulario_elemento
     ) on [primary];
 
-alter table formulario_elemento_formulario_elemento_validator add
+alter table dbo.formulario_elemento_formulario_elemento_validator add
     constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique nonclustered
     (
         id_formulario_elemento,
         id_formulario_elemento_validator
     ) on [primary];
 
-alter table formulario_perfil add
+alter table dbo.formulario_perfil add
 	constraint ix_formulario_perfil_formulario_perfil unique nonclustered
 	(
 		id_formulario,
 		id_perfil
 	) on [primary];
 
-alter table formulario_formulario_elemento_formulario add
+alter table dbo.formulario_formulario_elemento_formulario add
 	constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique nonclustered
 	(
 		id_formulario_formulario_elemento
 	) on [primary];
 
-alter table componente add
+alter table dbo.componente add
 	constraint ix_componente_categoria_componente unique nonclustered
 	(
 		id_categoria,
-		componente
+		nome
 	) on [primary];
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table decorator add
+alter table dbo.decorator add
 	constraint fk_decorator_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 
-alter table ajuda add
+alter table dbo.ajuda add
 	constraint fk_ajuda_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 
-alter table output add
+alter table dbo.output add
 	constraint fk_output_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 
-alter table template add
+alter table dbo.template add
 	constraint fk_template_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	),
 	constraint fk_template_output foreign key
 	(
 		id_output
-	) references output (
+	) references dbo.output (
 		id
 	);
 
-alter table modulo add
+alter table dbo.modulo add
 	constraint fk_modulo_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	),
 	constraint fk_modulo_id_modulo_pai foreign key
 	(
 		id_modulo_pai
-	) references modulo (
+	) references dbo.modulo (
 		id
 	);
 
-alter table modulo_formulario add
+alter table dbo.modulo_formulario add
 	constraint fk_modulo_formulario_modulo foreign key
 	(
 		id_modulo
-	) references modulo (
+	) references dbo.modulo (
 		id
 	),
 	constraint fk_modulo_formulario_formulario foreign key
 	(
 		id_formulario
-	) references formulario (
+	) references dbo.formulario (
 		id
 	);
 
-alter table modulo_perfil add
+alter table dbo.modulo_perfil add
 	constraint fk_modulo_perfil_modulo foreign key
 	(
 		id_modulo
-	) references modulo (
+	) references dbo.modulo (
 		id
 	),
 	constraint fk_modulo_perfil_perfil foreign key
 	(
 		id_perfil
-	) references perfil (
+	) references dbo.perfil (
 		id
 	);
 
-alter table template_formulario add
+alter table dbo.template_formulario add
 	constraint fk_template_formulario_formulario foreign key
 	(
 		id_formulario
-	) references formulario (
+	) references dbo.formulario (
 		id
 	),
 	constraint fk_template_formulario_template foreign key
 	(
 		id_template
-	) references template (
+	) references dbo.template (
 		id
 	);
 
-alter table formulario_elemento add
+alter table dbo.formulario_elemento add
 	constraint fk_formulario_elemento_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	),
 	constraint fk_formulario_elemento_ajuda foreign key
 	(
 		id_ajuda
-	) references ajuda (
+	) references dbo.ajuda (
 		id
 	),
     constraint fk_formulario_elemento_formulario_elemento_filter foreign key
 	(
 		id_formulario_elemento_filter
-	) references formulario_elemento_filter (
+	) references dbo.formulario_elemento_filter (
 		id
 	),
 	constraint fk_formulario_elemento_decorator foreign key
 	(
 		id_decorator
-	) references decorator (
+	) references dbo.decorator (
 		id
 	),
 	constraint fk_formulario_elemento_componente foreign key
 	(
 		id_componente
-	) references componente (
+	) references dbo.componente (
 		id
 	);
 
-alter table formulario_elemento_validator add
+alter table dbo.formulario_elemento_validator add
 	constraint fk_formulario_elemento_validator_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 
-alter table formulario_elemento_filter add
+alter table dbo.formulario_elemento_filter add
 	constraint fk_formulario_elemento_filter_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 	
-alter table formulario add 
+alter table dbo.formulario add 
 	constraint fk_formulario_categoria foreign key 
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	),
 	constraint fk_categoria_decorator foreign key 
 	(
 		id_decorator
-	) references decorator (
+	) references dbo.decorator (
 		id
 	),
 	constraint fk_categoria_ajuda foreign key 
 	(
 		id_ajuda
-	) references ajuda (
+	) references dbo.ajuda (
 		id
 	),
 	constraint fk_formulario_formulario foreign key 
 	(
 		id_formulario_pai
-	) references formulario (
+	) references dbo.formulario (
 		id
 	);
 
-alter table formulario_formulario_elemento add 
+alter table dbo.formulario_formulario_elemento add 
 	constraint fk_formulario_formulario_elemento_formulario foreign key 
 	(
 		id_formulario
-	) references formulario (
+	) references dbo.formulario (
 		id
 	),
 	constraint fk_formulario_formulario_elemento_formulario_elemento foreign key 
 	(
 		id_formulario_elemento
-	) references formulario_elemento (
+	) references dbo.formulario_elemento (
 		id
 	);
 
-alter table formulario_elemento_formulario_elemento_validator add 
+alter table dbo.formulario_elemento_formulario_elemento_validator add 
 	constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key 
 	(
 		id_formulario_elemento
-	) references formulario_elemento (
+	) references dbo.formulario_elemento (
 		id
 	),
 	constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key 
 	(
 		id_formulario_elemento_validator
-	) references formulario_elemento_validator (
+	) references dbo.formulario_elemento_validator (
 		id
 	);
 
-alter table formulario_perfil add
+alter table dbo.formulario_perfil add
 	constraint fk_formulario_perfil_formulario foreign key
 	(
 		id_formulario
-	) references formulario (
+	) references dbo.formulario (
 		id
 	),
 	constraint fk_formulario_perfil_perfil foreign key
 	(
 		id_perfil
-	) references perfil (
+	) references dbo.perfil (
 		id
 	);
 
-alter table formulario_formulario_elemento_formulario add
+alter table dbo.formulario_formulario_elemento_formulario add
 	constraint fk_formulario_formulario_elemento_formulario_formulario_elemento foreign key
 	(
 		id_formulario_formulario_elemento
-	) references formulario_formulario_elemento (
+	) references dbo.formulario_formulario_elemento (
 		id
 	),
 	constraint fk_formulario_formulario_elemento_formulario_formulario foreign key
 	(
 		id_formulario
-	) references formulario (
+	) references dbo.formulario (
 		id
 	);
 	
-alter table componente add
+alter table dbo.componente add
 	constraint fk_componente_categoria foreign key
 	(
 		id_categoria
-	) references categoria (
+	) references dbo.categoria (
 		id
 	);
 
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
-alter table ajuda add
+alter table dbo.ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
     (constante_textual_ajuda is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null));
 
-alter table ajuda add
+alter table dbo.ajuda add
     constraint ck_ajuda_constante_textual_hint check
     (constante_textual_hint is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_hint) is not null));
 
-alter table formulario add
+alter table dbo.formulario add
 	constraint ck_formulario_constante_textual_titulo check
 	(constante_textual_titulo is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_titulo) is not null));
 
-alter table formulario add
+alter table dbo.formulario add
 	constraint ck_formulario_constante_textual_subtitulo check
 	(constante_textual_subtitulo is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_subtitulo) is not null));
 
-alter table formulario_formulario_elemento_formulario add
+alter table dbo.formulario_formulario_elemento_formulario add
 	constraint ck_formulario_formulario_elemento_formulario_constante_textual_label check
 	(constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
