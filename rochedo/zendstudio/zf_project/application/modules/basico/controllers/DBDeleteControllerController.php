@@ -36,4 +36,29 @@ class Basico_DBDeleteControllerController
 	{
 		
 	}
+
+	/**
+	 * Apaga um objeto utilizando o save do mapper (DbTable)
+	 * 
+	 * @param Object $objeto
+	 * 
+	 * @return true
+	 */
+	private function deleteObjectDbTable($objeto)
+	{
+		// verificando se foi passado um objeto, por parametro
+		if (!is_object($objeto))
+			throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+
+		// verificando se objeto possui o metodo getMapper()->delete()
+		if ((method_exists($objeto, 'getMapper')) and (method_exists($objeto->getMapper(), 'delete'))) {
+			
+			// apagando o objeto
+			$objeto->getMapper()->delete($objeto);
+
+			return true;
+		} else
+
+			throw new Exception(MSG_ERRO_DELETE_METODO_NAO_ENCONTRADO);
+	}
 }

@@ -558,6 +558,24 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_CATEGORIA_CHAVE_ESTRANGEIRA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private function retornaObjetoCategoriaLogCategoriaChaveEstrangeira()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogCategoriaChaveEstrangeira = self::retornaObjetoCategoriaAtiva(LOG_CATEGORIA_CHAVE_ESTRANGEIRA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogCategoriaChaveEstrangeira))
+			// retornando o objeto
+			return $objCategoriaLogCategoriaChaveEstrangeira;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_CATEGORIA_CHAVE_ESTRANGEIRA);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA
 	 * 
 	 * @return Basico_Model_Categoria
@@ -625,9 +643,27 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id da categoria LOG_CATEGORIA_CHAVE_ESTRANGEIRA
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogCategoriaChaveEstrangeira()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogCategoriaChaveEstrangeira = self::retornaObjetoCategoriaLogCategoriaChaveEstrangeira();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogCategoriaChaveEstrangeira))
+			// retornando o id objeto
+			return (Int) $objCategoriaLogCategoriaChaveEstrangeira->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_CATEGORIA_CHAVE_ESTRANGEIRA);
+	}
+
+	/**
 	 * Retorna o id da categoria LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA
 	 * 
-	 * @return Basico_Model_Categoria
+	 * @return Integer
 	 */
 	public static function retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira()
 	{
@@ -636,7 +672,7 @@ class Basico_CategoriaControllerController
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogRelacaoCategoriaChaveEstrangeira))
-			// retornando o objeto
+			// retornando o id objeto
 			return (Int) $objCategoriaLogRelacaoCategoriaChaveEstrangeira->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
@@ -645,7 +681,7 @@ class Basico_CategoriaControllerController
 	/**
 	 * Retorna o id da categoria LOG_EMAIL
 	 * 
-	 * @return Basico_Model_Categoria
+	 * @return Integer
 	 */
 	public static function retornaIdCategoriaLogEmail()
 	{
@@ -654,7 +690,7 @@ class Basico_CategoriaControllerController
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogEmail))
-			// retornando o objeto
+			// retornando o id objeto
 			return (Int) $objCategoriaLogEmail->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_EMAIL);
@@ -672,7 +708,7 @@ class Basico_CategoriaControllerController
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainTextReenvio))
-	    	// retornando o objeto
+	    	// retornando o id objeto
     	    return (Int) $objCategoriaEmailValidacaoPlainTextReenvio->id;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
@@ -690,7 +726,7 @@ class Basico_CategoriaControllerController
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailSistema))
-	    	// retornando o objeto
+	    	// retornando o id objeto
     	    return (Int) $objCategoriaEmailSistema->id;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_SISTEMA_EMAIL);
@@ -708,7 +744,7 @@ class Basico_CategoriaControllerController
 		
 		// verificando se o objeto foi recuperado
 	    if (isset($objCategoriaDestinatario))
-	    	// retornando o objeto
+	    	// retornando o id objeto
     	    return (Int) $objCategoriaDestinatario->id;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
@@ -726,7 +762,7 @@ class Basico_CategoriaControllerController
 
 		// verificando se o objeto foi recuperado
 	    if (isset($objCategoriaRemetente))
-	    	// retornando o objeto
+	    	// retornando o id objeto
     	    return (Int) $objCategoriaRemetente->id;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
@@ -744,7 +780,7 @@ class Basico_CategoriaControllerController
 
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainText))
-	    	// retornando o objeto
+	    	// retornando o id objeto
     	    return (Int) $objCategoriaEmailValidacaoPlainText->id;
     	    
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
@@ -762,7 +798,7 @@ class Basico_CategoriaControllerController
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailPrimario))
-	    	// retornando o objeto
+	    	// retornando o id objeto
     	    return (Int) $objCategoriaEmailPrimario->id;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO);
@@ -780,7 +816,7 @@ class Basico_CategoriaControllerController
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainTextTemplate))
-	    	// retornando o objeto
+	    	// retornando o id objeto
     	    return (Int) $objCategoriaEmailValidacaoPlainTextTemplate->id;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);

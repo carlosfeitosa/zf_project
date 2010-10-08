@@ -132,7 +132,7 @@ class Basico_DBSaveControllerController
 	}
 
 	/**
-	 * Sava um objeto utilizando o save do mapper (DbTable)
+	 * Salva um objeto utilizando o save do mapper (DbTable)
 	 * 
 	 * @param Object $objeto
 	 * 
@@ -153,7 +153,7 @@ class Basico_DBSaveControllerController
 			return true;
 		} else
 
-			throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
+			throw new Exception(MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO);
 	}
 
 	/**

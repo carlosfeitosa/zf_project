@@ -147,10 +147,12 @@ class Basico_DBCheckControllerController
 				
 				// verificando se houve localizacao de relacao
 				if ($tempReturn)
-				break;
+				
+					break;
 			}
 			// verificando se houve localizacao de relacao
 			if ($tempReturn)
+			
 				break;
 		}
 

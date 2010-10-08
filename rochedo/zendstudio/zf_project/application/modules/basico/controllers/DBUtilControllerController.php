@@ -233,8 +233,28 @@ class Basico_DBUtilControllerController
 			$controladorRowInfo->prepareXml($modelCategoriaChaveEstrangeira, true);
 			$modelCategoriaChaveEstrangeira->rowinfo = $controladorRowInfo->getXml();
 			
-			// salvando
-			$modelCategoriaChaveEstrangeira->save();
+			
+			// iniciando transacao
+			Basico_PersistenceControllerController::bdControlaTransacao();
+			
+			try {
+				
+				// salvando objeto
+				$modelCategoriaChaveEstrangeira->getMapper()->save($modelCategoriaChaveEstrangeira);
+				// salvando log
+				Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogCategoriaChaveEstrangeira(), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
+				
+				// salvando a transacao
+				Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+			} catch (Exception $e) {
+				
+				// cancelando a transacao
+				Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+				
+				throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO . QUEBRA_DE_LINHA . $e->getMessage());
+			}
+			
+	
 
 			return $modelCategoriaChaveEstrangeira;
 		}
