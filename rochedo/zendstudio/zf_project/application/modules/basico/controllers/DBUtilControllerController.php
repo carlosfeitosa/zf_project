@@ -342,6 +342,7 @@ class Basico_DBUtilControllerController
 	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
 	    	$dropScriptsFiles = self::retornaArrayFileNamesDbDropScriptsFiles();
 	    	
+	    	
 	    	//executando scripts de drop
 	    	foreach ($dropScriptsFiles as $file) {
 	    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
@@ -472,8 +473,10 @@ class Basico_DBUtilControllerController
     	// carregando array com arquivos contidos no diretorio.
     	$dropScriptsFilesArray = Basico_UtilControllerController::retornaArrayArquivosCaminho($scriptsPath, $arrayFilters);
     	
+    	//invertendo a ordem do array
+    	krsort($dropScriptsFilesArray);
     	// retornando array invertido de resultados
-    	return krsort($dropScriptsFilesArray);
+    	return $dropScriptsFilesArray;
     }
     
     /**

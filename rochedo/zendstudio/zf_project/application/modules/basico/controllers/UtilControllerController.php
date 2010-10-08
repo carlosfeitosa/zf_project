@@ -661,7 +661,7 @@ class Basico_UtilControllerController
     	}
     	
       	// retornando array de resultados
-    	return $array;
+      	return $array;
     }
 
     /**
