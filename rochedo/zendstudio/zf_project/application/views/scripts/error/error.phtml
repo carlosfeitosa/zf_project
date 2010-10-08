@@ -2,7 +2,8 @@
 /**
  * View Padrão para erros do sistema.
  */
-$applicationHttpImagesHome = $this->baseUrl('/images/');
+$searchImageLocalPath = PUBLIC_PATH . '/images/temp/';
+$applicationHttpImagesHomeTemp = $this->baseUrl('/images/temp/');
 
 ?>
 <h1>Infelizmente aconteceu um erro.</h1>
@@ -27,6 +28,6 @@ $applicationHttpImagesHome = $this->baseUrl('/images/');
 <pre><? var_dump($this->request->getParams()) ?>
 </pre>
 <h3>Croco erro:</h3>
-<img alt="Crocro error!" src="<?php echo $applicationHttpImagesHome . 'temp/excited-crocodile.jpg' ?>"/>
+<img alt="Crocro error!" src="<?php echo $applicationHttpImagesHomeTemp . Basico_UtilControllerController::retornaNomeArquivoAleatorio($searchImageLocalPath) ?>"/>
 <pre>crocodilagem...</pre>
 <? endif ?>

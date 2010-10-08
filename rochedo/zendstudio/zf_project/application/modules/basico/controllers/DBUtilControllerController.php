@@ -459,31 +459,21 @@ class Basico_DBUtilControllerController
      */
     private function retornaArrayFileNamesDbDropScriptsFiles() 
     {
+        // inicializando variaveis
+        $arrayFilters = array();
+        
     	//recuperando o path dos arquivos de create do banco de dados.
         $scriptsPath = self::retornaDBCreateScriptsPath();
-    	
-        // checando se o path existe
-    	if (!file_exists($scriptsPath)){
-    		throw new Exception(MSG_ERRO_BD_PATH_NAO_ENCONTRADO);
-    	}
-    	
+
+		// recuperando filtros
+		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();
+		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroNomesArquivos('create');
+
     	// carregando array com arquivos contidos no diretorio.
-    	$dropScriptsFilesArray = scandir($scriptsPath, 1);
+    	$dropScriptsFilesArray = Basico_UtilControllerController::retornaArrayArquivosCaminho($scriptsPath, $arrayFilters);
     	
-    	// retirando aquivos ocultos e os scripts de create do array de arquivos
-    	$i = 0;
-    	foreach ($dropScriptsFilesArray as $file) {
-    		// retirando arquivos ocultos
-    		if (strpos($file, '.') === 0) {
-    			unset($dropScriptsFilesArray[$i]);
-    		}
-    		// retirando arquivos de create
-    	    if (strpos($file, 'create') != false) {
-    			unset($dropScriptsFilesArray[$i]);
-    		}
-    		$i++;
-    	}
-    	return $dropScriptsFilesArray;
+    	// retornando array invertido de resultados
+    	return krsort($dropScriptsFilesArray);
     }
     
     /**
@@ -492,29 +482,20 @@ class Basico_DBUtilControllerController
      */
     private function retornaArrayFileNamesDbCreateScriptsFiles() 
     {
+       // inicializando variaveis
+        $arrayFilters = array();
+        
     	//recuperando o path dos arquivos de create do banco de dados.
         $scriptsPath = self::retornaDBCreateScriptsPath();
-    	
-        // checando se o path existe
-    	if (!file_exists($scriptsPath)){
-    		throw new Exception(MSG_ERRO_BD_PATH_NAO_ENCONTRADO);
-    	}
+
+		// recuperando filtros
+		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();
+		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroNomesArquivos('drop');
+
     	// carregando array com arquivos contidos no diretorio.
-    	$createScriptsFilesArray = scandir($scriptsPath);
+    	$createScriptsFilesArray = Basico_UtilControllerController::retornaArrayArquivosCaminho($scriptsPath, $arrayFilters);
     	
-    	// retirando aquivos ocultos e os scripts de create do array de arquivos
-    	$i = 0;
-    	foreach ($createScriptsFilesArray as $file) {
-    		// retirando arquivos ocultos
-    		if (strpos($file, '.') === 0) {
-    			unset($createScriptsFilesArray[$i]);
-    		}
-    		// retirando arquivos de create
-    	    if (strpos($file, 'drop') != false) {
-    			unset($createScriptsFilesArray[$i]);
-    		}
-    		$i++;
-    	}
+    	// retornando array de resultados
     	return $createScriptsFilesArray;
     }
     
@@ -524,26 +505,19 @@ class Basico_DBUtilControllerController
     */
     private function retornaArrayFileNamesDbDataScriptsFiles() 
     {
+       // inicializando variaveis
+        $arrayFilters = array();
+        
     	//recuperando o path dos arquivos de create do banco de dados.
         $scriptsPath = self::retornaDBDataScriptsPath();
-    	
-        // checando se o path existe
-    	if (!file_exists($scriptsPath)){
-    		throw new Exception(MSG_ERRO_BD_PATH_NAO_ENCONTRADO);
-    	}
-    	
+
+		// recuperando filtros
+		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();
+
     	// carregando array com arquivos contidos no diretorio.
-    	$dataScriptsFilesArray = scandir($scriptsPath);
+    	$dataScriptsFilesArray = Basico_UtilControllerController::retornaArrayArquivosCaminho($scriptsPath, $arrayFilters);
     	
-    	// retirando aquivos ocultos e os scripts de create do array de arquivos
-    	$i = 0;
-    	foreach ($dataScriptsFilesArray as $file) {
-    		// retirando arquivos ocultos
-    		if (strpos($file, '.') === 0) {
-    			unset($dataScriptsFilesArray[$i]);
-    		}
-    		$i++;
-    	}
+    	// retornando array de resultados
     	return $dataScriptsFilesArray;
     }
     

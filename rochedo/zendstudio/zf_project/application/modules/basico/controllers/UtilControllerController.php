@@ -610,4 +610,125 @@ class Basico_UtilControllerController
     		throw new Exception(MSG_ERRO_TIPO_NAO_TRATADO);
     	}
     }
+
+    /**
+     * Retorna um array filtrado
+     * 
+     * @param Array $array
+     * @param Array $arrayFilter
+     * 
+     * @return Array
+     */
+    private function filtraArray(array $array, array $arrayFilter)
+    {  	
+    	// loop dos filtros
+    	foreach ($arrayFilter as $filter) {
+    		
+    		// verificando se existem as chaves do array necessarios para utilizacao do filtro
+	    	if (!array_key_exists(ARRAY_FILTER_CHAVE_POSICAO, $filter))
+				throw new Exception(MSG_ERRO_ARRAY_FILTER_CHAVE_POSICAO_NAO_ENCONTRADA);
+	    	if (!array_key_exists(ARRAY_FILTER_CHAVE_FILTRO, $filter))
+				throw new Exception(MSG_ERRO_ARRAY_FILTER_CHAVE_FILTRO_NAO_ENCONTRADA);
+
+			// loop dos valores
+			foreach ($array as $valor) {
+
+				// descobrindo qual filtro utilizar
+				switch ($filter[ARRAY_FILTER_CHAVE_POSICAO]) {
+    				case ARRAY_FILTER_POSITION_BEGIN:
+    					// procurando pelo filtro no inicio do valor
+						if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO]) === 0)
+							// incrementando array de resultados
+							unset($array[array_search($valor, $array)]);
+						break;
+    				case ARRAY_FILTER_POSITION_MIDDLE:
+    					// procurando pelo filtro no meio do valor
+    					if (false !== strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO]))
+							// incrementando array de resultados
+							unset($array[array_search($valor, $array)]);
+    					break;
+    				case ARRAY_FILTER_POSITION_END:
+    					// procurando pelo filtro no final do valor
+    					if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) === 0)
+							// incrementando array de resultados
+							unset($array[array_search($valor, $array)]);
+    					break;
+    				default:
+    					
+    					throw new Exception(MSG_ERRO_ARRAY_FILTER_TIPO_OPERACAO_NAO_CONHECIDA);
+				}
+			}
+    	}
+    	
+      	// retornando array de resultados
+    	return $array;
+    }
+
+    /**
+     * Retorna um array contendo o filtro para arquivos ocultos
+     * 
+     * @return Array
+     */
+    public static function retornaArrayFiltroArquivosOcultos()
+    {
+    	// retornando array de resultados
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => '.', ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_POSITION_BEGIN);
+    }
+
+    /**
+     * Retorna um array contendo o filtro para arquivos que possuam "create" no nome
+     * 
+     * @param String $stringBusca
+     * 
+     * @return Array
+     */
+    public static function retornaArrayFiltroNomesArquivos($stringBusca)
+    {
+    	// retornando array de resultados
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_POSITION_MIDDLE);
+    }
+
+    /**
+     * Retorna array contendo os arquivos dentro uma pasta especificada
+     * 
+     * @param String $caminhoArquivos
+     * @param Array $arrayFilter
+     * 
+     * @return Array
+     */
+    public static function retornaArrayArquivosCaminho($caminhoArquivos, array $arrayFilter = null)
+    {
+    	// recuperando os nomes dos arquivos em um array
+		$arrayNomesArquivos = scandir($caminhoArquivos);
+		
+		// verificando se foi especificado um array contendo os filtros a serem aplicados
+		if ((isset($arrayFilter)) and (count($arrayFilter)))
+			$arrayNomesArquivos = self::filtraArray($arrayNomesArquivos, $arrayFilter);
+
+		// retornando o array de resultados
+		return $arrayNomesArquivos;
+    }
+
+    /**
+     * Retorna o nome completo de um arquivo sorteado dentro de um diretorio especificado
+     * 
+     * @param String $caminhoArquivos
+     * 
+     * @return String
+     */
+    public static function retornaNomeArquivoAleatorio($caminhoArquivos)
+    {
+    	// verificando se o caminho existe
+    	if (!file_exists($caminhoArquivos))
+    		throw new Exception(MSG_ERRO_PATH_INEXISTENTE . QUEBRA_DE_LINHA . "path: {$caminhoArquivos}");
+
+		// inicializando array de filtros
+		$arrayFilter = array(self::retornaArrayFiltroArquivosOcultos());
+
+		// recuperando os nomes dos arquivos em um array
+		$arrayNomesArquivos = self::retornaArrayArquivosCaminho($caminhoArquivos, $arrayFilter);
+
+		// embaralhando o array, sorteando um valor e retornando-o
+		return $arrayNomesArquivos[array_rand($arrayNomesArquivos, 1)];
+    }
 }
