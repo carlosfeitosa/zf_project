@@ -281,9 +281,9 @@ class Basico_DBUtilControllerController
     private function resetaLoginUsuarioMaster()
     {
     	//setando a mascara
-    	$pattern = "@(SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . PHP_EOL . ")@";
+    	$pattern = "@(". QUEBRA_DE_LINHA ."SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . QUEBRA_DE_LINHA . ")@";
     	//setando string de substituicao
-    	$replacement = 'SetEnv APPLICATION_SYSTEM_LOGIN ' . self::retornaLoginUsuarioMasterDB() . QUEBRA_DE_LINHA;
+    	$replacement = QUEBRA_DE_LINHA . 'SetEnv APPLICATION_SYSTEM_LOGIN ' . self::retornaLoginUsuarioMasterDB() . QUEBRA_DE_LINHA;
     	//recuperando conteudo do arquivo htaccess
     	$conteudoHtaccess = Basico_UtilControllerController::retornaConteudoArquivo(HTACCESS_FULLFILENAME);
         //recuperando o novo conteudo do arquivo htaccess
@@ -316,18 +316,24 @@ class Basico_DBUtilControllerController
      */
     private function dropDbTables() 
     {
-    	//salvando log de inicio da operação
-    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_INICIO);
-    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
-    	$dropScriptsFiles = self::retornaArrayFileNamesDbDropScriptsFiles();
-    	
-    	//executando scripts de drop
-    	foreach ($dropScriptsFiles as $file) {
-    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
+    	try {
+    		//salvando log de inicio da operação
+	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_INICIO);
+	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
+	    	$dropScriptsFiles = self::retornaArrayFileNamesDbDropScriptsFiles();
+	    	
+	    	//executando scripts de drop
+	    	foreach ($dropScriptsFiles as $file) {
+	    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
+	    	}
+	    	//salvando log de sucesso da operação
+	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_SUCESSO);
+	    	return true;
+    		
+    	}catch(Exception $e) {
+    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
-    	//salvando log de sucesso da operação
-    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_SUCESSO);
-    	return true;
+    	
     }
 
     /**
@@ -336,18 +342,22 @@ class Basico_DBUtilControllerController
      */
     private function createDbTables() 
     {
-    	//salvando log de inicio da operação
-    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_INCIO);
-    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
-    	$createScriptsFiles = self::retornaArrayFileNamesDbCreateScriptsFiles();
-    	    	
-    	//executando scripts de create
-    	foreach ($createScriptsFiles as $file) {
-    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
+    	try {
+	    	//salvando log de inicio da operação
+	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_INCIO);
+	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
+	    	$createScriptsFiles = self::retornaArrayFileNamesDbCreateScriptsFiles();
+	    	    	
+	    	//executando scripts de create
+	    	foreach ($createScriptsFiles as $file) {
+	    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
+	    	}
+	    	//salvando log de sucesso da operação
+	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_SUCESSO);
+	    	return true;
+    	}catch(Exception $e) {
+    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
-    	//salvando log de sucesso da operação
-    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_SUCESSO);
-    	return true;
     }
     
     /**
@@ -356,18 +366,22 @@ class Basico_DBUtilControllerController
      */
     private function insertDbData() 
     {
-    	//salvando log de inicio da operação
-    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
-    	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
-    	$dataScriptsFiles = self::retornaArrayFileNamesDbDataScriptsFiles();
-    	        
-    	//executando scripts de insert
-    	foreach ($dataScriptsFiles as $file) {
-    		self::executaScriptSQL(file_get_contents(self::retornaDBDataScriptsPath(). $file));
+    	try {
+	    	//salvando log de inicio da operação
+	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
+	    	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
+	    	$dataScriptsFiles = self::retornaArrayFileNamesDbDataScriptsFiles();
+	    	        
+	    	//executando scripts de insert
+	    	foreach ($dataScriptsFiles as $file) {
+	    		self::executaScriptSQL(file_get_contents(self::retornaDBDataScriptsPath(). $file));
+	    	}
+	    	//salvando log de sucesso da operação
+	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
+	    	return true;
+    	}catch(Exception $e) {
+    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
-    	//salvando log de sucesso da operação
-    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
-    	return true;
     }
     
     /**
