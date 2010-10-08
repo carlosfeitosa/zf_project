@@ -28,9 +28,10 @@ class Basico_DBSaveControllerController
 		try {			
 			// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
 			if (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)) {
-				if (method_exists($mixed, 'save')) {
-					// salvando o objeto
-					$mixed->save();
+
+				// salvando o objeto
+				if (self::saveObjectDbTable($mixed)) {
+
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
 						Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
@@ -79,9 +80,8 @@ class Basico_DBSaveControllerController
 			
 			// verificando se houve atualizacao da versao
 			if ($ultimaVersao !== $versaoVersionamento) {
-				if (method_exists($mixed, 'save')) {
-					// salvando o objeto
-					$mixed->save();
+				if (self::saveObjectDbTable($mixed)) {
+
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
 						Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
@@ -130,7 +130,32 @@ class Basico_DBSaveControllerController
 			return false;
 		}
 	}
-	
+
+	/**
+	 * Sava um objeto utilizando o save do mapper (DbTable)
+	 * 
+	 * @param Object $objeto
+	 * 
+	 * @return true
+	 */
+	private function saveObjectDbTable($objeto)
+	{
+		// verificando se foi passado um objeto, por parametro
+		if (!is_object($objeto))
+			throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+
+		// verificando se objeto possui o metodo getMapper()->save()
+		if ((method_exists($objeto, 'getMapper')) and (method_exists($objeto->getMapper(), 'save'))) {
+			
+			// salvando o objeto
+			$objeto->getMapper()->save($objeto);
+
+			return true;
+		} else
+
+			throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
+	}
+
 	/**
 	 * Verifica se o objeto esta na lista de atualizacao
 	 * 

@@ -109,7 +109,7 @@ class Basico_CVCControllerController
 		$modelCVC->rowinfo = $controladorRowInfo->getXml();
     	
     	// salvando informacoes do versionamento
-    	$modelCVC->save();
+    	$modelCVC->getMapper()->save($modelCVC);
     	
     	return $modelCVC->versao;
     }

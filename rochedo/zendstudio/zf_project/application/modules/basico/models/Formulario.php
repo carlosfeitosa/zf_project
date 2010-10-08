@@ -790,25 +790,6 @@ class Basico_Model_Formulario
 	}
 
 	/**
-	* Save the current entry
-	* 
-	* @return void
-	*/
-	public function save()
-	{
-		$this->getMapper()->save($this);
-	}
-	
-	/**
-	 * Delete the current entry
-	 * @return void
-	 */
-	public function delete()
-	{
-		$this->getMapper()->delete($this);
-	}
-
-	/**
 	* Find an entry
 	*
 	* Resets entry state if matching id found.

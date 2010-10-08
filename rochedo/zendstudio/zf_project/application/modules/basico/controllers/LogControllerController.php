@@ -124,7 +124,8 @@ class Basico_LogControllerController
 	 * @param String $mensagemLog
 	 * 
 	 * @return true
-	 */	public static function salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog)
+	 */	
+	public static function salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog)
 	{
 		// verifica se existe pessoa perfil e categoria de log
 		if ((!isset($idPessoaPerfil)) or (!isset($idCategoriaLog)))
@@ -144,7 +145,7 @@ class Basico_LogControllerController
 	    $logController->log->xml = self::prepareXml($logController->log);
 
 	    // salvando log
-		$logController->log->save();
+		$logController->log->getMapper()->save($logController->log);
 
 		return true;
 	}
