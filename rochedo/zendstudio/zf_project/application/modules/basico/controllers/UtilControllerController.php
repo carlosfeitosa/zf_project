@@ -635,19 +635,19 @@ class Basico_UtilControllerController
 
 				// descobrindo qual filtro utilizar
 				switch ($filter[ARRAY_FILTER_CHAVE_POSICAO]) {
-    				case ARRAY_FILTER_POSITION_BEGIN:
+    				case ARRAY_FILTER_EXCLUDE_POSITION_BEGIN:
     					// procurando pelo filtro no inicio do valor
 						if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO]) === 0)
 							// incrementando array de resultados
 							unset($array[array_search($valor, $array)]);
 						break;
-    				case ARRAY_FILTER_POSITION_MIDDLE:
+    				case ARRAY_FILTER_EXCLUDE_POSITION_MIDDLE:
     					// procurando pelo filtro no meio do valor
     					if (false !== strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO]))
 							// incrementando array de resultados
 							unset($array[array_search($valor, $array)]);
     					break;
-    				case ARRAY_FILTER_POSITION_END:
+    				case ARRAY_FILTER_EXCLUDE_POSITION_END:
     					// procurando pelo filtro no final do valor
     					if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) === 0)
 							// incrementando array de resultados
@@ -672,7 +672,7 @@ class Basico_UtilControllerController
     public static function retornaArrayFiltroArquivosOcultos()
     {
     	// retornando array de resultados
-    	return array(ARRAY_FILTER_CHAVE_FILTRO => '.', ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_POSITION_BEGIN);
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => '.', ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_BEGIN);
     }
 
     /**
@@ -685,7 +685,7 @@ class Basico_UtilControllerController
     public static function retornaArrayFiltroNomesArquivos($stringBusca)
     {
     	// retornando array de resultados
-    	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_POSITION_MIDDLE);
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_MIDDLE);
     }
 
     /**
