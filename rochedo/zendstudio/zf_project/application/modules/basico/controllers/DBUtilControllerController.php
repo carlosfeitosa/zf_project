@@ -119,11 +119,11 @@ class Basico_DBUtilControllerController
     {
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
-		
+
 		// recuperando o nome do campo da chave primaria da tabela vinculada ao objeto
 		$tablePrimaryKey = $tableInfo['primary'];
 		$tablePrimaryKey = $tablePrimaryKey[1];
-		
+
 		// retornando o valor do id generico vindo do objeto
 		return $objeto->$tablePrimaryKey;
     }
@@ -314,20 +314,29 @@ class Basico_DBUtilControllerController
     
     /**
      * Retorna o login do usuario master do sistema cadastrado no banco de dados
+     * 
      * @return String
      */
     private function retornaLoginUsuarioMasterDB() 
     {
     	//recuperando o objeto pessoaPerfil do sistema
-    	$pessoaPerfilSistema = self::retornaObjetoPessoaPerfilSistema();
+    	$objetoPessoaPerfilSistema = self::retornaObjetoPessoaPerfilSistema();
+    	
     	//criando objeto login
     	$objLogin = new Basico_Model_Login();
+    	
     	//recuperando resource do banco de dados
     	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+    	
     	//recuperando o login do usuario master do sistema
-    	$login = $objLogin->fetchList("id_pessoa = {$pessoaPerfilSistema->pessoa}", null, 1, 0);
-    	//retornando o login do usuario master do sistema
-    	return $login[0]->login;
+    	$arrayObjslogin = $objLogin->fetchList("id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
+
+    	// verificando se o objeto foi recuperado com sucesso
+    	if (isset($arrayObjslogin[0]))    	
+    		//retornando o login do usuario master do sistema
+    		return $arrayObjslogin[0]->login;
+
+    	return null;
     }
        
     /**
@@ -407,10 +416,12 @@ class Basico_DBUtilControllerController
     
     /**
      * Executa um script de banco de dados
-     * @param $script
+     * 
+     * @param String $script
+     * 
      * @return Boolean
      */
-    private function executaScriptSQL($script) 
+    public static function executaScriptSQL($script)
     {
     	try {
     		if (self::checkScriptIsAvailable($script)) {
@@ -438,7 +449,31 @@ class Basico_DBUtilControllerController
     	}
     	
     }
-    
+
+    /**
+     * Retorna um array contendo o resultad de uma query SQL
+     * 
+     * @param String $sqlQuery
+     * 
+     * @return Array
+     */
+    public static function retornaArraySQLQuery($sqlQuery)
+    {
+    	try {
+    		// recuperando resource do bando de dados.
+			$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+			
+			$stmt = $auxDb->query($sqlQuery);
+			
+			return $stmt->fetchAll();
+    		
+    	} catch (Exception $e) {
+    		
+    		throw new Exception($e->getMessage());
+    	}
+    	
+    }
+
     /**
      * Checa se o script está disponivel para ser gerado (Procura pela flag @exclude)
      * @param $script

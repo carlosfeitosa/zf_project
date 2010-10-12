@@ -23,11 +23,23 @@ define("INCLUDE_INCLUDE_ONCE", "include_once");
 define("INCLUDE_REQUIRE_ONCE", "require_once");
 define("CODIFICAR_OBJETO_TO_ENCODED_STRING", "CODIFICAR_OBJETO_TO_ENCODED_STRING");
 define("CODIFICAR_ENCODED_STRING_TO_ARRAY", "CODIFICAR_ENCODED_STRING_TO_ARRAY");
-define("SESSION_DB", "SESSION_DB");
 define("ID_GENERICO", "id_generico");
 define("TIPO_INTEIRO", 11);
 define("TIPO_STRING", 12);
 define("TIPO_BOOLEAN", 13);
+
+
+// DATABASE
+define("TABLE_ID_FIELD", "id");
+define("DB_BEGIN_TRANSACTION", 1);
+define("DB_COMMIT_TRANSACTION", 2);
+define("DB_ROLLBACK_TRANSACTION", 3);
+define("SESSION_DB", "SESSION_DB");
+define("ARRAY_TABLE_DEPENDENCIES_FK_TABLE", "fk_table");
+define("ARRAY_TABLE_DEPENDENCIES_FK_COLUMN", "fk_column");
+define("ARRAY_TABLE_DEPENDENCIES_PK_TABLE", "pk_table");
+define("ARRAY_TABLE_DEPENDENCIES_PK_COLUMN", "pk_column");
+define("ARRAY_TABLE_DEPENDENCIES_CONSTRAINT_NAME", "constraint_name");
 
 
 // ARRAY
@@ -276,9 +288,3 @@ define("LINK_DIALOG_FORM", "http://localhost/rochedo_project/public/basico/token
  * LINK PARA CONTROLADOR DE TOKENS 
  */
 define("LINK_CONTROLADOR_TOKENS", "/basico/token/decode/t/");
-
-
-// TRANSACAO DE BANCO DE DADOS
-define("DB_BEGIN_TRANSACTION", 1);
-define("DB_COMMIT_TRANSACTION", 2);
-define("DB_ROLLBACK_TRANSACTION", 3);

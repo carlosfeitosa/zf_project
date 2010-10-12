@@ -22,7 +22,7 @@ class Basico_DBSaveControllerController
 	 */
 	static public function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
-		// iniciando/verificando transacao
+		// iniciando transacao
 		$transacaoInicializada = Basico_PersistenceControllerController::bdControlaTransacao();
 		
 		try {			
