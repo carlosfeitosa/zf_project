@@ -317,20 +317,57 @@ INSERT INTO dados_pessoas_perfis (id_pessoa_perfil, assinatura_mensagem_email, r
 VALUES (@@IDENTITY, 'Equipe ROCHEDO project', 'SYSTEM_STARTUP');
 
 declare @login varchar(100), @password varchar(100)
-set @login=''
-select @login=@login+char(n) from
-(
-	select top 100 number AS n from master..spt_values 
-	where type='p' and number between 48 and 122
-	order by newid()
-) as t
-set @password=''
-select @password=@password+char(n) from
-(
-	select top 100 number AS n from master..spt_values 
-	where type='p' and number between 48 and 122
-	order by newid()
-) as t
+
+DECLARE @Length int
+DECLARE @RandomID varchar(100)
+DECLARE @counter smallint
+DECLARE @RandomNumber float
+DECLARE @RandomNumberInt tinyint
+DECLARE @CurrentCharacter varchar(1)
+DECLARE @ValidCharacters varchar(255)
+DECLARE @ValidCharactersLength int
+SET @ValidCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-=+&$'
+SET @ValidCharactersLength = len(@ValidCharacters)
+SET @CurrentCharacter = ''
+SET @RandomNumber = 0
+SET @RandomNumberInt = 0
+SET @RandomID = ''
+SET @Length = 100
+
+SET NOCOUNT ON
+
+SET @counter = 1
+
+WHILE @counter < (@Length + 1)
+BEGIN
+        SET @RandomNumber = Rand()
+        SET @RandomNumberInt = Convert(tinyint, ((@ValidCharactersLength - 1) * @RandomNumber + 1))
+
+        SELECT @CurrentCharacter = SUBSTRING(@ValidCharacters, @RandomNumberInt, 1)
+
+        SET @counter = @counter + 1
+        SET @RandomID = @RandomID + @CurrentCharacter
+
+END
+
+SET @login = @RandomID
+
+SET @counter = 1
+SET @RandomID = ''
+
+WHILE @counter < (@Length + 1)
+BEGIN
+        SET @RandomNumber = Rand()
+        SET @RandomNumberInt = Convert(tinyint, ((@ValidCharactersLength - 1) * @RandomNumber + 1))
+
+        SELECT @CurrentCharacter = SUBSTRING(@ValidCharacters, @RandomNumberInt, 1)
+
+        SET @counter = @counter + 1
+        SET @RandomID = @RandomID + @CurrentCharacter
+
+END
+
+SET @password = @RandomID
 
 INSERT INTO login (id_pessoa, login, senha, pode_expirar, datahora_proxima_expiracao, rowinfo)
 SELECT pp.id_pessoa, @login AS login, 
