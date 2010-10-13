@@ -1,6 +1,6 @@
 /*
 *
-* SCRIPT DE POPULACAO DAS TABELAS DO SPRINT 0003.2
+* SCRIPT DE POPULACAO DAS TABELAS DO SPRINT 0003
 * 
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: ADRIANO LEMOS (adriano.lemos@rochedoproject.com)
@@ -184,15 +184,11 @@ FROM tipo_categoria t
 WHERE t.nome = 'COMPONENTE';
 
 /* DICIONARIO DE EXPRESSÕES */
-
 /*
  * (Português do Brasil - PT_BR)
- * registro de usuário validado
 */
 
-/*
- * Titulo de dialog de Maior Titulação
- */
+
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_SUBMIT' AS constante_textual, 'Enviar' AS traducao
@@ -252,12 +248,8 @@ AND c.nome = 'pt-br';
 
 /*
  * (Inglês Americano - EN_US)
- * registro de usuário validado
 */
 
-/*
- * Titulo de dialog de Maior Titulação
- */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_SUBMIT' AS constante_textual, 'Send' AS traducao
@@ -332,6 +324,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_OUTPUT_HTML';
 
+
 /* TEMPLATE */
 
 INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
@@ -362,7 +355,9 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE';
 
+
 /* AJUDA */
+
 
 /* DECORATOR */
 
@@ -406,6 +401,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MODULO';
+
 
 /* FORMULARIO */
 
@@ -521,6 +517,7 @@ SELECT (SELECT f.id
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
 'SYSTEM_STARTUP' AS rowinfo;
 
+
 /* FORMULARIO ELEMENTO FILTER */
 
 INSERT INTO formulario_elemento_filter (id_categoria, nome, descricao, filter, rowinfo)
@@ -531,6 +528,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_FILTER';
+
 
 /* FORMULARIO ELEMENTO VALIDATOR */
 
