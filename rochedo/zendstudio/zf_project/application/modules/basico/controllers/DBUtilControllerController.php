@@ -269,7 +269,6 @@ class Basico_DBUtilControllerController
      */
     public static function resetaBD()
     {
-    	self::resetaLoginUsuarioMaster();
     	//checando se está no ambiente de desenvolvimento
     	if (Basico_UtilControllerController::ambienteDesenvolvimento()) {
     		//salvando log de inicio da operação
