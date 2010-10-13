@@ -22,6 +22,10 @@ class Basico_DBSaveControllerController
 	 */
 	static public function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
+		// verificando se trata-se de uma atualizacao e se a linha ainda existe no banco da dados
+		if ((isset($mixed->id)) and (isset($versaoUpdate)) and (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)))
+			throw new Exceltion(MSG_ERRO_SAVE_UPDATE_SEM_PERSISTENCIA);
+		
 		// iniciando transacao
 		$transacaoInicializada = Basico_PersistenceControllerController::bdControlaTransacao();
 		
