@@ -3,10 +3,10 @@
 * 
 * versao: 1.0 (MSSQL 2000)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
-* criacao: 08/06/2010
+* criacao: 14/06/2010
 * ultimas modificacoes: 
 * 						16/06/2010 - insercao de dados em formulario_perfil;
-* 						08/07/2010 - insercao dos dados da tabela de modulos;
+* 						09/07/2010 - insercao dos dados da tabela de modulos;
 * 						13/07/2010 - insercao do ouput (categoria e template, tambem)
 * 									 DOJO;
 * 								   - insercao do valores TRUE para o campo element_reloadable
@@ -21,171 +21,20 @@
 * 						10/08/2010 - insercao da categoria FORMULARIO_SUB_FORMULARIO;
 * 						25/08/2010 - insercao do elemento FORM_BUTTON_DIALOG_DOJO;
 *                       09/09/2010 - insercao do dicionario de expressoes do gerado_formulario;
-* 						14/09/2010 - insercao dos componentes;
+*						14/09/2010 - insercao dos componentes;
 * 						14/09/2010 - vinculacao dos componentes com formulario_elemento;
 * 						29/09/2010 - modificacao dos atributos do formulario "CadastrarUsuarioNaoValidado"
 * 									 para exibir mensagem de validacao javascript;
+* 						06/10/2010 - Transferido deste script para o script do sprint 0003, o Container de dados usuários
+* 								   - Todos os Elementos transferidos para o sprint 0003
+* 								   - Associacao de alguns elementos a formulários foram transferidos para o sprint 0003
+* 								   - Componentes Transferidos para o Sprint 0003
+* 								   - Categorias Transferidas para o Sprint 0003
+* 								   - Tipo Categorias Transferidas para o Sprint 0003
+* 								   - Expressões Transferidas para o Sprint 0003
 */
 
-/* TIPO CATEGORIA */
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
-VALUES ('FORMULARIO', 'Formulários do sistema.', 'SYSTEM_STARTUP');
-
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
-VALUES ('AJUDA', 'Ajuda do sistema', 'SYSTEM_STARTUP');
-
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
-VALUES ('COMPONENTE', 'Componentes do sistema', 'SYSTEM_STARTUP');
-
-
-/* CATEGORIA */
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_OUTPUT' AS nome, 'Tipo de saida de formulários.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_OUTPUT_DOJO' AS nome, 'Saida HTML.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_OUTPUT';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_OUTPUT_HTML' AS nome, 'Saida HTML.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_OUTPUT';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_TEMPLATE' AS nome, 'Template de formulários.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_INPUT' AS nome, 'Formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_CADASTRO' AS nome, 'Formulários de manipulação de dados cadastrais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO' AS nome, 'Formulários de manipulação de dados cadastrais do usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_SUB_FORMULARIO' AS nome, 'Sub-formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'AJUDA_FORMULARIO' AS nome, 'Ajuda para preenchimento de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'AJUDA';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'AJUDA_FORMULARIO_CADASTRO' AS nome, 'Ajuda para preenchimento de formulários de manipulação de dados cadastrais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_USUARIO' AS nome, 'Ajuda para preenchimento de formulários de manipulação de dados cadastrais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_DECORATOR' AS nome, 'Decorator para formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_ELEMENTO' AS nome, 'Elementos de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_FILTER' AS nome, 'Filtros para elementos de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_VALIDATOR' AS nome, 'Validadores para elementos de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_DECORATOR' AS nome, 'Decorador para elementos de formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_CAPTCHA' AS nome, 'Elementos CAPTCHA para formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_BUTTON' AS nome, 'Botões para formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO' AS nome, 'Botões para chamada de caixas de dialogo DOJO, contendo formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_HASH' AS nome, 'Hashs para formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_TAB_CONTAINER1_DECORATOR' AS nome, 'Decorator para sub-formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
-WHERE nome = 'FORMULARIO';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'SISTEMA_MODULO' AS nome, 'Modulos do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-WHERE t.nome = 'SISTEMA';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'COMPONENTE_DOJO' AS nome, 'Componentes DOJO do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-WHERE t.nome = 'COMPONENTE';
-
-INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'COMPONENTE_ZF' AS nome, 'Componentes ZendFramework do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-WHERE t.nome = 'COMPONENTE';
 
 
 /* DICIONARIO DE EXPRESSOES
@@ -213,28 +62,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_BUTTON_SUBMIT' AS constante_textual, 'Enviar' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'DIALOG_HELP_TITLE' AS constante_textual, 'Ajuda' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_VALIDATION_TITLE' AS constante_textual, 'Atenção' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_VALIDATION_MESSAGE' AS constante_textual, 'Por favor, preencha todos os campos requeridos antes de continuar.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -341,28 +169,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_BUTTON_SUBMIT' AS constante_textual, 'Send' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'en-us';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'DIALOG_HELP_TITLE' AS constante_textual, 'Help' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'en-us';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_VALIDATION_TITLE' AS constante_textual, 'Attention' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'en-us';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_VALIDATION_MESSAGE' AS constante_textual, 'Please fill all required fields before continue.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -445,55 +252,6 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-
-/* OUTPUT */
-
-INSERT INTO output (id_categoria, nome, descricao, rowinfo)
-SELECT c.id AS id_categoria, 'OUTPUT_DOJO' AS nome, 'Formato de saida DOJO.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_OUTPUT_DOJO';
-
-INSERT INTO output (id_categoria, nome, descricao, rowinfo)
-SELECT c.id AS id_categoria, 'OUTPUT_HTML' AS nome, 'Formato de saida HTML.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_OUTPUT_HTML';
-
-
-/* TEMPLATE */
-
-INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
-SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome, 'Template DOJO.' AS descricao,
-       (SELECT o.id
-        FROM output o
-        LEFT JOIN categoria c ON (o.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_OUTPUT_DOJO'
-        AND o.nome = 'OUTPUT_DOJO') AS id_output, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_TEMPLATE';
-
-INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
-SELECT c.id AS id_categoria, 'TEMPLATE_HTML' AS nome, 'Template HTML.' AS descricao,
-       (SELECT o.id
-        FROM output o
-        LEFT JOIN categoria c ON (o.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_OUTPUT_HTML'
-        AND o.nome = 'OUTPUT_HTML') AS id_output, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_TEMPLATE';
-
-
 /* AJUDA */
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
@@ -514,51 +272,6 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
 
-
-/* DECORATOR */
-
-INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
-SELECT c.id AS id_categoria, 'DECORATOR_FORM_SUBMIT' AS nome, 'Decorator para submissão de formulários.' AS descricao,
-       '''FormElements'',
-                array(''HtmlTag'', array(''tag'' => ''dl'', ''class'' => ''zend_form_dojo'')),
-                array(''DijitForm'', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array(''successHandler''=>"dojo.eval(data);"))),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_DECORATOR';
-
-INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
-SELECT c.id AS id_categoria, 'DECORATOR_FORM_LABEL_ESCAPE' AS nome, 'Decorator que permite escapar tags html dentro de um label de um campo no formulários.' AS descricao,
-       '''Label'', array(''escape'' => false)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR';
-
-INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
-SELECT c.id AS id_categoria, 'DECORATOR_FORM_TAB_CONTAINER1' AS nome, 'Decorator para submissão de sub-formulários.' AS descricao,
-       '''FormElements'',
-                array(''TabContainer'', array(''id'' => ''TabContainer'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',
-                      ''dijitParams'' => array(''tabPosition'' => ''top''),)),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR';
-
-
-/* MODULO */
-
-INSERT INTO modulo (id_categoria, nome, descricao, versao, path, instalado, ativo, xml_autoria, rowinfo)
-SELECT c.id AS id_categoria, 'BASICO' AS nome,
-	   'Modulo basico. Necessario para funcionamento minimo do sistema.' AS descricao,
-	   '0.3' AS versao, 'basico/' AS path, 1 AS instalado, 1 AS ativo,
-	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MODULO'; 
-	 
-
 /* FORMULARIO */
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
@@ -566,7 +279,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
                         form_name, form_method, form_action, form_attribs, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
@@ -576,28 +289,11 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
        'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, 'verificaNovoLogin' AS form_action, 
-	   '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
-
-INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
-SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
-       'FORM_DADOS_USUARIO' AS nome,
-       'Formulário de cadastro do usuário validado.' AS descricao,
-       'CadastrarDadosUsuario' AS form_name, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
-
 
 /* FORMULARIO TEMPLATE */
 
@@ -617,47 +313,8 @@ SELECT (SELECT f.id
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
 	   'SYSTEM_STARTUP' AS rowinfo;
-	   
-INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
-SELECT (SELECT f.id
-        FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_DADOS_USUARIO') AS id_formulario,
-       (SELECT p.id
-		FROM template p
-		LEFT JOIN categoria c ON (p.id_categoria = c.id)
-		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-		WHERE t.nome = 'FORMULARIO'
-		AND c.nome = 'FORMULARIO_TEMPLATE'
-		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
-	   'SYSTEM_STARTUP' AS rowinfo;
-
-
-/* FORMULARIO ELEMENTO FILTER */
-
-INSERT INTO formulario_elemento_filter (id_categoria, nome, descricao, filter, rowinfo)
-SELECT c.id AS id_categoria, 'STRINGTRIM_STRIPTAGS' AS nome, 
-       'Filtro que limpa espaços antes e depois do texto e remove todas as marcações de linguagens de programação.' AS descricao,
-       '''StringTrim'', ''StripTags''' AS filter, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_FILTER';
-
 
 /* FORMULARIO ELEMENTO VALIDATOR */
-
-INSERT INTO formulario_elemento_validator (id_categoria, nome, descricao, validator, rowinfo)
-SELECT c.id AS id_categoria, 'NOT_EMPTY' AS nome, 
-       'Validador que não permite que o campo seja vazio.' AS descricao,
-       '''NotEmpty''' AS validator, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 
 INSERT INTO formulario_elemento_validator (id_categoria, nome, descricao, validator, rowinfo)
 SELECT c.id AS id_categoria, 'EMAIL_ADDRESS' AS nome, 
@@ -677,16 +334,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 
-
 /* COMPONENTE */
-
-INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
-SELECT c.id AS id_categoria, 'DOJO_ValidationTextBox' AS nome, 'Componente DOJO para caixas de texto com validação.' AS descricao,
-	   '''ValidationTextBox''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'COMPONENTE'
-AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_captcha' AS nome, 'Componente ZendFramework para validação anti-robo.' AS descricao,
@@ -697,29 +345,12 @@ WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
-SELECT c.id AS id_categoria, 'DOJO_submitButton' AS nome, 'Componente DOJO para botões de submissão.' AS descricao,
-	   '''submitButton''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'COMPONENTE'
-AND c.nome = 'COMPONENTE_DOJO';
-
-INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_hash' AS nome, 'Componente ZendFramework de hash para validação anti-cross-site script.' AS descricao,
 	   '''hash''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_ZF';
-
-INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
-SELECT c.id AS id_categoria, 'ZF_button' AS nome, 'Componente ZendFramework de botões.' AS descricao,
-	   '''button''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'COMPONENTE'
-AND c.nome = 'COMPONENTE_ZF';
-
 
 /* FORMULARIO ELEMENTO */
 
@@ -833,23 +464,6 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
-                                 element_name, element, rowinfo)
-SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, 'Botão para submissão de formulários.' AS descricao,
-	   (SELECT cp.id
-        FROM componente cp
-        LEFT JOIN categoria c ON (cp.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'COMPONENTE'
-        AND c.nome = 'COMPONENTE_DOJO'
-        AND cp.nome = 'DOJO_submitButton') AS id_componente,
-       'FORM_BUTTON_SUBMIT' AS constante_textual_label, 'enviar' AS element_name, 
-       '''enviar''' AS element, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
-
 INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, 'Botão para submissão de formulários.' AS descricao,
 	   (SELECT cp.id
@@ -865,23 +479,6 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HASH';
-
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
-SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para chamar caixa de dialogo DOJO.' AS descricao,
-	   (SELECT cp.id
-        FROM componente cp
-        LEFT JOIN categoria c ON (cp.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'COMPONENTE'
-        AND c.nome = 'COMPONENTE_ZF'
-        AND cp.nome = 'ZF_button') AS id_componente,
-       'buttonDialogDojo' AS element_name, 
-       '''label'' => "{@tituloForm}", ''onClick'' => "exibirForm(\"@nomeForm\", \"{@variableInstaceForm}\", \"{@tituloForm}\")"' AS element_attribs,
-       '''buttonDialogDojo@offset''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO';
 
 
 /* FORMULARIO ELEMENTO x FORMULARIO ELEMENTO VALIDATOR */
@@ -1019,7 +616,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_HASH'
         AND fe.nome = 'FORM_HASH') AS id_formulario_elemento, 1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
-
+        
 INSERT INTO formulario_perfil (id_formulario, id_perfil, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -1036,7 +633,7 @@ SELECT (SELECT f.id
         AND c.nome = 'SISTEMA_USUARIO'
         AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo;
 
-        
+
 /* MODULO BASICO x FORMULARIO FORM_CADASTRAR_USUARIO_NAO_VALIDADO */
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
