@@ -8,7 +8,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table relacao_categoria_chave_estrangeira (
+create table dbo.relacao_categoria_chave_estrangeira (
 	id int identity (1, 1) not null ,
 	tabela_origem varchar (100) collate latin1_general_ci_ai not null ,
 	campo_origem varchar (100) collate latin1_general_ci_ai not null ,

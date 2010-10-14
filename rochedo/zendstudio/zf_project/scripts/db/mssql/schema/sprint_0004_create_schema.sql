@@ -22,6 +22,7 @@
 * 						14/09/2010 - criacao da tabela "componente";
 * 						14/09/2010 - criacao do campo (e associacoes) "id_componente" na tabela
 * 									 "formulario_elemento";
+* 						14/10/2010 - criacao do campo ordem no formulario;
 */
 
 
@@ -159,6 +160,7 @@ create table dbo.formulario (
 	data_desativacao datetime null ,
 	data_auto_reativar datetime null ,
 	motivo_desativacao varchar (1000) collate latin1_general_ci_ai null ,
+	ordem int null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -196,6 +198,7 @@ create table dbo.formulario_formulario_elemento_formulario (
 create table dbo.componente (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
+	id_template int null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	componente varchar (1000) collate latin1_general_ci_ai not null ,
@@ -638,6 +641,12 @@ alter table dbo.componente add
 	(
 		id_categoria
 	) references dbo.categoria (
+		id
+	),
+	constraint fk_componente_template foreign key
+	(
+		id_template
+	) references dbo.template (
 		id
 	);
 

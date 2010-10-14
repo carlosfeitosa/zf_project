@@ -22,6 +22,7 @@
 * 						14/09/2010 - criacao da tabela "componente";
 * 						14/09/2010 - criacao do campo (e associacoes) "id_componente" na tabela
 * 									 "formulario_elemento";
+* 						14/10/2010 - criacao do campo ordem no formulario;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -198,6 +199,7 @@ create table formulario (
 	data_desativacao timestamp with time zone null ,
 	data_auto_reativar timestamp with time zone null ,
 	motivo_desativacao character varying (1000) null ,
+	ordem int null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -255,6 +257,7 @@ alter table formulario_formulario_elemento_formulario  owner to rochedo_user;
 create table componente (
 	id serial not null ,
 	id_categoria int not null ,
+	id_template int null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
 	componente character varying (1000) not null ,
@@ -476,6 +479,10 @@ alter table formulario_perfil
 alter table formulario_formulario_elemento_formulario 
   add constraint fk_formulario_formulario_elemento_formulario_formulario_elemento foreign key (id_formulario_formulario_elemento) references formulario_formulario_elemento (id) on update no action on delete no action,
   add constraint fk_formulario_formulario_elemento_formulario_formulario foreign key (id_formulario) references formulario (id) on update no action on delete no action;
+
+alter table componente
+  add constraint fk_componente_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+  add constraint fk_componente_template foreign key (id_template) references template (id) on update no action on delete no action;
 
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
