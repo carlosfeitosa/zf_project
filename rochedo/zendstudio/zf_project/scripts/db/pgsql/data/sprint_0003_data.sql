@@ -443,6 +443,27 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
+/* Subformulario de dados profissionais */
+
+INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria,(SELECT f.id
+        		                     FROM formulario f
+                		             WHERE f.nome = 'FORM_DADOS_USUARIO'),                          
+       'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS' AS nome,
+       'Formulário de submissão de dados profissionais.' AS descricao, 
+       'SUBFORM_TABTITLE_DADOS_PROFISSIONAIS' AS constante_textual_titulo,
+       'CadastrarDadosUsuarioDadosProfissionais' AS form_name, 
+       'post' AS form_method, 
+       NULL AS form_action, 
+       NULL AS form_attribs, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+
 /* Dialog de Maior Titulacao */
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
@@ -490,6 +511,24 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_TEMPLATE'
+		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+'SYSTEM_STARTUP' AS rowinfo;
+
+/* sub formulario de dados profissionais */
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS') AS id_formulario,
        (SELECT p.id
 		FROM template p
 		LEFT JOIN categoria c ON (p.id_categoria = c.id)
@@ -560,7 +599,25 @@ SELECT (SELECT m.id
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
 		AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario,
-		'SYSTEM_STARTUP' AS rowinfo;	   
+		'SYSTEM_STARTUP' AS rowinfo;
+
+/* Subform dados profissionais */
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+		AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;
 
 /* Dialog maior titulacao */
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
