@@ -96,6 +96,10 @@ class Basico_Model_Formulario
 	 */
 	protected $_motivoDesativacao;
 	/**
+	* @var int
+	*/
+	protected $_ordem;
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -587,6 +591,27 @@ class Basico_Model_Formulario
 		return $this->_motivoDesativacao;
 	}
 	
+	/**
+	* Set entry ordem
+	* 
+	* @param  int $ordem 
+	* @return Default_Model_Formulario
+	*/
+	public function setOrdem($ordem)
+	{
+		$this->_ordem = Basico_UtilControllerController::retornaValorTipado($ordem, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry ordem
+	* 
+	* @return null|int
+	*/
+	public function getOrdem()
+	{
+		return $this->_ordem;
+	}
     /**
 	* Set rowinfo
 	* 
@@ -667,7 +692,7 @@ class Basico_Model_Formulario
     public function getFormulariosFilhosObjects()
     {
     	$modelFormulario = new Basico_Model_Formulario();
-    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$this->_id}");
+    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$this->_id}", "ordem");
     	
     	$arrayIdsFormularios = array();
     	foreach ($arrayFormulariosObjects as $formularioObject){

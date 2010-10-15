@@ -831,10 +831,17 @@ class Basico_GeradorFormularioControllerController
 			}
 
 			// descobrindo se o campo é requerido
-            if ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true)
+            if ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true) {
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";" . QUEBRA_DE_LINHA;
-            else
+            	
+            	// setando variavel de label de campo requerido
+            	$labelCampoRequerido = FORM_GERADOR_FORM_ELEMENT_LABEL_REQUIRED;
+            } else {
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_FALSE . ";" . QUEBRA_DE_LINHA;
+            	
+            	// limpando variavel de label de campo requerido
+            	$labelCampoRequerido = '';
+            }
 
 			// adicionando filtros
             if ($formularioElementoObject->getFormularioElementoFilterObject()->id)
@@ -869,7 +876,7 @@ class Basico_GeradorFormularioControllerController
                 	$linkAjuda = '';
 
                 $linkAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($linkAjuda, "'");
-                $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE) . {$linkAjuda});" . QUEBRA_DE_LINHA;
+                $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_UtilControllerController::retornaStringEntreCaracter($labelCampoRequerido, "'") . "." . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE) . {$linkAjuda});" . QUEBRA_DE_LINHA;
                 	
 			}
 
