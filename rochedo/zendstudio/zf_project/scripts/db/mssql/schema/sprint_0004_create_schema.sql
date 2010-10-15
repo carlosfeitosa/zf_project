@@ -23,6 +23,7 @@
 * 						14/09/2010 - criacao do campo (e associacoes) "id_componente" na tabela
 * 									 "formulario_elemento";
 * 						14/10/2010 - criacao do campo ordem no formulario;
+* 						14/10/2010 - desobrigatoriedade de escolha de hint para ajuda
 */
 
 
@@ -43,7 +44,7 @@ create table dbo.ajuda (
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	constante_textual_ajuda varchar (200) collate latin1_general_ci_ai not null ,
-	constante_textual_hint varchar (200) collate latin1_general_ci_ai not null ,
+	constante_textual_hint varchar (200) collate latin1_general_ci_ai null ,
 	url varchar(300) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];

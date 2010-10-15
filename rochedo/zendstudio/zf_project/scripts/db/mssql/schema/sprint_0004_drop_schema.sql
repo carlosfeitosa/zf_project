@@ -11,6 +11,7 @@
 * 						23/07/2010 - drop da tabela template_formulario;
 * 						16/08/2010 - drop da tabela formulario_formulario_elemento_formulario;
 * 						14/09/2010 - drop da tabela componente;
+* 						14/10/2010 - modificacao da ordem de drop da tabela template
 */
 
 if object_id('cvc') is not null
@@ -28,12 +29,6 @@ end
 if object_id('template_formulario') is not null
 begin
 drop table template_formulario;
-end
-;
-
-if object_id('template') is not null
-begin
-drop table template;
 end
 ;
 
@@ -76,6 +71,12 @@ end
 if object_id('componente') is not null
 begin
 drop table componente;
+end
+;
+
+if object_id('template') is not null
+begin
+drop table template;
 end
 ;
 

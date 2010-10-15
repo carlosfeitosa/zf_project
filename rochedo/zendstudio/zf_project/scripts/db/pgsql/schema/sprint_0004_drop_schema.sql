@@ -11,11 +11,11 @@
 * 						23/07/2010 - drop da tabela template_formulario;
 * 						16/08/2010 - drop da tabela formulario_formulario_elemento_formulario;
 * 						14/09/2010 - drop da tabela componente;
+* 						14/10/2010 - modificacao da ordem de drop da tabela template
 */
 
 drop table if exists formulario_formulario_elemento_formulario;
 drop table if exists template_formulario;
-drop table if exists template;
 drop table if exists formulario_perfil;
 drop table if exists formulario_formulario_elemento;
 drop table if exists formulario_elemento_formulario_elemento_validator;
@@ -23,6 +23,7 @@ drop table if exists formulario_elemento;
 drop table if exists formulario_elemento_validator;
 drop table if exists formulario_elemento_filter;
 drop table if exists componente;
+drop table if exists template;
 drop table if exists modulo_formulario;
 drop table if exists modulo_perfil;
 drop table if exists modulo;

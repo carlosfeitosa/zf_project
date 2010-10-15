@@ -23,6 +23,7 @@
 * 						14/09/2010 - criacao do campo (e associacoes) "id_componente" na tabela
 * 									 "formulario_elemento";
 * 						14/10/2010 - criacao do campo ordem no formulario;
+* 						14/10/2010 - desobrigatoriedade de escolha de hint para ajuda
 */
 
 /* CRIACAO DAS TABELAS */
@@ -46,7 +47,7 @@ create table ajuda (
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
 	constante_textual_ajuda character varying (200) not null ,
-	constante_textual_hint character varying (200) not null ,
+	constante_textual_hint character varying (200) null ,
 	url character varying(300) null ,
 	rowinfo character varying (2000) not null 
 )
