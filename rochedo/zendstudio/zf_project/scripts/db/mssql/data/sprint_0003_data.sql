@@ -1139,7 +1139,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               'FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 'Elemento Hidden para fechamento de formatacao div float.' AS descricao,
                               'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual_label,
                               'dummyHidden' AS element_name, NULL AS element_attribs,
-                              '''dummyHidden''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''dummyHidden''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
