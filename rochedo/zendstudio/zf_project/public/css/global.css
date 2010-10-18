@@ -21,6 +21,11 @@ a:hover
 	text-decoration: underline;
 }
 
+dd
+{
+	margin-left: 0px;
+}
+
 span#index_application_name
 {
 	color: #000033;
