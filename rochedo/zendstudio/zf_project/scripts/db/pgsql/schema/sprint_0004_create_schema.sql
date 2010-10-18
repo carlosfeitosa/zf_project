@@ -212,6 +212,8 @@ create table formulario_formulario_elemento (
 	id serial not null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
+	id_decorator int null ,
+	id_grupo_formulario_elemento int null ,
 	element_required boolean not null ,
 	ordem int not null ,	
 	rowinfo character varying (2000) not null 
@@ -272,6 +274,15 @@ create table componente (
   oids = false
 );
 
+create table grupo_formulario_elemento (
+	id serial not null ,
+	nome character varying (100) not null ,
+	descricao character varying (2000) null ,
+	rowinfo character varying (2000) not null
+) with (
+  oids = false
+);
+
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
 alter table decorator add constraint pk_decorator primary key (id);
@@ -307,6 +318,8 @@ alter table formulario_perfil add constraint pk_formulario_perfil primary key (i
 alter table formulario_formulario_elemento_formulario add constraint pk_formulario_formulario_elemento_formulario primary key (id);
 
 alter table componente add constraint pk_componente primary key (id);
+
+alter table grupo_formulario_elemento add constraint pk_grupo_formulario_elemento primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -467,7 +480,9 @@ alter table formulario
 
 alter table formulario_formulario_elemento
   add constraint fk_formulario_formulario_elemento_formulario foreign key (id_formulario) references formulario (id) on update no action on delete no action,
-  add constraint fk_formulario_formulario_elemento_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action;
+  add constraint fk_formulario_formulario_elemento_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
+  add constraint fk_formulario_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action,
+  add constraint fk_formulario_formulario_elemento_grupo_formulario_elemento foreign key (id_grupo_formulario_elemento) references grupo_formulario_elemento (id) on update no action on delete no action;
 
 alter table formulario_elemento_formulario_elemento_validator 
   add constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,

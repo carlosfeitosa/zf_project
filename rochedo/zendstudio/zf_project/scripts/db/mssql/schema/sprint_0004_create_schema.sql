@@ -169,6 +169,8 @@ create table dbo.formulario_formulario_elemento (
 	id int identity (1, 1) not null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
+	id_decorator int null ,
+	id_grupo_formulario_elemento int null ,
 	element_required bit not null ,
 	ordem int not null ,	
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
@@ -211,6 +213,13 @@ create table dbo.componente (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
+create table dbo.grupo_formulario_elemento (
+	id int identity (1, 1) not null ,
+	nome varchar (100) not null ,
+	descricao varchar (2000) null ,
+	rowinfo varchar (2000) not null
+) on [primary];
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
@@ -247,6 +256,8 @@ alter table dbo.formulario_perfil with nocheck add constraint pk_formulario_perf
 alter table dbo.formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
 
 alter table dbo.componente with nocheck add constraint pk_componente primary key (id) on [primary];
+
+alter table dbo.grupo_formulario_elemento with nocheck add constraint pk_grupo_formulario_elemento primary key (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -592,6 +603,18 @@ alter table dbo.formulario_formulario_elemento add
 	(
 		id_formulario_elemento
 	) references dbo.formulario_elemento (
+		id
+	),
+	constraint fk_formulario_formulario_elemento_decorator foreign key
+	(
+		id_decorator
+	) references decorator (
+		id
+	),
+	constraint fk_formulario_formulario_elemento_grupo_formulario_elemento foreign key
+	(
+		id_grupo_formulario_elemento
+	) references grupo_formulario_elemento (
 		id
 	);
 
