@@ -121,3 +121,9 @@ begin
 drop table output;
 end
 ;
+
+if object_id('grupo_formulario_elemento') is not null
+begin
+drop table grupo_formulario_elemento;
+end
+;

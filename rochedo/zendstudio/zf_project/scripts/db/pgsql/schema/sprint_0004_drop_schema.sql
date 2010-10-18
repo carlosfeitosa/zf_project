@@ -31,3 +31,4 @@ drop table if exists formulario;
 drop table if exists decorator;
 drop table if exists ajuda;
 drop table if exists output;
+drop table if exists grupo_formulario_elemento;
