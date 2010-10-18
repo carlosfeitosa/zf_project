@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/10/2010 16:39:28
+* em: 18/10/2010 16:59:50
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 18/10/2010 16:39:18
+* @version    1: 18/10/2010 16:59:02
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional extends Zend_Dojo_Form
 {
@@ -90,6 +90,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[6]->setRequired(false);
         $elements[6]->addFilters(array('StringTrim', 'StripTags'));
         $elements[6]->addDecorator('Label', array('escape' => false));
+        $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'style' => 'clear: both;',));
         $elements[6]->setLabel(''.$this->getView()->tradutor('FORM_FIELD_ATIVIDADES_DESENVOLVIDAS', DEFAULT_USER_LANGUAGE) . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE', DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_ATIVIDADES_DESENVOLVIDAS_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)</script></button>');
         if ($options!=null)
             $elements[6]->setValue($options->atividadesDesenvolvidas);
