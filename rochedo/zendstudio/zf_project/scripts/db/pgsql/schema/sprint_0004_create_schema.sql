@@ -24,6 +24,9 @@
 * 									 "formulario_elemento";
 * 						14/10/2010 - criacao do campo ordem no formulario;
 * 						14/10/2010 - desobrigatoriedade de escolha de hint para ajuda
+* 						18/10/2010 - criacao da tabela grupo_formulario_elemento;
+* 								   - associacao de formulario_formulario_elemento com grupo_formulario_elemento
+* 									 e decorator;
 */
 
 /* CRIACAO DAS TABELAS */
