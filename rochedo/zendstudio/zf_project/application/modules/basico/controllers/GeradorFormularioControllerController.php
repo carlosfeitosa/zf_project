@@ -5,6 +5,7 @@
 // includes dos controladores
 require_once("CVCControllerController.php");
 require_once("FormularioControllerController.php");
+require_once("FormularioFormularioElementoControllerController.php");
 
 class Basico_GeradorFormularioControllerController
 {
@@ -860,6 +861,14 @@ class Basico_GeradorFormularioControllerController
 				if ($formularioElementoObject->getDecoratorObject()->id)
 					$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA;
 
+				// recuperando decorator de formularioFormularioElemento
+				$decoratorFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaDecoratorObject($objFormulario->id, $formularioElementoObject->id);
+
+				// verificando o resultado da recuperacao do decorator
+				if (isset($decoratorFormularioFormularioElemento))
+					// setando decorator para o elemento a partir de formularioFormularioElemento
+					$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$decoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
+					
 				// adicionando o link de ajuda
                 if ($formularioElementoObject->getAjudaObject()->id){
 					if ($formularioElementoObject->getAjudaObject()->url){

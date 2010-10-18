@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2010 15:50:24
+* em: 15/10/2010 11:27:13
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 06/10/2010 15:49:47
+* @version    1: 15/10/2010 11:25:34
 */
 class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zen
         $elements[0]->setRequired(true);
         $elements[0]->addFilters(array('StringTrim', 'StripTags'));
         $elements[0]->AddDecorator('Label', array('escape' => false));
-        $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO', DEFAULT_USER_LANGUAGE) . '');
+        $elements[0]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO', DEFAULT_USER_LANGUAGE) . '');
         if ($options!=null)
             $elements[0]->setValue($options->maiorTitulacao);
 

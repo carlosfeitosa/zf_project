@@ -28,7 +28,14 @@ class Basico_Model_FormularioFormularioElemento
      * @var FormularioElemento
      */
     protected $_formularioElemento;
-    
+    /**
+     * @var FormularioElemento
+     */
+    protected $_decorator;
+    /**
+     * @var FormularioElemento
+     */
+    protected $_grupoFormularioElemento;
     /**
      * @var ElementRequired
      */
@@ -153,7 +160,6 @@ class Basico_Model_FormularioFormularioElemento
     public function setFormularioElemento($formularioElemento)
     {
     	$this->_formularioElemento = Basico_UtilControllerController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
-        $this->_formularioElemento = (int) $formularioElemento;
         return $this;
     }
 
@@ -167,7 +173,51 @@ class Basico_Model_FormularioFormularioElemento
         return $this->_formularioElemento;
     }
     
-/**
+    /**
+    * Set decorator
+    * 
+    * @param int $ 
+    * @return Basico_Model_FormularioElemento
+    */
+    public function setDecorator($decorator)
+    {
+    	$this->_decorator = Basico_UtilControllerController::retornaValorTipado($decorator, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get decorator
+    * 
+    * @return null|int
+    */
+    public function getDecorator()
+    {
+        return $this->_decorator;
+    }
+    
+    /**
+    * Set grupoFormularioElemento
+    * 
+    * @param int $ 
+    * @return Basico_Model_FormularioElemento
+    */
+    public function setGrupoFormularioElemento($grupoFormularioElemento)
+    {
+    	$this->_grupoFormularioElemento = Basico_UtilControllerController::retornaValorTipado($grupoFormularioElemento, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get grupoFormularioElemento
+    * 
+    * @return null|int
+    */
+    public function getGrupoFormularioElemento()
+    {
+        return $this->_grupoFormularioElemento;
+    }
+    
+	/**
     * Set elementRequired
     * 
     * @param int $ 
@@ -191,12 +241,34 @@ class Basico_Model_FormularioFormularioElemento
  
     /**
      * Get formularioelemento object
-     * @return null|FormularioElemento
+     * @return null|Basico_Model_FormularioElemento
      */
     public function getFormularioElementoObject()
     {
         $model = new Basico_Model_FormularioElemento();
         $object = $model->find($this->_formularioElemento);
+        return $object;
+    }
+    
+    /**
+     * Get decorator object
+     * @return null|Basico_Model_Decorator
+     */
+    public function getDecoratorObject()
+    {
+        $model = new Basico_Model_Decorator();
+        $object = $model->find($this->_decorator);
+        return $object;
+    }
+    
+    /**
+     * Get grupoFormularioElemento object
+     * @return null|Basico_Model_GrupoFormularioElemento
+     */
+    public function getGrupoFormularioElementoObject()
+    {
+        $model = new Basico_Model_GrupoFormularioElemento();
+        $object = $model->find($this->_grupoFormularioElemento);
         return $object;
     }
 

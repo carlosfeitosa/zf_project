@@ -41,6 +41,30 @@ class Basico_FormularioFormularioElementoControllerController
 		}
 		return self::$singleton;
 	}
+
+	/**
+	 * Retorna o objeto decorator de um formularioFormularioElemento
+	 * 
+	 * @param Integer $idFormulario
+	 * @param Integer $idFormularioElemento
+	 * 
+	 * @return null|Basico_Model_Decorator
+	 */
+	static public function retornaDecoratorObject($idFormulario, $idFormularioElemento)
+	{
+		// recuperando o modelo de formulario
+		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+		
+		// recuperando objeto
+		$arrayObjsFormularioFormularioElemento = $modelFormularioFormularioElemento->fetchList("id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento}", null, 1, 0);
+
+		// verificando o resultado da recuperacao do objeto
+		if (!isset($arrayObjsFormularioFormularioElemento[0]) or (!$arrayObjsFormularioFormularioElemento[0]->decorator))
+			return null;
+
+		// retornando decorator
+		return $arrayObjsFormularioFormularioElemento[0]->getDecoratorObject();
+	}
 	
 	/**
 	 * Salva objeto no Banco de dados.
