@@ -28,6 +28,9 @@
 * 								   - inclusao do componente DOJO.Textarea;
 * 						15/10/2010 - inclusao do componente DOJO SimpleTextarea;
 * 								   - inclusao do componente DOJO DateTextBox;
+* 								   - inclusao de elementos do sprint 0003.3
+* 						19/10/2010 - inclusao do componente DOJO NumberTextBox;
+* 								   - inclusao do componente DOJO CheckBox;
 */
 
 
@@ -36,7 +39,6 @@
 /*
  * (Português do Brasil - PT_BR)
 */
-
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_SUBMIT' AS constante_textual, 'Enviar' AS traducao
@@ -285,6 +287,76 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_DESVINCULACAO' AS constante_textual, 'Data de desvinculação:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA' AS constante_textual, 'Digite neste campo a quantidade de horas trabalhadas semanalmente (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT' AS constante_textual, 'Digite a quantidade de horas trabalhadas semanalmente (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL' AS constante_textual, 'Carga horária semanal:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_AJUDA' AS constante_textual, 'Digite neste campo o valor do seu salário bruto - total recebido antes das deduções (valor numérico)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_HINT' AS constante_textual, 'Digite o valor do seu salário bruto (valor numérico)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Salário bruto:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA_AJUDA' AS constante_textual, 'Marque este campo se seu vínculo é de dedicação exlusiva' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA' AS constante_textual, 'Dedicação exlusiva:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual, 'Digite neste campo outras informações sobre seu vínculo' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual, 'Outras informações:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -546,6 +618,76 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA' AS constante_textual, 'Type in this field the number of hours worked per week (whole number)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT' AS constante_textual, 'Type the number of hours worked per week (whole number)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL' AS constante_textual, 'Weekly worked hours:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_AJUDA' AS constante_textual, 'Type in this field your gross income - individual''s total personal income before taking taxes or deductions (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_HINT' AS constante_textual, 'Type in this field your gross income (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Gross income:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA_AJUDA' AS constante_textual, 'Check this field if your bound is exclusive dedication' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA' AS constante_textual, 'Exclusive dedication:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual, 'Type in this field other informations about yout bond' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual, 'Other informations:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
 
 /* OUTPUT */
 
@@ -714,6 +856,42 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGA_HORARIA_SEMANAL' AS nome, 'Texto de ajuda para o campo carga horária semanal.' AS descricao,
+       'FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT' AS constante_textual_hint, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_SALARIO_BRUTO' AS nome, 'Texto de ajuda para o campo salário bruto.' AS descricao,
+       'FORM_FIELD_SALARIO_BRUTO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_SALARIO_BRUTO_HINT' AS constante_textual_hint, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DEDICACAO_EXCLUSIVA' AS nome, 'Texto de ajuda para o campo dedicação exclusiva.' AS descricao,
+       'FORM_FIELD_DEDICACAO_EXCLUSIVA_AJUDA' AS constante_textual_ajuda,  
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_OUTRAS_INFORMACOES' AS nome, 'Texto de ajuda para o campo outras informações.' AS descricao,
+       'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual_ajuda,  
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+
 
 /* DECORATOR */
 
@@ -774,16 +952,40 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_DECORATOR';
 
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
-SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
-       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''style'' => ''float: left;'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS nome, 'Decorator para posicionar o elemento dentro de um div.' AS descricao,
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''margin-right10px'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DIV_DECORATOR';
+
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left-margin-right10px'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR';
 
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR';
+
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left-clear-both-margin-right10px'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR';
+
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
-       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''style'' => ''float: left; clear: both;'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left-clear-both'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -791,7 +993,7 @@ AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR';
 
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
-       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''style'' => ''clear: both;'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''margin-right10px'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1032,6 +1234,15 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 
+INSERT INTO formulario_elemento_validator (id_categoria, nome, descricao, validator, rowinfo)
+SELECT c.id AS id_categoria, 'INT' AS nome, 
+       'Validador que não permite valores não inteiros.' AS descricao,
+       '''Int''' AS validator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
+
 
 /* MODULO BASICO x FORMULARIO */
 
@@ -1193,8 +1404,26 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 /* Componente de caixa de selecao de data DOJO */
 INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
-SELECT c.id, 'DOJO_DateTextBox' AS nome, 'Componente DOJO para campos do tipo texto (dimensoes fixas)' AS descricao, 
+SELECT c.id, 'DOJO_DateTextBox' AS nome, 'Componente DOJO para campos do tipo data' AS descricao, 
 		'''DateTextBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+
+/* Componente de caixa de digitacao de numeros DOJO */
+INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id, 'DOJO_NumberTextBox' AS nome, 'Componente DOJO para digitação de números' AS descricao, 
+		'''NumberTextBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DOJO';
+
+/* Componente de caixa de digitacao de valores numericos (moeda) DOJO */
+INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id, 'DOJO_CurrencyTextBox' AS nome, 'Componente DOJO para digitação de valores numéricos (moeda)' AS descricao, 
+		'''CurrencyTextBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
@@ -1215,7 +1444,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
                               LEFT JOIN categoria c ON (cp.id_categoria = c.id)
@@ -1707,7 +1936,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS' AS nome, 'Elemento campo textarea atividades desenvolvidas' AS descricao,
                               'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS' AS constante_textual_label,
                               'atividadesDesenvolvidas' AS element_name, NULL AS element_attribs,
-                              '''atividadesDesenvolvidas'', array(''style'' => ''width: 525px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''atividadesDesenvolvidas'', array(''style'' => ''width: 535px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1784,6 +2013,177 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
+
+/* Elemento editbox com filtro do DOJO para carga horaria semanal */
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGA_HORARIA_SEMANAL') AS id_ajuda,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
+                              'FORM_FIELD_CARGA_HORARIA_SEMANAL' AS nome, 'Elemento campo NumberTextBox para carga horaria semanal' AS descricao,
+                              'FORM_FIELD_CARGA_HORARIA_SEMANAL' AS constante_textual_label,
+                              'cargaHorariaSemanal' AS element_name, NULL AS element_attribs,
+                              '''cargaHorariaSemanal'', array(''style'' => ''width: 40px;'', ''places'' => 0)' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+/* Elemento editbox com filtro do DOJO para salario bruto */
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_SALARIO_BRUTO') AS id_ajuda,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_CurrencyTextBox') AS id_componente,
+                              'FORM_FIELD_SALARIO_BRUTO' AS nome, 'Elemento campo CurrencyTextBox para salario bruto' AS descricao,
+                              'FORM_FIELD_SALARIO_BRUTO' AS constante_textual_label,
+                              'salarioBruto' AS element_name, NULL AS element_attribs,
+                              '''salarioBruto'', array(''style'' => ''width: 90px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+/* Elemento checkbox dedicacao exclusiva */
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DEDICACAO_EXCLUSIVA') AS id_ajuda,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_CheckBox') AS id_componente,
+                              'FORM_FIELD_DEDICACAO_EXCLUSIVA' AS nome, 'Elemento campo CheckBox para dedicacao exclusiva' AS descricao,
+                              'FORM_FIELD_DEDICACAO_EXCLUSIVA' AS constante_textual_label,
+                              'dedicacaoExclusiva' AS element_name, NULL AS element_attribs,
+                              '''dedicacaoExclusiva''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+/* Elemento editbox com filtro do DOJO para outras informacoes */
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_OUTRAS_INFORMACOES') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_SimpleTextarea') AS id_componente,
+                              'FORM_FIELD_OUTRAS_INFORMACOES' AS nome, 'Elemento campo textarea outras informacoes' AS descricao,
+                              'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual_label,
+                              'outrasInformacoes' AS element_name, NULL AS element_attribs,
+                              '''outrasInformacoes'', array(''style'' => ''width: 535px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+
+/* FORMULARIO ELEMENTO x FORMULARIO ELEMENTO VALIDATOR */
+
+INSERT INTO formulario_elemento_formulario_elemento_validator (id_formulario_elemento, id_formulario_elemento_validator, rowinfo)
+SELECT (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_CARGA_HORARIA_SEMANAL') AS id_formulario_elemento,
+       (SELECT fev.id
+        FROM formulario_elemento_validator fev
+        LEFT JOIN categoria c ON (fev.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'INT') AS id_formulario_elemento_validator,
+       'SYSTEM_STARTUP' AS rowinfo;
 
 
 /* FORMULÁRIO X FORMULÁRIO ELEMENTO */
@@ -1905,7 +2305,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX') AS id_decorator,
         true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
@@ -1928,8 +2328,8 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
@@ -1953,7 +2353,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
@@ -1976,8 +2376,8 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
@@ -2001,7 +2401,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
         true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
@@ -2026,7 +2426,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2043,30 +2443,6 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS') AS id_formulario_elemento,
-        (SELECT d.id
-        FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH') AS id_decorator,
-        false AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
-
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
-SELECT (SELECT f.id
-        FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
-        AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
-       (SELECT fe.id
-        FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_DATA_ADMISSAO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -2090,15 +2466,135 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_DATA_ADMISSAO') AS id_formulario_elemento,
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
+        false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
+        AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_DATA_DESVINCULACAO') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV') AS id_decorator,
-        false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX') AS id_decorator,
+        false AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
+        AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_CARGA_HORARIA_SEMANAL') AS id_formulario_elemento, 
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        false AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
+        AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_SALARIO_BRUTO') AS id_formulario_elemento, 
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
+        false AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
+        AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_DEDICACAO_EXCLUSIVA') AS id_formulario_elemento, 
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        false AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
+        AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_OUTRAS_INFORMACOES') AS id_formulario_elemento, 
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        false AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 
 /* FORMULÁRIO X FORMULÁRIO ELEMENTO X FORMULÁRIO */

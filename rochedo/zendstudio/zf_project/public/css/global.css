@@ -89,6 +89,35 @@ div#footer_poweredby
 	float: right;
 }
 
+div#float-left
+{
+	float: left;
+}
+
+div#float-left-margin-right10px
+{
+	float: left;
+	margin-right: 10px;
+}
+
+div#float-left-clear-both-margin-right10px
+{
+	float: left;
+	clear: both;
+	margin-right: 10px;
+}
+
+div#float-left-clear-both
+{
+	float: left;
+	clear: both;
+}
+
+div#margin-right10px
+{
+	margin-right: 10px;
+}
+
 div.loading 
 {
     background-image: url('../images/loading.gif');
