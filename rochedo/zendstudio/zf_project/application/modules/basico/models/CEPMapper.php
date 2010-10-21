@@ -58,11 +58,11 @@ class Basico_Model_CEPMapper
     {
         $data = array(
 				'cep'   => $object->getCep(),
-				'dataUltimaAtualizacao'   => $object->getDataUltimaAtualizacao(),
-              	'pais'   => $object->getPais(),
-              	'categoria'   => $object->getCategoria(),
-              	'estado'   => $object->getEstado(),
-              	'municipio'   => $object->getMunicipio(),
+				'data_ultima_atualizacao'   => $object->getDataUltimaAtualizacao(),
+              	'id_pais'   => $object->getPais(),
+              	'id_categoria'   => $object->getCategoria(),
+              	'id_estado'   => $object->getEstado(),
+              	'id_municipio'   => $object->getMunicipio(),
 
         );
 
@@ -101,11 +101,11 @@ class Basico_Model_CEPMapper
         $object->setId($row->id)
 
 				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->dataUltimaAtualizacao)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio);
+				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio);
     }
 
 	/**
@@ -123,12 +123,12 @@ class Basico_Model_CEPMapper
 			$entry->setId($row->id)
 
 				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->dataUltimaAtualizacao)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio)
-				->setMapper($this);
+				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio)
+                ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -149,11 +149,11 @@ class Basico_Model_CEPMapper
 			$entry->setId($row->id)
 
 				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->dataUltimaAtualizacao)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio)
+				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -170,11 +170,11 @@ class Basico_Model_CEPMapper
             ->from(array('table1' => 'cep'),
                    array('id' => 'table1.id',
                         'cep' => 'table1.cep' ,
-                        'dataUltimaAtualizacao' => 'table1.dataUltimaAtualizacao' ,
-                        'pais' => 'table1.pais)',
-                        'categoria' => 'table1.categoria)',
-                        'estado' => 'table1.estado)',
-                        'municipio' => 'table1.municipio)'))
+                        'data_ultima_atualizacao' => 'table1.data_ultima_atualizacao' ,
+                        'id_pais' => 'table1.id_pais)',
+                        'id_categoria' => 'table1.id_categoria)',
+                        'id_estado' => 'table1.id_estado)',
+                        'id_municipio' => 'table1.id_municipio)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -187,11 +187,11 @@ class Basico_Model_CEPMapper
             $entry = new Basico_Model_CEP();
             $entry->setId($row['id'])
                 ->setCep($row['cep'])
-                ->setDataUltimaAtualizacao($row['dataUltimaAtualizacao'])
-                ->setPais($row['pais'])
-                ->setCategoria($row['categoria'])
-                ->setEstado($row['estado'])
-                ->setMunicipio($row['municipio'])
+                ->setDataUltimaAtualizacao($row['data_ultima_atualizacao'])
+                ->setPais($row['id_pais'])
+                ->setCategoria($row['id_categoria'])
+                ->setEstado($row['id_estado'])
+                ->setMunicipio($row['id_municipio'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -216,12 +216,12 @@ class Basico_Model_CEPMapper
             $entry = new Basico_Model_CEP();
             $entry->setId($row->id)
 				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->dataUltimaAtualizacao)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio)
-                  ->setMapper($this);
+				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

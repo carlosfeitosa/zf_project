@@ -58,8 +58,8 @@ class Basico_Model_MunicipioMapper
     {
         $data = array(
 				'nome'   => $object->getNome(),
-              'estado'   => $object->getEstado(),
-              'categoria'   => $object->getCategoria(),
+              'id_estado'   => $object->getEstado(),
+              'id_categoria'   => $object->getCategoria(),
 
         );
 
@@ -98,8 +98,8 @@ class Basico_Model_MunicipioMapper
         $object->setId($row->id)
 
 				->setNome($row->nome)
-                ->setEstado($row->estado)
-                ->setCategoria($row->categoria);
+                ->setEstado($row->id_estado)
+                ->setCategoria($row->id_categoria);
     }
 
 	/**
@@ -117,8 +117,8 @@ class Basico_Model_MunicipioMapper
 			$entry->setId($row->id)
 
 				->setNome($row->nome)
-                ->setEstado($row->estado)
-                ->setCategoria($row->categoria)
+                ->setEstado($row->id_estado)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -140,8 +140,8 @@ class Basico_Model_MunicipioMapper
 			$entry->setId($row->id)
 
 				->setNome($row->nome)
-                ->setEstado($row->estado)
-                ->setCategoria($row->categoria)
+                ->setEstado($row->id_estado)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -158,8 +158,8 @@ class Basico_Model_MunicipioMapper
             ->from(array('table1' => 'municipio'),
                    array('id' => 'table1.id',
                         'nome' => 'table1.nome' ,
-                        'estado' => 'table1.estado)',
-                        'categoria' => 'table1.categoria)'))
+                        'id_estado' => 'table1.id_estado)',
+                        'id_categoria' => 'table1.id_categoria)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -172,8 +172,8 @@ class Basico_Model_MunicipioMapper
             $entry = new Basico_Model_Municipio();
             $entry->setId($row['id'])
                 ->setNome($row['nome'])
-                ->setEstado($row['estado'])
-                ->setCategoria($row['categoria'])
+                ->setEstado($row['id_estado'])
+                ->setCategoria($row['id_categoria'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -198,9 +198,9 @@ class Basico_Model_MunicipioMapper
             $entry = new Basico_Model_Municipio();
             $entry->setId($row->id)
 				->setNome($row->nome)
-                ->setEstado($row->estado)
-                ->setCategoria($row->categoria)
-                  ->setMapper($this);
+                ->setEstado($row->id_estado)
+                ->setCategoria($row->id_categoria)
+				->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

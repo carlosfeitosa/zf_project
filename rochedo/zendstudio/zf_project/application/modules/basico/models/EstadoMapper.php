@@ -59,9 +59,9 @@ class Basico_Model_EstadoMapper
         $data = array(
 				'nome'   => $object->getNome(),
 				'sigla'   => $object->getSigla(),
-				'codigoDDD'   => $object->getCodigoDDD(),
-              	'pais'   => $object->getPais(),
-             	'categoria'   => $object->getCategoria(),
+				'codigo_ddd'   => $object->getCodigoDDD(),
+              	'id_pais'   => $object->getPais(),
+             	'id_categoria'   => $object->getCategoria(),
 
         );
 
@@ -98,12 +98,11 @@ class Basico_Model_EstadoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigoDDD)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria);
+				->setCodigoDDD($row->codigo_ddd)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria);
     }
 
 	/**
@@ -119,12 +118,11 @@ class Basico_Model_EstadoMapper
 		{
 			$entry = new Basico_Model_Estado();
 			$entry->setId($row->id)
-
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigoDDD)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria)
+				->setCodigoDDD($row->codigo_ddd)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -144,12 +142,11 @@ class Basico_Model_EstadoMapper
 		{
 			$entry = new Basico_Model_Estado();
 			$entry->setId($row->id)
-
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigoDDD)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria)
+				->setCodigoDDD($row->codigo_ddd)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -167,9 +164,9 @@ class Basico_Model_EstadoMapper
                    array('id' => 'table1.id',
                         'nome' => 'table1.nome' ,
                         'sigla' => 'table1.sigla' ,
-                        'codigoDDD' => 'table1.codigoDDD' ,
-                        'pais' => 'table1.pais)',
-                        'categoria' => 'table1.categoria)'))
+                        'codigo_ddd' => 'table1.codigo_ddd' ,
+                        'id_pais' => 'table1.id_pais)',
+                        'id_categoria' => 'table1.id_categoria)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -183,9 +180,9 @@ class Basico_Model_EstadoMapper
             $entry->setId($row['id'])
                 ->setNome($row['nome'])
                 ->setSigla($row['sigla'])
-                ->setCodigoDDD($row['codigoDDD'])
-                ->setPais($row['pais'])
-                ->setCategoria($row['categoria'])
+                ->setCodigoDDD($row['codigo_ddd'])
+                ->setPais($row['id_pais'])
+                ->setCategoria($row['id_categoria'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -211,10 +208,10 @@ class Basico_Model_EstadoMapper
             $entry->setId($row->id)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigoDDD)
-                ->setPais($row->pais)
-                ->setCategoria($row->categoria)
-                  ->setMapper($this);
+				->setCodigoDDD($row->codigo_ddd)
+                ->setPais($row->id_pais)
+                ->setCategoria($row->id_categoria)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

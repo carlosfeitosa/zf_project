@@ -57,20 +57,20 @@ class Basico_Model_DadosProfissionaisMapper
     public function save(Basico_Model_DadosProfissionais $object)
     {
         $data = array(
-				'departamento'   => $object->getDepartamento(),
-				'cargo'   => $object->getCargo(),
-				'funcao'   => $object->getFuncao(),
-				'atividadesDesenvolvidas'   => $object->getAtividadesDesenvolvidas(),
-				'dataAdmissao'   => $object->getDataAdmissao(),
-				'dataDemissao'   => $object->getDataDemissao(),
-				'cargaHorariaSemanal'   => $object->getCargaHorariaSemanal(),
-				'dedicacaoExclusiva'   => $object->getDedicacaoExclusiva(),
-				'salarioBruto'   => $object->getSalarioBruto(),
-				'descricao'   => $object->getDescricao(),
-              'pessoa'   => $object->getPessoa(),
-              'pessoaJuridicaVinculo'   => $object->getPessoaJuridicaVinculo(),
-              'vinculoEmpregaticio'   => $object->getVinculoEmpregaticio(),
-              'regimeTrabalho'   => $object->getRegimeTrabalho(),
+				'id_departamento'  			 => $object->getDepartamento(),
+				'cargo'  					 => $object->getCargo(),
+				'funcao'  					 => $object->getFuncao(),
+				'atividades_desenvolvidas'   => $object->getAtividadesDesenvolvidas(),
+				'data_admissao'   			 => $object->getDataAdmissao(),
+				'data_demissao' 			 => $object->getDataDemissao(),
+				'carga_horaria_semanal'  	 => $object->getCargaHorariaSemanal(),
+				'dedicacao_exclusiva'  		 => $object->getDedicacaoExclusiva(),
+				'salario_bruto'  			 => $object->getSalarioBruto(),
+				'descricao'  				 => $object->getDescricao(),
+                'id_pessoa'  				 => $object->getPessoa(),
+                'pessoa_juridica_vinculo'    => $object->getPessoaJuridicaVinculo(),
+                'vinculo_empregaticio'       => $object->getVinculoEmpregaticio(),
+                'regime_trabalho'            => $object->getRegimeTrabalho(),
 
         );
 
@@ -105,23 +105,23 @@ class Basico_Model_DadosProfissionaisMapper
         if (0 == count($result)) {
             return;
         }
+        
         $row = $result->current();
         $object->setId($row->id)
-
-				->setDepartamento($row->departamento)
+				->setDepartamento($row->id_departamento)
 				->setCargo($row->cargo)
 				->setFuncao($row->funcao)
-				->setAtividadesDesenvolvidas($row->atividadesDesenvolvidas)
-				->setDataAdmissao($row->dataAdmissao)
-				->setDataDemissao($row->dataDemissao)
-				->setCargaHorariaSemanal($row->cargaHorariaSemanal)
-				->setDedicacaoExclusiva($row->dedicacaoExclusiva)
-				->setSalarioBruto($row->salarioBruto)
+				->setAtividadesDesenvolvidas($row->atividades_desenvolvidas)
+				->setDataAdmissao($row->data_admissao)
+				->setDataDemissao($row->data_demissao)
+				->setCargaHorariaSemanal($row->carga_horaria_semanal)
+				->setDedicacaoExclusiva($row->dedicacao_exclusiva)
+				->setSalarioBruto($row->salario_bruto)
 				->setDescricao($row->descricao)
-                ->setPessoa($row->pessoa)
-                ->setPessoaJuridicaVinculo($row->pessoaJuridicaVinculo)
-                ->setVinculoEmpregaticio($row->vinculoEmpregaticio)
-                ->setRegimeTrabalho($row->regimeTrabalho);
+                ->setPessoa($row->id_pessoa)
+                ->setPessoaJuridicaVinculo($row->pessoa_juridica_vinculo)
+                ->setVinculoEmpregaticio($row->vinculo_empregaticio)
+                ->setRegimeTrabalho($row->regime_trabalho);
     }
 
 	/**
@@ -137,21 +137,20 @@ class Basico_Model_DadosProfissionaisMapper
 		{
 			$entry = new Basico_Model_DadosProfissionais();
 			$entry->setId($row->id)
-
-				->setDepartamento($row->departamento)
+				->setDepartamento($row->id_departamento)
 				->setCargo($row->cargo)
 				->setFuncao($row->funcao)
-				->setAtividadesDesenvolvidas($row->atividadesDesenvolvidas)
-				->setDataAdmissao($row->dataAdmissao)
-				->setDataDemissao($row->dataDemissao)
-				->setCargaHorariaSemanal($row->cargaHorariaSemanal)
-				->setDedicacaoExclusiva($row->dedicacaoExclusiva)
-				->setSalarioBruto($row->salarioBruto)
+				->setAtividadesDesenvolvidas($row->atividades_desenvolvidas)
+				->setDataAdmissao($row->data_admissao)
+				->setDataDemissao($row->data_demissao)
+				->setCargaHorariaSemanal($row->carga_horaria_semanal)
+				->setDedicacaoExclusiva($row->dedicacao_exclusiva)
+				->setSalarioBruto($row->salario_bruto)
 				->setDescricao($row->descricao)
-                ->setPessoa($row->pessoa)
-                ->setPessoaJuridicaVinculo($row->pessoaJuridicaVinculo)
-                ->setVinculoEmpregaticio($row->vinculoEmpregaticio)
-                ->setRegimeTrabalho($row->regimeTrabalho)
+                ->setPessoa($row->id_pessoa)
+                ->setPessoaJuridicaVinculo($row->pessoa_juridica_vinculo)
+                ->setVinculoEmpregaticio($row->vinculo_empregaticio)
+                ->setRegimeTrabalho($row->regime_trabalho)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -171,22 +170,21 @@ class Basico_Model_DadosProfissionaisMapper
 		{
 			$entry = new Basico_Model_DadosProfissionais();
 			$entry->setId($row->id)
-
-				->setDepartamento($row->departamento)
+				->setDepartamento($row->id_departamento)
 				->setCargo($row->cargo)
 				->setFuncao($row->funcao)
-				->setAtividadesDesenvolvidas($row->atividadesDesenvolvidas)
-				->setDataAdmissao($row->dataAdmissao)
-				->setDataDemissao($row->dataDemissao)
-				->setCargaHorariaSemanal($row->cargaHorariaSemanal)
-				->setDedicacaoExclusiva($row->dedicacaoExclusiva)
-				->setSalarioBruto($row->salarioBruto)
+				->setAtividadesDesenvolvidas($row->atividades_desenvolvidas)
+				->setDataAdmissao($row->data_admissao)
+				->setDataDemissao($row->data_demissao)
+				->setCargaHorariaSemanal($row->carga_horaria_semanal)
+				->setDedicacaoExclusiva($row->dedicacao_exclusiva)
+				->setSalarioBruto($row->salario_bruto)
 				->setDescricao($row->descricao)
-                ->setPessoa($row->pessoa)
-                ->setPessoaJuridicaVinculo($row->pessoaJuridicaVinculo)
-                ->setVinculoEmpregaticio($row->vinculoEmpregaticio)
-                ->setRegimeTrabalho($row->regimeTrabalho)
-				->setMapper($this);
+                ->setPessoa($row->id_pessoa)
+                ->setPessoaJuridicaVinculo($row->pessoa_juridica_vinculo)
+                ->setVinculoEmpregaticio($row->vinculo_empregaticio)
+                ->setRegimeTrabalho($row->regime_trabalho)
+			    ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -201,20 +199,20 @@ class Basico_Model_DadosProfissionaisMapper
         $select = $this->getDbTable()->getAdapter()->select()
             ->from(array('table1' => 'dadosprofissionais'),
                    array('id' => 'table1.id',
-                        'departamento' => 'table1.departamento' ,
+                        'id_departamento' => 'table1.id_departamento' ,
                         'cargo' => 'table1.cargo' ,
                         'funcao' => 'table1.funcao' ,
-                        'atividadesDesenvolvidas' => 'table1.atividadesDesenvolvidas' ,
-                        'dataAdmissao' => 'table1.dataAdmissao' ,
-                        'dataDemissao' => 'table1.dataDemissao' ,
-                        'cargaHorariaSemanal' => 'table1.cargaHorariaSemanal' ,
-                        'dedicacaoExclusiva' => 'table1.dedicacaoExclusiva' ,
-                        'salarioBruto' => 'table1.salarioBruto' ,
+                        'atividades_desenvolvidas' => 'table1.atividades_desenvolvidas' ,
+                        'data_admissao' => 'table1.data_admissao' ,
+                        'data_demissao' => 'table1.data_demissao' ,
+                        'carga_horaria_semanal' => 'table1.carga_horaria_semanal' ,
+                        'dedicacao_exclusiva' => 'table1.dedicacao_exclusiva' ,
+                        'salario_bruto' => 'table1.salario_bruto' ,
                         'descricao' => 'table1.descricao' ,
-                        'pessoa' => 'table1.pessoa)',
-                        'pessoaJuridicaVinculo' => 'table1.pessoaJuridicaVinculo)',
-                        'vinculoEmpregaticio' => 'table1.vinculoEmpregaticio)',
-                        'regimeTrabalho' => 'table1.regimeTrabalho)'))
+                        'id_pessoa' => 'table1.id_pessoa)',
+                        'pessoa_juridica_vinculo' => 'table1.pessoa_juridica_vinculo)',
+                        'vinculo_empregaticio' => 'table1.vinculo_empregaticio)',
+                        'regime_trabalho' => 'table1.regime_trabalho)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -223,23 +221,24 @@ class Basico_Model_DadosProfissionaisMapper
         $resultSet = $stmt->fetchAll();
         $entries   = array();
         foreach ($resultSet as $row) 
-        {
+        {	
+        	            
             $entry = new Basico_Model_DadosProfissionais();
             $entry->setId($row['id'])
-                ->setDepartamento($row['departamento'])
+                ->setDepartamento($row['id_departamento'])
                 ->setCargo($row['cargo'])
                 ->setFuncao($row['funcao'])
-                ->setAtividadesDesenvolvidas($row['atividadesDesenvolvidas'])
-                ->setDataAdmissao($row['dataAdmissao'])
-                ->setDataDemissao($row['dataDemissao'])
-                ->setCargaHorariaSemanal($row['cargaHorariaSemanal'])
-                ->setDedicacaoExclusiva($row['dedicacaoExclusiva'])
-                ->setSalarioBruto($row['salarioBruto'])
+                ->setAtividadesDesenvolvidas($row['atividades_desenvolvidas'])
+                ->setDataAdmissao($row['data_admissao'])
+                ->setDataDemissao($row['data_demissao'])
+                ->setCargaHorariaSemanal($row['carga_horaria_semanal'])
+                ->setDedicacaoExclusiva($row['dedicacao_exclusiva'])
+                ->setSalarioBruto($row['salario_bruto'])
                 ->setDescricao($row['descricao'])
-                ->setPessoa($row['pessoa'])
-                ->setPessoaJuridicaVinculo($row['pessoaJuridicaVinculo'])
-                ->setVinculoEmpregaticio($row['vinculoEmpregaticio'])
-                ->setRegimeTrabalho($row['regimeTrabalho'])
+                ->setPessoa($row['id_pessoa'])
+                ->setPessoaJuridicaVinculo($row['pessoa_juridica_vinculo'])
+                ->setVinculoEmpregaticio($row['vinculo_empregaticio'])
+                ->setRegimeTrabalho($row['regime_trabalho'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -263,21 +262,21 @@ class Basico_Model_DadosProfissionaisMapper
         {
             $entry = new Basico_Model_DadosProfissionais();
             $entry->setId($row->id)
-				->setDepartamento($row->departamento)
+				->setDepartamento($row->id_departamento)
 				->setCargo($row->cargo)
 				->setFuncao($row->funcao)
-				->setAtividadesDesenvolvidas($row->atividadesDesenvolvidas)
-				->setDataAdmissao($row->dataAdmissao)
-				->setDataDemissao($row->dataDemissao)
-				->setCargaHorariaSemanal($row->cargaHorariaSemanal)
-				->setDedicacaoExclusiva($row->dedicacaoExclusiva)
-				->setSalarioBruto($row->salarioBruto)
+				->setAtividadesDesenvolvidas($row->atividades_desenvolvidas)
+				->setDataAdmissao($row->data_admissao)
+				->setDataDemissao($row->data_demissao)
+				->setCargaHorariaSemanal($row->carga_horaria_semanal)
+				->setDedicacaoExclusiva($row->dedicacao_exclusiva)
+				->setSalarioBruto($row->salario_bruto)
 				->setDescricao($row->descricao)
-                ->setPessoa($row->pessoa)
-                ->setPessoaJuridicaVinculo($row->pessoaJuridicaVinculo)
-                ->setVinculoEmpregaticio($row->vinculoEmpregaticio)
-                ->setRegimeTrabalho($row->regimeTrabalho)
-                  ->setMapper($this);
+                ->setPessoa($row->id_pessoa)
+                ->setPessoaJuridicaVinculo($row->pessoa_juridica_vinculo)
+                ->setVinculoEmpregaticio($row->vinculo_empregaticio)
+                ->setRegimeTrabalho($row->regime_trabalho)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

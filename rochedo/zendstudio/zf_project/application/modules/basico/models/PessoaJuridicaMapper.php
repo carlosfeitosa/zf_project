@@ -57,11 +57,11 @@ class Basico_Model_PessoaJuridicaMapper
     public function save(Basico_Model_PessoaJuridica $object)
     {
         $data = array(
-				'nivelHierarquia'   => $object->getNivelHierarquia(),
+				'nivel_hierarquia'   => $object->getNivelHierarquia(),
 				'nome'   => $object->getNome(),
 				'sigla'   => $object->getSigla(),
-              'categoria'   => $object->getCategoria(),
-              'pessoa'   => $object->getPessoa(),
+                'id_categoria'   => $object->getCategoria(),
+                'id_pessoa'   => $object->getPessoa(),
 
         );
 
@@ -98,12 +98,11 @@ class Basico_Model_PessoaJuridicaMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
-				->setNivelHierarquia($row->nivelHierarquia)
+				->setNivelHierarquia($row->nivel_hierarquia)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-                ->setCategoria($row->categoria)
-                ->setPessoa($row->pessoa);
+                ->setCategoria($row->id_categoria)
+                ->setPessoa($row->id_pessoa);
     }
 
 	/**
@@ -119,12 +118,11 @@ class Basico_Model_PessoaJuridicaMapper
 		{
 			$entry = new Basico_Model_PessoaJuridica();
 			$entry->setId($row->id)
-
-				->setNivelHierarquia($row->nivelHierarquia)
+				->setNivelHierarquia($row->nivel_hierarquia)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-                ->setCategoria($row->categoria)
-                ->setPessoa($row->pessoa)
+                ->setCategoria($row->id_categoria)
+                ->setPessoa($row->id_pessoa)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -144,12 +142,11 @@ class Basico_Model_PessoaJuridicaMapper
 		{
 			$entry = new Basico_Model_PessoaJuridica();
 			$entry->setId($row->id)
-
-				->setNivelHierarquia($row->nivelHierarquia)
+				->setNivelHierarquia($row->nivel_hierarquia)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-                ->setCategoria($row->categoria)
-                ->setPessoa($row->pessoa)
+                ->setCategoria($row->id_categoria)
+                ->setPessoa($row->id_pessoa)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -165,11 +162,11 @@ class Basico_Model_PessoaJuridicaMapper
         $select = $this->getDbTable()->getAdapter()->select()
             ->from(array('table1' => 'pessoajuridica'),
                    array('id' => 'table1.id',
-                        'nivelHierarquia' => 'table1.nivelHierarquia' ,
-                        'nome' => 'table1.nome' ,
-                        'sigla' => 'table1.sigla' ,
-                        'categoria' => 'table1.categoria)',
-                        'pessoa' => 'table1.pessoa)'))
+                         'nivel_hierarquia' => 'table1.nivel_hierarquia' ,
+                         'nome' => 'table1.nome' ,
+                         'sigla' => 'table1.sigla' ,
+                         'id_categoria' => 'table1.id_categoria)',
+                         'id_pessoa' => 'table1.id_pessoa)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -181,11 +178,11 @@ class Basico_Model_PessoaJuridicaMapper
         {
             $entry = new Basico_Model_PessoaJuridica();
             $entry->setId($row['id'])
-                ->setNivelHierarquia($row['nivelHierarquia'])
+                ->setNivelHierarquia($row['nivel_hierarquia'])
                 ->setNome($row['nome'])
                 ->setSigla($row['sigla'])
-                ->setCategoria($row['categoria'])
-                ->setPessoa($row['pessoa'])
+                ->setCategoria($row['id_categoria'])
+                ->setPessoa($row['id_pessoa'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -209,12 +206,12 @@ class Basico_Model_PessoaJuridicaMapper
         {
             $entry = new Basico_Model_PessoaJuridica();
             $entry->setId($row->id)
-				->setNivelHierarquia($row->nivelHierarquia)
+				->setNivelHierarquia($row->nivel_hierarquia)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-                ->setCategoria($row->categoria)
-                ->setPessoa($row->pessoa)
-                  ->setMapper($this);
+                ->setCategoria($row->id_categoria)
+                ->setPessoa($row->id_pessoa)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

@@ -60,7 +60,7 @@ class Basico_Model_MascaraMapper
 				'nome'   => $object->getNome(),
 				'descricao'   => $object->getDescricao(),
 				'mascara'   => $object->getMascara(),
-              'categoria'   => $object->getCategoria(),
+                'id_categoria'   => $object->getCategoria(),
 
         );
 
@@ -101,7 +101,7 @@ class Basico_Model_MascaraMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setMascara($row->mascara)
-                ->setCategoria($row->categoria);
+                ->setCategoria($row->id_categoria);
     }
 
 	/**
@@ -121,7 +121,7 @@ class Basico_Model_MascaraMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setMascara($row->mascara)
-                ->setCategoria($row->categoria)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -145,7 +145,7 @@ class Basico_Model_MascaraMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setMascara($row->mascara)
-                ->setCategoria($row->categoria)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -164,7 +164,7 @@ class Basico_Model_MascaraMapper
                         'nome' => 'table1.nome' ,
                         'descricao' => 'table1.descricao' ,
                         'mascara' => 'table1.mascara' ,
-                        'categoria' => 'table1.categoria)'))
+                        'id_categoria' => 'table1.id_categoria)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -179,7 +179,7 @@ class Basico_Model_MascaraMapper
                 ->setNome($row['nome'])
                 ->setDescricao($row['descricao'])
                 ->setMascara($row['mascara'])
-                ->setCategoria($row['categoria'])
+                ->setCategoria($row['id_categoria'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -206,7 +206,7 @@ class Basico_Model_MascaraMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setMascara($row->mascara)
-                ->setCategoria($row->categoria)
+                ->setCategoria($row->id_categoria)
                   ->setMapper($this);
             $entries[] = $entry;
         }

@@ -57,18 +57,18 @@ class Basico_Model_EnderecoMapper
     public function save(Basico_Model_Endereco $object)
     {
         $data = array(
-				'idGenericoProprietario'   => $object->getIdGenericoProprietario(),
+				'id_generico_proprietario'   => $object->getIdGenericoProprietario(),
 				'descricao'   => $object->getDescricao(),
-				'cep'   => $object->getCep(),
+				'id_cep'   => $object->getCep(),
 				'logradouro'   => $object->getLogradouro(),
 				'numero'   => $object->getNumero(),
 				'complemento'   => $object->getComplemento(),
-				'caixaPostal'   => $object->getCaixaPostal(),
-				'dataValidacao'   => $object->getDataValidacao(),
-              'categoria'   => $object->getCategoria(),
-              'pais'   => $object->getPais(),
-              'estado'   => $object->getEstado(),
-              'municipio'   => $object->getMunicipio(),
+				'caixa_postal'   => $object->getCaixaPostal(),
+				'data_validacao'   => $object->getDataValidacao(),
+                'id_categoria'   => $object->getCategoria(),
+                'id_pais'   => $object->getPais(),
+                'id_estado'   => $object->getEstado(),
+                'id_municipio'   => $object->getMunicipio(),
 
         );
 
@@ -105,19 +105,18 @@ class Basico_Model_EnderecoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCep($row->cep)
+				->setCep($row->id_cep)
 				->setLogradouro($row->logradouro)
 				->setNumero($row->numero)
 				->setComplemento($row->complemento)
-				->setCaixaPostal($row->caixaPostal)
-				->setDataValidacao($row->dataValidacao)
-                ->setCategoria($row->categoria)
-                ->setPais($row->pais)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio);
+				->setCaixaPostal($row->caixa_postal)
+				->setDataValidacao($row->data_validacao)
+                ->setCategoria($row->id_categoria)
+                ->setPais($row->id_pais)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio);
     }
 
 	/**
@@ -133,19 +132,18 @@ class Basico_Model_EnderecoMapper
 		{
 			$entry = new Basico_Model_Endereco();
 			$entry->setId($row->id)
-
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCep($row->cep)
+				->setCep($row->id_cep)
 				->setLogradouro($row->logradouro)
 				->setNumero($row->numero)
 				->setComplemento($row->complemento)
-				->setCaixaPostal($row->caixaPostal)
-				->setDataValidacao($row->dataValidacao)
-                ->setCategoria($row->categoria)
-                ->setPais($row->pais)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio)
+				->setCaixaPostal($row->caixa_postal)
+				->setDataValidacao($row->data_validacao)
+                ->setCategoria($row->id_categoria)
+                ->setPais($row->id_pais)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -165,19 +163,18 @@ class Basico_Model_EnderecoMapper
 		{
 			$entry = new Basico_Model_Endereco();
 			$entry->setId($row->id)
-
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCep($row->cep)
+				->setCep($row->id_cep)
 				->setLogradouro($row->logradouro)
 				->setNumero($row->numero)
 				->setComplemento($row->complemento)
-				->setCaixaPostal($row->caixaPostal)
-				->setDataValidacao($row->dataValidacao)
-                ->setCategoria($row->categoria)
-                ->setPais($row->pais)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio)
+				->setCaixaPostal($row->caixa_postal)
+				->setDataValidacao($row->data_validacao)
+                ->setCategoria($row->id_categoria)
+                ->setPais($row->id_pais)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -193,18 +190,18 @@ class Basico_Model_EnderecoMapper
         $select = $this->getDbTable()->getAdapter()->select()
             ->from(array('table1' => 'endereco'),
                    array('id' => 'table1.id',
-                        'idGenericoProprietario' => 'table1.idGenericoProprietario' ,
+                        'id_generico_proprietario' => 'table1.id_generico_proprietario' ,
                         'descricao' => 'table1.descricao' ,
-                        'cep' => 'table1.cep' ,
+                        'id_cep' => 'table1.id_cep' ,
                         'logradouro' => 'table1.logradouro' ,
                         'numero' => 'table1.numero' ,
                         'complemento' => 'table1.complemento' ,
-                        'caixaPostal' => 'table1.caixaPostal' ,
-                        'dataValidacao' => 'table1.dataValidacao' ,
-                        'categoria' => 'table1.categoria)',
-                        'pais' => 'table1.pais)',
-                        'estado' => 'table1.estado)',
-                        'municipio' => 'table1.municipio)'))
+                        'caixa_postal' => 'table1.caixa_postal' ,
+                        'data_validacao' => 'table1.data_validacao' ,
+                        'id_categoria' => 'table1.id_categoria)',
+                        'id_pais' => 'table1.id_pais)',
+                        'id_estado' => 'table1.id_estado)',
+                        'id_municipio' => 'table1.id_municipio)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -214,20 +211,21 @@ class Basico_Model_EnderecoMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
+      	
             $entry = new Basico_Model_Endereco();
             $entry->setId($row['id'])
-                ->setIdGenericoProprietario($row['idGenericoProprietario'])
+                ->setIdGenericoProprietario($row['id_generico_proprietario'])
                 ->setDescricao($row['descricao'])
-                ->setCep($row['cep'])
+                ->setCep($row['id_cep'])
                 ->setLogradouro($row['logradouro'])
                 ->setNumero($row['numero'])
                 ->setComplemento($row['complemento'])
-                ->setCaixaPostal($row['caixaPostal'])
-                ->setDataValidacao($row['dataValidacao'])
-                ->setCategoria($row['categoria'])
-                ->setPais($row['pais'])
-                ->setEstado($row['estado'])
-                ->setMunicipio($row['municipio'])
+                ->setCaixaPostal($row['caixa_postal'])
+                ->setDataValidacao($row['data_validacao'])
+                ->setCategoria($row['id_categoria'])
+                ->setPais($row['id_pais'])
+                ->setEstado($row['id_estado'])
+                ->setMunicipio($row['id_municipio'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -251,19 +249,19 @@ class Basico_Model_EnderecoMapper
         {
             $entry = new Basico_Model_Endereco();
             $entry->setId($row->id)
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCep($row->cep)
+				->setCep($row->id_cep)
 				->setLogradouro($row->logradouro)
 				->setNumero($row->numero)
 				->setComplemento($row->complemento)
-				->setCaixaPostal($row->caixaPostal)
-				->setDataValidacao($row->dataValidacao)
-                ->setCategoria($row->categoria)
-                ->setPais($row->pais)
-                ->setEstado($row->estado)
-                ->setMunicipio($row->municipio)
-                  ->setMapper($this);
+				->setCaixaPostal($row->caixa_postal)
+				->setDataValidacao($row->data_validacao)
+                ->setCategoria($row->id_categoria)
+                ->setPais($row->id_pais)
+                ->setEstado($row->id_estado)
+                ->setMunicipio($row->id_municipio)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

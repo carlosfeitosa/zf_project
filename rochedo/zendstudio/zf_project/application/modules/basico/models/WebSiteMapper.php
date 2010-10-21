@@ -57,10 +57,10 @@ class Basico_Model_WebSiteMapper
     public function save(Basico_Model_WebSite $object)
     {
         $data = array(
-				'idGenericoProprietario'   => $object->getIdGenericoProprietario(),
+				'id_generico_proprietario'   => $object->getIdGenericoProprietario(),
 				'descricao'   => $object->getDescricao(),
 				'url'   => $object->getUrl(),
-              'categoria'   => $object->getCategoria(),
+                'id_categoria'   => $object->getCategoria(),
 
         );
 
@@ -98,10 +98,10 @@ class Basico_Model_WebSiteMapper
         $row = $result->current();
         $object->setId($row->id)
 
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
-                ->setCategoria($row->categoria);
+                ->setCategoria($row->id_categoria);
     }
 
 	/**
@@ -118,10 +118,10 @@ class Basico_Model_WebSiteMapper
 			$entry = new Basico_Model_WebSite();
 			$entry->setId($row->id)
 
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
-                ->setCategoria($row->categoria)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -142,10 +142,10 @@ class Basico_Model_WebSiteMapper
 			$entry = new Basico_Model_WebSite();
 			$entry->setId($row->id)
 
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
-                ->setCategoria($row->categoria)
+                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -161,10 +161,10 @@ class Basico_Model_WebSiteMapper
         $select = $this->getDbTable()->getAdapter()->select()
             ->from(array('table1' => 'website'),
                    array('id' => 'table1.id',
-                        'idGenericoProprietario' => 'table1.idGenericoProprietario' ,
+                        'id_generico_proprietario' => 'table1.id_generico_proprietario' ,
                         'descricao' => 'table1.descricao' ,
                         'url' => 'table1.url' ,
-                        'categoria' => 'table1.categoria)'))
+                        'id_categoria' => 'table1.id_categoria)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -176,10 +176,10 @@ class Basico_Model_WebSiteMapper
         {
             $entry = new Basico_Model_WebSite();
             $entry->setId($row['id'])
-                ->setIdGenericoProprietario($row['idGenericoProprietario'])
+                ->setIdGenericoProprietario($row['id_generico_proprietario'])
                 ->setDescricao($row['descricao'])
                 ->setUrl($row['url'])
-                ->setCategoria($row['categoria'])
+                ->setCategoria($row['id_categoria'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -203,11 +203,11 @@ class Basico_Model_WebSiteMapper
         {
             $entry = new Basico_Model_WebSite();
             $entry->setId($row->id)
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
-                ->setCategoria($row->categoria)
-                  ->setMapper($this);
+                ->setCategoria($row->id_categoria)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;

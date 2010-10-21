@@ -57,14 +57,14 @@ class Basico_Model_TelefoneMapper
     public function save(Basico_Model_Telefone $object)
     {
         $data = array(
-				'idGenericoProprietario'   => $object->getIdGenericoProprietario(),
+				'id_generico_proprietario'   => $object->getIdGenericoProprietario(),
 				'descricao'   => $object->getDescricao(),
-				'codigoPais'   => $object->getCodigoPais(),
-				'codigoArea'   => $object->getCodigoArea(),
+				'codigo_pais'   => $object->getCodigoPais(),
+				'codigo_area'   => $object->getCodigoArea(),
 				'telefone'   => $object->getTelefone(),
 				'ramal'   => $object->getRamal(),
-              'categoria'   => $object->getCategoria(),
-              'mascara'   => $object->getMascara(),
+                'id_categoria'   => $object->getCategoria(),
+                'id_mascara'   => $object->getMascara(),
 
         );
 
@@ -102,15 +102,15 @@ class Basico_Model_TelefoneMapper
         $row = $result->current();
         $object->setId($row->id)
 
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCodigoPais($row->codigoPais)
-				->setCodigoArea($row->codigoArea)
+				->setCodigoPais($row->codigo_pais)
+				->setCodigoArea($row->codigo_area)
 				->setTelefone($row->telefone)
 				->setRamal($row->ramal)
-                ->setCategoria($row->categoria)
-                ->setMascara($row->mascara);
-    }
+                ->setCategoria($row->id_categoria)
+                ->setMascara($row->id_mascara);
+            }
 
 	/**
 	 * Fetch all telefone entries
@@ -126,14 +126,14 @@ class Basico_Model_TelefoneMapper
 			$entry = new Basico_Model_Telefone();
 			$entry->setId($row->id)
 
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCodigoPais($row->codigoPais)
-				->setCodigoArea($row->codigoArea)
+				->setCodigoPais($row->codigo_pais)
+				->setCodigoArea($row->codigo_area)
 				->setTelefone($row->telefone)
 				->setRamal($row->ramal)
-                ->setCategoria($row->categoria)
-                ->setMascara($row->mascara)
+                ->setCategoria($row->id_categoria)
+                ->setMascara($row->id_mascara)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -154,14 +154,14 @@ class Basico_Model_TelefoneMapper
 			$entry = new Basico_Model_Telefone();
 			$entry->setId($row->id)
 
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCodigoPais($row->codigoPais)
-				->setCodigoArea($row->codigoArea)
+				->setCodigoPais($row->codigo_pais)
+				->setCodigoArea($row->codigo_area)
 				->setTelefone($row->telefone)
 				->setRamal($row->ramal)
-                ->setCategoria($row->categoria)
-                ->setMascara($row->mascara)
+                ->setCategoria($row->id_categoria)
+                ->setMascara($row->id_mascara)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -177,14 +177,14 @@ class Basico_Model_TelefoneMapper
         $select = $this->getDbTable()->getAdapter()->select()
             ->from(array('table1' => 'telefone'),
                    array('id' => 'table1.id',
-                        'idGenericoProprietario' => 'table1.idGenericoProprietario' ,
+                        'id_generico_proprietario' => 'table1.id_generico_proprietario' ,
                         'descricao' => 'table1.descricao' ,
-                        'codigoPais' => 'table1.codigoPais' ,
-                        'codigoArea' => 'table1.codigoArea' ,
+                        'codigo_pais' => 'table1.codigo_pais' ,
+                        'codigo_area' => 'table1.codigo_area' ,
                         'telefone' => 'table1.telefone' ,
                         'ramal' => 'table1.ramal' ,
-                        'categoria' => 'table1.categoria)',
-                        'mascara' => 'table1.mascara)'))
+                        'id_categoria' => 'table1.id_categoria)',
+                        'id_mascara' => 'table1.id_mascara)'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -196,14 +196,14 @@ class Basico_Model_TelefoneMapper
         {
             $entry = new Basico_Model_Telefone();
             $entry->setId($row['id'])
-                ->setIdGenericoProprietario($row['idGenericoProprietario'])
+                ->setIdGenericoProprietario($row['id_generico_proprietario'])
                 ->setDescricao($row['descricao'])
-                ->setCodigoPais($row['codigoPais'])
-                ->setCodigoArea($row['codigoArea'])
+                ->setCodigoPais($row['codigo_pais'])
+                ->setCodigoArea($row['codigo_area'])
                 ->setTelefone($row['telefone'])
                 ->setRamal($row['ramal'])
-                ->setCategoria($row['categoria'])
-                ->setMascara($row['mascara'])
+                ->setCategoria($row['id_categoria'])
+                ->setMascara($row['id_mascara'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -227,15 +227,15 @@ class Basico_Model_TelefoneMapper
         {
             $entry = new Basico_Model_Telefone();
             $entry->setId($row->id)
-				->setIdGenericoProprietario($row->idGenericoProprietario)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
-				->setCodigoPais($row->codigoPais)
-				->setCodigoArea($row->codigoArea)
+				->setCodigoPais($row->codigo_pais)
+				->setCodigoArea($row->codigo_area)
 				->setTelefone($row->telefone)
 				->setRamal($row->ramal)
-                ->setCategoria($row->categoria)
-                ->setMascara($row->mascara)
-                  ->setMapper($this);
+                ->setCategoria($row->id_categoria)
+                ->setMascara($row->id_mascara)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
