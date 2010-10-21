@@ -653,6 +653,24 @@ class Basico_UtilControllerController
 							// incrementando array de resultados
 							unset($array[array_search($valor, $array)]);
     					break;
+    				case ARRAY_FILTER_INCLUDE_POSITION_BEGIN:
+    					// procurando pelo filtro no inicio do valor
+						if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO]) !== 0)
+							// incrementando array de resultados
+							unset($array[array_search($valor, $array)]);
+						break;
+    				case ARRAY_FILTER_INCLUDE_POSITION_MIDDLE:
+    					// procurando pelo filtro no meio do valor
+    					if (false === strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO]))
+							// incrementando array de resultados
+							unset($array[array_search($valor, $array)]);
+    					break;
+    				case ARRAY_FILTER_INCLUDE_POSITION_END:
+    					// procurando pelo filtro no final do valor
+    					if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) !== 0)
+							// incrementando array de resultados
+							unset($array[array_search($valor, $array)]);
+    					break;
     				default:
     					
     					throw new Exception(MSG_ERRO_ARRAY_FILTER_TIPO_OPERACAO_NAO_CONHECIDA);
@@ -676,7 +694,7 @@ class Basico_UtilControllerController
     }
 
     /**
-     * Retorna um array contendo o filtro para arquivos que possuam "create" no nome
+     * Retorna um array contendo o filtro para arquivos que possuam a string passada no nome
      * 
      * @param String $stringBusca
      * 
@@ -686,6 +704,19 @@ class Basico_UtilControllerController
     {
     	// retornando array de resultados
     	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_MIDDLE);
+    }
+    
+    /**
+     * Retorna um array contendo o filtro para arquivos com a extensao .sql
+     * 
+     * @param String $stringBusca
+     * 
+     * @return Array
+     */
+    public static function retornaArrayFiltroNomesArquivosSQL($stringBusca = ".sql")
+    {
+    	// retornando array de resultados
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_INCLUDE_POSITION_END);
     }
 
     /**

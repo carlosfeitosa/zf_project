@@ -276,9 +276,9 @@ class Basico_DBUtilControllerController
 	    	//incializando transacao
 			Basico_PersistenceControllerController::bdControlaTransacao();
 			//dropando as tabelas do sistema
-	    	self::dropDbTables();
+	    	//self::dropDbTables();
 	    	//criando as tabelas do sistema
-	    	self::createDbTables();
+	    	//self::createDbTables();
 	    	//inserindo os dados básicos do sistema
 	    	self::insertDbData();
 	    	// confirmando execucao dos scripts
@@ -400,10 +400,19 @@ class Basico_DBUtilControllerController
 	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
 	    	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
 	    	$dataScriptsFiles = self::retornaArrayFileNamesDbDataScriptsFiles();
-	    	        
+	    	   var_dump($dataScriptsFiles); exit;     
 	    	//executando scripts de insert
-	    	foreach ($dataScriptsFiles as $file) {
-	    		self::executaScriptSQL(file_get_contents(self::retornaDBDataScriptsPath(). $file));
+	    	foreach ($dataScriptsFiles as $fileName) {
+	    		
+	    		$fileName = self::retornaDBDataScriptsPath() . $fileName;
+	    		
+	    		if (is_dir($fileName)) {
+	    			$files = scan_dir($fileName);
+	    			
+	    			foreach ($files as $file) {
+	    				self::executaScriptSQL(file_get_contents($fileName . $file));
+	    			}
+	    		}
 	    	}
 	    	//salvando log de sucesso da operação
 	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
@@ -528,7 +537,7 @@ class Basico_DBUtilControllerController
 		// recuperando filtros
 		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();
 		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroNomesArquivos('drop');
-
+		
     	// carregando array com arquivos contidos no diretorio.
     	$createScriptsFilesArray = Basico_UtilControllerController::retornaArrayArquivosCaminho($scriptsPath, $arrayFilters);
     	
@@ -540,17 +549,19 @@ class Basico_DBUtilControllerController
     * Retorna array com nomes dos arquivos de insert de dados para o banco que está sendo utilizado
     * @return unknown_type
     */
-    private function retornaArrayFileNamesDbDataScriptsFiles() 
+    private function retornaArrayFileNamesDbDataScriptsFiles($scriptsPath = NULL) 
     {
        // inicializando variaveis
         $arrayFilters = array();
         
     	//recuperando o path dos arquivos de create do banco de dados.
+    	if ($scriptsPath == NULL)
         $scriptsPath = self::retornaDBDataScriptsPath();
 
 		// recuperando filtros
 		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();
-
+        $arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroNomesArquivosSQL();
+        
     	// carregando array com arquivos contidos no diretorio.
     	$dataScriptsFilesArray = Basico_UtilControllerController::retornaArrayArquivosCaminho($scriptsPath, $arrayFilters);
     	
