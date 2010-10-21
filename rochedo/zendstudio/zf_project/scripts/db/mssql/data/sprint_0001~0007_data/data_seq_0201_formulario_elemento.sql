@@ -242,7 +242,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
 	                          'FORM_FIELD_NOME_CURSO' AS nome, 'Elemento campo editbox nome do curso' AS descricao,
 	                          'FORM_FIELD_NOME_CURSO' AS constante_textual_label,
 	                          'nomeCurso' AS element_name, NULL AS element_attribs,
-	                          '''nomeCurso''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+	                          '''nomeCurso''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
