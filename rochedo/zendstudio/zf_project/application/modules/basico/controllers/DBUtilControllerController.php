@@ -276,11 +276,11 @@ class Basico_DBUtilControllerController
 	    	//incializando transacao
 			Basico_PersistenceControllerController::bdControlaTransacao();
 			//dropando as tabelas do sistema
-	    	//self::dropDbTables();
+	    	self::dropDbTables();
 	    	//criando as tabelas do sistema
-	    	//self::createDbTables();
+	    	self::createDbTables();
 	    	//inserindo os dados básicos do sistema
-	    	self::insertDbData();
+	    	self::insertDbData(self::retornaDBDataScriptsPath());
 	    	// confirmando execucao dos scripts
 	        Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 	        //resetando login do usuario master no arquivo .htaccess
@@ -390,30 +390,34 @@ class Basico_DBUtilControllerController
     }
     
     /**
-     * Executa script de inserção dos dados básicos do sistema.
+     * Executa script de inserção dos dados básicos do sistema recursivamente.
      * @return unknown_type
      */
-    private function insertDbData() 
+    private function insertDbData($caminhoArquivos) 
     {
     	try {
 	    	//salvando log de inicio da operação
 	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
 	    	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
-	    	$dataScriptsFiles = self::retornaArrayFileNamesDbDataScriptsFiles();
-	    	   var_dump($dataScriptsFiles); exit;     
-	    	//executando scripts de insert
-	    	foreach ($dataScriptsFiles as $fileName) {
-	    		
-	    		$fileName = self::retornaDBDataScriptsPath() . $fileName;
-	    		
-	    		if (is_dir($fileName)) {
-	    			$files = scan_dir($fileName);
-	    			
-	    			foreach ($files as $file) {
-	    				self::executaScriptSQL(file_get_contents($fileName . $file));
-	    			}
-	    		}
+	    	
+	    	//recuperando arquivos do diretorio passado
+	    	$rootFiles = self::retornaArrayFileNamesDbDataScriptsFiles($caminhoArquivos);
+	    	
+	    	//executando scripts dos arquivos sql do diretorio passado
+	    	foreach ($rootFiles as $rootFile) {
+	    		self::executaScriptSQL(Basico_UtilControllerController::retornaConteudoArquivo($caminhoArquivos . "/" .  $rootFile));
 	    	}
+	    	
+	    	//recuperando pastas do diretorio passado
+	    	$dataScriptsPaths = self::retornaArrayPastas($caminhoArquivos);
+	    	
+	    	//percorrendo as pastas do diretorio passado
+	    	foreach ($dataScriptsPaths as $path) {
+	    		//executando novamente a função (recursiva)
+	    		self::insertDbData($path);
+	    		
+	    	}
+	    	
 	    	//salvando log de sucesso da operação
 	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
 	    	return true;
@@ -431,16 +435,18 @@ class Basico_DBUtilControllerController
      */
     public static function executaScriptSQL($script)
     {
+    	
     	try {
     		if (self::checkScriptIsAvailable($script)) {
 	            //removendo comentarios do script SQL
 	    		$script = Basico_UtilControllerController::removeComentariosArquivo($script);
 	            
 		    	// recuperando resource do bando de dados.
-		    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+		    	$auxDb  = Basico_PersistenceControllerController::bdRecuperaBDSessao();
 		    	
 		    	//executando script SQL
-		    	$auxDb->getConnection()->exec($script);
+		    	if ($script != "")
+		    		$auxDb->getConnection()->exec($script);
 		    		    	
 				return true;
     			
@@ -490,11 +496,39 @@ class Basico_DBUtilControllerController
     private function checkScriptIsAvailable($script)
     {
     	//Checando se o script pode ser executado.
-    	if (strpos($script, "@exclude") === false) {
-    		return true;
-    	}else{
+    	if (strpos($script, "@exclude") !== false) {
+    		
     		return false;
     	}
+    	
+    	return true;
+    	
+    }
+    
+    /**
+     * Retorna todas as pastas de um caminho passado
+     * @param String $caminhoArquivo
+     * @return Array
+     */
+    public static function retornaArrayPastas($caminhoArquivos)
+    {
+    	if (trim($caminhoArquivos) != "") {
+    	    $filesNames = scandir($caminhoArquivos);
+    	    
+    	    $filtroArquivosOcultos[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();
+    	    $filesNames = Basico_UtilControllerController::filtraArray($filesNames, $filtroArquivosOcultos);
+    	    
+    	    $arrayPastas = array();
+    	    foreach ($filesNames as $fileName) {
+    	    	
+    	    	if (is_dir($caminhoArquivos . $fileName)){
+    	    		$arrayPastas[] = $caminhoArquivos . $fileName; 
+    	    	}
+    	    }
+    	    
+    	    return $arrayPastas;
+    	}
+    	return NULL;
     }
         
     /**
@@ -556,7 +590,7 @@ class Basico_DBUtilControllerController
         
     	//recuperando o path dos arquivos de create do banco de dados.
     	if ($scriptsPath == NULL)
-        $scriptsPath = self::retornaDBDataScriptsPath();
+            $scriptsPath = self::retornaDBDataScriptsPath();
 
 		// recuperando filtros
 		$arrayFilters[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();

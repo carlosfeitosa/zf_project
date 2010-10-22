@@ -619,11 +619,10 @@ class Basico_UtilControllerController
      * 
      * @return Array
      */
-    private function filtraArray(array $array, array $arrayFilter)
+    public static function filtraArray(array $array, array $arrayFilter)
     {  	
     	// loop dos filtros
     	foreach ($arrayFilter as $filter) {
-    		
     		// verificando se existem as chaves do array necessarios para utilizacao do filtro
 	    	if (!array_key_exists(ARRAY_FILTER_CHAVE_POSICAO, $filter))
 				throw new Exception(MSG_ERRO_ARRAY_FILTER_CHAVE_POSICAO_NAO_ENCONTRADA);
@@ -667,7 +666,7 @@ class Basico_UtilControllerController
     					break;
     				case ARRAY_FILTER_INCLUDE_POSITION_END:
     					// procurando pelo filtro no final do valor
-    					if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) !== 0)
+    					if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) === false)
 							// incrementando array de resultados
 							unset($array[array_search($valor, $array)]);
     					break;
@@ -677,7 +676,6 @@ class Basico_UtilControllerController
 				}
 			}
     	}
-    	
       	// retornando array de resultados
       	return $array;
     }
