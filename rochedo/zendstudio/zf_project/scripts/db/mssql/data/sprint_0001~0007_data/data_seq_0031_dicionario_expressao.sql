@@ -434,7 +434,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual, 'Maior Titulação' AS traducao
+SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual, 'Maior titulação:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -448,14 +448,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_EDITAR' AS constante_textual, 'Editar' AS traducao
+SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_EDITAR' AS constante_textual, 'Editar:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU' AS constante_textual, 'Instituição que lhe concedeu sua maior titulação' AS traducao
+SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU' AS constante_textual, 'Instituição que lhe concedeu sua maior titulação:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -469,7 +469,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO' AS constante_textual, 'Área de Conhecimento' AS traducao
+SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO' AS constante_textual, 'Área de conhecimento:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -483,7 +483,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_NOME_CURSO' AS constante_textual, 'Nome do Curso' AS traducao
+SELECT c.id, 'FORM_FIELD_NOME_CURSO' AS constante_textual, 'Nome do curso:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1272,7 +1272,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual, 'Highest academic degree' AS traducao
+SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual, 'Highest academic degree:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1286,7 +1286,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_EDITAR' AS constante_textual, 'Edit' AS traducao
+SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_EDITAR' AS constante_textual, 'Edit:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1300,28 +1300,28 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_AJUDA' AS constante_textual, 'The filling of this field consists in choosing the institution which provided your Highest Academic Degree.' AS traducao
+SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_AJUDA' AS constante_textual, 'The filling of this field consists in choosing the institution which provided your highest academic degree.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO' AS constante_textual, 'Area of knowledge' AS traducao
+SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO' AS constante_textual, 'Area of knowledge:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO_AJUDA' AS constante_textual, 'The filling of this field consists in choosing the area of knowledge of your Highest Academic Degree.' AS traducao
+SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO_AJUDA' AS constante_textual, 'The filling of this field consists in choosing the area of knowledge of your highest academic degree.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_NOME_CURSO' AS constante_textual, 'Name of course' AS traducao
+SELECT c.id, 'FORM_FIELD_NOME_CURSO' AS constante_textual, 'Name of course:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

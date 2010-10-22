@@ -48,8 +48,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
-                              AND a.nome = 'AJUDA_CAMPO_MAIOR_TITULACAO') AS id_ajuda,
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_CATEGORIA_BOLSA_CNPQ') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -90,8 +90,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
-                              AND a.nome = 'AJUDA_CAMPO_MAIOR_TITULACAO') AS id_ajuda,
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -132,8 +132,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
-                              AND a.nome = 'AJUDA_CAMPO_INSTITUICAO_QUE_CONCEDEU') AS id_ajuda,
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_INSTITUICAO_QUE_CONCEDEU') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -174,8 +174,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
-                              AND a.nome = 'AJUDA_CAMPO_AREA_DE_CONHECIMENTO') AS id_ajuda,
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_AREA_DE_CONHECIMENTO') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
