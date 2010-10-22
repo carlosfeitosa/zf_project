@@ -401,11 +401,11 @@ class Basico_DBUtilControllerController
 	    	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
 	    	
 	    	//recuperando arquivos do diretorio passado
-	    	$rootFiles = self::retornaArrayFileNamesDbDataScriptsFiles($caminhoArquivos);
+	    	$files = self::retornaArrayFileNamesDbDataScriptsFiles($caminhoArquivos);
 	    	
 	    	//executando scripts dos arquivos sql do diretorio passado
-	    	foreach ($rootFiles as $rootFile) {
-	    		self::executaScriptSQL(Basico_UtilControllerController::retornaConteudoArquivo($caminhoArquivos . "/" .  $rootFile));
+	    	foreach ($files as $file) {
+	    		self::executaScriptSQL(Basico_UtilControllerController::retornaConteudoArquivo($caminhoArquivos . "/" .  $file));
 	    	}
 	    	
 	    	//recuperando pastas do diretorio passado
