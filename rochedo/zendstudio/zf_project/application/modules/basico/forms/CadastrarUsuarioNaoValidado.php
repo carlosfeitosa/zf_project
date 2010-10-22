@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/10/2010 11:27:17
+* em: 22/10/2010 09:54:32
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/10/2010 11:25:34
+* @version    1: 22/10/2010 09:53:51
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -44,7 +44,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[0]->setRequired(true);
         $elements[0]->addFilters(array('StringTrim', 'StripTags'));
         $elements[0]->addValidator('NotEmpty');
-        $elements[0]->AddDecorator('Label', array('escape' => false));
+        $elements[0]->addDecorator('Label', array('escape' => false));
         $elements[0]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_NOME', DEFAULT_USER_LANGUAGE) . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE', DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)</script></button>');
         $elements[0]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT', DEFAULT_USER_LANGUAGE));
         if ($options!=null)
@@ -56,7 +56,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addValidator('NotEmpty');
         $elements[1]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
-        $elements[1]->AddDecorator('Label', array('escape' => false));
+        $elements[1]->addDecorator('Label', array('escape' => false));
         $elements[1]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_EMAIL', DEFAULT_USER_LANGUAGE) . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE', DEFAULT_USER_LANGUAGE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA', DEFAULT_USER_LANGUAGE) . '\', 1)</script></button>');
         $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT', DEFAULT_USER_LANGUAGE));
         if ($options!=null)
