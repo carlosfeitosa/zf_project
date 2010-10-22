@@ -5,6 +5,7 @@
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
+* 							22/10/2010 - remocao do decorator do formulario SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS
 *  
 */
 
@@ -46,18 +47,11 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
-INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
 		SELECT c.id AS id_categoria, 
-		(SELECT d.id
-		 FROM decorator d
-         LEFT JOIN categoria c ON (d.id_categoria = c.id)
-         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-         WHERE t.nome = 'FORMULARIO'
-         AND c.nome = 'FORMULARIO_ACCORDEON_CONTAINER1_DECORATOR'
-         AND d.nome = 'DECORATOR_FORM_ACCORDION_CONTAINER1') AS id_decorator,
-      	 (SELECT f.id
+    	(SELECT f.id
          FROM formulario f
          WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                       
        'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS' AS nome,

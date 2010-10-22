@@ -5,6 +5,7 @@
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
+* 							22/10/2010 - criacao do decorator FORMULARIO_SUB_FORMULARIO_CONTENT_PANE1_DECORATOR;
 *  
 */
 
@@ -57,6 +58,16 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_CONTENT_PANE1_DECORATOR';
+
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_SUBFORM_CONTENT_PANE1' AS nome, 'Decorator para conteudo de containers dentro de subforms.' AS descricao,
+       '''DijitElement'',
+                array(''ContentPane'', array(''id'' => ''@nomeElemento'', ''title'' => ''@tituloContentPane'',
+                      )),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO_CONTENT_PANE1_DECORATOR';
 
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV' AS nome, 'Decorator para posicionar o elemento dentro de um div.' AS descricao,
