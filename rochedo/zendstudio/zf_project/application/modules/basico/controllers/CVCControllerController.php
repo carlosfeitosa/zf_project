@@ -137,7 +137,7 @@ class Basico_CVCControllerController
     	$objUltimaVersao->objeto = $objeto;
 
     	// salvando o objeto
-    	$objUltimaVersao->save();
+    	$objUltimaVersao->getMapper()->save($objUltimaVersao);
 
     	// retornando a versao
     	return $objUltimaVersao->versao;
@@ -156,7 +156,7 @@ class Basico_CVCControllerController
     	$objCVC->validadeTermino = Basico_UtilControllerController::retornaDateTimeAtual();
     	
     	// salvando o objeto
-    	$objCVC->save();
+    	$objCVC->getMapper()->save($objCVC);
     }
     
     /**
