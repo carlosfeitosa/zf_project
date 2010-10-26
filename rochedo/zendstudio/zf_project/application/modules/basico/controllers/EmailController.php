@@ -60,6 +60,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	$idEmail                        = $tokenObj->idGenerico;
     	// recuperando o e-mail
     	$email                          = $controladorEmail->retornaObjetoEmailId($idEmail);
+    	$versaoUpdateEmail = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($email);
     	// recuperando data hora de expiracao
     	$dataHoraExpiracaoUnixTimeStamp = Basico_UtilControllerController::retornaTimestamp($tokenObj->datahoraExpiracao);
     	// recuperando a data hora atual
@@ -79,7 +80,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	$email->ativo    = 1;
 	    	
 	    	// salvando o objeto e-mail no banco de dados
-	    	$controladorEmail->salvarEmail($email);
+	    	$controladorEmail->salvarEmail($email, $versaoUpdateEmail);
     	
     	    // carregando o titulo e subtitulo da view
 		    $tituloView     = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO, DEFAULT_USER_LANGUAGE);

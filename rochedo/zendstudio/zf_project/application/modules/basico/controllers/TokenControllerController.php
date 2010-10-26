@@ -198,9 +198,9 @@ class Basico_TokenControllerController
 	    $controladorCategoria = Basico_CategoriaControllerController::init();
 	    
 	    // recuperando objeto categoria do token-email
-		$categoriaTokenEmail = $controladorCategoria->retornaCategoriaAtiva(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+		$idCategoriaTokenEmail = $controladorCategoria->retornaIdCategoriaEmailValidacaoPlainText();
 		// recuperando objeto token
-		$tokenObj = self::$singleton->token->fetchList("id_categoria = {$categoriaTokenEmail->id} and token = '{$token}'", null, 1, 0);
+		$tokenObj = self::$singleton->token->fetchList("id_categoria = {$idCategoriaTokenEmail} and token = '{$token}'", null, 1, 0);
 
 		// verificando se o objeto do token existe
 		if (isset($tokenObj[0]))
