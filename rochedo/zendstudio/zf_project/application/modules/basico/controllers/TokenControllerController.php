@@ -153,11 +153,12 @@ class Basico_TokenControllerController
 	 * Salva o Token no banco de dados
 	 * 
 	 * @param Basico_Model_Token $novoToken
-	 * @param integer $idPessoaPerfilCriador
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-    public function salvarToken(Basico_Model_Token $novoToken, $idPessoaPerfilCriador = null)
+    public function salvarToken(Basico_Model_Token $novoToken, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se existe a relacao de categoria
 		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($novoToken->categoria))
@@ -173,7 +174,7 @@ class Basico_TokenControllerController
     			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
     			
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novoToken, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
+			Basico_PersistenceControllerController::bdSave($novoToken, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
 			
 			// atualizando o objeto
 			$this->token = $novoToken;

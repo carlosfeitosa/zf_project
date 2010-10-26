@@ -44,11 +44,12 @@ class Basico_OutputControllerController
 	 * Salva objeto no Banco de dados.
 	 * 
 	 * @param Basico_Model_Output $novoOutput
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarOutput(Basico_Model_Output $novoOutput, $idPessoaPerfilCriador = null)
+	public function salvarOutput(Basico_Model_Output $novoOutput, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -56,7 +57,7 @@ class Basico_OutputControllerController
 	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoOutput, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoOutput(), LOG_MSG_NOVO_OUTPUT);
+			Basico_SaveControllerController::save($novoOutput, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoOutput(), LOG_MSG_NOVO_OUTPUT);
 
 			// atualizando o objeto
 			$this->output = $novoOutput;

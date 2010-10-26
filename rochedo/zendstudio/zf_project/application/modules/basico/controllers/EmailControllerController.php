@@ -199,11 +199,12 @@ class Basico_EmailControllerController
 	 * Salva novo email no banco
 	 * 
 	 * @param Basico_Model_Email $novoEmail
+	 * @param Integer|null $versaoUpdate
 	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarEmail(Basico_Model_Email $novoEmail, $idPessoaPerfilCriador = null)
+	public function salvarEmail(Basico_Model_Email $novoEmail, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se existe a relacao de categoria
 		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($novoEmail->categoria))
@@ -219,7 +220,7 @@ class Basico_EmailControllerController
 	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 
 			// salvando o objeto através do controlador Save
-	    	Basico_PersistenceControllerController::bdSave($novoEmail, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
+	    	Basico_PersistenceControllerController::bdSave($novoEmail, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
 
 	    	// atualizando o objeto
     		$this->email = $novoEmail;

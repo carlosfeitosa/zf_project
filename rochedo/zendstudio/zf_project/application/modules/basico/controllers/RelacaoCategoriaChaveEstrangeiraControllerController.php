@@ -47,11 +47,12 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	 * Salva nova relacao categoria chave estrangeira no banco de dados
 	 * 
 	 * @param Basico_Model_RelacaoCategoriaChaveEstrangeira $novaRelacaoCategoriaChaveEstrangeira
+	 * @param Integer|null $versaoUpdate
 	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarRelacaoCategoriaChaveEstrangeira(Basico_Model_RelacaoCategoriaChaveEstrangeira $novaRelacaoCategoriaChaveEstrangeira, $idPessoaPerfilCriador = null)
+	public function salvarRelacaoCategoriaChaveEstrangeira(Basico_Model_RelacaoCategoriaChaveEstrangeira $novaRelacaoCategoriaChaveEstrangeira, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
     	try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -59,7 +60,7 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 
 			// salvando o objeto através do controlador Save
-	    	Basico_PersistenceControllerController::bdSave($novaRelacaoCategoriaChaveEstrangeira, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira(), LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
+	    	Basico_PersistenceControllerController::bdSave($novaRelacaoCategoriaChaveEstrangeira, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira(), LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
 
 	    	// atualizando o objeto
     		$this->relacaoCategoriaChaveEstrangeira = $novaRelacaoCategoriaChaveEstrangeira;
@@ -123,7 +124,7 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 			$this->relacaoCategoriaChaveEstrangeira->rowinfo = $controllerRowinfo->getXml();
 
 			// salvando o objeto
-			self::salvarRelacaoCategoriaChaveEstrangeira($this->relacaoCategoriaChaveEstrangeira, Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema());
+			self::salvarRelacaoCategoriaChaveEstrangeira($this->relacaoCategoriaChaveEstrangeira, null, Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema());
 		}
 	
 		return true;

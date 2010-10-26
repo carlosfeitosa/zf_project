@@ -81,11 +81,12 @@ class Basico_FormularioControllerController
 	 * Salva objeto no Banco de dados.
 	 * 
 	 * @param Basico_Model_Formulario $novoFormulario
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarFormulario($novoFormulario, $idPessoaPerfilCriador = null)
+	public function salvarFormulario($novoFormulario, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -93,7 +94,7 @@ class Basico_FormularioControllerController
 	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 
 			// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoFormulario, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormulario(), LOG_MSG_NOVO_FORMULARIO);
+			Basico_SaveControllerController::save($novoFormulario, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormulario(), LOG_MSG_NOVO_FORMULARIO);
 
 			// atualizando o objeto
 			$this->formulario = $novoFormulario;

@@ -47,14 +47,20 @@ class Basico_PessoaControllerController
 	 * Salva objeto no Banco de dados.
 	 * 
 	 * @param Basico_Model_Pessoa $novaPessoa
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarPessoa(Basico_Model_Pessoa $novaPessoa)
+	public function salvarPessoa(Basico_Model_Pessoa $novaPessoa, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+    			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novaPessoa, null, Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
+			Basico_PersistenceControllerController::bdSave($novaPessoa, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
 			// atualizando o objeto
 			$this->pessoa = $novaPessoa;
 						

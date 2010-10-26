@@ -46,11 +46,12 @@ class Basico_FormularioElementoFormularioElementoValidadorControllerController
 	 * Salva objeto no Banco de dados.
 	 * 
 	 * @param Basico_Model_Formulario $novoFormularioElementoFormularioElementoValidador
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarFormularioElementoFormularioElementoValidador($novoFormularioElementoFormularioElementoValidador, $idPessoaPerfilCriador = null)
+	public function salvarFormularioElementoFormularioElementoValidador($novoFormularioElementoFormularioElementoValidador, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -58,7 +59,7 @@ class Basico_FormularioElementoFormularioElementoValidadorControllerController
 	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoFormularioElementoFilter, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioElementoFormularioElementoValidador(), LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+			Basico_SaveControllerController::save($novoFormularioElementoFilter, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioElementoFormularioElementoValidador(), LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
 
 			// atualizando o objeto	
 			$this->formulario = $novoFormularioElementoFormularioElementoValidador;

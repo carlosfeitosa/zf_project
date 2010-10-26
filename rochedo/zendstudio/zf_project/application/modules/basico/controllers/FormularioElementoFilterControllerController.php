@@ -46,11 +46,12 @@ class Basico_FormularioElementoFilterControllerController
 	 * Salva objeto no Banco de dados.
 	 * 
 	 * @param Basico_Model_FormularioElementoFilter $novoFormularioElementoFilter
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarFormularioElementoFilter($novoFormularioElementoFilter, $idPessoaPerfilCriador = null)
+	public function salvarFormularioElementoFilter($novoFormularioElementoFilter, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -58,7 +59,7 @@ class Basico_FormularioElementoFilterControllerController
 	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
 
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoFormularioElementoFilter, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioElementoFilter(), LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER);
+			Basico_SaveControllerController::save($novoFormularioElementoFilter, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioElementoFilter(), LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER);
 
 			// atualizando o objeto
 			$this->formularioElementoFilter = $novoFormularioElementoFilter;

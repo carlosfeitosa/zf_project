@@ -58,11 +58,12 @@ class Basico_MensagemControllerController
 	 * Salva a mensagem e todos as suas dependencias.
 	 * 
 	 * @param Basico_Model_Mensagem $novaMensagem
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-    public function salvarMensagem(Basico_Model_Mensagem $novaMensagem, $idPessoaPerfilCriador = null) 
+    public function salvarMensagem(Basico_Model_Mensagem $novaMensagem, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
     {
 	    try{
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -70,7 +71,7 @@ class Basico_MensagemControllerController
 	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
 	    	
 	    	// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novaMensagem, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
+			Basico_PersistenceControllerController::bdSave($novaMensagem, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
 
 			// atualizando o objeto	    		
 	    	$this->mensagem = $novaMensagem;

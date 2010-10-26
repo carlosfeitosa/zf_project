@@ -47,11 +47,12 @@ class Basico_DadosPessoaisControllerController
 	 * Salva os dados pessoais.
 	 * 
 	 * @param Basico_Model_DadosPessoais $novoDadosPessoais
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarDadosPessoais($novoDadosPessoais, $idPessoaPerfilCriador = null)
+	public function salvarDadosPessoais($novoDadosPessoais, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -59,7 +60,7 @@ class Basico_DadosPessoaisControllerController
     			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
     			
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novoDadosPessoais, null, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoDadosPessoais(), LOG_MSG_NOVO_DADOS_PESSOAIS);
+			Basico_PersistenceControllerController::bdSave($novoDadosPessoais, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoDadosPessoais(), LOG_MSG_NOVO_DADOS_PESSOAIS);
 			
 			// atualizando o objeto
 			$dadosPessoais = $novoDadosPessoais;
