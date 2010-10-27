@@ -14,13 +14,6 @@ $this->headTitle()->setSeparator(' - ');
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
-$this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => DEFAULT_USER_LANGUAGE))
-        			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
-        			 ->addStylesheet($applicationHttpBaseUrl . DOJO_STYLE_SHEET_PATH)
-        			 ->addStylesheet($applicationHttpBaseUrl . MENU_CSS_FILE)
-        			 ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
-        			 ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);
-
 if (Basico_UtilControllerController::ambienteDesenvolvimento())
 {
     $request = Zend_Controller_Front::getInstance()->getRequest();
@@ -33,21 +26,38 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
     <?php echo $this->headTitle() ?>
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink() ?> 
-<style type="text/css">
-     body, html { 
-     	font-family:helvetica,arial,sans-serif; 
-     	font-size:90%; 
-        text-decoration: none;
-     }
-     
-     body, html a { 
-     	text-decoration: none;
-     }
-</style>
-
+    <style type="text/css">
+         body, html { 
+            font-family:helvetica,arial,sans-serif; 
+            font-size:90%; 
+            text-decoration: none;
+         }
+         
+         body, html a { 
+            text-decoration: none;
+         }
+    </style>
+    <?php
+    if ($this->dojo()->isEnabled()){
+        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => DEFAULT_USER_LANGUAGE))
+                     ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
+                     ->addStylesheet($applicationHttpBaseUrl . DOJO_STYLE_SHEET_PATH)
+                     ->addStylesheet($applicationHttpBaseUrl . MENU_CSS_FILE)
+                     ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
+                     ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);    
+      
+                     //->addStyleSheetModule('dijit.themes.tundra');
+                     
+        //$this->dojo()->requireModule($this->dojo()->getModules());
+        //Basico_Model_Util::print_debug($this->dojo()->getModules());
+        
+        $this->dojo()->requireModule('dijit.Dialog');
+        
+        echo $this->dojo();
+    }
+    ?>
     <?php echo $this->headScript()?>
-    <?php echo $this->dojo();?> 
-    
+   
 </head> 
 <body class="nihilo">
 <div class="loading"></div>
