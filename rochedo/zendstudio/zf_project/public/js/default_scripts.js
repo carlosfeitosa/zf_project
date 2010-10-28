@@ -14,7 +14,7 @@ function loading()
     underlay.show();
 }
 
-function exibirForm(formName, content, title)
+function exibirDialogConteudo(dialogName, content, title)
 {
     
 	form = dijit.byId(formName);
@@ -23,6 +23,25 @@ function exibirForm(formName, content, title)
 		var thisdialog = new dijit.Dialog({
                             title: title, 
                             content: content,
+                            id: formName
+                            
+                            });
+			thisdialog.startup();
+			thisdialog.show();
+	}else{
+	    form.show();	
+	}
+}
+
+function exibirDialogUrl(dialogName, url, title)
+{
+    
+	form = dijit.byId(formName);
+    
+	if (!form) {
+		var thisdialog = new dijit.Dialog({
+                            title: title, 
+                            href: url,
                             id: formName
                             
                             });
