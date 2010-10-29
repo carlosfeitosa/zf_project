@@ -150,6 +150,7 @@ create table dbo.dados_pessoas_perfis (
 create table dbo.categoria_chave_estrangeira (
 	id int identity not null ,
 	id_categoria int not null ,
+	id_modulo    int not null,
 	tabela_estrangeira varchar (100) collate latin1_general_ci_ai not null ,
 	campo_estrangeiro varchar (100) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
@@ -303,6 +304,20 @@ alter table dbo.categoria add
 	) references dbo.tipo_categoria (
 		id
 	);
+	
+alter table dbo.categoria_chave_estrangeira add 
+    constraint fk_categoria_chave_estrangeira_categoria foreign key 
+    (
+    	id_categoria
+    ) references dbo.categoria (
+    	id
+    ),
+    constraint fk_categoria_chave_estrangeira_modulo foreign key 
+    (
+    	id_modulo
+    ) references dbo.modulo (
+    	id
+    );
 
 alter table dbo.dados_pessoais add 
 	constraint fk_dados_pessoais_pessoa foreign key 

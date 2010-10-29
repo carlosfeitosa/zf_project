@@ -206,6 +206,7 @@ alter table dados_pessoas_perfis owner to rochedo_user;
 create table categoria_chave_estrangeira (
 	id serial not null ,
 	id_categoria int not null ,
+	id_modulo    int not null,
 	tabela_estrangeira character varying (100) not null ,
 	campo_estrangeiro character varying (100) not null ,
 	rowinfo character varying (2000) not null
@@ -376,6 +377,11 @@ alter table dicionario_expressao
 alter table categoria
   add constraint fk_categoria_categoria foreign key (id_categoria_pai) references categoria (id) on update no action on delete no action ,
   add constraint fk_categoria_tipo_categoria foreign key (id_tipo_categoria) references tipo_categoria (id) on update no action on delete no action;
+  
+alter table categoria_chave_estrangeira
+  add constraint fk_categoria_chave_estrangeira_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
+  add constraint fk_categoria_chave_estrangeira_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action;
+
 
 alter table dados_pessoais
   add constraint fk_dados_pessoais_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
