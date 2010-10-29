@@ -71,4 +71,13 @@ class Basico_CategoriaChaveEstrangeiraControllerController
 		// retornando o array de resultados
 		return $arrayNomeCampoTabelasCategoriaChaveEstrangeira;
 	}
+	
+	/**
+	 * Retorna o objeto categoria chave estrangeira da categoria passada.
+	 * @param $idCategoria
+	 * @return Basico_Model_CategoriaChaveEstrangeira
+	 */
+	public function retornaObjetoCategoriaChaveEstrangeiraCategoria($idCategoria)
+	{
+    }
 }

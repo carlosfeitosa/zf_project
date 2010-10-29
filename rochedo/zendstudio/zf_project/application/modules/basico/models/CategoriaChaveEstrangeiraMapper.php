@@ -58,6 +58,7 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
     {
         $data = array(
                 'id_categoria'         => $object->getCategoria(),
+                'id_modulo'            => $object->getModulo(),
  				'tabela_estrangeira'   => $object->getTabelaEstrangeira(),
 				'campo_estrangeiro'    => $object->getCampoEstrangeiro(),
                 'rowinfo'              => $object->getRowinfo(),
@@ -98,6 +99,7 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
         $row = $result->current();
         $object->setId($row->id)
                 ->setCategoria($row->id_categoria)
+                ->setModulo($row->id_modulo)
 				->setTabelaEstrangeira($row->tabela_estrangeira)
 				->setCampoEstrangeiro($row->campo_estrangeiro)
 				->setRowinfo($row->rowinfo);
@@ -117,6 +119,7 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
 			$entry = new Basico_Model_CategoriaChaveEstrangeira();
 			$entry->setId($row->id)
                   ->setCategoria($row->id_categoria)
+                  ->setModulo($row->id_modulo)
 				  ->setTabelaEstrangeira($row->tabela_estrangeira)
 				  ->setCampoEstrangeiro($row->campo_estrangeiro)
 				  ->setRowinfo($row->rowinfo)
@@ -140,6 +143,7 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
 			$entry = new Basico_Model_CategoriaChaveEstrangeira();
 			$entry->setId($row->id)
                   ->setCategoria($row->id_categoria)
+                  ->setModulo($row->id_modulo)
 				  ->setTabelaEstrangeira($row->tabela_estrangeira)
 				  ->setCampoEstrangeiro($row->campo_estrangeiro)
 				  ->setRowinfo($row->rowinfo)

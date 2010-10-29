@@ -36,6 +36,11 @@ class Basico_Model_CategoriaChaveEstrangeira
 	 */
 	protected $_rowinfo;
 	/**
+	 * @var Integer
+	 */
+	protected $_modulo;
+	
+	/**
 	 * Constructor
 	 * 
 	 * @param  array|null $options 
@@ -196,6 +201,37 @@ class Basico_Model_CategoriaChaveEstrangeira
     {
         $model = new Basico_Model_Categoria();
         $object = $model->find($this->_categoria);
+        return $object;
+    }
+    
+    /**
+	 * Set modulo
+	 * @param int $modulo
+	 * @return Basico_Model_CategoriaChaveEstrangeira
+	 */
+	public function setModulo($modulo)
+	{
+	   	$this->_modulo = Basico_UtilControllerController::retornaValorTipado($modulo,TIPO_INTEIRO,true);
+		return $this;
+	}
+	
+	/**
+	 * Get modulo
+	 * @return null|int
+	 */
+	public function getModulo()
+	{
+		return $this->_modulo;
+	}
+	
+    /**
+     * Get modulo object
+     * @return null|Basico_Model_Modulo
+     */
+    public function getModuloObject()
+    {
+        $model = new Basico_Model_Modulo();
+        $object = $model->find($this->_modulo);
         return $object;
     }
 	
