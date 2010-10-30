@@ -11,7 +11,8 @@
 * 						23/07/2010 - drop da tabela template_formulario;
 * 						16/08/2010 - drop da tabela formulario_formulario_elemento_formulario;
 * 						14/09/2010 - drop da tabela componente;
-* 						14/10/2010 - modificacao da ordem de drop da tabela template
+* 						14/10/2010 - modificacao da ordem de drop da tabela template;
+* 						19/10/2010 - remocao do drop da tabela "modulo" para o sprint 0001;
 */
 
 if object_id('cvc') is not null
@@ -89,12 +90,6 @@ end
 if object_id('modulo_perfil') is not null
 begin
 drop table modulo_perfil;
-end
-;
-
-if object_id('modulo') is not null
-begin
-drop table modulo;
 end
 ;
 

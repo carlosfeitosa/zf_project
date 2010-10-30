@@ -83,4 +83,15 @@ class Basico_TradutorControllerController
 
         throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '{$linguaDestino}'.");
 	}
+	
+	/**
+	 * Retorna um array de objetos Basico_Model_Categoria contendo as linguas ativas no sistema
+	 * 
+	 * @return null|Array
+	 */
+	public static function retornaCategoriasLinguasAtivas()
+	{
+		// retornando resultado da chamada ao metodo "retornaCategoriasLinguasAtivas" do controlador "CategoriaControllerController"
+		return Basico_CategoriaControllerController::retornaCategoriasLinguasAtivas();
+	}
 }

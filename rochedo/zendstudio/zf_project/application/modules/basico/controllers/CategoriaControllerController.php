@@ -5,6 +5,10 @@
  * 
  * @uses Basico_Model_Categoria
  */
+
+// requerindo arquivos dependentes
+require_once("TipoCategoriaControllerController.php");
+
 class Basico_CategoriaControllerController
 {
 	/**
@@ -1128,5 +1132,33 @@ class Basico_CategoriaControllerController
 			return (Int) $objCategoriaLogNovoOutput->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+	}
+
+	/**
+	 * Retorna um array de objetos Basico_Model_Categoria contendo as linguas ativas no sistema
+	 * 
+	 * @return null|Array
+	 */
+	public static function retornaCategoriasLinguasAtivas()
+	{
+		// instanciando modelos
+		$modeloCategoria = new Basico_Model_Categoria();
+		
+		// recuperando o id do tipo categoria LINGUAGEM
+		$idTipoCategoriaLinguagem = Basico_TipoCategoriaControllerController::retornaIdTipoCategoriaLinguagem();
+		
+		// recuperando booleano especifico para o banco de dados em uso
+		$booleanAtivo = Basico_PersistenceControllerController::bdRetornaBoolean(true);
+		
+		if (is_bool($booleanAtivo))
+			$condicao = "id_tipo_categoria = {$idTipoCategoriaLinguagem} and ativo = true";
+		else
+			$condicao = "id_tipo_categoria = {$idTipoCategoriaLinguagem} and ativo = 1";
+
+		// recuperando categorias de liguas ativas
+		$objsCategoriasLinguasAtivas = $modeloCategoria->fetchList($condicao);
+		
+		// retornando o array de objetos contendo as categorias de linguas ativas
+		return $objsCategoriasLinguasAtivas;
 	}
 }

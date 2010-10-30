@@ -6,6 +6,7 @@
 require_once("CVCControllerController.php");
 require_once("FormularioControllerController.php");
 require_once("FormularioFormularioElementoControllerController.php");
+require_once("ModuloControllerController.php");
 
 class Basico_GeradorFormularioControllerController
 {
@@ -250,6 +251,9 @@ class Basico_GeradorFormularioControllerController
 
                 if ($fileResource)
                     $resultado = Basico_UtilControllerController::fechaArquivo($fileResource);
+
+                // gerando formulario versao HTML
+                $resultado = self::escreveObjetoFormularioDOJOHTMLTodasLinguasAtivas($objFormulario, $moduleName);
             }
 
         } catch (Exception $e) {
@@ -784,21 +788,12 @@ class Basico_GeradorFormularioControllerController
             	$formularioElementoConstanteTextualTitulo = $formularioElementoObject->getFormularioElementoConstanteTextualTitulo($objFormulario, $totalFormularioElementoFormulariosVinculados);
       
             	// recuperando variaveis que serao utilizadas para instanciar o formulario vinculado
-            	$variavelSubForm = self::retornaNomeVariavelSubForm($objModulo, $formularioElementoFormularioVinculado) . "DOJO";
             	$nomeClasseSubForm = self::retornaNomeClasseForm($objModulo, $formularioElementoFormularioVinculado);
-            	
-            	$tempReturn .= $identacao . "{$variavelSubForm} = new {$nomeClasseSubForm}();" . QUEBRA_DE_LINHA;
-            	
-            	// escrevendo metodos de substituicao de tags/caracteres nao permitidos no formulario vinculado
-            	$tempReturn .= $identacao . "{$variavelSubForm} = Basico_UtilControllerController::escapaCaracteresFormDialogDOJO({$variavelSubForm});" . QUEBRA_DE_LINHA;
-            	
+
             	// incrementa variavel de offset
             	$totalFormularioElementoFormulariosVinculados++;
             }
-            else {
-            	if (isset($variavelSubForm))
-            		unset($variavelSubForm);
-            	
+            else {           	
             	if (isset($nomeClasseSubForm))
             		unset($nomeClasseSubForm);
             	
@@ -820,8 +815,16 @@ class Basico_GeradorFormularioControllerController
 			// setando atributos do elemento
 			if ($formularioElementoObject->elementAttribs){
 				// faz substituicao de tags caso o elemento seja do tipo FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
-				if (isset($variavelSubForm) and isset($nomeClasseSubForm)) {
-					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_VARIABLE_INSTANCE_FORM, $variavelSubForm, $formularioElementoObject->elementAttribs);
+				if (isset($nomeClasseSubForm)) {
+					
+					// descobrindo o tipo de formulario (form ou sub-form)
+					if ($formularioElementoFormularioVinculado->getCategoriaObject()->getRootCategoriaPaiObject() === 'FORMULARIO_SUB_FORMULARIO')
+						$publicFormsSubPath = '/subforms/';
+					else
+						$publicFormsSubPath = '/forms/';
+
+					// substituindo tags
+					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_URL, APPLICATION_BASE_URL . '/public_forms/' . strtolower($objModulo->nome) . $publicFormsSubPath . $formularioElementoFormularioVinculado->formName . '." . ' . "Basico_PessoaControllerController::retornaLinguaUsuario() . " . '".html', $formularioElementoObject->elementAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $tempFormAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_TITLE_DIALOG, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoConstanteTextualTitulo}')", $tempFormAttribs);
 				}
@@ -855,19 +858,21 @@ class Basico_GeradorFormularioControllerController
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR . "({$formularioElementoValidator->validator});" . QUEBRA_DE_LINHA;
             }
 
+			// adiciona o decorator para os elementos que possuem decorator
+			if ($formularioElementoObject->getDecoratorObject()->id)
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA;
+
+			// recuperando decorator de formularioFormularioElemento
+			$decoratorFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaDecoratorObject($objFormulario->id, $formularioElementoObject->id);
+
+			// verificando o resultado da recuperacao do decorator
+			if (isset($decoratorFormularioFormularioElemento))
+				// setando decorator para o elemento a partir de formularioFormularioElemento
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$decoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
+
+
         	// adicionando elementos label e ajuda
             if ($formularioElementoObject->constanteTextualLabel){
-				// adiciona o decorator para os elementos que possuem decorator
-				if ($formularioElementoObject->getDecoratorObject()->id)
-					$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA;
-
-				// recuperando decorator de formularioFormularioElemento
-				$decoratorFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaDecoratorObject($objFormulario->id, $formularioElementoObject->id);
-
-				// verificando o resultado da recuperacao do decorator
-				if (isset($decoratorFormularioFormularioElemento))
-					// setando decorator para o elemento a partir de formularioFormularioElemento
-					$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$decoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
 					
 				// adicionando o link de ajuda
                 if ($formularioElementoObject->getAjudaObject()->id){
@@ -879,18 +884,18 @@ class Basico_GeradorFormularioControllerController
                         $urlAjuda = '';
 
                     $constanteTextoAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'");
-                    $chamadaJavaScriptDialog = Basico_UtilControllerController::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(\'' . DIALOG_HELP_TITLE . '\', DEFAULT_USER_LANGUAGE)', '$this->getView()->tradutor(' . $constanteTextoAjuda . ', DEFAULT_USER_LANGUAGE)' . $urlAjuda);
+                    $chamadaJavaScriptDialog = Basico_UtilControllerController::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(\'' . DIALOG_HELP_TITLE . '\')', 'Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor(' . $constanteTextoAjuda . '))' . $urlAjuda);
                     $linkAjuda = "&nbsp;" . FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG . AJUDA_BUTTON_LABEL . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG . $chamadaJavaScriptDialog . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG . FORM_GERADOR_AJUDA_BUTTON_END_TAG;
                 } else
                 	$linkAjuda = '';
 
                 $linkAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($linkAjuda, "'");
-                $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_UtilControllerController::retornaStringEntreCaracter($labelCampoRequerido, "'") . "." . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}', DEFAULT_USER_LANGUAGE) . {$linkAjuda});" . QUEBRA_DE_LINHA;
+                $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_UtilControllerController::retornaStringEntreCaracter($labelCampoRequerido, "'") . "." . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}') . {$linkAjuda});" . QUEBRA_DE_LINHA;
                 	
 			}
 
 			if (($formularioElementoObject->getAjudaObject()->id) and ($formularioElementoObject->getAjudaObject()->constanteTextualHint))
-				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}', DEFAULT_USER_LANGUAGE));" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}'));" . QUEBRA_DE_LINHA;
 
         	// verificando se o elemento pode ser carregando com dados
             if ($formularioElementoObject->elementReloadable){
@@ -956,7 +961,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaIncludeSubForm($nivelIdentacaoInicial, $objSubFormulario, $metodo = INCLUDE_REQUIRE_ONCE)
+    private function retornaIncludeSubForm($nivelIdentacaoInicial, $objSubFormulario, $metodo = INCLUDE_REQUIRE)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -1012,5 +1017,96 @@ class Basico_GeradorFormularioControllerController
     	
     	// retorna o codigo de fim de script
     	return $identacao . $formEndTag;
+    }
+    
+    /**
+     * Escreve arquivos .html contendo o formulario DOJO passado como parametro em todas as linguas ativas no sistema
+     * 
+     * @param Basico_Model_Formulario $objetoFormularioDOJO
+     * @param String $moduleName
+     * 
+     * @return Boolean
+     */
+    private function escreveObjetoFormularioDOJOHTMLTodasLinguasAtivas(Basico_Model_Formulario $objetoFormularioDOJO, $moduleName)
+    {
+    	// inicializando variaveis
+    	$tempReturn = true;
+
+		// recuperando objetos Basico_Model_Categoria das linguas ativas no sistema
+		$objsCategoriasLinguasAtivas = Basico_TradutorControllerController::retornaCategoriasLinguasAtivas();
+
+		// loop para cada lingua ativa no sistema
+		foreach ($objsCategoriasLinguasAtivas as $objCategoriaLinguaAtiva)
+		{
+			$tempReturn = self::escreveObjetoFormularioDOJOHTMLLingua($objetoFormularioDOJO, $moduleName, $objCategoriaLinguaAtiva);
+			
+			if (!$tempReturn)
+				return $tempReturn;
+		}
+		
+		return $tempReturn;
+    }
+    
+    /**
+     * Escreve arquivo .html contendo o formulario DOJO passado como parametro na lingua passada por parametro
+     * 
+     * @param Basico_Model_Formulario $objetoFormularioDOJO
+     * @param String $moduleName
+     * @param Basico_Model_Categoria $objCategoriaLingua
+     * 
+     * @return Boolean
+     */
+    private function escreveObjetoFormularioDOJOHTMLLingua(Basico_Model_Formulario $objetoFormularioDOJO, $moduleName, $objCategoriaLingua)
+    {
+    	// carregar nome do arquivo de saida
+    	$caminhoPastaPublicForms    = PUBLIC_PATH_PUBLIC_FORMS . '/' . strtolower($moduleName) . '/forms';
+    	$caminhoPastaPublicSubForms = $caminhoPastaPublicForms . '/subforms';
+
+		// verificando se o caminho existe
+		if (!file_exists($caminhoPastaPublicForms) | !file_exists($caminhoPastaPublicSubForms))
+			throw new Exception(MSG_ERRO_PATH_INEXISTENTE);
+
+		// recuperando dados do objeto formulario
+		$nomeClasseFormulario  = self::retornaNomeClasseForm(Basico_ModuloControllerController::retornaObjetoModuloNome($moduleName), $objetoFormularioDOJO);
+		$nomeArquivoFormulario = self::retornaNomeArquivoForm($objetoFormularioDOJO);
+
+		// modificando o nome do arquivo
+		$fullFileName = Basico_UtilControllerController::retornaNomeArquivoConcatenadoLingua($caminhoPastaPublicForms . '/' . $nomeArquivoFormulario, $objCategoriaLingua, '.html');
+
+		// recuperando informacoes sobre a lingua atual do usuario
+		$linguaUsuario = DEFAULT_SYSTEM_LANGUAGE;
+		
+		// setando a lingua do sistema para a lingua de geracao do formulario
+		Basico_PessoaControllerController::setaLinguaUsuario($objCategoriaLingua->nome);
+
+		// instanciando o formulario
+		$form = new $nomeClasseFormulario();
+		
+		// recuperando subformularios
+		$subForms = $form->getSubForms();
+
+		// transformando o form em string
+		$form = Basico_UtilControllerController::retornaValorTipado($form, TIPO_STRING);
+
+		// escrevendo o conteudo do form no arquivo .html
+		Basico_UtilControllerController::escreveConteudoArquivo($fullFileName, $form);
+
+		// loop para escrever os subforms
+		foreach ($subForms as $subform)
+		{
+			// recuperando o nome do arquivo do subform
+			$fullFileName = Basico_UtilControllerController::retornaNomeArquivoConcatenadoLingua($caminhoPastaPublicSubForms . '/' . $subform->getName(), $objCategoriaLingua, '.html');
+			
+			// transformando o form em string
+			$subform = Basico_UtilControllerController::retornaValorTipado($subform, TIPO_STRING);
+			
+			// escrevendo o conteudo do sub-form no arquivo .html
+			Basico_UtilControllerController::escreveConteudoArquivo($fullFileName, $subform);
+		}
+
+		// setando a lingua do sistema para a lingua do usuario
+		Basico_PessoaControllerController::setaLinguaUsuario($linguaUsuario);
+
+		return true;
     }
 }

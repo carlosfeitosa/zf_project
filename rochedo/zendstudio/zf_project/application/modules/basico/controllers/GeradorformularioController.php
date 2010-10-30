@@ -25,8 +25,8 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function init()
     {
         // carregando titulo e subtitulo da view
-        $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
-        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO', DEFAULT_USER_LANGUAGE);
+        $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO');
+        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO');
 
         // carregando array do cabecalho da view
         $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
@@ -124,8 +124,8 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
             if (Basico_GeradorControllerController::geradorFormularioGerarFormulario($modeloFormulario, $excludeModulesNames)) {
                 
                 // carregando o titulo e subtitulo da view
-                $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO', DEFAULT_USER_LANGUAGE);
-		        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO', DEFAULT_USER_LANGUAGE);
+                $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO');
+		        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO');
 		        
 		        // carregando array do cabecalho da view
 		        $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);

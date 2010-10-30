@@ -9,7 +9,8 @@
 * 						- 29/12/2009 - drop table dados_pessoas_perfis;
 * 						- 29/01/2010 - drop table categoria_chave_estrangeira e token;
 * 						- 22/02/2010 - drop table dicionario_expressao;
-* 						- 24/09/2010 - drop das funcoes do CVC
+* 						- 24/09/2010 - drop das funcoes do CVC;
+* 						- 29/10/2010 - drop da tabela "modulo", proviniente do sprint 0004;
 */
 
 if object_id('dicionario_expressao') is not null
@@ -99,6 +100,12 @@ end
 if object_id('mensagem') is not null
 begin
   drop table mensagem
+end
+;
+
+if object_id('modulo') is not null
+begin
+drop table modulo;
 end
 ;
 

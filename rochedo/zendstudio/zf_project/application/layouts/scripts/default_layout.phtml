@@ -39,7 +39,7 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
     </style>
     <?php
     if ($this->dojo()->isEnabled()){
-        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => DEFAULT_USER_LANGUAGE))
+        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_PessoaControllerController::retornaLinguaUsuario()))
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
                      ->addStylesheet($applicationHttpBaseUrl . DOJO_STYLE_SHEET_PATH)
                      ->addStylesheet($applicationHttpBaseUrl . MENU_CSS_FILE)
@@ -69,7 +69,7 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
         <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
                                                          null, 
-                                                         true)) ?>"><?php echo $this->tradutor(MENU_ITEM_REGISTRE_SE, DEFAULT_USER_LANGUAGE) ?></a> |
+                                                         true)) ?>"><?php echo $this->tradutor(MENU_ITEM_REGISTRE_SE) ?></a> |
 		<a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'dadosusuario'), 
                                                          null, 

@@ -27,6 +27,7 @@
 * 						18/10/2010 - criacao da tabela grupo_formulario_elemento;
 * 								   - associacao de formulario_formulario_elemento com grupo_formulario_elemento
 * 									 e decorator;
+* 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
 */
 
 
@@ -70,21 +71,6 @@ create table dbo.template (
 	template varchar (2000) collate latin1_general_ci_ai null ,
 	id_output integer not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
-) on [primary];
-
-create table dbo.modulo (
-	id int identity (1, 1) not null ,
-	id_categoria int not null ,
-	id_modulo_pai int null ,
-	nome varchar (100) collate latin1_general_ci_ai not null ,
-	descricao varchar (2000) collate latin1_general_ci_ai null ,
-	versao varchar (200) collate latin1_general_ci_ai null ,
-	path varchar (1000) collate latin1_general_ci_ai null ,
-	instalado bit not null ,
-	ativo bit not null ,
-	data_depreciacao datetime null ,
-	xml_autoria varchar (2000) not null ,
-	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
 create table dbo.modulo_formulario (
@@ -234,8 +220,6 @@ alter table dbo.output with nocheck add constraint pk_output primary key cluster
 
 alter table dbo.template with nocheck add constraint pk_template primary key clustered (id) on [primary];
 
-alter table dbo.modulo with nocheck add constraint pk_modulo primary key clustered (id) on [primary];
-
 alter table dbo.modulo_formulario with nocheck add constraint pk_modulo_formulario primary key clustered (id) on [primary];
 
 alter table dbo.modulo_perfil with nocheck add constraint pk_modulo_perfil primary key clustered (id) on [primary];
@@ -265,10 +249,6 @@ alter table dbo.grupo_formulario_elemento with nocheck add constraint pk_grupo_f
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table dbo.modulo add
-	constraint df_modulo_instalado default 0 for instalado,
-	constraint df_modulo_ativo default 0 for ativo;
-
 alter table dbo.formulario add 
 	constraint df_formulario_validade_inicio default (getdate()) for validade_inicio;
 
@@ -288,8 +268,6 @@ create index ix_ajuda_nome on dbo.ajuda (nome) on [primary];
 create index ix_output_nome on dbo.output (nome) on [primary];
 
 create index ix_template_nome on dbo.template (nome) on [primary];
-
-create index ix_modulo_nome on dbo.modulo (nome) on [primary];
 
 create index ix_formulario_elemento_nome on dbo.formulario_elemento (nome) on [primary];
 
@@ -329,13 +307,6 @@ alter table dbo.output add
 
 alter table dbo.template add
 	constraint ix_template_categoria_nome unique nonclustered
-	(
-		id_categoria,
-		nome
-	) on [primary];
-
-alter table dbo.modulo add
-	constraint ix_modulo_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
@@ -462,20 +433,6 @@ alter table dbo.template add
 	(
 		id_output
 	) references dbo.output (
-		id
-	);
-
-alter table dbo.modulo add
-	constraint fk_modulo_categoria foreign key
-	(
-		id_categoria
-	) references dbo.categoria (
-		id
-	),
-	constraint fk_modulo_id_modulo_pai foreign key
-	(
-		id_modulo_pai
-	) references dbo.modulo (
 		id
 	);
 

@@ -68,4 +68,28 @@ class Basico_PessoaControllerController
 			throw new Exception($e);
 		}
 	}
+
+	/**
+	 * Retorna a lingua usuario
+	 * 
+	 * @return String
+	 */
+	public static function retornaLinguaUsuario()
+	{
+		// retornando a lingua padrao do usuario
+		return Basico_UtilControllerController::retornaValorSessao(DEFAULT_USER_LANGUAGE);
+	}
+	
+	/**
+	 * Seta a lingua do ususario
+	 * 
+	 * @param String $lingua
+	 * 
+	 * @return True
+	 */
+	public static function setaLinguaUsuario($lingua)
+	{
+		// setando a lingua padra
+		return Basico_UtilControllerController::registraValorSessao(DEFAULT_USER_LANGUAGE, $lingua);
+	}
 }

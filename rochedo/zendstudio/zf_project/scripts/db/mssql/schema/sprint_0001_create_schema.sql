@@ -13,6 +13,7 @@
 * 						- 22/02/2010 - adicao da tabela dicionario_expressao;
 * 						- 27/09/2010 - modificacao da tabela "email": transformacao do campo "id_pessoa" em
 * 									   "id_generico_proprietario" (abstracao do dono);
+* 						- 29/10/2010 - inclusao da criacao da tabela "modulo", proviniente do sprint 0004;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -26,6 +27,21 @@ create table dbo.categoria (
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	ativo bit not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
+) on [primary];
+
+create table dbo.modulo (
+	id int identity (1, 1) not null ,
+	id_categoria int not null ,
+	id_modulo_pai int null ,
+	nome varchar (100) collate latin1_general_ci_ai not null ,
+	descricao varchar (2000) collate latin1_general_ci_ai null ,
+	versao varchar (200) collate latin1_general_ci_ai null ,
+	path varchar (1000) collate latin1_general_ci_ai null ,
+	instalado bit not null ,
+	ativo bit not null ,
+	data_depreciacao datetime null ,
+	xml_autoria varchar (2000) not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
 create table dbo.dados_pessoais (
@@ -177,6 +193,8 @@ create table dbo.dicionario_expressao (
 
 alter table dbo.categoria with nocheck add constraint pk_categoria primary key clustered (id) on [primary];
 
+alter table dbo.modulo with nocheck add constraint pk_modulo primary key clustered (id) on [primary];
+
 alter table dbo.dados_pessoais with nocheck add constraint pk_dados_pessoais primary key clustered (id) on [primary];
 
 alter table dbo.email with nocheck add constraint pk_email primary key clustered (id)  on [primary];
@@ -216,6 +234,10 @@ alter table dbo.categoria add
 	constraint df_categoria_nivel default (1) for nivel,
 	constraint df_categoria_ativo default (1) for ativo;
 
+alter table dbo.modulo add
+	constraint df_modulo_instalado default 0 for instalado,
+	constraint df_modulo_ativo default 0 for ativo;
+
 alter table dbo.email add 
 	constraint df_email_validado default (0) for validado,
 	constraint df_email_ativo default (0) for ativo;
@@ -243,6 +265,8 @@ create unique index ix_email_email on dbo.email (email) on [primary];
 
 create index ix_categoria_nome on dbo.categoria (nome) on [primary];
 
+create index ix_modulo_nome on dbo.modulo (nome) on [primary];
+
 create index ix_dados_pessoais_nome on dbo.dados_pessoais (nome) on [primary];
 
 create index ix_mensagem_assunto on dbo.mensagem (assunto) on [primary];
@@ -268,6 +292,13 @@ alter table dbo.categoria add
         id_tipo_categoria,
         nome
     ) on [primary];
+
+alter table dbo.modulo add
+	constraint ix_modulo_categoria_nome unique nonclustered
+	(
+		id_categoria,
+		nome
+	) on [primary];
 
 alter table dbo.perfil add
     constraint ix_perfil_categoria_nome unique nonclustered
@@ -302,6 +333,20 @@ alter table dbo.categoria add
 	(
 		id_tipo_categoria
 	) references dbo.tipo_categoria (
+		id
+	);
+
+alter table dbo.modulo add
+	constraint fk_modulo_categoria foreign key
+	(
+		id_categoria
+	) references dbo.categoria (
+		id
+	),
+	constraint fk_modulo_id_modulo_pai foreign key
+	(
+		id_modulo_pai
+	) references dbo.modulo (
 		id
 	);
 	

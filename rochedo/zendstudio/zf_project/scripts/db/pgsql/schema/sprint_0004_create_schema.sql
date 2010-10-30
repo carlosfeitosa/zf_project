@@ -27,6 +27,7 @@
 * 						18/10/2010 - criacao da tabela grupo_formulario_elemento;
 * 								   - associacao de formulario_formulario_elemento com grupo_formulario_elemento
 * 									 e decorator;
+* 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -86,24 +87,6 @@ with (
   oids = false
 );
 alter table template owner to rochedo_user;
-
-create table modulo (
-	id serial not null ,
-	id_categoria int not null ,
-	id_modulo_pai int null ,
-	nome character varying (100) not null ,
-	descricao character varying (2000) null ,
-	versao character varying (200) null ,
-	path character varying (1000) null ,
-	instalado boolean not null ,
-	ativo boolean not null ,
-	data_depreciacao timestamp with time zone null ,
-	xml_autoria character varying (2000) not null ,
-	rowinfo character varying (2000) not null
-) with (
-  oids = false
-);
-alter table modulo owner to rochedo_user;
 
 create table modulo_formulario (
 	id serial not null ,
@@ -296,8 +279,6 @@ alter table output add constraint pk_output primary key (id);
 
 alter table template add constraint pk_template primary key (id);
 
-alter table modulo add constraint pk_modulo primary key (id);
-
 alter table modulo_formulario add constraint pk_modulo_formulario primary key (id);
 
 alter table modulo_perfil add constraint pk_modulo_perfil primary key (id);
@@ -327,10 +308,6 @@ alter table grupo_formulario_elemento add constraint pk_grupo_formulario_element
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table modulo
-	alter column instalado set default false,
-	alter column ativo set default false;
-
 alter table formulario
     alter column validade_inicio set default (current_timestamp);
 
@@ -355,9 +332,6 @@ create index ix_output_nome
 create index ix_template_nome
   on template using btree (nome asc nulls last);
   
-create index ix_modulo_nome
-  on modulo using btree (nome asc nulls last);
-
 create index ix_formulario_elemento_nome
   on formulario_elemento using btree (nome asc nulls last);
 
@@ -390,9 +364,6 @@ alter table output
 
 alter table template
   add constraint ix_template_categoria_nome unique (id_categoria, nome);
-
-alter table modulo
-  add constraint ix_modulo_categoria_nome unique (id_categoria, nome);
 
 alter table modulo_formulario
   add constraint ix_modulo_formulario_modulo_formulario unique (id_modulo, id_formulario);
@@ -445,10 +416,6 @@ alter table output
 alter table template
   add constraint fk_template_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
   add constraint fk_template_output foreign key (id_output) references output (id) on update no action on delete no action;
-
-alter table modulo
-  add constraint fk_modulo_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
-  add constraint fk_modulo_id_modulo_pai foreign key (id_modulo_pai) references modulo (id) on update no action on delete no action;
 
 alter table modulo_formulario
   add constraint fk_modulo_formulario_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action,

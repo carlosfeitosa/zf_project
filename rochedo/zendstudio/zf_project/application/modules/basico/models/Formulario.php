@@ -656,6 +656,11 @@ class Basico_Model_Formulario
 		return $this->_id;
 	}
 	
+	/**
+	 * Recupera objeto categoria
+	 * 
+	 * @return null|Basico_Model_Categoria
+	 */
 	public function getCategoriaObject()
 	{
 		$model = new Basico_Model_Categoria();

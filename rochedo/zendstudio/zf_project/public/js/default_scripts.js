@@ -1,10 +1,15 @@
 dojo.require("dijit.Dialog");
+dojo.require("dijit.form.Form");
 dojo.require("dijit.form.Button");
 dojo.require("dijit.form.TextBox");
 dojo.require("dijit.DialogUnderlay");
 dojo.require("dojox.form.PasswordValidator");
 dojo.require("dijit.TitlePane");
 dojo.require("dijit.form.TimeTextBox");
+dojo.require("dijit.form.SimpleTextarea");
+dojo.require("dijit.form.DateTextBox");
+dojo.require("dijit.form.CurrencyTextBox");
+dojo.require("dijit.form.CheckBox");
 
 
 var underlay;
@@ -17,38 +22,38 @@ function loading()
 function exibirDialogConteudo(dialogName, content, title)
 {
     
-	form = dijit.byId(formName);
+	dialog = dijit.byId(dialogName);
     
-	if (!form) {
+	if (!dialog) {
 		var thisdialog = new dijit.Dialog({
                             title: title, 
                             content: content,
-                            id: formName
+                            id: dialogName
                             
                             });
 			thisdialog.startup();
 			thisdialog.show();
 	}else{
-	    form.show();	
+		dialog.show();	
 	}
 }
 
 function exibirDialogUrl(dialogName, url, title)
 {
     
-	form = dijit.byId(formName);
+	dialog = dijit.byId(dialogName);
     
-	if (!form) {
+	if (!dialog) {
 		var thisdialog = new dijit.Dialog({
                             title: title, 
                             href: url,
-                            id: formName
+                            id: dialogName
                             
                             });
 			thisdialog.startup();
 			thisdialog.show();
 	}else{
-	    form.show();	
+		dialog.show();	
 	}
 }
 

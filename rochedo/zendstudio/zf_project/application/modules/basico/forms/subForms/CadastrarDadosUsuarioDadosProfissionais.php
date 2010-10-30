@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 22/10/2010 11:50:01
+* em: 30/10/2010 09:55:18
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 22/10/2010 11:49:09
+* @version    1: 30/10/2010 09:54:57
 */
     $basicoCadastrarDadosUsuarioDadosProfissionaisSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -26,10 +26,8 @@
     // Criando array de elementos.
     $elements = array();
 
-    $basicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSubFormDOJO = new Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional();
-    $basicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSubFormDOJO = Basico_UtilControllerController::escapaCaracteresFormDialogDOJO($basicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSubFormDOJO);
     $elements[0] = $this->createElement('button', 'buttonDialogDojo1');
-    $elements[0]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_VINCULO_PROFISSIONAL')}", 'onClick' => "exibirForm(\"Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\", \"{$basicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSubFormDOJO}\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_VINCULO_PROFISSIONAL')}\")"));
+    $elements[0]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_VINCULO_PROFISSIONAL')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_VINCULO_PROFISSIONAL')}\")"));
     $elements[0]->setRequired(false);
 
     // Adicionando elementos ao formulario.

@@ -83,8 +83,8 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	$controladorEmail->salvarEmail($email, $versaoUpdateEmail);
     	
     	    // carregando o titulo e subtitulo da view
-		    $tituloView     = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO, DEFAULT_USER_LANGUAGE);
-		    $subtituloView  = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO, DEFAULT_USER_LANGUAGE);
+		    $tituloView     = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO);
+		    $subtituloView  = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO);
 
 		    // carregando array do cabecalho da view
 		    $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
@@ -115,8 +115,8 @@ class Basico_EmailController extends Zend_Controller_Action
     public function errotokenexpiradoAction() 
     {
     	// carregando titulo, link para re-cadastro e mensagem
-        $tituloView            = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO, DEFAULT_USER_LANGUAGE);
-        $linkRecomecarCadastro = $this->view->tradutor(LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO, DEFAULT_USER_LANGUAGE);
+        $tituloView            = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO);
+        $linkRecomecarCadastro = $this->view->tradutor(LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO);
         $mensagemView          = "<a href='../login/cadastrarUsuarioNaoValidado/'>{$linkRecomecarCadastro}</a>";
         
         // carregando array com o cabecalho da view
@@ -137,7 +137,7 @@ class Basico_EmailController extends Zend_Controller_Action
     public function errotokeninvalidoAction() 
     {
     	// carregando titulo, link para re-cadastro e mensagem
-        $tituloView            = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO, DEFAULT_USER_LANGUAGE);
+        $tituloView            = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO);
         $cabecalho =  array('tituloView' => $tituloView);
     
 	    // carregando array com o cabecalho da view

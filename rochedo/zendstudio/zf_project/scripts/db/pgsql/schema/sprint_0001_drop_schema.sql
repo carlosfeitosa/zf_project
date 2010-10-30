@@ -9,7 +9,8 @@
 * 						- 29/12/2009 - drop table dados_pessoas_perfis;
 * 						- 29/01/2010 - drop table categoria_chave_estrangeira e token;
 * 						- 22/02/2010 - drop table dicionario_expressao;
-* 						- 28/09/2010 - drop das funcoes do CVC
+* 						- 28/09/2010 - drop das funcoes do CVC;
+* 						- 29/10/2010 - drop da tabela "modulo", proviniente do sprint 0004;
 */
 
 drop table if exists dicionario_expressao;
@@ -27,6 +28,7 @@ drop table if exists perfil;
 drop table if exists mensagem_email;
 drop table if exists anexo_mensagem;
 drop table if exists mensagem;
+drop table if exists modulo;
 drop table if exists categoria;
 drop table if exists tipo_categoria;
 drop function if exists fn_CheckCategoriaChaveEstrangeiraCategoriaExists(int);

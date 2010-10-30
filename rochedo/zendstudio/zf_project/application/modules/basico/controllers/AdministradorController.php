@@ -40,10 +40,10 @@ class Basico_AdministradorController extends Zend_Controller_Action
     public function indexAction() 
     {
     	// carregando o titulo e subtitulo da view
-    	$tituloView = $this->view->tradutor(VIEW_ADMIN_INDEX_TITULO, DEFAULT_USER_LANGUAGE);
+    	$tituloView = $this->view->tradutor(VIEW_ADMIN_INDEX_TITULO);
         
     	if (Basico_UtilControllerController::ambienteDesenvolvimento()) 
-    	    $subtituloView = "<a onClick='loading()' href='/rochedo_project/public/basico/administrador/resetadb'>" . $this->view->tradutor(VIEW_ADMIN_BD_RESET_BUTTON_LABEL, DEFAULT_USER_LANGUAGE) . "</a>";
+    	    $subtituloView = "<a onClick='loading()' href='/rochedo_project/public/basico/administrador/resetadb'>" . $this->view->tradutor(VIEW_ADMIN_BD_RESET_BUTTON_LABEL) . "</a>";
     	else
     	    $subtituloView = NULL;
     	// carregando array do cabecalho da view
@@ -67,7 +67,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	if (Basico_PersistenceControllerController::bdResetaBD()) {
    
 			// carregando o titulo e subtitulo da view
-	    	$tituloView = $this->view->tradutor(VIEW_ADMIN_BD_RESET_SUCESSO, DEFAULT_USER_LANGUAGE);
+	    	$tituloView = $this->view->tradutor(VIEW_ADMIN_BD_RESET_SUCESSO);
 
 	    	// carregando array do cabecalho da view
 			$cabecalho =  array('tituloView' => $tituloView);

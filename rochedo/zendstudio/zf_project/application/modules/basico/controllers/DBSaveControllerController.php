@@ -25,10 +25,10 @@ class Basico_DBSaveControllerController
 		// verificando se trata-se de uma atualizacao e se a linha ainda existe no banco da dados
 		if ((isset($mixed->id)) and (isset($versaoUpdate)) and (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)))
 			throw new Exceltion(MSG_ERRO_SAVE_UPDATE_SEM_PERSISTENCIA);
-		
+
 		// iniciando transacao
 		$transacaoInicializada = Basico_PersistenceControllerController::bdControlaTransacao();
-		
+
 		try {			
 			// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
 			if (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)) {
@@ -39,7 +39,7 @@ class Basico_DBSaveControllerController
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
 						Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
-					
+
 					$novaTupla = true;
 				}
 				else {
@@ -48,19 +48,19 @@ class Basico_DBSaveControllerController
 						// cancelando a transacao
 						Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 					}
-						
+
 					throw new Exception(MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO);
 				}
 			}
 			// verificando se, tratando-se de um update, foi informado a versao da tupla
 			else if ((!isset($versaoUpdate)) or ($versaoUpdate <= 0)){
-				
+
 				throw new Exception(MSG_ERRO_SAVE_UPDATE_SEM_INFORMACAO_SOBRE_VERSAO);
 			}
-			
+
 			// recuperando o numero da ultima versao
 			$ultimaVersao = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($mixed, true);
-			
+
 			// verificando se a versao para update eh diferente da ultima versao existente no repositorio CVC
 			if (isset($versaoUpdate) and ($ultimaVersao !== $versaoUpdate)) {
 				// verificando se existe transacao iniciada
@@ -71,7 +71,7 @@ class Basico_DBSaveControllerController
 				
 				throw new Exception(MSG_ERRO_SAVE_UPDATE_VERSAO_DESATUALIZADA);
 			}
-	
+
 			// verificando se o objeto deve ser versionado ou ter sua ultima versao atualizada apenas
 			if ((!self::isInBlackList($mixed)) and (self::isInAtualizarVersaoList($mixed))) {
 				// atualizando o objeto
@@ -81,7 +81,7 @@ class Basico_DBSaveControllerController
 				// versionando objeto
 				$versaoVersionamento = Basico_PersistenceControllerController::bdVersionarCVC($mixed);
 			}
-			
+
 			// verificando se houve atualizacao da versao
 			if ($ultimaVersao !== $versaoVersionamento) {
 				if (self::saveObjectDbTable($mixed)) {
@@ -96,10 +96,10 @@ class Basico_DBSaveControllerController
 						// cancelando a transacao
 						Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 					}
-						
+
 					throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
 				}
-				
+
 				// verificando se existe transacao iniciada
 				if ($transacaoInicializada) {
 					// salva a transacao
@@ -128,9 +128,9 @@ class Basico_DBSaveControllerController
 				// cancelando a transacao
 				Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 			}
-			
+
 			throw new Exception($e->getMessage());
-			
+
 			return false;
 		}
 	}

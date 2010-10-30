@@ -5,6 +5,7 @@
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 21/10/2010
 * ultimas modificacoes:
+* 								22/10/2010 - vinculacao de template DOJO para o formulario FORM_DIALOG_TELEFONES_COMERCIAIS;
 *  
 */
 
@@ -59,7 +60,7 @@ SELECT (SELECT f.id
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
-'SYSTEM_STARTUP' AS rowinfo;
+		'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -76,7 +77,7 @@ SELECT (SELECT f.id
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
-'SYSTEM_STARTUP' AS rowinfo;
+		'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -93,7 +94,7 @@ SELECT (SELECT f.id
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
-'SYSTEM_STARTUP' AS rowinfo;
+		'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -110,7 +111,24 @@ SELECT (SELECT f.id
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
-'SYSTEM_STARTUP' AS rowinfo;
+		'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_COMERCIAIS'
+        AND f.nome = 'FORM_DIALOG_TELEFONES_COMERCIAIS') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_TEMPLATE'
+		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+		'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id

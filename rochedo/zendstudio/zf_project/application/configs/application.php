@@ -91,8 +91,3 @@ define("MENU_CSS_FILE", "/css/menu.css");
  * LANGUAGE SETTINGS
  */
 define("DEFAULT_SYSTEM_LANGUAGE", LANGUAGE_PT_BR);
-
-if (!defined("DEFAULT_USER_LANGUAGE"))
-    define("DEFAULT_USER_LANGUAGE", DEFAULT_SYSTEM_LANGUAGE);
-    
-    

@@ -140,6 +140,19 @@ class Basico_PersistenceControllerController
     	return Basico_DBUtilControllerController::retornaPdoTypeConexaoAtiva();
     }
 
+     /**
+     * Retorna o valor booleano do banco de dados que esta sendo utilizado
+     * 
+     * @param Boolean $boolean
+     * 
+     * @return Boolean|Integer
+     */
+    public static function bdRetornaBoolean($boolean)
+    {
+    	// retornando o resultado do metodo "retornaBooleanDB" no controlador "Basico_DBUtilControllerController"
+    	return Basico_DBUtilControllerController::retornaBooleanDB($boolean);
+    }
+
 	/**
 	 * Checa a conexão com o banco de dados, lança um erro no caso de não conseguir conectar.
 	 * 

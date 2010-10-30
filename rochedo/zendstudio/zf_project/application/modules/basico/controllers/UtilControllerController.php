@@ -133,13 +133,51 @@ class Basico_UtilControllerController
      * remove comentários de arquivos
      * @param $string
      * @param $enc
-     * @return unknown_type
+     * @return String
      */
     public static function removeComentariosArquivo($string)
     {
     	$pattern = "@(/\*.*?\*/)@se";
     	return preg_replace($pattern, '',$string);
-    	
+    }
+    
+    /**
+     * Retorna o nome de um arquivo concatenando no final o nome de uma lingua, trocando a extensao se desejado
+     * 
+     * @param String $fullFileName
+     * @param Basico_Model_Categoria $objCategoriaLingua
+     * @param String $extensionReplace
+     * 
+     * @return String
+     */
+    public static function retornaNomeArquivoConcatenadoLingua($fullFileName, Basico_Model_Categoria $objCategoriaLingua, $extensionReplace = null)
+    {
+    	// inicializando variaveis
+    	$extensaoOriginal = '';
+    	$separadorLingua  = '';
+
+    	// recuperando informacoes sobre o arquivo
+    	$pathInfo = pathinfo($fullFileName);
+    	if (array_key_exists('extension', $pathInfo))
+    		$extensaoOriginal = $pathInfo['extension'];
+    	else
+    		$separadorLingua = '.';
+
+    	// verificando se deve-se trocar a extensao
+    	if ($extensionReplace)
+    		$extensaoTroca = $extensionReplace;
+    	else
+    		$extensaoTroca = $extensaoOriginal;
+
+    	// verificando se a extensao possui ponto no inicio
+    	if (substr($extensaoTroca, 0, 1) !== '.')
+    		$extensaoTroca = '.' . $extensaoTroca;
+
+    	// transformando o nome do arquivo
+    	$fullFileName = substr($fullFileName, 0, strlen($fullFileName) - strlen($extensaoOriginal)) . $separadorLingua . $objCategoriaLingua->nome . $extensaoTroca;
+
+    	// retornando nome do arquivo modificado
+    	return $fullFileName;
     }
     
     /**
@@ -425,13 +463,37 @@ class Basico_UtilControllerController
 		// inicializando variaveis
 		$tempReturn = $formHTMLString;
 
-		// fazendo substituicoes de caracteres invalidos
-		$tempReturn = str_replace("'", '"', $tempReturn);
-		$tempReturn = str_replace('"', '\\"', $tempReturn);
+		// removendo escape
+		$tempReturn = str_replace("\'", "'", $tempReturn);
+		$tempReturn = str_replace('\"', '"', $tempReturn);
+		
+		// escapando caracteres
+		$tempReturn = str_replace("'" , '"', $tempReturn);
+		$tempReturn = str_replace('"' , '\\"', $tempReturn);
 		$tempReturn = str_replace(PHP_EOL, '', $tempReturn);
 
 		// retornando o resultado
         return $tempReturn;
+	}
+
+	/**
+	 * Retorna uma string com as aspas escapadas para uso em javascript contido em um arquivo php
+	 * 
+	 * @param String $string
+	 * 
+	 * @return String
+	 */
+	public static function escapaAspasStringJavascriptPHP($string)
+	{
+		// inicializando variaveis
+		$tempReturn = $string;
+		
+		// escapando caracteres
+		$tempReturn = str_replace("'", "\\'", $tempReturn);
+		$tempReturn = str_replace('"', '\\"', $tempReturn);
+		
+		// retornando o resultado
+		return $tempReturn;
 	}
 
     /**
@@ -759,5 +821,57 @@ class Basico_UtilControllerController
 
 		// embaralhando o array, sorteando um valor e retornando-o
 		return $arrayNomesArquivos[array_rand($arrayNomesArquivos, 1)];
+    }
+
+    /**
+     * Registra um elemento chave/valor na sessao
+     * 
+     * @param String $chave
+     * @param String $valor
+     * 
+     * @return Boolean
+     */
+    public static function registraValorSessao($chave, $valor)
+    {
+    	// colocando elemento chave/valor na sessao
+    	Zend_Registry::set($chave, $valor);
+    	
+    	return true;
+    }
+
+    /**
+     * Retorna um valor existente na sessao, atraves de uma chave passada por parametro
+     * 
+     * @param String $chave
+     * 
+     * @return Mixed|null
+     */
+    public static function retornaValorSessao($chave)
+    {
+    	// verificando se existe o valor na sessao
+    	if (Zend_Registry::isRegistered($chave))
+    		return Zend_Registry::get($chave);
+
+		return null;
+    }
+
+    /**
+     * Retorna o nome do modulo de um objeto
+     * 
+     * @param Object $objeto
+     * 
+     * @return String
+     */
+    public static function retornaNomeModuloObjeto($objeto)
+    {
+    	// verificando se o parametro eh um objeto
+    	if (!is_object($objeto))
+    		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+
+    	// recuperando o nome da classe
+    	$nomeClasse = get_class($objeto);
+
+    	// retornando o nome do modulo
+    	return substr($nomeClasse, 0, strpos($nomeClasse, '_'));
     }
 }

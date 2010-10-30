@@ -5,7 +5,8 @@
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
-* 							22/10/2010 - remocao do decorator do formulario SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS
+* 							22/10/2010 - remocao do decorator do formulario SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS;
+* 									   - criacao do formulario FORM_DIALOG_TELEFONES_COMERCIAIS;
 *  
 */
 
@@ -82,6 +83,21 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL';
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_TELEFONES_COMERCIAIS' AS nome, 
+		'Dialog para visualizacao de telefones comerciais.' AS descricao, 
+        'FORM_TITLE_TELEFONES_COMERCIAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosProfissionaisTelefonesComerciais' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_COMERCIAIS';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 

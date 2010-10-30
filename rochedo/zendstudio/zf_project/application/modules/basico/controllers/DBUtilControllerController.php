@@ -224,8 +224,12 @@ class Basico_DBUtilControllerController
 			// instanciando controlador de rowinfo
 			$controladorRowInfo = Basico_RowInfoControllerController::init();
 			
+			// recuperando objeto modulo do objeto
+			$objModulo = Basico_ModuloControllerController::retornaObjetoModuloNome(Basico_UtilControllerController::retornaNomeModuloObjeto($objeto));
+
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->categoria = $idCategoriaCVC;
+			$modelCategoriaChaveEstrangeira->modulo = $objModulo->id;
 			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = self::retornaPrimaryKeyObjeto($objeto);
 			
@@ -612,14 +616,32 @@ class Basico_DBUtilControllerController
     {
     	//recuperando resource do bando de dados
     	$dbResource = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-    	
+
     	//retornando o tipo do banco de dados
     	if ($dbResource instanceof Zend_Db_Adapter_Pdo_Pgsql){
     		return "PGSQL";    		
-    	}else if ($dbResource instanceof Zend_Db_Adapter_Pdo_Dblib){
+    	} else if ($dbResource instanceof Zend_Db_Adapter_Pdo_Dblib){
     	    return "MSSQL";
     	}
     	
+    }
+    
+    /**
+     * Retorna o valor booleano do banco de dados que esta sendo utilizado
+     * 
+     * @param Boolean $boolean
+     * 
+     * @return Boolean|Integer
+     */
+    public static function retornaBooleanDB($boolean)
+    {
+    	// verificando se eh preciso fazer conversao
+    	if (self::retornaPdoTypeConexaoAtiva() === 'MSSQL')
+    		// retornando valor booleano convertido para inteiro
+    		return Basico_UtilControllerController::retornaValorTipado($boolean, TIPO_INTEIRO);
+
+		// retorna o booleano caso nao haja conversao
+    	return Basico_UtilControllerController::retornaValorTipado($boolean, TIPO_BOOLEAN);
     }
     
     /**

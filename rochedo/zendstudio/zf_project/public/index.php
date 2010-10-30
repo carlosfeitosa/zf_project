@@ -8,6 +8,10 @@ defined('APPLICATION_PATH')
 defined('PUBLIC_PATH')
     || define('PUBLIC_PATH', realpath(dirname(__FILE__)));
     
+// Define path to public forms
+defined('PUBLIC_PATH_PUBLIC_FORMS')
+    || define('PUBLIC_PATH_PUBLIC_FORMS', PUBLIC_PATH . '/public_forms');
+
 // Define path to application modules directory
 defined('APPLICATION_MODULE_PATH')
     || define('APPLICATION_MODULE_PATH', APPLICATION_PATH . '/modules');

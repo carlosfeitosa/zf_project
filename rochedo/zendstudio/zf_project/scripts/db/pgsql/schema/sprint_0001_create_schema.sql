@@ -13,6 +13,7 @@
 * 						- 22/02/2010 - adicao da tabela dicionario_expressao;
 * 						- 27/09/2010 - modificacao da tabela "email": transformacao do campo "id_pessoa" em
 * 									   "id_generico_proprietario" (abstracao do dono);
+* 						- 29/10/2010 - inclusao da criacao da tabela "modulo", proviniente do sprint 0004;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -31,6 +32,24 @@ with (
   oids = false
 );
 alter table categoria owner to rochedo_user;
+
+create table modulo (
+	id serial not null ,
+	id_categoria int not null ,
+	id_modulo_pai int null ,
+	nome character varying (100) not null ,
+	descricao character varying (2000) null ,
+	versao character varying (200) null ,
+	path character varying (1000) null ,
+	instalado boolean not null ,
+	ativo boolean not null ,
+	data_depreciacao timestamp with time zone null ,
+	xml_autoria character varying (2000) not null ,
+	rowinfo character varying (2000) not null
+) with (
+  oids = false
+);
+alter table modulo owner to rochedo_user;
 
 create table dados_pessoais (
 	id serial not null ,
@@ -245,6 +264,8 @@ alter table dicionario_expressao owner to rochedo_user;
 
 alter table categoria add constraint pk_categoria primary key (id);
 
+alter table modulo add constraint pk_modulo primary key (id);
+
 alter table dados_pessoais add constraint pk_dados_pessoais primary key (id);
 
 alter table email add constraint pk_email primary key (id);
@@ -284,6 +305,10 @@ alter table categoria
 	alter column nivel set default 1 ,
 	alter column ativo set default true;
 
+alter table modulo
+	alter column instalado set default false,
+	alter column ativo set default false;
+
 alter table email 
 	alter column validado set default false ,
     alter column ativo set default false;
@@ -313,6 +338,9 @@ create index ix_email_email
 
 create index ix_categoria_nome
   on categoria using btree (nome asc nulls last);
+
+create index ix_modulo_nome
+  on modulo using btree (nome asc nulls last);
 
 create index ix_dados_pessoais_nome
   on dados_pessoais using btree (nome asc nulls last);
@@ -347,6 +375,9 @@ alter table tipo_categoria
 alter table categoria
   add constraint un_categoria_tipo_categoria_nome unique (id_tipo_categoria, nome);
 
+alter table modulo
+  add constraint ix_modulo_categoria_nome unique (id_categoria, nome);
+
 alter table perfil
   add constraint un_perfil_categoria_nome unique (id_categoria, nome);
 
@@ -377,11 +408,14 @@ alter table dicionario_expressao
 alter table categoria
   add constraint fk_categoria_categoria foreign key (id_categoria_pai) references categoria (id) on update no action on delete no action ,
   add constraint fk_categoria_tipo_categoria foreign key (id_tipo_categoria) references tipo_categoria (id) on update no action on delete no action;
+
+alter table modulo
+  add constraint fk_modulo_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+  add constraint fk_modulo_id_modulo_pai foreign key (id_modulo_pai) references modulo (id) on update no action on delete no action;
   
 alter table categoria_chave_estrangeira
   add constraint fk_categoria_chave_estrangeira_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
   add constraint fk_categoria_chave_estrangeira_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action;
-
 
 alter table dados_pessoais
   add constraint fk_dados_pessoais_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
