@@ -808,7 +808,15 @@ class Basico_GeradorFormularioControllerController
             }  	
             else
             	$tempFormElement = $formularioElementoObject->element;
-            
+
+            // removendo encapsulamento da string
+            $tempFormElement = str_replace("'", "", $tempFormElement);
+            // concatenando o nome do modulo e formulario ao nome do elemento
+            $tempFormElement = ucfirst(strtolower($objModulo->nome)) . $objFormulario->formName . $tempFormElement;
+            // encapsulando string
+            $tempFormElement = Basico_UtilControllerController::retornaStringEntreCaracter($tempFormElement, "'");
+
+
 			// criando elemento
 			$tempReturn .= $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$formularioElementoObject->getComponenteObject()->componente}, {$tempFormElement});" . QUEBRA_DE_LINHA;
 			

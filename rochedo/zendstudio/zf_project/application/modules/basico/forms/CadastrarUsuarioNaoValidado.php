@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 29/10/2010 22:24:00
+* em: 01/11/2010 16:20:05
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 28/10/2010 15:25:50
+* @version    1: 01/11/2010 14:42:28
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -39,7 +39,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         // Criando array de elementos.
         $elements = array();
 
-        $elements[0] = $this->createElement('ValidationTextBox', 'nome');
+        $elements[0] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadonome');
         $elements[0]->setAttribs(array('size' => 100));
         $elements[0]->setRequired(true);
         $elements[0]->addFilters(array('StringTrim', 'StripTags'));
@@ -50,7 +50,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         if ($options!=null)
             $elements[0]->setValue($options->nome);
 
-        $elements[1] = $this->createElement('ValidationTextBox', 'email');
+        $elements[1] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoemail');
         $elements[1]->setAttribs(array('size' => 80));
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
@@ -63,27 +63,27 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
             $elements[1]->setValue($options->email);
 
         if (!Basico_UtilControllerController::ambienteDesenvolvimento()){
-            $elements[2] = $this->createElement('captcha', 'captcha', 
-                      array('required'=>true,
-                            'captcha'=>array('captcha'=>'Image',
-                                             'imgDir' => CAPTCHA_IMAGE_DIR,
-                                             'imgUrl' => CAPTCHA_IMAGE_URL,
-                                             'wordLen'=> 6,
-                                             'width'  => 250,
-                                             'height' => 80,
-                                             'font'   => CAPTCHA_FONT_PATH,
-                                             'fontSize' => 50,
-                                             'expiration' => 300,
-                                             'gcFreq' => 100),));
+            $elements[2] = $this->createElement('captcha', 'BasicoCadastrarUsuarioNaoValidadocaptcha, 
+                      array(required=>true,
+                            captcha=>array(captcha=>Image,
+                                             imgDir => CAPTCHA_IMAGE_DIR,
+                                             imgUrl => CAPTCHA_IMAGE_URL,
+                                             wordLen=> 6,
+                                             width  => 250,
+                                             height => 80,
+                                             font   => CAPTCHA_FONT_PATH,
+                                             fontSize => 50,
+                                             expiration => 300,
+                                             gcFreq => 100),)');
             $elements[2]->setRequired(true);
             $elements[2]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_CAPTCHA_6') . '');
         }
 
-        $elements[3] = $this->createElement('submitButton', 'enviar');
+        $elements[3] = $this->createElement('submitButton', 'BasicoCadastrarUsuarioNaoValidadoenviar');
         $elements[3]->setRequired(false);
         $elements[3]->setLabel(''.$this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[4] = $this->createElement('hash', 'csrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[4] = $this->createElement('hash', 'BasicoCadastrarUsuarioNaoValidadocsrf, array(ignore => true, salt => unique,)');
         $elements[4]->setRequired(true);
 
         // Adicionando elementos ao formulario.

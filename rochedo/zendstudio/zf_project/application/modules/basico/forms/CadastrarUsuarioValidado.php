@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 29/10/2010 22:24:07
+* em: 01/11/2010 16:19:59
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 28/10/2010 15:25:50
+* @version    1: 01/11/2010 14:42:28
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -39,7 +39,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         // Criando array de elementos.
         $elements = array();
 
-        $elements[0] = $this->createElement('ValidationTextBox', 'nome');
+        $elements[0] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioValidadonome');
         $elements[0]->setAttribs(array('size' => 100));
         $elements[0]->setRequired(true);
         $elements[0]->addFilters(array('StringTrim', 'StripTags'));
@@ -49,6 +49,38 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[0]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT'));
         if ($options!=null)
             $elements[0]->setValue($options->nome);
+
+        $elements[1] = $this->createElement('DateTextBox', 'BasicoCadastrarUsuarioValidadodataNascimento');
+        $elements[1]->setRequired(true);
+        $elements[1]->addFilters(array('StringTrim', 'StripTags'));
+        $elements[1]->addValidator('NotEmpty');
+        $elements[1]->addDecorator('Label', array('escape' => false));
+        $elements[1]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO_AJUDA')) . '\', 1)</script></button>');
+
+        $elements[2] = $this->createElement('RadioButton', 'BasicoCadastrarUsuarioValidadosexo');
+        $elements[2]->setRequired(true);
+        $elements[2]->addDecorator('Label', array('escape' => false));
+        $elements[2]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1)</script></button>');
+
+        $elements[3] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioValidadologin');
+        $elements[3]->setRequired(true);
+        $elements[3]->addFilters(array('StringTrim', 'StripTags'));
+        $elements[3]->addValidator('NotEmpty');
+        $elements[3]->addDecorator('Label', array('escape' => false));
+        $elements[3]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA')) . '\', 1)</script></button>');
+
+        $elements[4] = $this->createElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadosenha');
+        $elements[4]->setRequired(true);
+        $elements[4]->addValidator('stringLength', false, array(6, 100));
+        $elements[4]->addValidator('NotEmpty');
+        $elements[4]->addDecorator('Label', array('escape' => false));
+        $elements[4]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA')) . '\', 1)</script></button>');
+
+        $elements[5] = $this->createElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadosenhaConfirmacao');
+        $elements[5]->setRequired(true);
+        $elements[5]->addValidator('NotEmpty');
+        $elements[5]->addDecorator('Label', array('escape' => false));
+        $elements[5]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO_AJUDA')) . '\', 1)</script></button>');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

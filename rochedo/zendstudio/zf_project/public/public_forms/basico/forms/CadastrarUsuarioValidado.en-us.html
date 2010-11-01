@@ -1,4 +1,19 @@
 <form id="CadastrarUsuarioValidado" method="post" action="cadastrarUsuarioValidado" onSubmit="loading();return(validateForm('CadastrarUsuarioValidado'))" postOnBackground="" postOnBackgroundOptions="dojo.eval(data);" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
-<label for="nome" class="required">* Name:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarUsuarioValidado', 'Help', 'Type your full name in this field without abreviations.', 1)</script></button></label>
+<label for="BasicoCadastrarUsuarioValidadonome" class="required">* Name:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarUsuarioValidado', 'Help', 'Type your full name in this field without abreviations.', 1)</script></button></label>
 <dd>
-<input size="100" id="nome" name="nome" value="" type="text" invalidMessage="Fill this field with you complete name." required="true" dojoType="dijit.form.ValidationTextBox"></dd></dl></form>
+<input size="100" id="BasicoCadastrarUsuarioValidadonome" name="BasicoCadastrarUsuarioValidadonome" value="" type="text" invalidMessage="Fill this field with you complete name." required="true" dojoType="dijit.form.ValidationTextBox"></dd>
+<label for="BasicoCadastrarUsuarioValidadodataNascimento" class="required">* Birth date:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarUsuarioValidado', 'Help', 'Type or select your birth date.', 1)</script></button></label>
+<dd>
+<input id="BasicoCadastrarUsuarioValidadodataNascimento" name="BasicoCadastrarUsuarioValidadodataNascimento" value="" type="text" required="true" dojoType="dijit.form.DateTextBox"></dd>
+<label for="BasicoCadastrarUsuarioValidadosexo" class="required">* Genre:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarUsuarioValidado', 'Help', 'Select your genre.', 1)</script></button></label>
+<dd>
+</dd>
+<label for="BasicoCadastrarUsuarioValidadologin" class="required">* Login:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarUsuarioValidado', 'Help', 'Type in this field your login (username) wich will be used by you in our system.', 1)</script></button></label>
+<dd>
+<input id="BasicoCadastrarUsuarioValidadologin" name="BasicoCadastrarUsuarioValidadologin" value="" type="text" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
+<label for="BasicoCadastrarUsuarioValidadosenha" class="required">* Password:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarUsuarioValidado', 'Help', 'Type the password which will be used by you in our system.', 1)</script></button></label>
+<dd>
+<input id="BasicoCadastrarUsuarioValidadosenha" name="BasicoCadastrarUsuarioValidadosenha" value="" type="password" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
+<label for="BasicoCadastrarUsuarioValidadosenhaConfirmacao" class="required">* Re-type your password:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarUsuarioValidado', 'Help', 'For confirmation, re-type the password which will be used by you in our system.', 1)</script></button></label>
+<dd>
+<input id="BasicoCadastrarUsuarioValidadosenhaConfirmacao" name="BasicoCadastrarUsuarioValidadosenhaConfirmacao" value="" type="password" required="true" dojoType="dijit.form.ValidationTextBox"></dd></dl></form>

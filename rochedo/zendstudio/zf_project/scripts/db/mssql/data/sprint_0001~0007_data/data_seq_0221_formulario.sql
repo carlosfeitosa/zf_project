@@ -103,6 +103,21 @@ INSERT INTO formulario (id_categoria, nome, descricao,
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
 		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_TELEFONE' AS nome, 
+		'Dialog para edicao de telefone.' AS descricao, 
+        'FORM_TITLE_TELEFONE' AS constante_textual_titulo, 
+        'CadastrarTelefone' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE';
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_MAIOR_TITULACAO' AS nome, 
 		'Dialog de edicao de dados de maior titulacao.' AS descricao, 
         'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual_titulo, 
