@@ -1131,6 +1131,47 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_PAIS') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
+                              'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS nome, 'Elemento campo numbertextbox codigo do pais' AS descricao,
+                              'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS constante_textual_label,
+                              'telefoneCodigoPais' AS element_name, NULL AS element_attribs,
+                              '''telefoneCodigoPais'', array(''style'' => ''width: 40px;'', ''places'' => 0)' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
                               AND a.nome = 'AJUDA_CAMPO_NOME_USUARIO') AS id_ajuda,
                              (SELECT ff.id

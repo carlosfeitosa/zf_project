@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 01/11/2010 16:20:28
+* em: 03/11/2010 13:15:02
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 01/11/2010 14:42:28
+* @version    1: 03/11/2010 13:13:25
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional extends Zend_Dojo_Form
 {
@@ -34,7 +34,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         // Criando array de elementos.
         $elements = array();
 
-        $elements[0] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalvinculoProfissional');
+        $elements[0] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalVinculoProfissional');
         $elements[0]->setRequired(true);
         $elements[0]->addDecorator('Label', array('escape' => false));
         $elements[0]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-margin-right10px',));
@@ -42,7 +42,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[0]->setValue($options->vinculoProfissional);
 
-        $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalprofissao');
+        $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalProfissao');
         $elements[1]->setRequired(true);
         $elements[1]->addDecorator('Label', array('escape' => false));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
@@ -50,7 +50,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[1]->setValue($options->profissao);
 
-        $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalpjVinculo');
+        $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalPjVinculo');
         $elements[2]->setRequired(false);
         $elements[2]->addDecorator('Label', array('escape' => false));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
@@ -58,7 +58,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[2]->setValue($options->pjVinculo);
 
-        $elements[3] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalregimeTrabalho');
+        $elements[3] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalRegimeTrabalho');
         $elements[3]->setRequired(true);
         $elements[3]->addDecorator('Label', array('escape' => false));
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
@@ -66,7 +66,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[3]->setValue($options->regimeTrabalho);
 
-        $elements[4] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalcargo');
+        $elements[4] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalCargo');
         $elements[4]->setRequired(true);
         $elements[4]->addFilters(array('StringTrim', 'StripTags'));
         $elements[4]->addDecorator('Label', array('escape' => false));
@@ -76,7 +76,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[4]->setValue($options->cargo);
 
-        $elements[5] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalfuncao');
+        $elements[5] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalFuncao');
         $elements[5]->setRequired(true);
         $elements[5]->addFilters(array('StringTrim', 'StripTags'));
         $elements[5]->addDecorator('Label', array('escape' => false));
@@ -86,7 +86,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[5]->setValue($options->funcao);
 
-        $elements[6] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalatividadesDesenvolvidas, array(style => width: 535px;)');
+        $elements[6] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalAtividadesDesenvolvidas', array('style' => 'width: 535px;'));
         $elements[6]->setRequired(false);
         $elements[6]->addFilters(array('StringTrim', 'StripTags'));
         $elements[6]->addDecorator('Label', array('escape' => false));
@@ -95,7 +95,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[6]->setValue($options->atividadesDesenvolvidas);
 
-        $elements[7] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionaldataAdmissao, array(style => width: 100px;)');
+        $elements[7] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDataAdmissao', array('style' => 'width: 100px;'));
         $elements[7]->setRequired(false);
         $elements[7]->addDecorator('Label', array('escape' => false));
         $elements[7]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
@@ -104,7 +104,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[7]->setValue($options->dataAdmissao);
 
-        $elements[8] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionaldataDesvinculacao, array(style => width: 100px;)');
+        $elements[8] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDataDesvinculacao', array('style' => 'width: 100px;'));
         $elements[8]->setRequired(false);
         $elements[8]->addDecorator('Label', array('escape' => false));
         $elements[8]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-margin-right10px',));
@@ -113,7 +113,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[8]->setValue($options->dataDesvinculacao);
 
-        $elements[9] = $this->createElement('CurrencyTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalsalarioBruto, array(style => width: 90px;)');
+        $elements[9] = $this->createElement('CurrencyTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSalarioBruto', array('style' => 'width: 90px;'));
         $elements[9]->setRequired(false);
         $elements[9]->addDecorator('Label', array('escape' => false));
         $elements[9]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
@@ -122,7 +122,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[9]->setValue($options->salarioBruto);
 
-        $elements[10] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalcargaHorariaSemanal, array(style => width: 40px;, places => 0)');
+        $elements[10] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalCargaHorariaSemanal', array('style' => 'width: 40px;', 'places' => 0));
         $elements[10]->setRequired(false);
         $elements[10]->addValidator('Int');
         $elements[10]->addDecorator('Label', array('escape' => false));
@@ -132,7 +132,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[10]->setValue($options->cargaHorariaSemanal);
 
-        $elements[11] = $this->createElement('CheckBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionaldedicacaoExclusiva');
+        $elements[11] = $this->createElement('CheckBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDedicacaoExclusiva');
         $elements[11]->setRequired(false);
         $elements[11]->addDecorator('Label', array('escape' => false));
         $elements[11]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
@@ -140,7 +140,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[11]->setValue($options->dedicacaoExclusiva);
 
-        $elements[12] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionaloutrasInformacoes, array(style => width: 535px;)');
+        $elements[12] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalOutrasInformacoes', array('style' => 'width: 535px;'));
         $elements[12]->setRequired(false);
         $elements[12]->addFilters(array('StringTrim', 'StripTags'));
         $elements[12]->addDecorator('Label', array('escape' => false));
@@ -149,7 +149,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[12]->setValue($options->outrasInformacoes);
 
-        $elements[13] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalbuttonDialogDojo1');
+        $elements[13] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalButtonDialogDojo1');
         $elements[13]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_TELEFONES_PROFISSIONAIS')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosProfissionaisTelefonesComerciais\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisTelefonesComerciais." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_TELEFONES_PROFISSIONAIS')}\")"));
         $elements[13]->setRequired(false);
         $elements[13]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));

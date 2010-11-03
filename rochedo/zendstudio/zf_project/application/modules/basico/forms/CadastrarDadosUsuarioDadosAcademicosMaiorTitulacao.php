@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 01/11/2010 16:20:11
+* em: 03/11/2010 13:15:17
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 01/11/2010 14:42:28
+* @version    1: 03/11/2010 13:13:25
 */
 class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zend_Dojo_Form
 {
@@ -34,7 +34,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zen
         // Criando array de elementos.
         $elements = array();
 
-        $elements[0] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaomaiorTitulacao');
+        $elements[0] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoMaiorTitulacao');
         $elements[0]->setRequired(true);
         $elements[0]->addFilters(array('StringTrim', 'StripTags'));
         $elements[0]->addDecorator('Label', array('escape' => false));
@@ -42,19 +42,19 @@ class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zen
         if ($options!=null)
             $elements[0]->setValue($options->maiorTitulacao);
 
-        $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoinstituicaoQueConcedeu');
+        $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoInstituicaoQueConcedeu');
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addDecorator('Label', array('escape' => false));
         $elements[1]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_INSTITUICAO_QUE_CONCEDEU') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_AJUDA')) . '\', 1)</script></button>');
 
-        $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoareaDeConhecimento');
+        $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoAreaDeConhecimento');
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addDecorator('Label', array('escape' => false));
         $elements[2]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_AREA_DE_CONHECIMENTO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_AREA_DE_CONHECIMENTO_AJUDA')) . '\', 1)</script></button>');
 
-        $elements[3] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaonomeCurso');
+        $elements[3] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoNomeCurso');
         $elements[3]->setRequired(true);
         $elements[3]->addFilters(array('StringTrim', 'StripTags'));
         $elements[3]->addDecorator('Label', array('escape' => false));

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 01/11/2010 16:20:35
+* em: 03/11/2010 13:14:56
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 01/11/2010 14:42:28
+* @version    1: 03/11/2010 13:13:25
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -26,7 +26,7 @@
     // Criando array de elementos.
     $elements = array();
 
-    $elements[0] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicoscategoriaBolsaCnpq');
+    $elements[0] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq');
     $elements[0]->setRequired(true);
     $elements[0]->addFilters(array('StringTrim', 'StripTags'));
     $elements[0]->addDecorator('Label', array('escape' => false));
@@ -34,7 +34,7 @@
     if ($options!=null)
         $elements[0]->setValue($options->categoriaBolsaCnpq);
 
-    $elements[1] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosAcademicosbuttonDialogDojo1');
+    $elements[1] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1');
     $elements[1]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}\")"));
     $elements[1]->setRequired(false);
 
