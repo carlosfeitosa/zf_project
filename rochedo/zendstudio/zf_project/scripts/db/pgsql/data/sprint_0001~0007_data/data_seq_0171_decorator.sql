@@ -118,8 +118,8 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR';
 
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
-SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
-       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''margin-right10px'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 'Decorator para posicionar o elemento dentro de um div e limpar o float.' AS descricao,
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''clear-both'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

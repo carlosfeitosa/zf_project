@@ -806,8 +806,13 @@ class Basico_GeradorFormularioControllerController
             	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoConstanteTextualTitulo}')", $formularioElementoObject->element);
             	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_OFFSET, $totalFormularioElementoFormulariosVinculados, $tempFormElement);
             }  	
-            else
-            	$tempFormElement = $formularioElementoObject->element;
+            else {
+            	// carregando elemento
+            	$tempFormElement = $formularioElementoObject->element;            	
+
+            	// fazendo substituicoes
+            	$tempFormElement = str_replace(FORM_GERADOR_FORM_ELEMENT_FORM_NAME, self::retornaNomeClasseForm($objModulo, $objFormulario), $tempFormElement);
+            }
 
 			// recuperando string para concatenacao do nome do modulo e formulario
 			$stringToReplace = substr($tempFormElement, 1, strpos($tempFormElement, "'", 1)-1);

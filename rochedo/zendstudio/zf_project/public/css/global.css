@@ -113,6 +113,12 @@ div#float-left-clear-both
 	clear: both;
 }
 
+div#clear-both
+{
+	clear: both;
+	height: 1px;
+}
+
 div#margin-right10px
 {
 	margin-right: 10px;

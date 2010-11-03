@@ -262,6 +262,42 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_AREA' AS nome, 'Texto de ajuda para o campo codigo de discagem a distancia (telefone).' AS descricao,
+       'FORM_FIELD_TELEFONE_CODIGO_AREA_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_CODIGO_AREA_HINT' AS constante_textual_hint,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE' AS nome, 'Texto de ajuda para o campo telefone.' AS descricao,
+       'FORM_FIELD_TELEFONE_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_HINT' AS constante_textual_hint,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_RAMAL' AS nome, 'Texto de ajuda para o campo ramal do telefone.' AS descricao,
+       'FORM_FIELD_TELEFONE_RAMAL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_RAMAL_HINT' AS constante_textual_hint,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_DESCRICAO' AS nome, 'Texto de ajuda para o campo descricao do telefone.' AS descricao,
+       'FORM_FIELD_TELEFONE_DESCRICAO_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_CAMPO_NOME_USUARIO' AS nome, 'Texto de ajuda para o campo nome do usuário.' AS descricao,
        'FORM_FIELD_NOME_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_NOME_HINT' AS constante_textual_hint, 
        'SYSTEM_STARTUP' AS rowinfo

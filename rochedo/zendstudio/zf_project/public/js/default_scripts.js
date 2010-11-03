@@ -88,5 +88,7 @@ function showDialogAlert(txtDialogId, txtTitle, txtContent, botaoFechar)
 function hideDialog(dialogId)
 {
 	var dlg = dijit.byId(dialogId);
-    dlg.hide();
+	
+	if (dlg != null)
+		dlg.hide();
 }

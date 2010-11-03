@@ -470,6 +470,13 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_BUTTON_RESET' AS constante_textual, 'Cancelar' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_VALIDATION_TITLE' AS constante_textual, 'Atenção' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -604,6 +611,83 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS constante_textual, 'Código de discagem direta internacional (DDI):' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_AREA_AJUDA' AS constante_textual, 'Digite neste campo o código de discagem direta à distância (DDD) da localicade<br>relacionada ao número de telefone informado (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_AREA_HINT' AS constante_textual, 'Digite o código de discagem direta à distância do número do telefone - DDD - (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_AREA' AS constante_textual, 'Código de discagem direta à distância (DDD):' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_AJUDA' AS constante_textual, 'Digite neste campo o número do telefone (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_HINT' AS constante_textual, 'Digite o número do telefone (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE' AS constante_textual, 'Número do telefone:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_RAMAL_AJUDA' AS constante_textual, 'Digite neste campo o ramal do telefone (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_RAMAL_HINT' AS constante_textual, 'Digite o ramal do telefone (numero inteiro)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_RAMAL' AS constante_textual, 'Ramal:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_DESCRICAO_AJUDA' AS constante_textual, 'Digite neste campo alguma informação que achar pertinente sobre o numero do telefone' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_DESCRICAO' AS constante_textual, 'Descrição:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1420,6 +1504,13 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_BUTTON_RESET' AS constante_textual, 'Cancel' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_VALIDATION_TITLE' AS constante_textual, 'Attention' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -1546,14 +1637,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_PAIS_AJUDA' AS constante_textual, 'Type in this field the telefone''s international dialing code (numeric value)<br><br>1 fo USA' AS traducao
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_PAIS_AJUDA' AS constante_textual, 'Type in this field the telephone''s international dialing code (numeric value)<br><br>1 fo USA' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_PAIS_HINT' AS constante_textual, 'The the telefone''s international dialing code (numero inteiro)<br><br>1 for USA' AS traducao
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_PAIS_HINT' AS constante_textual, 'Type the telephone''s international dialing code (numeric value)<br><br>1 for USA' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1561,6 +1652,83 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS constante_textual, 'International dialing code:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_AREA_AJUDA' AS constante_textual, 'Type in this field the telephone''s distance dialing code (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_AREA_HINT' AS constante_textual, 'Type the telephone''s distance dialing code (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_CODIGO_AREA' AS constante_textual, 'Distance dialing code:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_AJUDA' AS constante_textual, 'Type in this field the telephone'' number (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_HINT' AS constante_textual, 'Type the telephone''s number (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE' AS constante_textual, 'Telephone''s number:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_RAMAL_AJUDA' AS constante_textual, 'Type in this field the telephone''s extension number (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_RAMAL_HINT' AS constante_textual, 'Type the telephone''s extension number (numeric value)' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_RAMAL' AS constante_textual, 'Telephone''s extension:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_DESCRICAO_AJUDA' AS constante_textual, 'Type in this field any information that you consider important about the telephone' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_TELEFONE_DESCRICAO' AS constante_textual, 'Description:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

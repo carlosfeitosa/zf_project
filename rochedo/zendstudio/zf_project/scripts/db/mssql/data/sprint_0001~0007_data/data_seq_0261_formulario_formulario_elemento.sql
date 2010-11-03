@@ -615,7 +615,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_TELEFONE_CODIGO_PAIS') AS id_formulario_elemento,
-        (SELECT d.id
+       (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -623,6 +623,167 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
+        AND f.nome = 'FORM_DIALOG_TELEFONE') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_TELEFONE_CODIGO_AREA') AS id_formulario_elemento,
+       (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
+        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
+        AND f.nome = 'FORM_DIALOG_TELEFONE') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_TELEFONE') AS id_formulario_elemento,
+       (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
+        AND f.nome = 'FORM_DIALOG_TELEFONE') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_TELEFONE_RAMAL') AS id_formulario_elemento,
+       (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        0 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
+        AND f.nome = 'FORM_DIALOG_TELEFONE') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_TELEFONE_DESCRICAO') AS id_formulario_elemento,
+       (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        0 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
+        AND f.nome = 'FORM_DIALOG_TELEFONE') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
+        AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_formulario_elemento,
+       (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
+        0 AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
+        AND f.nome = 'FORM_DIALOG_TELEFONE') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
+        AND fe.nome = 'FORM_BUTTON_RESET') AS id_formulario_elemento,
+       (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        0 AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
+        AND f.nome = 'FORM_DIALOG_TELEFONE') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND fe.nome = 'FORM_FIELD_DIV_CLEAR_BOTH') AS id_formulario_elemento,
+        0 AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id

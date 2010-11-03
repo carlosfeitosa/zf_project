@@ -368,7 +368,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria,  
-								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -377,8 +377,8 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+                              AND c.nome = 'FORMULARIO_DIV_CLEAR_BOTH_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
                               LEFT JOIN categoria c ON (cp.id_categoria = c.id)
@@ -387,7 +387,6 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               AND c.nome = 'COMPONENTE_ZF'
                               AND cp.nome = 'ZF_Hidden') AS id_componente,
                               'FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 'Elemento Hidden para fechamento de formatacao div float.' AS descricao,
-                              'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual_label,
                               'dummyHidden' AS element_name, NULL AS element_attribs,
                               '''dummyHidden''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -617,6 +616,23 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, 'Botão para submiss�
         AND cp.nome = 'DOJO_submitButton') AS id_componente,
        'FORM_BUTTON_SUBMIT' AS constante_textual_label, 'enviar' AS element_name, 
        '''enviar''' AS element, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
+
+INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+                                 element_name, element, rowinfo)
+SELECT c.id AS id_categoria, 'FORM_BUTTON_RESET' AS nome, 'Botão para reset de formulários.' AS descricao,
+	   (SELECT cp.id
+        FROM componente cp
+        LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'COMPONENTE'
+        AND c.nome = 'COMPONENTE_ZF'
+        AND cp.nome = 'ZF_button') AS id_componente,
+       'FORM_BUTTON_RESET' AS constante_textual_label, 'enviar' AS element_name, 
+       '''resetar'', array(''type'' => ''reset'', ''onClick'' => ''hideDialog(\"@nomeForm\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1154,10 +1170,174 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
-                              'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS nome, 'Elemento campo numbertextbox codigo do pais' AS descricao,
+                              'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS nome, 'Elemento campo numbertextbox codigo do pais (telefone)' AS descricao,
                               'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS constante_textual_label,
                               'telefoneCodigoPais' AS element_name, NULL AS element_attribs,
-                              '''telefoneCodigoPais'', array(''style'' => ''width: 40px;'', ''places'' => 0)' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''telefoneCodigoPais'', array(''style'' => ''width: 40px;'', ''places'' => 0, ''pattern'' => ''##0.##'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_AREA') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
+                              'FORM_FIELD_TELEFONE_CODIGO_AREA' AS nome, 'Elemento campo numbertextbox codigo de area (telefone)' AS descricao,
+                              'FORM_FIELD_TELEFONE_CODIGO_AREA' AS constante_textual_label,
+                              'telefoneCodigoArea' AS element_name, NULL AS element_attribs,
+                              '''telefoneCodigoArea'', array(''style'' => ''width: 40px;'', ''places'' => 0, ''pattern'' => ''##0.##'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
+                              'FORM_FIELD_TELEFONE' AS nome, 'Elemento campo numbertextbox telefone' AS descricao,
+                              'FORM_FIELD_TELEFONE' AS constante_textual_label,
+                              'telefone' AS element_name, NULL AS element_attribs,
+                              '''telefone'', array(''style'' => ''width: 70px;'', ''places'' => 0, ''pattern'' => ''##0.##'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_RAMAL') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
+                              'FORM_FIELD_TELEFONE_RAMAL' AS nome, 'Elemento campo numbertextbox codigo de area (telefone)' AS descricao,
+                              'FORM_FIELD_TELEFONE_RAMAL' AS constante_textual_label,
+                              'telefoneRamal' AS element_name, NULL AS element_attribs,
+                              '''telefoneRamal'', array(''style'' => ''width: 40px;'', ''places'' => 0, ''pattern'' => ''##0.##'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_DESCRICAO') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_SimpleTextarea') AS id_componente,
+                              'FORM_FIELD_TELEFONE_DESCRICAO' AS nome, 'Elemento campo textarea descricao' AS descricao,
+                              'FORM_FIELD_TELEFONE_DESCRICAO' AS constante_textual_label,
+                              'telefoneDescricao' AS element_name, NULL AS element_attribs,
+                              '''telefoneDescricao'', array(''style'' => ''width: 300px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
