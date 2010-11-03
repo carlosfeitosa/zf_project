@@ -92,4 +92,22 @@ class Basico_PessoaControllerController
 		// setando a lingua padra
 		return Basico_UtilControllerController::registraValorSessao(DEFAULT_USER_LANGUAGE, $lingua);
 	}
+	
+    /**
+	 * Retorna o objeto dados pessoais da pessoa passada.
+	 * 
+	 * @param Basico_Model_Pessoa $pessoa
+	 * @return Basico_Model_DadosPessoais
+	 */
+	public static function retornaObjetoDadosPessoaisPessoa(Basico_Model_Pessoa $pessoa)
+	{
+		//instanciando classe dadosPessoais
+		$objDadosPessoais = new Basico_Model_DadosPessoais();
+		
+		//recuperando tupla da pessoa passada
+		$dadosPessoais = $objDadosPessoais->fetchList("id_pessoa = {$pessoa->id}");
+		
+		//retornando objeto dados pessoais
+		return $dadosPessoais[0];
+	}
 }
