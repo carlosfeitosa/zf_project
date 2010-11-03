@@ -38,23 +38,15 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
          }
     </style>
     <?php
-    if ($this->dojo()->isEnabled()){
         $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_PessoaControllerController::retornaLinguaUsuario()))
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
                      ->addStylesheet($applicationHttpBaseUrl . DOJO_STYLE_SHEET_PATH)
                      ->addStylesheet($applicationHttpBaseUrl . MENU_CSS_FILE)
                      ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
                      ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);    
-      
-                     //->addStyleSheetModule('dijit.themes.tundra');
-                     
-        //$this->dojo()->requireModule($this->dojo()->getModules());
-        //Basico_Model_Util::print_debug($this->dojo()->getModules());
-        
         $this->dojo()->requireModule('dijit.Dialog');
         
         echo $this->dojo();
-    }
     ?>
     <?php echo $this->headScript()?>
    
