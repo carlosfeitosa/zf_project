@@ -29,8 +29,8 @@ function exibirDialogConteudo(dialogName, content, title)
                             title: title, 
                             content: content,
                             id: dialogName
-                            
                             });
+
 			thisdialog.startup();
 			thisdialog.show();
 	}else{
@@ -48,12 +48,12 @@ function exibirDialogUrl(dialogName, url, title)
                             title: title, 
                             href: url,
                             id: dialogName
-                            
                             });
+		
 			thisdialog.startup();
 			thisdialog.show();
 	}else{
-		dialog.show();	
+		dialog.show();
 	}
 }
 
