@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * GrupoFormularioElemento model
  *
  * Utilizes the Data Mapper pattern to persist data.
@@ -32,6 +27,10 @@ class Basico_Model_GrupoFormularioElemento
 	 * @var String
 	 */
 	protected $_descricao;
+	/**
+	 * @var String
+	 */
+	protected $_constanteTextualLabel;
 	/**
 	 * @var String
 	 */
@@ -145,6 +144,28 @@ class Basico_Model_GrupoFormularioElemento
 	public function getDescricao()
 	{
 		return $this->_descricao;
+	}
+	
+    /**
+	* Set label
+	* 
+	* @param String $constanteTextualLabel 
+	* @return Basico_Model_ConstanteTextualLabel
+	*/
+	public function setConstanteTextualLabel($constanteTextualLabel)
+	{
+		$this->_label = Basico_UtilControllerController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get constanteTextualLabel
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextualLabel()
+	{
+		return $this->_constanteTextualLabel;
 	}
 	
 	/**

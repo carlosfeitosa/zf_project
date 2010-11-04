@@ -62,9 +62,10 @@ class Basico_Model_GrupoFormularioElementoMapper
     public function save(Basico_Model_GrupoFormularioElemento $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-        		'rowinfo'   => $object->getRowinfo(),
+				'nome'                    => $object->getNome(),
+				'descricao'               => $object->getDescricao(),
+                'constante_textual_label' => $object->getConstanteTextualLabel(),
+        		'rowinfo'                 => $object->getRowinfo(),
 
         );
 
@@ -104,6 +105,7 @@ class Basico_Model_GrupoFormularioElementoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
+				->setConstanteTexutalLabel($row->constante_textual_label)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -123,6 +125,7 @@ class Basico_Model_GrupoFormularioElementoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
+				->setConstanteTexutalLabel($row->constante_textual_label)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -146,6 +149,7 @@ class Basico_Model_GrupoFormularioElementoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
+				->setConstanteTexutalLabel($row->constante_textual_label)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
