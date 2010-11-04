@@ -28,6 +28,7 @@
 * 								   - associacao de formulario_formulario_elemento com grupo_formulario_elemento
 * 									 e decorator;
 * 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
+* 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
 */
 
 
@@ -362,10 +363,11 @@ alter table dbo.formulario add
     ) on [primary];
 
 alter table dbo.formulario_formulario_elemento add
-    constraint ix_formulario_formulario_elemento_formulario_formulario_elemento unique nonclustered
+    constraint ix_formulario_formulario_elemento_formulario_formulario_elemento_ordem unique nonclustered
     (
         id_formulario,
-        id_formulario_elemento
+        id_formulario_elemento,
+        ordem
     ) on [primary];
 
 alter table dbo.formulario_elemento_formulario_elemento_validator add

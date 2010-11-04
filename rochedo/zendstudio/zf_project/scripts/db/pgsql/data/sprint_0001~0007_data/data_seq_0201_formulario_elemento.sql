@@ -915,7 +915,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS' AS nome, 'Elemento campo textarea atividades desenvolvidas' AS descricao,
                               'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS' AS constante_textual_label,
                               'atividadesDesenvolvidas' AS element_name, NULL AS element_attribs,
-                              '''atividadesDesenvolvidas'', array(''style'' => ''width: 535px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''atividadesDesenvolvidas'', array(''style'' => ''width: 472px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1132,7 +1132,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_OUTRAS_INFORMACOES' AS nome, 'Elemento campo textarea outras informacoes' AS descricao,
                               'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual_label,
                               'outrasInformacoes' AS element_name, NULL AS element_attribs,
-                              '''outrasInformacoes'', array(''style'' => ''width: 535px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''outrasInformacoes'', array(''style'' => ''width: 472px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

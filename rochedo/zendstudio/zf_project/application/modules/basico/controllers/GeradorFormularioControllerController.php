@@ -770,6 +770,9 @@ class Basico_GeradorFormularioControllerController
         $elementoAmbienteDesenvolvimento = false;
         $totalFormularioElementoFormulariosVinculados = 0;
         
+        // recuperando ordem dos elementos
+        $arrayOrdemElementos = Basico_FormularioFormularioElementoControllerController::retornaArrayOrdem($objFormulario->id);
+        
         foreach ($formularioElementosObjects as $formularioElementoObject){
         	$formElementLoop = str_replace('@contador', $contador, $formElement);
         	
@@ -877,7 +880,7 @@ class Basico_GeradorFormularioControllerController
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA;
 
 			// recuperando decorator de formularioFormularioElemento
-			$decoratorFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaDecoratorObject($objFormulario->id, $formularioElementoObject->id);
+			$decoratorFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaDecoratorObject($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
 
 			// verificando o resultado da recuperacao do decorator
 			if (isset($decoratorFormularioFormularioElemento))

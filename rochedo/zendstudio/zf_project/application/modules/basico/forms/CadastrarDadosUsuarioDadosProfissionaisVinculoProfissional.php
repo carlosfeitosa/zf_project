@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 03/11/2010 13:15:02
+* em: 04/11/2010 10:45:28
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 03/11/2010 13:13:25
+* @version    1: 04/11/2010 10:45:11
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional extends Zend_Dojo_Form
 {
@@ -86,7 +86,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[5]->setValue($options->funcao);
 
-        $elements[6] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalAtividadesDesenvolvidas', array('style' => 'width: 535px;'));
+        $elements[6] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalAtividadesDesenvolvidas', array('style' => 'width: 472px;'));
         $elements[6]->setRequired(false);
         $elements[6]->addFilters(array('StringTrim', 'StripTags'));
         $elements[6]->addDecorator('Label', array('escape' => false));
@@ -113,24 +113,24 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[8]->setValue($options->dataDesvinculacao);
 
-        $elements[9] = $this->createElement('CurrencyTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSalarioBruto', array('style' => 'width: 90px;'));
+        $elements[9] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalCargaHorariaSemanal', array('style' => 'width: 40px;', 'places' => 0));
         $elements[9]->setRequired(false);
+        $elements[9]->addValidator('Int');
         $elements[9]->addDecorator('Label', array('escape' => false));
-        $elements[9]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
-        $elements[9]->setLabel(''.$this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO_AJUDA')) . '\', 1)</script></button>');
-        $elements[9]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO_HINT'));
+        $elements[9]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
+        $elements[9]->setLabel(''.$this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA')) . '\', 1)</script></button>');
+        $elements[9]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT'));
         if ($options!=null)
-            $elements[9]->setValue($options->salarioBruto);
+            $elements[9]->setValue($options->cargaHorariaSemanal);
 
-        $elements[10] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalCargaHorariaSemanal', array('style' => 'width: 40px;', 'places' => 0));
+        $elements[10] = $this->createElement('CurrencyTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSalarioBruto', array('style' => 'width: 90px;'));
         $elements[10]->setRequired(false);
-        $elements[10]->addValidator('Int');
         $elements[10]->addDecorator('Label', array('escape' => false));
-        $elements[10]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[10]->setLabel(''.$this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA')) . '\', 1)</script></button>');
-        $elements[10]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT'));
+        $elements[10]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
+        $elements[10]->setLabel(''.$this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO_AJUDA')) . '\', 1)</script></button>');
+        $elements[10]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO_HINT'));
         if ($options!=null)
-            $elements[10]->setValue($options->cargaHorariaSemanal);
+            $elements[10]->setValue($options->salarioBruto);
 
         $elements[11] = $this->createElement('CheckBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDedicacaoExclusiva');
         $elements[11]->setRequired(false);
@@ -140,7 +140,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         if ($options!=null)
             $elements[11]->setValue($options->dedicacaoExclusiva);
 
-        $elements[12] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalOutrasInformacoes', array('style' => 'width: 535px;'));
+        $elements[12] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalOutrasInformacoes', array('style' => 'width: 472px;'));
         $elements[12]->setRequired(false);
         $elements[12]->addFilters(array('StringTrim', 'StripTags'));
         $elements[12]->addDecorator('Label', array('escape' => false));
@@ -153,6 +153,35 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[13]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_TELEFONES_PROFISSIONAIS')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosProfissionaisTelefonesComerciais\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisTelefonesComerciais." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_TELEFONES_PROFISSIONAIS')}\")"));
         $elements[13]->setRequired(false);
         $elements[13]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+
+        $elements[14] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalButtonDialogDojo2');
+        $elements[14]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_EMAILS_PROFISSIONAIS')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosProfissionaisEmailsComerciais\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisEmailsComerciais." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_EMAILS_PROFISSIONAIS')}\")"));
+        $elements[14]->setRequired(false);
+        $elements[14]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
+
+        $elements[15] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalButtonDialogDojo3');
+        $elements[15]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_WEBSITES_PROFISSIONAIS')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosProfissionaisWebsitesComerciais\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisWebsitesComerciais." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_WEBSITES_PROFISSIONAIS')}\")"));
+        $elements[15]->setRequired(false);
+        $elements[15]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
+
+        $elements[16] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalButtonDialogDojo4');
+        $elements[16]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_ENDERECOS_PROFISSIONAIS')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosProfissionaisEnderecosComerciais\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisEnderecosComerciais." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_ENDERECOS_PROFISSIONAIS')}\")"));
+        $elements[16]->setRequired(false);
+        $elements[16]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+
+        $elements[17] = $this->createElement('submitButton', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalEnviar');
+        $elements[17]->setRequired(false);
+        $elements[17]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
+        $elements[17]->setLabel(''.$this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
+
+        $elements[18] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalResetar', array('type' => 'reset', 'onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional");'));
+        $elements[18]->setRequired(false);
+        $elements[18]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
+        $elements[18]->setLabel(''.$this->getView()->tradutor('FORM_BUTTON_RESET') . '');
+
+        $elements[19] = $this->createElement('hidden', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDummyHidden');
+        $elements[19]->setRequired(false);
+        $elements[19]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'clear-both',));
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

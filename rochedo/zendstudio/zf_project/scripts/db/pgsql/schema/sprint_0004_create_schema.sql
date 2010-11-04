@@ -28,6 +28,7 @@
 * 								   - associacao de formulario_formulario_elemento com grupo_formulario_elemento
 * 									 e decorator;
 * 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
+* 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
 */
 
 /* CRIACAO DAS TABELAS */
@@ -387,7 +388,7 @@ alter table formulario
   add constraint ix_formulario_categoria_nome unique (id_categoria, nome);
 
 alter table formulario_formulario_elemento
-  add constraint ix_formulario_formulario_elemento_formulario_formulario_elemento unique (id_formulario, id_formulario_elemento);
+  add constraint ix_formulario_formulario_elemento_formulario_formulario_elemento_ordem unique (id_formulario, id_formulario_elemento, ordem);
 
 alter table formulario_elemento_formulario_elemento_validator
   add constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique (id_formulario_elemento, id_formulario_elemento_validator);
