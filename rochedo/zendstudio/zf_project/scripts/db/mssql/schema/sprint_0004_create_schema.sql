@@ -207,6 +207,7 @@ create table dbo.grupo_formulario_elemento (
 	id int identity (1, 1) not null ,
 	nome varchar (100) not null ,
 	descricao varchar (2000) null ,
+	constante_textual_label varchar (200) null,
 	rowinfo varchar (2000) not null
 ) on [primary];
 

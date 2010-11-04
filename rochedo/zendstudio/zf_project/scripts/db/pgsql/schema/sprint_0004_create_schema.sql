@@ -265,6 +265,7 @@ create table grupo_formulario_elemento (
 	id serial not null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
+	constante_textual_label character varying (200) null,
 	rowinfo character varying (2000) not null
 ) with (
   oids = false
