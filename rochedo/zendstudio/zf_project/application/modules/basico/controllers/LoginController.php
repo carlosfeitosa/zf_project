@@ -166,7 +166,7 @@ class Basico_LoginController extends Zend_Controller_Action
         	// carregando o controlador de e-mail
 	        $controladorEmail = Basico_EmailControllerController::init();
 	        // verifica se o e-mail existe no banco de dados
-	        $emailParaValidacao = $controladorEmail->verificaEmailExistente($this->getRequest()->getParam('email'));
+	        $emailParaValidacao = $controladorEmail->verificaEmailExistente($this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'));
 	        
 	        // checando o resultado da verificacao de existencia do e-mail
 	        if ($emailParaValidacao !== NULL){
@@ -194,7 +194,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		            	 $idCategoriaMensagem = Basico_CategoriaControllerController::retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio();
 
 			             // carregando parametros
-			             $email             = $this->getRequest()->getParam('email');
+			             $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
 			             $idEmail           = $controladorEmail->retornaIdEmail($email);
 			             $idCategoriaToken  = Basico_CategoriaControllerController::retornaIdCategoriaEmailValidacaoPlainText();
 			             $idPessoa          = $controladorEmail->retornaIdPessoaEmail($email);
@@ -321,7 +321,7 @@ class Basico_LoginController extends Zend_Controller_Action
             // setando e salvando os dados pessoais
             $novoDadosPessoais = new Basico_Model_DadosPessoais();
             $novoDadosPessoais->idPessoa = $novaPessoa->id;
-            $novoDadosPessoais->nome     = $this->getRequest()->getParam('nome');
+            $novoDadosPessoais->nome     = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
             $novoDadosPessoais->rowinfo  = $controladorRowInfo->getXml();
             $controladorDadosPessoais->salvarDadosPessoais($novoDadosPessoais);
 
@@ -336,7 +336,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $novoEmail->idGenericoProprietario = $novaPessoa->id;
             $novoEmail->uniqueId  			   = $uniqueIdValido;
             $novoEmail->categoria 			   = $idCategoriaEmailPrimario;
-            $novoEmail->email     			   = $this->getRequest()->getParam('email');
+            $novoEmail->email     			   = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
             $novoEmail->validado  			   = 0;
             $novoEmail->ativo     			   = 0;
             $novoEmail->rowinfo   			   = $controladorRowInfo->getXml();
@@ -358,7 +358,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $idCategoriaTemplate = Basico_CategoriaControllerController::retornaIdCategoriaEmailValidacaoPlainTextTemplate();
 
             // setando e salvando a mensagem
-            $nomeDestinatario = $this->getRequest()->getParam('nome');
+            $nomeDestinatario = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
             $objNovaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $objNovaMensagem->destinatarios       = array($novoEmail->email);
