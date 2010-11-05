@@ -31,7 +31,7 @@ function exibirDialogConteudo(dialogName, content, title)
                             id: dialogName
                             });
 
-			thisdialog.startup();
+			thisdialog.duration = 500;
 			thisdialog.show();
 	}else{
 		dialog.show();	
@@ -50,6 +50,7 @@ function exibirDialogUrl(dialogName, url, title)
                             id: dialogName
                             });
 
+			thisdialog.duration = 500;
 			thisdialog.show();
 	}else{
 		dialog.show();
