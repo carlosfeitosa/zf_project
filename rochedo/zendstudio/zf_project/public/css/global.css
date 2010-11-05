@@ -131,8 +131,3 @@ div.loading
     background-position: center;
 	visibility: visible;
 }
-
-.dijitDialogPaneContent
-{
-	overflow-y: auto;
-}

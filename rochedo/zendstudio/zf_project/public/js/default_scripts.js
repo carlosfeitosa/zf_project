@@ -49,8 +49,7 @@ function exibirDialogUrl(dialogName, url, title)
                             href: url,
                             id: dialogName
                             });
-		
-			thisdialog.startup();
+
 			thisdialog.show();
 	}else{
 		dialog.show();

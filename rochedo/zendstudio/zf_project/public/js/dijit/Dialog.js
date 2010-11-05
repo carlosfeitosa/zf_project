@@ -32,6 +32,7 @@ this.connect(this,"onExecute","hide");
 this.connect(this,"onCancel","hide");
 this._modalconnects=[];
 },onLoad:function(){
+this._size();
 this._position();
 if(this.autofocus){
 this._getFocusItems(this.domNode);
