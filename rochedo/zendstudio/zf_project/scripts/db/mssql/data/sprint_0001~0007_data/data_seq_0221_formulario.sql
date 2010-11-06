@@ -267,3 +267,31 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,
+                        form_name, form_method, form_action, form_attribs, rowinfo)
+SELECT c.id AS id_categoria, 
+       'FORM_DIALOG_DOCUMENTOS_IDENTIFICACAO' AS nome,
+       'Formulário de cadastro de documentos de identificação.' AS descricao, 
+       'FORM_DOCUMENTOS_IDENTIFICACAO_TITULO' AS constante_textual_titulo,
+       'DocumentosIdentificacao' AS form_name, 'post' AS form_method, NULL AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''DocumentosIdentificacao''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO';
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,
+                        form_name, form_method, form_action, form_attribs, rowinfo)
+SELECT c.id AS id_categoria, 
+       'FORM_DIALOG_DOCUMENTO' AS nome,
+       'Formulário de cadastro de documento.' AS descricao, 
+       'FORM_DOCUMENTO_TITULO' AS constante_textual_titulo,
+       'CadastrarDocumento' AS form_name, 'post' AS form_method, NULL AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''CadastrarDocumento''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO';

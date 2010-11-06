@@ -34,8 +34,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
                               LEFT JOIN categoria c ON (cp.id_categoria = c.id)
@@ -76,8 +76,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
                               LEFT JOIN categoria c ON (cp.id_categoria = c.id)
@@ -118,8 +118,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
                               LEFT JOIN categoria c ON (cp.id_categoria = c.id)
@@ -160,8 +160,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
                               LEFT JOIN categoria c ON (cp.id_categoria = c.id)

@@ -77,7 +77,16 @@ class Basico_CategoriaChaveEstrangeiraControllerController
 	 * @param $idCategoria
 	 * @return Basico_Model_CategoriaChaveEstrangeira
 	 */
-	public function retornaObjetoCategoriaChaveEstrangeiraCategoria($idCategoria)
+	public static function retornaObjetoCategoriaChaveEstrangeiraCategoria($idCategoria)
 	{
+		// instanciando modelo categoria chave estrangeira
+		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
+
+		// recuperando todas as tuplas
+		$objCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoria}");
+		
+		//retornando o objeto
+		return $objCategoriaChaveEstrangeira[0];
+		
     }
 }
