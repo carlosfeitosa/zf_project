@@ -8,38 +8,83 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     /**
     * Renderiza as views do sistema
     * 
-    * @param None do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml'
+    * @param Nome do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml'
     * @param Ativa a renderizarção do leiaute
     */
     public function renderizar($viewScript = null, $disableLayout = false)  
     {
-    	//Instancia a controlador
+    	// inicializando variaveis
+    	$nomeForm = '';
+
+    	// Instancia a controlador
     	$controller = $this->_actionController;
-    	
-    	//Seta o tipo de contexto da view  
+
+    	// recuperando o helper view
+    	$view = $this->getActionController()->view;
+
+		// recuperando view e formulario vinculado a view
+		$form = $view->form;
+
+		// verificando informacoes sobre o formulario
+		if (isset($form)) {
+			$nomeForm = $form->getName();
+
+			// instanciando modelo "formulario"
+			$modelFormulario = new Basico_Model_Formulario();
+
+			// recuperando objeto formulario
+			$arrayObjsFormulario = $modelFormulario->fetchList("form_name = '{$nomeForm}'", null, 1, 0);
+
+			// verificando se o objeto foi carregado
+			if (isset($arrayObjsFormulario[0])) {
+
+				// recuperando objeto formulario
+				$objFormulario = $arrayObjsFormulario[0];
+
+				// recuperando templates do formulario
+				$arrayObjsTemplateFormulario = $objFormulario->getTemplatesObjects();
+
+				// verificando se houve recuperacao do(s) template(s)
+				if (count($arrayObjsTemplateFormulario) > 0) {
+					// recuperando caminho do url base
+					$applicationHttpBaseUrl = $this->getFrontController()->getInstance()->getBaseUrl();
+
+					// loop para colocar os includes necessarios na view, de acordo com o template
+					foreach($arrayObjsTemplateFormulario as $objTemplateFormulario) {
+
+						// verificando se o template possui arquivo css
+						if ($objTemplateFormulario->stylesheetFullFilename)
+							$view->dojo()->addStylesheet($applicationHttpBaseUrl . $objTemplateFormulario->stylesheetFullFilename);
+
+						// verificando se o template possui arquivo javascript
+						if ($objTemplateFormulario->javascriptFullFilename)
+							$view->dojo()->addLayer($applicationHttpBaseUrl . $objTemplateFormulario->javascriptFullFilename);
+					}
+				}
+			}
+		}
+
+    	// Seta o tipo de contexto da view  
     	$contexto = $controller->getRequest()->getParam('format');
-    	//$currentContexto = $controller->getHelper('contextSwitch')->getCurrentContext();
-    	//$defaultContexto = $controller->getHelper('contextSwitch')->getDefaultContext();
     	
-    	//Verifica o tipo de requisição http
+    	// Verifica o tipo de requisição http
     	if($controller->getRequest()->isXmlHttpRequest()){
-    		//AJAX REQUEST
+    		// AJAX REQUEST
     		
-    		//Desliga a renderizacao
+    		// Desliga a renderizacao
     		$controller->getHelper('viewRenderer')->setNoRender(true);
     		
-    		//Desliga o layout do Zend para requisições do tipo AJAX(XmlHttpRequest)
+    		// Desliga o layout do Zend para requisições do tipo AJAX(XmlHttpRequest)
     		$controller->getHelper('layout')->disableLayout(true);
     		
-    		//Seta o tipo de requisição para a view
-    		//$controller->view->form->_postOnBackground = true;
+    		// Seta o tipo de requisição para a view
     		$controller->view->postOnBackground = true;
     		
     		$contexto = 'ajax';
     	}else{
-    		//NORMAL REQUEST
+    		// NORMAL REQUEST
     		
-    		//Seta o tipo de requisição para a view
+    		// Seta o tipo de requisição para a view
     		$controller->view->postOnBackground = false;
     	}
     	
@@ -72,7 +117,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 	    		case 'impressao' : $controller->renderScript('default.impressao.phtml');
 	    			break;
 
-	    		//Renderiza para a view defult HTML
+	    		// Renderiza para a view defult HTML
 	    		default : $controller->renderScript('default.html.phtml');
 	    	}
 	    	

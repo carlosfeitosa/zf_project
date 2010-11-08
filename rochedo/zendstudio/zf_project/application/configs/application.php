@@ -70,8 +70,8 @@ define("CAPTCHA_FONT_PATH", "../public/fonts/typewcond_bold.otf");
  * DOJO DIRECTORIES
  */
 define("DOJO_LOCAL_PATH", "/js/dojo/dojo.js");
-define("DOJO_STYLE_SHEET_PATH", "/js/dijit/themes/nihilo/nihilo.css");
-define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.nihilo");
+define("DOJO_STYLE_SHEET_PATH", "/js/dijit/themes/rochedo/rochedo.css");
+define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.rochedo");
 
 /*
  * JAVASCRIPT FILES

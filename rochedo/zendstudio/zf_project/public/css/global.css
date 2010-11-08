@@ -26,6 +26,17 @@ dd
 	margin-left: 0px;
 }
 
+dl
+{
+	display: block;
+	margin: 0px;
+}
+
+form
+{
+	margin: 10px;
+}
+
 span#index_application_name
 {
 	color: #000033;

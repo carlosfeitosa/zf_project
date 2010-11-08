@@ -1,0 +1,40 @@
+
+.rochedo .dijitToggleButton .dijitCheckBox,
+.rochedo .dijitToggleButton .dijitCheckBoxIcon {
+	background-image: url('../images/spriteCheckbox.gif');
+}
+.rochedo .dijitCheckBox,
+.rochedo .dijitCheckBoxIcon {		
+	background-image: url('../images/spriteCheckbox.gif'); 
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	padding: 0;
+}
+.rochedo .dijitCheckBox,
+.rochedo .dijitToggleButton .dijitCheckBoxIcon {
+	
+	background-position: -16px;
+}
+.rochedo .dijitCheckBoxChecked,
+.rochedo .dijitToggleButtonChecked .dijitCheckBoxIcon {
+	
+	background-position: 0px;
+}
+.rochedo .dijitCheckBoxDisabled {
+	
+	background-position: -48px;
+}
+.rochedo .dijitCheckBoxCheckedDisabled {
+	
+	background-position: -32px;
+}
+.rochedo .dijitCheckBoxHover {
+	
+	background-position: -80px;
+}
+.rochedo .dijitCheckBoxCheckedHover {
+	
+	background-position: -64px;
+}
