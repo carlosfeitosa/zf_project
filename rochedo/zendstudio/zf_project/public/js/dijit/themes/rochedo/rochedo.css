@@ -36,6 +36,7 @@
 	overflow: hidden;
 	float: none !important; 
 	position:relative;
+	background-color: #F8F8FF;
 }
 .dj_ie INPUT.dijitTextBox,
 .dj_ie .dijitTextBox INPUT {
@@ -1500,7 +1501,7 @@ DIV.dijitTabDisabled, .dj_ie DIV.dijitTabDisabled {
 }
 .dijitTextArea {
 	width:100%;
-	overflow-y: auto;	
+	overflow-y: auto;
 }
 .dijitTextArea[cols] {
 	width:auto; 
@@ -2391,9 +2392,8 @@ DIV.dijitTabDisabled, .dj_ie DIV.dijitTabDisabled {
 }
 .rochedo .dijitTextBox,
 .rochedo .dijitTextArea {
-	
-	background:#fff url(images/validationInputBg.png) repeat-x top left;
-	#background:#fff url(images/validationInputBg.gif) repeat-x top left;
+
+	background-color: #F8F8FF;
 	border:1px solid #d3d3d3;
 }
 .rochedo .dijitComboBox .dijitButtonNode {
@@ -3139,8 +3139,9 @@ DIV.dijitTabDisabled, .dj_ie DIV.dijitTabDisabled {
 }
 .rochedo .dijitDialog {
 	background: #eee;
-	border: 1px solid #d3d3d3;
+	border: 1px solid #333333;
 	-webkit-box-shadow: 0px 5px 10px #adadad;
+	-moz-box-shadow: 0px 5px 10px #adadad;
 	padding: 0px;
 }
 .rochedo .dijitDialog .dijitDialogTitle {

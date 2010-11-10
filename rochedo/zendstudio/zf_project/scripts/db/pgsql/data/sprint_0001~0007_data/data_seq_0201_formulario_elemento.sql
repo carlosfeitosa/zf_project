@@ -5,6 +5,7 @@
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
+* 									09/11/2010 - criadao do elemento FORM_LINHA_HORIZONTAL;
 *
 */
 
@@ -631,8 +632,25 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_RESET' AS nome, 'Botão para reset de 
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
-       'FORM_BUTTON_RESET' AS constante_textual_label, 'enviar' AS element_name, 
+       'FORM_BUTTON_RESET' AS constante_textual_label, 'resetar' AS element_name, 
        '''resetar'', array(''type'' => ''reset'', ''onClick'' => ''hideDialog(\"@nomeForm\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
+
+INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+                                 element_name, element, rowinfo)
+SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome, 'Botão para fechar caixas de diálogo.' AS descricao,
+	   (SELECT cp.id
+        FROM componente cp
+        LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'COMPONENTE'
+        AND c.nome = 'COMPONENTE_ZF'
+        AND cp.nome = 'ZF_button') AS id_componente,
+       'FORM_BUTTON_CLOSE_DIALOG' AS constante_textual_label, 'fechar' AS element_name, 
+       '''fechar'', array(''onClick'' => ''hideDialog(\"@nomeForm\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -659,7 +677,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -694,7 +711,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -729,7 +745,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -764,7 +779,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -799,7 +813,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -841,7 +854,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -883,7 +895,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -925,7 +936,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -960,7 +970,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -995,7 +1004,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -1030,7 +1038,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -1065,7 +1072,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -1100,7 +1106,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -1133,6 +1138,65 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual_label,
                               'outrasInformacoes' AS element_name, NULL AS element_attribs,
                               '''outrasInformacoes'', array(''style'' => ''width: 472px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_LINHA_HORIZONTAL' AS nome, 'Elemento html de linha horizontal (<hr>)' AS descricao,
+                              'linhaHorizontal' AS element_name, NULL AS element_attribs,
+                              '''linhaHorizontal'', array(''value'' => ''<hr>'')' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TIPO') AS id_ajuda,
+                             (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
+                              'FORM_FIELD_TELEFONE_TIPO' AS nome, 'Elemento campo combobox tipo do telefone' AS descricao,
+                              'FORM_FIELD_TELEFONE_TIPO' AS constante_textual_label,
+                              'telefoneTipo' AS element_name, NULL AS element_attribs,
+                              '''telefoneTipo''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

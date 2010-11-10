@@ -1161,4 +1161,41 @@ class Basico_CategoriaControllerController
 		// retornando o array de objetos contendo as categorias de linguas ativas
 		return $objsCategoriasLinguasAtivas;
 	}
+
+	/**
+	 * Retorna array contendo os nomes das categorias que nao estao implementadas no ZendFramework
+	 * do formulario passado por parametro (objeto)
+	 * 
+	 * @param Integer $idFormulario
+	 * 
+	 * @return Array|null
+	 */
+	public static function retornaArrayNomesCategoriasComponentesNaoZFFormulario($idFormulario)
+	{
+		// verificando se o id passado eh valido
+		if ((int) $idFormulario <= 0)
+			return null;
+
+		// query para retornar os nomes das categorias dos componentes nao ZF
+		$queryNomesCategoriasComponentesNaoZFFormulario = "SELECT DISTINCT ccomp.nome
+
+														   FROM formulario_formulario_elemento ffe
+														   LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
+														   LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+														   LEFT JOIN componente comp ON (fe.id_componente = comp.id)
+														   LEFT JOIN categoria ccomp ON (comp.id_categoria = ccomp.id)
+															
+														   WHERE ccomp.nome NOT IN ('COMPONENTE_DOJO', 'COMPONENTE_ZF')
+														   AND f.id = {$idFormulario}";
+
+		// recuperando resultado da query
+		$arrayRetorno = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryNomesCategoriasComponentesNaoZFFormulario);
+
+		// verificando o resultado da consulta
+		if (count($arrayRetorno[0]) <= 0)
+			return null;
+
+		// retornando resultado
+		return $arrayRetorno[0];
+	}
 }

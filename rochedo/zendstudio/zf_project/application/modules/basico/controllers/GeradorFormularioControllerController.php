@@ -7,6 +7,7 @@ require_once("CVCControllerController.php");
 require_once("FormularioControllerController.php");
 require_once("FormularioFormularioElementoControllerController.php");
 require_once("ModuloControllerController.php");
+require_once("ComponenteControllerController.php");
 
 class Basico_GeradorFormularioControllerController
 {
@@ -144,6 +145,7 @@ class Basico_GeradorFormularioControllerController
         $formConstructorInherits                = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_INHERITS];
         $formConstructorComment                 = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_COMMENT];
         $formName                               = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_NAME];
+        $formAddPrefixPathComment               = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ADDPREFIXPATH_COMMENT];
         
         // verificando se o formulario possui metodo de init
         if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_METHOD, $arrayInitForm))
@@ -223,6 +225,14 @@ class Basico_GeradorFormularioControllerController
 
                 // verifica se o formulario possui elementos
                 if (Basico_FormularioControllerController::existeElementos($objFormulario->id)) {
+
+                	// adicao dos prefix e paths de componentes nao ZF
+                	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objFormulario->id, $formAddPrefixPathComment);
+
+                	// verificando se existem addprefixpaths para serem incluidos no formulario
+					if ($stringAddPrefixPath)
+                		Basico_UtilControllerController::escreveLinhaFileResource($fileResource, $stringAddPrefixPath);
+                	
                 	// adição dos elementos do formulário
                 	Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formElementAddElementToFormComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $moduloObject, $formCodeBlockEndTag));
                 };
@@ -544,6 +554,7 @@ class Basico_GeradorFormularioControllerController
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_INHERITS]                  = FORM_GERADOR_CONSTRUCTOR_INHERITS . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_COMMENT]                   = FORM_GERADOR_CONSTRUCTOR_COMMENT . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_NAME]                                  = FORM_GERADOR_FORM_SETNAME . "('{$objFormulario->formName}');" . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ADDPREFIXPATH_COMMENT]                 = FORM_GERADOR_ADDPREFIXPATH_COMMENT;
 
         // verificando se o formulario possui metodo
         if ($objFormulario->formMethod)
@@ -737,7 +748,44 @@ class Basico_GeradorFormularioControllerController
     	// retornando inicializacao do sub-formulario
 		return $tempReturn;
     }
-    
+
+    /**
+     * Retorna string contendo os addPrefixPath dos componentes nao ZF
+     * 
+     * @param Integer $nivelIdentacaoInicial
+     * @param Integer $idFormulario
+     * @param String $addPrefixComment
+     * 
+     * @return String
+     */
+	private function retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacaoInicial, $idFormulario, $addPrefixComment)
+	{
+		// inicializando variaveis
+		$tempReturn = '';
+		$nivelIdentacao = $nivelIdentacaoInicial;
+
+		$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
+		
+		// recuperando array de prefixos e paths de componentes nao ZF
+		$arrayPrefixPaths = Basico_ComponenteControllerController::retornaArrayPrefixPathComponentesNaoZF(Basico_CategoriaControllerController::retornaArrayNomesCategoriasComponentesNaoZFFormulario($idFormulario));
+
+		// verificando o resultado da recuperacao do array de prefixos e paths
+		if (count($arrayPrefixPaths) <= 0)
+			return null;
+
+		// adicionando comentario
+		if ($addPrefixComment)
+			$tempReturn .= str_replace('@identacao', $identacao, $addPrefixComment) . QUEBRA_DE_LINHA;
+
+		// loop para preencher string de retorno
+		foreach ($arrayPrefixPaths as $arrayPrefixPath) {			
+			$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDPREFIXPATH . "('{$arrayPrefixPath[COMPONENTE_NAO_ZF_PREFIX]}', '{$arrayPrefixPath[COMPONENTE_NAO_ZF_PATH]}');" . QUEBRA_DE_LINHA;
+		}
+
+		// retornando string
+		return $tempReturn . QUEBRA_DE_LINHA;
+	}
+
     /**
      * Retorna string contendo os elementos do formulario
      * 
@@ -887,6 +935,11 @@ class Basico_GeradorFormularioControllerController
 				// setando decorator para o elemento a partir de formularioFormularioElemento
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$decoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
 
+			// verificando se elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO ou o elemento eh da categoria FORMULARIO_ELEMENTO_BUTTON
+            if (($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) or ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON)) {
+            	// removendo decorator DtDdWrapper
+            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
+            }
 
         	// adicionando elementos label e ajuda
             if ($formularioElementoObject->constanteTextualLabel){
@@ -907,7 +960,7 @@ class Basico_GeradorFormularioControllerController
                 	$linkAjuda = '';
 
                 $linkAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($linkAjuda, "'");
-                $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_UtilControllerController::retornaStringEntreCaracter($labelCampoRequerido, "'") . "." . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}') . {$linkAjuda});" . QUEBRA_DE_LINHA;
+                $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_UtilControllerController::retornaStringEntreCaracter($labelCampoRequerido, "'") . " . " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}') . {$linkAjuda});" . QUEBRA_DE_LINHA;
                 	
 			}
 

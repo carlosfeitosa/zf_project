@@ -252,6 +252,15 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TIPO' AS nome, 'Texto de ajuda para o campo tipo de telefone.' AS descricao,
+       'FORM_FIELD_TELEFONE_TIPO_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_PAIS' AS nome, 'Texto de ajuda para o campo codigo do pais (telefone).' AS descricao,
        'FORM_FIELD_TELEFONE_CODIGO_PAIS_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_CODIGO_PAIS_HINT' AS constante_textual_hint,

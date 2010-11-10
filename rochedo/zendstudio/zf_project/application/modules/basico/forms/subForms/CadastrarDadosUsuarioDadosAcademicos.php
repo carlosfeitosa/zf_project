@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 03/11/2010 13:14:56
+* em: 10/11/2010 14:44:19
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 03/11/2010 13:13:25
+* @version    1: 10/11/2010 10:51:04
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -37,6 +37,7 @@
     $elements[1] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1');
     $elements[1]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO')}\")"));
     $elements[1]->setRequired(false);
+    $elements[1]->removeDecorator('DtDdWrapper');
 
     // Adicionando elementos ao formulario.
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->addElements($elements);

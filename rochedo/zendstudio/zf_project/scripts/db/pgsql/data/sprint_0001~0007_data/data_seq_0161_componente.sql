@@ -145,3 +145,11 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_ZF';
+
+INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id AS id_categoria, 'ROCHEDO_html' AS nome, 'Componente Rochedo de conteudo HTML.' AS descricao,
+	   '''html''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_ROCHEDO';

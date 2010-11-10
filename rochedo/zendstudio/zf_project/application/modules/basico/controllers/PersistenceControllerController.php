@@ -167,7 +167,7 @@ class Basico_PersistenceControllerController
 	}
 
     /**
-     * Retorna um array contendo o resultad de uma query SQL
+     * Retorna um array contendo o resultado de uma query SQL
      * 
      * @param String $sqlQuery
      * 

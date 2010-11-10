@@ -124,6 +124,23 @@ div#float-left-clear-both
 	clear: both;
 }
 
+div#float-right-clear-both
+{
+	float: right;
+	clear: both;
+}
+
+div#float-right
+{
+	float: right;
+}
+
+div#float-right-margin-right10px
+{
+	float: right;
+	margin-right: 10px;
+}
+
 div#clear-both
 {
 	clear: both;
@@ -133,6 +150,12 @@ div#clear-both
 div#margin-right10px
 {
 	margin-right: 10px;
+}
+
+div#width100percent-clear-both
+{
+	width: 100%;
+	clear: both;
 }
 
 div.loading 

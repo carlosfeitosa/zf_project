@@ -480,16 +480,15 @@ class Basico_DBUtilControllerController
     	try {
     		// recuperando resource do bando de dados.
 			$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-			
+
 			$stmt = $auxDb->query($sqlQuery);
-			
+
 			return $stmt->fetchAll();
     		
     	} catch (Exception $e) {
-    		
+
     		throw new Exception($e->getMessage());
-    	}
-    	
+    	}    	
     }
 
     /**

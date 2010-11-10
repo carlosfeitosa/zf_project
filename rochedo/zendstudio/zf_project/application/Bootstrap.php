@@ -42,7 +42,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         } catch (Exception $e) {
             throw new Exception (MSG_ERRO_ABRIR_LOG_FS . $e->getMessage());
         }
-        
+
         // instancia a classe controladora de token
         $this->tokenizer = Basico_TokenControllerController::init();
 
@@ -58,7 +58,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . Basico_PessoaControllerController::retornaLinguaUsuario() . ')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
-            
+
         // registrando a instancia do banco de dados na sessao
         Basico_PersistenceControllerController::bdRegistraSessao($this->getResource('db'));
     }
@@ -87,14 +87,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Localiza os helpers dos modulos e adiciona os paths caso eles existam
         if (file_exists(BASICO_VIEW_HELPERS_PATH))
             $view->addHelperPath(BASICO_VIEW_HELPERS_PATH, 'Basico_View_Helper');
-        
+
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
         Zend_Dojo::enableView($view);
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative(true);
         $viewRender = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRender->setView($view);
-        
+
         return $view;
     }    
 }

@@ -10,11 +10,12 @@
 *							01/11/2010 - criacao da categoria FORMULARIO_INPUT_CADASTRO_TELEFONE;
 *							03/11/2010 - criacao da categoria AJUDA_FORMULARIO_CADASTRO_TELEFONE;
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_COMERCIAIS;
-*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_EMAIL:
+*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_EMAIL;
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_COMERCIAIS;
-*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_WEBSITES:
+*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_WEBSITES;
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECO_COMERCIAIS;
-*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_ENDERECO: 
+*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_ENDERECO;
+*							09/11/2010 - criacao da categoria COMPONENTE_ROCHEDO;
 * 
 */
 
@@ -1036,6 +1037,13 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_ELEMENTO_HTML' AS nome, 'HTML para formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id AS id_tipo_categoria, 'FORMULARIO_TAB_CONTAINER1_DECORATOR' AS nome, 'Decorator para submissão de sub-formulários (em formato Abas).' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria
@@ -1059,7 +1067,22 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id AS id_tipo_categoria, 'FORMULARIO_DIV_DECORATOR' AS nome, 'Decorator para div float left.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT id AS id_tipo_categoria, 'FORMULARIO_DIV_DECORATOR' AS nome, 'Decorator para div.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR' AS nome, 'Decorator para div width 100%.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR' AS nome, 'Decorator para div float right.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR' AS nome, 'Decorator para div float right clear both.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria
 WHERE nome = 'FORMULARIO';
 
@@ -1097,6 +1120,11 @@ INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id, 'COMPONENTE_AJAX_TERCEIROS' AS nome, 'Componentes ajax de terceiros utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria
 WHERE nome = 'COMPONENTE';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'COMPONENTE_ROCHEDO' AS nome, 'Componentes Rochedo do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+WHERE t.nome = 'COMPONENTE';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id AS id_tipo_categoria, 'CVC' AS nome, 'Control Version Class (classe de controle de versao).' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
