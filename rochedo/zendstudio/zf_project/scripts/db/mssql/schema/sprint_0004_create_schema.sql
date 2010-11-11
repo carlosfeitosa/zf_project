@@ -640,6 +640,10 @@ alter table dbo.componente add
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
+alter table dbo.grupo_formulario_elemento add
+    constraint ck_grupo_formulario_elemento_constante_textual_label check
+    (constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
+
 alter table dbo.ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
     (constante_textual_ajuda is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null));

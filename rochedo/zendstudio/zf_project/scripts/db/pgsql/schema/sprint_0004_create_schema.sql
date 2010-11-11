@@ -474,6 +474,10 @@ alter table componente
 
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
+  
+alter table grupo_formulario_elemento add
+    constraint ck_grupo_formulario_elemento_constante_textual_label check
+    (constante_textual_label is null or (fn_CheckConstanteTextualExists(constante_textual_label) is not null));
 
 alter table ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
