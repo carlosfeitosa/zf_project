@@ -1250,11 +1250,11 @@ class Basico_GeradorFormularioControllerController
 		// inicializando o modelo GrupoFormularioElemento
 		$objGrupoFormularioElemento = new Basico_Model_GrupoFormularioElemento();
 
-		// inicializando array para preenchimento de elementos do grupo
-		$arrayElementosDisplayGroup = array();
-
 		// loop para escrever os display groups
 		foreach ($arrayDisplaysGroups as $idDisplayGroup => $arrayOrdemElementosDisplayGroup) {
+			// inicializando array para preenchimento de elementos do grupo
+			$arrayElementosDisplayGroup = array();
+			
 			// carregando objeto GrupoFormularioElemento
 			$objGrupoFormularioElemento->find($idDisplayGroup);
 
