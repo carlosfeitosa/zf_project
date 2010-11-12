@@ -1,5 +1,5 @@
 /**
-* SCRIPT DE POPULACAO DA TABELA TIPO_CATEGORIA
+* SCRIPT DE POPULACAO DA TABELA MODULO
 * 
 * versao: 1.0 (MSSQL 2000)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)

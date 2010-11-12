@@ -1192,7 +1192,7 @@ class Basico_CategoriaControllerController
 		$arrayRetorno = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryNomesCategoriasComponentesNaoZFFormulario);
 
 		// verificando o resultado da consulta
-		if (count($arrayRetorno[0]) <= 0)
+		if ((!isset($arrayRetorno[0])) or (count($arrayRetorno[0]) <= 0))
 			return null;
 
 		// retornando resultado

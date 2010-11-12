@@ -3402,3 +3402,14 @@ DIV.dijitTabDisabled, .dj_ie DIV.dijitTabDisabled {
 	background:#fff;
 	-moz-border-radius: 0px !important;
 }
+
+fieldset {
+-webkit-margin-end: 2px;
+-webkit-margin-start: 2px;
+-webkit-padding-after: 0.625em;
+-webkit-padding-before: 0.35em;
+-webkit-padding-end: 0.75em;
+-webkit-padding-start: 0.75em;
+border: 1px solid #d3d3d3;
+display: block;
+}

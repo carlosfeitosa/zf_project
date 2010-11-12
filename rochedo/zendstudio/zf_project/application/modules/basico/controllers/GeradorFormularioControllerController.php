@@ -364,6 +364,7 @@ class Basico_GeradorFormularioControllerController
         $subFormCodeBlockBeginTag                  = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_BEGIN_TAG];      
         $subFormCodeBlockEndTag                    = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_END_TAG];
         $subFormInitComment                        = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_INIT_COMMENT];
+        $formAddPrefixPathComment                  = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ADDPREFIXPATH_COMMENT];
 
         $subFormName                               = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_NAME];
         if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_METHOD, $arrayInitSubForm))
@@ -435,6 +436,14 @@ class Basico_GeradorFormularioControllerController
 
                 // verifica se o formulario possui elementos
                 if (Basico_FormularioControllerController::existeElementos($objSubFormulario->id)){
+
+                	// adicao dos prefix e paths de componentes nao ZF
+                	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objSubFormulario->id, $formAddPrefixPathComment);
+
+                	// verificando se existem addprefixpaths para serem incluidos no formulario
+					if ($stringAddPrefixPath)
+                		Basico_UtilControllerController::escreveLinhaFileResource($fileResource, $stringAddPrefixPath);
+
                 	// adição dos elementos do formulário
                 	Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $moduloObject, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
                 };
@@ -490,6 +499,7 @@ class Basico_GeradorFormularioControllerController
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_CODE_BLOCK_END_TAG]                    = '}' . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_INIT_COMMENT]                          = FORM_GERADOR_SUB_FORM_INIT_COMMENT . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_NAME]                                  = FORM_GERADOR_FORM_SUB_FORM_SETNAME . "('{$objSubFormulario->formName}');" . QUEBRA_DE_LINHA;
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ADDPREFIXPATH_COMMENT]                 = FORM_GERADOR_ADDPREFIXPATH_COMMENT;
         
         // verificando se o formulario possui metodo
         if ($objSubFormulario->formMethod)
@@ -762,12 +772,17 @@ class Basico_GeradorFormularioControllerController
 	{
 		// inicializando variaveis
 		$tempReturn = '';
+		$arrayPrefixPaths = array();
 		$nivelIdentacao = $nivelIdentacaoInicial;
 
 		$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
 		
 		// recuperando array de prefixos e paths de componentes nao ZF
-		$arrayPrefixPaths = Basico_ComponenteControllerController::retornaArrayPrefixPathComponentesNaoZF(Basico_CategoriaControllerController::retornaArrayNomesCategoriasComponentesNaoZFFormulario($idFormulario));
+		$arrayNomesCategoriasComponentesNaoZFFormulario = Basico_CategoriaControllerController::retornaArrayNomesCategoriasComponentesNaoZFFormulario($idFormulario);
+		
+		// verificando o resultado da recuperacao do array
+		if ((isset($arrayNomesCategoriasComponentesNaoZFFormulario)) and (count($arrayNomesCategoriasComponentesNaoZFFormulario > 0)))
+			$arrayPrefixPaths = Basico_ComponenteControllerController::retornaArrayPrefixPathComponentesNaoZF($arrayNomesCategoriasComponentesNaoZFFormulario);
 
 		// verificando o resultado da recuperacao do array de prefixos e paths
 		if (count($arrayPrefixPaths) <= 0)
@@ -812,17 +827,17 @@ class Basico_GeradorFormularioControllerController
     	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
     	$tempReturn .= str_replace('@identacao', $identacao, $formElementsComment);
     	$tempReturn .= $identacao . $formArrayElements . QUEBRA_DE_LINHA;
-    	
+
     	$contador = 0;
     	$formElement = FORM_GERADOR_ELEMENTS . '[@contador]';
         $elementoAmbienteDesenvolvimento = false;
         $totalFormularioElementoFormulariosVinculados = 0;
-        
+
         // recuperando ordem dos elementos
         $arrayOrdemElementos = Basico_FormularioFormularioElementoControllerController::retornaArrayOrdem($objFormulario->id);
         
         foreach ($formularioElementosObjects as $formularioElementoObject){
-        	$formElementLoop = str_replace('@contador', $contador, $formElement);
+        	$formElementLoop = str_replace('@contador', $arrayOrdemElementos[$contador], $formElement);
         	
         	// verificando se o é preciso determinar ambiente de desenvolvimento
         	if (false !== array_search($formularioElementoObject->getCategoriaObject()->nome, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento)){
@@ -876,6 +891,9 @@ class Basico_GeradorFormularioControllerController
 
 			// criando elemento
 			$tempReturn .= $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$formularioElementoObject->getComponenteObject()->componente}, {$tempFormElement});" . QUEBRA_DE_LINHA;
+
+			// setando a ordem do elemento
+			$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETORDER . "($arrayOrdemElementos[$contador]);" . QUEBRA_DE_LINHA;
 
 			// setando atributos do elemento
 			if ($formularioElementoObject->elementAttribs){
@@ -999,6 +1017,13 @@ class Basico_GeradorFormularioControllerController
         	$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
         	$tempReturn =  str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
         }
+        
+        // recuperando displays groups do formulario
+        $stringAddDisplayGroup = self::retornaDisplaysGroupsFormulario($nivelIdentacao, $objFormulario);
+
+        // verificando se existem displays groups
+        if ($stringAddDisplayGroup)
+        	$tempReturn .= $stringAddDisplayGroup;
 
         // retornando elementos do formulario
 		return $tempReturn;
@@ -1162,8 +1187,7 @@ class Basico_GeradorFormularioControllerController
 		Basico_UtilControllerController::escreveConteudoArquivo($fullFileName, $form);
 
 		// loop para escrever os subforms
-		foreach ($subForms as $subform)
-		{
+		foreach ($subForms as $subform)	{
 			// recuperando o nome do arquivo do subform
 			$fullFileName = Basico_UtilControllerController::retornaNomeArquivoConcatenadoLingua($caminhoPastaPublicSubForms . '/' . $subform->getName(), $objCategoriaLingua, '.html');
 			
@@ -1178,5 +1202,82 @@ class Basico_GeradorFormularioControllerController
 		Basico_PessoaControllerController::setaLinguaUsuario($linguaUsuario);
 
 		return true;
+    }
+
+    /**
+     * Retorna uma string contendo as linhas que devem ser adicionadas ao formulario para incluir display group
+     * 
+     * @param Integer $nivelIdentacaoInicial
+     * @param Basico_Model_Formulario $objFormulario
+     * 
+     * @return String
+     */
+    private function retornaDisplaysGroupsFormulario($nivelIdentacaoInicial, Basico_Model_Formulario $objFormulario)
+    {
+    	// inicializacao das variaveis
+    	$nivelIdentacao = $nivelIdentacaoInicial;
+    	$arrayDisplaysGroups = array();
+    	$arrayDecoratorsDisplayGroups = array();
+    	$tempReturn = '';
+
+    	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
+
+    	// recuperando elementos que possuem display group
+    	$arrayObjsFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaObjsFormularioFormularioElementoGrupoFormularioElementoFormulario($objFormulario);
+
+    	// verificando o resultado da recuperacao
+    	if (count($arrayObjsFormularioFormularioElemento) <= 0)
+    		return null;
+
+		// loop para identificar os elementos dentro dos displays groups
+		foreach ($arrayObjsFormularioFormularioElemento as $objFormularioFormularioElemento) {
+
+			// descobrindo o id do display group
+			$objGrupoFormularioElemento = $objFormularioFormularioElemento->getGrupoFormularioElementoObject();
+
+			// verificando se o id do display group existe no array de displays groups
+			if (!array_key_exists($objGrupoFormularioElemento->id, $arrayDisplaysGroups)) {
+				// inicializando array dentro do array de displays groups
+				$arrayDisplaysGroups[$objGrupoFormularioElemento->id] = array();
+				// recuperando decorator do primeiro elemento do grupo
+				$arrayDecoratorsDisplayGroups[$objFormularioFormularioElemento->ordem] = $objFormularioFormularioElemento->getDecoratorObject();
+			}
+
+			// carregando array com os elementos do grupo
+			$arrayDisplaysGroups[$objGrupoFormularioElemento->id][] = $objFormularioFormularioElemento->ordem;
+		}
+
+		// inicializando o modelo GrupoFormularioElemento
+		$objGrupoFormularioElemento = new Basico_Model_GrupoFormularioElemento();
+
+		// inicializando array para preenchimento de elementos do grupo
+		$arrayElementosDisplayGroup = array();
+
+		// loop para escrever os display groups
+		foreach ($arrayDisplaysGroups as $idDisplayGroup => $arrayOrdemElementosDisplayGroup) {
+			// carregando objeto GrupoFormularioElemento
+			$objGrupoFormularioElemento->find($idDisplayGroup);
+
+			// loop para descarregar os elementos do grupo
+			foreach ($arrayOrdemElementosDisplayGroup as $ordemElementoDisplayGroup) {
+				// carregando array com os elementos do grupo
+				$arrayElementosDisplayGroup[] = FORM_GERADOR_ELEMENTS . "[{$ordemElementoDisplayGroup}]" . FORM_GERADOR_FORM_ELEMENT_GETNAME;				
+			}
+
+			// estourando array em string
+			$stringElementos = implode(',', $arrayElementosDisplayGroup);
+
+			// recuperando o nome do display group
+			$nomeDisplayGroup = strtolower($objGrupoFormularioElemento->nome);
+
+			// escrevendo display group
+			$tempReturn .= str_replace('@identacao', $identacao, FORM_GERADOR_ADDDISPLAYGROUP_COMMENT) . QUEBRA_DE_LINHA;
+			$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDDISPLAYGROUP . "(array({$stringElementos}), '{$nomeDisplayGroup}', array('legend' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objGrupoFormularioElemento->constanteTextualLabel}'), 'order' => {$arrayOrdemElementosDisplayGroup[0]}));" . QUEBRA_DE_LINHA;
+			$tempReturn .= $identacao . "\${$nomeDisplayGroup} = " . FORM_GERADOR_FORM_GETDISPLAYGROUP . "('{$nomeDisplayGroup}');" . QUEBRA_DE_LINHA;
+			$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
+			$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator});" . QUEBRA_DE_LINHA;
+		}
+		
+		return QUEBRA_DE_LINHA . $tempReturn;
     }
 }

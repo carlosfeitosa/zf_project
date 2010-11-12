@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 03/11/2010 13:15:22
+* em: 12/11/2010 12:11:24
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 03/11/2010 13:13:25
+* @version    1: 11/11/2010 14:27:45
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -39,31 +39,33 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         // Criando array de elementos.
         $elements = array();
 
-        $elements[0] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoNome');
-        $elements[0]->setAttribs(array('size' => 100));
-        $elements[0]->setRequired(true);
-        $elements[0]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[0]->addValidator('NotEmpty');
-        $elements[0]->addDecorator('Label', array('escape' => false));
-        $elements[0]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
-        $elements[0]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT'));
-        if ($options!=null)
-            $elements[0]->setValue($options->nome);
-
-        $elements[1] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoEmail');
-        $elements[1]->setAttribs(array('size' => 80));
+        $elements[1] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoNome');
+        $elements[1]->setOrder(1);
+        $elements[1]->setAttribs(array('size' => 100));
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addValidator('NotEmpty');
-        $elements[1]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
         $elements[1]->addDecorator('Label', array('escape' => false));
-        $elements[1]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
-        $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));
+        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
+        $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT'));
         if ($options!=null)
-            $elements[1]->setValue($options->email);
+            $elements[1]->setValue($options->nome);
+
+        $elements[2] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoEmail');
+        $elements[2]->setOrder(2);
+        $elements[2]->setAttribs(array('size' => 80));
+        $elements[2]->setRequired(true);
+        $elements[2]->addFilters(array('StringTrim', 'StripTags'));
+        $elements[2]->addValidator('NotEmpty');
+        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
+        $elements[2]->addDecorator('Label', array('escape' => false));
+        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
+        $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));
+        if ($options!=null)
+            $elements[2]->setValue($options->email);
 
         if (!Basico_UtilControllerController::ambienteDesenvolvimento()){
-            $elements[2] = $this->createElement('captcha', 'BasicoCadastrarUsuarioNaoValidadoCaptcha', 
+            $elements[3] = $this->createElement('captcha', 'BasicoCadastrarUsuarioNaoValidadoCaptcha', 
                       array('required'=>true,
                             'BasicoCadastrarUsuarioNaoValidadoCaptcha'=>array('BasicoCadastrarUsuarioNaoValidadoCaptcha'=>'Image',
                                              'imgDir' => CAPTCHA_IMAGE_DIR,
@@ -75,16 +77,20 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                                              'fontSize' => 50,
                                              'expiration' => 300,
                                              'gcFreq' => 100),));
-            $elements[2]->setRequired(true);
-            $elements[2]->setLabel('* '.$this->getView()->tradutor('FORM_FIELD_CAPTCHA_6') . '');
+            $elements[3]->setOrder(3);
+            $elements[3]->setRequired(true);
+            $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CAPTCHA_6') . '');
         }
 
-        $elements[3] = $this->createElement('submitButton', 'BasicoCadastrarUsuarioNaoValidadoEnviar');
-        $elements[3]->setRequired(false);
-        $elements[3]->setLabel(''.$this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
+        $elements[4] = $this->createElement('submitButton', 'BasicoCadastrarUsuarioNaoValidadoEnviar');
+        $elements[4]->setOrder(4);
+        $elements[4]->setRequired(false);
+        $elements[4]->removeDecorator('DtDdWrapper');
+        $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[4] = $this->createElement('hash', 'BasicoCadastrarUsuarioNaoValidadoCsrf', array('ignore' => true, 'salt' => 'unique',));
-        $elements[4]->setRequired(true);
+        $elements[5] = $this->createElement('hash', 'BasicoCadastrarUsuarioNaoValidadoCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[5]->setOrder(5);
+        $elements[5]->setRequired(true);
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

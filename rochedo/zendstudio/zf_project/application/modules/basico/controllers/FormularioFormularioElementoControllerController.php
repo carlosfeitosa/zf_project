@@ -97,6 +97,25 @@ class Basico_FormularioFormularioElementoControllerController
 	}
 
 	/**
+	 * Retorna um array de objetos Basico_Model_FormularioFormularioElemento, que possuem GrupoFormularioElemento, relacionados 
+	 * ao formulario passado como parametro
+	 * 
+	 * @param Basico_Model_Formulario $objFormulario
+	 * 
+	 * @return Array
+	 */
+	static public function retornaObjsFormularioFormularioElementoGrupoFormularioElementoFormulario(Basico_Model_Formulario $objFormulario)
+	{
+		// instanciando modelo
+		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+
+		// recuperando objetos
+		$arrayObjsFormularioFormularioElemento = $modelFormularioFormularioElemento->fetchList("id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
+
+		return $arrayObjsFormularioFormularioElemento;
+	}
+
+	/**
 	 * Salva objeto no Banco de dados.
 	 * 
 	 * @param Basico_Model_FormularioFormularioElemento $novoFormularioFormularioElemento

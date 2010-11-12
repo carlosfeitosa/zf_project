@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 03/11/2010 21:03:34
+* em: 12/11/2010 12:11:08
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 03/11/2010 20:53:21
+* @version    1: 11/11/2010 14:27:45
 */
 class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
 {

@@ -143,7 +143,7 @@ SELECT c.id AS id_categoria, 'ZF_hash' AS nome, 'Componente ZendFramework de has
 	   '''hash''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'COMPONENTE';
+WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)

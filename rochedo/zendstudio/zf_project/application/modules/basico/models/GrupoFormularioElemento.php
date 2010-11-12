@@ -32,6 +32,10 @@ class Basico_Model_GrupoFormularioElemento
 	 */
 	protected $_constanteTextualLabel;
 	/**
+	* @var int
+	*/
+	protected $_decorator;
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -154,7 +158,7 @@ class Basico_Model_GrupoFormularioElemento
 	*/
 	public function setConstanteTextualLabel($constanteTextualLabel)
 	{
-		$this->_label = Basico_UtilControllerController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
+		$this->_constanteTextualLabel = Basico_UtilControllerController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -167,6 +171,40 @@ class Basico_Model_GrupoFormularioElemento
 	{
 		return $this->_constanteTextualLabel;
 	}
+
+	/**
+	* Set entry decorator
+	* 
+	* @param  int $decorator 
+	* @return Basico_Model_GrupoFormularioElemento
+	*/
+	public function setDecorator($decorator)
+	{
+		$this->_decorator = Basico_UtilControllerController::retornaValorTipado($decorator, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry decorator
+	* 
+	* @return null|int
+	*/
+	public function getDecorator()
+	{
+		return $this->_decorator;
+	}
+
+    /**
+     * Get decorator object
+     * 
+     * @return null|Basico_Model_Decorator
+     */
+    public function getTipoCategoriaObject()
+    {
+        $model = new Basico_Model_Decorator();
+        $object = $model->find($this->_decorator);
+        return $object;
+    }
 	
 	/**
 	* Set rowinfo

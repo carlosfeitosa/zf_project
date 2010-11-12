@@ -15,12 +15,6 @@
 * 						19/10/2010 - remocao do drop da tabela "modulo" para o sprint 0001;
 */
 
-if object_id('cvc') is not null
-begin
-  drop table cvc
-end
-;
-
 if object_id('formulario_formulario_elemento_formulario') is not null
 begin
 drop table formulario_formulario_elemento_formulario;

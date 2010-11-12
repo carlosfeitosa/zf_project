@@ -205,6 +205,7 @@ create table dbo.componente (
 
 create table dbo.grupo_formulario_elemento (
 	id int identity (1, 1) not null ,
+	id_decorator int null ,
 	nome varchar (100) not null ,
 	descricao varchar (2000) null ,
 	constante_textual_label varchar (200) null,
@@ -634,6 +635,14 @@ alter table dbo.componente add
 	(
 		id_template
 	) references dbo.template (
+		id
+	);
+
+alter table grupo_formulario_elemento add
+	constraint fk_grupo_formulario_elemento_decorator foreign key
+	(
+		id_decorator
+	) references decorator (
 		id
 	);
 

@@ -242,7 +242,7 @@ create table formulario_formulario_elemento_formulario (
 with (
   oids = false
 );
-alter table formulario_formulario_elemento_formulario  owner to rochedo_user;
+alter table formulario_formulario_elemento_formulario owner to rochedo_user;
 
 create table componente (
 	id serial not null ,
@@ -260,9 +260,11 @@ create table componente (
 ) with (
   oids = false
 );
+alter table componente owner to rochedo_user;
 
 create table grupo_formulario_elemento (
 	id serial not null ,
+	id_decorator int null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
 	constante_textual_label character varying (200) null,
@@ -270,6 +272,8 @@ create table grupo_formulario_elemento (
 ) with (
   oids = false
 );
+alter table grupo_formulario_elemento owner to rochedo_user;
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
@@ -471,6 +475,9 @@ alter table formulario_formulario_elemento_formulario
 alter table componente
   add constraint fk_componente_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
   add constraint fk_componente_template foreign key (id_template) references template (id) on update no action on delete no action;
+
+alter table grupo_formulario_elemento
+  add constraint fk_grupo_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action;
 
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
