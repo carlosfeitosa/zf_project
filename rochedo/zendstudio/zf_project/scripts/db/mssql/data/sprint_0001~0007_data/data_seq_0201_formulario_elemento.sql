@@ -1453,7 +1453,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_EMAIL_TIPO' AS nome, 'Elemento campo combobox tipo do telefone' AS descricao,
+                              'FORM_FIELD_EMAIL_TIPO' AS nome, 'Elemento campo combobox tipo do e-mail' AS descricao,
                               'FORM_FIELD_EMAIL_TIPO' AS constante_textual_label,
                               'emailTipo' AS element_name, NULL AS element_attribs,
                               '''emailTipo''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
