@@ -93,6 +93,12 @@ drop table formulario;
 end
 ;
 
+if object_id('grupo_formulario_elemento') is not null
+begin
+drop table grupo_formulario_elemento;
+end
+;
+
 if object_id('decorator') is not null
 begin
 drop table decorator;
@@ -108,11 +114,5 @@ end
 if object_id('output') is not null
 begin
 drop table output;
-end
-;
-
-if object_id('grupo_formulario_elemento') is not null
-begin
-drop table grupo_formulario_elemento;
 end
 ;
