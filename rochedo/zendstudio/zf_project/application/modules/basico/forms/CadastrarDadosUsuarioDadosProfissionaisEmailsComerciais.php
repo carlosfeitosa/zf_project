@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 12/11/2010 12:10:35
+* em: 16/11/2010 12:40:25
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/11/2010 14:27:45
+* @version    1: 16/11/2010 12:40:07
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisEmailsComerciais extends Zend_Dojo_Form
 {
@@ -31,15 +31,30 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisEmailsComerciais extend
         $this->setName('CadastrarDadosUsuarioDadosProfissionaisEmailsComerciais');
         $this->setMethod('post');
 
+        // Adicionando paths para localizacao de componentes nao ZF.
+        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
+
         // Criando array de elementos.
         $elements = array();
 
-        $elements[2] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisEmailsComerciaisButtonDialogDojo1');
+        $elements[2] = $this->createElement('html', 'BasicoCadastrarDadosUsuarioDadosProfissionaisEmailsComerciaisLinhaHorizontal', array('value' => '<hr>'));
         $elements[2]->setOrder(2);
-        $elements[2]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_EMAIL')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarEmail\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarEmail." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_EMAIL')}\")"));
         $elements[2]->setRequired(false);
-        $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[2]->removeDecorator('DtDdWrapper');
+        $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));
+
+        $elements[3] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisEmailsComerciaisButtonDialogDojo1');
+        $elements[3]->setOrder(3);
+        $elements[3]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_EMAIL')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarEmail\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarEmail." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_EMAIL')}\")"));
+        $elements[3]->setRequired(false);
+        $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
+        $elements[3]->removeDecorator('DtDdWrapper');
+
+        $elements[4] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisEmailsComerciaisFechar', array('onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioDadosProfissionaisEmailsComerciais");'));
+        $elements[4]->setOrder(4);
+        $elements[4]->setRequired(false);
+        $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));
+        $elements[4]->removeDecorator('DtDdWrapper');
+        $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_CLOSE_DIALOG') . '');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

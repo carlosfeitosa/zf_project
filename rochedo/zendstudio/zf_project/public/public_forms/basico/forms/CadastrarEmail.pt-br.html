@@ -1,2 +1,23 @@
 <form id="CadastrarEmail" method="post" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
-</dl></form>
+<div id="float-left-clear-both"><label for="BasicoCadastrarEmailEmailTipo" class="required">* Tipo de e-mail:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Escolha neste campo o tipo de e-mail que esta cadastrando', 1)</script></button></label>
+<dd>
+<select name="BasicoCadastrarEmailEmailTipo" id="BasicoCadastrarEmailEmailTipo" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label for="BasicoCadastrarEmailEmail" class="required">* E-mail:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Digite neste campo o seu e-mail. Digite apenas 1 (um) endereço, sem espaços.', 1)</script></button></label>
+<dd>
+<input size="80" id="BasicoCadastrarEmailEmail" name="BasicoCadastrarEmailEmail" value="" type="text" invalidMessage="Preencha este campo com seu e-mail." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<div id="float-left-clear-both"><label for="BasicoCadastrarEmailEmailDescricao" class="optional">Descrição:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Digite neste campo alguma informação que achar pertinente sobre o e-mail', 1)</script></button></label>
+<dd>
+<textarea style="width: 300px;" id="BasicoCadastrarEmailEmailDescricao" name="BasicoCadastrarEmailEmailDescricao" type="textarea" required="false" dojoType="dijit.form.SimpleTextarea"></textarea>
+</dd></div>
+<div id="width100percent-clear-both"><dt id="BasicoCadastrarEmailLinhaHorizontal-label">&#160;</dt>
+<dd id="BasicoCadastrarEmailLinhaHorizontal-element">
+<hr></dd></div>
+<div id="float-right-clear-both">
+<input id="BasicoCadastrarEmailEnviar" name="BasicoCadastrarEmailEnviar" value="Enviar" type="submit" required="false" label="Enviar" dojoType="dijit.form.Button"></div>
+<div id="float-right-margin-right10px">
+<button name="BasicoCadastrarEmailResetar" id="BasicoCadastrarEmailResetar" type="reset" onClick='hideDialog("Basico_Form_CadastrarEmail");' required="false" dojoType="dijit.form.Button">Cancelar</button></div>
+<div id="clear-both"><dt id="BasicoCadastrarEmailDummyHidden-label">&#160;</dt>
+<dd id="BasicoCadastrarEmailDummyHidden-element">
+<input type="hidden" name="BasicoCadastrarEmailDummyHidden" value="" id="BasicoCadastrarEmailDummyHidden"></dd></div></dl></form>

@@ -16,6 +16,7 @@
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECO_COMERCIAIS;
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_ENDERECO;
 *							09/11/2010 - criacao da categoria COMPONENTE_ROCHEDO;
+*							16/11/2010 - criacao da categoria AJUDA_FORMULARIO_CADASTRO_EMAIL;
 * 
 */
 
@@ -945,6 +946,13 @@ AND c.nome = 'AJUDA_FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE' AS nome, 'Ajuda para preenchimento de formulários de manipulação de telefone.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_EMAIL' AS nome, 'Ajuda para preenchimento de formulários de manipulação de e-mail.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
