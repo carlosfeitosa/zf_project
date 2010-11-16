@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 12/11/2010 12:10:18
+* em: 16/11/2010 12:17:07
 *
 * LICENÇA DE USO
 *
@@ -22,6 +22,7 @@
     $basicoCadastrarDadosUsuarioDadosProfissionaisSubForm->setName('CadastrarDadosUsuarioDadosProfissionais');
     $basicoCadastrarDadosUsuarioDadosProfissionaisSubForm->setMethod('post');
     $basicoCadastrarDadosUsuarioDadosProfissionaisSubForm->addAttribs(array('dijitParams' => array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_PROFISSIONAIS'))));
+    $basicoCadastrarDadosUsuarioDadosProfissionaisSubForm->setOrder(3);
 
     // Criando array de elementos.
     $elements = array();

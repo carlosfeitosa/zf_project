@@ -373,6 +373,8 @@ class Basico_GeradorFormularioControllerController
         	$subFormAction                         = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION];
         if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS, $arrayInitSubForm))
         	$subFormAttribs                        = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS];
+		if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ORDER, $arrayInitSubForm))
+			$subFormOrder 						   = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ORDER];
 
        	$subFormElementsComment                    = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ELEMENTS_COMMENT];
        	$subFormElementAddElementToFormComment     = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ADD_ELEMENTS_TO_FORM_COMMENT];
@@ -432,7 +434,7 @@ class Basico_GeradorFormularioControllerController
                 
                 // nivel 1 de identação
                 $nivelIdentacao++;
-                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName]));
+                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName], $subFormOrder));
 
                 // verifica se o formulario possui elementos
                 if (Basico_FormularioControllerController::existeElementos($objSubFormulario->id)){
@@ -486,7 +488,7 @@ class Basico_GeradorFormularioControllerController
     	// inicializando variaveis
     	$arrayReturn = array();
 
-    	// carregando atributos do formulario
+    	// carregando atributos do sub-formulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::retornaUltimaVersao($objSubFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
@@ -501,29 +503,33 @@ class Basico_GeradorFormularioControllerController
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_NAME]                                  = FORM_GERADOR_FORM_SUB_FORM_SETNAME . "('{$objSubFormulario->formName}');" . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ADDPREFIXPATH_COMMENT]                 = FORM_GERADOR_ADDPREFIXPATH_COMMENT;
         
-        // verificando se o formulario possui metodo
+        // verificando se o sub-formulario possui metodo
         if ($objSubFormulario->formMethod)
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_METHOD]                            = FORM_GERADOR_FORM_SUB_FORM_SETMETHOD . "('{$objSubFormulario->formMethod}');" . QUEBRA_DE_LINHA;
 
-		// verificando se o formulario possui acao
+		// verificando se o sub-formulario possui acao
         if ($objSubFormulario->formAction)
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
 
 		// inicializando variaveis
         $tempArraySubFormAttrib = array();
 
-        // carregando atributos do formulario
+        // carregando atributos do sub-formulario
         $tempArraySubFormAttrib[] = "'dijitParams' => array('title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objSubFormulario->constanteTextualTitulo}'))";
 
-        // verificando se o formulario possui atributos
+        // verificando se o sub-formulario possui atributos
         if ($objSubFormulario->formAttribs)
         	$tempArraySubFormAttrib[] = $objSubFormulario->formAttribs;        
         	 
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS]                               = FORM_GERADOR_FORM_SUB_FORM_ADDATTRIBS . "(array(" . implode(",", $tempArraySubFormAttrib) . "));" . QUEBRA_DE_LINHA;
 
-        // verificando se o formulario possui decorator
+        // verificando se o sub-formulario possui decorator
         if ($objSubFormulario->getDecoratorObject()->id)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SUB_FORM_SETDECORATORS . "(array({$objSubFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SUB_FORM_SETDECORATORS . "(array({$objSubFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA;
+
+        // verificando se o sub-formulario possui ordem
+        if ($objSubFormulario->ordem)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ORDER]                             = FORM_GERADOR_FORM_SUB_FORM_SETORDER . "({$objSubFormulario->ordem});" . QUEBRA_DE_LINHA;
 
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ELEMENTS_COMMENT]                      = FORM_GERADOR_ADD_ELEMENTS_COMMENT . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ARRAY_ELEMENTS]                        = FORM_GERADOR_ELEMENTS . ' = array();' . QUEBRA_DE_LINHA;
@@ -732,10 +738,11 @@ class Basico_GeradorFormularioControllerController
      * @param String $subFormAttribs
      * @param String $subFormDecorator
      * @param String $subFormVariableInstance
+     * @param Integer $subFormOrdem
      * 
      * @return String
      */
-    private function retornaInicializacaoSubFormulario($nivelIdentacaoInicial, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariableInstance)
+    private function retornaInicializacaoSubFormulario($nivelIdentacaoInicial, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariableInstance, $subFormOrdem)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -744,6 +751,7 @@ class Basico_GeradorFormularioControllerController
     	$tempReturn .= QUEBRA_DE_LINHA;
     	$tempReturn .= str_replace('@identacao', $identacao, $subFormInitComment);
     	$tempReturn .= $identacao . $subFormName;
+    	// verificando/adicionando atributos do sub-form
     	if ($subFormMethod)
     		$tempReturn .= $identacao . $subFormMethod;
     	if ($subFormAction)
@@ -752,6 +760,8 @@ class Basico_GeradorFormularioControllerController
     		$tempReturn .= $identacao . $subFormAttribs;
     	if ($subFormDecorator)
     		$tempReturn .= $identacao . $subFormDecorator;
+		if ($subFormOrdem)
+			$tempReturn .= $identacao . $subFormOrdem;
     	$tempReturn .= QUEBRA_DE_LINHA;
     	$tempReturn = str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
 
