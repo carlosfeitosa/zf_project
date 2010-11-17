@@ -1,2 +1,23 @@
 <form id="CadastrarWebsite" method="post" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
-</dl></form>
+<div id="float-left-clear-both"><label for="BasicoCadastrarWebsiteWebSitelTipo" class="required">* Web site's type:</label>
+<dd>
+<select name="BasicoCadastrarWebsiteWebSitelTipo" id="BasicoCadastrarWebsiteWebSitelTipo" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label for="BasicoCadastrarWebsiteWebSitelEndereco" class="required">* Web site's address :</label>
+<dd>
+<input id="BasicoCadastrarWebsiteWebSitelEndereco" name="BasicoCadastrarWebsiteWebSitelEndereco" value="" type="text" required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<div id="float-left-clear-both"><label for="BasicoCadastrarWebsiteWebSiteDescricao" class="optional">Description:</label>
+<dd>
+<textarea style="width: 300px;" id="BasicoCadastrarWebsiteWebSiteDescricao" name="BasicoCadastrarWebsiteWebSiteDescricao" type="textarea" required="false" dojoType="dijit.form.SimpleTextarea"></textarea>
+</dd></div>
+<div id="width100percent-clear-both"><dt id="BasicoCadastrarWebsiteLinhaHorizontal-label">&#160;</dt>
+<dd id="BasicoCadastrarWebsiteLinhaHorizontal-element">
+<hr></dd></div>
+<div id="float-right-clear-both">
+<input id="BasicoCadastrarWebsiteEnviar" name="BasicoCadastrarWebsiteEnviar" value="Send" type="submit" required="false" label="Send" dojoType="dijit.form.Button"></div>
+<div id="float-right-margin-right10px">
+<button name="BasicoCadastrarWebsiteResetar" id="BasicoCadastrarWebsiteResetar" type="reset" onClick='hideDialog("Basico_Form_CadastrarWebsite");' required="false" dojoType="dijit.form.Button">Cancel</button></div>
+<div id="clear-both"><dt id="BasicoCadastrarWebsiteDummyHidden-label">&#160;</dt>
+<dd id="BasicoCadastrarWebsiteDummyHidden-element">
+<input type="hidden" name="BasicoCadastrarWebsiteDummyHidden" value="" id="BasicoCadastrarWebsiteDummyHidden"></dd></div></dl></form>
