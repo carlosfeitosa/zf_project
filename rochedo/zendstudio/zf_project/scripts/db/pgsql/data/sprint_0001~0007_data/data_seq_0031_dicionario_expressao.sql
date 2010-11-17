@@ -676,35 +676,35 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO_AJUDA' AS constante_textual, 'Escolha neste campo o tipo de web site que esta cadastrando' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO_AJUDA' AS constante_textual, 'Escolha neste campo o tipo de website que esta cadastrando' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO' AS constante_textual, 'Tipo de web site:' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO' AS constante_textual, 'Tipo de website:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_AJUDA' AS constante_textual, 'Informe neste campo o endereço do web site que esta cadastrando' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_AJUDA' AS constante_textual, 'Informe neste campo o endereço do website que esta cadastrando' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO' AS constante_textual, 'Endereço do web site:' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO' AS constante_textual, 'Endereço do website:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_HINT' AS constante_textual, 'Endereço do web site a ser cadastrado.' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_HINT' AS constante_textual, 'Endereço do website a ser cadastrado.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -712,7 +712,7 @@ AND c.nome = 'pt-br';
 
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_DESCRICAO_AJUDA' AS constante_textual, 'Digite neste campo alguma informação que achar pertinente sobre o web site' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_DESCRICAO_AJUDA' AS constante_textual, 'Digite neste campo alguma informação que achar pertinente sobre o website' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -2103,42 +2103,42 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO_AJUDA' AS constante_textual, 'Choose in this field web site''s type.' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO_AJUDA' AS constante_textual, 'Choose in this field website''s type.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO' AS constante_textual, 'Web site''s type:' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_TIPO' AS constante_textual, 'Website''s type:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_AJUDA' AS constante_textual, 'Type in this field web site'' address' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_AJUDA' AS constante_textual, 'Type in this field website'' address' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO' AS constante_textual, 'Web site''s address :' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO' AS constante_textual, 'Website''s address :' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_HINT' AS constante_textual, 'Web site''s address.' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_ENDERECO_HINT' AS constante_textual, 'Website''s address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_WEBSITE_DESCRICAO_AJUDA' AS constante_textual, 'Type in this field any information that you consider important about the web site address' AS traducao
+SELECT c.id, 'FORM_FIELD_WEBSITE_DESCRICAO_AJUDA' AS constante_textual, 'Type in this field any information that you consider important about the website address' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
