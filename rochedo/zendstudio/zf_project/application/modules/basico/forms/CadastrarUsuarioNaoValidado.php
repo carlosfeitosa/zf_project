@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 12/11/2010 12:11:24
+* em: 17/11/2010 14:25:34
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/11/2010 14:27:45
+* @version    1: 17/11/2010 14:25:07
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -41,7 +41,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 
         $elements[1] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoNome');
         $elements[1]->setOrder(1);
-        $elements[1]->setAttribs(array('size' => 100));
+        $elements[1]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addValidator('NotEmpty');
@@ -53,7 +53,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 
         $elements[2] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoEmail');
         $elements[2]->setOrder(2);
-        $elements[2]->setAttribs(array('size' => 80));
+        $elements[2]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addValidator('NotEmpty');

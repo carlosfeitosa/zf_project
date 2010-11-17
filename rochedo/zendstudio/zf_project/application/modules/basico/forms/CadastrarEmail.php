@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 16/11/2010 14:25:37
+* em: 17/11/2010 14:28:06
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 16/11/2010 14:21:36
+* @version    1: 17/11/2010 14:25:07
 */
 class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 {
@@ -49,7 +49,7 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 
         $elements[2] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEmailEmail');
         $elements[2]->setOrder(2);
-        $elements[2]->setAttribs(array('size' => 80));
+        $elements[2]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addValidator('NotEmpty');

@@ -1580,7 +1580,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
                               'FORM_FIELD_WEBSITE_ENDERECO' AS nome, 'Elemento campo texto do endereço do web site' AS descricao,
                               'FORM_FIELD_WEBSITE_ENDERECO' AS constante_textual_label,
-                              'webSitelEndereco' AS element_name, NULL AS element_attribs,
+                              'webSitelEndereco' AS element_name, '''size'' => 100, ''style'' => ''width: 300px;''' AS element_attribs,
                               '''webSitelEndereco''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -1664,7 +1664,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
                               'FIELD_NOME_USUARIO' AS nome, 'Elemento campo nome do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_NOME' AS constante_textual_label,
-                              'nome' AS element_name, '''size'' => 100' AS element_attribs,
+                              'nome' AS element_name, '''size'' => 100, ''style'' => ''width: 300px;''' AS element_attribs,
                               '''nome''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -1705,7 +1705,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
                               'FIELD_EMAIL_USUARIO' AS nome, 'Elemento campo e-mail do usuário, com filtro e validador.' AS descricao,
                               'FORM_FIELD_EMAIL' AS constante_textual_label,
-                              'email' AS element_name, '''size'' => 80' AS element_attribs,
+                              'email' AS element_name, '''size'' => 100, ''style'' => ''width: 300px;''' AS element_attribs,
                               '''email''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
