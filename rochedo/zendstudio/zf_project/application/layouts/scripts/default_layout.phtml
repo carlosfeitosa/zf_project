@@ -40,8 +40,6 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
     <?php
         $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_PessoaControllerController::retornaLinguaUsuario()))
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
-                     ->addStylesheet($applicationHttpBaseUrl . DOJO_STYLE_SHEET_PATH)
-                     ->addStylesheet($applicationHttpBaseUrl . MENU_CSS_FILE)
                      ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
                      ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);    
         $this->dojo()->requireModule('dijit.Dialog');
