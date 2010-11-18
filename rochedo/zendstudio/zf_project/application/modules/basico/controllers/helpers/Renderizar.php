@@ -53,12 +53,26 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 					foreach($arrayObjsTemplateFormulario as $objTemplateFormulario) {
 
 						// verificando se o template possui arquivo css
-						if ($objTemplateFormulario->stylesheetFullFilename)
-							$view->dojo()->addStylesheet($applicationHttpBaseUrl . $objTemplateFormulario->stylesheetFullFilename);
+						if ($objTemplateFormulario->stylesheetFullFilename) {
+							// verificando se o stylesheet eh local ou remoto
+							if (strpos($objTemplateFormulario->stylesheetFullFilename, 'http://' === 0))
+								// adicionando stylesheet remoto
+								$view->dojo()->addStylesheet($objTemplateFormulario->stylesheetFullFilename);
+							else
+								// adicionando stylesheet local
+								$view->dojo()->addStylesheet($applicationHttpBaseUrl . $objTemplateFormulario->stylesheetFullFilename);
+						}
 
 						// verificando se o template possui arquivo javascript
-						if ($objTemplateFormulario->javascriptFullFilename)
-							$view->dojo()->addLayer($applicationHttpBaseUrl . $objTemplateFormulario->javascriptFullFilename);
+						if ($objTemplateFormulario->javascriptFullFilename) {
+							// verificando se o javascript eh local ou remoto
+							if (strpos($objTemplateFormulario->stylesheetFullFilename, 'http://' === 0))
+								// adicionando javascript remoto
+								$view->dojo()->addLayer($objTemplateFormulario->javascriptFullFilename);
+							else
+								// adicionando javascript local
+								$view->dojo()->addLayer($applicationHttpBaseUrl . $objTemplateFormulario->javascriptFullFilename);
+						}
 					}
 				}
 			}

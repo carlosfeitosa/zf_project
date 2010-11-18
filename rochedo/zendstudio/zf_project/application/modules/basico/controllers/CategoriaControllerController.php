@@ -1172,6 +1172,9 @@ class Basico_CategoriaControllerController
 	 */
 	public static function retornaArrayNomesCategoriasComponentesNaoZFFormulario($idFormulario)
 	{
+		// inicializando variaveis
+		$arrayRetorno = array();
+
 		// verificando se o id passado eh valido
 		if ((int) $idFormulario <= 0)
 			return null;
@@ -1189,13 +1192,17 @@ class Basico_CategoriaControllerController
 														   AND f.id = {$idFormulario}";
 
 		// recuperando resultado da query
-		$arrayRetorno = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryNomesCategoriasComponentesNaoZFFormulario);
+		$arrayRetornoQuery = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryNomesCategoriasComponentesNaoZFFormulario);
 
 		// verificando o resultado da consulta
-		if ((!isset($arrayRetorno[0])) or (count($arrayRetorno[0]) <= 0))
+		if (count($arrayRetornoQuery) <= 0)
 			return null;
 
+		// loop para preencher o array de resultados
+		foreach ($arrayRetornoQuery as $arrayLinhaQuery)
+			$arrayRetorno[] = $arrayLinhaQuery['nome'];
+
 		// retornando resultado
-		return $arrayRetorno[0];
+		return $arrayRetorno;
 	}
 }
