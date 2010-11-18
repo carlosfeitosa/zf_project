@@ -23,7 +23,7 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
                               'FORM_FIELD_PASSWORD_STRENGTH_CHECKER' AS nome, 'Elemento html para checar a força da senha.' AS descricao,
-                              'passwordStrengthChecker' AS element_name, '''onKeyUp'' => "chkPass(document.forms[''CadastrarUsuarioValidado''].senha.value)"' AS element_attribs,
+                              'passwordStrengthChecker' AS element_name, NULL AS element_attribs,
                               '''passwordStrengthChecker'', array(''value'' => "<div id=''scorebarBorder''><div id=''score''>0%</div><div id=''scorebar''>&nbsp;</div></div><div id=''complexity''></div>")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -219,7 +219,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND cp.nome = 'DOJO_PasswordTextBox_With_Checker') AS id_componente,
                               'FORM_FIELD_SENHA' AS nome, 'Elemento para digitação de senhas.' AS descricao,
                               'FORM_FIELD_SENHA' AS constante_textual_label,
-                              'senha' AS element_name, NULL AS element_attribs,
+                              'senha' AS element_name, '''onKeyUp'' => "chkPass(document.forms[''CadastrarUsuarioValidado''].BasicoCadastrarUsuarioValidadoSenha.value)"' AS element_attribs,
                               '''senha''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
