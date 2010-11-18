@@ -1285,7 +1285,9 @@ class Basico_GeradorFormularioControllerController
 			$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDDISPLAYGROUP . "(array({$stringElementos}), '{$nomeDisplayGroup}', array('legend' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objGrupoFormularioElemento->constanteTextualLabel}'), 'order' => {$arrayOrdemElementosDisplayGroup[0]}));" . QUEBRA_DE_LINHA;
 			$tempReturn .= $identacao . "\${$nomeDisplayGroup} = " . FORM_GERADOR_FORM_GETDISPLAYGROUP . "('{$nomeDisplayGroup}');" . QUEBRA_DE_LINHA;
 			$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
-			$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator});" . QUEBRA_DE_LINHA;
+			// verificando se existe decorator setado para o displaygroup
+			if ($arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator)
+				$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator});" . QUEBRA_DE_LINHA;
 		}
 		
 		return QUEBRA_DE_LINHA . $tempReturn;
