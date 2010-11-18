@@ -215,7 +215,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
-                              AND c.nome = 'COMPONENTE_AJAX_TERCEIROS'
+                              AND c.nome = 'COMPONENTE_AJAXTERCEIROS'
                               AND cp.nome = 'DOJO_PasswordTextBox_With_Checker') AS id_componente,
                               'FORM_FIELD_SENHA' AS nome, 'Elemento para digitação de senhas.' AS descricao,
                               'FORM_FIELD_SENHA' AS constante_textual_label,

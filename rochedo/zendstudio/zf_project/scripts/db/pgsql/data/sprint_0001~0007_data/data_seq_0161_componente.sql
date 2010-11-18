@@ -24,7 +24,7 @@ SELECT c.id AS id_categoria, 'DOJO_PasswordTextBox_With_Checker' AS nome, 'Compo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
-AND c.nome = 'COMPONENTE_AJAX_TERCEIROS';
+AND c.nome = 'COMPONENTE_AJAXTERCEIROS';
 
 INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_RadioButton' AS nome, 'Componente DOJO para RadioButtons.' AS descricao,
