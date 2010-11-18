@@ -6,14 +6,14 @@
 * criacao: 20/10/2010
 * ultimas modificacoes:
 *	 						22/10/2010 - criacao da categoria FORMULARIO_SUB_FORMULARIO_CONTENT_PANE1_DECORATOR;
-*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_COMERCIAIS;
+*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_PROFISSIONAIS;
 *							01/11/2010 - criacao da categoria FORMULARIO_INPUT_CADASTRO_TELEFONE;
 *							03/11/2010 - criacao da categoria AJUDA_FORMULARIO_CADASTRO_TELEFONE;
-*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_COMERCIAIS;
+*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_PROFISSIONAIS;
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_EMAIL;
-*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_COMERCIAIS;
+*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_PROFISSIONAIS;
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_WEBSITES;
-*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECO_COMERCIAIS;
+*									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECO_PROFISSIONAIS;
 *									   - criacao da categoria FORMULARIO_INPUT_CADASTRO_ENDERECO;
 *							09/11/2010 - criacao da categoria COMPONENTE_ROCHEDO;
 *							16/11/2010 - criacao da categoria AJUDA_FORMULARIO_CADASTRO_EMAIL;
@@ -865,7 +865,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_COMERCIAIS' AS nome, 'Formulários de manipulação de telefones comerciais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_PROFISSIONAIS' AS nome, 'Formulários de manipulação de telefones profissionais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -879,7 +879,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_COMERCIAIS' AS nome, 'Formulários de manipulação de e-mails comerciais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_PROFISSIONAIS' AS nome, 'Formulários de manipulação de e-mails profissionais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -893,7 +893,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_COMERCIAIS' AS nome, 'Formulários de manipulação de web sites comerciais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_PROFISSIONAIS' AS nome, 'Formulários de manipulação de web sites profissionais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -914,7 +914,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECOS_COMERCIAIS' AS nome, 'Formulários de manipulação de enderecos comerciais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECOS_PROFISSIONAIS' AS nome, 'Formulários de manipulação de enderecos profissionais de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

@@ -6,13 +6,13 @@
 * criacao: 20/10/2010
 * ultimas modificacoes:
 * 							22/10/2010 - remocao do decorator do formulario SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS;
-* 									   - criacao do formulario FORM_DIALOG_TELEFONES_COMERCIAIS;
+* 									   - criacao do formulario FORM_DIALOG_TELEFONES_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_FIALOG_TELEFONE;
-* 							03/11/2010 - criacao do formulario FORM_DIALOG_EMAILS_COMERCIAIS;
+* 							03/11/2010 - criacao do formulario FORM_DIALOG_EMAILS_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_DIALOG_EMAIL;
-* 									   - criacao do formulario FORM_DIALOG_WEBSITES_COMERCIAIS;
+* 									   - criacao do formulario FORM_DIALOG_WEBSITES_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_DIALOG_WEBSITE;
-*									   - criacao do formulario FORM_DIALOG_ENDERECO_COMERCIAIS;
+*									   - criacao do formulario FORM_DIALOG_ENDERECO_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_DIALOG_ENDERECO;
 *  
 */
@@ -95,61 +95,61 @@ INSERT INTO formulario (id_categoria, nome, descricao,
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
 		SELECT c.id AS id_categoria, 
-		'FORM_DIALOG_TELEFONES_COMERCIAIS' AS nome, 
-		'Dialog para visualizacao de telefones comerciais.' AS descricao, 
-        'FORM_TITLE_TELEFONES_COMERCIAIS' AS constante_textual_titulo, 
-        'CadastrarDadosUsuarioDadosProfissionaisTelefonesComerciais' AS form_name, 
+		'FORM_DIALOG_TELEFONES_PROFISSIONAIS' AS nome, 
+		'Dialog para visualizacao de telefones profissionais.' AS descricao, 
+        'FORM_TITLE_TELEFONES_PROFISSIONAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosProfissionaisTelefonesProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_COMERCIAIS';
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_PROFISSIONAIS';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
 		SELECT c.id AS id_categoria, 
-		'FORM_DIALOG_EMAILS_COMERCIAIS' AS nome, 
-		'Dialog para visualizacao de e-mails comerciais.' AS descricao, 
-        'FORM_TITLE_EMAILS_COMERCIAIS' AS constante_textual_titulo, 
-        'CadastrarDadosUsuarioDadosProfissionaisEmailsComerciais' AS form_name, 
+		'FORM_DIALOG_EMAILS_PROFISSIONAIS' AS nome, 
+		'Dialog para visualizacao de e-mails profissionais.' AS descricao, 
+        'FORM_TITLE_EMAILS_PROFISSIONAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosProfissionaisEmailsProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_COMERCIAIS';
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_PROFISSIONAIS';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
 		SELECT c.id AS id_categoria, 
-		'FORM_DIALOG_WEBSITES_COMERCIAIS' AS nome, 
-		'Dialog para visualizacao de websites comerciais.' AS descricao, 
-        'FORM_TITLE_WEBSITES_COMERCIAIS' AS constante_textual_titulo, 
-        'CadastrarDadosUsuarioDadosProfissionaisWebsitesComerciais' AS form_name, 
+		'FORM_DIALOG_WEBSITES_PROFISSIONAIS' AS nome, 
+		'Dialog para visualizacao de websites profissionais.' AS descricao, 
+        'FORM_TITLE_WEBSITES_PROFISSIONAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_COMERCIAIS';
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_PROFISSIONAIS';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
 		SELECT c.id AS id_categoria, 
-		'FORM_DIALOG_ENDERECOS_COMERCIAIS' AS nome, 
-		'Dialog para visualizacao de enderecos comerciais.' AS descricao, 
-        'FORM_TITLE_ENDERECOS_COMERCIAIS' AS constante_textual_titulo, 
-        'CadastrarDadosUsuarioDadosProfissionaisEnderecosComerciais' AS form_name, 
+		'FORM_DIALOG_ENDERECOS_PROFISSIONAIS' AS nome, 
+		'Dialog para visualizacao de enderecos profissionais.' AS descricao, 
+        'FORM_TITLE_ENDERECOS_PROFISSIONAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosProfissionaisEnderecosProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECOS_COMERCIAIS';
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECOS_PROFISSIONAIS';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
