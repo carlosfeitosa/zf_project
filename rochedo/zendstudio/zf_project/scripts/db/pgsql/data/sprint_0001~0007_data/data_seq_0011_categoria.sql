@@ -1132,7 +1132,7 @@ FROM tipo_categoria t
 WHERE t.nome = 'COMPONENTE';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
-SELECT id, 'COMPONENTE_AJAX_TERCEIROS' AS nome, 'Componentes ajax de terceiros utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT id, 'COMPONENTE_AJAXTERCEIROS' AS nome, 'Componentes ajax de terceiros utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria
 WHERE nome = 'COMPONENTE';
 

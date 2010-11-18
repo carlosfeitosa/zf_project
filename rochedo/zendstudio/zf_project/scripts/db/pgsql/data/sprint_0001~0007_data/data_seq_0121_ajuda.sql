@@ -11,35 +11,8 @@
 */
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_PASSAPORTE' AS nome, 'Texto de ajuda para o campo passaporte do cadastro de usuários validados.' AS descricao,
-       'FORM_FIELD_PASSAPORTE_AJUDA' AS constante_textual_ajuda,
-       'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
-
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_CNH' AS nome, 'Texto de ajuda para o campo CNH do cadastro de usuários validados.' AS descricao,
-       'FORM_FIELD_CNH_AJUDA' AS constante_textual_ajuda,
-       'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
-
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_CPF' AS nome, 'Texto de ajuda para o campo CPF do cadastro de usuários validados.' AS descricao,
-       'FORM_FIELD_CPF_AJUDA' AS constante_textual_ajuda,
-       'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
-
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_RG' AS nome, 'Texto de ajuda para o campo RG do cadastro de usuários validados.' AS descricao,
-       'FORM_FIELD_RG_AJUDA' AS constante_textual_ajuda,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_NUMERO_DOCUMENTO' AS nome, 'Texto de ajuda para o campo numeroDocumento do cadastro de documentos pessoais.' AS descricao,
+       'FORM_FIELD_NUMERO_DOCUMENTO_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
