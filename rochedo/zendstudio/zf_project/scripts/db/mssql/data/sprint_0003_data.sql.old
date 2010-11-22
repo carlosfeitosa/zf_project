@@ -1460,7 +1460,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FIELD_MAIOR_TITULACAO' AS nome, 'Elemento campo Maior Titulação, com filtro.' AS descricao,
+                              'FORM_FIELD_FILTERING_SELECT_MAIOR_TITULACAO' AS nome, 'Elemento campo Maior Titulação, com filtro.' AS descricao,
                               'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual_label,
                               'maiorTitulacao' AS element_name, NULL AS element_attribs,
                               '''maiorTitulacao''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo

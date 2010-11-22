@@ -17,7 +17,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_SENHA') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -34,7 +34,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_CARGA_HORARIA_SEMANAL') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_NUMBER_TEXT_BOX_CARGA_HORARIA_SEMANAL') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -51,7 +51,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FIELD_NOME_USUARIO') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_USUARIO') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -68,7 +68,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_LOGIN') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_LOGIN') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -85,7 +85,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_DATA_NASCIMENTO') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_DATE_TEXT_BOX_DATA_NASCIMENTO') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -102,7 +102,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_SENHA') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -119,7 +119,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_SENHA_CONFIRMACAO') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_CONFIRMACAO') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -136,7 +136,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FIELD_EMAIL_USUARIO') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)
@@ -153,7 +153,7 @@ SELECT (SELECT fe.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FIELD_EMAIL_USUARIO') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
         LEFT JOIN categoria c ON (fev.id_categoria = c.id)

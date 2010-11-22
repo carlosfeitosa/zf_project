@@ -102,7 +102,7 @@ AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_NOME_CURSO' AS nome, 'Texto de ajuda para o campo nome do curso.' AS descricao,
-       'FORM_FIELD_NOME_CURSO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_NOME_CURSO_HINT' AS constante_textual_hint,
+       'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_CURSO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_CURSO_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
