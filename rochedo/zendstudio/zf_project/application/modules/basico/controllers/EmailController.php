@@ -100,12 +100,14 @@ class Basico_EmailController extends Zend_Controller_Action
 			$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoNome->setValue($dadosPessoais->nome);
 			
+			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
+			
 			// carregando painel
 			$titlePane = "<div dojoType='dijit.TitlePane' open='true' title='Dados Básicos' style='width:500px;'>";
 			$titlePaneClose = "</div>";
 			
 			// carregando painel no form
-			$this->view->form = $titlePane . $formCadastrarUsuarioValidado . $titlePaneClose;
+			$this->view->form = $formCadastrarUsuarioValidado;
 			
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
