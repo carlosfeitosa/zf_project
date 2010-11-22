@@ -669,6 +669,10 @@ alter table dbo.formulario add
 	constraint ck_formulario_constante_textual_subtitulo check
 	(constante_textual_subtitulo is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_subtitulo) is not null));
 
+alter table dbo.formulario_elemento add
+	constraint ck_formulario_elemento_constante_textual_label check
+	((constante_textual_label is null) or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
+
 alter table dbo.formulario_formulario_elemento_formulario add
 	constraint ck_formulario_formulario_elemento_formulario_constante_textual_label check
 	(constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
