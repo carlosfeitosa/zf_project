@@ -30,6 +30,24 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_FIELD_HTML_LOGIN_DISPONIBILIDADE' AS nome, 'Elemento html para checar a disponibilidade do login a ser cadastrado.' AS descricao,
+                              'loginDisponivel' AS element_name, NULL AS element_attribs,
+                              '''loginDisponivel'', array(''value'' => "")' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
+
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -101,7 +119,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               'FORM_FIELD_RADIO_BUTTON_SEXO' AS nome, 'Elemento para seleção de gênero.' AS descricao,
                               'FORM_FIELD_SEXO' AS constante_textual_label,
                               'sexo' AS element_name, NULL AS element_attribs,
-                              '''sexo''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''sexo'', array(''separator'' => " ")' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
