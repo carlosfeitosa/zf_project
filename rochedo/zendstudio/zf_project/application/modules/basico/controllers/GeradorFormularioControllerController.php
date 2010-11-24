@@ -989,7 +989,6 @@ class Basico_GeradorFormularioControllerController
 
                 $linkAjuda = Basico_UtilControllerController::retornaStringEntreCaracter($linkAjuda, "'");
                 $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_UtilControllerController::retornaStringEntreCaracter($labelCampoRequerido, "'") . " . " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}') . {$linkAjuda});" . QUEBRA_DE_LINHA;
-                	
 			}
 
 			if (($formularioElementoObject->getAjudaObject()->id) and ($formularioElementoObject->getAjudaObject()->constanteTextualHint))
@@ -1016,29 +1015,30 @@ class Basico_GeradorFormularioControllerController
 			$tempReturn .= QUEBRA_DE_LINHA;
             $contador++;
         }
-        
+
         $tempReturn .= $identacao . $formElementsAddToFormComment;
-        
+
         if (!$subFormVariableInstance)
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
         else {
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA;
         	
-        	$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
         	$tempReturn =  str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
         }
-        
+
         // recuperando displays groups do formulario
-        $stringAddDisplayGroup = self::retornaDisplaysGroupsFormulario($nivelIdentacao, $objFormulario);
+        $stringAddDisplayGroup = self::retornaDisplaysGroupsFormulario($nivelIdentacao, $objFormulario, $subFormVariableInstance);
 
         // verificando se existem displays groups
         if ($stringAddDisplayGroup)
         	$tempReturn .= $stringAddDisplayGroup;
 
+		$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
+
         // retornando elementos do formulario
 		return $tempReturn;
     }
-    
+
     /**
      * Retorna string contendo a adicao do sub-formulario ao formulario pai
      * 
@@ -1052,11 +1052,11 @@ class Basico_GeradorFormularioControllerController
     {
     	// inicializando variaveis
     	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
-    	
+
     	// retornando adicao do sub-formulario ao formulario
     	return $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM . "({$subFormVariableInstance}, '{$subFormName}');" . QUEBRA_DE_LINHA;
     }
-    
+
     /**
      * Retorna string contendo o include de sub-formularios em formularios
      * 
@@ -1219,10 +1219,11 @@ class Basico_GeradorFormularioControllerController
      * 
      * @param Integer $nivelIdentacaoInicial
      * @param Basico_Model_Formulario $objFormulario
+     * @param String $subFormVariableInstance
      * 
      * @return String
      */
-    private function retornaDisplaysGroupsFormulario($nivelIdentacaoInicial, Basico_Model_Formulario $objFormulario)
+    private function retornaDisplaysGroupsFormulario($nivelIdentacaoInicial, Basico_Model_Formulario $objFormulario, $subFormVariableInstance)
     {
     	// inicializacao das variaveis
     	$nivelIdentacao = $nivelIdentacaoInicial;
@@ -1282,8 +1283,15 @@ class Basico_GeradorFormularioControllerController
 
 			// escrevendo display group
 			$tempReturn .= str_replace('@identacao', $identacao, FORM_GERADOR_ADDDISPLAYGROUP_COMMENT) . QUEBRA_DE_LINHA;
-			$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDDISPLAYGROUP . "(array({$stringElementos}), '{$nomeDisplayGroup}', array('legend' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objGrupoFormularioElemento->constanteTextualLabel}'), 'order' => {$arrayOrdemElementosDisplayGroup[0]}));" . QUEBRA_DE_LINHA;
-			$tempReturn .= $identacao . "\${$nomeDisplayGroup} = " . FORM_GERADOR_FORM_GETDISPLAYGROUP . "('{$nomeDisplayGroup}');" . QUEBRA_DE_LINHA;
+			if (!$subFormVariableInstance) {
+				$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDDISPLAYGROUP . "(array({$stringElementos}), '{$nomeDisplayGroup}', array('legend' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objGrupoFormularioElemento->constanteTextualLabel}'), 'order' => {$arrayOrdemElementosDisplayGroup[0]}));" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . "\${$nomeDisplayGroup} = " . FORM_GERADOR_FORM_GETDISPLAYGROUP . "('{$nomeDisplayGroup}');" . QUEBRA_DE_LINHA;
+			}
+			else {
+				$tempReturn .= $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDDISPLAYGROUP . "(array({$stringElementos}), '{$nomeDisplayGroup}', array('legend' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objGrupoFormularioElemento->constanteTextualLabel}'), 'order' => {$arrayOrdemElementosDisplayGroup[0]}));" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . "\${$nomeDisplayGroup} = " . FORM_GERADOR_FORM_SUB_FORM_GETDISPLAYGROUP . "('{$nomeDisplayGroup}');" . QUEBRA_DE_LINHA;
+				$tempReturn = str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
+			}
 			$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
 			// verificando se existe decorator setado para o displaygroup
 			if ($arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator)
