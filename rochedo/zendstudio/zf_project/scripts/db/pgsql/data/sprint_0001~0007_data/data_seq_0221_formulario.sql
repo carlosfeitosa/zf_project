@@ -83,6 +83,27 @@ SELECT c.id AS id_categoria,
    	   (SELECT f.id
         FROM formulario f
         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                       
+       'SUBFORM_DADOS_USUARIO_DADOS_BIOMETRICOS' AS nome,
+       'Formulário de submissão de dados biométricos.' AS descricao, 
+       'SUBFORM_TABTITLE_DADOS_BIOMETRICOS' AS constante_textual_titulo,
+       'CadastrarDadosUsuarioDadosBiometricos' AS form_name, 
+       'post' AS form_method, 
+       NULL AS form_action, 
+       NULL AS form_attribs,
+       4 AS ordem,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_BIOMETRICOS';
+
+INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, ordem, rowinfo)
+SELECT c.id AS id_categoria, 
+   	   (SELECT f.id
+        FROM formulario f
+        WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                       
        'SUBFORM_DADOS_USUARIO_PERFIL' AS nome,
        'Formulário de vinculacao de perfis de usuario.' AS descricao, 
        'SUBFORM_TABTITLE_PERFIL' AS constante_textual_titulo,
