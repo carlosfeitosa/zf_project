@@ -1085,6 +1085,40 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL'
+                              AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL_PERFIS_DISPONIVEIS') AS id_ajuda,
+                             (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ZF'
+                              AND cp.nome = 'ZF_MultiCheckbox') AS id_componente,
+                              'FORM_FIELD_MULTI_CHECK_BOX_PERFIS_DISPONIVEIS' AS nome, 'Elemento campo multi checkbox perfis disponiveis' AS descricao,
+                              'FORM_FIELD_PERFIS_DISPONIVEIS' AS constante_textual_label,
+                              'perfisDisponiveis' AS element_name, NULL AS element_attribs,
+                              '''perfisDisponiveis''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 

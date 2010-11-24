@@ -20,6 +20,7 @@
 *							23/11/2010 - criacao da categoria FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_ACADEMICOS;
 *										 criacao da categoria FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PROFISSIONAIS;
 *									     criacao da categoria FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_PERFIL;
+*							24/11/2010 - criacao da categoria AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL;
 * 
 */
 
@@ -998,6 +999,13 @@ AND c.nome = 'AJUDA_FORMULARIO_CADASTRO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS' AS nome, 'Ajuda para preenchimento de formulários de manipulação de dados cadastrais (dados profissionais).' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL' AS nome, 'Ajuda para preenchimento de formulários de manipulação de dados cadastrais (perfil).' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'

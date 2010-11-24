@@ -1881,8 +1881,31 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND fe.nome = 'FORM_FIELD_DIV_CLEAR_BOTH') AS id_formulario_elemento,
         false AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;        
-        
-        
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_PERFIL'
+        AND f.nome = 'SUBFORM_DADOS_USUARIO_PERFIL') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_MULTI_CHECK_BOX_PERFIS_DISPONIVEIS') AS id_formulario_elemento, 
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
