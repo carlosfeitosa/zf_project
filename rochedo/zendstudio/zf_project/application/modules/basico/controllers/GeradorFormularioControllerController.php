@@ -1030,7 +1030,7 @@ class Basico_GeradorFormularioControllerController
 
         // verificando se existem displays groups
         if ($stringAddDisplayGroup)
-        	$tempReturn .= $stringAddDisplayGroup . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA;
+        	$tempReturn .= $stringAddDisplayGroup . QUEBRA_DE_LINHA;
 
 		$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
 
