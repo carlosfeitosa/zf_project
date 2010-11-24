@@ -151,6 +151,27 @@ class Basico_LoginController extends Zend_Controller_Action
     }
     
     /**
+     * Checa se o login está disponivel;
+     * @return void
+     */
+    public function verificadisponibilidadeloginAction()
+    {
+    	//desabilitando layout e render
+    	$this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        
+        //checando a disponibilidade do login
+    	$loginDisponivel = Basico_DBCheckControllerController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('stringPesquisa'));
+        
+    	if (!$loginDisponivel) {	
+			echo "<span style='color: red; font-weight: bold;'>Login não está disponível.<br>Por favor, tente outro login,<br>ou aceite a sugestão abaixo.</span>";
+		}else{
+		    echo "<span style='color: green; font-weight: bold;'>Login disponível</span>";
+		}
+    		
+    }
+    
+    /**
 	 * Verifica a existência ou não do email a ser cadastrado no sistema e toma uma das seguintes ações: 
 	 * Cadastro ou re-envio de email ou mensagem alertando sobre email existente e já validado.
 	 * 

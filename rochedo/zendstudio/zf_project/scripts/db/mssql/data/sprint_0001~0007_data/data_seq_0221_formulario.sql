@@ -283,7 +283,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
        'CadastrarUsuarioValidado' AS form_name, 'post' AS form_method, 'cadastrarUsuarioValidado' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''CadastrarUsuarioValidado''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -297,7 +297,7 @@ SELECT c.id AS id_categoria,
        'Formulário de cadastro de documentos de identificação.' AS descricao, 
        'FORM_DOCUMENTOS_IDENTIFICACAO_TITULO' AS constante_textual_titulo,
        'DocumentosIdentificacao' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''DocumentosIdentificacao''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -311,7 +311,7 @@ SELECT c.id AS id_categoria,
        'Formulário de cadastro de documento.' AS descricao, 
        'FORM_DOCUMENTO_TITULO' AS constante_textual_titulo,
        'CadastrarDocumento' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''CadastrarDocumento''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

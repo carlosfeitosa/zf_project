@@ -92,3 +92,18 @@ function hideDialog(dialogId)
 	if (dlg != null)
 		dlg.hide();
 }
+
+function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa){
+	
+	dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
+	
+	dojo.xhrGet({
+    	url: "/rochedo_project/public/basico/login/verificadisponibilidadelogin/stringPesquisa/" + stringPesquisa,
+    	timeout: 5000,
+    	load: function(response, ioArgs) 
+    	{
+		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = response;
+    	}
+    });
+	
+}

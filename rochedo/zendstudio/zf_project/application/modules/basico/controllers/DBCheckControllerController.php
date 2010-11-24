@@ -339,4 +339,27 @@ class Basico_DBCheckControllerController
 		// retornando array
 		return $arrayIdsCategoriasNaoChecarRelacao;
 	}
+	
+	/**
+	 * Retorna uma string no formato Json com o resultado da consulta de disponibilidade.
+	 * @param String $nomeTabela
+	 * @param String $nomeCampo
+	 * @param String $stringPesquisa
+	 * @return Boolean
+	 */
+	public static function checaDisponibilidadeString($nomeTabela, $nomeCampo, $stringPesquisa = NULL)
+	{
+		
+		$queryDisponibilidade = "SELECT {$nomeCampo} FROM {$nomeTabela} WHERE {$nomeCampo} = '{$stringPesquisa}'";
+		
+		$arrayResultado = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryDisponibilidade);
+		
+		if (count($arrayResultado) > 0)
+			$disponivel = false;
+		else
+		    $disponivel = true;
+		
+		return $disponivel;
+		
+	}
 }
