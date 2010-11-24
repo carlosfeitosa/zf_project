@@ -1113,7 +1113,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_MULTI_CHECK_BOX_PERFIS_DISPONIVEIS' AS nome, 'Elemento campo multi checkbox perfis disponiveis' AS descricao,
                               'FORM_FIELD_PERFIS_DISPONIVEIS' AS constante_textual_label,
                               'perfisDisponiveis' AS element_name, NULL AS element_attribs,
-                              '''perfisDisponiveis''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''perfisDisponiveis''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
