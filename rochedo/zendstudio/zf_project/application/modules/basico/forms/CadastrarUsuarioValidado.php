@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 24/11/2010 15:07:01
+* em: 25/11/2010 10:09:42
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 24/11/2010 14:23:45
+* @version    1: 25/11/2010 10:09:21
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -67,10 +67,10 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 
         $elements[3] = $this->createElement('RadioButton', 'BasicoCadastrarUsuarioValidadoSexo', array('separator' => " "));
         $elements[3]->setOrder(3);
-        $elements[3]->setRequired(true);
+        $elements[3]->setRequired(false);
         $elements[3]->addDecorator('Label', array('escape' => false));
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1)</script></button>');
+        $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1)</script></button>');
 
         $elements[4] = $this->createElement('ValidationTextBox', 'BasicoCadastrarUsuarioValidadoLogin');
         $elements[4]->setOrder(4);
@@ -134,6 +134,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $dados_usuario_dados_usuario = $this->getDisplayGroup('dados_usuario_dados_usuario');
         $dados_usuario_dados_usuario->removeDecorator('DtDdWrapper');
         $dados_usuario_dados_usuario->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
+
         // Adicionando sub-formulario ao formulario pai.
     }
 }
