@@ -48,11 +48,6 @@ class Basico_Model_Telefone
      */
     protected $_categoria;
 
-    /**
-     * @var Integer
-     */
-    protected $_mascara;
-
 	/**
 	 * Constructor
 	 * 
@@ -285,39 +280,6 @@ class Basico_Model_Telefone
         return $object;
     }
     
-	/**
-	* Set mascara
-	* 
-	* @param int $mascara 
-	* @return Basico_Model_Mascara
-	*/
-	public function setMascara($mascara)
-	{
-		$this->_mascara = Basico_UtilControllerController::retornaValorTipado($mascara, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Get mascara
-	* 
-	* @return null|int
-	*/
-	public function getMascara()
-	{
-		return $this->_mascara;
-	}
- 
-    /**
-     * Get mascara object
-     * @return null|Mascara
-     */
-    public function getMascaraObject()
-    {
-        $model = new Basico_Model_Mascara();
-        $object = $model->find($this->_mascara);
-        return $object;
-    }
-
 	/**
 	* Set entry id
 	* 

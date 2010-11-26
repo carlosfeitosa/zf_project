@@ -994,6 +994,14 @@ class Basico_GeradorFormularioControllerController
 			if (($formularioElementoObject->getAjudaObject()->id) and ($formularioElementoObject->getAjudaObject()->constanteTextualHint))
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}'));" . QUEBRA_DE_LINHA;
 
+        	// verificando se o elemento possui mascara e se o formulario eh do tipo DOJO
+			if (($formularioElementoObject->mascara) and  ($formularioElementoObject->getComponenteObject()->getCategoriaObject()->nome === CATEGORIA_COMPONENTE_DOJO)){
+				// setando mascara
+				$tempReturn .= $identacao . FORM_GERADOR_FORM_TEMP_VARIABLE . " = " . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_GET_DIJITPARAM . "('" . FORM_GERADOR_FORM_ELEMENT_DIJITPARAM_CONSTRAINTS . "');" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . FORM_GERADOR_FORM_TEMP_VARIABLE . "['" . FORM_GERADOR_FORM_ELEMENT_DIJITPARAM_CONTRAINTS_PATTERN . "'] = {$formularioElementoObject->getMascaraObject()->mascara};" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SET_DIJITPARAM . "('" . FORM_GERADOR_FORM_ELEMENT_DIJITPARAM_CONSTRAINTS . "', " . FORM_GERADOR_FORM_TEMP_VARIABLE . ");" . QUEBRA_DE_LINHA;
+			}
+
         	// verificando se o elemento pode ser carregando com dados
             if ($formularioElementoObject->elementReloadable){
             	$tempReturn .= $identacao . FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE . QUEBRA_DE_LINHA;

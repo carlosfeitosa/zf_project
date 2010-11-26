@@ -126,6 +126,7 @@ create table formulario_elemento (
 	id_formulario_elemento_filter int null ,
     id_decorator int null ,
     id_componente int not null ,
+    id_mascara int null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
 	constante_textual_label character varying (200) null ,
@@ -440,7 +441,8 @@ alter table formulario_elemento
   add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_formulario_elemento_filter foreign key (id_formulario_elemento_filter) references formulario_elemento_filter (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_componente foreign key (id_componente) references componente (id) on update no action on delete no action;
+  add constraint fk_formulario_elemento_componente foreign key (id_componente) references componente (id) on update no action on delete no action,
+  add constraint fk_formulario_elemento_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
 
 alter table formulario_elemento_validator
   add constraint fk_formulario_elemento_validator_categoria foreign key	(id_categoria) references categoria (id) on update no action on delete no action;

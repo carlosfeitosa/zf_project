@@ -57,10 +57,10 @@ class Basico_Model_MascaraMapper
     public function save(Basico_Model_Mascara $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-				'mascara'   => $object->getMascara(),
-                'id_categoria'   => $object->getCategoria(),
+				'nome'         => $object->getNome(),
+				'descricao'    => $object->getDescricao(),
+				'mascara'      => $object->getMascara(),
+                'id_categoria' => $object->getCategoria(),
 
         );
 
@@ -151,66 +151,4 @@ class Basico_Model_MascaraMapper
 		}
 		return $entries;
 	}
-
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'mascara'),
-                   array('id' => 'table1.id',
-                        'nome' => 'table1.nome' ,
-                        'descricao' => 'table1.descricao' ,
-                        'mascara' => 'table1.mascara' ,
-                        'id_categoria' => 'table1.id_categoria)'))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_Mascara();
-            $entry->setId($row['id'])
-                ->setNome($row['nome'])
-                ->setDescricao($row['descricao'])
-                ->setMascara($row['mascara'])
-                ->setCategoria($row['id_categoria'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_Mascara();
-            $entry->setId($row->id)
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setMascara($row->mascara)
-                ->setCategoria($row->id_categoria)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }    
-
 }

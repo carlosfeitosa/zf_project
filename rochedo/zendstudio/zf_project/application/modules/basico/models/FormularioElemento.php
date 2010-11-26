@@ -71,6 +71,11 @@ class Basico_Model_FormularioElemento
      * @var Integer
      */
     protected $_componente;
+    
+    /**
+     * @var Integer
+     */
+    protected $_mascara;
 	
 	/**
 	 * @var String
@@ -302,7 +307,7 @@ class Basico_Model_FormularioElemento
 	* Set componente
 	* 
 	* @param int $componente 
-	* @return Basico_Model_Componente
+	* @return Basico_Model_FormularioElemento
 	*/
 	public function setComponente($componente)
 	{
@@ -328,6 +333,39 @@ class Basico_Model_FormularioElemento
     {
         $model = new Basico_Model_Componente();
         $object = $model->find($this->_componente);
+        return $object;
+    }
+
+	/**
+	* Set mascara
+	* 
+	* @param int $mascara
+	* @return Basico_Model_FormularioElemento
+	*/
+	public function setMascara($mascara)
+	{
+		$this->_mascara = Basico_UtilControllerController::retornaValorTipado($mascara, TIPO_INTEIRO,true);
+		return $this;
+	}
+
+	/**
+	* Get mascara
+	* 
+	* @return null|int
+	*/
+	public function getMascara()
+	{
+		return $this->_mascara;
+	}
+
+    /**
+     * Get mascara object
+     * @return null|componente
+     */
+    public function getMascaraObject()
+    {
+        $model = new Basico_Model_Mascara();
+        $object = $model->find($this->_mascara);
         return $object;
     }
 

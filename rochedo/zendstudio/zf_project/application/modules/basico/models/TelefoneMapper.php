@@ -64,7 +64,6 @@ class Basico_Model_TelefoneMapper
 				'telefone'   => $object->getTelefone(),
 				'ramal'   => $object->getRamal(),
                 'id_categoria'   => $object->getCategoria(),
-                'id_mascara'   => $object->getMascara(),
 
         );
 
@@ -108,8 +107,7 @@ class Basico_Model_TelefoneMapper
 				->setCodigoArea($row->codigo_area)
 				->setTelefone($row->telefone)
 				->setRamal($row->ramal)
-                ->setCategoria($row->id_categoria)
-                ->setMascara($row->id_mascara);
+                ->setCategoria($row->id_categoria);
             }
 
 	/**
@@ -133,7 +131,6 @@ class Basico_Model_TelefoneMapper
 				->setTelefone($row->telefone)
 				->setRamal($row->ramal)
                 ->setCategoria($row->id_categoria)
-                ->setMascara($row->id_mascara)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -161,84 +158,10 @@ class Basico_Model_TelefoneMapper
 				->setTelefone($row->telefone)
 				->setRamal($row->ramal)
                 ->setCategoria($row->id_categoria)
-                ->setMascara($row->id_mascara)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
 	}
-
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'telefone'),
-                   array('id' => 'table1.id',
-                        'id_generico_proprietario' => 'table1.id_generico_proprietario' ,
-                        'descricao' => 'table1.descricao' ,
-                        'codigo_pais' => 'table1.codigo_pais' ,
-                        'codigo_area' => 'table1.codigo_area' ,
-                        'telefone' => 'table1.telefone' ,
-                        'ramal' => 'table1.ramal' ,
-                        'id_categoria' => 'table1.id_categoria)',
-                        'id_mascara' => 'table1.id_mascara)'))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_Telefone();
-            $entry->setId($row['id'])
-                ->setIdGenericoProprietario($row['id_generico_proprietario'])
-                ->setDescricao($row['descricao'])
-                ->setCodigoPais($row['codigo_pais'])
-                ->setCodigoArea($row['codigo_area'])
-                ->setTelefone($row['telefone'])
-                ->setRamal($row['ramal'])
-                ->setCategoria($row['id_categoria'])
-                ->setMascara($row['id_mascara'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_Telefone();
-            $entry->setId($row->id)
-				->setIdGenericoProprietario($row->id_generico_proprietario)
-				->setDescricao($row->descricao)
-				->setCodigoPais($row->codigo_pais)
-				->setCodigoArea($row->codigo_area)
-				->setTelefone($row->telefone)
-				->setRamal($row->ramal)
-                ->setCategoria($row->id_categoria)
-                ->setMascara($row->id_mascara)
-                ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }    
 
 }

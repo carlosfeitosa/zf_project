@@ -5,6 +5,7 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
+* 										25/11/2010 - criacao do tipo MASCARA
 * 
 */
 
@@ -31,6 +32,9 @@ VALUES ('AJUDA', 'Ajuda do sistema', 'SYSTEM_STARTUP');
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('COMPONENTE', 'Componentes do sistema', 'SYSTEM_STARTUP');
+
+INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+VALUES ('MASCARA', 'Mascaras do sistema', 'SYSTEM_STARTUP');
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('CVC', 'Control Version Class (classe de controle de versão).', 'SYSTEM_STARTUP');

@@ -69,6 +69,7 @@ class Basico_Model_FormularioElementoMapper
                 'id_formulario_elemento_filter' => $object->getFormularioElementoFilter(),
                 'id_decorator'                  => $object->getDecorator(),
         		'id_componente'					=> $object->getComponente(),
+        		'id_mascara'					=> $object->getMascara(),
                 'rowinfo'   => $object->getRowinfo(),
 
         );
@@ -119,6 +120,7 @@ class Basico_Model_FormularioElementoMapper
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
+				->setMascara($row->id_mascara)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -148,6 +150,7 @@ class Basico_Model_FormularioElementoMapper
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
+				->setMascara($row->id_mascara)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -181,88 +184,11 @@ class Basico_Model_FormularioElementoMapper
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
+				->setMascara($row->id_mascara)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
 	}
-	
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1'               => 'formulario_elemento'),
-                   array('id'                   => 'table1.id',
-                        'nome'                  => 'table1.nome' ,
-                        'descricao'             => 'table1.descricao' ,
-                        'constanteTextualLabel' => 'table1.constante_textual_label' ,
-                        'elementName'           => 'table1.element_name' ,
-                        'elementAttribs'        => 'table1.element_attribs' ,
-                        'element'               => 'table1.element' ,
-                        'ajuda'                 => 'table1.id_ajuda' ,
-                        'categoria'             => 'table1.id_categoria' ,
-                        'decorator'             => 'table1.id_decorator' ,
-                        'rowinfo'               => 'table1.rowinfo' ))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_FormularioElemento();
-            $entry->setId($row['id'])
-                ->setNome($row['nome'])
-                ->setDescricao($row['descricao'])
-                ->setConstanteTextualLabel($row['constante_textual_label'])
-                ->setElementName($row['element_name'])
-                ->setElementAttribs($row['element_attribs'])
-                ->setElement($row['element'])
-                ->setAjuda($row['id_ajuda'])
-                ->setCategoria($row['id_categoria'])
-                ->setDecorator($row['id_decorator'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_FormularioElemento();
-            $entry->setId($row->id)
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setConstanteTextualLabel($row->constanteTextualLabel)
-				->setElementName($row->elementName)
-				->setElementAttribs($row->elementAttribs)
-				->setElement($row->element)
-				->setAjuda($row->id_ajuda)
-				->setCategoria($row->id_categoria)
-				->setDecorator($row->id_decorator)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    } 
-
 }

@@ -71,15 +71,4 @@ class Basico_GeradorControllerController
 		// retorna o resultado do metodo "gerar" da classe "Basico_GeradorFormularioControllerController"
 		return Basico_GeradorFormularioControllerController::gerar($objFormulario, $excludeModulesNames);
 	}
-	
-	/**
-     * Get geradorFormulario object
-     * 
-     * @return null|GeradorFormulario
-     */
-    public function getGeradorFormularioObject()
-    {
-    	// retorna um novo modelo gerador formulario
-        return new Basico_Model_GeradorFormulario();
-    }
 }
