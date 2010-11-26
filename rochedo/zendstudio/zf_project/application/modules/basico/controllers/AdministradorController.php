@@ -43,7 +43,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	$tituloView = $this->view->tradutor(VIEW_ADMIN_INDEX_TITULO);
         
     	if (Basico_UtilControllerController::ambienteDesenvolvimento()) 
-    	    $subtituloView = "<a onClick='loading()' href='/rochedo_project/public/basico/administrador/resetadb'>" . $this->view->tradutor(VIEW_ADMIN_BD_RESET_BUTTON_LABEL) . "</a>";
+    	    $subtituloView = "<a onClick='loading()' href='" . $this->view->url(array('module' => 'basico', 'controller' => 'administrador', 'action' => 'resetadb')) . "'>" . $this->view->tradutor(VIEW_ADMIN_BD_RESET_BUTTON_LABEL) . "</a>";
     	else
     	    $subtituloView = NULL;
     	// carregando array do cabecalho da view
