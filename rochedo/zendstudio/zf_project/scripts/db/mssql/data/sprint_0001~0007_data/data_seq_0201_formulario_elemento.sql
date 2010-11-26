@@ -131,7 +131,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_NUMBER_TEXT_BOX_ALTURA' AS nome, 'Elemento campo altura.' AS descricao,
                               'FORM_FIELD_ALTURA' AS constante_textual_label,
                               'altura' AS element_name, NULL AS element_attribs,
-                              '''altura''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''altura'', array(''style'' => ''width: 40px;'', ''places'' => 2)' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -172,7 +172,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_NUMBER_TEXT_BOX_PESO' AS nome, 'Elemento campo peso.' AS descricao,
                               'FORM_FIELD_PESO' AS constante_textual_label,
                               'peso' AS element_name, NULL AS element_attribs,
-                              '''peso''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''peso'', array(''style'' => ''width: 40px;'', ''places'' => 3)' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -485,33 +485,6 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
-
-INSERT INTO formulario_elemento (id_categoria,  
-								 id_decorator, id_componente, nome, descricao, 
-								 element_name, element_attribs, element, element_reloadable, 
-								 rowinfo)
-
-SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_DIV_CLEAR_BOTH_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH') AS id_decorator,
-							 (SELECT cp.id
-                              FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'COMPONENTE'
-                              AND c.nome = 'COMPONENTE_ZF'
-                              AND cp.nome = 'ZF_Hidden') AS id_componente,
-                              'FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 'Elemento Hidden para fechamento de formatacao div float.' AS descricao,
-                              'dummyHidden' AS element_name, NULL AS element_attribs,
-                              '''dummyHidden''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
