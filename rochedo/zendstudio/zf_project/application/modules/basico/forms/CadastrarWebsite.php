@@ -37,7 +37,7 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
         // Criando array de elementos.
         $elements = array();
 
-        $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarWebsiteWebSitelTipo');
+        $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarWebsitewebSiteTipo');
         $elements[1]->setOrder(1);
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
@@ -45,7 +45,7 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_WEBSITE_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarWebsite\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_WEBSITE_TIPO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[1]->setValue($options->webSitelTipo);
+            $elements[1]->setValue($options->webSiteTipo);
 
         $elements[2] = $this->createElement('ValidationTextBox', 'BasicoCadastrarWebsiteWebSitelEndereco');
         $elements[2]->setOrder(2);

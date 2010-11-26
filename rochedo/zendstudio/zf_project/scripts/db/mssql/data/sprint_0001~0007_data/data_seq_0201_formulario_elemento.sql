@@ -1690,8 +1690,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
                               'FORM_FIELD_FILTERING_SELECT_WEBSITE_TIPO' AS nome, 'Elemento campo combobox tipo do web site' AS descricao,
                               'FORM_FIELD_WEBSITE_TIPO' AS constante_textual_label,
-                              'webSitelTipo' AS element_name, NULL AS element_attribs,
-                              '''webSitelTipo''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'webSiteTipo' AS element_name, NULL AS element_attribs,
+                              '''webSiteTipo''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
