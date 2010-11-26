@@ -231,7 +231,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorToken->salvarToken($novoToken);
 
 			             // setando e salvando mensagem
-			             $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
+			             $link = Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
 			             $novaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);       
 			             $novaMensagem->destinatarios    = array($email);
 			             $novaMensagem->datahoraMensagem = Basico_UtilControllerController::retornaDateTimeAtual();
@@ -380,7 +380,8 @@ class Basico_LoginController extends Zend_Controller_Action
 
             // setando e salvando a mensagem
             $nomeDestinatario = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
-            $link = LINK_VALIDACAO_USUARIO . $novoToken->token;
+            
+            $link = Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
             $objNovaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $objNovaMensagem->destinatarios       = array($novoEmail->email);
             $objNovaMensagem->datahoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();

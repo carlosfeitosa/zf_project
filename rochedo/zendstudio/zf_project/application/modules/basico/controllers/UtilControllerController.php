@@ -874,6 +874,15 @@ class Basico_UtilControllerController
     	// retornando o nome do modulo
     	return substr($nomeClasse, 0, strpos($nomeClasse, '_'));
     }
+    
+    /**
+     * Retorna o host do servidor.
+     * @return String
+     */
+    public static function retornaServerHost()
+    {
+    	return "http://" . $_SERVER['HTTP_HOST'];
+    }
 
     /**
      * Retorna o base url da aplicacao

@@ -12,6 +12,7 @@ require_once("lang_consts.php");
 require_once("error_consts.php");
 require_once("log_consts.php");
 require_once("dictionary_consts.php");
+require_once("../application/modules/basico/controllers/UtilControllerController.php");
 
 /**
  * APLICAÇÃO
@@ -322,7 +323,7 @@ define("EMAIL_CHARSET", "utf-8");
 /**
  * LINKS DO SISTEMA 
  */
-define("LINK_VALIDACAO_USUARIO", "http://localhost/rochedo_project/public/basico/email/validarEmail/t/");
+define("LINK_VALIDACAO_USUARIO", "/basico/email/validarEmail/t/");
 define("LINK_DIALOG_FORM", "http://localhost/rochedo_project/public/basico/token/retornaDialogContent/t/");
 
 /*
