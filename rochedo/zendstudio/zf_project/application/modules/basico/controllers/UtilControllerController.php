@@ -874,4 +874,14 @@ class Basico_UtilControllerController
     	// retornando o nome do modulo
     	return substr($nomeClasse, 0, strpos($nomeClasse, '_'));
     }
+
+    /**
+     * Retorna o base url da aplicacao
+     * 
+     * @return String
+     */
+    public static function retornaBaseUrl()
+    {
+    	return Zend_Controller_Front::getInstance()->getBaseUrl();
+    }
 }

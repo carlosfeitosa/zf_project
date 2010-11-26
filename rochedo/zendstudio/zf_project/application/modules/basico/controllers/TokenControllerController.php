@@ -93,7 +93,7 @@ class Basico_TokenControllerController
 	    }
 
 	    // montando url
-	    $baseUrl = str_replace("/index2.php", '', Zend_Controller_Front::getInstance()->getBaseUrl());
+	    $baseUrl = str_replace("/index2.php", '', Basico_UtilControllerController::retornaBaseUrl());
 	    
 	    // retornando url codificada
         return $baseUrl . LINK_CONTROLADOR_TOKENS . $token;

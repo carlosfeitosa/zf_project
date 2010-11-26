@@ -29,7 +29,6 @@ define("ID_GENERICO", "id_generico");
 define("TIPO_INTEIRO", 11);
 define("TIPO_STRING", 12);
 define("TIPO_BOOLEAN", 13);
-define("APPLICATION_BASE_URL", "/rochedo_project/public");
 
 
 // USUARIO

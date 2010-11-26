@@ -917,7 +917,7 @@ class Basico_GeradorFormularioControllerController
 						$publicFormsSubPath = '/forms/';
 
 					// substituindo tags
-					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_URL, APPLICATION_BASE_URL . '/public_forms/' . strtolower($objModulo->nome) . $publicFormsSubPath . $formularioElementoFormularioVinculado->formName . '." . ' . "Basico_PessoaControllerController::retornaLinguaUsuario() . " . '".html', $formularioElementoObject->elementAttribs);
+					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_URL, Basico_UtilControllerController::retornaBaseUrl() . '/public_forms/' . strtolower($objModulo->nome) . $publicFormsSubPath . $formularioElementoFormularioVinculado->formName . '." . ' . "Basico_PessoaControllerController::retornaLinguaUsuario() . " . '".html', $formularioElementoObject->elementAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $tempFormAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_TITLE_DIALOG, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoConstanteTextualTitulo}')", $tempFormAttribs);
 				}
