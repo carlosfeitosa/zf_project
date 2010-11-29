@@ -1859,8 +1859,8 @@ SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação huma
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_captcha') AS id_componente,
-       'FORM_FIELD_CAPTCHA_6' AS constante_textual_label, 'captcha' AS element_name, 
-       '''captcha'', 
+       'FORM_FIELD_CAPTCHA_6' AS constante_textual_label, 'verificador6digitos' AS element_name, 
+       '''verificador6digitos'', 
                       array(''required''=>true,
                             ''captcha''=>array(''captcha''=>''Image'',
                                              ''imgDir'' => CAPTCHA_IMAGE_DIR,
