@@ -55,6 +55,7 @@ create table dados_pessoais (
 	id serial not null ,
 	id_pessoa integer not null ,
 	nome character varying (100) not null ,
+	data_nascimento timestamp with time zone ,
 	rowinfo character varying (2000) not null 
 )
 with (
