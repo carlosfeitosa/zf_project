@@ -396,3 +396,228 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+
+
+
+/**
+* INICIO
+*  
+* ABA CADASTRO DE USUARIO - DADOS PESSOAIS
+*/
+
+-- ajuda - formulario - cadastro - usuario
+-- dados pessoais - pais nascimento - combobox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_PAIS_NASCIMENTO_COMBO_BOX' AS nome, 'Texto de ajuda para o campo combobox país de nascimento.' AS descricao,
+       'FORM_FIELD_PAIS_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS';
+---------
+
+-- ajuda - formulario - cadastro - usuario
+-- dados pessoais - uf nascimento - combobox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_UF_NASCIMENTO_COMBO_BOX' AS nome, 'Texto de ajuda para o campo combobox UF de nascimento.' AS descricao,
+       'FORM_FIELD_UF_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS';
+----------
+
+-- ajuda - formulario - cadastro - usuario
+-- dados pessoais uf nascimento - texbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_UF_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox UF de nascimento.' AS descricao,
+       'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS';
+----------
+
+-- ajuda - formulario - cadastro - usuario
+-- dados pessoais - municipio nascimento - combobox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_MUNICIPIO_NASCIMENTO_COMBO_BOX' AS nome, 'Texto de ajuda para o campo combobox município de nascimento.' AS descricao,
+       'FORM_FIELD_MUNICIPIO_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS';
+-----------------
+
+-- ajuda - formulario - cadastro - usuario
+--- dados pessoais - municipio nascimento - textbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_MUNICIPIO_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox município de nascimento.' AS descricao,
+       'FORM_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS';
+-----------------
+
+-- ajuda - formulario - cadastro - usuario
+-- dados pessoais - nome pai - textbox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_NOME_PAI_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox nome do pai.' AS descricao,
+       'FORM_FIELD_NOME_PAI_TEXT_BOX_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS';
+-----------------
+
+-- ajuda - formulario - cadastro - usuario
+-- dados pessoais - nome mae - texbox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_NOME_MAE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox nome da mãe.' AS descricao,
+       'FORM_FIELD_NOME_MAE_TEXT_BOX_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS';
+------------------
+/** 
+* FIM - ABA CADASTRO DE USUARIO - DADOS PESSOAIS
+*/
+
+
+/**
+* INICIO
+* 
+* CADASTRO DE ENDERECO
+*/
+-- ajuda - formulario - cadastro
+-- endereco - tipo - combobox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_TIPO_COMBO_BOX' AS nome, 'Texto de ajuda para o campo combobox tipo de endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_TIPO_COMBO_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - pais - combobox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_PAIS_COMBO_BOX' AS nome, 'Texto de ajuda para o campo  combobox país do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_PAIS_COMBO_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - uf - combobox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_UF_COMBO_BOX' AS nome, 'Texto de ajuda para o campo combobox uf do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_UF_COMBO_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - uf - texbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_UF_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox uf do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - municipio - combobox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_MUNICIPIO_COMBO_BOX' AS nome, 'Texto de ajuda para o campo município do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_MUNICIPIO_COMBO_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - municipio - textbox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_MUNICIPIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox município do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - cep - textbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_CEP_TEXT_BOX' AS nome, 'Texto de ajuda para o campo cep do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_CEP_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - logradouro - textbox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_LOGRADOURO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo logradouro do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - numero - textbox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_NUMERO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo número do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- endereco - complemento - textbox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_COMPLEMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo complemento do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_ENDERECO';
+-----------------
+
+/**
+* FIM - CADASTRO DE ENDERECO
+*/
