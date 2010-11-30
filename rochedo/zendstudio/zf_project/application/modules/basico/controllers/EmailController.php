@@ -96,10 +96,13 @@ class Basico_EmailController extends Zend_Controller_Action
 		    // carregando o cabecalho na view
 			$this->view->cabecalho = $cabecalho;
 
+			// formando a url do metodo que verifica disponibilidade de login via json
+			$urlMetodo = Basico_UtilControllerController::retornaStringEntreCaracter(Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+
 			// instanciando o formulario de cadastrar usuario validado
 			$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoNome->setValue($dadosPessoais->nome);
-			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value)"));
+			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})"));
 			
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
 			

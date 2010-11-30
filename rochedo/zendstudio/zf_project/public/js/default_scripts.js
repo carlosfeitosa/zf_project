@@ -93,12 +93,12 @@ function hideDialog(dialogId)
 		dlg.hide();
 }
 
-function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa){
+function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetodo){
 	
 	dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
 	
 	dojo.xhrGet({
-    	url: "/rochedo_project/public/basico/login/verificadisponibilidadelogin/stringPesquisa/" + stringPesquisa,
+    	url: urlMetodo + stringPesquisa,
     	timeout: 5000,
     	load: function(response, ioArgs) 
     	{
