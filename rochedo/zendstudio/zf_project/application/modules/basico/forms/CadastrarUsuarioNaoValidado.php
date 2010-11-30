@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 29/11/2010 16:50:28
+* em: 30/11/2010 00:43:24
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 29/11/2010 16:50:07
+* @version    1: 30/11/2010 00:43:01
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -64,23 +64,24 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         if ($options!=null)
             $elements[2]->setValue($options->email);
 
-        if (!Basico_UtilControllerController::ambienteDesenvolvimento()){
+        //if (!Basico_UtilControllerController::ambienteDesenvolvimento()){
             $elements[3] = $this->createElement('captcha', 'BasicoCadastrarUsuarioNaoValidadoVerificador6digitos', 
                       array('required'=>true,
                             'captcha'=>array('captcha'=>'Image',
-                                             'imgDir' => CAPTCHA_IMAGE_DIR,
-                                             'imgUrl' => CAPTCHA_IMAGE_URL,
+                                             'imgDir' => PUBLIC_PATH . CAPTCHA_IMAGE_DIR,
+                                             'imgUrl' => Basico_UtilControllerController::retornaBaseUrl() . CAPTCHA_IMAGE_URL,
                                              'wordLen'=> 6,
                                              'width'  => 250,
                                              'height' => 80,
-                                             'font'   => CAPTCHA_FONT_PATH,
+                                             'font'   => PUBLIC_PATH . CAPTCHA_FONT_PATH,
                                              'fontSize' => 50,
                                              'expiration' => 300,
                                              'gcFreq' => 100),));
             $elements[3]->setOrder(3);
             $elements[3]->setRequired(true);
+            $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'style' => 'width: 300px;',));
             $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CAPTCHA_6') . '');
-        }
+        //}
 
         $elements[4] = $this->createElement('submitButton', 'BasicoCadastrarUsuarioNaoValidadoEnviar');
         $elements[4]->setOrder(4);
@@ -91,6 +92,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[5] = $this->createElement('hash', 'BasicoCadastrarUsuarioNaoValidadoCsrf', array('ignore' => true, 'salt' => 'unique',));
         $elements[5]->setOrder(5);
         $elements[5]->setRequired(true);
+        $elements[5]->removeDecorator('Label');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

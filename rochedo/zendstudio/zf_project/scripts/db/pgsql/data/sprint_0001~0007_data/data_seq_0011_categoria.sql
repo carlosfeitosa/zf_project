@@ -1164,6 +1164,11 @@ FROM tipo_categoria
 WHERE nome = 'FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_DIV_WIDTH' AS nome, 'Decorator para clear both.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'SISTEMA_MODULO' AS nome, 'Modulos do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'SISTEMA';

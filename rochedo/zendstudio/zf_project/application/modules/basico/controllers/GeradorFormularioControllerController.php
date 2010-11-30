@@ -963,10 +963,15 @@ class Basico_GeradorFormularioControllerController
 				// setando decorator para o elemento a partir de formularioFormularioElemento
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$decoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
 
-			// verificando se elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO ou o elemento eh da categoria FORMULARIO_ELEMENTO_BUTTON
+			// verificando se o elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO ou o elemento eh da categoria FORMULARIO_ELEMENTO_BUTTON
             if (($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) or ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON)) {
             	// removendo decorator DtDdWrapper
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
+            }
+            // verificanso se o elemento eh da categoria FORMULARIO_ELEMENTO_HASH
+            else if ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_HASH) {
+            	// removendo decorator label
+            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('Label');" . QUEBRA_DE_LINHA;
             }
 
         	// adicionando elementos label e ajuda

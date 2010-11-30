@@ -6,6 +6,7 @@
 * criacao: 20/10/2010
 * ultimas modificacoes:
 * 							22/10/2010 - criacao do decorator FORMULARIO_SUB_FORMULARIO_CONTENT_PANE1_DECORATOR;
+* 							30/11/2010 - criacao do decorator DECORATOR_FORM_FIELD_DIV_WIDTH_300PX;
 *  
 */
 
@@ -156,3 +157,11 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_CLEAR_BOTH_DECORATOR';
+
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_WIDTH_300PX' AS nome, 'Decorator para posicionar o elemento dentro de um div com 300px de largura.' AS descricao,
+       'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''style'' => ''width: 300px;'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DIV_WIDTH';

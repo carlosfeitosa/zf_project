@@ -1849,9 +1849,16 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_decorator, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação humana de 6 caracteres (anti-robô).' AS descricao,
+	   (SELECT d.id
+	    FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DIV_WIDTH'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_300PX') AS id_decorator,
 	   (SELECT cp.id
         FROM componente cp
         LEFT JOIN categoria c ON (cp.id_categoria = c.id)
@@ -1863,12 +1870,12 @@ SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação huma
        '''verificador6digitos'', 
                       array(''required''=>true,
                             ''captcha''=>array(''captcha''=>''Image'',
-                                             ''imgDir'' => CAPTCHA_IMAGE_DIR,
-                                             ''imgUrl'' => CAPTCHA_IMAGE_URL,
+                                             ''imgDir'' => PUBLIC_PATH . CAPTCHA_IMAGE_DIR,
+                                             ''imgUrl'' => Basico_UtilControllerController::retornaBaseUrl() . CAPTCHA_IMAGE_URL,
                                              ''wordLen''=> 6,
                                              ''width''  => 250,
                                              ''height'' => 80,
-                                             ''font''   => CAPTCHA_FONT_PATH,
+                                             ''font''   => PUBLIC_PATH . CAPTCHA_FONT_PATH,
                                              ''fontSize'' => 50,
                                              ''expiration'' => 300,
                                              ''gcFreq'' => 100),)' AS element, 'SYSTEM_STARTUP' AS rowinfo

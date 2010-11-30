@@ -62,9 +62,9 @@ define("SMTP_PASSWORD", "@nao#rochedo#responda@");
 /*
  * CAPTCHA IMAGES/FONTS FOLDERS
  */
-define("CAPTCHA_IMAGE_DIR","../public/images/captcha/");
-define("CAPTCHA_IMAGE_URL", "../../../public/images/captcha/");
-define("CAPTCHA_FONT_PATH", "../public/fonts/typewcond_bold.otf");
+define("CAPTCHA_IMAGE_DIR", "/images/captcha/");
+define("CAPTCHA_IMAGE_URL", "/images/captcha/");
+define("CAPTCHA_FONT_PATH", "/fonts/typewcond_bold.otf");
 
 /*
  * DOJO DIRECTORIES
