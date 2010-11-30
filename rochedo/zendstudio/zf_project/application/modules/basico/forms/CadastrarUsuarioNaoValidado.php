@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 30/11/2010 00:43:24
+* em: 30/11/2010 00:58:13
 *
 * LICENÇA DE USO
 *
@@ -64,7 +64,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         if ($options!=null)
             $elements[2]->setValue($options->email);
 
-        //if (!Basico_UtilControllerController::ambienteDesenvolvimento()){
+        if (!Basico_UtilControllerController::ambienteDesenvolvimento()){
             $elements[3] = $this->createElement('captcha', 'BasicoCadastrarUsuarioNaoValidadoVerificador6digitos', 
                       array('required'=>true,
                             'captcha'=>array('captcha'=>'Image',
@@ -81,7 +81,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
             $elements[3]->setRequired(true);
             $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'style' => 'width: 300px;',));
             $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CAPTCHA_6') . '');
-        //}
+        }
 
         $elements[4] = $this->createElement('submitButton', 'BasicoCadastrarUsuarioNaoValidadoEnviar');
         $elements[4]->setOrder(4);
