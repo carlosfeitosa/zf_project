@@ -1825,7 +1825,7 @@ DIV.dijitTabDisabled, .dj_ie DIV.dijitTabDisabled {
 .rochedo .dijitTabContainerBottom-dijitContentPane,
 .rochedo .dijitAccordionContainer-dijitContentPane {
     background-color: #fff;
-    padding: 5px;
+    padding: 10px;
 }
 .rochedo .dijitSplitContainer-dijitContentPane,
 .rochedo .dijitBorderContainer-dijitContentPane {
