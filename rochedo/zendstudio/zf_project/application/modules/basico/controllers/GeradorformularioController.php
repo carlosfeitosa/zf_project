@@ -165,7 +165,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         $modelFormulario = new Basico_Model_Formulario();
         
         // recuperando array de objetos contendo todos os formularios
-        $arrayFormulariosObjects = $modelFormulario->fetchList(null, 'nome');
+        $arrayFormulariosObjects = $modelFormulario->fetchList(null, 'form_name');
         
         // adicionando elemento vazio, para forcar selecao
         $arrayNomeFormularios[null] = '';

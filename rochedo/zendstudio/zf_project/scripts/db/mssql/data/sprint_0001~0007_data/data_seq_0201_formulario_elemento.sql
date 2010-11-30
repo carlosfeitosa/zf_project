@@ -1865,7 +1865,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_decorator, id_componente, constante_textual_label,
-                                 element_name, element, rowinfo)
+                                 element_name, element, element_attribs, rowinfo)
 SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação humana de 6 caracteres (anti-robô).' AS descricao,
 	   (SELECT d.id
 	    FROM decorator d
@@ -1893,7 +1893,8 @@ SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação huma
                                              ''font''   => PUBLIC_PATH . CAPTCHA_FONT_PATH,
                                              ''fontSize'' => 50,
                                              ''expiration'' => 300,
-                                             ''gcFreq'' => 100),)' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                                             ''gcFreq'' => 100),)' AS element, 
+	   '''class'' => ''dijitTextBox'', ''style'' => ''margin-top: 10px; margin-bottom: 10px;''' AS element_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

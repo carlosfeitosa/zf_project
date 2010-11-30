@@ -42,8 +42,7 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
                      ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
                      ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);    
-        $this->dojo()->requireModule('dijit.Dialog');
-        
+
         echo $this->dojo();
     ?>
     <?php echo $this->headScript()?>
