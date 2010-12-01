@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 24/11/2010 14:51:32
+* em: 01/12/2010 15:05:24
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 24/11/2010 14:23:45
+* @version    1: 30/11/2010 17:03:17
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional extends Zend_Dojo_Form
 {
@@ -212,11 +212,6 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[20]->removeDecorator('DtDdWrapper');
         $elements[20]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_RESET') . '');
 
-        $elements[21] = $this->createElement('hidden', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDummyHidden');
-        $elements[21]->setOrder(21);
-        $elements[21]->setRequired(false);
-        $elements[21]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'clear-both',));
-
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
 
@@ -225,6 +220,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $dados_usuario_dados_profissionais_vinculo_profissional_informacoes_contato = $this->getDisplayGroup('dados_usuario_dados_profissionais_vinculo_profissional_informacoes_contato');
         $dados_usuario_dados_profissionais_vinculo_profissional_informacoes_contato->removeDecorator('DtDdWrapper');
         $dados_usuario_dados_profissionais_vinculo_profissional_informacoes_contato->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+
         // Adicionando sub-formulario ao formulario pai.
     }
 }

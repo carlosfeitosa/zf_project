@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/11/2010 11:33:47
+* em: 01/12/2010 15:07:00
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 18/11/2010 11:30:01
+* @version    1: 30/11/2010 17:03:17
 */
 class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 {
@@ -90,13 +90,9 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
         $elements[6]->removeDecorator('DtDdWrapper');
         $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_RESET') . '');
 
-        $elements[7] = $this->createElement('hidden', 'BasicoCadastrarEmailDummyHidden');
-        $elements[7]->setOrder(7);
-        $elements[7]->setRequired(false);
-        $elements[7]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'clear-both',));
-
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
+        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

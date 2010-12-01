@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/11/2010 12:04:07
+* em: 01/12/2010 15:06:31
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 18/11/2010 12:03:51
+* @version    1: 30/11/2010 17:03:17
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisEmailsProfissionais extends Zend_Dojo_Form
 {
@@ -56,13 +56,9 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisEmailsProfissionais ext
         $elements[4]->removeDecorator('DtDdWrapper');
         $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_CLOSE_DIALOG') . '');
 
-        $elements[5] = $this->createElement('hidden', 'BasicoCadastrarDadosUsuarioDadosProfissionaisEmailsProfissionaisDummyHidden');
-        $elements[5]->setOrder(5);
-        $elements[5]->setRequired(false);
-        $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'clear-both',));
-
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
+        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>
