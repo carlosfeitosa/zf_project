@@ -91,6 +91,9 @@ div#content
 
 div#footer
 {
+	margin-top: 10px;
+	width: 100%;
+	float: left;
 	height: 18px;
 	border-top: solid;
 	border-width: thin;
