@@ -1737,7 +1737,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - pais - combobox - hints
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_COMBO_BOX_ENDERECO_PAIS_HINT' AS constante_textual, 'Selecione o país do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_COMBO_BOX_HINT' AS constante_textual, 'Selecione o país do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1957,7 +1957,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - complemento - textbox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TEXT_BOX_ENDERECO_COMPLEMENTO_HINT' AS constante_textual, 'Digite aqui o complemento.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_HINT' AS constante_textual, 'Digite aqui o complemento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3689,7 +3689,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - pais - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_COMBO_BOX_ENDERECO_PAIS_HINT' AS constante_textual, 'Select the country of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_COMBO_BOX_HINT' AS constante_textual, 'Select the country of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3909,7 +3909,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - complemento - textbox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TEXT_BOX_ENDERECO_COMPLEMENTO_HINT' AS constante_textual, 'Type in this field the completion.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_HINT' AS constante_textual, 'Type in this field the completion.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
