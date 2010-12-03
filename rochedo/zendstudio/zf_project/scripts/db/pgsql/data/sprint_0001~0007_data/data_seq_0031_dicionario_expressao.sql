@@ -1347,7 +1347,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- pais nascimento - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual, 'Selecione o seu País de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione o seu País de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1357,7 +1357,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- pais nascimento - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_COMBO_BOX_HINT' AS constante_textual, 'Selecione o seu País de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione o seu País de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1377,7 +1377,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- uf nascimento - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1387,7 +1387,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- uf nascimento - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_COMBO_BOX_HINT' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1428,7 +1428,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- muninicipio nascimento - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual, 'Selecione o seu Município de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione o seu Município de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1438,7 +1438,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- muninicipio nascimento - combobox - hint 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_COMBO_BOX_HINT' AS constante_textual, 'Selecione o seu Município de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione o seu Município de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1697,7 +1697,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - tipo - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_TIPO_COMBO_BOX_AJUDA' AS constante_textual, 'Selecione o tipo de endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione o tipo de endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1707,7 +1707,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - tipo - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_TIPO_COMBO_BOX_HINT' AS constante_textual, 'Selecione o tipo de endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione o tipo de endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1727,7 +1727,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - pais - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_COMBO_BOX_AJUDA' AS constante_textual, 'Selecione o país do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione o país do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1737,7 +1737,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - pais - combobox - hints
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_COMBO_BOX_HINT' AS constante_textual, 'Selecione o país do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione o país do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1757,7 +1757,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - uf - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_COMBO_BOX_AJUDA' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1767,7 +1767,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - uf - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_COMBO_BOX_HINT' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1807,7 +1807,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - municipio - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_COMBO_BOX_AJUDA' AS constante_textual, 'Selecione o Município do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione o Município do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1817,7 +1817,7 @@ AND c.nome = 'pt-br';
 -- form - field
 -- endereco - municipio - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_COMBO_BOX_HINT' AS constante_textual, 'Selecione o Município do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione o Município do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3299,7 +3299,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- pais nascimento - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual, 'Select your Country or region of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select your Country or region of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3309,7 +3309,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- pais nascimento - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_COMBO_BOX_HINT' AS constante_textual, 'Select your Country or region of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Select your Country or region of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3329,7 +3329,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- uf nascimento - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual, 'Select your State / Province of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select your State / Province of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3339,7 +3339,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- uf nascimento - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_COMBO_BOX_HINT' AS constante_textual, 'Select your State / Province of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Select your State / Province of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3379,7 +3379,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- municipio nascimento - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_COMBO_BOX_AJUDA' AS constante_textual, 'Select your City of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select your City of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3389,7 +3389,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- municipio nascimento - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_COMBO_BOX_HINT' AS constante_textual, 'Select your City of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Select your City of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3649,7 +3649,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - tipo - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_TIPO_COMBO_BOX_AJUDA' AS constante_textual, 'Select the type of address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select the type of address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3659,7 +3659,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - tipo - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_COMBO_BOX_TIPO_HINT' AS constante_textual, 'Select in this field the type of address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_FILTERING_SELECT_TIPO_HINT' AS constante_textual, 'Select in this field the type of address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3679,7 +3679,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - pais - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_COMBO_BOX_AJUDA' AS constante_textual, 'Select the country of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select the country of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3689,7 +3689,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - pais - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_COMBO_BOX_HINT' AS constante_textual, 'Select the country of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_HINT' AS constante_textual, 'Select the country of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3709,7 +3709,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - uf - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_COMBO_BOX_AJUDA' AS constante_textual, 'Select the State / Province of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select the State / Province of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3719,7 +3719,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - uf - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_COMBO_BOX_HINT' AS constante_textual, 'Select the State / Province of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_HINT' AS constante_textual, 'Select the State / Province of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3759,7 +3759,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - municipio - combobox - ajuda
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_COMBO_BOX_AJUDA' AS constante_textual, 'Select the City of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select the City of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3769,7 +3769,7 @@ AND c.nome = 'en-us';
 -- form - field
 -- endereco - municipio - combobox - hint
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_COMBO_BOX_HINT' AS constante_textual, 'Select the City of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_HINT' AS constante_textual, 'Select the City of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
