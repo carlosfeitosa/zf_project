@@ -78,7 +78,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria|NULL
 	 */
-	private function retornaObjetoCategoriaAtiva($nomeCategoria, $tipoCategoria = null)
+	private static function retornaObjetoCategoriaAtiva($nomeCategoria, $tipoCategoria = null)
 	{
 		// verificando se o controlador foi instanciando
 		if (!self::$singleton)
@@ -386,10 +386,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLinguagem($constanteLinguagem)
+	private static function retornaObjetoCategoriaLinguagem($constanteLinguagem)
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLinguagem = $this->retornaObjetoCategoriaAtiva($constanteLinguagem);
+		$objCategoriaLinguagem = self::retornaObjetoCategoriaAtiva($constanteLinguagem);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLinguagem))
@@ -836,7 +836,7 @@ class Basico_CategoriaControllerController
 	static public function retornaIdCategoriaLinguagem($constanteLinguagem)
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLinguagem = $this->retornaObjetoCategoriaLinguagem($constanteLinguagem);
+		$objCategoriaLinguagem = self::retornaObjetoCategoriaLinguagem($constanteLinguagem);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLinguagem))
