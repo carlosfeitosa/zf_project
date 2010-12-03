@@ -31,7 +31,7 @@ class Basico_TradutorControllerController
 	 * 
 	 * @return Basico_TradutorControllerController
 	 */
-	public function init()
+	public static function init()
 	{
 		// checando singleton
 		if (self::$singleton == NULL){

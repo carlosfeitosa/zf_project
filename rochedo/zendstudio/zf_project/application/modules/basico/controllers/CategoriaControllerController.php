@@ -389,7 +389,7 @@ class Basico_CategoriaControllerController
 	private function retornaObjetoCategoriaLinguagem($constanteLinguagem)
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLinguagem = self::retornaObjetoCategoriaAtiva($constanteLinguagem);
+		$objCategoriaLinguagem = $this->retornaObjetoCategoriaAtiva($constanteLinguagem);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLinguagem))
@@ -836,7 +836,7 @@ class Basico_CategoriaControllerController
 	static public function retornaIdCategoriaLinguagem($constanteLinguagem)
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLinguagem = self::retornaObjetoCategoriaLinguagem($constanteLinguagem);
+		$objCategoriaLinguagem = $this->retornaObjetoCategoriaLinguagem($constanteLinguagem);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLinguagem))
