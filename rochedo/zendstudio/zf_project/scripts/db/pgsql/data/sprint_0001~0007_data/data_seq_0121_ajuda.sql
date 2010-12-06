@@ -92,7 +92,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FILED_SENHA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo senha do cadastro de usuários validados.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_SENHA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo senha do cadastro de usuários validados.' AS descricao,
        'FORM_FIELD_SENHA_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -137,7 +137,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FILED_NOME_CURSO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo nome do curso.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_NOME_CURSO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo nome do curso.' AS descricao,
        'FORM_FIELD_NOME_CURSO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_NOME_CURSO_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -254,7 +254,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_OUTRAS_INFORMACOES_TEXT_AREA' AS nome, 'Texto de ajuda para o campo outras informações.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_OUTRAS_INFORMACOES_TEXT_AREA' AS nome, 'Texto de ajuda para o campo outras informações.' AS descricao,
        'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual_ajuda,  
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -263,7 +263,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX' AS nome, 'Texto de ajuda para o campo perfis disponiveis.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX' AS nome, 'Texto de ajuda para o campo perfis disponiveis.' AS descricao,
        'FORM_FIELD_PERFIS_DISPONIVEIS_AJUDA' AS constante_textual_ajuda,  
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -272,7 +272,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de telefone.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TELEFONE_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de telefone.' AS descricao,
        'FORM_FIELD_TELEFONE_TIPO_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -281,7 +281,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_PAIS_TEXT_BOX' AS nome, 'Texto de ajuda para o campo codigo do pais (telefone).' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TELEFONE_CODIGO_PAIS_TEXT_BOX' AS nome, 'Texto de ajuda para o campo codigo do pais (telefone).' AS descricao,
        'FORM_FIELD_TELEFONE_CODIGO_PAIS_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_CODIGO_PAIS_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -290,7 +290,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_AREA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo codigo de discagem a distancia (telefone).' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TELEFONE_CODIGO_AREA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo codigo de discagem a distancia (telefone).' AS descricao,
        'FORM_FIELD_TELEFONE_CODIGO_AREA_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_CODIGO_AREA_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -299,7 +299,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo telefone.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TELEFONE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo telefone.' AS descricao,
        'FORM_FIELD_TELEFONE_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -308,7 +308,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_RAMAL_TEXT_BOX' AS nome, 'Texto de ajuda para o campo ramal do telefone.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TELEFONE_RAMAL_TEXT_BOX' AS nome, 'Texto de ajuda para o campo ramal do telefone.' AS descricao,
        'FORM_FIELD_TELEFONE_RAMAL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_TELEFONE_RAMAL_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -317,7 +317,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descricao do telefone.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TELEFONE_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descricao do telefone.' AS descricao,
        'FORM_FIELD_TELEFONE_DESCRICAO_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -326,7 +326,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_EMAIL_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de e-mail.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_EMAIL_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de e-mail.' AS descricao,
        'FORM_FIELD_EMAIL_TIPO_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -335,7 +335,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_EMAIL_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descricao do e-mail.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_EMAIL_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descricao do e-mail.' AS descricao,
        'FORM_FIELD_EMAIL_DESCRICAO_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -344,7 +344,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de website.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_WEBSITE_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de website.' AS descricao,
        'FORM_FIELD_WEBSITE_TIPO_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -353,7 +353,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_ENDERECO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo endereço do website.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_WEBSITE_ENDERECO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo endereço do website.' AS descricao,
        'FORM_FIELD_WEBSITE_ENDERECO_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -362,7 +362,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descrição do website.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_WEBSITE_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descrição do website.' AS descricao,
        'FORM_FIELD_WEBSITE_DESCRICAO_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -371,7 +371,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_CAMPO_NOME_USUARIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo nome do usuário.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_NOME_USUARIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo nome do usuário.' AS descricao,
        'FORM_FIELD_NOME_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_NOME_HINT' AS constante_textual_hint, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -380,7 +380,7 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_CAMPO_EMAIL_USUARIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo e-mail do usuário.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_EMAIL_USUARIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo e-mail do usuário.' AS descricao,
        'FORM_FIELD_EMAIL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_EMAIL_HINT' AS constante_textual_hint, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -399,7 +399,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - pais nascimento - combobox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_PAIS_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox país de nascimento.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox país de nascimento.' AS descricao,
        'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -411,7 +411,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - uf nascimento - combobox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_UF_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox UF de nascimento.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox UF de nascimento.' AS descricao,
        'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -423,7 +423,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais uf nascimento - texbox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_UF_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox UF de nascimento.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox UF de nascimento.' AS descricao,
        'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -435,7 +435,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - municipio nascimento - combobox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_MUNICIPIO_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox município de nascimento.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox município de nascimento.' AS descricao,
        'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -447,7 +447,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro - usuario
 --- dados pessoais - municipio nascimento - textbox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_MUNICIPIO_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox município de nascimento.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox município de nascimento.' AS descricao,
        'FORM_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -459,7 +459,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - nome pai - textbox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_NOME_PAI_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox nome do pai.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_NOME_PAI_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox nome do pai.' AS descricao,
        'FORM_FIELD_NOME_PAI_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_NOME_PAI_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -471,7 +471,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - nome mae - texbox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS_NOME_MAE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox nome da mãe.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_NOME_MAE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox nome da mãe.' AS descricao,
        'FORM_FIELD_NOME_MAE_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_NOME_MAE_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -492,7 +492,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - tipo - combobox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox tipo de endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ENDERECO_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox tipo de endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -504,7 +504,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - pais - combobox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_PAIS_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo  combobox país do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PAIS_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo  combobox país do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -516,7 +516,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - uf - combobox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_UF_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox uf do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox uf do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -528,7 +528,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - uf - texbox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_UF_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox uf do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox uf do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_UF_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -540,7 +540,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - municipio - combobox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_MUNICIPIO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo município do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo município do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -552,7 +552,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - municipio - textbox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_MUNICIPIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox município do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox município do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -564,7 +564,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - cep - textbox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_CEP_TEXT_BOX' AS nome, 'Texto de ajuda para o campo cep do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_CEP_TEXT_BOX' AS nome, 'Texto de ajuda para o campo cep do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_CEP_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_CEP_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -576,7 +576,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - logradouro - textbox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_LOGRADOURO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo logradouro do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_LOGRADOURO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo logradouro do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -588,7 +588,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - numero - textbox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_NUMERO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo número do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ENDERECO_NUMERO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo número do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -600,7 +600,7 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -- ajuda - formulario - cadastro
 -- endereco - complemento - textbox
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO_COMPLEMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo complemento do endereço.' AS descricao,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo complemento do endereço.' AS descricao,
        'FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
