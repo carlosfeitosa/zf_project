@@ -103,4 +103,18 @@ class Basico_FormularioControllerController
 			throw new Exception($e);
 		}
 	}
+	
+	/**
+	 * Retorna um array contendo todos os objetos de formularios existentes no sistema
+	 * 
+	 * @return Array
+	 */
+	public static function retornaTodosObjsFormularios()
+	{
+		// instanciando modelo de formulario
+		$modelFormulario = new Basico_Model_Formulario();
+		
+		// retornando todos os formularios do sistema, ordenados pelo nome
+		return $modelFormulario->fetchList(null, 'form_name');
+	}
 }

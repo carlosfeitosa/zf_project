@@ -55,6 +55,29 @@ class Basico_GeradorFormularioControllerController
 		return "$" . strtolower($objModulo->nome) . ucfirst($objSubFormulario->formName) . "SubForm";
     }
 
+    /**
+     * Gera todos os formularios do sistema
+     *
+     * @return true
+     */
+    public static function gerarTodos()
+    {
+		// recuperando os objetos formulario dos sistema
+		$objsFormularios = Basico_FormularioControllerController::retornaTodosObjsFormularios();
+
+		// loop para capturar cada formulario
+		foreach ($objsFormularios as $objFormulario) {
+			// gerando o formulario
+			try {
+				self::gerar($objFormulario);
+			} catch (Exception $e) {
+				throw new Exception(MSG_ERRO_GERAR_TODOS_FORMULARIO . $objFormulario->nome . QUEBRA_DE_LINHA . $e->getMessage());
+			}
+		}
+
+    	return true;
+    }
+
 	/**
 	 * Gera Formulário.
 	 * 

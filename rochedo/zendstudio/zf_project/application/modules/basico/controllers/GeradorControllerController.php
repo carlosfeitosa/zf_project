@@ -71,4 +71,15 @@ class Basico_GeradorControllerController
 		// retorna o resultado do metodo "gerar" da classe "Basico_GeradorFormularioControllerController"
 		return Basico_GeradorFormularioControllerController::gerar($objFormulario, $excludeModulesNames);
 	}
+	
+	/**
+	 * Gera todos os formulario do sistema.
+	 * 
+	 * @return Boolean
+	 */
+	public static function geradorFormularioGerarTodosFormularios()
+	{
+		// retorna o resultado do metodo "gerarTodos" da classe "Basico_GeradorFormularioControllerController"
+		return Basico_GeradorFormularioControllerController::gerarTodos();
+	}
 }

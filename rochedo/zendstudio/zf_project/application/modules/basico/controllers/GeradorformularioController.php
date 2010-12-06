@@ -67,7 +67,34 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     	// redirecionando para a acao gerar formulario
         return $this->_forward('gerarformulario');
     }
-    
+
+    /**
+     * Gera todos os formularios existentes no sistems
+     * 
+     * @return true
+     */
+    public function gerartodosformulariosAction()
+    {
+		// gerando todos os formulários
+		if (Basico_GeradorControllerController::geradorFormularioGerarTodosFormularios()) {
+
+	        // carregando o titulo e subtitulo da view
+	        $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO');
+			$subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIOS_SUBTITULO');
+
+	        // carregando array do cabecalho da view
+	        $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+
+	        // carregando o cabecalho na view
+	        $this->view->cabecalho = $cabecalho;
+
+			// renderizando a view
+			$this->_helper->Renderizar->renderizar();
+                
+            return true;
+		}
+    }
+
     /**
      * Gera o formulário.
      * 
@@ -137,11 +164,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
                 $this->_helper->Renderizar->renderizar();
                 
                 return;
-            } else {
-                // carregando a mensagem de erro
-                $this->view->cabecalho['mensagemView'] = 'Não foi possível gerar o Formulário!';
             }
-
         }
         
         // carregando o formulario na view
