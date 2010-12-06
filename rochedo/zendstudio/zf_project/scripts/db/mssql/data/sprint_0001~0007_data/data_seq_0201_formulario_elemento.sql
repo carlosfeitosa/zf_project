@@ -22,7 +22,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_HISTORICO_MEDICO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -63,7 +63,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_TIPO_SANGUINIO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -105,7 +105,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_ALTURA_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -146,7 +146,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_PESO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -187,7 +187,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_RACA_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -265,7 +265,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_RG') AS id_ajuda,
                               (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -307,7 +307,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SEXO_RADIO_BUTTON') AS id_ajuda,
                               (SELECT d.id
                               FROM decorator d
@@ -342,7 +342,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_DATA_NASCIMENTO_DATE_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -384,7 +384,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_LOGIN_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -426,7 +426,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SENHA_TEXT_BOX') AS id_ajuda,
                               (SELECT d.id
                               FROM decorator d
@@ -461,7 +461,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SENHA_CONFIRMACAO_TEXT_BOX_TEXT_BOX') AS id_ajuda,
                               (SELECT d.id
                               FROM decorator d
@@ -496,7 +496,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -538,7 +538,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -580,7 +580,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_INSTITUICAO_QUE_CONCEDEU_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -622,7 +622,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_AREA_DE_CONHECIMENTO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -664,7 +664,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
 	                          LEFT JOIN categoria c ON (a.id_categoria = c.id)
 	                          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
 	                          WHERE t.nome = 'AJUDA'
-	                          AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
+	                          AND c.nome = 'AJUDA_FORMULARIO_FIELD'
 	                          AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_NOME_CURSO_TEXT_BOX') AS id_ajuda,
 	                         (SELECT ff.id
 	                          FROM formulario_elemento_filter ff
@@ -774,7 +774,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_PROFISSAO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -809,7 +809,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_VINCULO_PROFISSIONAL_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -844,7 +844,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_PJ_VINCULO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -879,7 +879,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_REGIME_TRABALHO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -914,7 +914,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -956,7 +956,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_FUNCAO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -998,7 +998,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_ATIVIDADES_DESENVOLVIDAS_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1040,7 +1040,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DATA_ADMISSAO_DATE_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -1075,7 +1075,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DATA_DESVINCULACAO_DATE_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -1110,7 +1110,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGA_HORARIA_SEMANAL_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -1145,7 +1145,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_SALARIO_BRUTO_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -1180,7 +1180,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DEDICACAO_EXCLUSIVA_CHECK_BOX') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -1215,7 +1215,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_OUTRAS_INFORMACOES_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1274,7 +1274,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
@@ -1308,7 +1308,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TIPO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1349,7 +1349,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_PAIS_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1397,7 +1397,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_AREA_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1445,7 +1445,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1493,7 +1493,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_RAMAL_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1541,7 +1541,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_DESCRICAO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1582,7 +1582,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_EMAIL'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_EMAIL_TIPO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1623,7 +1623,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_EMAIL'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_EMAIL_DESCRICAO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1665,7 +1665,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_TIPO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1707,7 +1707,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_ENDERECO_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1750,7 +1750,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_DESCRICAO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1791,7 +1791,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_CAMPO_NOME_USUARIO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
@@ -1832,7 +1832,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
-                              AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_CAMPO_EMAIL_USUARIO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff

@@ -17,7 +17,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICO
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_TIPO_SANGUINIO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo sanguínio.' AS descricao,
@@ -26,7 +26,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICO
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_PESO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo peso.' AS descricao,
@@ -35,7 +35,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICO
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_ALTURA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo altura.' AS descricao,
@@ -44,7 +44,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICO
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS_RACA_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo raça.' AS descricao,
@@ -53,7 +53,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICO
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_BIOMETRICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SEXO_RADIO_BUTTON' AS nome, 'Texto de ajuda para o campo sexo do cadastro de usuários validados.' AS descricao,
@@ -62,7 +62,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SEXO_RA
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SENHA_CONFIRMACAO_TEXT_BOX_TEXT_BOX' AS nome, 'Texto de ajuda para o campo senhaConfirmacao do cadastro de usuários validados.' AS descricao,
@@ -71,7 +71,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SENHA_C
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_DATA_NASCIMENTO_DATE_TEXT_BOX_TEXT_BOX' AS nome, 'Texto de ajuda para o campo dataNascimento do cadastro de usuários validados.' AS descricao,
@@ -80,7 +80,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_DATA_NA
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_LOGIN_TEXT_BOX' AS nome, 'Texto de ajuda para o campo login do cadastro de usuários validados.' AS descricao,
@@ -89,7 +89,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_LOGIN_T
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SENHA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo senha do cadastro de usuários validados.' AS descricao,
@@ -98,7 +98,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_SENHA_T
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo categoria de bolsa do cnpq.' AS descricao,
@@ -107,7 +107,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
                 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo Maior titulacao Acadêmica.' AS descricao,
@@ -116,7 +116,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_INSTITUICAO_QUE_CONCEDEU_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo instituicao que concedeu o título.' AS descricao,
@@ -125,7 +125,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_AREA_DE_CONHECIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo área de conhecimento.' AS descricao,
@@ -134,7 +134,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_NOME_CURSO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo nome do curso.' AS descricao,
@@ -143,7 +143,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_PROFISSAO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo profissão.' AS descricao,
@@ -152,7 +152,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_VINCULO_PROFISSIONAL_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo vinculo profissional.' AS descricao,
@@ -161,7 +161,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_PJ_VINCULO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo instituição do vinculo profissional.' AS descricao,
@@ -170,7 +170,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_REGIME_TRABALHO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo regime de trabalho.' AS descricao,
@@ -179,7 +179,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo cargo.' AS descricao,
@@ -188,7 +188,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_FUNCAO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo função.' AS descricao,
@@ -197,7 +197,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_ATIVIDADES_DESENVOLVIDAS_TEXT_AREA' AS nome, 'Texto de ajuda para o campo atividades desenvolvidas do vinculo profissional.' AS descricao,
@@ -206,7 +206,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DATA_ADMISSAO_DATE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo data de admissao do vinculo profissional.' AS descricao,
@@ -215,7 +215,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DATA_DESVINCULACAO_DATE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo data de desvinculação profissional.' AS descricao,
@@ -224,7 +224,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGA_HORARIA_SEMANAL_TEXT_BOX' AS nome, 'Texto de ajuda para o campo carga horária semanal.' AS descricao,
@@ -233,7 +233,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_SALARIO_BRUTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo salário bruto.' AS descricao,
@@ -242,7 +242,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DEDICACAO_EXCLUSIVA_CHECK_BOX' AS nome, 'Texto de ajuda para o campo dedicação exclusiva.' AS descricao,
@@ -251,7 +251,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_OUTRAS_INFORMACOES_TEXT_AREA' AS nome, 'Texto de ajuda para o campo outras informações.' AS descricao,
@@ -260,7 +260,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX' AS nome, 'Texto de ajuda para o campo perfis disponiveis.' AS descricao,
@@ -269,7 +269,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL_PERFIS_DI
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_PERFIL';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de telefone.' AS descricao,
@@ -278,7 +278,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TIPO_FILTERING_
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_PAIS_TEXT_BOX' AS nome, 'Texto de ajuda para o campo codigo do pais (telefone).' AS descricao,
@@ -287,7 +287,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_PAIS_TEX
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_AREA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo codigo de discagem a distancia (telefone).' AS descricao,
@@ -296,7 +296,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_CODIGO_AREA_TEX
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo telefone.' AS descricao,
@@ -305,7 +305,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_TEXT_BOX' AS no
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_RAMAL_TEXT_BOX' AS nome, 'Texto de ajuda para o campo ramal do telefone.' AS descricao,
@@ -314,7 +314,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_RAMAL_TEXT_BOX'
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descricao do telefone.' AS descricao,
@@ -323,7 +323,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_TELEFONE_DESCRICAO_TEXT_
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_TELEFONE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_EMAIL_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de e-mail.' AS descricao,
@@ -332,7 +332,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_EMAIL_TIPO_FILTERING_SEL
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_EMAIL';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_EMAIL_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descricao do e-mail.' AS descricao,
@@ -341,7 +341,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_EMAIL_DESCRICAO_TEXT_ARE
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_EMAIL';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo de website.' AS descricao,
@@ -350,7 +350,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_TIPO_FILTERING_S
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_ENDERECO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo endereço do website.' AS descricao,
@@ -359,7 +359,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_ENDERECO_TEXT_BO
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_DESCRICAO_TEXT_AREA' AS nome, 'Texto de ajuda para o campo descrição do website.' AS descricao,
@@ -368,7 +368,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_WEBSITE_DESCRICAO_TEXT_A
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_WEBSITE';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_CAMPO_NOME_USUARIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo nome do usuário.' AS descricao,
@@ -377,7 +377,7 @@ SELECT c.id AS id_categoria, 'AJUDA_CAMPO_NOME_USUARIO_TEXT_BOX' AS nome, 'Texto
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_CAMPO_EMAIL_USUARIO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo e-mail do usuário.' AS descricao,
@@ -386,4 +386,4 @@ SELECT c.id AS id_categoria, 'AJUDA_CAMPO_EMAIL_USUARIO_TEXT_BOX' AS nome, 'Text
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
