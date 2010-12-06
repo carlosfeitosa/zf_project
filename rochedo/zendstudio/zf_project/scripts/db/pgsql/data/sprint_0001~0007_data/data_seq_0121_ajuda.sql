@@ -398,9 +398,9 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - pais nascimento - combobox.
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox país de nascimento.' AS descricao,
-       'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual_hint,
+       'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -410,9 +410,9 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - uf nascimento - combobox.
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox UF de nascimento.' AS descricao,
-       'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual_hint,
+       'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -434,9 +434,9 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 -- ajuda - formulario - cadastro - usuario
 -- dados pessoais - municipio nascimento - combobox.
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox município de nascimento.' AS descricao,
-       'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual_hint,
+       'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -491,9 +491,9 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 */
 -- ajuda - formulario - cadastro
 -- endereco - tipo - combobox
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ENDERECO_TIPO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox tipo de endereço.' AS descricao,
-       'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_HINT' AS constante_textual_hint,
+       'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -503,9 +503,9 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 -- ajuda - formulario - cadastro
 -- endereco - pais - combobox
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PAIS_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo  combobox país do endereço.' AS descricao,
-       'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_HINT' AS constante_textual_hint,
+       'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -515,9 +515,9 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 -- ajuda - formulario - cadastro
 -- endereco - uf - combobox.
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox uf do endereço.' AS descricao,
-       'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_HINT' AS constante_textual_hint,
+       'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -539,9 +539,9 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 -- ajuda - formulario - cadastro
 -- endereco - municipio - combobox.
-INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo município do endereço.' AS descricao,
-       'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_HINT' AS constante_textual_hint,
+       'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

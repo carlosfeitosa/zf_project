@@ -358,3 +358,123 @@ SELECT (SELECT f.id
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
 	   'SYSTEM_STARTUP' AS rowinfo;
+
+	   
+	   
+/**
+* INICIO
+*  
+* DADOS PESSOAIS
+*/
+	   
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+ 
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS'
+        AND f.nome = 'FORM_DIALOG_DOCUMENTOS_PESSOAIS') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS'
+        AND f.nome = 'FORM_DIALOG_TELEFONES_PESSOAIS') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS'
+        AND f.nome = 'FORM_DIALOG_EMAILS_PESSOAIS') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS'
+        AND f.nome = 'FORM_DIALOG_WEBSITES_PESSOAIS') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS'
+        AND f.nome = 'FORM_DIALOG_ENDERECOS_PESSOAIS') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+
+/**
+* FIM - DADOS PESSOAIS
+*/

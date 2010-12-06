@@ -358,14 +358,9 @@ SELECT (SELECT f.id
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
 	   'SYSTEM_STARTUP' AS rowinfo;
-	   
-	   
-	   
-	   
-	   
-	   
-	   
 
+	   
+	   
 /**
 * INICIO
 *  

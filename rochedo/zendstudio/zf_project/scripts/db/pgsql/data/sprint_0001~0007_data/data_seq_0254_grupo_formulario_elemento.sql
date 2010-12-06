@@ -24,8 +24,19 @@ INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label,
 VALUES ('DADOS_USUARIO_DADOS_USUARIO', 
         'Grupo que mantêm os dados sobre informações do usuário',
 		'FORM_DISPLAY_GROUP_LABEL_INFORMACOES_USUARIO', 'SYSTEM_STARTUP');
+
 		
+		
+/**
+* INICIO
+*  
+* DADOS PESSOAIS
+*/
 INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
 VALUES ('DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO', 
         'Grupo que mantêm os dados sobre informações de contato pessoais',
 		'FORM_DISPLAY_GROUP_LABEL_INFORMACOES_CONTATO', 'SYSTEM_STARTUP');
+		
+/**
+* FIM - DADOS PESSOAIS
+*/

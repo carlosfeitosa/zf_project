@@ -3307,8 +3307,6 @@ AND c.nome = 'en-us';
 
 
 
-
-
 /**
 * INICIO
 *  

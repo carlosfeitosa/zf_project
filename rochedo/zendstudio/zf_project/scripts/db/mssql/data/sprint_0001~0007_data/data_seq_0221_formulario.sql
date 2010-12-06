@@ -337,3 +337,124 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO';
+
+
+
+/**
+* INICIO
+*  
+* DADOS PESSOAIS
+*/
+
+-- aba de dados pessoais
+INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, ordem, rowinfo)
+        SELECT c.id AS id_categoria,(SELECT f.id
+                                     FROM formulario f
+                                     WHERE f.nome = 'FORM_DADOS_USUARIO'),                          
+       'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS' AS nome,
+       'Formulário de submissão de dados pessoais.' AS descricao, 
+       'SUBFORM_TABTITLE_DADOS_PESSOAIS' AS constante_textual_titulo,
+       'CadastrarDadosUsuarioDadosPessoais' AS form_name, 
+       'post' AS form_method, 
+       NULL AS form_action, 
+       NULL AS form_attribs, 
+       1 AS ordem,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+-------------
+
+-- container de documentos pessoais
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_DOCUMENTOS_PESSOAIS' AS nome, 
+		'Dialog para visualizacao de documentos pessoais.' AS descricao, 
+        'FORM_TITLE_DOCUMENTOS_PESSOAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS';
+-------------
+
+-- container de telefones pessoais
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_TELEFONES_PESSOAIS' AS nome, 
+		'Dialog para visualizacao de telefones pessoais.' AS descricao, 
+        'FORM_TITLE_TELEFONES_PESSOAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosPessoaisTelefonesPessoais' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS';
+-------------
+
+-- container de emails pessoais
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_EMAILS_PESSOAIS' AS nome, 
+		'Dialog para visualizacao de emails pessoais.' AS descricao, 
+        'FORM_TITLE_TELEFONES_PESSOAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosPessoaisEmailsPessoais' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS';
+-------------
+
+-- container de websites pessoais
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_WEBSITES_PESSOAIS' AS nome, 
+		'Dialog para visualizacao de websites pessoais.' AS descricao, 
+        'FORM_TITLE_WEBSITES_PESSOAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosPessoaisWebsitesPessoais' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS';
+-------------
+
+-- container de endereços pessoais
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_ENDERECOS_PESSOAIS' AS nome, 
+		'Dialog para visualizacao de endereços pessoais.' AS descricao, 
+        'FORM_TITLE_ENDERECOS_PESSOAIS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS';
+-------------
+
+/**
+* INICIO
+*  
+* DADOS PESSOAIS
+*/
