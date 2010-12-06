@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/11/2010 11:34:04
+* em: 06/12/2010 17:02:18
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 18/11/2010 11:30:01
+* @version    1: 06/12/2010 17:01:43
 */
 class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zend_Dojo_Form
 {
@@ -69,6 +69,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zen
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
+        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

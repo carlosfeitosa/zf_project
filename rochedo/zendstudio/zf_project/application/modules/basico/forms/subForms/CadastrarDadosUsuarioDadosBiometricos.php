@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 26/11/2010 15:33:19
+* em: 06/12/2010 17:02:15
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 26/11/2010 10:49:31
+* @version    1: 06/12/2010 17:01:43
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -44,7 +44,7 @@
     if ($options!=null)
         $elements[2]->setValue($options->raca);
 
-    $elements[3] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosAltura');
+    $elements[3] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosAltura', array('style' => 'width: 40px;', 'places' => 2));
     $elements[3]->setOrder(3);
     $elements[3]->setRequired(false);
     $elements[3]->addFilters(array('StringTrim', 'StripTags'));
@@ -54,7 +54,7 @@
     if ($options!=null)
         $elements[3]->setValue($options->altura);
 
-    $elements[4] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosPeso');
+    $elements[4] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosPeso', array('style' => 'width: 40px;', 'places' => 3));
     $elements[4]->setOrder(4);
     $elements[4]->setRequired(false);
     $elements[4]->addFilters(array('StringTrim', 'StripTags'));

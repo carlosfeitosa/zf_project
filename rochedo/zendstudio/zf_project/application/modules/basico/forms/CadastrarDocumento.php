@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/11/2010 11:34:33
+* em: 06/12/2010 17:02:27
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 18/11/2010 11:30:01
+* @version    1: 06/12/2010 17:01:43
 */
 class Basico_Form_CadastrarDocumento extends Zend_Dojo_Form
 {
@@ -30,7 +30,7 @@ class Basico_Form_CadastrarDocumento extends Zend_Dojo_Form
 
         $this->setName('CadastrarDocumento');
         $this->setMethod('post');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarDocumento'))"));
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarDocumento', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
 
         // Criando array de elementos.
         $elements = array();
@@ -56,6 +56,7 @@ class Basico_Form_CadastrarDocumento extends Zend_Dojo_Form
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
+        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

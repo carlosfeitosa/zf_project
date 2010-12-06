@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 01/12/2010 15:08:10
+* em: 06/12/2010 17:02:30
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 30/11/2010 17:03:17
+* @version    1: 06/12/2010 17:01:43
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {

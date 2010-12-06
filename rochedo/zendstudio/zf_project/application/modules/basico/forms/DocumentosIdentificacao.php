@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/11/2010 11:34:25
+* em: 06/12/2010 17:02:33
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 18/11/2010 11:30:01
+* @version    1: 06/12/2010 17:01:43
 */
 class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
 {
@@ -30,7 +30,7 @@ class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
 
         $this->setName('DocumentosIdentificacao');
         $this->setMethod('post');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('DocumentosIdentificacao'))"));
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('DocumentosIdentificacao', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
 
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
@@ -57,13 +57,9 @@ class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
         $elements[3]->removeDecorator('DtDdWrapper');
         $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_CLOSE_DIALOG') . '');
 
-        $elements[4] = $this->createElement('hidden', 'BasicoDocumentosIdentificacaoDummyHidden');
-        $elements[4]->setOrder(4);
-        $elements[4]->setRequired(false);
-        $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'clear-both',));
-
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
+        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

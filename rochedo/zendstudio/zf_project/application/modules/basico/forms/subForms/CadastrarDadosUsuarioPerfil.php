@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 26/11/2010 15:33:20
+* em: 06/12/2010 17:02:16
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 26/11/2010 10:49:31
+* @version    1: 06/12/2010 17:01:43
 */
     $basicoCadastrarDadosUsuarioPerfilSubForm = new Zend_Dojo_Form_SubForm();
 

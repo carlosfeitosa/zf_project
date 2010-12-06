@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 26/11/2010 15:33:18
+* em: 06/12/2010 17:02:14
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 26/11/2010 10:49:31
+* @version    1: 06/12/2010 17:01:43
 */
 class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
 {
@@ -41,6 +41,8 @@ class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
         require("subForms/CadastrarDadosUsuarioDadosBiometricos.php");
         // Incluindo arquivos de sub-formularios no formulario pai.
         require("subForms/CadastrarDadosUsuarioPerfil.php");
+        // Incluindo arquivos de sub-formularios no formulario pai.
+        require("subForms/CadastrarDadosUsuarioDadosPessoais.php");
     }
 }
 ?>
