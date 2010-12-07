@@ -538,9 +538,4 @@ class Basico_LoginController extends Zend_Controller_Action
         $this->_helper->redirector('index'); // back to login page
 */
     }
-    
-    static public function retornaLoginUsuarioLogado()
-    {
-        return null;
-    }
 }
