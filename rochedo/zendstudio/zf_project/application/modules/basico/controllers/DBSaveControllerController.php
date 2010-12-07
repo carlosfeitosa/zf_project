@@ -22,6 +22,14 @@ class Basico_DBSaveControllerController
 	 */
 	static public function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
+		// verificando os tipos dos parametros
+		if (!is_int($versaoUpdate))
+			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO . '($versaoUpdate)');
+		if (!is_int($idPessoaPerfil))
+			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO . '($idPessoaPerfil)');
+		if (!is_int($idCategoriaLog))
+			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO . '($idCategoriaLog)');
+
 		// verificando se trata-se de uma atualizacao e se a linha ainda existe no banco da dados
 		if ((isset($mixed->id)) and (isset($versaoUpdate)) and (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)))
 			throw new Exceltion(MSG_ERRO_SAVE_UPDATE_SEM_PERSISTENCIA);
