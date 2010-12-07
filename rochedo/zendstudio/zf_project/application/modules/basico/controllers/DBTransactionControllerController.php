@@ -55,7 +55,7 @@ class Basico_DBTransactionControllerController
 	public static function registraSessaoBD($dbResource)
 	{
 		// registrando o resource do banco de dados na sessao do PHP
-		Zend_Registry::set(SESSION_DB, $dbResource);
+		Basico_UtilControllerController::registraValorSessao(SESSION_DB, $dbResource);
 		
 		return true;
 	}
@@ -68,7 +68,7 @@ class Basico_DBTransactionControllerController
 	public static function recuperaBDSessao()
 	{
 		// recuperando o resource do banco de dados da sessao do PHP
-		return Zend_Registry::get(SESSION_DB);
+		return Basico_UtilControllerController::retornaValorSessao(SESSION_DB);
 	}
 
 	/**
