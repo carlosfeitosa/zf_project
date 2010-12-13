@@ -10,6 +10,7 @@
 
 // include dos controladores
 require_once("EmailControllerController.php");
+require_once("LoginControllerController.php");
 require_once("PessoaControllerController.php");
 require_once("PerfilControllerController.php");
 require_once("PessoaPerfilControllerController.php");
@@ -62,6 +63,16 @@ class Basico_LoginController extends Zend_Controller_Action
     public function getFormCadastroUsuarioLoginNaoValidado()
     {                  
         return new Basico_Form_CadastrarUsuarioNaoValidado();
+    }
+
+    /**
+	 * Retorna Formulário de Cadastro de Usuario Validado
+	 * 
+	 * @return Basico_Form_CadastrarUsuarioValidado
+	 */
+    public function getFormCadastroUsuarioValidado()
+    {                  
+        return new Basico_Form_CadastrarUsuarioValidado();
     }
 
     
@@ -148,6 +159,63 @@ class Basico_LoginController extends Zend_Controller_Action
     	
 		// renderiza a view no script default
 		$this->_helper->Renderizar->renderizar();
+    }
+    
+    /**
+     * Cadastra o usuario já validado.
+     * @return void
+     */
+    public function salvarusuariovalidadoAction()
+    {
+    	$form = $this->getFormCadastroUsuarioValidado();
+    	
+    	//if ($form->isValid($_POST)) {
+    	    
+    		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
+    		$controladorLogin         = Basico_LoginControllerController::init();
+
+    		$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
+    		$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
+    		$dadosPessoaisObj = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($idPessoa);
+    		
+    		if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais == false)
+    		    throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);
+    		    
+    		$dadosPessoaisObj->nome           = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoNome');
+    		$dadosPessoaisPbj->dataNascimento = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoDataNascimento');
+    		$controladorDadosPessoais->salvarDadosPessoais($dadosPessoaisObj, $versaoDadosPessoais);
+    		
+    		
+    		$novoLogin = new Basico_Model_Login();
+    		$novoLogin->pessoa = $idPessoa;
+    		$novoLogin->tentativasFalhas = 0;
+    		$novoLogin->travado = false;
+    		$novoLogin->resetado = false;
+    		$novoLogin->podeExpirar = true;
+    		$novoLogin->rowinfo = "SYSTEM_STARTUP";
+    		$novoLogin->login  = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin');
+    		$novoLogin->senha  = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha');
+    		$novoLogin->ativo  = true;
+    		$controladorLogin->salvarLogin($novoLogin);
+    		
+    		// carregando o titulo e subtitulo da view
+    	    //$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO);
+         	//$subtituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO);
+    	
+    	    // carregando array do cabelho
+    	    $cabecalho =  array('tituloView' => "Login Salvo com sucesso", 'subtituloView' => "Teste");
+    	
+    	    // carregando o titulo e subtitulo na view
+            $this->view->cabecalho = $cabecalho;
+		    	
+		    // renderiza a view no script default
+		    $this->_helper->Renderizar->renderizar();
+    		
+    		
+    	//}else{
+    		//$this->view->form = $this->getFormCadastroUsuarioValidado($_POST);
+    		//$this->_helper->Renderizar->renderizar();
+    	//}
     }
     
     /**
@@ -341,7 +409,7 @@ class Basico_LoginController extends Zend_Controller_Action
 
             // setando e salvando os dados pessoais
             $novoDadosPessoais = new Basico_Model_DadosPessoais();
-            $novoDadosPessoais->idPessoa = $novaPessoa->id;
+            $novoDadosPessoais->pessoa = $novaPessoa->id;
             $novoDadosPessoais->nome     = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
             $novoDadosPessoais->rowinfo  = $controladorRowInfo->getXml();
             $controladorDadosPessoais->salvarDadosPessoais($novoDadosPessoais);

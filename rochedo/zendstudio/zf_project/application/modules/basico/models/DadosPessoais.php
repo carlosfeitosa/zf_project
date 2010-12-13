@@ -27,7 +27,7 @@ class Basico_Model_DadosPessoais
 	/**
 	* @var int
 	*/
-	protected $_idPessoa;
+	protected $_pessoa;
 	
 	/**
 	 * @var String
@@ -129,9 +129,9 @@ class Basico_Model_DadosPessoais
 	* @param  int $idPessoa
 	* @return Basico_Model_DadosPessoais
 	*/
-	public function setIdPessoa($idPessoa)
+	public function setPessoa($idPessoa)
 	{
-		$this->_idPessoa = Basico_UtilControllerController::retornaValorTipado($idPessoa,TIPO_INTEIRO,true);
+		$this->_pessoa = Basico_UtilControllerController::retornaValorTipado($idPessoa,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -140,9 +140,9 @@ class Basico_Model_DadosPessoais
 	* 
 	* @return null|int
 	*/
-	public function getIdPessoa()
+	public function getPessoa()
 	{
-		return $this->_idPessoa;
+		return $this->_pessoa;
 	}
  
 	/**

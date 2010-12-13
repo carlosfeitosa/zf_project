@@ -57,7 +57,7 @@ class Basico_Model_DadosPessoaisMapper
     public function save(Basico_Model_DadosPessoais $object)
     {       
         $data = array(
-                      'id_pessoa' => $object->getIdPessoa(),
+                      'id_pessoa' => $object->getPessoa(),
     				  'nome'      => $object->getNome(),
                       'rowinfo'   => $object->getRowinfo(),
                      );
@@ -95,6 +95,7 @@ class Basico_Model_DadosPessoaisMapper
         }
         $row = $result->current();
         $object->setId($row->id)
+                ->setPessoa($row->id_pessoa)
 				->setNome($row->nome)
 				->setRowinfo($row->rowinfo);
     }
@@ -112,6 +113,7 @@ class Basico_Model_DadosPessoaisMapper
 		{
 			$entry = new Basico_Model_DadosPessoais();
 			$entry->setId($row->id)
+			    ->setPessoa($row->id_pessoa)
 				->setNome($row->nome)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
@@ -133,9 +135,10 @@ class Basico_Model_DadosPessoaisMapper
 		{
 			$entry = new Basico_Model_DadosPessoais();
 			$entry->setId($row->id)
-				->setNome($row->nome)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
+			      ->setPessoa($row->id_pessoa)
+				  ->setNome($row->nome)
+				  ->setRowinfo($row->rowinfo)
+				  ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;

@@ -248,7 +248,7 @@ class Basico_Model_Login
 	*/
 	public function setTentativasFalhas($tentativasFalhas)
 	{
-		$this->_tentativasFalhas = Basico_UtilControllerController::retornaValorTipado($tentativasFalhas, TIPO_INTEIRO, true);
+		$this->_tentativasFalhas = Basico_UtilControllerController::retornaValorTipado($tentativasFalhas, TIPO_INTEIRO, false);
 		return $this;
 	}
 

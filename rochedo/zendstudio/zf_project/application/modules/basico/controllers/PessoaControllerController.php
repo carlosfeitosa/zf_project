@@ -96,18 +96,21 @@ class Basico_PessoaControllerController
     /**
 	 * Retorna o objeto dados pessoais da pessoa passada.
 	 * 
-	 * @param Basico_Model_Pessoa $pessoa
+	 * @param Int $idPessoa
 	 * @return Basico_Model_DadosPessoais
 	 */
-	public static function retornaObjetoDadosPessoaisPessoa(Basico_Model_Pessoa $pessoa)
+	public static function retornaObjetoDadosPessoaisPessoa($idPessoa)
 	{
-		//instanciando classe dadosPessoais
-		$objDadosPessoais = new Basico_Model_DadosPessoais();
-		
-		//recuperando tupla da pessoa passada
-		$dadosPessoais = $objDadosPessoais->fetchList("id_pessoa = {$pessoa->id}");
-		
-		//retornando objeto dados pessoais
-		return $dadosPessoais[0];
+		if ((int)$idPessoa > 0) {
+			//instanciando classe dadosPessoais
+			$objDadosPessoais = new Basico_Model_DadosPessoais();
+			
+			//recuperando tupla da pessoa passada
+			$dadosPessoais = $objDadosPessoais->fetchList("id_pessoa = {$idPessoa}");
+			
+			//retornando objeto dados pessoais
+			return $dadosPessoais[0];
+		}
+		return NULL;
 	}
 }

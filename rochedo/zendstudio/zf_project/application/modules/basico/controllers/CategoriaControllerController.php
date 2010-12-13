@@ -326,6 +326,43 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
 	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_DADOS_PESSOAIS
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private function retornaObjetoCategoriaLogUpdateDadosPessoais()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateDadosPessoais = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_DADOS_PESSOAIS);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateDadosPessoais))
+			// retornando o objeto
+			return $objCategoriaLogUpdateDadosPessoais;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS);
+	}
+	
+		/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_LOGIN
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private function retornaObjetoCategoriaLogNovoLogin()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoLogin = self::retornaObjetoCategoriaAtiva(LOG_NOVO_LOGIN);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoLogin))
+			// retornando o objeto
+			return $objCategoriaLogNovoLogin;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN);
+	}
+	
 
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_EMAIL
@@ -934,6 +971,42 @@ class Basico_CategoriaControllerController
 			return (Int) $objCategoriaLogNovoDadosPessoais->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
+	}
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_DADOS_PESSOAIS
+	 * 
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogUpdateDadosPessoais()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateDadosPessoais = self::retornaObjetoCategoriaLogUpdateDadosPessoais();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateDadosPessoais))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateDadosPessoais->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS);
+	}
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_LOGIN
+	 * 
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovoLogin()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoLogin = self::retornaObjetoCategoriaLogNovoLogin();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoLogin))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogNovoLogin->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN);
 	}
 	
 	/**

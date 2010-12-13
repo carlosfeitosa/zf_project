@@ -76,8 +76,10 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	
 	    	$proprietarioEmail = $this->retornaObjetoProprietarioEmail($email);
 	    	
-	    	$dadosPessoais = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($proprietarioEmail);
+	    	$dadosPessoais = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($proprietarioEmail->id);
 	    	
+	    	$versaoDadosPessoais = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
+	    		    	
 	    	// validando o e-mail no objeto
 	    	$email->datahoraUltimaValidacao = Basico_UtilControllerController::retornaDateTimeAtual();
 	    	$email->validado = 1;
@@ -105,13 +107,19 @@ class Basico_EmailController extends Zend_Controller_Action
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})"));
 			
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
-			
-			// carregando painel
-			$titlePane = "<div dojoType='dijit.TitlePane' open='true' title='Dados Básicos' style='width:500px;'>";
-			$titlePaneClose = "</div>";
+						
+			$formCadastrarUsuarioValidado->addElement('hidden', 'idPessoa', array('value' => $proprietarioEmail->id));
+			$formCadastrarUsuarioValidado->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
 			
 			// carregando painel no form
 			$this->view->form = $formCadastrarUsuarioValidado;
+			
+			//registrando id do proprietario na sessao.
+	    	Basico_UtilControllerController::registraValorSessao("idPessoa", $proprietarioEmail->id);
+	    	//Basico_UtilControllerController::print_debug(Zend_Registry::getInstance(), true, false, true);
+
+	    	
+	    	//echo Zend_Registry::get('idPessoa');
 			
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();

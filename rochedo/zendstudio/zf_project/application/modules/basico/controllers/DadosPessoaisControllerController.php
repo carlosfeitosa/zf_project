@@ -58,9 +58,14 @@ class Basico_DadosPessoaisControllerController
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
     			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+
+    		if ($novoDadosPessoais->id != NULL)
+    			$categoriaLog = Basico_CategoriaControllerController::retornaIdCategoriaLogUpdateDadosPessoais();
+            else
+                $categoriaLog = Basico_CategoriaControllerController::retornaIdCategoriaLogNovoDadosPessoais();
     			
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novoDadosPessoais, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoDadosPessoais(), LOG_MSG_NOVO_DADOS_PESSOAIS);
+			Basico_PersistenceControllerController::bdSave($novoDadosPessoais, $versaoUpdate, $idPessoaPerfilCriador, $categoriaLog, LOG_MSG_NOVO_DADOS_PESSOAIS);
 			
 			// atualizando o objeto
 			$dadosPessoais = $novoDadosPessoais;
