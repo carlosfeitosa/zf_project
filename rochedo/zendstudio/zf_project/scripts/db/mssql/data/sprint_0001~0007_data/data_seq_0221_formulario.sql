@@ -458,3 +458,65 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAI
 *  
 * DADOS PESSOAIS
 */
+
+/**
+* INICIO
+*  
+* DADSOS USUARIO - INFORMACOES BANCARIAS
+*/
+
+-- aba de informações bancárias
+INSERT INTO formulario (id_categoria, id_formulario_pai, nome, id_decorator, descricao, 
+                        constante_textual_titulo,form_name, form_attribs, ordem, rowinfo)
+        SELECT c.id AS id_categoria,(SELECT f.id
+                                     FROM formulario f
+                                     WHERE f.nome = 'FORM_DADOS_USUARIO'),                          
+       'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS' AS nome,
+       (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
+       'Formulário de submissão de informações bancárias.' AS descricao, 
+       'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS' AS constante_textual_titulo,
+       'CadastrarDadosUsuarioInformacoesBancarias' AS form_name, 
+       NULL AS form_attribs, 
+       5 AS ordem,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+-------------
+
+
+
+-- dados usuario - informacoes bancarias - dados bancarios
+INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+						constante_textual_titulo, form_name, form_method, form_action,
+						form_attribs, ordem, rowinfo)
+SELECT c.id AS id_categoria, (SELECT f.id
+        		                     FROM formulario f
+                		             WHERE f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS'), 
+       'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS' AS nome,
+       'Formulário de cadastro dos dados bancários' AS descricao,
+       'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS_DADOS_BANCARIOS' AS constante_textual_titulo,
+       'CadastrarDadosUsuarioInformacoesBancariasDadosBancarios' AS form_name,
+       'post' AS form_method, 
+       NULL AS form_action, 
+       NULL AS form_attribs, 
+       1,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+----------------
+
+
+
+/**
+* FIM DADOS USUARIO - INFORMACOES BANCARIAS
+*/
