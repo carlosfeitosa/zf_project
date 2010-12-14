@@ -52,13 +52,13 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
 <div class="loading"></div>
 <div id="header">
     <div id="header-logo">
-           <?php echo "<a onClick='loading()' href=" . "'" . $applicationHttpHome."'".">" . APPLICATION_NAME_AND_VERSION . "</a>" ?>
+           <?php echo "<a onClick='loading()' href=" . "'" . $applicationHttpHome . "'" . ">" . APPLICATION_NAME_AND_VERSION . "</a>" ?>
     </div>
     <div id="header-navigation">
         <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
                                                          null, 
-                                                         true)) ?>"><?php echo $this->tradutor(MENU_ITEM_REGISTRE_SE) ?></a> |
+                                                         true)) ?>"><?php echo $this->tradutor('MENU_ITEM_REGISTRE_SE') ?></a> |
 		<a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'dadosusuario'), 
                                                          null, 
@@ -70,8 +70,10 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
         <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
                                                          null, 
-                                                         true)) ?>"><?php echo "Administração" ?></a>                                                
-    </di                                                         
+                                                         true)) ?>"><?php echo "Administração" ?></a> |
+        <a href="javascript:exibirDialogUrl('Basico_Form_AutenticacaoUsuario', 
+                                            <?php echo Basico_UtilControllerController::retornaStringEntreCaracter("/rochedo_project/public/public_forms/basico/forms/AutenticacaoUsuario." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html", "'") ?>, 
+                                            <?php echo Basico_UtilControllerController::retornaStringEntreCaracter($this->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), "'") ?>)">Login</a>
     </div>
 </div>
 

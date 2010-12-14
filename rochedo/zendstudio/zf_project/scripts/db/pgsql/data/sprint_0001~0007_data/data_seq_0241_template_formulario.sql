@@ -359,6 +359,22 @@ SELECT (SELECT f.id
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
 	   'SYSTEM_STARTUP' AS rowinfo;
 
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_LOGIN'
+        AND f.nome = 'FORM_AUTENTICACAO_USUARIO') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_TEMPLATE'
+		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+	   'SYSTEM_STARTUP' AS rowinfo;
 	   
 	   
 /**

@@ -691,6 +691,26 @@ class Basico_Model_Formulario
     }
 
     /**
+     * Get formularioPai object
+     * 
+     * @return null|Basico_Model_Formulario
+     */
+    public function getFormularioPaiObject()
+    {
+    	// verificando se o formulario possui formulario pai
+    	if ($this->_formularioPai) {
+    		// instanciando o modelo de formulario
+    		$modelFormulario = new Basico_Model_Formulario();
+    		
+    		// recuperando o objeto formulario pai
+    		$modelFormulario->find($this->_formularioPai);
+
+    		// retornando o objeto formulario pai
+    		return $modelFormulario;
+    	}
+    }
+
+    /**
      * Get formulariosFilhos objects
      * @return null|arrayFormulario
      */

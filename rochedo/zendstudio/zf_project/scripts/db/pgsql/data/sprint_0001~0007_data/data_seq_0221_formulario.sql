@@ -14,6 +14,7 @@
 * 									   - criacao do formulario FORM_DIALOG_WEBSITE;
 *									   - criacao do formulario FORM_DIALOG_ENDERECO_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_DIALOG_ENDERECO;
+* 							13/12/2010 - criacao do formulario FORM_AUTENTICACAO_USUARIO;
 *  
 */
 
@@ -338,7 +339,26 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO';
 
-
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
+                        constante_textual_titulo, constante_textual_subtitulo,
+                        form_name, form_method, form_action, form_attribs, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+       'FORM_AUTENTICACAO_USUARIO' AS nome,
+       'Formulário para autenticação de usuário validado.' AS descricao, 
+       'VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO' AS constante_textual_titulo,
+       'VIEW_LOGIN_AUTENTICACAO_USUARIO_SUBTITULO' AS constante_textual_subtitulo,
+       'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/login/autenticarUsuario' AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_LOGIN';
 
 
 /**

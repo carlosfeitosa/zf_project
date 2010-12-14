@@ -24,6 +24,7 @@
 *							25/11/2010 - criacao da categoria MASCARA_NUMERICA;
 *							06/12/2010 - criacao da categoria AJUDA_FORMULARIO_FIELD;
 *									   - remocao de todas as categorias filhas de AJUDA_FORMULARIO_CADASTRO;
+*							13/12/2010 - criacao da categoria FORMULARIO_INPUT_LOGIN;
 * 
 */
 
@@ -863,6 +864,13 @@ INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id AS id_tipo_categoria, 'FORMULARIO_INPUT' AS nome, 'Formulários de manipulação de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria
 WHERE nome = 'FORMULARIO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_LOGIN' AS nome, 'Formulários de autenticacao de login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_CADASTRO' AS nome, 'Formulários de manipulação de dados cadastrais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo

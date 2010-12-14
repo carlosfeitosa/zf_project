@@ -3,13 +3,6 @@
  * DEFINIÇÕES TEXTUAIS
  */
 
-
-/*
- * MENUS
- */
-define("MENU_ITEM_REGISTRE_SE", "MENU_ITEM_REGISTRE_SE");
-
-
 /*
  * VIEWS
  * 

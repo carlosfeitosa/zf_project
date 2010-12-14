@@ -1,0 +1,14 @@
+<form id="AutenticacaoUsuario" method="post" action="/rochedo_project/public/basico/login/autenticarUsuario" onSubmit="loading();return(validateForm('AutenticacaoUsuario', 'Atenção', 'Por favor, preencha todos os campos requeridos antes de continuar.'))" postOnBackground="" postOnBackgroundOptions="dojo.eval(data);" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
+<label for="BasicoAutenticacaoUsuarioLogin" class="required">* Login:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Ajuda', 'Digite neste campo o login para acessar o sistema.', 1)</script></button></label>
+<dd>
+<input id="BasicoAutenticacaoUsuarioLogin" name="BasicoAutenticacaoUsuarioLogin" value="" type="text" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
+<label for="BasicoAutenticacaoUsuarioSenha" class="required">* Senha:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Ajuda', 'Digite neste campo a senha para acessar o sistema.', 1)</script></button></label>
+<dd>
+<input onKeyUp="chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value)" id="BasicoAutenticacaoUsuarioSenha" name="BasicoAutenticacaoUsuarioSenha" value="" type="password" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
+<div id="width100percent-clear-both"><dt id="BasicoAutenticacaoUsuarioLinhaHorizontal-label">&#160;</dt>
+<dd id="BasicoAutenticacaoUsuarioLinhaHorizontal-element">
+<hr></dd></div>
+<div id="float-right-clear-both">
+<input id="BasicoAutenticacaoUsuarioEnviar" name="BasicoAutenticacaoUsuarioEnviar" value="Enviar" type="submit" required="false" label="Enviar" dojoType="dijit.form.Button"></div>
+<div id="float-right-margin-right10px">
+<button name="BasicoAutenticacaoUsuarioResetar" id="BasicoAutenticacaoUsuarioResetar" type="reset" onClick='hideDialog("Basico_Form_AutenticacaoUsuario");' required="false" dojoType="dijit.form.Button">Cancelar</button></div></dl></form>

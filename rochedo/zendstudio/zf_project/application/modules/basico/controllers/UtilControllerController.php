@@ -893,4 +893,17 @@ class Basico_UtilControllerController
     {
     	return Zend_Controller_Front::getInstance()->getBaseUrl();
     }
+
+	/**
+	 * Retorna uma string encriptada
+	 * 
+	 * @param String $string
+	 * 
+	 * @return String
+	 */
+    public static function retornaStringEncriptada($string)
+    {
+    	// retornando a string encriptada, usando a propria string como chave
+    	return crypt(md5($string), md5($string));
+    }
 }

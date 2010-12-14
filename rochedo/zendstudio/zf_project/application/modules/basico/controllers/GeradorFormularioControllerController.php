@@ -35,7 +35,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaNomeClasseForm(&$objModulo, &$objFormulario)
+    private function retornaNomeClasseForm(Basico_Model_Modulo &$objModulo, Basico_Model_Formulario &$objFormulario)
     {
     	// retorna o nome da classe do formulario
         return ucfirst(strtolower($objModulo->nome)) . "_Form_" . $objFormulario->formName;
@@ -49,7 +49,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaNomeVariavelSubForm(&$objModulo, &$objSubFormulario)
+    private function retornaNomeVariavelSubForm(Basico_Model_Modulo &$objModulo, Basico_Model_Formulario &$objSubFormulario)
     {
     	// retorna o nome da variavel para instanciamento
 		return "$" . strtolower($objModulo->nome) . ucfirst($objSubFormulario->formName) . "SubForm";
@@ -472,11 +472,30 @@ class Basico_GeradorFormularioControllerController
                 	// adição dos elementos do formulário
                 	Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $moduloObject, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
                 };
-                        
-                // adicionar sub-formulario ao formulario pai
-                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName));
 
-                // nivel 0 de identação
+				// verificando se o pai do formulario eh da categoria FORMULARIO_SUB_FORMULARIO
+    			if ($objSubFormulario->getFormularioPaiObject()->getCategoriaObject()->getRootCategoriaPaiObject()->nome === FORMULARIO_SUB_FORMULARIO) {
+    				// recuperando o nome da variavel que instancia o sub formulario pai
+    				$formPaiVariableInstance = self::retornaNomeVariavelSubForm(Basico_ModuloControllerController::retornaObjetoModuloNome($moduleName), $objSubFormulario->getFormularioPaiObject());
+	                // adicionanando sub-formulario ao sub formulario pai
+	                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName, $formPaiVariableInstance));
+    			}
+	            else
+					// adicionanando sub-formulario ao formulario pai
+	                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName));
+
+            	// verificacao sobre formularios filhos
+				if (Basico_FormularioControllerController::existeFormulariosFilhos($objSubFormulario->id)) {
+					$formulariosFilhosObjects = $objSubFormulario->getFormulariosFilhosObjects();
+					foreach ($formulariosFilhosObjects as $formularioFilhoObject){
+						if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames))
+		                	throw new Exception(MSG_ERRO_GERAR_SUB_FORMULARIO);
+		
+		                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, QUEBRA_DE_LINHA . self::retornaIncludeSubForm($nivelIdentacao, $formularioFilhoObject));
+					}
+				}
+
+				// nivel 0 de identação
                 $nivelIdentacao--;
                 $identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
 				Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $subFormEndTag));
@@ -495,6 +514,7 @@ class Basico_GeradorFormularioControllerController
 
             throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . QUEBRA_DE_LINHA . $e);
         }
+
         return $resultado;
     }
     
@@ -577,6 +597,7 @@ class Basico_GeradorFormularioControllerController
     {
     	// inicializando variaveis
     	$arrayReturn = array();
+    	$baseUrl     = Basico_UtilControllerController::retornaBaseUrl();
     	
     	// carregando atributos do formulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
@@ -601,7 +622,7 @@ class Basico_GeradorFormularioControllerController
 
         // verificando se o formulario possui acao
         if ($objFormulario->formAction)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                            = FORM_GERADOR_FORM_SETACTION . "('{$objFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                            = FORM_GERADOR_FORM_SETACTION . "('{$baseUrl}{$objFormulario->formAction}');" . QUEBRA_DE_LINHA;
 
         // verificando se o formulario possui atributos
         if ($objFormulario->formAttribs){
@@ -1080,16 +1101,17 @@ class Basico_GeradorFormularioControllerController
      * @param Integer $nivelIdentacao
      * @param String $subFormVariableInstance
      * @param String $subFormName
+     * @param String $formPaiVariableInstance
      * 
      * @return String
      */
-    private function retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariableInstance, $subFormName)
+    private function retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariableInstance, $subFormName, $formPaiVariableInstance = FORM_GERADOR_THIS_INSTANCE)
     {
     	// inicializando variaveis
     	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
 
     	// retornando adicao do sub-formulario ao formulario
-    	return $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM . "({$subFormVariableInstance}, '{$subFormName}');" . QUEBRA_DE_LINHA;
+    	return $identacao . $formPaiVariableInstance . FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM . "({$subFormVariableInstance}, '{$subFormName}');" . QUEBRA_DE_LINHA;
     }
 
     /**
@@ -1115,7 +1137,13 @@ class Basico_GeradorFormularioControllerController
     	
     	$tempReturn .= $identacao . FORM_GERADOR_INCLUDE_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
     	
-    	$tempReturn .= "{$identacao}{$metodo}(\"subForms/{$nomeDoArquivo}\");" . QUEBRA_DE_LINHA;
+    	// verificando se o pai do formulario eh da categoria FORMULARIO_SUB_FORMULARIO
+    	if ($objSubFormulario->getFormularioPaiObject()->getCategoriaObject()->getRootCategoriaPaiObject()->nome === FORMULARIO_SUB_FORMULARIO)
+    		// incluindo sub formulario filho de sub formulario
+			$tempReturn .= "{$identacao}{$metodo}(\"{$nomeDoArquivo}\");" . QUEBRA_DE_LINHA;
+    	else
+    		// incluindo sub formulario filho de formulario
+			$tempReturn .= "{$identacao}{$metodo}(\"subForms/{$nomeDoArquivo}\");" . QUEBRA_DE_LINHA;
     	
     	// retornando o include do sub-formulario
     	return $tempReturn;
