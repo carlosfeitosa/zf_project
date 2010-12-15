@@ -111,10 +111,22 @@ class Basico_FormularioControllerController
 	 */
 	public static function retornaTodosObjsFormularios()
 	{
+		// inicalizando variaveis
+		$arrayReturn = array();
 		// instanciando modelo de formulario
 		$modelFormulario = new Basico_Model_Formulario();
 		
-		// retornando todos os formularios do sistema, ordenados pelo nome
-		return $modelFormulario->fetchList(null, 'form_name');
+		// recuperando todos os formularios do sistema, ordenados pelo nome
+		$objsFormulario = $modelFormulario->fetchList(null, 'form_name');
+
+		// loop para recuperar apenas os formulario que nao sao sub formularios
+		foreach ($objsFormulario as $formularioObject) {
+			// verificando se o formulario nao eh do tipo sub formulario		
+			if (($formularioObject->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome == TIPO_CATEGORIA_FORMULARIO) and ($formularioObject->getCategoriaObject()->getRootCategoriaPaiObject()->nome != FORMULARIO_SUB_FORMULARIO))
+				$arrayReturn[] = $formularioObject;
+		}
+
+		// retornando array de objetos formulario
+		return $arrayReturn;
 	}
 }
