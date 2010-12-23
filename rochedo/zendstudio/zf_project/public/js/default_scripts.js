@@ -19,14 +19,19 @@ function loading()
     underlay.show();
 }
 
-function exibirDialogConteudo(dialogName, content, title, urlRedirect)
+function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedirectHide)
 {
 	// procurando se o dialog ja existe na sessao do usuario
 	dialog = dijit.byId(dialogName);
 
 	if (!dialog) {
 		// criando dialog
-		var dialog = new dijit.Dialog({title: title, content: content, id: dialogName});
+		var dialog = new dijit.Dialog({title: title, content: content, id: dialogName,
+										onHide: dojo.hitch(this, function(){
+											// verificando se o dialog possui o hidden para redirect
+											if (document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0] && urlRedirectHide)
+							                	window.location = urlRedirectHide;
+							            })});
 
 		// setando tempo de fadein
 		dialog.duration = 500;
@@ -46,7 +51,7 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect)
 	dialog.show();
 }
 
-function exibirDialogUrl(dialogName, url, title, urlRedirect)
+function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide)
 {
     // setando os parametros do xhrGet: url, como manipular e os callbacks
     var xhrArgs = {
@@ -54,7 +59,7 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect)
         handleAs: "text",
         load: function(data) {
         	// chamando metodo de abertura de caixa de dialogo com o conteudo da url
-        	exibirDialogConteudo(dialogName, data, title, urlRedirect);
+        	exibirDialogConteudo(dialogName, data, title, urlRedirect, urlRedirectHide);
         },
         error: function(error) {
         	// mostrando erro

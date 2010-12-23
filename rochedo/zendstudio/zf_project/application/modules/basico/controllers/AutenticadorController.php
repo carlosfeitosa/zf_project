@@ -29,16 +29,11 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			// recuperando a url para redirecionando
 			$urlRedirect = Basico_UtilControllerController::decodificaBarrasUrl(Basico_UtilControllerController::retornaUserRequest()->getParam('urlRedirect'));
 
-		// inicializando variaveis
-		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
-    	// montando script para abrir a caixa de dialogo de login
-    	$scriptCaixaDialogoLogin = "exibirDialogUrl('Basico_Form_AutenticacaoUsuario', '/rochedo_project/public/public_forms/basico/forms/AutenticacaoUsuario.{$linguaUsuario}.html', '{$this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO')}', '{$urlRedirect}')";
-
     	// carregando cabecalho da view
-		$this->view->cabecalho = array('tituloView' => 'Aguardando autenticação do usuário...');
+		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO'));
 
     	// enviando o script para o cliente
-    	echo "<script language='javascript'>{$scriptCaixaDialogoLogin}</script>";
+    	echo Basico_AutenticadorControllerController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_PessoaControllerController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect);
 
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
