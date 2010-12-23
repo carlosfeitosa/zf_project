@@ -94,12 +94,19 @@ function showDialogAlert(txtDialogId, txtTitle, txtContent, botaoFechar)
 	thisdialog.show();
 }
 
-function hideDialog(dialogId)
+function hideDialog(dialogId, urlRedirectHide)
 {
+	// localizando o dialog
 	var dlg = dijit.byId(dialogId);
-	
-	if (dlg != null)
+
+	// verificando se o dialog existe
+	if (dlg != null) {
+		// verificando se o dialog possui o hidden urlRedirect
+		hiddenUrlRedirect = document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0];
+		if (hiddenUrlRedirect && urlRedirectHide)
+			window.location = urlRedirectHide;
 		dlg.hide();
+	}
 }
 
 function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetodo){

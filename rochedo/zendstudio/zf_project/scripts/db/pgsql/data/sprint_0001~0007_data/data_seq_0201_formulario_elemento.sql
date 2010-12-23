@@ -830,7 +830,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_RESET' AS nome, 'Botão para reset de 
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
        'FORM_BUTTON_RESET' AS constante_textual_label, 'resetar' AS element_name, 
-       '''resetar'', array(''type'' => ''reset'', ''onClick'' => ''hideDialog(\"@nomeForm\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       '''resetar'', array(''type'' => ''reset'', ''onClick'' => ''hideDialog(\"@nomeForm\", \"@baseUrl\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

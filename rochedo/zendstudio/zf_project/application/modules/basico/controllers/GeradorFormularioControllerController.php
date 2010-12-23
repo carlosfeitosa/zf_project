@@ -892,7 +892,7 @@ class Basico_GeradorFormularioControllerController
         
         foreach ($formularioElementosObjects as $formularioElementoObject){
         	$formElementLoop = str_replace('@contador', $arrayOrdemElementos[$contador], $formElement);
-        	
+
         	// verificando se o é preciso determinar ambiente de desenvolvimento
         	if (false !== array_search($formularioElementoObject->getCategoriaObject()->nome, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento)){
 				$elementoAmbienteDesenvolvimento = true;
@@ -900,13 +900,13 @@ class Basico_GeradorFormularioControllerController
                 $identacao = Basico_UtilControllerController::retornaIdentacao(++$nivelIdentacao);
             } else
             	$elementoAmbienteDesenvolvimento = false;
-            
+
             // verifica se elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
             if ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) {
             	// localiza formulario vinculado
             	$formularioElementoFormularioVinculado = $formularioElementoObject->getFormularioElementoFormularioVinculadoObject($objFormulario, $totalFormularioElementoFormulariosVinculados);
             	$formularioElementoConstanteTextualTitulo = $formularioElementoObject->getFormularioElementoConstanteTextualTitulo($objFormulario, $totalFormularioElementoFormulariosVinculados);
-      
+
             	// recuperando variaveis que serao utilizadas para instanciar o formulario vinculado
             	$nomeClasseSubForm = self::retornaNomeClasseForm($objModulo, $formularioElementoFormularioVinculado);
 
@@ -916,7 +916,7 @@ class Basico_GeradorFormularioControllerController
             else {           	
             	if (isset($nomeClasseSubForm))
             		unset($nomeClasseSubForm);
-            	
+
             	if (isset($formularioElementoConstanteTextualTitulo))
             		unset($formularioElementoConstanteTextualTitulo);
             }
@@ -928,10 +928,11 @@ class Basico_GeradorFormularioControllerController
             }  	
             else {
             	// carregando elemento
-            	$tempFormElement = $formularioElementoObject->element;            	
+            	$tempFormElement = $formularioElementoObject->element;
 
             	// fazendo substituicoes
             	$tempFormElement = str_replace(FORM_GERADOR_FORM_ELEMENT_FORM_NAME, self::retornaNomeClasseForm($objModulo, $objFormulario), $tempFormElement);
+            	$tempFormElement = str_replace(FORM_GERADOR_ARRAY_INIT_FORM_ACTION_BASE_URL, Basico_UtilControllerController::retornaBaseUrl(), $tempFormElement);
             }
 
 			// recuperando string para concatenacao do nome do modulo e formulario

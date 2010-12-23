@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 00:24:09
+* em: 23/12/2010 10:35:54
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 00:18:53
+* @version    1: 23/12/2010 10:28:52
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {
@@ -90,7 +90,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $elements[7]->removeDecorator('DtDdWrapper');
         $elements[7]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[8] = $this->createElement('button', 'BasicoAutenticacaoUsuarioResetar', array('type' => 'reset', 'onClick' => 'hideDialog("Basico_Form_AutenticacaoUsuario");'));
+        $elements[8] = $this->createElement('button', 'BasicoAutenticacaoUsuarioResetar', array('type' => 'reset', 'onClick' => 'hideDialog("Basico_Form_AutenticacaoUsuario", "/rochedo_project/public");'));
         $elements[8]->setOrder(8);
         $elements[8]->setRequired(false);
         $elements[8]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-margin-right10px',));

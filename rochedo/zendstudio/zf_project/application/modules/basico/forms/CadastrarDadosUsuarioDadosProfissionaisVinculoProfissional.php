@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 00:24:17
+* em: 23/12/2010 10:36:02
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 00:18:53
+* @version    1: 23/12/2010 10:28:52
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional extends Zend_Dojo_Form
 {
@@ -205,7 +205,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[19]->removeDecorator('DtDdWrapper');
         $elements[19]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[20] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalResetar', array('type' => 'reset', 'onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional");'));
+        $elements[20] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalResetar', array('type' => 'reset', 'onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional", "/rochedo_project/public");'));
         $elements[20]->setOrder(20);
         $elements[20]->setRequired(false);
         $elements[20]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-margin-right10px',));
