@@ -2080,6 +2080,54 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA') AS id_formulario_elemento, true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_LOGIN'
+        AND f.nome = 'FORM_AUTENTICACAO_USUARIO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO') AS id_formulario_elemento, false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_LOGIN'
+        AND f.nome = 'FORM_AUTENTICACAO_USUARIO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_LINK_PROBLEMAS_LOGON') AS id_formulario_elemento, false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_LOGIN'
+        AND f.nome = 'FORM_AUTENTICACAO_USUARIO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO'
+        AND fe.nome = 'FORM_LINK_NOVO_USUARIO') AS id_formulario_elemento, false AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2151,6 +2199,23 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
         false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_LOGIN'
+        AND f.nome = 'FORM_AUTENTICACAO_USUARIO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_HIDDEN'
+        AND fe.nome = 'FORM_FIELD_HIDDEN_URLREDIRECT') AS id_formulario_elemento,
+        false AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 /**
 * INICIO

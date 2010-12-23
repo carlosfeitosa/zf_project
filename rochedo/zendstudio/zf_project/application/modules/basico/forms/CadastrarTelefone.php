@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/12/2010 14:16:19
+* em: 23/12/2010 00:24:22
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 14/12/2010 13:55:48
+* @version    1: 23/12/2010 00:18:53
 */
 class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
 {
@@ -41,7 +41,7 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[1]->setOrder(1);
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[1]->addDecorator('Label', array('escape' => false));
+        $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_TELEFONE_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_TIPO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -51,7 +51,7 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[2]->setOrder(2);
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[2]->addDecorator('Label', array('escape' => false));
+        $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_TELEFONE_CODIGO_PAIS') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_CODIGO_PAIS_AJUDA')) . '\', 1)</script></button>');
         $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_TELEFONE_CODIGO_PAIS_HINT'));
@@ -65,7 +65,7 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(true);
         $elements[3]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[3]->addDecorator('Label', array('escape' => false));
+        $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_TELEFONE_CODIGO_AREA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_CODIGO_AREA_AJUDA')) . '\', 1)</script></button>');
         $elements[3]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_TELEFONE_CODIGO_AREA_HINT'));
@@ -79,7 +79,7 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[4]->setOrder(4);
         $elements[4]->setRequired(true);
         $elements[4]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[4]->addDecorator('Label', array('escape' => false));
+        $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
         $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_TELEFONE') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_AJUDA')) . '\', 1)</script></button>');
         $elements[4]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_TELEFONE_HINT'));
@@ -93,7 +93,7 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[5]->setOrder(5);
         $elements[5]->setRequired(false);
         $elements[5]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[5]->addDecorator('Label', array('escape' => false));
+        $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TELEFONE_RAMAL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_RAMAL_AJUDA')) . '\', 1)</script></button>');
         $elements[5]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_TELEFONE_RAMAL_HINT'));
@@ -107,7 +107,7 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[6]->setOrder(6);
         $elements[6]->setRequired(false);
         $elements[6]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[6]->addDecorator('Label', array('escape' => false));
+        $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TELEFONE_DESCRICAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_DESCRICAO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -134,7 +134,6 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
-        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

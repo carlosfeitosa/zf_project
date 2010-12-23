@@ -80,7 +80,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 
     	// Seta o tipo de contexto da view  
     	$contexto = $controller->getRequest()->getParam('format');
-    	
+
     	// Verifica o tipo de requisição http
     	if($controller->getRequest()->isXmlHttpRequest()){
     		// AJAX REQUEST
@@ -105,11 +105,11 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     	if($disableLayout)
     		$controller->getHelper('layout')->disableLayout(true);
 
-    	if(!$viewScript){
-    		
+    		if(!$viewScript){
+
     		/*
     		 * Renderiza a view baseada no contexto
-    		 * Contextos permitidos: HTML, PDF, XLS, XML, AJAX, PLAINTEXT, IMPRESSAO
+    		 * Contextos permitidos: HTML, PDF, XLS, XML, AJAX, PLAINTEXT, IMPRESSAO e NULL
     		 */
 	    	switch ($contexto){
 
@@ -129,6 +129,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 	    			break;
 
 	    		case 'impressao' : $controller->renderScript('default.impressao.phtml');
+	    			break;
+
+	    		case 'null' : $controller->renderScript('default.null.phtml');
 	    			break;
 
 	    		// Renderiza para a view defult HTML

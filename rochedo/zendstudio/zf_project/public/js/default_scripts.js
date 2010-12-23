@@ -19,42 +19,51 @@ function loading()
     underlay.show();
 }
 
-function exibirDialogConteudo(dialogName, content, title)
+function exibirDialogConteudo(dialogName, content, title, urlRedirect)
 {
-    
+	// procurando se o dialog ja existe na sessao do usuario
 	dialog = dijit.byId(dialogName);
-    
-	if (!dialog) {
-		var thisdialog = new dijit.Dialog({
-                            title: title, 
-                            content: content,
-                            id: dialogName
-                            });
 
-			thisdialog.duration = 500;
-			thisdialog.show();
-	}else{
-		dialog.show();	
+	if (!dialog) {
+		// criando dialog
+		var dialog = new dijit.Dialog({title: title, content: content, id: dialogName});
+
+		// setando tempo de fadein
+		dialog.duration = 500;
 	}
+
+	// verificando se eh preciso setar o hidden urlRedirect
+	if (urlRedirect) {
+		hiddenUrlRedirect = document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0];
+		
+		// verificando se existe o elemento hidden urlRedirect
+		if (hiddenUrlRedirect)
+			// setando o valor do hidden
+			hiddenUrlRedirect.value = urlRedirect;
+	}
+
+	// mostrando dialog
+	dialog.show();
 }
 
-function exibirDialogUrl(dialogName, url, title)
+function exibirDialogUrl(dialogName, url, title, urlRedirect)
 {
-    
-	dialog = dijit.byId(dialogName);
-    
-	if (!dialog) {
-		var thisdialog = new dijit.Dialog({
-                            title: title, 
-                            href: url,
-                            id: dialogName
-                            });
+    // setando os parametros do xhrGet: url, como manipular e os callbacks
+    var xhrArgs = {
+        url: url,
+        handleAs: "text",
+        load: function(data) {
+        	// chamando metodo de abertura de caixa de dialogo com o conteudo da url
+        	exibirDialogConteudo(dialogName, data, title, urlRedirect);
+        },
+        error: function(error) {
+        	// mostrando erro
+            dialog.setContent("Um erro aconteceu: " + error);
+        }
+    };
 
-			thisdialog.duration = 500;
-			thisdialog.show();
-	}else{
-		dialog.show();
-	}
+    // carregando o conteudo da url no dialog
+    dojo.xhrGet(xhrArgs);
 }
 
 function validateForm(formId, titulo, message) 

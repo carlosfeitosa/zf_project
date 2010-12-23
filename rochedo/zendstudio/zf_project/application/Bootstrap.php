@@ -10,6 +10,7 @@ require_once("modules/basico/controllers/LogControllerController.php");
 require_once("modules/basico/controllers/TokenControllerController.php");
 require_once("modules/basico/controllers/UtilControllerController.php");
 require_once("modules/basico/controllers/PersistenceControllerController.php");
+require_once("modules/basico/controllers/AutenticadorControllerController.php");
 
 /**
  * Bootstrap primário do sistema.

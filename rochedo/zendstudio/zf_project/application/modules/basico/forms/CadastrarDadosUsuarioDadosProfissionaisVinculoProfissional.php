@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/12/2010 14:16:15
+* em: 23/12/2010 00:24:17
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 14/12/2010 13:55:48
+* @version    1: 23/12/2010 00:18:53
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional extends Zend_Dojo_Form
 {
@@ -40,7 +40,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalVinculoProfissional');
         $elements[1]->setOrder(1);
         $elements[1]->setRequired(true);
-        $elements[1]->addDecorator('Label', array('escape' => false));
+        $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-margin-right10px',));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_VINCULO_PROFISSIONAL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_VINCULO_PROFISSIONAL_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -49,7 +49,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalProfissao');
         $elements[2]->setOrder(2);
         $elements[2]->setRequired(true);
-        $elements[2]->addDecorator('Label', array('escape' => false));
+        $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_PROFISSAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PROFISSAO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -58,7 +58,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[3] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalPjVinculo');
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(false);
-        $elements[3]->addDecorator('Label', array('escape' => false));
+        $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
         $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_PJ_VINCULO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PJ_VINCULO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -67,7 +67,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[4] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalRegimeTrabalho');
         $elements[4]->setOrder(4);
         $elements[4]->setRequired(true);
-        $elements[4]->addDecorator('Label', array('escape' => false));
+        $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_REGIME_TRABALHO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_REGIME_TRABALHO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -77,7 +77,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[5]->setOrder(5);
         $elements[5]->setRequired(true);
         $elements[5]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[5]->addDecorator('Label', array('escape' => false));
+        $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
         $elements[5]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CARGO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CARGO_AJUDA')) . '\', 1)</script></button>');
         $elements[5]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CARGO_HINT'));
@@ -88,7 +88,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[6]->setOrder(6);
         $elements[6]->setRequired(true);
         $elements[6]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[6]->addDecorator('Label', array('escape' => false));
+        $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[6]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_FUNCAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_FUNCAO_AJUDA')) . '\', 1)</script></button>');
         $elements[6]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_FUNCAO_HINT'));
@@ -99,7 +99,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[7]->setOrder(7);
         $elements[7]->setRequired(false);
         $elements[7]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[7]->addDecorator('Label', array('escape' => false));
+        $elements[7]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[7]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[7]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_ATIVIDADES_DESENVOLVIDAS') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ATIVIDADES_DESENVOLVIDAS_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -108,7 +108,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[8] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDataAdmissao', array('style' => 'width: 100px;'));
         $elements[8]->setOrder(8);
         $elements[8]->setRequired(false);
-        $elements[8]->addDecorator('Label', array('escape' => false));
+        $elements[8]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[8]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
         $elements[8]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_DATA_ADMISSAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_ADMISSAO_AJUDA')) . '\', 1)</script></button>');
         $elements[8]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_DATA_ADMISSAO_HINT'));
@@ -118,7 +118,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[9] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDataDesvinculacao', array('style' => 'width: 100px;'));
         $elements[9]->setOrder(9);
         $elements[9]->setRequired(false);
-        $elements[9]->addDecorator('Label', array('escape' => false));
+        $elements[9]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[9]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-margin-right10px',));
         $elements[9]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_DATA_DESVINCULACAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_DESVINCULACAO_AJUDA')) . '\', 1)</script></button>');
         $elements[9]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_DATA_DESVINCULACAO_HINT'));
@@ -129,7 +129,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[10]->setOrder(10);
         $elements[10]->setRequired(false);
         $elements[10]->addValidator('Int');
-        $elements[10]->addDecorator('Label', array('escape' => false));
+        $elements[10]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[10]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[10]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA')) . '\', 1)</script></button>');
         $elements[10]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT'));
@@ -139,7 +139,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[11] = $this->createElement('CurrencyTextBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalSalarioBruto', array('style' => 'width: 90px;'));
         $elements[11]->setOrder(11);
         $elements[11]->setRequired(false);
-        $elements[11]->addDecorator('Label', array('escape' => false));
+        $elements[11]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[11]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both-margin-right10px',));
         $elements[11]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO_AJUDA')) . '\', 1)</script></button>');
         $elements[11]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_SALARIO_BRUTO_HINT'));
@@ -149,7 +149,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[12] = $this->createElement('CheckBox', 'BasicoCadastrarDadosUsuarioDadosProfissionaisVinculoProfissionalDedicacaoExclusiva');
         $elements[12]->setOrder(12);
         $elements[12]->setRequired(false);
-        $elements[12]->addDecorator('Label', array('escape' => false));
+        $elements[12]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[12]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[12]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_DEDICACAO_EXCLUSIVA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DEDICACAO_EXCLUSIVA_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -159,7 +159,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $elements[13]->setOrder(13);
         $elements[13]->setRequired(false);
         $elements[13]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[13]->addDecorator('Label', array('escape' => false));
+        $elements[13]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[13]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[13]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_OUTRAS_INFORMACOES') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_OUTRAS_INFORMACOES_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
@@ -221,7 +221,6 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional ext
         $dados_usuario_dados_profissionais_vinculo_profissional_informacoes_contato->removeDecorator('DtDdWrapper');
         $dados_usuario_dados_profissionais_vinculo_profissional_informacoes_contato->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
 
-        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

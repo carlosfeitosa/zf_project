@@ -486,6 +486,112 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_LOGIN_MANTER_LOGADO_CHECKBOX') AS id_ajuda,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE_WRAP_LABEL_RIGHT') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_CheckBox') AS id_componente,
+                              'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO' AS nome, 'Elemento para confirmacao de manter-se conectado.' AS descricao,
+                              'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO' AS constante_textual_label,
+                              'loginManterLogado' AS element_name, NULL AS element_attribs,
+                              '''loginManterLogado'',  array(''disableLoadDefaultDecorators'' => true, ''decorators'' => array(''DijitElement'', ''Errors'', ''Description''))' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_LINK_PROBLEMAS_LOGON' AS nome, 'Elemento link para problemas com o logon.' AS descricao,
+                              'linkProblemasLogon' AS element_name, NULL AS element_attribs,
+                              '''linkProblemasLogon'',  array(''value'' => "<br><a href=''{$this->getView()->url(array(''module'' => ''basico'', ''controller'' => ''login'', ''action'' => ''problemasLogin''), null, true)}''>{$this->getView()->tradutor(''FORM_LINK_PROBLEMAS_LOGON'')}</a>")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_LINK_NOVO_USUARIO' AS nome, 'Elemento link novo usuario.' AS descricao,
+                              'linkNovoUsuario' AS element_name, NULL AS element_attribs,
+                              '''linkNovoUsuario'',  array(''value'' => "<a href=''{$this->getView()->url(array(''module'' => ''basico'', ''controller'' => ''login'', ''action'' => ''cadastrarUsuarioNaoValidado''), null, true)}''>{$this->getView()->tradutor(''FORM_LINK_NOVO_USUARIO'')}</a>")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ZF'
+                              AND cp.nome = 'ZF_Hidden') AS id_componente,
+                              'FORM_FIELD_HIDDEN_URLREDIRECT' AS nome, 'Elemento link novo usuario.' AS descricao,
+                              'urlRedirect' AS element_name, NULL AS element_attribs,
+                              '''urlRedirect'', array(''decorators'' => array(''ViewHelper''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HIDDEN';
+
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 

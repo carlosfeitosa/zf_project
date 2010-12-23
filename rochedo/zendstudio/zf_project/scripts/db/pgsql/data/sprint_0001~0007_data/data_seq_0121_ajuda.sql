@@ -101,6 +101,15 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_LOGIN_MANTER_LOGADO_CHECKBOX' AS nome, 'Texto de ajuda para o campo "manter-me conectado" do formulario de autenticacao de usuarios.' AS descricao,
+       'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo categoria de bolsa do cnpq.' AS descricao,
        'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo

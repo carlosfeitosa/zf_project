@@ -244,7 +244,7 @@ class Basico_UtilControllerController
 	/**
 	 * Retorna requisição do usuário.
 	 * 
-	 * @return Array
+	 * @return Zend_Controller_Request_Http
 	 */
 	public static function retornaUserRequest()
 	{
@@ -905,5 +905,31 @@ class Basico_UtilControllerController
     {
     	// retornando a string encriptada, usando a propria string como chave
     	return crypt(md5($string), md5($string));
+    }
+
+    /**
+     * Retorna uma string contendo uma url passada por parametro com as barras (/) codificadas
+     * 
+     * @param String $stringUrl
+     * 
+     * @return String
+     */
+    public static function codificaBarrasUrl($uncodedStringUrl)
+    {
+    	// retornando a url com as barras codificadas
+    	return str_replace(CARACTER_BARRA_URL, CARACTER_CODIFICACAO_BARRA_URL, $uncodedStringUrl);
+    }
+    
+    /**
+     * Retorna uma string contendo uma url passada por parametro com as barras (/) decodificadas
+     *
+     * @param unknown_type $codedStringUrl
+     * 
+     * @return String
+     */
+    public static function decodificaBarrasUrl($codedStringUrl)
+    {
+    	// retornando a url com as barras codificadas
+    	return str_replace(CARACTER_CODIFICACAO_BARRA_URL, CARACTER_BARRA_URL, $codedStringUrl);
     }
 }

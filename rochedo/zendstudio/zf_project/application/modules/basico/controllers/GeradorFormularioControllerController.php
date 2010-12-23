@@ -1078,6 +1078,7 @@ class Basico_GeradorFormularioControllerController
         if (!$subFormVariableInstance)
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
         else {
+        	$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
         	$tempReturn =  str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
         }
@@ -1088,8 +1089,6 @@ class Basico_GeradorFormularioControllerController
         // verificando se existem displays groups
         if ($stringAddDisplayGroup)
         	$tempReturn .= $stringAddDisplayGroup . QUEBRA_DE_LINHA;
-
-		$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
 
         // retornando elementos do formulario
 		return $tempReturn;

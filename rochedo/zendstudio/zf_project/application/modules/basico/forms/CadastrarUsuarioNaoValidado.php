@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/12/2010 14:16:20
+* em: 23/12/2010 00:24:23
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 14/12/2010 13:55:48
+* @version    1: 23/12/2010 00:18:53
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -30,7 +30,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 
         $this->setName('CadastrarUsuarioNaoValidado');
         $this->setMethod('post');
-        $this->setAction('/rochedo_project/publicverificaNovoLogin');
+        $this->setAction('/rochedo_project/public/basico/login/verificaNovoLogin');
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements',
                 array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
@@ -45,7 +45,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addValidator('NotEmpty');
-        $elements[1]->addDecorator('Label', array('escape' => false));
+        $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
         $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT'));
         if ($options!=null)
@@ -58,7 +58,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addValidator('NotEmpty');
         $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
-        $elements[2]->addDecorator('Label', array('escape' => false));
+        $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
         $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));
         if ($options!=null)
@@ -97,7 +97,6 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
-        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

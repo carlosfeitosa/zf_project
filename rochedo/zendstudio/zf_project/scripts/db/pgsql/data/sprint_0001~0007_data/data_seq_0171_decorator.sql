@@ -24,7 +24,15 @@ AND c.nome = 'FORMULARIO_DECORATOR';
 
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_LABEL_ESCAPE' AS nome, 'Decorator que permite escapar tags html dentro de um label de um campo no formulários.' AS descricao,
-       '''Label'', array(''escape'' => false)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+       '''Label'', array(''escape'' => false, ''disableFor'' => true)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR';
+
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_LABEL_ESCAPE_WRAP_LABEL_RIGHT' AS nome, 'Decorator que permite escapar tags html dentro de um label de um campo no formulários.' AS descricao,
+       '''Label'', array(''escape'' => false, ''disableFor'' => true, ''placement'' => ''append'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

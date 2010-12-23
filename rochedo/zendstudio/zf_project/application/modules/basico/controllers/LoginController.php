@@ -36,7 +36,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	public function init()
     {
     	// recuperando a requisicao
-        $this->request = Zend_Controller_Front::getInstance()->getRequest();
+        $this->request = Basico_UtilControllerController::retornaUserRequest();
 
 		// definindo o contexto
 		$pdfParametros = array('suffix' => 'pdf', 'headers' => array('Content-Type' => 'application/pdf'));
@@ -168,24 +168,23 @@ class Basico_LoginController extends Zend_Controller_Action
     public function salvarusuariovalidadoAction()
     {
     	$form = $this->getFormCadastroUsuarioValidado();
-    	
+
     	//if ($form->isValid($_POST)) {
-    	    
+
     		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
     		$controladorLogin         = Basico_LoginControllerController::init();
 
     		$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
     		$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
     		$dadosPessoaisObj = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($idPessoa);
-    		
+
     		if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais == false)
     		    throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);
     		    
     		$dadosPessoaisObj->nome           = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoNome');
     		$dadosPessoaisPbj->dataNascimento = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoDataNascimento');
     		$controladorDadosPessoais->salvarDadosPessoais($dadosPessoaisObj, $versaoDadosPessoais);
-    		
-    		
+
     		$novoLogin = new Basico_Model_Login();
     		$novoLogin->pessoa = $idPessoa;
     		$novoLogin->tentativasFalhas = 0;
@@ -197,21 +196,20 @@ class Basico_LoginController extends Zend_Controller_Action
     		$novoLogin->senha  = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha');
     		$novoLogin->ativo  = true;
     		$controladorLogin->salvarLogin($novoLogin);
-    		
+
     		// carregando o titulo e subtitulo da view
     	    //$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO);
          	//$subtituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO);
-    	
+
     	    // carregando array do cabelho
     	    $cabecalho =  array('tituloView' => "Login Salvo com sucesso", 'subtituloView' => "Teste");
-    	
+
     	    // carregando o titulo e subtitulo na view
             $this->view->cabecalho = $cabecalho;
-		    	
+
 		    // renderiza a view no script default
 		    $this->_helper->Renderizar->renderizar();
-    		
-    		
+
     	//}else{
     		//$this->view->form = $this->getFormCadastroUsuarioValidado($_POST);
     		//$this->_helper->Renderizar->renderizar();
@@ -227,7 +225,7 @@ class Basico_LoginController extends Zend_Controller_Action
     	//desabilitando layout e render
     	$this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        
+
         //checando a disponibilidade do login
     	$loginDisponivel = Basico_DBCheckControllerController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('stringPesquisa'));
         
@@ -236,7 +234,6 @@ class Basico_LoginController extends Zend_Controller_Action
 		}else{
 		    echo "<span style='color: green; font-weight: bold;'>Login disponível</span>";
 		}
-    		
     }
     
     /**
@@ -249,14 +246,14 @@ class Basico_LoginController extends Zend_Controller_Action
     {
     	// carregando o formulario
     	$form = $this->getFormCadastroUsuarioLoginNaoValidado();
-    	
+
     	// verificando se o formulario passou por sua validacao
         if($this->validaForm($form) == true){
         	// carregando o controlador de e-mail
 	        $controladorEmail = Basico_EmailControllerController::init();
 	        // verifica se o e-mail existe no banco de dados
 	        $emailParaValidacao = $controladorEmail->verificaEmailExistente($this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'));
-	        
+
 	        // checando o resultado da verificacao de existencia do e-mail
 	        if ($emailParaValidacao !== NULL){
 	        	// checando se o e-mail ja foi validado
@@ -267,7 +264,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	            else {
 	            	// iniciando a transacao
            			Basico_PersistenceControllerController::bdControlaTransacao();
-                    
+
 	            	try {
 		            	 // instanciando os controladores
 		            	 $controladorEmail                         = Basico_EmailControllerController::init();

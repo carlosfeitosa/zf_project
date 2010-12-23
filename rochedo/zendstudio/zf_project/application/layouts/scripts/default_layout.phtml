@@ -16,7 +16,8 @@ $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
 if (Basico_UtilControllerController::ambienteDesenvolvimento())
 {
-    $request = Zend_Controller_Front::getInstance()->getRequest();
+	// recuperando o request do usuario
+	$request = Basico_UtilControllerController::retornaUserRequest();
     $requestTitle = '('.$request->getModuleName().': '.$request->getControllerName().'/'.$request->getActionName().')';    
     $this->headTitle($requestTitle);
 }
@@ -71,9 +72,7 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
                                                          array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Administração" ?></a> |
-        <a href="javascript:exibirDialogUrl('Basico_Form_AutenticacaoUsuario', 
-                                            <?php echo Basico_UtilControllerController::retornaStringEntreCaracter("/rochedo_project/public/public_forms/basico/forms/AutenticacaoUsuario." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html", "'") ?>, 
-                                            <?php echo Basico_UtilControllerController::retornaStringEntreCaracter($this->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), "'") ?>)">Login</a>
+        <a onClick="loading()" href="<?php echo Basico_AutenticadorControllerController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php echo "Login" ?></a>
     </div>
 </div>
 

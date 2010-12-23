@@ -1,14 +1,23 @@
-<form id="AutenticacaoUsuario" method="post" action="/rochedo_project/public/basico/login/autenticarUsuario" onSubmit="loading();return(validateForm('AutenticacaoUsuario', 'Atenção', 'Por favor, preencha todos os campos requeridos antes de continuar.'))" postOnBackground="" postOnBackgroundOptions="dojo.eval(data);" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
-<label for="BasicoAutenticacaoUsuarioLogin" class="required">* Login:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Ajuda', 'Digite neste campo o login para acessar o sistema.', 1)</script></button></label>
+<form id="AutenticacaoUsuario" method="post" action="/rochedo_project/public/basico/autenticador/verificaAutenticacaoUsuario" onSubmit="loading();return(validateForm('AutenticacaoUsuario', 'Atenção', 'Por favor, preencha todos os campos requeridos antes de continuar.'))" postOnBackground="" postOnBackgroundOptions="dojo.eval(data);" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
+<label class="required">* Login:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Ajuda', 'Digite neste campo o login para acessar o sistema.', 1)</script></button></label>
 <dd>
 <input id="BasicoAutenticacaoUsuarioLogin" name="BasicoAutenticacaoUsuarioLogin" value="" type="text" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
-<label for="BasicoAutenticacaoUsuarioSenha" class="required">* Senha:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Ajuda', 'Digite neste campo a senha para acessar o sistema.', 1)</script></button></label>
+<label class="required">* Senha:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Ajuda', 'Digite neste campo a senha para acessar o sistema.', 1)</script></button></label>
 <dd>
 <input onKeyUp="chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value)" id="BasicoAutenticacaoUsuarioSenha" name="BasicoAutenticacaoUsuarioSenha" value="" type="password" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
+
+<input name="BasicoAutenticacaoUsuarioLoginManterLogado" value="0" type="hidden"><input id="BasicoAutenticacaoUsuarioLoginManterLogado" required="false" dojoType="dijit.form.CheckBox" name="BasicoAutenticacaoUsuarioLoginManterLogado" value="1" type="checkbox">
+<label class="optional">Manter-me conectado.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Ajuda', 'Marque esta opção se desejar que o sistema mantenha seu usuario logado no sistema.<br>Desmarque esta opção se estiver em um computador público/compartilhado.<br>Pessoas não autorizadas podem fazer uso de suas credenciais de acesso.', 1)</script></button></label>
+<dd id="BasicoAutenticacaoUsuarioLinkProblemasLogon-element">
+<br><a href='/rochedo_project/public/basico/login/problemasLogin'>Não consegue acessar sua conta?</a></dd>
+<dd id="BasicoAutenticacaoUsuarioLinkNovoUsuario-element">
+<a href='/rochedo_project/public/basico/login/cadastrarUsuarioNaoValidado'>Crie sua conta agora.</a></dd>
 <div id="width100percent-clear-both"><dt id="BasicoAutenticacaoUsuarioLinhaHorizontal-label">&#160;</dt>
 <dd id="BasicoAutenticacaoUsuarioLinhaHorizontal-element">
 <hr></dd></div>
 <div id="float-right-clear-both">
 <input id="BasicoAutenticacaoUsuarioEnviar" name="BasicoAutenticacaoUsuarioEnviar" value="Enviar" type="submit" required="false" label="Enviar" dojoType="dijit.form.Button"></div>
 <div id="float-right-margin-right10px">
-<button name="BasicoAutenticacaoUsuarioResetar" id="BasicoAutenticacaoUsuarioResetar" type="reset" onClick='hideDialog("Basico_Form_AutenticacaoUsuario");' required="false" dojoType="dijit.form.Button">Cancelar</button></div></dl></form>
+<button name="BasicoAutenticacaoUsuarioResetar" id="BasicoAutenticacaoUsuarioResetar" type="reset" onClick='hideDialog("Basico_Form_AutenticacaoUsuario");' required="false" dojoType="dijit.form.Button">Cancelar</button></div>
+
+<input type="hidden" name="BasicoAutenticacaoUsuarioUrlRedirect" value="" id="BasicoAutenticacaoUsuarioUrlRedirect"></dl></form>

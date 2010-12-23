@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/12/2010 14:16:09
+* em: 23/12/2010 00:24:09
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 14/12/2010 13:55:48
+* @version    1: 23/12/2010 00:18:53
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {
@@ -30,7 +30,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 
         $this->setName('AutenticacaoUsuario');
         $this->setMethod('post');
-        $this->setAction('/rochedo_project/public/basico/login/autenticarUsuario');
+        $this->setAction('/rochedo_project/public/basico/autenticador/verificaAutenticacaoUsuario');
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('AutenticacaoUsuario', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements',
                 array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
@@ -48,7 +48,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addValidator('NotEmpty');
-        $elements[1]->addDecorator('Label', array('escape' => false));
+        $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA')) . '\', 1)</script></button>');
 
         $elements[2] = $this->createElement('PasswordTextBox', 'BasicoAutenticacaoUsuarioSenha');
@@ -57,8 +57,26 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $elements[2]->setRequired(true);
         $elements[2]->addValidator('stringLength', false, array(6, 100));
         $elements[2]->addValidator('NotEmpty');
-        $elements[2]->addDecorator('Label', array('escape' => false));
+        $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA')) . '\', 1)</script></button>');
+
+        $elements[3] = $this->createElement('CheckBox', 'BasicoAutenticacaoUsuarioLoginManterLogado',  array('disableLoadDefaultDecorators' => true, 'decorators' => array('DijitElement', 'Errors', 'Description')));
+        $elements[3]->setOrder(3);
+        $elements[3]->setRequired(false);
+        $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true, 'placement' => 'append'));
+        $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO_AJUDA')) . '\', 1)</script></button>');
+        if ($options!=null)
+            $elements[3]->setValue($options->loginManterLogado);
+
+        $elements[4] = $this->createElement('html', 'BasicoAutenticacaoUsuarioLinkProblemasLogon',  array('value' => "<br><a href='{$this->getView()->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'problemasLogin'), null, true)}'>{$this->getView()->tradutor('FORM_LINK_PROBLEMAS_LOGON')}</a>"));
+        $elements[4]->setOrder(4);
+        $elements[4]->setRequired(false);
+        $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
+
+        $elements[5] = $this->createElement('html', 'BasicoAutenticacaoUsuarioLinkNovoUsuario',  array('value' => "<a href='{$this->getView()->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'cadastrarUsuarioNaoValidado'), null, true)}'>{$this->getView()->tradutor('FORM_LINK_NOVO_USUARIO')}</a>"));
+        $elements[5]->setOrder(5);
+        $elements[5]->setRequired(false);
+        $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
 
         $elements[6] = $this->createElement('html', 'BasicoAutenticacaoUsuarioLinhaHorizontal', array('value' => '<hr>'));
         $elements[6]->setOrder(6);
@@ -79,9 +97,12 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $elements[8]->removeDecorator('DtDdWrapper');
         $elements[8]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_RESET') . '');
 
+        $elements[9] = $this->createElement('hidden', 'BasicoAutenticacaoUsuarioUrlRedirect', array('decorators' => array('ViewHelper')));
+        $elements[9]->setOrder(9);
+        $elements[9]->setRequired(false);
+
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
-        // Adicionando sub-formulario ao formulario pai.
     }
 }
 ?>

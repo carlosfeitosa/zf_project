@@ -283,7 +283,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'Formulário de cadastro de usuário não validado. É a porta de entrada para validação do usuário no sistema.' AS descricao, 
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
-       'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, 'verificaNovoLogin' AS form_action, 
+       'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, '/basico/login/verificaNovoLogin' AS form_action, 
        '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -353,7 +353,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'Formulário para autenticação de usuário validado.' AS descricao, 
        'VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_AUTENTICACAO_USUARIO_SUBTITULO' AS constante_textual_subtitulo,
-       'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/login/autenticarUsuario' AS form_action, 
+       'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/autenticador/verificaAutenticacaoUsuario' AS form_action, 
        '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
