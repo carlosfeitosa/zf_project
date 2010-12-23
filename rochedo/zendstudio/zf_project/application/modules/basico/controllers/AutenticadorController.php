@@ -40,11 +40,9 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 	}
 	
 	public function verificaautenticacaousuarioAction()
-	{
-		// recuperando request
-		$userRequestParams = $this->getRequest()->getParams();
+	{	
 		// recuperando urlRedirect
-		$urlRedirect = $userRequestParams['BasicoAutenticacaoUsuarioUrlRedirect'];
+		$urlRedirect = Basico_AutenticadorControllerController::retornaUrlRedirectUserRequest($this->getRequest());
 
 		// verificando se existe uma pagina para redirect
 		if ($urlRedirect) {

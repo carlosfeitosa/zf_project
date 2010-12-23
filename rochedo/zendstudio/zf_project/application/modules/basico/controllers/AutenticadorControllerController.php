@@ -38,4 +38,20 @@ class Basico_AutenticadorControllerController
 		// retornando o javascript que abre o dialog de login
 		return "<script language='javascript'>exibirDialogUrl('Basico_Form_AutenticacaoUsuario', '/rochedo_project/public/public_forms/basico/forms/AutenticacaoUsuario.{$linguaUsuario}.html', '{$tituloDialog}', '{$urlRedirect}', '{$baseUrl}')</script>";
 	}
+
+	/**
+	 * Retorna a url de redirect, resgatada atraves do request do usuario (formulario de autenticacao)
+	 * 
+	 * @param Zend_Controller_Request_Http $userRequest
+	 * 
+	 * @return String
+	 */
+	public static function retornaUrlRedirectUserRequest(Zend_Controller_Request_Http $userRequest)
+	{
+		// recuperando request
+		$userRequestParams = $userRequest->getParams();
+		
+		// retornando urlRedirect
+		return $userRequestParams['BasicoAutenticacaoUsuarioUrlRedirect'];
+	}
 }
