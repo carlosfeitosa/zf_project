@@ -90,6 +90,10 @@ class Basico_FormularioFormularioElementoControllerController
 			foreach ($arrayObjsFormularioFormularioElemento as $objFormularioFormularioElemento) {
 				$arrayReturn[] = $objFormularioFormularioElemento->ordem;
 			}
+
+			// verificando se o formulario eh persistente
+			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_FormularioControllerController::existePersistencia($idFormulario)))
+				$arrayReturn[] = $objFormularioFormularioElemento->ordem + 1;
 		}
 
 		// retornando array com os resultados

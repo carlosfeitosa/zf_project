@@ -932,4 +932,23 @@ class Basico_UtilControllerController
     	// retornando a url com as barras codificadas
     	return str_replace(CARACTER_CODIFICACAO_BARRA_URL, CARACTER_BARRA_URL, $codedStringUrl);
     }
+
+    /**
+     * Valida se o request foi enviado via post. Caso negativo, redirecionada para $urlRedirect
+     * 
+     * @param Zend_Controller_Request_Http $request
+     * @param String $urlRedirect
+     * 
+     * @return true|null
+     */
+    public static function validaPostRequest(Zend_Controller_Request_Http $request, $urlRedirect)
+    {
+    	// verificando se o request foi enviado via post
+    	if ((!$request->isPost()) and ($urlRedirect)) {
+    		// redirecionando
+    		Zend_Controller_Action_HelperBroker::getStaticHelper('redirector')->gotoUrl($urlRedirect);
+    	}
+
+    	return true;
+    }
 }

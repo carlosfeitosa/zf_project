@@ -973,7 +973,7 @@ class Basico_GeradorFormularioControllerController
 			}
 
 			// descobrindo se o campo é requerido
-            if ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true) {
+            if (($formularioElementoObject->getFormularioFormularioElementoObject()) and ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true)) {
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";" . QUEBRA_DE_LINHA;
             	
             	// setando variavel de label de campo requerido
@@ -1072,16 +1072,16 @@ class Basico_GeradorFormularioControllerController
 
 			$tempReturn .= QUEBRA_DE_LINHA;
             $contador++;
-        }
+        }      	
 
         $tempReturn .= $identacao . $formElementsAddToFormComment;
 
         if (!$subFormVariableInstance)
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
         else {
-        	$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
         	$tempReturn =  str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
+        	$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
         }
 
         // recuperando displays groups do formulario

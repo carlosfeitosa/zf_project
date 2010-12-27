@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 10:35:58
+* em: 27/12/2010 13:06:22
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 10:28:52
+* @version    1: 27/12/2010 12:55:25
 */
 class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zend_Dojo_Form
 {
@@ -66,6 +66,11 @@ class Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao extends Zen
         $elements[4]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_HINT'));
         if ($options!=null)
             $elements[4]->setValue($options->nomeCurso);
+
+        $elements[5] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacaoCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[5]->setOrder(5);
+        $elements[5]->setRequired(false);
+        $elements[5]->removeDecorator('Label');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

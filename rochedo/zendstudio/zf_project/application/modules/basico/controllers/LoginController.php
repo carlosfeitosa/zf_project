@@ -61,7 +61,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	 * @return Basico_Form_CadastrarUsuarioNaoValidado
 	 */
     public function getFormCadastroUsuarioLoginNaoValidado()
-    {                  
+    {
         return new Basico_Form_CadastrarUsuarioNaoValidado();
     }
 

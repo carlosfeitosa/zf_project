@@ -68,4 +68,27 @@ class Basico_FormularioElementoControllerController
 			throw new Exception($e);
 		}
 	}
+
+	/**
+	 * Retorna o elemento hash
+	 * 
+	 * @return Basico_Model_FormularioElemento|null
+	 */
+	public static function retornaElementoHash()
+	{
+		// inicializando variaveis
+		$nomeElemento = FORM_ELEMENT_HASH;
+		// instanciando o modelo de formulario elemento
+		$modelFormularioElemento = new Basico_Model_FormularioElemento();
+
+		// recuperando array de resultados
+		$arrayResultado = $modelFormularioElemento->fetchList("nome = '{$nomeElemento}'");
+
+		// verificando se o elemento foi recuperado
+		if (count($arrayResultado) > 0)
+			// retornando elemento
+			return $arrayResultado[0];
+
+		return null;
+	}
 }

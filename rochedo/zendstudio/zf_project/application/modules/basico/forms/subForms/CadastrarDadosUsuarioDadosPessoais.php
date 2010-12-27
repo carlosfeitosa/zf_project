@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 10:35:56
+* em: 27/12/2010 13:06:20
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 10:28:52
+* @version    1: 27/12/2010 12:55:25
 */
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -136,9 +136,14 @@
     $elements[12]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
     $elements[12]->removeDecorator('DtDdWrapper');
 
+    $elements[13] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioDadosPessoaisCsrf', array('ignore' => true, 'salt' => 'unique',));
+    $elements[13]->setOrder(13);
+    $elements[13]->setRequired(false);
+    $elements[13]->removeDecorator('Label');
+
     // Adicionando elementos ao formulario.
-    // Adicionando sub-formulario ao formulario pai.
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->addElements($elements);
+    // Adicionando sub-formulario ao formulario pai.
 
     // Adicionando displays groups.
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->addDisplayGroup(array($elements[8]->getName(),$elements[9]->getName(),$elements[10]->getName(),$elements[11]->getName(),$elements[12]->getName()), 'dados_usuario_dados_pessoais_informacoes_contato', array('legend' => $this->getView()->tradutor('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_CONTATO'), 'order' => 8));

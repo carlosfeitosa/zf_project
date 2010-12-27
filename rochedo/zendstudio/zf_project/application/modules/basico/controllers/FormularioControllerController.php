@@ -129,4 +129,27 @@ class Basico_FormularioControllerController
 		// retornando array de objetos formulario
 		return $arrayReturn;
 	}
+
+	/**
+	 * Retorna se o formulario possui persistencia
+	 * 
+	 * @param Integer $idFormulario
+	 * 
+	 * @return Boolean
+	 */
+	public static function existePersistencia($idFormulario)
+	{
+		// montando a query que verifica se o formulario eh persistente
+		$queryVerificaPersistenciaFormulario = "SELECT DISTINCT fe.element_reloadable
+												FROM formulario_formulario_elemento ffe
+												LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+												WHERE ffe.id_formulario = {$idFormulario}
+												AND fe.element_reloadable = " . Basico_PersistenceControllerController::bdRetornaBoolean(true, true);
+
+		// executando query e recuperando o resultados em um array
+		$arrayResultados = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryVerificaPersistenciaFormulario);
+
+		// retornando o resultado
+		return (count($arrayResultados) > 0);
+	}
 }

@@ -144,13 +144,14 @@ class Basico_PersistenceControllerController
      * Retorna o valor booleano do banco de dados que esta sendo utilizado
      * 
      * @param Boolean $boolean
+     * @param Boolean $comoString
      * 
      * @return Boolean|Integer
      */
-    public static function bdRetornaBoolean($boolean)
+    public static function bdRetornaBoolean($boolean, $comoString = false)
     {
     	// retornando o resultado do metodo "retornaBooleanDB" no controlador "Basico_DBUtilControllerController"
-    	return Basico_DBUtilControllerController::retornaBooleanDB($boolean);
+    	return Basico_DBUtilControllerController::retornaBooleanDB($boolean, $comoString);
     }
 
 	/**

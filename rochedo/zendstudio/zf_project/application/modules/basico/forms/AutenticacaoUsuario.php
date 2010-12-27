@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 10:35:54
+* em: 27/12/2010 13:06:18
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 10:28:52
+* @version    1: 27/12/2010 12:55:25
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {
@@ -100,6 +100,11 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $elements[9] = $this->createElement('hidden', 'BasicoAutenticacaoUsuarioUrlRedirect', array('decorators' => array('ViewHelper')));
         $elements[9]->setOrder(9);
         $elements[9]->setRequired(false);
+
+        $elements[10] = $this->createElement('hash', 'BasicoAutenticacaoUsuarioCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[10]->setOrder(10);
+        $elements[10]->setRequired(false);
+        $elements[10]->removeDecorator('Label');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

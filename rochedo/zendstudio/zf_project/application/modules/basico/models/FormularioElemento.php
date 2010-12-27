@@ -551,9 +551,17 @@ class Basico_Model_FormularioElemento
      */
     public function getFormularioFormularioElementoObject()
     {
+    	// instanciando modelo de formulario formulario elemento
         $model = new Basico_Model_FormularioFormularioElemento();
+
+        // recuperando objeto
         $object = $model->fetchList("id_formulario_elemento = {$this->_id}");
-        return $object[0];
+
+        // verificando se o objeto existe
+        if (count($object))
+        	return $object[0];
+
+		return null;
     }
     
     /**

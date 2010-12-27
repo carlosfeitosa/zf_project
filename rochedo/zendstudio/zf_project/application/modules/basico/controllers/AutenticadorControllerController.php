@@ -54,4 +54,40 @@ class Basico_AutenticadorControllerController
 		// retornando urlRedirect
 		return $userRequestParams['BasicoAutenticacaoUsuarioUrlRedirect'];
 	}
+
+	/**
+	 * Retorna uma instancia do Zend_Auth_Adapter_DbTable configurada para uso na aplicacao
+	 * 
+	 * @param array $parametros
+	 * 
+	 * @return Zend_Auth_Adapter_DbTable
+	 */
+	public static function retornaAuthAdapter(array $parametros)
+	{
+		// instanciando adaptador de autenticacao com banco de dados
+		$authAdapter = new Zend_Auth_Adapter_DbTable(Basico_PersistenceControllerController::bdRecuperaBDSessao());
+
+		// setando parametros do autenticador para localizar as credenciais no banco de dados
+		$authAdapter->setTableName(AUTH_TABLE)
+					->setIdentityColumn(AUTH_IDENTITY_COLUMN)
+					->setCredentialColumn(AUTH_CREDENTIAL_COLUMN);		
+
+		// setando parametros do autenticador com as credenciais do usuario
+		$authAdapter->setIdentity($parametros[AUTH_IDENTITY_ARRAY_KEY])
+					->setCredential(AUTH_CREDENTIAL_ARRAY_KEY);
+
+		// retornando o adaptador de autenticacao com banco de dados
+		return $authAdapter;
+	}
+
+	/**
+	 * Retorna o formulario de autenticacao
+	 * 
+	 * @return Basico_Form_AutenticacaoUsuario
+	 */
+	public static function retornaFormAutenticacaoUsuario()
+	{
+		// retornando o formulario de autenticacao
+		return new Basico_Form_AutenticacaoUsuario();
+	}
 }

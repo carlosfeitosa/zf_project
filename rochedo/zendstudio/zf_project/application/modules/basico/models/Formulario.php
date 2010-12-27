@@ -7,6 +7,10 @@
  * @uses       Basico_Model_FormularioMapper
  * @subpackage Model
  */
+
+// includes
+require_once(APPLICATION_MODULE_PATH . "/basico/controllers/FormularioElementoControllerController.php");
+
 class Basico_Model_Formulario
 {
 	/**
@@ -787,7 +791,14 @@ class Basico_Model_Formulario
         	$modelFormularioElemento = new Basico_Model_FormularioElemento();
         	$arrayObjects[] = $modelFormularioElemento->find($idFormularioElemento);
         }
-        
+
+        // verificando se o formulario eh persistente
+        if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_FormularioControllerController::existePersistencia($this->_id)))
+        	// adicionando elemento hash
+        	$arrayObjects[] = Basico_FormularioElementoControllerController::retornaElementoHash();
+        	
+        //Basico_UtilControllerController::print_debug($arrayObjects, true, false, true);
+
         return $arrayObjects;
     }
 

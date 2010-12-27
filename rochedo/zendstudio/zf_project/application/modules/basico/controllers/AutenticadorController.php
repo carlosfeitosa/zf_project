@@ -38,9 +38,24 @@ class Basico_AutenticadorController extends Zend_Controller_Action
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
 	}
-	
+
+	/**
+	 * Verifica as credenciais de acesso de um usuario
+	 *
+	 * @return null
+	 */
 	public function verificaautenticacaousuarioAction()
-	{	
+	{
+		// verificando se os dados foram submetidos atraves de post
+		Basico_UtilControllerController::validaPostRequest($this->getRequest(), 'basico/autenticador/autenticarusuario');
+		
+		//Basico_UtilControllerController::print_debug('teste', true, false, true);
+		
+		// instanciando o formulario
+		$form = Basico_AutenticadorControllerController::retornaFormAutenticacaoUsuario();
+
+		
+
 		// recuperando urlRedirect
 		$urlRedirect = Basico_AutenticadorControllerController::retornaUrlRedirectUserRequest($this->getRequest());
 

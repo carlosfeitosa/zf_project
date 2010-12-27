@@ -1992,7 +1992,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA';
 
 INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, element_name, element, rowinfo)
-SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, 'Botão para submissão de formulários.' AS descricao,
+SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, 'Hash para submissão de formulários.' AS descricao,
 	   (SELECT cp.id
         FROM componente cp
         LEFT JOIN categoria c ON (cp.id_categoria = c.id)

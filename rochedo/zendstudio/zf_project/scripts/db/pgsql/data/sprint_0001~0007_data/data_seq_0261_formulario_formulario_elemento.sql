@@ -2038,22 +2038,6 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
-       (SELECT fe.id
-        FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_HASH'
-        AND fe.nome = 'FORM_HASH') AS id_formulario_elemento, true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
-
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
-SELECT (SELECT f.id
-        FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
-        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_LOGIN'
         AND f.nome = 'FORM_AUTENTICACAO_USUARIO') AS id_formulario,
        (SELECT fe.id

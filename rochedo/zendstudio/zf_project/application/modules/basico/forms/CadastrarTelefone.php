@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 10:36:07
+* em: 27/12/2010 13:06:30
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 10:28:52
+* @version    1: 27/12/2010 12:55:25
 */
 class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
 {
@@ -131,6 +131,11 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[9]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-margin-right10px',));
         $elements[9]->removeDecorator('DtDdWrapper');
         $elements[9]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_RESET') . '');
+
+        $elements[10] = $this->createElement('hash', 'BasicoCadastrarTelefoneCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[10]->setOrder(10);
+        $elements[10]->setRequired(false);
+        $elements[10]->removeDecorator('Label');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

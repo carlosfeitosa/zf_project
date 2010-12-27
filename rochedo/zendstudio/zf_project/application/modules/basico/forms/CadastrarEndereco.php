@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 10:36:05
+* em: 27/12/2010 13:06:29
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 10:28:52
+* @version    1: 27/12/2010 12:55:25
 */
 class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
 {
@@ -161,6 +161,11 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[13]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-margin-right10px',));
         $elements[13]->removeDecorator('DtDdWrapper');
         $elements[13]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_RESET') . '');
+
+        $elements[14] = $this->createElement('hash', 'BasicoCadastrarEnderecoCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[14]->setOrder(14);
+        $elements[14]->setRequired(false);
+        $elements[14]->removeDecorator('Label');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

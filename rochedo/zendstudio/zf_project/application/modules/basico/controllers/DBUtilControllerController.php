@@ -237,7 +237,6 @@ class Basico_DBUtilControllerController
 			$controladorRowInfo->prepareXml($modelCategoriaChaveEstrangeira, true);
 			$modelCategoriaChaveEstrangeira->rowinfo = $controladorRowInfo->getXml();
 			
-			
 			// iniciando transacao
 			Basico_PersistenceControllerController::bdControlaTransacao();
 			
@@ -257,8 +256,6 @@ class Basico_DBUtilControllerController
 				
 				throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO . QUEBRA_DE_LINHA . $e->getMessage());
 			}
-			
-	
 
 			return $modelCategoriaChaveEstrangeira;
 		}
@@ -622,25 +619,38 @@ class Basico_DBUtilControllerController
     	} else if ($dbResource instanceof Zend_Db_Adapter_Pdo_Dblib){
     	    return "MSSQL";
     	}
-    	
     }
     
     /**
      * Retorna o valor booleano do banco de dados que esta sendo utilizado
      * 
      * @param Boolean $boolean
+     * @param Boolean $comoString
      * 
      * @return Boolean|Integer
      */
-    public static function retornaBooleanDB($boolean)
+    public static function retornaBooleanDB($boolean, $comoString = false)
     {
     	// verificando se eh preciso fazer conversao
     	if (self::retornaPdoTypeConexaoAtiva() === 'MSSQL')
     		// retornando valor booleano convertido para inteiro
-    		return Basico_UtilControllerController::retornaValorTipado($boolean, TIPO_INTEIRO);
+    		$tempReturn = Basico_UtilControllerController::retornaValorTipado($boolean, TIPO_INTEIRO);
+		else
+			// retorna o booleano caso nao haja conversao
+    		$tempReturn = Basico_UtilControllerController::retornaValorTipado($boolean, TIPO_BOOLEAN);
 
-		// retorna o booleano caso nao haja conversao
-    	return Basico_UtilControllerController::retornaValorTipado($boolean, TIPO_BOOLEAN);
+    	// verificando se eh preciso converter para string
+    	if ($comoString) {
+    		// vericando o conteudo da variavei
+    		if ($tempReturn === true)
+    			return 'true';
+    		else if ($tempReturn === false)
+    			return 'false';
+    		else
+    			return (String) $tempReturn;
+    	}	
+    	else
+    		return $tempReturn;
     }
     
     /**

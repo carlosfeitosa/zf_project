@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 23/12/2010 10:35:56
+* em: 27/12/2010 13:06:20
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 23/12/2010 10:28:52
+* @version    1: 27/12/2010 12:55:25
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -91,8 +91,13 @@
     $elements[7]->removeDecorator('DtDdWrapper');
     $elements[7]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
+    $elements[8] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioDadosBiometricosCsrf', array('ignore' => true, 'salt' => 'unique',));
+    $elements[8]->setOrder(8);
+    $elements[8]->setRequired(false);
+    $elements[8]->removeDecorator('Label');
+
     // Adicionando elementos ao formulario.
-    // Adicionando sub-formulario ao formulario pai.
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addElements($elements);
+    // Adicionando sub-formulario ao formulario pai.
     $this->addSubForm($basicoCadastrarDadosUsuarioDadosBiometricosSubForm, 'CadastrarDadosUsuarioDadosBiometricos');
 ?>
