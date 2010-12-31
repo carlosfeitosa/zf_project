@@ -15,6 +15,7 @@
 *									   - criacao do formulario FORM_DIALOG_ENDERECO_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_DIALOG_ENDERECO;
 * 							13/12/2010 - criacao do formulario FORM_AUTENTICACAO_USUARIO;
+* 							30/12/2010 - criacao do action e attribes do FORM_DIALOG_WEBSITE; 
 *  
 */
 
@@ -224,6 +225,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_EMAIL';
 
+
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -232,8 +234,10 @@ INSERT INTO formulario (id_categoria, nome, descricao,
 		'Dialog para edicao de website.' AS descricao, 
         'FORM_TITLE_WEBSITE' AS constante_textual_titulo, 
         'CadastrarWebsite' AS form_name, 
-        'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        'post' AS form_method,
+        '/basico/website/salvarwebsite' AS form_action, 
+        '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"'  AS form_attribs,
+        'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

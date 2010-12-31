@@ -25,6 +25,7 @@
 *							06/12/2010 - criacao da categoria AJUDA_FORMULARIO_FIELD;
 *									   - remocao de todas as categorias filhas de AJUDA_FORMULARIO_CADASTRO;
 *							13/12/2010 - criacao da categoria FORMULARIO_INPUT_LOGIN;
+*							30/12/2010 - criacao da categoria LOG_NOVO_WEBSITE;
 * 
 */
 
@@ -141,6 +142,13 @@ AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_EMAIL' AS nome, 'Operação de inserção de e-mail.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_WEBSITE' AS nome, 'Operação de inserção de website.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'

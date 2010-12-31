@@ -5,8 +5,8 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
-* 										25/11/2010 - criacao do tipo MASCARA
-* 
+* 									25/11/2010 - criacao do tipo MASCARA
+*									30/12/2010 - criacao do tipo WEBSITE
 */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
@@ -20,6 +20,10 @@ VALUES('MENSAGEM', 'Mensagens.', 'SYSTEM_STARTUP');
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('EMAIL', 'Endereços de e-mail.', 'SYSTEM_STARTUP');
+
+INSERT INTO tipo_categoria(nome, descricao, rowinfo)
+VALUES('WEBSITE', 'Endereços de website.', 'SYSTEM_STARTUP');
+
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('LINGUAGEM', 'Linguagens utilizadas pelo sistema.', 'SYSTEM_STARTUP');
