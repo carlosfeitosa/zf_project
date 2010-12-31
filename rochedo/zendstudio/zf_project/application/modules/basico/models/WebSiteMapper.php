@@ -61,6 +61,7 @@ class Basico_Model_WebSiteMapper
 				'descricao'   => $object->getDescricao(),
 				'url'   => $object->getUrl(),
                 'id_categoria'   => $object->getCategoria(),
+        	 	'rowinfo'        => $object->getRowinfo()
 
         );
 
@@ -101,7 +102,8 @@ class Basico_Model_WebSiteMapper
 				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
-                ->setCategoria($row->id_categoria);
+                ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -122,6 +124,7 @@ class Basico_Model_WebSiteMapper
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
                 ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -146,6 +149,7 @@ class Basico_Model_WebSiteMapper
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
                 ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -164,6 +168,7 @@ class Basico_Model_WebSiteMapper
                         'id_generico_proprietario' => 'table1.id_generico_proprietario' ,
                         'descricao' => 'table1.descricao' ,
                         'url' => 'table1.url' ,
+                   		'rowinfo' => 'table1.rowinfo' ,
                         'id_categoria' => 'table1.id_categoria)'))
             ->joinInner($join[0])
             ->where($where)
@@ -180,6 +185,7 @@ class Basico_Model_WebSiteMapper
                 ->setDescricao($row['descricao'])
                 ->setUrl($row['url'])
                 ->setCategoria($row['id_categoria'])
+                ->setRowinfo($row['rowinfo'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -207,6 +213,7 @@ class Basico_Model_WebSiteMapper
 				->setDescricao($row->descricao)
 				->setUrl($row->url)
                 ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
         }

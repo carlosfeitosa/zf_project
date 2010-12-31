@@ -35,7 +35,11 @@ class Basico_Model_WebSite
      * @var Integer
      */
     protected $_categoria;
-
+	/**
+	 * @var String
+	 */
+	protected $_rowinfo;
+    
 	/**
 	 * Constructor
 	 * 
@@ -223,7 +227,28 @@ class Basico_Model_WebSite
 	{
 		return $this->_id;
 	}
+	/**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_Rowinfo
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		return $this;
+	}
 
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
+ 
 	/**
 	* Set data mapper
 	* 
