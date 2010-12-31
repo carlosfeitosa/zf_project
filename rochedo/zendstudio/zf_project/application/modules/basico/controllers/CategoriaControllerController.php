@@ -326,7 +326,24 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
 	}
-	
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_DADOS_WEBSITE
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private function retornaObjetoCategoriaLogNovoWebsite()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoWebsite = self::retornaObjetoCategoriaAtiva(LOG_NOVO_WEBSITE);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoWebsite))
+			// retornando o objeto
+			return $objCategoriaLogNovoWebsite;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_WEBSITE);
+	}
     /**
 	 * Retorna o objeto carregado com a categoria LOG_UPDATE_DADOS_PESSOAIS
 	 * 
@@ -345,7 +362,25 @@ class Basico_CategoriaControllerController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS);
 	}
 	
-		/**
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_WEBSITE
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private function retornaObjetoCategoriaLogUpdateWebsite()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateWebsite = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_WEBSITE);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateWebsite))
+			// retornando o objeto
+			return $objCategoriaLogUpdateWebsite;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_WEBSITE);
+	}
+	
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_LOGIN
 	 * 
 	 * @return Basico_Model_Categoria
@@ -972,6 +1007,25 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
 	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_WEBSITE
+	 * 
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovoWebsite()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoWebsite = self::retornaObjetoCategoriaLogNovoWebsite();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoWebsite))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogNovoWebsite->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_WEBSITE);
+	}
+	
 	
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_DADOS_PESSOAIS
@@ -989,6 +1043,26 @@ class Basico_CategoriaControllerController
 			return (Int) $objCategoriaLogUpdateDadosPessoais->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS);
+	}
+
+	
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_WEBSITE
+	 * 
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogUpdateWebsite()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateWebsite = self::retornaObjetoCategoriaLogUpdateWebsite();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateWebsite))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateWebsite->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_WEBSITE);
 	}
 	
 	/**

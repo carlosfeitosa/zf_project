@@ -951,4 +951,22 @@ class Basico_UtilControllerController
 
     	return true;
     }
+
+    /**
+     * Valida se a URL passada é válida para $urlRedirect
+     * 
+     * @param String $stringUrl
+     * 
+     * @return true|false
+     */
+    
+  	public static function validaUrl($stringUrl)
+    {
+    	// verificando se a url é válida
+        if (!Zend_Uri::check($stringUrl)) {
+		    return false;
+        }
+    	return true;
+    }    
+ 
 }
