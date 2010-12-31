@@ -27,6 +27,7 @@ define("LOG_MSG_NOVA_PESSOA", "Nova pessoa inserida no banco de dados.");
 define("LOG_MSG_NOVA_PESSOA_PERFIL", "Nova associacao de pessoa perfil inserida no banco de dados.");
 define("LOG_MSG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Nova pessoa perfil mensagem categoria inserida no banco de dados.");
 define("LOG_MSG_NOVO_DADOS_PESSOAIS", "Novos dados pessoais inseridos no banco de dados.");
+define("LOG_MSG_NOVO_WEBSITE", "Novos website inseridos no banco de dados.");
 define("LOG_MSG_NOVO_EMAIL", "Novo e-mail inserido no banco de dados.");
 define("LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de categoria chave estrangeira.");
 define("LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de relação categoria chave estrangeira.");

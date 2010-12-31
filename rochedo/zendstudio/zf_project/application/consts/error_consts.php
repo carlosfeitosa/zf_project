@@ -13,6 +13,7 @@ define("MSG_ERRO_CONEXAO_BANCO", "Falha na conexão com o banco de dados.");
 define("MSG_ERRO_APLICACAO", "Desculpe, ocorreu um erro na aplicação.<br>Contate o suporte: <a href='mailto:" . SUPPORT_EMAIL . "'>" . SUPPORT_EMAIL . "</a>");
 define("MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA", "Propriedade especificada inválida.");
 define("MSG_ERRO_MANIPULACAO_ARQUIVO", "Erro na manipulação de arquivos: ");
+define("MSG_ERRO_URL_INVALIDA", "Url inválida.");
 define("MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_LEITURA", "Erro ao tentar abrir arquivo para leitura: ");
 define("MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_ESCRITA", "Erro ao tentar abrir arquivo para escrita: ");
 define("MSG_ERRO_PATH_INEXISTENTE", "Caminho não encontrado no sistema de arquivos.");
@@ -58,7 +59,8 @@ define("MSG_ERRO_CATEGORIA_LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA", "Categoria 
 define("MSG_ERRO_CATEGORIA_LINGUAGEM", "Categoria da linguagem não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_CVC", "Categoria de CVC não encontrada no banco de dados");
 define("MSG_ERRO_TIPO_CATEGORIA_CVC", "Tipo de categoria de CVC não encontrada no banco de dados");
-
+define("MSG_ERRO_CATEGORIA_LOG_NOVO_WEBSITE", "Categoria de log novo website não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_WEBSITE", "Categoria de log update em website não encontrada no banco de dados");
 /*
  * FORMULÁRIO
  */
