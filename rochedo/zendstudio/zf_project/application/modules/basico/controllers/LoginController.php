@@ -178,11 +178,13 @@ class Basico_LoginController extends Zend_Controller_Action
     		$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
     		$dadosPessoaisObj = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($idPessoa);
 
-    		if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais == false)
+    		if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais === false)
     		    throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);
+    		    
     		    
     		$dadosPessoaisObj->nome           = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoNome');
     		$dadosPessoaisPbj->dataNascimento = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoDataNascimento');
+    		
     		$controladorDadosPessoais->salvarDadosPessoais($dadosPessoaisObj, $versaoDadosPessoais);
 
     		$novoLogin = new Basico_Model_Login();

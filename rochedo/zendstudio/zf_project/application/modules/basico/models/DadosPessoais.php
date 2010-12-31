@@ -32,6 +32,11 @@ class Basico_Model_DadosPessoais
 	/**
 	 * @var String
 	 */
+	protected $_dataNascimento;
+	
+	/**
+	 * @var String
+	 */
 	protected $_rowinfo;
 	
 	/**
@@ -105,15 +110,15 @@ class Basico_Model_DadosPessoais
 	* Set nome
 	* 
 	* @param String $nome 
-	* @return Basico_Model_Nome
+	* @return Basico_Model_DadosPessoais
 	*/
 	public function setNome($nome)
 	{
 		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome,TIPO_STRING,true);
 		return $this;
 	}
-
-	/**
+	
+    /**
 	* Get nome
 	* 
 	* @return null|String
@@ -121,6 +126,28 @@ class Basico_Model_DadosPessoais
 	public function getNome()
 	{
 		return $this->_nome;
+	}
+
+	/**
+	* Get dataNascimento
+	* 
+	* @return null|String
+	*/
+	public function getDataNascimento()
+	{
+		return $this->_dataNascimento;
+	}
+	
+    /**
+	* Set dataNascimento
+	* 
+	* @param String $dataNascimento 
+	* @return Basico_Model_DadosPessoais
+	*/
+	public function setDataNascimento($dataNascimento)
+	{
+		$this->_dataNascimento = Basico_UtilControllerController::retornaValorTipado($dataNascimento,TIPO_STRING,true);
+		return $this;
 	}
 	
 	/**
