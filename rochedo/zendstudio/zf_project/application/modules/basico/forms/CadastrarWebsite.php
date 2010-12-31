@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 27/12/2010 13:06:34
+* em: 31/12/2010 00:20:18
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 27/12/2010 12:55:25
+* @version    1: 31/12/2010 00:19:25
 */
 class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
 {
@@ -30,6 +30,8 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
 
         $this->setName('CadastrarWebsite');
         $this->setMethod('post');
+        $this->setAction('/rochedo_project/public/basico/website/salvarwebsite');
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarWebsite', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
 
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
