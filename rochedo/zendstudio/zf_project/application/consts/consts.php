@@ -129,6 +129,7 @@ define("FORM_ELEMENT_HASH", "FORM_HASH");
 
 define("FORM_GERADOR_OUTPUT_DOJO", "OUTPUT_DOJO");
 define("FORM_GERADOR_OUTPUT_HTML", "OUTPUT_HTML");
+define("FORM_ELEMENTO_NAME_VALIDAR_URL", "validarUrl");
 
 $header = <<<TEXT
 /**
