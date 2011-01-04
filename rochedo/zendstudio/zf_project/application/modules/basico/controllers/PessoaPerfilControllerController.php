@@ -86,4 +86,73 @@ class Basico_PessoaPerfilControllerController
     	else
     	    return null;
 	}
+	
+	/**
+	 * Retorna o obj pessoaPerfil do perfil USUARIO_NAO_VALIDADO da pessoa passada por parametro
+	 * @param Int $idPessoa
+	 * @return Basico_Model_PessoaPerfil
+	 */
+	public function retornaPessoaPerfilUsuarioNaoValidadoPessoa($idPessoa)
+	{
+		// instanciando modelos
+		$modeloPessoaPerfil = new Basico_Model_PessoaPerfil();
+		
+		// instanciando controladores
+		$controladorPerfil = Basico_PerfilControllerController::init();
+		
+		$perfilUsuarioNaoValidado = $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado();
+		
+    	$objPessoaPerfilPessoa = $modeloPessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
+    	
+    	if (count($objPessoaPerfilPessoa) > 0) {
+    		return $objPessoaPerfilPessoa[0];
+    	}
+    	
+    	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO);
+	}
+	
+    /**
+	 * Retorna o obj pessoaPerfil da pessoa e do perfil passado. 
+	 * @param Int $idPessoa
+	 * @param Int $idPerfil
+	 * @return Basico_Model_PessoaPerfil
+	 */
+	public function retornaPessoaPerfilPessoaPerfil($idPessoa, $idPerfil)
+	{
+		// instanciando modelos
+		$modeloPessoaPerfil = new Basico_Model_PessoaPerfil();
+		
+		// instanciando controladores
+		$controladorPerfil = Basico_PerfilControllerController::init();
+		
+		$perfil = $controladorPerfil->retornaObjetoPerfilId($idPerfil);
+		
+    	$objPessoaPerfilPessoa = $modeloPessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfil->id}");
+    	
+    	if (count($objPessoaPerfilPessoa) > 0) {
+    		return $objPessoaPerfilPessoa[0];
+    	}
+    	
+    	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO);
+	}
+	
+	/**
+	 * Edita a pessoaPerfil da pessoa passada por parametro 
+	 * @param Int $idPessoa
+	 * @param Int $idAntigoPerfil
+	 * @param Int $idNovoPerfil
+	 * @return Boolean
+	 */
+	public function editarPessoaPerfil($idPessoa, $idAntigoPerfil, $idNovoPerfil)
+	{
+		if (((Int) $idPessoa > 0) and ((Int) $idPerfil > 0)) {
+		    $objPessoaPerfil = self::retornaPessoaPerfilPessoaPerfil($idPessoa, $idAntigoPerfil);
+		    
+			if ($objPessoaPerfil instanceOf Basico_Model_PessoaPerfil) {
+				$objPessoaPerfil->perfil = $idNovoPerfil;
+			}
+		}
+		
+	}
+
 }

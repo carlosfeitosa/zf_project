@@ -177,6 +177,7 @@ class Basico_LoginController extends Zend_Controller_Action
     		$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
     		$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
     		$dadosPessoaisObj = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($idPessoa);
+    		
 
     		if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais === false)
     		    throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);

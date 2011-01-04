@@ -99,12 +99,14 @@ define("MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO", "Usuário master não encontrad
  * PERFIL
  */
 define("MSG_ERROR_PERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO", "Perfil de usuário não validado não encontrado no sistema.");
+define("MSG_ERROR_PERFIL_USUARIO_VALIDADO_NAO_ENCONTRADO", "Perfil de usuário validado não encontrado no sistema.");
 define("MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO", "Perfil do sistema não encontrado.");
 
 /*
  * PESSOA PERFIL
  */
 define("MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO", "PessoaPerfil do sistema não encontrado.");
+define("MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO", "PessoaPerfil de Usuario Não Validado não encontrado para esta pessoa.");
 
 /*
  * DADOS PESSOAIS
