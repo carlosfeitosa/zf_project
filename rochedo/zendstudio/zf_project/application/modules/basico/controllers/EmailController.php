@@ -74,10 +74,13 @@ class Basico_EmailController extends Zend_Controller_Action
 	    		$this->_helper->redirector('errotokenexpirado');   		
 	    	}
 	    	
+	    	// recuperando o objeto pessoa do dono do email
 	    	$proprietarioEmail = $this->retornaObjetoProprietarioEmail($email);
 	    	
+	    	// recuperando dadosPessoais da pessoa
 	    	$dadosPessoais = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($proprietarioEmail->id);
 	    	
+	    	// recuperando a versao da tupla de dadosPessoais
 	    	$versaoDadosPessoais = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
 	    		    	
 	    	// validando o e-mail no objeto
@@ -106,8 +109,10 @@ class Basico_EmailController extends Zend_Controller_Action
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoNome->setValue($dadosPessoais->nome);
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})"));
 			
+			//adicionando multiOptions do radioButton sexo
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
-						
+
+			// setando valores dos hiddens do formulario
 			$formCadastrarUsuarioValidado->addElement('hidden', 'idPessoa', array('value' => $proprietarioEmail->id));
 			$formCadastrarUsuarioValidado->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
 			

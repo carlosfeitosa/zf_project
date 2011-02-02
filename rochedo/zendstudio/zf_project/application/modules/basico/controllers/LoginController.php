@@ -220,7 +220,8 @@ class Basico_LoginController extends Zend_Controller_Action
     		    $novoDadosBiometricos->sexo = "M";
     		else if ($sexo === 1)
     		    $novoDadosBiometricos->sexo = "F";
-    		  
+
+    		// salvando os dadosBiometricos
     		$controladorDadosBiometricos->salvarDadosBiometricos($novoDadosBiometricos);
     		    
     		// criando o login do usuario
@@ -250,8 +251,10 @@ class Basico_LoginController extends Zend_Controller_Action
 		    $this->_helper->Renderizar->renderizar();
 
     	}else{
-    		
+    		// carregando form na view
     		$this->view->form = $form;
+    		
+    		// renderizando a view
     		$this->_helper->Renderizar->renderizar();
     	}
     }
