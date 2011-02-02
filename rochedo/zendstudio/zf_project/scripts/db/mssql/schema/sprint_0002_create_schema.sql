@@ -34,7 +34,7 @@ create table dbo.mascara (
 create table dbo.dados_biometricos (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
-	sexo int not null ,
+	sexo char (1) not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
@@ -223,6 +223,10 @@ alter table dbo.endereco add
     );
   
 /* CRIACAO DOS CHECK CONSTRAINTS */
+    
+alter table dbo.dados_biometricos add
+    constraint ck_dados_biometricos_sexo check
+    ((sexo = 'M') or (sexo = 'F'));
 
 alter table dbo.pais add
     constraint ck_pais_constante_textual_nome check

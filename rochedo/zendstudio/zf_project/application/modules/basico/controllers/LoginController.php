@@ -20,6 +20,7 @@ require_once("MensageiroControllerController.php");
 require_once("MensagemControllerController.php");
 require_once("RowinfoControllerController.php");
 require_once("PessoaPerfilMensagemCategoriaControllerController.php");
+require_once("DadosBiometricosControllerController.php");
 
 class Basico_LoginController extends Zend_Controller_Action
 {
@@ -167,20 +168,26 @@ class Basico_LoginController extends Zend_Controller_Action
      */
     public function salvarusuariovalidadoAction()
     {
-    	$form = $this->getFormCadastroUsuarioValidado();
+        // capturando dados da requisição
+    	$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
+    	$sexo     = (int) $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSexo');
+    	$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
+    	
+    	// capturando formulario e setando propriedades
+        $form = $this->getFormCadastroUsuarioValidado();
+    	$form->addElement('hidden', 'idPessoa', array('value' => $idPessoa));
+    	$form->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
+    	$form->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
 
-    	//if ($form->isValid($_POST)) {
+    	if ($form->isValid($_POST)) {
 
     	    // capturando controladores
-    		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
-    		$controladorLogin         = Basico_LoginControllerController::init();
-    		$controladorPerfil        = Basico_PerfilControllerController::init();
-    		$controladorPessoaPerfil  = Basico_PessoaPerfilControllerController::init();
+    		$controladorDadosPessoais    = Basico_DadosPessoaisControllerController::init();
+    		$controladorLogin            = Basico_LoginControllerController::init();
+    		$controladorPerfil           = Basico_PerfilControllerController::init();
+    		$controladorPessoaPerfil     = Basico_PessoaPerfilControllerController::init();
+    		$controladorDadosBiometricos = Basico_DadosBiometricosControllerController::init();
 
-    		// capturando dados do formulario
-    		$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
-    		$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
-    		
     		// capturando obj dados pessoais da pessoa passada
     		$dadosPessoaisObj = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($idPessoa);
     		
@@ -200,8 +207,22 @@ class Basico_LoginController extends Zend_Controller_Action
     		$controladorPessoaPerfil->editarPessoaPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado()->id, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id);
 
     		//criando dadosBiometricos do usuario
-    		//$novoDadosBiometricos = new Basico_Model_Dado
+    		$novoDadosBiometricos = new Basico_Model_DadosBiometricos();
     		
+    		// setando a pessoa dona dos dadosBiometricos
+    		$novoDadosBiometricos->pessoa = $idPessoa;
+    		
+    		// setando rowinfo dos DadosBiometricos
+    		$novoDadosBiometricos->rowinfo = "SYSTEM_STARTUP";
+    		
+    		// setando o sexo
+    		if ($sexo === 0)
+    		    $novoDadosBiometricos->sexo = "M";
+    		else if ($sexo === 1)
+    		    $novoDadosBiometricos->sexo = "F";
+    		  
+    		$controladorDadosBiometricos->salvarDadosBiometricos($novoDadosBiometricos);
+    		    
     		// criando o login do usuario
     		$novoLogin = new Basico_Model_Login();
     		$novoLogin->pessoa = $idPessoa;
@@ -228,10 +249,11 @@ class Basico_LoginController extends Zend_Controller_Action
 		    // renderiza a view no script default
 		    $this->_helper->Renderizar->renderizar();
 
-    	//}else{
-    		//$this->view->form = $this->getFormCadastroUsuarioValidado($_POST);
-    		//$this->_helper->Renderizar->renderizar();
-    	//}
+    	}else{
+    		
+    		$this->view->form = $form;
+    		$this->_helper->Renderizar->renderizar();
+    	}
     }
     
     /**

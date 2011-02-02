@@ -1044,6 +1044,42 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS);
 	}
+	
+    /**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_DADOS_BIOMETRICOS
+	 * 
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogNovoDadosBiometricos()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoDadosBiometricos = self::retornaObjetoCategoriaLogNovoDadosBiometricos();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoDadosBiometricos))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogNovoDadosBiometricos->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_BIOMETRICOS);
+	}
+	
+    /**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_DADOS_BIOMETRICOS
+	 * 
+	 * @return integer
+	 */
+	public static function retornaIdCategoriaLogUpdateDadosBiometricos()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateDadosBiometricos = self::retornaObjetoCategoriaLogUpdateDadosBiometricos();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateDadosBiometricos))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateDadosBiometricos->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_BIOMETRICOS);
+	}
 
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_WEBSITE

@@ -49,7 +49,7 @@ alter table mascara owner to rochedo_user;
 create table dados_biometricos (
 	id serial not null ,
 	id_pessoa integer not null ,
-	sexo integer not null ,
+	sexo char (1) not null ,
 	rowinfo character varying (2000) not null
 )
 with (
@@ -198,6 +198,10 @@ alter table endereco
   add constraint fk_endereco_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
   
 /* CRIACAO DOS CHECK CONSTRAINTS */
+  
+alter table dados_biometricos add
+    constraint ck_dados_biometricos_sexo check
+    ((sexo = 'M') or (sexo = 'F'));
 
 alter table pais add
     constraint ck_pais_constante_textual_nome check
