@@ -50,6 +50,8 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Categori
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL", "Categoria de log nova pessoa perfil não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS", "Categoria de log novo dados pessoais não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS", "Categoria de log update em dados pessoais não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_BIOMETRICOS", "Categoria de log novo dados biometricos não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_BIOMETRICOS", "Categoria de log update em dados biometricos não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN", "Categoria de log novo login não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL", "Categoria de log novo e-mail não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM", "Categoria de log nova mensagem não encontrada no banco de dados");

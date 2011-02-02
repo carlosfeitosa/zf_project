@@ -171,28 +171,38 @@ class Basico_LoginController extends Zend_Controller_Action
 
     	//if ($form->isValid($_POST)) {
 
+    	    // capturando controladores
     		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
     		$controladorLogin         = Basico_LoginControllerController::init();
     		$controladorPerfil        = Basico_PerfilControllerController::init();
     		$controladorPessoaPerfil  = Basico_PessoaPerfilControllerController::init();
 
+    		// capturando dados do formulario
     		$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
     		$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
+    		
+    		// capturando obj dados pessoais da pessoa passada
     		$dadosPessoaisObj = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($idPessoa);
     		
 
+    		// checando se o obj dadosPessoais foi capturado com sucesso
     		if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais === false)
     		    throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);
     		    
-    		    
+    		// setando valores do obj dadosPessoais    
     		$dadosPessoaisObj->nome           = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoNome');
-    		$dadosPessoaisPbj->dataNascimento = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoDataNascimento');
+    		$dadosPessoaisObj->dataNascimento = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoDataNascimento');
     		
-    		
+    		// salvando os DadosPessoais
     		$controladorDadosPessoais->salvarDadosPessoais($dadosPessoaisObj, $versaoDadosPessoais);
     		
+    		// atualizando pessoaPerfil do usuario para usuarioValidado
     		$controladorPessoaPerfil->editarPessoaPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado()->id, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id);
 
+    		//criando dadosBiometricos do usuario
+    		//$novoDadosBiometricos = new Basico_Model_Dado
+    		
+    		// criando o login do usuario
     		$novoLogin = new Basico_Model_Login();
     		$novoLogin->pessoa = $idPessoa;
     		$novoLogin->tentativasFalhas = 0;

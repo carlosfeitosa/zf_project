@@ -26,6 +26,8 @@
 *									   - remocao de todas as categorias filhas de AJUDA_FORMULARIO_CADASTRO;
 *							13/12/2010 - criacao da categoria FORMULARIO_INPUT_LOGIN;
 *							30/12/2010 - criacao da categoria LOG_NOVO_WEBSITE;
+*                           02/02/2011 - criacao da categoria LOG_NOVO_DADOS_BIOMETRICOS;
+*                           02/02/2011 - criacao da categoria LOG_UPDATE_DADOS_BIOMETRICOS;
 * 
 */
 
@@ -135,6 +137,20 @@ AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_DADOS_PESSOAIS' AS nome, 'Operação alteração de dados pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_DADOS_BIOMETRICOS' AS nome, 'Operação criação de dados biometricos.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_DADOS_BIOMETRICOS' AS nome, 'Operação alteração de dados biometricos.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
