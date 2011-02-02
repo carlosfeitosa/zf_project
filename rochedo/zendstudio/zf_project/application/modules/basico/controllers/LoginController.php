@@ -233,7 +233,7 @@ class Basico_LoginController extends Zend_Controller_Action
     		$novoLogin->podeExpirar = true;
     		$novoLogin->rowinfo = "SYSTEM_STARTUP";
     		$novoLogin->login  = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin');
-    		$novoLogin->senha  = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha');
+    		$novoLogin->senha  = Basico_UtilControllerController::retornaStringEncriptada($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha'));
     		$novoLogin->ativo  = true;
     		$controladorLogin->salvarLogin($novoLogin);
 
