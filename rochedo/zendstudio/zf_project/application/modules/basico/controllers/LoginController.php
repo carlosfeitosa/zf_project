@@ -173,6 +173,8 @@ class Basico_LoginController extends Zend_Controller_Action
 
     		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
     		$controladorLogin         = Basico_LoginControllerController::init();
+    		$controladorPerfil        = Basico_PerfilControllerController::init();
+    		$controladorPessoaPerfil  = Basico_PessoaPerfilControllerController::init();
 
     		$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
     		$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
@@ -186,7 +188,10 @@ class Basico_LoginController extends Zend_Controller_Action
     		$dadosPessoaisObj->nome           = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoNome');
     		$dadosPessoaisPbj->dataNascimento = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoDataNascimento');
     		
+    		
     		$controladorDadosPessoais->salvarDadosPessoais($dadosPessoaisObj, $versaoDadosPessoais);
+    		
+    		$controladorPessoaPerfil->editarPessoaPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado()->id, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id);
 
     		$novoLogin = new Basico_Model_Login();
     		$novoLogin->pessoa = $idPessoa;

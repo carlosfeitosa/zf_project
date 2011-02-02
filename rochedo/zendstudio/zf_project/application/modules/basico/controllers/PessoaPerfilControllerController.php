@@ -67,6 +67,48 @@ class Basico_PessoaPerfilControllerController
     	}
 	}
 	
+    /**
+     * Retorna o id da PessoaPefil do sistema.
+     * 
+     * @return Int
+     */
+	public static function retornaIdPessoaPerfilSistema()
+	{
+		// instanciando modelos
+	    $modelLogin = new Basico_Model_Login();
+	    $modelPerfil = new Basico_Model_Perfil();
+	    $modelPessoaPerfil = new Basico_Model_PessoaPerfil();
+
+	    // recuperando login do sistema
+	    $applicationSystemLogin = APPLICATION_SYSTEM_LOGIN;
+	    // recuperando o perfil do sistema
+	    $applicationSystemPerfil = APPLICATION_SYSTEM_PERFIL;
+	    
+	    // recuperando o objeto login do sistema
+	    $objLoginSistema = $modelLogin->fetchList("login = '{$applicationSystemLogin}'", null, 1, 0);
+
+	    // verificando se o objeto login do sistema foi recuperado/existe
+	    if (count($objLoginSistema) === 0)
+	        throw new Exception(MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO);
+
+		// recuperando objeto perfil do sistema
+        $objPerfilSistema = $modelPerfil->fetchList("nome = '{$applicationSystemPerfil}'", null, 1, 0);
+        
+        // verificando se o objeto perfil do sistema foi recuperao/existe
+        if (count($objPerfilSistema) === 0)
+	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
+
+	    // recuperando o objeto pessoa perfil do sistema
+        $objPessoaPerfilSistema = $modelPessoaPerfil->fetchList("id_pessoa = {$objLoginSistema[0]->pessoa} and id_perfil = {$objPerfilSistema[0]->id}", null, 1, 0);
+        
+        // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
+        if (!$objPessoaPerfilSistema[0]->id)
+            throw new Exception(MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO);
+
+        // retornando o id do objeto pessoa perfil do sistema
+        return $objPessoaPerfilSistema[0]->id;
+	}
+	
 	/**
 	 * Retorna id da pessoaPerfil utilizando o id de pessoa como parametro para busca.
 	 * 
@@ -145,13 +187,18 @@ class Basico_PessoaPerfilControllerController
 	 */
 	public function editarPessoaPerfil($idPessoa, $idAntigoPerfil, $idNovoPerfil)
 	{
-		if (((Int) $idPessoa > 0) and ((Int) $idPerfil > 0)) {
+		if (((Int) $idPessoa > 0) and ((Int) $idAntigoPerfil > 0)) {
 		    $objPessoaPerfil = self::retornaPessoaPerfilPessoaPerfil($idPessoa, $idAntigoPerfil);
 		    
 			if ($objPessoaPerfil instanceOf Basico_Model_PessoaPerfil) {
 				$objPessoaPerfil->perfil = $idNovoPerfil;
+				
+				Basico_PessoaPerfilControllerController::salvarPessoaPerfil($objPessoaPerfil, Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($objPessoaPerfil), Basico_PessoaPerfilControllerController::retornaIdPessoaPerfilSistema());
+				
+				return true;
 			}
 		}
+		return false;
 		
 	}
 

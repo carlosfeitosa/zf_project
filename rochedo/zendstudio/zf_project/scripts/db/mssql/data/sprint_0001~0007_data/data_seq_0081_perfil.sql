@@ -17,3 +17,8 @@ INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
 SELECT id, 'USUARIO_NAO_VALIDADO' AS nome, 'Usuário não validado pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'SISTEMA_USUARIO';
+
+INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
+SELECT id, 'USUARIO_VALIDADO' AS nome, 'Usuário validado pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM categoria
+WHERE nome = 'SISTEMA_USUARIO';
