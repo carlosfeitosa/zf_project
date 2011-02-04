@@ -178,6 +178,14 @@ class Basico_LoginController extends Zend_Controller_Action
     	$form->addElement('hidden', 'idPessoa', array('value' => $idPessoa));
     	$form->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
     	$form->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
+    	$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+		$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
+    	
+    	
+    	
+    	$urlMetodo = Basico_UtilControllerController::retornaStringEntreCaracter(Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})"));
+    
 
     	if ($form->isValid($_POST)) {
 
@@ -232,8 +240,8 @@ class Basico_LoginController extends Zend_Controller_Action
     		$novoLogin->resetado = false;
     		$novoLogin->podeExpirar = true;
     		$novoLogin->rowinfo = "SYSTEM_STARTUP";
-    		$novoLogin->login  = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin');
-    		$novoLogin->senha  = Basico_UtilControllerController::retornaStringEncriptada($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha'));
+    		$novoLogin->login  = trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'));
+    		$novoLogin->senha  = Basico_UtilControllerController::retornaStringEncriptada(trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha')));
     		$novoLogin->ativo  = true;
     		$controladorLogin->salvarLogin($novoLogin);
 
@@ -251,6 +259,19 @@ class Basico_LoginController extends Zend_Controller_Action
 		    $this->_helper->Renderizar->renderizar();
 
     	}else{
+    		
+    		 // carregando o titulo e subtitulo da view
+		    $tituloView     = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO);
+		    $subtituloView  = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO);
+
+		    // carregando array do cabecalho da view
+		    $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+		    
+		    // carregando o cabecalho na view
+			$this->view->cabecalho = $cabecalho;
+			
+			$form->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setValue("<div id='scorebarBorder'><div id='score'>0%</div><div id='scorebar'>&nbsp;</div></div><div id='complexity'></div>");
+			
     		// carregando form na view
     		$this->view->form = $form;
     		

@@ -92,8 +92,8 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	$controladorEmail->salvarEmail($email, $versaoUpdateEmail);
     	
     	    // carregando o titulo e subtitulo da view
-		    $tituloView     = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO);
-		    $subtituloView  = $this->view->tradutor(VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO);
+		    $tituloView     = $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO');
+		    $subtituloView  = $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO');
 
 		    // carregando array do cabecalho da view
 		    $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
@@ -116,16 +116,15 @@ class Basico_EmailController extends Zend_Controller_Action
 			$formCadastrarUsuarioValidado->addElement('hidden', 'idPessoa', array('value' => $proprietarioEmail->id));
 			$formCadastrarUsuarioValidado->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
 			
+			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
+			
 			// carregando painel no form
 			$this->view->form = $formCadastrarUsuarioValidado;
 			
 			//registrando id do proprietario na sessao.
 	    	Basico_UtilControllerController::registraValorSessao("idPessoa", $proprietarioEmail->id);
-	    	//Basico_UtilControllerController::print_debug(Zend_Registry::getInstance(), true, false, true);
-
 	    	
-	    	//echo Zend_Registry::get('idPessoa');
-			
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
     	}

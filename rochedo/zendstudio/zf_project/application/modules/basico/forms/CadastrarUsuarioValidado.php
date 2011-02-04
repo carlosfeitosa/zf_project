@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 27/12/2010 13:06:33
+* em: 04/02/2011 08:40:35
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 27/12/2010 12:55:25
+* @version    1: 04/02/2011 08:40:03
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -37,8 +37,8 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
                 array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
 
         // Adicionando paths para localizacao de componentes nao ZF.
-        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
         $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
+        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
 
         // Criando array de elementos.
         $elements = array();
@@ -48,7 +48,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[1]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[1]->addValidator('NotEmpty');
+        $elements[1]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
@@ -60,7 +60,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[2]->setOrder(2);
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[2]->addValidator('NotEmpty');
+        $elements[2]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO_AJUDA')) . '\', 1)</script></button>');
@@ -76,7 +76,9 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[4]->setOrder(4);
         $elements[4]->setRequired(true);
         $elements[4]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[4]->addValidator('NotEmpty');
+        $elements[4]->addValidator('Regex', true, array('pattern'=>'/^[(a-zA-Z)]+[(a-zA-Z0-9_@.)]*$/', 'messages' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE'))));
+        $elements[4]->addValidator('stringLength', false, array(3, 100, 'messages' => array(Zend_Validate_StringLength::TOO_SHORT => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_3_100_ERROR_MESSAGE_TOO_SHORT'), Zend_Validate_StringLength::TOO_LONG => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_3_100_ERROR_MESSAGE_TOO_LONG') )));
+        $elements[4]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA')) . '\', 1)</script></button>');
@@ -90,8 +92,8 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[6]->setOrder(6);
         $elements[6]->setAttribs(array('onKeyUp' => "chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value)"));
         $elements[6]->setRequired(true);
-        $elements[6]->addValidator('stringLength', false, array(6, 100));
-        $elements[6]->addValidator('NotEmpty');
+        $elements[6]->addValidator('stringLength', false, array(6, 100, 'messages' => array(Zend_Validate_StringLength::TOO_SHORT => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_6_100_ERROR_MESSAGE_TOO_SHORT'), Zend_Validate_StringLength::TOO_LONG => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_6_100_ERROR_MESSAGE_TOO_LONG') )));
+        $elements[6]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[6]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA')) . '\', 1)</script></button>');
@@ -104,7 +106,8 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[8] = $this->createElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadoSenhaConfirmacao');
         $elements[8]->setOrder(8);
         $elements[8]->setRequired(true);
-        $elements[8]->addValidator('NotEmpty');
+        $elements[8]->addValidator('identical', false, array('token' => '@identicalElementName', 'invalidMessage' => '@identicalInvalidMessage'));
+        $elements[8]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[8]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[8]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[8]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO_AJUDA')) . '\', 1)</script></button>');
