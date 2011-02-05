@@ -107,14 +107,17 @@ class Basico_EmailController extends Zend_Controller_Action
 			// instanciando o formulario de cadastrar usuario validado
 			$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoNome->setValue($dadosPessoais->nome);
-			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})"));
+			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
 			
 			//adicionando multiOptions do radioButton sexo
-			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
+			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
 
 			// setando valores dos hiddens do formulario
 			$formCadastrarUsuarioValidado->addElement('hidden', 'idPessoa', array('value' => $proprietarioEmail->id));
 			$formCadastrarUsuarioValidado->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
+			
+			$formCadastrarUsuarioValidado->idPessoa->removeDecorator('Label');
+			$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
 			
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
@@ -122,9 +125,6 @@ class Basico_EmailController extends Zend_Controller_Action
 			// carregando painel no form
 			$this->view->form = $formCadastrarUsuarioValidado;
 			
-			//registrando id do proprietario na sessao.
-	    	Basico_UtilControllerController::registraValorSessao("idPessoa", $proprietarioEmail->id);
-	    	
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
     	}

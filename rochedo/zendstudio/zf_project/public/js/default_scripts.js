@@ -13,6 +13,39 @@ dojo.require("dijit.form.CheckBox");
 
 
 var underlay;
+
+/*
+ * Função para validar uma string
+ * @var inputObject - O input a ser validado
+ * @var filterType  - O tipo do filtro a ser aplicado
+ */
+function validaString(inputObject, filterType)
+{   	
+	var generic_pattners={'special':/[\W]/g, 
+		   'quotes':/['\''&'\"']/g, 
+		   'notnumbers':/[^\d]/g,
+		   'login':/^[0-9\W_]+/g
+		  };
+	
+	var login_patterns = {'inicio' : /^[0-9\W_]+/g,
+		                  'fim'    : /[^a-zA-Z0-9@._]*$/g
+	                     };
+	
+	if (dijit.byId(inputObject.id).getValue() != "") {
+		
+		if (filterType == "login") {
+			
+			for (var i in login_patterns){
+				dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(login_patterns[i],''));
+			}
+			
+		}else{
+			
+		    dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(generic_pattners[filterType],''));
+		}
+    }
+}
+
 function loading() 
 {
     underlay = new dijit.DialogUnderlay({'class': 'loading'});
@@ -114,7 +147,8 @@ function hideDialog(dialogId, urlRedirectHide)
 	}
 }
 
-function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetodo){
+function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetodo)
+{
 	
 	dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
 	

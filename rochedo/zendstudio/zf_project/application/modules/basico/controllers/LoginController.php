@@ -177,16 +177,18 @@ class Basico_LoginController extends Zend_Controller_Action
         $form = $this->getFormCadastroUsuarioValidado();
     	$form->addElement('hidden', 'idPessoa', array('value' => $idPessoa));
     	$form->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
-    	$form->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => 'Masculino', 1 => 'Feminino'));
+    	$form->idPessoa->removeDecorator('Label');
+		$form->versaoDadosPessoais->removeDecorator('Label');
+    	
+    	$form->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
     	$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
 		$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
     	
     	
     	
     	$urlMetodo = Basico_UtilControllerController::retornaStringEntreCaracter(Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
-    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})"));
-    
-
+    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
+    	
     	if ($form->isValid($_POST)) {
 
     	    // capturando controladores
@@ -225,9 +227,9 @@ class Basico_LoginController extends Zend_Controller_Action
     		
     		// setando o sexo
     		if ($sexo === 0)
-    		    $novoDadosBiometricos->sexo = "M";
+    		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;
     		else if ($sexo === 1)
-    		    $novoDadosBiometricos->sexo = "F";
+    		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
 
     		// salvando os dadosBiometricos
     		$controladorDadosBiometricos->salvarDadosBiometricos($novoDadosBiometricos);
