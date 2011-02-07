@@ -22,10 +22,9 @@ var underlay;
 function validaString(inputObject, filterType)
 {   	
 	var generic_pattners={'special':/[\W]/g, 
-		   'quotes':/['\''&'\"']/g, 
-		   'notnumbers':/[^\d]/g,
-		   'login':/^[0-9\W_]+/g
-		  };
+		                  'quotes':/['\''&'\"']/g, 
+		                  'notnumbers':/[^\d]/g
+		                 };
 	
 	var login_patterns = {'inicio' : /^[0-9\W_]+/g,
 		                  'fim'    : /[^a-zA-Z0-9@._]*$/g
