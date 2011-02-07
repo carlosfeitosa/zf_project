@@ -367,7 +367,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND cp.nome = 'DOJO_DateTextBox') AS id_componente,
                               'FORM_FIELD_DATE_TEXT_BOX_DATA_NASCIMENTO' AS nome, 'Elemento para digitação de data de nascimento.' AS descricao,
                               'FORM_FIELD_DATA_NASCIMENTO' AS constante_textual_label,
-                              'dataNascimento' AS element_name, '''style'' => ''width: 60px;''' AS element_attribs,
+                              'dataNascimento' AS element_name, '''style'' => ''width: 70px;''' AS element_attribs,
                               '''dataNascimento''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
