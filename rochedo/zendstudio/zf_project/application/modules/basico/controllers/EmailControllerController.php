@@ -249,4 +249,31 @@ class Basico_EmailControllerController
     	else
     	    return NULL;
 	}
+	
+	/**
+	 * Retorna o Objeto email primario da pessoa passada
+	 * @param Int $idPessoa
+	 * @return Basico_Model_Email
+	 */
+	public function retornaEmailPrimarioPessoa($idPessoa)
+	{
+		if ((Int) $idPessoa > 0) {
+			
+			// recuperando o id da categoria EMAIL_PRIMARIO
+			$idCategoriaEmailPrimario = Basico_CategoriaControllerController::retornaIdCategoriaEmailPrimario();
+			
+			// instanciando um objeto email
+			$objEmail = new Basico_Model_Email();
+			
+			// recuperando o email primario da pessoa passada
+			$emailPrimario = $objEmail->fetchList("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
+			
+			// checando se o email foi encontrado
+			if (count($emailPrimario) == 1) {
+				return $emailPrimario[0];
+			}
+			
+		}
+		return false;
+	}
 }

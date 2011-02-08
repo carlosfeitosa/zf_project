@@ -1,4 +1,6 @@
 <?php
+// inserindo controllersControllers
+require_once("TradutorControllerController.php");
 
 class Basico_LoginControllerController {
 /**
@@ -60,5 +62,29 @@ class Basico_LoginControllerController {
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
+	}
+	
+	/**
+	 * Retorna um array no formato Json possuindo as mensagens relacionadas
+	 * ao componente passwordStrengthChecker.
+	 * @return Json
+	 */
+	public function retornaJsonMensagensPasswordStrengthChecker()
+	{
+		// inicializando controladores
+		$tradutorController = Basico_TradutorControllerController::init();
+		
+		// carregando array com as mensagens utilizadas
+		$arrayMensagens = array('muito_fraca' => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
+		                        'fraca'       => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
+		                        'boa'         => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
+		                        'forte'       => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
+		                        'muito_forte' => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
+		                        'digite_senha'=> $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
+		                        'abaixo'      => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
+	                           );
+	                           
+	    // codificando o array e retornando-o.
+	    return str_replace('"', "'", Zend_Json::encode($arrayMensagens));
 	}
 }

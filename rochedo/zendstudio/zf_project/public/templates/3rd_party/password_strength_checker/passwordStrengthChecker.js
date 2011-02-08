@@ -59,10 +59,21 @@ String.prototype.strReverse = function() {
 	//strReversed = strOrig.revstring();
 };
 
-function chkPass(pwd) {
+function chkPass(pwd, messages) {
 	var oScorebar = $("scorebar");
 	var oScore = $("score");
 	var oComplexity = $("complexity");
+	var oScorebarBorder = $("scorebarBorder");
+	
+	//transformando json passado em objeto com as mensagens do componente.
+	var messages = eval(messages);
+
+	if (pwd != "") {
+		oScorebarBorder.style.visibility = 'visible';	
+	}else{
+		oScorebarBorder.style.visibility = 'hidden';
+	}
+	
 	// Simultaneous variable declaration and value assignment aren't supported in IE apparently
 	// so I'm forced to assign the same value individually per var to support a crappy browser *sigh* 
 	var nScore=0, nLength=0, nAlphaUC=0, nAlphaLC=0, nNumber=0, nSymbol=0, nMidChar=0, nRequirements=0, nAlphasOnly=0, nNumbersOnly=0, nUnqChar=0, nRepChar=0, nRepInc=0, nConsecAlphaUC=0, nConsecAlphaLC=0, nConsecNumber=0, nConsecSymbol=0, nConsecCharType=0, nSeqAlpha=0, nSeqNumber=0, nSeqSymbol=0, nSeqChar=0, nReqChar=0, nMultConsecCharType=0;
@@ -76,8 +87,8 @@ function chkPass(pwd) {
 	var sAlphas = "abcdefghijklmnopqrstuvwxyz";
 	var sNumerics = "01234567890";
 	var sSymbols = ")!@#$%^&*()";
-	var sComplexity = "Digite a senha.";
-	var sStandards = "Abaixo";
+	var sComplexity = messages.digite_senha;
+	var sStandards = messages.abaixo;
 	var nMinPwdLen = 8;
 	if (document.all) { var nd = 0; } else { var nd = 1; }
 	if (pwd) {
@@ -225,11 +236,11 @@ function chkPass(pwd) {
 		
 		/* Determine complexity based on overall score */
 		if (nScore > 100) { nScore = 100; } else if (nScore < 0) { nScore = 0; }
-		if (nScore >= 0 && nScore < 20) { sComplexity = "Muito Fraca"; }
-		else if (nScore >= 20 && nScore < 40) { sComplexity = "Fraca"; }
-		else if (nScore >= 40 && nScore < 60) { sComplexity = "Boa"; }
-		else if (nScore >= 60 && nScore < 80) { sComplexity = "Forte"; }
-		else if (nScore >= 80 && nScore <= 100) { sComplexity = "Muito Forte"; }
+		if (nScore >= 0 && nScore < 20) { sComplexity = messages.muito_fraca; }
+		else if (nScore >= 20 && nScore < 40) { sComplexity = messages.fraca; }
+		else if (nScore >= 40 && nScore < 60) { sComplexity = messages.boa; }
+		else if (nScore >= 60 && nScore < 80) { sComplexity = messages.forte; }
+		else if (nScore >= 80 && nScore <= 100) { sComplexity = messages.muito_forte; }
 		
 		/* Display updated score criteria to client */
 		oScorebar.style.backgroundPosition = "-" + parseInt(nScore * 4) + "px";
@@ -320,4 +331,4 @@ function passwordChanged() {
 	} else {
 	strength.innerHTML = '<span style="color:red">Fraca!</span>';
 	}
-	}
+}

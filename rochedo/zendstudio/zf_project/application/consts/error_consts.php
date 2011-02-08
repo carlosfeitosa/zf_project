@@ -137,6 +137,11 @@ define("MSG_ERRO_EMAIL_JA_VALIDADO", "Email já validado no sistema.");
 define("MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO", "Link para validação expirado, recomeçe o seu cadastro.");
 define("MSG_ERRO_EMAIL_CHECK_CONSTRAINT","Chave estrangeira do e-mail não confere.");
 
+/**
+ * OBJETO
+ */
+define("MSG_ERRO_NAO_OBJETO", "O parametro passado não é um objeto.");
+
 /*
  * TRADUTOR
  */

@@ -148,16 +148,18 @@ function hideDialog(dialogId, urlRedirectHide)
 
 function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetodo)
 {
-	
-	dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
-	
-	dojo.xhrGet({
-    	url: urlMetodo + stringPesquisa,
-    	timeout: 5000,
-    	load: function(response, ioArgs) 
-    	{
-		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = response;
-    	}
-    });
-	
+	if (stringPesquisa != "") {
+		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
+		
+		dojo.xhrGet({
+	    	url: urlMetodo + stringPesquisa,
+	    	timeout: 5000,
+	    	load: function(response, ioArgs) 
+	    	{
+			dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = response;
+	    	}
+	    });
+	}else{
+		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "";
+	}
 }

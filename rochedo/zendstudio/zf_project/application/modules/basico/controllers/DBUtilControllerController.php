@@ -91,6 +91,10 @@ class Basico_DBUtilControllerController
 	 */
     public static function retornaValorIdGenericoObjeto($objeto)
     {
+    	//verificando se o parametro passado é um objeto
+    	if (!is_object($objeto)) {
+    		throw new Exception(MSG_ERRO_NAO_OBJETO);
+    	}
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
 

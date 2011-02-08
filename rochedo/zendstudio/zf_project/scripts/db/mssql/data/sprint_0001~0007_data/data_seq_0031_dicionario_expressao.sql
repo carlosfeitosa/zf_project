@@ -12,6 +12,7 @@
 * 								06/12/2010 - criacao das expressoes para a geracao de formularios;
 * 								13/12/2010 - criacao das expressoes para o formulario de login (sprint 0002.1);
 * 								31/12/2010 - criacao das expressoes para a view de problemas com o login;
+*                               07/02/2011 - criação das expressões para as mensagens do componente passwordStrengthChecker;
 * 
 */
 
@@ -19,6 +20,69 @@
 * (Português do Brasil - PT_BR)
 * 
 */
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL' AS constante_textual, 'Login não está disponível.<br>Por favor, tente outro login,<br>ou aceite a sugestão abaixo.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_DISPONIVEL' AS constante_textual, 'Login disponível.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE' AS constante_textual, 'Muito forte.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE' AS constante_textual, 'Forte.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA' AS constante_textual, 'Boa.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA' AS constante_textual, 'Fraca.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA' AS constante_textual, 'Muito fraca.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO' AS constante_textual, 'Abaixo' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA' AS constante_textual, 'Digite a senha.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO' AS constante_textual, 'Masculino' AS traducao
@@ -2344,6 +2408,70 @@ AND c.nome = 'pt-br';
 * (Inglês dos E.U.A. - EN_US)
 * 
 */
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL' AS constante_textual, 'The login isn''t available.<br>Please, try other,<br>or choose one of the suggestions below.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_DISPONIVEL' AS constante_textual, 'The login is available' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE' AS constante_textual, 'Very Strong.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE' AS constante_textual, 'Strong.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA' AS constante_textual, 'Good.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA' AS constante_textual, 'Weak.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA' AS constante_textual, 'Very Weak.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO' AS constante_textual, 'Below' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA' AS constante_textual, 'Type the password.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO' AS constante_textual, 'Male' AS traducao

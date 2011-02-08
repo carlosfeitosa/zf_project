@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 07/02/2011 14:03:08
+* em: 07/02/2011 15:28:36
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 07/02/2011 14:02:38
+* @version    1: 07/02/2011 15:28:09
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -91,7 +91,6 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 
         $elements[6] = $this->createElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadoSenha');
         $elements[6]->setOrder(6);
-        $elements[6]->setAttribs(array('onKeyUp' => "chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value)"));
         $elements[6]->setRequired(true);
         $elements[6]->addValidator('stringLength', false, array(6, 100, 'messages' => array(Zend_Validate_StringLength::TOO_SHORT => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_6_100_ERROR_MESSAGE_TOO_SHORT'), Zend_Validate_StringLength::TOO_LONG => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_6_100_ERROR_MESSAGE_TOO_LONG') )));
         $elements[6]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));

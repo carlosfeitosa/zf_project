@@ -173,21 +173,32 @@ class Basico_LoginController extends Zend_Controller_Action
     	$sexo     = (int) $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSexo');
     	$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
     	
+    	// inicializando controladores
+    	$controladorLogin = Basico_LoginControllerController::init();
+    	
     	// capturando formulario e setando propriedades
         $form = $this->getFormCadastroUsuarioValidado();
     	$form->addElement('hidden', 'idPessoa', array('value' => $idPessoa));
     	$form->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
     	$form->idPessoa->removeDecorator('Label');
 		$form->versaoDadosPessoais->removeDecorator('Label');
+		
+		//adicionando chamada a função do password strength checker para o campo senha
+		$form->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, {$controladorLogin->retornaJsonMensagensPasswordStrengthChecker()})"));
     	
+		//adicionando multi-options para o radioButton sexo
     	$form->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+    	
+    	// setando mensagens do validator Identical para o campo senhaConfirmacao
     	$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+    	// setando o campo que tem que ser identico ao campo senhaConfirmacao
 		$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
     	
-    	
-    	
+		// capturando a url do metodo que retorna se o login esta disponivel ou nao 
     	$urlMetodo = Basico_UtilControllerController::retornaStringEntreCaracter(Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
-    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onChange' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
+    	
+    	// adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
+    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
     	
     	if ($form->isValid($_POST)) {
 
@@ -197,6 +208,7 @@ class Basico_LoginController extends Zend_Controller_Action
     		$controladorPerfil           = Basico_PerfilControllerController::init();
     		$controladorPessoaPerfil     = Basico_PessoaPerfilControllerController::init();
     		$controladorDadosBiometricos = Basico_DadosBiometricosControllerController::init();
+    		$controladorEmail            = Basico_EmailControllerController::init();
 
     		// capturando obj dados pessoais da pessoa passada
     		$dadosPessoaisObj = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($idPessoa);
@@ -246,6 +258,21 @@ class Basico_LoginController extends Zend_Controller_Action
     		$novoLogin->senha  = Basico_UtilControllerController::retornaStringEncriptada(trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha')));
     		$novoLogin->ativo  = true;
     		$controladorLogin->salvarLogin($novoLogin);
+    		
+    		
+    		// recuperando o email primario do usuario
+    		$emailPrimario = $controladorEmail->retornaEmailPrimarioPessoa($idPessoa);
+    		
+    		// recuperando a ultima versao do email
+    	    $versaoUpdateEmail = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($emailPrimario);
+    		
+    		// validando o e-mail no objeto
+	    	$emailPrimario->datahoraUltimaValidacao = Basico_UtilControllerController::retornaDateTimeAtual();
+	    	$emailPrimario->validado = 1;
+	    	$emailPrimario->ativo    = 1;
+	    	
+	    	// salvando o objeto e-mail no banco de dados
+	    	$controladorEmail->salvarEmail($emailPrimario, $versaoUpdateEmail);
 
     		// carregando o titulo e subtitulo da view
     	    //$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO);
@@ -288,18 +315,23 @@ class Basico_LoginController extends Zend_Controller_Action
      */
     public function verificadisponibilidadeloginAction()
     {
-    	//desabilitando layout e render
-    	$this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender(true);
-
-        //checando a disponibilidade do login
-    	$loginDisponivel = Basico_DBCheckControllerController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('stringPesquisa'));
-        
-    	if (!$loginDisponivel) {	
-			echo "<span style='color: red; font-weight: bold;'>Login não está disponível.<br>Por favor, tente outro login,<br>ou aceite a sugestão abaixo.</span>";
-		}else{
-		    echo "<span style='color: green; font-weight: bold;'>Login disponível</span>";
-		}
+    	if ($this->getRequest()->getParam('stringPesquisa') != "") {
+	    	//desabilitando layout e render
+	    	$this->_helper->layout()->disableLayout();
+	        $this->_helper->viewRenderer->setNoRender(true);
+	
+	        //checando a disponibilidade do login
+	    	$loginDisponivel = Basico_DBCheckControllerController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('stringPesquisa'));
+	        
+	    	if (!$loginDisponivel) {	
+				echo "<span style='color: red; font-weight: bold;'>{$this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')}</span>";
+			}else{
+			    echo "<span style='color: green; font-weight: bold;'>{$this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_DISPONIVEL')}</span>";
+			}
+    	}else{
+    		echo "";
+    	}
+    	
     }
     
     /**
