@@ -170,6 +170,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'LOG';
 
+
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_MENSAGEM' AS nome, 'Operação de inserção de mensagem.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -911,6 +912,20 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_COORDENACAO_POS_GRADUACAO' AS nome, 'Formulários de manipulação de dados de coordenação de curso de pós-graduação.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES' AS nome, 'Formulários de manipulação de dados de orientações.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL' AS nome, 'Formulários de manipulação de dados de vinculos profissionais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -993,14 +1008,14 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_BIOMETRICOS' AS nome, 'Sub-formulários de manipulação de dados biométricos do usuario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PROFISSIONAIS' AS nome, 'Sub-formulários de manipulação de dados profissionais do usuario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PROFISSIONAIS' AS nome, 'Sub-formulários de manipulação de dados profissionais do usuario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_BIOMETRICOS' AS nome, 'Sub-formulários de manipulação de dados biométricos do usuario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1163,6 +1178,11 @@ FROM tipo_categoria
 WHERE nome = 'FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_DIV_WIDTH' AS nome, 'Decorator para clear both.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'SISTEMA_MODULO' AS nome, 'Modulos do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'SISTEMA';
@@ -1205,22 +1225,11 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'LOG';
 
 
-
 /**
 * INICIO
 *  
 * ABA CADASTRO DE USUARIO - DADOS PESSOAISS 
 */
-
--- ajuda - formulario - cadastro - usuario
--- dados pessoais.
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PESSOAIS' AS nome, 'Ajuda para preenchimento de formulários de manipulação de dados cadastrais (dados pessoais).' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO';
--------------
 
 -- formulario - input - cadastro - usuario - dados pessoais
 -- documentos pessoais
@@ -1274,23 +1283,4 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
 
 /**
 * FIM - ABA CADASTRO DE USUARIO - DADOS PESSOAIS
-*/
-
-
-/**
-* INICIO
-*  
-* CADASTRO DE ENDERECO 
-*/
--- ajuda - formulario - cadastro
--- endereço
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO' AS nome, 'Ajuda para preenchimento de formulários de manipulação de endereço.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO';
--------------
-/**
-* FIM - CADASTRO DE ENDERECO 
 */

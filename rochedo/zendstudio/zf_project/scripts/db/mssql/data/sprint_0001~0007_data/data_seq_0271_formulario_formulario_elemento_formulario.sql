@@ -20,15 +20,16 @@ SELECT (SELECT ffe.id
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
-        AND f.nome = 'FORM_DIALOG_DOCUMENTOS_IDENTIFICACAO') AS id_formulario_formulario_elemento,
+        AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS'
+        AND ffe.ordem = 13) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
-        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO'
-        AND f.nome = 'FORM_DIALOG_DOCUMENTO') AS id_formulario, 
-        'FORM_DOCUMENTO_TITULO' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_COORDENACAO_POS_GRADUACAO'
+        AND f.nome = 'FORM_DIALOG_COORDENACAO_POS_GRADUACAO') AS id_formulario, 
+        'FORM_BUTTON_ABRIR_DIALOG_VISUALIZAR_POS_GRADUACAO' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo )
 SELECT (SELECT ffe.id
@@ -40,15 +41,36 @@ SELECT (SELECT ffe.id
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
-        AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario_formulario_elemento,
+        AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS'
+        AND ffe.ordem = 14) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
-        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
-        AND f.nome = 'FORM_DIALOG_MAIOR_TITULACAO') AS id_formulario, 
-        'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES'
+        AND f.nome = 'FORM_DIALOG_ORIENTACOES') AS id_formulario, 
+        'FORM_BUTTON_ABRIR_DIALOG_VISUALIZAR_ORIENTACOES' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;        
+
+INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo )
+SELECT (SELECT ffe.id
+        FROM formulario_formulario_elemento ffe
+        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
+        AND t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
+        AND f.nome = 'FORM_DIALOG_DOCUMENTOS_IDENTIFICACAO') AS id_formulario_formulario_elemento,
+       (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO' 
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO'
+        AND f.nome = 'FORM_DIALOG_DOCUMENTO') AS id_formulario, 
+        'FORM_DOCUMENTO_TITULO' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
@@ -233,6 +255,8 @@ SELECT (SELECT ffe.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_ENDERECO'
         AND f.nome = 'FORM_DIALOG_ENDERECO') AS id_formulario, 
         'FORM_BUTTON_ABRIR_DIALOG_NOVO_ENDERECO' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;
+        
+        
         
         
 /**
