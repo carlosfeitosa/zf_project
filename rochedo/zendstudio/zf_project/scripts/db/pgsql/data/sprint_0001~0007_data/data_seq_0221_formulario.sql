@@ -40,9 +40,10 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
-		SELECT c.id AS id_categoria,(SELECT f.id
-        		                     FROM formulario f
-                		             WHERE f.nome = 'FORM_DADOS_USUARIO'),                          
+		SELECT c.id AS id_categoria,
+		(SELECT f.id
+         FROM formulario f
+         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                 
        'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS' AS nome,
        'Formulário de submissão de dados acadêmicos.' AS descricao, 
        'SUBFORM_TABTITLE_DADOS_ACADEMICOS' AS constante_textual_titulo,
@@ -56,6 +57,37 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_ACADEMICOS';
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_COORDENACAO_POS_GRADUACAO' AS nome, 
+		'Dialog de selecao de cursos que nao estao amarrados a nenhum coordenador de pos-graduacao.' AS descricao, 
+        'FORM_TITLE_COODENACAO_POS_GRADUACAO' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosAcademicosCoordenacaoPosGraduacao' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_COORDENACAO_POS_GRADUACAO';
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_ORIENTACOES' AS nome, 
+		'Dialog de selecao de cursos que nao estao amarrados a nenhum coordenador de pos-graduacao.' AS descricao, 
+        'FORM_TITLE_ORIENTACOES' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioDadosAcademicosOrientacoes' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES';
+
 
 INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
@@ -257,21 +289,6 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_ENDERECO';
-
-INSERT INTO formulario (id_categoria, nome, descricao, 
-                        constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
-		SELECT c.id AS id_categoria, 
-		'FORM_DIALOG_MAIOR_TITULACAO' AS nome, 
-		'Dialog de edicao de dados de maior titulacao.' AS descricao, 
-        'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual_titulo, 
-        'CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao' AS form_name, 
-        'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,

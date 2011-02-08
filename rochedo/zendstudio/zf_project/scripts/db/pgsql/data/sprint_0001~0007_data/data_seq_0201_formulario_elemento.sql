@@ -626,7 +626,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
                               'FORM_FIELD_FILTERING_SELECT_CATEGORIA_BOLSA_CNPQ' AS nome, 'Elemento campo Categoria da bolsa do cnpq, com filtro.' AS descricao,
-                              'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual_label,
+                              'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_LABEL' AS constante_textual_label,
                               'categoriaBolsaCnpq' AS element_name, NULL AS element_attribs,
                               '''categoriaBolsaCnpq''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -668,7 +668,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
                               'FORM_FIELD_FILTERING_SELECT_MAIOR_TITULACAO' AS nome, 'Elemento campo Maior Titulação, com filtro.' AS descricao,
-                              'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual_label,
+                              'FORM_FIELD_MAIOR_TITULACAO_LABEL' AS constante_textual_label,
                               'maiorTitulacao' AS element_name, NULL AS element_attribs,
                               '''maiorTitulacao''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -710,7 +710,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
                               'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_QUE_CONCEDEU' AS nome, 'Elemento campo Instituicao que concedeu, com filtro.' AS descricao,
-                              'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU' AS constante_textual_label,
+                              'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_LABEL' AS constante_textual_label,
                               'instituicaoQueConcedeu' AS element_name, NULL AS element_attribs,
                               '''instituicaoQueConcedeu''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -752,7 +752,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
                               'FORM_FIELD_FILTERING_SELECT_AREA_DE_CONHECIMENTO' AS nome, 'Elemento campo área de conhecimento, com filtro.' AS descricao,
-                              'FORM_FIELD_AREA_DE_CONHECIMENTO' AS constante_textual_label,
+                              'FORM_FIELD_AREA_DE_CONHECIMENTO_LABEL' AS constante_textual_label,
                               'areaDeConhecimento' AS element_name, NULL AS element_attribs,
                               '''areaDeConhecimento''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -794,10 +794,301 @@ SELECT c.id AS id_categoria, (SELECT a.id
 	                          AND c.nome = 'COMPONENTE_DOJO'
 	                          AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
 	                          'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_CURSO' AS nome, 'Elemento campo editbox nome do curso' AS descricao,
-	                          'FORM_FIELD_NOME_CURSO' AS constante_textual_label,
+	                          'FORM_FIELD_NOME_CURSO_LABEL' AS constante_textual_label,
 	                          'nomeCurso' AS element_name, NULL AS element_attribs,
 	                          '''nomeCurso''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_DATA_OBTENCAO_DATE_TEXT_BOX') AS id_ajuda,
+                              (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_DateTextBox') AS id_componente,
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_OBTENCAO' AS nome, 'Elemento para digitação de data de obtenção do curso de maior titulação.' AS descricao,
+                              'FORM_FIELD_DATA_OBTENCAO_LABEL' AS constante_textual_label,
+                              'dataObtencao' AS element_name, NULL AS element_attribs,
+                              '''dataObtencao''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_TITULACAO_ESPERADA_FILTERING_SELECT') AS id_ajuda,
+                              (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
+                              'FORM_FIELD_FILTERING_SELECT_TITULACAO_ESPERADA' AS nome, 'Elemento para seleção de titulação esperada.' AS descricao,
+                              'FORM_FIELD_TITULACAO_ESPERADA_LABEL' AS constante_textual_label,
+                              'titulacaoEsperada' AS element_name, NULL AS element_attribs,
+                              '''titulacaoEsperada''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo 
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_INSTITUICAO_CURSO_ATUAL_FILTERING_SELECT') AS id_ajuda,
+                              (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
+                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_CURSO_ATUAL' AS nome, 'Elemento para seleção de instituição de curso atual.' AS descricao,
+                              'FORM_FIELD_INSTITUICAO_CURSO_ATUAL_LABEL' AS constante_textual_label,
+                              'instituicaoCursoAtual' AS element_name, NULL AS element_attribs,
+                              '''instituicaoCursoAtual''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo 
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+                              
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_FILTERING_SELECT') AS id_ajuda,
+                              (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
+                              'FORM_FIELD_FILTERING_SELECT_AREA_CONHECIMENTO_CURSO_ATUAL' AS nome, 'Elemento para seleção área de conhecimento do curso atual.' AS descricao,
+                              'FORM_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_LABEL' AS constante_textual_label,
+                              'areaConhecimentoCursoAtual' AS element_name, NULL AS element_attribs,
+                              '''areaConhecimentoCursoAtual''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo 
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+                              
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_NOME_CURSO_ATUAL_TEXT_BOX') AS id_ajuda,
+                              (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_CURSO_ATUAL' AS nome, 'Elemento digitação do nome do curso atual.' AS descricao,
+                              'FORM_FIELD_NOME_CURSO_ATUAL_LABEL' AS constante_textual_label,
+                              'nomeCursoAtual' AS element_name, NULL AS element_attribs,
+                              '''nomeCursoAtual''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo 
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+                              
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_PERIODO_FILTERING_SELECT') AS id_ajuda,
+                              (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
+                              'FORM_FIELD_FILTERING_SELECT_PERIODO' AS nome, 'Elemento seleção do período do curso.' AS descricao,
+                              'FORM_FIELD_PERIODO_LABEL' AS constante_textual_label,
+                              'periodo' AS element_name, NULL AS element_attribs,
+                              '''periodo''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_TURNO_FILTERING_SELECT') AS id_ajuda,
+                              (SELECT ff.id
+                              FROM formulario_elemento_filter ff
+                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
+                              AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
+                              'FORM_FIELD_FILTERING_SELECT_TURNO' AS nome, 'Elemento seleção do turno do curso.' AS descricao,
+                              'FORM_FIELD_TURNO_LABEL' AS constante_textual_label,
+                              'turno' AS element_name, NULL AS element_attribs,
+                              '''turno''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo                             
+FROM tipo_categoria t 
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
@@ -847,7 +1138,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome, 'Botão para fe
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
        'FORM_BUTTON_CLOSE_DIALOG' AS constante_textual_label, 'fechar' AS element_name, 
-       '''fechar'', array(''onClick'' => ''hideDialog(\"@nomeForm\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       '''fechar'', array(''onClick'' => ''hideDialog(\\"@nomeForm\\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
