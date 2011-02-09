@@ -24,7 +24,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * 
      * @return void
      */
-    public function dadosusuarioAction()
+    public function indexAction()
     {
     	// instanciando o formulario
 	    $formDadosUsuario = new Basico_Form_CadastrarDadosUsuario();

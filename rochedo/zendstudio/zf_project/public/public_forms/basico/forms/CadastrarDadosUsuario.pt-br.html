@@ -40,18 +40,77 @@
 <div id="float-left">
 <button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5" type="button" label="Endereços pessoais" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais.pt-br.html", "Endereços pessoais")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5</button></div></dl></fieldset></div>
 <dd id="BasicoCadastrarDadosUsuarioDadosPessoaisCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisCsrf]" value="b8244d85ae6eb5813386a930de8429f2" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisCsrf"></dd></dl></div>
+<input type="hidden" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisCsrf]" value="6bd58e1c4c7324e410ef4d32d685f1e9" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisCsrf"></dd></dl></div>
 
 <div name="CadastrarDadosUsuarioDadosAcademicos" method="post" id="CadastrarDadosUsuarioDadosAcademicos-ContentPane" title="DADOS ACADÊMICOS" dojoType="dijit.layout.ContentPane"><dl>
-<label class="required">* Categoria de bolsa no CNPQ&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consiste em selecionar a opção de categoria de bolsa que você possui no CNPQ.', 1)</script></button></label>
+<label class="required">* Categoria de bolsa no CNPQ:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consiste em selecionar a opção de categoria de bolsa que você possui no CNPQ.', 1)</script></button></label>
 <dd>
 <select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq" required="true" dojoType="dijit.form.FilteringSelect">
     
 </select></dd>
+<div id="float-left-clear-both"><fieldset id="fieldset-dados_usuario_dados_academicos_maior_titulacao"><legend>Maior titulação</legend>
+<dl>
+<div id="float-left-clear-both"><label class="required">* Maior titulação:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consiste em selecionar a sua maior titulação acadêmica.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label class="required">* Instituição que lhe concedeu sua maior titulação:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consiste em selecionar a Instituição que lhe concedeu a sua maior titulação.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosInstituicaoQueConcedeu]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosInstituicaoQueConcedeu" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label class="required">* Área de conhecimento:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consiste em selecionar a área de conhecimento de sua maior titulação.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosAreaDeConhecimento]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosAreaDeConhecimento" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label class="required">* Nome do curso:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consiste em digitar o nome do curso de sua maior titulação.', 1)</script></button></label>
+<dd>
+<input id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosNomeCurso" name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosNomeCurso]" value="" type="text" invalidMessage="Digite o nome do curso de sua maior titulação." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<div id="float-left-clear-both"><label class="required">* Data de Obtenção:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consiste em digitar a data de obtenção de sua maior titulação.', 1)</script></button></label>
+<dd>
+<input id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosDataObtencao" name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosDataObtencao]" value="" type="text" invalidMessage="Digite a data de obtenção de sua maior titulação." required="true" dojoType="dijit.form.DateTextBox"></dd></div></dl></fieldset></div>
+<div id="float-left-clear-both"><fieldset id="fieldset-dados_usuario_dados_academicos_curso_atual"><legend>Curso atual</legend>
+<dl>
+<div id="float-left-clear-both"><label class="required">* Titulação esperada após o termino do curso:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consistem em selecionar a titulação esperada após o termino do curso atual.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosTitulacaoEsperada]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosTitulacaoEsperada" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label class="required">* Instituição do curso:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consistem em selecionar a instituição do curso atual.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosInstituicaoCursoAtual]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosInstituicaoCursoAtual" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label class="required">* Área de conhecimento:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consistem em selecionar a área de conhecimento do curso atual.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosAreaConhecimentoCursoAtual]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosAreaConhecimentoCursoAtual" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label class="required">* Nome do curso atual:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consistem em digitar o nome do curso atual.', 1)</script></button></label>
+<dd>
+<input id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosNomeCursoAtual" name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosNomeCursoAtual]" value="" type="text" invalidMessage="Digite o nome do curso atual." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<div id="float-left-clear-both"><label class="required">* Período:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consistem em selecionar o período do curso atual.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosPeriodo]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosPeriodo" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left-clear-both"><label class="required">* Turno:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Ajuda', 'O preenchimento deste campo consistem em selecionar o turno do curso atual.', 1)</script></button></label>
+<dd>
+<select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosTurno]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosTurno" required="true" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div></dl></fieldset></div>
+<fieldset id="fieldset-dados_usuario_dados_academicos_coordenacao_pos_graduacao"><legend>Coordenação do curso de pós-graduação</legend>
+<dl>
 
-<button name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1" type="button" label="Maior titulação:" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosAcademicosMaiorTitulacao.pt-br.html", "Maior titulação:")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1</button>
+<button name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1" type="button" label="Visualizar programas disponíveis" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosAcademicosCoordenacaoPosGraduacao", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosAcademicosCoordenacaoPosGraduacao.pt-br.html", "Visualizar programas disponíveis")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1</button></dl></fieldset>
+<fieldset id="fieldset-dados_usuario_dados_academicos_orientacoes"><legend>Orientações</legend>
+<dl>
+
+<button name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo2]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo2" type="button" label="Visualizar orientações" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosAcademicosOrientacoes", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosAcademicosOrientacoes.pt-br.html", "Visualizar orientações")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo2</button></dl></fieldset>
 <dd id="BasicoCadastrarDadosUsuarioDadosAcademicosCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosCsrf]" value="5f2c633029079aed86f93de647b5549c" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosCsrf"></dd></dl></div>
+<input type="hidden" name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosCsrf]" value="e63f003978713aeda9713180b905811a" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosCsrf"></dd></dl></div>
 
 <div name="CadastrarDadosUsuarioDadosProfissionais" method="post" id="CadastrarDadosUsuarioDadosProfissionais-ContentPane" title="DADOS PROFISSIONAIS" dojoType="dijit.layout.ContentPane"><dl>
 
@@ -84,7 +143,7 @@
 <div id="float-left-clear-both">
 <input id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosEnviar" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosEnviar]" value="Enviar" type="submit" required="false" label="Enviar" dojoType="dijit.form.Button"></div>
 <dd id="BasicoCadastrarDadosUsuarioDadosBiometricosCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosCsrf]" value="e3f362e63301eff381b56eb2e591f4b5" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosCsrf"></dd></dl></div>
+<input type="hidden" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosCsrf]" value="f6b336effa8704a92140d6565564ea80" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosCsrf"></dd></dl></div>
 
 <div name="CadastrarDadosUsuarioInformacoesBancarias" id="CadastrarDadosUsuarioInformacoesBancarias-TabContainer" style="width: 850px; height: 430px; top: 10px; position: relative; z-index: 3;" title="INFORMAÇÕES BANCÁRIAS" tabPosition="top" dojoType="dijit.layout.TabContainer">
 <div name="CadastrarDadosUsuarioInformacoesBancariasDadosBancarios" method="post" id="CadastrarDadosUsuarioInformacoesBancariasDadosBancarios-ContentPane" title="DADOS BANCÁRIOS" dojoType="dijit.layout.ContentPane"><dl>
@@ -96,5 +155,5 @@
 <dd id="BasicoCadastrarDadosUsuarioPerfilPerfisDisponiveis-element">
 </dd></div>
 <dd id="BasicoCadastrarDadosUsuarioPerfilCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioPerfil[BasicoCadastrarDadosUsuarioPerfilCsrf]" value="cccbc543da679180a6b05b020ae44057" id="CadastrarDadosUsuarioPerfil-BasicoCadastrarDadosUsuarioPerfilCsrf"></dd></dl></div>
+<input type="hidden" name="CadastrarDadosUsuarioPerfil[BasicoCadastrarDadosUsuarioPerfilCsrf]" value="828320c8b3ee5688a3e345d276506e24" id="CadastrarDadosUsuarioPerfil-BasicoCadastrarDadosUsuarioPerfilCsrf"></dd></dl></div>
 </div>

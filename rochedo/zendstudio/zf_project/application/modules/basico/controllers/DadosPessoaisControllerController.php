@@ -94,4 +94,28 @@ class Basico_DadosPessoaisControllerController
 
 		throw new Exception(MSG_ERRO_NOME_PESSOA_NAO_ENCONTRADA_NO_SISTEMA);
 	}
+	
+	/**
+	 * Retorna o objeto dados pessoais da pessoa passada
+	 * @param Int $idPessoa
+	 * @return Basico_Model_DadosPessoais
+	 */
+	public function retornaObjetoDadosPessoaisPessoa($idPessoa)
+	{
+		// verificando se o id é valido
+		if ((Int) $idPessoa > 0) {
+			// recuperando o objeto dados pessoais da pessoa
+			$objDadosPessoais = self::$singleton->dadosPessoais->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			
+			// verificando se o objeto foi recuperado
+			if (isset($objDadosPessoais[0]))
+				// retorna o o objeto dados pessoais
+	    	    return $objDadosPessoais[0];
+	    	    
+	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
+	    	
+		}else{
+			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
+		}
+	}
 }

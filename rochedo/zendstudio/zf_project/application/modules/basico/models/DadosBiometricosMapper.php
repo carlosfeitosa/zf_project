@@ -57,9 +57,9 @@ class Basico_Model_DadosBiometricosMapper
     public function save(Basico_Model_DadosBiometricos $object)
     {
         $data = array(
-                'id_pessoa' => $object->getPessoa(),
-				'sexo'      => $object->getSexo(),
-                'rowinfo'   => $object->getRowinfo()
+                'id_pessoa'        => $object->getPessoa(),
+				'sexo'             => $object->getSexo(),
+                'rowinfo'          => $object->getRowinfo(),
 
         );
 

@@ -41,6 +41,7 @@ define("MSG_ERRO_CATEGORIA_NAO_ATIVA", "Categoria solicitada está inativa.");
 define("MSG_ERRO_CATEGORIA_EMAIL_PRIMARIO_NAO_ENCONTRADO", "Categoria de e-mail primário não encontrada no banco de dados.");
 define("MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT", "Categoria de e-mail validação usuário plaintext não encontrada no banco de dados.");
 define("MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO", "Categoria de e-mail validação usuário plaintext reenvio não encontrada no banco de dados.");
+define("MSG_ERRO_CATEGORIA_EMAIL_CONFIRMACAO_CADASTRO_PLAINTEXT", "Categoria de e-mail de confirmação de cadastro plaintext não encontrada no banco de dados.");
 define("MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE", "Categoria Remetente não encontrada no banco de dados.");
 define("MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO", "Categoria Destinatario não encontrada no banco de dados.");
 define("MSG_ERRO_CATEGORIA_LOG_VALIDACAO_USUARIO", "Categoria de log validacao usuario não encontrada no banco de dados");
@@ -114,6 +115,13 @@ define("MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO", "PessoaPerf
  * DADOS PESSOAIS
  */
 define("MSG_ERRO_NOME_PESSOA_NAO_ENCONTRADA_NO_SISTEMA", "Nome da Pessoa não encontrado.");
+define("MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA", "Dados pessoais não encontrados para esta pessoa.");
+
+
+/**
+ * PARAMETROS
+ */
+define("MSG_ERRO_PARAMETRO_ID_INVALIDO", "O id passado como parametro é inválido");
 
 /*
  * DB

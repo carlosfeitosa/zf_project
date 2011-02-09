@@ -150,7 +150,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
+    public function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainTextReenvio = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
@@ -161,6 +161,24 @@ class Basico_CategoriaControllerController
     	    return $objCategoriaEmailValidacaoPlainTextReenvio;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+    public function retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText()
+	{
+		// recuperando objeto categoria
+	    $objCategoriaEmailConfirmacaoCadastroPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT);
+	    
+	    // verificando se o objeto foi recuperado
+	    if (isset($objCategoriaEmailConfirmacaoCadastroPlainText))
+	    	// retornando o objeto
+    	    return $objCategoriaEmailConfirmacaoCadastroPlainText;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_CONFIRMACAO_CADASTRO_PLAINTEXT);
 	}
 	
 	/**
@@ -204,7 +222,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
+    public function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
@@ -933,6 +951,24 @@ class Basico_CategoriaControllerController
     	    return (Int) $objCategoriaEmailValidacaoPlainTextTemplate->id;
 
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);
+	}
+	
+/**
+	 * Retorna o id da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT
+	 * 
+	 * @return Integer
+	 */
+    public static function retornaIdCategoriaEmailConfirmacaoCadastroPlainTextTemplate()
+	{
+		// recuperando objeto categoria
+	    $objCategoriaEmailConfirmacaoCadastroPlainTextTemplate = self::retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
+	    
+	    // verificando se o objeto foi recuperado
+	    if (isset($objCategoriaEmailConfirmacaoCadastroPlainTextTemplate))
+	    	// retornando o id objeto
+    	    return (Int) $objCategoriaEmailConfirmacaoCadastroPlainTextTemplate->id;
+
+    	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_CONFIRMACAO_CADASTRO_PLAINTEXT);
 	}
 
 	/**

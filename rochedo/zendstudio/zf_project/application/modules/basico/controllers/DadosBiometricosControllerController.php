@@ -74,4 +74,53 @@ class Basico_DadosBiometricosControllerController
 			throw new Exception($e);
 		}
 	}
+	
+	/**
+	 * Retorna o objeto dadosBiometricos da pessoa passada
+	 * @param Int $idPessoa
+	 * @return Basico_Model_DadosBiometricos
+	 */
+	public function retornaObjetoDadosBiometricosPessoa($idPessoa)
+	{
+	    // verificando se o id é valido
+		if ((Int) $idPessoa > 0) {
+			// recuperando o objeto dados pessoais da pessoa
+			$objDadosBiometricos = self::$singleton->dadosBiometricos->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			
+			// verificando se o objeto foi recuperado
+			if (isset($objDadosBiometricos[0]))
+				// retorna o o objeto dados pessoais
+	    	    return $objDadosBiometricos[0];
+	    	    
+	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
+	    	
+		}else{
+			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
+		}
+	}
+	
+	/**
+	 * Retorna o sexo da pessoa passada
+	 * @param Int $idPessoa
+	 * @return M|F|NULL
+	 */
+	public function retornaSexoPessoa($idPessoa)
+	{
+	    // verificando se o id é valido
+		if ((Int) $idPessoa > 0) {
+			// recuperando o objeto dados pessoais da pessoa
+			$objDadosBiometricos = self::$singleton->dadosBiometricos->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			
+			// verificando se o objeto foi recuperado
+			if (isset($objDadosBiometricos[0]))
+				// retorna o o objeto dados pessoais
+	    	    return $objDadosBiometricos[0]->sexo;
+	    	    
+	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
+	    	
+		}else{
+			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
+		}
+	}
+	
 }

@@ -87,4 +87,28 @@ class Basico_LoginControllerController {
 	    // codificando o array e retornando-o.
 	    return str_replace('"', "'", Zend_Json::encode($arrayMensagens));
 	}
+	
+	/**
+	 * Retorna o login da pessoa passada
+	 * @param Int $idPessoa
+	 * @return String
+	 */
+	public function retornaLoginPessoa($idPessoa)
+	{
+	    // verificando se o id é valido
+		if ((Int) $idPessoa > 0) {
+			// recuperando o objeto dados pessoais da pessoa
+			$objLogin = self::$singleton->login->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			
+			// verificando se o objeto foi recuperado
+			if (isset($objLogin[0]))
+				// retorna o o objeto dados pessoais
+	    	    return $objLogin[0]->login;
+	    	    
+	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
+	    	
+		}else{
+			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
+		}	
+	}
 }

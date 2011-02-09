@@ -98,10 +98,13 @@ class Basico_MensagemControllerController
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
 		// recuperando o id da categoria email validacao plain text template
-		$idCategoria = $controladorCategoria->retornaIdCategoriaEmailValidacaoPlainTextTemplate();
+		$categoriaMensagem = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
+
+		// recuperando a lingua do usuario
+		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$categoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 		// carregando assunto da mensagem
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
 		// carregando a mensagem
@@ -110,9 +113,9 @@ class Basico_MensagemControllerController
         $assinatura             = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
          
 		// substituindo tags
-        $corpoMensagemTemplate  = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
-        $corpoMensagemTemplate  = str_replace('[link]', $link, $corpoMensagemTemplate);
-        $corpoMensagemTemplate  = str_replace('[assinatura_mensagem]', $assinatura, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LINK_VALIDACAO_EMAIL, $link, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
 
         // carregando a mensagem no modelo
         $this->mensagem->setMensagem($corpoMensagemTemplate);
@@ -144,13 +147,16 @@ class Basico_MensagemControllerController
 		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
 		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
 
-		// recuperando o id da categoria email template validacao plain text reenvio
-		$idCategoria     = Basico_CategoriaControllerController::retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		// recuperando o objeto categoria email template validacao plain text reenvio
+		$categoriaMensagem     = $controladorCategoria->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
 		// recuperando o nome do destinatario
 		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
-
-		// recuperando array de mensagem template
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
+        
+		// recuperando a lingua do usuario
+		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
+		
+		// carregando a mensagem template
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$categoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 		
 		// recuperando o assunto
 		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
@@ -159,9 +165,78 @@ class Basico_MensagemControllerController
 		// recuperando a mensagem
 		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem();
 		// substituindo as tags 
-        $corpoMensagemTemplate = str_replace('[nome_usuario]', $nomeDestinatario, $corpoMensagemTemplate);
-        $corpoMensagemTemplate = str_replace('[link]', $link, $corpoMensagemTemplate);
-        $corpoMensagemTemplate = str_replace('[assinatura_mensagem]', $assinatura, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LINK_VALIDACAO_EMAIL, $link, $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
+        
+        // carregando a mensagem no modelo
+        $this->mensagem->setMensagem($corpoMensagemTemplate);
+		
+		// recuperando o endereco de e-mail do sistema
+		$emailSistema = $controladorEmail->retornaEmailSistema();
+		// setando remetente
+		$this->mensagem->setRemetente($emailSistema);
+		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
+		
+		// retornando a mensagem
+		return $this->mensagem;
+	}
+	
+    /**
+	 * Retorna a mensagem carregada com os dados da template de Mensagem de email de confirmação de cadastro
+	 * 
+	 * @param Int $idPessoa
+	 * @param String $link
+	 * 
+	 * @return Basico_Model_Mensagem 
+	 */
+    public function retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa) 
+    {
+		// instanciando os controladores
+		$controladorEmail              = Basico_EmailControllerController::init();
+		$controladorCategoria          = Basico_CategoriaControllerController::init();
+		$controladorLogin              = Basico_LoginControllerController::init();
+		$controladorDadosPessoais      = Basico_DadosPessoaisControllerController::init();
+		$controladorDadosBiometricos   = Basico_DadosBiometricosControllerController::init();
+		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
+		$controladorTradutor           = Basico_TradutorControllerController::init();             
+
+		// recuperando o objeto categoria email template validacao plain text reenvio
+		$categoriaMensagem     = $controladorCategoria->retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
+		
+		$loginUsuario   = $controladorLogin->retornaLoginPessoa($idPessoa);
+		$sexoUsuario    = $controladorDadosBiometricos->retornaSexoPessoa($idPessoa);
+		
+		// recuperando o nome do destinatario
+		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
+        
+		// recuperando a lingua do usuario
+		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
+		
+		// carregando a mensagem template
+		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$categoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		
+		// recuperando o assunto
+		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
+		// recuperando assinatura da mensagem
+		$assinatura            = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+		// recuperando a mensagem
+		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem();
+		
+        // substituindo a tag de tratamento de acordo com o sexo do usuario
+		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $controladorTradutor->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
+		else
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $controladorTradutor->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
+		
+		// substituindo a tag do nome do usuario    
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
+        // substituindo a tag do login
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LOGIN, $loginUsuario, $corpoMensagemTemplate);
+        // substituindo a tag de datahora cadastro
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_UtilControllerController::retornaDateTimeAtual(), $corpoMensagemTemplate);
+        // substituindo a tag de assinatura da mensagem
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         
         // carregando a mensagem no modelo
         $this->mensagem->setMensagem($corpoMensagemTemplate);
