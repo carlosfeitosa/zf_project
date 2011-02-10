@@ -283,14 +283,15 @@ class Basico_UtilControllerController
 	}
 	
 	/**
-	 * Retorna o datetime atual
-	 * 
+	 * Retorna o datetime atual no locale passado ou no default que é 'en-us'
+	 * @var String $locale
 	 * @return String
 	 */
-	public static function retornaDateTimeAtual()
+	public static function retornaDateTimeAtual($locale = "en-us")
 	{
 		// retornando o datetime atual
-	    return Zend_Date::now('en-us');
+	    return Zend_Date::now($locale);
+	    
 	}
 	
 	/**
@@ -507,10 +508,10 @@ class Basico_UtilControllerController
     public static function codificar($valor, $operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
     {
     	// verificando o tipo de operacao
-    	if ($operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
+    	if ($operacao == CODIFICAR_OBJETO_TO_ENCODED_STRING)
     		// retornando a codificacao do objeto em string codificada
     		return self::objectToEncodedString($valor);
-    	else if ($operacao = CODIFICAR_ENCODED_STRING_TO_ARRAY)
+    	else if ($operacao == CODIFICAR_ENCODED_STRING_TO_ARRAY)
     		// retornando a codificacao de string codificada para array
     		return self::encodedStringToArray($valor);
     	else

@@ -234,7 +234,7 @@ class Basico_MensagemControllerController
         // substituindo a tag do login
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LOGIN, $loginUsuario, $corpoMensagemTemplate);
         // substituindo a tag de datahora cadastro
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_UtilControllerController::retornaDateTimeAtual(), $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_UtilControllerController::retornaDateTimeAtual(Basico_PessoaControllerController::retornaLinguaUsuario()), $corpoMensagemTemplate);
         // substituindo a tag de assinatura da mensagem
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         
