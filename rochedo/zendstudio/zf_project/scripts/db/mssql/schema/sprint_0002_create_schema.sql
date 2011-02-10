@@ -35,6 +35,11 @@ create table dbo.dados_biometricos (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	sexo char (1) not null ,
+	raca varchar (20) collate latin1_general_ci_ai null,
+	altura numeric (3,2) null,
+	peso numeric (6,3) null,
+	tipo_sanguinio varchar (3) collate latin1_general_ci_ai null,
+	historico_medico varchar (2000) collate latin1_general_ci_ai null,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 

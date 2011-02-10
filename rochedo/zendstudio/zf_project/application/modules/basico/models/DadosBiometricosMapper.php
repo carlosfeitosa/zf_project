@@ -59,6 +59,11 @@ class Basico_Model_DadosBiometricosMapper
         $data = array(
                 'id_pessoa'        => $object->getPessoa(),
 				'sexo'             => $object->getSexo(),
+                'raca'             => $object->getRaca(),
+                'altura'           => $object->getAltura(),
+                'peso'             => $object->getPeso(),
+                'tipo_sanguinio'   => $object->getTipoSanguinio(),
+                'historico_medico' => $object->getHistoricoMedico(),
                 'rowinfo'          => $object->getRowinfo(),
 
         );
@@ -98,6 +103,11 @@ class Basico_Model_DadosBiometricosMapper
         $object->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
+				->setRaca($row->raca)
+				->setAltura($row->altura)
+				->setPeso($row->peso)
+				->setTipoSanguinio($row->tipo_sanguinio)
+				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -116,6 +126,11 @@ class Basico_Model_DadosBiometricosMapper
 			$entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
+				->setRaca($row->raca)
+				->setAltura($row->altura)
+				->setPeso($row->peso)
+				->setTipoSanguinio($row->tipo_sanguinio)
+				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -138,6 +153,11 @@ class Basico_Model_DadosBiometricosMapper
 			$entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
+				->setRaca($row->raca)
+				->setAltura($row->altura)
+				->setPeso($row->peso)
+				->setTipoSanguinio($row->tipo_sanguinio)
+				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

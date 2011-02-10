@@ -50,6 +50,11 @@ create table dados_biometricos (
 	id serial not null ,
 	id_pessoa integer not null ,
 	sexo char (1) not null ,
+	raca character varying (20) null,
+	altura numeric (3,2) null,
+	peso numeric (6,3) null,
+	tipo_sanguinio character varying (3) null,
+	historico_medico character varying (2000) null,
 	rowinfo character varying (2000) not null
 )
 with (

@@ -32,6 +32,31 @@ class Basico_Model_DadosBiometricos
 	/**
 	 * @var String
 	 */
+	protected $_raca;
+	
+	/**
+	 * @var Numeric
+	 */
+	protected $_altura;
+	
+	/**
+	 * @var Numeric
+	 */
+	protected $_peso;
+	
+	/**
+	 * @var String
+	 */
+	protected $_tipoSanguinio;
+	
+	/**
+	 * @var String
+	 */
+	protected $_historicoMedico;
+	
+	/**
+	 * @var String
+	 */
 	protected $_rowinfo;
 	
 	/**
@@ -121,6 +146,116 @@ class Basico_Model_DadosBiometricos
 	public function getSexo()
 	{
 		return $this->_sexo;
+	}
+	
+    /**
+	* Set raca
+	* 
+	* @param String $raca 
+	* @return Basico_Model_DadosBiometricos
+	*/
+	public function setRaca($raca)
+	{
+		$this->_raca = (String) $raca;
+		return $this;
+	}
+
+	/**
+	* Get raca
+	* 
+	* @return null|String
+	*/
+	public function getRaca()
+	{
+		return $this->_raca;
+	}
+	
+    /**
+	* Set altura
+	* 
+	* @param String $altura 
+	* @return Basico_Model_DadosBiometricos
+	*/
+	public function setAltura($altura)
+	{
+		$this->_altura = (String) $altura;
+		return $this;
+	}
+
+	/**
+	* Get altura
+	* 
+	* @return null|String
+	*/
+	public function getAltura()
+	{
+		return $this->_altura;
+	}
+	
+    /**
+	* Set peso
+	* 
+	* @param String $peso 
+	* @return Basico_Model_DadosBiometricos
+	*/
+	public function setPeso($peso)
+	{
+		$this->_peso = (String) $peso;
+		return $this;
+	}
+
+	/**
+	* Get peso
+	* 
+	* @return null|String
+	*/
+	public function getPeso()
+	{
+		return $this->_peso;
+	}
+	
+    /**
+	* Set tipoSanguinio
+	* 
+	* @param String $tipoSanguinio 
+	* @return Basico_Model_DadosBiometricos
+	*/
+	public function setTipoSanguinio($tipoSanguinio)
+	{
+		$this->_tipoSanguinio = (String) $tipoSanguinio;
+		return $this;
+	}
+
+	/**
+	* Get tipoSanguinio
+	* 
+	* @return null|String
+	*/
+	public function getTipoSanguinio()
+	{
+		return $this->_tipoSanguinio;
+	}
+	
+    /**
+	* Set historicoMedico
+	* 
+	* @param String $historicoMedico 
+	* @return Basico_Model_DadosBiometricos
+	*/
+	public function setHistoricoMedico($historicoMedico)
+	{
+		$this->_historicoMedico = (String) $historicoMedico;
+		return $this;
+	}
+
+	/**
+	* Get historicoMedico
+	* 
+	* @return null|String
+	*/
+	public function getHistoricoMedico()
+	{
+		return $this->_historicoMedico;
 	}
 	
     /**
