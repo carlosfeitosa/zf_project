@@ -329,7 +329,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	    // carregando array do cabelho
 	    	    $cabecalho =  array('tituloView'    => $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_TITULO"),
 	    	                        'subtituloView' => $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_SUBTITULO"),
-	    	                        'mensagemView'  => str_replace('@linkMeuPerfil' , 
+	    	                        'mensagemView'  => str_replace(MENSAGEM_TAG_LINK_MEU_PERFIL , 
 	    	                                                       "<a href='{$this->_helper->url('index', 'dadosusuario', 'basico')}'>{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>",
 	    	                                                       $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM")
 	    	                                                       )
