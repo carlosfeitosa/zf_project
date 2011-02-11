@@ -1,7 +1,23 @@
-body
+h3
 {
-    font-family: Verdana;
+	font-family: helvetica,arial,sans-serif;
+	font-size: 20px;
 }
+
+h4
+{
+	font-family: helvetica,arial,sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+h5
+{
+	font-family: helvetica,arial,sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
 a img 
 {
 	border-width:0;
@@ -168,4 +184,16 @@ div.loading
     background-repeat: no-repeat;
     background-position: center;
 	visibility: visible;
+}
+
+div#divContainerError
+{
+	border: 1 solid #C00;
+	margin-bottom: 10;
+	background-color: #FFFFCC;
+}
+
+ul#errorUl 
+{
+	list-style-image: url('../js/dijit/themes/rochedo/images/warning.png');
 }

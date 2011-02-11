@@ -100,7 +100,7 @@ class Basico_WebsiteController extends Zend_Controller_Action
 				$controladorRowInfo = Basico_RowInfoControllerController::init();
 				
 				// populando o modelo com a requisição do form
-				$novoWebsite->categoria= $request->getParam('BasicoCadastrarWebsiteWebSiteTipo');
+				$novoWebsite->categoria=1;// $request->getParam('BasicoCadastrarWebsiteWebSiteTipo');
 
 				// atribuindo o request da url para uma variavel
 				$url = $request->getParam('BasicoCadastrarWebsiteWebSitelEndereco');

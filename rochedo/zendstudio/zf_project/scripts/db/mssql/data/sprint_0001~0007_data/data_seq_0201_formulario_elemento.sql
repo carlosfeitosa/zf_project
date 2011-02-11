@@ -442,9 +442,44 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_AJAXTERCEIROS'
                               AND cp.nome = 'DOJO_PasswordTextBox_With_Checker') AS id_componente,
-                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA' AS nome, 'Elemento para digitação de senhas.' AS descricao,
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_WITH_CHECKER' AS nome, 'Elemento para digitação de senhas.' AS descricao,
                               'FORM_FIELD_SENHA' AS constante_textual_label,
                               'senha' AS element_name, NULL AS element_attribs,
+                              '''senha''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
+								 element_name, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              FROM ajuda a
+                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_SENHA_TEXT_BOX') AS id_ajuda,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_PasswordTextBox') AS id_componente,
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA' AS nome, 'Elemento para digitação de senhas.' AS descricao,
+                              'FORM_FIELD_SENHA' AS constante_textual_label,
+                              'senha' AS element_name,
                               '''senha''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

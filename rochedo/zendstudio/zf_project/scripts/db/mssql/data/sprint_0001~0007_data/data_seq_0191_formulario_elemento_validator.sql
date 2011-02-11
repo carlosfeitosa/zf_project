@@ -31,7 +31,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 INSERT INTO formulario_elemento_validator (id_categoria, nome, descricao, validator, rowinfo)
 SELECT c.id AS id_categoria, 'IDENTICAL' AS nome, 
        'Validador que obriga dois campos a possuirem o mesmo valor.' AS descricao,
-       '''identical'', false, array(''token'' => ''@identicalElementName'', ''invalidMessage'' => ''@identicalInvalidMessage'')' AS validator, 'SYSTEM_STARTUP' AS rowinfo
+       '''identical'', false, array(''token'' => ''@identicalElementName'', ''invalidMessage'' => @identicalInvalidMessage)' AS validator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

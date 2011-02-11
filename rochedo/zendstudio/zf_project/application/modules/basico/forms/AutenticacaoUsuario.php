@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 27/12/2010 13:06:18
+* em: 27/12/2010 16:51:21
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 27/12/2010 12:55:25
+* @version    1: 27/12/2010 16:51:05
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {
@@ -38,7 +38,6 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
-        $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
 
         // Criando array de elementos.
         $elements = array();
@@ -53,10 +52,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 
         $elements[2] = $this->createElement('PasswordTextBox', 'BasicoAutenticacaoUsuarioSenha');
         $elements[2]->setOrder(2);
-        $elements[2]->setAttribs(array('onKeyUp' => "chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value)"));
         $elements[2]->setRequired(true);
-        $elements[2]->addValidator('stringLength', false, array(6, 100));
-        $elements[2]->addValidator('NotEmpty');
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA')) . '\', 1)</script></button>');
 

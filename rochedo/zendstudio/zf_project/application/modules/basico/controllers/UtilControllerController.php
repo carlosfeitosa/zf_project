@@ -857,6 +857,24 @@ class Basico_UtilControllerController
     }
 
     /**
+     * Remove um valor da sessao
+     * 
+     * @param String $chave
+     * 
+     * @return True
+     */
+    public static function removeValorSessao($chave)
+    {
+    	// verificando se existe o valor na sessao
+    	if (Zend_Registry::isRegistered($chave)) {
+    		// removendo o valor da sessao
+    		Zend_Registry::set($chave, null);
+    	}
+    	
+    	return true;
+    }
+
+    /**
      * Retorna o nome do modulo de um objeto
      * 
      * @param Object $objeto
@@ -954,6 +972,19 @@ class Basico_UtilControllerController
     }
 
     /**
+     * Retorna o array passado por parametro em uma string JSON
+     * 
+     * @param Array $array
+     * 
+     * @return Sting
+     */
+    public static function codificaArrayJson($array)
+    {
+		// codificando e retornando a string JSON contendo o array de parametros
+		return Zend_Json::encode($array);
+    }
+
+    /**
      * Valida se a URL passada é válida para $urlRedirect
      * 
      * @param String $stringUrl
@@ -964,10 +995,6 @@ class Basico_UtilControllerController
   	public static function validaUrl($stringUrl)
     {
     	// verificando se a url é válida
-        if (!Zend_Uri::check($stringUrl)) {
-		    return false;
-        }
-    	return true;
-    }    
- 
+        return Zend_Uri::check($stringUrl);
+    }
 }

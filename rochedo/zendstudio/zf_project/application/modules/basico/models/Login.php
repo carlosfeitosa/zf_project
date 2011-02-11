@@ -69,6 +69,10 @@ class Basico_Model_Login
 	 */
 	protected $_dataHoraUltimaExpiracao;
 	/**
+	 * @var Date
+	 */
+	protected $_dataHoraExpiracaoSenha;
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -77,7 +81,7 @@ class Basico_Model_Login
 	 * Constructor
 	 * 
 	 * @param  array|null $options 
-	 * @return void
+	 * @return Basico_Model_Login
 	 */
 	
 	public function __construct(array $options = null)
@@ -414,6 +418,28 @@ class Basico_Model_Login
 	public function getDataHoraUltimaExpiracao()
 	{
 		return $this->_dataHoraUltimaExpiracao;
+	}
+
+	/**
+	* Set dataHoraExpiracaoSenha
+	* 
+	* @param String $dataHoraExpiracaoSenha 
+	* @return Basico_Model_Login
+	*/
+	public function setDataHoraExpiracaoSenha($dataHoraExpiracaoSenha)
+	{
+		$this->_dataHoraExpiracaoSenha = Basico_UtilControllerController::retornaValorTipado($dataHoraExpiracaoSenha, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraExpiracaoSenha
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraExpiracaoSenha()
+	{
+		return $this->_dataHoraExpiracaoSenha;
 	}
 	
 	/**

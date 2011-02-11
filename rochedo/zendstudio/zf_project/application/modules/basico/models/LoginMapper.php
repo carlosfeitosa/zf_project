@@ -69,6 +69,7 @@ class Basico_Model_LoginMapper
     				  'pode_expirar'  			   => $object->getPodeExpirar(),
     				  'datahora_proxima_expiracao' => $object->getDataHoraProximaExpiracao(),
     				  'datahora_ultima_expiracao'  => $object->getDataHoraUltimaExpiracao(),
+        			  'datahora_expiracao_senha'   => $object->getDataHoraExpiracaoSenha(),
                       'rowinfo'                    => $object->getRowinfo(),
                     );
 
@@ -117,6 +118,7 @@ class Basico_Model_LoginMapper
 			   ->setPodeExpirar($row->pode_expirar)
 			   ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 			   ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
+			   ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
 			   ->setRowinfo($row->rowinfo);
     }
 
@@ -145,6 +147,7 @@ class Basico_Model_LoginMapper
 				  ->setPodeExpirar($row->pode_expirar)
 				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
+				  ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
@@ -177,6 +180,7 @@ class Basico_Model_LoginMapper
 				  ->setPodeExpirar($row->pode_expirar)
 				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
+				  ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
