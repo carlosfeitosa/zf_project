@@ -7,7 +7,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
 	private $request;
 	
     /**
-	 * Inicializa controlador Login
+	 * Inicializa controlador Administrador
 	 * 
 	 * @return void
 	 */

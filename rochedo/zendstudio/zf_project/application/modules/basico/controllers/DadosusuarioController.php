@@ -1,4 +1,7 @@
 <?php
+// incluindo controladores
+require_once('DadosBiometricosControllerController.php');
+
 /**
  * Controlador Dados do Usuario
  * 
@@ -26,10 +29,39 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     public function indexAction()
     {
+    	// recuperando o id da pessoa logada
+    	$idPessoa = 2;
+    	
+    	// instanciando controladores
+    	$controladorDadosBiometricos = Basico_DadosBiometricosControllerController::init();
+    	
     	// instanciando o formulario
 	    $formDadosUsuario = new Basico_Form_CadastrarDadosUsuario();
+	    
+	    // recuperando os dados biometricos da pessoa logada;
+	    $dadosBiometricos = $controladorDadosBiometricos->retornaObjetoDadosBiometricosPessoa($idPessoa);
+	    
+	    // recuperando elementos do formulario DadosBiometricos
+	    $formDadosBiometricosElementos =  $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->getElements();
+	    
+	    // carregando valores no formulario
+	    
+	    // carregando o radio button do sexo
+	    if ($dadosBiometricos->sexo = "M")
+	        $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo']->setValue(0);
+	    else 
+	        $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo']->setValue(1);
+	        
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']->setValue($dadosBiometricos->raca);    
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']->setValue($dadosBiometricos->peso);
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']->setValue($dadosBiometricos->altura);
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->setValue($dadosBiometricos->tipoSanguinio);
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']->setValue($dadosBiometricos->historicoMedico);
+	    
 	    // passando o formulario para a view
-		$this->view->form = $formDadosUsuario;			
+		$this->view->form = $formDadosUsuario;
+
+		$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();

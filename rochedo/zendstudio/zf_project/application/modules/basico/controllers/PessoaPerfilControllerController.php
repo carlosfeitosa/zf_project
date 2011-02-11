@@ -110,21 +110,21 @@ class Basico_PessoaPerfilControllerController
 	}
 	
 	/**
-	 * Retorna id da pessoaPerfil utilizando o id de pessoa como parametro para busca.
+	 * Retorna as pessoasPerfis da pessoa passada.
 	 * 
 	 * @param int $idPessoa
 	 * 
 	 * @return Basico_Model_PessoaPefil
 	 */
-	public function retornaIdPessoaPerfilPessoa($idPessoa)
+	public function retornaPessoasPerfisPessoa($idPessoa)
 	{
 		// recuperando array de objetos Basico_Model_PessoaPefil
-		$idPessoaPerfil = self::$singleton->pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
+		$pessoasPerfis = self::$singleton->pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
 		
 		// verificando se o objeto existe
-		if (isset($idPessoaPerfil[0]))
+		if (isset($pessoasPerfis))
 			// retornando o objeto
-    	    return (Int) $idPessoaPerfil[0]->id;
+    	    return $pessoasPerfis;
     	else
     	    return null;
 	}
@@ -175,7 +175,7 @@ class Basico_PessoaPerfilControllerController
     		return $objPessoaPerfilPessoa[0];
     	}
     	
-    	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO);
+    	throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
 	}
 	
 	/**
