@@ -110,6 +110,7 @@ define("MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO", "Perfil do sistema não encont
  */
 define("MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO", "PessoaPerfil do sistema não encontrado.");
 define("MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO", "PessoaPerfil de Usuario Não Validado não encontrado para esta pessoa.");
+define("MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO", "PessoaPerfil não encontrado para esta pessoa e para este perfil.");
 
 /*
  * DADOS PESSOAIS

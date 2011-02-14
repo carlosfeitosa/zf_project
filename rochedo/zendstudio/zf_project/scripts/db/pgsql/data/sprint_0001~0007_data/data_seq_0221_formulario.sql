@@ -122,8 +122,8 @@ SELECT c.id AS id_categoria,
        'SUBFORM_TABTITLE_DADOS_BIOMETRICOS' AS constante_textual_titulo,
        'CadastrarDadosUsuarioDadosBiometricos' AS form_name, 
        'post' AS form_method, 
-       NULL AS form_action, 
-       NULL AS form_attribs,
+       '/basico/dadosbiometricos/salvar' AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        4 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
