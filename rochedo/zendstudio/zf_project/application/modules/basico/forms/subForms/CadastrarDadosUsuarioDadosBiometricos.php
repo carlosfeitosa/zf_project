@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 09/02/2011 14:56:22
+* em: 15/02/2011 20:00:41
 *
 * LICENÇA DE USO
 *
@@ -14,14 +14,15 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 09/02/2011 14:43:09
+* @version    1: 15/02/2011 17:22:09
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
     // Inicializando o sub-formulário.
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setName('CadastrarDadosUsuarioDadosBiometricos');
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setMethod('post');
-    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addAttribs(array('dijitParams' => array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'))));
+    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setAction('/basico/dadosbiometricos/salvar');
+    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addAttribs(array('dijitParams' => array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS')),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setOrder(4);
 
     // Criando array de elementos.

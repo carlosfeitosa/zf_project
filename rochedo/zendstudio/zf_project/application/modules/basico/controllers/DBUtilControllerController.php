@@ -276,7 +276,7 @@ class Basico_DBUtilControllerController
      * Reseta o login do usuário master do sistema no arquivo .htaccess
      * @return Boolean
      */
-    private function resetaLoginUsuarioMaster()
+    private static function resetaLoginUsuarioMaster()
     {
     	//setando a mascara
     	$pattern = "@(". QUEBRA_DE_LINHA ."SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . QUEBRA_DE_LINHA . ")@";
@@ -295,7 +295,7 @@ class Basico_DBUtilControllerController
      * 
      * @return String
      */
-    private function retornaLoginUsuarioMasterDB() 
+    private static function retornaLoginUsuarioMasterDB() 
     {
     	//recuperando o objeto pessoaPerfil do sistema
     	$objetoPessoaPerfilSistema = self::retornaObjetoPessoaPerfilSistema();
@@ -321,14 +321,13 @@ class Basico_DBUtilControllerController
      * Apaga todas as tabelas do banco que está sendo utilizado.
      * @return Boolean
      */
-    private function dropDbTables() 
+    private static function dropDbTables() 
     {
     	try {
     		//salvando log de inicio da operação
 	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_INICIO);
 	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
 	    	$dropScriptsFiles = self::retornaArrayFileNamesDbDropScriptsFiles();
-	    	
 	    	
 	    	//executando scripts de drop
 	    	foreach ($dropScriptsFiles as $file) {
@@ -348,7 +347,7 @@ class Basico_DBUtilControllerController
      * Executa script de criação de todas as tabelas do banco que está sendo utilizado.
      * @return Boolean
      */
-    private function createDbTables() 
+    private static function createDbTables() 
     {
     	try {
 	    	//salvando log de inicio da operação
@@ -372,7 +371,7 @@ class Basico_DBUtilControllerController
      * Executa script de inserção dos dados básicos do sistema recursivamente.
      * @return unknown_type
      */
-    private function insertDbData($caminhoArquivos) 
+    private static function insertDbData($caminhoArquivos) 
     {
     	try {
 	    	//salvando log de inicio da operação
@@ -414,7 +413,6 @@ class Basico_DBUtilControllerController
      */
     public static function executaScriptSQL($script)
     {
-    	
     	try {
     		if (self::checkScriptIsAvailable($script)) {
 	            //removendo comentarios do script SQL
@@ -431,7 +429,7 @@ class Basico_DBUtilControllerController
     			
     		}
     		return false;
-    	}catch(Exception $e) {
+    	} catch(Exception $e) {
     		// cancelando execucao do script
     		Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
     		//salvando log do erro
@@ -471,7 +469,7 @@ class Basico_DBUtilControllerController
      * @param $script
      * @return Boolean
      */
-    private function checkScriptIsAvailable($script)
+    private static function checkScriptIsAvailable($script)
     {
     	//Checando se o script pode ser executado.
     	if (strpos($script, "@exclude") !== false) {
@@ -513,7 +511,7 @@ class Basico_DBUtilControllerController
      * Retorna array com nomes dos arquivos de drop para o banco que está sendo utilizado
      * @return array
      */
-    private function retornaArrayFileNamesDbDropScriptsFiles() 
+    private static function retornaArrayFileNamesDbDropScriptsFiles() 
     {
         // inicializando variaveis
         $arrayFilters = array();
@@ -538,7 +536,7 @@ class Basico_DBUtilControllerController
      * Retorna array com nomes dos arquivos de create para o banco que está sendo utilizado
      * @return unknown_type
      */
-    private function retornaArrayFileNamesDbCreateScriptsFiles() 
+    private static function retornaArrayFileNamesDbCreateScriptsFiles() 
     {
        // inicializando variaveis
         $arrayFilters = array();
@@ -561,7 +559,7 @@ class Basico_DBUtilControllerController
     * Retorna array com nomes dos arquivos de insert de dados para o banco que está sendo utilizado
     * @return unknown_type
     */
-    private function retornaArrayFileNamesDbDataScriptsFiles($scriptsPath = NULL) 
+    private static function retornaArrayFileNamesDbDataScriptsFiles($scriptsPath = NULL) 
     {
        // inicializando variaveis
         $arrayFilters = array();
@@ -635,7 +633,7 @@ class Basico_DBUtilControllerController
      * Retorna o path dos arquivos de Create para o banco que está sendo utilizado.
      * @return String
      */
-    private function retornaDBCreateScriptsPath()
+    private static function retornaDBCreateScriptsPath()
     {
     	//retornando o path dos scripts de banco de dados de acordo com o tipo do banco
     	switch (self::retornaPdoTypeConexaoAtiva()) {
@@ -651,7 +649,7 @@ class Basico_DBUtilControllerController
      * Retorna o path dos arquivos de insert de dados para o banco que está sendo utilizado.
      * @return String
      */
-    private function retornaDBDataScriptsPath()
+    private static function retornaDBDataScriptsPath()
     {
     	//retornando o path dos scripts de banco de dados de acordo com o tipo do banco
     	switch (self::retornaPdoTypeConexaoAtiva()) {

@@ -150,7 +150,7 @@ class Basico_DBSaveControllerController
 	 * 
 	 * @return true
 	 */
-	private function saveObjectDbTable($objeto)
+	private static function saveObjectDbTable($objeto)
 	{
 		// verificando se foi passado um objeto, por parametro
 		if (!is_object($objeto))
@@ -175,7 +175,7 @@ class Basico_DBSaveControllerController
 	 * 
 	 * @return Boolean
 	 */
-	private function isInAtualizarVersaoList($mixed)
+	private static function isInAtualizarVersaoList($mixed)
 	{
 		// inicializando array contendo o nome das tabelas que devem atualizar a versao apenas
 		$arrayAtualizarList = array();
@@ -191,7 +191,7 @@ class Basico_DBSaveControllerController
 	 * 
 	 * @return Boolean
 	 */
-	private function isInBlackList($mixed)
+	private static function isInBlackList($mixed)
 	{
 		// inicializando array contendo o nome das tabelas que devem atualizar a versao apenas
 		$arrayBlackList = array();

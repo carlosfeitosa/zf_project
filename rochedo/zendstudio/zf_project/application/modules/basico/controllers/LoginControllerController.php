@@ -395,4 +395,24 @@ class Basico_LoginControllerController {
 			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
 		}	
 	}
+
+	/**
+	 * Retorna o id da pessoa relacionada ao login passado por parametro
+	 * 
+	 * @param String $login
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdPessoaLogin($login)
+	{
+		// recuperando o objeto login
+		$objLogin = self::retornaObjetoLoginLogin($login);
+
+		// verificando se o login existe
+		if ($objLogin->id)
+			// retornando o id da pessoa
+			return $objLogin->pessoa;
+
+		return null;
+	}
 }

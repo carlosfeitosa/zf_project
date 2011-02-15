@@ -167,7 +167,7 @@ class Basico_CVCControllerController
      * 
      * @return null|Basico_Model_CVC
      */
-    private function retornaObjUltimaVersao($idCategoriaChaveEstrangeira, $idGenerico)
+    private static function retornaObjUltimaVersao($idCategoriaChaveEstrangeira, $idGenerico)
     {
     	// instanciando um novo modelo CVC
     	$modelCVC = new Basico_Model_CVC();
@@ -191,7 +191,7 @@ class Basico_CVCControllerController
      * 
      * @return Boolean
      */
-    private function comparaObjetoObjetoUltimaVersao($objeto)
+    private static function comparaObjetoObjetoUltimaVersao($objeto)
     {
     	// codificando objeto para comparacao
     	$objetoCodificado = Basico_UtilControllerController::codificar($objeto);

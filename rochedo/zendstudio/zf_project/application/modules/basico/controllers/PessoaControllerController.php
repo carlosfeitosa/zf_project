@@ -111,6 +111,6 @@ class Basico_PessoaControllerController
 			//retornando objeto dados pessoais
 			return $dadosPessoais[0];
 		}
-		return NULL;
+		return null;
 	}
 }

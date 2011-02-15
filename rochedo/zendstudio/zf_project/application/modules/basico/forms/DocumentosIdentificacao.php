@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 27/12/2010 13:06:35
+* em: 15/02/2011 20:00:56
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 27/12/2010 12:55:25
+* @version    1: 15/02/2011 17:22:09
 */
 class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
 {
@@ -50,7 +50,7 @@ class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
         $elements[2]->removeDecorator('DtDdWrapper');
 
-        $elements[3] = $this->createElement('button', 'BasicoDocumentosIdentificacaoFechar', array('onClick' => 'hideDialog("Basico_Form_DocumentosIdentificacao");'));
+        $elements[3] = $this->createElement('button', 'BasicoDocumentosIdentificacaoFechar', array('onClick' => 'hideDialog(\"Basico_Form_DocumentosIdentificacao\");'));
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(false);
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));

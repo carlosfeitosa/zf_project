@@ -75,6 +75,7 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR", "Categoria d
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO", "Categoria de log novo formulario formulario elemento não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE", "Categoria de log novo formulario template não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_OUTPUT", "Categoria de log novo output não encontrado no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_TENTATIVA_AUTENTICACAO_USUARIO", "Categoria de log tentativa de autenticacao de usuario não encontrado no banco de dados");
 define("MSG_ERRO_FORMULARIO_SEM_TEMPLATE", "Não foi encontrado nenhum template para este formulário.");
 define("MSG_ERRO_FORMULARIO_SEM_MODULO", "Não foi encontrado nenhum módulo para este formulário.");
 define("MSG_ERRO_SUBFORMULARIO_SEM_FORMULARIO_PAI", "Não foi encontrado formulario pai para este sub-formulário.");
@@ -110,6 +111,7 @@ define("MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO", "Perfil do sistema não encont
  */
 define("MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO", "PessoaPerfil do sistema não encontrado.");
 define("MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO", "PessoaPerfil de Usuario Não Validado não encontrado para esta pessoa.");
+define("MSG_ERROR_PESSOAPERFIL_USUARIO_VALIDADO_NAO_ENCONTRADO", "PessoaPerfil de Usuario Validado não encontrado para esta pessoa.");
 define("MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO", "PessoaPerfil não encontrado para esta pessoa e para este perfil.");
 
 /*

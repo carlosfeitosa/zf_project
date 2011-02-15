@@ -35,6 +35,7 @@ define("LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de relação ca
 define("LOG_MSG_NOVA_MENSAGEM", "Nova mensagem inserida no banco de dados.");
 define("LOG_MSG_NOVO_TOKEN", "Novo token inserido no banco de dados.");
 define("LOG_MSG_VALIDACAO_USUARIO", "Tentativa de validacao de e-mail de usuario.");
+define("LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO", "Tentativa de autenticacao de usuario");
 
 /*
  * FORMULÁRIO

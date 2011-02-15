@@ -18,7 +18,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaNomeArquivoForm(Basico_Model_Formulario &$objFormulario)
+    private static function retornaNomeArquivoForm(Basico_Model_Formulario &$objFormulario)
     {
     	// recuperando o nome do formulario
         $resultado = $objFormulario->formName;
@@ -35,7 +35,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaNomeClasseForm(Basico_Model_Modulo &$objModulo, Basico_Model_Formulario &$objFormulario)
+    private static function retornaNomeClasseForm(Basico_Model_Modulo $objModulo, Basico_Model_Formulario $objFormulario)
     {
     	// retorna o nome da classe do formulario
         return ucfirst(strtolower($objModulo->nome)) . "_Form_" . $objFormulario->formName;
@@ -49,7 +49,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaNomeVariavelSubForm(Basico_Model_Modulo &$objModulo, Basico_Model_Formulario &$objSubFormulario)
+    private static function retornaNomeVariavelSubForm(Basico_Model_Modulo $objModulo, Basico_Model_Formulario $objSubFormulario)
     {
     	// retorna o nome da variavel para instanciamento
 		return "$" . strtolower($objModulo->nome) . ucfirst($objSubFormulario->formName) . "SubForm";
@@ -128,7 +128,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Boolean
      */
-    private function gerarHTML(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM, array $excludeModulesNames = null)
+    private static function gerarHTML(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM, array $excludeModulesNames = null)
     {
     	return true;
     }
@@ -142,7 +142,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Boolean
      */
-    private function gerarDOJO(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM, array $excludeModulesNames = null)
+    private static function gerarDOJO(Basico_Model_Formulario $objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM, array $excludeModulesNames = null)
     {
     	// inicializando variaveis
     	$arrayNomesCategoriasParaChecarAmbienteDesenvolvimento = array('FORMULARIO_ELEMENTO_CAPTCHA');
@@ -312,7 +312,7 @@ class Basico_GeradorFormularioControllerController
 	 * 
 	 * @return boolean
 	 */
-    private function gerarSubForm(Basico_Model_Formulario $objSubFormulario, array $excludeModulesNames = null)
+    private static function gerarSubForm(Basico_Model_Formulario $objSubFormulario, array $excludeModulesNames = null)
     {
 		$tempReturn = true;
 		
@@ -351,7 +351,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Boolean
      */
-    private function gerarSubHTML(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM_SUB_FORM, array $excludeModulesNames = null)
+    private static function gerarSubHTML(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_ZEND_FORM_SUB_FORM, array $excludeModulesNames = null)
     {
 		return true;
     }
@@ -364,7 +364,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Boolean
      */
-    private function gerarSubDOJO(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM, array $excludeModulesNames = null)
+    private static function gerarSubDOJO(Basico_Model_Formulario $objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM, array $excludeModulesNames = null)
     {
 		// inicializacao do metodo
     	$arrayNomesCategoriasParaChecarAmbienteDesenvolvimento = array();
@@ -526,7 +526,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Array
      */
-    private function retornaArrayInitSubForm(Basico_Model_Formulario &$objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM)
+    private static function retornaArrayInitSubForm(Basico_Model_Formulario &$objSubFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM)
     {
     	// inicializando variaveis
     	$arrayReturn = array();
@@ -561,8 +561,22 @@ class Basico_GeradorFormularioControllerController
         $tempArraySubFormAttrib[] = "'dijitParams' => array('title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objSubFormulario->constanteTextualTitulo}'))";
 
         // verificando se o sub-formulario possui atributos
-        if ($objSubFormulario->formAttribs)
-        	$tempArraySubFormAttrib[] = $objSubFormulario->formAttribs;        
+        if ($objSubFormulario->formAttribs) {
+        	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
+        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_TITLE . "')}";
+        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_MESSAGE . "')}";
+
+        	// carregando atributos
+        	$tempSubFormAttrib = $objSubFormulario->formAttribs;
+
+        	// substituicao de tags para caixa de dialogo de validacao
+        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG, $objSubFormulario->formName, $tempSubFormAttrib);
+        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG, $tituloDialogValidacao, $tempSubFormAttrib);
+        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $tempSubFormAttrib);
+
+        	// setando atributo
+			$tempArraySubFormAttrib[] = $tempSubFormAttrib;
+        }        
         	 
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS]                               = FORM_GERADOR_FORM_SUB_FORM_ADDATTRIBS . "(array(" . implode(",", $tempArraySubFormAttrib) . "));" . QUEBRA_DE_LINHA;
 
@@ -593,7 +607,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Array
      */
-    private function retornaArrayInitForm(Basico_Model_Formulario &$objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM)
+    private static function retornaArrayInitForm(Basico_Model_Formulario &$objFormulario, $classToExtends = FORM_CLASS_EXTENDS_DOJO_FORM)
     {
     	// inicializando variaveis
     	$arrayReturn = array();
@@ -663,7 +677,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaInstanciamentoClasseFormulario($nivelIdentacaoInicial, $formBeginTag, $moduleName, $headerFormulario, $formClassInstance, $formCodeBlockBeginTag)
+    private static function retornaInstanciamentoClasseFormulario($nivelIdentacaoInicial, $formBeginTag, $moduleName, $headerFormulario, $formClassInstance, $formCodeBlockBeginTag)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -690,7 +704,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String 
      */
-    private function retornaInstanciamentoSubFormulario($nivelIdentacaoInicial, $subFormBeginTag, $moduleName, $headerSubFormulario, $subFormClassInstance)
+    private static function retornaInstanciamentoSubFormulario($nivelIdentacaoInicial, $subFormBeginTag, $moduleName, $headerSubFormulario, $subFormClassInstance)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -718,7 +732,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaChamadaDeInicializacaoFormulario($nivelIdentacaoInicial, &$moduloObject, &$objFormulario, $headerConstructorForm, $formConstructorCall, $formCodeBlockBeginTag)
+    private static function retornaChamadaDeInicializacaoFormulario($nivelIdentacaoInicial, &$moduloObject, &$objFormulario, $headerConstructorForm, $formConstructorCall, $formCodeBlockBeginTag)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -747,7 +761,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaInicializacaoFormulario($nivelIdentacaoInicial, $formConstructorComment, $formConstructorInherits, $formName, $formMethod, $formAction, $formAttribs, $formDecorator)
+    private static function retornaInicializacaoFormulario($nivelIdentacaoInicial, $formConstructorComment, $formConstructorInherits, $formName, $formMethod, $formAction, $formAttribs, $formDecorator)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -786,7 +800,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaInicializacaoSubFormulario($nivelIdentacaoInicial, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariableInstance, $subFormOrdem)
+    private static function retornaInicializacaoSubFormulario($nivelIdentacaoInicial, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariableInstance, $subFormOrdem)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -822,7 +836,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-	private function retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacaoInicial, $idFormulario, $addPrefixComment)
+	private static function retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacaoInicial, $idFormulario, $addPrefixComment)
 	{
 		// inicializando variaveis
 		$tempReturn = '';
@@ -872,7 +886,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaElementosFormulario($nivelIdentacaoInicial, $formElementsComment, $formElementsAddToFormComment, $formArrayElements, &$formularioElementosObjects, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $objModulo, $formCodeBlockEndTag, $subFormVariableInstance = null)
+    private static function retornaElementosFormulario($nivelIdentacaoInicial, $formElementsComment, $formElementsAddToFormComment, $formArrayElements, $formularioElementosObjects, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $objModulo, $formCodeBlockEndTag, $subFormVariableInstance = null)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -1105,7 +1119,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariableInstance, $subFormName, $formPaiVariableInstance = FORM_GERADOR_THIS_INSTANCE)
+    private static function retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariableInstance, $subFormName, $formPaiVariableInstance = FORM_GERADOR_THIS_INSTANCE)
     {
     	// inicializando variaveis
     	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
@@ -1123,7 +1137,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaIncludeSubForm($nivelIdentacaoInicial, $objSubFormulario, $metodo = INCLUDE_REQUIRE)
+    private static function retornaIncludeSubForm($nivelIdentacaoInicial, $objSubFormulario, $metodo = INCLUDE_REQUIRE)
     {
     	// inicializando variaveis
     	$tempReturn = '';
@@ -1157,7 +1171,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaFimDeBloco($nivelIdentacaoInicial, $formCodeBlockEndTag)
+    private static function retornaFimDeBloco($nivelIdentacaoInicial, $formCodeBlockEndTag)
     {
     	// inicializacao das variaveis
     	$nivelIdentacao = $nivelIdentacaoInicial;
@@ -1176,7 +1190,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaFimDeScript($nivelIdentacaoInicial, $formEndTag)
+    private static function retornaFimDeScript($nivelIdentacaoInicial, $formEndTag)
     {
     	// inicializacao das variaveis
     	$nivelIdentacao = $nivelIdentacaoInicial;
@@ -1195,7 +1209,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Boolean
      */
-    private function escreveObjetoFormularioDOJOHTMLTodasLinguasAtivas(Basico_Model_Formulario $objetoFormularioDOJO, $moduleName)
+    private static function escreveObjetoFormularioDOJOHTMLTodasLinguasAtivas(Basico_Model_Formulario $objetoFormularioDOJO, $moduleName)
     {
     	// inicializando variaveis
     	$tempReturn = true;
@@ -1224,7 +1238,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return Boolean
      */
-    private function escreveObjetoFormularioDOJOHTMLLingua(Basico_Model_Formulario $objetoFormularioDOJO, $moduleName, $objCategoriaLingua)
+    private static function escreveObjetoFormularioDOJOHTMLLingua(Basico_Model_Formulario $objetoFormularioDOJO, $moduleName, $objCategoriaLingua)
     {
     	// carregar nome do arquivo de saida
     	$caminhoPastaPublicForms    = PUBLIC_PATH_PUBLIC_FORMS . '/' . strtolower($moduleName) . '/forms';
@@ -1286,7 +1300,7 @@ class Basico_GeradorFormularioControllerController
      * 
      * @return String
      */
-    private function retornaDisplaysGroupsFormulario($nivelIdentacaoInicial, Basico_Model_Formulario $objFormulario, $subFormVariableInstance)
+    private static function retornaDisplaysGroupsFormulario($nivelIdentacaoInicial, Basico_Model_Formulario $objFormulario, $subFormVariableInstance)
     {
     	// inicializacao das variaveis
     	$nivelIdentacao = $nivelIdentacaoInicial;

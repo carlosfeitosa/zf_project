@@ -125,7 +125,7 @@ class Basico_GeradorXmlControllerController
      * @param Array $arrayAtributosObjeto
      * @return Array
      */
-    private function limpaChavesArrayAtributosObjeto($arrayAtributosObjeto = array())
+    private static function limpaChavesArrayAtributosObjeto($arrayAtributosObjeto = array())
     {
     	// inicializando variaveis
         $arrayResultados = array();

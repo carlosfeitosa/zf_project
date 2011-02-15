@@ -3,6 +3,11 @@
  * Controlador PessoaPerfil
  *
  */
+
+// includes
+
+require_once("PerfilControllerController.php");
+
 class Basico_PessoaPerfilControllerController
 {
 	/**
@@ -151,6 +156,34 @@ class Basico_PessoaPerfilControllerController
     	}
     	
     	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO);
+	}
+
+	/**
+	 * Retorna o objeto pessoaPerfil do perfil USUARIO_VALIDADO da pessoa passada por parametro
+	 * 
+	 * @param Int $idPessoa
+	 * 
+	 * @return Basico_Model_PessoaPerfil
+	 */
+	public static function retornaPessoaPerfilUsuarioValidadoPessoa($idPessoa)
+	{
+		// instanciando modelos
+		$modelPessoaPerfil = new Basico_Model_PessoaPerfil();
+
+		// instanciando controladores
+		$controladorPerfil = Basico_PerfilControllerController::init();
+
+		// recuperando o objeto perfil de usuario validado
+		$objPerfilUsuarioValidado = $controladorPerfil->retornaObjetoPerfilUsuarioValidado();
+
+		// recuperando o objeto pessoa pefil
+    	$objPessoaPerfil = $modelPessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
+    	
+    	if (count($objPessoaPerfil) > 0) {
+    		return $objPessoaPerfil[0];
+    	}
+    	
+    	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_VALIDADO_NAO_ENCONTRADO);
 	}
 	
     /**

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 07/02/2011 15:28:36
+* em: 15/02/2011 20:00:54
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 07/02/2011 15:28:09
+* @version    1: 15/02/2011 17:22:09
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -37,8 +37,8 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
                 array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
 
         // Adicionando paths para localizacao de componentes nao ZF.
-        $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
+        $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
 
         // Criando array de elementos.
         $elements = array();
@@ -132,11 +132,6 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $dados_usuario_dados_pessoais = $this->getDisplayGroup('dados_usuario_dados_pessoais');
         $dados_usuario_dados_pessoais->removeDecorator('DtDdWrapper');
         $dados_usuario_dados_pessoais->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        // Adicionando displays groups.
-        $this->addDisplayGroup(array($elements[4]->getName(),$elements[5]->getName(),$elements[6]->getName(),$elements[7]->getName(),$elements[8]->getName()), 'dados_usuario_dados_usuario', array('legend' => $this->getView()->tradutor('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_USUARIO'), 'order' => 4));
-        $dados_usuario_dados_usuario = $this->getDisplayGroup('dados_usuario_dados_usuario');
-        $dados_usuario_dados_usuario->removeDecorator('DtDdWrapper');
-        $dados_usuario_dados_usuario->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
 
     }
 }

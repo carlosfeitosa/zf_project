@@ -157,7 +157,7 @@ class Basico_LogControllerController
 	* 
 	* @return string|null
 	*/
-	private function prepareXml($modelo)
+	private static function prepareXml($modelo)
 	{
 		try {
 			// instanciando controlador de log

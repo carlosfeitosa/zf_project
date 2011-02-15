@@ -56,7 +56,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria or NULL
 	 */
-	private function retornaObjetoCategoria($nomeCategoria)
+	private static function retornaObjetoCategoria($nomeCategoria)
 	{
 		// recuperando objeto categoria
 		$objCategoria = self::$singleton->categoria->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
@@ -114,7 +114,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaEmailPrimario
 	 */
-	private function retornaObjetoCategoriaEmailPrimario()
+	private static function retornaObjetoCategoriaEmailPrimario()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailPrimario = self::retornaObjetoCategoriaAtiva(EMAIL_PRIMARIO);
@@ -132,7 +132,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private function retornaObjetoCategoriaEmailValidacaoPlainText()
+	private static function retornaObjetoCategoriaEmailValidacaoPlainText()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
@@ -150,7 +150,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
+    public static function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainTextReenvio = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
@@ -186,7 +186,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaRemetente()
+	private static function retornaObjetoCategoriaRemetente()
 	{
 		// recuperando objeto categoria
 		$objCategoriaRemetente = self::retornaObjetoCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
@@ -204,7 +204,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private function retornaObjetoCategoriaDestinatario()
+    private static function retornaObjetoCategoriaDestinatario()
 	{
 		// recuperando objeto categoria
 		$objCategoriaDestinatario = self::retornaObjetoCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
@@ -222,7 +222,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
+    public static function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
@@ -240,7 +240,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private function retornaObjetoCategoriaEmailSistema()
+    private static function retornaObjetoCategoriaEmailSistema()
 	{
 		// recuperando objeto categoria
 	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_EMAIL);
@@ -260,7 +260,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogEmail()
+	private static function retornaObjetoCategoriaLogEmail()
 	{
 		// recuperando objeto categoria
 		$objCategoriaLogEmail = self::retornaObjetoCategoriaAtiva(LOG_EMAIL);
@@ -278,7 +278,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogValidacaoUsuario()
+	private static function retornaObjetoCategoriaLogValidacaoUsuario()
 	{
 		// recuperando objeto categoria
 		$objCategoriaLogValidacaoUsuario = self::retornaObjetoCategoriaAtiva(LOG_VALIDACAO_USUARIO);
@@ -296,7 +296,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovaPessoa()
+	private static function retornaObjetoCategoriaLogNovaPessoa()
 	{
 		// recuperando objeto categoria
 		$objCategoriaLogNovaPessoa = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA);
@@ -314,7 +314,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private function retornaObjetoCategoriaLogNovaPessoaPerfil()
+	private static function retornaObjetoCategoriaLogNovaPessoaPerfil()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovaPessoaPerfil = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL);
@@ -332,7 +332,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoDadosPessoais()
+	private static function retornaObjetoCategoriaLogNovoDadosPessoais()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoDadosPessoais = self::retornaObjetoCategoriaAtiva(LOG_NOVO_DADOS_PESSOAIS);
@@ -350,7 +350,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoWebsite()
+	private static function retornaObjetoCategoriaLogNovoWebsite()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoWebsite = self::retornaObjetoCategoriaAtiva(LOG_NOVO_WEBSITE);
@@ -368,7 +368,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoDadosBiometricos()
+	private static function retornaObjetoCategoriaLogNovoDadosBiometricos()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoDadosBiometricos = self::retornaObjetoCategoriaAtiva(LOG_NOVO_DADOS_BIOMETRICOS);
@@ -386,7 +386,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogUpdateDadosBiometricos()
+	private static function retornaObjetoCategoriaLogUpdateDadosBiometricos()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogUpdateDadosBiometricos = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_DADOS_BIOMETRICOS);
@@ -404,7 +404,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogUpdateDadosPessoais()
+	private static function retornaObjetoCategoriaLogUpdateDadosPessoais()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogUpdateDadosPessoais = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_DADOS_PESSOAIS);
@@ -422,7 +422,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogUpdateWebsite()
+	private static function retornaObjetoCategoriaLogUpdateWebsite()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogUpdateWebsite = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_WEBSITE);
@@ -440,7 +440,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoLogin()
+	private static function retornaObjetoCategoriaLogNovoLogin()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoLogin = self::retornaObjetoCategoriaAtiva(LOG_NOVO_LOGIN);
@@ -459,7 +459,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private function retornaObjetoCategoriaLogNovoEmail()
+	private static function retornaObjetoCategoriaLogNovoEmail()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoEmail = self::retornaObjetoCategoriaAtiva(LOG_NOVO_EMAIL);
@@ -477,7 +477,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private function retornaObjetoCategoriaLogNovoToken()
+    private static function retornaObjetoCategoriaLogNovoToken()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoToken = self::retornaObjetoCategoriaAtiva(LOG_TOKEN_VALIDACAO_USUARIO);
@@ -495,7 +495,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovaMensagem()
+	private static function retornaObjetoCategoriaLogNovaMensagem()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovaMensagem = self::retornaObjetoCategoriaAtiva(LOG_NOVA_MENSAGEM);
@@ -531,7 +531,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormulario
 	 */
-	private function retornaObjetoCategoriaLogNovoFormulario()
+	private static function retornaObjetoCategoriaLogNovoFormulario()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormulario = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO);
@@ -549,7 +549,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoFormularioElemento()
+	private static function retornaObjetoCategoriaLogNovoFormularioElemento()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElemento = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO);
@@ -567,7 +567,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoFilter
 	 */
-	private function retornaObjetoCategoriaLogNovoFormularioElementoFilter()
+	private static function retornaObjetoCategoriaLogNovoFormularioElementoFilter()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElementoFilter = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
@@ -585,7 +585,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private function retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador()
+	private static function retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElementoFormularioElementoValidador = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
@@ -603,7 +603,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoFormularioElementoValidador()
+	private static function retornaObjetoCategoriaLogNovoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioElementoValidador = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
@@ -621,7 +621,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
 	 */
-	private function retornaObjetoCategoriaLogNovoFormularioFormularioElemento()
+	private static function retornaObjetoCategoriaLogNovoFormularioFormularioElemento()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioFormularioElemento = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
@@ -639,7 +639,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoFormularioTemplate()
+	private static function retornaObjetoCategoriaLogNovoFormularioTemplate()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoFormularioTemplate = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
@@ -657,7 +657,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovoOutput()
+	private static function retornaObjetoCategoriaLogNovoOutput()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovoOutput = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
@@ -671,11 +671,29 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_NOVO_OUTPUT
+	 * Retorna o objeto carregado com a categoria LOG_TENTATIVA_AUTENTICACAO_USUARIO
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria()
+	private static function retornaObjetoCategoriaLogTentativaAutenticacaoUsuario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAutenticacaoUsuario = self::retornaObjetoCategoriaAtiva(LOG_TENTATIVA_AUTENTICACAO_USUARIO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAutenticacaoUsuario))
+			// retornando o objeto
+			return $objCategoriaLogTentativaAutenticacaoUsuario;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_TENTATIVA_AUTENTICACAO_USUARIO);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	private static function retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
@@ -693,7 +711,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogCategoriaChaveEstrangeira()
+	private static function retornaObjetoCategoriaLogCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogCategoriaChaveEstrangeira = self::retornaObjetoCategoriaAtiva(LOG_CATEGORIA_CHAVE_ESTRANGEIRA);
@@ -711,7 +729,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private function retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira()
+	private static function retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = self::retornaObjetoCategoriaAtiva(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
@@ -729,7 +747,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaCVC
 	 */
-	private function retornaObjetoCategoriaCVC()
+	private static function retornaObjetoCategoriaCVC()
 	{
 		// inicializando variaveis
 		$modelTipoCategoria = new Basico_Model_TipoCategoria();
@@ -1388,6 +1406,23 @@ class Basico_CategoriaControllerController
 			return (Int) $objCategoriaLogNovoOutput->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+	}
+
+	/** Retorna o id do objeto carregado com a categoria LOG_TENTATIVA_AUTENTICACA_USUARIO
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogTentativaAutenticacaoUsuario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAutenticacaoUsuario = self::retornaObjetoCategoriaLogTentativaAutenticacaoUsuario();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAutenticacaoUsuario))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogTentativaAutenticacaoUsuario->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_TENTATIVA_AUTENTICACAO_USUARIO);
 	}
 
 	/**

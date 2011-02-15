@@ -58,6 +58,15 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		// recuperando login
 		$login = $form->getValue(AUTH_IDENTITY_ARRAY_KEY);
 
+		// recuperando objeto pessoa perfil usuario validado do login
+		$objPessoaPerfilUsuarioValidadoLogin = Basico_PessoaPerfilControllerController::retornaPessoaPerfilUsuarioValidadoPessoa(Basico_LoginControllerController::retornaIdPessoaLogin($login));
+
+		// verificando se o login possui perfil de usuario validado
+		if ($objPessoaPerfilUsuarioValidadoLogin->id) {
+			// inserindo log de tentativa de logon
+			Basico_LogControllerController::salvarLog($objPessoaPerfilUsuarioValidadoLogin->id, Basico_CategoriaControllerController::retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
+		}
+
 		// verificando se as crendeiciais de acesso funcionaram
 		if (Basico_AutenticadorControllerController::retornaAutenticacaoUsuario($form->getValues())) {
 
