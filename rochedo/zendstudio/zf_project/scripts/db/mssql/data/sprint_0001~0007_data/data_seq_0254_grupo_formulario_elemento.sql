@@ -11,6 +11,11 @@
 /* GRUPO FORMULARIO ELEMENTO */
 
 INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('DADOS_USUARIO_DADOS_USUARIO', 
+        'Grupo que mantêm os dados sobre informações do usuário',
+		'FORM_DISPLAY_GROUP_LABEL_INFORMACOES_USUARIO', 'SYSTEM_STARTUP');
+
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
 VALUES ('DADOS_USUARIO_DADOS_PROFISSIONAIS_VINCULO_PROFISSIONAL_INFORMACOES_CONTATO', 
         'Grupo que mantêm os dados sobre informações de contato profissionais',
 		'FORM_DISPLAY_GROUP_LABEL_INFORMACOES_CONTATO', 'SYSTEM_STARTUP');

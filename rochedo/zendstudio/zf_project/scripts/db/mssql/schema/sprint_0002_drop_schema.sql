@@ -32,6 +32,12 @@ begin
 end
 ;
 
+if object_id('raca') is not null
+begin
+  drop table raca
+end
+;
+
 if object_id('estado') is not null
 begin
   drop table estado

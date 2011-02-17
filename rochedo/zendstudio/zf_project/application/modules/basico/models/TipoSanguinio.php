@@ -6,7 +6,7 @@
  */
 class Basico_Model_TipoSanguinio
 {
-	const O_POSITIVO  = "0+";
+	const O_POSITIVO  = "O+";
 	const A_POSITIVO  = "A+";
     const B_POSITIVO  = "B+";
     const AB_POSITIVO = "AB+";
@@ -20,19 +20,19 @@ class Basico_Model_TipoSanguinio
      * Retorna um array contendo todos os tipos sanguinios relacionados pela classe
      * @return Array
      */
-    public function retornaTiposSanguinios()
+    public static function retornaTiposSanguinios()
     {
     	// carregando array com tipos sanguinios
     	$arrayTiposSanguinios = array(
-    	                              O_POSITIVO => O_POSITIVO,
-    	                              A_POSITIVO => A_POSITIVO,
-    	                              B_POSITIVO => B_POSITIVO,
-    	                              AB_POSITIVO => AB_POSITIVO,
-    	                              O_NEGATIVO => O_NEGATIVO,
-    	                              A_NEGATIVO => A_NEGATIVO,
-    	                              B_NEGATIVO => B_NEGATIVO,
-    	                              AB_NEGATIVO => AB_NEGATIVO,
-    	                              ZERO => ZERO
+    	                              self::O_POSITIVO  => self::O_POSITIVO,
+    	                              self::A_POSITIVO  => self::A_POSITIVO,
+    	                              self::B_POSITIVO  => self::B_POSITIVO,
+    	                              self::AB_POSITIVO => self::AB_POSITIVO,
+    	                              self::O_NEGATIVO  => self::O_NEGATIVO,
+    	                              self::A_NEGATIVO  => self::A_NEGATIVO,
+    	                              self::B_NEGATIVO  => self::B_NEGATIVO,
+    	                              self::AB_NEGATIVO => self::AB_NEGATIVO,
+    	                              self::ZERO        => self::ZERO
     	
     	                             );
 

@@ -35,6 +35,13 @@ alter table dbo.raca with nocheck add constraint pk_raca primary key clustered (
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
+alter table dbo.dados_biometricos add
+    constraint fk_dados_biometricos_raca foreign key 
+    (
+        id_raca
+    ) references dbo.raca (
+        id
+    );
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
   

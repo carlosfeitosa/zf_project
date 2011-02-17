@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/02/2011 20:00:41
+* em: 17/02/2011 13:42:03
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/02/2011 17:22:09
+* @version    1: 17/02/2011 13:21:26
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -23,6 +23,11 @@
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setMethod('post');
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setAction('/basico/dadosbiometricos/salvar');
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addAttribs(array('dijitParams' => array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS')),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setDecorators(array('FormElements',
+		        array('HtmlTag', 
+				      array('tag' => 'dl')
+				     ),
+					 array('DijitForm')));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setOrder(4);
 
     // Criando array de elementos.
@@ -65,7 +70,7 @@
     if ($options!=null)
         $elements[4]->setValue($options->peso);
 
-    $elements[5] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio');
+    $elements[5] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio', array('style' => 'width: 50px;', 'places' => 2));
     $elements[5]->setOrder(5);
     $elements[5]->setRequired(false);
     $elements[5]->addFilters(array('StringTrim', 'StripTags'));

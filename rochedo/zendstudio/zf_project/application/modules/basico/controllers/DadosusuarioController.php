@@ -1,6 +1,7 @@
 <?php
 // incluindo controladores
 require_once('DadosBiometricosControllerController.php');
+require_once('RacaControllerController.php');
 
 /**
  * Controlador Dados do Usuario
@@ -44,6 +45,15 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    // recuperando elementos do formulario DadosBiometricos
 	    $formDadosBiometricosElementos =  $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->getElements();
 	    
+	    // setando options do elemento tipoSanguinio
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->addMultiOptions(Basico_Model_TipoSanguinio::retornaTiposSanguinios());
+	    
+	    // setando options do elemento sexo 
+	    $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+	    
+	    // setando options do elemento raca
+	    $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosRaca->addMultiOptions(Basico_RacaControllerController::retornaArrayRacasOptions());
+	    
 	    // carregando valores no formulario
 	    
 	    // carregando o radio button do sexo
@@ -58,10 +68,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->setValue($dadosBiometricos->tipoSanguinio);
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']->setValue($dadosBiometricos->historicoMedico);
 	    
+	    
+	    
 	    // passando o formulario para a view
 		$this->view->form = $formDadosUsuario;
 
-		$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+		
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();

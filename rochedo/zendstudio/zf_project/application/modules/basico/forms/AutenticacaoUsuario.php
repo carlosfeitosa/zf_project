@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/02/2011 20:00:38
+* em: 17/02/2011 13:41:57
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/02/2011 17:22:09
+* @version    1: 17/02/2011 13:21:26
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {
@@ -33,8 +33,10 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $this->setAction('/rochedo_project/public/basico/autenticador/verificaAutenticacaoUsuario');
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('AutenticacaoUsuario', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements',
-                array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
-                array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
+		        array('HtmlTag', 
+				      array('tag' => 'dl')
+				     ),
+					 array('DijitForm')));
 
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');

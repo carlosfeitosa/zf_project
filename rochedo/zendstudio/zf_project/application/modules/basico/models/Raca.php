@@ -222,5 +222,4 @@ class Basico_Model_Raca
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-
 }

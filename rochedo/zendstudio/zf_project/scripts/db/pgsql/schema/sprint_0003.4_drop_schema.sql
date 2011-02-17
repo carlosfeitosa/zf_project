@@ -7,5 +7,3 @@
 * ultimas modificacoes:
 * 						
 */
-
-drop table if exists raca;

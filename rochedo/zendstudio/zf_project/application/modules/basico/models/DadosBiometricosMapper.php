@@ -59,7 +59,7 @@ class Basico_Model_DadosBiometricosMapper
         $data = array(
                 'id_pessoa'        => $object->getPessoa(),
 				'sexo'             => $object->getSexo(),
-                'raca'             => $object->getRaca(),
+                'id_raca'             => $object->getRaca(),
                 'altura'           => $object->getAltura(),
                 'peso'             => $object->getPeso(),
                 'tipo_sanguinio'   => $object->getTipoSanguinio(),
@@ -103,7 +103,7 @@ class Basico_Model_DadosBiometricosMapper
         $object->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
-				->setRaca($row->raca)
+				->setRaca($row->id_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
 				->setTipoSanguinio($row->tipo_sanguinio)
@@ -126,7 +126,7 @@ class Basico_Model_DadosBiometricosMapper
 			$entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
-				->setRaca($row->raca)
+				->setRaca($row->id_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
 				->setTipoSanguinio($row->tipo_sanguinio)
@@ -153,7 +153,7 @@ class Basico_Model_DadosBiometricosMapper
 			$entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
-				->setRaca($row->raca)
+				->setRaca($row->id_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
 				->setTipoSanguinio($row->tipo_sanguinio)

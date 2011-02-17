@@ -40,6 +40,9 @@ alter table raca add constraint pk_raca primary key (id);
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
+alter table dados_biometricos
+  add constraint fk_dados_biometricos_raca foreign key (id_raca) references raca (id) on update no action on delete no action;
+
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
   

@@ -21,7 +21,7 @@ var underlay;
  */
 function validaString(inputObject, filterType)
 {   	
-	var generic_pattners={'special':/[\W]/g, 
+	var generic_patterns={'special':/[\W]/g, 
 		                  'quotes':/['\''&'\"']/g, 
 		                  'notnumbers':/[^\d]/g
 		                 };
@@ -40,7 +40,7 @@ function validaString(inputObject, filterType)
 			
 		}else{
 			
-		    dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(generic_pattners[filterType],''));
+		    dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(generic_patterns[filterType],''));
 		}
     }
 }

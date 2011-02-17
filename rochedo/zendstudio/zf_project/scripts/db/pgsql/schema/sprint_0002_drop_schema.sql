@@ -12,6 +12,7 @@ drop table if exists documento_identificacao;
 drop table if exists pessoa_juridica;
 drop table if exists endereco;
 drop table if exists dados_biometricos;
+drop table if exists raca;
 drop table if exists estado;
 drop table if exists pais;
 drop table if exists mascara;

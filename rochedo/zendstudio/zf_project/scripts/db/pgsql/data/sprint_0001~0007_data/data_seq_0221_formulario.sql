@@ -110,13 +110,20 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PROFISSIONAIS';
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_formulario_pai, id_decorator, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
 SELECT c.id AS id_categoria, 
    	   (SELECT f.id
         FROM formulario f
-        WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                       
+        WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria= c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
        'SUBFORM_DADOS_USUARIO_DADOS_BIOMETRICOS' AS nome,
        'Formulário de submissão de dados biométricos.' AS descricao, 
        'SUBFORM_TABTITLE_DADOS_BIOMETRICOS' AS constante_textual_titulo,

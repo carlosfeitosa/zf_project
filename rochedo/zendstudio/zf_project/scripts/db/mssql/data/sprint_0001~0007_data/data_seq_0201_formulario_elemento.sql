@@ -89,7 +89,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINIO' AS nome, 'Elemento campo tipo sanguinio.' AS descricao,
                               'FORM_FIELD_TIPO_SANGUINIO' AS constante_textual_label,
                               'tipoSanguinio' AS element_name, NULL AS element_attribs,
-                              '''tipoSanguinio''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''tipoSanguinio'', array(''style'' => ''width: 50px;'', ''places'' => 2)' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

@@ -151,12 +151,12 @@ class Basico_Model_DadosBiometricos
     /**
 	* Set raca
 	* 
-	* @param String $raca 
+	* @param Int $raca 
 	* @return Basico_Model_DadosBiometricos
 	*/
 	public function setRaca($raca)
 	{
-		$this->_raca = (String) $raca;
+		$this->_raca = (Int) $raca;
 		return $this;
 	}
 

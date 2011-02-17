@@ -1,4 +1,4 @@
-<div name="CadastrarDadosUsuarioDadosBiometricos" method="post" action="/basico/dadosbiometricos/salvar" onSubmit="loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', 'Attention', 'Please fill all required fields before continue.'))" id="CadastrarDadosUsuarioDadosBiometricos-ContentPane" title="BIOMETRIC INFORMATION" dojoType="dijit.layout.ContentPane"><dl>
+<form id="CadastrarDadosUsuarioDadosBiometricos" method="post" action="/basico/dadosbiometricos/salvar" onSubmit="loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', 'Attention', 'Please fill all required fields before continue.'))" dojoType="dijit.form.Form"><dl>
 <div id="float-left"><label class="optional">Genre:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosBiometricos', 'Help', 'Select your genre.', 1)</script></button></label>
 <dd>
 </dd></div>
@@ -15,7 +15,7 @@
 <input style="width: 40px;" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosPeso" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosPeso]" value="" type="text" constraints="{'places':3}" required="false" dojoType="dijit.form.NumberTextBox"></dd></div>
 <div id="float-left"><label class="optional">Blood type:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosBiometricos', 'Help', 'Select your blood type.', 1)</script></button></label>
 <dd>
-<select name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio]" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio" required="false" dojoType="dijit.form.FilteringSelect">
+<select name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio]" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio" style="width: 50px;" places="2" required="false" dojoType="dijit.form.FilteringSelect">
     
 </select></dd></div>
 <div id="float-left-clear-both"><label class="optional">Medical history:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosBiometricos', 'Help', 'Type your medical history.', 1)</script></button></label>
@@ -25,4 +25,4 @@
 <div id="float-left-clear-both">
 <input id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosEnviar" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosEnviar]" value="Send" type="submit" required="false" label="Send" dojoType="dijit.form.Button"></div>
 <dd id="BasicoCadastrarDadosUsuarioDadosBiometricosCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosCsrf]" value="256cf9864315a70ebe5188382c4fa33b" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosCsrf"></dd></dl></div>
+<input type="hidden" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosCsrf]" value="c765303d048219f7393c6c5a75f3ecb6" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosCsrf"></dd></dl></form>

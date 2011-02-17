@@ -7,9 +7,3 @@
 * ultimas modificacoes:
 * 						
 */
-
-if object_id('raca') is not null
-begin
-  drop table raca
-end
-;
