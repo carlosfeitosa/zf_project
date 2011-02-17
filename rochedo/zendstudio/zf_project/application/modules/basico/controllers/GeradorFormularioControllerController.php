@@ -530,6 +530,7 @@ class Basico_GeradorFormularioControllerController
     {
     	// inicializando variaveis
     	$arrayReturn = array();
+    	$baseUrl     = Basico_UtilControllerController::retornaBaseUrl();
 
     	// carregando atributos do sub-formulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
@@ -552,7 +553,7 @@ class Basico_GeradorFormularioControllerController
 
 		// verificando se o sub-formulario possui acao
         if ($objSubFormulario->formAction)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$baseUrl}{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
 
 		// inicializando variaveis
         $tempArraySubFormAttrib = array();
