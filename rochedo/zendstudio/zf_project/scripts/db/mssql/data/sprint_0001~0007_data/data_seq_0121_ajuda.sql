@@ -680,7 +680,89 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -----------------
-
 /**
 * FIM - CADASTRO DE ENDERECO
+*/
+
+
+/**
+* INICIO
+* 
+* CADASTRO DE CONTA BANCARIA
+*/
+
+-- ajuda - formulario - cadastro
+-- conta bancaria - numero banco - texbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_NUMERO_BANCO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox número do banco.' AS descricao,
+       'FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_TEXT_BOX_HINT' AS constante_textual_hint,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- conta bancaria - banco - combobox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_BANCO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox banco.' AS descricao,
+       'FORM_FIELD_CONTA_BANCARIA_BANCO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- conta bancaria - agencia - texbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_AGENCIA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox agência.' AS descricao,
+       'FORM_FIELD_CONTA_BANCARIA_AGENCIA_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_CONTA_BANCARIA_AGENCIA_TEXT_BOX_HINT' AS constante_textual_hint,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- conta bancaria - tipo conta - combobox
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TIPO_CONTA_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox tipo conta.' AS descricao,
+       'FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- conta bancaria - numero conta - texbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_NUMERO_CONTA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox número da conta.' AS descricao,
+       'FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_TEXT_BOX_HINT' AS constante_textual_hint,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+-----------------
+
+-- ajuda - formulario - cadastro
+-- conta bancaria - descricao identificacao - texbox.
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox descrição para identificação da conta bancária.' AS descricao,
+       'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX_HINT' AS constante_textual_hint,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+-----------------
+
+/**
+* FIM - CADASTRO DE CONTA BANCARIA
 */

@@ -539,9 +539,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 -------------
 
-
-
--- dados usuario - informacoes bancarias - dados bancarios
+-- dados usuario - aba informacoes bancarias - sub aba dados bancarios
 INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
 						constante_textual_titulo, form_name, form_method, form_action,
 						form_attribs, ordem, rowinfo)
@@ -563,7 +561,63 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 ----------------
 
+-- dados usuario - aba informacoes bancarias - sub aba dados bancarios
+-- container de contas bancarias
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_CONTAS_BANCARIAS' AS nome, 
+		'Dialog para visualizacao de contas bancárias.' AS descricao, 
+        'FORM_TITLE_CONTAS_BANCARIAS' AS constante_textual_titulo, 
+        'CadastrarDadosUsuarioInformacoesBancariasContasBancarias' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS';
+-------------
 
+
+-- dados usuario - informacoes bancarias - sub movimentacao financeira
+INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+						constante_textual_titulo, form_name, form_method, form_action,
+						form_attribs, ordem, rowinfo)
+SELECT c.id AS id_categoria, (SELECT f.id
+        		                     FROM formulario f
+                		             WHERE f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS'), 
+       'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS_MOVIMENTACAO_FINANCEIRA' AS nome,
+       'Formulário de cadastro das movimentações financeiras' AS descricao,
+       'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS_MOVIMENTACAO_FINANCEIRA' AS constante_textual_titulo,
+       'CadastrarDadosUsuarioInformacoesBancariasMovimentacaoFinanceira' AS form_name,
+       'post' AS form_method, 
+       NULL AS form_action, 
+       NULL AS form_attribs, 
+       2,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+----------------
+
+
+-- cadastro de conta bancaria
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_CONTA_BANCARIA' AS nome, 
+		'Dialog para edicao de conta bancária.' AS descricao, 
+        'FORM_TITLE_CONTA_BANCARIA' AS constante_textual_titulo, 
+        'CadastrarContaBancaria' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA';
 
 /**
 * FIM DADOS USUARIO - INFORMACOES BANCARIAS

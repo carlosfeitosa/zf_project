@@ -555,7 +555,61 @@ SELECT (SELECT f.id
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
 -----------------------
-        
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS'
+        AND f.nome = 'FORM_DIALOG_CONTAS_BANCARIAS') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS_MOVIMENTACAO_FINANCEIRA') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------
+  
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA'
+        AND f.nome = 'FORM_DIALOG_CONTA_BANCARIA') AS id_formulario,
+       (SELECT p.id
+        FROM template p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_TEMPLATE'
+        AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
+-----------------------        
+
 /**
-* FIM - DADOS USUARIO - DADOS PESSOAIS
+* FIM - DADOS USUARIO - INFORMACOES BANCARIAS
 */

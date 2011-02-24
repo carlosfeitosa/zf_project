@@ -499,3 +499,60 @@ SELECT (SELECT ffe.id
 /**
 * FIM - ABA CADASTRO DE USUARIO - DADOS PESSOAIS
 */
+
+
+/**
+* INICIO
+*  
+* ABA INFORMACOES BANCARIAS - DADOS BANCARIOS
+*/
+        
+-- botão para abrir o container com as contas bancarias
+INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
+SELECT (SELECT ffe.id
+        FROM formulario_formulario_elemento ffe
+        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
+        AND t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
+        AND f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS'
+        AND ffe.ordem = 1) AS id_formulario_formulario_elemento,
+       (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO' 
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS'
+        AND f.nome = 'FORM_DIALOG_CONTAS_BANCARIAS') AS id_formulario, 
+        'FORM_BUTTON_ABRIR_DIALOG_CONTAS_BANCARIAS' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;
+-------------
+
+
+-- botão para abrir o dialog de cadastro de conta bancaria no container de contas bancarias
+INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
+SELECT (SELECT ffe.id
+        FROM formulario_formulario_elemento ffe
+        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
+        AND t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
+        AND f.nome = 'FORM_DIALOG_CONTAS_BANCARIAS'
+        AND ffe.ordem = 2) AS id_formulario_formulario_elemento,
+       (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO' 
+        AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA'
+        AND f.nome = 'FORM_DIALOG_CONTA_BANCARIA') AS id_formulario, 
+        'FORM_BUTTON_ABRIR_DIALOG_NOVO_CONTA_BANCARIA' AS constante_textual_label, 'SYSTEM_STARTUP' AS rowinfo;
+-------------
+/**
+* FIM - ABA INFORMACOES BANCARIAS - DADOS BANCARIOS
+*/

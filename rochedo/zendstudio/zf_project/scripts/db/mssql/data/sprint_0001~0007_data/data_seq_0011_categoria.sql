@@ -1507,3 +1507,58 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
 /**
 * FIM - ABA CADASTRO DE USUARIO - DADOS PESSOAIS
 */
+
+/**
+* INICIO
+*  
+* CADASTRO DE ENDERECO 
+*/
+-- ajuda - formulario - cadastro
+-- endereço
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO' AS nome, 'Ajuda para preenchimento de formulários de manipulação de endereço.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_CADASTRO';
+-------------
+/**
+* FIM - CADASTRO DE ENDERECO 
+*/
+
+
+/**
+* INICIO
+*  
+* ABA CADASTRO - INFORMACOES BANCARIAS
+*/
+-- formulario - input - cadastro - usuario - informacoes bancarias
+-- contas bancarias
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS' AS nome, 'Formulários de manipulação de dados de documentos pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
+-------------
+/**
+* FIM - ABA CADASTRO - INFORMACOES BANCARIAS
+*/
+
+/**
+* INICIO
+*  
+* CADASTRO - CONTA BANCARIA 
+*/
+-- formulario - input - cadastro
+-- conta bancaria
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA' AS nome, 'Formulários de manipulação de dados de contas bancárias.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
+
+/**
+* FIM - CADASTRO - CONTA BANCARIA 
+*/
