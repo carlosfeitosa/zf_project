@@ -39,13 +39,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         try {
             // instancia a classe controladora de log
-            $this->logger = Basico_LogControllerController::init();	        	
+            $this->logger = Basico_LogControllerController::getInstance();	        	
         } catch (Exception $e) {
             throw new Exception (MSG_ERRO_ABRIR_LOG_FS . $e->getMessage());
         }
 
         // instancia a classe controladora de token
-        $this->tokenizer = Basico_TokenControllerController::init();
+        $this->tokenizer = Basico_TokenControllerController::getInstance();
 
         // Localiza os helpers dos controllers e adiciona os paths caso eles existam
         if (file_exists(BASICO_CONTROLLER_HELPERS_PATH))
