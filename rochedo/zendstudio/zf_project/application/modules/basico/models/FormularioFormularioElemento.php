@@ -257,8 +257,8 @@ class Basico_Model_FormularioFormularioElemento
     public function getDecoratorObject()
     {
         $model = new Basico_Model_Decorator();
-        $object = $model->find($this->_decorator);
-        return $object;
+        $model->find($this->_decorator);
+        return $model;
     }
     
     /**

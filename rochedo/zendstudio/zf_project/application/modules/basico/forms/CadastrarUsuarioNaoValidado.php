@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 17/02/2011 13:42:32
+* em: 24/02/2011 14:43:01
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 17/02/2011 13:21:26
+* @version    1: 24/02/2011 14:42:30
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -33,10 +33,8 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $this->setAction('/rochedo_project/public/basico/login/verificaNovoLogin');
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements',
-		        array('HtmlTag', 
-				      array('tag' => 'dl')
-				     ),
-					 array('DijitForm')));
+                array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
+                array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
 
         // Criando array de elementos.
         $elements = array();

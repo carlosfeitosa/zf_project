@@ -196,13 +196,4 @@ class Basico_Model_RowInfo
 	{
 		return $this->_genericIdLoginCreation;
 	}
-	
-    /**
-     * Get gerador object
-     * @return null|Gerador
-     */
-    public function getGeradorObject()
-    {
-        return new Basico_Model_Gerador();
-    }
 }

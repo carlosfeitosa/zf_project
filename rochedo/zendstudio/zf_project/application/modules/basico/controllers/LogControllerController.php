@@ -22,64 +22,115 @@ class Basico_LogControllerController
 {
 	/**
 	 * Instância do controlador Log.
-	 * @var Basico_LogController
+	 * @var Basico_LogControllerController
 	 */
-	static private $singleton;
-	
+	private static $_singleton;
+
 	/**
 	 * Instância do Modelo de Log.
 	 * @var Basico_Model_Log
 	 */
-	private $log;
-	
+	private $_log;
+
 	/**
 	 * Instância da classe Zend_Log.
-	 * @var unknown_type
+	 * @var Zend_Log
 	 */
-	private $logFS;
-	
+	private $_logFS;
+
 	/**
-	 * Construtor do Controlador de Log.
+	 * Construtor do Controlador Basico_LogControllerController.
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		// recuperando o modelo de log
-		$this->log = new Basico_Model_Log();
+		// instanciado o modelo
+		$this->_log = $this->retornaNovoObjetoLog();
 		
-		// verificando se existe a pasta de log
-		if (!file_exists(LOG_PATH))
-			// criando pasta de log
-		    Basico_UtilControllerController::mkdirRecursive(LOG_PATH);
+        // instanciando a classe de log
+		$this->_logFS = $this->retornaZendLog();
+
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializa o controlador Basico_LogControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
+	/**
+	 * Retorna Instância do Controlador de log.
+	 * 
+	 * @return Basico_LogControllerController
+	 */
+	public static function getInstance()
+	{
+		// checando singleton
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_LogControllerController();
+		}
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um modelo Basico_Model_Log vazio
+	 * 
+	 * @return Basico_Model_Log
+	 */
+	public function retornaNovoObjetoLog()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Log();
+	}
+
+	/**
+	 * Retorna o objeto Zend_Log, carregado com o formatador padrao
+	 * 
+	 * @return Zend_Log
+	 */
+	private function retornaZendLog()
+	{
+		// verificando o caminho do log
+		$this->verificaPathLog();
 
 		// instanciando formatador de log
         $logFormatter = new Zend_Log_Formatter_Simple(LOG_FORMAT);
 
         // setando pasta de log
         $logWriterFS = new Zend_Log_Writer_Stream(LOG_FULL_FILENAME);
+
         // setando o formato do log      
         $logWriterFS->setFormatter($logFormatter);
-		
-        // instanciando a classe de log
-		$this->logFS = new Zend_Log($logWriterFS); 
-	}
-	
-	/**
-	 * Retorna Instância do Controlador de log.
-	 * 
-	 * @return Basico_LogController
-	 */
-	static public function init()
-	{
-		// checando singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_LogControllerController();
-		}
 
-		return self::$singleton;
+        // retornando o objeto Zend_Log
+        return new Zend_Log($logWriterFS);
 	}
-	
+
+	/**
+	 * Verifica se o caminho para salvar os log de texto existe.
+	 * Cria o caminho se nao existir.
+	 * 
+	 * @param String $caminhoDoLog
+	 * 
+	 * @return void;
+	 */
+	private function verificaPathLog($caminhoDoLog = LOG_PATH)
+	{
+		// verificando se existe a pasta de log
+		if (!file_exists($caminhoDoLog))
+			// criando pasta de log
+		    Basico_UtilControllerController::mkdirRecursive($caminhoDoLog);
+	}
+
 	/**
 	 * Salva um log no sistema de arquivos
 	 * 
@@ -91,7 +142,7 @@ class Basico_LogControllerController
 	public function salvaLogFS($mensagem, $prioridade = LOG_PRIORITY_INFORMACAO)
 	{
 		// salvando o log no sistema de arquivos
-	    $this->logFS->log($mensagem, $prioridade);
+	    $this->_logFS->log($mensagem, $prioridade);
 	}
 	
 	/**
@@ -125,27 +176,26 @@ class Basico_LogControllerController
 	 * 
 	 * @return true
 	 */	
-	public static function salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog)
+	public function salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog)
 	{
 		// verifica se existe pessoa perfil e categoria de log
 		if ((!isset($idPessoaPerfil)) or (!isset($idCategoriaLog)))
 			throw new Exception(MSG_ERRO_SAVE_SEM_PESSOAPERFIL_CATEGORIA);
-		
-		// instanciando controlador de log
-		$logController = Basico_LogControllerController::init();
-		
+
+		// instanciando um novo modelo de log
+		$this->_log = $this->retornaNovoObjetoLog();
+
 		// preenchendo o modelo de log
-		$logController->log                 = new Basico_Model_Log();
-	    $logController->log->pessoaperfil   = $idPessoaPerfil;
-	    $logController->log->categoria      = $idCategoriaLog;
-	    $logController->log->dataHoraEvento = Basico_UtilControllerController::retornaDateTimeAtual();
-	    $logController->log->descricao      = $mensagemLog;
-	    
+	    $this->_log->pessoaperfil   = $idPessoaPerfil;
+	    $this->_log->categoria      = $idCategoriaLog;
+	    $this->_log->dataHoraEvento = Basico_UtilControllerController::retornaDateTimeAtual();
+	    $this->_log->descricao      = $mensagemLog;
+
 	    // preparando o xml do log
-	    $logController->log->xml = self::prepareXml($logController->log);
+	    $this->_log->xml = $this->prepareXml($this->_log);
 
 	    // salvando log
-		$logController->log->getMapper()->save($logController->log);
+		$this->_log->getMapper()->save($this->_log);
 
 		return true;
 	}
@@ -157,12 +207,9 @@ class Basico_LogControllerController
 	* 
 	* @return string|null
 	*/
-	private static function prepareXml($modelo)
+	private function prepareXml($modelo)
 	{
 		try {
-			// instanciando controlador de log
-			$logController = Basico_LogControllerController::init();
-
 			// setando data/hora e descricao do evento
 			$logXml = new Basico_Model_LogXml(array("eventDateTime"    => $modelo->dataHoraEvento,
 													"eventDescription" => $modelo->descricao,));

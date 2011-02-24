@@ -137,7 +137,7 @@ class Basico_UtilControllerController
      */
     public static function removeComentariosArquivo($string)
     {
-    	$pattern = "@(/\*.*?\*/)@se";
+    	$pattern = '@(/\*.*?\*/)@se';
     	return preg_replace($pattern, '',$string);
     }
     
@@ -465,7 +465,7 @@ class Basico_UtilControllerController
 		$tempReturn = $formHTMLString;
 
 		// removendo escape
-		$tempReturn = str_replace("\'", "'", $tempReturn);
+		$tempReturn = str_replace(ASPAS_SIMPLES_ESCAPADA_HTML, "'", $tempReturn);
 		$tempReturn = str_replace('\"', '"', $tempReturn);
 		
 		// escapando caracteres
@@ -602,7 +602,7 @@ class Basico_UtilControllerController
 				$nomeArquivoOriginal = basename($arquivoModificado);
 				
 				// carregando nome do arquivo de restauracao
-				$arquivoOrigemRestore = $caminhoRecuperacao . $arquivoModificado . $filenameExtensionRecovery;
+				$arquivoOrigemRestore = $caminhoRecuperacao . $nomeArquivoOriginal . $filenameExtensionRecovery;
 				
 				// restaurando arquivo
 	            copy($arquivoOrigemRestore, $arquivoModificado);

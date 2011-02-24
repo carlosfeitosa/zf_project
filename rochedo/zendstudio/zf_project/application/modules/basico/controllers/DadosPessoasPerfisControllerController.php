@@ -8,37 +8,62 @@ class Basico_DadosPessoasPerfisControllerController
 {
     /**
      * 
-     * @var Basico_DadosPessoasPerfisController
+     * @var Basico_DadosPessoasPerfisControllerController
      */
-	static private $singleton;
+	private static $_singleton;
 
 	/**
 	 * @var Basico_Model_DadosPessoasPerfis
 	 */
-	private $dadosPessoasPerfis;
+	private $_dadosPessoasPerfis;
 
     /**
 	 * Construtor do Controlador DadosPessoasPerfis
 	 * 
 	 * @return Basico_Model_DadosPessoasPerfis
 	 */
-	public function __construct()
+	private function __construct()
 	{
-    	$this->dadosPessoasPerfis = new Basico_Model_DadosPessoasPerfis();
+    	$this->_dadosPessoasPerfis = $this->retornaNovoObjetoDadosPessoasPerfis();
+
+    	// inicializando o controlador
+    	$this->init();
 	}
 
-    /**
-	 * Retorna o objeto da Classe DadosPessoasPerfisController
+	/**
+	 * Inicializa o controlador Basico_DadosPessoasPerfisControllerController
 	 * 
-	 * @return Basico_DadosPessoasPerfisController
+	 * @return void
 	 */
-	static public function init() {
+	private function init()
+	{
+		return;
+	} 
+	
+    /**
+	 * Retorna a instancia do objeto Basico_DadosPessoasPerfisControllerController
+	 * 
+	 * @return Basico_DadosPessoasPerfisControllerController
+	 */
+	static public function getInstance() {
 		// checando singleton
-		if(self::$singleton == NULL){
-			
-			self::$singleton = new Basico_DadosPessoasPerfisControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_DadosPessoasPerfisControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um objeto dados pessoas perfis vazio
+	 * 
+	 * @return Basico_Model_DadosPessoasPerfis
+	 */
+	public function retornaNovoObjetoDadosPessoasPerfis()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_DadosPessoasPerfis();
 	}
 
 	/**
@@ -49,10 +74,10 @@ class Basico_DadosPessoasPerfisControllerController
 	public function retornaAssinaturaMensagemEmailSistema()
 	{
 		// recuperando o id pessoa perfil do sistema
-		$idPessoaPerfilSistema = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+		$idPessoaPerfilSistema = Basico_PessoaPerfilControllerController::getInstance()->retornaIdPessoaPerfilSistema();
 		
 		// recuperando o objeto dados pessoas perfis
-	    $objDadosPessoasPerfis = self::$singleton->dadosPessoasPerfis->fetchList("id_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
+	    $objDadosPessoasPerfis = $this->_dadosPessoasPerfis->fetchList("id_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
 	    
 	    // verificando se o objeto foi recuperado
 		if (isset($objDadosPessoasPerfis[0]))

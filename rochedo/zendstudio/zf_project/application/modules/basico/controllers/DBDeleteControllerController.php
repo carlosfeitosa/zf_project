@@ -17,7 +17,7 @@ class Basico_DBDeleteControllerController
 	 * 
 	 * @return Boolean
 	 */
-	static public function delete($objeto, $forceCascade = false, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	public static function delete($objeto, $forceCascade = false, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// verificando se existem registros filhos
 		$existemRegistrosFilhos = Basico_PersistenceControllerController::bdChecaRegistrosFilhos($objeto);
@@ -33,12 +33,12 @@ class Basico_DBDeleteControllerController
 			try {
 				// apagando registro
 				if (self::deleteObjectDbTable($objeto)) {
-					
+
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
 						Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);			
 				} else {
-					
+
 					// voltando a transacao
 					Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 
@@ -83,7 +83,6 @@ class Basico_DBDeleteControllerController
 		Basico_PersistenceControllerController::bdControlaTransacao();
 
 		try {
-
 			// operacao de delete em cascata relacionada a chaves estrangeiras (banco de dados)
 			$tempReturn = self::deleteCascataFKTabelaId($nomeTabelaObjeto, $idObjeto, $idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
@@ -126,7 +125,7 @@ class Basico_DBDeleteControllerController
 
 		// recuperando tabelas dependentes atraves de categoria chave estrangeira
 		$arrayTabelasDepentendesCategoriaChaveEstrangeira = Basico_RelacaoCategoriaChaveEstrangeiraControllerController::retornaArrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira();
-		
+
 		// recuperando ids categoria/valor categoria chave estrangeira
 		$arrayIdsCategoriaValorChaveEstrangeiraObjeto = Basico_PersistenceControllerController::retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId($nomeTabela, $valorId);
 		// transformando o array de ids categoria chave estrangeira
@@ -134,14 +133,13 @@ class Basico_DBDeleteControllerController
 
 		// iniciando transcacao
 		Basico_PersistenceControllerController::bdControlaTransacao();
-		
-		try {
 
+		try {
 			// loop em cima das tabelas relacionadas (categoria chave estrangeira)
 			foreach ($arrayTabelasDepentendesCategoriaChaveEstrangeira as $nomeTabelaCategoriaChaveEstrangeira => $nomeCampoTabelaCategoriaChaveEstrangeira) {
 				// inicializando variaveis
 				$nomeCampoId = TABLE_ID_FIELD;
-				
+
 				// query para localizar registro filhos
 				$querySQLLocalizaRegistroFilho = "SELECT {$nomeCampoId} FROM {$nomeTabelaCategoriaChaveEstrangeira} WHERE {$nomeCampoTabelaCategoriaChaveEstrangeira} = {$valorId} AND id_categoria IN ({$implodedStringIdsCategoriaChaveeEstrangira})";
 
@@ -175,17 +173,17 @@ class Basico_DBDeleteControllerController
 
 			// apagando registro pai
 			$tempReturn = self::deleteRegistroTabelaId($nomeTabela, $valorId, $idPessoaPerfil, $idCategoriaLog, $mensagemLog);
-			
+
 			// salvando transacao
 			Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 		} catch (Exception $e) {
-			
+
 			// voltando transacao
 			Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
-			
+
 			throw new Exception($e->getMessage());
 		}
-		
+
 		return $tempReturn;
 	}
 
@@ -242,7 +240,6 @@ class Basico_DBDeleteControllerController
 
 					// verificando o resultado da operacao de delete
 					if (!$tempReturn) {
-
 						// voltando transacao
 						Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 

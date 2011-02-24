@@ -13,7 +13,7 @@ class Basico_DBCheckControllerController
      * 
      * @return Boolean
      */
-    public static function checaExistenciaRelacaoCategoriaChaveEstrangeira($idCategoria)
+    public static function checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
     {
         // instanciando modelo de categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
@@ -50,7 +50,7 @@ class Basico_DBCheckControllerController
 			
 			return false;
 		}
-		
+
 		// recuperando o nome da tabela estrangeira
 		$nomeTabelaEstrangeira  = $arrayCategoriaChaveEstrangeira[0]->tabelaEstrangeira;
 		// recuperando o nome do campo da tabela estrangeira
@@ -66,14 +66,14 @@ class Basico_DBCheckControllerController
 		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
 
 			// instanciando controlador de relacao categoria chave estrangeira
-			$controllerRelacaoCategoriaChaveEstrangeira = Basico_RelacaoCategoriaChaveEstrangeiraControllerController::init();
+			$controllerRelacaoCategoriaChaveEstrangeira = Basico_RelacaoCategoriaChaveEstrangeiraControllerController::getInstance();
 
 			// verificando se a tabela/campo esta relacionada em relacao categoria chave estrangeira e se o sistema deve guardar a tabela origem
 			if (($nomeCampoOrigem) and ($nomeCampoOrigem))
 				return $controllerRelacaoCategoriaChaveEstrangeira->checaRelacaoCategoriaChaveEstrangeira($nomeTabelaOrigem, $nomeCampoOrigem, $forceCreateRelationship);
 			else
 				return true;
-				
+
 		} else {
 
 			return false;
@@ -85,17 +85,17 @@ class Basico_DBCheckControllerController
      * 
      * @param Object $objeto
      */
-	public static function checaRegistrosFilhos($objeto)
+	public static function checaRegistrosFilhosObjeto($objeto)
 	{
 		// checando se existem registros filhos relacionados a FK (banco de dados)
-		$existemRegistrosFilhos = self::checaRegistrosFilhosFK($objeto);
-		
+		$existemRegistrosFilhos = self::checaRegistrosFilhosFKObjeto($objeto);
+
 		// verificando o resultado da verificacao sobre registos filhos relacionados a FK
 		if ($existemRegistrosFilhos)		
 			return true;
 
 		// checando se existem registros filhos relacionados atraves de categoria chave estrangeira
-		$existemRegistrosFilhos = self::checaRegistrosFilhosCategoriaChaveEstrangeira($objeto);
+		$existemRegistrosFilhos = self::checaRegistrosFilhosCategoriaChaveEstrangeiraPorObjeto($objeto);
 
 		// verificando o resultado da verificacao sobre registos filhos relacionados a FK
 		return $existemRegistrosFilhos;
@@ -108,7 +108,7 @@ class Basico_DBCheckControllerController
      * 
      * @return Boolean
      */
-	public static function checaRegistrosFilhosFK($objeto)
+	public static function checaRegistrosFilhosFKObjeto($objeto)
 	{
 		// verificando se o parametro informado eh um objeto
 		if (!is_object($objeto))
@@ -118,7 +118,7 @@ class Basico_DBCheckControllerController
 		$nomeTabelaObjeto = Basico_PersistenceControllerController::bdRetornaTableNameObjeto($objeto);
 
 		// retornando resultado
-		return self::checaRegistrosFilhosFKTabelaId($nomeTabelaObjeto, $objeto->id);
+		return self::checaRegistrosFilhosFKPorTabelaId($nomeTabelaObjeto, $objeto->id);
 	}
 
 	/**
@@ -129,17 +129,17 @@ class Basico_DBCheckControllerController
 	 * 
 	 * @return Boolean
 	 */
-	public static function checaRegistrosFilhosFKTabelaId($nomeTabela, $idPK)
+	public static function checaRegistrosFilhosFKPorTabelaId($nomeTabela, $idPK)
 	{
 		// recuperando array contendo as dependencias do objeto
-		$arrayDependencias = self::retornaArrayDependenciasTabelaFK($nomeTabela);
+		$arrayDependencias = self::retornaArrayDependenciasTabelaFKPorNomeTabela($nomeTabela);
 
 		// loop para verificar dependencia
 		foreach ($arrayDependencias as $dependencia) {
 			// carregando variaveis
 			$tabelaDependente      = $dependencia[ARRAY_TABLE_DEPENDENCIES_FK_TABLE];
 			$campoTabelaDependente = $dependencia[ARRAY_TABLE_DEPENDENCIES_FK_COLUMN];
-			
+
 			// query para localizar registros filhos
 			$queryLocalizaRegistrosFilhos = "SELECT {$campoTabelaDependente} FROM {$tabelaDependente} WHERE $campoTabelaDependente = {$idPK}";
 
@@ -150,7 +150,7 @@ class Basico_DBCheckControllerController
 			if (count($arrayResultados) > 0)
 				return true;
 		}
-		
+
 		return false;
 	}
 
@@ -159,7 +159,7 @@ class Basico_DBCheckControllerController
 	 * 
 	 * @param String $nomeTabela
 	 */
-	public static function retornaArrayDependenciasTabelaFK($nomeTabela)
+	public static function retornaArrayDependenciasTabelaFKPorNomeTabela($nomeTabela)
 	{
 		// inicializando variaveis
 		$fkTableColumnName        = ARRAY_TABLE_DEPENDENCIES_FK_TABLE;
@@ -167,7 +167,7 @@ class Basico_DBCheckControllerController
 		$pkTableColumnName        = ARRAY_TABLE_DEPENDENCIES_PK_TABLE;
 		$pkColumnColumnName       = ARRAY_TABLE_DEPENDENCIES_PK_COLUMN;
 		$constraintNameColumnName = ARRAY_TABLE_DEPENDENCIES_CONSTRAINT_NAME;
-		
+
 		// query que verifica as dependencias de uma tabela
 		$queryDependenciasTabela = 
 		"
@@ -188,11 +188,10 @@ class Basico_DBCheckControllerController
 			
 			WHERE pk.TABLE_NAME = '{$nomeTabela}'
 		";
-		
+
 		// retornando array contendo as tabelas que possuem dependencia com o objeto
 		return Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryDependenciasTabela);
 	}
-
 
 	/**
 	 * Retorna um array contendo os ids das categorias e valores do objeto relacionados a categoria chave estrangeira
@@ -201,18 +200,18 @@ class Basico_DBCheckControllerController
 	 * 
 	 * @return Array
 	 */
-	private function retornaArrayIdsCategoriaValorChaveEstrangeiraObjeto($objeto)
+	private function retornaArrayIdsCategoriaValorChaveEstrangeiraPorObjeto($objeto)
 	{
 		// verificando se o parametro informado eh um objeto
 		if (!is_object($objeto))
 			throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
-		
+
 		// recuperando informacoes sobre o objeto
 		$nomeTabelaObjeto = Basico_PersistenceControllerController::bdRetornaTableNameObjeto($objeto);
 		$idTabelaObjeto   = Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($objeto);
 
 		// retornando array de resultados
-		return self::retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId($nomeTabelaObjeto, $idTabelaObjeto);
+		return self::retornaArrayIdsCategoriaValorChaveEstrangeiraPorNomeTabelaId($nomeTabelaObjeto, $idTabelaObjeto);
 	}
 
 	/**
@@ -223,20 +222,20 @@ class Basico_DBCheckControllerController
 	 * 
 	 * @return Array
 	 */
-	public static function retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId($nomeTabela, $idTabela)
+	public static function retornaArrayIdsCategoriaValorChaveEstrangeiraPorNomeTabelaId($nomeTabela, $idTabela)
 	{
 		// inicianlizando variaveis
 		$arrayIdsCategoriaValorChaveEstrangeiraObjeto = array();
-		
+
 		// instanciando modelo de categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
-		
+
 		// recuperando array de categorias que nao devem ser relacionadas
 		$arrayIdsCategoriasNaoChecarRelacao = self::retornaArrayIdsCategoriasNaoChecarRelacao();
-		
+
 		// transformando array em string
 		$stringIdsCategoriasNaoChecarRelacao = implode(',', $arrayIdsCategoriasNaoChecarRelacao);
-		
+
 		// recuperando array de objetos categoria chave estrangeira relacionados com a tabela do objeto
 		$arrayObjsCategoriaChaveEstrangeiraObjeto = $modelCategoriaChaveEstrangeira->fetchList("tabela_estrangeira = '{$nomeTabela}' and id_categoria not in ({$stringIdsCategoriasNaoChecarRelacao})");
 
@@ -259,10 +258,10 @@ class Basico_DBCheckControllerController
 	 * 
 	 * @return Boolean
 	 */
-	public static function checaRegistrosFilhosCategoriaChaveEstrangeira($objeto) 
+	public static function checaRegistrosFilhosCategoriaChaveEstrangeiraPorObjeto($objeto) 
 	{
 		// retornando resultado da verificacao
-		return self::checaArrayIdsCategoriaValorCategoriaChaveEstrangeiraExisteRelacao(self::retornaArrayIdsCategoriaValorChaveEstrangeiraObjeto($objeto));
+		return self::checaArrayIdsCategoriaValorCategoriaChaveEstrangeiraExisteRelacao(self::retornaArrayIdsCategoriaValorChaveEstrangeiraPorObjeto($objeto));
 	}
 	
 	/**
@@ -273,10 +272,10 @@ class Basico_DBCheckControllerController
 	 * 
 	 * @return Boolean
 	 */
-	public static function checaRegistrosFilhosCategoriaChaveEstrangeiraTabelaId($nomeTabela, $valorId)
+	public static function checaRegistrosFilhosCategoriaChaveEstrangeiraPorNomeTabelaId($nomeTabela, $valorId)
 	{
 		// retornando o resultado da verificacao
-		return self::checaArrayIdsCategoriaValorCategoriaChaveEstrangeiraExisteRelacao(self::retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId($nomeTabela, $valorId));
+		return self::checaArrayIdsCategoriaValorCategoriaChaveEstrangeiraExisteRelacao(self::retornaArrayIdsCategoriaValorChaveEstrangeiraPorNomeTabelaId($nomeTabela, $valorId));
 	}
 
 	/**
@@ -301,21 +300,19 @@ class Basico_DBCheckControllerController
 
 				// carregando query para verificar se existe o valor do objeto na tabela relacionada
 				$queryLocalizaValorObjetoTabelaRelacionada = "SELECT {$campoTabelaOrigem} FROM {$nomeTabelaOrigem} WHERE {$campoTabelaOrigem} = {$valorObjetoOrigem} AND ID_CATEGORIA = {$idCategoriaCategoriaChaveEstrangeira}";
-				
+
 				// verificando se existe o valor do objeto na tabela relacionada
 				$arrayResultado = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryLocalizaValorObjetoTabelaRelacionada);
 
 				// verificando se existe registro na tabela estrangeira
 				$tempReturn = (count($arrayResultado) > 0);
-				
+
 				// verificando se houve localizacao de relacao
 				if ($tempReturn)
-				
 					break;
 			}
 			// verificando se houve localizacao de relacao
 			if ($tempReturn)
-			
 				break;
 		}
 
@@ -342,24 +339,28 @@ class Basico_DBCheckControllerController
 	
 	/**
 	 * Retorna uma string no formato Json com o resultado da consulta de disponibilidade.
+	 * 
 	 * @param String $nomeTabela
 	 * @param String $nomeCampo
 	 * @param String $stringPesquisa
+	 * 
 	 * @return Boolean
 	 */
 	public static function checaDisponibilidadeString($nomeTabela, $nomeCampo, $stringPesquisa = NULL)
 	{
-		
+		// query que verifica disponibilidade
 		$queryDisponibilidade = "SELECT {$nomeCampo} FROM {$nomeTabela} WHERE {$nomeCampo} = '{$stringPesquisa}'";
-		
+
+		// recuperando resultados
 		$arrayResultado = Basico_PersistenceControllerController::bdRetornaArraySQLQuery($queryDisponibilidade);
-		
+
+		// verificandp resultado
 		if (count($arrayResultado) > 0)
 			$disponivel = false;
 		else
 		    $disponivel = true;
-		
+
+		// retornando resultado
 		return $disponivel;
-		
 	}
 }

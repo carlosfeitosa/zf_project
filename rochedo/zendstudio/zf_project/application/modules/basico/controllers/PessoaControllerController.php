@@ -8,15 +8,15 @@ class Basico_PessoaControllerController
 {
 	/**
 	 * Instância do Controlador Pessoa
-	 * @var Basico_PessoaController
+	 * @var Basico_PessoaControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 	
 	/**
 	 * Instância do Modelo Pessoa.
 	 * @var Basico_Model_Pessoa
 	 */
-	private $pessoa;
+	private $_pessoa;
 	
 	/**
 	 * Construtor do Controlador Pessoa.
@@ -25,22 +25,48 @@ class Basico_PessoaControllerController
 	 */
 	private function __construct()
 	{
-		$this->pessoa = new Basico_Model_Pessoa();
+		// instanciando modelo
+		$this->_pessoa = $this->retornaNovoObjetoPessoa();
+
+		// inicializando o controlador
+		$this->init();
 	}
-	
+
+	/**
+	 * Inicializacao do controlador Basico_PessoaControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Retorna instância do Controlador Pessoa.
 	 * 
-	 * @return Basico_PessoaController
+	 * @return Basico_PessoaControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_PessoaControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_PessoaControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um objeto pessoa vazio
+	 * 
+	 * @return Basico_Model_Pessoa
+	 */
+	public function retornaNovoObjetoPessoa()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Pessoa();
 	}
 	
 	/**
@@ -52,17 +78,33 @@ class Basico_PessoaControllerController
 	 * 
 	 * @return void
 	 */
-	public function salvarPessoa(Basico_Model_Pessoa $novaPessoa, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarPessoa(Basico_Model_Pessoa $objPessoa, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+    			$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+			// verificando se trata-se de uma nova tupla ou atualizacao
+			if ($objPessoa->id != NULL) {
+				// carregando informacoes de log de atualizacao de registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdatePessoa();
+				$mensagemLog    = LOG_MSG_UPDATE_PESSOA;
+			} else {
+				// carregando informacoes de log de novo registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovaPessoa();
+				$mensagemLog    = LOG_MSG_NOVA_PESSOA;
+			}
 
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novaPessoa, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoa(), LOG_MSG_NOVA_PESSOA);
+			Basico_PersistenceControllerController::bdSave($objPessoa, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
 			// atualizando o objeto
-			$this->pessoa = $novaPessoa;
+			$this->_pessoa = $objPessoa;
 						
 		} catch (Exception $e) {
 			throw new Exception($e);
@@ -92,25 +134,22 @@ class Basico_PessoaControllerController
 		// setando a lingua padra
 		return Basico_UtilControllerController::registraValorSessao(DEFAULT_USER_LANGUAGE, $lingua);
 	}
-	
-    /**
-	 * Retorna o objeto dados pessoais da pessoa passada.
+
+	/**
+	 * Retorna o id da pessoa master (sistema)
 	 * 
-	 * @param Int $idPessoa
-	 * @return Basico_Model_DadosPessoais
+	 * @return Integer
 	 */
-	public static function retornaObjetoDadosPessoaisPessoa($idPessoa)
+	public function retornaIdPessoaSistema()
 	{
-		if ((int)$idPessoa > 0) {
-			//instanciando classe dadosPessoais
-			$objDadosPessoais = new Basico_Model_DadosPessoais();
-			
-			//recuperando tupla da pessoa passada
-			$dadosPessoais = $objDadosPessoais->fetchList("id_pessoa = {$idPessoa}");
-			
-			//retornando objeto dados pessoais
-			return $dadosPessoais[0];
-		}
+		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
+		// recuperando o objeto pessoa
+		$objsPessoaSistema = $this->_pessoa->fetchList("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
+
+		// verificando se o objeto foi carregado
+		if (isset($objsPessoaSistema[0]))
+			return $objsPessoaSistema[0]->id;
+
 		return null;
 	}
 }

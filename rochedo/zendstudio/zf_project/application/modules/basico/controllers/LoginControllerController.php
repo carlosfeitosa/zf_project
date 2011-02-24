@@ -4,63 +4,104 @@
 require_once('TradutorControllerController.php');
 
 class Basico_LoginControllerController {
-/**
-	 * 
+	/**
 	 * @var Basico_LoginControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 	
 	/**
-	 * 
 	 * @var Basico_Model_Login
 	 */
-	private $login;
+	private $_login;
 	
 	/**
-	 * Carrega a variavel login com um novo objeto Basico_Model_Login
+	 * Contrutor do controlador Basico_LoginControllerController
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->login = new Basico_Model_Login();
+		// inicializando o modelo
+		$this->_login = $this->retornaNovoObjetoLogin();
+
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializacao do controlador Basico_LoginControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
 	}
 	
 	/**
 	 * Inicializa Controlador Login.
 	 * 
-	 * @return Basico_LoginController
+	 * @return Basico_LoginControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			
-			self::$singleton = new Basico_LoginControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_LoginControllerController();
 		}
-		return self::$singleton;
+		// retornando a instancia
+		return self::$_singleton;
 	}
-	
+
+	/**
+	 * Retorna um objeto login vazio
+	 * 
+	 * @return Basico_Model_Login
+	 */
+	public function retornaNovoObjetoLogin()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Login();
+	}
+
 	/**
 	 * Salva o login.
 	 * 
 	 * @param Basico_Model_Login $objLogin
 	 * @param Integer|null $versaoUpdate
 	 * @param Integer|null $idPessoaPerfilCriador
-	 * @param String|null $logMessage
 	 * 
 	 * @return void
 	 */
-	public function salvarLogin(Basico_Model_Login $objLogin, $versaoUpdate = null, $idPessoaPerfilCriador = null, $logMessage = LOG_MSG_NOVO_DADOS_PESSOAIS)
+	public function salvarLogin(Basico_Model_Login $objLogin, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
-    			
+    			$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+			// verificando se trata-se de uma nova tupla ou atualizacao de registro
+			if ($objLogin->id != NULL) {
+				// carregando informacoes de log de atualizacao de registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateLogin();
+				$mensagemLog    = LOG_MSG_UPDATE_LOGIN;
+			} else {
+				// carregando informacoes de log de novo registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoLogin();
+				$mensagemLog    = LOG_MSG_NOVO_LOGIN;
+			}
+
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($objLogin, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoLogin(), LOG_MSG_NOVO_DADOS_PESSOAIS);
-						
+			Basico_PersistenceControllerController::bdSave($objLogin, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+			// atualizando o objeto dentro do controlador
+			$this->_login = $objLogin;
+
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
@@ -73,10 +114,10 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return Boolean
 	 */
-	public static function registraIdLoginUsuarioSessao($login)
+	public function registraIdLoginUsuarioSessao($login)
 	{
 		// recuperando o objeto login
-		$objLogin = Basico_LoginControllerController::retornaObjetoLoginLogin($login);
+		$objLogin = $this->retornaObjetoLoginPorLogin($login);
 		
 		// verificando o resultado da recuperacao
 		if ($objLogin->id) {
@@ -85,7 +126,7 @@ class Basico_LoginControllerController {
 
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -121,13 +162,10 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return Basico_Model_Login|null
 	 */
-	public static function retornaObjetoLoginLogin($login)
+	public function retornaObjetoLoginPorLogin($login)
 	{
-		// instanciando o modelo de login
-		$modeloLogin = new Basico_Model_Login();
-
 		// recuperando o array com o objeto login
-		$arrayObjsLogin = $modeloLogin->fetchList("login = '{$login}'");
+		$arrayObjsLogin = $this->_login->fetchList("login = '{$login}'");
 
 		// verificando o resultado da recuperacao
 		if ($arrayObjsLogin)
@@ -144,13 +182,13 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return Array
 	 */
-	public static function retornaArrayLoginPodeLogar($login)
+	public function retornaArrayLoginPodeLogar($login)
 	{
 		// inicializando variaveis
 		$tempReturn = array();
 		
 		// recuperando o objeto login
-		$objLogin = self::retornaObjetoLoginLogin($login);
+		$objLogin = $this->retornaObjetoLoginPorLogin($login);
 
 		// verificando se o login tem condicoes de logar
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO]          = self::retornaLoginAtivo($objLogin);
@@ -169,32 +207,32 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return String
 	 */
-	public static function retornaMensagensErroLoginNaoPodeLigarHTMLLI($login)
+	public function retornaMensagensErroLoginNaoPodeLigarHTMLLI($login)
 	{
 		// inicializando variaveis
 		$tempReturn = '';
 
-		// instanciando tradutor
-		$tradutorController = Basico_TradutorControllerController::init();
+		// instanciando controladores
+		$tradutorControllerController = Basico_TradutorControllerController::getInstance();
 
 		// recuperando os problemas de logon
-		$arrayProblemasLogon = self::retornaArrayLoginPodeLogar($login);
+		$arrayProblemasLogon = $this->retornaArrayLoginPodeLogar($login);
 
 		// verificando se existe problema de login nao ativo
 		if (!$arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . "</li>";
 
 		// verificando se existe problema de login travado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . "</li>";
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		return $tempReturn;
 	}
@@ -206,10 +244,10 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return Boolean
 	 */
-	public static function retornaLoginPodeLogar($login)
+	public function retornaLoginPodeLogar($login)
 	{
 		// recuperando array de verificacoes sobre o login
-		$arrayLoginPodeLogar = self::retornaArrayLoginPodeLogar($login);
+		$arrayLoginPodeLogar = $this->retornaArrayLoginPodeLogar($login);
 
 		// retornando se o login pode logar
 		return (($arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA]));
@@ -274,15 +312,18 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return null
 	 */
-	public static function checaTentativaInvalidaLogon($login)
+	public function checaTentativaInvalidaLogon($login)
 	{
 		// recuperando o objeto login
-		$objLogin = self::retornaObjetoLoginLogin($login);
+		$objLogin = $this->retornaObjetoLoginPorLogin($login);
 
 		// verificando se o objeto foi carregado
 		if ($objLogin->id) {
+			// instanciando controladores
+			$rowinfoControllerController = Basico_RowInfoControllerController::getInstance();
+
 			// recuperando a ultima versao do objeto
-			$versaoUpdate = Basico_CVCControllerController::retornaUltimaVersao($objLogin);
+			$versaoUpdate = Basico_CVCControllerController::getInstance()->retornaUltimaVersao($objLogin);
 
 			// incrementa a quantidade de tentativas falhas
 			$objLogin->tentativasFalhas++;
@@ -292,13 +333,12 @@ class Basico_LoginControllerController {
 				// travando o login
 				$objLogin->travado = true;
 
-			// setando o rowinfo
-			$controladorRowInfo = Basico_RowInfoControllerController::init();
-			$controladorRowInfo->prepareXml($objLogin, true);
-			$objLogin->rowinfo  = $controladorRowInfo->getXml();
+			// preparando XML rowinfo
+			$rowinfoControllerController->prepareXml($objLogin, true);
+			$objLogin->rowinfo  = $rowinfoControllerController->getXml();
 
 			// salvando o objeto
-			self::salvarLogin($objLogin, $versaoUpdate);
+			$this->salvarLogin($objLogin, $versaoUpdate);
 		}
 
 		return null;
@@ -311,7 +351,7 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return Boolean
 	 */
-	public static function efetuaLogon($login)
+	public function efetuaLogon($login)
 	{
 		
 	}
@@ -333,7 +373,7 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return Boolean
 	 */
-	public static function efetuaLogoff()
+	public function efetuaLogoff()
 	{
 		
 	}
@@ -349,23 +389,23 @@ class Basico_LoginControllerController {
 	}
 	
 	/**
-	 * Retorna um array no formato Json possuindo as mensagens relacionadas
-	 * ao componente passwordStrengthChecker.
+	 * Retorna um array no formato Json possuindo as mensagens relacionadas ao componente passwordStrengthChecker.
+	 * 
 	 * @return Json
 	 */
 	public function retornaJsonMensagensPasswordStrengthChecker()
 	{
 		// inicializando controladores
-		$tradutorController = Basico_TradutorControllerController::init();
+		$tradutorControllerController = Basico_TradutorControllerController::getInstance();
 		
 		// carregando array com as mensagens utilizadas
-		$arrayMensagens = array('muito_fraca' => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
-		                        'fraca'       => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
-		                        'boa'         => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
-		                        'forte'       => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
-		                        'muito_forte' => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
-		                        'digite_senha'=> $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
-		                        'abaixo'      => $tradutorController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
+		$arrayMensagens = array('muito_fraca' => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
+		                        'fraca'       => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
+		                        'boa'         => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
+		                        'forte'       => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
+		                        'muito_forte' => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
+		                        'digite_senha'=> $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
+		                        'abaixo'      => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
 	                           );
 	                           
 	    // codificando o array e retornando-o.
@@ -374,15 +414,17 @@ class Basico_LoginControllerController {
 	
 	/**
 	 * Retorna o login da pessoa passada
+	 * 
 	 * @param Int $idPessoa
+	 * 
 	 * @return String
 	 */
-	public function retornaLoginPessoa($idPessoa)
+	public function retornaLoginPorIdPessoa($idPessoa)
 	{
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objLogin = self::$singleton->login->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objLogin = $this->_login->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (isset($objLogin[0]))
@@ -391,7 +433,7 @@ class Basico_LoginControllerController {
 	    	    
 	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
 	    	
-		}else{
+		} else {
 			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
 		}	
 	}
@@ -403,10 +445,10 @@ class Basico_LoginControllerController {
 	 * 
 	 * @return Integer|null
 	 */
-	public static function retornaIdPessoaLogin($login)
+	public function retornaIdPessoaPorLogin($login)
 	{
 		// recuperando o objeto login
-		$objLogin = self::retornaObjetoLoginLogin($login);
+		$objLogin = $this->retornaObjetoLoginPorLogin($login);
 
 		// verificando se o login existe
 		if ($objLogin->id)
@@ -415,4 +457,31 @@ class Basico_LoginControllerController {
 
 		return null;
 	}
+
+    /**
+     * Retorna o login do usuario master do sistema cadastrado no banco de dados
+     * 
+     * @return String
+     */
+    public function retornaLoginUsuarioMasterDB() 
+    {
+    	// instanciando controladores
+    	$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+    	
+    	//recuperando o objeto pessoaPerfil do sistema
+    	$objetoPessoaPerfilSistema = $pessoaPerfilControllerController->retornaObjetoPessoaPerfilSistema();
+    	  	
+    	//recuperando resource do banco de dados
+    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
+    	
+    	//recuperando o login do usuario master do sistema
+    	$objsLogin = $this->_login->fetchList("id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
+
+    	// verificando se o objeto foi recuperado com sucesso
+    	if (isset($objsLogin[0]))    	
+    		//retornando o login do usuario master do sistema
+    		return $objsLogin[0]->login;
+
+    	return null;
+    }
 }

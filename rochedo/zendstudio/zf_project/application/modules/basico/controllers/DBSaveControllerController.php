@@ -32,7 +32,7 @@ class Basico_DBSaveControllerController
 
 		// verificando se trata-se de uma atualizacao e se a linha ainda existe no banco da dados
 		if ((isset($mixed->id)) and (isset($versaoUpdate)) and (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)))
-			throw new Exceltion(MSG_ERRO_SAVE_UPDATE_SEM_PERSISTENCIA);
+			throw new Exception(MSG_ERRO_SAVE_UPDATE_SEM_PERSISTENCIA);
 
 		// iniciando transacao
 		$transacaoInicializada = Basico_PersistenceControllerController::bdControlaTransacao();
@@ -46,7 +46,7 @@ class Basico_DBSaveControllerController
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
-						Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+						Basico_LogControllerController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
 					$novaTupla = true;
 				}
@@ -96,7 +96,7 @@ class Basico_DBSaveControllerController
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
-						Basico_LogControllerController::salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+						Basico_LogControllerController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 				}
 				else {
 					// verificando se existe transacao iniciada

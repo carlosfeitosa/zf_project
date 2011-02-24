@@ -12,37 +12,48 @@ class Basico_DBTransactionControllerController
 	protected $_transactionCount;
 
 	/**
-	 * Instância do Controlador DBTransaction
+	 * Instância do Controlador Basico_DBTransactionControllerController
 	 * 
 	 * @var Basico_DBTransactionControllerController
 	 */
-	static private $singleton;
+	static private $_singleton;
 
 	/**
-	 * Construtor do Controlador DBTransaction.
+	 * Construtor do controlador Basico_DBTransactionControllerController.
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		// inicializando contador de transacao
-		self::resetaContadorTransacoes();
+		// inicializando controlador
+		$this->init();
 	}
 
+	/**
+	 * Inicializa o controlador Basico_DBTransactionControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		// inicializando contador de transacoes
+		self::resetaContadorTransacoes();
+	}
+	
 	/**
 	 * Retorna instância do Controlador DBTransaction.
 	 * 
 	 * @return Basico_DBTransactionControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// verificando singleton
-		if(self::$singleton == NULL){
-
-			// retornando singleton
-			self::$singleton = new Basico_DBTransactionControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_DBTransactionControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
 
 	/**

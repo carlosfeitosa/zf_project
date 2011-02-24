@@ -7,40 +7,67 @@ class Basico_RowInfoControllerController
 {
 	/**
 	 * Instância do controlador Rowinfo
-	 * @var Basico_RowInfoController
+	 * @var Basico_RowInfoControllerController
 	 */
-	static private $singleton;
-	
+	private static $_singleton;
+
 	/**
 	 * Instância do Modelo RowInfo
 	 * @var Basico_Model_RowInfo
 	 */
-	private $rowinfo;
-	
+	private $_rowinfo;
+
 	/**
-	 * Construtor.
+	 * Construtor do controlador Basico_RowInfoControllerController
+	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->rowinfo = new Basico_Model_RowInfo();
+		// instanciando o modelo
+		$this->_rowinfo = $this->retornaNovoObjetoRowinfo();
+
+		// inicializando o controlador
+		$this->init();
 	}
-	
+
+	/**
+	 * Inicializa o controlador Basico_RowInfoControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Retorna instância do controlador RowInfo
 	 * 
-	 * @return Basico_RowInfoController
+	 * @return Basico_RowInfoControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// verificando singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_RowInfoControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_RowInfoControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
-	
+
+	/**
+	 * Retorna um modelo rowinfo vazio
+	 * 
+	 * @return Basico_Model_RowInfo
+	 */
+	public function retornaNovoObjetoRowinfo()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_RowInfo();
+	}
+
 	/**
 	* Retorna o XML do Rowinfo
 	* 
@@ -49,7 +76,7 @@ class Basico_RowInfoControllerController
 	public function getXml()
 	{
 		// retornando o resultado do metodo "geradorXmlGerarXml" na classe "Basico_GeradorControllerController"
-		return Basico_GeradorControllerController::geradorXmlGerarXml($this->rowinfo, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
+		return Basico_GeradorControllerController::geradorXmlGerarXml($this->_rowinfo, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
 	}
 	
 	/**
@@ -63,21 +90,24 @@ class Basico_RowInfoControllerController
 	public function prepareXml($modelo, $utilizarUsuarioSistema = false)
 	{
 		try {
+			// instanciando controladores
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 			// verificando se a solicitacao foi feita pelo sistema
 		    if ($utilizarUsuarioSistema)
 		    	// recuperando o id do usuario do sistema
-		        $idPessoaPerfil = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+		        $idPessoaPerfil = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
 	
 		    // verificando se existe id no objeto
 	        if (!isset($modelo->id))
 	        {
 	        	// setando informacoes sobre criacao
-	            $this->rowinfo->setGenericDateTimeCreation(Basico_UtilControllerController::retornaDateTimeAtual());
-	            $this->rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
+	            $this->_rowinfo->setGenericDateTimeCreation(Basico_UtilControllerController::retornaDateTimeAtual());
+	            $this->_rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
 	        }
 	        // setando informacoes sobre modificacao
-	        $this->rowinfo->setGenericDateTimeLastModified(Basico_UtilControllerController::retornaDateTimeAtual());
-	        $this->rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
+	        $this->_rowinfo->setGenericDateTimeLastModified(Basico_UtilControllerController::retornaDateTimeAtual());
+	        $this->_rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
 	        
 	        return true;	
 		} catch (Exception $e) {

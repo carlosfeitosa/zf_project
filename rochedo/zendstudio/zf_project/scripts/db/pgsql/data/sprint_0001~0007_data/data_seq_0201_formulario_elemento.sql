@@ -89,7 +89,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINIO' AS nome, 'Elemento campo tipo sanguinio.' AS descricao,
                               'FORM_FIELD_TIPO_SANGUINIO' AS constante_textual_label,
                               'tipoSanguinio' AS element_name, NULL AS element_attribs,
-                              '''tipoSanguinio'', array(''style'' => ''width: 50px;'', ''places'' => 2)' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''tipoSanguinio''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1173,7 +1173,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome, 'Botão para fe
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
        'FORM_BUTTON_CLOSE_DIALOG' AS constante_textual_label, 'fechar' AS element_name, 
-       '''fechar'', array(''onClick'' => ''hideDialog(\\"@nomeForm\\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       '''fechar'', array(''onClick'' => ''hideDialog(\"@nomeForm\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

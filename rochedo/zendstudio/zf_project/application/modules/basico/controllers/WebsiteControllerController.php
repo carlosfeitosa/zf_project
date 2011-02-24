@@ -8,41 +8,67 @@ class Basico_WebsiteControllerController
 {
 	/**
 	 * 
-	 * @var Basico_WebsiteController
+	 * @var Basico_WebsiteControllerController
 	 */
-	static private $singleton;
-	
+	private static $_singleton;
+
 	/**
 	 * 
 	 * @var Basico_Model_Website
 	 */
-	private $website;
-	
+	private $_website;
+
 	/**
-	 * Carrega a variavel Website com um novo objeto Basico_Model_Website
+	 * Construtor do controlador website
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->website = new Basico_Model_Website();
+		// instanciando o modelo
+		$this->_website = $this->retornaNovoObjetoWebsite();
+
+		// inicializando o controlador
+		$this->init();
 	}
-	
+
+	/**
+	 * Inicializa o controlador Basico_WebsiteControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Inicializa Controlador Dados Pessoais.
 	 * 
-	 * @return Basico_WebsiteController
+	 * @return Basico_WebsiteControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			
-			self::$singleton = new Basico_WebsiteControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_WebsiteControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
-	
+
+	/**
+	 * Retorna um modelo website vazio
+	 * 
+	 * @return void
+	 */
+	public function retornaNovoObjetoWebsite()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_WebSite();
+	}
+
 	/**
 	 * Salva os website.
 	 * 
@@ -52,24 +78,34 @@ class Basico_WebsiteControllerController
 	 * 
 	 * @return void
 	 */
-	public function inserirWebsite($novoWebsite, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function inserirWebsite(Basico_Model_WebSite $objWebsite, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+    			$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
 
-    		if ($novoWebsite->id != NULL)
-    			$categoriaLog = Basico_CategoriaControllerController::retornaIdCategoriaLogUpdateWebsite();
-            else
-                $categoriaLog = Basico_CategoriaControllerController::retornaIdCategoriaLogNovoWebsite();
-    			
+    		// verificando se trata-se de uma nova tupla ou atualizacao
+    		if ($objWebsite->id != NULL) {
+    			// recuperando informacoes de log de atualizacao de registro
+    			$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateWebsite();
+    			$mensagemLog    = LOG_MSG_UPDATE_WEBSITE;
+    		} else {
+    			// recuperando informacoes de log de novo registro
+    			$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoWebsite();
+    			$mensagemLog    = LOG_MSG_NOVO_WEBSITE;
+    		}
+
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novoWebsite, $versaoUpdate, $idPessoaPerfilCriador, $categoriaLog, LOG_MSG_NOVO_WEBSITE);
-			
+			Basico_PersistenceControllerController::bdSave($objWebsite, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
 			// atualizando o objeto
-			$website = $novoWebsite;
-						
+			$this->_website = $objWebsite;
+
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

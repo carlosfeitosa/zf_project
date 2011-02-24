@@ -7,7 +7,9 @@ class Basico_ValidacaoControllerController
 {
 	/**
 	 * Função para validação padrão de formularios.
+	 * 
 	 * @param $form
+	 * 
 	 * @return Boolean
 	 */
 	private function validaForm($form)

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 17/02/2011 13:42:30
+* em: 24/02/2011 14:43:00
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 17/02/2011 13:21:26
+* @version    1: 24/02/2011 14:42:30
 */
 class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
 {

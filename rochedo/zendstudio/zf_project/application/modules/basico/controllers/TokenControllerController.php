@@ -13,7 +13,7 @@ require_once('GeradorControllerController.php');
 require_once(APPLICATION_PATH . "/modules/basico/models/Token.php");
 
 /**
- * Basico_TokenController
+ * Basico_TokenControllerController
  * @author joao
  *
  */
@@ -23,17 +23,17 @@ class Basico_TokenControllerController
 	 * 
 	 * @var Basico_TokenControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
     
 	/**
 	 * @var Basico_Model_Token
 	 */
-	private $token;
+	private $_token;
 	
 	/**
 	 * @var array
 	 */
-	static private $arrayTokensUrls;
+	private static $_arrayTokensUrls;
 	
 	/**
 	 * Construtor do Controlador Token
@@ -42,23 +42,51 @@ class Basico_TokenControllerController
 	 */
 	private function __construct()
 	{
-        if ($this->token == NULL)
-		    $this->token = new Basico_Model_Token();
-	}
+		// instanciando o modelo
+		$this->_token = $this->retornaNovoObjetoToken();
 		
+		// inicializando o controlador
+		$this->init();
+	}
+
 	/**
 	 * Inicializa o controlador Basico_TokenControllerController
 	 * 
+	 * @return void;
+	 */
+	private function init()
+	{
+		// inicializando os atributos
+		self::$_arrayTokensUrls = array();
+		
+		return;
+	}
+
+	/**
+	 * Recupera a instancia do controlador Basico_TokenControllerController
+	 * 
 	 * @return Basico_TokenControllerController
 	 */
-	static public function init()
+	static public function getInstance()
 	{
 		// checando singleton
-		if (self::$singleton == NULL){
-			self::$singleton = new Basico_TokenControllerController();
+		if (self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_TokenControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um objeto token vazio
+	 * 
+	 * @return Basico_Model_Token
+	 */
+	public function retornaNovoObjetoToken()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Token();
 	}
 	
     /**
@@ -68,28 +96,27 @@ class Basico_TokenControllerController
      * 
      * @return String
      */
-	static public function gerarTokenUrl($url)
+	public function gerarTokenPorUrl($url)
 	{
 		// registrando/recuperando o namespace do token na sessao
         $session = Basico_SessionControllerController::registraSessaoToken();
 
-        // recuperando array de tokens-url encontrados na sessao
+        // verificando se existem urls-token na sessao
 		if (isset($session->arrayTokensUrls))
-		    self::$arrayTokensUrls = $session->arrayTokensUrls;
-		else
-            self::$arrayTokensUrls = array();
+			// recuperando array de tokens-url encontrados na sessao
+		    self::$_arrayTokensUrls = $session->arrayTokensUrls;
 
 		// verificando se o token ja existe na sessao
-	    $token = array_search($url, self::$arrayTokensUrls);
+	    $token = array_search($url, self::$_arrayTokensUrls);
 
 	    // verificando o resultado da busca pelo token na sessao
 	    if ($token === false) {
 	    	// gerando token
-	        $token = Basico_GeradorControllerController::geradorTokenGerarToken(array_keys(self::$arrayTokensUrls));
+	        $token = Basico_GeradorControllerController::geradorTokenGerarToken(array_keys(self::$_arrayTokensUrls));
 	        // colocando gerado token no array de tokens do controlador
-	        self::$arrayTokensUrls[$token] = $url;
+	        self::$_arrayTokensUrls[$token] = $url;
 	        // registrando array de tokens do controlador na sessao
-	        $session->arrayTokensUrls = self::$arrayTokensUrls;
+	        $session->arrayTokensUrls = self::$_arrayTokensUrls;
 	    }
 
 	    // montando url
@@ -106,21 +133,20 @@ class Basico_TokenControllerController
      * 
      * @return String
      */
-	public function decodeTokenUrl($token)
+	public function decodeTokenUrlPorToken($token)
 	{
 		// registrando/recuperando o namespace do token na sessao
 	    $session = Basico_SessionControllerController::registraSessaoToken();
 
-	    // recuperando array de tokens-url encontrados na sessao
+	    // verificando se existem urls-token na sessao
 	    if (isset($session->arrayTokensUrls))
-		    self::$arrayTokensUrls = $session->arrayTokensUrls;
-		else
-            self::$arrayTokensUrls = array();
+	    	// recuperando array de tokens-url encontrados na sessao
+		    self::$_arrayTokensUrls = $session->arrayTokensUrls;
 
 		// verificando se o token existe na sessao
-        if (array_key_exists($token, self::$arrayTokensUrls))
+        if (array_key_exists($token, self::$_arrayTokensUrls))
         	// recuperando a url
-            $url = self::$arrayTokensUrls[$token];
+            $url = self::$_arrayTokensUrls[$token];
         else
             throw new Exception(MSG_ERRO_TOKEN_SESSAO_NAO_ENCONTRADO);
 
@@ -140,11 +166,11 @@ class Basico_TokenControllerController
      * 
      * @return String
      */
-	public function gerarToken($modelo, $nomeDoCampoBancoDeDados)
+	public function gerarTokenPorModelo($modelo, $nomeDoCampoBancoDeDados)
 	{
 		// gerando uniqueId
 		$tokenString = Basico_GeradorControllerController::geradorUniqueIdGerarId($modelo, $nomeDoCampoBancoDeDados);
-		
+
 		// retornando uniqueId
 		return $tokenString;
 	}
@@ -158,33 +184,49 @@ class Basico_TokenControllerController
 	 * 
 	 * @return void
 	 */
-    public function salvarToken(Basico_Model_Token $novoToken, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+    public function salvarToken(Basico_Model_Token $objToken, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se existe a relacao de categoria
-		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($novoToken->categoria))
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($objToken->categoria))
 			throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_TOKEN_SEM_RELACAO);
 
 		// verificando se existe o token existe na tabela de relacao
-		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($novoToken->categoria, $novoToken->idGenerico, Basico_PersistenceControllerController::bdRetornaTableNameObjeto($novoToken), Basico_PersistenceControllerController::bdRetornaNomeCampoIdGenericoObjeto($novoToken), true))
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($objToken->categoria, $objToken->idGenerico, Basico_PersistenceControllerController::bdRetornaTableNameObjeto($objToken), Basico_PersistenceControllerController::bdRetornaNomeCampoIdGenericoObjeto($objToken), true))
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
 
 		try {
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
-    			
+	    		// setando o id do perfil criador para o sistema
+    			$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+			// verificando se trata-se de uma nova tupla ou atualizacao
+			if ($objToken->id != NULL) {
+				// carregando informacoes de log de atualizacao de registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateToken();
+				$mensagemLog    = LOG_MSG_UPDATE_TOKEN;
+			} else {
+				// carregando informacoes de log de novo registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoToken();
+				$mensagemLog    = LOG_MSG_NOVO_TOKEN;
+			}
+
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novoToken, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoToken(), LOG_MSG_NOVO_TOKEN);
+			Basico_PersistenceControllerController::bdSave($objToken, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 			
 			// atualizando o objeto
-			$this->token = $novoToken;
+			$this->_token = $objToken;
 						
 		} catch (Exception $e) {
-			
+
 			throw new Exception($e);
 		}				
 	}
-	
+
 	/**
 	 * Retorna o id generico do token
 	 * 
@@ -192,20 +234,20 @@ class Basico_TokenControllerController
 	 * 
 	 * @return Integer|null
 	 */
-	public function retornaObjetoTokenEmail($token)
+	public function retornaObjetoTokenEmailPorToken($token)
 	{
 		// instanciando controlador de categoria
-	    $controladorCategoria = Basico_CategoriaControllerController::init();
+	    $categoriaControllerController = Basico_CategoriaControllerController::getInstance();
 	    
 	    // recuperando objeto categoria do token-email
-		$idCategoriaTokenEmail = $controladorCategoria->retornaIdCategoriaEmailValidacaoPlainText();
+		$idCategoriaTokenEmail = $categoriaControllerController->retornaIdCategoriaEmailValidacaoPlainText();
 		// recuperando objeto token
-		$tokenObj = self::$singleton->token->fetchList("id_categoria = {$idCategoriaTokenEmail} and token = '{$token}'", null, 1, 0);
+		$objToken = $this->_token->fetchList("id_categoria = {$idCategoriaTokenEmail} and token = '{$token}'", null, 1, 0);
 
 		// verificando se o objeto do token existe
-		if (isset($tokenObj[0]))
+		if (isset($objToken[0]))
 			// retornando objeto
-    	    return $tokenObj[0];
+    	    return $objToken[0];
 
     	return null;
 	}

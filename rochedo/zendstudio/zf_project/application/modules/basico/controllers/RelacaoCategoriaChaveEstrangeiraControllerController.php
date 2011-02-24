@@ -10,37 +10,63 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	 * 
 	 * @var Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 
 	/**
 	 * 
 	 * @var Basico_Model_RelacaoCategoriaChaveEstrangeira
 	 */
-	private $relacaoCategoriaChaveEstrangeira;
+	private $_relacaoCategoriaChaveEstrangeira;
 
 	/**
-	 * Construtor do Controlador Email
+	 * Construtor do Controlador Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->relacaoCategoriaChaveEstrangeira = new Basico_Model_RelacaoCategoriaChaveEstrangeira();
+		// instanciando o modelo
+		$this->_relacaoCategoriaChaveEstrangeira = $this->retornaNovoObjetoRelacaoCategoriaChaveEstrangeira();
+
+		// inicializando o controlador
+		$this->init();
 	}
 
 	/**
-	 * Inicializa o controlador Email.
+	 * Inicializa o controlador Basico_RelacaoCategoriaChaveEstrangeiraControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
+	/**
+	 * Inicializa o controlador Basico_RelacaoCategoriaChaveEstrangeiraControllerController.
 	 * 
 	 * @return Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// verificando singleton
-		if (self::$singleton == NULL){
-			
-			self::$singleton = new Basico_RelacaoCategoriaChaveEstrangeiraControllerController();
+		if (self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_RelacaoCategoriaChaveEstrangeiraControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um modelo relacao categoria chave estrangeira vazio
+	 *
+	 * @return Basico_Model_RelacaoCategoriaChaveEstrangeira
+	 */
+	public function retornaNovoObjetoRelacaoCategoriaChaveEstrangeira()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_RelacaoCategoriaChaveEstrangeira();
 	}
 
 	/**
@@ -52,18 +78,32 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	 * 
 	 * @return void
 	 */
-	public function salvarRelacaoCategoriaChaveEstrangeira(Basico_Model_RelacaoCategoriaChaveEstrangeira $novaRelacaoCategoriaChaveEstrangeira, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarRelacaoCategoriaChaveEstrangeira(Basico_Model_RelacaoCategoriaChaveEstrangeira $objRelacaoCategoriaChaveEstrangeira, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
     	try {
+    		// instanciando controladores
+    		$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+    		$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+			// verificando se trata-se de uma nova tupla ou atualizacao
+			if ($objRelacaoCategoriaChaveEstrangeira->id != NULL) {
+				// estourando excecao - nao eh possivel atualizar a relacao de categoria chave estrangeira
+				throw new Exception(MSG_ERRO_UPDATE_NAO_PERMITIDO);
+			} else {
+				// recuperando informacoes de log de novo registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira();
+				$mensagemLog    = LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA;
+			}
 
 			// salvando o objeto através do controlador Save
-	    	Basico_PersistenceControllerController::bdSave($novaRelacaoCategoriaChaveEstrangeira, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira(), LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
+	    	Basico_PersistenceControllerController::bdSave($objRelacaoCategoriaChaveEstrangeira, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 	    	// atualizando o objeto
-    		$this->relacaoCategoriaChaveEstrangeira = $novaRelacaoCategoriaChaveEstrangeira;
+    		$this->_relacaoCategoriaChaveEstrangeira = $objRelacaoCategoriaChaveEstrangeira;
 
     	} catch (Exception $e) {
     		
@@ -83,17 +123,17 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	public function checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo, $forceRelationship = false)
 	{
 		// recuperando objeto
-		$objsRelacaoCategoriaChaveEstrangeira = $this->relacaoCategoriaChaveEstrangeira->fetchList("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
+		$objsRelacaoCategoriaChaveEstrangeira = $this->_relacaoCategoriaChaveEstrangeira->fetchList("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperando
 		if (isset($objsRelacaoCategoriaChaveEstrangeira[0]))
-			
+
 			return true;
 		// verificando se deve criar relacao
 		else if ($forceRelationship) {
 
 			// retornando o resultado do metodo "criaRelacaoCategoriaChaveEstrangeira"
-			return self::criaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo);
+			return $this->criaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo);
 		}
 		
 		return false;
@@ -111,22 +151,22 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	{
 		// checando se a relacao existe
 		if (!self::checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo)) {
+			// instanciando controladores
+			$rowinfoControllerController = Basico_RowInfoControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
-			$this->relacaoCategoriaChaveEstrangeira = new Basico_Model_RelacaoCategoriaChaveEstrangeira();
-			// instanciando o controlador de rowinfo
-			$controllerRowinfo = Basico_RowInfoControllerController::init();
+			$this->_relacaoCategoriaChaveEstrangeira = new Basico_Model_RelacaoCategoriaChaveEstrangeira();
 
 			// setando os valores
-			$this->relacaoCategoriaChaveEstrangeira->tabelaOrigem = $nomeTabela;
-			$this->relacaoCategoriaChaveEstrangeira->campoOrigem  = $nomeCampo;
-			$controllerRowinfo->prepareXml($this->relacaoCategoriaChaveEstrangeira, true);
-			$this->relacaoCategoriaChaveEstrangeira->rowinfo = $controllerRowinfo->getXml();
+			$this->_relacaoCategoriaChaveEstrangeira->tabelaOrigem = $nomeTabela;
+			$this->_relacaoCategoriaChaveEstrangeira->campoOrigem  = $nomeCampo;
+			$rowinfoControllerController->prepareXml($this->_relacaoCategoriaChaveEstrangeira, true);
+			$this->_relacaoCategoriaChaveEstrangeira->rowinfo = $rowinfoControllerController->getXml();
 
 			// salvando o objeto
-			self::salvarRelacaoCategoriaChaveEstrangeira($this->relacaoCategoriaChaveEstrangeira, null, Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema());
+			$this->salvarRelacaoCategoriaChaveEstrangeira($this->_relacaoCategoriaChaveEstrangeira, null, $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema());
 		}
-	
 		return true;
 	}
 
@@ -136,17 +176,14 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 	 * 
 	 * @return Array
 	 */
-	public static function retornaArrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira()
+	public function retornaArrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira()
 	{
 		// inicializando variaveis
 		$arrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira = array();
 
-		// instanciando modelo categoria chave estrangeira
-		$modelRelacaoCategoriaChaveEstrangeira = new Basico_Model_RelacaoCategoriaChaveEstrangeira();
-
 		// recuperando todas as tuplas
-		$objsRelacaoCategoriaChaveEstrangeira = $modelRelacaoCategoriaChaveEstrangeira->fetchAll();
-		
+		$objsRelacaoCategoriaChaveEstrangeira = $this->_relacaoCategoriaChaveEstrangeira->fetchAll();
+
 		// loop para recuperar o nome das tabelas
 		foreach($objsRelacaoCategoriaChaveEstrangeira as $objRelacaoCategoriaChaveEstrangeira) {
 			// recupernado o nome das tabelas e colocando no array de resultados 

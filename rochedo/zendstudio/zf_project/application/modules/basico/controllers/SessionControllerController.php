@@ -9,21 +9,43 @@ class Basico_SessionControllerController
     /**
 	 * @var Basico_SessionControllerController
 	 */
-	static private $singleton;
-	
+	private static $_singleton;
+
+	/**
+	 * Construtor do controlador Basico_SessionControllerController
+	 * 
+	 * @return void
+	 */
+	private function __construct()
+	{
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializa o controlador Basico_SessionControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Inicializa o controlador Basico_TokenController
 	 * 
 	 * @return Basico_SessionControllerController
 	 */
-	public function init()
+	public static function getInstance()
 	{
 		// verificando singleton
-		if (self::$singleton == NULL){
-			self::$singleton = new Basico_SessionControllerController();
+		if (self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_SessionControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
 	
 	/**
@@ -31,7 +53,7 @@ class Basico_SessionControllerController
 	 * 
 	 * @return Zend_Session
 	 */
-	static public function registraSessaoToken()
+	public static function registraSessaoToken()
 	{
 		// registrando o namespace "token"
 	    $session = new Zend_Session_Namespace('token');
@@ -43,7 +65,7 @@ class Basico_SessionControllerController
             // marca a sessao como inicializada
             $session->initialized = true;
 	    }
-	    
+
 	    // retorna a sessao
 	    return $session;
 	}

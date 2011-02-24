@@ -63,7 +63,7 @@ class Basico_GeradorFormularioControllerController
     public static function gerarTodos()
     {
 		// recuperando os objetos formulario dos sistema
-		$objsFormularios = Basico_FormularioControllerController::retornaTodosObjsFormularios();
+		$objsFormularios = Basico_FormularioControllerController::getInstance()->retornaTodosObjsFormularios();
 
 		// loop para capturar cada formulario
 		foreach ($objsFormularios as $objFormulario) {
@@ -247,7 +247,7 @@ class Basico_GeradorFormularioControllerController
                 Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoFormulario($nivelIdentacao, $formConstructorComment, $formConstructorInherits, $formName, $formMethod, $formAction, $formAttribs, $formDecorator));
 
                 // verifica se o formulario possui elementos
-                if (Basico_FormularioControllerController::existeElementos($objFormulario->id)) {
+                if (Basico_FormularioControllerController::getInstance()->existeElementosPorIdFormulario($objFormulario->id)) {
 
                 	// adicao dos prefix e paths de componentes nao ZF
                 	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objFormulario->id, $formAddPrefixPathComment);
@@ -261,7 +261,7 @@ class Basico_GeradorFormularioControllerController
                 };
                 
                 // verificacao sobre formularios filhos
-                if (Basico_FormularioControllerController::existeFormulariosFilhos($objFormulario->id)) {
+                if (Basico_FormularioControllerController::getInstance()->existeFormulariosFilhosPorIdFormulario($objFormulario->id)) {
                 	$formulariosFilhosObjects = $objFormulario->getFormulariosFilhosObjects();
                 	foreach ($formulariosFilhosObjects as $formularioFilhoObject){
                 		if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames))
@@ -460,7 +460,7 @@ class Basico_GeradorFormularioControllerController
                 Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName], $subFormOrder));
 
                 // verifica se o formulario possui elementos
-                if (Basico_FormularioControllerController::existeElementos($objSubFormulario->id)){
+                if (Basico_FormularioControllerController::getInstance()->existeElementosPorIdFormulario($objSubFormulario->id)){
 
                 	// adicao dos prefix e paths de componentes nao ZF
                 	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objSubFormulario->id, $formAddPrefixPathComment);
@@ -476,7 +476,7 @@ class Basico_GeradorFormularioControllerController
 				// verificando se o pai do formulario eh da categoria FORMULARIO_SUB_FORMULARIO
     			if ($objSubFormulario->getFormularioPaiObject()->getCategoriaObject()->getRootCategoriaPaiObject()->nome === FORMULARIO_SUB_FORMULARIO) {
     				// recuperando o nome da variavel que instancia o sub formulario pai
-    				$formPaiVariableInstance = self::retornaNomeVariavelSubForm(Basico_ModuloControllerController::retornaObjetoModuloNome($moduleName), $objSubFormulario->getFormularioPaiObject());
+    				$formPaiVariableInstance = self::retornaNomeVariavelSubForm(Basico_ModuloControllerController::getInstance()->retornaObjetoModuloPorNome($moduleName), $objSubFormulario->getFormularioPaiObject());
 	                // adicionanando sub-formulario ao sub formulario pai
 	                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName, $formPaiVariableInstance));
     			}
@@ -485,7 +485,7 @@ class Basico_GeradorFormularioControllerController
 	                Basico_UtilControllerController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName));
 
             	// verificacao sobre formularios filhos
-				if (Basico_FormularioControllerController::existeFormulariosFilhos($objSubFormulario->id)) {
+				if (Basico_FormularioControllerController::getInstance()->existeFormulariosFilhosPorIdFormulario($objSubFormulario->id)) {
 					$formulariosFilhosObjects = $objSubFormulario->getFormulariosFilhosObjects();
 					foreach ($formulariosFilhosObjects as $formularioFilhoObject){
 						if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames))
@@ -530,12 +530,11 @@ class Basico_GeradorFormularioControllerController
     {
     	// inicializando variaveis
     	$arrayReturn = array();
-    	$baseUrl     = Basico_UtilControllerController::retornaBaseUrl();
 
     	// carregando atributos do sub-formulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::retornaUltimaVersao($objSubFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::getInstance()->retornaUltimaVersao($objSubFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_UtilControllerController::retornaTimestamp($objSubFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_BEGIN_TAG]                         	  = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
 
@@ -553,7 +552,7 @@ class Basico_GeradorFormularioControllerController
 
 		// verificando se o sub-formulario possui acao
         if ($objSubFormulario->formAction)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$baseUrl}{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
 
 		// inicializando variaveis
         $tempArraySubFormAttrib = array();
@@ -617,7 +616,7 @@ class Basico_GeradorFormularioControllerController
     	// carregando atributos do formulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_criacao', date('d/m/Y H:i:s'), FORM_GERADOR_HEADER) . QUEBRA_DE_LINHA;
-        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::retornaUltimaVersao($objFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
+        $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@versao', Basico_CVCControllerController::getInstance()->retornaUltimaVersao($objFormulario, true), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]                           = str_replace('@data_versao', date('d/m/Y H:i:s', Basico_UtilControllerController::retornaTimestamp($objFormulario->validadeInicio)), $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM]);
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_BEGIN_TAG]                             = FORM_BEGIN_TAG . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_CLASS_EXTENDS_TAG]                     = FORM_GERADOR_CLASS_EXTENDS_ELEMENT;
@@ -847,7 +846,7 @@ class Basico_GeradorFormularioControllerController
 		$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
 		
 		// recuperando array de prefixos e paths de componentes nao ZF
-		$arrayNomesCategoriasComponentesNaoZFFormulario = Basico_CategoriaControllerController::retornaArrayNomesCategoriasComponentesNaoZFFormulario($idFormulario);
+		$arrayNomesCategoriasComponentesNaoZFFormulario = Basico_CategoriaControllerController::getInstance()->retornaArrayNomesCategoriasComponentesNaoZFPorIdFormulario($idFormulario);
 		
 		// verificando o resultado da recuperacao do array
 		if ((isset($arrayNomesCategoriasComponentesNaoZFFormulario)) and (count($arrayNomesCategoriasComponentesNaoZFFormulario > 0)))
@@ -903,7 +902,7 @@ class Basico_GeradorFormularioControllerController
         $totalFormularioElementoFormulariosVinculados = 0;
 
         // recuperando ordem dos elementos
-        $arrayOrdemElementos = Basico_FormularioFormularioElementoControllerController::retornaArrayOrdem($objFormulario->id);
+        $arrayOrdemElementos = Basico_FormularioFormularioElementoControllerController::getInstance()->retornaArrayOrdemPorIdFormulario($objFormulario->id);
         
         foreach ($formularioElementosObjects as $formularioElementoObject){
         	$formElementLoop = str_replace('@contador', $arrayOrdemElementos[$contador], $formElement);
@@ -1016,7 +1015,7 @@ class Basico_GeradorFormularioControllerController
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA;
 
 			// recuperando decorator de formularioFormularioElemento
-			$decoratorFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaDecoratorObject($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
+			$decoratorFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::getInstance()->retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
 
 			// verificando o resultado da recuperacao do decorator
 			if (isset($decoratorFormularioFormularioElemento))
@@ -1040,8 +1039,8 @@ class Basico_GeradorFormularioControllerController
 				// adicionando o link de ajuda
                 if ($formularioElementoObject->getAjudaObject()->id){
 					if ($formularioElementoObject->getAjudaObject()->url){
-						$href = Basico_UtilControllerController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->url, "\'");
-                        $target = Basico_UtilControllerController::retornaStringEntreCaracter('_blank', "\'");
+						$href = Basico_UtilControllerController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->url, ASPAS_SIMPLES_ESCAPADA_HTML);
+                        $target = Basico_UtilControllerController::retornaStringEntreCaracter('_blank', ASPAS_SIMPLES_ESCAPADA_HTML);
                         $urlAjuda = ' . "<br><br>URL: <a href=' . $href . ' target=' . $target . '>' . $formularioElementoObject->getAjudaObject()->url . '</a>"';
                     } else
                         $urlAjuda = '';
@@ -1216,7 +1215,7 @@ class Basico_GeradorFormularioControllerController
     	$tempReturn = true;
 
 		// recuperando objetos Basico_Model_Categoria das linguas ativas no sistema
-		$objsCategoriasLinguasAtivas = Basico_TradutorControllerController::retornaCategoriasLinguasAtivas();
+		$objsCategoriasLinguasAtivas = Basico_TradutorControllerController::getInstance()->retornaCategoriasLinguasAtivas();
 
 		// loop para cada lingua ativa no sistema
 		foreach ($objsCategoriasLinguasAtivas as $objCategoriaLinguaAtiva)
@@ -1250,7 +1249,7 @@ class Basico_GeradorFormularioControllerController
 			throw new Exception(MSG_ERRO_PATH_INEXISTENTE);
 
 		// recuperando dados do objeto formulario
-		$nomeClasseFormulario  = self::retornaNomeClasseForm(Basico_ModuloControllerController::retornaObjetoModuloNome($moduleName), $objetoFormularioDOJO);
+		$nomeClasseFormulario  = self::retornaNomeClasseForm(Basico_ModuloControllerController::getInstance()->retornaObjetoModuloPorNome($moduleName), $objetoFormularioDOJO);
 		$nomeArquivoFormulario = self::retornaNomeArquivoForm($objetoFormularioDOJO);
 
 		// modificando o nome do arquivo
@@ -1312,7 +1311,7 @@ class Basico_GeradorFormularioControllerController
     	$identacao = Basico_UtilControllerController::retornaIdentacao($nivelIdentacao);
 
     	// recuperando elementos que possuem display group
-    	$arrayObjsFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::retornaObjsFormularioFormularioElementoGrupoFormularioElementoFormulario($objFormulario);
+    	$arrayObjsFormularioFormularioElemento = Basico_FormularioFormularioElementoControllerController::getInstance()->retornaObjetosFormularioFormularioElementoGrupoFormularioElemento($objFormulario);
 
     	// verificando o resultado da recuperacao
     	if (count($arrayObjsFormularioFormularioElemento) <= 0)

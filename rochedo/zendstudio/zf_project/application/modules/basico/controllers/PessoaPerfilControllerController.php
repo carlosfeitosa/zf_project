@@ -12,15 +12,15 @@ class Basico_PessoaPerfilControllerController
 {
 	/**
 	 * Instância do Controlador PessoaPerfil
-	 * @var Basico_PessoaPerfilController
+	 * @var Basico_PessoaPerfilControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 	
 	/**
 	 * Instância do Modelo PessoaPerfil
 	 * @var Basico_Model_PessoaPerfil
 	 */
-	private $pessoaPerfil;
+	private $_pessoaPerfil;
 	
 	/**
 	 * Construtor do controlador PessoaPerfil
@@ -28,23 +28,50 @@ class Basico_PessoaPerfilControllerController
 	 */
 	private function __construct()
 	{
-		$this->pessoaPerfil = new Basico_Model_PessoaPerfil();
+		// instanciando modelo
+		$this->_pessoaPerfil = $this->retornaNovoObjetoPessoaPerfil();
+
+		// inicializando o controlador
+		$this->init();
 	}
-	
+
+	/**
+	 * Inicializa o controlador Basico_PessoaPerfilControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Retorna instância do Controlador PessoaPerfil
-	 * @return Basico_PessoaPerfilController
+	 * 
+	 * @return Basico_PessoaPerfilControllerController
 	 */
-	public static function init()
+	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_PessoaPerfilControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_PessoaPerfilControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
-	
+
+	/**
+	 * Retorna um objeto pessoa perfil vazio
+	 * 
+	 * @return Basico_Model_PessoaPerfil
+	 */
+	public function retornaNovoObjetoPessoaPerfil()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_PessoaPerfil();
+	}
+
 	/**
 	 * Salva pessoaPefil no banco de dados.
 	 * 
@@ -54,64 +81,87 @@ class Basico_PessoaPerfilControllerController
 	 * 
 	 * @return void
 	 */
-	public function salvarPessoaPerfil(Basico_Model_PessoaPerfil $novaPessoaPerfil, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarPessoaPerfil(Basico_Model_PessoaPerfil $objPessoaPerfil, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 	    try {
+	    	// instanciando controladores
+	    	$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $this->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objPessoaPerfil->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdatePessoaPerfil();
+	    		$mensagemLog    = LOG_MSG_UPDATE_PESSOA_PERFIL;
+	    	} else {
+	    		// carregando informacoes de log de novo de registro
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovaPessoaPerfil();
+	    		$mensagemLog    = LOG_MSG_NOVA_PESSOA_PERFIL;
+	    	}
 
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novaPessoaPerfil, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaPessoaPerfil(), LOG_MSG_NOVA_PESSOA_PERFIL);
+			Basico_PersistenceControllerController::bdSave($objPessoaPerfil, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 			// atualizando o objeto
-    		$this->pessoaPerfil = $novaPessoaPerfil;
-			
+    		$this->_pessoaPerfil = $objPessoaPerfil;
+
     	} catch (Exception $e) {
     		throw new Exception($e);
     	}
 	}
-	
+
     /**
-     * Retorna o id da PessoaPefil do sistema.
+     * Retorna o objeto da PessoaPefil do sistema.
      * 
-     * @return Int
+     * @return Basico_Model_PessoaPerfil
      */
-	public static function retornaIdPessoaPerfilSistema()
+	public function retornaObjetoPessoaPerfilSistema()
 	{
 		// instanciando modelos
-	    $modelLogin = new Basico_Model_Login();
-	    $modelPerfil = new Basico_Model_Perfil();
-	    $modelPessoaPerfil = new Basico_Model_PessoaPerfil();
-
-	    // recuperando login do sistema
-	    $applicationSystemLogin = APPLICATION_SYSTEM_LOGIN;
+		$perfilControllerController = Basico_PerfilControllerController::getInstance();
+		$pessoaControllerController = Basico_PessoaControllerController::getInstance();
+		
 	    // recuperando o perfil do sistema
 	    $applicationSystemPerfil = APPLICATION_SYSTEM_PERFIL;
-	    
-	    // recuperando o objeto login do sistema
-	    $objLoginSistema = $modelLogin->fetchList("login = '{$applicationSystemLogin}'", null, 1, 0);
-
-	    // verificando se o objeto login do sistema foi recuperado/existe
-	    if (count($objLoginSistema) === 0)
-	        throw new Exception(MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO);
-
-		// recuperando objeto perfil do sistema
-        $objPerfilSistema = $modelPerfil->fetchList("nome = '{$applicationSystemPerfil}'", null, 1, 0);
+	   
+		// recuperando informacoes do sistema
+        $objPerfilSistema = $perfilControllerController->retornaObjetoPerfilPorNome($applicationSystemPerfil);
+        $idPessoaSistema  = $pessoaControllerController->retornaIdPessoaSistema();
         
         // verificando se o objeto perfil do sistema foi recuperao/existe
         if (count($objPerfilSistema) === 0)
 	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
 
 	    // recuperando o objeto pessoa perfil do sistema
-        $objPessoaPerfilSistema = $modelPessoaPerfil->fetchList("id_pessoa = {$objLoginSistema[0]->pessoa} and id_perfil = {$objPerfilSistema[0]->id}", null, 1, 0);
+        $objPessoaPerfilSistema = $this->_pessoaPerfil->fetchList("id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
         
         // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
         if (!$objPessoaPerfilSistema[0]->id)
             throw new Exception(MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO);
 
         // retornando o id do objeto pessoa perfil do sistema
-        return $objPessoaPerfilSistema[0]->id;
+        return $objPessoaPerfilSistema[0];
+	}
+
+    /**
+     * Retorna o id da PessoaPefil do sistema.
+     * 
+     * @return Int
+     */
+	public function retornaIdPessoaPerfilSistema()
+	{
+		// recuperando objeto pessoa perfil sistema
+		$objPessoaPerfilSistema = $this->retornaObjetoPessoaPerfilSistema();
+
+		// verificando se o objeto foi carregado
+		if (isset($objPessoaPerfilSistema))
+			// retornando o id de pessoa perfil
+			return $objPessoaPerfilSistema->id;
+
+		return null;
 	}
 	
 	/**
@@ -119,42 +169,48 @@ class Basico_PessoaPerfilControllerController
 	 * 
 	 * @param int $idPessoa
 	 * 
-	 * @return Basico_Model_PessoaPefil
+	 * @return Array
 	 */
-	public function retornaPessoasPerfisPessoa($idPessoa)
+	public function retornaObjetosPessoasPerfisPorIdPessoa($idPessoa)
 	{
 		// recuperando array de objetos Basico_Model_PessoaPefil
-		$pessoasPerfis = self::$singleton->pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
+		$objsPessoasPerfis = $this->_pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
 		
 		// verificando se o objeto existe
-		if (isset($pessoasPerfis))
+		if (count($objsPessoasPerfis) > 0)
 			// retornando o objeto
-    	    return $pessoasPerfis;
+    	    return $objsPessoasPerfis;
     	else
     	    return null;
 	}
 	
 	/**
-	 * Retorna o obj pessoaPerfil do perfil USUARIO_NAO_VALIDADO da pessoa passada por parametro
+	 * Retorna o objeto pessoaPerfil do perfil USUARIO_NAO_VALIDADO da pessoa passada por parametro
+	 * 
 	 * @param Int $idPessoa
+	 * 
 	 * @return Basico_Model_PessoaPerfil
 	 */
-	public function retornaPessoaPerfilUsuarioNaoValidadoPessoa($idPessoa)
+	public function retornaObjetosPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)
 	{
-		// instanciando modelos
-		$modeloPessoaPerfil = new Basico_Model_PessoaPerfil();
-		
+		// verificando se foi passado o id da pessoa
+		if (!$idPessoa)
+			return null;
+
 		// instanciando controladores
-		$controladorPerfil = Basico_PerfilControllerController::init();
-		
-		$perfilUsuarioNaoValidado = $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado();
-		
-    	$objPessoaPerfilPessoa = $modeloPessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
-    	
-    	if (count($objPessoaPerfilPessoa) > 0) {
+		$perfilControllerController = Basico_PerfilControllerController::getInstance();
+
+		// recuperando o perfil de usuario nao validado
+		$perfilUsuarioNaoValidado = $perfilControllerController->retornaObjetoPerfilUsuarioNaoValidado();
+
+		// recuperando o objeto pessoa perfil de usuario nao validado
+    	$objPessoaPerfilPessoa = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
+
+    	// verificando se o objeto foi recuperado
+    	if (isset($objPessoaPerfilPessoa[0])) {
     		return $objPessoaPerfilPessoa[0];
     	}
-    	
+
     	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO);
 	}
 
@@ -165,21 +221,24 @@ class Basico_PessoaPerfilControllerController
 	 * 
 	 * @return Basico_Model_PessoaPerfil
 	 */
-	public static function retornaPessoaPerfilUsuarioValidadoPessoa($idPessoa)
+	public function retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa)
 	{
-		// instanciando modelos
-		$modelPessoaPerfil = new Basico_Model_PessoaPerfil();
+		// verificando se foi passado o id da pessoa
+		if (!$idPessoa)
+			return null;
 
 		// instanciando controladores
-		$controladorPerfil = Basico_PerfilControllerController::init();
+		$perfilControllerController = Basico_PerfilControllerController::getInstance();
 
 		// recuperando o objeto perfil de usuario validado
-		$objPerfilUsuarioValidado = $controladorPerfil->retornaObjetoPerfilUsuarioValidado();
+		$objPerfilUsuarioValidado = $perfilControllerController->retornaObjetoPerfilUsuarioValidado();
 
 		// recuperando o objeto pessoa pefil
-    	$objPessoaPerfil = $modelPessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
-    	
-    	if (count($objPessoaPerfil) > 0) {
+    	$objPessoaPerfil = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
+
+    	// verificando se o objeto foi recuperado
+    	if (isset($objPessoaPerfil[0])) {
+    		// retornando o objeto
     		return $objPessoaPerfil[0];
     	}
     	
@@ -187,52 +246,71 @@ class Basico_PessoaPerfilControllerController
 	}
 	
     /**
-	 * Retorna o obj pessoaPerfil da pessoa e do perfil passado. 
+	 * Retorna o objeto pessoaPerfil da pessoa e do perfil passado.
+	 * 
 	 * @param Int $idPessoa
 	 * @param Int $idPerfil
+	 * 
 	 * @return Basico_Model_PessoaPerfil
 	 */
-	public function retornaPessoaPerfilPessoaPerfil($idPessoa, $idPerfil)
-	{
-		// instanciando modelos
-		$modeloPessoaPerfil = new Basico_Model_PessoaPerfil();
-		
+	public function retornaObjetoPessoaPerfilPorIdPessoaIdPerfil($idPessoa, $idPerfil)
+	{		
+		// verificando se foi passado o id da pessoa e do perfil
+		if ((!$idPessoa) or (!$idPerfil))
+			return null;
+
 		// instanciando controladores
-		$controladorPerfil = Basico_PerfilControllerController::init();
-		
-		$perfil = $controladorPerfil->retornaObjetoPerfilId($idPerfil);
-		
-    	$objPessoaPerfilPessoa = $modeloPessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfil->id}");
-    	
-    	if (count($objPessoaPerfilPessoa) > 0) {
+		$perfilControllerController = Basico_PerfilControllerController::getInstance();
+
+		// recuperanado o objeto perfil
+		$objPerfil = $perfilControllerController->retornaObjetoPerfilPorIdPerfil($idPerfil);
+
+		// recuperando o objeto pessoa perfil
+    	$objPessoaPerfilPessoa = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
+
+    	// verificando se o objeto foi recuperado
+    	if (isset($objPessoaPerfilPessoa[0])) {
     		return $objPessoaPerfilPessoa[0];
     	}
-    	
+
     	throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
 	}
 	
 	/**
-	 * Edita a pessoaPerfil da pessoa passada por parametro 
+	 * Edita a pessoaPerfil da pessoa passada por parametro
+	 * 
 	 * @param Int $idPessoa
-	 * @param Int $idAntigoPerfil
-	 * @param Int $idNovoPerfil
+	 * @param Int $idPerfilAntigo
+	 * @param Int $idPerfilNovo
+	 * @param Int $idPessoaPerfilCriador
+	 * 
 	 * @return Boolean
 	 */
-	public function editarPessoaPerfil($idPessoa, $idAntigoPerfil, $idNovoPerfil)
+	public function editarPessoaPerfil($idPessoa, $idPerfilAntigo, $idPerfilNovo, $idPessoaPerfilCriador = null)
 	{
-		if (((Int) $idPessoa > 0) and ((Int) $idAntigoPerfil > 0)) {
-		    $objPessoaPerfil = self::retornaPessoaPerfilPessoaPerfil($idPessoa, $idAntigoPerfil);
-		    
-			if ($objPessoaPerfil instanceOf Basico_Model_PessoaPerfil) {
-				$objPessoaPerfil->perfil = $idNovoPerfil;
-				
-				Basico_PessoaPerfilControllerController::salvarPessoaPerfil($objPessoaPerfil, Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($objPessoaPerfil), Basico_PessoaPerfilControllerController::retornaIdPessoaPerfilSistema());
-				
-				return true;
-			}
+		// verificando se foi passado o id da pessoa, do perfil antigo e do novo perfil
+		if (((Int) $idPessoa > 0) and ((Int) $idPerfilAntigo > 0) and ((Int) $idPerfilNovo > 0)) {
+			// recuperando o objeto pessoa perfil
+		    $objPessoaPerfil = $this->retornaObjetoPessoaPerfilPorIdPessoaIdPerfil($idPessoa, $idPerfilAntigo);
+
+			// recuperando a versao de pessoa perfil
+			$versaoUpdate = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($objPessoaPerfil);
+
+		    // atualizando o perfil
+			$objPessoaPerfil->perfil = $idPerfilNovo;
+
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+			if (!isset($idPessoaPerfilCriador))
+				// carregando o id do perfil criador do sistema
+				$idPessoaPerfilCriador = $this->retornaIdPessoaPerfilSistema();
+			else if ($idPessoaPerfilCriador <= 0)
+				throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
+
+			// salvando o objeto
+			$this->salvarPessoaPerfil($objPessoaPerfil, $versaoUpdate, $idPessoaPerfilCriador);
+
+			return true;
 		}
 		return false;
-		
 	}
-
 }

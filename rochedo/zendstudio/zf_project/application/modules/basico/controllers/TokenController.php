@@ -10,17 +10,17 @@ class Basico_TokenController extends Zend_Controller_Action
     /**
 	* @var object
 	*/    
-	private $request;
-	
+	protected $_request;
+
     /**
 	 * Inicializa controlador Login 
 	 */
 	public function init()
     {
     	// recuperando requisicao
-        $this->request = Zend_Controller_Front::getInstance()->getRequest();
+        $this->_request = Zend_Controller_Front::getInstance()->getRequest();
     }
-	
+
     /**
      * Decodifica um token
      * 
@@ -29,14 +29,14 @@ class Basico_TokenController extends Zend_Controller_Action
     public function decodeAction()
     {
     	// recuperando o token da requisicao
-        $token = $this->getRequest()->getParam('t');
+        $token = $this->_request->getParam('t');
 
         // instanciando o controlador de token
-        $controladorToken = Basico_TokenControllerController::init();
-        
+        $controladorToken = Basico_TokenControllerController::getInstance();
+
         // decodificando url
-        $url = $controladorToken->decodeTokenUrl($token);
-        
+        $url = $controladorToken->decodeTokenUrlPorToken($token);
+
         // redirecionando para a url decodificada
         $this->_redirect($url);
     }

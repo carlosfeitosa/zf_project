@@ -331,7 +331,7 @@ class Basico_Model_Modulo
      */
     public function getModuloPaiObject()
     {
-        $model = new Basico_Model_ModuloPai();
+        $model = new Basico_Model_Modulo();
         $object = $model->find($this->_moduloPai);
         return $object;
     }

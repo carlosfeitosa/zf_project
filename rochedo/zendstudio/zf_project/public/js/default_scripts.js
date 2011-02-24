@@ -21,7 +21,7 @@ var underlay;
  */
 function validaString(inputObject, filterType)
 {   	
-	var generic_patterns={'special':/[\W]/g, 
+	var generic_pattners={'special':/[\W]/g, 
 		                  'quotes':/['\''&'\"']/g, 
 		                  'notnumbers':/[^\d]/g
 		                 };
@@ -40,7 +40,7 @@ function validaString(inputObject, filterType)
 			
 		}else{
 			
-		    dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(generic_patterns[filterType],''));
+		    dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(generic_pattners[filterType],''));
 		}
     }
 }
@@ -197,7 +197,7 @@ function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle)
 			// criando elemento label
 			var labelContainerDivErrorMessage = document.createElement('label');
 			// setando o conteudo do titulo
-			labelContainerDivErrorMessage.innerHTML = '<center><b>' + errorTitle + '</b<</center>';
+			labelContainerDivErrorMessage.innerHTML = '<center><b>' + errorTitle + '</b></center>';
 			// adicionando elemeneto ul no container div
 			containerDivErrorMessage.appendChild(labelContainerDivErrorMessage);
 		}

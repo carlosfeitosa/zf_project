@@ -96,8 +96,8 @@ class Basico_WebsiteController extends Zend_Controller_Action
 				$request = $this->getRequest();
 		
 				//instanciando o controlador de de ação  
-				$controladorWebsite = Basico_WebsiteControllerController::init();
-				$controladorRowInfo = Basico_RowInfoControllerController::init();
+				$controladorWebsite = Basico_WebsiteControllerController::getInstance();
+				$controladorRowInfo = Basico_RowInfoControllerController::getInstance();
 				
 				// populando o modelo com a requisição do form
 				$novoWebsite->categoria=1;// $request->getParam('BasicoCadastrarWebsiteWebSiteTipo');

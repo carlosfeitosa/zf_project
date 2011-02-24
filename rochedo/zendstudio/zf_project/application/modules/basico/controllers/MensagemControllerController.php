@@ -21,14 +21,14 @@ class Basico_MensagemControllerController
 {
 	/**
 	 * 
-	 * @var Basico_MensagemController object
+	 * @var Basico_MensagemControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 	
 	/**
-	 * @var Basico_Model_Mensagem object
+	 * @var Basico_Model_Mensagem
 	 */
-	private $mensagem;
+	private $_mensagem;
 	
 	/**
 	 * Construtor do Controlador Mensagem
@@ -37,23 +37,49 @@ class Basico_MensagemControllerController
 	 */
 	public function __construct()
 	{
-    	$this->mensagem = new Basico_Model_Mensagem();
+		// instanciando o modelo
+    	$this->_mensagem = $this->retornaNovoObjetoMensagem();
+    	
+    	// inicializando o controlador
+    	$this->init();
 	}
-	
+
+	/**
+	 * Inicializa o controlador Basico_Model_Mensagem
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Retorna o objeto da Classe MensagemController
 	 * 
 	 * @return Basico_MensagemController
 	 */
-	static public function init() {
+	public static function getInstance() {
 		// checando o singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_MensagemControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_MensagemControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
-    
+
+	/**
+	 * Retorna um modelo Basico_Model_Mensagem vazio
+	 * 
+	 * @return Basico_Model_Mensagem
+	 */
+	public function retornaNovoObjetoMensagem()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Mensagem();
+	}
+
 	/**
 	 * Salva a mensagem e todos as suas dependencias.
 	 * 
@@ -63,18 +89,33 @@ class Basico_MensagemControllerController
 	 * 
 	 * @return void
 	 */
-    public function salvarMensagem(Basico_Model_Mensagem $novaMensagem, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
+    public function salvarMensagem(Basico_Model_Mensagem $objMensagem, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
     {
 	    try{
+	    	// instanciando controladores
+	    	$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+	    	$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
-	    	
+	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objMensagem->id != NULL) {
+	    		// recuperando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateMensagem();
+	    		$mensagemLog    = LOG_MSG_UPDATE_MENSAGEM;
+	    	} else {
+	    		// recuperando informacoes de log de novo registro
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovaMensagem();
+	    		$mensagemLog    = LOG_MSG_NOVA_MENSAGEM;
+	    	}
+
 	    	// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novaMensagem, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovaMensagem(), LOG_MSG_NOVA_MENSAGEM);
+			Basico_PersistenceControllerController::bdSave($objMensagem, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 			// atualizando o objeto	    		
-	    	$this->mensagem = $novaMensagem;
+	    	$this->_mensagem = $objMensagem;
 
 	    } catch (Exception $e) {
 	    	throw new Exception($e);
@@ -90,27 +131,32 @@ class Basico_MensagemControllerController
 	 * 
 	 * @return Basico_Model_Mensagem
 	 */
-	public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link) {
-		
+	public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link)
+	{
 		// instanciando controladores
-		$controladorEmail              = Basico_EmailControllerController::init();
-		$controladorCategoria          = Basico_CategoriaControllerController::init();
-		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
+		$emailControllerController              = Basico_EmailControllerController::getInstance();
+		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
 
-		// recuperando o id da categoria email validacao plain text template
-		$categoriaMensagem = $controladorCategoria->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
+		// recuperando o objeto categoria email validacao plain text template
+		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
 
 		// recuperando a lingua do usuario
 		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$categoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->_mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+
+		// verificando se a mensagem foi carregada
+		if (!isset($objMensagemTemplate))
+			return null;
+
 		// carregando assunto da mensagem
-		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
+		$this->_mensagem->setAssunto($objMensagemTemplate[0]->getAssunto());
 		// carregando a mensagem
-		$corpoMensagemTemplate  = $mensagemTemplate[0]->getMensagem();
+		$corpoMensagemTemplate  = $objMensagemTemplate[0]->getMensagem();
         // carregando a assinatura da mensagem
-        $assinatura             = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+        $assinatura             = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
          
 		// substituindo tags
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
@@ -118,16 +164,16 @@ class Basico_MensagemControllerController
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
 
         // carregando a mensagem no modelo
-        $this->mensagem->setMensagem($corpoMensagemTemplate);
+        $this->_mensagem->setMensagem($corpoMensagemTemplate);
 		
 		// recuperando o endereco do e-mail do sistema
-		$emailSistema = $controladorEmail->retornaEmailSistema();
+		$emailSistema = $emailControllerController->retornaEmailSistema();
 		// setando o remetente
-		$this->mensagem->setRemetente($emailSistema);
-		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
+		$this->_mensagem->setRemetente($emailSistema);
+		$this->_mensagem->setRemetenteNome(APPLICATION_NAME);
 		
 		// retornando a mensagem
-		return $this->mensagem;
+		return $this->_mensagem;
 	}
 	
 	/**
@@ -142,44 +188,49 @@ class Basico_MensagemControllerController
     public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) 
     {
 		// instanciando os controladores
-		$controladorEmail         = Basico_EmailControllerController::init();
-		$controladorCategoria     = Basico_CategoriaControllerController::init();
-		$controladorDadosPessoais = Basico_DadosPessoaisControllerController::init();
-		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
+		$emailControllerController              = Basico_EmailControllerController::getInstance();
+		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
-		$categoriaMensagem     = $controladorCategoria->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		$objcategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
+
 		// recuperando o nome do destinatario
-		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
+		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
         
 		// recuperando a lingua do usuario
 		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$categoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objsMensagemTemplate = $this->_mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objcategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+
+		// verificando se a mensagem foi carregada
+		if (!isset($objsMensagemTemplate))
+			return null;
 		
 		// recuperando o assunto
-		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
+		$this->_mensagem->setAssunto($objsMensagemTemplate[0]->getAssunto());
 		// recuperando assinatura da mensagem
-		$assinatura            = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+		$assinatura            = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
 		// recuperando a mensagem
-		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem();
+		$corpoMensagemTemplate = $objsMensagemTemplate[0]->getMensagem();
 		// substituindo as tags 
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LINK_VALIDACAO_EMAIL, $link, $corpoMensagemTemplate);
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         
         // carregando a mensagem no modelo
-        $this->mensagem->setMensagem($corpoMensagemTemplate);
+        $this->_mensagem->setMensagem($corpoMensagemTemplate);
 		
 		// recuperando o endereco de e-mail do sistema
-		$emailSistema = $controladorEmail->retornaEmailSistema();
+		$emailSistema = $emailControllerController->retornaEmailSistema();
 		// setando remetente
-		$this->mensagem->setRemetente($emailSistema);
-		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
+		$this->_mensagem->setRemetente($emailSistema);
+		$this->_mensagem->setRemetenteNome(APPLICATION_NAME);
 		
 		// retornando a mensagem
-		return $this->mensagem;
+		return $this->_mensagem;
 	}
 	
     /**
@@ -193,41 +244,41 @@ class Basico_MensagemControllerController
     public function retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa) 
     {
 		// instanciando os controladores
-		$controladorEmail              = Basico_EmailControllerController::init();
-		$controladorCategoria          = Basico_CategoriaControllerController::init();
-		$controladorLogin              = Basico_LoginControllerController::init();
-		$controladorDadosPessoais      = Basico_DadosPessoaisControllerController::init();
-		$controladorDadosBiometricos   = Basico_DadosBiometricosControllerController::init();
-		$controladorDadosPessoasPerfis = Basico_DadosPessoasPerfisControllerController::init();
-		$controladorTradutor           = Basico_TradutorControllerController::init();             
+		$emailControllerController              = Basico_EmailControllerController::getInstance();
+		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$loginControllerController              = Basico_LoginControllerController::getInstance();
+		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
+		$dadosBiometricosControllerController   = Basico_DadosBiometricosControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
+		$tradutorControllerController           = Basico_TradutorControllerController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
-		$categoriaMensagem     = $controladorCategoria->retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
-		
-		$loginUsuario   = $controladorLogin->retornaLoginPessoa($idPessoa);
-		$sexoUsuario    = $controladorDadosBiometricos->retornaSexoPessoa($idPessoa);
-		
+		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
+
+		$loginUsuario   = $loginControllerController->retornaLoginPorIdPessoa($idPessoa);
+		$sexoUsuario    = $dadosBiometricosControllerController->retornaSexoPorIdPessoa($idPessoa);
+
 		// recuperando o nome do destinatario
-		$nomeDestinatario = $controladorDadosPessoais->retornaNomePessoa($idPessoa);
-        
+		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
+
 		// recuperando a lingua do usuario
 		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
-		
+
 		// carregando a mensagem template
-		$mensagemTemplate = self::$singleton->mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$categoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
-		
+		$objMensagemTemplate = $this->_mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+
 		// recuperando o assunto
-		$this->mensagem->setAssunto($mensagemTemplate[0]->getAssunto());
+		$this->_mensagem->setAssunto($objMensagemTemplate[0]->getAssunto());
 		// recuperando assinatura da mensagem
-		$assinatura            = $controladorDadosPessoasPerfis->retornaAssinaturaMensagemEmailSistema();
+		$assinatura            = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
 		// recuperando a mensagem
-		$corpoMensagemTemplate = $mensagemTemplate[0]->getMensagem();
+		$corpoMensagemTemplate = $objMensagemTemplate[0]->getMensagem();
 		
         // substituindo a tag de tratamento de acordo com o sexo do usuario
 		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $controladorTradutor->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorControllerController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
 		else
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $controladorTradutor->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorControllerController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
 		
 		// substituindo a tag do nome do usuario    
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
@@ -239,15 +290,15 @@ class Basico_MensagemControllerController
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         
         // carregando a mensagem no modelo
-        $this->mensagem->setMensagem($corpoMensagemTemplate);
+        $this->_mensagem->setMensagem($corpoMensagemTemplate);
 		
 		// recuperando o endereco de e-mail do sistema
-		$emailSistema = $controladorEmail->retornaEmailSistema();
+		$emailSistema = $emailControllerController->retornaEmailSistema();
 		// setando remetente
-		$this->mensagem->setRemetente($emailSistema);
-		$this->mensagem->setRemetenteNome(APPLICATION_NAME);
+		$this->_mensagem->setRemetente($emailSistema);
+		$this->_mensagem->setRemetenteNome(APPLICATION_NAME);
 		
 		// retornando a mensagem
-		return $this->mensagem;
+		return $this->_mensagem;
 	}
 }

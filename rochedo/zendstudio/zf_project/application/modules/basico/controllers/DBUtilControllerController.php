@@ -2,7 +2,8 @@
 /**
  * Adicionando Controladores
  */
-require_once('PessoaPerfilControllerController.php');
+require_once("PessoaPerfilControllerController.php");
+require_once("LoginControllerController.php");
 
 /**
  * Controlador DB Util
@@ -23,63 +24,20 @@ class Basico_DBUtilControllerController
         try {	    
 		    // recuperando o bootstrap
         	$bootstrap = $application->getBootstrap();
-            
+
         	// recuperando a conexao
         	$bootstrap->bootstrap('db')->getResource('db')->getConnection();
-        	       
+
 		} catch (Exception $e) {
             // escreve o erro na tela.
         	Basico_UtilControllerController::escreveErro(MSG_ERRO_CONEXAO_BANCO, $e->getMessage());
+
         	// salva o logFS do erro
-            $logController = Basico_LogControllerController::init();
+            $logController = Basico_LogControllerController::getInstance();
         	$mensagemLogFS = "EXCEPTION: " . MSG_ERRO_CONEXAO_BANCO . " MESSAGE: {$e->getMessage()} "; 
         	$logController->salvaLogFS($mensagemLogFS, LOG_PRIORITY_ERRO);
             exit;
         }
-	}
-	
-    /**
-     * Retorna o id da PessoaPefil do sistema.
-     * 
-     * @return Int
-     */
-	public static function retornaIdPessoaPerfilSistema()
-	{
-		// chamada para o metodo que retorna o id da pessoaPerfil do sistema.
-		return Basico_PessoaPerfilControllerController::retornaIdPessoaPerfilSistema();
-	}
-	
-    /**
-     * Retorna o objeto da PessoaPefil do sistema.
-     * 
-     * @return Int
-     */
-	public static function retornaObjetoPessoaPerfilSistema()
-	{
-		// instanciando modelos
-
-	    $modelPerfil = new Basico_Model_Perfil();
-	    $modelPessoaPerfil = new Basico_Model_PessoaPerfil();
-
-	    // recuperando o perfil do sistema
-	    $applicationSystemPerfil = APPLICATION_SYSTEM_PERFIL;
-	   
-		// recuperando objeto perfil do sistema
-        $objPerfilSistema = $modelPerfil->fetchList("nome = '{$applicationSystemPerfil}'", null, 1, 0);
-        
-        // verificando se o objeto perfil do sistema foi recuperao/existe
-        if (count($objPerfilSistema) === 0)
-	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
-
-	    // recuperando o objeto pessoa perfil do sistema
-        $objPessoaPerfilSistema = $modelPessoaPerfil->fetchList("id_perfil = {$objPerfilSistema[0]->id}", null, 1, 0);
-        
-        // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
-        if (!$objPessoaPerfilSistema[0]->id)
-            throw new Exception(MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO);
-
-        // retornando o id do objeto pessoa perfil do sistema
-        return $objPessoaPerfilSistema[0];
 	}
 
 	/**
@@ -120,7 +78,7 @@ class Basico_DBUtilControllerController
 
 		// recuperando nome da tabela vinculada ao objeto
 		$tableName = $tableInfo['name'];
-		
+
 		// retornando o nome da tabela
 		return $tableName;
     }
@@ -136,10 +94,10 @@ class Basico_DBUtilControllerController
     {
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
-		
+
 		// recuperando o nome do campo da chave primaria da tabela vinculada ao objeto
 		$tablePrimaryKey = $tableInfo['primary'];
-		
+
 		// retorna o nome do campo da chave primaria
 		return $tablePrimaryKey[1];
     }
@@ -151,11 +109,11 @@ class Basico_DBUtilControllerController
      * 
      * @return String|false
      */
-    public static function retornaNomeCampoIdGenerico($objeto)
+    public static function retornaNomeCampoIdGenericoObjeto($objeto)
     {
 		// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
-		
+
 		// recuperando as colunas
 		$arrayColunas = $tableInfo['cols'];
 
@@ -163,87 +121,18 @@ class Basico_DBUtilControllerController
 		foreach ($arrayColunas as $coluna) {
 			// cortando o nome do campo para o tamanho da constante ID_GENERICO
 			$tempResult = substr($coluna, 0, strlen(ID_GENERICO));
-			
+
+			// verificando o corte
 			if ($tempResult == ID_GENERICO)
 				return $coluna;
 		}
-		
+
 		return false;
     }
 
     /**
-     * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
-     * 
-     * @param Object $objeto
-     * @param Boolean $forceCreateRelationship
-     * 
-     * @return null|Basico_Model_CategoriaChaveEstrangeira
-     */
-    public static function retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship = false)
-    {
-    	// recuperando o nome da tabela vinculada ao objeto
-    	$tableName = self::retornaTableNameObjeto($objeto);
-		// instanciando o controlador de categorias
-		$categoriaController = Basico_CategoriaControllerController::init();
-		// recuperando o id da categoria CVC
-		$idCategoriaCVC = Basico_CategoriaControllerController::retornaIdCategoriaCVC();
-
-		// instanciando o modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
-		
-		// recuperando a categoria chave estrangeira relacionada ao objeto
-		$arrayCategoriasChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
-		
-		// verificando se existe a relacao com categoria chave estrangeira
-		if (isset($arrayCategoriasChaveEstrangeira[0])) {
-			return $arrayCategoriasChaveEstrangeira[0];
-		}
-		else if ($forceCreateRelationship) {
-			// instanciando controlador de rowinfo
-			$controladorRowInfo = Basico_RowInfoControllerController::init();
-			
-			// recuperando objeto modulo do objeto
-			$objModulo = Basico_ModuloControllerController::retornaObjetoModuloNome(Basico_UtilControllerController::retornaNomeModuloObjeto($objeto));
-
-			// cria relacao caso o haja o parametro para criacao de relacao
-			$modelCategoriaChaveEstrangeira->categoria = $idCategoriaCVC;
-			$modelCategoriaChaveEstrangeira->modulo = $objModulo->id;
-			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
-			$modelCategoriaChaveEstrangeira->campoEstrangeiro = self::retornaPrimaryKeyObjeto($objeto);
-			
-			// preparando XML rowinfo
-			$controladorRowInfo->prepareXml($modelCategoriaChaveEstrangeira, true);
-			$modelCategoriaChaveEstrangeira->rowinfo = $controladorRowInfo->getXml();
-			
-			// iniciando transacao
-			Basico_PersistenceControllerController::bdControlaTransacao();
-			
-			try {
-				
-				// salvando objeto
-				$modelCategoriaChaveEstrangeira->getMapper()->save($modelCategoriaChaveEstrangeira);
-				// salvando log
-				Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogCategoriaChaveEstrangeira(), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
-				
-				// salvando a transacao
-				Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-			} catch (Exception $e) {
-				
-				// cancelando a transacao
-				Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
-				
-				throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO . QUEBRA_DE_LINHA . $e->getMessage());
-			}
-
-			return $modelCategoriaChaveEstrangeira;
-		}
-		else {
-			return null;
-		}
-    }
-    
-    /**
      * Função para resetar o banco de dados
+     * 
      * @return Boolean
      */
     public static function resetaBD()
@@ -251,7 +140,7 @@ class Basico_DBUtilControllerController
     	//checando se está no ambiente de desenvolvimento
     	if (Basico_UtilControllerController::ambienteDesenvolvimento()) {
     		//salvando log de inicio da operação
-	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_RESET_DB_INICIO);
+	    	Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_INICIO);
 	    	//incializando transacao
 			Basico_PersistenceControllerController::bdControlaTransacao();
 			//dropando as tabelas do sistema
@@ -265,7 +154,8 @@ class Basico_DBUtilControllerController
 	        //resetando login do usuario master no arquivo .htaccess
 	        self::resetaLoginUsuarioMaster();
 	        //salvando log de sucesso da operação
-	        Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_RESET_DB_SUCESSO);
+	        Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_SUCESSO);
+
 	        return true;
     	}else{
     	    return false;
@@ -281,7 +171,7 @@ class Basico_DBUtilControllerController
     	//setando a mascara
     	$pattern = "@(". QUEBRA_DE_LINHA ."SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . QUEBRA_DE_LINHA . ")@";
     	//setando string de substituicao
-    	$replacement = QUEBRA_DE_LINHA . 'SetEnv APPLICATION_SYSTEM_LOGIN ' . self::retornaLoginUsuarioMasterDB() . QUEBRA_DE_LINHA;
+    	$replacement = QUEBRA_DE_LINHA . 'SetEnv APPLICATION_SYSTEM_LOGIN ' . Basico_LoginControllerController::getInstance()->retornaLoginUsuarioMasterDB() . QUEBRA_DE_LINHA;
     	//recuperando conteudo do arquivo htaccess
     	$conteudoHtaccess = Basico_UtilControllerController::retornaConteudoArquivo(HTACCESS_FULLFILENAME);
         //recuperando o novo conteudo do arquivo htaccess
@@ -289,79 +179,54 @@ class Basico_DBUtilControllerController
     	//reescrevendo o arquivo htaccess
     	Basico_UtilControllerController::escreveConteudoArquivo(HTACCESS_FULLFILENAME, $conteudoNovoHtaccess);
     }
-    
-    /**
-     * Retorna o login do usuario master do sistema cadastrado no banco de dados
-     * 
-     * @return String
-     */
-    private static function retornaLoginUsuarioMasterDB() 
-    {
-    	//recuperando o objeto pessoaPerfil do sistema
-    	$objetoPessoaPerfilSistema = self::retornaObjetoPessoaPerfilSistema();
-    	
-    	//criando objeto login
-    	$objLogin = new Basico_Model_Login();
-    	
-    	//recuperando resource do banco de dados
-    	$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-    	
-    	//recuperando o login do usuario master do sistema
-    	$arrayObjslogin = $objLogin->fetchList("id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
-
-    	// verificando se o objeto foi recuperado com sucesso
-    	if (isset($arrayObjslogin[0]))    	
-    		//retornando o login do usuario master do sistema
-    		return $arrayObjslogin[0]->login;
-
-    	return null;
-    }
-       
+     
     /**
      * Apaga todas as tabelas do banco que está sendo utilizado.
+     * 
      * @return Boolean
      */
     private static function dropDbTables() 
     {
     	try {
     		//salvando log de inicio da operação
-	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_INICIO);
+	    	Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_DROP_DB_INICIO);
 	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
 	    	$dropScriptsFiles = self::retornaArrayFileNamesDbDropScriptsFiles();
-	    	
+
 	    	//executando scripts de drop
 	    	foreach ($dropScriptsFiles as $file) {
 	    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
 	    	}
 	    	//salvando log de sucesso da operação
-	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_DROP_DB_SUCESSO);
+	    	Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_DROP_DB_SUCESSO);
 	    	return true;
-    		
+
     	}catch(Exception $e) {
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
-    	
     }
 
     /**
      * Executa script de criação de todas as tabelas do banco que está sendo utilizado.
+     * 
      * @return Boolean
      */
     private static function createDbTables() 
     {
     	try {
 	    	//salvando log de inicio da operação
-	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_INCIO);
+	    	Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_CREATE_DB_INCIO);
 	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
 	    	$createScriptsFiles = self::retornaArrayFileNamesDbCreateScriptsFiles();
-	    	    	
+
 	    	//executando scripts de create
 	    	foreach ($createScriptsFiles as $file) {
 	    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath(). $file));
 	    	}
 	    	//salvando log de sucesso da operação
-	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_CREATE_DB_SUCESSO);
+	    	Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_CREATE_DB_SUCESSO);
 	    	return true;
+
     	}catch(Exception $e) {
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
@@ -375,29 +240,28 @@ class Basico_DBUtilControllerController
     {
     	try {
 	    	//salvando log de inicio da operação
-	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
-	    	// carregando array com o fullFileName dos arquivos de insert (DADOS) do banco utilizado.
-	    	
+	    	Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
+
 	    	//recuperando arquivos do diretorio passado
 	    	$files = self::retornaArrayFileNamesDbDataScriptsFiles($caminhoArquivos);
-	    	
+
 	    	//executando scripts dos arquivos sql do diretorio passado
 	    	foreach ($files as $file) {
 	    		self::executaScriptSQL(Basico_UtilControllerController::retornaConteudoArquivo($caminhoArquivos . "/" .  $file));
 	    	}
-	    	
+
 	    	//recuperando pastas do diretorio passado
 	    	$dataScriptsPaths = self::retornaArrayPastas($caminhoArquivos);
-	    	
+
 	    	//percorrendo as pastas do diretorio passado
 	    	foreach ($dataScriptsPaths as $path) {
 	    		//executando novamente a função (recursiva)
 	    		self::insertDbData($path);
-	    		
 	    	}
-	    	
+
 	    	//salvando log de sucesso da operação
-	    	Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
+	    	Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
+
 	    	return true;
     	}catch(Exception $e) {
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
@@ -417,28 +281,28 @@ class Basico_DBUtilControllerController
     		if (self::checkScriptIsAvailable($script)) {
 	            //removendo comentarios do script SQL
 	    		$script = Basico_UtilControllerController::removeComentariosArquivo($script);
-	            
+
 		    	// recuperando resource do bando de dados.
 		    	$auxDb  = Basico_PersistenceControllerController::bdRecuperaBDSessao();
-		    	
+
 		    	//executando script SQL
 		    	if ($script != "")
 		    		$auxDb->getConnection()->exec($script);
-		    		    	
+
 				return true;
-    			
     		}
+
     		return false;
     	} catch(Exception $e) {
     		// cancelando execucao do script
     		Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
-    		//salvando log do erro
-    		Basico_LogControllerController::init()->salvaLogFS(LOG_MSG_ERRO_EXECUCAO_SCRIPT);
-    		//lançando o erro
+    		// salvando log do erro
+    		Basico_LogControllerController::getInstance()->salvaLogFS(LOG_MSG_ERRO_EXECUCAO_SCRIPT);
+    		// lançando o erro
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . $e->getMessage());
+
             return false;
     	}
-    	
     }
 
     /**
@@ -454,10 +318,12 @@ class Basico_DBUtilControllerController
     		// recuperando resource do bando de dados.
 			$auxDb = Basico_PersistenceControllerController::bdRecuperaBDSessao();
 
+			// rodando query
 			$stmt = $auxDb->query($sqlQuery);
 
+			// retornando resultado
 			return $stmt->fetchAll();
-    		
+
     	} catch (Exception $e) {
 
     		throw new Exception($e->getMessage());
@@ -466,49 +332,60 @@ class Basico_DBUtilControllerController
 
     /**
      * Checa se o script está disponivel para ser gerado (Procura pela flag @exclude)
+     * 
      * @param $script
+     * 
      * @return Boolean
      */
     private static function checkScriptIsAvailable($script)
     {
     	//Checando se o script pode ser executado.
     	if (strpos($script, "@exclude") !== false) {
-    		
+
     		return false;
     	}
-    	
     	return true;
-    	
     }
     
     /**
      * Retorna todas as pastas de um caminho passado
+     * 
      * @param String $caminhoArquivo
+     * 
      * @return Array
      */
     public static function retornaArrayPastas($caminhoArquivos)
     {
+    	// verificando se existe o caminho para os arquivos
     	if (trim($caminhoArquivos) != "") {
+    		// scaneando caminho
     	    $filesNames = scandir($caminhoArquivos);
-    	    
+
+    	    // aplicando filtros
     	    $filtroArquivosOcultos[] = Basico_UtilControllerController::retornaArrayFiltroArquivosOcultos();
     	    $filesNames = Basico_UtilControllerController::filtraArray($filesNames, $filtroArquivosOcultos);
-    	    
+
+    	    // inicializando variaveis
     	    $arrayPastas = array();
+
+    	    // loop para listar os caminhos
     	    foreach ($filesNames as $fileName) {
-    	    	
+    	    	// verificando se o caminho existe
     	    	if (is_dir($caminhoArquivos . $fileName)){
+    	    		// carretando caminhos encontrados
     	    		$arrayPastas[] = $caminhoArquivos . $fileName; 
     	    	}
     	    }
-    	    
+			// retornando caminho
     	    return $arrayPastas;
     	}
+
     	return NULL;
     }
         
     /**
      * Retorna array com nomes dos arquivos de drop para o banco que está sendo utilizado
+     * 
      * @return array
      */
     private static function retornaArrayFileNamesDbDropScriptsFiles() 
@@ -534,7 +411,8 @@ class Basico_DBUtilControllerController
     
     /**
      * Retorna array com nomes dos arquivos de create para o banco que está sendo utilizado
-     * @return unknown_type
+     * 
+     * @return String
      */
     private static function retornaArrayFileNamesDbCreateScriptsFiles() 
     {
@@ -556,9 +434,12 @@ class Basico_DBUtilControllerController
     }
     
     /**
-    * Retorna array com nomes dos arquivos de insert de dados para o banco que está sendo utilizado
-    * @return unknown_type
-    */
+     * Retorna array com nomes dos arquivos de insert de dados para o banco que está sendo utilizado
+     * 
+     * @param String $scriptsPath
+     * 
+     * @return Array
+     */
     private static function retornaArrayFileNamesDbDataScriptsFiles($scriptsPath = NULL) 
     {
        // inicializando variaveis
@@ -591,8 +472,10 @@ class Basico_DBUtilControllerController
 
     	//retornando o tipo do banco de dados
     	if ($dbResource instanceof Zend_Db_Adapter_Pdo_Pgsql){
+    		// retornando tipo POSTGRESQL
     		return "PGSQL";    		
     	} else if ($dbResource instanceof Zend_Db_Adapter_Pdo_Dblib){
+    		// retornando tipo MICROSOFT SQL SERVER
     	    return "MSSQL";
     	}
     }
@@ -631,6 +514,7 @@ class Basico_DBUtilControllerController
     
     /**
      * Retorna o path dos arquivos de Create para o banco que está sendo utilizado.
+     * 
      * @return String
      */
     private static function retornaDBCreateScriptsPath()
@@ -647,6 +531,7 @@ class Basico_DBUtilControllerController
     
     /**
      * Retorna o path dos arquivos de insert de dados para o banco que está sendo utilizado.
+     * 
      * @return String
      */
     private static function retornaDBDataScriptsPath()

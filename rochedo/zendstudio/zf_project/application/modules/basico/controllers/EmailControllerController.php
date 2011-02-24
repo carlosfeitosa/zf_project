@@ -18,24 +18,38 @@ class Basico_EmailControllerController
 {
 	/**
 	 * 
-	 * @var Basico_EmailController
+	 * @var Basico_EmailControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 
 	/**
 	 * 
 	 * @var Basico_Model_Email
 	 */
-	private $email;
+	private $_email;
 
 	/**
-	 * Construtor do Controlador Email
+	 * Construtor do Controlador Basico_EmailControllerController
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->email = new Basico_Model_Email();
+		// instanciando modelo
+		$this->_email = $this->retornaNovoObjetoEmail();
+
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializacao do controlador Basico_EmailControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
 	}
 
 	/**
@@ -43,14 +57,26 @@ class Basico_EmailControllerController
 	 * 
 	 * @return Basico_EmailController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// verificando singleton
-		if (self::$singleton == NULL){
-			
-			self::$singleton = new Basico_EmailControllerController();
+		if (self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_EmailControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um objeto email vazio
+	 * 
+	 * @return Basico_Model_Email
+	 */
+	public function retornaNovoObjetoEmail()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Email();
 	}
 
 	/**
@@ -61,7 +87,7 @@ class Basico_EmailControllerController
 	private function gerarUniqueIdEmail()
 	{
 		// retorna o resultado do metodo "geradorUniqueIdGerarId" na classe "Basico_GeradorControllerController"
-		return Basico_GeradorControllerController::geradorUniqueIdGerarId($this->email, 'unique_id');
+		return Basico_GeradorControllerController::geradorUniqueIdGerarId($this->_email, 'unique_id');
 	}
 
 	/**
@@ -85,7 +111,7 @@ class Basico_EmailControllerController
 	public function retornaUniqueIdEmail($email) 
 	{
 		// recuperando objetos e-mail
-		$arrayObjsEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
+		$arrayObjsEmail = $this->_email->fetchList("email = '{$email}'", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
 		if (isset($arrayObjsEmail[0]))
@@ -102,15 +128,15 @@ class Basico_EmailControllerController
 	 * 
 	 * @return Basico_Model_Email|null
 	 */
-	private function retornaObjetoEmail($email)
+	private function retornaObjetoEmailPorEmail($email)
 	{
 		// recuperando objetos e-mail
-		$arrayObjsEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
+		$objsEmail = $this->_email->fetchList("email = '{$email}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
-		if (isset($arrayObjsEmail[0]))
+		if (isset($objsEmail[0]))
 			// retornando objeto e-mail
-    	    return $arrayObjsEmail[0];
+    	    return $objsEmail[0];
     	else
     	    return NULL;
 	}
@@ -122,15 +148,15 @@ class Basico_EmailControllerController
 	 * 
 	 * @return Integer|null
 	 */
-	public function retornaIdEmail($email)
+	public function retornaIdEmailPorEmail($email)
 	{
-		// recuperando objetos e-mail
-		$arrayObjsEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
-		
+		// recuperando objeto e-mail
+		$objEmail = self::retornaObjetoEmailPorEmail($email);
+
 		// verificando se o objeto foi recuperado/existe
-		if (isset($arrayObjsEmail[0]))
+		if (isset($objEmail))
 			// retornando o id do objeto e-mail
-    	    return $arrayObjsEmail[0]->id;
+    	    return $objEmail->id;
     	else
     	    return NULL;
 	}
@@ -142,17 +168,10 @@ class Basico_EmailControllerController
 	 * 
 	 * @return Basico_Model_Email|null
 	 */
-	public function retornaObjetoEmailId($id)
+	public function retornaObjetoEmailPorId($id)
 	{
-		// recuperando objetos e-mail
-		$arrayObjsEmail = self::$singleton->email->fetchList("id = '{$id}'", null, 1, 0);
-		
-		// verificando se o objeto foi recuperado/existe
-		if (isset($arrayObjsEmail[0]))
-			// retornando o objeto e-mail
-    	    return $arrayObjsEmail[0];
-    	else
-    	    return NULL;
+		// retornando o objeto email atraves do id
+		return $this->_email->find($id);
 	}
 
 	/**
@@ -162,15 +181,15 @@ class Basico_EmailControllerController
 	 * 
 	 * @return Basico_Model_Email|null
 	 */
-	public function retornaIdPessoaEmail($email)
+	public function retornaIdProprietarioEmailPorEmail($email)
 	{
 		// recuperando objetos e-mail
-		$arrayObjsEmail = self::$singleton->email->fetchList("email = '{$email}'", null, 1, 0);
-		
+		$objsEmail = $this->_email->fetchList("email = '{$email}'", null, 1, 0);
+
 		// verificando se o objeto foi recuperado/existe
-		if (isset($arrayObjsEmail[0]))
+		if (isset($objsEmail[0]))
 			// retornando o id generico do proprietario do objeto e-mail
-    	    return $arrayObjsEmail[0]->idGenericoProprietario;
+    	    return $objsEmail[0]->idGenericoProprietario;
     	else
     	    return NULL;
 	}
@@ -185,12 +204,12 @@ class Basico_EmailControllerController
 	public function verificaEmailExistente($email)
 	{
 		// recuperando objetos e-mail
-		$auxEmail = $this->retornaObjetoEmail($email);
-		
+		$objEmail = $this->retornaObjetoEmailPorEmail($email);
+
 		// verificando se o objeto foi recuperado/existe
-		if(isset($auxEmail))
+		if(isset($objEmail))
 			// retornando o atributo validado
-			return $auxEmail->validado;
+			return $objEmail->validado;
 		else
 		    return NULL;
 	}
@@ -204,29 +223,44 @@ class Basico_EmailControllerController
 	 * 
 	 * @return void
 	 */
-	public function salvarEmail(Basico_Model_Email $novoEmail, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarEmail(Basico_Model_Email $objEmail, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se existe a relacao de categoria
-		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($novoEmail->categoria))
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($objEmail->categoria))
 			throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_EMAIL_SEM_RELACAO);
 
 		// verificando se existe o token existe na tabela de relacao
-		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($novoEmail->categoria, $novoEmail->idGenericoProprietario, Basico_PersistenceControllerController::bdRetornaTableNameObjeto($novoEmail), Basico_PersistenceControllerController::bdRetornaNomeCampoIdGenericoObjeto($novoEmail), true))
+		if (!Basico_PersistenceControllerController::bdChecaExistenciaValorCategoriaChaveEstrangeira($objEmail->categoria, $objEmail->idGenericoProprietario, Basico_PersistenceControllerController::bdRetornaTableNameObjeto($objEmail), Basico_PersistenceControllerController::bdRetornaNomeCampoIdGenericoObjeto($objEmail), true))
 			throw new Exception(MSG_ERRO_EMAIL_CHECK_CONSTRAINT);
 
     	try {
+    		// instanciando controladores
+    		$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+    		$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objEmail->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateEmail();
+	    		$mensagemLog    = LOG_MSG_UPDATE_EMAIL;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoEmail();
+	    		$mensagemLog    = LOG_MSG_NOVO_EMAIL;    		
+	    	}
 
 			// salvando o objeto através do controlador Save
-	    	Basico_PersistenceControllerController::bdSave($novoEmail, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoEmail(), LOG_MSG_NOVO_EMAIL);
+	    	Basico_PersistenceControllerController::bdSave($objEmail, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 	    	// atualizando o objeto
-    		$this->email = $novoEmail;
+    		$this->_email = $objEmail;
 
     	} catch (Exception $e) {
-    		
+
     		throw new Exception($e);
     	}
 	}
@@ -238,41 +272,46 @@ class Basico_EmailControllerController
 	 */
 	public function retornaEmailSistema()
     {
+    	// instanciando controladores
+    	$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+
 		// buscando o e-mail do sistema
-		$idCategoriaEmailSistema = Basico_CategoriaControllerController::retornaIdCategoriaEmailSistema();
-		$emailSistema = self::$singleton->email->fetchList("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
+		$idCategoriaEmailSistema = $categoriaControllerController->retornaIdCategoriaEmailSistema();
+		$objEmailSistema = $this->_email->fetchList("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
-		if (isset($emailSistema[0]))
+		if (isset($objEmailSistema[0]))
 			// retornando o e-mail do sistema
-    	    return $emailSistema[0]->email;
+    	    return $objEmailSistema[0]->email;
     	else
     	    return NULL;
 	}
 	
 	/**
-	 * Retorna o Objeto email primario da pessoa passada
+	 * Retorna o Objeto email primario do id da pessoa passada
+	 * 
 	 * @param Int $idPessoa
+	 * 
 	 * @return Basico_Model_Email
+	 * 
 	 */
 	public function retornaEmailPrimarioPessoa($idPessoa)
 	{
 		if ((Int) $idPessoa > 0) {
-			
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+
 			// recuperando o id da categoria EMAIL_PRIMARIO
-			$idCategoriaEmailPrimario = Basico_CategoriaControllerController::retornaIdCategoriaEmailPrimario();
-			
-			// instanciando um objeto email
-			$objEmail = new Basico_Model_Email();
-			
+			$idCategoriaEmailPrimario = $categoriaControllerController->retornaIdCategoriaEmailPrimario();
+
 			// recuperando o email primario da pessoa passada
-			$emailPrimario = $objEmail->fetchList("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
+			$objEmailPrimario = $this->_email->fetchList("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
 			
 			// checando se o email foi encontrado
-			if (count($emailPrimario) == 1) {
-				return $emailPrimario[0];
+			if (isset($objEmailPrimario[0])) {
+				// retornando o objeto
+				return $objEmailPrimario[0];
 			}
-			
 		}
 		return false;
 	}

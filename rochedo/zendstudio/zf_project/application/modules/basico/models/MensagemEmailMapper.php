@@ -54,7 +54,7 @@ class Basico_Model_MensagemEmailMapper
      * @param  Basico_Model_MensagemEmail $object
      * @return void
      */
-    public function save(Default_Model_MensagemEmail $object)
+    public function save(Basico_Model_MensagemEmail $object)
     {
         $data = array(
 				'destinatariosCopiaCarbonada'   => $object->getDestinatariosCopiaCarbonada(),
@@ -77,7 +77,7 @@ class Basico_Model_MensagemEmailMapper
 	* @param Basico_Model_MensagemEmail $object
 	* @return void
 	*/
-	public function delete(Default_Model_MensagemEmail $object)
+	public function delete(Basico_Model_MensagemEmail $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
@@ -89,7 +89,7 @@ class Basico_Model_MensagemEmailMapper
      * @param  Basico_Model_MensagemEmail $object 
      * @return void
      */
-    public function find($id, Default_Model_MensagemEmail $object)
+    public function find($id, Basico_Model_MensagemEmail $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -115,7 +115,7 @@ class Basico_Model_MensagemEmailMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_MensagemEmail();
+			$entry = new Basico_Model_MensagemEmail();
 			$entry->setId($row->id)
 
 				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
@@ -139,7 +139,7 @@ class Basico_Model_MensagemEmailMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_MensagemEmail();
+			$entry = new Basico_Model_MensagemEmail();
 			$entry->setId($row->id)
 
 				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)

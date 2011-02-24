@@ -7,39 +7,60 @@ class Basico_FormularioFormularioElementoControllerController
 {
 	/**
 	 * Instância do Controlador FormularioFormularioElemento
-	 * @var Basico_FormularioController
+	 * @var Basico_FormularioFormularioElementoControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 	
 	/**
 	 * Instância do Modelo FormularioFormularioElemento.
 	 * @var Basico_Model_FormularioFormularioElemento
 	 */
-	private $formularioFormularioElemento;
+	private $_formularioFormularioElemento;
 	
 	/**
-	 * Construtor do Controlador FormularioFormularioElemento.
+	 * Construtor do Controlador Basico_FormularioFormularioElementoControllerController.
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->formularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+		// instanciando o modelo
+		$this->_formularioFormularioElemento = $this->retornaNovoObjetoFormularioFormularioElemento();
+
+		// inicializando o controlador
+		$this->init();
 	}
-	
+
+	/**
+	 * Inicializa o controlador Basico_FormularioFormularioElementoControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Retorna instância do Controlador FormularioFormularioElemento.
 	 * 
-	 * @return Basico_FormularioFormularioElementoController
+	 * @return Basico_FormularioFormularioElementoControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			
-			self::$singleton = new Basico_FormularioFormularioElementoControllerController();
+		if (self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_FormularioFormularioElementoControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	public function retornaNovoObjetoFormularioFormularioElemento()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_FormularioFormularioElemento();
 	}
 
 	/**
@@ -51,20 +72,17 @@ class Basico_FormularioFormularioElementoControllerController
 	 * 
 	 * @return null|Basico_Model_Decorator
 	 */
-	static public function retornaDecoratorObject($idFormulario, $idFormularioElemento, $ordem)
-	{
-		// recuperando o modelo de formulario
-		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-		
+	public function retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($idFormulario, $idFormularioElemento, $ordem)
+	{		
 		// recuperando objeto
-		$arrayObjsFormularioFormularioElemento = $modelFormularioFormularioElemento->fetchList("id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and ordem = {$ordem}", null, 1, 0);
+		$objsFormularioFormularioElemento = $this->_formularioFormularioElemento->fetchList("id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and ordem = {$ordem}", null, 1, 0);
 
 		// verificando o resultado da recuperacao do objeto
-		if (!isset($arrayObjsFormularioFormularioElemento[0]) or (!$arrayObjsFormularioFormularioElemento[0]->decorator))
+		if (!isset($objsFormularioFormularioElemento[0]) or (!$objsFormularioFormularioElemento[0]->decorator))
 			return null;
 
 		// retornando decorator
-		return $arrayObjsFormularioFormularioElemento[0]->getDecoratorObject();
+		return $objsFormularioFormularioElemento[0]->getDecoratorObject();
 	}
 
 	/**
@@ -74,25 +92,25 @@ class Basico_FormularioFormularioElementoControllerController
 	 * 
 	 * @return Array
 	 */
-	static public function retornaArrayOrdem($idFormulario)
+	public function retornaArrayOrdemPorIdFormulario($idFormulario)
 	{
+		// instanciando controladores
+		$formularioControllerController = Basico_FormularioControllerController::getInstance();
+
 		// inicializando variaveis
 		$arrayReturn = array();
 
-		// recuperando o modelo de formulario
-		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-
 		// recuperando objeto
-		$arrayObjsFormularioFormularioElemento = $modelFormularioFormularioElemento->fetchList("id_formulario = {$idFormulario}", "ordem");
+		$objsFormularioFormularioElemento = $this->_formularioFormularioElemento->fetchList("id_formulario = {$idFormulario}", "ordem");
 
 		// verificando o resultado da recuperacao do objeto
-		if (count($arrayObjsFormularioFormularioElemento) > 0) {
-			foreach ($arrayObjsFormularioFormularioElemento as $objFormularioFormularioElemento) {
+		if (count($objsFormularioFormularioElemento) > 0) {
+			foreach ($objsFormularioFormularioElemento as $objFormularioFormularioElemento) {
 				$arrayReturn[] = $objFormularioFormularioElemento->ordem;
 			}
 
 			// verificando se o formulario eh persistente
-			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_FormularioControllerController::existePersistencia($idFormulario)))
+			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and ($formularioControllerController->existePersistenciaPorIdFormulario($idFormulario)))
 				$arrayReturn[] = $objFormularioFormularioElemento->ordem + 1;
 		}
 
@@ -108,15 +126,13 @@ class Basico_FormularioFormularioElementoControllerController
 	 * 
 	 * @return Array
 	 */
-	static public function retornaObjsFormularioFormularioElementoGrupoFormularioElementoFormulario(Basico_Model_Formulario $objFormulario)
+	public function retornaObjetosFormularioFormularioElementoGrupoFormularioElemento(Basico_Model_Formulario $objFormulario)
 	{
-		// instanciando modelo
-		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-
 		// recuperando objetos
-		$arrayObjsFormularioFormularioElemento = $modelFormularioFormularioElemento->fetchList("id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
+		$objsFormularioFormularioElemento = $this->_formularioFormularioElemento->fetchList("id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
 
-		return $arrayObjsFormularioFormularioElemento;
+		// retornando array de objetos
+		return $objsFormularioFormularioElemento;
 	}
 
 	/**
@@ -128,19 +144,34 @@ class Basico_FormularioFormularioElementoControllerController
 	 * 
 	 * @return void
 	 */
-	public function salvarFormularioFormularioElemento($novoFormularioFormularioElemento, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarFormularioFormularioElemento(Basico_Model_FormularioFormularioElemento $objFormularioFormularioElemento, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+			if ($objFormularioFormularioElemento->id != NULL) {
+				// recuperando informacoes de log de atualizacao de registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateFormularioFormularioElemento();
+				$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO;
+			} else {
+				// recuperando informacoes de log de novo registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoFormularioFormularioElemento();
+				$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO;
+			}
 
 	    	// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoFormularioFormularioElemento, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormularioFormularioElemento(), LOG_MSG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
+			Basico_PersistenceControllerController::bdSave($objFormularioFormularioElemento, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 			// atualizando o objeto
-			$this->formularioFormularioElemento = $novoFormularioFormularioElemento;
-			
+			$this->_formularioFormularioElemento = $objFormularioFormularioElemento;
+
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

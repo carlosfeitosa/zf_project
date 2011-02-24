@@ -9,6 +9,7 @@
 require_once("CategoriaControllerController.php");
 require_once("EmailControllerController.php");
 require_once("LoginControllerController.php");
+require_once("DadosPessoaisControllerController.php");
 
 /**
  * Controlador Email
@@ -41,16 +42,16 @@ class Basico_EmailController extends Zend_Controller_Action
     public function validaremailAction()
     {
     	// instanciando os controladores
-    	$controladorCategoria = Basico_CategoriaControllerController::init();
-    	$controladorEmail     = Basico_EmailControllerController::init();
-    	$controladorToken     = Basico_TokenControllerController::init();
-    	$controladorLogin     = Basico_LoginControllerController::init();
+    	$controladorCategoria = Basico_CategoriaControllerController::getInstance();
+    	$controladorEmail     = Basico_EmailControllerController::getInstance();
+    	$controladorToken     = Basico_TokenControllerController::getInstance();
+    	$controladorLogin     = Basico_LoginControllerController::getInstance();
     	
     	// recuperando o token da sessao
     	$token                = $this->request->getParam('t');
 
     	// recuperando o objeto token e-mail
-    	$tokenObj             = $controladorToken->retornaObjetoTokenEmail($token);
+    	$tokenObj             = $controladorToken->retornaObjetoTokenEmailPorToken($token);
 
     	// verificando se o objeto existe
     	if ($tokenObj == NULL){
@@ -61,7 +62,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	// recuperando o id do e-mail
     	$idEmail = $tokenObj->idGenerico;
     	// recuperando o e-mail
-    	$email   = $controladorEmail->retornaObjetoEmailId($idEmail);
+    	$email   = $controladorEmail->retornaObjetoEmailPorId($idEmail);
 
     	// recuperando data hora de expiracao
     	$dataHoraExpiracaoUnixTimeStamp = Basico_UtilControllerController::retornaTimestamp($tokenObj->datahoraExpiracao);
@@ -80,7 +81,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	$proprietarioEmail = $this->retornaObjetoProprietarioEmail($email);
 	    	
 	    	// recuperando dadosPessoais da pessoa
-	    	$dadosPessoais = Basico_PessoaControllerController::retornaObjetoDadosPessoaisPessoa($proprietarioEmail->id);
+	    	$dadosPessoais = Basico_DadosPessoaisControllerController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($proprietarioEmail->id);
 	    	
 	    	// recuperando a versao da tupla de dadosPessoais
 	    	$versaoDadosPessoais = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
@@ -135,7 +136,7 @@ class Basico_EmailController extends Zend_Controller_Action
     public function retornaObjetoProprietarioEmail(Basico_Model_Email $email)
     {
     	//recuperando a categoria chave estrangeira do email passado 
-    	$categoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::retornaObjetoCategoriaChaveEstrangeiraCategoria($email->categoria);
+    	$categoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($email->categoria);
     	   	
     	//setando o nome da classe a ser instanciada
     	$moduloName = strtolower($categoriaChaveEstrangeira->getModuloObject()->nome);

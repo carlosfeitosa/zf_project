@@ -8,26 +8,66 @@
 class Basico_MensageiroControllerController 
 {
 	/**
-	 * 
-	 * @var Basico_MensageiroController 
+	 * @var Basico_MensageiroControllerController 
 	 */
-	static private $singleton;
+	private static $_singleton;
+
+	/**
+	 * @var Zend_Mail 
+	 */
+	private $_mail;
+
+	/**
+	 * Contrutor do controlador Basico_MensageiroControllerController
+	 * 
+	 * @return void
+	 */
+	private function __construct()
+	{
+		// instanciando o modelo
+		$this->_mail = $this->retornaNovoObjetoMail();
+
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializa o controlador Basico_MensageiroControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
 		
+	}
+	
 	/**
 	 * Inicializa Controlador Mensageiro
 	 * 
-	 * @return Basico_MensageiroController $singleton
+	 * @return Basico_MensageiroControllerController
 	 */
-    static public function init()
+    public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_MensageiroControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_MensageiroControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
-		
+
+	/**
+	 * Retorna o objeto Zend_Mail
+	 * 
+	 * @return Zend_Mail
+	 */
+	public function retornaNovoObjetoMail()
+	{
+		// retornando o objeto
+		return new Zend_Mail(EMAIL_CHARSET);
+	}
+
 	/**
 	 * Envia Mensagem
 	 * 
@@ -38,17 +78,24 @@ class Basico_MensageiroControllerController
     public function enviar(Basico_Model_Mensagem $mensagem) {
         
     	try {
+    		// instanciando controladores
+    		$logControllerController = Basico_LogControllerController::getInstance();
+    		$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+    		$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+
     		// salvando log de tentativa de envio de mensagem
-    		Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL);
-    		
+    		$logControllerController->salvarLog($pessoaPerfilControllerController->retornaIdPessoaPerfilSistema(), $categoriaControllerController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL);
+
             // recuperando o transporte SMTP
-			$transport = Basico_MensageiroControllerController::retornaTransportSmtp();
+			$transport = $this->retornaTransportSmtp();
+			// setando o transporte
 			Zend_Mail::setDefaultTransport($transport);
-			
-			// instanciando o enviador de e-mails
-	        $zendMail = new Zend_Mail(EMAIL_CHARSET);
+
+			// limpando o modelo
+			$this->_mail = $this->retornaNovoObjetoMail();
+
 	        // setando remetente
-	        $zendMail->setFrom($mensagem->remetente, $mensagem->remetenteNome);
+	        $this->_mail->setFrom($mensagem->remetente, $mensagem->remetenteNome);
 	        
 	        // recuperando destinatarios
 	        $destinatarios = $mensagem->destinatariosArray;
@@ -56,25 +103,25 @@ class Basico_MensageiroControllerController
 	        // loop para adicionar destinatarios
 	        foreach($destinatarios as $destinatario) {
 	        	// adicionando destinatarios
-	            $zendMail->addTo($destinatario);	
+	            $this->_mail->addTo($destinatario);	
 	        }
 	        
 	        // setando assunto
-	        $zendMail->setSubject($mensagem->assunto);
+	        $this->_mail->setSubject($mensagem->assunto);
 	        // setando corpo da mensagem
-	        $zendMail->setBodyText($mensagem->mensagem);
+	        $this->_mail->setBodyText($mensagem->mensagem);
 	        // setando data da mensagem
-	        $zendMail->setDate($mensagem->datahoraMensagem);
+	        $this->_mail->setDate($mensagem->datahoraMensagem);
 	        
 	        // enviando a mensagem
-            $zendMail->send($transport);
+            $this->_mail->send($transport);
             
     		// salvando log de sucesso no envio de mensagem
-    		Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_SUCESSO);
+    		$logControllerController->salvarLog($pessoaPerfilControllerController->retornaIdPessoaPerfilSistema(), $categoriaControllerController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_SUCESSO);
 		} catch(Exception $e){
 
 			// salvando log de falha no envio de mensagem
-    		Basico_LogControllerController::salvarLog(Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_FALHA . $e->getMessage());
+    		$logControllerController->salvarLog($pessoaPerfilControllerController->retornaIdPessoaPerfilSistema(), $categoriaControllerController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_FALHA . $e->getMessage());
 			throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }
 	}

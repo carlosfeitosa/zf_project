@@ -49,7 +49,7 @@ class Basico_PersistenceControllerController
     public static function bdControlaTransacao($tipoTransacao = DB_BEGIN_TRANSACTION)
     {  	
     	// retornando o resultado do metodo "controlaTransacaoBD" do controlador "Basico_DBTransactionControllerController"
-    	return Basico_DBTransactionControllerController::init()->controlaTransacaoBD($tipoTransacao);
+    	return Basico_DBTransactionControllerController::getInstance()->controlaTransacaoBD($tipoTransacao);
     }
 
   	/**
@@ -63,7 +63,7 @@ class Basico_PersistenceControllerController
     public static function bdRetornaUltimaVersaoCVC($objeto, $forceVersioning = false)
     {
     	// retornando o resultado do metodo "retornaUltimaVersao" do controlador "Basico_CVCControllerController"
-    	return Basico_CVCControllerController::retornaUltimaVersao($objeto, $forceVersioning);
+    	return Basico_CVCControllerController::getInstance()->retornaUltimaVersao($objeto, $forceVersioning);
     }
 
     /**
@@ -76,7 +76,7 @@ class Basico_PersistenceControllerController
     public static function bdVersionarCVC($objeto)
     {
     	// retornando o resultado do metodo "versionar" do controlador "Basico_CVCControllerController"
-    	return Basico_CVCControllerController::versionar($objeto);
+    	return Basico_CVCControllerController::getInstance()->versionar($objeto);
     }
 
     /**
@@ -193,17 +193,6 @@ class Basico_PersistenceControllerController
     	return Basico_DBUtilControllerController::executaScriptSQL($script);
     }
 
-    /**
-     * Retorna o id da PessoaPefil do sistema.
-     * 
-     * @return Int
-     */
-	public static function bdRetornaIdPessoaPerfilSistema()
-	{
-		// retornando o resultado do metodo "retornaIdPessoaPerfilSistema" no controlador "Basico_DBUtilControllerController"
-		return Basico_DBUtilControllerController::retornaIdPessoaPerfilSistema();
-	}
-
 	/**
 	 * Retorna o valor da chave primaria de um objeto
 	 * 
@@ -253,23 +242,9 @@ class Basico_PersistenceControllerController
     public static function bdRetornaNomeCampoIdGenericoObjeto($objeto)
     {
     	// retorna o resultado do metodo "retornaNomeCampoIdGenerico" no controlador "Basico_DBUtilControllerController"
-    	return Basico_DBUtilControllerController::retornaNomeCampoIdGenerico($objeto);
+    	return Basico_DBUtilControllerController::retornaNomeCampoIdGenericoObjeto($objeto);
     }
-
-    /**
-     * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
-     * 
-     * @param object $objeto
-     * @param boolean $forceCreateRelationship
-     * 
-     * @return null|Basico_Model_CategoriaChaveEstrangeira
-     */
-    public static function bdRetornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship = false)
-    {
-    	// retornando o resultado do metodo "retornaCategoriaChaveEstrangeira" no controlador "Basico_DBUtilControllerController"
-    	return Basico_DBUtilControllerController::retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship);
-    }
-    
+   
     /**
      * Reseta o banco de dados que está sendo utilizado.
      * @return boolean
@@ -288,7 +263,7 @@ class Basico_PersistenceControllerController
 	public static function bdRetornaArrayDependenciasTabelaFK($nomeTabela)
 	{
 		// retornando o resultado do metodo "retornaArrayDependenciasTabela" no controlador "Basico_DBCheckControllerController"
-		return Basico_DBCheckControllerController::retornaArrayDependenciasTabelaFK($nomeTabela);
+		return Basico_DBCheckControllerController::retornaArrayDependenciasTabelaFKPorNomeTabela($nomeTabela);
 	}
 
 	/**
@@ -302,7 +277,7 @@ class Basico_PersistenceControllerController
 	public static function retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId($nomeTabela, $idTabela)
 	{
 		// retornando o resultado do metodo "retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId" no controlador "Basico_DBCheckControllerController"
-		return Basico_DBCheckControllerController::retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId($nomeTabela, $idTabela);
+		return Basico_DBCheckControllerController::retornaArrayIdsCategoriaValorChaveEstrangeiraPorNomeTabelaId($nomeTabela, $idTabela);
 	}
 
     /**
@@ -315,7 +290,7 @@ class Basico_PersistenceControllerController
     public static function bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($idCategoria)
     {
     	// retornando o resultado do metodo "checaExistenciaRelacaoCategoriaChaveEstrangeira" no controlador "Basico_DBCheckControllerController"
-    	return Basico_DBCheckControllerController::checaExistenciaRelacaoCategoriaChaveEstrangeira($idCategoria);
+    	return Basico_DBCheckControllerController::checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria);
     }
 
     /**
@@ -343,7 +318,7 @@ class Basico_PersistenceControllerController
 	public static function bdChecaRegistrosFilhos($objeto)
 	{
 		// retornando o resultado do metodo "checaRegistrosFilhos" no controlador "Basico_DBCheckControllerController"
-		return Basico_DBCheckControllerController::checaRegistrosFilhos($objeto);
+		return Basico_DBCheckControllerController::checaRegistrosFilhosObjeto($objeto);
 	}
 
 	/**
@@ -357,7 +332,7 @@ class Basico_PersistenceControllerController
 	public static function bdChecaRegistrosFilhosCategoriaChaveEstrangeiraTabelaId($nomeTabela, $valorId)
 	{
 		// retornando o resultado do metodo "checaRegistrosFilhosCategoriaChaveEstrangeira" no controlador "Basico_DBCheckControllerController"
-		return Basico_DBCheckControllerController::checaRegistrosFilhosCategoriaChaveEstrangeiraTabelaId($nomeTabela, $valorId);
+		return Basico_DBCheckControllerController::checaRegistrosFilhosCategoriaChaveEstrangeiraPorNomeTabelaId($nomeTabela, $valorId);
 	}
 
     /**
@@ -370,7 +345,7 @@ class Basico_PersistenceControllerController
 	public static function bdChecaRegistrosFilhosCategoriaChaveEstrangeira($objeto) 
 	{
 		// retornando o resultado do metodo "checaRegistrosFilhosCategoriaChaveEstrangeira" no controlador "Basico_DBCheckControllerController"
-		return Basico_DBCheckControllerController::checaRegistrosFilhosCategoriaChaveEstrangeira($objeto);
+		return Basico_DBCheckControllerController::checaRegistrosFilhosCategoriaChaveEstrangeiraPorObjeto($objeto);
 	}
 
 	/**
@@ -384,7 +359,7 @@ class Basico_PersistenceControllerController
 	public static function bdChecaRegistrosFilhosFKTabelaId($nomeTabela, $idPK)
 	{
 		// retornando o resultado do metodo "checaRegistrosFilhosFKTabela" no controlador "Basico_DBCheckControllerController"
-		return Basico_DBCheckControllerController::checaRegistrosFilhosFKTabelaId($nomeTabela, $idPK);
+		return Basico_DBCheckControllerController::checaRegistrosFilhosFKPorTabelaId($nomeTabela, $idPK);
 	}
 
 	 /**
@@ -397,6 +372,6 @@ class Basico_PersistenceControllerController
 	public static function bdChecaRegistosFilhosFK($objeto)
 	{
 		// retornando o resultado do metodo "checaRegistosFilhosFK" no controlador "Basico_DBCheckControllerController"
-		return Basico_DBCheckControllerController::checaRegistrosFilhosFK($objeto);
+		return Basico_DBCheckControllerController::checaRegistrosFilhosFKObjeto($objeto);
 	}
 }

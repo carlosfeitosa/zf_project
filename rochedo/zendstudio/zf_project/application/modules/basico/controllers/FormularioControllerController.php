@@ -7,40 +7,67 @@ class Basico_FormularioControllerController
 {
 	/**
 	 * Instância do Controlador Formulario
-	 * @var Basico_FormularioController
+	 * @var Basico_FormularioControllerController
 	 */
-	static private $singleton;
+	private static $_singleton;
 	
 	/**
 	 * Instância do Modelo Formulario.
 	 * @var Basico_Model_Formulario
 	 */
-	private $formulario;
+	private $_formulario;
 	
 	/**
-	 * Construtor do Controlador Formulario.
+	 * Construtor do Controlador Basico_FormularioControllerController.
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->formulario = new Basico_Model_Formulario();
+		// instanciando modelo
+		$this->_formulario = $this->retornaNovoObjetoFormulario();
+
+		// inicializando controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializa o controlador Basico_FormularioControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
 	}
 	
 	/**
 	 * Retorna instância do Controlador Formulario.
 	 * 
-	 * @return Basico_FormularioController
+	 * @return Basico_FormularioControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_FormularioControllerController();
+		if (self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_FormularioControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
 
+	/**
+	 * Retorna um objeto formulario vazio
+	 * 
+	 * @return Basico_Model_Formulario
+	 */
+	public function retornaNovoObjetoFormulario()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Formulario();
+	}
+	
     /**
      * Retorna se existe formulario filho
      * 
@@ -48,15 +75,13 @@ class Basico_FormularioControllerController
      * 
      * @return Boolean
      */
-    public static function existeFormulariosFilhos($idFormulario)
+    public function existeFormulariosFilhosPorIdFormulario($idFormulario)
     {
-    	// instanciando o modelo de formulario
-    	$modelFormulario = new Basico_Model_Formulario();
-    	// recuperando array de formularios filhos
-    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$idFormulario}");
-    	
+	   	// recuperando formularios filhos
+    	$objsFormulariosFilho = $this->_formulario->fetchList("id_formulario_pai = {$idFormulario}");
+
     	// retornando se existe(m) formulario(s) filho(s)
-    	return (count($arrayFormulariosObjects) > 0);
+    	return (count($objsFormulariosFilho) > 0);
     }
     
     /**
@@ -66,15 +91,13 @@ class Basico_FormularioControllerController
      * 
      * @return Boolean
      */
-   	public static function existeElementos($idFormulario)
+   	public function existeElementosPorIdFormulario($idFormulario)
    	{
-   		// instanciando o modelo de formulario
-   		$modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-   		// recuperando array de formularios filhos
-        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$idFormulario}");
+   		// recuperando elementos do formulario
+   		$objsFormularioElemento = $this->_formulario->find($idFormulario)->getFormularioElementosObjects();
 
         // retornando se existe(m) elemento(s)
-        return (count($arrayFormularioFormularioElementosObjects) > 0);
+        return (count($objsFormularioElemento) > 0);
    	}
 
 	/**
@@ -86,18 +109,33 @@ class Basico_FormularioControllerController
 	 * 
 	 * @return void
 	 */
-	public function salvarFormulario($novoFormulario, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarFormulario(Basico_Model_Formulario $objFormulario, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_UtilControllerController::retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+			// verificando se trata-se de uma nova tupla ou atualizacao
+			if ($objFormulario->id != NULL) {
+				// carregando informacoes de log de atualizacao de registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateFormulario();
+				$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO;
+			} else {
+				// carregando informacoes de log de novo registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoFormulario();
+				$mensagemLog    = LOG_MSG_NOVO_FORMULARIO;
+			}
 
 			// salvando o objeto através do controlador Save
-			Basico_SaveControllerController::save($novoFormulario, $versaoUpdate, $idPessoaPerfilCriador, Basico_CategoriaControllerController::retornaIdCategoriaLogNovoFormulario(), LOG_MSG_NOVO_FORMULARIO);
+		 	Basico_PersistenceControllerController::bdSave($objFormulario, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 			// atualizando o objeto
-			$this->formulario = $novoFormulario;
+			$this->_formulario = $objFormulario;
 
 		} catch (Exception $e) {
 			throw new Exception($e);
@@ -109,15 +147,13 @@ class Basico_FormularioControllerController
 	 * 
 	 * @return Array
 	 */
-	public static function retornaTodosObjsFormularios()
+	public function retornaTodosObjsFormularios()
 	{
 		// inicalizando variaveis
 		$arrayReturn = array();
-		// instanciando modelo de formulario
-		$modelFormulario = new Basico_Model_Formulario();
-		
+
 		// recuperando todos os formularios do sistema, ordenados pelo nome
-		$objsFormulario = $modelFormulario->fetchList(null, 'form_name');
+		$objsFormulario = $this->_formulario->fetchList(null, 'form_name');
 
 		// loop para recuperar apenas os formulario que nao sao sub formularios
 		foreach ($objsFormulario as $formularioObject) {
@@ -137,7 +173,7 @@ class Basico_FormularioControllerController
 	 * 
 	 * @return Boolean
 	 */
-	public static function existePersistencia($idFormulario)
+	public function existePersistenciaPorIdFormulario($idFormulario)
 	{
 		// montando a query que verifica se o formulario eh persistente
 		$queryVerificaPersistenciaFormulario = "SELECT DISTINCT fe.element_reloadable

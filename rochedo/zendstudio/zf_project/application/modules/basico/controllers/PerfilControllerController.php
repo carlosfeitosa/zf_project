@@ -6,41 +6,67 @@ class Basico_PerfilControllerController
 {
 	/**
 	 * Instância do Controlador Perfil.
-	 * @var Basico_PerfilController
+	 * @var Basico_PerfilControllerController
 	 */
-	static private $singleton;
-	
+	private static $_singleton;
+
 	/**
 	 * Instância do Modelo Perfil.
 	 * @var Basico_Model_Perfil
 	 */
-	private $perfil;
-	
+	private $_perfil;
+
 	/**
-	 * Construtor do Controlador Perfil
+	 * Construtor do Controlador Basico_PerfilControllerController
 	 * 
 	 * @return void
 	 */
 	private function __construct()
 	{
-		$this->perfil = new Basico_Model_Perfil();
+		// instanciando o modelo
+		$this->_perfil = $this->retornaNovoObjetoPerfil();
+
+		// inicializando o controlador
+		$this->init();
 	}
-	
+
+	/**
+	 * Inicializa o controlador Basico_PerfilControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
 	/**
 	 * Retorna a instância do controlador perfil
 	 * 
 	 * @return Basico_PerfilControler $singleton
 	 */
-	static public function init()
+	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$singleton == NULL){
-			self::$singleton = new Basico_PerfilControllerController();
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_PerfilControllerController();
 		}
-		
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
-	
+
+	/**
+	 * Retorna um objeto perfil vazio
+	 * 
+	 * @return Basico_Model_Perfil
+	 */
+	public function retornaNovoObjetoPerfil()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Perfil();
+	}
+
 	/**
 	 * Retorna um perfil utilizando o nome do perfil como parametro de busca.
 	 * 
@@ -48,32 +74,33 @@ class Basico_PerfilControllerController
 	 * 
 	 * @return Basico_Model_Perfil|null
 	 */
-	public function retornaObjetoPerfil($nomePerfil)
+	public function retornaObjetoPerfilPorNome($nomePerfil)
 	{
 		// recuperando array de perfis
-		$auxPerfil = self::$singleton->perfil->fetchList("nome = '{$nomePerfil}'", null, 1, 0);
+		$objPerfil = $this->_perfil->fetchList("nome = '{$nomePerfil}'", null, 1, 0);
 		
 		// verificando se existe o objeto
-		if (isset($auxPerfil[0]))
+		if (isset($objPerfil[0]))
 			// retornando o objeto
-    	    return $auxPerfil[0];
+    	    return $objPerfil[0];
     	    
     	return null;
 	}
 	
 	/**
 	 * Retorna o objeto perfil pelo id passado.
+	 * 
 	 * @param Int $idPerfil
+	 * 
 	 * @return Basico_Model_Perfil|null
 	 */
-	public function retornaObjetoPerfilId($idPerfil)
+	public function retornaObjetoPerfilPorIdPerfil($idPerfil)
 	{
-		$modeloPerfil = new Basico_Model_Perfil();
-
-		if ((Int) $idPerfil > 0)
-		    return $modeloPerfil->find($idPerfil);
-		    
-		return NULL;
+		// verificando se o id do perfil foi passado
+		if ($idPerfil > 0) {
+			// recuperando o objeto
+			return $this->_perfil->find($idPerfil);			
+		}
 	}
 	
 	/**
@@ -84,13 +111,13 @@ class Basico_PerfilControllerController
 	public function retornaObjetoPerfilUsuarioNaoValidado()
 	{
 		// recuperando o objeto perfil
-	    $perfilUsuarioNaoValidado = $this->retornaObjetoPerfil(PERFIL_USUARIO_NAO_VALIDADO);
-	    
+	    $perfilUsuarioNaoValidado = $this->retornaObjetoPerfilPorNome(PERFIL_USUARIO_NAO_VALIDADO);
+
 	    // verificando se o objeto existe
 	    if (isset($perfilUsuarioNaoValidado))
 	    	// retornando o objeto
     	    return $perfilUsuarioNaoValidado;
-    	    
+
     	throw new Exception(MSG_ERROR_PERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO);
 	}
 	
@@ -102,13 +129,13 @@ class Basico_PerfilControllerController
 	public function retornaObjetoPerfilUsuarioValidado()
 	{
 		// recuperando o objeto perfil
-	    $perfilUsuarioValidado = $this->retornaObjetoPerfil(PERFIL_USUARIO_VALIDADO);
-	    
+	    $perfilUsuarioValidado = $this->retornaObjetoPerfilPorNome(PERFIL_USUARIO_VALIDADO);
+
 	    // verificando se o objeto existe
 	    if (isset($perfilUsuarioValidado))
 	    	// retornando o objeto
     	    return $perfilUsuarioValidado;
-    	    
+
     	throw new Exception(MSG_ERROR_PERFIL_USUARIO_VALIDADO_NAO_ENCONTRADO);
 	}
 }
