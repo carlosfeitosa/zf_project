@@ -9,6 +9,67 @@
 class Basico_ComponenteControllerController
 {
 	/**
+	 * @var Basico_ComponenteControllerController
+	 */
+	private static $_singleton;
+
+	/**
+	 * @var Basico_Model_Componente
+	 */
+	private $_componente;
+
+    /**
+     * Construtor do Controller
+     * 
+     * @return void
+     */
+	private function __construct()
+	{
+		// instanciando o modelo
+		$this->$_componente = $this->retornaNovoObjetoComponente();
+
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializa o controlador Basico_ComponenteControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
+	/**
+	 * Recupera a instancia do controlador Basico_ComponenteControllerController
+	 * 
+	 * @return Basico_ComponenteControllerController
+	 */
+	public static function getInstance()
+	{
+		// verificando singleton
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_ComponenteControllerController();
+		}
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um objeto componente vazio
+	 * 
+	 * @return Basico_Model_Componente
+	 */
+	public function retornaNovoObjetoComponente()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Componente();
+	}
+
+	/**
 	 * Retorna array contendo os prefixos e paths dos componentes nao ZF que devem ser adicionados em forms (addPrefixpath)
 	 * 
 	 * @param Array $arrayNomesCategoriasComponentesNaoZF

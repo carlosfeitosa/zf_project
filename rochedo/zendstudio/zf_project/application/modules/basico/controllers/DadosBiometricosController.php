@@ -37,7 +37,7 @@ class Basico_DadosBiometricosController extends Zend_Controller_Action
     {
     	
     	// inicializando controladores
-    	$controladorDadosBiometricos = Basico_DadosBiometricosControllerController::init();
+    	$controladorDadosBiometricos = Basico_DadosBiometricosControllerController::getInstance();
     	
     	
     	// recuperando dados da submissão do formulario
