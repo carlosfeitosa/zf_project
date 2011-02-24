@@ -13,15 +13,15 @@ class Basico_CategoriaControllerController
 {
 	/**
 	 *  
-	 * @var Basico_CategoriaController object
+	 * @var Basico_CategoriaControllerController object
 	 */
-	static private $singleton;
+	private static $_singleton;
 	
 	/**
 	 * 
 	 * @var Basico_Model_Categoria object
 	 */
-	private $categoria;
+	private $_categoria;
 	
 	/**
 	 * Construtor do Controlador Categoria
@@ -30,22 +30,37 @@ class Basico_CategoriaControllerController
 	 */
 	private function __construct()
 	{
-		$this->categoria = new Basico_Model_Categoria();
+		// instanciando o modelo
+		$this->_categoria = $this->retornaNovoObjetoCategoria();
+
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializa o controlador Basico_CategoriaControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
 	}
 	
 	/**
-	 * Inicializador do Controlador Categoria
+	 * Recupera a instancia do controlador Basico_CategoriaControllerController
 	 * 
-	 * @return Basico_CategoriaController $singleton
+	 * @return Basico_CategoriaControllerController
 	 */
-	static public function init()
+	public static function getInstance()
 	{
-		// checando singleton
-		if(self::$singleton == NULL){
-			
-			self::$singleton = new Basico_CategoriaControllerController();
+		// verificando singleton
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_CategoriaControllerController();
 		}
-		return self::$singleton;
+		// retornando instancia
+		return self::$_singleton;
 	}
 	
 	/**
@@ -56,10 +71,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria or NULL
 	 */
-	private static function retornaObjetoCategoria($nomeCategoria)
+	private function retornaObjetoCategoriaPorNomeCategoria($nomeCategoria)
 	{
 		// recuperando objeto categoria
-		$objCategoria = self::$singleton->categoria->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
+		$objCategoria = $this->_categoria->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoria[0]))
@@ -78,33 +93,40 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria|NULL
 	 */
-	private static function retornaObjetoCategoriaAtiva($nomeCategoria, $tipoCategoria = null)
+	private function retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria($nomeCategoria, $idTipoCategoria = null)
 	{
-		// verificando se o controlador foi instanciando
-		if (!self::$singleton)
-			self::init();
-
 		// checando o tipo de categoria e condicionando query
-		if ((isset($tipoCategoria)) and ($tipoCategoria >= 1))
-			$whereSQL = "nome = '{$nomeCategoria}' and id_tipo_categoria = {$tipoCategoria}";
+		if ((isset($idTipoCategoria)) and ($idTipoCategoria >= 1))
+			$condicaoSQL = "nome = '{$nomeCategoria}' and id_tipo_categoria = {$idTipoCategoria}";
 		else
-			$whereSQL = "nome = '{$nomeCategoria}'";
+			$condicaoSQL = "nome = '{$nomeCategoria}'";
 
 		// recuperando objeto categoria
-		$arrayObjsCategoria = self::$singleton->categoria->fetchList($whereSQL, null, 1, 0);
+		$objsCategoria = $this->_categoria->fetchList($condicaoSQL, null, 1, 0);
 		
 		// verificando se o objeto foi recuperado
-		if (isset($arrayObjsCategoria[0])) {
+		if (isset($objsCategoria[0])) {
 			// verificando se a categoria esta ativa
-			if ($arrayObjsCategoria[0]->ativo == 1)
+			if ($objsCategoria[0]->ativo == 1)
 				// retornando objeto
-			   return $arrayObjsCategoria[0];
+			   return $objsCategoria[0];
 			   	
 		    throw new Exception(MSG_ERRO_CATEGORIA_NAO_ATIVA);
 		    
 		} else {
     	    return null;
 		}
+	}
+
+	/**
+	 * Retorna um objeto categoria vazio
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaNovoObjetoCategoria()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Categoria();
 	}
 	
 	/** CATEGORIAS DE E-MAIL */
@@ -114,10 +136,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaEmailPrimario
 	 */
-	private static function retornaObjetoCategoriaEmailPrimario()
+	public function retornaObjetoCategoriaEmailPrimario()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailPrimario = self::retornaObjetoCategoriaAtiva(EMAIL_PRIMARIO);
+	    $objCategoriaEmailPrimario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(EMAIL_PRIMARIO);
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailPrimario))
@@ -132,10 +154,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private static function retornaObjetoCategoriaEmailValidacaoPlainText()
+	public function retornaObjetoCategoriaEmailValidacaoPlainText()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	    $objCategoriaEmailValidacaoPlainText = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainText))
@@ -150,10 +172,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public static function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
+    public function retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailValidacaoPlainTextReenvio = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+	    $objCategoriaEmailValidacaoPlainTextReenvio = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainTextReenvio))
@@ -171,7 +193,7 @@ class Basico_CategoriaControllerController
     public function retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailConfirmacaoCadastroPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT);
+	    $objCategoriaEmailConfirmacaoCadastroPlainText = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT);
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailConfirmacaoCadastroPlainText))
@@ -186,10 +208,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaRemetente()
+	public function retornaObjetoCategoriaRemetente()
 	{
 		// recuperando objeto categoria
-		$objCategoriaRemetente = self::retornaObjetoCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
+		$objCategoriaRemetente = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
 
 		// verificando se o objeto foi recuperado
 	    if (isset($objCategoriaRemetente))
@@ -204,10 +226,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private static function retornaObjetoCategoriaDestinatario()
+    public function retornaObjetoCategoriaDestinatario()
 	{
 		// recuperando objeto categoria
-		$objCategoriaDestinatario = self::retornaObjetoCategoriaAtiva(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
+		$objCategoriaDestinatario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
 		
 		// verificando se o objeto foi recuperado
 	    if (isset($objCategoriaDestinatario))
@@ -222,10 +244,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public static function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
+    public function retornaObjetoCategoriaEmailValidacaoPlainTextTemplate()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+	    $objCategoriaEmailValidacaoPlainText = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainText))
@@ -240,10 +262,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private static function retornaObjetoCategoriaEmailSistema()
+    public function retornaObjetoCategoriaEmailSistema()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaAtiva(SISTEMA_EMAIL);
+	    $objCategoriaEmailValidacaoPlainText = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(SISTEMA_EMAIL);
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainText))
@@ -260,10 +282,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogEmail()
+	public function retornaObjetoCategoriaLogEmail()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogEmail = self::retornaObjetoCategoriaAtiva(LOG_EMAIL);
+		$objCategoriaLogEmail = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_EMAIL);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogEmail))
@@ -278,10 +300,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogValidacaoUsuario()
+	public function retornaObjetoCategoriaLogValidacaoUsuario()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogValidacaoUsuario = self::retornaObjetoCategoriaAtiva(LOG_VALIDACAO_USUARIO);
+		$objCategoriaLogValidacaoUsuario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_VALIDACAO_USUARIO);
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogValidacaoUsuario))
@@ -296,10 +318,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovaPessoa()
+	public function retornaObjetoCategoriaLogNovaPessoa()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogNovaPessoa = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA);
+		$objCategoriaLogNovaPessoa = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVA_PESSOA);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaPessoa))
@@ -310,14 +332,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_PESSOA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdatePessoa()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdatePessoa = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_PESSOA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePessoa))
+			// retornando o objeto
+			return $objCategoriaLogUpdatePessoa;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private static function retornaObjetoCategoriaLogNovaPessoaPerfil()
+	public function retornaObjetoCategoriaLogNovaPessoaPerfil()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovaPessoaPerfil = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL);
+		$objCategoriaLogNovaPessoaPerfil = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVA_PESSOA_PERFIL);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaPessoaPerfil))
@@ -328,14 +368,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_PESSOA_PERFIL
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogUpdatePessoaPerfil()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdatePessoaPerfil = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_PESSOA_PERFIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePessoaPerfil))
+			// retornando o objeto
+			return $objCategoriaLogUpdatePessoaPerfil;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_DADOS_PESSOAIS
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoDadosPessoais()
+	public function retornaObjetoCategoriaLogNovoDadosPessoais()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoDadosPessoais = self::retornaObjetoCategoriaAtiva(LOG_NOVO_DADOS_PESSOAIS);
+		$objCategoriaLogNovoDadosPessoais = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_DADOS_PESSOAIS);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoDadosPessoais))
@@ -350,10 +408,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoWebsite()
+	public function retornaObjetoCategoriaLogNovoWebsite()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoWebsite = self::retornaObjetoCategoriaAtiva(LOG_NOVO_WEBSITE);
+		$objCategoriaLogNovoWebsite = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_WEBSITE);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoWebsite))
@@ -368,10 +426,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoDadosBiometricos()
+	public function retornaObjetoCategoriaLogNovoDadosBiometricos()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoDadosBiometricos = self::retornaObjetoCategoriaAtiva(LOG_NOVO_DADOS_BIOMETRICOS);
+		$objCategoriaLogNovoDadosBiometricos = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_DADOS_BIOMETRICOS);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoDadosBiometricos))
@@ -386,10 +444,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogUpdateDadosBiometricos()
+	public function retornaObjetoCategoriaLogUpdateDadosBiometricos()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogUpdateDadosBiometricos = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_DADOS_BIOMETRICOS);
+		$objCategoriaLogUpdateDadosBiometricos = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_DADOS_BIOMETRICOS);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogUpdateDadosBiometricos))
@@ -404,10 +462,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogUpdateDadosPessoais()
+	public function retornaObjetoCategoriaLogUpdateDadosPessoais()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogUpdateDadosPessoais = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_DADOS_PESSOAIS);
+		$objCategoriaLogUpdateDadosPessoais = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_DADOS_PESSOAIS);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogUpdateDadosPessoais))
@@ -422,10 +480,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogUpdateWebsite()
+	public function retornaObjetoCategoriaLogUpdateWebsite()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogUpdateWebsite = self::retornaObjetoCategoriaAtiva(LOG_UPDATE_WEBSITE);
+		$objCategoriaLogUpdateWebsite = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_WEBSITE);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogUpdateWebsite))
@@ -440,10 +498,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoLogin()
+	public function retornaObjetoCategoriaLogNovoLogin()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoLogin = self::retornaObjetoCategoriaAtiva(LOG_NOVO_LOGIN);
+		$objCategoriaLogNovoLogin = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_LOGIN);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoLogin))
@@ -452,17 +510,34 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN);
 	}
-	
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_LOGIN
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateLogin()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateLogin = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_LOGIN);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateLogin))
+			// retornando o objeto
+			return $objCategoriaLogUpdateLogin;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_LOGIN);
+	}
 
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_EMAIL
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private static function retornaObjetoCategoriaLogNovoEmail()
+	public function retornaObjetoCategoriaLogNovoEmail()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoEmail = self::retornaObjetoCategoriaAtiva(LOG_NOVO_EMAIL);
+		$objCategoriaLogNovoEmail = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_EMAIL);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoEmail))
@@ -473,14 +548,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_EMAIL
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogUpdateEmail()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateEmail = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_EMAIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateEmail))
+			// retornando o objeto
+			return $objCategoriaLogUpdateEmail;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_EMAIL);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_TOKEN_VALIDACAO_USUARIO
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    private static function retornaObjetoCategoriaLogNovoToken()
+    public function retornaObjetoCategoriaLogNovoToken()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoToken = self::retornaObjetoCategoriaAtiva(LOG_TOKEN_VALIDACAO_USUARIO);
+		$objCategoriaLogNovoToken = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_TOKEN_VALIDACAO_USUARIO);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoToken))
@@ -489,16 +582,34 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN);
 	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_TOKEN_VALIDACAO_USUARIO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+    public function retornaObjetoCategoriaLogUpdateToken()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateToken = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_TOKEN_VALIDACAO_USUARIO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateToken))
+			// retornando o id do objeto
+			return $objCategoriaLogUpdateToken;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_TOKEN);
+	}
 	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_MENSAGEM
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovaMensagem()
+	public function retornaObjetoCategoriaLogNovaMensagem()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovaMensagem = self::retornaObjetoCategoriaAtiva(LOG_NOVA_MENSAGEM);
+		$objCategoriaLogNovaMensagem = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVA_MENSAGEM);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaMensagem))
@@ -507,16 +618,34 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM);
 	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_MENSAGEM
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateMensagem()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateMensagem = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_MENSAGEM);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateMensagem))
+			// retornando o id do objeto
+			return $objCategoriaLogUpdateMensagem;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_MENSAGEM);
+	}
 	
 	/**
 	 * Retorna o objeto carregado com a categoria da linguagem 
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLinguagem($constanteLinguagem)
+	public function retornaObjetoCategoriaLinguagem($constanteLinguagem)
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLinguagem = self::retornaObjetoCategoriaAtiva($constanteLinguagem);
+		$objCategoriaLinguagem = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria($constanteLinguagem);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLinguagem))
@@ -531,10 +660,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormulario
 	 */
-	private static function retornaObjetoCategoriaLogNovoFormulario()
+	public function retornaObjetoCategoriaLogNovoFormulario()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormulario = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO);
+		$objCategoriaLogNovoFormulario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_FORMULARIO);
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormulario))
@@ -545,14 +674,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_FORMULARIO
+	 * 
+	 * @return Basico_Model_Categoria $categoriaLogUpdateFormulario
+	 */
+	public function retornaObjetoCategoriaLogUpdateFormulario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormulario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_FORMULARIO);
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormulario))
+			// retornando o objeto
+			return $objCategoriaLogUpdateFormulario;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoFormularioElemento()
+	public function retornaObjetoCategoriaLogNovoFormularioElemento()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElemento = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO);
+		$objCategoriaLogNovoFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_FORMULARIO_ELEMENTO);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElemento))
@@ -563,14 +710,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_FORMULARIO_ELEMENTO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElemento))
+			// retornando o objeto
+			return $objCategoriaLogUpdateFormularioElemento;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FILTER
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoFilter
 	 */
-	private static function retornaObjetoCategoriaLogNovoFormularioElementoFilter()
+	public function retornaObjetoCategoriaLogNovoFormularioElementoFilter()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElementoFilter = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
+		$objCategoriaLogNovoFormularioElementoFilter = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElementoFilter))
@@ -581,14 +746,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER
+	 * 
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoFilter
+	 */
+	public function retornaObjetoCategoriaLogUpdateFormularioElementoFilter()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElementoFilter = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElementoFilter))
+			// retornando o objeto
+			return $objCategoriaLogUpdateFormularioElementoFilter;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
 	 * 
 	 * @return Basico_Model_Categoria 
 	 */
-	private static function retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador()
+	public function retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElementoFormularioElementoValidador = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+		$objCategoriaLogNovoFormularioElementoFormularioElementoValidador = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElementoFormularioElementoValidador))
@@ -599,14 +782,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogUpdateFormularioElementoFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElementoFormularioElementoValidador = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElementoFormularioElementoValidador))
+			// retornando o objeto
+			return $objCategoriaLogUpdateFormularioElementoFormularioElementoValidador;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoFormularioElementoValidador()
+	public function retornaObjetoCategoriaLogNovoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElementoValidador = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
+		$objCategoriaLogNovoFormularioElementoValidador = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElementoValidador))
@@ -617,14 +818,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElementoValidador = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElementoValidador))
+			// retornando o objeto
+			return $objCategoriaLogUpdateFormularioElementoValidador;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
 	 */
-	private static function retornaObjetoCategoriaLogNovoFormularioFormularioElemento()
+	public function retornaObjetoCategoriaLogNovoFormularioFormularioElemento()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioFormularioElemento = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
+		$objCategoriaLogNovoFormularioFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioFormularioElemento))
@@ -635,14 +854,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoValidador
+	 */
+	public function retornaObjetoCategoriaLogUpdateFormularioFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioFormularioElemento))
+			// retornando o objeto
+			return $objCategoriaLogUpdateFormularioFormularioElemento;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_TEMPLATE
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoFormularioTemplate()
+	public function retornaObjetoCategoriaLogNovoFormularioTemplate()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioTemplate = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
+		$objCategoriaLogNovoFormularioTemplate = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_FORMULARIO_TEMPLATE);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioTemplate))
@@ -657,17 +894,35 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovoOutput()
+	public function retornaObjetoCategoriaLogNovoOutput()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoOutput = self::retornaObjetoCategoriaAtiva(LOG_NOVO_FORMULARIO_TEMPLATE);
+		$objCategoriaLogNovoOutput = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_OUTPUT);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoOutput))
 			// retornando o objeto
 			return $objCategoriaLogNovoOutput;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_OUTPUT);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_OUTPUT
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateOutput()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateOutput = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_OUTPUT);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateOutput))
+			// retornando o objeto
+			return $objCategoriaLogUpdateOutput;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_OUTPUT);
 	}
 
 	/**
@@ -675,10 +930,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogTentativaAutenticacaoUsuario()
+	public function retornaObjetoCategoriaLogTentativaAutenticacaoUsuario()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogTentativaAutenticacaoUsuario = self::retornaObjetoCategoriaAtiva(LOG_TENTATIVA_AUTENTICACAO_USUARIO);
+		$objCategoriaLogTentativaAutenticacaoUsuario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_TENTATIVA_AUTENTICACAO_USUARIO);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogTentativaAutenticacaoUsuario))
@@ -693,10 +948,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria()
+	public function retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = self::retornaObjetoCategoriaAtiva(LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaPessoaPerfilMensagemCategoria))
@@ -707,14 +962,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdatePessoaPerfilMensagemCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdatePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePessoaPerfilMensagemCategoria))
+			// retornando o objeto
+			return $objCategoriaLogUpdatePessoaPerfilMensagemCategoria;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_TEMPLATE);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_CATEGORIA_CHAVE_ESTRANGEIRA
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogCategoriaChaveEstrangeira()
+	public function retornaObjetoCategoriaLogCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogCategoriaChaveEstrangeira = self::retornaObjetoCategoriaAtiva(LOG_CATEGORIA_CHAVE_ESTRANGEIRA);
+		$objCategoriaLogCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_CATEGORIA_CHAVE_ESTRANGEIRA);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogCategoriaChaveEstrangeira))
@@ -729,10 +1002,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	private static function retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira()
+	public function retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = self::retornaObjetoCategoriaAtiva(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
+		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogRelacaoCategoriaChaveEstrangeira))
@@ -747,11 +1020,12 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria $categoriaCVC
 	 */
-	private static function retornaObjetoCategoriaCVC()
+	public function retornaObjetoCategoriaCVC()
 	{
 		// inicializando variaveis
 		$modelTipoCategoria = new Basico_Model_TipoCategoria();
 		$nomeTipoCategoriaCVC = TIPO_CATEGORIA_CVC;
+
 		// recuperando objeto
 		$objTipoCategoriaCVC = $modelTipoCategoria->fetchList("nome = '{$nomeTipoCategoriaCVC}'", null, 1, 0);
 		
@@ -763,7 +1037,7 @@ class Basico_CategoriaControllerController
 			throw new Exception(MSG_ERRO_TIPO_CATEGORIA_CVC);
 
 		// recuperando o objeto categoria
-		$objCategoriaCVC = self::retornaObjetoCategoriaAtiva(CATEGORIA_CVC, $objTipoCategoriaCVC[0]->id);
+		$objCategoriaCVC = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(CATEGORIA_CVC, $objTipoCategoriaCVC[0]->id);
 		
 		// checando se objeto foi recuperado
 		if (isset($objCategoriaCVC))
@@ -778,10 +1052,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaCVC()
+	public function retornaIdCategoriaCVC()
 	{
 		// recuperando objeto categoria
-		$objCategoriaCVC = self::retornaObjetoCategoriaCVC();
+		$objCategoriaCVC = $this->retornaObjetoCategoriaCVC();
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaCVC))
@@ -796,10 +1070,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogCategoriaChaveEstrangeira()
+	public function retornaIdCategoriaLogCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogCategoriaChaveEstrangeira = self::retornaObjetoCategoriaLogCategoriaChaveEstrangeira();
+		$objCategoriaLogCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaLogCategoriaChaveEstrangeira();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogCategoriaChaveEstrangeira))
@@ -814,10 +1088,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira()
+	public function retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = self::retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira();
+		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogRelacaoCategoriaChaveEstrangeira))
@@ -832,10 +1106,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogEmail()
+	public function retornaIdCategoriaLogEmail()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogEmail = self::retornaObjetoCategoriaLogEmail();
+		$objCategoriaLogEmail = $this->retornaObjetoCategoriaLogEmail();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogEmail))
@@ -850,10 +1124,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-    public static function retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio()
+    public function retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailValidacaoPlainTextReenvio = self::retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
+	    $objCategoriaEmailValidacaoPlainTextReenvio = $this->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainTextReenvio))
@@ -864,14 +1138,14 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
-	 * Retorna o objeto carregado com a categoria SISTEMA_EMAIL
+	 * Retorna o id da categoria SISTEMA_EMAIL
 	 * 
 	 * @return Integer
 	 */
-    public static function retornaIdCategoriaEmailSistema()
+    public function retornaIdCategoriaEmailSistema()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailSistema = self::retornaObjetoCategoriaEmailSistema();
+	    $objCategoriaEmailSistema = $this->retornaObjetoCategoriaEmailSistema();
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailSistema))
@@ -886,10 +1160,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-    public static function retornaIdCategoriaDestinatario()
+    public function retornaIdCategoriaDestinatario()
 	{
 		// recuperando objeto categoria
-		$objCategoriaDestinatario = self::retornaObjetoCategoriaDestinatario();
+		$objCategoriaDestinatario = $this->retornaObjetoCategoriaDestinatario();
 		
 		// verificando se o objeto foi recuperado
 	    if (isset($objCategoriaDestinatario))
@@ -904,10 +1178,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaRemetente()
+	public function retornaIdCategoriaRemetente()
 	{
 		// recuperando objeto categoria
-		$objCategoriaRemetente = self::retornaObjetoCategoriaRemetente();
+		$objCategoriaRemetente = $this->retornaObjetoCategoriaRemetente();
 
 		// verificando se o objeto foi recuperado
 	    if (isset($objCategoriaRemetente))
@@ -922,10 +1196,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer 
 	 */
-	public static function retornaIdCategoriaEmailValidacaoPlainText()
+	public function retornaIdCategoriaEmailValidacaoPlainText()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailValidacaoPlainText = self::retornaObjetoCategoriaEmailValidacaoPlainText();;
+	    $objCategoriaEmailValidacaoPlainText = $this->retornaObjetoCategoriaEmailValidacaoPlainText();;
 
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainText))
@@ -940,10 +1214,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer $categoriaEmailPrimario
 	 */
-	public static function retornaIdCategoriaEmailPrimario()
+	public function retornaIdCategoriaEmailPrimario()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailPrimario = self::retornaObjetoCategoriaEmailPrimario();
+	    $objCategoriaEmailPrimario = $this->retornaObjetoCategoriaEmailPrimario();
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailPrimario))
@@ -958,10 +1232,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-    public static function retornaIdCategoriaEmailValidacaoPlainTextTemplate()
+    public function retornaIdCategoriaEmailValidacaoPlainTextTemplate()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailValidacaoPlainTextTemplate = self::retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
+	    $objCategoriaEmailValidacaoPlainTextTemplate = $this->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailValidacaoPlainTextTemplate))
@@ -976,10 +1250,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-    public static function retornaIdCategoriaEmailConfirmacaoCadastroPlainTextTemplate()
+    public function retornaIdCategoriaEmailConfirmacaoCadastroPlainTextTemplate()
 	{
 		// recuperando objeto categoria
-	    $objCategoriaEmailConfirmacaoCadastroPlainTextTemplate = self::retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
+	    $objCategoriaEmailConfirmacaoCadastroPlainTextTemplate = $this->retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
 	    
 	    // verificando se o objeto foi recuperado
 	    if (isset($objCategoriaEmailConfirmacaoCadastroPlainTextTemplate))
@@ -996,10 +1270,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	static public function retornaIdCategoriaLinguagem($constanteLinguagem)
+	public function retornaIdCategoriaLinguagem($constanteLinguagem)
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLinguagem = self::retornaObjetoCategoriaLinguagem($constanteLinguagem);
+		$objCategoriaLinguagem = $this->retornaObjetoCategoriaLinguagem($constanteLinguagem);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLinguagem))
@@ -1014,10 +1288,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public static function retornaIdCategoriaLogValidacaoUsuario()
+	public function retornaIdCategoriaLogValidacaoUsuario()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogValidacaoUsuario = self::retornaObjetoCategoriaLogValidacaoUsuario();
+		$objCategoriaLogValidacaoUsuario = $this->retornaObjetoCategoriaLogValidacaoUsuario();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogValidacaoUsuario))
@@ -1032,10 +1306,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovaPessoa()
+	public function retornaIdCategoriaLogNovaPessoa()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogNovaPessoa = self::retornaObjetoCategoriaLogNovaPessoa();
+		$objCategoriaLogNovaPessoa = $this->retornaObjetoCategoriaLogNovaPessoa();
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaPessoa))
@@ -1044,16 +1318,34 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA);
 	}
+
+	/**
+	 * Retorna o id da categoria LOG_NOVA_PESSOA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdatePessoa()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdatePessoa = $this->retornaObjetoCategoriaLogUpdatePessoa();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePessoa))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogUpdatePessoa->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA);
+	}
 	
     /**
 	 * Retorna o id da categoria LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovaPessoaPerfilMensagemCategoria()
+	public function retornaIdCategoriaLogNovaPessoaPerfilMensagemCategoria()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = self::retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria();
+		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaPessoaPerfilMensagemCategoria))
@@ -1063,20 +1355,56 @@ class Basico_CategoriaControllerController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
 	}
 
+    /**
+	 * Retorna o id da categoria LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdatePessoaPerfilMensagemCategoria()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdatePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogUpdatePessoaPerfilMensagemCategoria();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePessoaPerfilMensagemCategoria))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogUpdatePessoaPerfilMensagemCategoria->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+	}
+
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public static function retornaIdCategoriaLogNovaPessoaPerfil()
+	public function retornaIdCategoriaLogNovaPessoaPerfil()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovaPessoaPerfil = self::retornaObjetoCategoriaLogNovaPessoaPerfil();
+		$objCategoriaLogNovaPessoaPerfil = $this->retornaObjetoCategoriaLogNovaPessoaPerfil();
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaPessoaPerfil))
 			// retornando o id da categoria
 			return (Int) $objCategoriaLogNovaPessoaPerfil->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_PESSOA_PERFIL
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaIdCategoriaLogUpdatePessoaPerfil()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdatePessoaPerfil = $this->retornaObjetoCategoriaLogUpdatePessoaPerfil();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePessoaPerfil))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogUpdatePessoaPerfil->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL);
 	}
@@ -1086,10 +1414,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return integer
 	 */
-	public static function retornaIdCategoriaLogNovoDadosPessoais()
+	public function retornaIdCategoriaLogNovoDadosPessoais()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoDadosPessoais = self::retornaObjetoCategoriaLogNovoDadosPessoais();
+		$objCategoriaLogNovoDadosPessoais = $this->retornaObjetoCategoriaLogNovoDadosPessoais();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoDadosPessoais))
@@ -1104,10 +1432,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return integer
 	 */
-	public static function retornaIdCategoriaLogNovoDadosBiometricos()
+	public function retornaIdCategoriaLogNovoDadosBiometricos()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoDadosBiometricos = self::retornaObjetoCategoriaLogNovoDadosBiometricos();
+		$objCategoriaLogNovoDadosBiometricos = $this->retornaObjetoCategoriaLogNovoDadosBiometricos();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoDadosBiometricos))
@@ -1122,10 +1450,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return integer
 	 */
-	public static function retornaIdCategoriaLogUpdateDadosBiometricos()
+	public function retornaIdCategoriaLogUpdateDadosBiometricos()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogUpdateDadosBiometricos = self::retornaObjetoCategoriaLogUpdateDadosBiometricos();
+		$objCategoriaLogUpdateDadosBiometricos = $this->retornaObjetoCategoriaLogUpdateDadosBiometricos();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogUpdateDadosBiometricos))
@@ -1140,10 +1468,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return integer
 	 */
-	public static function retornaIdCategoriaLogNovoWebsite()
+	public function retornaIdCategoriaLogNovoWebsite()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoWebsite = self::retornaObjetoCategoriaLogNovoWebsite();
+		$objCategoriaLogNovoWebsite = $this->retornaObjetoCategoriaLogNovoWebsite();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoWebsite))
@@ -1153,16 +1481,15 @@ class Basico_CategoriaControllerController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_WEBSITE);
 	}
 	
-	
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_DADOS_PESSOAIS
 	 * 
 	 * @return integer
 	 */
-	public static function retornaIdCategoriaLogUpdateDadosPessoais()
+	public function retornaIdCategoriaLogUpdateDadosPessoais()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogUpdateDadosPessoais = self::retornaObjetoCategoriaLogUpdateDadosPessoais();
+		$objCategoriaLogUpdateDadosPessoais = $this->retornaObjetoCategoriaLogUpdateDadosPessoais();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogUpdateDadosPessoais))
@@ -1171,18 +1498,16 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS);
 	}
-
-	
 	
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_WEBSITE
 	 * 
 	 * @return integer
 	 */
-	public static function retornaIdCategoriaLogUpdateWebsite()
+	public function retornaIdCategoriaLogUpdateWebsite()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogUpdateWebsite = self::retornaObjetoCategoriaLogUpdateWebsite();
+		$objCategoriaLogUpdateWebsite = $this->retornaObjetoCategoriaLogUpdateWebsite();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogUpdateWebsite))
@@ -1197,15 +1522,33 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return integer
 	 */
-	public static function retornaIdCategoriaLogNovoLogin()
+	public function retornaIdCategoriaLogNovoLogin()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoLogin = self::retornaObjetoCategoriaLogNovoLogin();
+		$objCategoriaLogNovoLogin = $this->retornaObjetoCategoriaLogNovoLogin();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoLogin))
 			// retornando o id do objeto
 			return (Int) $objCategoriaLogNovoLogin->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_LOGIN
+	 * 
+	 * @return integer
+	 */
+	public function retornaIdCategoriaLogUpdateLogin()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateLogin = $this->retornaObjetoCategoriaLogUpdateLogin();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateLogin))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateLogin->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN);
 	}
@@ -1215,10 +1558,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoEmail()
+	public function retornaIdCategoriaLogNovoEmail()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoEmail = self::retornaObjetoCategoriaLogNovoEmail();
+		$objCategoriaLogNovoEmail = $this->retornaObjetoCategoriaLogNovoEmail();
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoEmail))
@@ -1229,14 +1572,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_EMAIL
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateEmail()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateEmail = $this->retornaObjetoCategoriaLogUpdateEmail();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateEmail))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateEmail->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_EMAIL);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_TOKEN_VALIDACAO_USUARIO
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-    public static function retornaIdCategoriaLogNovoToken()
+    public function retornaIdCategoriaLogNovoToken()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoToken = self::retornaObjetoCategoriaLogNovoToken();
+		$objCategoriaLogNovoToken = $this->retornaObjetoCategoriaLogNovoToken();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoToken))
@@ -1247,14 +1608,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_TOKEN_VALIDACAO_USUARIO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+    public function retornaIdCategoriaLogUpdateToken()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateToken = $this->retornaObjetoCategoriaLogUpdateToken();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateToken))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateToken->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_TOKEN);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVA_MENSAGEM
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovaMensagem()
+	public function retornaIdCategoriaLogNovaMensagem()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovaMensagem = self::retornaObjetoCategoriaLogNovaMensagem();
+		$objCategoriaLogNovaMensagem = $this->retornaObjetoCategoriaLogNovaMensagem();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaMensagem))
@@ -1265,14 +1644,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_MENSAGEM
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateMensagem()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateMensagem = $this->retornaObjetoCategoriaLogUpdateMensagem();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateMensagem))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateMensagem->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_MENSAGEM);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoFormulario()
+	public function retornaIdCategoriaLogNovoFormulario()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormulario = self::retornaObjetoCategoriaLogNovoFormulario();
+		$objCategoriaLogNovoFormulario = $this->retornaObjetoCategoriaLogNovoFormulario();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormulario))
@@ -1283,14 +1680,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateFormulario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormulario = $this->retornaObjetoCategoriaLogUpdateFormulario();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormulario))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateFormulario->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoFormularioElemento()
+	public function retornaIdCategoriaLogNovoFormularioElemento()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElemento = self::retornaObjetoCategoriaLogNovoFormularioElemento();
+		$objCategoriaLogNovoFormularioElemento = $this->retornaObjetoCategoriaLogNovoFormularioElemento();
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElemento))
@@ -1301,14 +1716,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElemento = $this->retornaObjetoCategoriaLogUpdateFormularioElemento();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElemento))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateFormularioElemento->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoFormularioElementoFilter()
+	public function retornaIdCategoriaLogNovoFormularioElementoFilter()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElementoFilter = self::retornaObjetoCategoriaLogNovoFormularioElementoFilter();
+		$objCategoriaLogNovoFormularioElementoFilter = $this->retornaObjetoCategoriaLogNovoFormularioElementoFilter();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElementoFilter))
@@ -1319,14 +1752,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateFormularioElementoFilter()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElementoFilter = $this->retornaObjetoCategoriaLogUpdateFormularioElementoFilter();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElementoFilter))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateFormularioElementoFilter->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoFormularioElementoFormularioElementoValidador()
+	public function retornaIdCategoriaLogNovoFormularioElementoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElementoFormularioElementoValidador = self::retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador();
+		$objCategoriaLogNovoFormularioElementoFormularioElementoValidador = $this->retornaObjetoCategoriaLogNovoFormularioElementoFormularioElementoValidador();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElementoFormularioElementoValidador))
@@ -1337,14 +1788,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateFormularioElementoFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElementoFormularioElementoValidador = $this->retornaObjetoCategoriaLogUpdateFormularioElementoFormularioElementoValidador();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElementoFormularioElementoValidador))
+			// retornando o id do objeto
+			return (int) $objCategoriaLogUpdateFormularioElementoFormularioElementoValidador->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoFormularioElementoValidador()
+	public function retornaIdCategoriaLogNovoFormularioElementoValidador()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioElementoValidador = self::retornaObjetoCategoriaLogNovoFormularioElementoValidador();
+		$objCategoriaLogNovoFormularioElementoValidador = $this->retornaObjetoCategoriaLogNovoFormularioElementoValidador();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioElementoValidador))
@@ -1353,16 +1822,34 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR);
 	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioElementoValidador = $this->retornaObjetoCategoriaLogUpdateFormularioElementoValidador();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioElementoValidador))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateFormularioElementoValidador->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
 	
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoFormularioFormularioElemento()
+	public function retornaIdCategoriaLogNovoFormularioFormularioElemento()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioFormularioElemento = self::retornaObjetoCategoriaLogNovoFormularioFormularioElemento();
+		$objCategoriaLogNovoFormularioFormularioElemento = $this->retornaObjetoCategoriaLogNovoFormularioFormularioElemento();
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioFormularioElemento))
@@ -1373,14 +1860,32 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateFormularioFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateFormularioFormularioElemento = $this->retornaObjetoCategoriaLogUpdateFormularioFormularioElemento();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateFormularioFormularioElemento))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateFormularioFormularioElemento->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_TEMPLATE
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogNovoFormularioTemplate()
+	public function retornaIdCategoriaLogNovoFormularioTemplate()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoFormularioTemplate = self::retornaObjetoCategoriaLogNovoFormularioTemplate();
+		$objCategoriaLogNovoFormularioTemplate = $this->retornaObjetoCategoriaLogNovoFormularioTemplate();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoFormularioTemplate))
@@ -1398,24 +1903,42 @@ class Basico_CategoriaControllerController
 	public function retornaIdCategoriaLogNovoOutput()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogNovoOutput = self::retornaObjetoCategoriaLogNovoOutput();
+		$objCategoriaLogNovoOutput = $this->retornaObjetoCategoriaLogNovoOutput();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovoOutput))
 			// retorna o id do objeto
 			return (Int) $objCategoriaLogNovoOutput->id;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_OUTPUT);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_OUTPUT
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateOutput()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateOutput = $this->retornaObjetoCategoriaLogUpdateOutput();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateOutput))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogUpdateOutput->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_OUTPUT);
 	}
 
 	/** Retorna o id do objeto carregado com a categoria LOG_TENTATIVA_AUTENTICACA_USUARIO
 	 * 
 	 * @return Integer
 	 */
-	public static function retornaIdCategoriaLogTentativaAutenticacaoUsuario()
+	public function retornaIdCategoriaLogTentativaAutenticacaoUsuario()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogTentativaAutenticacaoUsuario = self::retornaObjetoCategoriaLogTentativaAutenticacaoUsuario();
+		$objCategoriaLogTentativaAutenticacaoUsuario = $this->retornaObjetoCategoriaLogTentativaAutenticacaoUsuario();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogTentativaAutenticacaoUsuario))
@@ -1430,13 +1953,10 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return null|Array
 	 */
-	public static function retornaCategoriasLinguasAtivas()
-	{
-		// instanciando modelos
-		$modeloCategoria = new Basico_Model_Categoria();
-		
+	public function retornaCategoriasLinguasAtivas()
+	{	
 		// recuperando o id do tipo categoria LINGUAGEM
-		$idTipoCategoriaLinguagem = Basico_TipoCategoriaControllerController::retornaIdTipoCategoriaLinguagem();
+		$idTipoCategoriaLinguagem = Basico_TipoCategoriaControllerController::getInstance()->retornaIdTipoCategoriaLinguagem();
 		
 		// recuperando booleano especifico para o banco de dados em uso
 		$booleanAtivo = Basico_PersistenceControllerController::bdRetornaBoolean(true);
@@ -1447,7 +1967,7 @@ class Basico_CategoriaControllerController
 			$condicao = "id_tipo_categoria = {$idTipoCategoriaLinguagem} and ativo = 1";
 
 		// recuperando categorias de liguas ativas
-		$objsCategoriasLinguasAtivas = $modeloCategoria->fetchList($condicao);
+		$objsCategoriasLinguasAtivas = $this->_categoria->fetchList($condicao);
 		
 		// retornando o array de objetos contendo as categorias de linguas ativas
 		return $objsCategoriasLinguasAtivas;
@@ -1461,7 +1981,7 @@ class Basico_CategoriaControllerController
 	 * 
 	 * @return Array|null
 	 */
-	public static function retornaArrayNomesCategoriasComponentesNaoZFFormulario($idFormulario)
+	public function retornaArrayNomesCategoriasComponentesNaoZFPorIdFormulario($idFormulario)
 	{
 		// inicializando variaveis
 		$arrayRetorno = array();

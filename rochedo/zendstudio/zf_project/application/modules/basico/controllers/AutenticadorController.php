@@ -59,19 +59,22 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $form->getValue(AUTH_IDENTITY_ARRAY_KEY);
 
 		// recuperando objeto pessoa perfil usuario validado do login
-		$objPessoaPerfilUsuarioValidadoLogin = Basico_PessoaPerfilControllerController::retornaPessoaPerfilUsuarioValidadoPessoa(Basico_LoginControllerController::retornaIdPessoaLogin($login));
+		$objPessoaPerfilUsuarioValidadoLogin = Basico_PessoaPerfilControllerController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_LoginControllerController::getInstance()->retornaIdPessoaPorLogin($login));
 
-		// verificando se o login possui perfil de usuario validado
+		// verificando se o login existe e possui perfil de usuario validado
 		if ($objPessoaPerfilUsuarioValidadoLogin->id) {
 			// inserindo log de tentativa de logon
-			Basico_LogControllerController::salvarLog($objPessoaPerfilUsuarioValidadoLogin->id, Basico_CategoriaControllerController::retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
+			Basico_LogControllerController::getInstance()->salvarLog($objPessoaPerfilUsuarioValidadoLogin->id, Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
+		}
+		else {
+			Basico_LogControllerController::getInstance()->salvarLog(Basico_PessoaPerfilControllerController::getInstance()->retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_UtilControllerController::retornaStringEntreCaracter($login, '"'));
 		}
 
 		// verificando se as crendeiciais de acesso funcionaram
-		if (Basico_AutenticadorControllerController::retornaAutenticacaoUsuario($form->getValues())) {
+		if (Basico_AutenticadorControllerController::getInstance()->retornaAutenticacaoUsuario($form->getValues())) {
 
 			// verificando se o login pode realizar login
-			if (!Basico_LoginControllerController::retornaLoginPodeLogar($login)) {
+			if (!Basico_LoginControllerController::getInstance()->retornaLoginPodeLogar($login)) {
 				// redirecionando para a pagina de problemas com login
 				$this->_redirect(str_replace(Basico_UtilControllerController::retornaBaseUrl(), '', $this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login))));
 			}
@@ -79,11 +82,11 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			Basico_UtilControllerController::print_debug('login OK', true, false, true);
 
 			// efetuando o logon
-			Basico_LoginControllerController::efetuaLogon($login);
+			Basico_LoginControllerController::getInstance()->efetuaLogon($login);
 		}
 		else {
 			// incrementando tentativas invalidas
-			Basico_LoginControllerController::checaTentativaInvalidaLogon($login);
+			Basico_LoginControllerController::getInstance()->checaTentativaInvalidaLogon($login);
 
 			// montando array de parametros
 			$arrayParametrosUrl = array();
@@ -145,7 +148,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $this->getRequest()->getParam('login');
 		
 		// montando a mensagem de erro
-		$errorMessage = Basico_LoginControllerController::retornaMensagensErroLoginNaoPodeLigarHTMLLI($login);
+		$errorMessage = Basico_LoginControllerController::getInstance()->retornaMensagensErroLoginNaoPodeLigarHTMLLI($login);
 
 		// recuperando o link para documentacao online
 		$linkDocumentacaoOnLine = $this->_helper->url('problemasLogin', 'login', 'basico');

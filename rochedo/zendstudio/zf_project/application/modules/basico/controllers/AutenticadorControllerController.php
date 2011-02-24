@@ -7,6 +7,122 @@
 class Basico_AutenticadorControllerController
 {
 	/**
+	 * @var Basico_AutenticadorControllerController
+	 */
+	private static $_singleton;
+
+	/**
+	 * @var Zend_Auth_Adapter_DbTable
+	 */
+	private $_authAdapter;
+
+	/**
+	 * @var Zend_Auth
+	 */
+	private $_auth;
+
+	/**
+	 * Construtor do controller
+	 * 
+	 * @return void
+	 */
+	private function __construct()
+	{
+		// instanciando o adaptador de autenticacao
+		$this->_authAdapter = self::retornaAuthAdapterVinculadoComBD();
+
+		// instanciando o controlador de autenticacao
+		$this->_auth = Zend_Auth::getInstance();
+
+		// inicializando o controlador
+		$this->init();
+	}
+
+	/**
+	 * Inicializa o controlador Basico_AutenticadorControllerController
+	 * 
+	 * @return void
+	 */
+	private function init()
+	{
+		return;
+	}
+
+	/**
+	 * Recupera a instancia do controlador Basico_AutenticadorControllerController
+	 * 
+	 * @return Basico_AutenticadorControllerController
+	 */
+	public static function getInstance()
+	{
+		// verificando singleton
+		if (self::$_singleton == NULL) {
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_AutenticadorControllerController();
+		}
+		// retornando instancia
+		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna o objeto Zend_Auth_Adapter_DbTable vinculado com o banco de dados
+	 * 
+	 * @return Zend_Auth_Adapter_DbTable
+	 */
+	private function retornaAuthAdapterVinculadoComBD()
+	{
+		// instanciando adaptador de autenticacao com banco de dados
+		$authAdapter = new Zend_Auth_Adapter_DbTable(Basico_PersistenceControllerController::bdRecuperaBDSessao());
+
+		// setando parametros do autenticador para localizar as credenciais no banco de dados
+		$authAdapter->setTableName(AUTH_TABLE)
+					->setIdentityColumn(AUTH_IDENTITY_COLUMN)
+					->setCredentialColumn(AUTH_CREDENTIAL_COLUMN);
+
+		// retornando o adaptador de autenticacao
+		return $authAdapter;
+	}
+
+	/**
+	 * Retorna uma instancia do Zend_Auth_Adapter_DbTable configurada para uso na aplicacao
+	 * 
+	 * @param array $parametros
+	 * 
+	 * @return Zend_Auth_Adapter_DbTable
+	 */
+	private function retornaAuthAdapterAutenticacaoUsuario(array $parametros)
+	{
+		// setando parametros do autenticador com as credenciais do usuario
+		$this->_authAdapter->setIdentity($parametros[AUTH_IDENTITY_ARRAY_KEY])
+							->setCredential(Basico_UtilControllerController::retornaStringEncriptada($parametros[AUTH_CREDENTIAL_ARRAY_KEY]));
+
+		// retornando o adaptador de autenticacao com banco de dados
+		return $this->_authAdapter;
+	}
+
+	/**
+	 * Retorna se as credenciais de acesso existem no banco de dados
+	 *
+	 * @param Array $formValues
+	 * 
+	 * @return Boolean
+	 */
+	public function retornaAutenticacaoUsuario(array $parametros)
+	{
+		// recuperando adaptador de autenticacoa
+		$adaptadorAuth = self::retornaAuthAdapterAutenticacaoUsuario($parametros);
+
+		// realizando autenticacao
+		$resultadoAuth = $this->_auth->authenticate($adaptadorAuth);
+		
+		// verificando o resultado da autenticacao
+		if (!$resultadoAuth->isValid())
+			return false;
+
+		return true;
+	}
+
+	/**
 	 * Retorna o link para a pagina de autenticacao de usuario
 	 * 
 	 * @param String $urlRedirect
@@ -32,7 +148,7 @@ class Basico_AutenticadorControllerController
 	public static function retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario($linguaUsuario, $tituloDialog, $urlRedirect, $onLoadValues = null, $errorElements = null)
 	{
 		// instanciando tradutor
-		$tradutorController = Basico_TradutorControllerController::init();
+		$tradutorController = Basico_TradutorControllerController::getInstance();
 		
 		// inicializando variaveis
 		$baseUrl = Basico_UtilControllerController::retornaBaseUrl();
@@ -66,31 +182,6 @@ class Basico_AutenticadorControllerController
 	}
 
 	/**
-	 * Retorna uma instancia do Zend_Auth_Adapter_DbTable configurada para uso na aplicacao
-	 * 
-	 * @param array $parametros
-	 * 
-	 * @return Zend_Auth_Adapter_DbTable
-	 */
-	public static function retornaAuthAdapter(array $parametros)
-	{
-		// instanciando adaptador de autenticacao com banco de dados
-		$authAdapter = new Zend_Auth_Adapter_DbTable(Basico_PersistenceControllerController::bdRecuperaBDSessao());
-
-		// setando parametros do autenticador para localizar as credenciais no banco de dados
-		$authAdapter->setTableName(AUTH_TABLE)
-					->setIdentityColumn(AUTH_IDENTITY_COLUMN)
-					->setCredentialColumn(AUTH_CREDENTIAL_COLUMN);		
-
-		// setando parametros do autenticador com as credenciais do usuario
-		$authAdapter->setIdentity($parametros[AUTH_IDENTITY_ARRAY_KEY])
-					->setCredential(Basico_UtilControllerController::retornaStringEncriptada($parametros[AUTH_CREDENTIAL_ARRAY_KEY]));
-
-		// retornando o adaptador de autenticacao com banco de dados
-		return $authAdapter;
-	}
-
-	/**
 	 * Retorna o formulario de autenticacao
 	 * 
 	 * @return Basico_Form_AutenticacaoUsuario
@@ -100,29 +191,4 @@ class Basico_AutenticadorControllerController
 		// retornando o formulario de autenticacao
 		return new Basico_Form_AutenticacaoUsuario();
 	}
-
-	/**
-	 * Retorna se as credenciais de acesso existem no banco de dados
-	 *
-	 * @param Array $formValues
-	 * 
-	 * @return Boolean
-	 */
-	public static function retornaAutenticacaoUsuario(array $parametros)
-	{
-		// instanciando autenticador
-		$auth = Zend_Auth::getInstance();
-
-		// recuperando adaptador de autenticacoa
-		$adaptadorAuth = self::retornaAuthAdapter($parametros);
-
-		// realizando autenticacao
-		$resultadoAuth  = $auth->authenticate($adaptadorAuth);
-		
-		// verificando o resultado da autenticacao
-		if (!$resultadoAuth->isValid())
-			return false;
-
-		return true;
-	} 
 }
