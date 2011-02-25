@@ -330,8 +330,8 @@ class Basico_CategoriaControllerController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA);
 	}
-
-	/**
+	
+    /**
 	 * Retorna o objeto carregado com a categoria LOG_UPDATE_PESSOA
 	 * 
 	 * @return Basico_Model_Categoria
@@ -347,6 +347,42 @@ class Basico_CategoriaControllerController
 			return $objCategoriaLogUpdatePessoa;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_NOVA_RACA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogNovaRaca()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogNovaRaca = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVA_RACA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovaRaca))
+			// retornando o objeto
+			return $objCategoriaLogNovaRaca;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_RACA);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_RACA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateRaca()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdateRaca = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_RACA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateRaca))
+			// retornando o objeto
+			return $objCategoriaLogUpdateRaca;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_RACA);
 	}
 
 	/**
@@ -1023,7 +1059,7 @@ class Basico_CategoriaControllerController
 	public function retornaObjetoCategoriaCVC()
 	{
 		// inicializando variaveis
-		$modelTipoCategoria = new Basico_Model_TipoCategoria();
+		$modelTipoCategoria = Basico_TipoCategoriaControllerController::getInstance()->retornaNovoObjetoTipoCategoria();
 		$nomeTipoCategoriaCVC = TIPO_CATEGORIA_CVC;
 
 		// recuperando objeto
@@ -1320,7 +1356,7 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
-	 * Retorna o id da categoria LOG_NOVA_PESSOA
+	 * Retorna o id da categoria LOG_UPDATE_PESSOA
 	 * 
 	 * @return Integer
 	 */
@@ -1335,6 +1371,42 @@ class Basico_CategoriaControllerController
 			return (Int) $objCategoriaLogUpdatePessoa->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA);
+	}
+	
+/**
+	 * Retorna o id da categoria LOG_NOVA_RACA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogNovaRaca()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogNovaRaca = $this->retornaObjetoCategoriaLogNovaRaca();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovaRaca))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogNovaRaca->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_RACA);
+	}
+
+	/**
+	 * Retorna o id da categoria LOG_UPDATE_RACA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateRaca()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdateRaca = $this->retornaObjetoCategoriaLogUpdateRaca();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateRaca))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogUpdateRaca->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_RACA);
 	}
 	
     /**

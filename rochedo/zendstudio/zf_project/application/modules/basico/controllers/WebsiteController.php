@@ -90,7 +90,7 @@ class Basico_WebsiteController extends Zend_Controller_Action
            	try{
 
            		// Instaciando o modelo da classe 
-				$novoWebsite = new Basico_Model_WebSite();
+				$novoWebsite = Basico_WebsiteControllerController::getInstance()->retornaNovoObjetoWebsite();
 		
 				// recuperando a queisição do form
 				$request = $this->getRequest();

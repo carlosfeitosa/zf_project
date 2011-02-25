@@ -135,7 +135,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         if ((isset($_POST['enviar'])) and ($formGeradorFormulario->isValid($_POST))) {
 
         	// instanciando modelo de formulario
-        	$modeloFormulario = new Basico_Model_Formulario();
+        	$modeloFormulario = Basico_FormularioControllerController::getInstance()->retornaNovoObjetoFormulario();
         	// localizando o formulario
             $modeloFormulario->find($idFormulario);
         	
@@ -216,7 +216,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function retornaArrayNomesModulosFormulario($idFormulario)
     {
 		// recuperando o modelo de formulario
-    	$modelFormulario = new Basico_Model_Formulario();
+    	$modelFormulario = Basico_FormularioControllerController::getInstance()->retornaNovoObjetoFormulario();
 
     	// recuperando o formulario
     	$modelFormulario->find($idFormulario);

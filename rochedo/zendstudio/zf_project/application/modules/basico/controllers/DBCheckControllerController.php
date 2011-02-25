@@ -16,7 +16,7 @@ class Basico_DBCheckControllerController
     public static function checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
     {
         // instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
+		$modelCategoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::getInstance()->retornaNovoObjetoCategoriaChaveEstrangeira();
 		// recuperando a tupla referente a categoria passada por parametro
 		$arrayCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 
@@ -41,7 +41,7 @@ class Basico_DBCheckControllerController
     public static function checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem = null, $nomeCampoOrigem = null, $forceCreateRelationship = false)
     {
     	// instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
+		$modelCategoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::getInstance()->retornaNovoObjetoCategoriaChaveEstrangeira();
 		// recuperando a tupla referente a categoria passada por parametro
 		$arrayCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 
@@ -228,7 +228,7 @@ class Basico_DBCheckControllerController
 		$arrayIdsCategoriaValorChaveEstrangeiraObjeto = array();
 
 		// instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = new Basico_Model_CategoriaChaveEstrangeira();
+		$modelCategoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::getInstance()->retornaNovoObjetoCategoriaChaveEstrangeira();
 
 		// recuperando array de categorias que nao devem ser relacionadas
 		$arrayIdsCategoriasNaoChecarRelacao = self::retornaArrayIdsCategoriasNaoChecarRelacao();

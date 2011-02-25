@@ -156,7 +156,7 @@ class Basico_RelacaoCategoriaChaveEstrangeiraControllerController
 			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
-			$this->_relacaoCategoriaChaveEstrangeira = new Basico_Model_RelacaoCategoriaChaveEstrangeira();
+			$this->_relacaoCategoriaChaveEstrangeira = $this->retornaNovoObjetoRelacaoCategoriaChaveEstrangeira();
 
 			// setando os valores
 			$this->_relacaoCategoriaChaveEstrangeira->tabelaOrigem = $nomeTabela;

@@ -11,7 +11,7 @@ class Basico_RacaControllerController
 {
 	/**
 	 * 
-	 * @var Basico_RacaController
+	 * @var Basico_RacaControllerController
 	 */
 	static private $singleton;
 	
@@ -19,7 +19,7 @@ class Basico_RacaControllerController
 	 * 
 	 * @var Basico_Model_Raca
 	 */
-	private $raca;
+	private $_raca;
 	
 	/**
 	 * Carrega a variavel raca com um novo objeto Basico_Model_Raca
@@ -28,56 +28,84 @@ class Basico_RacaControllerController
 	 */
 	private function __construct()
 	{
-		$this->raca = new Basico_Model_Raca();
+		$this->_raca = new Basico_Model_Raca();
 	}
 	
 	/**
 	 * Inicializa Controlador Raca.
 	 * 
-	 * @return Basico_RacaController
+	 * @return Basico_RacaControllerController
 	 */
 	static public function init()
 	{
-		// checando singleton
-		if(self::$singleton == NULL){
-			
-			self::$singleton = new Basico_RacaControllerController();
-		}
-		return self::$singleton;
+		return;
 	}
 	
+     /**
+	 * Retorna instância do controlador Basico_RacaControllerController
+	 * 
+	 * @return Basico_RacaControllerController
+	 */
+	public static function getInstance() {
+		// checando singleton
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_RacaControllerController();
+		}
+		// retornando instancia
+		return self::$_singleton;
+	}
+
 	/**
-	 * Salva a raca.
+	 * Retorna um modelo raca vazio
+	 * 
+	 * @return Basico_Model_Raca
+	 */
+	public function retornaNovoObjetoRaca()
+	{
+		// retornando um modelo vazio
+		return new Basico_Model_Raca();
+	}
+
+	/**
+	 * Salva o objeto Raca no banco de dados.
 	 * 
 	 * @param Basico_Model_Raca $novaRaca
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
 	 * 
 	 * @return void
-	 
-	public function salvarRaca($novaRaca, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	 */
+	public function salvarRaca(Basico_Model_Raca $objRaca, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = Basico_PersistenceControllerController::bdRetornaIdPessoaPerfilSistema();
+			// instanciando controladores
+			$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+			$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
 
-    		if ($novaRaca->id != NULL)
-    			$categoriaLog = Basico_CategoriaControllerController::retornaIdCategoriaLogUpdateDadosPessoais();
-            else
-                $categoriaLog = Basico_CategoriaControllerController::retornaIdCategoriaLogNovoDadosPessoais();
-    			
+			// verificando se a operacao esta sendo realizada por uma pessoa ou pelo sistema
+			if (!isset($idPessoaPerfilCriador))
+				$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+			// verificando se trata-se de uma nova tupla ou atualizacao
+			if ($objRaca->id != NULL) {
+				// recuperando informacoes de log de atualizacao de registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateRaca();
+				$mensagemLog    = LOG_MSG_UPDATE_RACA;
+			} else {
+				// recuperando informacoes de log de novo registro
+				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovaRaca();
+				$mensagemLog    = LOG_MSG_NOVA_RACA;
+			}
+
 			// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($novoDadosPessoais, $versaoUpdate, $idPessoaPerfilCriador, $categoriaLog, LOG_MSG_NOVO_DADOS_PESSOAIS);
-			
+			Basico_PersistenceControllerController::bdSave($objRaca, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
 			// atualizando o objeto
-			$dadosPessoais = $novoDadosPessoais;
-						
+	    	$this->_raca = $objRaca;
+
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
 	}
-	*/
 	
     /**
 	 * Retorna um array contendo as raças cadastradas no sistema
@@ -86,7 +114,7 @@ class Basico_RacaControllerController
 	public static function retornaArrayRacasOptions()
 	{
 		// inicializando controladores
-		$controladorTradutor = Basico_TradutorControllerController::init();
+		$controladorTradutor = Basico_TradutorControllerController::getInstance();
 		
 		$objRaca = new Basico_Model_Raca();
 		

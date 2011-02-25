@@ -47,7 +47,9 @@ define("MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE", "Categoria Re
 define("MSG_ERRO_CATEGORIA_MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO", "Categoria Destinatario não encontrada no banco de dados.");
 define("MSG_ERRO_CATEGORIA_LOG_VALIDACAO_USUARIO", "Categoria de log validacao usuario não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA", "Categoria de log nova pessoa não encontrada no banco de dados");
-define("MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA", "Categoria de log de atualizacao de pessoa não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA", "Categoria de log de atualização de pessoa não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVA_RACA", "Categoria de log nova raça não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_RACA", "Categoria de log de atualização de raça não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN", "Categoria de log novo token não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_TOKEN", "Categoria de log atualizacao de token não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Categoria de log nova pessoa perfil mensagem categoria não encontrada no banco de dados");

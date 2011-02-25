@@ -48,12 +48,16 @@ define("LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO", "Tentativa de autenticacao de u
 define("LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE", "Tentativa de autenticacao de usuario. Login inexistente: ");
 define("LOG_MSG_NOVO_LOGIN", "Novo login inserido no banco de dados.");
 define("LOG_MSG_UPDATE_LOGIN", "Atualizacao de login no banco de dados.");
+define("LOG_MSG_NOVA_RACA", "Nova raça inserida no banco de dados.");
+define("LOG_MSG_UPDATE_RACA", "Atualizacao de raça no banco de dados.");
 
 /*
  * FORMULÁRIO
  */
 define("LOG_MSG_NOVO_FORMULARIO", "Novo formulario inserido no banco de dados.");
 define("LOG_MSG_UPDATE_FORMULARIO", "Atualizacao de formulario no banco de dados.");
+define("LOG_MSG_NOVO_GRUPO_FORMULARIO_ELEMENTO", "Novo grupo formulario elemento inserido no banco de dados.");
+define("LOG_MSG_UPDATE_GRUPO_FORMULARIO_ELEMENTO", "Atualizacao de grupo formulario elemento no banco de dados.");
 define("LOG_MSG_NOVO_FORMULARIO_ELEMENTO", "Novo formulario elemento inserido no banco de dados.");
 define("LOG_MSG_UPDATE_FORMULARIO_ELEMENTO", "Atualizacao de formulario elemento no banco de dados.");
 define("LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER", "Novo formulario elemento filter inserido no banco de dados.");

@@ -8,6 +8,7 @@ require_once("FormularioControllerController.php");
 require_once("FormularioFormularioElementoControllerController.php");
 require_once("ModuloControllerController.php");
 require_once("ComponenteControllerController.php");
+require_once("GrupoFormularioElementoControllerController.php");
 
 class Basico_GeradorFormularioControllerController
 {
@@ -1336,7 +1337,7 @@ class Basico_GeradorFormularioControllerController
 		}
 
 		// inicializando o modelo GrupoFormularioElemento
-		$objGrupoFormularioElemento = new Basico_Model_GrupoFormularioElemento();
+		$objGrupoFormularioElemento = Basico_GrupoFormularioElementoControllerController::getInstance()->retornaNovoObjetoGrupoFormularioElemento();
 
 		// loop para escrever os display groups
 		foreach ($arrayDisplaysGroups as $idDisplayGroup => $arrayOrdemElementosDisplayGroup) {
