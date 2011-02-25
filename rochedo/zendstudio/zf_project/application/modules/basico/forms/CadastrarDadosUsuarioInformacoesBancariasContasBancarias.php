@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 25/02/2011 10:08:22
+* em: 25/02/2011 10:08:27
 *
 * LICENÇA DE USO
 *
@@ -16,19 +16,19 @@
 * @license    (implementar)
 * @version    1: 25/02/2011 09:55:40
 */
-class Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais extends Zend_Dojo_Form
+class Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias extends Zend_Dojo_Form
 {
     /**
     * Constructor do Form
     * @param array $options
-    * @return Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais
+    * @return Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias
     */
     public function __construct($options = null)
     {
         // Inicializando o formulário.
         parent::__construct($options);
 
-        $this->setName('CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais');
+        $this->setName('CadastrarDadosUsuarioInformacoesBancariasContasBancarias');
         $this->setMethod('post');
 
         // Adicionando paths para localizacao de componentes nao ZF.
@@ -37,19 +37,19 @@ class Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais extends Z
         // Criando array de elementos.
         $elements = array();
 
-        $elements[1] = $this->createElement('html', 'BasicoCadastrarDadosUsuarioDadosPessoaisDocumentosPessoaisLinhaHorizontal', array('value' => '<hr>'));
+        $elements[1] = $this->createElement('html', 'BasicoCadastrarDadosUsuarioInformacoesBancariasContasBancariasLinhaHorizontal', array('value' => '<hr>'));
         $elements[1]->setOrder(1);
         $elements[1]->setRequired(false);
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));
 
-        $elements[2] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosPessoaisDocumentosPessoaisButtonDialogDojo1');
+        $elements[2] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioInformacoesBancariasContasBancariasButtonDialogDojo1');
         $elements[2]->setOrder(2);
-        $elements[2]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_DOCUMENTO_TITULO')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDocumento\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDocumento." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_DOCUMENTO_TITULO')}\")"));
+        $elements[2]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_CONTA_BANCARIA')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarContaBancaria\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarContaBancaria." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_CONTA_BANCARIA')}\")"));
         $elements[2]->setRequired(false);
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
         $elements[2]->removeDecorator('DtDdWrapper');
 
-        $elements[3] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosPessoaisDocumentosPessoaisFechar', array('onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais");'));
+        $elements[3] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioInformacoesBancariasContasBancariasFechar', array('onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias");'));
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(false);
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));

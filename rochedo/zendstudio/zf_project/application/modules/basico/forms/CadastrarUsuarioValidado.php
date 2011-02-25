@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 24/02/2011 14:43:03
+* em: 25/02/2011 10:08:33
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 24/02/2011 14:42:30
+* @version    1: 25/02/2011 09:55:40
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -32,13 +32,11 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->setMethod('post');
         $this->setAction('/rochedo_project/public/basico/login/salvarUsuarioValidado');
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
-        $this->setDecorators(array('FormElements',
-                array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form_dojo')),
-                array('DijitForm', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array('successHandler'=>"dojo.eval(data);"))),));
+        $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
 
         // Adicionando paths para localizacao de componentes nao ZF.
-        $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
+        $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
 
         // Criando array de elementos.
         $elements = array();
@@ -132,6 +130,11 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $dados_usuario_dados_pessoais = $this->getDisplayGroup('dados_usuario_dados_pessoais');
         $dados_usuario_dados_pessoais->removeDecorator('DtDdWrapper');
         $dados_usuario_dados_pessoais->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+        // Adicionando displays groups.
+        $this->addDisplayGroup(array($elements[4]->getName(),$elements[5]->getName(),$elements[6]->getName(),$elements[7]->getName(),$elements[8]->getName()), 'dados_usuario_dados_usuario', array('legend' => $this->getView()->tradutor('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_USUARIO'), 'order' => 4));
+        $dados_usuario_dados_usuario = $this->getDisplayGroup('dados_usuario_dados_usuario');
+        $dados_usuario_dados_usuario->removeDecorator('DtDdWrapper');
+        $dados_usuario_dados_usuario->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
 
     }
 }

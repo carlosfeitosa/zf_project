@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 24/02/2011 14:42:45
+* em: 25/02/2011 10:08:17
 *
 * LICENÇA DE USO
 *
@@ -14,14 +14,15 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 24/02/2011 14:42:30
+* @version    1: 25/02/2011 09:55:40
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
     // Inicializando o sub-formulário.
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->setName('CadastrarDadosUsuarioDadosAcademicos');
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->setMethod('post');
-    $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->addAttribs(array('dijitParams' => array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_ACADEMICOS'))));
+    $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_ACADEMICOS')));
+    $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->setOrder(2);
 
     // Criando array de elementos.

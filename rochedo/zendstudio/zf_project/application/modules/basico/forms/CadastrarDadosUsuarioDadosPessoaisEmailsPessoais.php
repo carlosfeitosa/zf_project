@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 24/02/2011 14:42:52
+* em: 25/02/2011 10:08:22
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 24/02/2011 14:42:30
+* @version    1: 25/02/2011 09:55:40
 */
 class Basico_Form_CadastrarDadosUsuarioDadosPessoaisEmailsPessoais extends Zend_Dojo_Form
 {
