@@ -558,7 +558,7 @@ class Basico_GeradorFormularioControllerController
         $tempArraySubFormAttrib = array();
 
         // carregando atributos do sub-formulario
-        $tempArraySubFormAttrib[] = "'dijitParams' => array('title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objSubFormulario->constanteTextualTitulo}'))";
+        $tempArraySubFormAttrib[] = "'title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objSubFormulario->constanteTextualTitulo}')";
 
         // verificando se o sub-formulario possui atributos
         if ($objSubFormulario->formAttribs) {

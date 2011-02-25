@@ -64,6 +64,12 @@ class Basico_EmailController extends Zend_Controller_Action
     	// recuperando o e-mail
     	$email   = $controladorEmail->retornaObjetoEmailPorId($idEmail);
 
+    	//verificando se o email já foi validado
+    	if (Basico_PessoaPerfilControllerController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
+            $this->_helper->redirector('erroemailvalidadoexistentenosistema', 'login', 'basico');
+            exit;
+    	}
+    	
     	// recuperando data hora de expiracao
     	$dataHoraExpiracaoUnixTimeStamp = Basico_UtilControllerController::retornaTimestamp($tokenObj->datahoraExpiracao);
     	// recuperando a data hora atual
@@ -78,7 +84,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	}
 	    	
 	    	// recuperando o objeto pessoa do dono do email
-	    	$proprietarioEmail = $this->retornaObjetoProprietarioEmail($email);
+	    	$proprietarioEmail = Basico_EmailControllerController::getInstance()->retornaObjetoProprietarioEmail($email);
 	    	
 	    	// recuperando dadosPessoais da pessoa
 	    	$dadosPessoais = Basico_DadosPessoaisControllerController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($proprietarioEmail->id);
@@ -126,30 +132,6 @@ class Basico_EmailController extends Zend_Controller_Action
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
     	}
-    }
-    
-    /**
-     * Retorna objeto proprietario do email passado
-     * @param Basico_Model_Email $email
-     * @return Object
-     */
-    public function retornaObjetoProprietarioEmail(Basico_Model_Email $email)
-    {
-    	//recuperando a categoria chave estrangeira do email passado 
-    	$categoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($email->categoria);
-    	   	
-    	//setando o nome da classe a ser instanciada
-    	$moduloName = strtolower($categoriaChaveEstrangeira->getModuloObject()->nome);
-    	$moduloName = ucfirst($moduloName);
-    	
-    	$nomeClasse = $moduloName . '_Model_' . ucfirst($categoriaChaveEstrangeira->tabelaEstrangeira);
-    	
-    	//instanciando a classe
-    	$model = new $nomeClasse();
-    	
-    	//retornando o objeto proprietario
-    	return $model->find($email->idGenericoProprietario);
-    	
     }
 
     /**

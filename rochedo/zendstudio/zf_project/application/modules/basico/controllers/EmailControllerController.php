@@ -177,14 +177,14 @@ class Basico_EmailControllerController
 	/**
 	 * Retorna o id da pessoa pelo email passado como parâmetro.
 	 * 
-	 * @param String $email
+	 * @param Int $idEmail
 	 * 
 	 * @return Basico_Model_Email|null
 	 */
-	public function retornaIdProprietarioEmailPorEmail($email)
+	public function retornaIdProprietarioEmailPorIdEmail($idEmail)
 	{
 		// recuperando objetos e-mail
-		$objsEmail = $this->_email->fetchList("email = '{$email}'", null, 1, 0);
+		$objsEmail = $this->_email->fetchList("id = '{$idEmail}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
 		if (isset($objsEmail[0]))
@@ -315,4 +315,28 @@ class Basico_EmailControllerController
 		}
 		return false;
 	}
+	
+    /**
+     * Retorna objeto proprietario do email passado
+     * @param Basico_Model_Email $email
+     * @return Object
+     */
+    public function retornaObjetoProprietarioEmail(Basico_Model_Email $email)
+    {
+    	//recuperando a categoria chave estrangeira do email passado 
+    	$categoriaChaveEstrangeira = Basico_CategoriaChaveEstrangeiraControllerController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($email->categoria);
+    	   	
+    	//setando o nome da classe a ser instanciada
+    	$moduloName = strtolower($categoriaChaveEstrangeira->getModuloObject()->nome);
+    	$moduloName = ucfirst($moduloName);
+    	
+    	$nomeClasse = $moduloName . '_Model_' . ucfirst($categoriaChaveEstrangeira->tabelaEstrangeira);
+    	
+    	//instanciando a classe
+    	$model = new $nomeClasse();
+    	
+    	//retornando o objeto proprietario
+    	return $model->find($email->idGenericoProprietario);
+    	
+    }
 }

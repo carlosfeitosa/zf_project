@@ -92,6 +92,7 @@ class Basico_RacaControllerController
 		
 		$racas = $objRaca->fetchAll();
 		
+		$arrayResultado[] = "";
 		if (count($racas) > 0) {
 			
 			foreach ($racas as $raca) {

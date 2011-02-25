@@ -441,7 +441,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
 			             $idEmail           = $controladorEmail->retornaIdEmailPorEmail($email);
 			             $idCategoriaToken  = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailValidacaoPlainText();
-			             $idPessoa          = $controladorEmail->retornaIdProprietarioEmailPorEmail($email);
+			             $idPessoa          = $controladorEmail->retornaIdProprietarioEmailPorIdEmail($idEmail);
 			             $idPessoaPerfil    = $controladorPessoaPerfil->retornaObjetosPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
 			             // setando e salvando token

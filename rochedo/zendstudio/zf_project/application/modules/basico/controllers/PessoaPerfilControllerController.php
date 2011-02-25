@@ -242,7 +242,7 @@ class Basico_PessoaPerfilControllerController
     		return $objPessoaPerfil[0];
     	}
     	
-    	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_VALIDADO_NAO_ENCONTRADO);
+    	return NULL;
 	}
 	
     /**
@@ -312,5 +312,30 @@ class Basico_PessoaPerfilControllerController
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Retorna se existe o perfil de UsuarioValidado para a pessoa dona do email passado
+	 * @param Basico_Model_Email $email
+	 * @return Boolean
+	 */
+	public function possuiPerfilUsuarioValidadoPorEmail(Basico_Model_Email $email)
+	{
+    	// recuperando o id do proprietario do email
+		$idProprietarioEmail = Basico_EmailControllerController::getInstance()->retornaIdProprietarioEmailPorIdEmail($email->id);
+	
+		// recuperando o perfil de usuario validado
+		$perfilUsuarioValidado = $this->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idProprietarioEmail);
+
+
+		// retornando se o perfil de usuario validado existe para esta pessoa
+		if (isset($perfilUsuarioValidado)) {
+
+			return true;
+
+        }else{
+		    return false;
+
+		}
 	}
 }

@@ -37,13 +37,20 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_formulario_pai, id_decorator, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
 		SELECT c.id AS id_categoria,
 		(SELECT f.id
          FROM formulario f
-         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                 
+         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
+         (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria= c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
        'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS' AS nome,
        'Formulário de submissão de dados acadêmicos.' AS descricao, 
        'SUBFORM_TABTITLE_DADOS_ACADEMICOS' AS constante_textual_titulo,
@@ -89,13 +96,20 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES';
 
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_formulario_pai, id_decorator, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
 SELECT c.id AS id_categoria, 
    	   (SELECT f.id
         FROM formulario f
-        WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                       
+        WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria= c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
        'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS' AS nome,
        'Formulário de submissão de dados profissionais.' AS descricao, 
        'SUBFORM_TABTITLE_DADOS_PROFISSIONAIS' AS constante_textual_titulo,
@@ -138,13 +152,20 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_BIOMETRICOS';
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_formulario_pai, id_decorator, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
 SELECT c.id AS id_categoria, 
    	   (SELECT f.id
         FROM formulario f
-        WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,                       
+        WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
+        (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria= c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
        'SUBFORM_DADOS_USUARIO_PERFIL' AS nome,
        'Formulário de vinculacao de perfis de usuario.' AS descricao, 
        'SUBFORM_TABTITLE_PERFIL' AS constante_textual_titulo,
@@ -396,12 +417,19 @@ AND c.nome = 'FORMULARIO_INPUT_LOGIN';
 */
 
 -- aba de dados pessoais
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_formulario_pai, id_decorator, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
         SELECT c.id AS id_categoria,(SELECT f.id
                                      FROM formulario f
-                                     WHERE f.nome = 'FORM_DADOS_USUARIO'),                          
+                                     WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
+       (SELECT d.id
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria= c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
        'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS' AS nome,
        'Formulário de submissão de dados pessoais.' AS descricao, 
        'SUBFORM_TABTITLE_DADOS_PESSOAIS' AS constante_textual_titulo,
@@ -521,12 +549,12 @@ INSERT INTO formulario (id_categoria, id_formulario_pai, nome, id_decorator, des
                                      WHERE f.nome = 'FORM_DADOS_USUARIO'),                          
        'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS' AS nome,
        (SELECT d.id
-                              FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
+        FROM decorator d
+        LEFT JOIN categoria c ON (d.id_categoria= c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
        'Formulário de submissão de informações bancárias.' AS descricao, 
        'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS' AS constante_textual_titulo,
        'CadastrarDadosUsuarioInformacoesBancarias' AS form_name, 

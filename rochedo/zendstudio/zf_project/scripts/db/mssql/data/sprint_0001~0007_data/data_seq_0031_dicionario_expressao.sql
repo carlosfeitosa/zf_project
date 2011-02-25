@@ -434,21 +434,21 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_RACA' AS constante_textual, 'Raça:' AS traducao
+SELECT c.id, 'FORM_FIELD_RACA' AS constante_textual, 'Cor ou Raça:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_RACA_AJUDA' AS constante_textual, 'Selecione neste campo a sua raça.' AS traducao
+SELECT c.id, 'FORM_FIELD_RACA_AJUDA' AS constante_textual, 'Selecione neste campo a sua cor ou raça.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_RACA_HINT' AS constante_textual, 'Selecione aqui a sua raça.' AS traducao
+SELECT c.id, 'FORM_FIELD_RACA_HINT' AS constante_textual, 'Selecione aqui a sua cor ou raça.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

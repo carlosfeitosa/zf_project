@@ -14,11 +14,7 @@
 
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_SUBMIT' AS nome, 'Decorator para submissão de formulários.' AS descricao,
-       '''FormElements'',
-		        array(''HtmlTag'', 
-				      array(''tag'' => ''dl'')
-				     ),
-					 array(''DijitForm'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+       '''FormElements'', array(''HtmlTag'', array(''tag'' => ''dl'')), array(''DijitForm'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
