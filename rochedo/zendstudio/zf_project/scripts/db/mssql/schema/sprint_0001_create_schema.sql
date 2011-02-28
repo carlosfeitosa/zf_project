@@ -14,6 +14,7 @@
 * 						- 27/09/2010 - modificacao da tabela "email": transformacao do campo "id_pessoa" em
 * 									   "id_generico_proprietario" (abstracao do dono);
 * 						- 29/10/2010 - inclusao da criacao da tabela "modulo", proviniente do sprint 0004;
+*                       - 28/02/2011 - inclusão de campos date para registro de eventos temporais;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -60,6 +61,8 @@ create table dbo.email (
 	email varchar (100) collate latin1_general_ci_ai not null ,
 	validado bit not null ,
 	datahora_ultima_validacao datetime null ,
+	datahora_cadastro datetime not null,
+	datahora_ultima_atualizacao datetime not null,
 	ativo bit not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
@@ -87,6 +90,11 @@ create table dbo.login (
 	datahora_proxima_expiracao datetime null ,
 	datahora_ultima_expiracao datetime null ,
 	datahora_expiracao_senha datetime null ,
+	datahora_ultima_tentativa_falha datetime null,
+	datahora_ultimo_reset datetime null,
+	datahora_ultima_troca_senha datetime null,
+	datahora_cadastro datetime not null,
+	datahora_ultima_atualizacao datetime not null,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -96,6 +104,8 @@ create table dbo.perfil (
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	ativo bit not null ,
+	datahora_cadastro datetime not null,
+	datahora_ultima_atualizacao datetime not null,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -108,6 +118,8 @@ create table dbo.pessoas_perfis (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	id_perfil int not null ,
+	datahora_cadastro datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -124,6 +136,7 @@ create table dbo.mensagem (
 	destinatarios varchar (3000) collate latin1_general_ci_ai not null ,
 	assunto varchar (200) collate latin1_general_ci_ai not null ,
 	datahora_mensagem datetime not null,
+	datahora_envio datetime null,
 	mensagem varchar (2000) collate latin1_general_ci_ai not null ,
 	id_categoria int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
@@ -241,10 +254,18 @@ alter table dbo.modulo add
 
 alter table dbo.email add 
 	constraint df_email_validado default (0) for validado,
-	constraint df_email_ativo default (0) for ativo;
+	constraint df_email_ativo default (0) for ativo,
+	constraint df_email_datahora_cadastro default (getDate()) for datahora_cadastro,
+	constraint df_email_datahora_ultima_atualizacao default (getDate()) for datahora_ultima_atualizacao;
 
 alter table dbo.perfil add 
-	constraint df_perfil_ativo default (1) for ativo;
+	constraint df_perfil_ativo default (1) for ativo ,
+	constraint df_perfil_datahora_cadastro default (getDate()) for datahora_cadastro ,
+	constraint df_perfil_datahora_ultima_atualizacao default (getDate()) for datahora_ultima_atualizacao;
+	
+alter table dbo.pessoas_perfis add
+    constraint df_pessoas_perfis_datahora_cadastro default (getDate()) for datahora_cadastro ,
+    constraint df_pessoas_perfis_datahora_ultima_atualizacao default (getDate()) for datahora_ultima_atualizacao;
 
 alter table dbo.login add 
 	constraint df_login_ativo default (0) for ativo,
@@ -252,7 +273,9 @@ alter table dbo.login add
 	constraint df_login_travado default (0) for travado,
 	constraint df_login_resetado default (0) for resetado,
 	constraint df_login_pode_expirar default (1) for pode_expirar,
-	constraint df_login_datahora_proxima_expiracao default (dateadd(month,12,getdate())) for datahora_proxima_expiracao;
+	constraint df_login_datahora_proxima_expiracao default (dateadd(month,12,getdate())) for datahora_proxima_expiracao,
+	constraint df_login_datahora_cadastro default (getDate()) for datahora_cadastro,
+	constraint df_login_datahora_ultima_atualizacao default (getDate()) for datahora_ultima_atualizacao;
 	
 alter table dbo.token add
 	constraint df_token_datahora_expiracao default (dateadd(hour, 36, getdate())) for datahora_expiracao;

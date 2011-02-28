@@ -14,6 +14,7 @@
 * 						- 27/09/2010 - modificacao da tabela "email": transformacao do campo "id_pessoa" em
 * 									   "id_generico_proprietario" (abstracao do dono);
 * 						- 29/10/2010 - inclusao da criacao da tabela "modulo", proviniente do sprint 0004;
+*                       - 28/02/2011 - inclusão de campos date para registro de eventos temporais;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -71,6 +72,8 @@ create table email (
 	email character varying (100) not null ,
 	validado boolean not null ,
 	datahora_ultima_validacao timestamp with time zone ,
+	datahora_cadastro timestamp with time zone not null,
+	datahora_ultima_atualizacao timestamp with time zone not null,
 	ativo boolean not null ,
 	rowinfo character varying (2000) not null 
 )
@@ -106,6 +109,11 @@ create table login (
 	datahora_proxima_expiracao timestamp with time zone ,
 	datahora_ultima_expiracao timestamp with time zone ,
 	datahora_expiracao_senha timestamp with time zone ,
+	datahora_ultima_tentativa_falha timestamp with time zone ,
+	datahora_ultimo_reset timestamp with time zone ,
+	datahora_ultima_troca_senha timestamp with time zone ,
+	datahora_cadastro timestamp with time zone not null,
+	datahora_ultima_atualizacao timestamp with time zone not null,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -119,6 +127,8 @@ create table perfil (
 	nome character varying (100) not null ,
 	descricao character varying (2000)  ,
 	ativo boolean not null ,
+	datahora_cadastro timestamp with time zone not null,
+	datahora_ultima_atualizacao timestamp with time zone not null,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -139,6 +149,8 @@ create table pessoas_perfis (
 	id serial not null ,
 	id_pessoa integer not null ,
 	id_perfil integer not null ,
+	datahora_cadastro timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -163,6 +175,7 @@ create table mensagem (
 	destinatarios character varying (3000) not null ,
 	assunto character varying (200) not null ,
 	datahora_mensagem timestamp with time zone not null ,
+	datahora_envio timestamp with time zone ,
 	mensagem character varying (2000) not null ,
 	id_categoria integer not null ,
 	rowinfo character varying (2000) not null
@@ -312,18 +325,28 @@ alter table modulo
 
 alter table email 
 	alter column validado set default false ,
-    alter column ativo set default false;
+    alter column ativo set default false,
+    alter column datahora_cadastro set default (current_timestamp),
+	alter column datahora_ultima_atualizacao set default (current_timestamp);
 
 alter table perfil
-    alter column ativo set default true;
+    alter column ativo set default true ,
+    alter column datahora_cadastro set default (current_timestamp) ,
+    alter column datahora_ultima_atualizacao set default (current_timestamp);
 
+alter table pessoas_perfis
+    alter column datahora_cadastro set default (current_timestamp) ,
+    alter column datahora_ultima_atualizacao set default (current_timestamp);
+    
 alter table login 
 	alter column ativo set default false ,
 	alter column tentativas_falhas set default 0 ,
 	alter column travado set default false ,
 	alter column resetado set default false ,
 	alter column pode_expirar set default true ,
-	alter column datahora_proxima_expiracao set default (current_timestamp + interval '12 months');
+	alter column datahora_proxima_expiracao set default (current_timestamp + interval '12 months'),
+	alter column datahora_cadastro set default (current_timestamp),
+	alter column datahora_ultima_atualizacao set default (current_timestamp);
 	
 alter table token
 	alter column datahora_expiracao set default (current_timestamp + interval '36 hours');
