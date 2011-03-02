@@ -111,11 +111,18 @@ class Basico_MensageiroControllerController
 	        // setando corpo da mensagem
 	        $this->_mail->setBodyText($mensagem->mensagem);
 	        // setando data da mensagem
-	        $this->_mail->setDate($mensagem->datahoraMensagem);
+	        $this->_mail->setDate($mensagem->dataHoraMensagem);
 	        
 	        // enviando a mensagem
             $this->_mail->send($transport);
-            
+
+            // atualizando a hora do envio da mensagem
+            $mensagem->dataHoraEnvio = Basico_UtilControllerController::retornaDateTimeAtual();
+            // recuperando a ultima versao do objeto
+            $ultimaVersaoMensagem    = Basico_CVCControllerController::getInstance()->retornaUltimaVersao($mensagem);
+            // Atualizando a mensagem
+            Basico_MensagemControllerController::getInstance()->salvarMensagem($mensagem, $ultimaVersaoMensagem);
+
     		// salvando log de sucesso no envio de mensagem
     		$logControllerController->salvarLog($pessoaPerfilControllerController->retornaIdPessoaPerfilSistema(), $categoriaControllerController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_SUCESSO);
 		} catch(Exception $e){

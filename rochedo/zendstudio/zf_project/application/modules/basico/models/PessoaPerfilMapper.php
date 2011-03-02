@@ -97,6 +97,8 @@ class Basico_Model_PessoaPerfilMapper
         $object->setId($row->id)
                ->setPessoa($row->id_pessoa)
                ->setPerfil($row->id_perfil)
+               ->setDataHoraCadastro($row->datahora_cadastro)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -115,6 +117,8 @@ class Basico_Model_PessoaPerfilMapper
             $entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
                 ->setPerfil($row->id_perfil)
+                ->setDataHoraCadastro($row->datahora_cadastro)
+                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
@@ -137,6 +141,8 @@ class Basico_Model_PessoaPerfilMapper
             $entry->setId($row->id)
                   ->setPessoa($row->id_pessoa)
                   ->setPerfil($row->id_perfil)
+                  ->setDataHoraCadastro($row->datahora_cadastro)
+                  ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

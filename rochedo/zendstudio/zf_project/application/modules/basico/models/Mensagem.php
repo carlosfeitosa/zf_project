@@ -46,7 +46,12 @@ class Basico_Model_Mensagem
 	/**
 	 * @var Date
 	 */
-	protected $_datahoraMensagem;
+	protected $_dataHoraMensagem;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraEnvio;
 	/**
 	 * @var String
 	 */
@@ -228,25 +233,47 @@ class Basico_Model_Mensagem
 	}
      
 	/**
-	* Set dataHora
+	* Set dataHoraMensagem
 	* 
-	* @param String $dataHora 
-	* @return Basico_Model_DataHora
+	* @param String $dataHoraMensagem 
+	* @return Basico_Model_Mensagem
 	*/
-	public function setDatahoraMensagem($datahoraMensagem)
+	public function setDataHoraMensagem($dataHoraMensagem)
 	{
-		$this->_datahoraMensagem = Basico_UtilControllerController::retornaValorTipado($datahoraMensagem, TIPO_STRING, true);
+		$this->_dataHoraMensagem = Basico_UtilControllerController::retornaValorTipado($dataHoraMensagem, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHora
+	* Get dataHoraMensagem
 	* 
 	* @return null|String
 	*/
-	public function getDatahoraMensagem()
+	public function getDataHoraMensagem()
 	{
-		return $this->_datahoraMensagem;
+		return $this->_dataHoraMensagem;
+	}
+	
+    /**
+	* Set dataHoraEnvio
+	* 
+	* @param String $dataHoraEnvio 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setDataHoraEnvio($dataHoraEnvio)
+	{
+		$this->_dataHoraEnvio = Basico_UtilControllerController::retornaValorTipado($dataHoraEnvio, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraEnvio
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraEnvio()
+	{
+		return $this->_dataHoraEnvio;
 	}
      
 	/**

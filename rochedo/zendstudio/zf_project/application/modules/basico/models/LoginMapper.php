@@ -57,19 +57,22 @@ class Basico_Model_LoginMapper
     public function save(Basico_Model_Login $object)
     {
         $data = array(
-                      'id_pessoa'                  => $object->getPessoa(),
-    				  'login'                      => $object->getLogin(),
-    				  'senha'                      => $object->getSenha(),
-    				  'ativo'                      => $object->getAtivo(),
-    				  'tentativas_falhas'          => $object->getTentativasFalhas(),
-    				  'travado'                    => $object->getTravado(),
-    				  'resetado'  				   => $object->getResetado(),
-    				  'datahora_ultimo_logon'      => $object->getDataHoraUltimoLogon(),
-    				  'observacoes'   			   => $object->getObservacoes(),
-    				  'pode_expirar'  			   => $object->getPodeExpirar(),
-    				  'datahora_proxima_expiracao' => $object->getDataHoraProximaExpiracao(),
-    				  'datahora_ultima_expiracao'  => $object->getDataHoraUltimaExpiracao(),
-        			  'datahora_expiracao_senha'   => $object->getDataHoraExpiracaoSenha(),
+                      'id_pessoa'                       => $object->getPessoa(),
+    				  'login'                           => $object->getLogin(),
+    				  'senha'                           => $object->getSenha(),
+    				  'ativo'                           => $object->getAtivo(),
+    				  'tentativas_falhas'               => $object->getTentativasFalhas(),
+    				  'travado'                         => $object->getTravado(),
+    				  'resetado'  				        => $object->getResetado(),
+    				  'datahora_ultimo_logon'           => $object->getDataHoraUltimoLogon(),
+    				  'observacoes'   			        => $object->getObservacoes(),
+    				  'pode_expirar'  			        => $object->getPodeExpirar(),
+    				  'datahora_proxima_expiracao'      => $object->getDataHoraProximaExpiracao(),
+    				  'datahora_ultima_expiracao'       => $object->getDataHoraUltimaExpiracao(),
+        			  'datahora_expiracao_senha'        => $object->getDataHoraExpiracaoSenha(),
+                      'datahora_ultima_tentativa_falha' => $object->getDataHoraUltimaTentativaFalha(),
+                      'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
+                      'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
                       'rowinfo'                    => $object->getRowinfo(),
                     );
 
@@ -119,6 +122,11 @@ class Basico_Model_LoginMapper
 			   ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 			   ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
 			   ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
+			   ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
+			   ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
+			   ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
+			   ->setDataHoraCadastro($row->datahora_cadastro)
+			   ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 			   ->setRowinfo($row->rowinfo);
     }
 
@@ -148,6 +156,11 @@ class Basico_Model_LoginMapper
 				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
 				  ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
+				  ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
+			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
+			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
+			      ->setDataHoraCadastro($row->datahora_cadastro)
+			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
@@ -181,6 +194,11 @@ class Basico_Model_LoginMapper
 				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
 				  ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
+				  ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
+			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
+			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
+			      ->setDataHoraCadastro($row->datahora_cadastro)
+			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;

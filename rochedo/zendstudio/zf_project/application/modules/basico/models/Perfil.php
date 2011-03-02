@@ -31,6 +31,16 @@ class Basico_Model_Perfil
 	 * @var Boolean
 	 */
 	protected $_ativo;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraCadastro;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraUltimaAtualizacao;
     /**
      * @var Integer
      */
@@ -167,6 +177,50 @@ class Basico_Model_Perfil
 	public function getAtivo()
 	{
 		return $this->_ativo;
+	}
+	
+    /**
+	* Set dataHoraCadastro
+	* 
+	* @param String $dataHoraCadastro 
+	* @return Basico_Model_Perfil
+	*/
+	public function setDataHoraCadastro($dataHoraCadastro)
+	{
+		$this->_dataHoraCadastro = Basico_UtilControllerController::retornaValorTipado($dataHoraCadastro, TIPO_STRING);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraCadastro
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCadastro()
+	{
+		return $this->_dataHoraCadastro;
+	}
+	
+    /**
+	* Set dataHoraUltimaAtualizacao
+	* 
+	* @param String $dataHoraUltimaAtualizacao
+	* @return Basico_Model_Perfil
+	*/
+	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+	{
+		$this->_dataHoraUltimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaAtualizacao()
+	{
+		return $this->_dataHoraUltimaAtualizacao;
 	}
      
 	/**

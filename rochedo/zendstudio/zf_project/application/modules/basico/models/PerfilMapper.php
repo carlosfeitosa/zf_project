@@ -57,10 +57,10 @@ class Basico_Model_PerfilMapper
     public function save(Basico_Model_Perfil $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-				'ativo'   => $object->getAtivo(),
-                'id_categoria'   => $object->getCategoria(),
+				'nome'                        => $object->getNome(),
+				'descricao'                   => $object->getDescricao(),
+				'ativo'                       => $object->getAtivo(),
+                'id_categoria'                => $object->getCategoria(),
 
         );
 
@@ -100,6 +100,8 @@ class Basico_Model_PerfilMapper
 			   ->setNome($row->nome)
 			   ->setDescricao($row->descricao)
 			   ->setAtivo($row->ativo)
+			   ->setDataHoraCadastro($row->datahora_cadastro)
+			   ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setCategoria($row->id_categoria);
     }
 
@@ -119,6 +121,8 @@ class Basico_Model_PerfilMapper
 				  ->setNome($row->nome)
 				  ->setDescricao($row->descricao)
 				  ->setAtivo($row->ativo)
+				  ->setDataHoraCadastro($row->datahora_cadastro)
+			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                   ->setCategoria($row->id_categoria)
 				  ->setMapper($this);
 			$entries[] = $entry;
@@ -142,6 +146,8 @@ class Basico_Model_PerfilMapper
 				  ->setNome($row->nome)
 				  ->setDescricao($row->descricao)
 				  ->setAtivo($row->ativo)
+				  ->setDataHoraCadastro($row->datahora_cadastro)
+			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                   ->setCategoria($row->id_categoria)
 				  ->setMapper($this);
 			$entries[] = $entry;

@@ -33,6 +33,16 @@ class Basico_Model_PessoaPerfil
      * @var Perfil
      */
     protected $_perfil;
+    /**
+     * 
+     * @var Date
+     */
+    protected $_dataHoraCadastro;
+    /**
+     * 
+     * @var Date
+     */
+    protected $_dataHoraUltimaAtualizacao;
 
     /**
      * Constructor
@@ -188,6 +198,46 @@ class Basico_Model_PessoaPerfil
     public function getId()
     {
         return $this->_id;
+    }
+    
+    /**
+     * Set dataHoraCadastro
+     * @param String $dataHoraCadastro
+     * @return Basico_Model_PessoaPerfil
+     */
+    public function setDataHoraCadastro($dataHoraCadastro)
+    {
+    	$this->_dataHoraCadastro = Basico_UtilControllerController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+    	return $this;
+    }
+    
+    /**
+     * Get dataHoraCadastro
+     * @return null|String
+     */
+    public function getDataHoraCadastro()
+    {
+    	return $this->_dataHoraCadastro;
+    }
+    
+    /**
+     * Set dataHoraUltimaAtualizacao
+     * @param String $dataHoraUltimaAtualizacao
+     * @return Basico_Model_PessoaPerfil
+     */
+    public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+    {
+    	$this->_dataHoraUltimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING, true);
+    	return $this;
+    }
+    
+    /**
+     * Get dataHoraUltimaAtualizacao
+     * @return null|String
+     */
+    public function getDataHoraUltimaAtualizacao()
+    {
+    	return $this->_dataHoraUltimaAtualizacao;
     }
     
 	/**

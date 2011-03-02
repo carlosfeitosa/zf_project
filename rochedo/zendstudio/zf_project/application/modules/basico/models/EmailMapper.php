@@ -106,6 +106,8 @@ class Basico_Model_EmailMapper
 				->setEmail($row->email)
 				->setValidado($row->validado)
 				->setDataHoraUltimaValidacao($row->datahora_ultima_validacao)
+				->setDataHoraCadastro($row->datahora_cadastro)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setAtivo($row->ativo)
                 ->setRowinfo($row->rowinfo);
     }
@@ -129,6 +131,8 @@ class Basico_Model_EmailMapper
 				->setEmail($row->email)
 				->setValidado($row->validado)
 				->setDataHoraUltimaValidacao($row->datahora_ultima_validacao)
+				->setDataHoraCadastro($row->datahora_cadastro)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setAtivo($row->ativo)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
@@ -156,6 +160,8 @@ class Basico_Model_EmailMapper
 				->setEmail($row->email)
 				->setValidado($row->validado)
 				->setDataHoraUltimaValidacao($row->datahora_ultima_validacao)
+				->setDataHoraCadastro($row->datahora_cadastro)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setAtivo($row->ativo)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);

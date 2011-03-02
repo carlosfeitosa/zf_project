@@ -73,6 +73,31 @@ class Basico_Model_Login
 	 */
 	protected $_dataHoraExpiracaoSenha;
 	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraUltimaTentativaFalha;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraUltimoReset;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraUltimaTrocaSenha;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraCadastro;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_dataHoraUltimaAtualizacao;
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -440,6 +465,116 @@ class Basico_Model_Login
 	public function getDataHoraExpiracaoSenha()
 	{
 		return $this->_dataHoraExpiracaoSenha;
+	}
+	
+    /**
+	* Set dataHoraUltimaTentativaFalha
+	* 
+	* @param String $dataHoraUltimaTentativaFalha 
+	* @return Basico_Model_Login
+	*/
+	public function setDataHoraUltimaTentativaFalha($dataHoraUltimaTentativaFalha)
+	{
+		$this->_dataHoraUltimaTentativaFalha = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaTentativaFalha, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaTentativaFalha
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaTentativaFalha()
+	{
+		return $this->_dataHoraUltimaTentativaFalha;
+	}
+	
+    /**
+	* Set dataHoraUltimoReset
+	* 
+	* @param String $dataHoraUltimoReset 
+	* @return Basico_Model_Login
+	*/
+	public function setDataHoraUltimoReset($dataHoraUltimoReset)
+	{
+		$this->_dataHoraUltimoReset = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimoReset, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimoReset
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimoReset()
+	{
+		return $this->_dataHoraUltimoReset;
+	}
+	
+    /**
+	* Set dataHoraUltimaTrocaSenha
+	* 
+	* @param String $dataHoraUltimaTrocaSenha 
+	* @return Basico_Model_Login
+	*/
+	public function setDataHoraUltimaTrocaSenha($dataHoraUltimaTrocaSenha)
+	{
+		$this->_dataHoraUltimaTrocaSenha = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaTrocaSenha, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaTrocaSenha
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaTrocaSenha()
+	{
+		return $this->_dataHoraUltimaTrocaSenha;
+	}
+	
+    /**
+	* Set dataHoraCadastro
+	* 
+	* @param String $dataHoraCadastro 
+	* @return Basico_Model_Login
+	*/
+	public function setDataHoraCadastro($dataHoraCadastro)
+	{
+		$this->_dataHoraCadastro = Basico_UtilControllerController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraCadastro
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCadastro()
+	{
+		return $this->_dataHoraCadastro;
+	}
+	
+    /**
+	* Set dataHoraUltimaAtualizacao
+	* 
+	* @param String $dataHoraUltimaAtualizacao 
+	* @return Basico_Model_Login
+	*/
+	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+	{
+		$this->_dataHoraUltimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaAtualizacao()
+	{
+		return $this->_dataHoraUltimaAtualizacao;
 	}
 	
 	/**

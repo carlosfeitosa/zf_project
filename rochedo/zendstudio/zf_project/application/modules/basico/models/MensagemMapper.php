@@ -60,7 +60,8 @@ class Basico_Model_MensagemMapper
 				'remetente'         => $object->getRemetente(),
 				'destinatarios'     => $object->getDestinatariosString(),
 				'assunto'           => $object->getAssunto(),
-                'datahora_mensagem' => $object->getDatahoraMensagem(),
+                'datahora_mensagem' => $object->getDataHoraMensagem(),
+                'datahora_envio'    => $object->getDataHoraEnvio(),
                 'mensagem'          => $object->getMensagem(),
 				'id_categoria'      => $object->getCategoria(),
                 'rowinfo'           => $object->getRowinfo(),
@@ -103,7 +104,8 @@ class Basico_Model_MensagemMapper
                ->setRemetente($row->remetente)
 			   ->setDestinatarios($row->destinatarios)
 			   ->setAssunto($row->assunto)
-			   ->setDatahoraMensagem($row->datahora_mensagem)
+			   ->setDataHoraMensagem($row->datahora_mensagem)
+			   ->setDataHoraEnvio($row->datahora_envio)
 			   ->setMensagem($row->mensagem)
 			   ->setCategoria($row->id_categoria)
 			   ->setRowinfo($row->rowinfo);
@@ -125,7 +127,8 @@ class Basico_Model_MensagemMapper
                   ->setRemetente($row->remetente)
 				  ->setDestinatarios($row->destinatarios)
 				  ->setAssunto($row->assunto)
-				  ->setDatahoraMensagem($row->datahora_mensagem)
+				  ->setDataHoraMensagem($row->datahora_mensagem)
+				  ->setDataHoraEnvio($row->datahora_envio)
 				  ->setMensagem($row->mensagem)
 				  ->setCategoria($row->id_categoria)
 				  ->setRowinfo($row->rowinfo)
@@ -151,7 +154,8 @@ class Basico_Model_MensagemMapper
                   ->setRemetente($row->remetente)
 				  ->setDestinatarios($row->destinatarios)
 				  ->setAssunto($row->assunto)
-				  ->setDatahoraMensagem($row->datahora_mensagem)
+				  ->setDataHoraMensagem($row->datahora_mensagem)
+				  ->setDataHoraEnvio($row->datahora_envio)
 				  ->setMensagem($row->mensagem)
 				  ->setCategoria($row->id_categoria)
 				  ->setRowinfo($row->rowinfo)

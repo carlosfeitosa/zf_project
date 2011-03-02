@@ -290,7 +290,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	                     
 	            $novaMensagemConfirmacao->destinatarios       = array($emailPrimario->email);
 	            $novaMensagemConfirmacao->categoria           = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailValidacaoPlainTextTemplate();
-	            $novaMensagemConfirmacao->datahoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
+	            $novaMensagemConfirmacao->dataHoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
 	            $controladorRowinfo->prepareXml($novaMensagemConfirmacao, true);
 	            $novaMensagemConfirmacao->rowinfo             = $controladorRowinfo->getXml();
 	            $controladorMensagem->salvarMensagem($novaMensagemConfirmacao);
@@ -457,7 +457,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $link = Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
 			             $novaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);       
 			             $novaMensagem->destinatarios    = array($email);
-			             $novaMensagem->datahoraMensagem = Basico_UtilControllerController::retornaDateTimeAtual();
+			             $novaMensagem->dataHoraMensagem = Basico_UtilControllerController::retornaDateTimeAtual();
 			             $novaMensagem->categoria        = $idCategoriaMensagem;
 			             $controladorRowInfo->prepareXml($novaMensagem, true);
 			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
@@ -607,7 +607,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $link = Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
             $objNovaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $objNovaMensagem->destinatarios       = array($novoEmail->email);
-            $objNovaMensagem->datahoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
+            $objNovaMensagem->dataHoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
             $objNovaMensagem->categoria           = $idCategoriaToken;
             $controladorRowInfo->prepareXml($objNovaMensagem, true);
             $objNovaMensagem->rowinfo             = $controladorRowInfo->getXml();
