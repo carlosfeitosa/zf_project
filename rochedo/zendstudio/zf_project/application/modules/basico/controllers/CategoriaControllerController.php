@@ -276,7 +276,25 @@ class Basico_CategoriaControllerController
 	}
 	
 	/** CATEGORIAS DE LOG */
-	
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLog()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLog = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLog))
+			// retornando o objeto
+			return $objCategoriaLog;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG);
+	}
+
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_EMAIL
 	 * 
@@ -599,6 +617,42 @@ class Basico_CategoriaControllerController
 			return $objCategoriaLogUpdateEmail;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_EMAIL);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVA_CATEGORIA
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogNovaCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovaCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVA_CATEGORIA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovaCategoria))
+			// retornando o objeto
+			return $objCategoriaLogNovaCategoria;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_CATEGORIA);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_CATEGORIA
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogUpdateCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_CATEGORIA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateCategoria))
+			// retornando o objeto
+			return $objCategoriaLogUpdateCategoria;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA);
 	}
 
 	/**
@@ -1138,6 +1192,24 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o id da categoria LOG
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLog()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLog = $this->retornaObjetoCategoriaLog();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLog))
+			// retornando o id objeto
+			return (Int) $objCategoriaLog->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_EMAIL);
+	}
+
+	/**
 	 * Retorna o id da categoria LOG_EMAIL
 	 * 
 	 * @return Integer
@@ -1662,6 +1734,42 @@ class Basico_CategoriaControllerController
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVA_CATEGORIA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogNovaCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovaCategoria = $this->retornaObjetoCategoriaLogNovaCategoria();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovaCategoria))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogNovaCategoria->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_CATEGORIA);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVA_CATEGORIA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateCategoria = $this->retornaObjetoCategoriaLogUpdateCategoria();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateCategoria))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateCategoria->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_CATEGORIA);
+	}
+
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_TOKEN_VALIDACAO_USUARIO
 	 * 
 	 * @return Basico_Model_Categoria
@@ -2101,5 +2209,92 @@ class Basico_CategoriaControllerController
 	{
 		// retornando o nome da categoria de log
 		return "LOG_CALL_" . strtoupper($nomeControlador) . "_" . strtoupper($nomeAcao) . "_ACTION";
+	}
+
+	/**
+	 * Retorna o id e uma categoria de log de acao de controlador a partir do nome da caegoria de log.
+	 * Permite a criacao da categoria caso nao exista
+	 * 
+	 * @param String $nomeCategoriaLog
+	 * @param Boolean $forceCreation
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogAcaoControladorPorNomeCategoria($nomeCategoriaLogAcaoControlador, $forceCreation = false)
+	{
+		// recuperando o objeto categoria atraves do nome da categoria
+		$objCategoria = $this->retornaObjetoCategoriaPorNomeCategoria($nomeCategoriaLogAcaoControlador);
+
+		// verificando se o objeto foi carregado
+		if (isset($objCategoria))
+			// retornando o id da categoria localizada
+			return $objCategoria->id;
+		// verificando se foi passado o parametro que forca a criacao de uma nova categoria, caso ela nao exista
+		else if ($forceCreation) {
+			// instanciando controladores
+			$rowinfoControllerController = Basico_RowInfoControllerController::getInstance();
+
+			// recuperando um modelo vazio
+			$objCategoria = $this->retornaNovoObjetoCategoria();
+
+			// carregando informacoes sobre a categoria
+			$objCategoria->tipoCategoria = Basico_TipoCategoriaControllerController::getInstance()->retornaIdTipoCategoriaSistema();
+			$objCategoria->categoria     = $this->retornaIdCategoriaLog();
+			$objCategoria->nivel         = 2;
+			$objCategoria->ativo         = true;
+			$objCategoria->nome          = $nomeCategoriaLogAcaoControlador;
+			$objCategoria->descricao     = DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR;
+			// preparando o XML do rowinfo
+			$rowinfoControllerController->prepareXml($objCategoria, true);
+			$objCategoria->rowinfo       = $rowinfoControllerController->getXml();
+
+			// salvando o objeto categoria
+			$this->salvarCategoria($objCategoria);
+
+			// retornando o id da categoria recem criada
+			return $this->_categoria->id;
+		}
+	}
+
+	/**
+	 * Salva categoria no banco
+	 * 
+	 * @param Basico_Model_Categoria $objCategoria
+	 * @param Integer|null $versaoUpdate
+	 * @param Integer|null $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function salvarCategoria(Basico_Model_Categoria $objCategoria, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	{
+    	try {
+    		// instanciando controladores
+    		$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objCategoria->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = $this->retornaIdCategoriaLogUpdateCategoria();
+	    		$mensagemLog    = LOG_MSG_UPDATE_CATEGORIA;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = $this->retornaIdCategoriaLogNovaCategoria();
+	    		$mensagemLog    = LOG_MSG_NOVA_CATEGORIA;    		
+	    	}
+
+			// salvando o objeto através do controlador Save
+	    	Basico_PersistenceControllerController::bdSave($objCategoria, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+	    	// atualizando o objeto
+    		$this->_categoria = $objCategoria;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
 	}
 }

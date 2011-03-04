@@ -57,7 +57,7 @@ class Basico_Model_CategoriaMapper
     public function save(Basico_Model_Categoria $object)
     {
         $data = array(
-                      'id_tipo_categoria'   => $object->getIdTipoCategoria(),
+                      'id_tipo_categoria'   => $object->getTipoCategoria(),
                       'id_categoria_pai'    => $object->getCategoria(),
 					  'nivel'  			    => $object->getNivel(),
 					  'nome'                => $object->getNome(),

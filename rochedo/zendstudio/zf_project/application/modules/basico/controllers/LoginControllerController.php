@@ -458,6 +458,26 @@ class Basico_LoginControllerController {
 		return null;
 	}
 
+	/**
+	 * Retorna o id da pessoa pelo id do login
+	 *
+	 * @param Integer $idLogin
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdPessoaPorIdLogin($idLogin)
+	{
+		// recuperando objeto login
+		$this->_login->find($idLogin);
+
+		// verificando se o objeto login foi recuperado
+		if ($this->_login->id)
+			// retornando o id da pessoa
+			return $this->_login->pessoa;
+
+		return null;
+	}
+
     /**
      * Retorna o login do usuario master do sistema cadastrado no banco de dados
      * 

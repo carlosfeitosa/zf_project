@@ -64,8 +64,11 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN", "Categoria de log novo login não en
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_LOGIN", "Categoria de log atualizacao de login não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL", "Categoria de log novo e-mail não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_EMAIL", "Categoria de log atualizacao de e-mail não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVA_CATEGORIA", "Categoria de log nova categoria não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA", "Categoria de log de atualizacao de categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM", "Categoria de log nova mensagem não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_MENSAGEM", "Categoria de log atualizacao de mensagem não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG", "Categoria de log não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_EMAIL", "Categoria de log e-mail não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_CATEGORIA_CHAVE_ESTRANGEIRA", "Categoria de categoria chave estrangeira não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA", "Categoria de relação categoria chave estrangeira não encontrada no banco de dados");

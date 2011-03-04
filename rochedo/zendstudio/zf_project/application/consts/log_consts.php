@@ -37,6 +37,8 @@ define("LOG_MSG_NOVO_WEBSITE", "Novos website inseridos no banco de dados.");
 define("LOG_MSG_UPDATE_WEBSITE", "Atualiacao de website inseridos no banco de dados.");
 define("LOG_MSG_NOVO_EMAIL", "Novo e-mail inserido no banco de dados.");
 define("LOG_MSG_UPDATE_EMAIL", "Atualizacao de e-mail no banco de dados.");
+define("LOG_MSG_NOVA_CATEGORIA", "Nova categoria inserida no banco de dados.");
+define("LOG_MSG_UPDATE_CATEGORIA", "Atualizacao de categoria no banco de dados.");
 define("LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de categoria chave estrangeira.");
 define("LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de relação categoria chave estrangeira.");
 define("LOG_MSG_NOVA_MENSAGEM", "Nova mensagem inserida no banco de dados.");
@@ -50,6 +52,7 @@ define("LOG_MSG_NOVO_LOGIN", "Novo login inserido no banco de dados.");
 define("LOG_MSG_UPDATE_LOGIN", "Atualizacao de login no banco de dados.");
 define("LOG_MSG_NOVA_RACA", "Nova raça inserida no banco de dados.");
 define("LOG_MSG_UPDATE_RACA", "Atualizacao de raça no banco de dados.");
+define("DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR", "Chamada a ação de controlador.");
 
 /*
  * FORMULÁRIO

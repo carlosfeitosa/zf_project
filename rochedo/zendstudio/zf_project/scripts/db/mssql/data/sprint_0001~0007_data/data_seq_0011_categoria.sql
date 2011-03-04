@@ -49,6 +49,8 @@
 * 									   - criacao da categoria LOG_NOVO_OUTPUT;
 * 									   - criacao da categoria LOG_UPDATE_OUTPUT;
 * 									   - criacao da categoria LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA;
+* 							04/03/2011 - criacao da categoria LOG_NOVA_CATEGORIA;
+* 									   - criacao da categoria LOG_UPDATE_CATEGORIA;
 *
 */
 
@@ -417,6 +419,20 @@ AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA' AS nome, 'Operação de atualização na tabela de relacionamento de Pessoas, Perfis, Mensagem e Categoria.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_CATEGORIA' AS nome, 'Operação de inserção de categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_CATEGORIA' AS nome, 'Operação de atualização de categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'

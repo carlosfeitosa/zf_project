@@ -43,7 +43,7 @@ class Basico_PerfilControllerController
 	/**
 	 * Retorna a instância do controlador perfil
 	 * 
-	 * @return Basico_PerfilControler $singleton
+	 * @return Basico_PerfilControllerController $singleton
 	 */
 	public static function getInstance()
 	{

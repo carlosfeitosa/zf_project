@@ -79,6 +79,25 @@ class Basico_TipoCategoriaControllerController
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objsTipoCategoria[0]))
+			// retornando o id do tipo categoria
+			return $objsTipoCategoria[0]->id;
+
+		return null;
+	}
+
+	/**
+	 * Retorna o id do tipo categoria SISTEMA
+	 * 
+	 * @return Integer|null
+	 */
+	public function retornaIdTipoCategoriaSistema()
+	{
+		// reecuperando o objeto tipo categoria
+		$objsTipoCategoria = $this->_tipoCategoria->fetchList("nome = 'SISTEMA'", null, 1, 0);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objsTipoCategoria[0]))
+			// retornando o id do tipo categoria
 			return $objsTipoCategoria[0]->id;
 
 		return null;
