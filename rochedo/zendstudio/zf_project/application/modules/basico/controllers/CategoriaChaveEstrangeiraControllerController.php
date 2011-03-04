@@ -150,7 +150,7 @@ class Basico_CategoriaChaveEstrangeiraControllerController
 			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoCategoriaChaveEstrangeira();
 			
 			// recuperando objeto modulo do objeto
-			$objModulo = $moduloControllerController->retornaObjetoModuloPorNome(Basico_UtilControllerController::retornaNomeModuloObjeto($objeto));
+			$objModulo = $moduloControllerController->retornaObjetoModuloPorNome(Basico_UtilControllerController::retornaNomeModuloPorObjeto($objeto));
 
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->categoria = $idCategoriaCVC;

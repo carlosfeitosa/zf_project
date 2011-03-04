@@ -881,7 +881,7 @@ class Basico_UtilControllerController
      * 
      * @return String
      */
-    public static function retornaNomeModuloObjeto($objeto)
+    public static function retornaNomeModuloPorObjeto($objeto)
     {
     	// verificando se o parametro eh um objeto
     	if (!is_object($objeto))
@@ -893,7 +893,20 @@ class Basico_UtilControllerController
     	// retornando o nome do modulo
     	return substr($nomeClasse, 0, strpos($nomeClasse, '_'));
     }
-    
+
+    /**
+     * Retorna o nome do controlador de um request
+     * 
+     * @param Zend_Controller_Request_Abstract $request
+     * 
+     * @return String
+     */
+    public static function retornaNomeControladorPorRequest(Zend_Controller_Request_Abstract $request)
+    {
+    	// retornando o nome do controlador
+    	return $actionControllerName = ucfirst($request->getModuleName()) . '_' . ucfirst($request->getControllerName()) . 'Controller';
+    }
+
     /**
      * Retorna o host do servidor.
      * @return String

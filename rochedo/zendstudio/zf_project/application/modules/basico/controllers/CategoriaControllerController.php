@@ -2088,4 +2088,18 @@ class Basico_CategoriaControllerController
 		// retornando resultado
 		return $arrayRetorno;
 	}
+
+	/**
+	 * Retorna o nome da categoria de log referente uma acao de controlador de acoes
+	 * 
+	 * @param String $nomeAcaoControlador
+	 * @param String $nomeAcao
+	 * 
+	 * @return String
+	 */
+	public static function retornaNomeCategoriaLogAcaoControlador($nomeControlador, $nomeAcao)
+	{
+		// retornando o nome da categoria de log
+		return "LOG_CALL_" . strtoupper($nomeControlador) . "_" . strtoupper($nomeAcao) . "_ACTION";
+	}
 }

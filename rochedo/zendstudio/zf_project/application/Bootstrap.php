@@ -97,5 +97,5 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $viewRender->setView($view);
 
         return $view;
-    }    
+    }
 }
