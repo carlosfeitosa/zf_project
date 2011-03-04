@@ -901,7 +901,7 @@ class Basico_UtilControllerController
      * 
      * @return String
      */
-    public static function retornaNomeControladorPorRequest(Zend_Controller_Request_Abstract $request)
+    public static function retornaNomeClasseControladorPorRequest(Zend_Controller_Request_Abstract $request)
     {
     	// retornando o nome do controlador
     	return $actionControllerName = ucfirst($request->getModuleName()) . '_' . ucfirst($request->getControllerName()) . 'Controller';
