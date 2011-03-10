@@ -177,9 +177,11 @@ class Basico_FormularioControllerController
 	{
 		// montando a query que verifica se o formulario eh persistente
 		$queryVerificaPersistenciaFormulario = "SELECT DISTINCT fe.element_reloadable
-												FROM formulario_formulario_elemento ffe
+												FROM formulario f
+												LEFT JOIN formulario ff ON (ff.id_formulario_pai = f.id)
+												LEFT JOIN formulario_formulario_elemento ffe ON (ffe.id_formulario = f.id OR ffe.id_formulario = ff.id)
 												LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
-												WHERE ffe.id_formulario = {$idFormulario}
+												WHERE f.id = {$idFormulario}
 												AND fe.element_reloadable = " . Basico_PersistenceControllerController::bdRetornaBoolean(true, true);
 
 		// executando query e recuperando o resultados em um array

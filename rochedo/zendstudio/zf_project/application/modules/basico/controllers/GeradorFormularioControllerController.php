@@ -254,7 +254,7 @@ class Basico_GeradorFormularioControllerController
                 	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objFormulario->id, $formAddPrefixPathComment);
 
                 	// verificando se existem addprefixpaths para serem incluidos no formulario
-					if ($stringAddPrefixPath)
+					if (isset($stringAddPrefixPath))
                 		Basico_UtilControllerController::escreveLinhaFileResource($fileResource, $stringAddPrefixPath);
                 	
                 	// adição dos elementos do formulário
@@ -904,8 +904,17 @@ class Basico_GeradorFormularioControllerController
 
         // recuperando ordem dos elementos
         $arrayOrdemElementos = Basico_FormularioFormularioElementoControllerController::getInstance()->retornaArrayOrdemPorIdFormulario($objFormulario->id);
-        
+
+        // loop para todos os elementos do formulario
         foreach ($formularioElementosObjects as $formularioElementoObject){
+			// verificando se o unico elemento disponivel eh o hash
+			if ((count($formularioElementosObjects) === 1) and ($formularioElementoObject->nome === FORM_ELEMENT_HASH)) {
+				// setando a ordem para um unico elemento
+				$arrayOrdemElementos = array();
+				$arrayOrdemElementos[0] = 0;
+			}
+
+			// setando a ordem do elemento
         	$formElementLoop = str_replace('@contador', $arrayOrdemElementos[$contador], $formElement);
 
         	// verificando se o é preciso determinar ambiente de desenvolvimento
