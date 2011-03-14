@@ -952,9 +952,42 @@ class Basico_UtilControllerController
     	// retornando o nome do controlador
     	return $actionControllerName = ucfirst($request->getModuleName()) . '_' . ucfirst($request->getControllerName()) . 'Controller';
     }
+    
+    /**
+     * Retorna o formulario presente na requisição passada
+     * 
+     * @param Zend_Controller_Request_Abstract $request
+     * 
+     * @return Array
+     * 
+     * @todo
+     */
+    public function retornaFormularioCarregadoPorRequest($request)
+    {
+    	// recuperando os dados do post da requisicao
+    	$post = $request->getPost();
+
+    	// recuperando as chaves do Array post
+    	$chavesArrayPost = array_keys($post);
+    	
+        // recuperando o nome do modulo da requisicao
+    	$moduleName = $request->getModuleName();
+    	
+    	// montando o nome do formulario
+    	$nomeFormulario = ucfirst($moduleName) . "_" . $chavesArrayPost[0];
+    	
+    	// criando o formulario carregado com os dados do post
+    	$formulario = new $nomeFormulario($post);
+    	
+    	var_dump($formulario); exit;
+    	
+    	// retornando o formulario carregado
+    	return $formulario;
+    } 
 
     /**
      * Retorna o host do servidor.
+     * 
      * @return String
      */
     public static function retornaServerHost()
@@ -1015,6 +1048,7 @@ class Basico_UtilControllerController
      * Valida se o request foi enviado via post. Caso negativo, redirecionada para $urlRedirect
      * 
      * @param Zend_Controller_Request_Http $request
+     * 
      * @param String $urlRedirect
      * 
      * @return true|null
