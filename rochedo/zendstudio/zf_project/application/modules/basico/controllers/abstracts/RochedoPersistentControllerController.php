@@ -10,7 +10,7 @@
  * @since 13/03/2011
  */
 
-abstract class Basico_RochedoAbstractPersistentControllerController
+abstract class Basico_Abstract_RochedoPersistentControllerController
 {
 	/**
 	 * Contrutor do controlador.

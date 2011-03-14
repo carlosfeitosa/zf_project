@@ -12,7 +12,6 @@ require_once("lang_consts.php");
 require_once("error_consts.php");
 require_once("log_consts.php");
 require_once("dictionary_consts.php");
-require_once("../application/modules/basico/controllers/UtilControllerController.php");
 
 /**
  * APLICAÇÃO
@@ -47,7 +46,9 @@ define("AUTH_IDENTITY_ARRAY_KEY", "BasicoAutenticacaoUsuarioLogin");
 define("AUTH_CREDENTIAL_ARRAY_KEY", "BasicoAutenticacaoUsuarioSenha");
 define("AUTH_ID_LOGIN_SESSION_KEY", "AUTH_ID_LOGIN_SESSION_KEY");
 define("ROWINFO_SYSTEM_STARTUP_MASTER", "SYSTEM_STARTUP_MASTER");
+define("ROWINFO_ATRIBUTE_NAME", "rowinfo");
 define("REQUEST_ACTION_KEY", "action");
+define("PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO", "dataHoraUltimaAtualizacao");
 
 
 // LOGIN

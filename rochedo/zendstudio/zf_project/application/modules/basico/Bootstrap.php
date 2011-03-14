@@ -18,7 +18,8 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
         ));
 
         // adicionando resources
-        $autoloader->addResourceType('plugins', 'controllers/plugins', 'Controller_Plugin');
+        $autoloader->addResourceType('plugins', 'controllers/plugins', 'Controller_Plugin')
+                   ->addResourceType('abstracts', 'controllers/abstracts', 'Abstract_');
 
         // retornando autoloader
         return $autoloader;

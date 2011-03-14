@@ -33,7 +33,7 @@ define("MSG_ERRO_TIPO_ERRADO_TIPO_BOOLEAN", "O valor informado não é do tipo B
 define("MSG_ERRO_ARRAY_FILTER_CHAVE_POSICAO_NAO_ENCONTRADA", "Não foi encontrado a chave de posicao no array contendo os filtros.");
 define("MSG_ERRO_ARRAY_FILTER_CHAVE_FILTRO_NAO_ENCONTRADA", "Não foi encontrado a chave de filtro no array contendo os filtros.");
 define("MSG_ERRO_ARRAY_FILTER_TIPO_OPERACAO_NAO_CONHECIDA", "Não foi encontrado o tipo de operação do filtro informado no array contendo os filtros.");
-define("MSG_ERRO_UPDATE_NAO_PERMITIDO", "Este objeto Não permite atualização.");
+define("MSG_ERRO_UPDATE_NAO_PERMITIDO", "Este objeto não permite atualização.");
 
 /*
  * CATEGORIA
@@ -172,6 +172,7 @@ define("MSG_ERRO_EMAIL_CHECK_CONSTRAINT","Chave estrangeira do e-mail não confe
  * OBJETO
  */
 define("MSG_ERRO_NAO_OBJETO", "O parametro passado não é um objeto.");
+define("MSG_ERRO_ROWINFO_NAO_ENCONTRADO", "O objeto não possui o atributo 'rowinfo'.");
 
 /*
  * TRADUTOR
