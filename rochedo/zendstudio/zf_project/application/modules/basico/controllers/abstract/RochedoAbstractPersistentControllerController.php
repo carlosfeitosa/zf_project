@@ -60,6 +60,7 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 		// inicializando o controlador
 		$nomeControllerController->init();
 
+		// retornando o objeto
 		return $objetoRetorno;
 	}
 
