@@ -13,26 +13,6 @@
 abstract class Basico_RochedoAbstractPersistentControllerController
 {
 	/**
-	 * Singleton do ControllerController
-	 * 
-	 * Implementa o padrao singleton para o ControllerController.
-	 * Deve ser implementado no metodo getInstance() do ControllerController, verificando se a variavel $_singleton foi inicializada.
-	 * 
-	 * @var Object
-	 */
-	abstract private static $_singleton;
-
-	/**
-	 * Modelo relacionado a classe controladora.
-	 * 
-	 * Implementa o modelo relacionado ao controlador, como atributo da classe.
-	 * Deve ser inicializado no __construct(), utilizando o metodo retornaNovoObjetoModelo().
-	 * 
-	 * @var Object
-	 */
-	abstract private $_model;
-
-	/**
 	 * Contrutor do controlador.
 	 * 
 	 * Neste metodo, deve-se instanciar o modelo $_model atraves do metodo retornaNovoObjetoModelo().
