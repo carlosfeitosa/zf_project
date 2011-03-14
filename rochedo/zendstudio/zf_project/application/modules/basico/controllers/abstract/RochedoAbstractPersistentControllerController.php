@@ -18,14 +18,14 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * Neste metodo, deve-se instanciar o modelo $_model atraves do metodo retornaNovoObjetoModelo().
 	 * Deve-se tambem chamar o metodo init(), que deve inicializar o controlador.
 	 */
-	abstract private function __construct();
+	abstract protected function __construct();
 
 	/**
 	 * Inicializacao do controlador
 	 * 
 	 * Este metodo deve ser utilizado para inicializar o controlador.
 	 */
-	abstract private function init();
+	abstract protected function init();
 
 	/**
 	 * Recupera a instancia do controlador
