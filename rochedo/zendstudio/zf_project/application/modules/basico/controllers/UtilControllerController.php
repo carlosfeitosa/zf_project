@@ -540,18 +540,16 @@ class Basico_UtilControllerController
      */
     public static function objectToEncodedString($object)
     {
-    	// verificando se o parametro passado eh um objeto
-    	if (is_object($object)) {
-    		// verificando se o objeto possui mapper
-    		if (property_exists($object, 'mapper'))
-    			// removendo mapper
-    			$object->setMapper(null);
+		// verificando se o parametro eh um objeto
+    	self::verificaVariavelRepresentaObjeto($object, true);
 
-			// retornando string codificada apartir de um objeto
-    		return json_encode((array) $object, JSON_FORCE_OBJECT);
-    	}
-    	else
-    		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+   		// verificando se o objeto possui mapper
+   		if (property_exists($object, 'mapper'))
+   			// removendo mapper
+   			$object->setMapper(null);
+
+		// retornando string codificada apartir de um objeto
+   		return json_encode((array) $object, JSON_FORCE_OBJECT);
     }
 
     /**
@@ -875,6 +873,29 @@ class Basico_UtilControllerController
     }
 
     /**
+     * Verifica se o parametro passado representa um objeto
+     * 
+     * @param Object $objeto
+     * @param Boolean $estouraException
+     * 
+     * @return Boolean
+     */
+    public static function verificaVariavelRepresentaObjeto($objeto, $estouraException = true)
+    {
+    	// verificando se o parametro nao eh um objeto
+    	if (!is_object($objeto)) {
+    		// verificando se o parametro de estouro de excecao foi setado para true
+    		if ($estouraException)
+    			// estourando excessao
+    			throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+    		else
+    			return false;
+    	}
+
+		return true;
+    }
+
+    /**
      * Retorna o nome do modulo de um objeto
      * 
      * @param Object $objeto
@@ -884,14 +905,39 @@ class Basico_UtilControllerController
     public static function retornaNomeModuloPorObjeto($objeto)
     {
     	// verificando se o parametro eh um objeto
-    	if (!is_object($objeto))
-    		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+    	self::verificaVariavelRepresentaObjeto($objeto, true);
 
     	// recuperando o nome da classe
     	$nomeClasse = get_class($objeto);
 
     	// retornando o nome do modulo
     	return substr($nomeClasse, 0, strpos($nomeClasse, '_'));
+    }
+
+    /**
+     * Retorna o nome do modelo relacionado a um ControllerController
+     * 
+     * @param Object $objetoControllerController
+     * 
+     * @return String
+     */
+    public static function retornaNomeModeloControllerControllerPorObjetoControllerController($objetoControllerController)
+    {
+    	// verificando se o parametro eh um objeto
+    	self::verificaVariavelRepresentaObjeto($objetoControllerController, true);
+
+    	// recuperando o nome da classe
+    	$nomeClasse = get_class($objetoControllerController);
+
+    	// recuperando o nome do modulo
+    	$nomeModuloClasse = self::retornaNomeModuloPorObjeto($objetoControllerController);
+
+    	// montando o nome do modelo
+    	$nomeModeloObjetoControllerController = str_replace($nomeModuloClasse . '_', $nomeModuloClasse . '_Model_', $nomeClasse);
+    	$nomeModeloObjetoControllerController = str_replace('ControllerController', '', $nomeModeloObjetoControllerController);
+
+    	// retornando o nome do modelo relacionado a um ControllerController
+    	return $nomeModeloObjetoControllerController;
     }
 
     /**
