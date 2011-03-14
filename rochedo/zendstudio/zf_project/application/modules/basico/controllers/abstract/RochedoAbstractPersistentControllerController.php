@@ -20,7 +20,7 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * 
 	 * @var Object
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Modelo relacionado a classe controladora.
@@ -30,7 +30,7 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * 
 	 * @var Object
 	 */
-	private $_model;
+	protected $_model;
 
 	/**
 	 * Contrutor do controlador.
@@ -38,7 +38,7 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * Neste metodo, deve-se instanciar o modelo $_model atraves do metodo retornaNovoObjetoModelo().
 	 * Deve-se tambem chamar o metodo init(), que deve inicializar o controlador.
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// inicializando o modelo
 		$this->_model = $this->retornaNovoObjetoModelo();
@@ -124,7 +124,7 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * @param Object $objeto
 	 * @param Boolean $utilizarUsuarioSistema
 	 */
-	final private function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
+	final protected function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
 	{
 		// verificando se existe o atributo de rowinfo no modelo da classe
 		if (property_exists($objeto, ROWINFO_ATRIBUTE_NAME)) {
