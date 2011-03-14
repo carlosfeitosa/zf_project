@@ -41,6 +41,10 @@ class Basico_DBSaveControllerController
 			// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
 			if (!Basico_PersistenceControllerController::bdRetornaValorIdGenericoObjeto($mixed)) {
 
+				// verificando se o objeto possui atributos de sobrecarga de valores (data)
+				if (property_exists($mixed, PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO))
+					$mixed->PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO = Basico_UtilControllerController::retornaDateTimeAtual();
+
 				// salvando o objeto
 				if (self::saveObjectDbTable($mixed)) {
 
