@@ -12,40 +12,6 @@
 
 abstract class Basico_RochedoAbstractPersistentControllerController
 {
-	/**
-	 * Singleton do ControllerController
-	 * 
-	 * Implementa o padrao singleton para o ControllerController.
-	 * Deve ser implementado no metodo getInstance() do ControllerController, verificando se a variavel $_singleton foi inicializada.
-	 * 
-	 * @var Object
-	 */
-	protected static $_singleton;
-
-	/**
-	 * Modelo relacionado a classe controladora.
-	 * 
-	 * Implementa o modelo relacionado ao controlador, como atributo da classe.
-	 * Deve ser inicializado no __construct(), utilizando o metodo retornaNovoObjetoModelo().
-	 * 
-	 * @var Object
-	 */
-	protected $_model;
-
-	/**
-	 * Contrutor do controlador.
-	 * 
-	 * Neste metodo, deve-se instanciar o modelo $_model atraves do metodo retornaNovoObjetoModelo().
-	 * Deve-se tambem chamar o metodo init(), que deve inicializar o controlador.
-	 */
-	protected function __construct()
-	{
-		// inicializando o modelo
-		$this->_model = $this->retornaNovoObjetoModelo();
-
-		// inicializando o controlador
-		$this->init();
-	}
 
 	/**
 	 * Inicializacao do controlador
@@ -60,19 +26,41 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * Este metodo eh o metodo responsavel pela implementacao do padrao SINGLETON.
 	 * Deve verificar se o $_singleton foi inicializado, inicializa-o e retorna o $_singleton, nunca uma nova instancia do controlador.
 	 * 
+	 * @param ObjectControllerController $objetoControllerControllerFilho
+	 * 
 	 * @return ObjectControllerController
 	 */
-	public static function getInstance()
+	public static function getInstance($objetoControllerControllerFilho)
 	{
-		// checando singleton
-		if(self::$_singleton == NULL){
-			// recuperando o nome do controlador
-			$nomeControllerController = get_class($this);
-			// instanciando pela primeira vez
-			self::$_singleton = new $nomeControllerController();
-		}
-		// retornando a instancia
-		return self::$_singleton;
+		// inicializando variaveis
+		$objetoRetorno = null;
+
+		// recuperando o nome do controlador
+		$nomeControllerController = get_class($objetoControllerControllerFilho);
+			
+		// verificando se o controlador filho possui o atributo SINGLETON para utilizar este padrao
+		if (property_exists($nomeControllerController, '_singleton')) {
+			// checando singleton
+			if($objetoControllerControllerFilho->_singleton == NULL){
+				// instanciando pela primeira vez
+				$objetoControllerControllerFilho->_singleton = new $nomeControllerController();
+
+				// verificando se o controlador filho possui o atributo MODEL para instanciar um modelo relacionado ao controlador
+				if (property_exists($nomeControllerController, '_model')) {
+					// instanciando o modelo relacionado ao controlador
+					$nomeControllerController->_model = $this->retornaNovoObjetoModelo($objetoControllerControllerFilho);
+				}
+			}
+			// recuperando a instancia
+			$objetoRetorno = $objetoControllerControllerFilho->_singleton; 
+		} else
+			// instanciando o controlador
+			$objetoRetorno = new $nomeControllerController();
+
+		// inicializando o controlador
+		$nomeControllerController->init();
+
+		return $objetoRetorno;
 	}
 
 	/**
@@ -80,12 +68,14 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * 
 	 * Este metodo deve retornar um modelo (relacionado ao controlador) vazio.
 	 * 
+	 * @param ObjectControllerController $objetoControllerControllerFilho
+	 * 
 	 * @return Object
 	 */
-	public function retornaNovoObjetoModelo()
+	public function retornaNovoObjetoModelo($objetoControllerControllerFilho)
 	{
 		// recuperando o nome do modelo relacionado ao controlador
-		$nomeModelo = Basico_UtilControllerController::retornaNomeModeloControllerControllerPorObjetoControllerController($this);
+		$nomeModelo = Basico_UtilControllerController::retornaNomeModeloControllerControllerPorObjetoControllerController($objetoControllerControllerFilho);
 
 		// verificando se o modelo existe
 		if (class_exists($nomeModelo))
@@ -100,19 +90,23 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * 
 	 * Este metodo deve recuperar o objeto modelo relacionado ao controlador atravez do seu id e retornar o objeto populado.
 	 * 
+	 * @param ObjectControllerController $objetoControllerControllerFilho
 	 * @param Integer $idObjeto
 	 * 
 	 * @return Object
 	 */
-	public function retornaObjetoPorId(Integer $idObjeto)
+	public function retornaObjetoPorId($objetoControllerControllerFilho, Integer $idObjeto)
 	{
-		// verificando se o modelo foi instanciado
-		if (Basico_UtilControllerController::verificaVariavelRepresentaObjeto($this->_model)) {
+		// recuperando o nome do controlador
+		$nomeControllerController = get_class($objetoControllerControllerFilho);
+
+		// verificando se o controlador filho possui o atributo MODEL, que permite a busca do objeto por id e verifica se o modelo foi instanciado
+		if ((property_exists($nomeControllerController, '_model')) and (Basico_UtilControllerController::verificaVariavelRepresentaObjeto($nomeControllerController->_model))) {
 			// recuperando o objeto por id
-			$this->_model->find($idObjeto);
-	
+			$nomeControllerController->_model->find($idObjeto);
+
 			// retornando o objeto
-			return $this->_model;
+			return $nomeControllerController->_model;
 		}
 
 		return null;
