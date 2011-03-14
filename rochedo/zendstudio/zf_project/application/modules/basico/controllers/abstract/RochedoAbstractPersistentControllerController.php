@@ -12,6 +12,33 @@
 
 abstract class Basico_RochedoAbstractPersistentControllerController
 {
+	/**
+	 * Singleton do ControllerController
+	 * 
+	 * Implementa o padrao singleton para o ControllerController.
+	 * Deve ser implementado no metodo getInstance() do ControllerController, verificando se a variavel $_singleton foi inicializada.
+	 * 
+	 * @var Object
+	 */
+	abstract private static $_singleton;
+
+	/**
+	 * Modelo relacionado a classe controladora.
+	 * 
+	 * Implementa o modelo relacionado ao controlador, como atributo da classe.
+	 * Deve ser inicializado no __construct(), utilizando o metodo retornaNovoObjetoModelo().
+	 * 
+	 * @var Object
+	 */
+	abstract private $_model;
+
+	/**
+	 * Contrutor do controlador.
+	 * 
+	 * Neste metodo, deve-se instanciar o modelo $_model atraves do metodo retornaNovoObjetoModelo().
+	 * Deve-se tambem chamar o metodo init(), que deve inicializar o controlador.
+	 */
+	abstract private function __construct();
 
 	/**
 	 * Inicializacao do controlador
@@ -26,116 +53,29 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * Este metodo eh o metodo responsavel pela implementacao do padrao SINGLETON.
 	 * Deve verificar se o $_singleton foi inicializado, inicializa-o e retorna o $_singleton, nunca uma nova instancia do controlador.
 	 * 
-	 * @param ObjectControllerController $objetoControllerControllerFilho
-	 * 
 	 * @return ObjectControllerController
 	 */
-	public static function getInstance($objetoControllerControllerFilho)
-	{
-		// inicializando variaveis
-		$objetoRetorno = null;
-
-		// recuperando o nome do controlador
-		$nomeControllerController = get_class($objetoControllerControllerFilho);
-			
-		// verificando se o controlador filho possui o atributo SINGLETON para utilizar este padrao
-		if (property_exists($nomeControllerController, '_singleton')) {
-			// checando singleton
-			if($objetoControllerControllerFilho->_singleton == NULL){
-				// instanciando pela primeira vez
-				$objetoControllerControllerFilho->_singleton = new $nomeControllerController();
-
-				// verificando se o controlador filho possui o atributo MODEL para instanciar um modelo relacionado ao controlador
-				if (property_exists($nomeControllerController, '_model')) {
-					// instanciando o modelo relacionado ao controlador
-					$nomeControllerController->_model = $this->retornaNovoObjetoModelo($objetoControllerControllerFilho);
-				}
-			}
-			// recuperando a instancia
-			$objetoRetorno = $objetoControllerControllerFilho->_singleton; 
-		} else
-			// instanciando o controlador
-			$objetoRetorno = new $nomeControllerController();
-
-		// inicializando o controlador
-		$nomeControllerController->init();
-
-		// retornando o objeto
-		return $objetoRetorno;
-	}
+	abstract public static function getInstance();
 
 	/**
 	 * Retorna um novo objeto modelo vazio
 	 * 
 	 * Este metodo deve retornar um modelo (relacionado ao controlador) vazio.
 	 * 
-	 * @param ObjectControllerController $objetoControllerControllerFilho
-	 * 
 	 * @return Object
 	 */
-	public function retornaNovoObjetoModelo($objetoControllerControllerFilho)
-	{
-		// recuperando o nome do modelo relacionado ao controlador
-		$nomeModelo = Basico_UtilControllerController::retornaNomeModeloControllerControllerPorObjetoControllerController($objetoControllerControllerFilho);
-
-		// verificando se o modelo existe
-		if (class_exists($nomeModelo))
-			// retornando um modelo vazio
-			return new $nomeModelo();
-
-		return null;
-	}
+	abstract public function retornaNovoObjetoModelo();
 
 	/**
 	 * Retorna o objeto atravez de seu id
 	 * 
 	 * Este metodo deve recuperar o objeto modelo relacionado ao controlador atravez do seu id e retornar o objeto populado.
 	 * 
-	 * @param ObjectControllerController $objetoControllerControllerFilho
 	 * @param Integer $idObjeto
 	 * 
 	 * @return Object
 	 */
-	public function retornaObjetoPorId($objetoControllerControllerFilho, Integer $idObjeto)
-	{
-		// recuperando o nome do controlador
-		$nomeControllerController = get_class($objetoControllerControllerFilho);
-
-		// verificando se o controlador filho possui o atributo MODEL, que permite a busca do objeto por id e verifica se o modelo foi instanciado
-		if ((property_exists($nomeControllerController, '_model')) and (Basico_UtilControllerController::verificaVariavelRepresentaObjeto($nomeControllerController->_model))) {
-			// recuperando o objeto por id
-			$nomeControllerController->_model->find($idObjeto);
-
-			// retornando o objeto
-			return $nomeControllerController->_model;
-		}
-
-		return null;
-	}
-
-	/**
-	 * Prepara e seta o XML Rowinfo para o objeto
-	 * 
-	 * @param Object $objeto
-	 * @param Boolean $utilizarUsuarioSistema
-	 */
-	final protected function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
-	{
-		// verificando se existe o atributo de rowinfo no modelo da classe
-		if (property_exists($objeto, ROWINFO_ATRIBUTE_NAME)) {
-			// instanciando o controlador de rowinfo
-			$rowinfoControllerController = Basico_RowInfoControllerController::getInstance();
-
-			// preparando o XML
-			$rowinfoControllerController->prepareXml($objeto, $utilizarUsuarioSistema);
-			
-			// setando o atributo rowinfo no objeto
-			$objeto->ROWINFO_ATRIBUTE_NAME = $rowinfoControllerController->getXML();
-		} else {
-			// rowinfo nao encontrado para o objeto
-			throw new Exception(MSG_ERRO_ROWINFO_NAO_ENCONTRADO);
-		}
-	}
+	abstract public function retornaObjetoPorId(Integer $idObjeto);
 
 	/**
 	 * Salva o objeto no banco de dados.
@@ -168,4 +108,28 @@ abstract class Basico_RochedoAbstractPersistentControllerController
 	 * @return Boolean
 	 */
 	abstract public function apagarObjeto($objeto, $idPessoaPerfilCriador = null);
+
+	/**
+	 * Prepara e seta o XML Rowinfo para o objeto
+	 * 
+	 * @param Object $objeto
+	 * @param Boolean $utilizarUsuarioSistema
+	 */
+	final protected function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
+	{
+		// verificando se existe o atributo de rowinfo no modelo da classe
+		if (property_exists($objeto, ROWINFO_ATRIBUTE_NAME)) {
+			// instanciando o controlador de rowinfo
+			$rowinfoControllerController = Basico_RowInfoControllerController::getInstance();
+
+			// preparando o XML
+			$rowinfoControllerController->prepareXml($objeto, $utilizarUsuarioSistema);
+			
+			// setando o atributo rowinfo no objeto
+			$objeto->ROWINFO_ATRIBUTE_NAME = $rowinfoControllerController->getXML();
+		} else {
+			// rowinfo nao encontrado para o objeto
+			throw new Exception(MSG_ERRO_ROWINFO_NAO_ENCONTRADO);
+		}
+	}
 }
