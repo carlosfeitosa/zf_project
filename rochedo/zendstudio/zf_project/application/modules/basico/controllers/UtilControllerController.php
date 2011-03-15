@@ -912,7 +912,7 @@ class Basico_UtilControllerController
 
     	// verificnado o resultado da comparacao para estouro de excessao
     	if ((!$tempReturn) and ($estouraException))
-    		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+    		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO_MODELO . $classeInstancia);
 
     	// retornando se o objeto eh uma instancia da classe passada por parametro
     	return $tempReturn;

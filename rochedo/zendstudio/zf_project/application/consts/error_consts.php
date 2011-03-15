@@ -19,7 +19,7 @@ define("MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_ESCRITA", "Erro ao tentar abrir a
 define("MSG_ERRO_PATH_INEXISTENTE", "Caminho não encontrado no sistema de arquivos.");
 define("MSG_ERRO_CODIFICAR_SEM_OPERACAO", "Operação de codificação não encontrada.");
 define("MSG_ERRO_VALOR_NAO_OBJETO", "O valor não é um objeto.");
-define("MSG_ERRO_VALOR_NAO_OBJETO_MODELO", "O valor não é um objeto do tipo: ");
+define("MSG_ERRO_VALOR_NAO_OBJETO_MODELO", "O valor não é uma instancia da classe: ");
 define("MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO", "O objeto não possui o metodo getMapper()->save().");
 define("MSG_ERRO_DELETE_METODO_NAO_ENCONTRADO", "O objeto não possui o metodo getMapper()->delete().");
 define("MSG_ERRO_DELETE_EXISTEM_FILHOS", "Não é possivel apagar este registro pois ele possui registro(s) filho(s) vinculado e não foi especificado delete em cascata.");
