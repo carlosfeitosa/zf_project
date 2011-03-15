@@ -898,17 +898,24 @@ class Basico_UtilControllerController
     /**
      * Verifica se o parametro passado representa uma instancia do nome da classe passada por parametro
      * 
-     * @param unknown_type $objeto
-     * @param unknown_type $nomeClasseInstancia
-     * @param unknown_type $estouraException
+     * @param Object $objeto
+     * @param String $nomeClasseInstancia
+     * @param String $estouraException
      */
     public static function verificaVariavelRepresentaInstancia($objeto, $classeInstancia, $estouraException = true)
     {
     	// verificando se o parametro eh um objeto
     	self::verificaVariavelRepresentaObjeto($objeto, true);
 
+    	// verificando o objeto eh da instancia passada como parametro
+    	$tempReturn = ($objeto instanceof $classeInstancia);
+
+    	// verificnado o resultado da comparacao para estouro de excessao
+    	if ((!$tempReturn) and ($estouraException))
+    		throw new Exception(MSG_ERRO_VALOR_NAO_OBJETO);
+
     	// retornando se o objeto eh uma instancia da classe passada por parametro
-    	return ($objeto instanceof $classeInstancia);
+    	return $tempReturn;
     }
 
     /**
