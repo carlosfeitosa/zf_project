@@ -896,6 +896,22 @@ class Basico_UtilControllerController
     }
 
     /**
+     * Verifica se o parametro passado representa uma instancia do nome da classe passada por parametro
+     * 
+     * @param unknown_type $objeto
+     * @param unknown_type $nomeClasseInstancia
+     * @param unknown_type $estouraException
+     */
+    public static function verificaVariavelRepresentaInstancia($objeto, $classeInstancia, $estouraException = true)
+    {
+    	// verificando se o parametro eh um objeto
+    	self::verificaVariavelRepresentaObjeto($objeto, true);
+
+    	// retornando se o objeto eh uma instancia da classe passada por parametro
+    	return ($objeto instanceof $classeInstancia);
+    }
+
+    /**
      * Retorna o nome do modulo de um objeto
      * 
      * @param Object $objeto
@@ -912,6 +928,19 @@ class Basico_UtilControllerController
 
     	// retornando o nome do modulo
     	return substr($nomeClasse, 0, strpos($nomeClasse, '_'));
+    }
+
+    /**
+     * Retorna o nome do modulo de um objeto atraves do nome do objeto
+     * 
+     * @param String $nomeObjeto
+     * 
+     * @return Sttring
+     */
+    public static function retornaNomeModuloPorNomeObjeto($nomeObjeto)
+    {
+    	// retornando o nome do modulo
+    	return substr($nomeObjeto, 0, strpos($nomeObjeto, '_'));
     }
 
     /**
@@ -934,6 +963,26 @@ class Basico_UtilControllerController
 
     	// montando o nome do modelo
     	$nomeModeloObjetoControllerController = str_replace($nomeModuloClasse . '_', $nomeModuloClasse . '_Model_', $nomeClasse);
+    	$nomeModeloObjetoControllerController = str_replace('ControllerController', '', $nomeModeloObjetoControllerController);
+
+    	// retornando o nome do modelo relacionado a um ControllerController
+    	return $nomeModeloObjetoControllerController;
+    }
+
+    /**
+     * Retorna o nome do modelo relacionado a um ControllerController
+     * 
+     * @param String $nomeControllerController
+     * 
+     * @return String
+     */
+    public static function retornaNomeModeloControllerControllerPorNomeControllerController($nomeControllerController)
+    {
+    	// recuperando o nome do modulo
+    	$nomeModuloClasse = self::retornaNomeModuloPorNomeObjeto($nomeControllerController);
+
+    	// montando o nome do modelo
+    	$nomeModeloObjetoControllerController = str_replace($nomeModuloClasse . '_', $nomeModuloClasse . '_Model_', $nomeControllerController);
     	$nomeModeloObjetoControllerController = str_replace('ControllerController', '', $nomeModeloObjetoControllerController);
 
     	// retornando o nome do modelo relacionado a um ControllerController

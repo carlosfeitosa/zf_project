@@ -38,24 +38,66 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 	abstract public static function getInstance();
 
 	/**
+	 * Retorna o nome do objeto atraves do objeto
+	 * 
+	 * @param Object $objeto
+	 * 
+	 * @return String
+	 */
+	public function retornaNomeClassePorObjeto($objeto)
+	{
+		// verificando se o parametro eh um objeto
+		Basico_UtilControllerController::verificaVariavelRepresentaObjeto($objeto, true);
+
+		// retornando o nome da classe
+		return get_class($objeto);
+	}
+
+	/**
 	 * Retorna um novo objeto modelo vazio
 	 * 
 	 * Este metodo deve retornar um modelo (relacionado ao controlador) vazio.
 	 * 
+	 * @param String $nomeControllerController
+	 * 
 	 * @return Object
 	 */
-	abstract public function retornaNovoObjetoModelo();
+	public function retornaNovoObjetoModeloPorNomeControllerController($nomeControllerController)
+	{
+		// recuperando o nome do modelo relacionado ao controlador
+		$nomeObjetoModelo = Basico_UtilControllerController::retornaNomeModeloControllerControllerPorNomeControllerController($nomeControllerController);
+
+		// verificando se a classe existe
+		if (class_exists($nomeObjetoModelo, true))
+			// retornando um modelo vazio
+			return new $nomeObjetoModelo();
+
+		return null;
+	}
 
 	/**
 	 * Retorna o objeto atravez de seu id
 	 * 
 	 * Este metodo deve recuperar o objeto modelo relacionado ao controlador atravez do seu id e retornar o objeto populado.
 	 * 
+	 * @param Object $model
 	 * @param Integer $idObjeto
 	 * 
 	 * @return Object
 	 */
-	abstract public function retornaObjetoPorId(Integer $idObjeto);
+	public function retornaObjetoPorId($model, Integer $idObjeto)
+	{
+		// verificando se o parametro eh um objeto
+		Basico_UtilControllerController::verificaVariavelRepresentaObjeto($model, true);
+
+		// verificando se o objeto possui o metodo find
+		if (method_exists($model, 'find')) {
+			// retornando o objeto por id
+			return $model->find($idObjeto);
+		}
+
+		return null;
+	}
 
 	/**
 	 * Salva o objeto no banco de dados.
