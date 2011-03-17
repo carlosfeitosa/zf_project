@@ -119,7 +119,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
     */
     public function setAcaoAplicacao($acaoAplicacao)
     {
-        $this->_acaoaplicacao = Basico_UtilControllerController::retornaValorTipado($acaoAplicacao, TIPO_INTEIRO, true);
+        $this->_acaoaplicacao = Basico_OPController_UtilOPController::retornaValorTipado($acaoAplicacao, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -152,7 +152,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
     */
     public function setMetodoValidacao($metodoValidacao)
     {
-        $this->_metodovalidacao = Basico_UtilControllerController::retornaValorTipado($metodoValidacao, TIPO_INTEIRO, true);
+        $this->_metodovalidacao = Basico_OPController_UtilOPController::retornaValorTipado($metodoValidacao, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -185,7 +185,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
     */
     public function setPerfil($perfil)
     {
-        $this->_perfil = Basico_UtilControllerController::retornaValorTipado($perfil, TIPO_INTEIRO, true);
+        $this->_perfil = Basico_OPController_UtilOPController::retornaValorTipado($perfil, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -218,7 +218,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -240,7 +240,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
     */
     public function setId($id)
     {
-        $this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+        $this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
         return $this;
     }
 

@@ -1,7 +1,4 @@
 <?php
-// incluindo controladores
-require_once("DadosBiometricosControllerController.php");
-require_once("RacaControllerController.php");
 
 /**
  * Controlador Dados do Usuario
@@ -31,10 +28,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     public function indexAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoa = 2;
+    	$idPessoa = 3;
     	
     	// instanciando controladores
-    	$controladorDadosBiometricos = Basico_DadosBiometricosControllerController::getInstance();
+    	$controladorDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance();
     	
     	// instanciando o formulario
 	    $formDadosUsuario = new Basico_Form_CadastrarDadosUsuario();
@@ -52,7 +49,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
 	    
 	    // setando options do elemento raca
-	    $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosRaca->addMultiOptions(Basico_RacaControllerController::retornaArrayRacasOptions());
+	    $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosRaca->addMultiOptions(Basico_OPController_RacaOPController::retornaArrayRacasOptions());
 	    
 	    // carregando valores no formulario
 	    

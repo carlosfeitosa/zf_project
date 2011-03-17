@@ -114,7 +114,7 @@ class Basico_Model_GrupoFormularioElemento
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome,TIPO_STRING,true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -136,7 +136,7 @@ class Basico_Model_GrupoFormularioElemento
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING,true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -158,7 +158,7 @@ class Basico_Model_GrupoFormularioElemento
 	*/
 	public function setConstanteTextualLabel($constanteTextualLabel)
 	{
-		$this->_constanteTextualLabel = Basico_UtilControllerController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
+		$this->_constanteTextualLabel = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -180,7 +180,7 @@ class Basico_Model_GrupoFormularioElemento
 	*/
 	public function setDecorator($decorator)
 	{
-		$this->_decorator = Basico_UtilControllerController::retornaValorTipado($decorator, TIPO_INTEIRO, true);
+		$this->_decorator = Basico_OPController_UtilOPController::retornaValorTipado($decorator, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -214,7 +214,7 @@ class Basico_Model_GrupoFormularioElemento
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -236,7 +236,7 @@ class Basico_Model_GrupoFormularioElemento
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

@@ -47,7 +47,7 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 	public function retornaNomeClassePorObjeto($objeto)
 	{
 		// verificando se o parametro eh um objeto
-		Basico_UtilControllerController::verificaVariavelRepresentaObjeto($objeto, true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objeto, true);
 
 		// retornando o nome da classe
 		return get_class($objeto);
@@ -65,7 +65,7 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 	public function retornaNovoObjetoModeloPorNomeControllerController($nomeControllerController)
 	{
 		// recuperando o nome do modelo relacionado ao controlador
-		$nomeObjetoModelo = Basico_UtilControllerController::retornaNomeModeloControllerControllerPorNomeControllerController($nomeControllerController);
+		$nomeObjetoModelo = Basico_OPController_UtilOPController::retornaNomeModeloControllerControllerPorNomeControllerController($nomeControllerController);
 
 		// verificando se a classe existe
 		if (class_exists($nomeObjetoModelo, true))
@@ -88,7 +88,7 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 	public function retornaObjetoPorId($model, Integer $idObjeto)
 	{
 		// verificando se o parametro eh um objeto
-		Basico_UtilControllerController::verificaVariavelRepresentaObjeto($model, true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, true);
 
 		// verificando se o objeto possui o metodo find
 		if (method_exists($model, 'find')) {
@@ -142,7 +142,7 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 		// verificando se existe o atributo de rowinfo no modelo da classe
 		if (property_exists($objeto, ROWINFO_ATRIBUTE_NAME)) {
 			// instanciando o controlador de rowinfo
-			$rowinfoControllerController = Basico_RowInfoControllerController::getInstance();
+			$rowinfoControllerController = Basico_OPController_RowinfoOPController::getInstance();
 
 			// preparando o XML
 			$rowinfoControllerController->prepareXml($objeto, $utilizarUsuarioSistema);

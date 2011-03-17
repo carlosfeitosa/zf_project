@@ -8,9 +8,6 @@
  * @subpackage Controller
  */
 
-// include de controladores
-require_once("GeradorControllerController.php");
-
 class Basico_GeradorFormularioController extends Zend_Controller_Action
 {
     /**
@@ -76,7 +73,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function gerartodosformulariosAction()
     {
 		// gerando todos os formulários
-		if (Basico_GeradorControllerController::geradorFormularioGerarTodosFormularios()) {
+		if (Basico_OPController_GeradorOPController::geradorFormularioGerarTodosFormularios()) {
 
 	        // carregando o titulo e subtitulo da view
 	        $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO');
@@ -135,7 +132,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         if ((isset($_POST['enviar'])) and ($formGeradorFormulario->isValid($_POST))) {
 
         	// instanciando modelo de formulario
-        	$modeloFormulario = Basico_FormularioControllerController::getInstance()->retornaNovoObjetoFormulario();
+        	$modeloFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoFormulario();
         	// localizando o formulario
             $modeloFormulario->find($idFormulario);
         	
@@ -148,7 +145,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
             }
             
             // gerando os formulários
-            if (Basico_GeradorControllerController::geradorFormularioGerarFormulario($modeloFormulario, $excludeModulesNames)) {
+            if (Basico_OPController_GeradorOPController::geradorFormularioGerarFormulario($modeloFormulario, $excludeModulesNames)) {
                 
                 // carregando o titulo e subtitulo da view
                 $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO');
@@ -182,7 +179,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function retornaArrayNomeFormularios()
     {
     	// inicializando controladores
-    	$formularioControllerController = Basico_FormularioControllerController::getInstance();
+    	$formularioControllerController = Basico_OPController_FormularioOPController::getInstance();
 
     	// inicializando variaveis
     	$arrayNomeFormularios = array();
@@ -216,7 +213,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function retornaArrayNomesModulosFormulario($idFormulario)
     {
 		// recuperando o modelo de formulario
-    	$modelFormulario = Basico_FormularioControllerController::getInstance()->retornaNovoObjetoFormulario();
+    	$modelFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoFormulario();
 
     	// recuperando o formulario
     	$modelFormulario->find($idFormulario);

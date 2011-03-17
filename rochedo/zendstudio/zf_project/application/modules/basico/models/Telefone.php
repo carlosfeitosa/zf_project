@@ -123,7 +123,7 @@ class Basico_Model_Telefone
 	*/
 	public function setIdGenericoProprietario($idGenericoProprietario)
 	{
-		$this->_idGenericoProprietario = Basico_UtilControllerController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
+		$this->_idGenericoProprietario = Basico_OPController_UtilOPController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -145,7 +145,7 @@ class Basico_Model_Telefone
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -167,7 +167,7 @@ class Basico_Model_Telefone
 	*/
 	public function setCodigoPais($codigoPais)
 	{
-		$this->_codigoPais = Basico_UtilControllerController::retornaValorTipado($codigoPais, TIPO_STRING, true);
+		$this->_codigoPais = Basico_OPController_UtilOPController::retornaValorTipado($codigoPais, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -189,7 +189,7 @@ class Basico_Model_Telefone
 	*/
 	public function setCodigoArea($codigoArea)
 	{
-		$this->_codigoArea = Basico_UtilControllerController::retornaValorTipado($codigoArea, TIPO_STRING, true);
+		$this->_codigoArea = Basico_OPController_UtilOPController::retornaValorTipado($codigoArea, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -211,7 +211,7 @@ class Basico_Model_Telefone
 	*/
 	public function setTelefone($telefone)
 	{
-		$this->_telefone = Basico_UtilControllerController::retornaValorTipado($telefone, TIPO_STRING, true);
+		$this->_telefone = Basico_OPController_UtilOPController::retornaValorTipado($telefone, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -233,7 +233,7 @@ class Basico_Model_Telefone
 	*/
 	public function setRamal($ramal)
 	{
-		$this->_ramal = Basico_UtilControllerController::retornaValorTipado($ramal, TIPO_STRING, true);
+		$this->_ramal = Basico_OPController_UtilOPController::retornaValorTipado($ramal, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -255,7 +255,7 @@ class Basico_Model_Telefone
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -288,7 +288,7 @@ class Basico_Model_Telefone
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

@@ -140,7 +140,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -173,7 +173,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -195,7 +195,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -217,7 +217,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setMetodo($metodo)
 	{
-		$this->_metodo = Basico_UtilControllerController::retornaValorTipado($metodo, TIPO_STRING, true);
+		$this->_metodo = Basico_OPController_UtilOPController::retornaValorTipado($metodo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -239,7 +239,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = Basico_UtilControllerController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
 		return $this;
 	}
 
@@ -261,7 +261,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setMotivoDesativacao($motivoDesativacao)
 	{
-		$this->_motivoDesativacao = Basico_UtilControllerController::retornaValorTipado($motivoDesativacao, TIPO_STRING, true);
+		$this->_motivoDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($motivoDesativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -283,7 +283,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setDataHoraDesativacao($dataHoraDesativacao)
 	{
-		$this->_dataHoraDesativacao = Basico_UtilControllerController::retornaValorTipado($dataHoraDesativacao, TIPO_STRING, true);
+		$this->_dataHoraDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraDesativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -305,7 +305,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setDataHoraReativacao($dataHoraReativacao)
 	{
-		$this->_dataHoraReativacao = Basico_UtilControllerController::retornaValorTipado($dataHoraReativacao, TIPO_STRING, true);
+		$this->_dataHoraReativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraReativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -327,7 +327,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setDataHoraCadastro($dataHoraCadastro)
 	{
-		$this->_dataHoraCadastro = Basico_UtilControllerController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -349,7 +349,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -371,7 +371,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

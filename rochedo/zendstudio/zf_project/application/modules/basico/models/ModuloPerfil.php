@@ -109,7 +109,7 @@ class Basico_Model_ModuloPerfil
     */
     public function setModulo($modulo)
     {
-        $this->_modulo = Basico_UtilControllerController::retornaValorTipado($modulo, TIPO_INTEIRO, true);
+        $this->_modulo = Basico_OPController_UtilOPController::retornaValorTipado($modulo, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -142,7 +142,7 @@ class Basico_Model_ModuloPerfil
     */
     public function setPerfil($perfil)
     {
-        $this->_perfil = Basico_UtilControllerController::retornaValorTipado($perfil, TIPO_INTEIRO, true);
+        $this->_perfil = Basico_OPController_UtilOPController::retornaValorTipado($perfil, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -176,7 +176,7 @@ class Basico_Model_ModuloPerfil
     */
     public function setId($id)
     {
-        $this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+        $this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
         return $this;
     }
 

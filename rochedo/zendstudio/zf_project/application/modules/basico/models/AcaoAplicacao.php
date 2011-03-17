@@ -136,7 +136,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setController($controller)
 	{
-		$this->_controller = Basico_UtilControllerController::retornaValorTipado($controller, TIPO_STRING, true);
+		$this->_controller = Basico_OPController_UtilOPController::retornaValorTipado($controller, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -158,7 +158,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setAction($action)
 	{
-		$this->_action = Basico_UtilControllerController::retornaValorTipado($action, TIPO_STRING, true);
+		$this->_action = Basico_OPController_UtilOPController::retornaValorTipado($action, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -180,7 +180,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = Basico_UtilControllerController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
 		return $this;
 	}
 
@@ -202,7 +202,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setMotivoDesativacao($motivoDesativacao)
 	{
-		$this->_motivoDesativacao = Basico_UtilControllerController::retornaValorTipado($motivoDesativacao, TIPO_STRING, true);
+		$this->_motivoDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($motivoDesativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -224,7 +224,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setDataHoraDesativacao($dataHoraDesativacao)
 	{
-		$this->_dataHoraDesativacao = Basico_UtilControllerController::retornaValorTipado($dataHoraDesativacao, TIPO_STRING, true);
+		$this->_dataHoraDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraDesativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -246,7 +246,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setDataHoraReativacao($dataHoraReativacao)
 	{
-		$this->_dataHoraReativacao = Basico_UtilControllerController::retornaValorTipado($dataHoraReativacao, TIPO_STRING, true);
+		$this->_dataHoraReativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraReativacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -268,7 +268,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setDataHoraCadastro($dataHoraCadastro)
 	{
-		$this->_dataHoraCadastro = Basico_UtilControllerController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -290,7 +290,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setModulo($modulo)
 	{
-		$this->_modulo = Basico_UtilControllerController::retornaValorTipado($modulo, TIPO_INTEIRO, true);
+		$this->_modulo = Basico_OPController_UtilOPController::retornaValorTipado($modulo, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -323,7 +323,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -345,7 +345,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo,TIPO_STRING,true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 		return $this;
 	}
 

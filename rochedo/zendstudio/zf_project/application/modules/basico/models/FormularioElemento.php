@@ -157,7 +157,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING,true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -179,7 +179,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING,true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -201,7 +201,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setConstanteTextualLabel($constanteTextualLabel)
 	{
-		$this->_constanteTextualLabel = Basico_UtilControllerController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
+		$this->_constanteTextualLabel = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualLabel, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -223,7 +223,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setElementName($elementName)
 	{
-		$this->_elementName = Basico_UtilControllerController::retornaValorTipado($elementName, TIPO_STRING,true); 
+		$this->_elementName = Basico_OPController_UtilOPController::retornaValorTipado($elementName, TIPO_STRING,true); 
 		return $this;
 	}
 
@@ -245,7 +245,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setElementAttribs($elementAttribs)
 	{
-		$this->_elementAttribs = Basico_UtilControllerController::retornaValorTipado($elementAttribs, TIPO_STRING,true);
+		$this->_elementAttribs = Basico_OPController_UtilOPController::retornaValorTipado($elementAttribs, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -267,7 +267,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setElement($element)
 	{
-		$this->_element = Basico_UtilControllerController::retornaValorTipado($element, TIPO_STRING,true);
+		$this->_element = Basico_OPController_UtilOPController::retornaValorTipado($element, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -289,7 +289,7 @@ class Basico_Model_FormularioElemento
     */
     public function setElementReloadable($elementReloadable)
     {
-    	$this->_elementReloadable = Basico_UtilControllerController::retornaValorTipado($elementReloadable, TIPO_STRING,true);
+    	$this->_elementReloadable = Basico_OPController_UtilOPController::retornaValorTipado($elementReloadable, TIPO_STRING,true);
         return $this;
     }
 
@@ -311,7 +311,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setComponente($componente)
 	{
-		$this->_componente = Basico_UtilControllerController::retornaValorTipado($componente, TIPO_INTEIRO,true);
+		$this->_componente = Basico_OPController_UtilOPController::retornaValorTipado($componente, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -344,7 +344,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setMascara($mascara)
 	{
-		$this->_mascara = Basico_UtilControllerController::retornaValorTipado($mascara, TIPO_INTEIRO,true);
+		$this->_mascara = Basico_OPController_UtilOPController::retornaValorTipado($mascara, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -377,7 +377,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING,true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -399,7 +399,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO,true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -421,7 +421,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setDecorator($decorator)
 	{
-		$this->_decorator = Basico_UtilControllerController::retornaValorTipado($decorator, TIPO_INTEIRO,true);
+		$this->_decorator = Basico_OPController_UtilOPController::retornaValorTipado($decorator, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -454,7 +454,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO,true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -476,7 +476,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setFormularioElementoFilter($formularioElementoFilter)
 	{
-		$this->_formularioElementoFilter = Basico_UtilControllerController::retornaValorTipado($formularioElementoFilter, TIPO_INTEIRO,true);
+		$this->_formularioElementoFilter = Basico_OPController_UtilOPController::retornaValorTipado($formularioElementoFilter, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -498,7 +498,7 @@ class Basico_Model_FormularioElemento
 	*/
 	public function setAjuda($ajuda)
 	{
-		$this->_ajuda = Basico_UtilControllerController::retornaValorTipado($ajuda, TIPO_INTEIRO,true);
+		$this->_ajuda = Basico_OPController_UtilOPController::retornaValorTipado($ajuda, TIPO_INTEIRO,true);
 		return $this;
 	}
 

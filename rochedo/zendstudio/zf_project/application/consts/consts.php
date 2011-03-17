@@ -20,11 +20,11 @@ define("RESOURCE_TYPE_BASICO_PLUGINS", "plugins");
 define("RESOURCE_PATH_BASICO_PLUGINS", "actionControllers/plugins");
 define("RESOURCE_NAMESPACE_BASICO_PLUGINS", "Controller_Plugin");
 define("RESOURCE_TYPE_BASICO_ABSTRACTS", "abstracts");
-define("RESOURCE_PATH_BASICO_ABSTRACTS", "actionControllers/abstracts");
+define("RESOURCE_PATH_BASICO_ABSTRACTS", "controllers/abstracts");
 define("RESOURCE_NAMESPACE_BASICO_ABSTRACTS", "Abstract_");
-define("RESOURCE_TYPE_BASICO_CONTROLLERCONTROLLERS", "ControllerController");
-define("RESOURCE_PATH_BASICO_CONTROLLERCONTROLLERS", "controllers/controllersControllers");
-define("RESOURCE_NAMESPACE_BASICO_CONTROLLERCONTROLLER", "ControllerController_");
+define("RESOURCE_TYPE_BASICO_CONTROLLERCONTROLLERS", "OPControllers");
+define("RESOURCE_PATH_BASICO_CONTROLLERCONTROLLERS", "controllers");
+define("RESOURCE_NAMESPACE_BASICO_CONTROLLERCONTROLLER", "OPController_");
 
 define("IDENTACAO_PADRAO", "    ");
 define("QUEBRA_DE_LINHA", PHP_EOL);
@@ -299,7 +299,7 @@ define("FORM_GERADOR_FORM_SUB_FORM_ADDDISPLAYGROUP", FORM_GERADOR_FORM_SUB_FORM_
 define("FORM_GERADOR_FORM_SUB_FORM_GETDISPLAYGROUP", FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE . '->getDisplayGroup');
 define("FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM", '->addSubForm');
 
-define("FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP", 'if (!Basico_UtilControllerController::ambienteDesenvolvimento())');
+define("FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP", 'if (!Basico_OPController_UtilOPController::ambienteDesenvolvimento())');
 define("FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT", '$this->createElement');
 define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS", '->setAttribs');
 define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG", "@nomeForm");

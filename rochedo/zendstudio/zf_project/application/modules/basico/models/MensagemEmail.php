@@ -111,7 +111,7 @@ class Basico_Model_MensagemEmail
 	*/
 	public function setDestinatariosCopiaCarbonada($destinatariosCopiaCarbonada)
 	{
-		$this->_destinatariosCopiaCarbonada = Basico_UtilControllerController::retornaValorTipado($destinatariosCopiaCarbonada, TIPO_STRING, true);
+		$this->_destinatariosCopiaCarbonada = Basico_OPController_UtilOPController::retornaValorTipado($destinatariosCopiaCarbonada, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -133,7 +133,7 @@ class Basico_Model_MensagemEmail
 	*/
 	public function setDestinatariosCopiaCarbonadaCega($destinatariosCopiaCarbonadaCega)
 	{
-		$this->_destinatariosCopiaCarbonadaCega = Basico_UtilControllerController::retornaValorTipado($destinatariosCopiaCarbonadaCega, TIPO_STRING, true);
+		$this->_destinatariosCopiaCarbonadaCega = Basico_OPController_UtilOPController::retornaValorTipado($destinatariosCopiaCarbonadaCega, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -155,7 +155,7 @@ class Basico_Model_MensagemEmail
 	*/
 	public function setResponderPara($responderPara)
 	{
-		$this->_responderPara = Basico_UtilControllerController::retornaValorTipado($responderPara, TIPO_STRING, true);
+		$this->_responderPara = Basico_OPController_UtilOPController::retornaValorTipado($responderPara, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -177,7 +177,7 @@ class Basico_Model_MensagemEmail
 	*/
 	public function setMensagem($mensagem)
 	{
-		$this->_mensagem = Basico_UtilControllerController::retornaValorTipado($mensagem, TIPO_INTEIRO, true);
+		$this->_mensagem = Basico_OPController_UtilOPController::retornaValorTipado($mensagem, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -210,7 +210,7 @@ class Basico_Model_MensagemEmail
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

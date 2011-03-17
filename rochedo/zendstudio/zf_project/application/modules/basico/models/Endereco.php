@@ -146,7 +146,7 @@ class Basico_Model_Endereco
 	*/
 	public function setIdGenericoProprietario($idGenericoProprietario)
 	{
-		$this->_idGenericoProprietario = Basico_UtilControllerController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
+		$this->_idGenericoProprietario = Basico_OPController_UtilOPController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -168,7 +168,7 @@ class Basico_Model_Endereco
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -190,7 +190,7 @@ class Basico_Model_Endereco
 	*/
 	public function setCep($cep)
 	{
-		$this->_cep = Basico_UtilControllerController::retornaValorTipado($cep, TIPO_STRING, true);
+		$this->_cep = Basico_OPController_UtilOPController::retornaValorTipado($cep, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -212,7 +212,7 @@ class Basico_Model_Endereco
 	*/
 	public function setLogradouro($logradouro)
 	{
-		$this->_logradouro = Basico_UtilControllerController::retornaValorTipado($logradouro, TIPO_STRING, true);
+		$this->_logradouro = Basico_OPController_UtilOPController::retornaValorTipado($logradouro, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -234,7 +234,7 @@ class Basico_Model_Endereco
 	*/
 	public function setNumero($numero)
 	{
-		$this->_numero = Basico_UtilControllerController::retornaValorTipado($numero, TIPO_STRING, true);
+		$this->_numero = Basico_OPController_UtilOPController::retornaValorTipado($numero, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -256,7 +256,7 @@ class Basico_Model_Endereco
 	*/
 	public function setComplemento($complemento)
 	{
-		$this->_complemento = Basico_UtilControllerController::retornaValorTipado($complemento, TIPO_STRING, true);
+		$this->_complemento = Basico_OPController_UtilOPController::retornaValorTipado($complemento, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -278,7 +278,7 @@ class Basico_Model_Endereco
 	*/
 	public function setCaixaPostal($caixaPostal)
 	{
-		$this->_caixaPostal = Basico_UtilControllerController::retornaValorTipado($caixaPostal, TIPO_STRING, true);
+		$this->_caixaPostal = Basico_OPController_UtilOPController::retornaValorTipado($caixaPostal, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -300,7 +300,7 @@ class Basico_Model_Endereco
 	*/
 	public function setDataValidacao($dataValidacao)
 	{
-		$this->_dataValidacao = Basico_UtilControllerController::retornaValorTipado($dataValidacao, TIPO_STRING, true);
+		$this->_dataValidacao = Basico_OPController_UtilOPController::retornaValorTipado($dataValidacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -322,7 +322,7 @@ class Basico_Model_Endereco
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = (int) Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = (int) Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -355,7 +355,7 @@ class Basico_Model_Endereco
 	*/
 	public function setPais($pais)
 	{
-		$this->_pais = Basico_UtilControllerController::retornaValorTipado($pais, TIPO_INTEIRO, true);
+		$this->_pais = Basico_OPController_UtilOPController::retornaValorTipado($pais, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -388,7 +388,7 @@ class Basico_Model_Endereco
 	*/
 	public function setEstado($estado)
 	{
-		$this->_estado = Basico_UtilControllerController::retornaValorTipado($estado, TIPO_INTEIRO, true);
+		$this->_estado = Basico_OPController_UtilOPController::retornaValorTipado($estado, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -421,7 +421,7 @@ class Basico_Model_Endereco
 	*/
 	public function setMunicipio($municipio)
 	{
-		$this->_municipio = Basico_UtilControllerController::retornaValorTipado($municipio, TIPO_INTEIRO, true);
+		$this->_municipio = Basico_OPController_UtilOPController::retornaValorTipado($municipio, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -454,7 +454,7 @@ class Basico_Model_Endereco
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

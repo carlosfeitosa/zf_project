@@ -156,7 +156,7 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

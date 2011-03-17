@@ -42,7 +42,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	// carregando o titulo e subtitulo da view
     	$tituloView = $this->view->tradutor('VIEW_ADMIN_INDEX_TITULO');
         
-    	if (Basico_UtilControllerController::ambienteDesenvolvimento()) {	
+    	if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {	
     	    $subtituloView = "<a onClick='loading()' href='" . $this->view->url(array('module' => 'basico', 'controller' => 'administrador', 'action' => 'resetadb')) . "'>" . $this->view->tradutor('VIEW_ADMIN_BD_RESET_BUTTON_LABEL') . "</a>" .
     	                     "<br><a onClick='loading()' href='" . $this->view->url(array('module' => 'basico', 'controller' => 'geradorformulario', 'action' => 'gerartodosformularios')) . "'>" . $this->view->tradutor('VIEW_ADMIN_FORM_GENERATE_ALL_SYSTEM_FORMS_BUTTON_LABEL') . "</a>";
     	}
@@ -66,7 +66,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     {
     	$this->getHelper('layout')->disableLayout();
     	
-    	if (Basico_PersistenceControllerController::bdResetaBD()) {
+    	if (Basico_OPController_PersistenceOPController::bdResetaBD()) {
    
 			// carregando o titulo e subtitulo da view
 	    	$tituloView = $this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO');

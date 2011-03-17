@@ -46,7 +46,7 @@ $application = new Zend_Application(
 );
 
 // verificando se a aplicacao pode se inicializar
-Basico_UtilControllerController::checaInit($application);
+Basico_OPController_UtilOPController::checaInit($application);
 
 $application->bootstrap()
             ->run();

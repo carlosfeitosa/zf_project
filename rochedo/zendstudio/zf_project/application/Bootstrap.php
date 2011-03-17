@@ -5,12 +5,11 @@
  */
 require_once("consts/consts.php");
 require_once("configs/application.php");
-require_once("modules/basico/actionControllers/PessoaControllerController.php");
-require_once("modules/basico/actionControllers/LogControllerController.php");
-require_once("modules/basico/actionControllers/TokenControllerController.php");
-require_once("modules/basico/actionControllers/UtilControllerController.php");
-require_once("modules/basico/actionControllers/PersistenceControllerController.php");
-require_once("modules/basico/actionControllers/AutenticadorControllerController.php");
+require_once("modules/basico/controllers/PessoaOPController.php");
+require_once("modules/basico/controllers/LogOPController.php");
+require_once("modules/basico/controllers/TokenOPController.php");
+require_once("modules/basico/controllers/UtilOPController.php");
+require_once("modules/basico/controllers/PersistenceOPController.php");
 
 /**
  * Bootstrap primário do sistema.
@@ -39,29 +38,29 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         try {
             // instancia a classe controladora de log
-            $this->logger = Basico_LogControllerController::getInstance();	        	
+            $this->logger = Basico_OPController_LogOPController::getInstance();	        	
         } catch (Exception $e) {
             throw new Exception (MSG_ERRO_ABRIR_LOG_FS . $e->getMessage());
         }
 
         // instancia a classe controladora de token
-        $this->tokenizer = Basico_TokenControllerController::getInstance();
+        $this->tokenizer = Basico_OPController_TokenOPController::getInstance();
 
         // Localiza os helpers dos controllers e adiciona os paths caso eles existam
         if (file_exists(BASICO_CONTROLLER_HELPERS_PATH))
         	Zend_Controller_Action_HelperBroker::addPath(BASICO_CONTROLLER_HELPERS_PATH, 'Basico_Controller_Action_Helper');
 
         // setando a lingua padrao do usuario
-        Basico_PessoaControllerController::setaLinguaUsuario(DEFAULT_SYSTEM_LANGUAGE);
+        Basico_OPController_PessoaOPController::setaLinguaUsuario(DEFAULT_SYSTEM_LANGUAGE);
 
         // expondo o MVC para ambiente de desenvolvimento
-        if (Basico_UtilControllerController::ambienteDesenvolvimento())
-            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . Basico_PessoaControllerController::retornaLinguaUsuario() . ')');
+        if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
+            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . Basico_OPController_PessoaOPController::retornaLinguaUsuario() . ')');
         else
             define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
 
         // registrando a instancia do banco de dados na sessao
-        Basico_PersistenceControllerController::bdRegistraSessao($this->getResource('db'));
+        Basico_OPController_PersistenceOPController::bdRegistraSessao($this->getResource('db'));
     }
 
     /**

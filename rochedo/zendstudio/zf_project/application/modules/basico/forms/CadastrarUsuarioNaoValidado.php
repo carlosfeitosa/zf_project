@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 25/02/2011 15:22:53
+* em: 17/03/2011 14:03:00
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 25/02/2011 14:49:10
+* @version    1: 17/03/2011 13:36:53
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -44,7 +44,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
-        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
+        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
         $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT'));
         if ($options!=null)
             $elements[1]->setValue($options->nome);
@@ -57,17 +57,17 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[2]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
-        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
+        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
         $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));
         if ($options!=null)
             $elements[2]->setValue($options->email);
 
-        if (!Basico_UtilControllerController::ambienteDesenvolvimento()){
+        if (!Basico_OPController_UtilOPController::ambienteDesenvolvimento()){
             $elements[3] = $this->createElement('captcha', 'BasicoCadastrarUsuarioNaoValidadoVerificador6digitos', 
                       array('required'=>true,
                             'captcha'=>array('captcha'=>'Image',
                                              'imgDir' => PUBLIC_PATH . CAPTCHA_IMAGE_DIR,
-                                             'imgUrl' => Basico_UtilControllerController::retornaBaseUrl() . CAPTCHA_IMAGE_URL,
+                                             'imgUrl' => Basico_OPController_UtilOPController::retornaBaseUrl() . CAPTCHA_IMAGE_URL,
                                              'wordLen'=> 6,
                                              'width'  => 250,
                                              'height' => 80,

@@ -5,12 +5,6 @@
  *
  */
 
-// include dos controladores
-require_once("CategoriaControllerController.php");
-require_once("EmailControllerController.php");
-require_once("LoginControllerController.php");
-require_once("DadosPessoaisControllerController.php");
-
 /**
  * Controlador Email
  * 
@@ -42,10 +36,10 @@ class Basico_EmailController extends Zend_Controller_Action
     public function validaremailAction()
     {
     	// instanciando os controladores
-    	$controladorCategoria = Basico_CategoriaControllerController::getInstance();
-    	$controladorEmail     = Basico_EmailControllerController::getInstance();
-    	$controladorToken     = Basico_TokenControllerController::getInstance();
-    	$controladorLogin     = Basico_LoginControllerController::getInstance();
+    	$controladorCategoria = Basico_OPController_CategoriaOPController::getInstance();
+    	$controladorEmail     = Basico_OPController_EmailOPController::getInstance();
+    	$controladorToken     = Basico_OPController_TokenOPController::getInstance();
+    	$controladorLogin     = Basico_OPController_LoginOPController::getInstance();
     	
     	// recuperando o token da sessao
     	$token                = $this->request->getParam('t');
@@ -65,16 +59,16 @@ class Basico_EmailController extends Zend_Controller_Action
     	$email   = $controladorEmail->retornaObjetoEmailPorId($idEmail);
 
     	//verificando se o usuario possui o perfil de UsuarioValidado
-    	if (Basico_PessoaPerfilControllerController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
+    	if (Basico_OPController_PessoaPerfilOPController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
     		// redirecionando para o action erroemailvalidadoexistentenosistema do loginController
             $this->_helper->redirector('erroemailvalidadoexistentenosistema', 'login', 'basico');
             exit;
     	}
     	
     	// recuperando data hora de expiracao
-    	$dataHoraExpiracaoUnixTimeStamp = Basico_UtilControllerController::retornaTimestamp($tokenObj->datahoraExpiracao);
+    	$dataHoraExpiracaoUnixTimeStamp = Basico_OPController_UtilOPController::retornaTimestamp($tokenObj->datahoraExpiracao);
     	// recuperando a data hora atual
-    	$dataHoraAtualUnixTimeStamp = Basico_UtilControllerController::retornaTimestamp();
+    	$dataHoraAtualUnixTimeStamp = Basico_OPController_UtilOPController::retornaTimestamp();
 
     	// verificando se o objeto existe
     	if ($email != NULL) {
@@ -85,13 +79,13 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	}
 	    	
 	    	// recuperando o objeto pessoa do dono do email
-	    	$proprietarioEmail = Basico_EmailControllerController::getInstance()->retornaObjetoProprietarioEmail($email);
+	    	$proprietarioEmail = Basico_OPController_EmailOPController::getInstance()->retornaObjetoProprietarioEmail($email);
 	    	
 	    	// recuperando dadosPessoais da pessoa
-	    	$dadosPessoais = Basico_DadosPessoaisControllerController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($proprietarioEmail->id);
+	    	$dadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($proprietarioEmail->id);
 	    	
 	    	// recuperando a versao da tupla de dadosPessoais
-	    	$versaoDadosPessoais = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
+	    	$versaoDadosPessoais = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
     	
     	    // carregando o titulo e subtitulo da view
 		    $tituloView     = $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO');
@@ -104,7 +98,7 @@ class Basico_EmailController extends Zend_Controller_Action
 			$this->view->cabecalho = $cabecalho;
 
 			// formando a url do metodo que verifica disponibilidade de login via json
-			$urlMetodo = Basico_UtilControllerController::retornaStringEntreCaracter(Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+			$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
 
 			// instanciando o formulario de cadastrar usuario validado
 			$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();

@@ -34,10 +34,10 @@ class Basico_Model_LogXml
 		$eventDateTime    = $options["eventDateTime"];
 		$eventDescription = $options["eventDescription"];
 		
-		$paramsRequest  = Basico_UtilControllerController::retornaUserRequest()->getParams();		
-		$userAgent      = Basico_UtilControllerController::retornaUserAgent();
-		$clientIp       = Basico_UtilControllerController::retornaUserIp();
-		$connectionType = Basico_UtilControllerController::retornaUserConnectionType();
+		$paramsRequest  = Basico_OPController_UtilOPController::retornaUserRequest()->getParams();		
+		$userAgent      = Basico_OPController_UtilOPController::retornaUserAgent();
+		$clientIp       = Basico_OPController_UtilOPController::retornaUserIp();
+		$connectionType = Basico_OPController_UtilOPController::retornaUserConnectionType();
 		
 		$this->_applicationInfo = array("module"  => $paramsRequest["module"],
 										"request" => $paramsRequest,);
@@ -110,7 +110,7 @@ class Basico_Model_LogXml
 	*/
 	public function setApplicationInfo($applicationInfo)
 	{
-		$this->_applicationInfo = Basico_UtilControllerController::retornaValorTipado($applicationInfo, TIPO_STRING, true);
+		$this->_applicationInfo = Basico_OPController_UtilOPController::retornaValorTipado($applicationInfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -132,7 +132,7 @@ class Basico_Model_LogXml
 	*/
 	public function setUserInfo($userInfo)
 	{
-		$this->_userInfo = Basico_UtilControllerController::retornaValorTipado($userInfo, TIPO_STRING, true);
+		$this->_userInfo = Basico_OPController_UtilOPController::retornaValorTipado($userInfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -154,7 +154,7 @@ class Basico_Model_LogXml
 	*/
 	public function setEventInfo($eventInfo)
 	{
-		$this->_eventInfo = Basico_UtilControllerController::retornaValorTipado($eventInfo, TIPO_STRING, true);
+		$this->_eventInfo = Basico_OPController_UtilOPController::retornaValorTipado($eventInfo, TIPO_STRING, true);
 		return $this;
 	}
 

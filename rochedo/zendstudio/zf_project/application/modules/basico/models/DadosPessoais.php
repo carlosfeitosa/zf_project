@@ -114,7 +114,7 @@ class Basico_Model_DadosPessoais
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome,TIPO_STRING,true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome,TIPO_STRING,true);
 		return $this;
 	}
 	
@@ -146,7 +146,7 @@ class Basico_Model_DadosPessoais
 	*/
 	public function setDataNascimento($dataNascimento)
 	{
-		$this->_dataNascimento = Basico_UtilControllerController::retornaValorTipado($dataNascimento,TIPO_STRING,true);
+		$this->_dataNascimento = Basico_OPController_UtilOPController::retornaValorTipado($dataNascimento,TIPO_STRING,true);
 		return $this;
 	}
 	
@@ -158,7 +158,7 @@ class Basico_Model_DadosPessoais
 	*/
 	public function setPessoa($idPessoa)
 	{
-		$this->_pessoa = Basico_UtilControllerController::retornaValorTipado($idPessoa,TIPO_INTEIRO,true);
+		$this->_pessoa = Basico_OPController_UtilOPController::retornaValorTipado($idPessoa,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -180,7 +180,7 @@ class Basico_Model_DadosPessoais
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -202,7 +202,7 @@ class Basico_Model_DadosPessoais
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo,TIPO_STRING,true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 		return $this;
 	}
 

@@ -10,6 +10,6 @@ class Basico_View_Helper_UrlEncrypt extends Zend_View_Helper_Abstract
     public function urlEncrypt($url)  
     {
     	// instanciando controladores
-        return Basico_TokenControllerController::getInstance()->gerarTokenPorUrl($url);
+        return Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl($url);
     }  
 }  

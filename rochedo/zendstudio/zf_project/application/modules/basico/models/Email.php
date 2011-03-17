@@ -135,7 +135,7 @@ class Basico_Model_Email
 	*/
 	public function setIdGenericoProprietario($idGenericoProprietario)
 	{
-		$this->_idGenericoProprietario = Basico_UtilControllerController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
+		$this->_idGenericoProprietario = Basico_OPController_UtilOPController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -157,7 +157,7 @@ class Basico_Model_Email
 	*/
 	public function setUniqueId($uniqueId)
 	{
-		$this->_uniqueId = Basico_UtilControllerController::retornaValorTipado($uniqueId, TIPO_STRING, true);
+		$this->_uniqueId = Basico_OPController_UtilOPController::retornaValorTipado($uniqueId, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -179,7 +179,7 @@ class Basico_Model_Email
 	*/
 	public function setEmail($email)
 	{
-		$this->_email = Basico_UtilControllerController::retornaValorTipado(strtolower($email), TIPO_STRING, true);
+		$this->_email = Basico_OPController_UtilOPController::retornaValorTipado(strtolower($email), TIPO_STRING, true);
 		return $this;
 	}
 
@@ -201,7 +201,7 @@ class Basico_Model_Email
 	*/
 	public function setValidado($validado)
 	{
-		$this->_validado = Basico_UtilControllerController::retornaValorTipado($validado, TIPO_BOOLEAN); 
+		$this->_validado = Basico_OPController_UtilOPController::retornaValorTipado($validado, TIPO_BOOLEAN); 
 		return $this;
 	}
 
@@ -223,7 +223,7 @@ class Basico_Model_Email
 	*/
 	public function setDataHoraUltimaValidacao($dataHoraUltimaValidacao)
 	{
-		$this->_dataHoraUltimaValidacao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaValidacao, TIPO_STRING,true);
+		$this->_dataHoraUltimaValidacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaValidacao, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -245,7 +245,7 @@ class Basico_Model_Email
 	*/
 	public function setDataHoraCadastro($dataHoraCadastro)
 	{
-		$this->_dataHoraCadastro = Basico_UtilControllerController::retornaValorTipado($dataHoraCadastro, TIPO_STRING,true);
+		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -267,7 +267,7 @@ class Basico_Model_Email
 	*/
 	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
 	{
-		$this->_dataHoraUltimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING,true);
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -289,7 +289,7 @@ class Basico_Model_Email
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = Basico_UtilControllerController::retornaValorTipado($ativo, TIPO_BOOLEAN);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN);
 		return $this;
 	}
 
@@ -311,7 +311,7 @@ class Basico_Model_Email
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO,true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -344,7 +344,7 @@ class Basico_Model_Email
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING,true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING,true);
 		return $this;
 	}
 
@@ -367,7 +367,7 @@ class Basico_Model_Email
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO,true);		
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO,true);		
 		return $this;
 	}
 

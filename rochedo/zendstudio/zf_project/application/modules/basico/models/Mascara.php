@@ -111,7 +111,7 @@ class Basico_Model_Mascara
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -133,7 +133,7 @@ class Basico_Model_Mascara
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -155,7 +155,7 @@ class Basico_Model_Mascara
 	*/
 	public function setMascara($mascara)
 	{
-		$this->_mascara = Basico_UtilControllerController::retornaValorTipado($mascara, TIPO_STRING, true);
+		$this->_mascara = Basico_OPController_UtilOPController::retornaValorTipado($mascara, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -177,7 +177,7 @@ class Basico_Model_Mascara
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -210,7 +210,7 @@ class Basico_Model_Mascara
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

@@ -35,6 +35,9 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
     	// recuperando a instancia do front controller
 		$frontController = Zend_Controller_Front::getInstance();
 
+		// setando o caminho dos action controllers
+		$frontController->addControllerDirectory(APPLICATION_MODULE_PATH . "/basico/actionControllers", "basico");
+
 		// registrando o plugin de log de acao de controladores
 		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerLogHandler());
 		// registrando o plugin de controle de acesso de acao de controladores

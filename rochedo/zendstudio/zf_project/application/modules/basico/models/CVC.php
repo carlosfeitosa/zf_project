@@ -133,7 +133,7 @@ class Basico_Model_CVC
 	*/
 	public function setIdGenerico($idGenerico)
 	{
-		$this->_idGenerico = Basico_UtilControllerController::retornaValorTipado($idGenerico,TIPO_INTEIRO,true);
+		$this->_idGenerico = Basico_OPController_UtilOPController::retornaValorTipado($idGenerico,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -158,7 +158,7 @@ class Basico_Model_CVC
 	*/
 	public function setVersao($versao)
 	{
-		$this->_versao = Basico_UtilControllerController::retornaValorTipado($versao,TIPO_INTEIRO,true);
+		$this->_versao = Basico_OPController_UtilOPController::retornaValorTipado($versao,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -183,7 +183,7 @@ class Basico_Model_CVC
 	*/
 	public function setCategoriaChaveEstrangeira($categoriaChaveEstrangeira)
 	{
-		$this->_categoriaChaveEstrangeira = Basico_UtilControllerController::retornaValorTipado($categoriaChaveEstrangeira,TIPO_INTEIRO,true);
+		$this->_categoriaChaveEstrangeira = Basico_OPController_UtilOPController::retornaValorTipado($categoriaChaveEstrangeira,TIPO_INTEIRO,true);
 		return $this;
 	}
 	
@@ -222,7 +222,7 @@ class Basico_Model_CVC
 	public function setObjeto($objeto)
 	{
 		if (is_object($objeto)) {
-			$this->_objeto = Basico_UtilControllerController::codificar($objeto);
+			$this->_objeto = Basico_OPController_UtilOPController::codificar($objeto);
 		}
 		else
 			$this->_objeto = $objeto;
@@ -250,7 +250,7 @@ class Basico_Model_CVC
 	 */
 	public function getObjetoArray()
 	{
-		return Basico_UtilControllerController::codificar($this->_objeto, CODIFICAR_ENCODED_STRING_TO_ARRAY);
+		return Basico_OPController_UtilOPController::codificar($this->_objeto, CODIFICAR_ENCODED_STRING_TO_ARRAY);
 	}
      
 	/**
@@ -261,7 +261,7 @@ class Basico_Model_CVC
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
-		$this->_validadeInicio = Basico_UtilControllerController::retornaValorTipado($validadeInicio,TIPO_STRING,true);
+		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -287,7 +287,7 @@ class Basico_Model_CVC
 	public function setValidadeTermino($validadeTermino)
 	{
 		if (isset($validadeTermino))
-			$this->_validadeTermino = Basico_UtilControllerController::retornaValorTipado($validadeTermino,TIPO_STRING,true);
+			$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino,TIPO_STRING,true);
 		return $this;
 	}
 	
@@ -325,7 +325,7 @@ class Basico_Model_CVC
 	*/
 	public function setUltimaAtualizacao($ultimaAtualizacao)
 	{
-		$this->_ultimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($ultimaAtualizacao,TIPO_STRING,true);
+		$this->_ultimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($ultimaAtualizacao,TIPO_STRING,true);
 		return $this;
 	}
 	
@@ -337,7 +337,7 @@ class Basico_Model_CVC
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo,TIPO_STRING,true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -362,7 +362,7 @@ class Basico_Model_CVC
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 

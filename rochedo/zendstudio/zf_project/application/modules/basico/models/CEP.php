@@ -122,7 +122,7 @@ class Basico_Model_CEP
 	*/
 	public function setCep($cep)
 	{
-		$this->_cep = Basico_UtilControllerController::retornaValorTipado($cep, TIPO_STRING, true);
+		$this->_cep = Basico_OPController_UtilOPController::retornaValorTipado($cep, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -144,7 +144,7 @@ class Basico_Model_CEP
 	*/
 	public function setDataUltimaAtualizacao($dataUltimaAtualizacao)
 	{
-		$this->_dataUltimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($dataUltimaAtualizacao, TIPO_STRING, true);
+		$this->_dataUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataUltimaAtualizacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -166,7 +166,7 @@ class Basico_Model_CEP
 	*/
 	public function setPais($pais)
 	{
-		$this->_pais = Basico_UtilControllerController::retornaValorTipado($pais, TIPO_INTEIRO, true);;
+		$this->_pais = Basico_OPController_UtilOPController::retornaValorTipado($pais, TIPO_INTEIRO, true);;
 		return $this;
 	}
 
@@ -199,7 +199,7 @@ class Basico_Model_CEP
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -232,7 +232,7 @@ class Basico_Model_CEP
 	*/
 	public function setEstado($estado)
 	{
-		$this->_estado = Basico_UtilControllerController::retornaValorTipado($estado, TIPO_INTEIRO, true);
+		$this->_estado = Basico_OPController_UtilOPController::retornaValorTipado($estado, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -265,7 +265,7 @@ class Basico_Model_CEP
 	*/
 	public function setMunicipio($municipio)
 	{
-		$this->_municipio = Basico_UtilControllerController::retornaValorTipado($municipio, TIPO_INTEIRO, true);
+		$this->_municipio = Basico_OPController_UtilOPController::retornaValorTipado($municipio, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -298,7 +298,7 @@ class Basico_Model_CEP
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

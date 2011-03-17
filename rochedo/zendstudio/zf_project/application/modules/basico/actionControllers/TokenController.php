@@ -32,7 +32,7 @@ class Basico_TokenController extends Zend_Controller_Action
         $token = $this->_request->getParam('t');
 
         // instanciando o controlador de token
-        $controladorToken = Basico_TokenControllerController::getInstance();
+        $controladorToken = Basico_OPController_TokenOPController::getInstance();
 
         // decodificando url
         $url = $controladorToken->decodeTokenUrlPorToken($token);

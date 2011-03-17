@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 10/03/2011 15:27:17
+* em: 17/03/2011 14:02:48
 *
 * LICENÇA DE USO
 *
@@ -14,14 +14,14 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 04/03/2011 11:33:32
+* @version    1: 17/03/2011 13:36:53
 */
     $basicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosSubForm = new Zend_Dojo_Form_SubForm();
 
     // Inicializando o sub-formulário.
     $basicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosSubForm->setName('CadastrarDadosUsuarioInformacoesBancariasDadosBancarios');
     $basicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosSubForm->setMethod('post');
-    $basicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_INFORMACOES_BANCARIAS_DADOS_BANCARIOS')));
+    $basicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_INFORMACOES_BANCARIAS_DADOS_BANCARIOS'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_INFORMACOES_BANCARIAS_DADOS_BANCARIOS')));
     $basicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosSubForm->setOrder(1);
 
     // Criando array de elementos.
@@ -29,7 +29,7 @@
 
     $elements[1] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosButtonDialogDojo1');
     $elements[1]->setOrder(1);
-    $elements[1]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_CONTAS_BANCARIAS')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioInformacoesBancariasContasBancarias." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_CONTAS_BANCARIAS')}\")"));
+    $elements[1]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_CONTAS_BANCARIAS')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioInformacoesBancariasContasBancarias." . Basico_OPController_PessoaOPController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_CONTAS_BANCARIAS')}\")"));
     $elements[1]->setRequired(false);
     $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
     $elements[1]->removeDecorator('DtDdWrapper');

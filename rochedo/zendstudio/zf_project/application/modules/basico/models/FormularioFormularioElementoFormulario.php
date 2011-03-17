@@ -114,7 +114,7 @@ class Basico_Model_FormularioFormularioElementoFormulario
     */
     public function setFormularioFormularioElemento($formularioFormularioElemento)
     {
-        $this->_formularioFormularioElemento = Basico_UtilControllerController::retornaValorTipado($formularioFormularioElemento, TIPO_INTEIRO, true);
+        $this->_formularioFormularioElemento = Basico_OPController_UtilOPController::retornaValorTipado($formularioFormularioElemento, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -147,7 +147,7 @@ class Basico_Model_FormularioFormularioElementoFormulario
     */
     public function setFormulario($formulario)
     {
-        $this->_formulario = Basico_UtilControllerController::retornaValorTipado($formulario, TIPO_INTEIRO, true);
+        $this->_formulario = Basico_OPController_UtilOPController::retornaValorTipado($formulario, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -169,7 +169,7 @@ class Basico_Model_FormularioFormularioElementoFormulario
     */
     public function setConstanteTextualLabel($constanteTextualLabel)
     {
-        $this->_constanteTextualLabel = Basico_UtilControllerController::retornaValorTipado($constanteTextualLabel, TIPO_STRING, true);
+        $this->_constanteTextualLabel = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualLabel, TIPO_STRING, true);
         return $this;
     }
 
@@ -202,7 +202,7 @@ class Basico_Model_FormularioFormularioElementoFormulario
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -225,7 +225,7 @@ class Basico_Model_FormularioFormularioElementoFormulario
     */
     public function setId($id)
     {
-        $this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+        $this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
         return $this;
     }
 

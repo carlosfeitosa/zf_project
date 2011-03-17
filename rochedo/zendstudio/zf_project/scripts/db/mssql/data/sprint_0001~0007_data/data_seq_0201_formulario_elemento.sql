@@ -2303,7 +2303,7 @@ SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação huma
                       array(''required''=>true,
                             ''captcha''=>array(''captcha''=>''Image'',
                                              ''imgDir'' => PUBLIC_PATH . CAPTCHA_IMAGE_DIR,
-                                             ''imgUrl'' => Basico_UtilControllerController::retornaBaseUrl() . CAPTCHA_IMAGE_URL,
+                                             ''imgUrl'' => Basico_OPController_UtilOPController::retornaBaseUrl() . CAPTCHA_IMAGE_URL,
                                              ''wordLen''=> 6,
                                              ''width''  => 250,
                                              ''height'' => 80,

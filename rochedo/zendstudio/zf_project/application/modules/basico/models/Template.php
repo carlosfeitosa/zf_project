@@ -127,7 +127,7 @@ class Basico_Model_Template
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -149,7 +149,7 @@ class Basico_Model_Template
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -171,7 +171,7 @@ class Basico_Model_Template
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -193,7 +193,7 @@ class Basico_Model_Template
 	*/
 	public function setStyleSheetFullFilename($styleSheetFullFilename)
 	{
-		$this->_styleSheetFullFilename = Basico_UtilControllerController::retornaValorTipado($styleSheetFullFilename, TIPO_STRING, true);
+		$this->_styleSheetFullFilename = Basico_OPController_UtilOPController::retornaValorTipado($styleSheetFullFilename, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -215,7 +215,7 @@ class Basico_Model_Template
 	*/
 	public function setJavaScriptFullFilename($javaScriptFullFilename)
 	{
-		$this->_javaScriptFullFilename = Basico_UtilControllerController::retornaValorTipado($javaScriptFullFilename, TIPO_STRING, true);
+		$this->_javaScriptFullFilename = Basico_OPController_UtilOPController::retornaValorTipado($javaScriptFullFilename, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -237,7 +237,7 @@ class Basico_Model_Template
 	*/
 	public function setTemplate($template)
 	{
-		$this->_template = Basico_UtilControllerController::retornaValorTipado($template, TIPO_STRING, true);
+		$this->_template = Basico_OPController_UtilOPController::retornaValorTipado($template, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -259,7 +259,7 @@ class Basico_Model_Template
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -281,7 +281,7 @@ class Basico_Model_Template
 	*/
 	public function setOutput($output)
 	{
-		$this->_output = Basico_UtilControllerController::retornaValorTipado($output, TIPO_INTEIRO, true);
+		$this->_output = Basico_OPController_UtilOPController::retornaValorTipado($output, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -303,7 +303,7 @@ class Basico_Model_Template
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

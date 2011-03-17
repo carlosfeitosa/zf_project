@@ -138,7 +138,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setRemetente($remetente)
 	{
-		$this->_remetente = Basico_UtilControllerController::retornaValorTipado($remetente, TIPO_STRING, true);
+		$this->_remetente = Basico_OPController_UtilOPController::retornaValorTipado($remetente, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -160,7 +160,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setRemetenteNome($remetenteNome)
 	{
-		$this->_remetenteNome = Basico_UtilControllerController::retornaValorTipado($remetenteNome, TIPO_STRING, true);
+		$this->_remetenteNome = Basico_OPController_UtilOPController::retornaValorTipado($remetenteNome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -185,7 +185,7 @@ class Basico_Model_Mensagem
 		if (is_array($destinatarios))
 			$this->_destinatarios = implode(';', $destinatarios);
 		else
-			$this->_destinatarios = Basico_UtilControllerController::retornaValorTipado($destinatarios, TIPO_STRING, true);
+			$this->_destinatarios = Basico_OPController_UtilOPController::retornaValorTipado($destinatarios, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -218,7 +218,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setAssunto($assunto)
 	{
-		$this->_assunto = Basico_UtilControllerController::retornaValorTipado($assunto, TIPO_STRING, true);
+		$this->_assunto = Basico_OPController_UtilOPController::retornaValorTipado($assunto, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -240,7 +240,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setDataHoraMensagem($dataHoraMensagem)
 	{
-		$this->_dataHoraMensagem = Basico_UtilControllerController::retornaValorTipado($dataHoraMensagem, TIPO_STRING, true);
+		$this->_dataHoraMensagem = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraMensagem, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -262,7 +262,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setDataHoraEnvio($dataHoraEnvio)
 	{
-		$this->_dataHoraEnvio = Basico_UtilControllerController::retornaValorTipado($dataHoraEnvio, TIPO_STRING, true);
+		$this->_dataHoraEnvio = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraEnvio, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -284,7 +284,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setMensagem($mensagem)
 	{
-		$this->_mensagem = Basico_UtilControllerController::retornaValorTipado($mensagem, TIPO_STRING, true);
+		$this->_mensagem = Basico_OPController_UtilOPController::retornaValorTipado($mensagem, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -306,7 +306,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 	
@@ -329,7 +329,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 	
@@ -351,7 +351,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 	

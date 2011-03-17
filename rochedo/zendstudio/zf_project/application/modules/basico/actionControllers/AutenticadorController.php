@@ -7,8 +7,6 @@
  * @subpackage Controller
  */
 
-require_once("LoginControllerController.php");
-
 class Basico_AutenticadorController extends Zend_Controller_Action
 {
 	/**
@@ -26,13 +24,13 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		}
 		else
 			// recuperando a url para redirecionando
-			$urlRedirect = Basico_UtilControllerController::decodificaBarrasUrl(Basico_UtilControllerController::retornaUserRequest()->getParam('urlRedirect'));
+			$urlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(Basico_OPController_UtilOPController::retornaUserRequest()->getParam('urlRedirect'));
 
     	// carregando cabecalho da view
 		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
 
     	// enviando o script para o cliente
-    	echo Basico_AutenticadorControllerController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_PessoaControllerController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect);
+    	echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect);
 
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
@@ -46,10 +44,10 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 	public function verificaautenticacaousuarioAction()
 	{
 		// verificando se os dados foram submetidos atraves de post
-		Basico_UtilControllerController::validaPostRequest($this->getRequest(), 'basico/autenticador/autenticarusuario');
+		Basico_OPController_UtilOPController::validaPostRequest($this->getRequest(), 'basico/autenticador/autenticarusuario');
 			
 		// instanciando o formulario
-		$form = Basico_AutenticadorControllerController::retornaFormAutenticacaoUsuario();
+		$form = Basico_OPController_AutenticadorOPController::retornaFormAutenticacaoUsuario();
 
 		// validando o formulario
 		if (!$form->isValid($this->getRequest()->getPost()))
@@ -59,51 +57,51 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $form->getValue(AUTH_IDENTITY_ARRAY_KEY);
 
 		// recuperando objeto pessoa perfil usuario validado do login
-		$objPessoaPerfilUsuarioValidadoLogin = Basico_PessoaPerfilControllerController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_LoginControllerController::getInstance()->retornaIdPessoaPorLogin($login));
+		$objPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
 
 		// verificando se o login existe e possui perfil de usuario validado
 		if ($objPessoaPerfilUsuarioValidadoLogin->id) {
 			// inserindo log de tentativa de logon
-			Basico_LogControllerController::getInstance()->salvarLog($objPessoaPerfilUsuarioValidadoLogin->id, Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
+			Basico_OPController_LogOPController::getInstance()->salvarLog($objPessoaPerfilUsuarioValidadoLogin->id, Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
 		}
 		else {
-			Basico_LogControllerController::getInstance()->salvarLog(Basico_PessoaPerfilControllerController::getInstance()->retornaIdPessoaPerfilSistema(), Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_UtilControllerController::retornaStringEntreCaracter($login, '"'));
+			Basico_OPController_LogOPController::getInstance()->salvarLog(Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema(), Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
 		}
 
 		// verificando se as crendeiciais de acesso funcionaram
-		if (Basico_AutenticadorControllerController::getInstance()->retornaAutenticacaoUsuario($form->getValues())) {
+		if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuario($form->getValues())) {
 
 			// verificando se o login pode realizar login
-			if (!Basico_LoginControllerController::getInstance()->retornaLoginPodeLogar($login)) {
+			if (!Basico_OPController_LoginOPController::getInstance()->retornaLoginPodeLogar($login)) {
 				// redirecionando para a pagina de problemas com login
-				$this->_redirect(str_replace(Basico_UtilControllerController::retornaBaseUrl(), '', $this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login))));
+				$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login))));
 			}
 			
-			Basico_UtilControllerController::print_debug('login OK', true, false, true);
+			Basico_OPController_UtilOPController::print_debug('login OK', true, false, true);
 
 			// efetuando o logon
-			Basico_LoginControllerController::getInstance()->efetuaLogon($login);
+			Basico_OPController_LoginOPController::getInstance()->efetuaLogon($login);
 		}
 		else {
 			// incrementando tentativas invalidas
-			Basico_LoginControllerController::getInstance()->checaTentativaInvalidaLogon($login);
+			Basico_OPController_LoginOPController::getInstance()->checaTentativaInvalidaLogon($login);
 
 			// montando array de parametros
 			$arrayParametrosUrl = array();
 			$arrayParametrosUrl['login'] = $login;
-			$arrayParametrosUrl['urlRedirect'] = Basico_UtilControllerController::codificaBarrasUrl(Basico_AutenticadorControllerController::retornaUrlRedirectUserRequest($this->getRequest()));
+			$arrayParametrosUrl['urlRedirect'] = Basico_OPController_UtilOPController::codificaBarrasUrl(Basico_Controller_AutenticadorController::retornaUrlRedirectUserRequest($this->getRequest()));
 
 			// redirecionando para a pagina de login
-			$this->_redirect(str_replace(Basico_UtilControllerController::retornaBaseUrl(), '', $this->_helper->url('credenciaisinvalidas', 'autenticador', 'basico', $arrayParametrosUrl)));
+			$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->_helper->url('credenciaisinvalidas', 'autenticador', 'basico', $arrayParametrosUrl)));
 		}
 
 		// recuperando urlRedirect
-		$urlRedirect = Basico_AutenticadorControllerController::retornaUrlRedirectUserRequest($this->getRequest());
+		$urlRedirect = Basico_OPController_AutenticadorOPController::retornaUrlRedirectUserRequest($this->getRequest());
 
 		// verificando se existe uma pagina para redirect
 		if ($urlRedirect) {
 			// removendo o baseUrl do redirect
-			$realUrlRedirect = str_replace(Basico_UtilControllerController::retornaBaseUrl(), '', $urlRedirect);
+			$realUrlRedirect = str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $urlRedirect);
 
 			// redirecionando para a url de redirect
 			$this->_redirect($realUrlRedirect);
@@ -129,7 +127,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$arrayElementosError[] = AUTH_CREDENTIAL_ARRAY_KEY;
 
 		// enviando scripts para o usuario
-		echo Basico_AutenticadorControllerController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_PessoaControllerController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), Basico_UtilControllerController::codificaArrayJson($arrayParametros), Basico_UtilControllerController::codificaArrayJson($arrayElementosError));
+		echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
 
 		// carregando cabecalho da view
 		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
@@ -148,7 +146,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $this->getRequest()->getParam('login');
 		
 		// montando a mensagem de erro
-		$errorMessage = Basico_LoginControllerController::getInstance()->retornaMensagensErroLoginNaoPodeLigarHTMLLI($login);
+		$errorMessage = Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLigarHTMLLI($login);
 
 		// recuperando o link para documentacao online
 		$linkDocumentacaoOnLine = $this->_helper->url('problemasLogin', 'login', 'basico');

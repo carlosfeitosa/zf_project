@@ -104,7 +104,7 @@ class Basico_Model_RowInfo
 	*/
 	public function setXml($xml)
 	{
-		$this->_xml = Basico_UtilControllerController::retornaValorTipado($xml, TIPO_STRING, true);
+		$this->_xml = Basico_OPController_UtilOPController::retornaValorTipado($xml, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -116,7 +116,7 @@ class Basico_Model_RowInfo
 	*/
 	public function setGenericDateTimeLastModified($genericDateTimeLastModified)
 	{
-		$this->_genericDateTimeLastModified = Basico_UtilControllerController::retornaValorTipado($genericDateTimeLastModified, TIPO_STRING, true);
+		$this->_genericDateTimeLastModified = Basico_OPController_UtilOPController::retornaValorTipado($genericDateTimeLastModified, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -138,7 +138,7 @@ class Basico_Model_RowInfo
 	*/
 	public function setGenericIdLoginLastModified($genericIdLoginLastModified)
 	{
-		$this->_genericIdLoginLastModified = Basico_UtilControllerController::retornaValorTipado($genericIdLoginLastModified, TIPO_STRING, true);
+		$this->_genericIdLoginLastModified = Basico_OPController_UtilOPController::retornaValorTipado($genericIdLoginLastModified, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -161,7 +161,7 @@ class Basico_Model_RowInfo
 	*/
 	public function setGenericDateTimeCreation($genericDateTimeCreation)
 	{
-		$this->_genericDateTimeCreation = Basico_UtilControllerController::retornaValorTipado($genericDateTimeCreation, TIPO_STRING, true);
+		$this->_genericDateTimeCreation = Basico_OPController_UtilOPController::retornaValorTipado($genericDateTimeCreation, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -183,7 +183,7 @@ class Basico_Model_RowInfo
 	*/
 	public function setGenericIdLoginCreation($genericIdLoginCreation)
 	{
-		$this->_genericIdLoginCreation = Basico_UtilControllerController::retornaValorTipado($genericIdLoginCreation, TIPO_STRING, true);
+		$this->_genericIdLoginCreation = Basico_OPController_UtilOPController::retornaValorTipado($genericIdLoginCreation, TIPO_STRING, true);
 		return $this;
 	}
 

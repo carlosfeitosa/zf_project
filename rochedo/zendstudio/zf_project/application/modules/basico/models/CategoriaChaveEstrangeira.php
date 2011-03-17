@@ -115,7 +115,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	*/
 	public function setTabelaEstrangeira($tabelaEstrangeira)
 	{
-		$this->_tabelaEstrangeira = Basico_UtilControllerController::retornaValorTipado($tabelaEstrangeira,TIPO_STRING,true);
+		$this->_tabelaEstrangeira = Basico_OPController_UtilOPController::retornaValorTipado($tabelaEstrangeira,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -137,7 +137,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	*/
 	public function setCampoEstrangeiro($campoEstrangeiro)
 	{
-		$this->_campoEstrangeiro = Basico_UtilControllerController::retornaValorTipado($campoEstrangeiro,TIPO_STRING,true);
+		$this->_campoEstrangeiro = Basico_OPController_UtilOPController::retornaValorTipado($campoEstrangeiro,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -159,7 +159,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -180,7 +180,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	 */
 	public function setCategoria($categoria)
 	{
-	   	$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria,TIPO_INTEIRO,true);
+	   	$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria,TIPO_INTEIRO,true);
 		return $this;
 	}
 	
@@ -211,7 +211,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	 */
 	public function setModulo($modulo)
 	{
-	   	$this->_modulo = Basico_UtilControllerController::retornaValorTipado($modulo,TIPO_INTEIRO,true);
+	   	$this->_modulo = Basico_OPController_UtilOPController::retornaValorTipado($modulo,TIPO_INTEIRO,true);
 		return $this;
 	}
 	
@@ -242,7 +242,7 @@ class Basico_Model_CategoriaChaveEstrangeira
 	 */
 	public function setRowinfo($rowinfo)
 	{
-	    $this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo,TIPO_STRING,true);
+	    $this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 	    return $this;	
 	}
 	

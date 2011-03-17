@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 25/02/2011 15:22:44
+* em: 17/03/2011 14:02:55
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 25/02/2011 14:49:10
+* @version    1: 17/03/2011 13:36:53
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais extends Zend_Dojo_Form
 {
@@ -51,7 +51,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais e
 
         $elements[4] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionaisButtonDialogDojo1');
         $elements[4]->setOrder(4);
-        $elements[4]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_WEBSITE')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarWebsite\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarWebsite." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_WEBSITE')}\")"));
+        $elements[4]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_WEBSITE')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarWebsite\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarWebsite." . Basico_OPController_PessoaOPController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_BUTTON_ABRIR_DIALOG_NOVO_WEBSITE')}\")"));
         $elements[4]->setRequired(false);
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));
         $elements[4]->removeDecorator('DtDdWrapper');

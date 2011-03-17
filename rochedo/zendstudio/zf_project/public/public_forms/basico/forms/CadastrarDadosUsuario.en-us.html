@@ -1,7 +1,7 @@
 <div name="CadastrarDadosUsuario" id="CadastrarDadosUsuario-TabContainer" style="width: 850px; height: 430px; top: 10px; position: relative; z-index: 3;" tabPosition="top" title="" dojoType="dijit.layout.TabContainer">
 <dd id="BasicoCadastrarDadosUsuarioCsrf-element">
-<input type="hidden" name="BasicoCadastrarDadosUsuarioCsrf" value="395a2adad2bb2a60d200b339e22bffae" id="BasicoCadastrarDadosUsuarioCsrf"></dd>
-<form id="CadastrarDadosUsuarioDadosPessoais" method="post" title="PERSONAL INFORMATION" dojoType="dijit.form.Form"><dl>
+<input type="hidden" name="BasicoCadastrarDadosUsuarioCsrf" value="8901baa177a1d0da92799fdd42fdd3aa" id="BasicoCadastrarDadosUsuarioCsrf"></dd>
+<div name="CadastrarDadosUsuarioDadosPessoais" method="post" title="PERSONAL INFORMATION" id="CadastrarDadosUsuarioDadosPessoais-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
 <div id="float-left-clear-both"><label class="required">* Country or region of birth.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Help', 'Select your Country or region of birth.', 1)</script></button></label>
 <dd>
 <select name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento" required="true" dojoType="dijit.form.FilteringSelect">
@@ -42,8 +42,9 @@
 <div id="float-left">
 <button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5" type="button" label="Personal address" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais.en-us.html", "Personal address")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5</button></div></dl></fieldset></div>
 <dd id="BasicoCadastrarDadosUsuarioDadosPessoaisCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisCsrf]" value="86d58b35cca5860a5017d40a1e61a254" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisCsrf"></dd></dl></form>
-<form id="CadastrarDadosUsuarioDadosAcademicos" method="post" title="ACADEMIC INFORMATION" dojoType="dijit.form.Form"><dl>
+<input type="hidden" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisCsrf]" value="44abec86b0a950235944ff1d5f5046cd" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisCsrf"></dd></dl></div>
+
+<div name="CadastrarDadosUsuarioDadosAcademicos" method="post" title="ACADEMIC INFORMATION" id="CadastrarDadosUsuarioDadosAcademicos-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
 <label class="required">* CNPQ Scholarship degree:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosAcademicos', 'Help', 'The filling of this field consists in choosing your CNPQ schorlarship degree.', 1)</script></button></label>
 <dd>
 <select name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq" required="true" dojoType="dijit.form.FilteringSelect">
@@ -111,11 +112,13 @@
 
 <button name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo2]" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo2" type="button" label="Display Orientations" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosAcademicosOrientacoes", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosAcademicosOrientacoes.en-us.html", "Display Orientations")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo2</button></dl></fieldset>
 <dd id="BasicoCadastrarDadosUsuarioDadosAcademicosCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosCsrf]" value="26bb07197c47d767768697e05c2f6562" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosCsrf"></dd></dl></form>
-<form id="CadastrarDadosUsuarioDadosProfissionais" method="post" title="PROFESSIONAL INFORMATION" dojoType="dijit.form.Form"><dl>
+<input type="hidden" name="CadastrarDadosUsuarioDadosAcademicos[BasicoCadastrarDadosUsuarioDadosAcademicosCsrf]" value="3a9b49a5d94df3381f8a702944378d9a" id="CadastrarDadosUsuarioDadosAcademicos-BasicoCadastrarDadosUsuarioDadosAcademicosCsrf"></dd></dl></div>
 
-<button name="CadastrarDadosUsuarioDadosProfissionais[BasicoCadastrarDadosUsuarioDadosProfissionaisButtonDialogDojo1]" id="CadastrarDadosUsuarioDadosProfissionais-BasicoCadastrarDadosUsuarioDadosProfissionaisButtonDialogDojo1" type="button" label="New professional bond" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional.en-us.html", "New professional bond")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosProfissionaisButtonDialogDojo1</button></dl></form>
-<form id="CadastrarDadosUsuarioDadosBiometricos" method="post" action="/basico/dadosbiometricos/salvar" title="BIOMETRIC INFORMATION" onSubmit="loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', 'Attention', 'Please fill all required fields before continue.'))" dojoType="dijit.form.Form"><dl>
+<div name="CadastrarDadosUsuarioDadosProfissionais" method="post" title="PROFESSIONAL INFORMATION" id="CadastrarDadosUsuarioDadosProfissionais-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
+
+<button name="CadastrarDadosUsuarioDadosProfissionais[BasicoCadastrarDadosUsuarioDadosProfissionaisButtonDialogDojo1]" id="CadastrarDadosUsuarioDadosProfissionais-BasicoCadastrarDadosUsuarioDadosProfissionaisButtonDialogDojo1" type="button" label="New professional bond" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional.en-us.html", "New professional bond")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosProfissionaisButtonDialogDojo1</button></dl></div>
+
+<div name="CadastrarDadosUsuarioDadosBiometricos" method="post" action="/basico/dadosbiometricos/salvar" title="BIOMETRIC INFORMATION" onSubmit="loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', 'Attention', 'Please fill all required fields before continue.'))" id="CadastrarDadosUsuarioDadosBiometricos-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
 <div id="float-left"><label class="optional">Genre:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosBiometricos', 'Help', 'Select your genre.', 1)</script></button></label>
 <dd>
 </dd></div>
@@ -142,18 +145,21 @@
 <div id="float-left-clear-both">
 <input id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosEnviar" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosEnviar]" value="Send" type="submit" required="false" label="Send" dojoType="dijit.form.Button"></div>
 <dd id="BasicoCadastrarDadosUsuarioDadosBiometricosCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosCsrf]" value="f6bfe837d4ceed6386857f7d922d372d" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosCsrf"></dd></dl></form>
-<form id="CadastrarDadosUsuarioInformacoesBancarias" title="BANKING INFORMATION" dojoType="dijit.form.Form"><dl>
-<div name="CadastrarDadosUsuarioInformacoesBancariasDadosBancarios" method="post" title="" id="CadastrarDadosUsuarioInformacoesBancariasDadosBancarios-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
+<input type="hidden" name="CadastrarDadosUsuarioDadosBiometricos[BasicoCadastrarDadosUsuarioDadosBiometricosCsrf]" value="3359b713ef35122c5d0bcab9919bb476" id="CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosCsrf"></dd></dl></div>
+
+<div name="CadastrarDadosUsuarioInformacoesBancarias" title="BANKING INFORMATION" id="CadastrarDadosUsuarioInformacoesBancarias-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
+<div name="CadastrarDadosUsuarioInformacoesBancariasDadosBancarios" method="post" title="DATA BANK" id="CadastrarDadosUsuarioInformacoesBancariasDadosBancarios-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
 <div id="float-left">
 <button name="CadastrarDadosUsuarioInformacoesBancarias[CadastrarDadosUsuarioInformacoesBancarias][CadastrarDadosUsuarioInformacoesBancariasDadosBancarios][BasicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosButtonDialogDojo1]" id="CadastrarDadosUsuarioInformacoesBancarias-CadastrarDadosUsuarioInformacoesBancariasDadosBancarios-BasicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosButtonDialogDojo1" type="button" label="Bank Accounts" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioInformacoesBancariasContasBancarias.en-us.html", "Bank Accounts")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioInformacoesBancariasDadosBancariosButtonDialogDojo1</button></div></dl></div>
 
-<div name="CadastrarDadosUsuarioInformacoesBancariasMovimentacaoFinanceira" method="post" title="" id="CadastrarDadosUsuarioInformacoesBancariasMovimentacaoFinanceira-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
+<div name="CadastrarDadosUsuarioInformacoesBancariasMovimentacaoFinanceira" method="post" title="FINANCIAL TRANSACTIONS" id="CadastrarDadosUsuarioInformacoesBancariasMovimentacaoFinanceira-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
 </dl></div>
-</dl></form>
-<form id="CadastrarDadosUsuarioPerfil" method="post" title="PROFILE" dojoType="dijit.form.Form"><dl>
+</dl></div>
+
+<div name="CadastrarDadosUsuarioPerfil" method="post" title="PROFILE" id="CadastrarDadosUsuarioPerfil-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
 <div id="float-left-clear-both"><label class="optional">Avaiable profiles:&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioPerfil', 'Help', 'Check the profiles that you want to link in your user', 1)</script></button></label>
 <dd id="BasicoCadastrarDadosUsuarioPerfilPerfisDisponiveis-element">
 </dd></div>
 <dd id="BasicoCadastrarDadosUsuarioPerfilCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioPerfil[BasicoCadastrarDadosUsuarioPerfilCsrf]" value="099aee8b47fddbcae24d81821229cfe7" id="CadastrarDadosUsuarioPerfil-BasicoCadastrarDadosUsuarioPerfilCsrf"></dd></dl></form></div>
+<input type="hidden" name="CadastrarDadosUsuarioPerfil[BasicoCadastrarDadosUsuarioPerfilCsrf]" value="4f5c5df68c0389380bf549904ea46392" id="CadastrarDadosUsuarioPerfil-BasicoCadastrarDadosUsuarioPerfilCsrf"></dd></dl></div>
+</div>

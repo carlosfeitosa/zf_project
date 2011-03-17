@@ -114,7 +114,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setPessoaPerfil($pessoaPerfil)
     {
-        $this->_pessoaPerfil = Basico_UtilControllerController::retornaValorTipado($pessoaPerfil, TIPO_INTEIRO, true);
+        $this->_pessoaPerfil = Basico_OPController_UtilOPController::retornaValorTipado($pessoaPerfil, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -147,7 +147,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setMensagem($mensagem)
     {
-        $this->_mensagem = Basico_UtilControllerController::retornaValorTipado($mensagem, TIPO_INTEIRO, true);
+        $this->_mensagem = Basico_OPController_UtilOPController::retornaValorTipado($mensagem, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -180,7 +180,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setCategoria($categoria)
     {
-        $this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+        $this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -213,7 +213,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setId($id)
     {
-        $this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+        $this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -235,7 +235,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     */
     public function setRowinfo($rowinfo)
     {
-        $this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+        $this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
         return $this;
     }
 

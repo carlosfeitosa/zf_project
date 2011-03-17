@@ -8,20 +8,6 @@
  * @subpackage Controller
  */
 
-// include dos controladores
-require_once("EmailControllerController.php");
-require_once("LoginControllerController.php");
-require_once("PessoaControllerController.php");
-require_once("PerfilControllerController.php");
-require_once("PessoaPerfilControllerController.php");
-require_once("DadosPessoaisControllerController.php");
-require_once("CategoriaControllerController.php");
-require_once("MensageiroControllerController.php");
-require_once("MensagemControllerController.php");
-require_once("RowinfoControllerController.php");
-require_once("PessoaPerfilMensagemCategoriaControllerController.php");
-require_once("DadosBiometricosControllerController.php");
-
 class Basico_LoginController extends Zend_Controller_Action
 {
 	/**
@@ -37,7 +23,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	public function init()
     {
     	// recuperando a requisicao
-        $this->request = Basico_UtilControllerController::retornaUserRequest();
+        $this->request = Basico_OPController_UtilOPController::retornaUserRequest();
 
 		// definindo o contexto
 		$pdfParametros = array('suffix' => 'pdf', 'headers' => array('Content-Type' => 'application/pdf'));
@@ -176,7 +162,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
 	    	
 	    	// inicializando controladores
-	    	$controladorLogin = Basico_LoginControllerController::getInstance();
+	    	$controladorLogin = Basico_OPController_LoginOPController::getInstance();
 	    	
 	    	// capturando formulario e setando propriedades
 	        $form = $this->getFormCadastroUsuarioValidado();
@@ -197,7 +183,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
 	    	
 			// capturando a url do metodo que retorna se o login esta disponivel ou nao 
-	    	$urlMetodo = Basico_UtilControllerController::retornaStringEntreCaracter(Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+	    	$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
 	    	
 	    	// adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
 	    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
@@ -205,22 +191,22 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	if ($form->isValid($_POST)) {
 	
 	    		// iniciando a transacao
-           		Basico_PersistenceControllerController::bdControlaTransacao();
+           		Basico_OPController_PersistenceOPController::bdControlaTransacao();
            		
 	    	    // inicializando controladores
-	    		$controladorDadosPessoais    = Basico_DadosPessoaisControllerController::getInstance();
-	    		$controladorLogin            = Basico_LoginControllerController::getInstance();
-	    		$controladorPerfil           = Basico_PerfilControllerController::getInstance();
-	    		$controladorPessoaPerfil     = Basico_PessoaPerfilControllerController::getInstance();
-	    		$controladorDadosBiometricos = Basico_DadosBiometricosControllerController::getInstance();
-	    		$controladorEmail            = Basico_EmailControllerController::getInstance();
-	    		$controladorMensagem         = Basico_MensagemControllerController::getInstance();
-	    		$controladorMensageiro       = Basico_MensageiroControllerController::getInstance();
-	    		$controladorRowinfo          = Basico_RowInfoControllerController::getInstance();
-	    		$controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance();
+	    		$controladorDadosPessoais    = Basico_OPController_DadosPessoaisOPController::getInstance();
+	    		$controladorLogin            = Basico_OPController_LoginOPController::getInstance();
+	    		$controladorPerfil           = Basico_OPController_PerfilOPController::getInstance();
+	    		$controladorPessoaPerfil     = Basico_OPController_PessoaPerfilOPController::getInstance();
+	    		$controladorDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance();
+	    		$controladorEmail            = Basico_OPController_EmailOPController::getInstance();
+	    		$controladorMensagem         = Basico_OPController_MensagemOPController::getInstance();
+	    		$controladorMensageiro       = Basico_OPController_MensageiroOPController::getInstance();
+	    		$controladorRowinfo          = Basico_OPController_RowinfoOPController::getInstance();
+	    		$controladorPessoaPerfilMensagemCategoria = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance();
 	
 	    		// capturando obj dados pessoais da pessoa passada
-	    		$dadosPessoaisObj = Basico_DadosPessoaisControllerController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa);
+	    		$dadosPessoaisObj = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa);
 	    		
 	
 	    		// checando se o obj dadosPessoais foi capturado com sucesso
@@ -238,7 +224,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$controladorPessoaPerfil->editarPessoaPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado()->id, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id);
 	
 	    		//criando dadosBiometricos do usuario
-	    		$novoDadosBiometricos = Basico_DadosBiometricosControllerController::getInstance()->retornaNovoObjetoDadosBiometricos();
+	    		$novoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaNovoObjetoDadosBiometricos();
 	    		
 	    		// setando a pessoa dona dos dadosBiometricos
 	    		$novoDadosBiometricos->pessoa = $idPessoa;
@@ -256,7 +242,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$controladorDadosBiometricos->salvarDadosBiometricos($novoDadosBiometricos);
 	    		    
 	    		// criando o login do usuario
-	    		$novoLogin = Basico_LoginControllerController::getInstance()->retornaNovoObjetoLogin();
+	    		$novoLogin = Basico_OPController_LoginOPController::getInstance()->retornaNovoObjetoLogin();
 	    		$novoLogin->pessoa = $idPessoa;
 	    		$novoLogin->tentativasFalhas = 0;
 	    		$novoLogin->travado = false;
@@ -264,7 +250,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$novoLogin->podeExpirar = true;
 	    		$novoLogin->rowinfo = "SYSTEM_STARTUP";
 	    		$novoLogin->login  = trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'));
-	    		$novoLogin->senha  = Basico_UtilControllerController::retornaStringEncriptada(trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha')));
+	    		$novoLogin->senha  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha')));
 	    		$novoLogin->ativo  = true;
 	    		$controladorLogin->salvarLogin($novoLogin);
 	    		
@@ -273,10 +259,10 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$emailPrimario = $controladorEmail->retornaEmailPrimarioPessoa($idPessoa);
 	    		
 	    		// recuperando a ultima versao do email
-	    	    $versaoUpdateEmail = Basico_PersistenceControllerController::bdRetornaUltimaVersaoCVC($emailPrimario);
+	    	    $versaoUpdateEmail = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($emailPrimario);
 	    		
 	    		// validando o e-mail no objeto
-		    	$emailPrimario->datahoraUltimaValidacao = Basico_UtilControllerController::retornaDateTimeAtual();
+		    	$emailPrimario->datahoraUltimaValidacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 		    	$emailPrimario->validado = 1;
 		    	$emailPrimario->ativo    = 1;
 		    	
@@ -289,16 +275,16 @@ class Basico_LoginController extends Zend_Controller_Action
 	            $nomeDestinatario = $dadosPessoaisObj->nome;
 	                     
 	            $novaMensagemConfirmacao->destinatarios       = array($emailPrimario->email);
-	            $novaMensagemConfirmacao->categoria           = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailValidacaoPlainTextTemplate();
-	            $novaMensagemConfirmacao->dataHoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
+	            $novaMensagemConfirmacao->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaEmailValidacaoPlainTextTemplate();
+	            $novaMensagemConfirmacao->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 	            $controladorRowinfo->prepareXml($novaMensagemConfirmacao, true);
 	            $novaMensagemConfirmacao->rowinfo             = $controladorRowinfo->getXml();
 	            $controladorMensagem->salvarMensagem($novaMensagemConfirmacao);
 	
 	            // setando e salvando remetente na relacao pessoas perfis mensagem categoria (remetente)
-	            $idPessoaPerfilSistema = Basico_PessoaPerfilControllerController::getInstance()->retornaIdPessoaPerfilSistema();
-	            $idCategoriaRemetente = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaRemetente();
-	            $pessoaPerfilMensagemCategoriaRemetente = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
+	            $idPessoaPerfilSistema = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	            $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaRemetente();
+	            $pessoaPerfilMensagemCategoriaRemetente = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
 	            $pessoaPerfilMensagemCategoriaRemetente->mensagem        = $novaMensagemConfirmacao->id;
 	            $pessoaPerfilMensagemCategoriaRemetente->categoria       = $idCategoriaRemetente;
 	            $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil    = $idPessoaPerfilSistema;
@@ -307,8 +293,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	            $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
 	
 	            // setando e salvando destinatario na relacao pessoas perfis mensagem categoria (destinatario)
-	            $idCategoriaDestinatario = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaDestinatario();
-	            $pessoaPerfilMensagemCategoriaDestinatario = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
+	            $idCategoriaDestinatario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaDestinatario();
+	            $pessoaPerfilMensagemCategoriaDestinatario = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
 	            $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $novaMensagemConfirmacao->id;
 	            $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $idCategoriaDestinatario;
 	            $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $controladorPessoaPerfil->retornaObjetoPessoaPerfilPorIdPessoaIdPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id)->id;
@@ -320,7 +306,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	            $controladorMensageiro->enviar($novaMensagemConfirmacao);
 		    	
 		    	// salvando a transacao
-			    Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+			    Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 	
 	    		// carregando o titulo e subtitulo da view
 	    	    //$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO);
@@ -363,7 +349,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	}
     	}catch(Exception $e){
     		// cancelando a transacao
-	        Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+	        Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
     		// lançando o erro
 	        throw new Exception($e->getMessage());
     	}
@@ -381,7 +367,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	        $this->_helper->viewRenderer->setNoRender(true);
 	
 	        //checando a disponibilidade do login
-	    	$loginDisponivel = Basico_DBCheckControllerController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('stringPesquisa'));
+	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('stringPesquisa'));
 	        
 	    	if (!$loginDisponivel) {	
 				echo "<span style='color: red; font-weight: bold;'>{$this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')}</span>";
@@ -408,7 +394,7 @@ class Basico_LoginController extends Zend_Controller_Action
     	// verificando se o formulario passou por sua validacao
         if($this->validaForm($form) == true){
         	// carregando o controlador de e-mail
-	        $controladorEmail = Basico_EmailControllerController::getInstance();
+	        $controladorEmail = Basico_OPController_EmailOPController::getInstance();
 	        // verifica se o e-mail existe no banco de dados
 	        $emailParaValidacao = $controladorEmail->verificaEmailExistente($this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'));
 
@@ -421,31 +407,31 @@ class Basico_LoginController extends Zend_Controller_Action
 				}
 	            else {
 	            	// iniciando a transacao
-           			Basico_PersistenceControllerController::bdControlaTransacao();
+           			Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
 	            	try {
 		            	 // instanciando os controladores
-		            	 $controladorEmail                         = Basico_EmailControllerController::getInstance();
-	                     $controladorPessoaPerfil                  = Basico_PessoaPerfilControllerController::getInstance();
-	                     $controladorLog                           = Basico_LogControllerController::getInstance();
-	                     $controladorRowInfo                       = Basico_RowInfoControllerController::getInstance();
-	                     $controladorMensagem                      = Basico_MensagemControllerController::getInstance();
-	                     $controladorMensageiro                    = Basico_MensageiroControllerController::getInstance();
-	                     $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance();
+		            	 $controladorEmail                         = Basico_OPController_EmailOPController::getInstance();
+	                     $controladorPessoaPerfil                  = Basico_OPController_PessoaPerfilOPController::getInstance();
+	                     $controladorLog                           = Basico_OPController_LogOPController::getInstance();
+	                     $controladorRowInfo                       = Basico_OPController_RowinfoOPController::getInstance();
+	                     $controladorMensagem                      = Basico_OPController_MensagemOPController::getInstance();
+	                     $controladorMensageiro                    = Basico_OPController_MensageiroOPController::getInstance();
+	                     $controladorPessoaPerfilMensagemCategoria = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance();
 	                     $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
 
 		            	 // recuperando a categoria da mensagem
-		            	 $idCategoriaMensagem = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		            	 $idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaEmailTemplateValidacaoPlainTextReenvio();
 
 			             // carregando parametros
 			             $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
 			             $idEmail           = $controladorEmail->retornaIdEmailPorEmail($email);
-			             $idCategoriaToken  = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailValidacaoPlainText();
+			             $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaEmailValidacaoPlainText();
 			             $idPessoa          = $controladorEmail->retornaIdProprietarioEmailPorIdEmail($idEmail);
 			             $idPessoaPerfil    = $controladorPessoaPerfil->retornaObjetosPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
 			             // setando e salvando token
-			             $novoToken = Basico_TokenControllerController::getInstance()->retornaNovoObjetoToken();
+			             $novoToken = Basico_OPController_TokenOPController::getInstance()->retornaNovoObjetoToken();
 			             $novoToken->token       = $controladorToken->gerarTokenPorModelo($novoToken, 'token');
 			             $novoToken->idGenerico  = $idEmail;
 			             $novoToken->categoria   = $idCategoriaToken;
@@ -454,19 +440,19 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorToken->salvarToken($novoToken);
 
 			             // setando e salvando mensagem
-			             $link = Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
+			             $link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
 			             $novaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);       
 			             $novaMensagem->destinatarios    = array($email);
-			             $novaMensagem->dataHoraMensagem = Basico_UtilControllerController::retornaDateTimeAtual();
+			             $novaMensagem->dataHoraMensagem = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 			             $novaMensagem->categoria        = $idCategoriaMensagem;
 			             $controladorRowInfo->prepareXml($novaMensagem, true);
 			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
                          $controladorMensagem->salvarMensagem($novaMensagem);
 
 			             // setando e salvando relacionando pessoa perfil mensagem categoria (remetente)
-			             $idPessoaPerfilSistema = Basico_PessoaPerfilControllerController::getInstance()->retornaIdPessoaPerfilSistema();
-			             $idCategoriaRemetente = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaRemetente();
-			             $pessoaPerfilMensagemCategoriaRemetente = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
+			             $idPessoaPerfilSistema = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+			             $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaRemetente();
+			             $pessoaPerfilMensagemCategoriaRemetente = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaRemetente->mensagem     = $novaMensagem->id;
 			             $pessoaPerfilMensagemCategoriaRemetente->categoria    = $idCategoriaRemetente;
 			             $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil = $idPessoaPerfilSistema;
@@ -475,8 +461,8 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
 
 			             // setando e salvando relacionando pessoa perfil mensagem categoria (destinatario)
-			             $idCategoriaDestinatario = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaDestinatario();
-			             $pessoaPerfilMensagemCategoriaDestinatario = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
+			             $idCategoriaDestinatario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaDestinatario();
+			             $pessoaPerfilMensagemCategoriaDestinatario = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
 			             $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $novaMensagem->id;
 			             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $idCategoriaDestinatario;
 			             $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfil;
@@ -488,14 +474,14 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $controladorMensageiro->enviar($novaMensagem);
 			             		            
 			             // salvando a transacao
-			             Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+			             Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 						
 						// redirecionando para a view de e-mail nao validado ja existente no sistema
 		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 		                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
-	            		Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+	            		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 
 	            		throw new Exception($e->getMessage());
 	            	}
@@ -530,24 +516,24 @@ class Basico_LoginController extends Zend_Controller_Action
     public function salvarusuarionaovalidadoAction()
     {
         // instanciando controladores
-        $controladorPessoa                        = Basico_PessoaControllerController::getInstance();
-        $controladorDadosPessoais                 = Basico_DadosPessoaisControllerController::getInstance();
-        $controladorEmail                         = Basico_EmailControllerController::getInstance();
-        $controladorPerfil                        = Basico_PerfilControllerController::getInstance();
-        $controladorPessoaPerfil                  = Basico_PessoaPerfilControllerController::getInstance();
-        $controladorLog                           = Basico_LogControllerController::getInstance();
-        $controladorRowInfo                       = Basico_RowInfoControllerController::getInstance();
-        $controladorMensagem                      = Basico_MensagemControllerController::getInstance();
-        $controladorMensageiro                    = Basico_MensageiroControllerController::getInstance();
-        $controladorPessoaPerfilMensagemCategoria = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance();
+        $controladorPessoa                        = Basico_OPController_PessoaOPController::getInstance();
+        $controladorDadosPessoais                 = Basico_OPController_DadosPessoaisOPController::getInstance();
+        $controladorEmail                         = Basico_OPController_EmailOPController::getInstance();
+        $controladorPerfil                        = Basico_OPController_PerfilOPController::getInstance();
+        $controladorPessoaPerfil                  = Basico_OPController_PessoaPerfilOPController::getInstance();
+        $controladorLog                           = Basico_OPController_LogOPController::getInstance();
+        $controladorRowInfo                       = Basico_OPController_RowinfoOPController::getInstance();
+        $controladorMensagem                      = Basico_OPController_MensagemOPController::getInstance();
+        $controladorMensageiro                    = Basico_OPController_MensageiroOPController::getInstance();
+        $controladorPessoaPerfilMensagemCategoria = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance();
         $controladorToken                         = $this->getInvokeArg('bootstrap')->tokenizer;
         
         // iniciando transacao
-        Basico_PersistenceControllerController::bdControlaTransacao();
+        Basico_OPController_PersistenceOPController::bdControlaTransacao();
         
         try {
             // setando e salvando uma nova pessoa
-            $novaPessoa = Basico_PessoaControllerController::getInstance()->retornaNovoObjetoPessoa();
+            $novaPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaNovoObjetoPessoa();
             $controladorRowInfo->prepareXml($novaPessoa, true);
             $novaPessoa->rowinfo = $controladorRowInfo->getXml();
             $controladorPessoa->salvarPessoa($novaPessoa);
@@ -556,27 +542,27 @@ class Basico_LoginController extends Zend_Controller_Action
             $objPerfilUsuarioNaoValidado = $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado();
 
             // setando e salvando a relacao de pessoa com perfil
-            $novaPessoaPerfil = Basico_PessoaPerfilControllerController::getInstance()->retornaNovoObjetoPessoaPerfil();
+            $novaPessoaPerfil = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaNovoObjetoPessoaPerfil();
             $novaPessoaPerfil->pessoa = $novaPessoa->id;
             $novaPessoaPerfil->perfil = $objPerfilUsuarioNaoValidado->id;
             $novaPessoaPerfil->rowinfo = $controladorRowInfo->getXml();
             $controladorPessoaPerfil->salvarPessoaPerfil($novaPessoaPerfil); 
 
             // setando e salvando os dados pessoais
-            $novoDadosPessoais = Basico_DadosPessoaisControllerController::getInstance()->retornaNovoObjetoDadosPessoais();
+            $novoDadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaNovoObjetoDadosPessoais();
             $novoDadosPessoais->pessoa = $novaPessoa->id;
             $novoDadosPessoais->nome     = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
             $novoDadosPessoais->rowinfo  = $controladorRowInfo->getXml();
             $controladorDadosPessoais->salvarDadosPessoais($novoDadosPessoais);
 
             // recuperando o id do objeto categoria de email primario
-            $idCategoriaEmailPrimario = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailPrimario();
+            $idCategoriaEmailPrimario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaEmailPrimario();
 
             // recupera uniqueId
             $uniqueIdValido = $controladorEmail->retornaNovoUniqueIdEmail();
 
             // setando e salvando o e-mail 
-            $novoEmail = Basico_EmailControllerController::getInstance()->retornaNovoObjetoEmail();
+            $novoEmail = Basico_OPController_EmailOPController::getInstance()->retornaNovoObjetoEmail();
             $novoEmail->idGenericoProprietario = $novaPessoa->id;
             $novoEmail->uniqueId  			   = $uniqueIdValido;
             $novoEmail->categoria 			   = $idCategoriaEmailPrimario;
@@ -587,10 +573,10 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorEmail->salvarEmail($novoEmail);
 
             // recuperando objeto categoria email validacao plain text template
-            $idCategoriaToken = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailValidacaoPlainText();
+            $idCategoriaToken = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaEmailValidacaoPlainText();
 
             // setando e salvando o token
-            $novoToken = Basico_TokenControllerController::getInstance()->retornaNovoObjetoToken();
+            $novoToken = Basico_OPController_TokenOPController::getInstance()->retornaNovoObjetoToken();
             $novoToken->setToken($controladorToken->gerarTokenPorModelo($novoToken, 'token'));
             $novoToken->setIdGenerico($novoEmail->id);
             $novoToken->setCategoria($idCategoriaToken);
@@ -599,24 +585,24 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorToken->salvarToken($novoToken);
 
             // recuperando a categoria de mensagem a ser enviada e template
-            $idCategoriaTemplate = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaEmailValidacaoPlainTextTemplate();
+            $idCategoriaTemplate = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaEmailValidacaoPlainTextTemplate();
 
             // setando e salvando a mensagem
             $nomeDestinatario = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
             
-            $link = Basico_UtilControllerController::retornaServerHost() . Basico_UtilControllerController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
+            $link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
             $objNovaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
             $objNovaMensagem->destinatarios       = array($novoEmail->email);
-            $objNovaMensagem->dataHoraMensagem    = Basico_UtilControllerController::retornaDateTimeAtual();
+            $objNovaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
             $objNovaMensagem->categoria           = $idCategoriaToken;
             $controladorRowInfo->prepareXml($objNovaMensagem, true);
             $objNovaMensagem->rowinfo             = $controladorRowInfo->getXml();
             $controladorMensagem->salvarMensagem($objNovaMensagem);
 
             // setando e salvando remetente na relacao pessoas perfis mensagem categoria (remetente)
-            $idPessoaPerfilSistema = Basico_PessoaPerfilControllerController::getInstance()->retornaIdPessoaPerfilSistema();
-            $idCategoriaRemetente = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaRemetente();
-            $pessoaPerfilMensagemCategoriaRemetente = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
+            $idPessoaPerfilSistema = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+            $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaRemetente();
+            $pessoaPerfilMensagemCategoriaRemetente = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
             $pessoaPerfilMensagemCategoriaRemetente->mensagem        = $objNovaMensagem->id;
             $pessoaPerfilMensagemCategoriaRemetente->categoria       = $idCategoriaRemetente;
             $pessoaPerfilMensagemCategoriaRemetente->pessoaPerfil    = $idPessoaPerfilSistema;
@@ -625,8 +611,8 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorPessoaPerfilMensagemCategoria->salvarPessoaPerfilMensagemCategoria($pessoaPerfilMensagemCategoriaRemetente);
 
             // setando e salvando destinatario na relacao pessoas perfis mensagem categoria (destinatario)
-            $idCategoriaDestinatario = Basico_CategoriaControllerController::getInstance()->retornaIdCategoriaDestinatario();
-            $pessoaPerfilMensagemCategoriaDestinatario = Basico_PessoaPerfilMensagemCategoriaControllerController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
+            $idCategoriaDestinatario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaDestinatario();
+            $pessoaPerfilMensagemCategoriaDestinatario = Basico_OPController_PessoaPerfilMensagemCategoriaOPController::getInstance()->retornaNovoObjetoPessoaPerfilMensagemCategoria();
             $pessoaPerfilMensagemCategoriaDestinatario->mensagem     = $objNovaMensagem->id;
             $pessoaPerfilMensagemCategoriaDestinatario->categoria    = $idCategoriaDestinatario;
             $pessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $novaPessoaPerfil->id;
@@ -638,11 +624,11 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorMensageiro->enviar($objNovaMensagem);
 
             // salvando a transacao
-            Basico_PersistenceControllerController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
         } catch (Exception $e) {
         	// cancelando a transacao
-            Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
             
             throw new Exception($e->getMessage());
         }

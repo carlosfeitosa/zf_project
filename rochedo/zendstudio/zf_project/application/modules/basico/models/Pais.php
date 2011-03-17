@@ -111,7 +111,7 @@ class Basico_Model_Pais
 	*/
 	public function setConstanteTextualNome($constanteTextualNome)
 	{
-		$this->_constanteTextualNome = Basico_UtilControllerController::retornaValorTipado($constanteTextualNome, TIPO_STRING, true);
+		$this->_constanteTextualNome = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualNome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -133,7 +133,7 @@ class Basico_Model_Pais
 	*/
 	public function setSigla($sigla)
 	{
-		$this->_sigla = Basico_UtilControllerController::retornaValorTipado($sigla, TIPO_STRING, true);
+		$this->_sigla = Basico_OPController_UtilOPController::retornaValorTipado($sigla, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -155,7 +155,7 @@ class Basico_Model_Pais
 	*/
 	public function setCodigoDDI($codigoDDI)
 	{
-		$this->_codigoDDI = Basico_UtilControllerController::retornaValorTipado($codigoDDI, TIPO_STRING, true);
+		$this->_codigoDDI = Basico_OPController_UtilOPController::retornaValorTipado($codigoDDI, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -177,7 +177,7 @@ class Basico_Model_Pais
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -210,7 +210,7 @@ class Basico_Model_Pais
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

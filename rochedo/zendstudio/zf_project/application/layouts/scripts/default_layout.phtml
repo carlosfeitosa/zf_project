@@ -14,10 +14,10 @@ $this->headTitle()->setSeparator(' - ');
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
-if (Basico_UtilControllerController::ambienteDesenvolvimento())
+if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
 {
 	// recuperando o request do usuario
-	$request = Basico_UtilControllerController::retornaUserRequest();
+	$request = Basico_OPController_UtilOPController::retornaUserRequest();
     $requestTitle = '('.$request->getModuleName().': '.$request->getControllerName().'/'.$request->getActionName().')';    
     $this->headTitle($requestTitle);
 }
@@ -39,7 +39,7 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
          }
     </style>
     <?php
-        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_PessoaControllerController::retornaLinguaUsuario()))
+        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario()))
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
                      ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
                      ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);    
@@ -72,7 +72,7 @@ if (Basico_UtilControllerController::ambienteDesenvolvimento())
                                                          array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Administração" ?></a> |
-        <a onClick="loading()" href="<?php echo Basico_AutenticadorControllerController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php echo "Login" ?></a>
+        <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php echo "Login" ?></a>
     </div>
 </div>
 <div id="content">

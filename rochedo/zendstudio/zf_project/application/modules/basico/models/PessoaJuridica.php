@@ -116,7 +116,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setNivelHierarquia($nivelHierarquia)
 	{
-		$this->_nivelHierarquia = Basico_UtilControllerController::retornaValorTipado($nivelHierarquia, TIPO_INTEIRO, true);
+		$this->_nivelHierarquia = Basico_OPController_UtilOPController::retornaValorTipado($nivelHierarquia, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -138,7 +138,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -160,7 +160,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setSigla($sigla)
 	{
-		$this->_sigla = Basico_UtilControllerController::retornaValorTipado($sigla, TIPO_STRING, true);
+		$this->_sigla = Basico_OPController_UtilOPController::retornaValorTipado($sigla, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -182,7 +182,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -215,7 +215,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setPessoa($pessoa)
 	{
-		$this->_pessoa = Basico_UtilControllerController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
+		$this->_pessoa = Basico_OPController_UtilOPController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -248,7 +248,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

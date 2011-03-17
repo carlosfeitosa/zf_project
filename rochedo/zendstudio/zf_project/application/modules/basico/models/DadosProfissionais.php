@@ -154,7 +154,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setDepartamento($departamento)
 	{
-		$this->_departamento = Basico_UtilControllerController::retornaValorTipado($departamento, TIPO_INTEIRO, true);
+		$this->_departamento = Basico_OPController_UtilOPController::retornaValorTipado($departamento, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -176,7 +176,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setCargo($cargo)
 	{
-		$this->_cargo = Basico_UtilControllerController::retornaValorTipado($cargo, TIPO_STRING, true);
+		$this->_cargo = Basico_OPController_UtilOPController::retornaValorTipado($cargo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -198,7 +198,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setFuncao($funcao)
 	{
-		$this->_funcao = Basico_UtilControllerController::retornaValorTipado($funcao, TIPO_STRING, true);
+		$this->_funcao = Basico_OPController_UtilOPController::retornaValorTipado($funcao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -220,7 +220,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setAtividadesDesenvolvidas($atividadesDesenvolvidas)
 	{
-		$this->_atividadesDesenvolvidas = Basico_UtilControllerController::retornaValorTipado($atividadesDesenvolvidas, TIPO_STRING, true);
+		$this->_atividadesDesenvolvidas = Basico_OPController_UtilOPController::retornaValorTipado($atividadesDesenvolvidas, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -242,7 +242,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setDataAdmissao($dataAdmissao)
 	{
-		$this->_dataAdmissao = Basico_UtilControllerController::retornaValorTipado($dataAdmissao, TIPO_STRING, true);
+		$this->_dataAdmissao = Basico_OPController_UtilOPController::retornaValorTipado($dataAdmissao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -264,7 +264,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setDataDemissao($dataDemissao)
 	{
-		$this->_dataDemissao = Basico_UtilControllerController::retornaValorTipado($dataDemissao, TIPO_STRING, true);
+		$this->_dataDemissao = Basico_OPController_UtilOPController::retornaValorTipado($dataDemissao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -286,7 +286,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setCargaHorariaSemanal($cargaHorariaSemanal)
 	{
-		$this->_cargaHorariaSemanal = Basico_UtilControllerController::retornaValorTipado($cargaHorariaSemanal, TIPO_INTEIRO, true);
+		$this->_cargaHorariaSemanal = Basico_OPController_UtilOPController::retornaValorTipado($cargaHorariaSemanal, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -308,7 +308,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setDedicacaoExclusiva($dedicacaoExclusiva)
 	{
-		$this->_dedicacaoExclusiva = Basico_UtilControllerController::retornaValorTipado($dedicacaoExclusiva, TIPO_BOOLEAN, true);
+		$this->_dedicacaoExclusiva = Basico_OPController_UtilOPController::retornaValorTipado($dedicacaoExclusiva, TIPO_BOOLEAN, true);
 		return $this;
 	}
 
@@ -352,7 +352,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -374,7 +374,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setPessoa($pessoa)
 	{
-		$this->_pessoa = Basico_UtilControllerController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
+		$this->_pessoa = Basico_OPController_UtilOPController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -407,7 +407,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setPessoaJuridicaVinculo($pessoaJuridicaVinculo)
 	{
-		$this->_pessoaJuridicaVinculo = Basico_UtilControllerController::retornaValorTipado($pessoaJuridicaVinculo, TIPO_INTEIRO, true);
+		$this->_pessoaJuridicaVinculo = Basico_OPController_UtilOPController::retornaValorTipado($pessoaJuridicaVinculo, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -440,7 +440,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setVinculoEmpregaticio($vinculoEmpregaticio)
 	{
-		$this->_vinculoEmpregaticio = Basico_UtilControllerController::retornaValorTipado($vinculoEmpregaticio, TIPO_INTEIRO, true);
+		$this->_vinculoEmpregaticio = Basico_OPController_UtilOPController::retornaValorTipado($vinculoEmpregaticio, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -473,7 +473,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setRegimeTrabalho($regimeTrabalho)
 	{
-		$this->_regimeTrabalho = Basico_UtilControllerController::retornaValorTipado($regimeTrabalho, TIPO_INTEIRO, true);
+		$this->_regimeTrabalho = Basico_OPController_UtilOPController::retornaValorTipado($regimeTrabalho, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -506,7 +506,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

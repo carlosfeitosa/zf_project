@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 25/02/2011 15:22:34
+* em: 17/03/2011 14:02:49
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 25/02/2011 14:49:10
+* @version    1: 17/03/2011 13:36:53
 */
 class Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais extends Zend_Dojo_Form
 {
@@ -44,7 +44,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais extends Z
 
         $elements[2] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosPessoaisDocumentosPessoaisButtonDialogDojo1');
         $elements[2]->setOrder(2);
-        $elements[2]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_DOCUMENTO_TITULO')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDocumento\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDocumento." . Basico_PessoaControllerController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_DOCUMENTO_TITULO')}\")"));
+        $elements[2]->setAttribs(array('label' => "{$this->getView()->tradutor('FORM_DOCUMENTO_TITULO')}", 'onClick' => "exibirDialogUrl(\"Basico_Form_CadastrarDocumento\", \"/rochedo_project/public/public_forms/basico/forms/CadastrarDocumento." . Basico_OPController_PessoaOPController::retornaLinguaUsuario() . ".html\", \"{$this->getView()->tradutor('FORM_DOCUMENTO_TITULO')}\")"));
         $elements[2]->setRequired(false);
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
         $elements[2]->removeDecorator('DtDdWrapper');

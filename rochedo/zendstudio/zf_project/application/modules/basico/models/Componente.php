@@ -140,7 +140,7 @@ class Basico_Model_Componente
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome,TIPO_STRING,true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -162,7 +162,7 @@ class Basico_Model_Componente
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao,TIPO_STRING,true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -184,7 +184,7 @@ class Basico_Model_Componente
 	*/
 	public function setComponente($componente)
 	{
-		$this->_componente = Basico_UtilControllerController::retornaValorTipado($componente,TIPO_STRING,true);
+		$this->_componente = Basico_OPController_UtilOPController::retornaValorTipado($componente,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -206,7 +206,7 @@ class Basico_Model_Componente
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
-		$this->_validadeInicio = Basico_UtilControllerController::retornaValorTipado($validadeInicio,TIPO_STRING,true);
+		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -228,7 +228,7 @@ class Basico_Model_Componente
 	*/
 	public function setValidadeTermino($validadeTermino)
 	{
-		$this->_validadeTermino = Basico_UtilControllerController::retornaValorTipado($validadeTermino,TIPO_STRING,true);
+		$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -250,7 +250,7 @@ class Basico_Model_Componente
 	*/
 	public function setDataDesativacao($dataDesativacao)
 	{
-		$this->_dataDesativacao = Basico_UtilControllerController::retornaValorTipado($dataDesativacao,TIPO_STRING,true);
+		$this->_dataDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataDesativacao,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -272,7 +272,7 @@ class Basico_Model_Componente
 	*/
 	public function setDataAutoReativar($dataAutoReativar)
 	{
-		$this->_dataAutoReativar = Basico_UtilControllerController::retornaValorTipado($dataAutoReativar,TIPO_STRING,true);
+		$this->_dataAutoReativar = Basico_OPController_UtilOPController::retornaValorTipado($dataAutoReativar,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -294,7 +294,7 @@ class Basico_Model_Componente
 	*/
 	public function setMotivoDesativacao($motivoDesativacao)
 	{
-		$this->_motivoDesativacao = Basico_UtilControllerController::retornaValorTipado($motivoDesativacao,TIPO_STRING,true);
+		$this->_motivoDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($motivoDesativacao,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -316,7 +316,7 @@ class Basico_Model_Componente
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria,TIPO_INTEIRO,true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -349,7 +349,7 @@ class Basico_Model_Componente
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo,TIPO_STRING,true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -371,7 +371,7 @@ class Basico_Model_Componente
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id,TIPO_INTEIRO,true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 

@@ -178,7 +178,7 @@ class Basico_Model_Login
 	*/
 	public function setPessoa($pessoa)
 	{
-		$this->_pessoa = Basico_UtilControllerController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
+		$this->_pessoa = Basico_OPController_UtilOPController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -211,7 +211,7 @@ class Basico_Model_Login
 	*/
 	public function setLogin($login)
 	{
-		$this->_login = Basico_UtilControllerController::retornaValorTipado($login, TIPO_STRING, true);
+		$this->_login = Basico_OPController_UtilOPController::retornaValorTipado($login, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -233,7 +233,7 @@ class Basico_Model_Login
 	*/
 	public function setSenha($senha)
 	{
-		$this->_senha = Basico_UtilControllerController::retornaValorTipado($senha, TIPO_STRING, true);
+		$this->_senha = Basico_OPController_UtilOPController::retornaValorTipado($senha, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -255,7 +255,7 @@ class Basico_Model_Login
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = Basico_UtilControllerController::retornaValorTipado($ativo, TIPO_BOOLEAN, false);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -277,7 +277,7 @@ class Basico_Model_Login
 	*/
 	public function setTentativasFalhas($tentativasFalhas)
 	{
-		$this->_tentativasFalhas = Basico_UtilControllerController::retornaValorTipado($tentativasFalhas, TIPO_INTEIRO, false);
+		$this->_tentativasFalhas = Basico_OPController_UtilOPController::retornaValorTipado($tentativasFalhas, TIPO_INTEIRO, false);
 		return $this;
 	}
 
@@ -299,7 +299,7 @@ class Basico_Model_Login
 	*/
 	public function setTravado($travado)
 	{
-		$this->_travado = Basico_UtilControllerController::retornaValorTipado($travado, TIPO_BOOLEAN, false);
+		$this->_travado = Basico_OPController_UtilOPController::retornaValorTipado($travado, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -321,7 +321,7 @@ class Basico_Model_Login
 	*/
 	public function setResetado($resetado)
 	{
-		$this->_resetado = Basico_UtilControllerController::retornaValorTipado($resetado, TIPO_BOOLEAN, false);
+		$this->_resetado = Basico_OPController_UtilOPController::retornaValorTipado($resetado, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -343,7 +343,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimoLogon($dataHoraUltimoLogon)
 	{
-		$this->_dataHoraUltimoLogon = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimoLogon, TIPO_STRING, true);
+		$this->_dataHoraUltimoLogon = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoLogon, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -365,7 +365,7 @@ class Basico_Model_Login
 	*/
 	public function setObservacoes($observacoes)
 	{
-		$this->_observacoes = Basico_UtilControllerController::retornaValorTipado($observacoes, TIPO_STRING, true);
+		$this->_observacoes = Basico_OPController_UtilOPController::retornaValorTipado($observacoes, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -387,7 +387,7 @@ class Basico_Model_Login
 	*/
 	public function setPodeExpirar($podeExpirar)
 	{
-		$this->_podeExpirar = Basico_UtilControllerController::retornaValorTipado($podeExpirar, TIPO_BOOLEAN, false);
+		$this->_podeExpirar = Basico_OPController_UtilOPController::retornaValorTipado($podeExpirar, TIPO_BOOLEAN, false);
 		return $this;
 	}
 
@@ -409,7 +409,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraProximaExpiracao($dataHoraProximaExpiracao)
 	{
-		$this->_dataHoraProximaExpiracao = Basico_UtilControllerController::retornaValorTipado($dataHoraProximaExpiracao, TIPO_STRING, true);
+		$this->_dataHoraProximaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraProximaExpiracao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -431,7 +431,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaExpiracao($dataHoraUltimaExpiracao)
 	{
-		$this->_dataHoraUltimaExpiracao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaExpiracao, TIPO_STRING, true);
+		$this->_dataHoraUltimaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaExpiracao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -453,7 +453,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraExpiracaoSenha($dataHoraExpiracaoSenha)
 	{
-		$this->_dataHoraExpiracaoSenha = Basico_UtilControllerController::retornaValorTipado($dataHoraExpiracaoSenha, TIPO_STRING, true);
+		$this->_dataHoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraExpiracaoSenha, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -475,7 +475,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaTentativaFalha($dataHoraUltimaTentativaFalha)
 	{
-		$this->_dataHoraUltimaTentativaFalha = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaTentativaFalha, TIPO_STRING, true);
+		$this->_dataHoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTentativaFalha, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -497,7 +497,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimoReset($dataHoraUltimoReset)
 	{
-		$this->_dataHoraUltimoReset = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimoReset, TIPO_STRING, true);
+		$this->_dataHoraUltimoReset = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoReset, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -519,7 +519,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaTrocaSenha($dataHoraUltimaTrocaSenha)
 	{
-		$this->_dataHoraUltimaTrocaSenha = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaTrocaSenha, TIPO_STRING, true);
+		$this->_dataHoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTrocaSenha, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -541,7 +541,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraCadastro($dataHoraCadastro)
 	{
-		$this->_dataHoraCadastro = Basico_UtilControllerController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -563,7 +563,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
 	{
-		$this->_dataHoraUltimaAtualizacao = Basico_UtilControllerController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING, true);
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -585,7 +585,7 @@ class Basico_Model_Login
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -607,7 +607,7 @@ class Basico_Model_Login
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 

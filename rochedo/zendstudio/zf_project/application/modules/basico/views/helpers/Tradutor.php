@@ -1,7 +1,5 @@
 <?php
 
-require_once(APPLICATION_PATH . "/modules/basico/controllers/TradutorControllerController.php");
-
 class Basico_View_Helper_Tradutor extends Zend_View_Helper_Abstract
 {
     /**
@@ -16,10 +14,10 @@ class Basico_View_Helper_Tradutor extends Zend_View_Helper_Abstract
     {
     	// verificando se foi passado uma ligua para traducao
     	if (!isset($linguaDestino))
-    		$linguaDestino = Basico_PessoaControllerController::retornaLinguaUsuario();
+    		$linguaDestino = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
     	// instanciando controladores
-        $tradutorControllerController = Basico_TradutorControllerController::getInstance();
+        $tradutorControllerController = Basico_OPController_TradutorOPController::getInstance();
 
         // retornando a traducao
         return $tradutorControllerController->retornaTraducao($constanteTextual, $linguaDestino);

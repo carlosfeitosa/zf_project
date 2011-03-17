@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 10/03/2011 15:27:15
+* em: 17/03/2011 14:02:45
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 04/03/2011 11:33:32
+* @version    1: 17/03/2011 13:36:53
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -22,8 +22,7 @@
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setName('CadastrarDadosUsuarioDadosBiometricos');
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setMethod('post');
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setAction('/basico/dadosbiometricos/salvar');
-    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
-    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
+    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setOrder(4);
 
     // Criando array de elementos.
@@ -34,7 +33,7 @@
     $elements[1]->setRequired(false);
     $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-    $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1)</script></button>');
+    $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1)</script></button>');
 
     $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosBiometricosRaca');
     $elements[2]->setOrder(2);
@@ -42,7 +41,7 @@
     $elements[2]->addFilters(array('StringTrim', 'StripTags'));
     $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_RACA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_RACA_AJUDA')) . '\', 1)</script></button>');
+    $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_RACA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_RACA_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
         $elements[2]->setValue($options->raca);
 
@@ -52,7 +51,7 @@
     $elements[3]->addFilters(array('StringTrim', 'StripTags'));
     $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-    $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_ALTURA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ALTURA_AJUDA')) . '\', 1)</script></button>');
+    $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_ALTURA') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ALTURA_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
         $elements[3]->setValue($options->altura);
 
@@ -62,7 +61,7 @@
     $elements[4]->addFilters(array('StringTrim', 'StripTags'));
     $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_PESO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PESO_AJUDA')) . '\', 1)</script></button>');
+    $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_PESO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PESO_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
         $elements[4]->setValue($options->peso);
 
@@ -72,7 +71,7 @@
     $elements[5]->addFilters(array('StringTrim', 'StripTags'));
     $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-    $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINIO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINIO_AJUDA')) . '\', 1)</script></button>');
+    $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINIO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINIO_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
         $elements[5]->setValue($options->tipoSanguinio);
 
@@ -82,7 +81,7 @@
     $elements[6]->addFilters(array('StringTrim', 'StripTags'));
     $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_HISTORICO_MEDICO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_UtilControllerController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_HISTORICO_MEDICO_AJUDA')) . '\', 1)</script></button>');
+    $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_HISTORICO_MEDICO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_HISTORICO_MEDICO_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
         $elements[6]->setValue($options->historicoMedico);
 

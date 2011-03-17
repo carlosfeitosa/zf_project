@@ -5,9 +5,6 @@
  *
  */
 
-//Include de arquivos
-require_once("WebsiteControllerController.php");
-
 class Basico_WebsiteController extends Zend_Controller_Action
 {	
     /**
@@ -85,19 +82,19 @@ class Basico_WebsiteController extends Zend_Controller_Action
     	//if($this->validaForm($form) == true){
 
     		// iniciando a transacao
-    		Basico_PersistenceControllerController::bdControlaTransacao();
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
            	try{
 
            		// Instaciando o modelo da classe 
-				$novoWebsite = Basico_WebsiteControllerController::getInstance()->retornaNovoObjetoWebsite();
+				$novoWebsite = Basico_OPController_WebsiteOPController::getInstance()->retornaNovoObjetoWebsite();
 		
 				// recuperando a queisição do form
 				$request = $this->getRequest();
 		
 				//instanciando o controlador de de ação  
-				$controladorWebsite = Basico_WebsiteControllerController::getInstance();
-				$controladorRowInfo = Basico_RowInfoControllerController::getInstance();
+				$controladorWebsite = Basico_OPController_WebsiteOPController::getInstance();
+				$controladorRowInfo = Basico_OPController_RowinfoOPController::getInstance();
 				
 				// populando o modelo com a requisição do form
 				$novoWebsite->categoria=1;// $request->getParam('BasicoCadastrarWebsiteWebSiteTipo');
@@ -106,7 +103,7 @@ class Basico_WebsiteController extends Zend_Controller_Action
 				$url = $request->getParam('BasicoCadastrarWebsiteWebSitelEndereco');
 				
 				// utilizando validaUrl para validar o endereço do website
-				$urlValida = Basico_UtilControllerController::validaUrl($url);
+				$urlValida = Basico_OPController_UtilOPController::validaUrl($url);
 				
 				// carregando modelo website
 				$novoWebsite->url = $url;
@@ -120,15 +117,15 @@ class Basico_WebsiteController extends Zend_Controller_Action
 				if($urlValida){
 				   // executando metodo de salvar 
 				   $controladorWebsite->inserirWebsite($novoWebsite);
-				   Basico_UtilControllerController::print_debug('WEBSITE CADASTARDO COM SUCESSO',true,false,true);
+				   Basico_OPController_UtilOPController::print_debug('WEBSITE CADASTARDO COM SUCESSO',true,false,true);
 				}else{
-				   Basico_UtilControllerController::print_debug(MSG_ERRO_URL_INVALIDA,true,false,true);
+				   Basico_OPController_UtilOPController::print_debug(MSG_ERRO_URL_INVALIDA,true,false,true);
 				}
 				
 				
            	}catch(Exception $e) {
             	// cancelando a transacao
-            	Basico_PersistenceControllerController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+            	Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
             	throw new Exception($e->getMessage());
 	       	}
 				

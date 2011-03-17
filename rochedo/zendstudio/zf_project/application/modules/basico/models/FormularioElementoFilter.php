@@ -120,7 +120,7 @@ class Basico_Model_FormularioElementoFilter
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -142,7 +142,7 @@ class Basico_Model_FormularioElementoFilter
 	*/
 	public function setDescricao($descricao)
 	{
-		$this->_descricao = Basico_UtilControllerController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -164,7 +164,7 @@ class Basico_Model_FormularioElementoFilter
 	*/
 	public function setFilter($filter)
 	{
-		$this->_filter = Basico_UtilControllerController::retornaValorTipado($filter, TIPO_STRING, true);
+		$this->_filter = Basico_OPController_UtilOPController::retornaValorTipado($filter, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -186,7 +186,7 @@ class Basico_Model_FormularioElementoFilter
 	*/
 	public function setFormularioElemento($formularioElemento)
 	{
-		$this->_formularioElemento = Basico_UtilControllerController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
+		$this->_formularioElemento = Basico_OPController_UtilOPController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -219,7 +219,7 @@ class Basico_Model_FormularioElementoFilter
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -241,7 +241,7 @@ class Basico_Model_FormularioElementoFilter
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -263,7 +263,7 @@ class Basico_Model_FormularioElementoFilter
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_UtilControllerController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 

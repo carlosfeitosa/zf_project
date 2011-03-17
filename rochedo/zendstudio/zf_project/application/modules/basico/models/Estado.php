@@ -116,7 +116,7 @@ class Basico_Model_Estado
 	*/
 	public function setNome($nome)
 	{
-		$this->_nome = Basico_UtilControllerController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -138,7 +138,7 @@ class Basico_Model_Estado
 	*/
 	public function setSigla($sigla)
 	{
-		$this->_sigla = Basico_UtilControllerController::retornaValorTipado($sigla, TIPO_STRING, true);
+		$this->_sigla = Basico_OPController_UtilOPController::retornaValorTipado($sigla, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -160,7 +160,7 @@ class Basico_Model_Estado
 	*/
 	public function setCodigoDDD($codigoDDD)
 	{
-		$this->_codigoDDD = Basico_UtilControllerController::retornaValorTipado($codigoDDD, TIPO_STRING, true);
+		$this->_codigoDDD = Basico_OPController_UtilOPController::retornaValorTipado($codigoDDD, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -182,7 +182,7 @@ class Basico_Model_Estado
 	*/
 	public function setPais($pais)
 	{
-		$this->_pais = Basico_UtilControllerController::retornaValorTipado($pais, TIPO_INTEIRO, true);
+		$this->_pais = Basico_OPController_UtilOPController::retornaValorTipado($pais, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -215,7 +215,7 @@ class Basico_Model_Estado
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_UtilControllerController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -248,7 +248,7 @@ class Basico_Model_Estado
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_UtilControllerController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
