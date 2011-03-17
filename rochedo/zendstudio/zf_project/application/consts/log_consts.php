@@ -52,7 +52,20 @@ define("LOG_MSG_NOVO_LOGIN", "Novo login inserido no banco de dados.");
 define("LOG_MSG_UPDATE_LOGIN", "Atualizacao de login no banco de dados.");
 define("LOG_MSG_NOVA_RACA", "Nova raça inserida no banco de dados.");
 define("LOG_MSG_UPDATE_RACA", "Atualizacao de raça no banco de dados.");
+define("LOG_MSG_NOVA_ACAO_APLICACAO", "Nova acao aplicacao inserida no banco de dados");
+define("LOG_MSG_UPDATE_ACAO_APLICACAO", "Atualizacao de acao aplicacao no banco de dados");
+define("LOG_MSG_DELETE_ACAO_APLICACAO", "Exclusao de acao aplicacao do banco de dados");
+define("LOG_MSG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO", "Nova associacao entre acao aplicacao e metodo validacao inserida no banco de dados");
+define("LOG_MSG_UPDATE_ACOES_APLICACAO_METODOS_VALIDACAO", "Atualizacao de associacao entre acao aplicacao e metodo validacao no banco de dados");
+define("LOG_MSG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO", "Exclusao de associacao entre acao aplicacao e metodo validacao no banco de dados");
+define("LOG_MSG_NOVA_ACOES_APLICACAO_PERFIS", "Nova associacao entre acao aplicacao e perfil inserida no banco de dados");
+define("LOG_MSG_UPDATE_ACOES_APLICACAO_PERFIS", "Atualizacao de associacao entre acao aplicacao e perfil no banco de dados");
+define("LOG_MSG_DELETE_ACOES_APLICACAO_PERFIS", "Exclusao de associacao entre acao aplicacao e perfil no banco de dados");
+define("LOG_MSG_NOVO_METODO_VALIDACAO", "Novo metodo validacao inserida no banco de dados");
+define("LOG_MSG_UPDATE_METODO_VALIDACAO", "Atualizacao de metodo validacao no banco de dados");
+define("LOG_MSG_DELETE_METODO_VALIDACAO", "Exclusao de metodo validacao no banco de dados");
 define("DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR", "Chamada a ação de controlador.");
+
 
 /*
  * FORMULÁRIO

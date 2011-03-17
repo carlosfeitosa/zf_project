@@ -89,7 +89,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			// montando array de parametros
 			$arrayParametrosUrl = array();
 			$arrayParametrosUrl['login'] = $login;
-			$arrayParametrosUrl['urlRedirect'] = Basico_OPController_UtilOPController::codificaBarrasUrl(Basico_Controller_AutenticadorController::retornaUrlRedirectUserRequest($this->getRequest()));
+			$arrayParametrosUrl['urlRedirect'] = Basico_OPController_UtilOPController::codificaBarrasUrl(Basico_OPController_AutenticadorOPController::retornaUrlRedirectUserRequest($this->getRequest()));
 
 			// redirecionando para a pagina de login
 			$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->_helper->url('credenciaisinvalidas', 'autenticador', 'basico', $arrayParametrosUrl)));

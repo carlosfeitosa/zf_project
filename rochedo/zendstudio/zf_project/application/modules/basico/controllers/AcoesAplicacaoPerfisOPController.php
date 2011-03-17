@@ -1,8 +1,8 @@
 <?php
 /**
- * Controlador Acao Aplicacao
+ * Controlador Acoes Aplicacao x Perfis
  * 
- * Controlador responsavel pelas acoes da aplicacao
+ * Controlador responsavel pelas associacoes entre acoes da aplicacao e perfil
  * 
  * @package Basico
  * 
@@ -11,15 +11,15 @@
  * @since 17/03/2011
  */
 
-class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_AcaosAplicacaoPerfisOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
-	 * @var Basico_OPController_AcaoAplicacaoOPController
+	 * @var Basico_OPController_AcaosAplicacaoPerfisOPController
 	 */
 	private static $_singleton;
 
 	/**
-	 * @var Basico_Model_AcaoAplicacao object
+	 * @var Basico_Model_AcaosAplicacaoPerfis object
 	 */
 	private $_model;
 
@@ -33,12 +33,12 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
-		// inicializando o controlador Basico_OPController_AcaoAplicacaoOPController
+		// inicializando o controlador Basico_OPController_AcaosAplicacaoPerfisOPController
 		$this->init();
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_AcaoAplicacaoOPController
+	 * Inicializa o controlador Basico_OPController_AcaosAplicacaoPerfisOPController
 	 * 
 	 * @return void
 	 */
@@ -48,16 +48,16 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	}
 
 	/**
-	 * Recupera a instancia do controlador Basico_OPController_AcaoAplicacaoOPController
+	 * Recupera a instancia do controlador Basico_OPController_AcaosAplicacaoPerfisOPController
 	 * 
-	 * @return Basico_OPController_AcaoAplicacaoOPController
+	 * @return Basico_OPController_AcaosAplicacaoPerfisOPController
 	 */
 	public static function getInstance()
 	{
 		// verificando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_AcaoAplicacaoOPController();
+			self::$_singleton = new Basico_OPController_AcaosAplicacaoPerfisOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -69,7 +69,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_AcaoAplicacao $objeto
+	 * @param Basico_Model_AcoesAplicacaoPerfis $objeto
 	 * @param Integer $versaoUpdate
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -78,7 +78,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcaoAplicacao', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcoesAplicacaoPerfis', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -88,12 +88,12 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateAcaoAplicacao();
-	    		$mensagemLog    = LOG_MSG_UPDATE_ACAO_APLICACAO;
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateAcoesAplicacaoPerfis();
+	    		$mensagemLog    = LOG_MSG_UPDATE_ACOES_APLICACAO_PERFIS;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaAcaoAplicacao();
-	    		$mensagemLog    = LOG_MSG_NOVA_ACAO_APLICACAO;
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaAcoesAplicacaoPerfis();
+	    		$mensagemLog    = LOG_MSG_NOVA_ACOES_APLICACAO_PERFIS;
 	    	}
 
 			// salvando o objeto através do controlador Save
@@ -114,7 +114,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
 	 * 
-	 * @param Basico_Model_AcaoAplicacao $objeto
+	 * @param Basico_Model_AcoesAplicacaoPerfis $objeto
 	 * @param Boolean $forceCascade
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -123,7 +123,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcaoAplicacao', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcoesAplicacaoPerfis', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -131,8 +131,8 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteAcaoAplicacao();
-	    	$mensagemLog    = LOG_MSG_DELETE_ACAO_APLICACAO;
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteAcoesAplicacaoPerfis();
+	    	$mensagemLog    = LOG_MSG_DELETE_ACOES_APLICACAO_PERFIS;
 
 	    	// apagando o objeto do bando de dados
 	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);

@@ -67,6 +67,18 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL", "Categoria de log novo e-mail não e
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_EMAIL", "Categoria de log atualizacao de e-mail não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_CATEGORIA", "Categoria de log nova categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA", "Categoria de log de atualizacao de categoria não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVA_ACAO_APLICACAO", "Categoria de log nova acao aplicacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_ACAO_APLICACAO", "Categoria de log de atualizacao de acao aplicacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_ACAO_APLICACAO", "Categoria de log delete acao aplicacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO", "Categoria de log nova associacao entre acao aplicacao e metodo validacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_ACOES_APLICACAO_METODOS_VALIDACAO", "Categoria de log de atualizacao de associacao entre acao aplicacao e metodo validacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO", "Categoria de log delete de associacao entre acao aplicacao e metodo validacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVA_ACOES_APLICACAO_PERFIS", "Categoria de log nova associacao entre acao aplicacao e perfil não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_ACOES_APLICACAO_PERFIS", "Categoria de log de atualizacao de associacao entre acao aplicacao e perfil não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_ACOES_APLICACAO_PERFIS", "Categoria de log delete de associacao entre acao aplicacao e perfil não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVO_METODO_VALIDACAO", "Categoria de log novo metodo de validacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_METODO_VALIDACAO", "Categoria de log de atualizacao de metodo de validacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_METODO_VALIDACAO", "Categoria de log delete de metodo de validacao não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_MENSAGEM", "Categoria de log nova mensagem não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_MENSAGEM", "Categoria de log atualizacao de mensagem não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG", "Categoria de log não encontrada no banco de dados");

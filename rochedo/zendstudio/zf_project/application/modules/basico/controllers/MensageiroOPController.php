@@ -140,13 +140,15 @@ class Basico_OPController_MensageiroOPController
 	 * @param String $username
 	 * @param String $senha
 	 * @param String $smtpServer
+	 * @param Integer $smtpPort
 	 * 
 	 * @return Zend_Mail_Transport_Smtp $tr
 	 */
-	public function retornaTransportSmtp($tipoAutenticacao = SMTP_SERVER_AUTH_METHOD, $username = SMTP_USERNAME, $senha = SMTP_PASSWORD, $smtpServer = SMTP_SERVER_HOST) 
+	public function retornaTransportSmtp($tipoAutenticacao = SMTP_SERVER_AUTH_METHOD, $username = SMTP_USERNAME, $senha = SMTP_PASSWORD, $smtpServer = SMTP_SERVER_HOST, $smtpPort = SMTP_SERVER_PORT) 
 	{
 		// setando configuracoes do SMTP
 		$config = array('auth'     => $tipoAutenticacao,
+						'port'     => $smtpPort,
                         'username' => $username,
                         'password' => $senha);
 

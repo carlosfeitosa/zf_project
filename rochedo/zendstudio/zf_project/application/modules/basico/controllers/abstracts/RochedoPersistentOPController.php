@@ -125,11 +125,12 @@ abstract class Basico_Abstract_RochedoPersistentOPController
 	 * Deve retornar um boolean indicando o sucesso na operacao.
 	 * 
 	 * @param Object $objeto
+	 * @param Boolean $forceCascade
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return Boolean
 	 */
-	abstract public function apagarObjeto($objeto, $idPessoaPerfilCriador = null);
+	abstract public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfil = null);
 
 	/**
 	 * Prepara e seta o XML Rowinfo para o objeto
