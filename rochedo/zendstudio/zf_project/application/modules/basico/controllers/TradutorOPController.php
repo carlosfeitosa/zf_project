@@ -80,10 +80,10 @@ class Basico_OPController_TradutorOPController
 	public function retornaTraducao($constanteTextual, $linguaDestino = DEFAULT_SYSTEM_LANGUAGE)
 	{
 		// instanciando controlador de categorias
-        $categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+        $categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
         // recuperando o id da categoria da lingua
-        $idCategoriaLinguagem = $categoriaControllerController->retornaIdCategoriaLinguagem($linguaDestino);
+        $idCategoriaLinguagem = $categoriaOPController->retornaIdCategoriaLinguagem($linguaDestino);
 
         // recuperando traducao
         $objTradutor = $this->_tradutor->fetchList("id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
@@ -94,7 +94,7 @@ class Basico_OPController_TradutorOPController
             return $objTradutor[0]->traducao;
         else if ($linguaDestino !== DEFAULT_SYSTEM_LANGUAGE){
         	// recuperando objeto categoria de lingua padrao do sistema
-            $objCategoriaLinguagem = $categoriaControllerController->retornaObjetoCategoriaLinguagem(DEFAULT_SYSTEM_LANGUAGE);
+            $objCategoriaLinguagem = $categoriaOPController->retornaObjetoCategoriaLinguagem(DEFAULT_SYSTEM_LANGUAGE);
 
             // recuperando o id da categoria de lingua padrao do sistema
             $idCategoriaLinguagem = $objCategoriaLinguagem->id;
@@ -121,9 +121,9 @@ class Basico_OPController_TradutorOPController
 	public function retornaCategoriasLinguasAtivas()
 	{
 		// instanciando controladores
-		$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+		$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
-		// retornando resultado da chamada ao metodo "retornaCategoriasLinguasAtivas" do controlador "CategoriaControllerController"
-		return $categoriaControllerController->retornaCategoriasLinguasAtivas();
+		// retornando resultado da chamada ao metodo "retornaCategoriasLinguasAtivas" do controlador "CategoriaOPController"
+		return $categoriaOPController->retornaCategoriasLinguasAtivas();
 	}
 }

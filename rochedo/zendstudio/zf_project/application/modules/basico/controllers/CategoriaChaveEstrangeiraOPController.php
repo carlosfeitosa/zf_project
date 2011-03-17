@@ -126,13 +126,13 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController
     public function retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship = false)
     {
     	// instanciando controladores
-    	$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
     	
     	// recuperando o nome da tabela vinculada ao objeto
     	$tableName = Basico_OPController_DBUtilOPController::retornaTableNameObjeto($objeto);
 
 		// recuperando o id da categoria CVC
-		$idCategoriaCVC = $categoriaControllerController->retornaIdCategoriaCVC();
+		$idCategoriaCVC = $categoriaOPController->retornaIdCategoriaCVC();
 	
 		// recuperando a categoria chave estrangeira relacionada ao objeto
 		$arrayCategoriasChaveEstrangeira = $this->_categoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
@@ -143,14 +143,14 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController
 			return $arrayCategoriasChaveEstrangeira[0];
 		} else if ($forceCreateRelationship) {
 			// instanciando controladores
-			$rowinfoControllerController = Basico_OPController_RowinfoOPController::getInstance();
-			$moduloControllerController  = Basico_OPController_ModuloOPController::getInstance();
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
+			$moduloOPController  = Basico_OPController_ModuloOPController::getInstance();
 
 			// recuperando modelo vazio de categoria chave estrangeira
 			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoCategoriaChaveEstrangeira();
 			
 			// recuperando objeto modulo do objeto
-			$objModulo = $moduloControllerController->retornaObjetoModuloPorNome(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
+			$objModulo = $moduloOPController->retornaObjetoModuloPorNome(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
 
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->categoria = $idCategoriaCVC;
@@ -159,8 +159,8 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
 			
 			// preparando XML rowinfo
-			$rowinfoControllerController->prepareXml($modelCategoriaChaveEstrangeira, true);
-			$modelCategoriaChaveEstrangeira->rowinfo = $rowinfoControllerController->getXml();
+			$rowinfoOPController->prepareXml($modelCategoriaChaveEstrangeira, true);
+			$modelCategoriaChaveEstrangeira->rowinfo = $rowinfoOPController->getXml();
 			
 			// iniciando transacao
 			Basico_OPController_PersistenceOPController::bdControlaTransacao();

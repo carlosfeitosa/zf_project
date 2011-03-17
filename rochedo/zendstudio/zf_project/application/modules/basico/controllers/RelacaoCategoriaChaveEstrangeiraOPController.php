@@ -82,12 +82,12 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 	{
     	try {
     		// instanciando controladores
-    		$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-    		$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+    		$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+    		$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objRelacaoCategoriaChaveEstrangeira->id != NULL) {
@@ -95,7 +95,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 				throw new Exception(MSG_ERRO_UPDATE_NAO_PERMITIDO);
 			} else {
 				// recuperando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira();
 				$mensagemLog    = LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA;
 			}
 
@@ -152,8 +152,8 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 		// checando se a relacao existe
 		if (!self::checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo)) {
 			// instanciando controladores
-			$rowinfoControllerController = Basico_OPController_RowinfoOPController::getInstance();
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
 			$this->_relacaoCategoriaChaveEstrangeira = $this->retornaNovoObjetoRelacaoCategoriaChaveEstrangeira();
@@ -161,11 +161,11 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 			// setando os valores
 			$this->_relacaoCategoriaChaveEstrangeira->tabelaOrigem = $nomeTabela;
 			$this->_relacaoCategoriaChaveEstrangeira->campoOrigem  = $nomeCampo;
-			$rowinfoControllerController->prepareXml($this->_relacaoCategoriaChaveEstrangeira, true);
-			$this->_relacaoCategoriaChaveEstrangeira->rowinfo = $rowinfoControllerController->getXml();
+			$rowinfoOPController->prepareXml($this->_relacaoCategoriaChaveEstrangeira, true);
+			$this->_relacaoCategoriaChaveEstrangeira->rowinfo = $rowinfoOPController->getXml();
 
 			// salvando o objeto
-			$this->salvarRelacaoCategoriaChaveEstrangeira($this->_relacaoCategoriaChaveEstrangeira, null, $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema());
+			$this->salvarRelacaoCategoriaChaveEstrangeira($this->_relacaoCategoriaChaveEstrangeira, null, $pessoaPerfilOPController->retornaIdPessoaPerfilSistema());
 		}
 		return true;
 	}

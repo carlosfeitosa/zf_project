@@ -95,7 +95,7 @@ class Basico_OPController_FormularioFormularioElementoOPController
 	public function retornaArrayOrdemPorIdFormulario($idFormulario)
 	{
 		// instanciando controladores
-		$formularioControllerController = Basico_OPController_FormularioOPController::getInstance();
+		$formularioOPController = Basico_OPController_FormularioOPController::getInstance();
 
 		// inicializando variaveis
 		$arrayReturn = array();
@@ -110,7 +110,7 @@ class Basico_OPController_FormularioFormularioElementoOPController
 			}
 
 			// verificando se o formulario eh persistente
-			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and ($formularioControllerController->existePersistenciaPorIdFormulario($idFormulario)))
+			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and ($formularioOPController->existePersistenciaPorIdFormulario($idFormulario)))
 				$arrayReturn[] = $objFormularioFormularioElemento->ordem + 1;
 		}
 
@@ -148,21 +148,21 @@ class Basico_OPController_FormularioFormularioElementoOPController
 	{
 		try {
 			// instanciando controladores
-			$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objFormularioFormularioElemento->id != NULL) {
 				// recuperando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateFormularioFormularioElemento();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateFormularioFormularioElemento();
 				$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO;
 			} else {
 				// recuperando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoFormularioFormularioElemento();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoFormularioFormularioElemento();
 				$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO;
 			}
 

@@ -23,7 +23,7 @@ class Basico_OPController_CategoriaOPController
 	/**
 	 * Construtor do Controlador Categoria
 	 * 
-	 * @return Basico_Model_Categoria $categoria
+	 * @return void
 	 */
 	private function __construct()
 	{
@@ -2229,7 +2229,7 @@ class Basico_OPController_CategoriaOPController
 		// verificando se foi passado o parametro que forca a criacao de uma nova categoria, caso ela nao exista
 		else if ($forceCreation) {
 			// instanciando controladores
-			$rowinfoControllerController = Basico_OPController_RowinfoOPController::getInstance();
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
 
 			// recuperando um modelo vazio
 			$objCategoria = $this->retornaNovoObjetoCategoria();
@@ -2242,8 +2242,8 @@ class Basico_OPController_CategoriaOPController
 			$objCategoria->nome          = $nomeCategoriaLogAcaoControlador;
 			$objCategoria->descricao     = DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR;
 			// preparando o XML do rowinfo
-			$rowinfoControllerController->prepareXml($objCategoria, true);
-			$objCategoria->rowinfo       = $rowinfoControllerController->getXml();
+			$rowinfoOPController->prepareXml($objCategoria, true);
+			$objCategoria->rowinfo       = $rowinfoOPController->getXml();
 
 			// salvando o objeto categoria
 			$this->salvarCategoria($objCategoria);
@@ -2266,11 +2266,11 @@ class Basico_OPController_CategoriaOPController
 	{
     	try {
     		// instanciando controladores
-    		$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+    		$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objCategoria->id != NULL) {

@@ -75,21 +75,21 @@ class Basico_OPController_LoginOPController {
 	{
 		try {
 			// instanciando controladores
-			$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+    			$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao de registro
 			if ($objLogin->id != NULL) {
 				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateLogin();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateLogin();
 				$mensagemLog    = LOG_MSG_UPDATE_LOGIN;
 			} else {
 				// carregando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoLogin();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoLogin();
 				$mensagemLog    = LOG_MSG_NOVO_LOGIN;
 			}
 
@@ -210,26 +210,26 @@ class Basico_OPController_LoginOPController {
 		$tempReturn = '';
 
 		// instanciando controladores
-		$tradutorControllerController = Basico_OPController_TradutorOPController::getInstance();
+		$tradutorOPController = Basico_OPController_TradutorOPController::getInstance();
 
 		// recuperando os problemas de logon
 		$arrayProblemasLogon = $this->retornaArrayLoginPodeLogar($login);
 
 		// verificando se existe problema de login nao ativo
 		if (!$arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . "</li>";
 
 		// verificando se existe problema de login travado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . "</li>";
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorControllerController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		return $tempReturn;
 	}
@@ -317,7 +317,7 @@ class Basico_OPController_LoginOPController {
 		// verificando se o objeto foi carregado
 		if ($objLogin->id) {
 			// instanciando controladores
-			$rowinfoControllerController = Basico_OPController_RowinfoOPController::getInstance();
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
 
 			// recuperando a ultima versao do objeto
 			$versaoUpdate = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
@@ -331,8 +331,8 @@ class Basico_OPController_LoginOPController {
 				$objLogin->travado = true;
 
 			// preparando XML rowinfo
-			$rowinfoControllerController->prepareXml($objLogin, true);
-			$objLogin->rowinfo  = $rowinfoControllerController->getXml();
+			$rowinfoOPController->prepareXml($objLogin, true);
+			$objLogin->rowinfo  = $rowinfoOPController->getXml();
 
 			// salvando o objeto
 			$this->salvarLogin($objLogin, $versaoUpdate);
@@ -393,16 +393,16 @@ class Basico_OPController_LoginOPController {
 	public function retornaJsonMensagensPasswordStrengthChecker()
 	{
 		// inicializando controladores
-		$tradutorControllerController = Basico_OPController_TradutorOPController::getInstance();
+		$tradutorOPController = Basico_OPController_TradutorOPController::getInstance();
 		
 		// carregando array com as mensagens utilizadas
-		$arrayMensagens = array('muito_fraca' => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
-		                        'fraca'       => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
-		                        'boa'         => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
-		                        'forte'       => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
-		                        'muito_forte' => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
-		                        'digite_senha'=> $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
-		                        'abaixo'      => $tradutorControllerController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
+		$arrayMensagens = array('muito_fraca' => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
+		                        'fraca'       => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
+		                        'boa'         => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
+		                        'forte'       => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
+		                        'muito_forte' => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
+		                        'digite_senha'=> $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
+		                        'abaixo'      => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
 	                           );
 	                           
 	    // codificando o array e retornando-o.
@@ -483,10 +483,10 @@ class Basico_OPController_LoginOPController {
     public function retornaLoginUsuarioMasterDB() 
     {
     	// instanciando controladores
-    	$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+    	$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
     	
     	//recuperando o objeto pessoaPerfil do sistema
-    	$objetoPessoaPerfilSistema = $pessoaPerfilControllerController->retornaObjetoPessoaPerfilSistema();
+    	$objetoPessoaPerfilSistema = $pessoaPerfilOPController->retornaObjetoPessoaPerfilSistema();
     	  	
     	//recuperando resource do banco de dados
     	$auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();

@@ -179,13 +179,13 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function retornaArrayNomeFormularios()
     {
     	// inicializando controladores
-    	$formularioControllerController = Basico_OPController_FormularioOPController::getInstance();
+    	$formularioOPController = Basico_OPController_FormularioOPController::getInstance();
 
     	// inicializando variaveis
     	$arrayNomeFormularios = array();
 
         // recuperando array de objetos contendo todos os formularios
-        $objsFormulario = $formularioControllerController->retornaTodosObjsFormularios();
+        $objsFormulario = $formularioOPController->retornaTodosObjsFormularios();
 
         // adicionando elemento vazio, para forcar selecao
         $arrayNomeFormularios[null] = '';

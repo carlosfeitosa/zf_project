@@ -80,22 +80,22 @@ class Basico_OPController_DadosPessoaisOPController
 	{
 		try {
 			// instanciando controladores
-			$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
 	    		// setando o id do perfil criador para o sistema
-    			$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+    			$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
     		if ($objDadosPessoais->id != NULL) {
     			// carregando informacoes de log de atualizacao de registro
-    			$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateDadosPessoais();
+    			$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateDadosPessoais();
     			$mensagemLog    =  LOG_MSG_UPDATE_DADOS_PESSOAIS;
     		} else {
     			// carregando informacoes de log de novo registro
-                $idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoDadosPessoais();
+                $idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoDadosPessoais();
                 $mensagemLog    = LOG_MSG_NOVO_DADOS_PESSOAIS;
     		}
 

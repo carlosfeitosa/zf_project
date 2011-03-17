@@ -951,49 +951,49 @@ class Basico_OPController_UtilOPController
     }
 
     /**
-     * Retorna o nome do modelo relacionado a um ControllerController
+     * Retorna o nome do modelo relacionado a um OPController
      * 
-     * @param Object $objetoControllerController
+     * @param Object $objetoOPController
      * 
      * @return String
      */
-    public static function retornaNomeModeloControllerControllerPorObjetoControllerController($objetoControllerController)
+    public static function retornaNomeModeloOPControllerPorObjetoOPController($objetoOPController)
     {
     	// verificando se o parametro eh um objeto
-    	self::verificaVariavelRepresentaObjeto($objetoControllerController, true);
+    	self::verificaVariavelRepresentaObjeto($objetoOPController, true);
 
     	// recuperando o nome da classe
-    	$nomeClasse = get_class($objetoControllerController);
+    	$nomeClasse = get_class($objetoOPController);
 
     	// recuperando o nome do modulo
-    	$nomeModuloClasse = self::retornaNomeModuloPorObjeto($objetoControllerController);
+    	$nomeModuloClasse = self::retornaNomeModuloPorObjeto($objetoOPController);
 
     	// montando o nome do modelo
-    	$nomeModeloObjetoControllerController = str_replace($nomeModuloClasse . '_', $nomeModuloClasse . '_Model_', $nomeClasse);
-    	$nomeModeloObjetoControllerController = str_replace('ControllerController', '', $nomeModeloObjetoControllerController);
+    	$nomeModeloObjetoOPController = str_replace($nomeModuloClasse . '_OPController_', $nomeModuloClasse . '_Model_', $nomeClasse);
+    	$nomeModeloObjetoOPController = str_replace('OPController', '', $nomeModeloObjetoOPController);
 
-    	// retornando o nome do modelo relacionado a um ControllerController
-    	return $nomeModeloObjetoControllerController;
+    	// retornando o nome do modelo relacionado a um OPController
+    	return $nomeModeloObjetoOPController;
     }
 
     /**
-     * Retorna o nome do modelo relacionado a um ControllerController
+     * Retorna o nome do modelo relacionado a um OPController
      * 
-     * @param String $nomeControllerController
+     * @param String $nomeOPController
      * 
      * @return String
      */
-    public static function retornaNomeModeloControllerControllerPorNomeControllerController($nomeControllerController)
+    public static function retornaNomeModeloOPControllerPorNomeOPController($nomeOPController)
     {
     	// recuperando o nome do modulo
-    	$nomeModuloClasse = self::retornaNomeModuloPorNomeObjeto($nomeControllerController);
+    	$nomeModuloClasse = self::retornaNomeModuloPorNomeObjeto($nomeOPController);
 
     	// montando o nome do modelo
-    	$nomeModeloObjetoControllerController = str_replace($nomeModuloClasse . '_', $nomeModuloClasse . '_Model_', $nomeControllerController);
-    	$nomeModeloObjetoControllerController = str_replace('ControllerController', '', $nomeModeloObjetoControllerController);
+    	$nomeModeloObjetoOPController = str_replace($nomeModuloClasse . '_OPController_', $nomeModuloClasse . '_Model_', $nomeOPController);
+    	$nomeModeloObjetoOPController = str_replace('OPController', '', $nomeModeloObjetoOPController);
 
-    	// retornando o nome do modelo relacionado a um ControllerController
-    	return $nomeModeloObjetoControllerController;
+    	// retornando o nome do modelo relacionado a um OPController
+    	return $nomeModeloObjetoOPController;
     }
 
     /**

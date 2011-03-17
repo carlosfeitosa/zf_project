@@ -231,21 +231,21 @@ class Basico_OPController_EmailOPController
 
     	try {
     		// instanciando controladores
-    		$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-    		$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+    		$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+    		$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objEmail->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateEmail();
+	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateEmail();
 	    		$mensagemLog    = LOG_MSG_UPDATE_EMAIL;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoEmail();
+	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoEmail();
 	    		$mensagemLog    = LOG_MSG_NOVO_EMAIL;    		
 	    	}
 
@@ -269,10 +269,10 @@ class Basico_OPController_EmailOPController
 	public function retornaEmailSistema()
     {
     	// instanciando controladores
-    	$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
 		// buscando o e-mail do sistema
-		$idCategoriaEmailSistema = $categoriaControllerController->retornaIdCategoriaEmailSistema();
+		$idCategoriaEmailSistema = $categoriaOPController->retornaIdCategoriaEmailSistema();
 		$objEmailSistema = $this->_email->fetchList("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
@@ -295,10 +295,10 @@ class Basico_OPController_EmailOPController
 	{
 		if ((Int) $idPessoa > 0) {
 			// instanciando controladores
-			$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
 			// recuperando o id da categoria EMAIL_PRIMARIO
-			$idCategoriaEmailPrimario = $categoriaControllerController->retornaIdCategoriaEmailPrimario();
+			$idCategoriaEmailPrimario = $categoriaOPController->retornaIdCategoriaEmailPrimario();
 
 			// recuperando o email primario da pessoa passada
 			$objEmailPrimario = $this->_email->fetchList("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");

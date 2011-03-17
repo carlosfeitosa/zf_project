@@ -1,6 +1,6 @@
 <?php
 /**
- * Controlador DadosPessoasPerfisControllerController
+ * Controlador Basico_OPController_DadosPessoasPerfisOPController
  * 
  * @uses Basico_Model_DadosPessoasPerfis
  */

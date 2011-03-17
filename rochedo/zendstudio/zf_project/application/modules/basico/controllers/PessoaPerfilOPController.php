@@ -81,7 +81,7 @@ class Basico_OPController_PessoaPerfilOPController
 	{
 	    try {
 	    	// instanciando controladores
-	    	$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+	    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
@@ -90,11 +90,11 @@ class Basico_OPController_PessoaPerfilOPController
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objPessoaPerfil->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdatePessoaPerfil();
+	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdatePessoaPerfil();
 	    		$mensagemLog    = LOG_MSG_UPDATE_PESSOA_PERFIL;
 	    	} else {
 	    		// carregando informacoes de log de novo de registro
-	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovaPessoaPerfil();
+	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovaPessoaPerfil();
 	    		$mensagemLog    = LOG_MSG_NOVA_PESSOA_PERFIL;
 	    	}
 
@@ -117,15 +117,15 @@ class Basico_OPController_PessoaPerfilOPController
 	public function retornaObjetoPessoaPerfilSistema()
 	{
 		// instanciando modelos
-		$perfilControllerController = Basico_OPController_PerfilOPController::getInstance();
-		$pessoaControllerController = Basico_OPController_PessoaOPController::getInstance();
+		$perfilOPController = Basico_OPController_PerfilOPController::getInstance();
+		$pessoaOPController = Basico_OPController_PessoaOPController::getInstance();
 		
 	    // recuperando o perfil do sistema
 	    $applicationSystemPerfil = APPLICATION_SYSTEM_PERFIL;
 	   
 		// recuperando informacoes do sistema
-        $objPerfilSistema = $perfilControllerController->retornaObjetoPerfilPorNome($applicationSystemPerfil);
-        $idPessoaSistema  = $pessoaControllerController->retornaIdPessoaSistema();
+        $objPerfilSistema = $perfilOPController->retornaObjetoPerfilPorNome($applicationSystemPerfil);
+        $idPessoaSistema  = $pessoaOPController->retornaIdPessoaSistema();
         
         // verificando se o objeto perfil do sistema foi recuperao/existe
         if (count($objPerfilSistema) === 0)
@@ -194,10 +194,10 @@ class Basico_OPController_PessoaPerfilOPController
 			return null;
 
 		// instanciando controladores
-		$perfilControllerController = Basico_OPController_PerfilOPController::getInstance();
+		$perfilOPController = Basico_OPController_PerfilOPController::getInstance();
 
 		// recuperando o perfil de usuario nao validado
-		$perfilUsuarioNaoValidado = $perfilControllerController->retornaObjetoPerfilUsuarioNaoValidado();
+		$perfilUsuarioNaoValidado = $perfilOPController->retornaObjetoPerfilUsuarioNaoValidado();
 
 		// recuperando o objeto pessoa perfil de usuario nao validado
     	$objPessoaPerfilPessoa = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
@@ -224,10 +224,10 @@ class Basico_OPController_PessoaPerfilOPController
 			return null;
 
 		// instanciando controladores
-		$perfilControllerController = Basico_OPController_PerfilOPController::getInstance();
+		$perfilOPController = Basico_OPController_PerfilOPController::getInstance();
 
 		// recuperando o objeto perfil de usuario validado
-		$objPerfilUsuarioValidado = $perfilControllerController->retornaObjetoPerfilUsuarioValidado();
+		$objPerfilUsuarioValidado = $perfilOPController->retornaObjetoPerfilUsuarioValidado();
 
 		// recuperando o objeto pessoa pefil
     	$objPessoaPerfil = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
@@ -256,10 +256,10 @@ class Basico_OPController_PessoaPerfilOPController
 			return null;
 
 		// instanciando controladores
-		$perfilControllerController = Basico_OPController_PerfilOPController::getInstance();
+		$perfilOPController = Basico_OPController_PerfilOPController::getInstance();
 
 		// recuperanado o objeto perfil
-		$objPerfil = $perfilControllerController->retornaObjetoPerfilPorIdPerfil($idPerfil);
+		$objPerfil = $perfilOPController->retornaObjetoPerfilPorIdPerfil($idPerfil);
 
 		// recuperando o objeto pessoa perfil
     	$objPessoaPerfilPessoa = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");

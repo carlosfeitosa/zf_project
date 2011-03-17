@@ -91,12 +91,12 @@ class Basico_OPController_RowinfoOPController
 	{
 		try {
 			// instanciando controladores
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// verificando se a solicitacao foi feita pelo sistema
 		    if ($utilizarUsuarioSistema)
 		    	// recuperando o id do usuario do sistema
-		        $idPessoaPerfil = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+		        $idPessoaPerfil = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 	
 		    // verificando se existe id no objeto
 	        if (!isset($modelo->id))

@@ -192,22 +192,22 @@ class Basico_OPController_TokenOPController
 
 		try {
 			// instanciando controladores
-			$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
 	    		// setando o id do perfil criador para o sistema
-    			$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+    			$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objToken->id != NULL) {
 				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateToken();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateToken();
 				$mensagemLog    = LOG_MSG_UPDATE_TOKEN;
 			} else {
 				// carregando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoToken();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoToken();
 				$mensagemLog    = LOG_MSG_NOVO_TOKEN;
 			}
 
@@ -233,10 +233,10 @@ class Basico_OPController_TokenOPController
 	public function retornaObjetoTokenEmailPorToken($token)
 	{
 		// instanciando controlador de categoria
-	    $categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+	    $categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 	    
 	    // recuperando objeto categoria do token-email
-		$idCategoriaTokenEmail = $categoriaControllerController->retornaIdCategoriaEmailValidacaoPlainText();
+		$idCategoriaTokenEmail = $categoriaOPController->retornaIdCategoriaEmailValidacaoPlainText();
 		// recuperando objeto token
 		$objToken = $this->_token->fetchList("id_categoria = {$idCategoriaTokenEmail} and token = '{$token}'", null, 1, 0);
 

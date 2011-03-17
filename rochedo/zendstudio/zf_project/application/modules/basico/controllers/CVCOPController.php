@@ -140,7 +140,7 @@ class Basico_OPController_CVCOPController
     public function retornaUltimaVersao($objeto, $forceVersioning = false)
     {
     	// instanciando controladores
-    	$categoriaChaveEstrangeiraControllerController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
 
     	// recuperando o valor do id generico vindo do objeto
 		$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
@@ -150,7 +150,7 @@ class Basico_OPController_CVCOPController
 			return null;
 
 		// recuperando a relacao categoria chave estrangeira
-		$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraControllerController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
+		$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
 
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($objCategoriaChaveEstrangeira)) {
@@ -182,12 +182,12 @@ class Basico_OPController_CVCOPController
     public function versionar($objeto)
     {
     	// instanciando controladores
-    	$categoriaChaveEstrangeiraControllerController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
     	// instanciando o modelo de CVC
     	$modelCVC = $this->retornaNovoObjetoCVC();
 
     	// recuperando relacao categoria chave estrangeira
-    	$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraControllerController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
+    	$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
 
     	// preenchendo informacoes sobre o versionamento
     	$modelCVC->categoriaChaveEstrangeira = $objCategoriaChaveEstrangeira->id;
@@ -217,11 +217,11 @@ class Basico_OPController_CVCOPController
     	$modelCVC->versao = $versao;
 
 		// instanciando controlador de rowinfo
-		$rowInfoControllerController = Basico_OPController_RowinfoOPController::getInstance();
+		$rowInfoOPController = Basico_OPController_RowinfoOPController::getInstance();
 
     	// preparando XML rowinfo
-		$rowInfoControllerController->prepareXml($modelCVC, true);
-		$modelCVC->rowinfo = $rowInfoControllerController->getXml();
+		$rowInfoOPController->prepareXml($modelCVC, true);
+		$modelCVC->rowinfo = $rowInfoOPController->getXml();
 
     	// salvando informacoes do versionamento
     	$modelCVC->getMapper()->save($modelCVC);
@@ -239,10 +239,10 @@ class Basico_OPController_CVCOPController
     public function atualizaVersao($objeto)
     {
     	// instanciando controladores
-		$categoriaChaveEstrangeiraControllerController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+		$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
 
     	// recuperando id da relacao de categoria chave estrangeira
-    	$categoriaChaveEstrangeira = $categoriaChaveEstrangeiraControllerController->retornaCategoriaChaveEstrangeira($objeto);
+    	$categoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaCategoriaChaveEstrangeira($objeto);
     	// recuperando id generico do objeto
     	$idGenerico = Basico_OPController_UtilOPController::retornaIdGenericoObjeto($objeto);
     	// recuperando objeto CVC contendo a ultima versao do objeto

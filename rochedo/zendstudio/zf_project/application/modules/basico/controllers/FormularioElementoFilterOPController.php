@@ -76,21 +76,21 @@ class Basico_OPController_FormularioElementoFilterOPController
 	{
 		try {
 			// instanciando controladores
-			$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objFormularioElementoFilter->id != NULL) {
 				// recuperando informacoes de log de autalizacao de registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateFormularioElementoFilter();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateFormularioElementoFilter();
 				$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_ELEMENTO_FILTER;
 			} else {
 				// recuperando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoFormularioElementoFilter();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoFormularioElementoFilter();
 				$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER;
 			}
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe abstrata modelo de ControllerController
+ * Classe abstrata modelo de OPController
  * 
  * Todas as classes que implementam esta classe devem conter todos os metodos e atributos do pai
  * 
@@ -10,7 +10,7 @@
  * @since 13/03/2011
  */
 
-abstract class Basico_Abstract_RochedoPersistentControllerController
+abstract class Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Contrutor do controlador.
@@ -33,7 +33,7 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 	 * Este metodo eh o metodo responsavel pela implementacao do padrao SINGLETON.
 	 * Deve verificar se o $_singleton foi inicializado, inicializa-o e retorna o $_singleton, nunca uma nova instancia do controlador.
 	 * 
-	 * @return ObjectControllerController
+	 * @return Object OPController
 	 */
 	abstract public static function getInstance();
 
@@ -58,14 +58,14 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 	 * 
 	 * Este metodo deve retornar um modelo (relacionado ao controlador) vazio.
 	 * 
-	 * @param String $nomeControllerController
+	 * @param String $nomeOPController
 	 * 
 	 * @return Object
 	 */
-	public function retornaNovoObjetoModeloPorNomeControllerController($nomeControllerController)
+	public function retornaNovoObjetoModeloPorNomeOPController($nomeOPController)
 	{
 		// recuperando o nome do modelo relacionado ao controlador
-		$nomeObjetoModelo = Basico_OPController_UtilOPController::retornaNomeModeloControllerControllerPorNomeControllerController($nomeControllerController);
+		$nomeObjetoModelo = Basico_OPController_UtilOPController::retornaNomeModeloOPControllerPorNomeOPController($nomeOPController);
 
 		// verificando se a classe existe
 		if (class_exists($nomeObjetoModelo, true))
@@ -142,13 +142,13 @@ abstract class Basico_Abstract_RochedoPersistentControllerController
 		// verificando se existe o atributo de rowinfo no modelo da classe
 		if (property_exists($objeto, ROWINFO_ATRIBUTE_NAME)) {
 			// instanciando o controlador de rowinfo
-			$rowinfoControllerController = Basico_OPController_RowinfoOPController::getInstance();
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
 
 			// preparando o XML
-			$rowinfoControllerController->prepareXml($objeto, $utilizarUsuarioSistema);
+			$rowinfoOPController->prepareXml($objeto, $utilizarUsuarioSistema);
 			
 			// setando o atributo rowinfo no objeto
-			$objeto->ROWINFO_ATRIBUTE_NAME = $rowinfoControllerController->getXML();
+			$objeto->ROWINFO_ATRIBUTE_NAME = $rowinfoOPController->getXML();
 		} else {
 			// rowinfo nao encontrado para o objeto
 			throw new Exception(MSG_ERRO_ROWINFO_NAO_ENCONTRADO);

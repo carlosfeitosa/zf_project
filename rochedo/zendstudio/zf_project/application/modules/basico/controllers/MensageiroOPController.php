@@ -5,7 +5,7 @@
  * Responsável pelo envio e recebimento de mensagem no sistema.
  * @subpackage Controller
  */
-class Basico_OPController_MensageiroOPController 
+class Basico_OPController_MensageiroOPController
 {
 	/**
 	 * @var Basico_OPController_MensageiroOPController 
@@ -79,12 +79,12 @@ class Basico_OPController_MensageiroOPController
         
     	try {
     		// instanciando controladores
-    		$logControllerController = Basico_OPController_LogOPController::getInstance();
-    		$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
-    		$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
+    		$logOPController = Basico_OPController_LogOPController::getInstance();
+    		$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+    		$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
     		// salvando log de tentativa de envio de mensagem
-    		$logControllerController->salvarLog($pessoaPerfilControllerController->retornaIdPessoaPerfilSistema(), $categoriaControllerController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL);
+    		$logOPController->salvarLog($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL);
 
             // recuperando o transporte SMTP
 			$transport = $this->retornaTransportSmtp();
@@ -124,11 +124,11 @@ class Basico_OPController_MensageiroOPController
             Basico_OPController_MensagemOPController::getInstance()->salvarMensagem($mensagem, $ultimaVersaoMensagem);
 
     		// salvando log de sucesso no envio de mensagem
-    		$logControllerController->salvarLog($pessoaPerfilControllerController->retornaIdPessoaPerfilSistema(), $categoriaControllerController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_SUCESSO);
+    		$logOPController->salvarLog($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_SUCESSO);
 		} catch(Exception $e){
 
 			// salvando log de falha no envio de mensagem
-    		$logControllerController->salvarLog($pessoaPerfilControllerController->retornaIdPessoaPerfilSistema(), $categoriaControllerController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_FALHA . $e->getMessage());
+    		$logOPController->salvarLog($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_FALHA . $e->getMessage());
 			throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }
 	}

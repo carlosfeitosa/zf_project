@@ -81,21 +81,21 @@ class Basico_OPController_GrupoFormularioElementoOPController
 	{
 		try {
 			// instanciando controladores
-			$categoriaControllerController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objGrupoFormularioElemento->id != NULL) {
 				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateFormulario();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateFormulario();
 				$mensagemLog    = LOG_MSG_UPDATE_GRUPO_FORMULARIO_ELEMENTO;
 			} else {
 				// carregando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovoFormulario();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoFormulario();
 				$mensagemLog    = LOG_MSG_NOVO_GRUPO_FORMULARIO_ELEMENTO;
 			}
 
