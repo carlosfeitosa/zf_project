@@ -22,6 +22,6 @@ SELECT (SELECT f.id
         FROM perfil p
         LEFT JOIN categoria c ON (p.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-        WHERE t.nome = 'SISTEMA'
-        AND c.nome = 'SISTEMA_USUARIO'
+        WHERE t.nome = 'PERFIL'
+        AND c.nome = 'PERFIL_USUARIO'
         AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo;

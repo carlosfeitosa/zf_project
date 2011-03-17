@@ -5,12 +5,12 @@
  */
 require_once("consts/consts.php");
 require_once("configs/application.php");
-require_once("modules/basico/controllers/PessoaControllerController.php");
-require_once("modules/basico/controllers/LogControllerController.php");
-require_once("modules/basico/controllers/TokenControllerController.php");
-require_once("modules/basico/controllers/UtilControllerController.php");
-require_once("modules/basico/controllers/PersistenceControllerController.php");
-require_once("modules/basico/controllers/AutenticadorControllerController.php");
+require_once("modules/basico/actionControllers/PessoaControllerController.php");
+require_once("modules/basico/actionControllers/LogControllerController.php");
+require_once("modules/basico/actionControllers/TokenControllerController.php");
+require_once("modules/basico/actionControllers/UtilControllerController.php");
+require_once("modules/basico/actionControllers/PersistenceControllerController.php");
+require_once("modules/basico/actionControllers/AutenticadorControllerController.php");
 
 /**
  * Bootstrap primário do sistema.
