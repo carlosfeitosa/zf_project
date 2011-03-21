@@ -27,11 +27,13 @@ define("LOG_MSG_NOVA_PESSOA", "Nova pessoa inserida no banco de dados.");
 define("LOG_MSG_UPDATE_PESSOA", "Atualizacao de pessoa no banco de dados.");
 define("LOG_MSG_NOVA_PESSOA_PERFIL", "Nova associacao de pessoa perfil inserida no banco de dados.");
 define("LOG_MSG_UPDATE_PESSOA_PERFIL", "Atualizacao da associacao de pessoa perfil no banco de dados.");
+define("LOG_MSG_UPDATE_DADOS_PESSOAS_PERFIS", "Atualizacao dos dados de pessoas perfils no banco de dados.");
 define("LOG_MSG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Nova pessoa perfil mensagem categoria inserida no banco de dados.");
 define("LOG_MSG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Atualizacao de pessoa perfil mensagem categoria no banco de dados.");
 define("LOG_MSG_NOVO_DADOS_PESSOAIS", "Novos dados pessoais inseridos no banco de dados.");
 define("LOG_MSG_UPDATE_DADOS_PESSOAIS", "Atualizacao de dados pessoais no banco de dados.");
 define("LOG_MSG_NOVO_DADOS_BIOMETRICOS", "Novos dados biometricos inseridos no banco de dados.");
+define("LOG_MSG_NOVO_DADOS_PESSOAS_PERFIS", "Novos dados pessoa perfil inseridos no banco de dados.");
 define("LOG_MSG_UPDATE_DADOS_BIOMETRICOS", "Atualizacao de dados biometricos no banco de dados.");
 define("LOG_MSG_NOVO_WEBSITE", "Novos website inseridos no banco de dados.");
 define("LOG_MSG_UPDATE_WEBSITE", "Atualiacao de website inseridos no banco de dados.");
@@ -39,7 +41,7 @@ define("LOG_MSG_NOVO_EMAIL", "Novo e-mail inserido no banco de dados.");
 define("LOG_MSG_UPDATE_EMAIL", "Atualizacao de e-mail no banco de dados.");
 define("LOG_MSG_NOVA_CATEGORIA", "Nova categoria inserida no banco de dados.");
 define("LOG_MSG_UPDATE_CATEGORIA", "Atualizacao de categoria no banco de dados.");
-define("LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de categoria chave estrangeira.");
+define("LOG_MSG_NOVA_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de categoria chave estrangeira.");
 define("LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA", "Criação de relação categoria chave estrangeira.");
 define("LOG_MSG_NOVA_MENSAGEM", "Nova mensagem inserida no banco de dados.");
 define("LOG_MSG_UPDATE_MENSAGEM", "Atualizacao de mensagem no banco de dados.");
@@ -64,7 +66,11 @@ define("LOG_MSG_DELETE_ACOES_APLICACAO_PERFIS", "Exclusao de associacao entre ac
 define("LOG_MSG_NOVO_METODO_VALIDACAO", "Novo metodo validacao inserida no banco de dados");
 define("LOG_MSG_UPDATE_METODO_VALIDACAO", "Atualizacao de metodo validacao no banco de dados");
 define("LOG_MSG_DELETE_METODO_VALIDACAO", "Exclusao de metodo validacao no banco de dados");
+define("LOG_MSG_DELETE_CATEGORIA_CHAVE_ESTRANGEIRA", "Não é possivel a exclusao de categoria chave estrangeira do banco de dados");
 define("DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR", "Chamada a ação de controlador.");
+define("LOG_MSG_DELETE_DADOS_BIOMETRICOS", "Exclusao de dados biometricos do banco de dados");
+define("LOG_MSG_DELETE_DADOS_PESSOAS_PERFIS", "Exclusao de dados pesssoas perfis do banco de dados");
+define("LOG_MSG_DELETE_FORMULARIO", "Exclusao de formulario do banco de dados");
 
 
 /*

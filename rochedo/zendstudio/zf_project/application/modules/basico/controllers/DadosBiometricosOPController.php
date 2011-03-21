@@ -2,9 +2,15 @@
 /**
  * Controlador Dados Biometricos
  * 
- * @uses Basico_Model_Biometricos
+ * Controlador responsavel pelos dados biometricos do usuario
+ * 
+ * @package Basico
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * 
+ * @since 17/03/2011
  */
-class Basico_OPController_DadosBiometricosOPController
+class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -16,18 +22,18 @@ class Basico_OPController_DadosBiometricosOPController
 	 * 
 	 * @var Basico_Model_DadosBiometricos
 	 */
-	private $_dadosBiometricos;
+	private $_model;
 	
 	/**
 	 * Carrega a variavel dadosBiometricos com um novo objeto Basico_Model_DadosBiometricos
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_dadosBiometricos = $this->retornaNovoObjetoDadosBiometricos();
-
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		
 		// inicializando o controlador
 		$this->init();
 	}
@@ -37,7 +43,7 @@ class Basico_OPController_DadosBiometricosOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -57,51 +63,80 @@ class Basico_OPController_DadosBiometricosOPController
 		// retornando instancia
 		return self::$_singleton;
 	}
-
-	/**
-	 * Retorna um objeto dados biometricos vazio
-	 * 
-	 * @return Basico_Model_DadosBiometricos
-	 */
-	public function retornaNovoObjetoDadosBiometricos()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_DadosBiometricos();
-	}
 	
 	/**
-	 * Salva os dados biometricos.
+	 * Salva o objeto dados biometricos no banco de dados
 	 * 
-	 * @param Basico_Model_DadosBiometricos $objDadosBiometricos
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_DadosBiometricos $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarDadosBiometricos(Basico_Model_DadosBiometricos $objDadosBiometricos, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricos', true);
+
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateDadosBiometricos();
+	    		$mensagemLog    = LOG_MSG_UPDATE_DADOS_BIOMETRICOS;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoDadosBiometricos();
+	    		$mensagemLog    = LOG_MSG_NOVO_DADOS_BIOMETRICOS;
+	    	}
+
+			// salvando o objeto através do controlador Save
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+
+	/**
+	 * Apaga o objeto dados biometricos do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_DadosBiometricos $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricos', true);
+
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		// setando o id do perfil criador para o sistema
-    			$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
-			// verificando se trata-se de uma nova tupla ou atualizacao
-    		if ($objDadosBiometricos->id != NULL) {
-    			// carregando informacoes de log de atualizacao de registro
-    			$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateDadosBiometricos();
-    			$mensagemLog  = LOG_MSG_UPDATE_DADOS_BIOMETRICOS;
-    		} else {
-    			// carregando informacoes de log de novo registro
-                $idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoDadosBiometricos();
-                $mensagemLog  = LOG_MSG_NOVO_DADOS_BIOMETRICOS;
-    		}
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteDadosBiometricos();
+	    	$mensagemLog    = LOG_MSG_DELETE_DADOS_BIOMETRICOS;
 
-			// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objDadosBiometricos, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-			// atualizando o objeto dentro do controlador
-			$this->_dadosBiometricos = $objDadosBiometricos;
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);

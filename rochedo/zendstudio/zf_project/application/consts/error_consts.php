@@ -60,7 +60,9 @@ define("MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL", "Categoria de log de atual
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS", "Categoria de log novo dados pessoais não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS", "Categoria de log update em dados pessoais não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_BIOMETRICOS", "Categoria de log novo dados biometricos não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAS_PERFIS", "Categoria de log novo dados pessoas perfis não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_BIOMETRICOS", "Categoria de log update em dados biometricos não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAS_PERFIS", "Categoria de log update em dados pessoas perfis não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_LOGIN", "Categoria de log novo login não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_LOGIN", "Categoria de log atualizacao de login não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_EMAIL", "Categoria de log novo e-mail não encontrada no banco de dados");
@@ -70,6 +72,9 @@ define("MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA", "Categoria de log de atualizac
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_ACAO_APLICACAO", "Categoria de log nova acao aplicacao não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_ACAO_APLICACAO", "Categoria de log de atualizacao de acao aplicacao não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_ACAO_APLICACAO", "Categoria de log delete acao aplicacao não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_PESSOAS_PERFIS", "Categoria de log delete dados pessoas perfis não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO", "Categoria de log delete formulario não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_BIOMETRICOS", "Categoria de log delete dados biometricos não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO", "Categoria de log nova associacao entre acao aplicacao e metodo validacao não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_ACOES_APLICACAO_METODOS_VALIDACAO", "Categoria de log de atualizacao de associacao entre acao aplicacao e metodo validacao não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO", "Categoria de log delete de associacao entre acao aplicacao e metodo validacao não encontrada no banco de dados");
@@ -213,6 +218,7 @@ define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_SEM_RELACAO", "Relação da categor
 define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_TOKEN_SEM_RELACAO", "Relação de token com categoria chave estrangeira não encontrada.");
 define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_EMAIL_SEM_RELACAO", "Relação de e-mail com categoria chave estrangeira não encontrada.");
 define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO", "Não foi possível criar a relação categoria chave estranfeira.");
+define("MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO_EXISTE", "Não foi possível criar a relação, pois categoria chave estranfeira lá existe.");
 
 //DADOS PESSOAIS
 define("MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS", "Objeto dados pessoais não encontrado.");

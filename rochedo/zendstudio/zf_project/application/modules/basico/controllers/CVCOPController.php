@@ -1,9 +1,15 @@
 <?php
 /**
- * Controlador CVC
+ * Controlador Categoria Chave Estrangeira
  * 
+ * Controlador responsavel pelas categorias das chaves estrangeiras
+ * 
+ * @package Basico
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * 
+ * @since 17/03/2011
  */
-
 class Basico_OPController_CVCOPController
 {
 	/**

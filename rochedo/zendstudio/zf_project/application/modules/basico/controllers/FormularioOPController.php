@@ -1,7 +1,14 @@
 <?php
 /**
- * Controlador Formulario.
- *
+ * Controlador Formulario
+ * 
+ * Controlador responsavel pelos formularios o sistema
+ * 
+ * @package Basico_Model_Formulario
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * 
+ * @since 17/03/2011
  */
 class Basico_OPController_FormularioOPController
 {
@@ -15,17 +22,17 @@ class Basico_OPController_FormularioOPController
 	 * Instância do Modelo Formulario.
 	 * @var Basico_Model_Formulario
 	 */
-	private $_formulario;
+	private $_model;
 	
 	/**
 	 * Construtor do Controlador Basico_OPController_FormularioOPController.
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
-		// instanciando modelo
-		$this->_formulario = $this->retornaNovoObjetoFormulario();
+		// instanciando o modelo
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando controlador
 		$this->init();
@@ -36,7 +43,7 @@ class Basico_OPController_FormularioOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -55,17 +62,6 @@ class Basico_OPController_FormularioOPController
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-
-	/**
-	 * Retorna um objeto formulario vazio
-	 * 
-	 * @return Basico_Model_Formulario
-	 */
-	public function retornaNovoObjetoFormulario()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_Formulario();
 	}
 	
     /**
@@ -100,47 +96,86 @@ class Basico_OPController_FormularioOPController
         return (count($objsFormularioElemento) > 0);
    	}
 
-	/**
-	 * Salva objeto no Banco de dados.
+   	/**
+	 * Salva o objeto formulario no banco de dados
 	 * 
-	 * @param Basico_Model_Formulario $novoFormulario
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_Formulario $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarFormulario(Basico_Model_Formulario $objFormulario, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Formulario', true);
 
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
-			// verificando se trata-se de uma nova tupla ou atualizacao
-			if ($objFormulario->id != NULL) {
-				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateFormulario();
-				$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO;
-			} else {
-				// carregando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoFormulario();
-				$mensagemLog    = LOG_MSG_NOVO_FORMULARIO;
-			}
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateFormulario();
+	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoFormulario();
+	    		$mensagemLog    = LOG_MSG_NOVO_FORMULARIO;
+	    	}
 
 			// salvando o objeto através do controlador Save
-		 	Basico_OPController_PersistenceOPController::bdSave($objFormulario, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto
-			$this->_formulario = $objFormulario;
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+		
+
+	/**
+	 * Apaga o objeto dados pessoas perfis do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_DadosPessoasPerfis $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Formulario', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteFormulario();
+	    	$mensagemLog    = LOG_MSG_DELETE_FORMULARIO;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
 	}
+
 	
 	/**
 	 * Retorna um array contendo todos os objetos de formularios existentes no sistema
