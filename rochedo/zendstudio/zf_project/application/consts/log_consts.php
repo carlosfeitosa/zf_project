@@ -87,6 +87,8 @@ define("LOG_MSG_DELETE_CATEGORIA_CHAVE_ESTRANGEIRA", "Não é possivel a exclusa
 define("DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR", "Chamada a ação de controlador.");
 define("LOG_MSG_DELETE_DADOS_BIOMETRICOS", "Exclusao de dados biometricos do banco de dados");
 define("LOG_MSG_DELETE_DADOS_PESSOAS_PERFIS", "Exclusao de dados pesssoas perfis do banco de dados");
+define("LOG_MSG_DELETE_OUTPUT", "Exclusao de output do banco de dados");
+define("LOG_MSG_DELETE_PESSOA_PERFIL", "Exclusao de perfil da pessoa do banco de dados");
 define("LOG_MSG_DELETE_FORMULARIO", "Exclusao de formulario do banco de dados");
 
 

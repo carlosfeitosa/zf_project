@@ -75,6 +75,8 @@
 *  									   - criacao da categoria LOG_UPATE_DADOS_PESSOAS_PERFIS;
 *  									   - criacao da categoria LOG_DELETE_DADOS_PESSOAS_PERFIS;
 * 	 								   - criacao da categoria LOG_DELETE_FORMULARIO; 
+* 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT ;
+*									   - criacao da categoria LOG_DELETE_PESSOA_PERFIL ;
 *
 */
 
@@ -366,6 +368,20 @@ AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_DADOS_BIOMETRICOS' AS nome, 'Operação deleção de dados biometricos.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_OUTPUT' AS nome, 'Operação deleção do output.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_PESSOA_PERFIL' AS nome, 'Operação deleção de pessoa perfil.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'

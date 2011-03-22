@@ -6,7 +6,7 @@
  * 
  * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
  * 
- * @uses Basico_Model_Categoria
+ * @uses Basico_Model_Categoriadafo
  * 
  * @since 21/03/2011
  */
@@ -1070,7 +1070,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	public function retornaObjetoCategoriaLogDeleteDadosPessoasPerfis()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogDeleteDadosPessoasPerfis = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_ACAO_APLICACAO);
+		$objCategoriaLogDeleteDadosPessoasPerfis = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_DADOS_PESSOAS_PERFIS);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogDeleteDadosPessoasPerfis))
@@ -1088,16 +1088,34 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	public function retornaObjetoCategoriaLogDeleteFormulario()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogDeleteDadosPessoasPerfis = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_FORMULARIO);
+		$objCategoriaLogDeleteDadosFormulario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_FORMULARIO);
 
 		// verificando se o objeto foi recuperado
-		if (isset($objCategoriaLogDeleteDadosPessoasPerfis))
+		if (isset($objCategoriaLogDeleteDadosFormulario))
 			// retornando o objeto
-			return $objCategoriaLogDeleteDadosPessoasPerfis;
+			return $objCategoriaLogDeleteDadosFormulario;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO);
 	}
 	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_OUTPUT
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeleteOutput()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteOutput = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_OUTPUT);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteOutput))
+			// retornando o objeto
+			return $objCategoriaLogDeleteOutput;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_OUTPUT);
+	}
+		
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_DELETE_DADOS_BIOMETRICOS
 	 * 
@@ -1106,14 +1124,32 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	public function retornaObjetoCategoriaLogDeleteDadosBiometricos()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogDeleteAcaoAplicacao = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_DADOS_BIOMETRICOS);
+		$objCategoriaLogDeleteDadosBiometricos = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_DADOS_BIOMETRICOS);
 
 		// verificando se o objeto foi recuperado
-		if (isset($objCategoriaLogDeleteAcaoAplicacao))
+		if (isset($objCategoriaLogDeleteDadosBiometricos))
 			// retornando o objeto
-			return $objCategoriaLogDeleteAcaoAplicacao;
+			return $objCategoriaLogDeleteDadosBiometricos;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_BIOMETRICOS);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_PESSOA_PERFIL
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeletePessoaPerfil()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeletePessoaPerfil = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_PESSOA_PERFIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePessoaPerfil))
+			// retornando o objeto
+			return $objCategoriaLogDeletePessoaPerfil;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA_PERFIL);
 	}
 	
 	/**
@@ -2502,7 +2538,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o id do objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL
+	 * Retorna o id da categoria LOG_NOVA_PESSOA_PERFIL
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
@@ -2520,7 +2556,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_PESSOA_PERFIL
+	 * Retorna o id da categoria LOG_UPDATE_PESSOA_PERFIL
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
@@ -2898,7 +2934,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_DELETE_DADOS_PESSOAS_PERFIS
+	 * Retorna o id da categoria LOG_DELETE_DADOS_PESSOAS_PERFIS
 	 * 
 	 * @return Integer
 	 */
@@ -2915,8 +2951,28 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_PESSOAS_PERFIS);
 	}
 	
+	
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_DELETE_FORMULARIO
+	 * Retorna o id da categoria LOG_DELETE_OUTPUT
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteOutput()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteOutput = $this->retornaObjetoCategoriaLogDeleteOutput();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteOutput))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteOutput->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_OUTPUT);
+	}
+	
+	
+	/**
+	 * Retorna o id da categoria LOG_DELETE_FORMULARIO
 	 * 
 	 * @return Integer
 	 */
@@ -2934,14 +2990,14 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 	
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_DELETE_ACAO_APLICACAO
+	 * Retorna o id da categoria LOG_DELETE_DADOS_BIOMETRICOS
 	 * 
 	 * @return Integer
 	 */
 	public function retornaIdCategoriaLogDeleteDadosBiometricos()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogDeleteDadosBiometricos = $this->retornaObjetoCategoriaLogDeleteAcaoAplicacao();
+		$objCategoriaLogDeleteDadosBiometricos = $this->retornaObjetoCategoriaLogDeleteDadosBiometricos();
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogDeleteDadosBiometricos))
@@ -2950,6 +3006,25 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_BIOMETRICOS);
 	}
+	
+	/**
+	 * Retorna o id da categoria LOG_DELETE_PESSOA_PERFIL
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeletePessoaPerfil()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeletePessoaPerfil = $this->retornaObjetoCategoriaLogDeletePessoaPerfil();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePessoaPerfil))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeletePessoaPerfil->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA_PERFIL);
+	} 
+	
 	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO

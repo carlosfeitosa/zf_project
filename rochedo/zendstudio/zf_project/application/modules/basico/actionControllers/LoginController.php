@@ -554,7 +554,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $novaPessoaPerfil->pessoa = $novaPessoa->id;
             $novaPessoaPerfil->perfil = $objPerfilUsuarioNaoValidado->id;
             $novaPessoaPerfil->rowinfo = $controladorRowInfo->getXml();
-            $controladorPessoaPerfil->salvarPessoaPerfil($novaPessoaPerfil); 
+            $controladorPessoaPerfil->salvarObjeto($novaPessoaPerfil); 
 
             // setando e salvando os dados pessoais
             $novoDadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosPessoaisOPController');

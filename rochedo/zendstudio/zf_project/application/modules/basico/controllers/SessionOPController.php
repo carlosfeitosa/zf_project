@@ -1,8 +1,14 @@
 <?php
 /**
- * Basico_OPController_SessionOPController
- * @author Carlos Feitosa
- *
+ * Controlador Sessio
+ * 
+ * Controlador responsavel pela Session
+ * 
+ * @package Basico
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * 
+ * @since 17/03/2011
  */
 class Basico_OPController_SessionOPController
 {

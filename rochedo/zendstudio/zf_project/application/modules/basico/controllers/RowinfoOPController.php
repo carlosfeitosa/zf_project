@@ -1,7 +1,14 @@
 <?php
 /**
- * Controlador Rowinfo
- *
+ * Controlador RowInfo
+ * 
+ * Controlador responsavel pelo RowInfo
+ * 
+ * @package Basico
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * 
+ * @since 17/03/2011
  */
 class Basico_OPController_RowinfoOPController
 {

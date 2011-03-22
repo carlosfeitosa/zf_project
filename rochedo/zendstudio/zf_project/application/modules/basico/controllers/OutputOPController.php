@@ -1,9 +1,16 @@
 <?php
 /**
- * Controlador Output.
- *
+ * Controlador Output
+ * 
+ * Controlador responsavel pelos formatos de saida de dados do sistema
+ * 
+ * @package Basico
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * 
+ * @since 17/03/2011
  */
-class Basico_OPController_OutputOPController
+class Basico_OPController_OutputOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Output
@@ -15,18 +22,18 @@ class Basico_OPController_OutputOPController
 	 * Instância do Modelo Output.
 	 * @var Basico_Model_Output
 	 */
-	private $_output;
+	private $_model;
 	
 	/**
 	 * Construtor do Controlador Basico_OPController_OutputOPController.
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
-		// instancinado o modelo
-		$this->_output = $this->retornaNovoObjetoOutput();
-
+		// instanciando o modelo
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		
 		// inicializando o controlador
 		$this->init();
 	}
@@ -36,7 +43,7 @@ class Basico_OPController_OutputOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -56,37 +63,28 @@ class Basico_OPController_OutputOPController
 		// retornando instancia
 		return self::$_singleton;
 	}
-
+	
 	/**
-	 * Retorna um modelo output vazio
+	 * Salva o objeto output no banco de dados
 	 * 
-	 * @return Basico_Model_Output
-	 */
-	public function retornaNovoObjetoOutput()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_Output();
-	}
-
-	/**
-	 * Salva objeto no Banco de dados.
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_Output $novoOutput
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * @param Basico_Model_Output $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarOutput(Basico_Model_Output $objOutput, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Output', true);
 
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objOutput->id != NULL) {
@@ -98,15 +96,50 @@ class Basico_OPController_OutputOPController
 	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoOutput();
 	    		$mensagemLog = LOG_MSG_NOVO_OUTPUT;
 	    	}
+	    		
+			// salvando o objeto através do controlador Save
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-	    	// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objOutput, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
 
-			// atualizando o objeto
-			$this->_output = $objOutput;
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+
+	/**
+	 * Apaga o objeto output do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_Output $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Output', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteOutput();
+	    	$mensagemLog    = LOG_MSG_DELETE_OUTPUT;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
-	}
+	}	
 }

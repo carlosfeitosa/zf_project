@@ -92,6 +92,8 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVA_ACAO_APLICACAO", "Categoria de log nova acao
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_ACAO_APLICACAO", "Categoria de log de atualizacao de acao aplicacao não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_ACAO_APLICACAO", "Categoria de log delete acao aplicacao não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_PESSOAS_PERFIS", "Categoria de log delete dados pessoas perfis não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_OUTPUT", "Categoria de log delete output não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA_PERFIL", "Categoria de log delete pessoa perfil não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO", "Categoria de log delete formulario não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_BIOMETRICOS", "Categoria de log delete dados biometricos não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO", "Categoria de log nova associacao entre acao aplicacao e metodo validacao não encontrada no banco de dados");

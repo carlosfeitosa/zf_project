@@ -1,10 +1,16 @@
 <?php
 /**
  * Controlador PessoaPerfil
- *
+ * 
+ * Controlador responsavel pela PessoaPerfil
+ * 
+ * @package Basico
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * 
+ * @since 17/03/2011
  */
-
-class Basico_OPController_PessoaPerfilOPController
+class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador PessoaPerfil
@@ -16,17 +22,17 @@ class Basico_OPController_PessoaPerfilOPController
 	 * Instância do Modelo PessoaPerfil
 	 * @var Basico_Model_PessoaPerfil
 	 */
-	private $_pessoaPerfil;
+	private $_model;
 	
 	/**
 	 * Construtor do controlador PessoaPerfil
 	 * @return Basico_Model_PessoaPerfil
 	 */
-	private function __construct()
+	protected function __construct()
 	{
-		// instanciando modelo
-		$this->_pessoaPerfil = $this->retornaNovoObjetoPessoaPerfil();
-
+		// instanciando o modelo
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		
 		// inicializando o controlador
 		$this->init();
 	}
@@ -36,7 +42,7 @@ class Basico_OPController_PessoaPerfilOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -58,34 +64,26 @@ class Basico_OPController_PessoaPerfilOPController
 	}
 
 	/**
-	 * Retorna um objeto pessoa perfil vazio
+	 * Salva o objeto  pessoa perfil no banco de dados
 	 * 
-	 * @return Basico_Model_PessoaPerfil
-	 */
-	public function retornaNovoObjetoPessoaPerfil()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_PessoaPerfil();
-	}
-
-	/**
-	 * Salva pessoaPefil no banco de dados.
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_PessoaPerfil $novaPessoaPerfil
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * @param Basico_Model_PessoaPerfil $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarPessoaPerfil(Basico_Model_PessoaPerfil $objPessoaPerfil, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-	    try {
-	    	// instanciando controladores
-	    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaPerfil', true);
 
-	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $this->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objPessoaPerfil->id != NULL) {
@@ -97,18 +95,52 @@ class Basico_OPController_PessoaPerfilOPController
 	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovaPessoaPerfil();
 	    		$mensagemLog    = LOG_MSG_NOVA_PESSOA_PERFIL;
 	    	}
-
+	    			    		
 			// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objPessoaPerfil, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto
-    		$this->_pessoaPerfil = $objPessoaPerfil;
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
 
     	} catch (Exception $e) {
+
     		throw new Exception($e);
     	}
 	}
 
+	/**
+	 * Apaga o objeto pessoa perfil do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_PessoaPerfil $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaPerfil', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePessoaPerfil();
+	    	$mensagemLog    = LOG_MSG_DELETE_PESSOA_PERFIL;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
+	}	
     /**
      * Retorna o objeto da PessoaPefil do sistema.
      * 
@@ -132,7 +164,7 @@ class Basico_OPController_PessoaPerfilOPController
 	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
 
 	    // recuperando o objeto pessoa perfil do sistema
-        $objPessoaPerfilSistema = $this->_pessoaPerfil->fetchList("id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
+        $objPessoaPerfilSistema = $this->_model->fetchList("id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
         
         // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
         if (!$objPessoaPerfilSistema[0]->id)
@@ -170,7 +202,7 @@ class Basico_OPController_PessoaPerfilOPController
 	public function retornaObjetosPessoasPerfisPorIdPessoa($idPessoa)
 	{
 		// recuperando array de objetos Basico_Model_PessoaPefil
-		$objsPessoasPerfis = $this->_pessoaPerfil->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
+		$objsPessoasPerfis = $this->_model->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
 		
 		// verificando se o objeto existe
 		if (count($objsPessoasPerfis) > 0)
@@ -200,7 +232,7 @@ class Basico_OPController_PessoaPerfilOPController
 		$perfilUsuarioNaoValidado = $perfilOPController->retornaObjetoPerfilUsuarioNaoValidado();
 
 		// recuperando o objeto pessoa perfil de usuario nao validado
-    	$objPessoaPerfilPessoa = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
+    	$objPessoaPerfilPessoa = $this->_model->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfilPessoa[0])) {
@@ -230,7 +262,7 @@ class Basico_OPController_PessoaPerfilOPController
 		$objPerfilUsuarioValidado = $perfilOPController->retornaObjetoPerfilUsuarioValidado();
 
 		// recuperando o objeto pessoa pefil
-    	$objPessoaPerfil = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
+    	$objPessoaPerfil = $this->_model->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfil[0])) {
@@ -262,7 +294,7 @@ class Basico_OPController_PessoaPerfilOPController
 		$objPerfil = $perfilOPController->retornaObjetoPerfilPorIdPerfil($idPerfil);
 
 		// recuperando o objeto pessoa perfil
-    	$objPessoaPerfilPessoa = $this->_pessoaPerfil->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
+    	$objPessoaPerfilPessoa = $this->_model->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfilPessoa[0])) {
@@ -303,7 +335,7 @@ class Basico_OPController_PessoaPerfilOPController
 				throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
 
 			// salvando o objeto
-			$this->salvarPessoaPerfil($objPessoaPerfil, $versaoUpdate, $idPessoaPerfilCriador);
+			$this->salvarObjeto($objPessoaPerfil, $versaoUpdate, $idPessoaPerfilCriador);
 
 			return true;
 		}
