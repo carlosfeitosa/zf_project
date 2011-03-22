@@ -71,6 +71,7 @@ define("LOG_MSG_NOVO_LOGIN", "Novo login inserido no banco de dados.");
 define("LOG_MSG_UPDATE_LOGIN", "Atualizacao de login no banco de dados.");
 define("LOG_MSG_NOVA_RACA", "Nova raça inserida no banco de dados.");
 define("LOG_MSG_UPDATE_RACA", "Atualizacao de raça no banco de dados.");
+define("LOG_MSG_DELETE_RACA", "Exclusao de raça no banco de dados.");
 define("LOG_MSG_NOVA_ACAO_APLICACAO", "Nova acao aplicacao inserida no banco de dados");
 define("LOG_MSG_UPDATE_ACAO_APLICACAO", "Atualizacao de acao aplicacao no banco de dados");
 define("LOG_MSG_DELETE_ACAO_APLICACAO", "Exclusao de acao aplicacao do banco de dados");
@@ -102,6 +103,7 @@ define("LOG_MSG_UPDATE_GRUPO_FORMULARIO_ELEMENTO", "Atualizacao de grupo formula
 define("LOG_MSG_DELETE_GRUPO_FORMULARIO_ELEMENTO", "Exclusão de grupo formulario elemento no banco de dados.");
 define("LOG_MSG_NOVO_FORMULARIO_ELEMENTO", "Novo formulario elemento inserido no banco de dados.");
 define("LOG_MSG_UPDATE_FORMULARIO_ELEMENTO", "Atualizacao de formulario elemento no banco de dados.");
+define("LOG_MSG_DELETE_FORMULARIO_ELEMENTO", "Exclusão de formulario elemento no banco de dados.");
 define("LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER", "Novo formulario elemento filter inserido no banco de dados.");
 define("LOG_MSG_UPDATE_FORMULARIO_ELEMENTO_FILTER", "Atualizacao de formulario elemento filter no banco de dados.");
 define("LOG_MSG_DELETE_FORMULARIO_ELEMENTO_FILTER", "Exclusão de formulario elemento filter no banco de dados.");

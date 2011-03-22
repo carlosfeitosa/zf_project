@@ -557,6 +557,25 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_RACA
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeleteRaca()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteRaca = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_RACA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteRaca))
+			// retornando o objeto
+			return $objCategoriaLogDeleteRaca;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_RACA);
+	}
+
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL
 	 * 
 	 * @return Basico_Model_Categoria 
@@ -1550,6 +1569,24 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeleteFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_FORMULARIO_ELEMENTO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElemento))
+			// retornando o objeto
+			return $objCategoriaLogDeleteFormularioElemento;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FILTER
 	 * 
 	 * @return Basico_Model_Categoria $categoriaLogNovoFormularioElementoFilter
@@ -2482,7 +2519,25 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PERFIL);
 	}
-	
+
+	/**
+	 * Retorna o id da categoria LOG_DELETE_RACA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteRaca()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteRaca = $this->retornaObjetoCategoriaLogDeleteRaca();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteRaca))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteRaca->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_RACA);
+	}
+
     /**
 	 * Retorna o id da categoria LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA
 	 * 
@@ -2880,7 +2935,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_NOVA_ACAO_APLICACAO
+	 * Retorna o id da categoria LOG_NOVA_ACAO_APLICACAO
 	 * 
 	 * @return Integer
 	 */
@@ -2898,7 +2953,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_UPDATE_ACAO_APLICACAO
+	 * Retorna o id da categoria LOG_UPDATE_ACAO_APLICACAO
 	 * 
 	 * @return Integer
 	 */
@@ -2916,7 +2971,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_DELETE_ACAO_APLICACAO
+	 * Retorna o id da categoria LOG_DELETE_ACAO_APLICACAO
 	 * 
 	 * @return Integer
 	 */
@@ -3369,7 +3424,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
+	 * Retorna o id da categoria LOG_NOVO_FORMULARIO_ELEMENTO
 	 * 
 	 * @return Integer
 	 */
@@ -3387,7 +3442,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO
+	 * Retorna o id da categoria LOG_UPDATE_FORMULARIO_ELEMENTO
 	 * 
 	 * @return Integer
 	 */
@@ -3405,7 +3460,25 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
+	 * Retorna o id da categoria LOG_DELETE_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElemento = $this->retornaObjetoCategoriaLogDeleteFormularioElemento();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElemento))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteFormularioElemento->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO);
+	}
+
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FILTER
 	 * 
 	 * @return Integer
 	 */
@@ -3423,7 +3496,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
-	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER
 	 * 
 	 * @return Integer
 	 */

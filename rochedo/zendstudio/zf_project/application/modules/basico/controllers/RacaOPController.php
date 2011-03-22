@@ -17,16 +17,20 @@ class Basico_OPController_RacaOPController
 	 * 
 	 * @var Basico_Model_Raca
 	 */
-	private $_raca;
+	private $_model;
 	
 	/**
-	 * Carrega a variavel raca com um novo objeto Basico_Model_Raca
+	 * Construtor do Controlador Basico_OPController_RacaOPController.
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
-		$this->_raca = new Basico_Model_Raca();
+		// instanciando o modelo
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+
+		// inicializando o controlador Basico_OPController_RacaOPController
+		$this->init();
 	}
 	
 	/**
@@ -34,7 +38,7 @@ class Basico_OPController_RacaOPController
 	 * 
 	 * @return Basico_OPController_RacaOPController
 	 */
-	static public function init()
+	protected function init()
 	{
 		return;
 	}
@@ -66,39 +70,78 @@ class Basico_OPController_RacaOPController
 	}
 
 	/**
-	 * Salva o objeto Raca no banco de dados.
+	 * Salva o objeto raca no banco de dados
 	 * 
-	 * @param Basico_Model_Raca $novaRaca
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_Raca $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarRaca(Basico_Model_Raca $objRaca, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Raca', true);
 
-			// verificando se a operacao esta sendo realizada por uma pessoa ou pelo sistema
-			if (!isset($idPessoaPerfilCriador))
-				$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
-			// verificando se trata-se de uma nova tupla ou atualizacao
-			if ($objRaca->id != NULL) {
-				// recuperando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateRaca();
-				$mensagemLog    = LOG_MSG_UPDATE_RACA;
-			} else {
-				// recuperando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovaRaca();
-				$mensagemLog    = LOG_MSG_NOVA_RACA;
-			}
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateRaca();
+	    		$mensagemLog    = LOG_MSG_UPDATE_RACA;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaRaca();
+	    		$mensagemLog    = LOG_MSG_NOVA_RACA;
+	    	}
 
 			// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objRaca, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto
-	    	$this->_raca = $objRaca;
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+
+	/**
+	 * Apaga o objeto raca do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_Raca $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Raca', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteRaca();
+	    	$mensagemLog    = LOG_MSG_DELETE_RACA;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);

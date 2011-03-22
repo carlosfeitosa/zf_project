@@ -52,13 +52,12 @@ define("MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA", "Categoria de log de atualizaçã
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA", "Categoria de log de exclusão de pessoa não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_RACA", "Categoria de log nova raça não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_RACA", "Categoria de log de atualização de raça não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_RACA", "Categoria de log de exclusão de raça não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_COMPONENTE", "Categoria de log de inserção de componente não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_COMPONENTE", "Categoria de log de atualização de componente não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_COMPONENTE", "Categoria de log de exclusão de componente não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_TOKEN", "Categoria de log novo token não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_TOKEN", "Categoria de log atualizacao de token não encontrada no banco de dados");
-define("MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Categoria de log nova pessoa perfil mensagem categoria não encontrada no banco de dados");
-define("MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA", "Categoria de log de atualizacao de pessoa perfil mensagem categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL", "Categoria de log nova pessoa perfil não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL", "Categoria de log de atualizacao pessoa perfil não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_DADOS_PESSOAIS", "Categoria de log novo dados pessoais não encontrada no banco de dados");
@@ -79,9 +78,6 @@ define("MSG_ERRO_CATEGORIA_LOG_DELETE_EMAIL", "Categoria de log exclusão de e-m
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_CATEGORIA", "Categoria de log nova categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA", "Categoria de log de atualizacao de categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_CATEGORIA", "Categoria de log de exclusão de categoria não encontrada no banco de dados");
-define("MSG_ERRO_CATEGORIA_LOG_NOVO_PERFIL", "Categoria de log de inserção de perfil não encontrada no banco de dados");
-define("MSG_ERRO_CATEGORIA_LOG_UPDATE_PERFIL", "Categoria de log de atualização de perfil não encontrada no banco de dados");
-define("MSG_ERRO_CATEGORIA_LOG_DELETE_PERFIL", "Categoria de log de exclusão de perfil não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_MODULO", "Categoria de log novo modulo não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_MODULO", "Categoria de log update modulo não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_MODULO", "Categoria de log delete modulo não encontrada no banco de dados");
@@ -128,6 +124,7 @@ define("MSG_ERRO_CATEGORIA_LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO", "Categoria de 
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO", "Categoria de log exclusão grupo formulario elemento não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO", "Categoria de log novo formulario elemento não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO", "Categoria de log de atualizacao de formulario elemento não encontrado no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO", "Categoria de log de exclusão de formulario elemento não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_FILTER", "Categoria de log novo formulario elemento filter não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER", "Categoria de log atualizacao de formulario elemento filter não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO_FILTER", "Categoria de log exclusão de formulario elemento filter não encontrado no banco de dados");

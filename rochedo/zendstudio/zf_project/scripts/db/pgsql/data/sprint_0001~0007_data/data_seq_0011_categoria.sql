@@ -74,7 +74,9 @@
 * 									   - criacao da categoria LOG_NOVO_DADOS_PESSOAS_PERFIS;
 *  									   - criacao da categoria LOG_UPATE_DADOS_PESSOAS_PERFIS;
 *  									   - criacao da categoria LOG_DELETE_DADOS_PESSOAS_PERFIS;
-* 	 								   - criacao da categoria LOG_DELETE_FORMULARIO; 
+* 	 								   - criacao da categoria LOG_DELETE_FORMULARIO;
+* 							22/03/2011 - criacao da categoria LOG_DELETE_FORMULARIO_ELEMENTO
+* 									   - criacao da categoria LOG_DELETE_RACA
 * 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT ;
 *									   - criacao da categoria LOG_DELETE_PESSOA_PERFIL ;
 *
@@ -256,6 +258,13 @@ AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_RACA' AS nome, 'Operação de atualização de uma raça.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_RACA' AS nome, 'Operação de exclusão de uma raça.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
@@ -459,6 +468,13 @@ AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_FORMULARIO_ELEMENTO' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_FORMULARIO_ELEMENTO' AS nome, 'Operação de exclusão de formulario elemento.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
