@@ -2,11 +2,16 @@
 /**
  * Controlador Categoria
  * 
+ * Responsável pelas categorias do sistema.
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
  * 
  * @uses Basico_Model_Categoria
+ * 
+ * @since 21/03/2011
  */
 
-class Basico_OPController_CategoriaOPController
+class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 *  
@@ -18,17 +23,17 @@ class Basico_OPController_CategoriaOPController
 	 * 
 	 * @var Basico_Model_Categoria object
 	 */
-	private $_categoria;
+	private $_model;
 	
 	/**
 	 * Construtor do Controlador Categoria
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_categoria = $this->retornaNovoObjetoCategoria();
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -39,7 +44,7 @@ class Basico_OPController_CategoriaOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -60,6 +65,85 @@ class Basico_OPController_CategoriaOPController
 		return self::$_singleton;
 	}
 	
+    /**
+	 * Salva o objeto categoria no banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_Categoria $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Categoria', true);
+
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateCategoria();
+	    		$mensagemLog    = LOG_MSG_UPDATE_CATEGORIA;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaCategoria();
+	    		$mensagemLog    = LOG_MSG_NOVA_CATEGORIA;
+	    	}
+
+			// salvando o objeto através do controlador Save
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+	
+     /**
+	 * Apaga o objeto categoria do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_Categoria $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Categoria', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteCategoria();
+	    	$mensagemLog    = LOG_MSG_DELETE_CATEGORIA;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
+	}
+	
 	/**
 	 * Retorna o objeto categoria carregado com os dados da categoria passada como parâmetro ou NULL se
 	 * ela não existir no banco.
@@ -71,7 +155,7 @@ class Basico_OPController_CategoriaOPController
 	private function retornaObjetoCategoriaPorNomeCategoria($nomeCategoria)
 	{
 		// recuperando objeto categoria
-		$objCategoria = $this->_categoria->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
+		$objCategoria = $this->_model->fetchList("nome = '{$nomeCategoria}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoria[0]))
@@ -99,7 +183,7 @@ class Basico_OPController_CategoriaOPController
 			$condicaoSQL = "nome = '{$nomeCategoria}'";
 
 		// recuperando objeto categoria
-		$objsCategoria = $this->_categoria->fetchList($condicaoSQL, null, 1, 0);
+		$objsCategoria = $this->_model->fetchList($condicaoSQL, null, 1, 0);
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objsCategoria[0])) {
@@ -365,6 +449,24 @@ class Basico_OPController_CategoriaOPController
 	}
 	
     /**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_PESSOA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogDeletePessoa()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogDeletePessoa = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_PESSOA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePessoa))
+			// retornando o objeto
+			return $objCategoriaLogDeletePessoa;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA);
+	}
+	
+    /**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_RACA
 	 * 
 	 * @return Basico_Model_Categoria
@@ -398,6 +500,60 @@ class Basico_OPController_CategoriaOPController
 			return $objCategoriaLogUpdateRaca;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_RACA);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_COMPONENTE
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogNovoComponente()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogNovoComponente = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_COMPONENTE);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoComponente))
+			// retornando o objeto
+			return $objCategoriaLogNovoComponente;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_COMPONENTE);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_COMPONENTE
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateComponente()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdateComponente = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_COMPONENTE);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateComponente))
+			// retornando o objeto
+			return $objCategoriaLogUpdateComponente;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_COMPONENTE);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_COMPONENTE
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogDeleteComponente()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogDeleteComponente = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_COMPONENTE);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteComponente))
+			// retornando o objeto
+			return $objCategoriaLogDeleteComponente;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_COMPONENTE);
 	}
 
 	/**
@@ -563,6 +719,25 @@ class Basico_OPController_CategoriaOPController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_DADOS_PESSOAIS);
 	}
 	
+/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_DADOS_PESSOAIS
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogDeleteDadosPessoais()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteDadosPessoais = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_DADOS_PESSOAIS);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteDadosPessoais))
+			// retornando o objeto
+			return $objCategoriaLogDeleteDadosPessoais;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_PESSOAIS);
+	}
+	
+	
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_UPDATE_WEBSITE
 	 * 
@@ -652,6 +827,24 @@ class Basico_OPController_CategoriaOPController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_EMAIL);
 	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_EMAIL
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeleteEmail()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteEmail = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_EMAIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteEmail))
+			// retornando o objeto
+			return $objCategoriaLogDeleteEmail;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_EMAIL);
+	}
 
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_CATEGORIA
@@ -687,6 +880,132 @@ class Basico_OPController_CategoriaOPController
 			return $objCategoriaLogUpdateCategoria;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_CATEGORIA
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeleteCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_CATEGORIA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteCategoria))
+			// retornando o objeto
+			return $objCategoriaLogDeleteCategoria;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_CATEGORIA);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_PERFIL
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogNovoPerfil()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoPerfil = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_PERFIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoPerfil))
+			// retornando o objeto
+			return $objCategoriaLogNovoPerfil;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_PERFIL);
+	}
+	
+/**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_PERFIL
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogUpdatePerfil()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdatePerfil = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_PERFIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePerfil))
+			// retornando o objeto
+			return $objCategoriaLogUpdatePerfil;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PERFIL);
+	}
+	
+/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_PERFIL
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeletePerfil()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeletePerfil = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_PERFIL);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePerfil))
+			// retornando o objeto
+			return $objCategoriaLogDeletePerfil;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PERFIL);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_MODULO
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogNovoModulo()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoModulo = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_MODULO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoModulo))
+			// retornando o objeto
+			return $objCategoriaLogNovoModulo;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_MODULO);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_MODULO
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogUpdateModulo()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateModulo = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_MODULO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateModulo))
+			// retornando o objeto
+			return $objCategoriaLogUpdateModulo;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_MODULO);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_MODULO
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeleteModulo()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteModulo = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_MODULO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteModulo))
+			// retornando o objeto
+			return $objCategoriaLogDeleteModulo;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_MODULO);
 	}
 
 	/**
@@ -1032,6 +1351,24 @@ class Basico_OPController_CategoriaOPController
 	}
 	
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_MENSAGEM
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogDeleteMensagem()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteMensagem = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_MENSAGEM);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteMensagem))
+			// retornando o id do objeto
+			return $objCategoriaLogDeleteMensagem;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_MENSAGEM);
+	}
+	
+	/**
 	 * Retorna o objeto carregado com a categoria da linguagem 
 	 * 
 	 * @return Basico_Model_Categoria
@@ -1084,6 +1421,61 @@ class Basico_OPController_CategoriaOPController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO);
 	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogNovoGrupoFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoGrupoFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO);
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoGrupoFormularioElemento))
+			// retornando o objeto
+			return $objCategoriaLogNovoGrupoFormularioElemento;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO);
+	}
+	
+    /**
+	 * Retorna o objeto carregado com a categoria LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogUpdateGrupoFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateGrupoFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO);
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateGrupoFormularioElemento))
+			// retornando o objeto
+			return $objCategoriaLogUpdateGrupoFormularioElemento;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogDeleteGrupoFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteGrupoFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO);
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteGrupoFormularioElemento))
+			// retornando o objeto
+			return $objCategoriaLogDeleteGrupoFormularioElemento;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO);
+	}
+	
 
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO
@@ -1156,6 +1548,24 @@ class Basico_OPController_CategoriaOPController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_ELEMENTO_FILTER);
 	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO_FILTER
+	 * 
+	 * @return Basico_Model_Categoria $categoriaLogDeleteFormularioElementoFilter
+	 */
+	public function retornaObjetoCategoriaLogDeleteFormularioElementoFilter()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElementoFilter = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_FORMULARIO_ELEMENTO_FILTER);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElementoFilter))
+			// retornando o objeto
+			return $objCategoriaLogDeleteFormularioElementoFilter;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO_FILTER);
+	}
 
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
@@ -1191,6 +1601,24 @@ class Basico_OPController_CategoriaOPController
 			return $objCategoriaLogUpdateFormularioElementoFormularioElementoValidador;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Basico_Model_Categoria 
+	 */
+	public function retornaObjetoCategoriaLogDeleteFormularioElementoFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElementoFormularioElementoValidador = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElementoFormularioElementoValidador))
+			// retornando o objeto
+			return $objCategoriaLogDeleteFormularioElementoFormularioElementoValidador;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
 	}
 
 	/**
@@ -1228,6 +1656,24 @@ class Basico_OPController_CategoriaOPController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR);
 	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogDeleteFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElementoValidador = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElementoValidador))
+			// retornando o objeto
+			return $objCategoriaLogDeleteFormularioElementoValidador;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
 
 	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO
@@ -1263,6 +1709,24 @@ class Basico_OPController_CategoriaOPController
 			return $objCategoriaLogUpdateFormularioFormularioElemento;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_FORMULARIO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Basico_Model_Categoria $categoriaLogDeleteFormularioElementoValidador
+	 */
+	public function retornaObjetoCategoriaLogDeleteFormularioFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioFormularioElemento = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_FORMULARIO_FORMULARIO_ELEMENTO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioFormularioElemento))
+			// retornando o objeto
+			return $objCategoriaLogDeleteFormularioFormularioElemento;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_FORMULARIO_ELEMENTO);
 	}
 
 	/**
@@ -1352,7 +1816,7 @@ class Basico_OPController_CategoriaOPController
 			// retornando o objeto
 			return $objCategoriaLogNovaPessoaPerfilMensagemCategoria;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
 	}
 
 	/**
@@ -1370,7 +1834,25 @@ class Basico_OPController_CategoriaOPController
 			// retornando o objeto
 			return $objCategoriaLogUpdatePessoaPerfilMensagemCategoria;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_TEMPLATE);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogDeletePessoaPerfilMensagemCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeletePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePessoaPerfilMensagemCategoria))
+			// retornando o objeto
+			return $objCategoriaLogDeletePessoaPerfilMensagemCategoria;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
 	}
 
 	/**
@@ -1396,7 +1878,7 @@ class Basico_OPController_CategoriaOPController
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira()
+	public function retornaObjetoCategoriaLogNovaRelacaoCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
@@ -1482,10 +1964,10 @@ class Basico_OPController_CategoriaOPController
 	 * 
 	 * @return Integer
 	 */
-	public function retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira()
+	public function retornaIdCategoriaLogNovaRelacaoCategoriaChaveEstrangeira()
 	{
 		// recuperando o objeto categoria
-		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaLogRelacaoCategoriaChaveEstrangeira();
+		$objCategoriaLogRelacaoCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaLogNovaRelacaoCategoriaChaveEstrangeira();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogRelacaoCategoriaChaveEstrangeira))
@@ -1657,7 +2139,7 @@ class Basico_OPController_CategoriaOPController
     	throw new Exception(MSG_ERRO_CATEGORIA_EMAIL_VALIDACAO_USUARIO_PLAINTEXT_TEMPLATE);
 	}
 	
-/**
+    /**
 	 * Retorna o id da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT
 	 * 
 	 * @return Integer
@@ -1749,7 +2231,25 @@ class Basico_OPController_CategoriaOPController
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA);
 	}
 	
-/**
+    /**
+	 * Retorna o id da categoria LOG_DELETE_PESSOA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeletePessoa()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogDeletePessoa = $this->retornaObjetoCategoriaLogDeletePessoa();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePessoa))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogDeletePessoa->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA);
+	}
+	
+    /**
 	 * Retorna o id da categoria LOG_NOVA_RACA
 	 * 
 	 * @return Integer
@@ -1786,6 +2286,168 @@ class Basico_OPController_CategoriaOPController
 	}
 	
     /**
+	 * Retorna o id da categoria LOG_NOVO_COMPONENTE
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogNovoComponente()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogNovoComponente = $this->retornaObjetoCategoriaLogNovoComponente();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoComponente))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogNovoComponente->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_COMPONENTE);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_UPDATE_COMPONENTE
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateComponente()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdateComponente = $this->retornaObjetoCategoriaLogUpdateComponente();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateComponente))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogUpdateComponente->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_COMPONENTE);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_DELETE_COMPONENTE
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteComponente()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogDeleteComponente = $this->retornaObjetoCategoriaLogDeleteComponente();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteComponente))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogDeleteComponente->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_COMPONENTE);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_NOVO_MODULO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogNovoModulo()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogNovoModulo = $this->retornaObjetoCategoriaLogNovoModulo();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoModulo))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogNovoModulo->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_MODULO);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_UPDATE_MODULO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateModulo()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdateModulo = $this->retornaObjetoCategoriaLogUpdateModulo();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateModulo))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogUpdateModulo->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_MODULO);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_DELETE_MODULO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteModulo()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogDeleteModulo = $this->retornaObjetoCategoriaLogDeleteModulo();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteModulo))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogDeleteModulo->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_MODULO);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_NOVO_PERFIL
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogNovoPerfil()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogNovoPerfil = $this->retornaObjetoCategoriaLogNovoPerfil();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoPerfil))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogNovoPerfil->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_PERFIL);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_UPDATE_PERFIL
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdatePerfil()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogUpdatePerfil = $this->retornaObjetoCategoriaLogUpdatePerfil();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdatePerfil))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogUpdatePerfil->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PERFIL);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_DELETE_PERFIL
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeletePerfil()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogDeletePerfil = $this->retornaObjetoCategoriaLogDeletePerfil();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePerfil))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogDeletePerfil->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PERFIL);
+	}
+	
+    /**
 	 * Retorna o id da categoria LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA
 	 * 
 	 * @return Integer
@@ -1819,6 +2481,24 @@ class Basico_OPController_CategoriaOPController
 			return (Int) $objCategoriaLogUpdatePessoaPerfilMensagemCategoria->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeletePessoaPerfilMensagemCategoria()
+	{
+		// recuperando objeto categoria
+		$objCategoriaLogDeletePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogDeletePessoaPerfilMensagemCategoria();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeletePessoaPerfilMensagemCategoria))
+			// retornando o id da categoria
+			return (Int) $objCategoriaLogDeletePessoaPerfilMensagemCategoria->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
 	}
 
 	/**
@@ -1984,6 +2664,24 @@ class Basico_OPController_CategoriaOPController
 	}
 	
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_DELETE_DADOS_PESSOAIS
+	 * 
+	 * @return integer
+	 */
+	public function retornaIdCategoriaLogDeleteDadosPessoais()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteDadosPessoais = $this->retornaObjetoCategoriaLogDeleteDadosPessoais();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteDadosPessoais))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteDadosPessoais->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_DADOS_PESSOAIS);
+	}
+	
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_WEBSITE
 	 * 
 	 * @return integer
@@ -2038,7 +2736,7 @@ class Basico_OPController_CategoriaOPController
 	}
 	
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_NOVO_EMAIL
+	 * Retorna o id da categoria LOG_NOVO_EMAIL
 	 * 
 	 * @return Integer
 	 */
@@ -2056,7 +2754,7 @@ class Basico_OPController_CategoriaOPController
 	}
 
 	/**
-	 * Retorna o objeto carregado com a categoria LOG_UPDATE_EMAIL
+	 * Retorna o id da categoria LOG_UPDATE_EMAIL
 	 * 
 	 * @return Integer
 	 */
@@ -2071,6 +2769,24 @@ class Basico_OPController_CategoriaOPController
 			return (Int) $objCategoriaLogUpdateEmail->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_EMAIL);
+	}
+	
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_DELETE_EMAIL
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteEmail()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteEmail = $this->retornaObjetoCategoriaLogDeleteEmail();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteEmail))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteEmail->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_EMAIL);
 	}
 
 	/**
@@ -2107,6 +2823,24 @@ class Basico_OPController_CategoriaOPController
 			return (Int) $objCategoriaLogUpdateCategoria->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA);
+	}
+	
+    /**
+	 * Retorna o id da categoria LOG_DELETE_CATEGORIA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteCategoria()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteCategoria = $this->retornaObjetoCategoriaLogDeleteCategoria();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteCategoria))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteCategoria->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_CATEGORIA);
 	}
 
 	/**
@@ -2450,6 +3184,24 @@ class Basico_OPController_CategoriaOPController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_MENSAGEM);
 	}
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_DELETE_MENSAGEM
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteMensagem()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteMensagem = $this->retornaObjetoCategoriaLogDeleteMensagem();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteMensagem))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteMensagem->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_MENSAGEM);
+	}
 
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO
@@ -2485,6 +3237,60 @@ class Basico_OPController_CategoriaOPController
 			return (Int) $objCategoriaLogUpdateFormulario->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO);
+	}
+	
+    /**
+	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogNovoGrupoFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogNovoGrupoFormularioElemento = $this->retornaObjetoCategoriaLogNovoGrupoFormularioElemento();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogNovoGrupoFormularioElemento))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogNovoGrupoFormularioElemento->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO);
+	}
+	
+    /**
+	 * Retorna o id do objeto carregado com a categoria LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogUpdateGrupoFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogUpdateGrupoFormularioElemento = $this->retornaObjetoCategoriaLogUpdateGrupoFormularioElemento();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogUpdateGrupoFormularioElemento))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogUpdateGrupoFormularioElemento->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO);
+	}
+	
+    /**
+	 * Retorna o id do objeto carregado com a categoria LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteGrupoFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteGrupoFormularioElemento = $this->retornaObjetoCategoriaLogDeleteGrupoFormularioElemento();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteGrupoFormularioElemento))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteGrupoFormularioElemento->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO);
 	}
 
 	/**
@@ -2558,6 +3364,24 @@ class Basico_OPController_CategoriaOPController
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER);
 	}
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteFormularioElementoFilter()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElementoFilter = $this->retornaObjetoCategoriaLogDeleteFormularioElementoFilter();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElementoFilter))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteFormularioElementoFilter->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO_FILTER);
+	}
 
 	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
@@ -2593,6 +3417,24 @@ class Basico_OPController_CategoriaOPController
 			return (int) $objCategoriaLogUpdateFormularioElementoFormularioElementoValidador->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
+    /**
+	 * Retorna o id do objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteFormularioElementoFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElementoFormularioElementoValidador = $this->retornaObjetoCategoriaLogDeleteFormularioElementoFormularioElementoValidador();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElementoFormularioElementoValidador))
+			// retornando o id do objeto
+			return (int) $objCategoriaLogDeleteFormularioElementoFormularioElementoValidador->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR);
 	}
 
 	/**
@@ -2632,6 +3474,24 @@ class Basico_OPController_CategoriaOPController
 	}
 	
 	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteFormularioElementoValidador()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioElementoValidador = $this->retornaObjetoCategoriaLogDeleteFormularioElementoValidador();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioElementoValidador))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteFormularioElementoValidador->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR);
+	}
+	
+	/**
 	 * Retorna o id do objeto carregado com a categoria LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR
 	 * 
 	 * @return Integer
@@ -2665,6 +3525,24 @@ class Basico_OPController_CategoriaOPController
 			return (Int) $objCategoriaLogUpdateFormularioFormularioElemento->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO);
+	}
+	
+	/**
+	 * Retorna o id do objeto carregado com a categoria LOG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogDeleteFormularioFormularioElemento()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogDeleteFormularioFormularioElemento = $this->retornaObjetoCategoriaLogDeleteFormularioFormularioElemento();
+		
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogDeleteFormularioFormularioElemento))
+			// retornando o id do objeto
+			return (Int) $objCategoriaLogDeleteFormularioFormularioElemento->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_FORMULARIO_ELEMENTO);
 	}
 
 	/**
@@ -2757,7 +3635,7 @@ class Basico_OPController_CategoriaOPController
 			$condicao = "id_tipo_categoria = {$idTipoCategoriaLinguagem} and ativo = 1";
 
 		// recuperando categorias de liguas ativas
-		$objsCategoriasLinguasAtivas = $this->_categoria->fetchList($condicao);
+		$objsCategoriasLinguasAtivas = $this->_model->fetchList($condicao);
 		
 		// retornando o array de objetos contendo as categorias de linguas ativas
 		return $objsCategoriasLinguasAtivas;
@@ -2863,7 +3741,7 @@ class Basico_OPController_CategoriaOPController
 			$this->salvarCategoria($objCategoria);
 
 			// retornando o id da categoria recem criada
-			return $this->_categoria->id;
+			return $this->_model->id;
 		}
 	}
 
@@ -2925,7 +3803,7 @@ class Basico_OPController_CategoriaOPController
 	    	Basico_OPController_PersistenceOPController::bdSave($objCategoria, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 	    	// atualizando o objeto
-    		$this->_categoria = $objCategoria;
+    		$this->_model = $objCategoria;
 
     	} catch (Exception $e) {
 

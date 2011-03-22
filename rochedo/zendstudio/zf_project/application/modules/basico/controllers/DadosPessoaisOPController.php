@@ -2,9 +2,15 @@
 /**
  * Controlador Dados Pessoais
  * 
+ * Controlador responsável pelos dados pessoais do usuario
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
+ * 
  * @uses Basico_Model_DadosPessoais
+ * 
+ * @since 21/03/2011
  */
-class Basico_OPController_DadosPessoaisOPController
+class Basico_OPController_DadosPessoaisOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * @var Basico_OPController_DadosPessoaisOPController
@@ -14,17 +20,17 @@ class Basico_OPController_DadosPessoaisOPController
 	/**
 	 * @var Basico_Model_DadosPessoais
 	 */
-	private $_dadosPessoais;
+	private $_model;
 	
 	/**
 	 * Construtor do controlador Basico_OPController_DadosPessoaisOPController
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_dadosPessoais = $this->retornaNovoObjetoDadosPessoais();
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -35,7 +41,7 @@ class Basico_OPController_DadosPessoaisOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -55,55 +61,80 @@ class Basico_OPController_DadosPessoaisOPController
 		// retornando instancia
 		return self::$_singleton;
 	}
-
-	/**
-	 * Retorna um objeto dados pessoais vazio
-	 * 
-	 * @return Basico_Model_DadosPessoais
-	 */
-	public function retornaNovoObjetoDadosPessoais()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_DadosPessoais();
-	}
 	
 	/**
-	 * Salva os dados pessoais.
+	 * Salva o objeto dadosPessoais no banco de dados
 	 * 
-	 * @param Basico_Model_DadosPessoais $objDadosPessoais
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_DadosPessoais $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarDadosPessoais(Basico_Model_DadosPessoais $objDadosPessoais, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosPessoais', true);
 
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		// setando o id do perfil criador para o sistema
-    			$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
-			// verificando se trata-se de uma nova tupla ou atualizacao
-    		if ($objDadosPessoais->id != NULL) {
-    			// carregando informacoes de log de atualizacao de registro
-    			$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateDadosPessoais();
-    			$mensagemLog    =  LOG_MSG_UPDATE_DADOS_PESSOAIS;
-    		} else {
-    			// carregando informacoes de log de novo registro
-                $idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoDadosPessoais();
-                $mensagemLog    = LOG_MSG_NOVO_DADOS_PESSOAIS;
-    		}
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateDadosPessoais();
+	    		$mensagemLog    = LOG_MSG_UPDATE_DADOS_PESSOAIS;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoDadosPessoais();
+	    		$mensagemLog    = LOG_MSG_NOVO_DADOS_PESSOAIS;
+	    	}
 
 			// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objDadosPessoais, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto
-			$this->_dadosPessoais = $objDadosPessoais;
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+	
+    /**
+	 * Apaga o objeto dadosPessoais do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_DadosPessoais $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosPessoais', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteDadosPessoais();
+	    	$mensagemLog    = LOG_MSG_DELETE_DADOS_PESSOAIS;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);
@@ -120,7 +151,7 @@ class Basico_OPController_DadosPessoaisOPController
 	public function retornaNomePessoaPorIdPessoa($idPessoa) 
 	{
 		// recuperando o objeto dados pessoais
-		$objDadosPessoais = $this->_dadosPessoais->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+		$objDadosPessoais = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objDadosPessoais[0]))
@@ -142,7 +173,7 @@ class Basico_OPController_DadosPessoaisOPController
 		// verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosPessoais = $this->_dadosPessoais->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosPessoais = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosPessoais[0]))

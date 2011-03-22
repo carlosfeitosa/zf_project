@@ -1,9 +1,17 @@
 <?php
 /**
  * Controlador Basico_OPController_FormularioElementoValidatorOPController.
+ * 
+ * Responsável pelos FormularioElementoValidador do sistema
  *
+ * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
+ * 
+ * @uses Basico_Model_FormularioElementoValidador
+ * 
+ * @since 21/03/2011
+ * 
  */
-class Basico_OPController_FormularioElementoValidatorOPController
+class Basico_OPController_FormularioElementoValidatorOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Basico_OPController_FormularioElementoValidatorOPController
@@ -15,17 +23,17 @@ class Basico_OPController_FormularioElementoValidatorOPController
 	 * Instância do Modelo FormularioElementoValidador.
 	 * @var Basico_Model_FormularioElementoValidador
 	 */
-	private $_formularioElementoValidator;
+	private $_model;
 	
 	/**
 	 * Construtor do Controlador FormularioElementoValidador.
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_formularioElementoValidator = $this->retornaNovoObjetoFormularioElementoValidator();
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -36,7 +44,7 @@ class Basico_OPController_FormularioElementoValidatorOPController
 	 *
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -58,52 +66,78 @@ class Basico_OPController_FormularioElementoValidatorOPController
 	}
 
 	/**
-	 * Retorna um modelo de formulario elemento validator vazio
+	 * Salva o objeto FormularioElementoValidator no banco de dados
 	 * 
-	 * @return Basico_Model_FormularioElementoValidator
-	 */
-	public function retornaNovoObjetoFormularioElementoValidator()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_FormularioElementoValidator();
-	}
-
-	/**
-	 * Salva objeto no Banco de dados.
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_FormularioElementoValidador $novoFormularioElementoValidador
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * @param Basico_Model_FormularioElementoValidator $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarFormularioElementoValidador(Basico_Model_FormularioElementoValidator $objFormularioElementoValidador, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando os controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioElementoValidator', true);
 
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objFormularioElementoValidador->id != NULL) {
-	    		// recuperando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateFormularioElementoValidador();
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateFormularioElementoValidador();
 	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR;
 	    	} else {
-	    		// recuperando informacoes de log de novo registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoFormularioElementoValidador();
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoFormularioElementoValidador();
 	    		$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR;
 	    	}
 
-	    	// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objFormularioElementoValidador, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+			// salvando o objeto através do controlador Save
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto
-			$this->_formularioElementoValidator = $objFormularioElementoValidador;
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+	
+    /**
+	 * Apaga o objeto FormularioElementoValidator do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_FormularioElementoValidator $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioElementoValidator', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteFormularioElementoValidador();
+	    	$mensagemLog    = LOG_MSG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);

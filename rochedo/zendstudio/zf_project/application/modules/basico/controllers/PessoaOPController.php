@@ -1,10 +1,17 @@
 <?php
 /**
  * Controlador Pessoa.
+ * 
+ * Responsavel pelas pessoas do sistema.
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
+ * 
+ * @uses Basico_Model_Pessoa
  *
+ * @since 22/03/2011
+ * 
  */
-
-class Basico_OPController_PessoaOPController
+class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Pessoa
@@ -16,17 +23,17 @@ class Basico_OPController_PessoaOPController
 	 * Instância do Modelo Pessoa.
 	 * @var Basico_Model_Pessoa
 	 */
-	private $_pessoa;
+	private $_model;
 	
 	/**
 	 * Construtor do Controlador Pessoa.
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando modelo
-		$this->_pessoa = $this->retornaNovoObjetoPessoa();
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -37,7 +44,7 @@ class Basico_OPController_PessoaOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -57,55 +64,81 @@ class Basico_OPController_PessoaOPController
 		// retornando instancia
 		return self::$_singleton;
 	}
-
-	/**
-	 * Retorna um objeto pessoa vazio
-	 * 
-	 * @return Basico_Model_Pessoa
-	 */
-	public function retornaNovoObjetoPessoa()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_Pessoa();
-	}
 	
 	/**
-	 * Salva objeto no Banco de dados.
+	 * Salva o objeto pessoa no banco de dados
 	 * 
-	 * @param Basico_Model_Pessoa $novaPessoa
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_Pessoa $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarPessoa(Basico_Model_Pessoa $objPessoa, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Pessoa', true);
 
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
-			// verificando se trata-se de uma nova tupla ou atualizacao
-			if ($objPessoa->id != NULL) {
-				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdatePessoa();
-				$mensagemLog    = LOG_MSG_UPDATE_PESSOA;
-			} else {
-				// carregando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovaPessoa();
-				$mensagemLog    = LOG_MSG_NOVA_PESSOA;
-			}
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdatePessoa();
+	    		$mensagemLog    = LOG_MSG_UPDATE_PESSOA;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaPessoa();
+	    		$mensagemLog    = LOG_MSG_NOVA_PESSOA;
+	    	}
 
 			// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objPessoa, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto
-			$this->_pessoa = $objPessoa;
-						
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+	
+     /**
+	 * Apaga o objeto pessoa do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_Pessoa $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Pessoa', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePessoa();
+	    	$mensagemLog    = LOG_MSG_DELETE_PESSOA;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
@@ -144,7 +177,7 @@ class Basico_OPController_PessoaOPController
 	{
 		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
 		// recuperando o objeto pessoa
-		$objsPessoaSistema = $this->_pessoa->fetchList("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
+		$objsPessoaSistema = $this->_model->fetchList("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado
 		if (isset($objsPessoaSistema[0]))

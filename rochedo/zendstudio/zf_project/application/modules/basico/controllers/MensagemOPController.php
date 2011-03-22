@@ -1,28 +1,27 @@
 <?php
-
-/**
- * Controlador Mensageiro
- *
- */
-
 /**
  * Controlador Mensagem
  * 
+ * Controlador responsavel pelas mensagems do sistema.
+ * 
  * @author João Vasconcelos
+ * 
  * @uses Basico_Model_Mensagem
+ * 
+ * @since 21/03/2011
  */
-class Basico_OPController_MensagemOPController
+class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * 
-	 * @var Basico_OPController_MensagemOPController
+	 * @var Basico_MensagemControllerController
 	 */
 	private static $_singleton;
 	
 	/**
 	 * @var Basico_Model_Mensagem
 	 */
-	private $_mensagem;
+	private $_model;
 	
 	/**
 	 * Construtor do Controlador Mensagem
@@ -32,7 +31,7 @@ class Basico_OPController_MensagemOPController
 	public function __construct()
 	{
 		// instanciando o modelo
-    	$this->_mensagem = $this->retornaNovoObjetoMensagem();
+    	$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
     	
     	// inicializando o controlador
     	$this->init();
@@ -43,11 +42,11 @@ class Basico_OPController_MensagemOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
-
+	
 	/**
 	 * Retorna o objeto da Classe MensagemController
 	 * 
@@ -64,17 +63,6 @@ class Basico_OPController_MensagemOPController
 	}
 
 	/**
-	 * Retorna um modelo Basico_Model_Mensagem vazio
-	 * 
-	 * @return Basico_Model_Mensagem
-	 */
-	public function retornaNovoObjetoMensagem()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_Mensagem();
-	}
-
-	/**
 	 * Salva a mensagem e todos as suas dependencias.
 	 * 
 	 * @param Basico_Model_Mensagem $novaMensagem
@@ -83,37 +71,60 @@ class Basico_OPController_MensagemOPController
 	 * 
 	 * @return void
 	 */
-    public function salvarMensagem(Basico_Model_Mensagem $objMensagem, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
+    public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
     {
+    	Basico_UtilControllerController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mensagem');
 	    try{
 	    	// instanciando controladores
-	    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-	    	$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+	    	$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
+	    	$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
 
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objMensagem->id != NULL) {
+	    	if ($objeto->id != NULL) {
 	    		// recuperando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateMensagem();
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateMensagem();
 	    		$mensagemLog    = LOG_MSG_UPDATE_MENSAGEM;
 	    	} else {
 	    		// recuperando informacoes de log de novo registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovaMensagem();
+	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovaMensagem();
 	    		$mensagemLog    = LOG_MSG_NOVA_MENSAGEM;
 	    	}
 
 	    	// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objMensagem, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+			Basico_PersistenceControllerController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 			// atualizando o objeto	    		
-	    	$this->_mensagem = $objMensagem;
+	    	$this->_model = $objeto;
 
 	    } catch (Exception $e) {
 	    	throw new Exception($e);
 	    }
+	}
+	
+	public function apagarObjeto($objeto, $forceCascade = false,$idPessoaPerfilCriador = NULL)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mensagem', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteMensagem();
+	    	$mensagemLog    = LOG_MSG_DELETE_MENSAGEM;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 	}
 	
 	/**
@@ -128,29 +139,29 @@ class Basico_OPController_MensagemOPController
 	public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link)
 	{
 		// instanciando controladores
-		$emailOPController              = Basico_OPController_EmailOPController::getInstance();
-		$categoriaOPController          = Basico_OPController_CategoriaOPController::getInstance();
-		$dadosPessoasPerfisOPController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+		$emailControllerController              = Basico_EmailControllerController::getInstance();
+		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
 
 		// recuperando o objeto categoria email validacao plain text template
-		$objCategoriaMensagem = $categoriaOPController->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
+		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
 
 		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
+		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->_mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// verificando se a mensagem foi carregada
 		if (!isset($objMensagemTemplate))
 			return null;
 
 		// carregando assunto da mensagem
-		$this->_mensagem->setAssunto($objMensagemTemplate[0]->getAssunto());
+		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());
 		// carregando a mensagem
 		$corpoMensagemTemplate  = $objMensagemTemplate[0]->getMensagem();
         // carregando a assinatura da mensagem
-        $assinatura             = $dadosPessoasPerfisOPController->retornaAssinaturaMensagemEmailSistema();
+        $assinatura             = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
          
 		// substituindo tags
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
@@ -158,16 +169,16 @@ class Basico_OPController_MensagemOPController
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
 
         // carregando a mensagem no modelo
-        $this->_mensagem->setMensagem($corpoMensagemTemplate);
+        $this->_model->setMensagem($corpoMensagemTemplate);
 		
 		// recuperando o endereco do e-mail do sistema
-		$emailSistema = $emailOPController->retornaEmailSistema();
+		$emailSistema = $emailControllerController->retornaEmailSistema();
 		// setando o remetente
-		$this->_mensagem->setRemetente($emailSistema);
-		$this->_mensagem->setRemetenteNome(APPLICATION_NAME);
+		$this->_model->setRemetente($emailSistema);
+		$this->_model->setRemetenteNome(APPLICATION_NAME);
 		
 		// retornando a mensagem
-		return $this->_mensagem;
+		return $this->_model;
 	}
 	
 	/**
@@ -182,31 +193,31 @@ class Basico_OPController_MensagemOPController
     public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) 
     {
 		// instanciando os controladores
-		$emailOPController              = Basico_OPController_EmailOPController::getInstance();
-		$categoriaOPController          = Basico_OPController_CategoriaOPController::getInstance();
-		$dadosPessoaisOPController      = Basico_OPController_DadosPessoaisOPController::getInstance();
-		$dadosPessoasPerfisOPController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+		$emailControllerController              = Basico_EmailControllerController::getInstance();
+		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
-		$objcategoriaMensagem = $categoriaOPController->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
+		$objcategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
 
 		// recuperando o nome do destinatario
-		$nomeDestinatario = $dadosPessoaisOPController->retornaNomePessoaPorIdPessoa($idPessoa);
+		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
         
 		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
+		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
-		$objsMensagemTemplate = $this->_mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objcategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objsMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objcategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// verificando se a mensagem foi carregada
 		if (!isset($objsMensagemTemplate))
 			return null;
 		
 		// recuperando o assunto
-		$this->_mensagem->setAssunto($objsMensagemTemplate[0]->getAssunto());
+		$this->_model->setAssunto($objsMensagemTemplate[0]->getAssunto());
 		// recuperando assinatura da mensagem
-		$assinatura            = $dadosPessoasPerfisOPController->retornaAssinaturaMensagemEmailSistema();
+		$assinatura            = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
 		// recuperando a mensagem
 		$corpoMensagemTemplate = $objsMensagemTemplate[0]->getMensagem();
 		// substituindo as tags 
@@ -215,16 +226,16 @@ class Basico_OPController_MensagemOPController
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         
         // carregando a mensagem no modelo
-        $this->_mensagem->setMensagem($corpoMensagemTemplate);
+        $this->_model->setMensagem($corpoMensagemTemplate);
 		
 		// recuperando o endereco de e-mail do sistema
-		$emailSistema = $emailOPController->retornaEmailSistema();
+		$emailSistema = $emailControllerController->retornaEmailSistema();
 		// setando remetente
-		$this->_mensagem->setRemetente($emailSistema);
-		$this->_mensagem->setRemetenteNome(APPLICATION_NAME);
+		$this->_model->setRemetente($emailSistema);
+		$this->_model->setRemetenteNome(APPLICATION_NAME);
 		
 		// retornando a mensagem
-		return $this->_mensagem;
+		return $this->_model;
 	}
 	
     /**
@@ -238,61 +249,61 @@ class Basico_OPController_MensagemOPController
     public function retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa) 
     {
 		// instanciando os controladores
-		$emailOPController              = Basico_OPController_EmailOPController::getInstance();
-		$categoriaOPController          = Basico_OPController_CategoriaOPController::getInstance();
-		$loginOPController              = Basico_OPController_LoginOPController::getInstance();
-		$dadosPessoaisOPController      = Basico_OPController_DadosPessoaisOPController::getInstance();
-		$dadosBiometricosOPController   = Basico_OPController_DadosBiometricosOPController::getInstance();
-		$dadosPessoasPerfisOPController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
-		$tradutorOPController           = Basico_OPController_TradutorOPController::getInstance();
+		$emailControllerController              = Basico_EmailControllerController::getInstance();
+		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$loginControllerController              = Basico_LoginControllerController::getInstance();
+		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
+		$dadosBiometricosControllerController   = Basico_DadosBiometricosControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
+		$tradutorControllerController           = Basico_TradutorControllerController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
-		$objCategoriaMensagem = $categoriaOPController->retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
+		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
 
-		$loginUsuario   = $loginOPController->retornaLoginPorIdPessoa($idPessoa);
-		$sexoUsuario    = $dadosBiometricosOPController->retornaSexoPorIdPessoa($idPessoa);
+		$loginUsuario   = $loginControllerController->retornaLoginPorIdPessoa($idPessoa);
+		$sexoUsuario    = $dadosBiometricosControllerController->retornaSexoPorIdPessoa($idPessoa);
 
 		// recuperando o nome do destinatario
-		$nomeDestinatario = $dadosPessoaisOPController->retornaNomePessoaPorIdPessoa($idPessoa);
+		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
 
 		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
+		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
 
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->_mensagem->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// recuperando o assunto
-		$this->_mensagem->setAssunto($objMensagemTemplate[0]->getAssunto());
+		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());
 		// recuperando assinatura da mensagem
-		$assinatura            = $dadosPessoasPerfisOPController->retornaAssinaturaMensagemEmailSistema();
+		$assinatura            = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
 		// recuperando a mensagem
 		$corpoMensagemTemplate = $objMensagemTemplate[0]->getMensagem();
 		
         // substituindo a tag de tratamento de acordo com o sexo do usuario
 		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorOPController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorControllerController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
 		else
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorOPController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorControllerController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
 		
 		// substituindo a tag do nome do usuario    
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
         // substituindo a tag do login
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LOGIN, $loginUsuario, $corpoMensagemTemplate);
         // substituindo a tag de datahora cadastro
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_OPController_UtilOPController::retornaDateTimeAtual(Basico_OPController_PessoaOPController::retornaLinguaUsuario()), $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_UtilControllerController::retornaDateTimeAtual(Basico_PessoaControllerController::retornaLinguaUsuario()), $corpoMensagemTemplate);
         // substituindo a tag de assinatura da mensagem
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         
         // carregando a mensagem no modelo
-        $this->_mensagem->setMensagem($corpoMensagemTemplate);
+        $this->_model->setMensagem($corpoMensagemTemplate);
 		
 		// recuperando o endereco de e-mail do sistema
-		$emailSistema = $emailOPController->retornaEmailSistema();
+		$emailSistema = $emailControllerController->retornaEmailSistema();
 		// setando remetente
-		$this->_mensagem->setRemetente($emailSistema);
-		$this->_mensagem->setRemetenteNome(APPLICATION_NAME);
+		$this->_model->setRemetente($emailSistema);
+		$this->_model->setRemetenteNome(APPLICATION_NAME);
 		
 		// retornando a mensagem
-		return $this->_mensagem;
+		return $this->_model;
 	}
 }

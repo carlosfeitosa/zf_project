@@ -1,8 +1,14 @@
 <?php
 /**
  * Controlador dos perfis do sistema.
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
+ * 
+ * @uses Basico_Model_Perfil
+ * 
+ * @since 22/03/2011
  */
-class Basico_OPController_PerfilOPController
+class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Perfil.
@@ -14,17 +20,17 @@ class Basico_OPController_PerfilOPController
 	 * Instância do Modelo Perfil.
 	 * @var Basico_Model_Perfil
 	 */
-	private $_perfil;
+	private $_model;
 
 	/**
 	 * Construtor do Controlador Basico_OPController_PerfilOPController
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_perfil = $this->retornaNovoObjetoPerfil();
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -35,7 +41,7 @@ class Basico_OPController_PerfilOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -55,16 +61,84 @@ class Basico_OPController_PerfilOPController
 		// retornando instancia
 		return self::$_singleton;
 	}
-
-	/**
-	 * Retorna um objeto perfil vazio
+	
+/**
+	 * Salva o objeto perfil no banco de dados
 	 * 
-	 * @return Basico_Model_Perfil
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_Perfil $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
 	 */
-	public function retornaNovoObjetoPerfil()
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		// retornando um modelo vazio
-		return new Basico_Model_Perfil();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Perfil', true);
+
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdatePerfil();
+	    		$mensagemLog    = LOG_MSG_UPDATE_PERFIL;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoPerfil();
+	    		$mensagemLog    = LOG_MSG_NOVO_PERFIL;
+	    	}
+
+			// salvando o objeto através do controlador Save
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+	
+    /**
+	 * Apaga o objeto perfil do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_Perfil $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Perfil', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePerfil();
+	    	$mensagemLog    = LOG_MSG_DELETE_PERFIL;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 	}
 
 	/**
@@ -77,7 +151,7 @@ class Basico_OPController_PerfilOPController
 	public function retornaObjetoPerfilPorNome($nomePerfil)
 	{
 		// recuperando array de perfis
-		$objPerfil = $this->_perfil->fetchList("nome = '{$nomePerfil}'", null, 1, 0);
+		$objPerfil = $this->_model->fetchList("nome = '{$nomePerfil}'", null, 1, 0);
 		
 		// verificando se existe o objeto
 		if (isset($objPerfil[0]))
@@ -99,7 +173,7 @@ class Basico_OPController_PerfilOPController
 		// verificando se o id do perfil foi passado
 		if ($idPerfil > 0) {
 			// recuperando o objeto
-			return $this->_perfil->find($idPerfil);			
+			return $this->_model->find($idPerfil);			
 		}
 	}
 	

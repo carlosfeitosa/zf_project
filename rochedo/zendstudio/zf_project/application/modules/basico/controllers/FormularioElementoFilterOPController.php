@@ -3,29 +3,28 @@
  * Controlador FormularioElementoFilter.
  *
  */
-class Basico_OPController_FormularioElementoFilterOPController
+class Basico_OPController_FormularioElementoFilterOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Basico_OPController_FormularioElementoFilterOPController
 	 * @var Basico_OPController_FormularioElementoFilterOPController
 	 */
 	static private $_singleton;
-
 	/**
 	 * Instância do Modelo FormularioElementoFilter.
 	 * @var Basico_Model_FormularioElementoFilter
 	 */
-	private $_formularioElementoFilter;
+	private $_model;
 
 	/**
 	 * Construtor do Controlador Basico_OPController_FormularioElementoFilterOPController.
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_formularioElementoFilter = $this->retornaNovoObjetoFormularioElementoFilter();
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -36,7 +35,7 @@ class Basico_OPController_FormularioElementoFilterOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -57,49 +56,80 @@ class Basico_OPController_FormularioElementoFilterOPController
 		return self::$_singleton;
 	}
 
-	public function retornaNovoObjetoFormularioElementoFilter()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_FormularioElementoFilter();
-	}
-
-	/**
-	 * Salva objeto no Banco de dados.
+    /**
+	 * Salva o objeto FormularioElementoFilter no banco de dados
 	 * 
-	 * @param Basico_Model_FormularioElementoFilter $novoFormularioElementoFilter
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_FormularioElementoFilter $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarFormularioElementoFilter(Basico_Model_FormularioElementoFilter $objFormularioElementoFilter, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioElementoFilter', true);
 
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id != NULL) {
+	    		// carregando informacoes de log de atualizacao de registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateFormularioElementoFilter();
+	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_ELEMENTO_FILTER;
+	    	} else {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoFormularioElementoFilter();
+	    		$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER;
+	    	}
+
+			// salvando o objeto através do controlador Save
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+	
+     /**
+	 * Apaga o objeto FormularioElementoFilter do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_FormularioElementoFilter $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioElementoFilter', true);
+
+		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
-			// verificando se trata-se de uma nova tupla ou atualizacao
-			if ($objFormularioElementoFilter->id != NULL) {
-				// recuperando informacoes de log de autalizacao de registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateFormularioElementoFilter();
-				$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_ELEMENTO_FILTER;
-			} else {
-				// recuperando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoFormularioElementoFilter();
-				$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER;
-			}
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteFormularioElementoFilter();
+	    	$mensagemLog    = LOG_MSG_DELETE_FORMULARIO_ELEMENTO_FILTER;
 
-	    	// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objFormularioElementoFilter, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto
-			$this->_formularioElementoFilter = $objFormularioElementoFilter;
-			
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

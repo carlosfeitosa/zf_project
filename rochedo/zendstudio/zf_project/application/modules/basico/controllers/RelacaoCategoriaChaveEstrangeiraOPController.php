@@ -2,9 +2,15 @@
 /**
  * Controlador Relacao Cartegoria Chave Estrangeira
  * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
+ * 
+ * @uses Basico_Model_RelacaoCategoriaChaveEstrangeira
+ * 
+ * @since 22/03/2011
+ * 
  */
 
-class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
+class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -16,17 +22,17 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 	 * 
 	 * @var Basico_Model_RelacaoCategoriaChaveEstrangeira
 	 */
-	private $_relacaoCategoriaChaveEstrangeira;
+	private $_model;
 
 	/**
 	 * Construtor do Controlador Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_relacaoCategoriaChaveEstrangeira = $this->retornaNovoObjetoRelacaoCategoriaChaveEstrangeira();
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -37,7 +43,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -59,56 +65,63 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 	}
 
 	/**
-	 * Retorna um modelo relacao categoria chave estrangeira vazio
-	 *
-	 * @return Basico_Model_RelacaoCategoriaChaveEstrangeira
-	 */
-	public function retornaNovoObjetoRelacaoCategoriaChaveEstrangeira()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_RelacaoCategoriaChaveEstrangeira();
-	}
-
-	/**
-	 * Salva nova relacao categoria chave estrangeira no banco de dados
+	 * Salva o objeto RelacaoCategoriaChaveEstrangeira no banco de dados
 	 * 
-	 * @param Basico_Model_RelacaoCategoriaChaveEstrangeira $novaRelacaoCategoriaChaveEstrangeira
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * 
+	 * @param Basico_Model_RelacaoCategoriaChaveEstrangeira $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarRelacaoCategoriaChaveEstrangeira(Basico_Model_RelacaoCategoriaChaveEstrangeira $objRelacaoCategoriaChaveEstrangeira, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-    	try {
-    		// instanciando controladores
-    		$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-    		$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_RelacaoCategoriaChaveEstrangeira', true);
 
+	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
-			// verificando se trata-se de uma nova tupla ou atualizacao
-			if ($objRelacaoCategoriaChaveEstrangeira->id != NULL) {
-				// estourando excecao - nao eh possivel atualizar a relacao de categoria chave estrangeira
-				throw new Exception(MSG_ERRO_UPDATE_NAO_PERMITIDO);
-			} else {
-				// recuperando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogRelacaoCategoriaChaveEstrangeira();
-				$mensagemLog    = LOG_MSG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA;
-			}
+	    	// verificando se trata-se de uma nova tupla ou atualizacao
+	    	if ($objeto->id == NULL) {
+	    		// carregando informacoes de log de novo registro
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaRelacaoCategoriaChaveEstrangeira();
+	    		$mensagemLog    = LOG_MSG_NOVA_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA;
+	    	} else {
+	    		throw new Exception(MSG_ERRO_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA_EXISTE . " : " . $e->getMessage());
+	    	}
 
 			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objRelacaoCategoriaChaveEstrangeira, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 	    	// atualizando o objeto
-    		$this->_relacaoCategoriaChaveEstrangeira = $objRelacaoCategoriaChaveEstrangeira;
+    		$this->_model = $objeto;
 
     	} catch (Exception $e) {
-    		
+
     		throw new Exception($e);
     	}
+	}
+	
+     /**
+	 * Apaga o objeto categoria do banco de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_Categoria $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	{
+		throw new Exception(LOG_MSG_DELETE_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA . " : " . $e->getMessage());
 	}
 
 	/**
@@ -123,7 +136,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 	public function checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo, $forceRelationship = false)
 	{
 		// recuperando objeto
-		$objsRelacaoCategoriaChaveEstrangeira = $this->_relacaoCategoriaChaveEstrangeira->fetchList("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
+		$objsRelacaoCategoriaChaveEstrangeira = $this->_model->fetchList("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperando
 		if (isset($objsRelacaoCategoriaChaveEstrangeira[0]))
@@ -156,16 +169,16 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
-			$this->_relacaoCategoriaChaveEstrangeira = $this->retornaNovoObjetoRelacaoCategoriaChaveEstrangeira();
+			$this->_model = $this->retornaNovoObjetoRelacaoCategoriaChaveEstrangeira();
 
 			// setando os valores
-			$this->_relacaoCategoriaChaveEstrangeira->tabelaOrigem = $nomeTabela;
-			$this->_relacaoCategoriaChaveEstrangeira->campoOrigem  = $nomeCampo;
-			$rowinfoOPController->prepareXml($this->_relacaoCategoriaChaveEstrangeira, true);
-			$this->_relacaoCategoriaChaveEstrangeira->rowinfo = $rowinfoOPController->getXml();
+			$this->_model->tabelaOrigem = $nomeTabela;
+			$this->_model->campoOrigem  = $nomeCampo;
+			$rowinfoOPController->prepareXml($this->_model, true);
+			$this->_model->rowinfo = $rowinfoOPController->getXml();
 
 			// salvando o objeto
-			$this->salvarRelacaoCategoriaChaveEstrangeira($this->_relacaoCategoriaChaveEstrangeira, null, $pessoaPerfilOPController->retornaIdPessoaPerfilSistema());
+			$this->salvarObjeto($this->_model, null, $pessoaPerfilOPController->retornaIdPessoaPerfilSistema());
 		}
 		return true;
 	}
@@ -182,7 +195,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
 		$arrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira = array();
 
 		// recuperando todas as tuplas
-		$objsRelacaoCategoriaChaveEstrangeira = $this->_relacaoCategoriaChaveEstrangeira->fetchAll();
+		$objsRelacaoCategoriaChaveEstrangeira = $this->_model->fetchAll();
 
 		// loop para recuperar o nome das tabelas
 		foreach($objsRelacaoCategoriaChaveEstrangeira as $objRelacaoCategoriaChaveEstrangeira) {
