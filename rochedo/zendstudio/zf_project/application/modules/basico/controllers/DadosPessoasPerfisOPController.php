@@ -73,7 +73,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 		$idPessoaPerfilSistema = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 		
 		// recuperando o objeto dados pessoas perfis
-	    $objDadosPessoasPerfis = $this->_dadosPessoasPerfis->fetchList("id_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
+	    $objDadosPessoasPerfis = $this->_model->fetchList("id_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
 	    
 	    // verificando se o objeto foi recuperado
 		if (isset($objDadosPessoasPerfis[0]))

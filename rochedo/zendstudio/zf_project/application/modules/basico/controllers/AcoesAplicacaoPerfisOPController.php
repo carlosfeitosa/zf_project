@@ -11,10 +11,10 @@
  * @since 17/03/2011
  */
 
-class Basico_OPController_AcaosAplicacaoPerfisOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_AcoesAplicacaoPerfisOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
-	 * @var Basico_OPController_AcaosAplicacaoPerfisOPController
+	 * @var Basico_OPController_AcoesAplicacaoPerfisOPController
 	 */
 	private static $_singleton;
 
@@ -28,39 +28,50 @@ class Basico_OPController_AcaosAplicacaoPerfisOPController extends Basico_Abstra
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
-		// inicializando o controlador Basico_OPController_AcaosAplicacaoPerfisOPController
+		// inicializando o controlador Basico_OPController_AcoesAplicacaoPerfisOPController
 		$this->init();
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_AcaosAplicacaoPerfisOPController
+	 * Inicializa o controlador Basico_OPController_AcoesAplicacaoPerfisOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
 
 	/**
-	 * Recupera a instancia do controlador Basico_OPController_AcaosAplicacaoPerfisOPController
+	 * Recupera a instancia do controlador Basico_OPController_AcoesAplicacaoPerfisOPController
 	 * 
-	 * @return Basico_OPController_AcaosAplicacaoPerfisOPController
+	 * @return Basico_OPController_AcoesAplicacaoPerfisOPController
 	 */
 	public static function getInstance()
 	{
 		// verificando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_AcaosAplicacaoPerfisOPController();
+			self::$_singleton = new Basico_OPController_AcoesAplicacaoPerfisOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna todos os objetos Acoes Aplicacao Perfis
+	 * 
+	 * @return Array
+	 */
+	public function retornaTodosObjetosAcoesAplicacaoPerfis()
+	{
+		// retornando acoes da aplicacao
+		return $this->_model->fetchAll();
 	}
 
 	/**

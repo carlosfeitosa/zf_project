@@ -68,21 +68,33 @@ class Basico_OPController_TipoCategoriaOPController
 	}
 
 	/**
+	 * Retorna o id de tipo categoria para um nome de tipo categoria passado por parametro
+	 * 
+	 * @param String $nomeTipoCategoria
+	 * 
+	 * @return Integer|null
+	 */
+	private function retornaIdTipoCategoriaPorNome($nomeTipoCategoria)
+	{
+		// recuperando os objetos tipo categoria
+		$objsTipoCategoria = $this->_tipoCategoria->fetchList("NOME = '{$nomeTipoCategoria}'", null, 1, 0);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objsTipoCategoria[0]))
+			return $objsTipoCategoria[0]->id;
+
+		return null;
+	}
+
+	/**
 	 * Retorna o id do tipo categoria LINGUAGEM
 	 * 
 	 * @return Integer|null
 	 */
 	public function retornaIdTipoCategoriaLinguagem()
 	{
-		// recuperando objeto tipo categoria
-		$objsTipoCategoria = $this->_tipoCategoria->fetchList("nome = 'LINGUAGEM'", null, 1, 0);
-		
-		// verificando se o objeto foi recuperado
-		if (isset($objsTipoCategoria[0]))
-			// retornando o id do tipo categoria
-			return $objsTipoCategoria[0]->id;
-
-		return null;
+		// invocando o metodo que recupera o id do tipo categoria por nome
+		return $this->retornaIdTipoCategoriaPorNome(TIPO_CATEGORIA_LINGUAGEM);
 	}
 
 	/**
@@ -92,14 +104,18 @@ class Basico_OPController_TipoCategoriaOPController
 	 */
 	public function retornaIdTipoCategoriaSistema()
 	{
-		// reecuperando o objeto tipo categoria
-		$objsTipoCategoria = $this->_tipoCategoria->fetchList("nome = 'SISTEMA'", null, 1, 0);
+		// invocando o metodo que recupera o id do tipo categoria por nome
+		return $this->retornaIdTipoCategoriaPorNome(TIPO_CATEGORIA_SISTEMA);
+	}
 
-		// verificando se o objeto foi recuperado
-		if (isset($objsTipoCategoria[0]))
-			// retornando o id do tipo categoria
-			return $objsTipoCategoria[0]->id;
-
-		return null;
+	/**
+	 * Retorna o id do tipo categoria PERFIL
+	 * 
+	 * @return Integer|null
+	 */
+	public function retornaIdTipoCategoriaPerfil()
+	{
+		// invocando o metodo que recupera o id do tipo categoria por nome
+		return $this->retornaIdTipoCategoriaPorNome(TIPO_CATEGORIA_PERFIL);
 	}
 }

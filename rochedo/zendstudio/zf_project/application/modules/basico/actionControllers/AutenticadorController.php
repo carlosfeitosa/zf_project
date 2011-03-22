@@ -10,6 +10,21 @@
 class Basico_AutenticadorController extends Zend_Controller_Action
 {
 	/**
+	 * Desautentica o usuario logado 
+	 */
+	public function desautenticausuarioAction()
+	{
+		// verificando se existe usuario logado
+		if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+			// efetuando logoff
+			Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
+
+			// redireciona para a pagina inicial do sistema
+			$this->_redirect();
+		}
+	}
+
+	/**
 	 * Abre o dialog DOJO para autenticacao de usuario
 	 * 
 	 * @param Zend_Controller_Request_Http $userRequest
@@ -68,16 +83,14 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			Basico_OPController_LogOPController::getInstance()->salvarLog(Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema(), Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
 		}
 
-		// verificando se as crendeiciais de acesso funcionaram
-		if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuario($form->getValues())) {
+		// verificando se as credenciais de acesso funcionaram
+		if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuarioPorArrayParametros($form->getValues())) {
 
 			// verificando se o login pode realizar login
 			if (!Basico_OPController_LoginOPController::getInstance()->retornaLoginPodeLogar($login)) {
 				// redirecionando para a pagina de problemas com login
 				$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login))));
 			}
-			
-			Basico_OPController_UtilOPController::print_debug('login OK', true, false, true);
 
 			// efetuando o logon
 			Basico_OPController_LoginOPController::getInstance()->efetuaLogon($login);

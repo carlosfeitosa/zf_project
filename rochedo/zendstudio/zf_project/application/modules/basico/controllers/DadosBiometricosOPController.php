@@ -155,7 +155,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->_dadosBiometricos->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosBiometricos = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosBiometricos[0]))
@@ -181,7 +181,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->_dadosBiometricos->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosBiometricos = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosBiometricos[0]))

@@ -72,7 +72,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
                                                          array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Administração" ?></a> |
-        <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php echo "Login" ?></a>
+        <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) echo "Login"; else echo "Logout";?></a>
     </div>
 </div>
 <div id="content">

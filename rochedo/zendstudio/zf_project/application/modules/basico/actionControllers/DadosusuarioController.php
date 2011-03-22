@@ -28,8 +28,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     public function indexAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoa = 2;
-    	
+    	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
+
     	// instanciando controladores
     	$controladorDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance();
     	

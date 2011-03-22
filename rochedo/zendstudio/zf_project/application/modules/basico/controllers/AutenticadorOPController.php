@@ -96,11 +96,29 @@ class Basico_OPController_AutenticadorOPController
 	 * 
 	 * @return Zend_Auth_Adapter_DbTable
 	 */
-	private function retornaAuthAdapterAutenticacaoUsuario(array $parametros)
+	private function retornaAuthAdapterAutenticacaoUsuarioPorArrayParametros(array $parametros)
 	{
 		// setando parametros do autenticador com as credenciais do usuario
 		$this->_authAdapter->setIdentity($parametros[AUTH_IDENTITY_ARRAY_KEY])
-							->setCredential(Basico_OPController_UtilOPController::retornaStringEncriptada($parametros[AUTH_CREDENTIAL_ARRAY_KEY]));
+						   ->setCredential(Basico_OPController_UtilOPController::retornaStringEncriptada($parametros[AUTH_CREDENTIAL_ARRAY_KEY]));
+
+		// retornando o adaptador de autenticacao com banco de dados
+		return $this->_authAdapter;
+	}
+
+	/**
+	 * Retorna uma instancia do Zend_Auth_Adapter_DbTable configurada para uso na aplicacao
+	 * 
+	 * @param String $login
+	 * @param String $senha
+	 * 
+	 * @return Zend_Auth_Adapter_DbTable
+	 */
+	private function retornaAuthAdapterAutenticacaoUsuarioPorLoginSenha($login, $senha)
+	{
+		// setando parametros do autenticador com as credenciais do usuario
+		$this->_authAdapter->setIdentity($login)
+						   ->setCredential($senha);
 
 		// retornando o adaptador de autenticacao com banco de dados
 		return $this->_authAdapter;
@@ -113,10 +131,33 @@ class Basico_OPController_AutenticadorOPController
 	 * 
 	 * @return Boolean
 	 */
-	public function retornaAutenticacaoUsuario(array $parametros)
+	public function retornaAutenticacaoUsuarioPorArrayParametros(array $parametros)
 	{
 		// recuperando adaptador de autenticacoa
-		$adaptadorAuth = self::retornaAuthAdapterAutenticacaoUsuario($parametros);
+		$adaptadorAuth = self::retornaAuthAdapterAutenticacaoUsuarioPorArrayParametros($parametros);
+
+		// realizando autenticacao
+		$resultadoAuth = $this->_auth->authenticate($adaptadorAuth);
+		
+		// verificando o resultado da autenticacao
+		if (!$resultadoAuth->isValid())
+			return false;
+
+		return true;
+	}
+
+	/**
+	 * Retorna se as credenciais de acesso existem no banco de dados
+	 * 
+	 * @param String $login
+	 * @param String $senha
+	 * 
+	 * @return Boolean
+	 */
+	public function retornaAutenticacaoUsuarioPorLoginSenha($login, $senha)
+	{
+		// recuperando adaptador de autenticacoa
+		$adaptadorAuth = self::retornaAuthAdapterAutenticacaoUsuarioPorLoginSenha($login, $senha);
 
 		// realizando autenticacao
 		$resultadoAuth = $this->_auth->authenticate($adaptadorAuth);
@@ -137,8 +178,13 @@ class Basico_OPController_AutenticadorOPController
 	 */
 	public static function retornaLinkAutenticacaoUsuario(Zend_View $view, $urlRedirect = null)
 	{
-		// retornando o link para a tela de autenticacao do usuario
-		 return $view->urlEncrypt($view->url(array('module'=>'basico', 'controller'=>'autenticador', 'action'=>'autenticarusuario', 'urlRedirect' => Basico_OPController_UtilOPController::codificaBarrasUrl($urlRedirect)), null, true));
+		// verificando se existe usuario logado
+		if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+			// retornando o link para a tela de autenticacao do usuario
+			return $view->urlEncrypt($view->url(array('module'=>'basico', 'controller'=>'autenticador', 'action'=>'autenticarusuario', 'urlRedirect' => Basico_OPController_UtilOPController::codificaBarrasUrl($urlRedirect)), null, true));
+		} else {
+			return $view->urlEncrypt($view->url(array('module'=>'basico', 'controller'=>'autenticador', 'action'=>'desautenticausuario')));
+		}
 	}
 
 	/**

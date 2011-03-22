@@ -146,10 +146,40 @@ class Basico_OPController_LoginOPController {
 	public static function retornaIdLoginUsuarioSessao()
 	{
 		// verificando se a autenticacao foi realizada
-		if (Zend_Auth::getInstance()->hasIdentity())
+		if (Zend_Auth::getInstance()->hasIdentity()) {
+			// instanciando controladores
+			$loginOPController = Basico_OPController_LoginOPController::getInstance();
+
+			// registrando o id do login na sessao
+			$loginOPController->registraIdLoginUsuarioSessao(Zend_Auth::getInstance()->getIdentity());
+
 			// retornando o id do login do usuario na sessao
 			return (Int) Basico_OPController_UtilOPController::retornaValorSessao(AUTH_ID_LOGIN_SESSION_KEY);
+		}
 		return null;
+	}
+
+	/**
+	 * Retorna o login do usuario registrado na sessao
+	 * 
+	 * @return String
+	 */
+	public static function retornaLoginUsuarioSessao()
+	{
+		// verificando se existe usuario na sessao
+		if (Zend_Auth::getInstance()->hasIdentity())
+			// retornando o login
+			return Zend_Auth::getInstance()->getIdentity();
+	}
+
+	/**
+	 * Retorna se existe usuario logado na sessao
+	 * 
+	 * @return Boolean
+	 */
+	public static function existeUsuarioLogado()
+	{
+		return (self::retornaIdLoginUsuarioSessao());
 	}
 
 	/**
@@ -272,8 +302,26 @@ class Basico_OPController_LoginOPController {
 	 */
 	public static function retornaLoginTravado(Basico_Model_Login $objLogin)
 	{
-		// retornando se o login esta travado
-		return (Boolean) $objLogin->travado;
+		// carregando a data hora da ultima tentativa de login, acrescida de uma hora
+		$dataHoraUltimaTentativaFalhaLogin = new Zend_Date($objLogin->dataHoraUltimaTentativaFalha);
+		$dataHoraUltimaTentativaFalhaLogin->addHour(1);
+
+		// verificando se o login esta travado
+		if ($objLogin->travado) {
+			// verificando se passou-se uma hora apos a ultima tentativa de logon
+			if ($dataHoraUltimaTentativaFalhaLogin->getTimestamp() < Basico_OPController_UtilOPController::retornaDateTimeAtual()->getTimestamp()) {
+				// instanciando controladores
+				$loginOPController = Basico_OPController_LoginOPController::getInstance();
+
+				// limpando as tentativas falhas
+				$loginOPController->limpaTentativasInvalidasLogon($objLogin->login);
+
+				// o login agora esta destravado
+				return false;
+			} else
+				// o login continua travado
+				return true;
+		}
 	}
 
 	/**
@@ -322,13 +370,52 @@ class Basico_OPController_LoginOPController {
 			// recuperando a ultima versao do objeto
 			$versaoUpdate = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
 
-			// incrementa a quantidade de tentativas falhas
+			// incrementa a quantidade e data/hora da tentativa falha
 			$objLogin->tentativasFalhas++;
+			$objLogin->dataHoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 			// verificando se o limite de tentativas invalidas foi atingido
 			if ($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_LOGIN_MAX)
 				// travando o login
 				$objLogin->travado = true;
+
+			// preparando XML rowinfo
+			$rowinfoOPController->prepareXml($objLogin, true);
+			$objLogin->rowinfo  = $rowinfoOPController->getXml();
+
+			// salvando o objeto
+			$this->salvarLogin($objLogin, $versaoUpdate);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Verifica se o login informado existe no banco de dados e limpa as tentativas de logon invalidas
+	 * 
+	 * @param String $login
+	 * 
+	 * @return null
+	 * 
+	 * @todo implementar uso do rowinfo utilizando o metodo publico da classe abstrata que esta classe vai estender
+	 */
+	private function limpaTentativasInvalidasLogon($login)
+	{
+		// recuperando o objeto login
+		$objLogin = $this->retornaObjetoLoginPorLogin($login);
+
+		// verificando se o objeto foi carregado
+		if ($objLogin->id) {
+			// instanciando controladores
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
+
+			// recuperando a ultima versao do objeto
+			$versaoUpdate = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
+
+			// limpando a quantidade de tentativas falhas
+			$objLogin->tentativasFalhas = 0;
+			// setando o login como destravado
+			$objLogin->travado = false;
 
 			// preparando XML rowinfo
 			$rowinfoOPController->prepareXml($objLogin, true);
@@ -350,7 +437,22 @@ class Basico_OPController_LoginOPController {
 	 */
 	public function efetuaLogon($login)
 	{
+		// recuperando o objeto login
+		$objLogin = $this->retornaObjetoLoginPorLogin($login);
+
+		// verificando se o objeto foi carregado
+		if ($objLogin->id) {
+			// verificando se eh preciso fazer limpeza de atributos
+			if ($objLogin->tentativasFalhas > 0) {
+				// limpa as tentativas falhas
+				$this->limpaTentativasInvalidasLogon($login);
+			}
+
+			// rodando metodo de logon
+			$this->inicializaLogon($login);
+		}
 		
+		return null;
 	}
 
 	/**
@@ -362,7 +464,8 @@ class Basico_OPController_LoginOPController {
 	 */
 	private function inicializaLogon($login)
 	{
-		
+		// registrando o usuario na sessao
+		$this->registraIdLoginUsuarioSessao($login);
 	}
 
 	/**
@@ -372,7 +475,8 @@ class Basico_OPController_LoginOPController {
 	 */
 	public function efetuaLogoff()
 	{
-		
+		// destroi o login
+		$this->destroiLogon();
 	}
 
 	/**
@@ -382,7 +486,8 @@ class Basico_OPController_LoginOPController {
 	 */
 	private function destroiLogon()
 	{
-		
+		// limpando a autenticacao existente
+		Zend_Auth::getInstance()->clearIdentity();
 	}
 	
 	/**

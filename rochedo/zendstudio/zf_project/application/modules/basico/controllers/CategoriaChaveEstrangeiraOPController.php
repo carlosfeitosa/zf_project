@@ -77,7 +77,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 		$stringImplodidaArrayIdsCategoriasExclusao = implode(',', $arrayIdsCategoriasExclusao);
 
 		// recuperando todas as tuplas, excluindo as que possuem a categoria no array de exclusao passado por parametro
-		$objsCategoriaChaveEstrangeira = $this->_categoriaChaveEstrangeira->fetchList("id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
+		$objsCategoriaChaveEstrangeira = $this->_model->fetchList("id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
 		
 		// loop para recuperar o nome das tabelas
 		foreach($objsCategoriaChaveEstrangeira as $objCategoriaChaveEstrangeira) {
@@ -167,7 +167,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 		$idCategoriaCVC = $categoriaOPController->retornaIdCategoriaCVC();
 	
 		// recuperando a categoria chave estrangeira relacionada ao objeto
-		$arrayCategoriasChaveEstrangeira = $this->_categoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
+		$arrayCategoriasChaveEstrangeira = $this->_model->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
 		
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($arrayCategoriasChaveEstrangeira[0])) {
@@ -202,5 +202,25 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 		} else {
 			return null;
 		}
+    }
+
+	/**
+	 * Retorna o objeto categoria chave estrangeira da categoria passada.
+	 * 
+	 * @param $idCategoria
+	 * 
+	 * @return Basico_Model_CategoriaChaveEstrangeira|null
+	 */
+	public function retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
+	{
+		// recuperando todas as tuplas vinculadas a categoria passara por parametro
+		$objCategoriaChaveEstrangeira = $this->_model->fetchList("id_categoria = {$idCategoria}");
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaChaveEstrangeira[0]))
+			//retornando o objeto
+			return $objCategoriaChaveEstrangeira[0];
+
+		return null;
     }
 }

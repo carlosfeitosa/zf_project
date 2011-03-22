@@ -64,24 +64,38 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function resetadbAction()
     {
+    	// desabilitando layout
     	$this->getHelper('layout')->disableLayout();
-    	
-    	if (Basico_OPController_PersistenceOPController::bdResetaBD()) {
-   
-			// carregando o titulo e subtitulo da view
-	    	$tituloView = $this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO');
 
-	    	// carregando array do cabecalho da view
-			$cabecalho =  array('tituloView' => $tituloView);
-		            
-		    // setando o cabecalho na view
-			$this->view->cabecalho = $cabecalho;
-			
-			$this->getHelper('layout')->enableLayout();
-			// renderizando a view
-			$this->_helper->Renderizar->renderizar();   
-    		
-    	}
-    	    	
+    	// verificando o resultado do reset
+    	if (Basico_OPController_PersistenceOPController::bdResetaBD()) {
+
+    		// retirando o usuario da sessao
+    		Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
+
+    		// montando link para redirecionamento
+    		$urlLink = $this->view->url(array('module'=>'basico', 'controller'=>'administrador', 'action'=>'sucessoresetadb'), null, true);
+    		$urlLink = str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $urlLink);
+   
+    		// redirecionando para a acao de sucesso no reset
+			$this->_redirect($urlLink);
+    	}   	
+    }
+
+    public function sucessoresetadbAction()
+    {
+    	// carregando o titulo e subtitulo da view
+	    $tituloView = $this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO');
+
+    	// carregando array do cabecalho da view
+		$cabecalho =  array('tituloView' => $tituloView);
+	            
+	    // setando o cabecalho na view
+		$this->view->cabecalho = $cabecalho;
+		
+		$this->getHelper('layout')->enableLayout();
+
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
     }
 }

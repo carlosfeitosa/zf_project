@@ -224,7 +224,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$controladorPessoaPerfil->editarPessoaPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado()->id, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id);
 	
 	    		//criando dadosBiometricos do usuario
-	    		$novoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaNovoObjetoDadosBiometricos();
+	    		$novoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosBiometricosOPController');
 	    		
 	    		// setando a pessoa dona dos dadosBiometricos
 	    		$novoDadosBiometricos->pessoa = $idPessoa;
@@ -239,7 +239,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
 	
 	    		// salvando os dadosBiometricos
-	    		$controladorDadosBiometricos->salvarDadosBiometricos($novoDadosBiometricos);
+	    		$controladorDadosBiometricos->salvarObjeto($novoDadosBiometricos);
 	    		    
 	    		// criando o login do usuario
 	    		$novoLogin = Basico_OPController_LoginOPController::getInstance()->retornaNovoObjetoLogin();
@@ -307,26 +307,16 @@ class Basico_LoginController extends Zend_Controller_Action
 		    	
 		    	// salvando a transacao
 			    Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-	
-	    		// carregando o titulo e subtitulo da view
-	    	    //$tituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO);
-	         	//$subtituloView = $this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO);
-	
-	    	    // carregando array do cabelho
-	    	    $cabecalho =  array('tituloView'    => $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_TITULO"),
-	    	                        'subtituloView' => $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_SUBTITULO"),
-	    	                        'mensagemView'  => str_replace(MENSAGEM_TAG_LINK_MEU_PERFIL , 
-	    	                                                       "<a href='{$this->_helper->url('index', 'dadosusuario', 'basico')}'>{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>",
-	    	                                                       $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM")
-	    	                                                       )
-	    	                       );
-	
-	    	    // carregando o titulo e subtitulo na view
-	            $this->view->cabecalho = $cabecalho;
-	
-			    // renderiza a view no script default
-			    $this->_helper->Renderizar->renderizar();
-	
+
+			    // verificando credenciais
+			    if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuarioPorLoginSenha($novoLogin->login, $novoLogin->senha))
+			    	// efetuando o logon
+			    	Basico_OPController_LoginOPController::getInstance()->efetuaLogon($novoLogin->login);
+
+			    // montando url para redirecionamento
+			    $urlRedirect = str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->view->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'sucessosalvarusuariovalidado'), null, true));
+				// redirecionando para a acao de sucesso no cadastro do usuario
+				$this->_redirect($urlRedirect);
 	    	}else{
 	    		
 	    		 // carregando o titulo e subtitulo da view
@@ -354,7 +344,25 @@ class Basico_LoginController extends Zend_Controller_Action
 	        throw new Exception($e->getMessage());
     	}
     }
-    
+
+	public function sucessosalvarusuariovalidadoAction()
+	{
+		// carregando array do cabelho
+    	$cabecalho =  array('tituloView'    => $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_TITULO"),
+    	                    'subtituloView' => $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_SUBTITULO"),
+    	                    'mensagemView'  => str_replace(MENSAGEM_TAG_LINK_MEU_PERFIL , 
+    	                                                       "<a href='{$this->_helper->url('index', 'dadosusuario', 'basico')}'>{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>",
+    	                                                       $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM")
+    	                                                       )
+    	                    );
+
+		// carregando o titulo e subtitulo na view
+        $this->view->cabecalho = $cabecalho;
+
+		// renderiza a view no script default
+		$this->_helper->Renderizar->renderizar();
+	}
+
     /**
      * Checa se o login está disponivel;
      * @return void

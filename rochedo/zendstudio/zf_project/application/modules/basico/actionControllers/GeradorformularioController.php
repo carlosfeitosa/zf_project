@@ -130,11 +130,8 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         
         // checando se foi utilizado o metodo post e se botao 'enviar' foi acionado
         if ((isset($_POST['enviar'])) and ($formGeradorFormulario->isValid($_POST))) {
-
-        	// instanciando modelo de formulario
-        	$modeloFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoFormulario();
-        	// localizando o formulario
-            $modeloFormulario->find($idFormulario);
+        	// recuperando objeto formulario
+        	$modeloFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaObjetoPorId(Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_FormularioOPController'), $idFormulario);
         	
             // verificando se foram selecionados modulos para exclusao da geracao
             if (isset($_POST['excludeModulesNames'])){
@@ -212,11 +209,11 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
      */
     public function retornaArrayNomesModulosFormulario($idFormulario)
     {
-		// recuperando o modelo de formulario
-    	$modelFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoFormulario();
-
-    	// recuperando o formulario
-    	$modelFormulario->find($idFormulario);
+    	// recuperando o modelo de formulario
+    	$modelFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_FormularioOPController');
+    	
+       	// recuperando objeto formulario
+       	$modelFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaObjetoPorId($modelFormulario, $idFormulario);
 
     	// verificando se o formulario foi recuperado
         if ($modelFormulario->id) {

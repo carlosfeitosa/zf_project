@@ -28,7 +28,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
@@ -42,7 +42,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -61,6 +61,17 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 		}
 		// retornando instancia
 		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna todas as acoes da aplicacao
+	 * 
+	 * @return Array|null
+	 */
+	public function retornaTodosObjetosAcaoAplicacao()
+	{
+		// retornando acoes da aplicacao
+		return $this->_model->fetchAll();
 	}
 
 	/**

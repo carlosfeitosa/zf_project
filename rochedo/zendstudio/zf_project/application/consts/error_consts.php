@@ -95,6 +95,7 @@ define("MSG_ERRO_CATEGORIA_CVC", "Categoria de CVC não encontrada no banco de d
 define("MSG_ERRO_TIPO_CATEGORIA_CVC", "Tipo de categoria de CVC não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_WEBSITE", "Categoria de log novo website não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_WEBSITE", "Categoria de log update em website não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_PERFIL_USUARIO", "Categoria de PERFIL_USUARIO não encontrada no banco de dados");
 /*
  * FORMULÁRIO
  */
@@ -143,6 +144,7 @@ define("MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO", "Usuário master não encontrad
 define("MSG_ERROR_PERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO", "Perfil de usuário não validado não encontrado no sistema.");
 define("MSG_ERROR_PERFIL_USUARIO_VALIDADO_NAO_ENCONTRADO", "Perfil de usuário validado não encontrado no sistema.");
 define("MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO", "Perfil do sistema não encontrado.");
+define("MSG_ERROR_NENHUM_PERFIL_ENCONTRADO", "Nenhum perfil foi encontrado no sistema");
 
 /*
  * PESSOA PERFIL

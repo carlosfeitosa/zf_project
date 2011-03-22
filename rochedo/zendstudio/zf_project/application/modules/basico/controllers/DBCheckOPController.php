@@ -16,7 +16,7 @@ class Basico_OPController_DBCheckOPController
     public static function checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
     {
         // instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoCategoriaChaveEstrangeira();
+		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_CategoriaChaveEstrangeiraOPController');
 		// recuperando a tupla referente a categoria passada por parametro
 		$arrayCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 
@@ -41,7 +41,7 @@ class Basico_OPController_DBCheckOPController
     public static function checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem = null, $nomeCampoOrigem = null, $forceCreateRelationship = false)
     {
     	// instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoCategoriaChaveEstrangeira();
+		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_CategoriaChaveEstrangeiraOPController');
 		// recuperando a tupla referente a categoria passada por parametro
 		$arrayCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
 

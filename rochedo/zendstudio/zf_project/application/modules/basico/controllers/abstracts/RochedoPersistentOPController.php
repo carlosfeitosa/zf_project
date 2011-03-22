@@ -35,7 +35,10 @@ abstract class Basico_Abstract_RochedoPersistentOPController
 	 * 
 	 * @return Object OPController
 	 */
-	abstract public static function getInstance();
+	public static function getInstance()
+	{
+		return;
+	}
 
 	/**
 	 * Retorna o nome do objeto atraves do objeto
@@ -85,7 +88,7 @@ abstract class Basico_Abstract_RochedoPersistentOPController
 	 * 
 	 * @return Object
 	 */
-	public function retornaObjetoPorId($model, Integer $idObjeto)
+	public function retornaObjetoPorId($model, $idObjeto)
 	{
 		// verificando se o parametro eh um objeto
 		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, true);

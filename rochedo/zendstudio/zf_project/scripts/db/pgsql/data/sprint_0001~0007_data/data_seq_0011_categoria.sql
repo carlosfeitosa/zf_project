@@ -555,162 +555,162 @@ FROM tipo_categoria t
 WHERE t.nome = 'EMAIL';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'af' AS nome, 'Afrikaans.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'af' AS nome, 'Afrikaans.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sq' AS nome, 'Albanian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sq' AS nome, 'Albanian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-sa' AS nome, 'Arabic (Saudi Arabia).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-sa' AS nome, 'Arabic (Saudi Arabia).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-iq' AS nome, 'Arabic (Iraq).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-iq' AS nome, 'Arabic (Iraq).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-eg' AS nome, 'Arabic (Egypt).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-eg' AS nome, 'Arabic (Egypt).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-ly' AS nome, 'Arabic (Libya).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-ly' AS nome, 'Arabic (Libya).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-dz' AS nome, 'Arabic (Algeria).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-dz' AS nome, 'Arabic (Algeria).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-ma' AS nome, 'Arabic (Morocco).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-ma' AS nome, 'Arabic (Morocco).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-tn' AS nome, 'Arabic (Tunisia).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-tn' AS nome, 'Arabic (Tunisia).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-om' AS nome, 'Arabic (Oman).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-om' AS nome, 'Arabic (Oman).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-ye' AS nome, 'Arabic (Yemen).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-ye' AS nome, 'Arabic (Yemen).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-sy' AS nome, 'Arabic (Syria).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-sy' AS nome, 'Arabic (Syria).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-jo' AS nome, 'Arabic (Jordan).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-jo' AS nome, 'Arabic (Jordan).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-lb' AS nome, 'Arabic (Lebanon).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-lb' AS nome, 'Arabic (Lebanon).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-kw' AS nome, 'Arabic (Kuwait).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-kw' AS nome, 'Arabic (Kuwait).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-ae' AS nome, 'Arabic (U.A.E.).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-ae' AS nome, 'Arabic (U.A.E.).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-bh' AS nome, 'Arabic (Bahrain).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-bh' AS nome, 'Arabic (Bahrain).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ar-qa' AS nome, 'Arabic (Qatar).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ar-qa' AS nome, 'Arabic (Qatar).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'eu' AS nome, 'Basque.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'eu' AS nome, 'Basque.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'bg' AS nome, 'Bulgarian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'bg' AS nome, 'Bulgarian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'be' AS nome, 'Belarusian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'be' AS nome, 'Belarusian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ca' AS nome, 'Catalan.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ca' AS nome, 'Catalan.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'zh-tw' AS nome, 'Chinese (Taiwan).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'zh-tw' AS nome, 'Chinese (Taiwan).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'zh-cn' AS nome, 'Chinese (PRC).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'zh-cn' AS nome, 'Chinese (PRC).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'zh-hk' AS nome, 'Chinese (Hong Kong SAR).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'zh-hk' AS nome, 'Chinese (Hong Kong SAR).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'zh-sg' AS nome, 'Chinese (Singapore).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'zh-sg' AS nome, 'Chinese (Singapore).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'hr' AS nome, 'Croatian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'hr' AS nome, 'Croatian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'cs' AS nome, 'Czech.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'cs' AS nome, 'Czech.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'da' AS nome, 'Danish.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'da' AS nome, 'Danish.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'nl' AS nome, 'Dutch (Standard).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'nl' AS nome, 'Dutch (Standard).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'nl-be' AS nome, 'Dutch (Belgium).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'nl-be' AS nome, 'Dutch (Belgium).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en' AS nome, 'English / English (Caribbean).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en' AS nome, 'English / English (Caribbean).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
@@ -720,212 +720,212 @@ FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-gb' AS nome, 'English (United Kingdom).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-gb' AS nome, 'English (United Kingdom).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-au' AS nome, 'English (Australia).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-au' AS nome, 'English (Australia).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-ca' AS nome, 'English (Canada).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-ca' AS nome, 'English (Canada).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-nz' AS nome, 'English (New Zealand).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-nz' AS nome, 'English (New Zealand).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-ie' AS nome, 'English (Ireland).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-ie' AS nome, 'English (Ireland).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-za' AS nome, 'English (South Africa).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-za' AS nome, 'English (South Africa).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-jm' AS nome, 'English (Jamaica).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-jm' AS nome, 'English (Jamaica).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-bz' AS nome, 'English (Belize).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-bz' AS nome, 'English (Belize).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'en-tt' AS nome, 'English (Trinidad).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'en-tt' AS nome, 'English (Trinidad).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'et' AS nome, 'Estonian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'et' AS nome, 'Estonian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fo' AS nome, 'Faeroese.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fo' AS nome, 'Faeroese.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fa' AS nome, 'Farsi.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fa' AS nome, 'Farsi.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fi' AS nome, 'Finnish.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fi' AS nome, 'Finnish.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fr' AS nome, 'French (Standard).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fr' AS nome, 'French (Standard).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fr-be' AS nome, 'French (Belgium).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fr-be' AS nome, 'French (Belgium).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fr-ca' AS nome, 'French (Canada).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fr-ca' AS nome, 'French (Canada).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fr-ch' AS nome, 'French (Switzerland).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fr-ch' AS nome, 'French (Switzerland).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'fr-lu' AS nome, 'French (Luxembourg).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'fr-lu' AS nome, 'French (Luxembourg).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'gd' AS nome, 'Gaelic (Scotland).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'gd' AS nome, 'Gaelic (Scotland).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ga' AS nome, 'Irish.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ga' AS nome, 'Irish.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'de' AS nome, 'German (Standard).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'de' AS nome, 'German (Standard).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'de-ch' AS nome, 'German (Switzerland).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'de-ch' AS nome, 'German (Switzerland).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'de-at' AS nome, 'German (Austria).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'de-at' AS nome, 'German (Austria).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'de-lu' AS nome, 'German (Luxembourg).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'de-lu' AS nome, 'German (Luxembourg).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'de-li' AS nome, 'German (Liechtenstein).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'de-li' AS nome, 'German (Liechtenstein).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'el' AS nome, 'Greek.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'el' AS nome, 'Greek.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'he' AS nome, 'Hebrew.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'he' AS nome, 'Hebrew.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'hi' AS nome, 'Hindi.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'hi' AS nome, 'Hindi.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'hu' AS nome, 'Hungarian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'hu' AS nome, 'Hungarian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'is' AS nome, 'Icelandic.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'is' AS nome, 'Icelandic.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'id' AS nome, 'Indonesian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'id' AS nome, 'Indonesian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'it' AS nome, 'Italian (Standard).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'it' AS nome, 'Italian (Standard).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'it-ch' AS nome, 'Italian (Switzerland).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'it-ch' AS nome, 'Italian (Switzerland).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ja' AS nome, 'Japanese.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ja' AS nome, 'Japanese.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ko' AS nome, 'Korean / Korean (Johab).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ko' AS nome, 'Korean / Korean (Johab).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'lv' AS nome, 'Latvian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'lv' AS nome, 'Latvian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'lt' AS nome, 'Lithuanian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'lt' AS nome, 'Lithuanian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'mk' AS nome, 'Macedonian (FYROM).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'mk' AS nome, 'Macedonian (FYROM).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ms' AS nome, 'Malaysian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ms' AS nome, 'Malaysian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'mt' AS nome, 'Maltese.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'mt' AS nome, 'Maltese.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'no' AS nome, 'Norwegian (Bokmal) / Norwegian (Nynorsk).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'no' AS nome, 'Norwegian (Bokmal) / Norwegian (Nynorsk).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'pl' AS nome, 'Polish.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'pl' AS nome, 'Polish.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
@@ -935,222 +935,222 @@ FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'pt' AS nome, 'Portuguese (Portugal).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'pt' AS nome, 'Portuguese (Portugal).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'rm' AS nome, 'Rhaeto-Romanic.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'rm' AS nome, 'Rhaeto-Romanic.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ro' AS nome, 'Romanian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ro' AS nome, 'Romanian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ro-mo' AS nome, 'Romanian (Republic of Moldova).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ro-mo' AS nome, 'Romanian (Republic of Moldova).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ru' AS nome, 'Russian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ru' AS nome, 'Russian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ru-mo' AS nome, 'Russian (Republic of Moldova).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ru-mo' AS nome, 'Russian (Republic of Moldova).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sz' AS nome, 'Sami (Lappish).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sz' AS nome, 'Sami (Lappish).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sr' AS nome, 'Serbian (Cyrillic) / Serbian (Latin).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sr' AS nome, 'Serbian (Cyrillic) / Serbian (Latin).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sk' AS nome, 'Slovak.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sk' AS nome, 'Slovak.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sl' AS nome, 'Slovenian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sl' AS nome, 'Slovenian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sb' AS nome, 'Sorbian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sb' AS nome, 'Sorbian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es' AS nome, 'Spanish (Spain).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es' AS nome, 'Spanish (Spain).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-mx' AS nome, 'Spanish (Mexico).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-mx' AS nome, 'Spanish (Mexico).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-gt' AS nome, 'Spanish (Guatemala).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-gt' AS nome, 'Spanish (Guatemala).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-cr' AS nome, 'Spanish (Costa Rica).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-cr' AS nome, 'Spanish (Costa Rica).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-pa' AS nome, 'Spanish (Panama).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-pa' AS nome, 'Spanish (Panama).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-do' AS nome, 'Spanish (Dominican Republic).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-do' AS nome, 'Spanish (Dominican Republic).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-ve' AS nome, 'Spanish (Venezuela).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-ve' AS nome, 'Spanish (Venezuela).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-co' AS nome, 'Spanish (Colombia).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-co' AS nome, 'Spanish (Colombia).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-pe' AS nome, 'Spanish (Peru).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-pe' AS nome, 'Spanish (Peru).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-ar' AS nome, 'Spanish (Argentina).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-ar' AS nome, 'Spanish (Argentina).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-ec' AS nome, 'Spanish (Ecuador).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-ec' AS nome, 'Spanish (Ecuador).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-cl' AS nome, 'Spanish (Chile).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-cl' AS nome, 'Spanish (Chile).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-uy' AS nome, 'Spanish (Uruguay).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-uy' AS nome, 'Spanish (Uruguay).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-py' AS nome, 'Spanish (Paraguay).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-py' AS nome, 'Spanish (Paraguay).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-bo' AS nome, 'Spanish (Bolivia).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-bo' AS nome, 'Spanish (Bolivia).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-sv' AS nome, 'Spanish (El Salvador).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-sv' AS nome, 'Spanish (El Salvador).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-hn' AS nome, 'Spanish (Honduras).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-hn' AS nome, 'Spanish (Honduras).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-ni' AS nome, 'Spanish (Nicaragua).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-ni' AS nome, 'Spanish (Nicaragua).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'es-pr' AS nome, 'Spanish (Puerto Rico).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'es-pr' AS nome, 'Spanish (Puerto Rico).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sx' AS nome, 'Sutu.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sx' AS nome, 'Sutu.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sv' AS nome, 'Swedish.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sv' AS nome, 'Swedish.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'sv-fi' AS nome, 'Swedish (Finland).' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'sv-fi' AS nome, 'Swedish (Finland).' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'th' AS nome, 'Thai.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'th' AS nome, 'Thai.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ts' AS nome, 'Tsonga.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ts' AS nome, 'Tsonga.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'tn' AS nome, 'Tswana.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'tn' AS nome, 'Tswana.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'tr' AS nome, 'Turkish.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'tr' AS nome, 'Turkish.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'uk' AS nome, 'Ukrainian.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'uk' AS nome, 'Ukrainian.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ur' AS nome, 'Urdu.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ur' AS nome, 'Urdu.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 've' AS nome, 'Venda.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 've' AS nome, 'Venda.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'vi' AS nome, 'Vietnamese.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'vi' AS nome, 'Vietnamese.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'xh' AS nome, 'Xhosa.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'xh' AS nome, 'Xhosa.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'ji' AS nome, 'Yiddish.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'ji' AS nome, 'Yiddish.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'zu' AS nome, 'Zulu.' AS descricao, 0 AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'zu' AS nome, 'Zulu.' AS descricao, false AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 WHERE t.nome = 'LINGUAGEM';
 

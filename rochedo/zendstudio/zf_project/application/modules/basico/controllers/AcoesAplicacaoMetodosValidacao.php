@@ -11,10 +11,10 @@
  * @since 17/03/2011
  */
 
-class Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
-	 * @var Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController
+	 * @var Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
 	 */
 	private static $_singleton;
 
@@ -33,12 +33,12 @@ class Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController extends Bas
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
-		// inicializando o controlador Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController
+		// inicializando o controlador Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
 		$this->init();
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController
+	 * Inicializa o controlador Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
 	 * 
 	 * @return void
 	 */
@@ -48,16 +48,16 @@ class Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController extends Bas
 	}
 
 	/**
-	 * Recupera a instancia do controlador Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController
+	 * Recupera a instancia do controlador Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
 	 * 
-	 * @return Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController
+	 * @return Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
 	 */
 	public static function getInstance()
 	{
 		// verificando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_AcaosAplicacaoMetodosValidacaoOPController();
+			self::$_singleton = new Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
