@@ -78,6 +78,9 @@ define("MSG_ERRO_CATEGORIA_LOG_DELETE_EMAIL", "Categoria de log exclusão de e-m
 define("MSG_ERRO_CATEGORIA_LOG_NOVA_CATEGORIA", "Categoria de log nova categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_CATEGORIA", "Categoria de log de atualizacao de categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_CATEGORIA", "Categoria de log de exclusão de categoria não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_NOVO_TIPO_CATEGORIA", "Categoria de log novo tipo categoria não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_UPDATE_TIPO_CATEGORIA", "Categoria de log de atualizacao de tipo categoria não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_TIPO_CATEGORIA", "Categoria de log de exclusão de tipo categoria não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_MODULO", "Categoria de log novo modulo não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_MODULO", "Categoria de log update modulo não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_MODULO", "Categoria de log delete modulo não encontrada no banco de dados");
@@ -113,6 +116,7 @@ define("MSG_ERRO_CATEGORIA_CVC", "Categoria de CVC não encontrada no banco de d
 define("MSG_ERRO_TIPO_CATEGORIA_CVC", "Tipo de categoria de CVC não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_WEBSITE", "Categoria de log novo website não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_WEBSITE", "Categoria de log update em website não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_DELETE_WEBSITE", "Categoria de log exclusão de website não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_PERFIL_USUARIO", "Categoria de PERFIL_USUARIO não encontrada no banco de dados");
 /*
  * FORMULÁRIO
