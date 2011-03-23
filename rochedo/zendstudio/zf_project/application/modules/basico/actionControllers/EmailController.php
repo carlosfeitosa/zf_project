@@ -59,7 +59,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	$email   = $controladorEmail->retornaObjetoEmailPorId($idEmail);
 
     	//verificando se o usuario possui o perfil de UsuarioValidado
-    	if (Basico_OPController_PessoaPerfilOPController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
+    	if (Basico_OPController_PessoasPerfisOPController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
     		// redirecionando para o action erroemailvalidadoexistentenosistema do loginController
             $this->_helper->redirector('erroemailvalidadoexistentenosistema', 'login', 'basico');
             exit;

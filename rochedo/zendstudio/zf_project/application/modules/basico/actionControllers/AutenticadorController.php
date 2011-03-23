@@ -72,7 +72,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $form->getValue(AUTH_IDENTITY_ARRAY_KEY);
 
 		// recuperando objeto pessoa perfil usuario validado do login
-		$objPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
+		$objPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
 
 		// verificando se o login existe e possui perfil de usuario validado
 		if ($objPessoaPerfilUsuarioValidadoLogin->id) {
@@ -80,7 +80,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			Basico_OPController_LogOPController::getInstance()->salvarLog($objPessoaPerfilUsuarioValidadoLogin->id, Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
 		}
 		else {
-			Basico_OPController_LogOPController::getInstance()->salvarLog(Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema(), Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
+			Basico_OPController_LogOPController::getInstance()->salvarLog(Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema(), Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAutenticacaoUsuario(), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
 		}
 
 		// verificando se as credenciais de acesso funcionaram
