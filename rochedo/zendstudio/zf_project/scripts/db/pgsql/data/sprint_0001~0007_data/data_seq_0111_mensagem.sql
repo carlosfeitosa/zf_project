@@ -99,8 +99,9 @@ A partir de agora você pode acessar nosso sistema utilizando as seguintes crede
 
 
 LOGIN: @login
-SENHA: CONFIDENCIAL
 
+O nosso sistema, por questões de segurança, não pode recuperar/informar a senha por você registrada em nosso banco de dados. 
+Por esse motivo, se você esquecer sua senha, será necessário reseta-la, criando uma nova senha
 
 Desejamos boas vindas e nos colocamos a disposição para resolução de qualquer dificuldade encontrada neste ou em qualquer outro acesso a nossos serviços.
 
@@ -123,10 +124,11 @@ From now you can access our system using the following credentials:
 
 
 LOGIN: @login
-PASSWORD: CONFIDENTIAL
 
+For security reasons, our system can''t retrieve the password informed by you. 
+If you forget your password, a new password must be created.
 
-We wish and welcome available to put the resolution of any difficulties encountered in this or any other access to our services
+Welcome to our system, we are available to solve any dificulties that you may have in this or in any other access to our services. 
 
 
 Sincerely,
