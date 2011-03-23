@@ -1947,6 +1947,24 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_SUCESSO_AUTENTICACAO_USUARIO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogSucessoAutenticacaoUsuario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogSucessoAutenticacaoUsuario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_SUCESSO_AUTENTICACAO_USUARIO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogSucessoAutenticacaoUsuario))
+			// retornando o objeto
+			return $objCategoriaLogSucessoAutenticacaoUsuario;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_SUCESSO_AUTENTICACAO_USUARIO);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA
 	 * 
 	 * @return Basico_Model_Categoria
@@ -3906,6 +3924,23 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return (Int) $objCategoriaLogTentativaAutenticacaoUsuario->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_TENTATIVA_AUTENTICACAO_USUARIO);
+	}
+
+	/** Retorna o id do objeto carregado com a categoria LOG_SUCESSO_AUTENTICACAO_USUARIO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogSucessoAutenticacaoUsuario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogSucessoAutenticacaoUsuario = $this->retornaObjetoCategoriaLogSucessoAutenticacaoUsuario();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogSucessoAutenticacaoUsuario))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogSucessoAutenticacaoUsuario->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_SUCESSO_AUTENTICACAO_USUARIO);
 	}
 
 	/**

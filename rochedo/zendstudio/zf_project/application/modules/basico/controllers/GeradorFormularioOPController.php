@@ -1340,7 +1340,7 @@ class Basico_OPController_GeradorFormularioOPController
 		}
 
 		// inicializando o modelo GrupoFormularioElemento
-		$objGrupoFormularioElemento = Basico_OPController_GrupoFormularioElementoOPController::getInstance()->retornaNovoObjetoGrupoFormularioElemento();
+		$objGrupoFormularioElemento = Basico_OPController_GrupoFormularioElementoOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_GrupoFormularioElementoOPController');
 
 		// loop para escrever os display groups
 		foreach ($arrayDisplaysGroups as $idDisplayGroup => $arrayOrdemElementosDisplayGroup) {

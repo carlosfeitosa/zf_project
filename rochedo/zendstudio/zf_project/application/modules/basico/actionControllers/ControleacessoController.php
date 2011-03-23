@@ -41,9 +41,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     public function acaoaplicacaodesativadaAction() 
     {
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView = 'Acao desativada';
-        $subtituloView = 'esta acao foi desativada';
-        $mensagemView = 'clique aqui para voltar para onde voce estava';
+    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO');
+        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO');
+        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM');
 
     	// carregando array do cabecalho da view
 		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);

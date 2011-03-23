@@ -499,6 +499,17 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 */
 	private function inicializaLogon($login)
 	{
+		// recuperando informacoes sobre o usuario
+		$idPessoaLogin                      = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
+		$idPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaLogin);
+
+		// recuperando informacoes de log
+		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogSucessoAutenticacaoUsuario();
+		$mensagemLog    = LOG_MSG_SUCESSO_AUTENTICACAO_USUARIO;
+		
+		// efetua log
+		Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfilUsuarioValidadoLogin, $idCategoriaLog, $mensagemLog);
+
 		// registrando o usuario na sessao
 		$this->registraIdLoginUsuarioSessao($login);
 	}

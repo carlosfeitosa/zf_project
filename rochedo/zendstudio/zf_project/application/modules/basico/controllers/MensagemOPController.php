@@ -194,9 +194,9 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
     {
 		// instanciando os controladores
 		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
-		$categoriaControllerController          = Basico_OPController_EmailOPController::getInstance();
+		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
 		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_CategoriaOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
 		$objcategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
