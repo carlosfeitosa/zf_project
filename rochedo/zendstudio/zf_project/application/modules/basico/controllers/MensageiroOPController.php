@@ -121,7 +121,7 @@ class Basico_OPController_MensageiroOPController
             // recuperando a ultima versao do objeto
             $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($mensagem);
             // Atualizando a mensagem
-            Basico_OPController_MensagemOPController::getInstance()->salvarMensagem($mensagem, $ultimaVersaoMensagem);
+            Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
 
     		// salvando log de sucesso no envio de mensagem
     		$logOPController->salvarLog($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogEmail(), LOG_MSG_EMAIL_SUCESSO);

@@ -1,6 +1,15 @@
 <?php
-
-class Basico_OPController_LoginOPController {
+/**
+ * Controlador dos logins.
+ * 
+ * @author João Henrique M.Bione (joao.henrique.bione@rochedoproject.com)
+ * 
+ * @uses Basico_Model_Login
+ * 
+ * @since 23/03/2011
+ */
+class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersistentOPController 
+{
 	/**
 	 * @var Basico_OPController_LoginOPController
 	 */
@@ -9,18 +18,18 @@ class Basico_OPController_LoginOPController {
 	/**
 	 * @var Basico_Model_Login
 	 */
-	private $_login;
+	private $_model;
 	
 	/**
 	 * Contrutor do controlador Basico_OPController_LoginOPController
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
-		// inicializando o modelo
-		$this->_login = $this->retornaNovoObjetoLogin();
-
+		// instanciando o modelo
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		
 		// inicializando o controlador
 		$this->init();
 	}
@@ -30,7 +39,7 @@ class Basico_OPController_LoginOPController {
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected function init()
 	{
 		return;
 	}
@@ -52,52 +61,78 @@ class Basico_OPController_LoginOPController {
 	}
 
 	/**
-	 * Retorna um objeto login vazio
+	 * Salva o objeto login no banco de dados
 	 * 
-	 * @return Basico_Model_Login
-	 */
-	public function retornaNovoObjetoLogin()
-	{
-		// retornando um modelo vazio
-		return new Basico_Model_Login();
-	}
-
-	/**
-	 * Salva o login.
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_Login $objLogin
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
+	 * @param Basico_Model_Login $objeto
+	 * @param Integer $versaoUpdate
+	 * @param Integer $idPessoaPerfilCriador
 	 * 
 	 * @return void
 	 */
-	public function salvarLogin(Basico_Model_Login $objLogin, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
-		try {
-			// instanciando controladores
-			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Login', true);
 
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-    			$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao de registro
-			if ($objLogin->id != NULL) {
+			if ($objeto->id != NULL) {
 				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateLogin();
+				$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateLogin();
 				$mensagemLog    = LOG_MSG_UPDATE_LOGIN;
 			} else {
 				// carregando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoLogin();
+				$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoLogin();
 				$mensagemLog    = LOG_MSG_NOVO_LOGIN;
 			}
-
+	    		
 			// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objLogin, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
-			// atualizando o objeto dentro do controlador
-			$this->_login = $objLogin;
+	    	// atualizando o objeto
+    		$this->_model = $objeto;
+
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
+	
+     /**
+	 * Apaga o objeto login de dados
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * 
+	 * @param Basico_Model_Login $objeto
+	 * @param Boolean $forceCascade
+	 * @param Integer $idPessoaPerfilCriador
+	 * 
+	 * @return void
+	 */
+	public function apagarObjeto($objeto, $forceCascade = true, $idPessoaPerfilCriador = null)
+	{
+		// verificando se o objeto passado eh da instancia esperada
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Login', true);
+
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaPerfilCriador))
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+
+	    	// recuperando informacoes de log
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePessoa();
+	    	$mensagemLog    = LOG_MSG_DELETE_PESSOA;
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);
@@ -192,7 +227,7 @@ class Basico_OPController_LoginOPController {
 	public function retornaObjetoLoginPorLogin($login)
 	{
 		// recuperando o array com o objeto login
-		$arrayObjsLogin = $this->_login->fetchList("login = '{$login}'");
+		$arrayObjsLogin = $this->_model->fetchList("login = '{$login}'");
 
 		// verificando o resultado da recuperacao
 		if ($arrayObjsLogin)
@@ -384,7 +419,7 @@ class Basico_OPController_LoginOPController {
 			$objLogin->rowinfo  = $rowinfoOPController->getXml();
 
 			// salvando o objeto
-			$this->salvarLogin($objLogin, $versaoUpdate);
+			$this->salvarObjeto($objLogin, $versaoUpdate);
 		}
 
 		return null;
@@ -422,7 +457,7 @@ class Basico_OPController_LoginOPController {
 			$objLogin->rowinfo  = $rowinfoOPController->getXml();
 
 			// salvando o objeto
-			$this->salvarLogin($objLogin, $versaoUpdate);
+			$this->salvarObjeto($objLogin, $versaoUpdate);
 		}
 
 		return null;
@@ -526,7 +561,7 @@ class Basico_OPController_LoginOPController {
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objLogin = $this->_login->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objLogin = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (isset($objLogin[0]))
@@ -570,12 +605,12 @@ class Basico_OPController_LoginOPController {
 	public function retornaIdPessoaPorIdLogin($idLogin)
 	{
 		// recuperando objeto login
-		$this->_login->find($idLogin);
+		$this->_model->find($idLogin);
 
 		// verificando se o objeto login foi recuperado
-		if ($this->_login->id)
+		if ($this->_model->id)
 			// retornando o id da pessoa
-			return $this->_login->pessoa;
+			return $this->_model->pessoa;
 
 		return null;
 	}
@@ -597,7 +632,7 @@ class Basico_OPController_LoginOPController {
     	$auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
     	
     	//recuperando o login do usuario master do sistema
-    	$objsLogin = $this->_login->fetchList("id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
+    	$objsLogin = $this->_model->fetchList("id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
 
     	// verificando se o objeto foi recuperado com sucesso
     	if (isset($objsLogin[0]))    	

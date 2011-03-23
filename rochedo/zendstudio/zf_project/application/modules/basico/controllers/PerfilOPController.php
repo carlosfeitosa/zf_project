@@ -2,7 +2,7 @@
 /**
  * Controlador dos perfis do sistema.
  * 
- * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
+ * @author João Henrique M.Bione (joao.henrique.bione@rochedoproject.com)
  * 
  * @uses Basico_Model_Perfil
  * 
@@ -277,7 +277,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	private function retornaObjetosPerfisPorIdCategoria($idCategoria)
 	{
 		// retornando objetos
-		return $this->_perfil->fetchList("id_categoria = '{$idCategoria}'");
+		return $this->_model->fetchList("id_categoria = '{$idCategoria}'");
 	}
 
 	/**

@@ -4,13 +4,14 @@
  * 
  * Responsavel pelas pessoas do sistema.
  * 
- * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
+ * @author João Henrique M.Bione (joao.henrique.bione@rochedoproject.com)
  * 
  * @uses Basico_Model_Pessoa
  *
  * @since 22/03/2011
  * 
  */
+require_once("abstracts/RochedoPersistentOPController.php");
 class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**

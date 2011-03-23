@@ -169,8 +169,8 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
-			$this->_model = $this->retornaNovoObjetoRelacaoCategoriaChaveEstrangeira();
-
+            $this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+            
 			// setando os valores
 			$this->_model->tabelaOrigem = $nomeTabela;
 			$this->_model->campoOrigem  = $nomeCampo;

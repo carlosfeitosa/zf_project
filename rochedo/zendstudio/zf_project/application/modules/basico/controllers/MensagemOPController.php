@@ -72,12 +72,12 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 	 * @return void
 	 */
     public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
-    {
-    	Basico_UtilControllerController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mensagem');
+    { 
+    	Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mensagem');
 	    try{
 	    	// instanciando controladores
-	    	$categoriaControllerController = Basico_CategoriaControllerController::getInstance();
-	    	$pessoaPerfilControllerController = Basico_PessoaPerfilControllerController::getInstance();
+	    	$categoriaControllerController = Basico_OPController_EmailOPController::getInstance();
+	    	$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
 
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
@@ -86,16 +86,16 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// recuperando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogUpdateMensagem();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateMensagem();
 	    		$mensagemLog    = LOG_MSG_UPDATE_MENSAGEM;
 	    	} else {
 	    		// recuperando informacoes de log de novo registro
-	    		$idCategoriaLog = $categoriaControllerController->retornaIdCategoriaLogNovaMensagem();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaMensagem();
 	    		$mensagemLog    = LOG_MSG_NOVA_MENSAGEM;
 	    	}
 
 	    	// salvando o objeto através do controlador Save
-			Basico_PersistenceControllerController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+			Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 			// atualizando o objeto	    		
 	    	$this->_model = $objeto;
@@ -139,15 +139,15 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 	public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link)
 	{
 		// instanciando controladores
-		$emailControllerController              = Basico_EmailControllerController::getInstance();
-		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
+		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
 
 		// recuperando o objeto categoria email validacao plain text template
 		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailValidacaoPlainTextTemplate();
 
 		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
+		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
 		$objMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
@@ -193,10 +193,10 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
     public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) 
     {
 		// instanciando os controladores
-		$emailControllerController              = Basico_EmailControllerController::getInstance();
-		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$categoriaControllerController          = Basico_OPController_EmailOPController::getInstance();
 		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_CategoriaOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
 		$objcategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailTemplateValidacaoPlainTextReenvio();
@@ -249,12 +249,12 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
     public function retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa) 
     {
 		// instanciando os controladores
-		$emailControllerController              = Basico_EmailControllerController::getInstance();
-		$categoriaControllerController          = Basico_CategoriaControllerController::getInstance();
+		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$categoriaControllerController          = Basico_OPController_EmailOPController::getInstance();
 		$loginControllerController              = Basico_LoginControllerController::getInstance();
 		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
 		$dadosBiometricosControllerController   = Basico_DadosBiometricosControllerController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_DadosPessoasPerfisControllerController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_CategoriaOPController::getInstance();
 		$tradutorControllerController           = Basico_TradutorControllerController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
@@ -290,7 +290,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
         // substituindo a tag do login
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LOGIN, $loginUsuario, $corpoMensagemTemplate);
         // substituindo a tag de datahora cadastro
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_UtilControllerController::retornaDateTimeAtual(Basico_PessoaControllerController::retornaLinguaUsuario()), $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_OPController_UtilOPController::retornaDateTimeAtual(Basico_PessoaControllerController::retornaLinguaUsuario()), $corpoMensagemTemplate);
         // substituindo a tag de assinatura da mensagem
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         

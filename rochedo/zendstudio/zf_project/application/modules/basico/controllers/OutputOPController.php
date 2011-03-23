@@ -87,13 +87,13 @@ class Basico_OPController_OutputOPController extends Basico_Abstract_RochedoPers
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objOutput->id != NULL) {
+	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateOutput();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateOutput();
 	    		$mensagemLog = LOG_MSG_UPDATE_OUTPUT;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoOutput();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoOutput();
 	    		$mensagemLog = LOG_MSG_NOVO_OUTPUT;
 	    	}
 	    		

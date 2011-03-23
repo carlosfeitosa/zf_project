@@ -86,13 +86,13 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objPessoaPerfil->id != NULL) {
+	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdatePessoaPerfil();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdatePessoaPerfil();
 	    		$mensagemLog    = LOG_MSG_UPDATE_PESSOA_PERFIL;
 	    	} else {
 	    		// carregando informacoes de log de novo de registro
-	    		$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovaPessoaPerfil();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovaPessoaPerfil();
 	    		$mensagemLog    = LOG_MSG_NOVA_PESSOA_PERFIL;
 	    	}
 	    			    		
