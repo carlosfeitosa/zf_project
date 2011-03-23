@@ -26,7 +26,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		$controleAcessoOPController = Basico_OPController_ControleAcessoOPController::getInstance();
 
 		// verificando se a acao da aplicacao esta ativa
-		if (!$controleAcessoOPController->verificaRequestAtivo($request)) {
+		if (!$controleAcessoOPController->verificaRequestAtivoPorRequest($request)) {
 			// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 			$request->setModuleName('basico');
 			$request->setControllerName('controleacesso');
@@ -37,7 +37,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		}
 
 		// verificando se a acao da aplicacao esta associada a um perfil publico
-		if (!$controleAcessoOPController->verificaRequestPublico($request)) {
+		if (!$controleAcessoOPController->verificaRequestPublicoPorRequest($request)) {
 			// verificando se existe usuario logado
 			if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
 				// recuperando informacoes do request
@@ -63,6 +63,17 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				$request->setModuleName('basico');
 				$request->setControllerName('autenticador');
 				$request->setActionName('autenticarusuario');
+			} else {
+				// verificando se o usuario logado possui o perfil para a requisicao solicitada
+				if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) {
+					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
+					$request->setModuleName('basico');
+					$request->setControllerName('controleacesso');
+					$request->setActionName('acaoaplicacaodesativada');
+		
+					// parando a execucao do plugin
+					return;
+				}
 			}
 		}
 	}

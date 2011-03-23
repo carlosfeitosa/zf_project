@@ -215,6 +215,7 @@ class Basico_OPController_ControleAcessoOPController
 	 */
 	public function verificaPermissaoAcessoRequestPerfilPorRequest(Zend_Controller_Request_Abstract $request)
 	{
+		return true;
 		// recuperando o nome completo da acao
 		$nomeAcaoAplicacaoCompleta = $this->retornaNomeAcaoAplicacaoCompleta($request->getModuleName(), $request->getControllerName(), $request->getActionName());
 
