@@ -723,7 +723,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_LOGIN_AJUDA' AS constante_textual, 'Digite neste campo o login para acessar o sistema.' AS traducao
+SELECT c.id, 'FORM_FIELD_LOGIN_AJUDA' AS constante_textual, 'Digite neste campo o nome de usuário que será utilizado para sua identificação no sistema.<br>Exemplo: joao<br>         joao@provedor.com<br>         joao1984<br>         joao.silva123' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -3415,7 +3415,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_LOGIN_AJUDA' AS constante_textual, 'Type in this field your login (username) to access the system.' AS traducao
+SELECT c.id, 'FORM_FIELD_LOGIN_AJUDA' AS constante_textual, 'Type in this field your username that will be used to indentify you in our system.<br>Example: john<br>         john@provider.com<br>         john1984<br>         john.doe123' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
