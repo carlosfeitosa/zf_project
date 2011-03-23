@@ -230,7 +230,7 @@ class Basico_OPController_AutenticadorOPController
 		$userRequestParams = $userRequest->getParams();
 		
 		// retornando urlRedirect
-		return $userRequestParams['BasicoAutenticacaoUsuarioUrlRedirect'];
+		return Basico_OPController_UtilOPController::decodificaBarrasUrl($userRequestParams['BasicoAutenticacaoUsuarioUrlRedirect']);
 	}
 
 	/**

@@ -60,6 +60,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     
     /**
      * Ação para resetar o banco de dados.
+     * 
      * @return void
      */
     public function resetadbAction()
@@ -82,6 +83,11 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	}   	
     }
 
+    /**
+     * Acao para mostrar mensagem de sucsso ao resetar o banco de dados
+     * 
+     * @return void
+     */
     public function sucessoresetadbAction()
     {
     	// carregando o titulo e subtitulo da view

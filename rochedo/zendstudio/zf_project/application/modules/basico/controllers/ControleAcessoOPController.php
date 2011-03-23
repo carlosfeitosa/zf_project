@@ -51,7 +51,7 @@ class Basico_OPController_ControleAcessoOPController
 	/**
 	 * Recupera a instancia do controlador Basico_OPController_ControleAcessoOPController
 	 * 
-	 * @return Basico_OPController_AcaoAplicacaoOPController
+	 * @return Basico_OPController_ControleAcessoOPController
 	 */
 	public static function getInstance()
 	{
@@ -81,6 +81,37 @@ class Basico_OPController_ControleAcessoOPController
 
 		// carregando associacoes entre perfis e resources
 		$this->carregaACLAssociacoes($acl);
+
+		// carregando os resources desativados e suas respectivas associacoes com PERFIL_ACAO_DESATIVADA
+		$this->carregaACLAssociacoesAcoesAplicacaoDesativadasComPerfilAcaoDesativada($acl);
+	}
+
+	/**
+	 * Carrega as associacoes entre o perfil PERFIL_ACAO_DESATIVADA e os resources de um Zend_Acl cuja acao aplicacao esta desativada
+	 * 
+	 * @param Zend_Acl $acl
+	 * 
+	 * @return void
+	 */
+	private function carregaACLAssociacoesAcoesAplicacaoDesativadasComPerfilAcaoDesativada(Zend_Acl &$acl)
+	{
+		// recuperando todas as acoes aplicacoes desativadas
+		$objsAcoesAplicacaoDesativados = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaTodosObjetosAcaoAplicacaoDesativados();
+
+		// verificando se existem acoes desativadas
+		if (count($objsAcoesAplicacaoDesativados) > 0) {
+			// loop para carregar as associacoes com PERFIL_ACAO_DESATIVADA
+			foreach ($objsAcoesAplicacaoDesativados as $objAcaoAplicacaoDesativada) {
+				// carregando o nome completo do resource
+				$nomeCompletoAcaoAplicacao = $this->retornaNomeAcaoAplicacaoCompleta($objAcaoAplicacaoDesativada->getModuloObject()->nome, $objAcaoAplicacaoDesativada->controller, $objAcaoAplicacaoDesativada->action);
+
+				// adicionando a acaoa aplicacao desativada
+				$acl->addResource(new Zend_Acl_Resource($nomeCompletoAcaoAplicacao));
+
+				// associando o perfil PERFIL_ACAO_DESATIVADA a acao desativada
+				$acl->allow(PERFIL_ACAO_DESATIVADA, $nomeCompletoAcaoAplicacao);
+			}
+		}
 	}
 
 	/**
@@ -103,8 +134,10 @@ class Basico_OPController_ControleAcessoOPController
 				$objAcaoAplicacao = $objAcaoAplicacaoPerfil->getAcaoAplicacaoObject();
 				$objPerfil        = $objAcaoAplicacaoPerfil->getPerfilObject();
 
-				// associando o perfil ao resource
-				$acl->allow($objPerfil->NOME, $this->retornaNomeAcaoAplicacaoCompleta($objAcaoAplicacao->getModuloObject()->nome, $objAcaoAplicacao->controller, $objAcaoAplicacao->action));
+				// verificando se a acao esta ativa
+				if ($objAcaoAplicacao->ativo)
+					// associando o perfil ao resource
+					$acl->allow($objPerfil->NOME, $this->retornaNomeAcaoAplicacaoCompleta($objAcaoAplicacao->getModuloObject()->nome, $objAcaoAplicacao->controller, $objAcaoAplicacao->action));
 			}
 		}
 	}
@@ -119,16 +152,14 @@ class Basico_OPController_ControleAcessoOPController
 	private function carregaACLResources(Zend_Acl &$acl)
 	{
 		// recuperando acoes da aplicacao
-		$objsAcaoAplicacao = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaTodosObjetosAcaoAplicacao();
+		$objsAcaoAplicacaoAtivos = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaTodosObjetosAcaoAplicacaoAtivos();
 
 		// verificando se as acoes foram carregadas
-		if (count($objsAcaoAplicacao) > 0) {
+		if (count($objsAcaoAplicacaoAtivos) > 0) {
 			// loop para carregar os "resources" do Zend_Acl
-			foreach ($objsAcaoAplicacao as $objAcaoAplicacao) {
-				// verificando se a acao esta ativa
-				if ($objAcaoAplicacao->ativo)
-					// carregando os resources
-					$acl->addResource(new Zend_Acl_Resource($this->retornaNomeAcaoAplicacaoCompleta($objAcaoAplicacao->getModuloObject()->nome, $objAcaoAplicacao->controller, $objAcaoAplicacao->action)));
+			foreach ($objsAcaoAplicacaoAtivos as $objAcaoAplicacaoAtivo) {
+				// carregando os resources
+				$acl->addResource(new Zend_Acl_Resource($this->retornaNomeAcaoAplicacaoCompleta($objAcaoAplicacaoAtivo->getModuloObject()->nome, $objAcaoAplicacaoAtivo->controller, $objAcaoAplicacaoAtivo->action)));
 			}
 		}
 	}
@@ -154,6 +185,8 @@ class Basico_OPController_ControleAcessoOPController
 				// carregando o perfil
 				$acl->addRole(new Zend_Acl_Role($objPerfilUsuario->NOME));
 			}
+			// adicionando o perfil PERFIL_ACAO_DESATIVADA
+			$acl->addRole(new Zend_Acl_Role(PERFIL_ACAO_DESATIVADA));
 		} else
 			throw new Exception(MSG_ERROR_NENHUM_PERFIL_ENCONTRADO);
 	}
@@ -188,6 +221,22 @@ class Basico_OPController_ControleAcessoOPController
 
 		// retornando o resultado da verificacao
 		return $this->verificaAssociacaoAcaoAplicacaoPerfil($nomePerfilPublico, $nomeAcaoAplicacaoCompleta);
+	}
+
+	/**
+	 * Verifica se o request esta associado a uma acao aplicacao ativa
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaRequestAtivo(Zend_Controller_Request_Abstract $request)
+	{
+		// codificando o nome do acao completa
+		$nomeAcaoAplicacaoCompleta = $this->retornaNomeAcaoAplicacaoCompleta($request->getModuleName(), $request->getControllerName(), $request->getActionName());
+
+		// retornando o resultado da verificacao
+		return (!$this->verificaAssociacaoAcaoAplicacaoPerfil(PERFIL_ACAO_DESATIVADA, $nomeAcaoAplicacaoCompleta));
 	}
 
 	/**

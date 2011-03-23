@@ -9,10 +9,22 @@
 
 class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controller_Plugin_Abstract
 {
+	/**
+	 * Atributo para ativacao do plugin
+	 * 
+	 * @var Boolean
+	 */
+	protected $_pluginAtivo = true;
+
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
+		// verificando se o request deve ser processado
+		if (!$this->verificaSeProcessaRequest($request))
+			return;
+
 		// recuperando o id do usuario logado na sessao
 		$idLogin = Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao();
+
 		// verificando se existe usuario logado para fazer o log das acoes dos controladores
 		if ($idLogin) {
 			// recuperando o nome da acao
@@ -32,5 +44,21 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 			// invocando metodo de log
 			Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfilUsuarioValidadoUsuarioLogado, $idCategoriaLogAcaoInvocada, DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR);
 		}
+	}
+
+	/**
+	 * Verifica se o plugin deve processar o request
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private function verificaSeProcessaRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando se o request deve ser processado
+		return (($this->_pluginAtivo) and 
+			    (!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoErrorErrorControllerPorRequest($request))  and 
+			    (Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaExisteAcaoControladorPorRequest($request)) and 
+			    (Basico_OPController_LoginOPController::existeUsuarioLogado()));
 	}
 }

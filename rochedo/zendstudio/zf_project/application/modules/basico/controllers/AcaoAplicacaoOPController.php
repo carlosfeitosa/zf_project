@@ -70,8 +70,113 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	 */
 	public function retornaTodosObjetosAcaoAplicacao()
 	{
-		// retornando acoes da aplicacao
+		// retornando todas as acoes da aplicacao
 		return $this->_model->fetchAll();
+	}
+
+	/**
+	 * Retorna todos as acoes aplicacao ativas
+	 *
+	 * @return Array|null
+	 */
+	public function retornaTodosObjetosAcaoAplicacaoAtivos()
+	{
+		// inicializando variaveis
+		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
+
+		// retornando todas as acoes aplicacao ativas
+		return $this->_model->fetchList("ativo = {$ativo}");
+	}
+
+	/**
+	 * Retorna todas as acoes aplicacao desativadas
+	 * 
+	 * @return Array|null
+	 */
+	public function retornaTodosObjetosAcaoAplicacaoDesativados()
+	{
+		// inicializando variaveis
+		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(false, true);
+		
+		// retornando todas as acoes aplicacao desativadas
+		return $this->_model->fetchList("ativo = {$ativo}");
+	}
+
+	/**
+	 * Retorna objeto acao aplicacao da acao passada por request
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Basico_Model_AcaoAplicacao|null
+	 */
+	public function retornaObjetoAcaoAplicacaoPorRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o objeto atraves do metodo retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao(), decupando o request
+		return $this->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($request->getModuleName, $request->getControllerName, $request->getActionName);
+	}
+
+	public function retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($nomeModule, $nomeController, $nomeAction)
+	{
+		// recuperando o id do modulo
+		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule);
+
+		// recuperando objeto acao aplicacao
+		$objsAcaoAplicacao = $this->_model->fetchList("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
+
+		// verificando se o objeto foi carregado com sucesso
+		if ($objsAcaoAplicacao[0]->id)
+			// retornando o objeto
+			return $objsAcaoAplicacao[0];
+
+		return null;
+	}
+
+	/**
+	 * Verifica se a acao existe atraves do request
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaExisteAcaoControladorPorRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// recupernado o nome do controlador
+		$nomeController = Basico_OPController_UtilOPController::retornaNomeClasseControladorPorRequest($request);
+
+		// verificando se trata-se do modulo DEFAULT
+		if (strpos($nomeController, 'Default_') === 0)
+			// removendo o nome do modulo do nome do controlador
+			$nomeController = str_replace('Default_', '', $nomeController);
+
+		// recupernado o nome do arquivo
+		$nomeArquivoController = str_replace(ucfirst($request->getModuleName()) . '_', '', $nomeController) . '.php';
+		
+		// recuperando o diretorio de controladores do modulo
+		$caminhoControladoresModulo = Zend_Controller_Front::getInstance()->getDispatcher()->getControllerDirectory();
+		$caminhoControladoresModulo = $caminhoControladoresModulo[$request->getModuleName()];
+
+		// verificando se o arquivo existe
+		if (!file_exists($caminhoControladoresModulo . CARACTER_BARRA_URL . $nomeArquivoController))
+			return false;
+
+		// carregando o arquivo via autoload
+		Zend_Loader::loadFile($nomeArquivoController, Zend_Controller_Front::getInstance()->getDispatcher()->getControllerDirectory(), true);	
+
+		// retornando se acao existe no controlador
+		return (method_exists($nomeController, $request->getActionName() . 'Action'));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a acao Error do controlador de erros
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaAcaoErrorErrorControllerPorRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando resultado da verificacao
+		return (($request->getModuleName() === 'default') and ($request->getControllerName() === 'error') and ($request->getActionName() === 'error'));
 	}
 
 	/**

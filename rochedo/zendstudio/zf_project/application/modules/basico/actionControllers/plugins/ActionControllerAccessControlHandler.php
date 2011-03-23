@@ -9,19 +9,35 @@
 
 class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend_Controller_Plugin_Abstract
 {
+	/**
+	 * Atributo para ativacao do plugin
+	 * 
+	 * @var Boolean
+	 */
 	protected $_pluginAtivo = true;
 	
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
-		// verificando se o plugin esta ativo
-		if (!$this->_pluginAtivo)
+		// verificando se o request deve ser processado
+		if (!$this->verificaSeProcessaRequest($request))
 			return;
 
 		// instanciando controladores
 		$controleAcessoOPController = Basico_OPController_ControleAcessoOPController::getInstance();
 
+		// verificando se a acao da aplicacao esta ativa
+		if (!$controleAcessoOPController->verificaRequestAtivo($request)) {
+			// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
+			$request->setModuleName('basico');
+			$request->setControllerName('controleacesso');
+			$request->setActionName('acaoaplicacaodesativada');
+
+			// parando a execucao do plugin
+			return;
+		}
+
 		// verificando se a acao da aplicacao esta associada a um perfil publico
-		if (!$controleAcessoOPController->verificaRequestPublico($request)) {		
+		if (!$controleAcessoOPController->verificaRequestPublico($request)) {
 			// verificando se existe usuario logado
 			if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
 				// recuperando informacoes do request
@@ -49,5 +65,20 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				$request->setActionName('autenticarusuario');
 			}
 		}
+	}
+
+	/**
+	 * Verifica se o plugin deve processar o request
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private function verificaSeProcessaRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando se o request deve ser processado
+		return (($this->_pluginAtivo) and 
+				(!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoErrorErrorControllerPorRequest($request)) and
+				(Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaExisteAcaoControladorPorRequest($request)));
 	}
 }
