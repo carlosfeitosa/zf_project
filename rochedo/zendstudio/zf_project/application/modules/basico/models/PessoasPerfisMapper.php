@@ -1,14 +1,14 @@
 <?php
 /**
- * PessoaPerfilMensagemCategoria data mapper
+ * PessoaPerfil data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_PessoaPerfilMensagemCategoria
+ * @uses       Basico_Model_DbTable_PessoasPerfis
  * @subpackage Model
  */
-class Basico_Model_PessoaPerfilMensagemCategoriaMapper
+class Basico_Model_PessoasPerfisMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_PessoaPerfilMensagemCategoriaMapper
+     * @return Basico_Model_PessoasPerfisMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_PessoaPerfilMensagemCategoria if no instance registered
+     * Lazy loads Basico_Model_DbTable_PessoasPerfis if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_PessoaPerfilMensagemCategoria');
+            $this->setDbTable('Basico_Model_DbTable_PessoasPerfis');
         }
         return $this->_dbTable;
     }
@@ -51,17 +51,15 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_PessoaPerfilMensagemCategoria $object
+     * @param  Basico_Model_PessoasPerfis $object
      * @return void
      */
-    public function save(Basico_Model_PessoaPerfilMensagemCategoria $object)
+    public function save(Basico_Model_PessoasPerfis $object)
     {
         $data = array(
-                'id_mensagem'      => $object->getMensagem(),
-                'id_categoria'     => $object->getCategoria(),
-                'id_pessoa_perfil' => $object->getPessoaPerfil(),
-                'rowinfo'          => $object->getRowinfo(),
-                
+                'id_pessoa' => $object->getPessoa(),
+                'id_perfil' => $object->getPerfil(),
+        		'rowinfo'   => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -73,11 +71,11 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
     }
     
     /**
-    * Delete a PessoaPerfilMensagemCategoria entry
-    * @param Basico_Model_PessoaPerfilMensagemCategoria $object
+    * Delete a PessoaPerfil entry
+    * @param Basico_Model_PessoasPerfis $object
     * @return void
     */
-    public function delete(Basico_Model_PessoaPerfilMensagemCategoria $object)
+    public function delete(Basico_Model_PessoasPerfis $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -86,10 +84,10 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_PessoaPerfilMensagemCategoria $object 
+     * @param  Basico_Model_PessoasPerfis $object 
      * @return void
      */
-    public function find($id, Basico_Model_PessoaPerfilMensagemCategoria $object)
+    public function find($id, Basico_Model_PessoasPerfis $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -97,14 +95,15 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setMensagem($row->id_mensagem)
-               ->setCategoria($row->id_categoria)
-               ->setPessoaPerfil($row->id_pessoa_perfil)
+               ->setPessoa($row->id_pessoa)
+               ->setPerfil($row->id_perfil)
+               ->setDataHoraCadastro($row->datahora_cadastro)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all PessoaPerfilMensagemCategoria entries
+     * Fetch all PessoaPerfil entries
      * 
      * @return array
      */
@@ -114,13 +113,14 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $entry = new Basico_Model_PessoasPerfis();
             $entry->setId($row->id)
-                  ->setMensagem($row->id_mensagem)
-                  ->setCategoria($row->id_categoria)
-                  ->setPessoaPerfil($row->id_pessoa_perfil)
-                  ->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
+                ->setPessoa($row->id_pessoa)
+                ->setPerfil($row->id_perfil)
+                ->setDataHoraCadastro($row->datahora_cadastro)
+                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
+                ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
@@ -137,11 +137,12 @@ class Basico_Model_PessoaPerfilMensagemCategoriaMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoaPerfilMensagemCategoria();
+            $entry = new Basico_Model_PessoasPerfis();
             $entry->setId($row->id)
-                  ->setMensagem($row->id_mensagem)
-                  ->setCategoria($row->id_categoria)
-                  ->setPessoaPerfil($row->id_pessoa_perfil)
+                  ->setPessoa($row->id_pessoa)
+                  ->setPerfil($row->id_perfil)
+                  ->setDataHoraCadastro($row->datahora_cadastro)
+                  ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

@@ -4,10 +4,10 @@
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_PessoaPerfilMapper
+ * @uses       Basico_Model_PessoasPerfisMapper
  * @subpackage Model
  */
-class Basico_Model_PessoaPerfil
+class Basico_Model_PessoasPerfis
 {
     /**
     * @var int
@@ -15,7 +15,7 @@ class Basico_Model_PessoaPerfil
     protected $_id;
 
     /**
-     * @var Basico_Model_PessoaPerfilMapper
+     * @var Basico_Model_PessoasPerfisMapper
      */
     protected $_mapper;
     
@@ -95,7 +95,7 @@ class Basico_Model_PessoaPerfil
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_PessoaPerfil
+     * @return Basico_Model_PessoasPerfis
      */
     public function setOptions(array $options)
     {
@@ -182,7 +182,7 @@ class Basico_Model_PessoaPerfil
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfil
+    * @return Basico_Model_PessoasPerfis
     */
     public function setId($id)
     {
@@ -203,7 +203,7 @@ class Basico_Model_PessoaPerfil
     /**
      * Set dataHoraCadastro
      * @param String $dataHoraCadastro
-     * @return Basico_Model_PessoaPerfil
+     * @return Basico_Model_PessoasPerfis
      */
     public function setDataHoraCadastro($dataHoraCadastro)
     {
@@ -223,7 +223,7 @@ class Basico_Model_PessoaPerfil
     /**
      * Set dataHoraUltimaAtualizacao
      * @param String $dataHoraUltimaAtualizacao
-     * @return Basico_Model_PessoaPerfil
+     * @return Basico_Model_PessoasPerfis
      */
     public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
     {
@@ -266,7 +266,7 @@ class Basico_Model_PessoaPerfil
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_PessoaPerfil
+    * @return Basico_Model_PessoasPerfis
     */
     public function setMapper($mapper)
     {
@@ -277,14 +277,14 @@ class Basico_Model_PessoaPerfil
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_PessoaPerfilMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_PessoasPerfisMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_PessoaPerfilMapper
+    * @return Basico_Model_PessoasPerfisMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_PessoaPerfilMapper());
+            $this->setMapper(new Basico_Model_PessoasPerfisMapper());
         }
         return $this->_mapper;
     }
@@ -295,7 +295,7 @@ class Basico_Model_PessoaPerfil
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfil
+    * @return Basico_Model_PessoasPerfis
       
     */
     public function find($id)

@@ -1,14 +1,14 @@
 <?php
 /**
- * PessoaPerfil data mapper
+ * PessoaPerfilMensagemCategoria data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_PessoaPerfil
+ * @uses       Basico_Model_DbTable_PessoasPerfisMensagemCategoria
  * @subpackage Model
  */
-class Basico_Model_PessoaPerfilMapper
+class Basico_Model_PessoasPerfisMensagemCategoriaMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_PessoaPerfilMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_PessoaPerfilMapper
+     * @return Basico_Model_PessoasPerfisMensagemCategoriaMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_PessoaPerfilMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_PessoaPerfil if no instance registered
+     * Lazy loads Basico_Model_DbTable_PessoasPerfisMensagemCategoria if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_PessoaPerfil');
+            $this->setDbTable('Basico_Model_DbTable_PessoasPerfisMensagemCategoria');
         }
         return $this->_dbTable;
     }
@@ -51,15 +51,17 @@ class Basico_Model_PessoaPerfilMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_PessoaPerfil $object
+     * @param  Basico_Model_PessoasPerfisMensagemCategoria $object
      * @return void
      */
-    public function save(Basico_Model_PessoaPerfil $object)
+    public function save(Basico_Model_PessoasPerfisMensagemCategoria $object)
     {
         $data = array(
-                'id_pessoa' => $object->getPessoa(),
-                'id_perfil' => $object->getPerfil(),
-        		'rowinfo'   => $object->getRowinfo(),
+                'id_mensagem'      => $object->getMensagem(),
+                'id_categoria'     => $object->getCategoria(),
+                'id_pessoa_perfil' => $object->getPessoaPerfil(),
+                'rowinfo'          => $object->getRowinfo(),
+                
         );
 
         if (null === ($id = $object->getId())) {
@@ -71,11 +73,11 @@ class Basico_Model_PessoaPerfilMapper
     }
     
     /**
-    * Delete a PessoaPerfil entry
-    * @param Basico_Model_PessoaPerfil $object
+    * Delete a PessoaPerfilMensagemCategoria entry
+    * @param Basico_Model_PessoasPerfisMensagemCategoria $object
     * @return void
     */
-    public function delete(Basico_Model_PessoaPerfil $object)
+    public function delete(Basico_Model_PessoasPerfisMensagemCategoria $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -84,10 +86,10 @@ class Basico_Model_PessoaPerfilMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_PessoaPerfil $object 
+     * @param  Basico_Model_PessoasPerfisMensagemCategoria $object 
      * @return void
      */
-    public function find($id, Basico_Model_PessoaPerfil $object)
+    public function find($id, Basico_Model_PessoasPerfisMensagemCategoria $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -95,15 +97,14 @@ class Basico_Model_PessoaPerfilMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setPessoa($row->id_pessoa)
-               ->setPerfil($row->id_perfil)
-               ->setDataHoraCadastro($row->datahora_cadastro)
-               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               ->setMensagem($row->id_mensagem)
+               ->setCategoria($row->id_categoria)
+               ->setPessoaPerfil($row->id_pessoa_perfil)
                ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all PessoaPerfil entries
+     * Fetch all PessoaPerfilMensagemCategoria entries
      * 
      * @return array
      */
@@ -113,14 +114,13 @@ class Basico_Model_PessoaPerfilMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoaPerfil();
+            $entry = new Basico_Model_PessoasPerfisMensagemCategoria();
             $entry->setId($row->id)
-                ->setPessoa($row->id_pessoa)
-                ->setPerfil($row->id_perfil)
-                ->setDataHoraCadastro($row->datahora_cadastro)
-                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRowinfo($row->rowinfo)
-                ->setMapper($this);
+                  ->setMensagem($row->id_mensagem)
+                  ->setCategoria($row->id_categoria)
+                  ->setPessoaPerfil($row->id_pessoa_perfil)
+                  ->setRowinfo($row->rowinfo)
+                  ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
@@ -137,12 +137,11 @@ class Basico_Model_PessoaPerfilMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoaPerfil();
+            $entry = new Basico_Model_PessoasPerfisMensagemCategoria();
             $entry->setId($row->id)
-                  ->setPessoa($row->id_pessoa)
-                  ->setPerfil($row->id_perfil)
-                  ->setDataHoraCadastro($row->datahora_cadastro)
-                  ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                  ->setMensagem($row->id_mensagem)
+                  ->setCategoria($row->id_categoria)
+                  ->setPessoaPerfil($row->id_pessoa_perfil)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

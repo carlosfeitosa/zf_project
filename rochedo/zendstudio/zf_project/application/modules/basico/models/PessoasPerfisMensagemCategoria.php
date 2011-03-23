@@ -4,10 +4,10 @@
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_PessoaPerfilMensagemCategoriaMapper
+ * @uses       Basico_Model_PessoasPerfisMensagemCategoriaMapper
  * @subpackage Model
  */
-class Basico_Model_PessoaPerfilMensagemCategoria
+class Basico_Model_PessoasPerfisMensagemCategoria
 {
     /**
     * @var int
@@ -15,7 +15,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     protected $_id;
 
     /**
-     * @var Basico_Model_PessoaPerfilMensagemCategoriaMapper
+     * @var Basico_Model_PessoasPerfisMensagemCategoriaMapper
      */
     protected $_mapper;
 
@@ -90,7 +90,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_PessoaPerfilMensagemCategoria
+     * @return Basico_Model_PessoasPerfisMensagemCategoria
      */
     public function setOptions(array $options)
     {
@@ -209,7 +209,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagemCategoria
     */
     public function setId($id)
     {
@@ -231,7 +231,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     * Set entry rowinfo
     * 
     * @param  rowinfo $rowinfo 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagemCategoria
     */
     public function setRowinfo($rowinfo)
     {
@@ -253,7 +253,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagemCategoria
     */
     public function setMapper($mapper)
     {
@@ -264,14 +264,14 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_PessoaPerfilMensagemCategoriaMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_PessoasPerfisMensagemCategoriaMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_PessoaPerfilMensagemCategoriaMapper
+    * @return Basico_Model_PessoasPerfisMensagemCategoriaMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_PessoaPerfilMensagemCategoriaMapper());
+            $this->setMapper(new Basico_Model_PessoasPerfisMensagemCategoriaMapper());
         }
         return $this->_mapper;
     }
@@ -282,7 +282,7 @@ class Basico_Model_PessoaPerfilMensagemCategoria
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoaPerfilMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagemCategoria
       
     */
     public function find($id)
