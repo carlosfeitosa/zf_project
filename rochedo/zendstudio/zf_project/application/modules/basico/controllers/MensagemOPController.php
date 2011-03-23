@@ -14,7 +14,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 {
 	/**
 	 * 
-	 * @var Basico_MensagemControllerController
+	 * @var Basico_OPController_MensagemOPController
 	 */
 	private static $_singleton;
 	
@@ -195,7 +195,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		// instanciando os controladores
 		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
 		$categoriaControllerController          = Basico_OPController_EmailOPController::getInstance();
-		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
+		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
 		$dadosPessoasPerfisControllerController = Basico_OPController_CategoriaOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
@@ -205,7 +205,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
         
 		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
+		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
 		$objsMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objcategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
@@ -250,12 +250,12 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
     {
 		// instanciando os controladores
 		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
-		$categoriaControllerController          = Basico_OPController_EmailOPController::getInstance();
-		$loginControllerController              = Basico_LoginControllerController::getInstance();
-		$dadosPessoaisControllerController      = Basico_DadosPessoaisControllerController::getInstance();
-		$dadosBiometricosControllerController   = Basico_DadosBiometricosControllerController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_CategoriaOPController::getInstance();
-		$tradutorControllerController           = Basico_TradutorControllerController::getInstance();
+		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
+		$loginControllerController              = Basico_OPController_LoginOPController::getInstance();
+		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
+		$dadosBiometricosControllerController   = Basico_OPController_DadosBiometricosOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+		$tradutorControllerController           = Basico_OPController_TradutorOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
 		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaEmailTemplateConfirmacaoCadastroPlainText();
@@ -267,7 +267,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
 
 		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_PessoaControllerController::retornaLinguaUsuario();
+		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
 		// carregando a mensagem template
 		$objMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
@@ -290,7 +290,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
         // substituindo a tag do login
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LOGIN, $loginUsuario, $corpoMensagemTemplate);
         // substituindo a tag de datahora cadastro
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_OPController_UtilOPController::retornaDateTimeAtual(Basico_PessoaControllerController::retornaLinguaUsuario()), $corpoMensagemTemplate);
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO, Basico_OPController_UtilOPController::retornaDateTimeAtual(Basico_OPController_PessoaOPController::retornaLinguaUsuario()), $corpoMensagemTemplate);
         // substituindo a tag de assinatura da mensagem
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
         

@@ -2044,7 +2044,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	public function retornaObjetoCategoriaCVC()
 	{
 		// inicializando variaveis
-		$modelTipoCategoria = Basico_OPController_TipoCategoriaOPController::getInstance()->retornaNovoObjetoTipoCategoria();
+		$modelTipoCategoria = Basico_OPController_TipoCategoriaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_TipoCategoriaOPController');
 		$nomeTipoCategoriaCVC = TIPO_CATEGORIA_CVC;
 
 		// recuperando objeto
