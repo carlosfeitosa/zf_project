@@ -22,10 +22,30 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
                    ->addResourceType(RESOURCE_TYPE_BASICO_ABSTRACTS, RESOURCE_PATH_BASICO_ABSTRACTS, RESOURCE_NAMESPACE_BASICO_ABSTRACTS)
                    ->addResourceType(RESOURCE_TYPE_BASICO_OPCONTROLLERS, RESOURCE_PATH_BASICO_OPCONTROLLERS, RESOURCE_NAMESPACE_BASICO_OPCONTROLLERS);
 
+		// inicializando o bootstrap basico
+		$this->initBootstrapBasico();
+
         // retornando autoloader
         return $autoloader;
     }
 
+    /**
+     * Inicializa o bootstrap
+     * 
+     * @return @void
+     */
+    private function initBootstrapBasico()
+    {
+    	// setando a lingua padrao do usuario
+        Basico_OPController_PessoaOPController::setaLinguaUsuario(DEFAULT_SYSTEM_LANGUAGE);
+
+        // expondo o MVC para ambiente de desenvolvimento
+        if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
+            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . Basico_OPController_PessoaOPController::retornaLinguaUsuario() . ')');
+        else
+            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
+    }
+    
     /**
      * Inicializa os controladores
      * 

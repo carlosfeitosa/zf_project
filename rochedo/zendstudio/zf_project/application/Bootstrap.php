@@ -5,7 +5,6 @@
  */
 require_once("consts/consts.php");
 require_once("configs/application.php");
-require_once("modules/basico/controllers/PessoaOPController.php");
 require_once("modules/basico/controllers/LogOPController.php");
 require_once("modules/basico/controllers/TokenOPController.php");
 require_once("modules/basico/controllers/UtilOPController.php");
@@ -49,15 +48,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Localiza os helpers dos controllers e adiciona os paths caso eles existam
         if (file_exists(BASICO_CONTROLLER_HELPERS_PATH))
         	Zend_Controller_Action_HelperBroker::addPath(BASICO_CONTROLLER_HELPERS_PATH, 'Basico_Controller_Action_Helper');
-
-        // setando a lingua padrao do usuario
-        Basico_OPController_PessoaOPController::setaLinguaUsuario(DEFAULT_SYSTEM_LANGUAGE);
-
-        // expondo o MVC para ambiente de desenvolvimento
-        if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
-            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION . ' (' . APPLICATION_ENV . '/' . Basico_OPController_PessoaOPController::retornaLinguaUsuario() . ')');
-        else
-            define('APPLICATION_NAME_AND_VERSION', APPLICATION_NAME . ' ' . APPLICATION_VERSION);
 
         // registrando a instancia do banco de dados na sessao
         Basico_OPController_PersistenceOPController::bdRegistraSessao($this->getResource('db'));
