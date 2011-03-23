@@ -11,7 +11,6 @@
  * @since 22/03/2011
  * 
  */
-require_once("abstracts/RochedoPersistentOPController.php");
 class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
