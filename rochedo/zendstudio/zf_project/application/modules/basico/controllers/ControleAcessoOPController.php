@@ -207,13 +207,31 @@ class Basico_OPController_ControleAcessoOPController
 	}
 
 	/**
+	 * Verifica se um request pode ser acessado pelo usuario logado
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaPermissaoAcessoRequestPerfilPorRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// recuperando o nome completo da acao
+		$nomeAcaoAplicacaoCompleta = $this->retornaNomeAcaoAplicacaoCompleta($request->getModuleName(), $request->getControllerName(), $request->getActionName());
+
+		// recuperando o id da pessoa atraves do id do login
+		$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+
+		// recuperando array de ids dos perfis relacionados a pessoa
+	}
+
+	/**
 	 * Verifica se um request esta associado ao perfil USUARIO_PUBLICO
 	 * 
 	 * @param Zend_Controller_Request_Abstract $request
 	 * 
 	 * @return Boolean
 	 */
-	public function verificaRequestPublico(Zend_Controller_Request_Abstract $request)
+	public function verificaRequestPublicoPorRequest(Zend_Controller_Request_Abstract $request)
 	{
 		// codificando o nome do acao completa
 		$nomeAcaoAplicacaoCompleta = $this->retornaNomeAcaoAplicacaoCompleta($request->getModuleName(), $request->getControllerName(), $request->getActionName());
@@ -230,7 +248,7 @@ class Basico_OPController_ControleAcessoOPController
 	 * 
 	 * @return Boolean
 	 */
-	public function verificaRequestAtivo(Zend_Controller_Request_Abstract $request)
+	public function verificaRequestAtivoPorRequest(Zend_Controller_Request_Abstract $request)
 	{
 		// codificando o nome do acao completa
 		$nomeAcaoAplicacaoCompleta = $this->retornaNomeAcaoAplicacaoCompleta($request->getModuleName(), $request->getControllerName(), $request->getActionName());

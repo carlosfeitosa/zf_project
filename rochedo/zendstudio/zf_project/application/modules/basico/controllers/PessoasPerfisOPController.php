@@ -10,23 +10,23 @@
  * 
  * @since 17/03/2011
  */
-class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador PessoaPerfil
-	 * @var Basico_OPController_PessoaPerfilOPController
+	 * @var Basico_OPController_PessoasPerfisOPController
 	 */
 	private static $_singleton;
 	
 	/**
 	 * Instância do Modelo PessoaPerfil
-	 * @var Basico_Model_PessoaPerfil
+	 * @var Basico_Model_PessoasPerfis
 	 */
 	private $_model;
-	
+
 	/**
 	 * Construtor do controlador PessoaPerfil
-	 * @return Basico_Model_PessoaPerfil
+	 * @return Basico_Model_PessoasPerfis
 	 */
 	protected function __construct()
 	{
@@ -38,7 +38,7 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_PessoaPerfilOPController
+	 * Inicializa o controlador Basico_OPController_PessoasPerfisOPController
 	 * 
 	 * @return void
 	 */
@@ -50,14 +50,14 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	/**
 	 * Retorna instância do Controlador PessoaPerfil
 	 * 
-	 * @return Basico_OPController_PessoaPerfilOPController
+	 * @return Basico_OPController_PessoasPerfisOPController
 	 */
 	public static function getInstance()
 	{
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_PessoaPerfilOPController();
+			self::$_singleton = new Basico_OPController_PessoasPerfisOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -69,7 +69,7 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_PessoaPerfil $objeto
+	 * @param Basico_Model_PessoasPerfis $objeto
 	 * @param Integer $versaoUpdate
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -78,12 +78,12 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaPerfil', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoasPerfis', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -114,7 +114,7 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
 	 * 
-	 * @param Basico_Model_PessoaPerfil $objeto
+	 * @param Basico_Model_PessoasPerfis $objeto
 	 * @param Boolean $forceCascade
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -123,12 +123,12 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaPerfil', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoasPerfis', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePessoaPerfil();
@@ -144,7 +144,7 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
     /**
      * Retorna o objeto da PessoaPefil do sistema.
      * 
-     * @return Basico_Model_PessoaPerfil
+     * @return Basico_Model_PessoasPerfis
      */
 	public function retornaObjetoPessoaPerfilSistema()
 	{
@@ -217,7 +217,7 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	 * 
 	 * @param Int $idPessoa
 	 * 
-	 * @return Basico_Model_PessoaPerfil
+	 * @return Basico_Model_PessoasPerfis
 	 */
 	public function retornaObjetosPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)
 	{
@@ -247,7 +247,7 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	 * 
 	 * @param Int $idPessoa
 	 * 
-	 * @return Basico_Model_PessoaPerfil
+	 * @return Basico_Model_PessoasPerfis
 	 */
 	public function retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa)
 	{
@@ -279,7 +279,7 @@ class Basico_OPController_PessoaPerfilOPController extends Basico_Abstract_Roche
 	 * @param Int $idPessoa
 	 * @param Int $idPerfil
 	 * 
-	 * @return Basico_Model_PessoaPerfil
+	 * @return Basico_Model_PessoasPerfis
 	 */
 	public function retornaObjetoPessoaPerfilPorIdPessoaIdPerfil($idPessoa, $idPerfil)
 	{		

@@ -77,7 +77,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 	    try{
 	    	// instanciando controladores
 	    	$categoriaControllerController = Basico_OPController_EmailOPController::getInstance();
-	    	$pessoaPerfilControllerController = Basico_OPController_PessoaPerfilOPController::getInstance();
+	    	$pessoaPerfilControllerController = Basico_OPController_PessoasPerfisOPController::getInstance();
 
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
@@ -113,7 +113,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteMensagem();

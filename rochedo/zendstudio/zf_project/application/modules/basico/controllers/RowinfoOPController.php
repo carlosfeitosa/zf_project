@@ -98,7 +98,7 @@ class Basico_OPController_RowinfoOPController
 	{
 		try {
 			// instanciando controladores
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
 
 			// verificando se a solicitacao foi feita pelo sistema
 		    if ($utilizarUsuarioSistema)

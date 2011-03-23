@@ -193,7 +193,7 @@ class Basico_OPController_TokenOPController
 		try {
 			// instanciando controladores
 			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))

@@ -84,7 +84,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id == NULL) {
@@ -166,7 +166,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 		if (!self::checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo)) {
 			// instanciando controladores
 			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+			$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
             $this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));

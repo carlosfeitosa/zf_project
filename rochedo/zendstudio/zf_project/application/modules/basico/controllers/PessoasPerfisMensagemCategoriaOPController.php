@@ -4,30 +4,30 @@
  *
  * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
  * 
- * @uses Basico_Model_PessoaPerfilMensagemCategoria
+ * @uses Basico_Model_PessoasPerfisMensagemCategoria
  * 
  * @since 22/03/2011
  * 
  */
-class Basico_OPController_PessoaPerfilMensagemCategoriaOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_PessoasPerfisMensagemCategoriaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador PessoaPerfilMensagemCategoria.
-	 * @var Basico_OPController_PessoaPerfilMensagemCategoriaOPController
+	 * @var Basico_OPController_PessoasPerfisMensagemCategoriaOPController
 	 */
 	private static $_singleton;
 	
 	/**
-	 * Instância do Modelo Basico_Model_PessoaPerfilMensagemCategoria.
+	 * Instância do Modelo Basico_Model_PessoasPerfisMensagemCategoria.
 	 * 
-	 * @var Basico_Model_PessoaPerfilMensagemCategoria
+	 * @var Basico_Model_PessoasPerfisMensagemCategoria
 	 */
 	private $_model;
 	
 	/**
-	 * Construtor do controlador Basico_OPController_PessoaPerfilMensagemCategoriaOPController
+	 * Construtor do controlador Basico_OPController_PessoasPerfisMensagemCategoriaOPController
 	 * 
-	 * @return Basico_OPController_PessoaPerfilMensagemCategoriaOPController
+	 * @return Basico_OPController_PessoasPerfisMensagemCategoriaOPController
 	 */
 	protected function __construct()
 	{
@@ -39,7 +39,7 @@ class Basico_OPController_PessoaPerfilMensagemCategoriaOPController extends Basi
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_PessoaPerfilMensagemCategoriaOPController
+	 * Inicializa o controlador Basico_OPController_PessoasPerfisMensagemCategoriaOPController
 	 * 
 	 * @return void
 	 */
@@ -51,13 +51,13 @@ class Basico_OPController_PessoaPerfilMensagemCategoriaOPController extends Basi
 	/**
 	 * Retorna instância do controlador Basico_PessoaPerfilMensagemCategoriaController
 	 * 
-	 * @return Basico_OPController_PessoaPerfilMensagemCategoriaOPController
+	 * @return Basico_OPController_PessoasPerfisMensagemCategoriaOPController
 	 */
 	public static function getInstance() {
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_PessoaPerfilMensagemCategoriaOPController();
+			self::$_singleton = new Basico_OPController_PessoasPerfisMensagemCategoriaOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -69,7 +69,7 @@ class Basico_OPController_PessoaPerfilMensagemCategoriaOPController extends Basi
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_PessoaPerfilMensagemCategoria $objeto
+	 * @param Basico_Model_PessoasPerfisMensagemCategoria $objeto
 	 * @param Integer $versaoUpdate
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -78,12 +78,12 @@ class Basico_OPController_PessoaPerfilMensagemCategoriaOPController extends Basi
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaPerfilMensagemCategoria', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoasPerfisMensagemCategoria', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -114,7 +114,7 @@ class Basico_OPController_PessoaPerfilMensagemCategoriaOPController extends Basi
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
 	 * 
-	 * @param Basico_Model_PessoaPerfilMensagemCategoria $objeto
+	 * @param Basico_Model_PessoasPerfisMensagemCategoria $objeto
 	 * @param Boolean $forceCascade
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -123,12 +123,12 @@ class Basico_OPController_PessoaPerfilMensagemCategoriaOPController extends Basi
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaPerfilMensagemCategoria', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoasPerfisMensagemCategoria', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePessoaPerfilMensagemCategoria();

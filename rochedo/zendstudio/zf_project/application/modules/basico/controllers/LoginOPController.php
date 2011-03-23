@@ -80,7 +80,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao de registro
 			if ($objeto->id != NULL) {
@@ -125,7 +125,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePessoa();
@@ -501,7 +501,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	{
 		// recuperando informacoes sobre o usuario
 		$idPessoaLogin                      = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
-		$idPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoaPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaLogin);
+		$idPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaLogin);
 
 		// recuperando informacoes de log
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogSucessoAutenticacaoUsuario();
@@ -634,7 +634,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     public function retornaLoginUsuarioMasterDB() 
     {
     	// instanciando controladores
-    	$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+    	$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
     	
     	//recuperando o objeto pessoaPerfil do sistema
     	$objetoPessoaPerfilSistema = $pessoaPerfilOPController->retornaObjetoPessoaPerfilSistema();

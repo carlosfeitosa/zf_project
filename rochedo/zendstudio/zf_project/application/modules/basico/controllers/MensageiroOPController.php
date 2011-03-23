@@ -80,7 +80,7 @@ class Basico_OPController_MensageiroOPController
     	try {
     		// instanciando controladores
     		$logOPController = Basico_OPController_LogOPController::getInstance();
-    		$pessoaPerfilOPController = Basico_OPController_PessoaPerfilOPController::getInstance();
+    		$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
     		$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
     		// salvando log de tentativa de envio de mensagem
