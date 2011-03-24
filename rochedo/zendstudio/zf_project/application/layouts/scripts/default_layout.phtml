@@ -60,6 +60,8 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
                                                          array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
                                                          null, 
                                                          true)) ?>"><?php echo $this->tradutor('MENU_ITEM_REGISTRE_SE') ?></a> |
+		
+		<?php if (Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
 		<a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
                                                          null, 
@@ -72,6 +74,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
                                                          array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Administração" ?></a> |
+        <?php }?>
         <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) echo "Login"; else echo "Logout";?></a>
     </div>
 </div>
