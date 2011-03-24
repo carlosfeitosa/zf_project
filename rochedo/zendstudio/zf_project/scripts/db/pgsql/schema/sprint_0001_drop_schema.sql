@@ -21,7 +21,7 @@ drop table if exists log;
 drop table if exists login;
 drop table if exists dados_pessoais;
 drop table if exists dados_pessoas_perfis;
-drop table if exists pessoas_perfis_mensagem_categoria;
+drop table if exists pessoas_perfis_mensagens_categorias;
 drop table if exists pessoas_perfis;
 drop table if exists pessoa;
 drop table if exists perfil;

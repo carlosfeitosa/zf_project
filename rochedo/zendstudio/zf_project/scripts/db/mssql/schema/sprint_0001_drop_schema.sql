@@ -61,7 +61,7 @@ begin
 end
 ;
 
-if object_id('pessoas_perfis_mensagem_categoria') is not null
+if object_id('pessoas_perfis_mensagens_categorias') is not null
 begin
   drop table pessoas_perfis_mensagem_categoria
 end
