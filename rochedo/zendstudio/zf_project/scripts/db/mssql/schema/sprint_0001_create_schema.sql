@@ -162,7 +162,7 @@ create table dbo.anexo_mensagem (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.pessoas_perfis_mensagem_categoria ( 
+create table dbo.pessoas_perfis_mensagens_categorias ( 
 	id int identity not null ,
 	id_mensagem int not null ,
 	id_categoria int not null ,
@@ -231,7 +231,7 @@ alter table dbo.mensagem_email with nocheck add constraint pk_mensagem_email pri
 
 alter table dbo.anexo_mensagem with nocheck add constraint pk_anexo_mensagem primary key clustered (id) on [primary];
 
-alter table dbo.pessoas_perfis_mensagem_categoria with nocheck add constraint pk_pessoas_perfis_mensagem_categoria primary key clustered (id) on [primary];
+alter table dbo.pessoas_perfis_mensagens_categorias with nocheck add constraint pk_pessoas_perfis_mensagens_categorias primary key clustered (id) on [primary];
 
 alter table dbo.dados_pessoas_perfis with nocheck add constraint pk_dados_pessoas_perfis primary key clustered (id) on [primary];
 
@@ -449,7 +449,7 @@ alter table dbo.pessoas_perfis add
 	);
 
 alter table dbo.mensagem with nocheck add 
-    constraint fk_mensagem_categoria foreign key
+    constraint fk_mensagens_categorias foreign key
     (
         id_categoria
     ) references dbo.categoria (
@@ -471,22 +471,22 @@ alter table dbo.anexo_mensagem add
         id
 	);
 
-alter table dbo.pessoas_perfis_mensagem_categoria add
-    constraint fk_pessoas_perfis_mensagem_categoria_pessoas_perfis foreign key (
+alter table dbo.pessoas_perfis_mensagens_categorias add
+    constraint fk_pessoas_perfis_mensagens_categorias_pessoas_perfis foreign key (
         id_pessoa_perfil
     ) references dbo.pessoas_perfis (
         id
     );
 
-alter table dbo.pessoas_perfis_mensagem_categoria add
-    constraint fk_pessoas_perfis_mensagem_categoria_mensagem foreign key (
+alter table dbo.pessoas_perfis_mensagens_categorias add
+    constraint fk_pessoas_perfis_mensagens_categorias_mensagem foreign key (
         id_mensagem
     ) references dbo.mensagem (
         id
     );
 
-alter table dbo.pessoas_perfis_mensagem_categoria add
-    constraint fk_pessoas_perfis_mensagem_categoria_categoria foreign key (
+alter table dbo.pessoas_perfis_mensagens_categorias add
+    constraint fk_pessoas_perfis_mensagens_categorias_categoria foreign key (
         id_categoria
     ) references dbo.categoria (
         id

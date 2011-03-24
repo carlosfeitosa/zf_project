@@ -1,5 +1,5 @@
 /*
-* SCRIPT DE POPULACAO DA TABELA PESSOAS_PERFIS_MENSAGEM_CATEGORIA
+* SCRIPT DE POPULACAO DA TABELA PESSOAS_PERFIS_MENSAGENS_CATEGORIAS
 * 
 * versao: 1.0 (MSSQL 2000)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoproject.com)
@@ -7,7 +7,7 @@
 * ultimas modificacoes: 
 */
 
-INSERT INTO pessoas_perfis_mensagem_categoria (id_pessoa_perfil, id_categoria, id_mensagem, rowinfo)
+INSERT INTO pessoas_perfis_mensagens_categorias (id_pessoa_perfil, id_categoria, id_mensagem, rowinfo)
 SELECT pp.id AS id_pessoa_perfil, 
        (SELECT id AS id_categoria 
         FROM categoria 
@@ -25,7 +25,7 @@ WHERE perf.nome = 'SISTEMA'
 AND cat.nome = 'SISTEMA_USUARIO'
 AND perf.nome = 'SISTEMA';
 
-INSERT INTO pessoas_perfis_mensagem_categoria (id_pessoa_perfil, id_categoria, id_mensagem, rowinfo)
+INSERT INTO pessoas_perfis_mensagens_categorias (id_pessoa_perfil, id_categoria, id_mensagem, rowinfo)
 SELECT pp.id AS id_pessoa_perfil, 
        (SELECT id AS id_categoria 
         FROM categoria 

@@ -1,14 +1,14 @@
 <?php
 /**
- * PessoaPerfilMensagemCategoria data mapper
+ * PessoasPerfisMensagensCategorias data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_PessoasPerfisMensagemCategoria
+ * @uses       Basico_Model_DbTable_PessoasPerfisMensagensCategorias
  * @subpackage Model
  */
-class Basico_Model_PessoasPerfisMensagemCategoriaMapper
+class Basico_Model_PessoasPerfisMensagensCategoriasMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_PessoasPerfisMensagemCategoriaMapper
+     * @return Basico_Model_PessoasPerfisMensagensCategoriasMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_PessoasPerfisMensagemCategoria if no instance registered
+     * Lazy loads Basico_Model_DbTable_PessoasPerfisMensagensCategorias if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_PessoasPerfisMensagemCategoria');
+            $this->setDbTable('Basico_Model_DbTable_PessoasPerfisMensagensCategorias');
         }
         return $this->_dbTable;
     }
@@ -51,10 +51,10 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_PessoasPerfisMensagemCategoria $object
+     * @param  Basico_Model_PessoasPerfisMensagensCategorias $object
      * @return void
      */
-    public function save(Basico_Model_PessoasPerfisMensagemCategoria $object)
+    public function save(Basico_Model_PessoasPerfisMensagensCategorias $object)
     {
         $data = array(
                 'id_mensagem'      => $object->getMensagem(),
@@ -74,10 +74,10 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
     
     /**
     * Delete a PessoaPerfilMensagemCategoria entry
-    * @param Basico_Model_PessoasPerfisMensagemCategoria $object
+    * @param Basico_Model_PessoasPerfisMensagensCategorias $object
     * @return void
     */
-    public function delete(Basico_Model_PessoasPerfisMensagemCategoria $object)
+    public function delete(Basico_Model_PessoasPerfisMensagensCategorias $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -89,7 +89,7 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
      * @param  Basico_Model_PessoasPerfisMensagemCategoria $object 
      * @return void
      */
-    public function find($id, Basico_Model_PessoasPerfisMensagemCategoria $object)
+    public function find($id, Basico_Model_PessoasPerfisMensagensCategorias $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -104,7 +104,7 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
     }
 
     /**
-     * Fetch all PessoaPerfilMensagemCategoria entries
+     * Fetch all PessoasPerfisMensagensCategorias entries
      * 
      * @return array
      */
@@ -114,7 +114,7 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoasPerfisMensagemCategoria();
+            $entry = new Basico_Model_PessoasPerfisMensagensCategorias();
             $entry->setId($row->id)
                   ->setMensagem($row->id_mensagem)
                   ->setCategoria($row->id_categoria)
@@ -137,7 +137,7 @@ class Basico_Model_PessoasPerfisMensagemCategoriaMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_PessoasPerfisMensagemCategoria();
+            $entry = new Basico_Model_PessoasPerfisMensagensCategorias();
             $entry->setId($row->id)
                   ->setMensagem($row->id_mensagem)
                   ->setCategoria($row->id_categoria)

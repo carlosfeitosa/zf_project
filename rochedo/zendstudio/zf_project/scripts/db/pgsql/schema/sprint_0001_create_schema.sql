@@ -213,7 +213,7 @@ with (
 );
 alter table anexo_mensagem owner to rochedo_user;
 
-create table pessoas_perfis_mensagem_categoria ( 
+create table pessoas_perfis_mensagens_categorias ( 
 	id serial not null ,
 	id_mensagem integer not null ,
 	id_categoria integer not null ,
@@ -302,7 +302,7 @@ alter table mensagem_email add constraint pk_mensagem_email primary key (id);
 
 alter table anexo_mensagem add constraint pk_anexo_mensagem primary key (id);
 
-alter table pessoas_perfis_mensagem_categoria add constraint pk_pessoas_perfis_mensagem_categoria primary key (id);
+alter table pessoas_perfis_mensagens_categorias add constraint pk_pessoas_perfis_mensagens_categorias primary key (id);
 
 alter table dados_pessoas_perfis add constraint pk_dados_pessoas_perfis primary key (id);
 
@@ -462,7 +462,7 @@ alter table pessoas_perfis
   add constraint fk_pessoas_perfis_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
 
 alter table mensagem
-  add constraint fk_id_mensagem_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_id_mensagens_categorias foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
 alter table mensagem_email
   add constraint fk_id_mensagem	foreign key (id_mensagem) references mensagem (id) on update no action on delete no action;
@@ -470,13 +470,13 @@ alter table mensagem_email
 alter table anexo_mensagem
   add constraint fk_id_mensagem_anexo foreign key (id_mensagem) references mensagem (id) on update no action on delete no action;
 
-alter table pessoas_perfis_mensagem_categoria
+alter table pessoas_perfis_mensagens_categorias
   add constraint fk_pessoa_perfil foreign key (id_pessoa_perfil) references pessoas_perfis (id) on update no action on delete no action;
 
-alter table pessoas_perfis_mensagem_categoria
+alter table pessoas_perfis_mensagens_categorias
   add constraint fk_mensagem foreign key (id_mensagem) references mensagem (id) on update no action on delete no action;
 
-alter table pessoas_perfis_mensagem_categoria
+alter table pessoas_perfis_mensagens_categorias
   add constraint fk_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
   
 alter table dados_pessoas_perfis

@@ -1,13 +1,13 @@
 <?php
 /**
- * PessoaPerfilMensagemCategoria model
+ * PessoasPerfisMensagensCategorias model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_PessoasPerfisMensagemCategoriaMapper
+ * @uses       Basico_Model_PessoasPerfisMensagensCategoriasMapper
  * @subpackage Model
  */
-class Basico_Model_PessoasPerfisMensagemCategoria
+class Basico_Model_PessoasPerfisMensagensCategorias
 {
     /**
     * @var int
@@ -15,7 +15,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
     protected $_id;
 
     /**
-     * @var Basico_Model_PessoasPerfisMensagemCategoriaMapper
+     * @var Basico_Model_PessoasPerfisMensagensCategoriasMapper
      */
     protected $_mapper;
 
@@ -90,7 +90,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_PessoasPerfisMensagemCategoria
+     * @return Basico_Model_PessoasPerfisMensagensCategorias
      */
     public function setOptions(array $options)
     {
@@ -134,7 +134,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
      */
     public function getPessoaPerfilObject()
     {
-        $model = new Basico_Model_PessoaPerfil();
+        $model = new Basico_Model_PessoasPerfis();
         $object = $model->find($this->_pessoaPerfil);
         return $object;
     }
@@ -209,7 +209,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoasPerfisMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagensCategorias
     */
     public function setId($id)
     {
@@ -231,7 +231,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
     * Set entry rowinfo
     * 
     * @param  rowinfo $rowinfo 
-    * @return Basico_Model_PessoasPerfisMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagensCategorias
     */
     public function setRowinfo($rowinfo)
     {
@@ -253,7 +253,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_PessoasPerfisMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagensCategorias
     */
     public function setMapper($mapper)
     {
@@ -271,7 +271,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_PessoasPerfisMensagemCategoriaMapper());
+            $this->setMapper(new Basico_Model_PessoasPerfisMensagensCategoriasMapper());
         }
         return $this->_mapper;
     }
@@ -282,7 +282,7 @@ class Basico_Model_PessoasPerfisMensagemCategoria
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoasPerfisMensagemCategoria
+    * @return Basico_Model_PessoasPerfisMensagensCategorias
       
     */
     public function find($id)

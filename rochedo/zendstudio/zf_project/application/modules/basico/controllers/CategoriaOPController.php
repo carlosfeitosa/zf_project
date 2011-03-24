@@ -1969,7 +1969,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria()
+	public function retornaObjetoCategoriaLogNovaPessoasPerfisMensagensCategorias()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
@@ -1979,7 +1979,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			// retornando o objeto
 			return $objCategoriaLogNovaPessoaPerfilMensagemCategoria;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS);
 	}
 
 	/**
@@ -1987,7 +1987,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogUpdatePessoaPerfilMensagemCategoria()
+	public function retornaObjetoCategoriaLogUpdatePessoasPerfisMensagensCategorias()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogUpdatePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
@@ -1997,7 +1997,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			// retornando o objeto
 			return $objCategoriaLogUpdatePessoaPerfilMensagemCategoria;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS);
 	}
 	
 	/**
@@ -2005,7 +2005,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Basico_Model_Categoria
 	 */
-	public function retornaObjetoCategoriaLogDeletePessoaPerfilMensagemCategoria()
+	public function retornaObjetoCategoriaLogDeletePessoasPerfisMensagensCategorias()
 	{
 		// recuperando o objeto categoria
 		$objCategoriaLogDeletePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
@@ -2015,7 +2015,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			// retornando o objeto
 			return $objCategoriaLogDeletePessoaPerfilMensagemCategoria;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS);
 	}
 
 	/**
@@ -2633,17 +2633,17 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Integer
 	 */
-	public function retornaIdCategoriaLogNovaPessoaPerfilMensagemCategoria()
+	public function retornaIdCategoriaLogNovaPessoasPerfisMensagensCategorias()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogNovaPessoaPerfilMensagemCategoria();
+		$objCategoriaLogNovaPessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogNovaPessoasPerfisMensagensCategorias();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogNovaPessoaPerfilMensagemCategoria))
 			// retornando o id da categoria
 			return (Int) $objCategoriaLogNovaPessoaPerfilMensagemCategoria->id;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_NOVA_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS);
 	}
 
     /**
@@ -2651,17 +2651,17 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Integer
 	 */
-	public function retornaIdCategoriaLogUpdatePessoaPerfilMensagemCategoria()
+	public function retornaIdCategoriaLogUpdatePessoasPerfisMensagensCategorias()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogUpdatePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogUpdatePessoaPerfilMensagemCategoria();
+		$objCategoriaLogUpdatePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogUpdatePessoasPerfisMensagensCategorias();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogUpdatePessoaPerfilMensagemCategoria))
 			// retornando o id da categoria
 			return (Int) $objCategoriaLogUpdatePessoaPerfilMensagemCategoria->id;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS);
 	}
 	
     /**
@@ -2669,17 +2669,17 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Integer
 	 */
-	public function retornaIdCategoriaLogDeletePessoaPerfilMensagemCategoria()
+	public function retornaIdCategoriaLogDeletePessoasPerfisMensagensCategorias()
 	{
 		// recuperando objeto categoria
-		$objCategoriaLogDeletePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogDeletePessoaPerfilMensagemCategoria();
+		$objCategoriaLogDeletePessoaPerfilMensagemCategoria = $this->retornaObjetoCategoriaLogDeletePessoasPerfisMensagensCategorias();
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLogDeletePessoaPerfilMensagemCategoria))
 			// retornando o id da categoria
 			return (Int) $objCategoriaLogDeletePessoaPerfilMensagemCategoria->id;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_DELETE_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS);
 	}
 
 	/**
