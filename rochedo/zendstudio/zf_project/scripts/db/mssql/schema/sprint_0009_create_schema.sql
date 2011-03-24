@@ -207,3 +207,9 @@ alter table dbo.acoes_aplicacao_metodos_validacao add
   	) references dbo.perfil (
   		id
   	);
+
+
+/* MODIFICACAO DO BANCO DE DADOS JA EXISTENTE */
+
+alter table perfil
+  add nivel integer not null constraint df_perfil_nivel default 0;

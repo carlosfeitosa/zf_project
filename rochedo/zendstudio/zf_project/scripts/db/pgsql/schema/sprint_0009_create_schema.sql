@@ -156,3 +156,10 @@ alter table acoes_aplicacao_metodos_validacao
 
 alter table acoes_aplicacao_metodos_validacao
   add constraint fk_acoes_aplicacao_metodos_validacao_metodo_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
+
+
+
+/* MODIFICACAO DO BANCO DE DADOS JA EXISTENTE */
+
+alter table perfil
+  add column nivel integer default 0 not null;

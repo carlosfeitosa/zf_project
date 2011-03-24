@@ -28,6 +28,10 @@ class Basico_Model_Perfil
 	 */
 	protected $_descricao;
 	/**
+     * @var Integer
+     */
+    protected $_nivel;
+	/**
 	 * @var Boolean
 	 */
 	protected $_ativo;
@@ -156,7 +160,30 @@ class Basico_Model_Perfil
 	{
 		return $this->_descricao;
 	}
-     
+
+	/**
+	* Set nivel
+	* 
+	* @param int $nivel
+	* 
+	* @return Basico_Model_Categoria
+	*/
+	public function setNivel($nivel)
+	{
+		$this->_nivel = Basico_OPController_UtilOPController::retornaValorTipado($nivel, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get nivel
+	* 
+	* @return null|int
+	*/
+	public function getNivel()
+	{
+		return $this->_nivel;
+	}
+ 
 	/**
 	* Set ativo
 	* 

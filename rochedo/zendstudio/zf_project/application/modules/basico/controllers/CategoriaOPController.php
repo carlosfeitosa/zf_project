@@ -1965,6 +1965,42 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_ACAO_DESATIVADA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogTentativaAcessoAcaoDesativada()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAcessoAcaoDesativada = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_ACAO_DESATIVADA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAcessoAcaoDesativada))
+			// retornando o objeto
+			return $objCategoriaLogTentativaAcessoAcaoDesativada;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_DESATIVADA);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_ACAO_NAO_PERMITIDA
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogTentativaAcessoAcaoNaoPermitida()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAcessoAcaoNaoPermitida = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_ACAO_NAO_PERMITIDA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAcessoAcaoNaoPermitida))
+			// retornando o objeto
+			return $objCategoriaLogTentativaAcessoAcaoNaoPermitida;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_NAO_PERMITIDA);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA
 	 * 
 	 * @return Basico_Model_Categoria
@@ -3941,6 +3977,40 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return (Int) $objCategoriaLogSucessoAutenticacaoUsuario->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_SUCESSO_AUTENTICACAO_USUARIO);
+	}
+
+	/** Retorna o id do objeto carregado com a categoria LOG_ACAO_DESATIVADA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogTentativaAcessoAcaoDesativada()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAcessoAcaoDesativada = $this->retornaObjetoCategoriaLogTentativaAcessoAcaoDesativada();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAcessoAcaoDesativada))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogTentativaAcessoAcaoDesativada->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_DESATIVADA);
+	}
+
+	/** Retorna o id do objeto carregado com a categoria LOG_ACAO_NAO_PERMITIDA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogTentativaAcessoAcaoNaoPermitida()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAcessoAcaoNaoPermitida = $this->retornaObjetoCategoriaLogTentativaAcessoAcaoNaoPermitida();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAcessoAcaoNaoPermitida))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogTentativaAcessoAcaoNaoPermitida->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_NAO_PERMITIDA);
 	}
 
 	/**

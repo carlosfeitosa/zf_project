@@ -69,7 +69,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 					$request->setModuleName('basico');
 					$request->setControllerName('controleacesso');
-					$request->setActionName('acaoaplicacaodesativada');
+					$request->setActionName('acaoaplicacaonaopermitida');
 		
 					// parando a execucao do plugin
 					return;

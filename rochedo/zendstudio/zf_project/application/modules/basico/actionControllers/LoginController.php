@@ -438,7 +438,7 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $idEmail           = $controladorEmail->retornaIdEmailPorEmail($email);
 			             $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaEmailValidacaoPlainText();
 			             $idPessoa          = $controladorEmail->retornaIdProprietarioEmailPorIdEmail($idEmail);
-			             $idPessoaPerfil    = $controladorPessoasPerfis->retornaObjetosPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
+			             $idPessoaPerfil    = $controladorPessoasPerfis->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
 			             // setando e salvando token
 			             $novoToken = Basico_OPController_TokenOPController::getInstance()->retornaNovoObjetoToken();

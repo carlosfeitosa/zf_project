@@ -191,7 +191,29 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 
 		return null;
 	}
-	
+
+	/**
+	 * Retorna o maior id da pessoa perfil considerando a acao passada (publica ou nao) 
+	 * 
+	 * @param Integer $idPessoa
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Integer|null;
+	 */
+	public function retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
+	{
+		// recuperando id do maior perfil vinculado a pessoa e acao
+		$idMaiorPessoaPerfil = Basico_OPController_ControleAcessoOPController::getInstance()->retornaIdMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
+
+		// verificando o resultado da recuperacao
+		if (!$idMaiorPessoaPerfil)
+			// recuperando o perfil de usuario validado
+			$idMaiorPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa)->id;
+
+		return $idMaiorPessoaPerfil;
+	}
+
 	/**
 	 * Retorna as pessoasPerfis da pessoa passada.
 	 * 
@@ -219,7 +241,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	 * 
 	 * @return Basico_Model_PessoasPerfis
 	 */
-	public function retornaObjetosPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)
+	public function retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)
 	{
 		// verificando se foi passado o id da pessoa
 		if (!$idPessoa)

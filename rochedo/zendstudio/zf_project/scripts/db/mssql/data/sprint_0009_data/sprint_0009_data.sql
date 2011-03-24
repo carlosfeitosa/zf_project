@@ -31,6 +31,27 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO' AS constante_textual, 'Problemas de permissão!' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO' AS constante_textual, 'Esta ação requer um perfil não vinculado a seu usuário.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM' AS constante_textual, 'Caso deseje, clique @link para voltar a página que estava antes de tentar executar esta operação.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO' AS constante_textual, 'Action desabled!' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -51,23 +72,71 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO' AS constante_textual, 'Permission problems!' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO' AS constante_textual, 'This action requires a profile not linked to your user.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM' AS constante_textual, 'If desired, click @link to go back to the page that you was before trying to run this operation.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
 
 -- PERFIS
 
-INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
-SELECT id, 'USUARIO_PUBLICO' AS nome, 'Usuário publico do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
+SELECT id, 'USUARIO_PUBLICO' AS nome, 0 AS nivel, 'Usuário publico do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 
-INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
-SELECT id, 'USUARIO_ADMINISTRADOR' AS nome, 'Usuário administrador do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
+SELECT id, 'USUARIO_ADMINISTRADOR' AS nome, 1000 AS nivel, 'Usuário administrador do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 
-INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
-SELECT id, 'USUARIO_DESENVOLVEDOR' AS nome, 'Usuário desenvolvedor do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
+SELECT id, 'USUARIO_DESENVOLVEDOR' AS nome, 9999 AS nivel, 'Usuário desenvolvedor do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
+
+UPDATE perfil
+SET nivel = 999999
+WHERE nome = 'SISTEMA'
+AND id_categoria = (SELECT c.id
+                    FROM categoria c
+                    LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                    WHERE c.nome = 'SISTEMA_USUARIO'
+                    AND t.nome = 'SISTEMA');
+
+UPDATE perfil
+SET nivel = 1
+WHERE nome = 'USUARIO_NAO_VALIDADO'
+AND id_categoria = (SELECT c.id
+                    FROM categoria c
+                    LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                    WHERE c.nome = 'PERFIL_USUARIO'
+                    AND t.nome = 'PERFIL');
+
+UPDATE perfil
+SET nivel = 2
+WHERE nome = 'USUARIO_VALIDADO'
+AND id_categoria = (SELECT c.id
+                    FROM categoria c
+                    LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                    WHERE c.nome = 'PERFIL_USUARIO'
+                    AND t.nome = 'PERFIL');
 
 
 -- MODULO
@@ -156,6 +225,11 @@ FROM modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
+SELECT m.id AS id_modulo, 'autenticador' AS controller, 'desautenticausuario' AS action, 'SYSTEM_STARTUP' AS rowinfo
+FROM modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
 SELECT m.id AS id_modulo, 'dadosusuario' AS controller, 'index' AS action, 'SYSTEM_STARTUP' AS rowinfo
 FROM modulo m
 WHERE m.nome = 'BASICO';
@@ -171,7 +245,27 @@ FROM modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
+SELECT m.id AS id_modulo, 'administrador' AS controller, 'index' AS action, 'SYSTEM_STARTUP' AS rowinfo
+FROM modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
+SELECT m.id AS id_modulo, 'administrador' AS controller, 'resetadb' AS action, 'SYSTEM_STARTUP' AS rowinfo
+FROM modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
 SELECT m.id AS id_modulo, 'token' AS controller, 'decode' AS action, 'SYSTEM_STARTUP' AS rowinfo
+FROM modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
+SELECT m.id AS id_modulo, 'geradorformulario' AS controller, 'gerarformulario' AS action, 'SYSTEM_STARTUP' AS rowinfo
+FROM modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
+SELECT m.id AS id_modulo, 'geradorformulario' AS controller, 'gerartodosformularios' AS action, 'SYSTEM_STARTUP' AS rowinfo
 FROM modulo m
 WHERE m.nome = 'BASICO';
 
@@ -370,6 +464,19 @@ SELECT (SELECT p.id
         FROM acao_aplicacao a
         LEFT JOIN modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
+        AND a.controller = 'autenticador'
+        AND a.action = 'desautenticausuario') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
         AND a.controller = 'dadosusuario'
         AND a.action = 'index') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
@@ -411,6 +518,110 @@ SELECT (SELECT p.id
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'token'
         AND a.action = 'decode') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_ADMINISTRADOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'geradorformulario'
+        AND a.action = 'gerarformulario') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_DESENVOLVEDOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'geradorformulario'
+        AND a.action = 'gerarformulario') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_ADMINISTRADOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'administrador'
+        AND a.action = 'index') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_DESENVOLVEDOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'administrador'
+        AND a.action = 'index') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_ADMINISTRADOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'administrador'
+        AND a.action = 'resetadb') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_DESENVOLVEDOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'administrador'
+        AND a.action = 'resetadb') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_ADMINISTRADOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'geradorformulario'
+        AND a.action = 'gerartodosformularios') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_DESENVOLVEDOR') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'geradorformulario'
+        AND a.action = 'gerartodosformularios') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 
 -- CATEGORIA
@@ -501,6 +712,20 @@ AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_SUCESSO_AUTENTICACAO_USUARIO' AS nome, 'Sucesso na tentativa de autenticacao de usuario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_ACAO_DESATIVADA' AS nome, 'Tentativa de acesso a acao desativada.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'LOG';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_ACAO_NAO_PERMITIDA' AS nome, 'Tentativa de acesso a acao nao permitida.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'

@@ -37,12 +37,13 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 			// recuperando o id da categoria de log
 			$idCategoriaLogAcaoInvocada = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogAcaoControladorPorNomeCategoria($nomeCategoriaLogAcaoInvocada, true);
 
-			// recuperando informacoes sobre o perfil do usuario logado
+			// recuperando id da pessoa logada
 			$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin($idLogin);
-			$idPessoaPerfilUsuarioValidadoUsuarioLogado = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaUsuarioLogado)->id;
+			// recuperando o maior perfil vinculado ao usuario logado contra a acao do request
+			$idPessoaMaiorPerfilUsuarioLogado = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $request);
 
 			// invocando metodo de log
-			Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfilUsuarioValidadoUsuarioLogado, $idCategoriaLogAcaoInvocada, DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR);
+			Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaMaiorPerfilUsuarioLogado, $idCategoriaLogAcaoInvocada, DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR);
 		}
 	}
 

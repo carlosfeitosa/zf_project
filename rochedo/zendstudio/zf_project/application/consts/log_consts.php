@@ -72,6 +72,8 @@ define("LOG_MSG_VALIDACAO_USUARIO", "Tentativa de validacao de e-mail de usuario
 define("LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO", "Tentativa de autenticacao de usuario.");
 define("LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE", "Tentativa de autenticacao de usuario. Login inexistente: ");
 define("LOG_MSG_SUCESSO_AUTENTICACAO_USUARIO", "Sucesso na tentativa de autenticar o usuario");
+define("LOG_MSG_TENTATIVA_ACESSO_ACAO_DESATIVADA", "Tentativa de acesso a acao desativada.");
+define("LOG_MSG_TENTATIVA_ACESSO_ACAO_NAO_PERMITIDA", "Tentativa de acesso a acao nao permitida.");
 define("LOG_MSG_NOVO_LOGIN", "Novo login inserido no banco de dados.");
 define("LOG_MSG_UPDATE_LOGIN", "Atualizacao de login no banco de dados.");
 define("LOG_MSG_NOVA_RACA", "Nova raça inserida no banco de dados.");
