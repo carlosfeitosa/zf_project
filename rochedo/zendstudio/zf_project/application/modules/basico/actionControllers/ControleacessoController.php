@@ -48,6 +48,13 @@ class Basico_ControleacessoController extends Zend_Controller_Action
         $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO');
         $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM');
 
+        // montando link para voltar para a pagina anterior
+        $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
+        $linkPaginaAnterior = "<a href='#' onClick=" . Basico_OPController_UtilOPController::retornaStringEntreCaracter(JAVASCRIPT_HISTORY_GO_BACK, "'") . ">{$textoLink}</a>";
+
+        // substituindo a tag do link pelo link
+        $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
+
     	// carregando array do cabecalho da view
 		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
 	            
@@ -80,6 +87,13 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO');
         $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO');
         $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM');
+
+        // montando link para voltar para a pagina anterior
+        $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
+        $linkPaginaAnterior = "<a href='#' onClick=" . Basico_OPController_UtilOPController::retornaStringEntreCaracter(JAVASCRIPT_HISTORY_GO_BACK, "'") . ">{$textoLink}</a>";
+
+        // substituindo a tag do link pelo link
+        $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
     	// carregando array do cabecalho da view
 		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);

@@ -26,6 +26,9 @@ define("RESOURCE_TYPE_BASICO_OPCONTROLLERS", "OPControllers");
 define("RESOURCE_PATH_BASICO_OPCONTROLLERS", "controllers");
 define("RESOURCE_NAMESPACE_BASICO_OPCONTROLLERS", "OPController_");
 
+define("TAG_LINK", "@link");
+define("JAVASCRIPT_HISTORY_GO_BACK", "javascript: history.go(-2);");
+
 define("IDENTACAO_PADRAO", "    ");
 define("QUEBRA_DE_LINHA", PHP_EOL);
 define("QUEBRA_DE_LINHA_HTML", "<br>");
