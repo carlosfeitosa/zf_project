@@ -538,7 +538,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_CATEGORIA_BOLSA_CNPQ') AS id_formulario_elemento, true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_CATEGORIA_BOLSA_CNPQ') AS id_formulario_elemento, false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -565,7 +565,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO') AS id_grupo_formulario_elemento,
-        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -592,7 +592,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO') AS id_grupo_formulario_elemento,
-        true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -619,7 +619,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO') AS id_grupo_formulario_elemento,
-        true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;        
+        false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;        
         
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -646,7 +646,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO') AS id_grupo_formulario_elemento,
-	    true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;           	    
+	    false AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;           	    
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -673,7 +673,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO') AS id_grupo_formulario_elemento,	    
-	    true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;  
+	    false AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;  
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -700,7 +700,7 @@ SELECT (SELECT f.id
 	    (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo_formulario_elemento,	    
-	    true AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+	    false AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 	    
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -727,7 +727,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo_formulario_elemento,	    
-	    true AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+	    false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 	    
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -754,7 +754,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo_formulario_elemento,	    
-	    true AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+	    false AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 	    
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -781,7 +781,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo_formulario_elemento,	    
-	    true AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+	    false AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 	    
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -808,7 +808,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo_formulario_elemento,	    
-	    true AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+	    false AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 	    
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -835,7 +835,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo_formulario_elemento,	    
-	    true AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;  
+	    false AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;  
     
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
