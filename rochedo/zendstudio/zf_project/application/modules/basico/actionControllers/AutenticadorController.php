@@ -88,6 +88,9 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 
 			// verificando se o login pode realizar login
 			if (!Basico_OPController_LoginOPController::getInstance()->retornaLoginPodeLogar($login)) {
+				// efetuando logoff
+				Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
+
 				// redirecionando para a pagina de problemas com login
 				$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login))));
 			}

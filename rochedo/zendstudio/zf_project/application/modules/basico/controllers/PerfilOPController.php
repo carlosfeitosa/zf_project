@@ -231,6 +231,24 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
     	throw new Exception(MSG_ERROR_PERFIL_USUARIO_VALIDADO_NAO_ENCONTRADO);
 	}
 
+    /**
+	 * Retorna o perfil de usuário desenvolvedor.
+	 * 
+	 * @return Basico_Model_Perfil
+	 */
+	public function retornaObjetoPerfilUsuarioDesenvolvedor()
+	{
+		// recuperando o objeto perfil
+	    $perfilUsuarioDesenvolvedor = $this->retornaObjetoPerfilPorNome(PERFIL_USUARIO_DESENVOLVEDOR);
+
+	    // verificando se o objeto existe
+	    if (isset($perfilUsuarioDesenvolvedor))
+	    	// retornando o objeto
+    	    return $perfilUsuarioDesenvolvedor;
+
+    	throw new Exception(MSG_ERROR_PERFIL_USUARIO_DESENVOLVEDOR_NAO_ENCONTRADO);
+	}
+
 	/**
 	 * Retorna o id do perfil de usuario publico
 	 * 
@@ -245,6 +263,24 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		if (isset($objPerfilUsuarioPublico))
 			// retornando o id do objeto
 			return $objPerfilUsuarioPublico->id;
+
+		return null;
+	}
+
+	/**
+	 * Retorna o id do perfil de usuario desenvolvedor
+	 * 
+	 * @return Integer|null
+	 */
+	public function retornaIdPerfilUsuarioDesenvolvedor()
+	{
+		// recuperanado o objeto perfil usuario publico
+		$objPerfilUsuarioDesenvolvedor = $this->retornaObjetoPerfilUsuarioDesenvolvedor();
+
+		// verificando se o objeto foi carregado
+		if (isset($objPerfilUsuarioDesenvolvedor))
+			// retornando o id do objeto
+			return $objPerfilUsuarioDesenvolvedor->id;
 
 		return null;
 	}

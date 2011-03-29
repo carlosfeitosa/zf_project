@@ -89,6 +89,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	{
 		// retornando se o request deve ser processado
 		return (($this->_pluginAtivo) and 
+				(Basico_OPController_ControleAcessoOPController::getInstance()->verificaRequestCadastrado($request, true)) and
 				(!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoErrorErrorControllerPorRequest($request)) and
 				(Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaExisteAcaoControladorPorRequest($request)));
 	}

@@ -204,7 +204,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	public function retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
 	{
 		// recuperando id do maior perfil vinculado a pessoa e acao
-		$idMaiorPessoaPerfil = Basico_OPController_ControleAcessoOPController::getInstance()->retornaIdMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
+		$idMaiorPessoaPerfil = Basico_OPController_ControleAcessoOPController::getInstance()->retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
 
 		// verificando o resultado da recuperacao
 		if (!$idMaiorPessoaPerfil)

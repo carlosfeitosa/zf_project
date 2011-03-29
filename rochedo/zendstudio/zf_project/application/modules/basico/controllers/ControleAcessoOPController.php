@@ -229,6 +229,95 @@ class Basico_OPController_ControleAcessoOPController
 	}
 
 	/**
+	 * Verifica se um request esta cadastrado no banco de dados
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * @param Boolean $forceCreation
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaRequestCadastrado(Zend_Controller_Request_Abstract $request, $forceCreation = false)
+	{
+		// recuperando informacoes do request
+		$nomeModuloRequest     = strtoupper($request->getModuleName());
+		$nomeControllerRequest = $request->getControllerName();
+		$nomeAcaoRequest       = $request->getActionName();
+
+		// montando a query que vai retornar se a acao esta cadastrada
+		$querySQLRetornaIdAcao = "SELECT a.id
+								  FROM acao_aplicacao a
+								  LEFT JOIN modulo m ON (a.id_modulo = m.id)
+								  WHERE m.nome = '{$nomeModuloRequest}'
+								  AND a.controller = '{$nomeControllerRequest}'
+								  AND a.action = '{$nomeAcaoRequest}'";
+
+		// recuperando array com o resultado da query
+		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaIdAcao);
+
+		// verificando o resultado da recuperacao e se eh preciso criar a relacao
+		if (count($arrayResultados) > 0)
+			return true;
+		// verificando se deve-se criar uma relacao com o perfil de desenvolvedor
+		else if ($forceCreation) {
+			// iniciando transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao();
+
+			try {
+				// instanciando controladores
+				$acaoAplicacaoOpController        = Basico_OPController_AcaoAplicacaoOPController::getInstance();
+				$acoesAplicacaoPerfisOpController = Basico_OPController_AcoesAplicacaoPerfisOPController::getInstance();
+	
+				// recuperando o id do modulo
+				$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModuloRequest)->id;
+	
+				// recuperando um novo modelo de acao aplicacao
+				$modeloAcaoAplicacao = $acaoAplicacaoOpController->retornaNovoObjetoModeloPorNomeOPController($acaoAplicacaoOpController->retornaNomeClassePorObjeto($acaoAplicacaoOpController));
+	
+				// setando informacoes sobre a acao
+				$modeloAcaoAplicacao->modulo = $idModulo;
+				$modeloAcaoAplicacao->controller = $nomeControllerRequest;
+				$modeloAcaoAplicacao->action = $nomeAcaoRequest;
+				$modeloAcaoAplicacao->ativo = true;
+				// setando rowinfo
+				$acaoAplicacaoOpController->prepareSetRowinfoXML($modeloAcaoAplicacao, true);
+	
+				// salvando o acao aplicacao
+				$acaoAplicacaoOpController->salvarObjeto($modeloAcaoAplicacao);
+	
+				// recuperando o id do perfil de desenvolvedor
+				$idPerfilUsuarioDesenvolvedor = Basico_OPController_PerfilOPController::getInstance()->retornaIdPerfilUsuarioDesenvolvedor();
+	
+				// recuperando um novo modelo acoes aplicacao perfis
+				$modeloAcoesAplicacaoPerfis = $acoesAplicacaoPerfisOpController->retornaNovoObjetoModeloPorNomeOPController($acoesAplicacaoPerfisOpController->retornaNomeClassePorObjeto($acoesAplicacaoPerfisOpController));
+	
+				// setando informacoes sobre a vinculacao da nova acao com o perfil de desenvolvedor
+				$modeloAcoesAplicacaoPerfis->perfil = $idPerfilUsuarioDesenvolvedor;
+				$modeloAcoesAplicacaoPerfis->acaoAplicacao = $modeloAcaoAplicacao->id;
+				// setando rowinfo
+				$acoesAplicacaoPerfisOpController->prepareSetRowinfoXML($modeloAcoesAplicacaoPerfis, true);
+	
+				// salvando a vinculacao entre a nova acao e o perfil de desenvolvedor
+				$acoesAplicacaoPerfisOpController->salvarObjeto($modeloAcoesAplicacaoPerfis);
+
+				// salvando a transacao
+				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+	
+				return true;
+				
+			} catch (Exception $e) {
+				// voltando a transacao
+				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+
+				throw new Exception($e);
+			}
+
+
+		}
+
+		return false;
+	}
+
+	/**
 	 * Retorna o maior perfil vinculado a uma pessoa, atraves do id desta pessoa, o nome completo da acao que esta sendo requisitada e a propria requisicao
 	 * 
 	 * @param Integer $idPessoa
@@ -244,7 +333,7 @@ class Basico_OPController_ControleAcessoOPController
 		$nomeAcaoRequest       = $request->getActionName();
 		$booleanTrueDB         = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 
-		// montando a query que vai retornar
+		// montando a query que vai retornar o maior perfil do usuario vinculado ao request
 		$querySQLRetornaMaiorPerfilAcaoAplicacao = "SELECT p.nome
 													FROM perfil p
 													INNER JOIN pessoas_perfis pp ON (p.id = pp.id_perfil)
@@ -270,14 +359,14 @@ class Basico_OPController_ControleAcessoOPController
 	}
 
 	/**
-	 * Retorna o id do maior perfil vinculado a uma pessoa, atraves do id desta pessoa, o nome completo da acao que esta sendo requisitada e a propria requisicao
+	 * Retorna o id de pessoa x o maior perfil vinculado a uma pessoa, atraves do id desta pessoa, o nome completo da acao que esta sendo requisitada e a propria requisicao
 	 * 
 	 * @param Integer $idPessoa
 	 * @param Zend_Controller_Request_Abstract $request
 	 * 
 	 * @return Integer|null
 	 */
-	public function retornaIdMaiorPerfilRequestPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
+	public function retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
 	{
 		// recuperando informacoes do request
 		$nomeModuloRequest     = strtoupper($request->getModuleName());
@@ -285,7 +374,7 @@ class Basico_OPController_ControleAcessoOPController
 		$nomeAcaoRequest       = $request->getActionName();
 		$booleanTrueDB         = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 
-		// montando a query que vai retornar
+		// montando a query que vai retornar o id de pessoa perfil do usuario vinculado ao request
 		$querySQLRetornaIdMaiorPerfilAcaoAplicacao = "SELECT pp.id
 													  FROM perfil p
 													  INNER JOIN pessoas_perfis pp ON (p.id = pp.id_perfil)

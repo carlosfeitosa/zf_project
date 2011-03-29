@@ -64,7 +64,7 @@ class Basico_Model_AcoesAplicacaoPerfisMapper
         $data = array(
                 'id_perfil'         => $object->getPerfil(),
                 'id_acao_aplicacao' => $object->getAcaoAplicacao(),
-        		'rowinfo'           => $object
+        		'rowinfo'           => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {

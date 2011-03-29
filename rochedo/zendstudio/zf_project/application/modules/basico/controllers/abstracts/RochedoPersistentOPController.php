@@ -141,18 +141,21 @@ abstract class Basico_Abstract_RochedoPersistentOPController
 	 * @param Object $objeto
 	 * @param Boolean $utilizarUsuarioSistema
 	 */
-	final protected function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
+	final public function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
 	{
 		// verificando se existe o atributo de rowinfo no modelo da classe
-		if (property_exists($objeto, ROWINFO_ATRIBUTE_NAME)) {
+		if (property_exists($objeto, "_" . ROWINFO_ATRIBUTE_NAME)) {
 			// instanciando o controlador de rowinfo
 			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
 
 			// preparando o XML
 			$rowinfoOPController->prepareXml($objeto, $utilizarUsuarioSistema);
+
+			// setando o nome do atributo do objeto
+			$rowinfoAtributeSet = "set" . ucfirst(ROWINFO_ATRIBUTE_NAME);
 			
 			// setando o atributo rowinfo no objeto
-			$objeto->ROWINFO_ATRIBUTE_NAME = $rowinfoOPController->getXML();
+			$objeto->$rowinfoAtributeSet($rowinfoOPController->getXML());
 		} else {
 			// rowinfo nao encontrado para o objeto
 			throw new Exception(MSG_ERRO_ROWINFO_NAO_ENCONTRADO);
