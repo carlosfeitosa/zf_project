@@ -2554,7 +2554,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        0 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
 
 -- formulario - cadastro usuario
@@ -2581,7 +2581,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        0 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
         
 -- formulario - cadastro usuario
@@ -2608,7 +2608,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        0 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------        
 
 -- formulario - cadastro usuario
@@ -2635,7 +2635,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        0 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
  
 -- formulario - cadastro usuario
@@ -2662,7 +2662,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        0 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 ------------- 
 
 -- formulario - cadastro usuario
@@ -2689,7 +2689,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        0 AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
         
 -- formulario - cadastro usuario
@@ -2716,7 +2716,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        0 AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
         
 -- formulario - cadastro usuario
