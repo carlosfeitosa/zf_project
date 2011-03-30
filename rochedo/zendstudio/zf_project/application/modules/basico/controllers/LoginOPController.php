@@ -148,15 +148,23 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 */
 	public function registraIdLoginUsuarioSessao($login)
 	{
+		// inicializando variaveis
+		$sessionLoginIdAttribute = AUTH_ID_LOGIN_SESSION_KEY;
+
 		// recuperando o objeto login
 		$objLogin = $this->retornaObjetoLoginPorLogin($login);
-		
+
 		// verificando o resultado da recuperacao
 		if ($objLogin->id) {
-			// registrando o id do login do usuario na sessao
-			Basico_OPController_UtilOPController::registraValorSessao(AUTH_ID_LOGIN_SESSION_KEY, $objLogin->id);
+			// registrando/recuperando o namespace do token na sessao
+	        $session = Basico_OPController_SessionOPController::registraSessaoUsuario();
+	
+			// verificando se o id do usuario sessao
+			if (!isset($session->$sessionLoginIdAttribute))
+	        	// setando o id do usuario na sessao
+	        	$session->$sessionLoginIdAttribute = $objLogin->id;
 
-			return true;
+	        return true;
 		}
 
 		return false;
@@ -169,8 +177,18 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 */
 	public static function removeRegistroIdLoginUsuarioSessao()
 	{
-		// removendo o id do login do usuario da sessao
-		return Basico_OPController_UtilOPController::removeValorSessao(AUTH_ID_LOGIN_SESSION_KEY);
+		// inicializando variaveis
+		$sessionLoginIdAttribute = AUTH_ID_LOGIN_SESSION_KEY;
+
+		// registrando/recuperando o namespace do token na sessao
+	    $session = Basico_OPController_SessionOPController::registraSessaoUsuario();
+
+		// verificando se o id do usuario sessao
+		if (isset($session->$sessionLoginIdAttribute))
+			// removendo o id do usuario logado da sessao
+			return $session->__unset($sessionLoginIdAttribute);
+
+		return null;
 	}
 
 	/**
@@ -180,17 +198,17 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 */
 	public static function retornaIdLoginUsuarioSessao()
 	{
-		// verificando se a autenticacao foi realizada
-		if (Zend_Auth::getInstance()->hasIdentity()) {
-			// instanciando controladores
-			$loginOPController = Basico_OPController_LoginOPController::getInstance();
+		// inicializando variaveis
+		$sessionLoginIdAttribute = AUTH_ID_LOGIN_SESSION_KEY;
 
-			// registrando o id do login na sessao
-			$loginOPController->registraIdLoginUsuarioSessao(Zend_Auth::getInstance()->getIdentity());
+		// registrando/recuperando o namespace do token na sessao
+	    $session = Basico_OPController_SessionOPController::registraSessaoUsuario();
 
-			// retornando o id do login do usuario na sessao
-			return (Int) Basico_OPController_UtilOPController::retornaValorSessao(AUTH_ID_LOGIN_SESSION_KEY);
-		}
+		// verificando se o id do usuario sessao
+		if (isset($session->$sessionLoginIdAttribute))
+			// retornando o id do usuario logado na sessao
+			return $session->$sessionLoginIdAttribute;
+
 		return null;
 	}
 
@@ -532,8 +550,14 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 */
 	private function destroiLogon()
 	{
+		// removendo o id do usuario logado na sessao
+		self::removeRegistroIdLoginUsuarioSessao();
+
 		// limpando a autenticacao existente
 		Zend_Auth::getInstance()->clearIdentity();
+
+		// destruindo a sessao
+		Basico_OPController_SessionOPController::destroiTodasAsSessoes();
 	}
 	
 	/**

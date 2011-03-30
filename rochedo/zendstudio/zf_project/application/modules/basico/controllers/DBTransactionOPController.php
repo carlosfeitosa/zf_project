@@ -65,21 +65,37 @@ class Basico_OPController_DBTransactionOPController
 	 */
 	public static function registraSessaoBD($dbResource)
 	{
-		// registrando o resource do banco de dados na sessao do PHP
-		Basico_OPController_UtilOPController::registraValorSessao(SESSION_DB, $dbResource);
-		
+		// inicializando variaveis
+		$sessionDbAttribute = SESSION_DB;
+
+		// cria/recuperando a sessao de banco de dados
+		$session = Basico_OPController_SessionOPController::registraSessaoBD();
+
+		// verificando se o banco de dados existe na sessao
+		if (!isset($session->$sessionDbAttribute))
+			$session->$sessionDbAttribute = $dbResource;
+
 		return true;
 	}
 	
 	/**
 	 * Retorna o resource do banco de dados registrado na sessao do PHP
 	 * 
-	 * @return Resource
+	 * @return Resource|null
 	 */
 	public static function recuperaBDSessao()
 	{
-		// recuperando o resource do banco de dados da sessao do PHP
-		return Basico_OPController_UtilOPController::retornaValorSessao(SESSION_DB);
+		// inicializando variaveis
+		$sessionDbAttribute = SESSION_DB;
+
+		// cria/recuperando a sessao de banco de dados
+		$session = Basico_OPController_SessionOPController::registraSessaoBD();
+
+		// verificando se o banco de dados existe na sessao
+		if (isset($session->$sessionDbAttribute))
+			return $session->$sessionDbAttribute;
+
+		return null;
 	}
 
 	/**

@@ -9,6 +9,7 @@ require_once("modules/basico/controllers/LogOPController.php");
 require_once("modules/basico/controllers/TokenOPController.php");
 require_once("modules/basico/controllers/UtilOPController.php");
 require_once("modules/basico/controllers/PersistenceOPController.php");
+require_once("modules/basico/controllers/SessionOPController.php");
 
 /**
  * Bootstrap primário do sistema.

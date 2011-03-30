@@ -55,7 +55,7 @@ class Basico_OPController_SessionOPController
 	}
 	
 	/**
-	 * Registra/abre uma sessao de token individual
+	 * Registra/abre uma sessao para tokens
 	 * 
 	 * @return Zend_Session
 	 */
@@ -74,5 +74,60 @@ class Basico_OPController_SessionOPController
 
 	    // retorna a sessao
 	    return $session;
+	}
+
+	/**
+	 * Registra/abre uma sessao para banco de dados
+	 * 
+	 * @return Zend_Session
+	 */
+	public static function registraSessaoBD()
+	{
+		// registrando o namespace "token"
+	    $session = new Zend_Session_Namespace('database');
+
+	    // verificando se a sessao foi inicializada
+	    if (!isset($session->initialized)) {
+	    	// regerando o id da sessao
+            Zend_Session::regenerateId();
+            // marca a sessao como inicializada
+            $session->initialized = true;
+	    }
+
+	    // retorna a sessao
+	    return $session;
+	}
+
+	/**
+	 * Registra/abre uma sessao do usuario
+	 * 
+	 * @return Zend_Session
+	 */
+	public static function registraSessaoUsuario()
+	{
+		// registrando o namespace "token"
+	    $session = new Zend_Session_Namespace('user_session');
+
+	    // verificando se a sessao foi inicializada
+	    if (!isset($session->initialized)) {
+	    	// regerando o id da sessao
+            Zend_Session::regenerateId();
+            // marca a sessao como inicializada
+            $session->initialized = true;
+	    }
+
+	    // retorna a sessao
+	    return $session;
+	}
+
+	/**
+	 * Destroi a sessao
+	 * 
+	 * @return void
+	 */
+	public static function destroiTodasAsSessoes()
+	{
+		// destruindo a sessao
+		Zend_Session::destroy();
 	}
 }
