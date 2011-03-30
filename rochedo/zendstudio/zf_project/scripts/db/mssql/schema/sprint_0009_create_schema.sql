@@ -13,7 +13,7 @@ create table dbo.acao_aplicacao (
 	id_modulo int not null ,
 	controller varchar (500) collate latin1_general_ci_ai not null ,
 	action varchar (500) collate latin1_general_ci_ai not null ,
-	ativo boolean not null ,
+	ativo bit not null ,
 	motivo_desativacao varchar (2000) collate latin1_general_ci_ai null ,
 	datahora_desativacao datetime null ,
 	datahora_reativacao datetime null ,
@@ -34,7 +34,7 @@ create table dbo.metodo_validacao (
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	metodo varchar (5000) collate latin1_general_ci_ai not null ,
-	ativo boolean not null ,
+	ativo bit not null ,
 	motivo_desativacao varchar (2000) collate latin1_general_ci_ai null ,
 	datahora_desativacao datetime null ,
 	datahora_reativacao datetime null ,
@@ -63,15 +63,6 @@ alter table dbo.acoes_aplicacao_metodos_validacao add constraint pk_acoes_aplica
 
 
 /* CRIACAO DOS VALORES DEFAULT */
-
-
-alter table dbo.formulario_elemento add
-	constraint df_formulario_elemento_element_realoadable default 0 for element_reloadable;
-
-alter table dbo.componente add
-	constraint df_componente_validade_inicio default (getdate()) for validade_inicio;
-
-
 
 alter table dbo.acao_aplicacao add
 	constraint df_acao_aplicacao_datahora_cadastro default (getdate()) for datahora_cadastro;
@@ -141,16 +132,6 @@ alter table dbo.acoes_aplicacao_metodos_validacao add
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
-
-alter table dbo.decorator add
-	constraint fk_decorator_categoria foreign key
-	(
-		id_categoria
-	) references dbo.categoria (
-		id
-	);
-
-  
   
 alter table dbo.acao_aplicacao add
 	constraint fk_acao_aplicacao_modulo foreign key 

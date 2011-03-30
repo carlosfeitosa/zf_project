@@ -24,7 +24,6 @@ VALUES ('EMAIL', 'Endereços de e-mail.', 'SYSTEM_STARTUP');
 INSERT INTO tipo_categoria(nome, descricao, rowinfo)
 VALUES('WEBSITE', 'Endereços de website.', 'SYSTEM_STARTUP');
 
-
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('LINGUAGEM', 'Linguagens utilizadas pelo sistema.', 'SYSTEM_STARTUP');
 
