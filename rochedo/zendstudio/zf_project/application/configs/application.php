@@ -18,7 +18,7 @@ define('APPLICATION_TITLE', 'ROCHEDO software');
 /*
  * SESSAO
  */
-define("TEMPO_EXPIRACAO_SESSAO", 600);
+define("TEMPO_EXPIRACAO_SESSAO_SEGUNDOS", 600);
 
 /*
  * LOG PATHS & FILENAMES
@@ -35,7 +35,6 @@ define("LOG_FULL_FILENAME", LOG_PATH . LOG_FILENAME);
  */
 define("BASICO_VIEW_HELPERS_PATH", APPLICATION_PATH . "/modules/basico/views/helpers");
 define("BASICO_CONTROLLER_HELPERS_PATH", APPLICATION_PATH . "/modules/basico/actionControllers/helpers");
-#define("BASICO_CONTROLLER_FORMS_PATH", APPLICATION_PATH . "/modules/basico/forms");
 define("BASICO_DB_SCRIPTS_PATH", APPLICATION_PATH . "/../scripts/db");
 define("BASICO_DB_PGSQL_SCRIPTS_PATH", BASICO_DB_SCRIPTS_PATH . "/pgsql");
 define("BASICO_DB_MSSQL_SCRIPTS_PATH", BASICO_DB_SCRIPTS_PATH . "/mssql");

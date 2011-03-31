@@ -116,9 +116,6 @@ class Basico_OPController_SessionOPController
             $session->initialized = true;
 	    }
 
-	    // setando o tempo de expiracao
-		$session->setExpirationSeconds(TEMPO_EXPIRACAO_SESSAO);
-
 	    // retorna a sessao
 	    return $session;
 	}

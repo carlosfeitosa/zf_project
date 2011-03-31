@@ -223,6 +223,8 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		if (Zend_Auth::getInstance()->hasIdentity())
 			// retornando o login
 			return Zend_Auth::getInstance()->getIdentity();
+
+		return null;
 	}
 
 	/**
@@ -555,6 +557,9 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 		// limpando a autenticacao existente
 		Zend_Auth::getInstance()->clearIdentity();
+
+		// limpando o cookie
+		Zend_Session::forgetMe();
 
 		// destruindo a sessao
 		Basico_OPController_SessionOPController::destroiTodasAsSessoes();

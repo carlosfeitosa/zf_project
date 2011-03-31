@@ -95,6 +95,16 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 				$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login))));
 			}
 
+			// verificando se o sistema deve manter o usuario logado
+			if ($form->getValue(AUTH_KEEP_LOGGED_KEY))
+				// mantendo a sessao persistente atraves de cookie
+				Zend_Session::rememberMe();
+			else {
+				// setando o tempo de expiracao da sessao
+				$session = new Zend_Session_Namespace('user_session');
+				$session->setExpirationSeconds(TEMPO_EXPIRACAO_SESSAO_SEGUNDOS);
+			}
+
 			// efetuando o logon
 			Basico_OPController_LoginOPController::getInstance()->efetuaLogon($login);
 		}
