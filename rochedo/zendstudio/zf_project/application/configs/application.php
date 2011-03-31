@@ -16,6 +16,11 @@ define("APPLICATION_VERSION", "1.0");
 define('APPLICATION_TITLE', 'ROCHEDO software');
 
 /*
+ * SESSAO
+ */
+define("TEMPO_EXPIRACAO_SESSAO", 600);
+
+/*
  * LOG PATHS & FILENAMES
  */
 $logSequence = date('Ym');

@@ -11,8 +11,8 @@
 create table acao_aplicacao (
 	id serial not null ,
 	id_modulo int not null ,
-	controller character varying (500) not null ,
-	action character varying (500) not null ,
+	controller character varying (400) not null ,
+	action character varying (400) not null ,
 	ativo boolean not null ,
 	motivo_desativacao character varying (2000) null ,
 	datahora_desativacao timestamp with time zone null ,

@@ -259,7 +259,13 @@ class Basico_OPController_DBUtilOPController
 
 	    	return true;
     	}catch(Exception $e) {
-    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
+    		// recuperando a origem do erro
+			if (isset($file))
+				$origemException = $file;
+			else
+				$origemException = $path;
+
+    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo/Caminho: ' . $origemException . QUEBRA_DE_LINHA . $e->getMessage());
     	}
     }
     

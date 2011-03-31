@@ -72,7 +72,7 @@ class Basico_OPController_DBTransactionOPController
 		$session = Basico_OPController_SessionOPController::registraSessaoBD();
 
 		// verificando se o banco de dados existe na sessao
-		if (!isset($session->$sessionDbAttribute))
+		if ((!isset($session->$sessionDbAttribute)) or ($session->$sessionDbAttribute !== $dbResource))
 			$session->$sessionDbAttribute = $dbResource;
 
 		return true;

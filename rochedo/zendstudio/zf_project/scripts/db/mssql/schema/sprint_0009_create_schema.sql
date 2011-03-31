@@ -11,8 +11,8 @@
 create table dbo.acao_aplicacao (
 	id int identity (1, 1) not null ,
 	id_modulo int not null ,
-	controller varchar (500) collate latin1_general_ci_ai not null ,
-	action varchar (500) collate latin1_general_ci_ai not null ,
+	controller varchar (400) collate latin1_general_ci_ai not null ,
+	action varchar (400) collate latin1_general_ci_ai not null ,
 	ativo bit not null ,
 	motivo_desativacao varchar (2000) collate latin1_general_ci_ai null ,
 	datahora_desativacao datetime null ,
@@ -33,7 +33,7 @@ create table dbo.metodo_validacao (
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
-	metodo varchar (5000) collate latin1_general_ci_ai not null ,
+	metodo text collate latin1_general_ci_ai not null ,
 	ativo bit not null ,
 	motivo_desativacao varchar (2000) collate latin1_general_ci_ai null ,
 	datahora_desativacao datetime null ,
@@ -59,7 +59,7 @@ alter table dbo.acoes_aplicacao_perfis with nocheck add constraint pk_acoes_apli
 
 alter table dbo.metodo_validacao with nocheck add constraint pk_metodo_validacao primary key clustered (id) on [primary];
 
-alter table dbo.acoes_aplicacao_metodos_validacao add constraint pk_acoes_aplicacao_metodos_validacao primary key clustered (id) on [primary];
+alter table dbo.acoes_aplicacao_metodos_validacao with nocheck add constraint pk_acoes_aplicacao_metodos_validacao primary key clustered (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -132,7 +132,7 @@ alter table dbo.acoes_aplicacao_metodos_validacao add
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
-  
+
 alter table dbo.acao_aplicacao add
 	constraint fk_acao_aplicacao_modulo foreign key 
 	(
