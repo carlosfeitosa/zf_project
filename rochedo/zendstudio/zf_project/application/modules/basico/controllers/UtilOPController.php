@@ -142,7 +142,7 @@ class Basico_OPController_UtilOPController
     	                  '/\/\/[a-zA-Z0-9\W\s]*\n/'
     	                 );
     	
-    	echo preg_replace($patterns, '',$string); exit;
+    	return preg_replace($patterns, '',$string);
     	
     }
     
