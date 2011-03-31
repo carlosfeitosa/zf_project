@@ -1102,7 +1102,7 @@ class Basico_OPController_UtilOPController
     public static function decodificaBarrasUrl($codedStringUrl)
     {
     	// retornando a url com as barras codificadas
-    	return str_replace(CARACTER_CODIFICACAO_BARRA_URL, CARACTER_BARRA_URL, $codedStringUrl);
+    	return str_replace(CARACTER_CODIFICACAO_BARRA_URL_HTML_ESCAPADO, CARACTER_BARRA_URL, str_replace(CARACTER_CODIFICACAO_BARRA_URL, CARACTER_BARRA_URL, $codedStringUrl));
     }
 
     /**
@@ -1150,5 +1150,58 @@ class Basico_OPController_UtilOPController
     {
     	// verificando se a url é válida
         return Zend_Uri::check($stringUrl);
+    }
+
+    /**
+     * Decodifica uma url do MVC em nome do modulo, nome do controlador, nome da acao e parametros
+     * 
+     * @param String $urlMCV
+     * @param String $nomeModulo
+     * @param String $nomeControlador
+     * @param String $nomeAcao
+     * @param Array  $arrayParametros
+     * 
+     * @return Boolean
+     */
+    public static function decodeNomeModuloNomeControladorNomeAcaoParametrosPorUrlMVC($urlMCV, &$nomeModulo, &$nomeControlador, &$nomeAcao, &$arrayParametros)
+    {
+    	// verificando os parametros passados
+    	if ((!is_null($urlMCV)) and (!is_string($urlMCV)))
+    		throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_STRING . '($urlMCV)');
+    	if ((!is_null($arrayParametros)) and (!is_array($arrayParametros)))
+    		throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_ARRAY . '($parametros)');
+
+		// decodificando a url
+		$decodeArray = explode(CARACTER_BARRA_URL, $urlMCV);
+
+		// verificando o resultado da decodificacao
+		if (count($decodeArray) > 2) {
+			// recuperando o resultado da decodificacao
+			$nomeModulo = $decodeArray[1];
+			$nomeControlador = $decodeArray[2];
+			// verificando se existe acao no resultado da decodificacao
+			if (isset($decodeArray[3]))
+				// recuperando a acao
+				$nomeAcao = $decodeArray[3];
+			else
+				// setando para acao default do MVC
+				$nomeAcao = 'index';
+
+			// verificando se ha decodificacao de parametros
+			if (isset($decodeArray[4])) {
+				// limpando o array de parametros enviado como parametro
+				$arrayParametros = array();
+				
+				// loop para recuperacao dos parametros
+				for ($i = 4; $i < count($decodeArray); $i += 2) {
+					// recuperando array de parametros
+					$arrayParametros[$decodeArray[$i]] = $decodeArray[$i+1];
+				}
+			}
+
+			return true;
+		}
+		
+		return false;
     }
 }

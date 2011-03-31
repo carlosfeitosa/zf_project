@@ -116,7 +116,7 @@ class Basico_OPController_TokenOPController
 	    }
 
 	    // montando url
-	    $baseUrl = str_replace("/index2.php", '', Basico_OPController_UtilOPController::retornaBaseUrl());
+	    $baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();
 	    
 	    // retornando url codificada
         return $baseUrl . LINK_CONTROLADOR_TOKENS . $token;
@@ -147,7 +147,7 @@ class Basico_OPController_TokenOPController
             throw new Exception(MSG_ERRO_TOKEN_SESSAO_NAO_ENCONTRADO);
 
 		// montando URL
-        $baseUrl = str_replace("/index2.php", "", Zend_Controller_Front::getInstance()->getBaseUrl());
+        $baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();
         $url     = str_replace($baseUrl, '', $url);
 
         // retornando url decodificada

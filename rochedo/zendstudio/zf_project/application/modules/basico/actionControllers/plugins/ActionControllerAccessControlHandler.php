@@ -46,7 +46,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				$actionRequest     = $request->getActionName();
 				$paramsRequest     = $request->getParams();
 
-				// montando a url atual para caso o login seja efetuado com sucesso"
+				// montando a url atual para caso o login seja efetuado com sucesso
 				$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($paramsRequest, null, true); 
 
 				// configurando variaveis para request de autenticacao

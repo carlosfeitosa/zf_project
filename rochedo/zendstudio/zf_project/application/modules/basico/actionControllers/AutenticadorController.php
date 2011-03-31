@@ -117,7 +117,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		// verificando se existe uma pagina para redirect
 		if ($urlRedirect) {
 			// removendo o baseUrl do redirect
-			$realUrlRedirect = str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $urlRedirect);
+			$realUrlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $urlRedirect));
 
 			// redirecionando para a url de redirect
 			$this->_redirect($realUrlRedirect);

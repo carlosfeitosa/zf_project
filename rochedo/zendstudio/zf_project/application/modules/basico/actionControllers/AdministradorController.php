@@ -43,8 +43,8 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	$tituloView = $this->view->tradutor('VIEW_ADMIN_INDEX_TITULO');
         
     	if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {	
-    	    $subtituloView = "<a onClick='loading()' href='" . $this->view->url(array('module' => 'basico', 'controller' => 'administrador', 'action' => 'resetadb')) . "'>" . $this->view->tradutor('VIEW_ADMIN_BD_RESET_BUTTON_LABEL') . "</a>" .
-    	                     "<br><a onClick='loading()' href='" . $this->view->url(array('module' => 'basico', 'controller' => 'geradorformulario', 'action' => 'gerartodosformularios')) . "'>" . $this->view->tradutor('VIEW_ADMIN_FORM_GENERATE_ALL_SYSTEM_FORMS_BUTTON_LABEL') . "</a>";
+    	    $subtituloView = "<a onClick='loading()' href='" . $this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'administrador', 'action' => 'resetadb'))) . "'>" . $this->view->tradutor('VIEW_ADMIN_BD_RESET_BUTTON_LABEL') . "</a>" .
+    	                     "<br><a onClick='loading()' href='" . $this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'geradorformulario', 'action' => 'gerartodosformularios'))) . "'>" . $this->view->tradutor('VIEW_ADMIN_FORM_GENERATE_ALL_SYSTEM_FORMS_BUTTON_LABEL') . "</a>";
     	}
     	else
     	    $subtituloView = NULL;
