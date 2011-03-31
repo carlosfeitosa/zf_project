@@ -137,8 +137,13 @@ class Basico_OPController_UtilOPController
      */
     public static function removeComentariosArquivo($string)
     {
-    	$pattern = '@(/\*.*?\*/)@se';
-    	return preg_replace($pattern, '',$string);
+    	$patterns = array('/\/\*[a-zA-Z0-9\W\S]*\*\//',
+    	                  '/--[a-zA-Z0-9\W\s]*\n/',
+    	                  '/\/\/[a-zA-Z0-9\W\s]*\n/'
+    	                 );
+    	
+    	echo preg_replace($patterns, '',$string); exit;
+    	
     }
     
     /**

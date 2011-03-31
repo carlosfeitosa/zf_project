@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 22/03/2011 10:34:06
+* em: 29/03/2011 09:27:47
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 22/03/2011 09:57:35
+* @version    1: 29/03/2011 09:25:35
 */
 class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
 {
@@ -29,9 +29,12 @@ class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
         parent::__construct($options);
 
         $this->setName('CadastrarDadosUsuario');
+        $this->setMethod('post');
+        $this->setAction('/rochedo_project/public/basico/dadosusuario/salvar');
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuario', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements',
                 array('TabContainer', array('id' => 'TabContainer', 'style' => 'width: 850px; height: 430px; top: 10px; position: relative; z-index: 3;',
-                      'dijitParams' => array('tabPosition' => 'top'),)),));
+                      'dijitParams' => array('tabPosition' => 'top'),)), 'DijitForm'));
 
         // Criando array de elementos.
         $elements = array();
