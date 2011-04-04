@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 22/03/2011 10:34:18
+* em: 04/04/2011 17:37:38
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 22/03/2011 09:57:35
+* @version    1: 04/04/2011 13:15:07
 */
 class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
 {
@@ -45,7 +45,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_TIPO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[1]->setValue($options->enderecoTipo);
+            $elements[1]->setValue($options->BasicoCadastrarEnderecoEnderecoTipo);
 
         $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarEnderecoEnderecoPais');
         $elements[2]->setOrder(2);
@@ -55,7 +55,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_PAIS_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[2]->setValue($options->enderecoPais);
+            $elements[2]->setValue($options->BasicoCadastrarEnderecoEnderecoPais);
 
         $elements[3] = $this->createElement('FilteringSelect', 'BasicoCadastrarEnderecoEnderecoUf');
         $elements[3]->setOrder(3);
@@ -65,7 +65,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[3]->setValue($options->enderecoUf);
+            $elements[3]->setValue($options->BasicoCadastrarEnderecoEnderecoUf);
 
         $elements[4] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEnderecoEnderecoUfTextBox');
         $elements[4]->setOrder(4);
@@ -76,7 +76,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[4]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_TEXT_BOX_HINT'));
         if ($options!=null)
-            $elements[4]->setValue($options->enderecoUfTextBox);
+            $elements[4]->setValue($options->BasicoCadastrarEnderecoEnderecoUfTextBox);
 
         $elements[5] = $this->createElement('FilteringSelect', 'BasicoCadastrarEnderecoEnderecoMunicipio');
         $elements[5]->setOrder(5);
@@ -86,7 +86,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[5]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[5]->setValue($options->enderecoMunicipio);
+            $elements[5]->setValue($options->BasicoCadastrarEnderecoEnderecoMunicipio);
 
         $elements[6] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEnderecoEnderecoMunicipioTextBox');
         $elements[6]->setOrder(6);
@@ -97,7 +97,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[6]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[6]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_HINT'));
         if ($options!=null)
-            $elements[6]->setValue($options->enderecoMunicipioTextBox);
+            $elements[6]->setValue($options->BasicoCadastrarEnderecoEnderecoMunicipioTextBox);
 
         $elements[7] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEnderecoEnderecoCep');
         $elements[7]->setOrder(7);
@@ -108,7 +108,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[7]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[7]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_TEXT_BOX_HINT'));
         if ($options!=null)
-            $elements[7]->setValue($options->enderecoCep);
+            $elements[7]->setValue($options->BasicoCadastrarEnderecoEnderecoCep);
 
         $elements[8] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEnderecoEnderecoLogradouro');
         $elements[8]->setOrder(8);
@@ -119,7 +119,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[8]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[8]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_HINT'));
         if ($options!=null)
-            $elements[8]->setValue($options->enderecoLogradouro);
+            $elements[8]->setValue($options->BasicoCadastrarEnderecoEnderecoLogradouro);
 
         $elements[9] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEnderecoEnderecoNumero');
         $elements[9]->setOrder(9);
@@ -130,7 +130,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[9]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[9]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_HINT'));
         if ($options!=null)
-            $elements[9]->setValue($options->enderecoNumero);
+            $elements[9]->setValue($options->BasicoCadastrarEnderecoEnderecoNumero);
 
         $elements[10] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEnderecoEnderecoComplemento');
         $elements[10]->setOrder(10);
@@ -141,7 +141,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[10]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[10]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_HINT'));
         if ($options!=null)
-            $elements[10]->setValue($options->enderecoComplemento);
+            $elements[10]->setValue($options->BasicoCadastrarEnderecoEnderecoComplemento);
 
         $elements[11] = $this->createElement('html', 'BasicoCadastrarEnderecoLinhaHorizontal', array('value' => '<hr>'));
         $elements[11]->setOrder(11);

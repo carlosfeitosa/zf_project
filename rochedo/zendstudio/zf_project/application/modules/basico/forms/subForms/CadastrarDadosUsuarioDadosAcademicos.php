@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 29/03/2011 09:27:48
+* em: 04/04/2011 17:37:25
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 29/03/2011 09:25:35
+* @version    1: 04/04/2011 13:15:07
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -29,107 +29,107 @@
 
     $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq');
     $elements[1]->setOrder(1);
-    $elements[1]->setRequired(true);
+    $elements[1]->setRequired(false);
     $elements[1]->addFilters(array('StringTrim', 'StripTags'));
     $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
-    $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CATEGORIA_BOLSA_CNPQ_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CATEGORIA_BOLSA_CNPQ_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
-        $elements[1]->setValue($options->categoriaBolsaCnpq);
+        $elements[1]->setValue($options->BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq);
 
     $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao');
     $elements[2]->setOrder(2);
-    $elements[2]->setRequired(true);
+    $elements[2]->setRequired(false);
     $elements[2]->addFilters(array('StringTrim', 'StripTags'));
     $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
-        $elements[2]->setValue($options->maiorTitulacao);
+        $elements[2]->setValue($options->BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao);
 
     $elements[3] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosInstituicaoQueConcedeu');
     $elements[3]->setOrder(3);
-    $elements[3]->setRequired(true);
+    $elements[3]->setRequired(false);
     $elements[3]->addFilters(array('StringTrim', 'StripTags'));
     $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
 
     $elements[4] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosAreaDeConhecimento');
     $elements[4]->setOrder(4);
-    $elements[4]->setRequired(true);
+    $elements[4]->setRequired(false);
     $elements[4]->addFilters(array('StringTrim', 'StripTags'));
     $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_AREA_DE_CONHECIMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_AREA_DE_CONHECIMENTO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_AREA_DE_CONHECIMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_AREA_DE_CONHECIMENTO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
 
     $elements[5] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosAcademicosNomeCurso');
     $elements[5]->setOrder(5);
-    $elements[5]->setRequired(true);
+    $elements[5]->setRequired(false);
     $elements[5]->addFilters(array('StringTrim', 'StripTags'));
     $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[5]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME_CURSO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+    $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_NOME_CURSO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[5]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_TEXT_BOX_HINT'));
     if ($options!=null)
-        $elements[5]->setValue($options->nomeCurso);
+        $elements[5]->setValue($options->BasicoCadastrarDadosUsuarioDadosAcademicosNomeCurso);
 
     $elements[6] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosAcademicosDataObtencao');
     $elements[6]->setOrder(6);
-    $elements[6]->setRequired(true);
+    $elements[6]->setRequired(false);
     $elements[6]->addFilters(array('StringTrim', 'StripTags'));
     $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[6]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_DATA_OBTENCAO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_OBTENCAO_DATE_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+    $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_DATA_OBTENCAO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_OBTENCAO_DATE_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[6]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_DATA_OBTENCAO_DATE_TEXT_BOX_HINT'));
 
     $elements[7] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosTitulacaoEsperada');
     $elements[7]->setOrder(7);
-    $elements[7]->setRequired(true);
+    $elements[7]->setRequired(false);
     $elements[7]->addFilters(array('StringTrim', 'StripTags'));
     $elements[7]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[7]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[7]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_TITULACAO_ESPERADA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TITULACAO_ESPERADA_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[7]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TITULACAO_ESPERADA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TITULACAO_ESPERADA_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
 
     $elements[8] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosInstituicaoCursoAtual');
     $elements[8]->setOrder(8);
-    $elements[8]->setRequired(true);
+    $elements[8]->setRequired(false);
     $elements[8]->addFilters(array('StringTrim', 'StripTags'));
     $elements[8]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[8]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[8]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_INSTITUICAO_CURSO_ATUAL_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_INSTITUICAO_CURSO_ATUAL_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[8]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_INSTITUICAO_CURSO_ATUAL_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_INSTITUICAO_CURSO_ATUAL_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
 
     $elements[9] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosAreaConhecimentoCursoAtual');
     $elements[9]->setOrder(9);
-    $elements[9]->setRequired(true);
+    $elements[9]->setRequired(false);
     $elements[9]->addFilters(array('StringTrim', 'StripTags'));
     $elements[9]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[9]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[9]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[9]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
 
     $elements[10] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosAcademicosNomeCursoAtual');
     $elements[10]->setOrder(10);
-    $elements[10]->setRequired(true);
+    $elements[10]->setRequired(false);
     $elements[10]->addFilters(array('StringTrim', 'StripTags'));
     $elements[10]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[10]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[10]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME_CURSO_ATUAL_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_ATUAL_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+    $elements[10]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_NOME_CURSO_ATUAL_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_ATUAL_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[10]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_ATUAL_TEXT_BOX_HINT'));
 
     $elements[11] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosPeriodo');
     $elements[11]->setOrder(11);
-    $elements[11]->setRequired(true);
+    $elements[11]->setRequired(false);
     $elements[11]->addFilters(array('StringTrim', 'StripTags'));
     $elements[11]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[11]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[11]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_PERIODO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PERIODO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[11]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_PERIODO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PERIODO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
 
     $elements[12] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosTurno');
     $elements[12]->setOrder(12);
-    $elements[12]->setRequired(true);
+    $elements[12]->setRequired(false);
     $elements[12]->addFilters(array('StringTrim', 'StripTags'));
     $elements[12]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[12]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-    $elements[12]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_TURNO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TURNO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+    $elements[12]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TURNO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TURNO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
 
     $elements[13] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosAcademicosButtonDialogDojo1');
     $elements[13]->setOrder(13);

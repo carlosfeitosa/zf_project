@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 29/03/2011 09:27:53
+* em: 04/04/2011 17:37:28
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 29/03/2011 09:25:35
+* @version    1: 04/04/2011 13:15:07
 */
     $basicoCadastrarDadosUsuarioPerfilSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -34,7 +34,7 @@
     $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_PERFIS_DISPONIVEIS') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioPerfil\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PERFIS_DISPONIVEIS_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
-        $elements[1]->setValue($options->perfisDisponiveis);
+        $elements[1]->setValue($options->BasicoCadastrarDadosUsuarioPerfilPerfisDisponiveis);
 
     $elements[2] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioPerfilCsrf', array('ignore' => true, 'salt' => 'unique',));
     $elements[2]->setOrder(2);

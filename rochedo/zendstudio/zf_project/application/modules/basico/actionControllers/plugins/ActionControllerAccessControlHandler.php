@@ -58,6 +58,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				$controllerRequest = $request->getControllerName();
 				$actionRequest     = $request->getActionName();
 				$paramsRequest     = $request->getParams();
+				$sessaoExpirada    = (Basico_OPController_LoginOPController::retornaLoginUsuarioSessao() !== null);
 
 				// montando a url atual para caso o login seja efetuado com sucesso
 				$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($paramsRequest, null, true); 
@@ -73,9 +74,10 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 
 				// modificando o request
 				$request->setParam('urlRedirect', $requestUrlRedirect);
-				$request->setModuleName('basico');
-				$request->setControllerName('autenticador');
-				$request->setActionName('autenticarusuario');
+				$request->setParam('sessaoExpirada', $sessaoExpirada);
+				$request->setModuleName($moduleAutenticador);
+				$request->setControllerName($controllerAutenticador);
+				$request->setActionName($actionAutenticador);
 			} else {
 				// verificando se o usuario logado possui o perfil para a requisicao solicitada
 				if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) {

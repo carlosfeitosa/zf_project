@@ -201,16 +201,23 @@ class Basico_OPController_AutenticadorOPController
 	{
 		// instanciando tradutor
 		$tradutorController = Basico_OPController_TradutorOPController::getInstance();
-		
+
 		// inicializando variaveis
 		$baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();
 		$onLoadValuesCallAndErrorMessage = '';
 
 		// verificando se eh preciso enviar valores para o formulario
 		if ($onLoadValues) {
+			// carregando informacoes sobre o problema na autenticacao
 			$mensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_MSG_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
 			$tituloMensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_TITLE_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
 			$onLoadValuesCallAndErrorMessage = ", {$onLoadValues}, '{$mensagemErro}', '{$tituloMensagemErro}', {$errorElements}";
+		} else if (Basico_OPController_UtilOPController::retornaUserRequest()->getParam('sessaoExpirada')) {
+			// carregando informacoes sobre a sessao expirada
+			$mensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_MSG_SESSAO_EXPIRADA');
+			$tituloMensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_TITLE_SESSAO_EXPIRADA');
+			$onLoadValues = Basico_OPController_UtilOPController::codificaArrayJson(array('nada' => 'nada'));
+			$onLoadValuesCallAndErrorMessage = ", {$onLoadValues}, '{$mensagemErro}', '{$tituloMensagemErro}', null";
 		}
 
 		// retornando o javascript que abre o dialog de login

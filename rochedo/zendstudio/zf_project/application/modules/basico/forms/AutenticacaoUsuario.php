@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 22/03/2011 10:34:04
+* em: 04/04/2011 17:37:23
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 22/03/2011 09:57:35
+* @version    1: 04/04/2011 13:15:07
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {
@@ -62,7 +62,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true, 'placement' => 'append'));
         $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[3]->setValue($options->loginManterLogado);
+            $elements[3]->setValue($options->BasicoAutenticacaoUsuarioLoginManterLogado);
 
         $elements[4] = $this->createElement('html', 'BasicoAutenticacaoUsuarioLinkProblemasLogon',  array('value' => "<br><a href='{$this->getView()->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'problemasLogin'), null, true)}'>{$this->getView()->tradutor('FORM_LINK_PROBLEMAS_LOGON')}</a>"));
         $elements[4]->setOrder(4);

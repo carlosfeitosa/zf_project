@@ -1074,9 +1074,12 @@ class Basico_OPController_GeradorFormularioOPController
             if ($formularioElementoObject->elementReloadable){
             	$tempReturn .= $identacao . FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE . QUEBRA_DE_LINHA;
 
+            	// recuperando o nome do elemento
+            	$elementName = $stringConcatenadaSubstituicao;
+
             	$nivelIdentacao++;
             	$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
-            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(" . FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE . "{$formularioElementoObject->elementName});" . QUEBRA_DE_LINHA;
+            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(" . FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE . "{$elementName});" . QUEBRA_DE_LINHA;
 				$nivelIdentacao--;
 				$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
 			}

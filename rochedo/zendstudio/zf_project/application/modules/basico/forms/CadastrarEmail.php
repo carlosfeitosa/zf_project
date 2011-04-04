@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 22/03/2011 10:34:17
+* em: 04/04/2011 17:37:38
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 22/03/2011 09:57:35
+* @version    1: 04/04/2011 13:15:07
 */
 class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 {
@@ -45,7 +45,7 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_TIPO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[1]->setValue($options->emailTipo);
+            $elements[1]->setValue($options->BasicoCadastrarEmailEmailTipo);
 
         $elements[2] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEmailEmail');
         $elements[2]->setOrder(2);
@@ -59,7 +59,7 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
         $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));
         if ($options!=null)
-            $elements[2]->setValue($options->email);
+            $elements[2]->setValue($options->BasicoCadastrarEmailEmail);
 
         $elements[3] = $this->createElement('SimpleTextarea', 'BasicoCadastrarEmailEmailDescricao', array('style' => 'width: 300px;'));
         $elements[3]->setOrder(3);
@@ -69,7 +69,7 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_EMAIL_DESCRICAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_DESCRICAO_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
-            $elements[3]->setValue($options->emailDescricao);
+            $elements[3]->setValue($options->BasicoCadastrarEmailEmailDescricao);
 
         $elements[4] = $this->createElement('html', 'BasicoCadastrarEmailLinhaHorizontal', array('value' => '<hr>'));
         $elements[4]->setOrder(4);
