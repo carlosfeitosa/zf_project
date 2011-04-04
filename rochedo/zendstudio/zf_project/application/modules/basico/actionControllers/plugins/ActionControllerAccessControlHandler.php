@@ -22,6 +22,19 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		if (!$this->verificaSeProcessaRequest($request))
 			return;
 
+		// verificando o acesso
+		self::verificaAcessoRequest($request);
+	}
+
+	/**
+	 * Verifica o acesso ao request
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return void
+	 */
+	public static function verificaAcessoRequest(Zend_Controller_Request_Abstract $request)
+	{
 		// instanciando controladores
 		$controleAcessoOPController = Basico_OPController_ControleAcessoOPController::getInstance();
 

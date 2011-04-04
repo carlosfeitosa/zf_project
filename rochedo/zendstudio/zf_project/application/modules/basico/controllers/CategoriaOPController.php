@@ -1965,6 +1965,24 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_SUCESSO_DESAUTENTICACAO_USUARIO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogSucessoDesautenticacaoUsuario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogSucessoDesautenticacaoUsuario = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_SUCESSO_DESAUTENTICACAO_USUARIO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogSucessoDesautenticacaoUsuario))
+			// retornando o objeto
+			return $objCategoriaLogSucessoDesautenticacaoUsuario;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_SUCESSO_DESAUTENTICACAO_USUARIO);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_ACAO_DESATIVADA
 	 * 
 	 * @return Basico_Model_Categoria
@@ -1998,6 +2016,24 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return $objCategoriaLogTentativaAcessoAcaoNaoPermitida;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_NAO_PERMITIDA);
+	}
+
+	/**
+	 * Retorna o objeto carregado com a categoria LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAcessoAcaoIndisponivelAtraversDeUrl = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_ACAO_NAO_PERMITIDA);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAcessoAcaoIndisponivelAtraversDeUrl))
+			// retornando o objeto
+			return $objCategoriaLogTentativaAcessoAcaoIndisponivelAtraversDeUrl;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL);
 	}
 
 	/**
@@ -3945,7 +3981,8 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_UPDATE_OUTPUT);
 	}
 
-	/** Retorna o id do objeto carregado com a categoria LOG_TENTATIVA_AUTENTICACA_USUARIO
+	/** 
+	 * Retorna o id do objeto carregado com a categoria LOG_TENTATIVA_AUTENTICACA_USUARIO
 	 * 
 	 * @return Integer
 	 */
@@ -3962,7 +3999,8 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_TENTATIVA_AUTENTICACAO_USUARIO);
 	}
 
-	/** Retorna o id do objeto carregado com a categoria LOG_SUCESSO_AUTENTICACAO_USUARIO
+	/** 
+	 * Retorna o id do objeto carregado com a categoria LOG_SUCESSO_AUTENTICACAO_USUARIO
 	 * 
 	 * @return Integer
 	 */
@@ -3977,6 +4015,24 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return (Int) $objCategoriaLogSucessoAutenticacaoUsuario->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_SUCESSO_AUTENTICACAO_USUARIO);
+	}
+
+	/** 
+	 * Retorna o id do objeto carregado com a categoria LOG_SUCESSO_AUTENTICACAO_USUARIO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogSucessoDesautenticacaoUsuario()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogSucessoDesautenticacaoUsuario = $this->retornaObjetoCategoriaLogSucessoDesautenticacaoUsuario();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogSucessoDesautenticacaoUsuario))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogSucessoDesautenticacaoUsuario->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_SUCESSO_DESAUTENTICACAO_USUARIO);
 	}
 
 	/** Retorna o id do objeto carregado com a categoria LOG_ACAO_DESATIVADA
@@ -4011,6 +4067,23 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return (Int) $objCategoriaLogTentativaAcessoAcaoNaoPermitida->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_NAO_PERMITIDA);
+	}
+
+	/** Retorna o id do objeto carregado com a categoria LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL_NAO_PERMITIDA
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl = $this->retornaObjetoCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL);
 	}
 
 	/**

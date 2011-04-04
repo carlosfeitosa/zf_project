@@ -16,20 +16,40 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 	 */
 	protected $_pluginAtivo = true;
 
+	/**
+	 * Metodo que roda antes do dispacho
+	 * 
+	 * (non-PHPdoc)
+	 * @see Zend_Controller_Plugin_Abstract::preDispatch()
+	 * 
+	 * @return void
+	 */
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se o request deve ser processado
 		if (!$this->verificaSeProcessaRequest($request))
 			return;
 
+		// processando log
+		$this->processaLogRequest($request);
+	}
+
+	/**
+	 * Processa o request, gerando o log de operacoes
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return void
+	 */
+	public static function processaLogRequest(Zend_Controller_Request_Abstract $request)
+	{
 		// recuperando o id do usuario logado na sessao
 		$idLogin = Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao();
 
 		// verificando se existe usuario logado para fazer o log das acoes dos controladores
 		if ($idLogin) {
 			// recuperando o nome da acao
-			$requestParams = $request->getParams();
-			$nomeAcao      = $requestParams[REQUEST_ACTION_KEY];
+			$nomeAcao = $request->getActionName();
  
 			// recuperando o nome da categoria de log
 			$nomeCategoriaLogAcaoInvocada = Basico_OPController_CategoriaOPController::retornaNomeCategoriaLogAcaoControlador(Basico_OPController_UtilOPController::retornaNomeClasseControladorPorRequest($request), $nomeAcao);
@@ -44,7 +64,7 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 
 			// invocando metodo de log
 			Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaMaiorPerfilUsuarioLogado, $idCategoriaLogAcaoInvocada, DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR);
-		}
+		}		
 	}
 
 	/**

@@ -16,6 +16,21 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 	{
 		// verificando se existe usuario logado
 		if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+			// recuperando o id do usuario logado na sessao
+			$idLogin = Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao();
+
+			// recuperando id da pessoa logada
+			$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin($idLogin);
+
+			// recuperando informacoes de log
+			$idCategoriaLogLogoff = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogSucessoDesautenticacaoUsuario();
+			$mensagemLogLogoff    = LOG_MSG_SUCESSO_DESAUTENTICACAO_USUARIO;
+			
+			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaUsuarioLogado)->id;
+			
+			// salvando o log de operacoes
+			Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfilUsuarioValidado, $idCategoriaLogLogoff, $mensagemLogLogoff);
+
 			// efetuando logoff
 			Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
 

@@ -16,12 +16,41 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 */
 	protected $_pluginAtivo = true;
 
+	/**
+	 * Metodo que roda antes do dispacho
+	 * 
+	 * (non-PHPdoc)
+	 * @see Zend_Controller_Plugin_Abstract::preDispatch()
+	 * 
+	 * @return void
+	 */
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
+		// verificando se o request pode ser executado
+		if (!$this->verificaRequestPossivel($request)) {
+			// transformando o request
+			$request->setModuleName('basico');
+			$request->setControllerName('controleacesso');
+			$request->setActionName('acaoaplicacaochamadasemtoken');
+		}
+
 		// verificando se o request deve ser processado
 		if (!$this->verificaSeProcessaRequest($request))
-			return;
+			return;		
 
+		// controlando o request
+		self::controlaRequest($request);
+	}
+
+	/**
+	 * Controla o request
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @retun void
+	 */
+	public static function controlaRequest(Zend_Controller_Request_Abstract $request)
+	{
 		// recuperando informacoes a decodificacao do token
 		$token = $request->getParam('t');
 		$urlDestino = Basico_OPController_TokenOPController::getInstance()->decodeTokenUrlPorToken($token);
@@ -43,6 +72,12 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 				// setando o parametro no request
 				$request->setParam($chaveParametroDestino, $valorParametroDestino);
 			}
+
+			// chamando o plugin de log
+			Basico_Controller_Plugin_ActionControllerLogHandler::processaLogRequest($request);
+
+			// chamando o controle de acesso
+			Basico_Controller_Plugin_ActionControllerAccessControlHandler::verificaAcessoRequest($request);
 
 			// parando a execucao do plugin
 			return;
@@ -74,5 +109,47 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
 		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'token') and ($request->getActionName() === 'decode'));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a acao index do modulo default, controlador index
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private function verificaRequestIndexAplicacao(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador index, acao index
+		return (($request->getModuleName() === 'default') and ($request->getControllerName() === 'index') and ($request->getActionName() === 'index'));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a acao error do modulo default, controlador error
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private function verificaRequestErrorAplicacao(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador error, acao error
+		return (($request->getModuleName() === 'default') and ($request->getControllerName() === 'error') and ($request->getActionName() === 'error'));
+	}
+
+	/**
+	 * Verifica se o request pode ser executado pelo usuario (acoes chamadas diretamente pela url, sem passar por decodificacao de token)
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private function verificaRequestPossivel(Zend_Controller_Request_Abstract $request)
+	{
+		// verificando se o request nao eh do tipo decode token
+		return !((!$this->verificaRequestIndexAplicacao($request)) and 
+		         (!$this->verificaRequestErrorAplicacao($request)) and 
+		         (!$this->verificaRequestTokenDecode($request)) and 
+		         (!Basico_OPController_UtilOPController::ambienteDesenvolvimento()));
 	}
 }
