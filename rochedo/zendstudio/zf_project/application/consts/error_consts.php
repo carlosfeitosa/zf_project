@@ -147,6 +147,7 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVO_OUTPUT", "Categoria de log novo output não 
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_OUTPUT", "Categoria de log atualizao de output não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_TENTATIVA_AUTENTICACAO_USUARIO", "Categoria de log tentativa de autenticacao de usuario não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_SUCESSO_AUTENTICACAO_USUARIO", "Categoria de log sucesso na autenticacao de usuario não encontrado no banco de dados");
+define("MSG_ERRO_CATEGORIA_LOG_MANTER_USUARIO_LOGADO", "Categoria de log manter usuario logado não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_SUCESSO_DESAUTENTICACAO_USUARIO", "Categoria de log sucesso na desautenticacao de usuario não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_ACAO_DESATIVADA", "Categoria de log tentativa de acesso a acao desativada não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_ACAO_NAO_PERMITIDA", "Categoria de log tentativa de acesso a acao não permitida não encontrado no banco de dados");

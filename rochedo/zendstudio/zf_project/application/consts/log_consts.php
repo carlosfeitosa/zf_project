@@ -73,6 +73,7 @@ define("LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO", "Tentativa de autenticacao de u
 define("LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE", "Tentativa de autenticacao de usuario. Login inexistente: ");
 define("LOG_MSG_SUCESSO_AUTENTICACAO_USUARIO", "Sucesso na tentativa de autenticar o usuario");
 define("LOG_MSG_SUCESSO_DESAUTENTICACAO_USUARIO", "Sucesso na tentativa de desautenticar o usuario");
+define("LOG_MSG_MANTER_USUARIO_LOGADO", "Marcacao para manter usuario logado");
 define("LOG_MSG_TENTATIVA_ACESSO_ACAO_DESATIVADA", "Tentativa de acesso a acao desativada.");
 define("LOG_MSG_TENTATIVA_ACESSO_ACAO_NAO_PERMITIDA", "Tentativa de acesso a acao nao permitida.");
 define("LOG_MSG_TENTATIVA_ACESSO_ACAO_INDISPONIVEL_ATRAVES_DE_URL", "Tentativa de acesso a acao indisponivel atraves de url.");

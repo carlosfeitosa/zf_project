@@ -1965,6 +1965,24 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
+	 * Retorna o objeto carregado com a categoria LOG_MANTER_USUARIO_LOGADO
+	 * 
+	 * @return Basico_Model_Categoria
+	 */
+	public function retornaObjetoCategoriaLogManterUsuarioLogado()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogManterUsuarioLogado = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(LOG_MANTER_USUARIO_LOGADO);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogManterUsuarioLogado))
+			// retornando o objeto
+			return $objCategoriaLogManterUsuarioLogado;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_MANTER_USUARIO_LOGADO);
+	}
+
+	/**
 	 * Retorna o objeto carregado com a categoria LOG_SUCESSO_DESAUTENTICACAO_USUARIO
 	 * 
 	 * @return Basico_Model_Categoria
@@ -4015,6 +4033,24 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return (Int) $objCategoriaLogSucessoAutenticacaoUsuario->id;
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG_SUCESSO_AUTENTICACAO_USUARIO);
+	}
+
+	/** 
+	 * Retorna o id do objeto carregado com a categoria LOG_MANTER_USUARIO_LOGADO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaLogManterUsuarioLogado()
+	{
+		// recuperando o objeto categoria
+		$objCategoriaLogManterUsuarioLogado = $this->retornaObjetoCategoriaLogManterUsuarioLogado();
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoriaLogManterUsuarioLogado))
+			// retorna o id do objeto
+			return (Int) $objCategoriaLogManterUsuarioLogado->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG_MANTER_USUARIO_LOGADO);
 	}
 
 	/** 
