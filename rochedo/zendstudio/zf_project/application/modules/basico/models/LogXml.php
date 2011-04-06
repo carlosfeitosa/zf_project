@@ -34,13 +34,14 @@ class Basico_Model_LogXml
 		$eventDateTime    = $options["eventDateTime"];
 		$eventDescription = $options["eventDescription"];
 		
-		$paramsRequest  = Basico_OPController_UtilOPController::retornaUserRequest()->getParams();		
+		$request  = Basico_OPController_UtilOPController::retornaUserRequest();		
 		$userAgent      = Basico_OPController_UtilOPController::retornaUserAgent();
 		$clientIp       = Basico_OPController_UtilOPController::retornaUserIp();
 		$connectionType = Basico_OPController_UtilOPController::retornaUserConnectionType();
-		
-		$this->_applicationInfo = array("module"  => $paramsRequest["module"],
-										"request" => $paramsRequest,);
+
+		$this->_applicationInfo = array("module"     => $request->getModuleName(),
+										"controller" => $request->getControllerName(),
+										"action"     => $request->getActionName(),);
 		
 		$this->_userInfo        = array("agent" => $userAgent,
 										"ip"    => "{$clientIp} ({$connectionType})",);
