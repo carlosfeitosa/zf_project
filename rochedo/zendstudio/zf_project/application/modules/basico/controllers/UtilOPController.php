@@ -1204,4 +1204,35 @@ class Basico_OPController_UtilOPController
 		
 		return false;
     }
+
+    /**
+     * Roda um codigo PHP e retorna seu resultado se houver "return" no bloco de codigo.
+     * Retorna false se nao conseguir rodar o codigo (problema de parser) ou se as chamadas de funcao nao estiverem na whitelist
+     * 
+     * @param String $phpCode
+     * 
+     * @return Mixed
+     */
+    public static function secureEval($phpCode)
+    {
+    	// parseando o codigo para verificar problemas
+    	 if (!self::verificaParserCodigoPHP($phpCode))
+    	 	return false;
+
+		// retornando o resultado do eval
+		return @eval($phpCode);
+    }
+
+    /**
+     * Parsea um codigo PHP e retorna se o codigo pode ser executado
+     * 
+     * @param String $phpCode
+     * 
+     * @return Boolean
+     */
+    private static function verificaParserCodigoPHP($phpCode)
+    {
+    	// retornando o resultado do parser
+    	return @eval('return true;' . $phpCode);
+    }
 }

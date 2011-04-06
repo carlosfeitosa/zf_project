@@ -229,6 +229,55 @@ class Basico_OPController_ControleAcessoOPController
 	}
 
 	/**
+	 * Verifica o metodo de validacao da acao, por request e perfil
+	 * Se nao for passado um perfil, o sistema tentara localizar o metodo de validacao generico para a acao
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * @param Integer $idPerfil
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaMetodoValidacaoAcaoPorRequestIdPerfilUsuarioLogado(Zend_Controller_Request_Abstract $request, $idPerfil = null)
+	{
+		// recuperando informacoes do request
+		$nomeModuloRequest     = strtoupper($request->getModuleName());
+		$nomeControllerRequest = $request->getControllerName();
+		$nomeAcaoRequest       = $request->getActionName();
+
+		// verificando o id do perfil
+		if (!isset($idPerfil))
+			$idPerfil = 'NULL';
+
+		// montando a query que vai retornar o metodo de validacao
+		$querySQLRetornaMetodoValidacao = "SELECT mv.metodo
+										   FROM metodo_validacao mv
+										   LEFT JOIN acoes_aplicacao_metodos_validacao apmv ON (mv.id = apmv.id_metodo_validacao)
+										   LEFT JOIN acao_aplicacao ap ON (apmv.id_acao_aplicacao = ap.id)
+										   LEFT JOIN modulo m ON (ap.id_modulo = m.id)
+										   WHERE m.nome = '{$nomeModuloRequest}'
+										   AND ap.controller = '{$nomeControllerRequest}'
+										   AND ap.action = '{$nomeAcaoRequest}'
+										   AND (({$idPerfil} is null) OR (apmv.id_perfil = {$idPerfil}) OR (apmv.id_perfil IS NULL))";
+
+		// recuperando array com os resultados
+		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaMetodoValidacao);
+
+		// verificando o resultado da recuperacao dos resultados
+		if (count($arrayResultados) > 0) {
+			// loop para rodas todos os metodos de validacao
+			foreach ($arrayResultados as $metodoValidacao){
+				// rodando o metodo de validacao
+				if (Basico_OPController_UtilOPController::secureEval($metodoValidacao['metodo']) === false){
+					// retornando false pois o metodo de validacao falhou
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Verifica se um request esta cadastrado no banco de dados
 	 * 
 	 * @param Zend_Controller_Request_Abstract $request

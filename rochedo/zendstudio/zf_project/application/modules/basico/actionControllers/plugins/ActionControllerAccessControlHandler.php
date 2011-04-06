@@ -88,6 +88,14 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		
 					// parando a execucao do plugin
 					return;
+				} else if (!$controleAcessoOPController->verificaMetodoValidacaoAcaoPorRequestIdPerfilUsuarioLogado($request)) {
+					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
+					$request->setModuleName('basico');
+					$request->setControllerName('controleacesso');
+					$request->setActionName('metodovalidacaoacaofalhou');
+		
+					// parando a execucao do plugin
+					return;
 				}
 			}
 		}
