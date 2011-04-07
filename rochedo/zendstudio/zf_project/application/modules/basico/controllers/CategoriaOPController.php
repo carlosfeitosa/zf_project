@@ -4274,6 +4274,30 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 
 		return null;
 	}
+
+	/**
+	 * Retorna o id da categoria PERFIL_USUARIO
+	 * 
+	 * @return Integer
+	 */
+	public function retornaIdCategoriaPerfilUsuarioSistema()
+	{
+		// recuperando o id do tipo categoria PERFIL
+		$idTipoCategoriaPerfil = Basico_OPController_TipoCategoriaOPController::getInstance()->retornaIdTipoCategoriaPerfil();
+
+		// recupernado o objeto categoria PERFIL_USUARIO
+		$objCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoria(CATEGORIA_PERFIL_USUARIO_SISTEMA, $idTipoCategoriaPerfil);
+
+		// verificando se o objeto foi recuperado
+		if (isset($objCategoria))
+			// retornando id
+			return $objCategoria->id;
+		else
+			// estourando excecao
+			throw new Exception(MSG_ERRO_CATEGORIA_PERFIL_USUARIO_SISTEMA);
+
+		return null;
+	}
 	
 	/**
 	 * Salva categoria no banco

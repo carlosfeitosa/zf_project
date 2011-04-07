@@ -196,7 +196,7 @@ WHERE nome = 'USUARIO_NAO_VALIDADO'
 AND id_categoria = (SELECT c.id
                     FROM categoria c
                     LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                    WHERE c.nome = 'PERFIL_USUARIO'
+                    WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
                     AND t.nome = 'PERFIL');
 
 UPDATE perfil
@@ -205,7 +205,7 @@ WHERE nome = 'USUARIO_VALIDADO'
 AND id_categoria = (SELECT c.id
                     FROM categoria c
                     LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                    WHERE c.nome = 'PERFIL_USUARIO'
+                    WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
                     AND t.nome = 'PERFIL');
 
 
@@ -450,7 +450,7 @@ INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
         FROM PERFIL p
         LEFT JOIN categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO'
+        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         FROM acao_aplicacao a
@@ -528,7 +528,7 @@ INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
         FROM PERFIL p
         LEFT JOIN categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO'
+        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         FROM acao_aplicacao a
@@ -541,7 +541,7 @@ INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
         FROM PERFIL p
         LEFT JOIN categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO'
+        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         FROM acao_aplicacao a

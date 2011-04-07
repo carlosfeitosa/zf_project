@@ -29,6 +29,7 @@
 * 									 e decorator;
 * 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
+* 						07/04/2011 - remocao da criacao da tabela "formulario_perfil" - descontinuado;
 */
 
 
@@ -174,13 +175,6 @@ create table dbo.formulario_elemento_formulario_elemento_validator (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.formulario_perfil (
-	id int identity (1, 1) not null ,
-	id_formulario int not null ,
-	id_perfil int not null ,
-	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
-) on [primary];
-
 create table dbo.formulario_formulario_elemento_formulario (
 	id int identity (1, 1) not null ,
 	id_formulario_formulario_elemento int not null ,
@@ -241,8 +235,6 @@ alter table dbo.formulario with nocheck add constraint pk_formulario primary key
 alter table dbo.formulario_formulario_elemento with nocheck add constraint pk_formulario_formulario_elemento primary key clustered (id) on [primary];
 
 alter table dbo.formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
-
-alter table dbo.formulario_perfil with nocheck add constraint pk_formulario_perfil primary key (id) on [primary];
 
 alter table dbo.formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
 
@@ -379,13 +371,6 @@ alter table dbo.formulario_elemento_formulario_elemento_validator add
         id_formulario_elemento,
         id_formulario_elemento_validator
     ) on [primary];
-
-alter table dbo.formulario_perfil add
-	constraint ix_formulario_perfil_formulario_perfil unique nonclustered
-	(
-		id_formulario,
-		id_perfil
-	) on [primary];
 
 alter table dbo.formulario_formulario_elemento_formulario add
 	constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique nonclustered
@@ -600,20 +585,6 @@ alter table dbo.formulario_elemento_formulario_elemento_validator add
 	(
 		id_formulario_elemento_validator
 	) references dbo.formulario_elemento_validator (
-		id
-	);
-
-alter table dbo.formulario_perfil add
-	constraint fk_formulario_perfil_formulario foreign key
-	(
-		id_formulario
-	) references dbo.formulario (
-		id
-	),
-	constraint fk_formulario_perfil_perfil foreign key
-	(
-		id_perfil
-	) references dbo.perfil (
 		id
 	);
 

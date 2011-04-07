@@ -323,10 +323,15 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	 */
 	public function retornaObjetosPerfisUsuario()
 	{
-		// recuperando o id categoria PERFIL_USUARIO
+		// recuperando o id categoria PERFIL_USUARIO_SISTEMA e PERFIL_USUARIO
+		$idCategoriaPerfilUsuarioSistema = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaPerfilUsuarioSistema();
 		$idCategoriaPerfilUsuario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaPerfilUsuario();
 
-		// retornando os objetos perfis usuario
-		return $this->retornaObjetosPerfisPorIdCategoria($idCategoriaPerfilUsuario);
+		// recupereando os perfis de usuario do sistema
+		$arrayPerfisUsuarioSistema = $this->retornaObjetosPerfisPorIdCategoria($idCategoriaPerfilUsuarioSistema);
+		$arrayPerfisUsuario        = $this->retornaObjetosPerfisPorIdCategoria($idCategoriaPerfilUsuario);
+		
+		// retornando os objetos perfis usuario sistema e perfis usuario
+		return array_merge($arrayPerfisUsuarioSistema, $arrayPerfisUsuario);
 	}
 }

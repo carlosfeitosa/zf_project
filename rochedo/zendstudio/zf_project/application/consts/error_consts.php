@@ -119,6 +119,7 @@ define("MSG_ERRO_CATEGORIA_LOG_NOVO_WEBSITE", "Categoria de log novo website nã
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_WEBSITE", "Categoria de log update em website não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_DELETE_WEBSITE", "Categoria de log exclusão de website não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_PERFIL_USUARIO", "Categoria de PERFIL_USUARIO não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_PERFIL_USUARIO_SISTEMA", "Categoria de PERFIL_USUARIO_SISTEMA não encontrada no banco de dados");
 /*
  * FORMULÁRIO
  */

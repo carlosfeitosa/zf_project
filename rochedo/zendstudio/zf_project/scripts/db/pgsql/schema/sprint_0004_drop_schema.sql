@@ -13,11 +13,11 @@
 * 						14/09/2010 - drop da tabela componente;
 * 						14/10/2010 - modificacao da ordem de drop da tabela template
 * 						19/10/2010 - remocao do drop da tabela "modulo" para o sprint 0001;
+* 						07/04/2011 - remocao do drop da tabela "formulario_perfil" - descontinuado;
 */
 
 drop table if exists formulario_formulario_elemento_formulario;
 drop table if exists template_formulario;
-drop table if exists formulario_perfil;
 drop table if exists formulario_formulario_elemento;
 drop table if exists formulario_elemento_formulario_elemento_validator;
 drop table if exists formulario_elemento;

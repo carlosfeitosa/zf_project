@@ -13,6 +13,7 @@
 * 						14/09/2010 - drop da tabela componente;
 * 						14/10/2010 - modificacao da ordem de drop da tabela template;
 * 						19/10/2010 - remocao do drop da tabela "modulo" para o sprint 0001;
+* 						07/04/2011 - remocao do drop da tabela "formulario_perfil" - descontinuado;
 */
 
 if object_id('formulario_formulario_elemento_formulario') is not null
@@ -24,12 +25,6 @@ end
 if object_id('template_formulario') is not null
 begin
 drop table template_formulario;
-end
-;
-
-if object_id('formulario_perfil') is not null
-begin
-drop table formulario_perfil;
 end
 ;
 

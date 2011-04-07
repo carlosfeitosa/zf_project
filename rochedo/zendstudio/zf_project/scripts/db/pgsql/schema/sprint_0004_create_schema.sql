@@ -29,6 +29,7 @@
 * 									 e decorator;
 * 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
+* 						07/04/2011 - remocao da criacao da tabela "pessoa_perfil" - descontinuado;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -222,17 +223,6 @@ with (
 );
 alter table formulario_elemento_formulario_elemento_validator owner to rochedo_user;
 
-create table formulario_perfil (
-	id serial not null ,
-	id_formulario int not null ,
-	id_perfil int not null ,
-	rowinfo character varying (2000) not null 
-)
-with (
-  oids = false
-);
-alter table formulario_perfil owner to rochedo_user;
-
 create table formulario_formulario_elemento_formulario (
 	id serial not null ,
 	id_formulario_formulario_elemento int not null ,
@@ -303,8 +293,6 @@ alter table formulario add constraint pk_formulario primary key (id);
 alter table formulario_formulario_elemento add constraint pk_formulario_formulario_elemento primary key (id);
 
 alter table formulario_elemento_formulario_elemento_validator add constraint pk_formulario_elemento_formulario_elemento_validator primary key (id);
-
-alter table formulario_perfil add constraint pk_formulario_perfil primary key (id);
 
 alter table formulario_formulario_elemento_formulario add constraint pk_formulario_formulario_elemento_formulario primary key (id);
 
@@ -398,9 +386,6 @@ alter table formulario_formulario_elemento
 
 alter table formulario_elemento_formulario_elemento_validator
   add constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique (id_formulario_elemento, id_formulario_elemento_validator);
-
-alter table formulario_perfil
-  add constraint ix_formulario_perfil_formulario_perfil unique (id_formulario, id_perfil);
   
 alter table formulario_formulario_elemento_formulario
   add constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique (id_formulario_formulario_elemento);
@@ -465,10 +450,6 @@ alter table formulario_formulario_elemento
 alter table formulario_elemento_formulario_elemento_validator 
   add constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
   add constraint fk2_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
-
-alter table formulario_perfil
-  add constraint fk_formulario_perfil_formulario foreign key (id_formulario) references formulario (id) on update no action on delete no action,
-  add constraint fk_formulario_perfil_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
 
 alter table formulario_formulario_elemento_formulario 
   add constraint fk_formulario_formulario_elemento_formulario_formulario_elemento foreign key (id_formulario_formulario_elemento) references formulario_formulario_elemento (id) on update no action on delete no action,
