@@ -23,6 +23,11 @@ class Basico_OPController_CVCOPController
 	private $_cvc;
 
 	/**
+	 * @var Array
+	 */
+	private $_arrayObjetosManipulados;
+
+	/**
 	 * Construtor do controller
 	 * 
 	 * @return void
@@ -31,6 +36,9 @@ class Basico_OPController_CVCOPController
 	{
 		// instanciando o modelo
 		$this->_cvc = $this->retornaNovoObjetoCVC();
+
+		// inicializando o atributo arrayObjetosManipulados
+		$this->limpaArrayIdsObjetosManipulados();
 
 		// inicializando o controlador
 		$this->init();
@@ -232,6 +240,9 @@ class Basico_OPController_CVCOPController
     	// salvando informacoes do versionamento
     	$modelCVC->getMapper()->save($modelCVC);
 
+    	// adicionando o id do objeto manipulado no array de ids de objetos manipulados
+    	$this->adicionaIdObjetoManipuladoArrayObjetosManipulados($modelCVC->id);
+
     	return $modelCVC->versao;
     }
 
@@ -264,6 +275,56 @@ class Basico_OPController_CVCOPController
 
     	// retornando a versao
     	return $objUltimaVersao->versao;
+    }
+
+    /**
+     * Adiciona o id de um objeto manipulado no array de ids de objetos manipulados
+     * 
+     * @param Integer $idObjeto
+     * 
+     * @return void
+     */
+    private function adicionaIdObjetoManipuladoArrayObjetosManipulados($idObjeto)
+    {
+    	// adicionando o id objeto no atributo-array
+    	$this->_arrayObjetosManipulados[] = $idObjeto;
+    }
+
+    /**
+     * Limpa o array de ids de objetos manipulados
+     * 
+     * @return void
+     */
+    public function limpaArrayIdsObjetosManipulados()
+    {
+    	// limpando o array de ids de objetos manipulados
+    	$this->_arrayObjetosManipulados = array();
+    }
+
+    /**
+     * Retorna um array com os ids dos objetos manipulados
+     * Permite a limpeza deste array utilizando true no parametro $forceClean
+     * 
+     * @param Boolean $forceClean
+     * 
+     * @return Array|null
+     */
+    public function retornaArrayIdsObjetosManipulados($forceClean = false)
+    {
+    	// recuperando o array de ids de objetos manipulados
+    	$return = $this->_arrayObjetosManipulados;
+
+    	// verificando se existem ids no array
+    	if (count($return) === 0)
+    		return null;
+
+    	// verificando se eh preciso limpar o array de ids de objetos manipulados
+    	if ($forceClean)
+    		// limpando o array de ids de objetos manipulados
+    		$this->limpaArrayIdsObjetosManipulados();
+
+    	// retornando array de ids de objetos manipulados
+    	return $return;
     }
 
 }

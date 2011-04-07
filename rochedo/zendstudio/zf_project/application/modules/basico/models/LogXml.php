@@ -30,22 +30,46 @@ class Basico_Model_LogXml
 		{
 			$this->setOptions($options);
 		}
-		
+
+		// recuperando informacoes sobre o evento
 		$eventDateTime    = $options["eventDateTime"];
 		$eventDescription = $options["eventDescription"];
-		
+
+		// recuperando informacoes sobre a requisicao e usuario
 		$request  = Basico_OPController_UtilOPController::retornaUserRequest();		
 		$userAgent      = Basico_OPController_UtilOPController::retornaUserAgent();
 		$clientIp       = Basico_OPController_UtilOPController::retornaUserIp();
 		$connectionType = Basico_OPController_UtilOPController::retornaUserConnectionType();
 
-		$this->_applicationInfo = array("module"     => $request->getModuleName(),
-										"controller" => $request->getControllerName(),
-										"action"     => $request->getActionName(),);
-		
+		// verificando se nao se trata de uma requisicao de decodificacao de token
+		if (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'token') and ($request->getActionName() === 'decode')) {
+			// marcando que trata-se de uma decodificacao de token
+			$idsObjetosManipulados = 'token decode';
+		} else {
+			// recuperando array ids de objetos manipulados pelo CVC nesta operacao
+			$arrayIdsObjetosManipuladosCVC = Basico_OPController_CVCOPController::getInstance()->retornaArrayIdsObjetosManipulados(true);
+
+			// verificando se o resultado da recuperacao
+			if (count($arrayIdsObjetosManipuladosCVC) > 0) {
+				// recuperando ids de objetos manipulados pelo CVC nesta operacao
+				$idsObjetosManipulados = implode(',', $arrayIdsObjetosManipuladosCVC);
+			} else {
+				// setando que nao houve objetos criados
+				$idsObjetosManipulados = 'nenhum objeto manipulado';
+			}
+		}
+
+		// setando informacoes sobre a aplicacao
+		$this->_applicationInfo = array("module"        => $request->getModuleName(),
+										"controller"    => $request->getControllerName(),
+										"action"        => $request->getActionName(),
+										"idsObjetosCVC" => $idsObjetosManipulados,);
+
+		// setando informacoes sobre o usuario
 		$this->_userInfo        = array("agent" => $userAgent,
 										"ip"    => "{$clientIp} ({$connectionType})",);
-		
+
+		// setando informacoes sobre o evento
 		$this->_eventInfo       = array("dateTime"    => $eventDateTime,
 										"description" => $eventDescription,);
 	}

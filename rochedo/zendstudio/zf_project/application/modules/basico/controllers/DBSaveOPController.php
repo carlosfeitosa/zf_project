@@ -37,7 +37,7 @@ class Basico_OPController_DBSaveOPController
 		// iniciando transacao
 		$transacaoInicializada = Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
-		try {			
+		try {
 			// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
 			if (!Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($mixed)) {
 
