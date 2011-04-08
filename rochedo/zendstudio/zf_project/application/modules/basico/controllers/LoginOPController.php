@@ -85,11 +85,11 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			// verificando se trata-se de uma nova tupla ou atualizacao de registro
 			if ($objeto->id != NULL) {
 				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateLogin();
+				$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_LOGIN, true);
 				$mensagemLog    = LOG_MSG_UPDATE_LOGIN;
 			} else {
 				// carregando informacoes de log de novo registro
-				$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoLogin();
+				$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_LOGIN, true);
 				$mensagemLog    = LOG_MSG_NOVO_LOGIN;
 			}
 	    		
@@ -128,7 +128,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeletePessoa();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_LOGIN, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_PESSOA;
 
 	    	// apagando o objeto do bando de dados
@@ -524,7 +524,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$idPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaLogin)->id;
 
 		// recuperando informacoes de log
-		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogSucessoAutenticacaoUsuario();
+		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_SUCESSO_AUTENTICACAO_USUARIO, true);
 		$mensagemLog    = LOG_MSG_SUCESSO_AUTENTICACAO_USUARIO;
 		
 		// efetua log

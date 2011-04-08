@@ -224,11 +224,11 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateEmail();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_EMAIL, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_EMAIL;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoEmail();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_EMAIL, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_EMAIL;
 	    	}
 
@@ -267,7 +267,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteEmail();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_EMAIL, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_EMAIL;
 
 	    	// apagando o objeto do bando de dados
@@ -289,7 +289,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
     	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
 		// buscando o e-mail do sistema
-		$idCategoriaEmailSistema = $categoriaOPController->retornaIdCategoriaEmailSistema();
+		$idCategoriaEmailSistema = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_EMAIL);
 		$objEmailSistema = $this->_model->fetchList("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
@@ -315,7 +315,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
 			// recuperando o id da categoria EMAIL_PRIMARIO
-			$idCategoriaEmailPrimario = $categoriaOPController->retornaIdCategoriaEmailPrimario();
+			$idCategoriaEmailPrimario = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(EMAIL_PRIMARIO);
 
 			// recuperando o email primario da pessoa passada
 			$objEmailPrimario = $this->_model->fetchList("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");

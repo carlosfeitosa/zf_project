@@ -90,11 +90,11 @@ class Basico_OPController_WebsiteOPController extends Basico_Abstract_RochedoPer
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateWebsite();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_WEBSITE, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_WEBSITE;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoWebsite();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_WEBSITE, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_WEBSITE;
 	    	}
 
@@ -133,7 +133,7 @@ class Basico_OPController_WebsiteOPController extends Basico_Abstract_RochedoPer
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteWebsite();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_WEBSITE, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_WEBSITE;
 
 	    	// apagando o objeto do bando de dados
@@ -143,5 +143,4 @@ class Basico_OPController_WebsiteOPController extends Basico_Abstract_RochedoPer
 			throw new Exception($e);
 		}
 	}
-
 }

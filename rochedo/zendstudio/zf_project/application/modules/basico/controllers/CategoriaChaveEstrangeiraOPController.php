@@ -114,7 +114,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	    		// verificando se trata-se de uma nova tupla
 		    	if ($objeto->id == NULL) {
 		       		// carregando informacoes de log de novo registro
-		    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogCategoriaChaveEstrangeira();
+		    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_CATEGORIA_CHAVE_ESTRANGEIRA, true);
 		    		$mensagemLog    = LOG_MSG_NOVA_CATEGORIA_CHAVE_ESTRANGEIRA;
    					
 		    		// salvando o objeto através do controlador Save

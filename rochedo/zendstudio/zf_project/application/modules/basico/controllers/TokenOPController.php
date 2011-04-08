@@ -203,11 +203,11 @@ class Basico_OPController_TokenOPController
 			// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objToken->id != NULL) {
 				// carregando informacoes de log de atualizacao de registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogUpdateToken();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_TOKEN, true);
 				$mensagemLog    = LOG_MSG_UPDATE_TOKEN;
 			} else {
 				// carregando informacoes de log de novo registro
-				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogNovoToken();
+				$idCategoriaLog = $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_TOKEN, true);
 				$mensagemLog    = LOG_MSG_NOVO_TOKEN;
 			}
 
@@ -236,7 +236,7 @@ class Basico_OPController_TokenOPController
 	    $categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 	    
 	    // recuperando objeto categoria do token-email
-		$idCategoriaTokenEmail = $categoriaOPController->retornaIdCategoriaEmailValidacaoPlainText();
+		$idCategoriaTokenEmail = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 		// recuperando objeto token
 		$objToken = $this->_token->fetchList("id_categoria = {$idCategoriaTokenEmail} and token = '{$token}'", null, 1, 0);
 

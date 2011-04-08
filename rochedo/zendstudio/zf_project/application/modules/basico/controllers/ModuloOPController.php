@@ -88,11 +88,11 @@ class Basico_OPController_ModuloOPController extends Basico_Abstract_RochedoPers
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateModulo();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_MODULO, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_MODULO;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoModulo();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_MODULO, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_MODULO;
 	    	}
 
@@ -131,7 +131,7 @@ class Basico_OPController_ModuloOPController extends Basico_Abstract_RochedoPers
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteModulo();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_MODULO, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_MODULO;
 
 	    	// apagando o objeto do bando de dados

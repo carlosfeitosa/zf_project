@@ -81,11 +81,11 @@ class Basico_OPController_FormularioElementoFilterOPController extends Basico_Ab
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateFormularioElementoFilter();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_ELEMENTO_FILTER;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoFormularioElementoFilter();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_FORMULARIO_ELEMENTO_FILTER, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_ELEMENTO_FILTER;
 	    	}
 
@@ -124,7 +124,7 @@ class Basico_OPController_FormularioElementoFilterOPController extends Basico_Ab
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteFormularioElementoFilter();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_FORMULARIO_ELEMENTO_FILTER, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_FORMULARIO_ELEMENTO_FILTER;
 
 	    	// apagando o objeto do bando de dados

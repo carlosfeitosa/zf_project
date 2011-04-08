@@ -37,7 +37,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 
     	// recuperando informacoes para log
     	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
-    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAcessoAcaoDesativada();
+    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_ACAO_DESATIVADA, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_DESATIVADA;
 
 		// salvando log
@@ -77,7 +77,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 
     	// recuperando informacoes para log
     	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
-    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAcessoAcaoNaoPermitida();
+    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_ACAO_NAO_PERMITIDA, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_NAO_PERMITIDA;
 
 		// salvando log
@@ -117,7 +117,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 
     	// recuperando informacoes para log
     	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
-    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl();
+    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_INDISPONIVEL_ATRAVES_DE_URL;
 
 		// salvando log
@@ -157,7 +157,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 
     	// recuperando informacoes para log
     	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
-    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogTentativaAcessoAcaoIndisponivelAtravesDeUrl();
+    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_INDISPONIVEL_ATRAVES_DE_URL;
 
 		// salvando log

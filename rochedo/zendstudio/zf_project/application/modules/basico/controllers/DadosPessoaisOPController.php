@@ -87,11 +87,11 @@ class Basico_OPController_DadosPessoaisOPController extends Basico_Abstract_Roch
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogUpdateDadosPessoais();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_DADOS_PESSOAIS, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_DADOS_PESSOAIS;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogNovoDadosPessoais();
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_DADOS_PESSOAIS, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_DADOS_PESSOAIS;
 	    	}
 
@@ -130,7 +130,7 @@ class Basico_OPController_DadosPessoaisOPController extends Basico_Abstract_Roch
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogDeleteDadosPessoais();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_DADOS_PESSOAIS, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_DADOS_PESSOAIS;
 
 	    	// apagando o objeto do bando de dados

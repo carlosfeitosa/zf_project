@@ -75,10 +75,11 @@
 *  									   - criacao da categoria LOG_UPATE_DADOS_PESSOAS_PERFIS;
 *  									   - criacao da categoria LOG_DELETE_DADOS_PESSOAS_PERFIS;
 * 	 								   - criacao da categoria LOG_DELETE_FORMULARIO;
-* 							22/03/2011 - criacao da categoria LOG_DELETE_FORMULARIO_ELEMENTO
-* 									   - criacao da categoria LOG_DELETE_RACA
-* 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT ;
-*									   - criacao da categoria LOG_DELETE_PESSOA_PERFIL ;
+* 							22/03/2011 - criacao da categoria LOG_DELETE_FORMULARIO_ELEMENTO;
+* 									   - criacao da categoria LOG_DELETE_RACA;
+* 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT;
+*									   - criacao da categoria LOG_DELETE_PESSOA_PERFIL;
+*							08/04/2011 - remocao de todas as categorias de log (serao criadas por demanda);
 *
 */
 
@@ -180,461 +181,6 @@ FROM tipo_categoria t
 WHERE t.nome = 'SISTEMA';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_VALIDACAO_USUARIO' AS nome, 'Operações de validação de usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_TOKEN' AS nome, 'Operação de inserção de um novo token.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_COMPONENTE' AS nome, 'Operação de inserção de componente.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_COMPONENTE' AS nome, 'Operação de atualização de componente.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_COMPONENTE' AS nome, 'Operação de exclusão de componente.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_MODULO' AS nome, 'Operação de inserção de modulo.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_MODULO' AS nome, 'Operação de atualização de modulo.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_MODULO' AS nome, 'Operação de exclusão de modulo.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_LOGIN' AS nome, 'Operação de inserção de um novo login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_LOGIN' AS nome, 'Operação de atualizacao de login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_RACA' AS nome, 'Operação de inserção de uma nova raça.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_RACA' AS nome, 'Operação de atualização de uma raça.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_RACA' AS nome, 'Operação de exclusão de uma raça.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_TOKEN_VALIDACAO_USUARIO' AS nome, 'Operações de validação de usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_TOKEN_VALIDACAO_USUARIO' AS nome, 'Operações atualizao de token de validação de usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_EMAIL' AS nome, 'Operações de envio de e-mail.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_PESSOA' AS nome, 'Operação de criação de nova pessoa.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_PESSOA' AS nome, 'Operação de atualizacao de pessoa.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_PESSOA' AS nome, 'Operação de exclusão de pessoa.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA' AS nome, 'Operação de inserção de pessoaPerfilMensagemCategoria.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_PESSOA_PERFIL_MENSAGEM_CATEGORIA' AS nome, 'Operação de atualização de pessoaPerfilMensagemCategoria.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_PESSOA_PERFIL_MENSAGEM_CATEGORIA' AS nome, 'Operação de exclusão de pessoaPerfilMensagemCategoria.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_PESSOA_PERFIL' AS nome, 'Operação de associação de pessoa com perfil.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_PESSOA_PERFIL' AS nome, 'Operação de atualizacao de associação de pessoa com perfil.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_DADOS_PESSOAIS' AS nome, 'Operação criação de dados pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_DADOS_PESSOAIS' AS nome, 'Operação alteração de dados pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_DADOS_BIOMETRICOS' AS nome, 'Operação criação de dados biometricos.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_DADOS_BIOMETRICOS' AS nome, 'Operação alteração de dados biometricos.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_DADOS_BIOMETRICOS' AS nome, 'Operação deleção de dados biometricos.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_OUTPUT' AS nome, 'Operação deleção do output.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_PESSOA_PERFIL' AS nome, 'Operação deleção de pessoa perfil.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_EMAIL' AS nome, 'Operação de inserção de e-mail.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_EMAIL' AS nome, 'Operação de atualização de e-mail.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_EMAIL' AS nome, 'Operação de exclusão de e-mail.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_FORMULARIO' AS nome, 'Operação de inserção de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_FORMULARIO' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_FORMULARIO' AS nome, 'Operação de exclusão de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_DADOS_PESSOAS_PERFIS' AS nome, 'Operação de inserção de dados pessoas perfis.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_DADOS_PESSOAS_PERFIS' AS nome, 'Operação de atualização de dados pessoas perfis.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_DADOS_PESSOAS_PERFIS' AS nome, 'Operação de exclusão de dados pessoas perfis.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_FORMULARIO_ELEMENTO' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_FORMULARIO_ELEMENTO' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_FORMULARIO_ELEMENTO' AS nome, 'Operação de exclusão de formulario elemento.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_FORMULARIO_ELEMENTO_FILTER' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_FORMULARIO_ELEMENTO_FILTER' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_FORMULARIO_ELEMENTO_FILTER' AS nome, 'Operação de exclusão de formulario elemento filter.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_FORMULARIO_ELEMENTO_FORMULARIO_ELEMENTO_VALIDADOR' AS nome, 'Operação de exclusão de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO' AS nome, 'Operação de inserção de GrupoFormularioElemento.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO' AS nome, 'Operação de atualização de GrupoFormularioElemento.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO' AS nome, 'Operação de exclusao de GrupoFormularioElemento.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_FORMULARIO_ELEMENTO_VALIDADOR' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR' AS nome, 'Operação de atualização de formulario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_FORMULARIO_ELEMENTO_VALIDADOR' AS nome, 'Operação de exclusão de formulario elemento validador.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_WEBSITE' AS nome, 'Operação de inserção de website.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_WEBSITE' AS nome, 'Operação de exclusão de website.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_MENSAGEM' AS nome, 'Operação de inserção de mensagem.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_MENSAGEM' AS nome, 'Operação de inserção de mensagem.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_MENSAGEM' AS nome, 'Operação de exclusão de mensagem do banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_OUTPUT' AS nome, 'Operação de inserção de output.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_OUTPUT' AS nome, 'Operação de atualizacao de output.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_TENTATIVA_AUTENTICACAO_USUARIO' AS nome, 'Operação de tentativa de autenticacao de usuario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVA_CATEGORIA' AS nome, 'Operação de inserção de categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -649,28 +195,7 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'LOG';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_CATEGORIA' AS nome, 'Operação de exclusão de categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_NOVO_TIPO_CATEGORIA' AS nome, 'Operação de inserção de tipo categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_UPDATE_TIPO_CATEGORIA' AS nome, 'Operação de atualização de tipo categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'LOG';
-
-INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_TIPO_CATEGORIA' AS nome, 'Operação de exclusão de tipo categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_DELETE_CATEGORIA' AS nome, 'Operação de atualização de categoria no banco de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
@@ -1720,118 +1245,58 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'LOG';
 
-
-/**
-* INICIO
-*  
-* ABA CADASTRO DE USUARIO - DADOS PESSOAISS 
-*/
-
--- formulario - input - cadastro - usuario - dados pessoais
--- documentos pessoais
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS' AS nome, 'Formulários de manipulação de dados de documentos pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
--------------
 
--- formulario - input - cadastro - usuario - dados pessoais
--- telefones pessoais
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS' AS nome, 'Formulários de manipulação de dados de telefones pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
--------------
 
--- formulario - input - cadastro - usuario - dados pessoais
--- emails pessoais
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS' AS nome, 'Formulários de manipulação de dados de telefones pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
--------------
 
--- formulario - input - cadastro - usuario - dados pessoais
--- websites pessoais
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS' AS nome, 'Formulários de manipulação de dados de websites pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
--------------
 
--- formulario - input - cadastro - usuario - dados pessoais
--- enderecos pessoais
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS' AS nome, 'Formulários de manipulação de dados de documentos pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
--------------
 
-/**
-* FIM - ABA CADASTRO DE USUARIO - DADOS PESSOAIS
-*/
-
-/**
-* INICIO
-*  
-* CADASTRO DE ENDERECO 
-*/
--- ajuda - formulario - cadastro
--- endereço
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO' AS nome, 'Ajuda para preenchimento de formulários de manipulação de endereço.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO';
--------------
-/**
-* FIM - CADASTRO DE ENDERECO 
-*/
 
-
-/**
-* INICIO
-*  
-* ABA CADASTRO - INFORMACOES BANCARIAS
-*/
--- formulario - input - cadastro - usuario - informacoes bancarias
--- contas bancarias
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS' AS nome, 'Formulários de manipulação de dados de documentos pessoais.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
--------------
-/**
-* FIM - ABA CADASTRO - INFORMACOES BANCARIAS
-*/
 
-/**
-* INICIO
-*  
-* CADASTRO - CONTA BANCARIA 
-*/
--- formulario - input - cadastro
--- conta bancaria
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA' AS nome, 'Formulários de manipulação de dados de contas bancárias.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
-
-/**
-* FIM - CADASTRO - CONTA BANCARIA 
-*/
