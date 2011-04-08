@@ -43,6 +43,12 @@ define("MSG_ERRO_UPDATE_NAO_PERMITIDO", "Este objeto não permite atualização.
 define("MSG_ERRO_CATEGORIA_NAO_ATIVA", "Categoria solicitada está inativa.");
 define("MSG_ERRO_CATEGORIA_NAO_ENCONTRADA", "A categoria solicitada não foi encontrada: ");
 define("MSG_ERRO_CATEGORIA_NAO_PODE_SER_CRIADA_SEM_TIPO_CATEGORIA", "A categoria solicitada não pode ser criada pois não foi informado o seu tipo categoria: ");
+define("MSG_ERRO_CATEGORIA_LOG", "Categoria de log não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_PERFIL_USUARIO_SISTEMA", "Categoria PERFIL_USUARIO_SISTEMA não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_PERFIL_USUARIO", "Categoria de PERFIL_USUARIO não encontrada no banco de dados");
+define("MSG_ERRO_TIPO_CATEGORIA_CVC", "Tipo de categoria de CVC não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_CVC", "Categoria de CVC não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_LINGUAGEM", "Categoria da linguagem não encontrada no banco de dados");
 
 /*
  * FORMULÁRIO
