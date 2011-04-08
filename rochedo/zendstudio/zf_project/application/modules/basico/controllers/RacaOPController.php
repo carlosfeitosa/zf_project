@@ -1,20 +1,26 @@
 <?php
-
 /**
  * Controlador Raca
  * 
- * @uses Basico_Model_Raca
+ * Controlador responsavel pelas Racas
+ * 
+ * @package Basico
+ * 
+ * @author Igor Pinho (igor.pinho.souza@rochedoproject.om)
+ * 
+ * @since 22/03/2011
  */
+
 class Basico_OPController_RacaOPController
 {
 	/**
-	 * 
+	 * Instância do Controlador Raca
 	 * @var Basico_OPController_RacaOPController
 	 */
-	static private $singleton;
+	private static $singleton;
 	
 	/**
-	 * 
+	 * Instância do Modelo Raca.
 	 * @var Basico_Model_Raca
 	 */
 	private $_model;

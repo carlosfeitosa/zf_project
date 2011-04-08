@@ -6,9 +6,9 @@
  * 
  * @package Basico
  * 
- * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
+ * @author Igor Pinho (igor.pinho.souza@rochedoproject.om)
  * 
- * @since 21/03/2011
+ * @since 22/03/2011
  */
 
 class Basico_OPController_FormularioElementoOPController extends Basico_Abstract_RochedoPersistentOPController
