@@ -51,7 +51,7 @@ function loading()
     underlay.show();
 }
 
-function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedirectHide, onLoadValues, errorMessage, errorTitle, errorElements)
+function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements)
 {
 	// procurando se o dialog ja existe na sessao do usuario
 	dialog = dijit.byId(dialogName);
@@ -94,11 +94,16 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 			hiddenUrlRedirect.value = urlRedirect;
 	}
 
+	// verificando se eh preciso mudar a acao do formulario
+	if (formAction) {
+		document.getElementsByTagName('form')[0].action = formAction;
+	}
+
 	// mostrando dialog
 	dialog.show();
 }
 
-function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, onLoadValues, errorMessage, errorTitle, errorElements)
+function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements)
 {
     // setando os parametros do xhrGet: url, como manipular e os callbacks
     var xhrArgs = {
@@ -106,7 +111,7 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, o
         handleAs: "text",
         load: function(data) {
         	// chamando metodo de abertura de caixa de dialogo com o conteudo da url
-        	exibirDialogConteudo(dialogName, data, title, urlRedirect, urlRedirectHide, onLoadValues, errorMessage, errorTitle, errorElements);
+        	exibirDialogConteudo(dialogName, data, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements);
         },
         error: function(error) {
         	// mostrando erro

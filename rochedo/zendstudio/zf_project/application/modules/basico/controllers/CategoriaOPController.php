@@ -624,6 +624,6 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			// retornando o id objeto
 			return (Int) $objCategoriaLog->id;
 
-		throw new Exception(MSG_ERRO_CATEGORIA_LOG_EMAIL);
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG);
 	}
 }

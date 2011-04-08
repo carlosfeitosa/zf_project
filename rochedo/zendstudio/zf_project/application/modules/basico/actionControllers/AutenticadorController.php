@@ -46,21 +46,23 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 	 * 
 	 * @return null
 	 */
-	public function autenticarusuarioAction(Zend_Controller_Request_Http $userRequest = null)
+	public function autenticarusuarioAction()
 	{
-		// verificando se o request foi passado por parametro
-		if (isset($userRequest)) {
-
-		}
-		else
-			// recuperando a url para redirecionando
-			$urlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(Basico_OPController_UtilOPController::retornaUserRequest()->getParam('urlRedirect'));
+		// recuperando a url para redirecionando
+		$urlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(Basico_OPController_UtilOPController::retornaUserRequest()->getParam('urlRedirect'));
 
     	// carregando cabecalho da view
 		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
 
+		// recuperando o formulario de autenticacao
+		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
+		$actionFormularioAutenticao        = Basico_OPController_FormularioOPController::getInstance()->retornaActionFormularioPorNomeFormularioIdCategoria(FORM_AUTENTICACAO_USUARIO, $idCategoriaFormularioAutenticacao);
+
+		// tokenizando o action
+		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);
+
     	// enviando o script para o cliente
-    	echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect);
+    	echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect, $actionFormularioAutenticao);
 
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
@@ -176,8 +178,15 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$arrayElementosError[] = AUTH_IDENTITY_ARRAY_KEY;
 		$arrayElementosError[] = AUTH_CREDENTIAL_ARRAY_KEY;
 
+		// recuperando o formulario de autenticacao
+		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
+		$actionFormularioAutenticao        = Basico_OPController_FormularioOPController::getInstance()->retornaActionFormularioPorNomeFormularioIdCategoria(FORM_AUTENTICACAO_USUARIO, $idCategoriaFormularioAutenticacao);
+
+		// tokenizando o action
+		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);
+
 		// enviando scripts para o usuario
-		echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
+		echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
 
 		// carregando cabecalho da view
 		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));

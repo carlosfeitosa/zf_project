@@ -224,4 +224,30 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 		// retornando o resultado
 		return (count($arrayResultados) > 0);
 	}
+
+	/**
+	 * Retorna o action de um formulario cujo nome e categoria foram passados por parametro
+	 * 
+	 * @param String $nomeFormulario
+	 * @param Integer $idCategoria
+	 * 
+	 * @return String|null
+	 */
+	public function retornaActionFormularioPorNomeFormularioIdCategoria($nomeFormulario, $idCategoria)
+	{
+		// verificando se foi passado o nome do formulario e sua categoria
+		if ((!$nomeFormulario) and (!$idCategoria))
+			return null;
+
+		// recuperando o formulario
+		$objsFormulario = $this->_model->fetchList("nome = '{$nomeFormulario}' and id_categoria = {$idCategoria}", null, 1, 0);
+
+		// verificando se o formulario foi recuperado
+		if (isset($objsFormulario[0])) {
+			// retornando o action do formulario
+			return $objsFormulario[0]->formAction;
+		}
+
+		return null;
+	}
 }
