@@ -116,9 +116,17 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
 
     	// recuperando informacoes para log
-    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
     	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_INDISPONIVEL_ATRAVES_DE_URL;
+
+    	// verificando se existe usuario logado
+    	if ($idPessoaUsuarioLogado) {
+    		// recuperando o id do maior perfil do usuario logado
+    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
+    	} else {
+    		// recuperando o id de pessoa perfil sistema
+    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+    	}
 
 		// salvando log
 		Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);

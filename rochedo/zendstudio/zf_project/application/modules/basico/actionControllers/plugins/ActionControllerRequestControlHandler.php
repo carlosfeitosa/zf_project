@@ -146,7 +146,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 */
 	private function verificaRequestPossivel(Zend_Controller_Request_Abstract $request)
 	{
-		// verificando se o request nao eh do tipo decode token
+		// verificando se o request nao eh do tipo decode token, index da aplicacao, controlador de erros e checagem de ambiente de desenvolvimento
 		return !((!$this->verificaRequestIndexAplicacao($request)) and 
 		         (!$this->verificaRequestErrorAplicacao($request)) and 
 		         (!$this->verificaRequestTokenDecode($request)) and 
