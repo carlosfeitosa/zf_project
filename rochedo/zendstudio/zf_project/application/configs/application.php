@@ -18,9 +18,7 @@ define('APPLICATION_TITLE', 'ROCHEDO software');
 /*
  * SESSAO
  */
-define("QUANTIDADE_SEGUNDOS_10_MINUTOS", 600);
-define("QUANTIDADE_SEGUNDOS_20_MINUTOS", 1200);
-define("TEMPO_EXPIRACAO_SESSAO_SEGUNDOS", QUANTIDADE_SEGUNDOS_20_MINUTOS);
+define("TEMPO_EXPIRACAO_SESSAO_SEGUNDOS", 600);
 
 /*
  * LOG PATHS & FILENAMES
@@ -61,10 +59,10 @@ define("FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX", false);
  * E-MAIL CONFIG 
  */
 define("SMTP_SERVER_AUTH_METHOD", "login");
-define("SMTP_SERVER_HOST", "mail.rochedoproject.com");
-define("SMTP_SERVER_PORT", 587);
-define("SMTP_USERNAME", "nao.responda@rochedoproject.com");
-define("SMTP_PASSWORD", "@nao#rochedo#responda@");
+define("SMTP_SERVER_HOST", "smtp.rochedoframework.com");
+define("SMTP_SERVER_PORT", 25);
+define("SMTP_USERNAME", "nao.responda@rochedoframework.com");
+define("SMTP_PASSWORD", "nao#respond@");
 
 /*
  * CAPTCHA IMAGES/FONTS FOLDERS
