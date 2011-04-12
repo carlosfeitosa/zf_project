@@ -49,6 +49,17 @@ class Basico_OPController_ControleAcessoOPController
 	}
 
 	/**
+	 * Metodo para reinicializar a classe de controle de acesso
+	 * 
+	 * @return void
+	 */
+	public function reinicializar()
+	{
+		// chamando o contrutor
+		$this->__construct();
+	}
+
+	/**
 	 * Recupera a instancia do controlador Basico_OPController_ControleAcessoOPController
 	 * 
 	 * @return Basico_OPController_ControleAcessoOPController
@@ -350,6 +361,9 @@ class Basico_OPController_ControleAcessoOPController
 
 				// salvando a transacao
 				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+
+				// reinicializando o controle de acesso
+				$this->reinicializar();
 	
 				return true;
 				
