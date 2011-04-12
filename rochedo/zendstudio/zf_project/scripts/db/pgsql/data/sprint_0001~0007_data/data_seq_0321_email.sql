@@ -10,7 +10,7 @@
 INSERT INTO email (id_generico_proprietario, id_categoria, unique_id, email, validado, datahora_ultima_validacao, ativo, rowinfo)
 SELECT pp.id_pessoa AS id_generico_proprietario,
        (SELECT id FROM categoria WHERE nome = 'SISTEMA_EMAIL') AS id_categoria,
-       'SYSTEM_STARTUP' AS unique_id, 'nao.responda@rochedoproject.com' AS email, true AS validado, current_timestamp AS datahora_ultima_validacao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+       'SYSTEM_STARTUP' AS unique_id, 'nao.responda@rochedoframework.com' AS email, true AS validado, current_timestamp AS datahora_ultima_validacao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM pessoas_perfis pp
 LEFT JOIN perfil perf ON (pp.id_perfil = perf.id)
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
