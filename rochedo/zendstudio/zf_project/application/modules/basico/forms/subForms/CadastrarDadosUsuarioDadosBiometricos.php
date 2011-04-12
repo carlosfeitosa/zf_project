@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 04/04/2011 17:37:27
+* em: 12/04/2011 15:12:51
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 04/04/2011 13:15:07
+* @version    1: 12/04/2011 15:02:11
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -65,15 +65,15 @@
     if ($options!=null)
         $elements[4]->setValue($options->BasicoCadastrarDadosUsuarioDadosBiometricosPeso);
 
-    $elements[5] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio');
+    $elements[5] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo');
     $elements[5]->setOrder(5);
     $elements[5]->setRequired(false);
     $elements[5]->addFilters(array('StringTrim', 'StripTags'));
     $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-    $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINIO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINIO_AJUDA')) . '\', 1)</script></button>');
+    $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINEO') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosBiometricos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TIPO_SANGUINEO_AJUDA')) . '\', 1)</script></button>');
     if ($options!=null)
-        $elements[5]->setValue($options->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio);
+        $elements[5]->setValue($options->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo);
 
     $elements[6] = $this->createElement('SimpleTextarea', 'BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico', array('style' => 'width: 472px;'));
     $elements[6]->setOrder(6);

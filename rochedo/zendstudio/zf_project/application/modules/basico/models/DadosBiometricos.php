@@ -47,7 +47,7 @@ class Basico_Model_DadosBiometricos
 	/**
 	 * @var String
 	 */
-	protected $_tipoSanguinio;
+	protected $_tipoSanguineo;
 	
 	/**
 	 * @var String
@@ -215,25 +215,25 @@ class Basico_Model_DadosBiometricos
 	}
 	
     /**
-	* Set tipoSanguinio
+	* Set tipoSanguineo
 	* 
-	* @param String $tipoSanguinio 
+	* @param String $tipoSanguineo 
 	* @return Basico_Model_DadosBiometricos
 	*/
-	public function setTipoSanguinio($tipoSanguinio)
+	public function setTipoSanguineo($tipoSanguineo)
 	{
-		$this->_tipoSanguinio = (String) $tipoSanguinio;
+		$this->_tipoSanguineo = (String) $tipoSanguineo;
 		return $this;
 	}
 
 	/**
-	* Get tipoSanguinio
+	* Get tipoSanguineo
 	* 
 	* @return null|String
 	*/
-	public function getTipoSanguinio()
+	public function getTipoSanguineo()
 	{
-		return $this->_tipoSanguinio;
+		return $this->_tipoSanguineo;
 	}
 	
     /**

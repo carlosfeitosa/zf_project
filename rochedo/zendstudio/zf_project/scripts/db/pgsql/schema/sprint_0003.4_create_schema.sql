@@ -25,7 +25,7 @@ create table tipo_sanguineo (
 	id serial not null ,
 	nome character varying (200) not null ,
 	descricao character varying (200) not null ,
-	tipo_sanguineo character varying (10) not null ,
+	tipo_sanguineo character varying (20) not null ,
 	rowinfo character varying (2000) not null
 
 )

@@ -62,7 +62,7 @@ class Basico_Model_DadosBiometricosMapper
                 'id_raca'             => $object->getRaca(),
                 'altura'           => $object->getAltura(),
                 'peso'             => $object->getPeso(),
-                'tipo_sanguinio'   => $object->getTipoSanguinio(),
+                'tipo_sanguineo'   => $object->getTipoSanguineo(),
                 'historico_medico' => $object->getHistoricoMedico(),
                 'rowinfo'          => $object->getRowinfo(),
 
@@ -106,7 +106,7 @@ class Basico_Model_DadosBiometricosMapper
 				->setRaca($row->id_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
-				->setTipoSanguinio($row->tipo_sanguinio)
+				->setTipoSanguineo($row->tipo_sanguineo)
 				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo);
     }
@@ -129,7 +129,7 @@ class Basico_Model_DadosBiometricosMapper
 				->setRaca($row->id_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
-				->setTipoSanguinio($row->tipo_sanguinio)
+				->setTipoSanguineo($row->tipo_sanguineo)
 				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
@@ -156,7 +156,7 @@ class Basico_Model_DadosBiometricosMapper
 				->setRaca($row->id_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
-				->setTipoSanguinio($row->tipo_sanguinio)
+				->setTipoSanguineo($row->tipo_sanguineo)
 				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);

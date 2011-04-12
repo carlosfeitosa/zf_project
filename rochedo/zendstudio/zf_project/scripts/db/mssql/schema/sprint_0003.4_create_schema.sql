@@ -21,7 +21,7 @@ create table dbo.tipo_sanguineo (
 	id int identity (1, 1) not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	descricao varchar (200) collate latin1_general_ci_ai not null ,
-	tipo_sanguineo varchar (10) collate latin1_general_ci_ai not null ,
+	tipo_sanguineo varchar (20) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 
 ) on [primary];

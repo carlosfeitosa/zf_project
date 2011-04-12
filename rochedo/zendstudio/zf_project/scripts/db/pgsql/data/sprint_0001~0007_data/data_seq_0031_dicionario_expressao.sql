@@ -21,6 +21,13 @@
 */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SELECT_OPTION_NAO_DESEJO_INFORMAR' AS constante_textual, 'Não desejo informar' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'COR_OU_RACA_BRANCA' AS constante_textual, 'Branca' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -499,21 +506,21 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TIPO_SANGUINIO' AS constante_textual, 'Tipo sanguínio:' AS traducao
+SELECT c.id, 'FORM_FIELD_TIPO_SANGUINEO' AS constante_textual, 'Tipo sanguíneo:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TIPO_SANGUINIO_AJUDA' AS constante_textual, 'Selecione seu tipo sanguínio.' AS traducao
+SELECT c.id, 'FORM_FIELD_TIPO_SANGUINEO_AJUDA' AS constante_textual, 'Selecione seu tipo sanguíneo.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TIPO_SANGUINIO_HINT' AS constante_textual, 'Selecione seu tipo sanguínio.' AS traducao
+SELECT c.id, 'FORM_FIELD_TIPO_SANGUINEO_HINT' AS constante_textual, 'Selecione seu tipo sanguíneo.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -2714,6 +2721,13 @@ AND c.nome = 'pt-br';
 */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'SELECT_OPTION_NAO_DESEJO_INFORMAR' AS constante_textual, 'I wouldn''t like to inform' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'COR_OU_RACA_BRANCA' AS constante_textual, 'White' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -3191,21 +3205,21 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TIPO_SANGUINIO' AS constante_textual, 'Blood type:' AS traducao
+SELECT c.id, 'FORM_FIELD_TIPO_SANGUINEO' AS constante_textual, 'Blood type:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TIPO_SANGUINIO_AJUDA' AS constante_textual, 'Select your blood type.' AS traducao
+SELECT c.id, 'FORM_FIELD_TIPO_SANGUINEO_AJUDA' AS constante_textual, 'Select your blood type.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_TIPO_SANGUINIO_HINT' AS constante_textual, 'Select your blood type.' AS traducao
+SELECT c.id, 'FORM_FIELD_TIPO_SANGUINEO_HINT' AS constante_textual, 'Select your blood type.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

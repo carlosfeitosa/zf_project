@@ -31,3 +31,6 @@ VALUES ('O_POSITIVO', 'Tipo sanguineo O+', 'O+', 'SYSTEM_STARTUP');
 
 INSERT INTO tipo_sanguineo (nome, descricao, tipo_sanguineo,rowinfo)
 VALUES ('O_NEGATIVO', 'Tipo sanguineo O-', 'O-', 'SYSTEM_STARTUP');
+
+INSERT INTO tipo_sanguineo (nome, descricao, tipo_sanguineo,rowinfo)
+VALUES ('NAO_DESEJO_INFORMAR', 'Opção Não desejo informar', '@NAO_DESEJO_INFORMAR', 'SYSTEM_STARTUP');

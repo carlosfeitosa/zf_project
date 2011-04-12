@@ -20,8 +20,8 @@ WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TIPO_SANGUINIO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo sanguínio.' AS descricao,
-       'FORM_FIELD_TIPO_SANGUINIO_AJUDA' AS constante_textual_ajuda,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_TIPO_SANGUINEO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo tipo sanguíneo.' AS descricao,
+       'FORM_FIELD_TIPO_SANGUINEO_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

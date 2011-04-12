@@ -16,16 +16,17 @@ class Basico_OPController_TipoSanguineoOPController
 	 */
 	public static function retornaTipoSanguineoOptions()
 	{
-		// recuperando obj tipoSanguinio
+		// recuperando obj tipoSanguineo
 		$objTipoSanguineo = self::retornaNovoObjTipoSanguineo();
 		// recuperando todos os tipos sanguineos
 		$objTipoSanguineo = $objTipoSanguineo->fetchAll();
 		
+		// adicionando opção em branco
 		$arrayResult = array('' => '');
 		
 		if (count($objTipoSanguineo) > 0) {
 			foreach ($objTipoSanguineo as $tipoSanguineo) {
-				$arrayResult[$tipoSanguineo->id] = $tipoSanguineo->tipoSanguineo;
+				$arrayResult[$tipoSanguineo->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::getInstance()->retornaTraducao("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,$tipoSanguineo->tipoSanguineo);
 			}
 			
 			return $arrayResult;

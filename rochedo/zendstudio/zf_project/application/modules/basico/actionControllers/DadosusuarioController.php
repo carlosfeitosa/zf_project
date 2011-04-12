@@ -42,8 +42,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    // recuperando elementos do formulario DadosBiometricos
 	    $formDadosBiometricosElementos =  $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->getElements();
 	    
-	    // setando options do elemento tipoSanguinio
-	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->addMultiOptions(Basico_OPController_TipoSanguineoOPController::retornaTipoSanguineoOptions());
+	    // setando options do elemento TipoSanguineo
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo']->addMultiOptions(Basico_OPController_TipoSanguineoOPController::retornaTipoSanguineoOptions());
 	    
 	    // setando options do elemento sexo 
 	    $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
@@ -59,14 +59,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    else 
 	        $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo']->setValue(1);
 	        
-	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']->setValue("");    
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']->setValue($dadosBiometricos->raca);    
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']->setValue($dadosBiometricos->peso);
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']->setValue($dadosBiometricos->altura);
-	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->setValue($dadosBiometricos->tipoSanguinio);
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo']->setValue($dadosBiometricos->tipoSanguineo);
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']->setValue($dadosBiometricos->historicoMedico);
 	    
-	    $formDadosUsuario->setLegend("Teste Legal");
-
 	    // passando o formulario para a view
 		$this->view->form = $formDadosUsuario;
 		
@@ -87,8 +85,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando elementos do formulario DadosBiometricos
 	    $subFormDadosBiometricos =  $formSubmissao->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
 	    
-	    // setando options do elemento tipoSanguinio
-	    $subFormDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio
+	    // setando options do elemento TipoSanguineo
+	    $subFormDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo
 	                            ->addMultiOptions(Basico_OPController_TipoSanguineoOPController::retornaTipoSanguineoOptions());
 	    
 	    // setando options do elemento sexo 
@@ -132,7 +130,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    $novoDadosBiometricos->setAltura($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']);
     	$novoDadosBiometricos->setPeso($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']);
     	$novoDadosBiometricos->setRaca($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']);
-    	$novoDadosBiometricos->setTipoSanguinio($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']);
+    	$novoDadosBiometricos->setTipoSanguineo($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo']);
     	$novoDadosBiometricos->setHistoricoMedico($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']);
     	
     	// recuperando a versao do objeto dados biometricos
