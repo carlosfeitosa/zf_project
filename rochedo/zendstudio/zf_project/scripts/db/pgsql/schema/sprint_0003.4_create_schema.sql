@@ -1,5 +1,5 @@
 /*
-* SCRIPT DE DROP DAS TABELAS DO SPRINT 0003.3
+* SCRIPT DE DROP DAS TABELAS DO SPRINT 0003.4
 * 
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: JOÃO VASCONCELOS  (joao.vasconcelos@rochedoproject.com)
@@ -21,9 +21,24 @@ with (
 );
 alter table raca owner to rochedo_user;
 
+create table tipo_sanguineo (
+	id serial not null ,
+	nome character varying (200) not null ,
+	descricao character varying (200) not null ,
+	tipo_sanguineo character varying (10) not null ,
+	rowinfo character varying (2000) not null
+
+)
+with (
+  oids = false
+);
+alter table tipo_sanguineo owner to rochedo_user;
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 alter table raca add constraint pk_raca primary key (id);
+
+alter table tipo_sanguineo add constraint pk_tipo_sanguineo primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -35,7 +50,11 @@ alter table raca add constraint pk_raca primary key (id);
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
-
+alter table tipo_sanguineo
+  add constraint ix_tipo_sanguineo_nome unique (nome);
+  
+alter table tipo_sanguineo
+  add constraint ix_tipo_sanguineo_tipo_sanguineo unique (tipo_sanguineo);
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */

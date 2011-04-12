@@ -393,26 +393,14 @@ create index ix_dicionario_expressao_constante_textual
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table tipo_categoria
-  add constraint un_tipo_categoria_nome unique (nome);
-
 alter table categoria
-  add constraint un_categoria_tipo_categoria_nome unique (id_tipo_categoria, nome);
+  add constraint ix_categoria_tipo_categoria_nome unique (id_tipo_categoria, nome);
 
 alter table modulo
   add constraint ix_modulo_categoria_nome unique (id_categoria, nome);
 
 alter table perfil
-  add constraint un_perfil_categoria_nome unique (id_categoria, nome);
-
-alter table email
-  add constraint un_email_unique_id unique (unique_id);
-
-alter table email
-  add constraint un_email_email unique (email);
-
-alter table login
-  add constraint un_login_login unique (login);
+  add constraint ix_perfil_categoria_nome unique (id_categoria, nome);
 
 alter table pessoas_perfis
   add constraint ix_pessoas_perfis unique (id_pessoa, id_perfil);

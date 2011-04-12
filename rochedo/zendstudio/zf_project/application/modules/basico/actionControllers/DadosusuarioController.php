@@ -43,7 +43,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    $formDadosBiometricosElementos =  $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->getElements();
 	    
 	    // setando options do elemento tipoSanguinio
-	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->addMultiOptions(Basico_Model_TipoSanguinio::retornaTiposSanguinios());
+	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->addMultiOptions(Basico_OPController_TipoSanguineoOPController::retornaTipoSanguineoOptions());
 	    
 	    // setando options do elemento sexo 
 	    $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->BasicoCadastrarDadosUsuarioDadosBiometricosSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
@@ -65,10 +65,90 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']->setValue($dadosBiometricos->tipoSanguinio);
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']->setValue($dadosBiometricos->historicoMedico);
 	    
+	    $formDadosUsuario->setLegend("Teste Legal");
+
 	    // passando o formulario para a view
 		$this->view->form = $formDadosUsuario;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
+		
+    }
+    
+    /**
+     * Salva os dados do usuario
+     * 
+     */
+    public function salvarAction()
+    {
+    	
+    	$formSubmissao = new Basico_Form_CadastrarDadosUsuario();
+    	
+    	// recuperando elementos do formulario DadosBiometricos
+	    $subFormDadosBiometricos =  $formSubmissao->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
+	    
+	    // setando options do elemento tipoSanguinio
+	    $subFormDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio
+	                            ->addMultiOptions(Basico_OPController_TipoSanguineoOPController::retornaTipoSanguineoOptions());
+	    
+	    // setando options do elemento sexo 
+	    $subFormDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo
+	                            ->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 
+	                                                    1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+	    
+	    // setando options do elemento raca
+	    $subFormDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
+	                            ->addMultiOptions(Basico_OPController_RacaOPController::retornaArrayRacasOptions());
+	    
+	    // setando options do elemento sexo 
+	    $subFormDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo
+	                            ->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 
+	                                                    1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+
+	    // validando o formulario                        
+    	if (!$formSubmissao->isValid($this->getRequest()->getPost())) {
+    		$this->view->form = $formSubmissao;
+    		$this->_helper->Renderizar->renderizar();
+    		return;
+    	}
+    	
+    	// recuperando array de campos e valores do formulario submetido
+    	$arrayFormPostValues = $this->getRequest()->getPost();
+    	
+    	//var_dump($arrayFormPostValues); exit;
+    	// recuperando o id da pessoa logada
+    	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
+    	
+    	// recuperando o objeto dados biometricos da pessoa
+    	$novoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
+    	
+    	// carregando valores no objeto dadosBiometricos
+    	// carregando o radio button do sexo
+	    if ($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'] == 0)
+	        $novoDadosBiometricos->setSexo(FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO);
+	    else 
+	        $novoDadosBiometricos->setSexo(FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO);
+    	
+	    $novoDadosBiometricos->setAltura($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']);
+    	$novoDadosBiometricos->setPeso($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']);
+    	$novoDadosBiometricos->setRaca($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']);
+    	$novoDadosBiometricos->setTipoSanguinio($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguinio']);
+    	$novoDadosBiometricos->setHistoricoMedico($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']);
+    	
+    	// recuperando a versao do objeto dados biometricos
+    	$ultimaVersaoDadosBiometricos = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($novoDadosBiometricos);
+    	
+    	// recuperando o objeto PessoaPerfil UsuarioValidado do usuario logado
+    	$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa);
+    	
+    	//var_dump($novoDadosBiometricos); exit;
+    	
+    	// salvando o objeto dadosBiometricos
+    	Basico_OPController_DadosBiometricosOPController::getInstance()->salvarObjeto($novoDadosBiometricos, $ultimaVersaoDadosBiometricos, $idPessoaPerfilCriador->id);
+    	
+    	//renderizando a view
+    	$this->view->form = $formSubmissao;
+    	$this->_helper->Renderizar->renderizar();
+    	
     }
 }

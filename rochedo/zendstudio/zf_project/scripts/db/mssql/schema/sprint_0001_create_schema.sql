@@ -310,13 +310,6 @@ create index ix_dicionario_expressao_constante_textual on dbo.dicionario_express
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table dbo.categoria add
-    constraint ix_categoria_tipo_categoria_nome unique nonclustered
-    (
-        id_tipo_categoria,
-        nome
-    ) on [primary];
-
 alter table dbo.modulo add
 	constraint ix_modulo_categoria_nome unique nonclustered
 	(
