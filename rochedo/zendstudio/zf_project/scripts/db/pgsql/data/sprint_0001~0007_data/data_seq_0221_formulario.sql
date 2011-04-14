@@ -39,10 +39,17 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
 		SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
 		(SELECT f.id
          FROM formulario f
          WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
@@ -91,10 +98,17 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES';
 
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
-SELECT c.id AS id_categoria, 
+SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
    	   (SELECT f.id
         FROM formulario f
         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
@@ -112,10 +126,17 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PROFISSIONAIS';
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
-SELECT c.id AS id_categoria, 
+SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
    	   (SELECT f.id
         FROM formulario f
         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
@@ -133,10 +154,17 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_BIOMETRICOS';
 
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
-SELECT c.id AS id_categoria, 
+SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
    	   (SELECT f.id
         FROM formulario f
         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
@@ -391,12 +419,20 @@ AND c.nome = 'FORMULARIO_INPUT_LOGIN';
 */
 
 -- aba de dados pessoais
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
-        SELECT c.id AS id_categoria,(SELECT f.id
-                                     FROM formulario f
-                                     WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
+        SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        (SELECT f.id
+             FROM formulario f
+             WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
        'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS' AS nome,
        'Formulário de submissão de dados pessoais.' AS descricao, 
        'SUBFORM_TABTITLE_DADOS_PESSOAIS' AS constante_textual_titulo,
@@ -509,9 +545,16 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAI
 */
 
 -- aba de informações bancárias
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_attribs, ordem, rowinfo)
         SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
         (SELECT f.id
         FROM formulario f
         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
@@ -529,10 +572,17 @@ AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 -------------
 
 -- dados usuario - aba informacoes bancarias - sub aba dados bancarios
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
 						constante_textual_titulo, form_name, form_method, form_action,
 						form_attribs, ordem, rowinfo)
-        SELECT c.id AS id_categoria, 
+        SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
         (SELECT f.id
         FROM formulario f
         WHERE f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS') AS id_formulario_pai, 
@@ -571,12 +621,20 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANC
 
 
 -- dados usuario - informacoes bancarias - sub movimentacao financeira
-INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
+INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
 						constante_textual_titulo, form_name, form_method, form_action,
 						form_attribs, ordem, rowinfo)
-SELECT c.id AS id_categoria, (SELECT f.id
-        		                     FROM formulario f
-                		             WHERE f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS'), 
+		SELECT c.id AS id_categoria,
+		(SELECT d.id
+	          FROM decorator d
+	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
+	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          WHERE t.nome = 'FORMULARIO'
+	          AND c.nome = 'FORMULARIO_DECORATOR'
+	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+		(SELECT f.id
+             FROM formulario f
+             WHERE f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS'), 
        'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS_MOVIMENTACAO_FINANCEIRA' AS nome,
        'Formulário de cadastro das movimentações financeiras' AS descricao,
        'SUBFORM_TABTITLE_INFORMACOES_BANCARIAS_MOVIMENTACAO_FINANCEIRA' AS constante_textual_titulo,

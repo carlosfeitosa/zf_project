@@ -122,7 +122,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINIO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -2556,7 +2556,7 @@ SELECT (SELECT f.id
         
 -- formulario - cadastro usuario
 -- dados pessoais - pais nascimento - FilteringSelect
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -2578,12 +2578,15 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        (SELECT g.id
+       	FROM grupo_formulario_elemento g
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
 
 -- formulario - cadastro usuario
 -- dados pessoais - uf nascimento - FilteringSelect
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -2603,14 +2606,17 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        (SELECT g.id
+       	FROM grupo_formulario_elemento g
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
         
 -- formulario - cadastro usuario
 -- dados pessoais - uf nascimento - ValidationTextBox
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -2630,14 +2636,17 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        (SELECT g.id
+       	FROM grupo_formulario_elemento g
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------        
 
 -- formulario - cadastro usuario
 -- dados pessoais - municipio nascimento - FilteringSelect
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -2659,12 +2668,15 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        (SELECT g.id
+       	FROM grupo_formulario_elemento g
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
  
 -- formulario - cadastro usuario
 -- dados pessoais - municipio nascimento - ValidationTextBox
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -2684,14 +2696,17 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        (SELECT g.id
+       	FROM grupo_formulario_elemento g
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 ------------- 
 
 -- formulario - cadastro usuario
 -- dados pessoais - nome pai - ValidationTextBox
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -2711,14 +2726,17 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        (SELECT g.id
+       	FROM grupo_formulario_elemento g
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_FILIACAO') AS id_grupo_formulario_elemento,
         false AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
         
 -- formulario - cadastro usuario
 -- dados pessoais - nome mae - ValidationTextBox
-INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -2738,8 +2756,11 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        (SELECT g.id
+       	FROM grupo_formulario_elemento g
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_FILIACAO') AS id_grupo_formulario_elemento,
         false AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
         
@@ -2765,11 +2786,11 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         (SELECT g.id
        	FROM grupo_formulario_elemento g
-       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO') AS id_grupo_formulario_elemento,
+       	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS') AS id_grupo_formulario_elemento,
         false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 -------------
 
@@ -2987,8 +3008,8 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO') AS id_grupo_formulario_elemento,
@@ -3209,8 +3230,8 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         (SELECT g.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO') AS id_grupo_formulario_elemento,

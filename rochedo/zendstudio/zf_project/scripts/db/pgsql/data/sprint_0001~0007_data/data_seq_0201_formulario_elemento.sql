@@ -64,7 +64,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
-                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_TIPO_SANGUINEO_FILTERING_SELECT') AS id_ajuda,
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_TIPO_SANGUINIO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -86,10 +86,10 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO' AS nome, 'Elemento campo tipo sanguineo.' AS descricao,
-                              'FORM_FIELD_TIPO_SANGUINEO' AS constante_textual_label,
-                              'tipoSanguineo' AS element_name, NULL AS element_attribs,
-                              '''tipoSanguineo''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINIO' AS nome, 'Elemento campo tipo sanguinio.' AS descricao,
+                              'FORM_FIELD_TIPO_SANGUINIO' AS constante_textual_label,
+                              'tipoSanguinio' AS element_name, NULL AS element_attribs,
+                              '''tipoSanguinio''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

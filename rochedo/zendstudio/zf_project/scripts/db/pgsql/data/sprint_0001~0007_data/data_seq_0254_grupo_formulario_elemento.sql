@@ -51,6 +51,26 @@ VALUES ('DADOS_USUARIO_DADOS_ACADEMICOS_ORIENTACOES',
 *  
 * DADOS PESSOAIS
 */
+
+-- agrupamento dos dados do nascimento
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO', 
+        'Grupo que mantêm os dados sobre dados do nascimento',
+		'FORM_DISPLAY_GROUP_LABEL_DADOS_NASCIMENTO', 'SYSTEM_STARTUP');
+
+-- agrupamento da filiacao
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('DADOS_USUARIO_DADOS_PESSOAIS_FILIACAO', 
+        'Grupo que mantêm os dados sobre dados do nascimento',
+		'FORM_DISPLAY_GROUP_LABEL_FILIACAO', 'SYSTEM_STARTUP');
+
+-- agrupamento dos documentos pessoais
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('DADOS_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS', 
+        'Grupo que mantêm os dados sobre dados do nascimento',
+		'FORM_DISPLAY_GROUP_LABEL_DOCUMENTOS_PESSOAIS', 'SYSTEM_STARTUP');
+
+-- agrupamento dos botões de abertudo dos formularios documentos, telefones, emails, websites, enderecos
 INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
 VALUES ('DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO', 
         'Grupo que mantêm os dados sobre informações de contato pessoais',
