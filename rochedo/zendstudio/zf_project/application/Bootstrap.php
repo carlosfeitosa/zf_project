@@ -23,13 +23,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	 * @var Basico_LogController
 	 */
     public $logger;
-    
+
     /**
 	* recebe a instância do controlador Token.
 	* @var Basico_TokenController
 	*/
     public $tokenizer;
-    
+
     /**
      * Inicializa a aplicação.
      * @return void
@@ -72,13 +72,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      * @return Zend_View $view
      */
     protected function _initView()
-    {   
+    {
+    	// carregando a view   
         $view = new Zend_View();
-        
+
         // Localiza os helpers dos modulos e adiciona os paths caso eles existam
         if (file_exists(BASICO_VIEW_HELPERS_PATH))
             $view->addHelperPath(BASICO_VIEW_HELPERS_PATH, 'Basico_View_Helper');
 
+        // inicializando a view
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
         Zend_Dojo::enableView($view);
@@ -86,6 +88,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $viewRender = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRender->setView($view);
 
+        // retornando a view
         return $view;
     }
 }
