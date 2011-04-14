@@ -9,6 +9,6 @@
 */
 if object_id('tipo_sanguineo') is not null
 begin
-drop table tipo_sanguineo;
+drop table tipo_sanguineo
 end
 ;
