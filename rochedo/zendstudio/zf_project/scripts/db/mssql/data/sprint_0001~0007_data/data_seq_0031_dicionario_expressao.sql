@@ -21,7 +21,7 @@
 */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SELECT_OPTION_NAO_DESEJO_INFOMAR' AS constante_textual, 'Não desejo informar' AS traducao
+SELECT c.id, 'SELECT_OPTION_NAO_DESEJO_INFORMAR' AS constante_textual, 'Não desejo informar' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -2720,7 +2720,7 @@ AND c.nome = 'pt-br';
 */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SELECT_OPTION_NAO_DESEJO_INFOMAR' AS constante_textual, 'I wouldn''t like to inform' AS traducao
+SELECT c.id, 'SELECT_OPTION_NAO_DESEJO_INFORMAR' AS constante_textual, 'I wouldn''t like to inform' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
