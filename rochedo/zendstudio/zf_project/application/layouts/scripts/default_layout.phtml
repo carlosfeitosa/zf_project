@@ -3,17 +3,20 @@
  * Layout padrão do sistema.
  */
 
+// setando variaveis
 $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
 $applicationHttpImagesHome = $this->baseUrl('/images/');
 $applicationHttpCSSHome = $this->baseUrl('/css/global.css');
 $applicationHttpBaseUrl = $this->baseUrl();
 
+// setando cabecalho
 $this->doctype('XHTML1_STRICT');
 $this->headTitle(APPLICATION_NAME_AND_VERSION);
 $this->headTitle()->setSeparator(' - ');
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
+// verificando ambiente
 if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
 {
 	// recuperando o request do usuario
