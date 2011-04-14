@@ -60,7 +60,7 @@ define("FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX", false);
  */
 define("SMTP_SERVER_AUTH_METHOD", "login");
 define("SMTP_SERVER_HOST", "smtp.rochedoframework.com");
-define("SMTP_SERVER_PORT", 25);
+define("SMTP_SERVER_PORT", 587);
 define("SMTP_USERNAME", "nao.responda@rochedoframework.com");
 define("SMTP_PASSWORD", "nao#respond@");
 
