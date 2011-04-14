@@ -11,7 +11,8 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
 	 * @return Zend_Application_Module_Autoloader
 	 */
     protected function _initAutoload()
-    {   
+    {
+    	// instanciando o autoloader
         $autoloader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'Basico',
             'basePath'  => dirname(__FILE__),
