@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 12/04/2011 15:12:53
+* em: 14/04/2011 17:01:23
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 12/04/2011 15:02:11
+* @version    1: 14/04/2011 16:57:08
 */
     $basicoCadastrarDadosUsuarioPerfilSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -22,6 +22,7 @@
     $basicoCadastrarDadosUsuarioPerfilSubForm->setName('CadastrarDadosUsuarioPerfil');
     $basicoCadastrarDadosUsuarioPerfilSubForm->setMethod('post');
     $basicoCadastrarDadosUsuarioPerfilSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_PERFIL'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_PERFIL')));
+    $basicoCadastrarDadosUsuarioPerfilSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioPerfilSubForm->setOrder(7);
 
     // Criando array de elementos.

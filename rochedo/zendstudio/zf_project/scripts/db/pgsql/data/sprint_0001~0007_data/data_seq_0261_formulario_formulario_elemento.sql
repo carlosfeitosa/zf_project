@@ -122,7 +122,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINIO') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)

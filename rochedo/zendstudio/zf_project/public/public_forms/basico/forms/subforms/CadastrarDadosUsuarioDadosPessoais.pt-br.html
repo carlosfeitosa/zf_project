@@ -1,15 +1,17 @@
-<div name="CadastrarDadosUsuarioDadosPessoais" method="post" title="DADOS PESSOAIS" id="CadastrarDadosUsuarioDadosPessoais-ContentPane" dojoType="dijit.layout.ContentPane"><dl>
+<form id="CadastrarDadosUsuarioDadosPessoais" method="post" title="DADOS PESSOAIS" legend="DADOS PESSOAIS" dojoType="dijit.form.Form"><dl>
+<div id="float-left-clear-both"><fieldset id="fieldset-dados_usuario_dados_pessoais_dados_nascimento"><legend>Dados do nascimento</legend>
+<dl>
 <div id="float-left-clear-both"><label class="optional">País de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Selecione o seu País de nascimento.', 1)</script></button></label>
 <dd>
 <select name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento" required="false" dojoType="dijit.form.FilteringSelect">
     
 </select></dd></div>
-<div id="float-left"><label class="optional">UF de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Selecione a sua UF de nascimento.', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="optional">UF de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Selecione a sua UF de nascimento.', 1)</script></button></label>
 <dd>
 <select name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento" required="false" dojoType="dijit.form.FilteringSelect">
     
 </select></dd></div>
-<div id="float-left"><label class="optional">UF de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite a sua UF de nascimento.', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="optional">UF de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite a sua UF de nascimento.', 1)</script></button></label>
 <dd>
 <input id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxUfNascimento" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisTextboxUfNascimento]" value="" type="text" invalidMessage="Digite aqui a sua UF de nascimento." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
 <div id="float-left-clear-both"><label class="optional">Município de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Selecione o seu Município de nascimento.', 1)</script></button></label>
@@ -17,26 +19,30 @@
 <select name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento" required="false" dojoType="dijit.form.FilteringSelect">
     
 </select></dd></div>
-<div id="float-left"><label class="optional">Município de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite a seu Município de nascimento.', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="optional">Município de nascimento.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite a seu Município de nascimento.', 1)</script></button></label>
 <dd>
-<input id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento]" value="" type="text" invalidMessage="Digite aqui seu Município de nascimento." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
-<div id="float-left-clear-both"><label class="optional">Nome do pai.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite a nome do seu pai.', 1)</script></button></label>
+<input id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento]" value="" type="text" invalidMessage="Digite aqui seu Município de nascimento." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div></dl></fieldset></div>
+<div id="float-left"><fieldset id="fieldset-dados_usuario_dados_pessoais_filiacao"><legend>Filiação</legend>
+<dl>
+<div id="float-left"><label class="optional">Nome do pai.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite a nome do seu pai.', 1)</script></button></label>
 <dd>
 <input id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomePai" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomePai]" value="" type="text" invalidMessage="Digite aqui o nome do seu pai." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
-<div id="float-left"><label class="optional">Nome da mãe.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite o nome da sua mãe.', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="optional">Nome da mãe.&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarDadosUsuarioDadosPessoais', 'Ajuda', 'Digite o nome da sua mãe.', 1)</script></button></label>
 <dd>
-<input id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae]" value="" type="text" invalidMessage="Digite aqui o nome da sua mãe." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
-<div id="float-left-clear-both"><fieldset id="fieldset-dados_usuario_dados_pessoais_informacoes_contato"><legend>Informações de contato:</legend>
+<input id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae]" value="" type="text" invalidMessage="Digite aqui o nome da sua mãe." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div></dl></fieldset></div>
+<div id="float-left"><fieldset id="fieldset-dados_usuario_dados_pessoais_documentos_pessoais"><legend>Documentos pessoais</legend>
 <dl>
-<div id="float-left-clear-both">
-<button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo1]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo1" type="button" label="Documentos pessoais" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais.pt-br.html", "Documentos pessoais")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo1</button></div>
+<div id="float-left">
+<button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo1]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo1" type="button" label="Documentos pessoais" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais.pt-br.html", "Documentos pessoais")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo1</button></div></dl></fieldset></div>
+<div id="float-left"><fieldset id="fieldset-dados_usuario_dados_pessoais_informacoes_contato"><legend>Informações de contato</legend>
+<dl>
 <div id="float-left">
 <button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo2]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo2" type="button" label="Telefones pessoais" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisTelefonesPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisTelefonesPessoais.pt-br.html", "Telefones pessoais")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo2</button></div>
-<div id="float-left">
+<div id="float-left-clear-both">
 <button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo3]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo3" type="button" label="Emails pessoais" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisEmailsPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisEmailsPessoais.pt-br.html", "Emails pessoais")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo3</button></div>
 <div id="float-left">
 <button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo4]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo4" type="button" label="Websites pessoais" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisWebsitesPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisWebsitesPessoais.pt-br.html", "Websites pessoais")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo4</button></div>
-<div id="float-left">
+<div id="float-left-clear-both">
 <button name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5]" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5" type="button" label="Endereços pessoais" onClick='exibirDialogUrl("Basico_Form_CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais", "/rochedo_project/public/public_forms/basico/forms/CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais.pt-br.html", "Endereços pessoais")' required="false" dojoType="dijit.form.Button">BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo5</button></div></dl></fieldset></div>
 <dd id="BasicoCadastrarDadosUsuarioDadosPessoaisCsrf-element">
-<input type="hidden" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisCsrf]" value="0018c01a20cace4e190977ce24bfce0a" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisCsrf"></dd></dl></div>
+<input type="hidden" name="CadastrarDadosUsuarioDadosPessoais[BasicoCadastrarDadosUsuarioDadosPessoaisCsrf]" value="4e6971ab6077ad5a2d0116525f16a777" id="CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisCsrf"></dd></dl></form>
