@@ -630,8 +630,10 @@ class Basico_OPController_GeradorFormularioOPController
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_METHOD]                            = FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');" . QUEBRA_DE_LINHA;
 
         // verificando se o formulario possui acao
-        if ($objFormulario->formAction)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                            = FORM_GERADOR_FORM_SETACTION . "('{$baseUrl}{$objFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        if ($objFormulario->formAction) {
+        	// montando o php para setar o action do form
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                            = FORM_GERADOR_FORM_SET_ENCRYPTED_ACTION . "('{$baseUrl}{$objFormulario->formAction}'));" . QUEBRA_DE_LINHA;
+        }
 
         // verificando se o formulario possui atributos
         if ($objFormulario->formAttribs){

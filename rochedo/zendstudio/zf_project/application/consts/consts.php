@@ -363,6 +363,7 @@ define("FORM_GERADOR_THIS_INSTANCE", '$this');
 define("FORM_GERADOR_FORM_SETNAME", '$this->setName');
 define("FORM_GERADOR_FORM_SETMETHOD", '$this->setMethod');
 define("FORM_GERADOR_FORM_SETACTION", '$this->setAction');
+define("FORM_GERADOR_FORM_SET_ENCRYPTED_ACTION", '$this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl');
 define("FORM_GERADOR_FORM_ADDATTRIBS", '$this->addAttribs');
 define("FORM_GERADOR_FORM_SETDECORATORS", '$this->setDecorators');
 define("FORM_GERADOR_FORM_ADDELEMENTS", '$this->addElements');

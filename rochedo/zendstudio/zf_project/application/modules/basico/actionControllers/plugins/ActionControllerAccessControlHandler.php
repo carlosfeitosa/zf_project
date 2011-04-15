@@ -60,8 +60,14 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				$paramsRequest     = $request->getParams();
 				$sessaoExpirada    = (Basico_OPController_LoginOPController::retornaLoginUsuarioSessao() !== null);
 
-				// montando a url atual para caso o login seja efetuado com sucesso
-				$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($paramsRequest, null, true); 
+				// verificando se a sessao expirou, para redirecionar o usuario para index da aplicacao no caso de sucesso
+				if ($sessaoExpirada) {
+					// montando a url para redirecionar o usuario para o index da aplicacao
+					$requestUrlRedirect = Basico_OPController_UtilOPController::retornaBaseUrl();
+				} else {
+					// montando a url atual para caso o login seja efetuado com sucesso
+					$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($paramsRequest, null, true);
+				}
 
 				// configurando variaveis para request de autenticacao
 				$moduleAutenticador     = 'basico';
