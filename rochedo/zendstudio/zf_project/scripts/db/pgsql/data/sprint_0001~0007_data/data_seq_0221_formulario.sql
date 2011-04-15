@@ -21,7 +21,7 @@
 
 /* FORMULARIO */
 
-INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, form_method, form_action, form_attribs, rowinfo)
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -31,8 +31,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
        'FORM_DADOS_USUARIO' AS nome,
        'Formulário de cadastro do usuário validado.' AS descricao,
-       'CadastrarDadosUsuario' AS form_name, 'post' as form_method, '/basico/dadosusuario/salvar' as form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
+       'CadastrarDadosUsuario' AS form_name,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

@@ -40,7 +40,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_TAB_CONTAINER1' AS nome, 'Decorator para submissão de sub-formulários (em formato Abas).' AS descricao,
        '''FormElements'',
                 array(''TabContainer'', array(''id'' => ''TabContainer'', ''style'' => ''width: 850px; height: 430px; top: 10px; position: relative; z-index: 3;'',
-                      ''dijitParams'' => array(''tabPosition'' => ''top''),)), ''DijitForm''' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+                      ''dijitParams'' => array(''tabPosition'' => ''top''),))' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
