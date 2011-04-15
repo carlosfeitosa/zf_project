@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 04/04/2011 17:37:38
+* em: 15/04/2011 11:47:28
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 04/04/2011 13:15:07
+* @version    1: 15/04/2011 11:38:26
 */
 class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
 {
@@ -43,7 +43,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_TIPO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_TIPO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
             $elements[1]->setValue($options->BasicoCadastrarEnderecoEnderecoTipo);
 
@@ -53,7 +53,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_PAIS_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_PAIS_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
             $elements[2]->setValue($options->BasicoCadastrarEnderecoEnderecoPais);
 
@@ -63,7 +63,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[3]->addFilters(array('StringTrim', 'StripTags'));
         $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+        $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
             $elements[3]->setValue($options->BasicoCadastrarEnderecoEnderecoUf);
 
@@ -73,7 +73,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[4]->addFilters(array('StringTrim', 'StripTags'));
         $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[4]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_UF_TEXT_BOX_HINT'));
         if ($options!=null)
             $elements[4]->setValue($options->BasicoCadastrarEnderecoEnderecoUfTextBox);
@@ -84,7 +84,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[5]->addFilters(array('StringTrim', 'StripTags'));
         $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[5]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+        $elements[5]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if ($options!=null)
             $elements[5]->setValue($options->BasicoCadastrarEnderecoEnderecoMunicipio);
 
@@ -94,7 +94,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[6]->addFilters(array('StringTrim', 'StripTags'));
         $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[6]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[6]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[6]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_MUNICIPIO_TEXT_BOX_HINT'));
         if ($options!=null)
             $elements[6]->setValue($options->BasicoCadastrarEnderecoEnderecoMunicipioTextBox);
@@ -105,7 +105,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[7]->addFilters(array('StringTrim', 'StripTags'));
         $elements[7]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[7]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[7]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[7]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[7]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_CEP_TEXT_BOX_HINT'));
         if ($options!=null)
             $elements[7]->setValue($options->BasicoCadastrarEnderecoEnderecoCep);
@@ -116,7 +116,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[8]->addFilters(array('StringTrim', 'StripTags'));
         $elements[8]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[8]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[8]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[8]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[8]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_LOGRADOURO_TEXT_BOX_HINT'));
         if ($options!=null)
             $elements[8]->setValue($options->BasicoCadastrarEnderecoEnderecoLogradouro);
@@ -127,7 +127,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[9]->addFilters(array('StringTrim', 'StripTags'));
         $elements[9]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[9]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[9]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[9]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[9]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_NUMERO_TEXT_BOX_HINT'));
         if ($options!=null)
             $elements[9]->setValue($options->BasicoCadastrarEnderecoEnderecoNumero);
@@ -138,7 +138,7 @@ class Basico_Form_CadastrarEndereco extends Zend_Dojo_Form
         $elements[10]->addFilters(array('StringTrim', 'StripTags'));
         $elements[10]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[10]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[10]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[10]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEndereco\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[10]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_HINT'));
         if ($options!=null)
             $elements[10]->setValue($options->BasicoCadastrarEnderecoEnderecoComplemento);

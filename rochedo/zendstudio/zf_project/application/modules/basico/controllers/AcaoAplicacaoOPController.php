@@ -180,6 +180,19 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	}
 
 	/**
+	 * Verifica se o request esta relacionado a acao desautenticausuario do controlador de autenticacao
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaAcaoDesautenticarUsuarioAutenticadorControllerPorRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando resultado da verificacao
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'autenticador') and ($request->getActionName() === 'desautenticausuario'));
+	}
+
+	/**
 	 * Salva o objeto acao aplicacao no banco de dados
 	 * 
 	 * (non-PHPdoc)

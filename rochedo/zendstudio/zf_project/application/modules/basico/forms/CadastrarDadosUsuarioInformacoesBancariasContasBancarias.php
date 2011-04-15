@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 04/04/2011 17:37:37
+* em: 15/04/2011 11:47:27
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 04/04/2011 13:15:07
+* @version    1: 15/04/2011 11:38:26
 */
 class Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias extends Zend_Dojo_Form
 {
