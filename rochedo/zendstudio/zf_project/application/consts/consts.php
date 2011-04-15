@@ -463,7 +463,7 @@ define("FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME", "@nomeFo
 define("FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_TITLE_DIALOG", "@tituloForm");
 define("FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_OFFSET", "@offset");
 
-define("FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG", "<button dojoType=\"dijit.form.Button\" type=\"button\">");
+define("FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG", "<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">");
 define("FORM_GERADOR_AJUDA_BUTTON_END_TAG", "</button>");
 
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG", "<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">");
