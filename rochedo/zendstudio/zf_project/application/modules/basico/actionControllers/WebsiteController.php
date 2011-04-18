@@ -6,19 +6,13 @@
  */
 
 class Basico_WebsiteController extends Zend_Controller_Action
-{	
-    /**
-	* @var object
-	*/    
-	private $request;
-	
+{
     /**
 	 * Inicializa controlador website 
 	 */
 	public function init()
     {
-    	// recuperando requisicao
-        $this->request = Zend_Controller_Front::getInstance()->getRequest();
+		return;
     }
 	
    /**

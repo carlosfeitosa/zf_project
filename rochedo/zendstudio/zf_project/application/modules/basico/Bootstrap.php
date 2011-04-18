@@ -61,9 +61,9 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
 
 		// registrando o plugin de log de acao de controladores
 		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerLogHandler());
-		// registrando o plugin de controle de acesso de acao de controladores
-		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerAccessControlHandler());
 		// registrando o plugin de controle de request
 		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerRequestControlHandler());
+		// registrando o plugin de controle de acesso de acao de controladores
+		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerAccessControlHandler());
     }
 }
