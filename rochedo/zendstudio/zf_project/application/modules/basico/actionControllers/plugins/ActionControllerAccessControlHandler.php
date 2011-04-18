@@ -35,6 +35,10 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	 */
 	public static function verificaAcessoRequest(Zend_Controller_Request_Abstract $request)
 	{
+		// verificando se nao trata-se de um request solicitando desautenticao do usuario
+		if (Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoDesautenticarUsuarioAutenticadorControllerPorRequest($request))
+			return;
+
 		// instanciando controladores
 		$controleAcessoOPController = Basico_OPController_ControleAcessoOPController::getInstance();
 
@@ -120,7 +124,6 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		return (($this->_pluginAtivo) and 
 				(Basico_OPController_ControleAcessoOPController::getInstance()->verificaRequestCadastrado($request, true)) and
 				(!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoErrorErrorControllerPorRequest($request)) and
-				(!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoDesautenticarUsuarioAutenticadorControllerPorRequest($request)) and
 				(Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaExisteAcaoControladorPorRequest($request)));
 	}
 }
