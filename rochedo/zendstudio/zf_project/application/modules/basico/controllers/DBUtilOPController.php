@@ -332,6 +332,73 @@ class Basico_OPController_DBUtilOPController
     }
 
     /**
+     * Insere dados no banco de dados, via SQL, atraves do nome da tabela e um array de nomes dos campos (chave) e valores
+     * 
+     * @param String $nomeTabela
+     * @param Array $arrayChaveNomesCamposValorValores
+     */
+    public static function insereDadosViaSQL($nomeTabela, $arrayChaveNomesCamposValorValores)
+    {
+		// verificando se foram passados os parametros corretamente
+		if ((!isset($nomeTabela)) or (!is_array($arrayChaveNomesCamposValorValores)))
+			return false;
+
+		// recuperando os nomes dos campos e valores
+		$nomesCamposInsert = implode(",", array_keys($arrayChaveNomesCamposValorValores));
+		$valoresInsert     = implode(",", array_values($arrayChaveNomesCamposValorValores));
+
+		// preparando instrucao SQL
+		$insertSQL = "INSERT INTO {$nomeTabela} ({$nomesCamposInsert}) VALUES ({$valoresInsert})";
+		
+		// retornando o resultado do insert no banco de dados via SQL
+		return self::executaScriptSQL($insertSQL);
+    }
+
+    /**
+     * Retorna o nome da tabela relacionada ao objeto passado por parametro
+     * 
+     * @param Object $objeto
+     * 
+     * @return Boolean
+     */
+	public static function retornaNomeTabelaPorObjeto($objeto)
+	{
+		// verificando se o parametro $objeto eh um objeto
+		if (!is_object($objeto))
+			return;
+
+		// recuperando o nome do objeto
+		$nomeObjeto = get_class($objeto);
+		// recuperando o nome do modulo do objeto
+		$nomeModuloObjeto = Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto);
+
+		// transformando o nome do objeto em nome da tabela
+		$nomeTabelaCamelCase = str_replace($nomeModuloObjeto, '', $nomeObjeto);
+		$nomeTabelaCamelCase = str_replace('_Model_', '', $nomeTabelaCamelCase);
+
+		// instanciando variaveis
+		$nomeTabela = '';
+
+		// loop para separar os nomes da tabela
+		for ($i = 0; $i < strlen($nomeTabelaCamelCase); $i++) {
+			// verificando se o caracter eh maiusculo
+			if (($i > 0) and (($nomeTabelaCamelCase[$i]) === strtoupper($nomeTabelaCamelCase[$i]))) {
+				// inserindo separador e caracter
+				$nomeTabela .= "_{$nomeTabelaCamelCase[$i]}";
+			} else {
+				// inserindo caracter
+				$nomeTabela .= $nomeTabelaCamelCase[$i];
+			}
+		}
+
+		// transformando o nome da tabela em minusculo
+		$nomeTabela = strtolower($nomeTabela);
+
+		// retornando o nome da tabela
+		return $nomeTabela;
+	}
+
+    /**
      * Checa se o script está disponivel para ser gerado (Procura pela flag @exclude)
      * 
      * @param $script
