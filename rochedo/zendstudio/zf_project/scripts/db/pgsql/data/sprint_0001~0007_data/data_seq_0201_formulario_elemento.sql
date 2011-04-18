@@ -7,6 +7,8 @@
 * ultimas modificacoes:
 * 									09/11/2010 - criadao do elemento FORM_LINHA_HORIZONTAL;
 * 									16/11/2010 - criacao do elemento FORM_FIELD_EMAIL_TIPO;
+* 									18/04/2011 - modificacao do elemento Csrf (mensagem de erro);
+* 											   - modificacao do elemento Captcha (mensagem de erro);
 *
 */
 
@@ -2310,7 +2312,8 @@ SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação huma
                                              ''font''   => PUBLIC_PATH . CAPTCHA_FONT_PATH,
                                              ''fontSize'' => 50,
                                              ''expiration'' => 300,
-                                             ''gcFreq'' => 100),)' AS element,
+                                             ''gcFreq'' => 100,
+											 ''messages'' => array(Zend_Captcha_Word::BAD_CAPTCHA => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA''), Zend_Captcha_Word::MISSING_ID => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA''), Zend_Captcha_Word::MISSING_VALUE => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA''))),)' AS element,
 	   '''class'' => ''dijitTextBox'', ''style'' => ''margin-top: 10px; margin-bottom: 10px;''' AS element_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -2327,7 +2330,7 @@ SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, 'Hash para submissão de formu
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_hash') AS id_componente,
        'csrf' AS element_name, 
-       '''csrf'', array(''ignore'' => true, ''salt'' => ''unique'',)' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       '''csrf'', array(''ignore'' => true, ''salt'' => ''unique'',  ''errorMessages'' => array(''Identical'' => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_INVALID_CSRF''),),)' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

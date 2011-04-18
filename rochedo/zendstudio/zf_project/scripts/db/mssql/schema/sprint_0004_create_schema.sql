@@ -30,6 +30,7 @@
 * 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
 * 						07/04/2011 - remocao da criacao da tabela "formulario_perfil" - descontinuado;
+* 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
 */
 
 
@@ -109,7 +110,7 @@ create table dbo.formulario_elemento (
 	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
 	element_name varchar (100) collate latin1_general_ci_ai not null ,
 	element_attribs varchar (1000) collate latin1_general_ci_ai null ,
-	element varchar (1000) collate latin1_general_ci_ai not null ,
+	element varchar (2000) collate latin1_general_ci_ai not null ,
 	element_reloadable bit not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
@@ -119,7 +120,7 @@ create table dbo.formulario_elemento_validator (
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
-	validator varchar (1000) collate latin1_general_ci_ai not null ,
+	validator varchar (2000) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 

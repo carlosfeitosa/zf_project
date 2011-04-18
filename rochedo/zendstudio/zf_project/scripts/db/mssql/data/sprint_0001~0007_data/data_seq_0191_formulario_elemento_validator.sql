@@ -5,6 +5,7 @@
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
+* 									18/04/2011 - insercao das mensagens de erro para o validador de e-mail;
 *  
 */
 
@@ -85,7 +86,13 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 INSERT INTO formulario_elemento_validator (id_categoria, nome, descricao, validator, rowinfo)
 SELECT c.id AS id_categoria, 'EMAIL_ADDRESS_DEEP_MX' AS nome, 
        'Validador que verifica se o e-mail está bem formado e se o host informado aceita receber e-mails.' AS descricao,
-       '''EmailAddress'', true, array(''mx'' => true, ''deep'' => true,)' AS validator, 'SYSTEM_STARTUP' AS rowinfo
+       '''EmailAddress'', true, array(''mx'' => true, ''deep'' => true, ''messages'' => array(Zend_Validate_EmailAddress::INVALID_FORMAT     => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT''), 
+																												 Zend_Validate_EmailAddress::INVALID_HOSTNAME   => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME''),
+																												 Zend_Validate_EmailAddress::INVALID_MX_RECORD  => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD''),
+																												 Zend_Validate_EmailAddress::INVALID_SEGMENT    => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT''),
+																												 Zend_Validate_EmailAddress::DOT_ATOM           => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_EMAILADDRESS_DOT_ATOM''),
+																												 Zend_Validate_EmailAddress::QUOTED_STRING      => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_EMAILADDRESS_QUOTED_STRING''),
+																												 Zend_Validate_EmailAddress::INVALID_LOCAL_PART => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART''),),)' AS validator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

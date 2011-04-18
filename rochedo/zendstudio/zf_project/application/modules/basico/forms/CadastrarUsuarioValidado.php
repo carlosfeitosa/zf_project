@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/04/2011 11:47:33
+* em: 18/04/2011 12:22:51
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/04/2011 11:38:26
+* @version    1: 18/04/2011 12:20:39
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -117,7 +117,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[9]->removeDecorator('DtDdWrapper');
         $elements[9]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[10] = $this->createElement('hash', 'BasicoCadastrarUsuarioValidadoCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[10] = $this->createElement('hash', 'BasicoCadastrarUsuarioValidadoCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
         $elements[10]->setOrder(10);
         $elements[10]->setRequired(false);
         $elements[10]->removeDecorator('Label');

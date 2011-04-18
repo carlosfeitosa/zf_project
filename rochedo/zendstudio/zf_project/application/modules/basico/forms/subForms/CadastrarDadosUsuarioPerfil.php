@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/04/2011 11:47:18
+* em: 18/04/2011 12:22:36
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/04/2011 11:38:26
+* @version    1: 18/04/2011 12:20:39
 */
     $basicoCadastrarDadosUsuarioPerfilSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -37,7 +37,7 @@
     if ($options!=null)
         $elements[1]->setValue($options->BasicoCadastrarDadosUsuarioPerfilPerfisDisponiveis);
 
-    $elements[2] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioPerfilCsrf', array('ignore' => true, 'salt' => 'unique',));
+    $elements[2] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioPerfilCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
     $elements[2]->setOrder(2);
     $elements[2]->setRequired(false);
     $elements[2]->removeDecorator('Label');

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/04/2011 11:47:15
+* em: 18/04/2011 12:22:33
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/04/2011 11:38:26
+* @version    1: 18/04/2011 12:20:39
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -144,7 +144,7 @@
     $elements[14]->setRequired(false);
     $elements[14]->removeDecorator('DtDdWrapper');
 
-    $elements[15] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioDadosAcademicosCsrf', array('ignore' => true, 'salt' => 'unique',));
+    $elements[15] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioDadosAcademicosCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
     $elements[15]->setOrder(15);
     $elements[15]->setRequired(false);
     $elements[15]->removeDecorator('Label');

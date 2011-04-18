@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/04/2011 11:47:31
+* em: 18/04/2011 12:22:49
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/04/2011 11:38:26
+* @version    1: 18/04/2011 12:20:39
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -55,7 +55,13 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
-        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
+        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true, 'messages' => array(Zend_Validate_EmailAddress::INVALID_FORMAT     => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT'), 
+																												 Zend_Validate_EmailAddress::INVALID_HOSTNAME   => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME'),
+																												 Zend_Validate_EmailAddress::INVALID_MX_RECORD  => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD'),
+																												 Zend_Validate_EmailAddress::INVALID_SEGMENT    => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT'),
+																												 Zend_Validate_EmailAddress::DOT_ATOM           => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_DOT_ATOM'),
+																												 Zend_Validate_EmailAddress::QUOTED_STRING      => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_QUOTED_STRING'),
+																												 Zend_Validate_EmailAddress::INVALID_LOCAL_PART => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART'),),));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
         $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));
@@ -74,7 +80,8 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
                                              'font'   => PUBLIC_PATH . CAPTCHA_FONT_PATH,
                                              'fontSize' => 50,
                                              'expiration' => 300,
-                                             'gcFreq' => 100),));
+                                             'gcFreq' => 100,
+											 'messages' => array(Zend_Captcha_Word::BAD_CAPTCHA => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA'), Zend_Captcha_Word::MISSING_ID => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA'), Zend_Captcha_Word::MISSING_VALUE => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA'))),));
             $elements[3]->setOrder(3);
             $elements[3]->setAttribs(array('class' => 'dijitTextBox', 'style' => 'margin-top: 10px; margin-bottom: 10px;'));
             $elements[3]->setRequired(true);
@@ -88,7 +95,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[4]->removeDecorator('DtDdWrapper');
         $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[5] = $this->createElement('hash', 'BasicoCadastrarUsuarioNaoValidadoCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[5] = $this->createElement('hash', 'BasicoCadastrarUsuarioNaoValidadoCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
         $elements[5]->setOrder(5);
         $elements[5]->setRequired(false);
         $elements[5]->removeDecorator('Label');

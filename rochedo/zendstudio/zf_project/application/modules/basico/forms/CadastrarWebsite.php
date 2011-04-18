@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/04/2011 11:47:34
+* em: 18/04/2011 12:22:52
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/04/2011 11:38:26
+* @version    1: 18/04/2011 12:20:39
 */
 class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
 {
@@ -89,7 +89,7 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
         $elements[6]->removeDecorator('DtDdWrapper');
         $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_RESET') . '');
 
-        $elements[7] = $this->createElement('hash', 'BasicoCadastrarWebsiteCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[7] = $this->createElement('hash', 'BasicoCadastrarWebsiteCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
         $elements[7]->setOrder(7);
         $elements[7]->setRequired(false);
         $elements[7]->removeDecorator('Label');

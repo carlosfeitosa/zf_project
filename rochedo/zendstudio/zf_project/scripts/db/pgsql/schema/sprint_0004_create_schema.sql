@@ -30,6 +30,7 @@
 * 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
 * 						07/04/2011 - remocao da criacao da tabela "pessoa_perfil" - descontinuado;
+* 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -133,7 +134,7 @@ create table formulario_elemento (
 	constante_textual_label character varying (200) null ,
 	element_name character varying (100) not null ,
 	element_attribs character varying (1000) null ,
-	element character varying (1000) not null ,
+	element character varying (2000) not null ,
 	element_reloadable boolean not null ,
 	rowinfo character varying (2000) not null 
 )
@@ -147,7 +148,7 @@ create table formulario_elemento_validator (
 	id_categoria int not null ,
 	nome character varying (100) not null ,
 	descricao character varying (2000) null ,
-	validator character varying (1000) not null ,
+	validator character varying (2000) not null ,
 	rowinfo character varying (2000) not null 
 )
 with (

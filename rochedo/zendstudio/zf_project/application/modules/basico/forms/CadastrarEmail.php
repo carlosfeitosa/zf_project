@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 15/04/2011 11:47:28
+* em: 18/04/2011 12:22:46
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 15/04/2011 11:38:26
+* @version    1: 18/04/2011 12:20:39
 */
 class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 {
@@ -53,7 +53,13 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
-        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true,));
+        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true, 'messages' => array(Zend_Validate_EmailAddress::INVALID_FORMAT     => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT'), 
+																												 Zend_Validate_EmailAddress::INVALID_HOSTNAME   => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME'),
+																												 Zend_Validate_EmailAddress::INVALID_MX_RECORD  => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD'),
+																												 Zend_Validate_EmailAddress::INVALID_SEGMENT    => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT'),
+																												 Zend_Validate_EmailAddress::DOT_ATOM           => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_DOT_ATOM'),
+																												 Zend_Validate_EmailAddress::QUOTED_STRING      => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_QUOTED_STRING'),
+																												 Zend_Validate_EmailAddress::INVALID_LOCAL_PART => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART'),),));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
@@ -90,7 +96,7 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
         $elements[6]->removeDecorator('DtDdWrapper');
         $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_RESET') . '');
 
-        $elements[7] = $this->createElement('hash', 'BasicoCadastrarEmailCsrf', array('ignore' => true, 'salt' => 'unique',));
+        $elements[7] = $this->createElement('hash', 'BasicoCadastrarEmailCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
         $elements[7]->setOrder(7);
         $elements[7]->setRequired(false);
         $elements[7]->removeDecorator('Label');
