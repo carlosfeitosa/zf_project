@@ -20,6 +20,20 @@ require_once(APPLICATION_PATH . "/modules/basico/models/Log.php");
 class Basico_OPController_LogOPController
 {
 	/**
+	 * Nome da tabela log
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'log';
+
+	/**
+	 * Nome do campo id da tabela log
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
 	 * Instância do controlador Log.
 	 * @var Basico_OPController_LogOPController
 	 */
@@ -191,14 +205,52 @@ class Basico_OPController_LogOPController
 	    $this->_log->descricao      = $mensagemLog;
 
 	    // preparando o xml do log
-	    $this->_log->xml = $this->prepareXml($this->_log);
+	    $this->_log->xml = self::prepareXml($this->_log);
 
 	    // salvando log
 		$this->_log->getMapper()->save($this->_log);
 
 		return true;
 	}
-	
+
+	/**
+	 * Salva um log de operacoes, via SQL
+	 * 
+	 * @param Integer $idPessoaPerfil
+	 * @param Integer $idCategoriaLog
+	 * @param String $mensagemLog
+	 * 
+	 * @return true
+	 */	
+	public static function salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog)
+	{
+		// verifica se existe pessoa perfil e categoria de log
+		if ((!isset($idPessoaPerfil)) or (!isset($idCategoriaLog)))
+			throw new Exception(MSG_ERRO_SAVE_SEM_PESSOAPERFIL_CATEGORIA);
+
+		// instanciando um novo modelo de log
+		$modeloLog = new Basico_Model_Log();
+
+		// recuperando a data-hora do evento
+		$dataHoraEvento = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+
+		// preenchendo o modelo de log
+	    $modeloLog->pessoaperfil   = $idPessoaPerfil;
+	    $modeloLog->categoria      = $idCategoriaLog;
+	    $modeloLog->dataHoraEvento = $dataHoraEvento;
+	    $modeloLog->descricao      = $mensagemLog;
+
+	    // montando array de nomes de campos e valores
+	    $arrayNomesCamposValoresLog = array();
+	    $arrayNomesCamposValoresLog['id_perfil_pessoa'] = $idPessoaPerfil;
+	    $arrayNomesCamposValoresLog['id_categoria']     = $idCategoriaLog;
+	    $arrayNomesCamposValoresLog['datahora_evento']  = Basico_OPController_UtilOPController::retornaStringEntreCaracter($dataHoraEvento, "'");
+	    $arrayNomesCamposValoresLog['xml']              = Basico_OPController_UtilOPController::retornaStringEntreCaracter(self::prepareXml($modeloLog), "'");
+
+	    // retornando o resultado de inserir o log no banco de dados
+	    return Basico_OPController_PersistenceOPController::bdInsereDadosViaSQL(self::nomeTabelaModelo, $arrayNomesCamposValoresLog);
+	}
+
 	/**
 	* Prepara o xml
 	* 
@@ -206,7 +258,7 @@ class Basico_OPController_LogOPController
 	* 
 	* @return string|null
 	*/
-	private function prepareXml($modelo)
+	private static function prepareXml($modelo)
 	{
 		try {
 			// setando data/hora e descricao do evento

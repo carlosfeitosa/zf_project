@@ -14,6 +14,20 @@
 class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
+	 * Nome da tabela categoria
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'categoria';
+
+	/**
+	 * Nome do campo id da tabela categoria
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
 	 *  
 	 * @var Basico_OPController_CategoriaOPController object
 	 */
@@ -536,9 +550,6 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return $objCategoria->id;
 		// verificando se foi passado o parametro que forca a criacao de uma nova categoria, caso ela nao exista
 		else if ($forceCreation) {
-			// instanciando controladores
-			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-
 			// recuperando um modelo vazio
 			$objCategoria = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
@@ -550,8 +561,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			$objCategoria->nome          = $nomeCategoriaLogAcaoControlador;
 			$objCategoria->descricao     = DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR;
 			// preparando o XML do rowinfo
-			$rowinfoOPController->prepareXml($objCategoria, true);
-			$objCategoria->rowinfo       = $rowinfoOPController->getXml();
+			$objCategoria->prepareSetRowinfoXML($objCategoria, true);
 
 			// salvando o objeto categoria
 			$this->salvarObjeto($objCategoria);
@@ -559,6 +569,73 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			// retornando o id da categoria recem criada
 			return $this->_model->id;
 		}
+	}
+
+	/**
+	 * Retorna o id e uma categoria de log de acao de controlador a partir do nome da caegoria de log.
+	 * Permite a criacao da categoria caso nao exista
+	 * 
+	 * @param String $nomeCategoriaLog
+	 * @param Boolean $forceCreation
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdCategoriaLogAcaoControladorPorNomeCategoriaViaSQL($nomeCategoriaLogAcaoControlador, $forceCreation = false)
+	{
+		// recuperando informacoes sobre a categoria
+		$idCategoria = self::retornaIdCategoriaPorNomeCategoriaViaSQL($nomeCategoriaLogAcaoControlador);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($idCategoria)) and ($idCategoria > 0)) {
+			// retornando o id da categoria
+			return $idCategoria;
+		} else if ($forceCreation) {
+			// instanciando e preparando o controlador de rowinfo
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
+			$rowinfoOPController->prepareXml($rowinfoOPController, true);
+
+			// montando array contendo chaves e valores a serem inseridos
+			$arrayCategoria = array();
+			$arrayCategoria['id_tipo_categoria'] = Basico_OPController_TipoCategoriaOPController::retornaIdTipoCategoriaSistemaViaSQL();
+			$arrayCategoria['id_categoria_pai']  = self::retornaIdCategoriaLogViaSQL();
+			$arrayCategoria['nivel']             = 2;
+			$arrayCategoria['nome']              = Basico_OPController_UtilOPController::retornaStringEntreCaracter($nomeCategoriaLogAcaoControlador, "'");
+			$arrayCategoria['descricao']         = Basico_OPController_UtilOPController::retornaStringEntreCaracter(DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR, "'");
+			$arrayCategoria['rowinfo']           = Basico_OPController_UtilOPController::retornaStringEntreCaracter($rowinfoOPController->getXml(), "'");
+
+			// inserindo o valor no banco de dados
+			Basico_OPController_PersistenceOPController::bdInsereDadosViaSQL(self::nomeTabelaModelo, $arrayCategoria);
+
+			// retornando o id da categoria, utilizando recursividade
+			return self::retornaIdCategoriaLogAcaoControladorPorNomeCategoriaViaSQL($nomeCategoriaLogAcaoControlador);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Retorna o id e uma categoria a partir do nome da caegoria de log.
+	 * 
+	 * @param String $nomeCategoriaLog
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdCategoriaPorNomeCategoriaViaSQL($nomeCategoria)
+	{
+		// recuperando informacoes sobre a tabela categoria
+		$arrayNomeCampoIdCategoria = array(self::nomeCampoIdModelo);
+		$condicaoSQL               = "nome = '{$nomeCategoria}'";
+
+		// recuperando um array contendo o id da categoria cujo nome foi passado como parametro
+		$arrayCategoria = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoIdCategoria, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayCategoria)) and (is_array($arrayCategoria)) and (count($arrayCategoria) > 0)) {
+			// retornando o id da categoria
+			return $arrayCategoria[0][self::nomeCampoIdModelo];
+		}
+
+		return null;
 	}
 
 	/**
@@ -623,6 +700,25 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		if (isset($objCategoriaLog))
 			// retornando o id objeto
 			return (Int) $objCategoriaLog->id;
+
+		throw new Exception(MSG_ERRO_CATEGORIA_LOG);
+	}
+
+	/**
+	 * Retorna o id da categoria LOG, via SQL
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogViaSQL()
+	{
+		// recuperando o id da categoria de LOG
+		$idCategoriaLOG = self::retornaIdCategoriaPorNomeCategoriaViaSQL(LOG);
+
+		// verificando se o id da categoria de log foi recuperado
+		if ((isset($idCategoriaLOG)) and ($idCategoriaLOG > 0)) {
+			// retornando o id da categoria de log
+			return $idCategoriaLOG;
+		}
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG);
 	}

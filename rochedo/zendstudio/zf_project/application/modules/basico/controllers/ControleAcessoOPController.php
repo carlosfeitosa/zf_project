@@ -429,7 +429,7 @@ class Basico_OPController_ControleAcessoOPController
 	 * 
 	 * @return Integer|null
 	 */
-	public function retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
+	public static function retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
 	{
 		// recuperando informacoes do request
 		$nomeModuloRequest     = strtoupper($request->getModuleName());

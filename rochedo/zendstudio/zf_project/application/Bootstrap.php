@@ -52,6 +52,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // registrando a instancia do banco de dados na sessao
         Basico_OPController_PersistenceOPController::bdRegistraSessao($this->getResource('db'));
+
+        // registrando o inicio da execucao do PHP
+        Basico_OPController_SessionOPController::registraInicioProcessamentoMicrosegundosPHPSessaoUsuario();
     }
 
     /**

@@ -11,6 +11,20 @@
 class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersistentOPController 
 {
 	/**
+	 * Nome da tabela login
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'login';
+
+	/**
+	 * Nome do campo id da tabela login
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
 	 * @var Basico_OPController_LoginOPController
 	 */
 	private static $_singleton;
@@ -651,6 +665,32 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		if ($this->_model->id)
 			// retornando o id da pessoa
 			return $this->_model->pessoa;
+
+		return null;
+	}
+
+	/**
+	 * Retorna o id da pessoa pelo id do login, via SQL
+	 *
+	 * @param Integer $idLogin
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdPessoaPorIdLoginViaSQL($idLogin)
+	{
+		// recuperando informacoes sobre a tabela login
+		$nomeCampoIdLogin      = self::nomeCampoIdModelo;
+		$arrayNomeCampoIdLogin = array($nomeCampoIdLogin);
+		$condicaoSQL           = "{$nomeCampoIdLogin} = {$idLogin}";
+
+		// recuperando um array contendo o id da categoria cujo nome foi passado como parametro
+		$arrayLogin = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoIdLogin, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayLogin)) and (is_array($arrayLogin)) and (count($arrayLogin) > 0)) {
+			// retornando o id da categoria
+			return $arrayLogin[0][self::nomeCampoIdModelo];
+		}
 
 		return null;
 	}

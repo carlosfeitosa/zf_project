@@ -298,7 +298,35 @@ class Basico_OPController_UtilOPController
 	    return Zend_Date::now($locale);
 	    
 	}
-	
+
+	/**
+	 * Retorna, em microsegundo, a datahora atual
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaMicrosegundosDateTimeAtual()
+	{
+		// processando data hora
+		$microtimeDateTimeAtual = microtime();
+		$microtimeDateTimeAtual = explode(' ', $microtimeDateTimeAtual);
+		$microtimeDateTimeAtual = $microtimeDateTimeAtual[1] + $microtimeDateTimeAtual[0];
+
+		// retornando os microsegundos do datetime atual
+		return $microtimeDateTimeAtual;
+	}
+
+	/**
+	 * Retorna a diferenca, em microsegundos, entre duas datas em microsegundos
+	 * 
+	 * @param Integer $dataHoraMicrotime1
+	 * @param Integer $dataHoraMicrotime2
+	 */
+	public static function retornaDiferencaArredondadaMicrotime($dataHoraMicrotime1, $dataHoraMicrotime2)
+	{
+		// retornando a diferenca arredondada
+		return round($dataHoraMicrotime1 - $dataHoraMicrotime2, 4);
+	}
+
 	/**
 	 * Retorna espaços em branco, de acordo com o nível de identação
 	 * 

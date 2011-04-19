@@ -11,8 +11,23 @@
  * @since 23/03/2011
  * 
  */
+
 class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
+	/**
+	 * Nome da tabela tipo categoria
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'tipo_categoria';
+
+	/**
+	 * Nome do campo id da tabela tipo categoria
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
 	/**
 	 * 
 	 * @var Basico_OPController_TipoCategoriaOPController
@@ -161,6 +176,31 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 	}
 
 	/**
+	 * Retorna o id de tipo categoria para um nome de tipo categoria passado por parametro, via SQL
+	 * 
+	 * @param String $nomeTipoCategoria
+	 * 
+	 * @return Integer|null
+	 */
+	private static function retornaIdTipoCategoriaPorNomeViaSQL($nomeTipoCategoria)
+	{
+		// recuperando informacoes sobre o tipo categoria
+		$arrayNomeCampoIdTipoCategoria = array(self::nomeCampoIdModelo);
+		$condicaoSQL                   = "nome = '{$nomeTipoCategoria}'";
+
+		// recuperando array contendo o id do tipo categoria cujo nome foi passado por parametro
+		$arrayIdTipoCategoria = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoIdTipoCategoria, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayIdTipoCategoria)) and (is_array($arrayIdTipoCategoria)) and (count($arrayIdTipoCategoria) > 0)) {
+			// retornando o id do tipo categoria
+			return $arrayIdTipoCategoria[0][self::nomeCampoIdModelo];
+		}
+
+		return null;
+	}
+
+	/**
 	 * Retorna o id do tipo categoria LINGUAGEM
 	 * 
 	 * @return Integer|null
@@ -180,6 +220,17 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 	{
 		// invocando o metodo que recupera o id do tipo categoria por nome
 		return $this->retornaIdTipoCategoriaPorNome(TIPO_CATEGORIA_SISTEMA);
+	}
+
+	/**
+	 * Retorna o id do tipo categoria SISTEMA, via SQL
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdTipoCategoriaSistemaViaSQL()
+	{
+		// invocando o metodo que recupera o id do tipo categoria por nome
+		return self::retornaIdTipoCategoriaPorNomeViaSQL(TIPO_CATEGORIA_SISTEMA);
 	}
 
 	/**

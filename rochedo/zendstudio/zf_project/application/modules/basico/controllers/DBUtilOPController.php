@@ -351,7 +351,7 @@ class Basico_OPController_DBUtilOPController
 
 		// preparando instrucao SQL
 		$insertSQL = "INSERT INTO {$nomeTabela} ({$nomesCamposInsert}) VALUES ({$valoresInsert})";
-		
+
 		// retornando o resultado do insert no banco de dados via SQL
 		return self::executaScriptSQL($insertSQL);
     }

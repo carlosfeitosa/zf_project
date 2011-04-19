@@ -13,6 +13,20 @@
 class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
+	 * Nome da tabela pessoas perfis
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'pessoas_perfis';
+
+	/**
+	 * Nome do campo id da tabela pessoas perfis
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
 	 * Instância do Controlador PessoaPerfil
 	 * @var Basico_OPController_PessoasPerfisOPController
 	 */
@@ -201,16 +215,17 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	 * 
 	 * @return Integer|null;
 	 */
-	public function retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
+	public static function retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
 	{
 		// recuperando id do maior perfil vinculado a pessoa e acao
-		$idMaiorPessoaPerfil = Basico_OPController_ControleAcessoOPController::getInstance()->retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
+		$idMaiorPessoaPerfil = Basico_OPController_ControleAcessoOPController::retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
 
 		// verificando o resultado da recuperacao
 		if (!$idMaiorPessoaPerfil)
 			// recuperando o perfil de usuario validado
-			$idMaiorPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa)->id;
+			$idMaiorPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
+		// retornando o id pessoa perfil maior perfil
 		return $idMaiorPessoaPerfil;
 	}
 
@@ -294,7 +309,38 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
     	
     	return NULL;
 	}
-	
+
+	/**
+	 * Retorna o objeto pessoaPerfil do perfil USUARIO_VALIDADO da pessoa passada por parametro, via SQL
+	 * 
+	 * @param Int $idPessoa
+	 * 
+	 * @return Basico_Model_PessoasPerfis
+	 */
+	public static function retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa)
+	{
+		// recuperando o nome do perfil USUARIO_VALIDADO
+		$nomePerfilUsuarioValidado = PERFIL_USUARIO_VALIDADO;
+
+		// montando a query SQL que retorna o id da pessoa perfil, do perfil USUARIO_VALIDADO vinculado ao id da pessoa passado por parametro
+		$queryRetornaIdPessoaPerfilUsuarioValidado = "SELECT pp.id
+													  FROM pessoas_perfis pp
+													  LEFT JOIN pessoa pa ON (pp.id_pessoa = pa.id)
+													  LEFT JOIN perfil pl ON (pp.id_perfil = pl.id)
+													  WHERE pl.NOME = '{$nomePerfilUsuarioValidado}'
+													  AND pa.id = {$idPessoa}";
+
+		// recuperando array contendo o id da pessoa perfil
+		$arrayIdPessoaPerfil = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRetornaIdPessoaPerfilUsuarioValidado);
+
+		// verificando se houve recuperacao do perfil
+		if ((isset($arrayIdPessoaPerfil)) and (is_array($arrayIdPessoaPerfil)) and (count($arrayIdPessoaPerfil) > 0))
+			// retornando o id pessoa perfil
+			return $arrayIdPessoaPerfil[0][self::nomeCampoIdModelo];
+
+		return null;
+	}
+
     /**
 	 * Retorna o objeto pessoaPerfil da pessoa e do perfil passado.
 	 * 

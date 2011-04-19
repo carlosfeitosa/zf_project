@@ -121,6 +121,60 @@ class Basico_OPController_SessionOPController
 	}
 
 	/**
+	 * Registra o inicio do processamento PHP na sessao do usuario
+	 * 
+	 * @return void
+	 */
+	public static function registraInicioProcessamentoMicrosegundosPHPSessaoUsuario()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionInicioProcessesamentoMicrosegundosPHP = SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP;
+
+		// verificando se o valor ja se encontra na sessao
+		if (!isset($sessaoUsuario->$sessionInicioProcessesamentoMicrosegundosPHP)) {
+			// registrando a data-hora atual do inicio do processamento php
+			$sessaoUsuario->$sessionInicioProcessesamentoMicrosegundosPHP = Basico_OPController_UtilOPController::retornaMicrosegundosDateTimeAtual();
+		}
+	}
+
+	/**
+	 * Retorna a datahora, em microsegundos, do inicio do processamento do PHP
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaInicioProcessamentoMicrosegundosPHPSessaoUsuario()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionInicioProcessesamentoMicrosegundosPHP = SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP;
+
+		// retornando a datahora, em microsegundos, registrado na sessao, do inicio do processamento do PHP
+		return $sessaoUsuario->$sessionInicioProcessesamentoMicrosegundosPHP;
+	}
+
+	/**
+	 * Limpa o registro, na sessao, do inicio do processamento do PHP
+	 * 
+	 * @return void
+	 */
+	public static function limpaRegistroInicioProcessamentoMicrosegundosPHPSessaoUsuario()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionInicioProcessesamentoMicrosegundosPHP = SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP;
+
+		// limpando o valor da sessao
+		unset($sessaoUsuario->$sessionInicioProcessesamentoMicrosegundosPHP);
+	}
+
+	/**
 	 * Destroi a sessao
 	 * 
 	 * @return void
