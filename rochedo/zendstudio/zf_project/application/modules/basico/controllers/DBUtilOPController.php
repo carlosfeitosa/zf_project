@@ -336,6 +336,8 @@ class Basico_OPController_DBUtilOPController
      * 
      * @param String $nomeTabela
      * @param Array $arrayChaveNomesCamposValorValores
+     * 
+     * @return Boolean
      */
     public static function insereDadosViaSQL($nomeTabela, $arrayChaveNomesCamposValorValores)
     {
@@ -352,6 +354,57 @@ class Basico_OPController_DBUtilOPController
 		
 		// retornando o resultado do insert no banco de dados via SQL
 		return self::executaScriptSQL($insertSQL);
+    }
+
+    /**
+     * Retorna um array contendo os nomes dos campos (chaves) e valores (valores) de uma tabela do banco de dados, 
+     * filtrados por uma condicao SQL e ordenados por um ou conjunto de campos
+     * 
+     * @param String $nomeTabela
+     * @param Array $arrayNomesCampos
+     * @param String $condicaoSQL
+     * @param Array $arrayCamposOrdenacao
+     * 
+     * @return Array|false
+     */
+    public static function retornaArrayDadosViaSQL($nomeTabela, $arrayNomesCampos = null, $condicaoSQL = null, $arrayCamposOrdenacao = null)
+    {
+    	// verificando se foi passado o nome da tabela
+    	if (!isset($nomeTabela))
+    		return false;
+
+		// verificando se foi passado um array com os campos que devem ser retornados
+		if ((isset($arrayNomesCampos)) and (is_array($arrayNomesCampos)) and (count($arrayNomesCampos) > 0)) {
+			// implodindo o array dentro de uma string
+			$nomesCamposSelect = implode(", ", $arrayNomesCampos);
+		} else {
+			// string para recuperacao de todos os campos
+			$nomesCamposSelect = "*";
+		}
+
+    	// inicializando variaveis
+    	$camposOrdenacaoSelect = '';
+
+    	// preparando instrucao SQL
+		$selectSQL = "SELECT {$nomesCamposSelect} FROM {$nomeTabela}";
+
+		// verificando se eh preciso filtrar a consulta
+		if (isset($condicaoSQL)) {
+			// setando condicao SQL
+			$selectSQL .= " WHERE {$condicaoSQL}";
+		}
+
+		// verificando se existem campos ordenadores
+		if ((isset($arrayCamposOrdenacao)) and (is_array($arrayCamposOrdenacao)) and (count($arrayCamposOrdenacao) > 0)) {
+			// setando campos ordenadores
+			$camposOrdenacaoSelect = implode(", ", $arrayCamposOrdenacao);
+
+			// setando ordenacao na instrucao SQL
+			$selectSQL .= " ORDER BY {$camposOrdenacaoSelect}";
+		}
+
+		// retornando o resultado da consulta
+		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($selectSQL);
     }
 
     /**

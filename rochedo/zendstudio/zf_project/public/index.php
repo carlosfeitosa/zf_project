@@ -1,5 +1,13 @@
 <?php
 
+// recuperando a datahora atual, em microsegundos
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+
+// setando constante com a datahora de inicio de execucao do script, em microsegundos
+define('PHP_START_PROCESSING_MICROTIME', $time);
+
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));

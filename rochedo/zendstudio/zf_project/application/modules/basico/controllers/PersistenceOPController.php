@@ -100,7 +100,7 @@ class Basico_OPController_PersistenceOPController
 	 * 
 	 * @return True|False
 	 */
-	static public function bdSave($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	public static function bdSave($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// retornando o resultado do metodo "save" do controlador "Basico_OPController_DBSaveOPController"
 		return Basico_OPController_DBSaveOPController::save($mixed, $versaoUpdate, $idPessoaPerfil, $idCategoriaLog, $mensagemLog);
@@ -117,12 +117,43 @@ class Basico_OPController_PersistenceOPController
 	 * 
 	 * @return Boolean
 	 */
-	static public function bdDelete($objeto, $forceCascade = false, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	public static function bdDelete($objeto, $forceCascade = false, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// retornando o resultado do metodo "delete" do controlador "Basico_OPController_DBDeleteOPController"
 		return Basico_OPController_DBDeleteOPController::delete($objeto, $forceCascade, $idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 	}
-	
+
+    /**
+     * Insere dados no banco de dados, via SQL, atraves do nome da tabela e um array de nomes dos campos (chave) e valores
+     * 
+     * @param String $nomeTabela
+     * @param Array $arrayChaveNomesCamposValorValores
+     * 
+     * @return Boolean
+     */
+	public static function bdInsereDadosViaSQL($nomeTabela, $arrayChaveNomesCamposValorValores)
+	{
+		// retornando o resultado do metodo "insereDadosViaSQL" do controlador "Basico_OPController_DBUtilOPController"
+		return Basico_OPController_DBUtilOPController::insereDadosViaSQL($nomeTabela, $arrayChaveNomesCamposValorValores);
+	}
+
+    /**
+     * Retorna um array contendo os nomes dos campos (chaves) e valores (valores) de uma tabela do banco de dados, 
+     * filtrados por uma condicao SQL e ordenados por um ou conjunto de campos
+     * 
+     * @param String $nomeTabela
+     * @param Array $arrayNomesCampos
+     * @param String $condicaoSQL
+     * @param Array $arrayCamposOrdenacao
+     * 
+     * @return Array|false
+     */
+	public static function bdRetornaArrayDadosViaSQL($nomeTabela, $arrayNomesCampos = null, $condicaoSQL = null, $arrayCamposOrdenacao = null)
+	{
+		// retornando o resultado do metodo "retornaArrayDadosViaSQL" do controlador "Basico_OPController_DBUtilOPController"
+		return Basico_OPController_DBUtilOPController::retornaArrayDadosViaSQL($nomeTabela, $arrayNomesCampos, $condicaoSQL, $arrayCamposOrdenacao);
+	}
+
 	 /**
      * Retorna tipo do banco de dados que está sendo utilizado
      * 

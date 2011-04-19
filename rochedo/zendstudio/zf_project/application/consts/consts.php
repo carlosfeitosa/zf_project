@@ -497,7 +497,6 @@ define("EMAIL_CHARSET", "utf-8");
  */
 define("LINK_VALIDACAO_USUARIO", "/basico/email/validarEmail/t/");
 define("LINK_MEU_PERFIL", "/basico/dadosusuario/index/");
-define("LINK_DIALOG_FORM", "http://localhost/rochedo_project/public/basico/token/retornaDialogContent/t/");
 
 /**
  * LINK PARA CONTROLADOR DE TOKENS 

@@ -89,7 +89,18 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
 <br>
 
 <div id="footer">
-	<br>
+	<br clear="all">
+	<?php if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
+				// recuperando a datahora atual, em microsegundos
+				$time = microtime();
+				$time = explode(' ', $time);
+				$time = $time[1] + $time[0];
+
+				// calculando tempo de execucao
+				$tempoExecucao = round($time - PHP_START_PROCESSING_MICROTIME, 4);	
+	?>
+	<div id="float-left"><font size="-5">Página executada em <?php echo $tempoExecucao; ?> segundos</font></div>
+	<?php } ?>
 	<div id="footer_poweredby">
 		<a href="http://framework.zend.com/" target="_blank" ><img alt="Powered by ZendFramework" src="<?php echo $applicationHttpImagesHome . 'zf/PoweredBy_ZF_4LightBG.png' ?>" /></a>
 	</div> 
