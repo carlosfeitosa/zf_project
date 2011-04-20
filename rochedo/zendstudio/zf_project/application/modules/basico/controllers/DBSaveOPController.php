@@ -50,7 +50,7 @@ class Basico_OPController_DBSaveOPController
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
-						Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+						Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
 					$novaTupla = true;
 				}
@@ -100,7 +100,7 @@ class Basico_OPController_DBSaveOPController
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
-						Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+						Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 				}
 				else {
 					// verificando se existe transacao iniciada

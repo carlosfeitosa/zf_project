@@ -79,12 +79,11 @@ class Basico_OPController_MensageiroOPController
         
     	try {
     		// instanciando controladores
-    		$logOPController = Basico_OPController_LogOPController::getInstance();
     		$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
     		$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
 
     		// salvando log de tentativa de envio de mensagem
-    		$logOPController->salvarLog($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_EMAIL, true), LOG_MSG_EMAIL);
+    		Basico_OPController_LogOPController::salvarLogViaSQL($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_EMAIL, true), LOG_MSG_EMAIL);
 
             // recuperando o transporte SMTP
 			$transport = $this->retornaTransportSmtp();
@@ -124,11 +123,11 @@ class Basico_OPController_MensageiroOPController
             Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
 
     		// salvando log de sucesso no envio de mensagem
-    		$logOPController->salvarLog($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);
+    		Basico_OPController_LogOPController::salvarLogViaSQL($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);
 		} catch(Exception $e){
 
 			// salvando log de falha no envio de mensagem
-    		$logOPController->salvarLog($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_EMAIL, true), LOG_MSG_EMAIL_FALHA . $e->getMessage());
+    		Basico_OPController_LogOPController::salvarLogViaSQL($pessoaPerfilOPController->retornaIdPessoaPerfilSistema(), $categoriaOPController->retornaIdCategoriaLogPorNomeCategoria(LOG_EMAIL, true), LOG_MSG_EMAIL_FALHA . $e->getMessage());
 			throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }
 	}

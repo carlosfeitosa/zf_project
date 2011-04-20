@@ -542,7 +542,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$mensagemLog    = LOG_MSG_SUCESSO_AUTENTICACAO_USUARIO;
 		
 		// efetua log
-		Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfilUsuarioValidadoLogin, $idCategoriaLog, $mensagemLog);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfilUsuarioValidadoLogin, $idCategoriaLog, $mensagemLog);
 
 		// registrando o usuario na sessao
 		$this->registraIdLoginUsuarioSessao($login);

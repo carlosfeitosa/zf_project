@@ -183,6 +183,8 @@ class Basico_OPController_LogOPController
 	/**
 	 * Salva um log de operacoes
 	 * 
+	 * @deprecated Para maior performance, utilize salvarLogViaSQL
+	 * 
 	 * @param Integer $idPessoaPerfil
 	 * @param Integer $idCategoriaLog
 	 * @param String $mensagemLog

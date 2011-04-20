@@ -27,7 +27,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_DESATIVADA;
 
 		// salvando log
-		Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
     	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO');
@@ -67,7 +67,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_NAO_PERMITIDA;
 
 		// salvando log
-		Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
     	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO');
@@ -115,7 +115,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     	}
 
 		// salvando log
-		Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
     	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO');
@@ -155,7 +155,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_INDISPONIVEL_ATRAVES_DE_URL;
 
 		// salvando log
-		Basico_OPController_LogOPController::getInstance()->salvarLog($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
     	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_TITULO');
