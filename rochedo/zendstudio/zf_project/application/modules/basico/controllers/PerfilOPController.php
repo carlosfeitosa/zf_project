@@ -11,6 +11,20 @@
 class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
+	 * Nome da tabela perfil
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'perfil';
+
+	/**
+	 * Nome do campo id da tabela perfil
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
 	 * Instância do Controlador Perfil.
 	 * @var Basico_OPController_PerfilOPController
 	 */
@@ -313,7 +327,36 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	private function retornaObjetosPerfisPorIdCategoria($idCategoria)
 	{
 		// retornando objetos
-		return $this->_model->fetchList("id_categoria = '{$idCategoria}'");
+		return $this->_model->fetchList("id_categoria = {$idCategoria}");
+	}
+
+	/**
+	 * Retorna um array de nomes dos perfis associados a uma categoria (passada por id)
+	 * 
+	 * @param Integer $idCategoria
+	 * 
+	 * @return Array|null
+	 */
+	private static function retornaNomesPerfisPorIdCategoriaViaSQL($idCategoria)
+	{
+		// verificando se foi passado o id da categoria
+		if (!isset($idCategoria))
+			return null;
+
+		// recuperando informacoes sobre a tabela perfil
+		$arrayNomeCampoNome = array('nome');
+		$condicaoSQL        = "id_categoria = {$idCategoria}";
+
+		// recuperando um array contendo os nomes dos perfis relacionados a uma categoria
+		$arrayPerfis = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoNome, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayPerfis)) and (is_array($arrayPerfis)) and (count($arrayPerfis) > 0)) {
+			// retornando o id da categoria
+			return $arrayPerfis;
+		}
+
+		return null;
 	}
 
 	/**
@@ -331,6 +374,25 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		$arrayPerfisUsuarioSistema = $this->retornaObjetosPerfisPorIdCategoria($idCategoriaPerfilUsuarioSistema);
 		$arrayPerfisUsuario        = $this->retornaObjetosPerfisPorIdCategoria($idCategoriaPerfilUsuario);
 		
+		// retornando os objetos perfis usuario sistema e perfis usuario
+		return array_merge($arrayPerfisUsuarioSistema, $arrayPerfisUsuario);
+	}
+
+	/**
+	 * Retorna um array contendo os nomes dos perfis de usuario, via SQL
+	 * 
+	 * @return Array|null
+	 */
+	public static function retornaArrayNomesPerfisUsuarioViaSQL()
+	{
+		// recuperando o id categoria PERFIL_USUARIO_SISTEMA e PERFIL_USUARIO
+		$idCategoriaPerfilUsuarioSistema = Basico_OPController_CategoriaOPController::retornaIdCategoriaPerfilUsuarioSistemaViaSQL();
+		$idCategoriaPerfilUsuario        = Basico_OPController_CategoriaOPController::retornaIdCategoriaPerfilUsuarioViaSQL();
+
+		// preparando informacoes para recuperacao dos nomes dos perfis do usuario do sistema
+		$arrayPerfisUsuarioSistema = self::retornaNomesPerfisPorIdCategoriaViaSQL($idCategoriaPerfilUsuarioSistema);
+		$arrayPerfisUsuario        = self::retornaNomesPerfisPorIdCategoriaViaSQL($idCategoriaPerfilUsuario);
+
 		// retornando os objetos perfis usuario sistema e perfis usuario
 		return array_merge($arrayPerfisUsuarioSistema, $arrayPerfisUsuario);
 	}

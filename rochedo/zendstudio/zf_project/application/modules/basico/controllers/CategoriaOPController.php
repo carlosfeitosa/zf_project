@@ -583,7 +583,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	public static function retornaIdCategoriaLogAcaoControladorPorNomeCategoriaViaSQL($nomeCategoriaLogAcaoControlador, $forceCreation = false)
 	{
 		// recuperando informacoes sobre a categoria
-		$idCategoria = self::retornaIdCategoriaPorNomeCategoriaViaSQL($nomeCategoriaLogAcaoControlador);
+		$idCategoria = self::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL($nomeCategoriaLogAcaoControlador);
 
 		// verificando se a consulta obteve resultados
 		if ((isset($idCategoria)) and ($idCategoria > 0)) {
@@ -617,14 +617,31 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * Retorna o id e uma categoria a partir do nome da caegoria de log.
 	 * 
 	 * @param String $nomeCategoriaLog
+	 * @param Integer $idTipoCategoria
+	 * @param Boolean $apenasCategoriasAtivas
 	 * 
 	 * @return Integer|null
 	 */
-	public static function retornaIdCategoriaPorNomeCategoriaViaSQL($nomeCategoria)
+	public static function retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL($nomeCategoria, $idTipoCategoria = null, $apenasCategoriasAtivas = false)
 	{
 		// recuperando informacoes sobre a tabela categoria
 		$arrayNomeCampoIdCategoria = array(self::nomeCampoIdModelo);
 		$condicaoSQL               = "nome = '{$nomeCategoria}'";
+
+		// verificando se foi passado o id do tipo da categoria
+		if ($idTipoCategoria) {
+			// adicionando condicao
+			$condicaoSQL .= " AND id_tipo_categoria = {$idTipoCategoria}";
+		}
+
+		// verificando se deve procurar por categorias ativas, apenas
+		if ($apenasCategoriasAtivas) {
+			// carregando variaveis
+			$booleanDB = Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true);
+
+			// adicionando condicao
+			$condicaoSQL .= " AND ativo = {$booleanDB}";	
+		}
 
 		// recuperando um array contendo o id da categoria cujo nome foi passado como parametro
 		$arrayCategoria = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoIdCategoria, $condicaoSQL);
@@ -663,6 +680,29 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	}
 
 	/**
+	 * Retorna o id da categoria PERFIL_USUARIO, via SQL
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaPerfilUsuarioViaSQL()
+	{
+		// recuperando o id do tipo categoria PERFIL
+		$idTipoCategoriaPerfil = Basico_OPController_TipoCategoriaOPController::retornaIdTipoCategoriaPerfilViaSQL();
+
+		// recuperando o id da categoria
+		$idCategoriaPerfilUsuario = self::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL(CATEGORIA_PERFIL_USUARIO, $idTipoCategoriaPerfil, true);
+
+		// verificando se o id foi recuperado com sucesso
+		if ($idCategoriaPerfilUsuario) {
+			// retornando o id da categoria
+			return $idCategoriaPerfilUsuario;
+		} else
+			throw new Exception(MSG_ERRO_CATEGORIA_PERFIL_USUARIO);
+
+		return null;
+	}
+
+	/**
 	 * Retorna o id da categoria PERFIL_USUARIO
 	 * 
 	 * @return Integer
@@ -681,6 +721,29 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			return $objCategoria->id;
 		else
 			// estourando excecao
+			throw new Exception(MSG_ERRO_CATEGORIA_PERFIL_USUARIO_SISTEMA);
+
+		return null;
+	}
+
+	/**
+	 * Retorna o id da categoria PERFIL_USUARIO, via SQL
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaPerfilUsuarioSistemaViaSQL()
+	{
+		// recuperando o id do tipo categoria PERFIL
+		$idTipoCategoriaPerfil = Basico_OPController_TipoCategoriaOPController::retornaIdTipoCategoriaPerfilViaSQL();
+
+		// recuperando o id da categoria
+		$idCategoriaPerfilUsuarioSistema = self::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL(CATEGORIA_PERFIL_USUARIO_SISTEMA, $idTipoCategoriaPerfil, true);
+
+		// verificando se a categoria foi recuperada com sucesso
+		if ($idCategoriaPerfilUsuarioSistema) {
+			// retornando o id da categoria
+			return $idCategoriaPerfilUsuarioSistema;
+		} else 
 			throw new Exception(MSG_ERRO_CATEGORIA_PERFIL_USUARIO_SISTEMA);
 
 		return null;
@@ -712,7 +775,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	public static function retornaIdCategoriaLogViaSQL()
 	{
 		// recuperando o id da categoria de LOG
-		$idCategoriaLOG = self::retornaIdCategoriaPorNomeCategoriaViaSQL(LOG);
+		$idCategoriaLOG = self::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL(LOG);
 
 		// verificando se o id da categoria de log foi recuperado
 		if ((isset($idCategoriaLOG)) and ($idCategoriaLOG > 0)) {

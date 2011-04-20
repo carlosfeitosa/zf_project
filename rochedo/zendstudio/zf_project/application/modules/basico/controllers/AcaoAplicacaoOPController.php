@@ -89,6 +89,26 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	}
 
 	/**
+	 * Retorna todos as acoes aplicacao ativas, via SQL
+	 *
+	 * @return Array|null
+	 */
+	public static function retornaArrayNomeModuloNomeControllerNomeAcaoAcaoAplicacaoAtivosViaSQL()
+	{
+		// inicializando variaveis
+		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
+
+		// montando query para retornar um array contendo todos as acoes aplicacao (nome do modulo, controlador e acao)
+		$querySQL = "SELECT m.nome AS module, ap.controller, ap.action
+					 FROM acao_aplicacao ap
+					 LEFT JOIN modulo m ON (ap.id_modulo = m.id)
+					 WHERE ap.ativo = {$ativo}";
+
+		// retornando array
+		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQL);
+	}
+
+	/**
 	 * Retorna todas as acoes aplicacao desativadas
 	 * 
 	 * @return Array|null

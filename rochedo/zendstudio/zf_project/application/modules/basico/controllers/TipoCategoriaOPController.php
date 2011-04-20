@@ -243,4 +243,15 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 		// invocando o metodo que recupera o id do tipo categoria por nome
 		return $this->retornaIdTipoCategoriaPorNome(TIPO_CATEGORIA_PERFIL);
 	}
+
+	/**
+	 * Retorna o id do tipo categoria PERFIL, via SQL
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdTipoCategoriaPerfilViaSQL()
+	{
+		// invocando o metodo que recupera o id do tipo categoria por nome
+		return self::retornaIdTipoCategoriaPorNomeViaSQL(TIPO_CATEGORIA_PERFIL);
+	}
 }

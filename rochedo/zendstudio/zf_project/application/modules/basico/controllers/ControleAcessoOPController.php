@@ -85,13 +85,13 @@ class Basico_OPController_ControleAcessoOPController
 	private function carregaACL(Zend_Acl &$acl)
 	{
 		// carregando perfis
-		$this->carregaACLRoles($acl);
+		$this->carregaACLRolesViaSQL($acl);
 
 		// carregando resources
-		$this->carregaACLResources($acl);
+		$this->carregaACLResourcesViaSQL($acl);
 
 		// carregando associacoes entre perfis e resources
-		$this->carregaACLAssociacoes($acl);
+		$this->carregaACLAssociacoesViaSQL($acl);
 
 		// carregando os resources desativados e suas respectivas associacoes com PERFIL_ACAO_DESATIVADA
 		$this->carregaACLAssociacoesAcoesAplicacaoDesativadasComPerfilAcaoDesativada($acl);
@@ -154,6 +154,28 @@ class Basico_OPController_ControleAcessoOPController
 	}
 
 	/**
+	 * Carrega as associacoes entre os perfis e resources de um Zend_Acl, via SQL
+	 * 
+	 * @param Zend_Acl $acl
+	 * 
+	 * @return void
+	 */
+	private function carregaACLAssociacoesViaSQL(Zend_Acl &$acl)
+	{
+		// recuperando as vinculacoes entre acoes da aplicacao e perfis
+		$arrayAcoesAplicacaoPerfis = Basico_OPController_AcoesAplicacaoPerfisOPController::retornaArrayNomePerfilNomeModuloNomeControllerNomeActionTodasAcoesAplicacaoPerfisViaSQL();
+
+		// loop para carregar as associacoes
+		foreach ($arrayAcoesAplicacaoPerfis as $arrayAcaoAplicacaoPerfil) {
+			// verificando se a acao esta ativa
+			if ($arrayAcaoAplicacaoPerfil['ativo']) {
+				// associado o perfil ao resource
+				$acl->allow($arrayAcaoAplicacaoPerfil['perfil'], $this->retornaNomeAcaoAplicacaoCompleta($arrayAcaoAplicacaoPerfil['module'], $arrayAcaoAplicacaoPerfil['controller'], $arrayAcaoAplicacaoPerfil['action']) );
+			}
+		}
+	}
+
+	/**
 	 * Carrega os resources de um Zend_Acl
 	 * 
 	 * @param Zend_Acl $acl
@@ -171,6 +193,28 @@ class Basico_OPController_ControleAcessoOPController
 			foreach ($objsAcaoAplicacaoAtivos as $objAcaoAplicacaoAtivo) {
 				// carregando os resources
 				$acl->addResource(new Zend_Acl_Resource($this->retornaNomeAcaoAplicacaoCompleta($objAcaoAplicacaoAtivo->getModuloObject()->nome, $objAcaoAplicacaoAtivo->controller, $objAcaoAplicacaoAtivo->action)));
+			}
+		}
+	}
+
+	/**
+	 * Carrega os resources de um Zend_Acl, via SQL
+	 * 
+	 * @param Zend_Acl $acl
+	 * 
+	 * @return void
+	 */
+	private function carregaACLResourcesViaSQL(Zend_Acl &$acl)
+	{
+		// recuperando array de acoes da aplicacao
+		$arrayAcoesAplicacoesAtivos = Basico_OPController_AcaoAplicacaoOPController::retornaArrayNomeModuloNomeControllerNomeAcaoAcaoAplicacaoAtivosViaSQL();
+
+		// verificando se as acoes foram carregadas
+		if (count($arrayAcoesAplicacoesAtivos) > 0) {
+			// loop para carregar os "resources" do Zend_Acl
+			foreach ($arrayAcoesAplicacoesAtivos as $arrayAcaoAplicacaoAtiva) {
+				// carregando os resources
+				$acl->addResource(new Zend_Acl_Resource($this->retornaNomeAcaoAplicacaoCompleta($arrayAcaoAplicacaoAtiva['module'], $arrayAcaoAplicacaoAtiva['controller'], $arrayAcaoAplicacaoAtiva['action'])));
 			}
 		}
 	}
@@ -195,6 +239,33 @@ class Basico_OPController_ControleAcessoOPController
 			foreach ($objsPerfisUsuario as $objPerfilUsuario) {
 				// carregando o perfil
 				$acl->addRole(new Zend_Acl_Role($objPerfilUsuario->NOME));
+			}
+			// adicionando o perfil PERFIL_ACAO_DESATIVADA
+			$acl->addRole(new Zend_Acl_Role(PERFIL_ACAO_DESATIVADA));
+		} else
+			throw new Exception(MSG_ERROR_NENHUM_PERFIL_ENCONTRADO);
+	}
+
+	/**
+	 * Carrega os perfis de um Zend_Acl
+	 * 
+	 * @param Zend_Acl $acl
+	 * 
+	 * @throws Exception
+	 * 
+	 * @return void
+	 */
+	private function carregaACLRolesViaSQL(Zend_Acl &$acl)
+	{
+		// recuperando perfis
+		$arrayPerfisUsuario = Basico_OPController_PerfilOPController::retornaArrayNomesPerfisUsuarioViaSQL();
+
+		// verificando se os perfis foram carregados
+		if (count($arrayPerfisUsuario) > 0) {
+			// loop para popular os "roles" do Zend_Acl
+			foreach ($arrayPerfisUsuario as $arrayPerfilUsuario) {
+				// carregando o perfil
+				$acl->addRole(new Zend_Acl_Role($arrayPerfilUsuario['nome']));
 			}
 			// adicionando o perfil PERFIL_ACAO_DESATIVADA
 			$acl->addRole(new Zend_Acl_Role(PERFIL_ACAO_DESATIVADA));
@@ -373,8 +444,6 @@ class Basico_OPController_ControleAcessoOPController
 
 				throw new Exception($e);
 			}
-
-
 		}
 
 		return false;
