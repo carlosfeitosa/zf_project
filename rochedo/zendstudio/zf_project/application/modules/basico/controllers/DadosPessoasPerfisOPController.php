@@ -70,7 +70,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 	public function retornaAssinaturaMensagemEmailSistema()
 	{
 		// recuperando o id pessoa perfil do sistema
-		$idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+		$idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 		
 		// recuperando o objeto dados pessoas perfis
 	    $objDadosPessoasPerfis = $this->_model->fetchList("id_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
@@ -103,7 +103,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -148,7 +148,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_DADOS_PESSOAS_PERFIS, true);

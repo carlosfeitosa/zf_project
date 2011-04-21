@@ -97,13 +97,10 @@ class Basico_OPController_RowinfoOPController
 	public function prepareXml($modelo, $utilizarUsuarioSistema = false)
 	{
 		try {
-			// instanciando controladores
-			$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
-
 			// verificando se a solicitacao foi feita pelo sistema
 		    if ($utilizarUsuarioSistema)
 		    	// recuperando o id do usuario do sistema
-		        $idPessoaPerfil = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+		        $idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();;
 	
 		    // verificando se existe id no objeto
 	        if (!isset($modelo->id))

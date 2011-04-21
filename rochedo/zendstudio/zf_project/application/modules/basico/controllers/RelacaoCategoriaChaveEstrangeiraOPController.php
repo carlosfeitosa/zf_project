@@ -84,7 +84,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id == NULL) {
@@ -166,7 +166,6 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 		if (!self::checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo)) {
 			// instanciando controladores
 			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
             $this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
@@ -178,7 +177,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 			$this->_model->rowinfo = $rowinfoOPController->getXml();
 
 			// salvando o objeto
-			$this->salvarObjeto($this->_model, null, $pessoaPerfilOPController->retornaIdPessoaPerfilSistema());
+			$this->salvarObjeto($this->_model, null, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL());
 		}
 		return true;
 	}

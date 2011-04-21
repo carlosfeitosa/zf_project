@@ -109,7 +109,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    		// verificando se trata-se de uma nova tupla
 		    	if ($objeto->id == NULL) {

@@ -83,7 +83,7 @@ class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Bas
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -128,7 +128,7 @@ class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Bas
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO, true);

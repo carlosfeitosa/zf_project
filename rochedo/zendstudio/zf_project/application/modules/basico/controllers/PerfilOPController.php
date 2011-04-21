@@ -96,7 +96,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -141,7 +141,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_PERFIL, true);
@@ -174,7 +174,36 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
     	    
     	return null;
 	}
-	
+
+	/**
+	 * Retorna o id de um perfil, utilizando o nome do perfil como parametro de busca, via SQL
+	 * 
+	 * @param String $nomePerfil
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdPerfilPorNomeViaSQL($nomePerfil)
+	{
+		// verificando se foi passado o id da categoria
+		if (!isset($nomePerfil))
+			return null;
+
+		// recuperando informacoes sobre a tabela perfil
+		$arrayNomeCampoId = array(self::nomeCampoIdModelo);
+		$condicaoSQL      = "nome = '{$nomePerfil}'";
+
+		// recuperando um array contendo os nomes dos perfis relacionados a uma categoria
+		$arrayPerfis = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoId, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayPerfis)) and (is_array($arrayPerfis)) and (count($arrayPerfis) > 0)) {
+			// retornando o id da categoria
+			return $arrayPerfis[0][self::nomeCampoIdModelo];
+		}
+
+		return null;
+	}
+
 	/**
 	 * Retorna o objeto perfil pelo id passado.
 	 * 

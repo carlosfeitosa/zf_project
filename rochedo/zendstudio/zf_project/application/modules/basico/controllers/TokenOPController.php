@@ -193,12 +193,11 @@ class Basico_OPController_TokenOPController
 		try {
 			// instanciando controladores
 			$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-			$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
 	    		// setando o id do perfil criador para o sistema
-    			$idPessoaPerfilCriador = $pessoaPerfilOPController->retornaIdPessoaPerfilSistema();
+    			$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objToken->id != NULL) {

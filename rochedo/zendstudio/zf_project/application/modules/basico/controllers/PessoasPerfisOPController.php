@@ -97,7 +97,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = self::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -142,7 +142,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = self::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_PESSOAS_PERFIS, true);
@@ -191,6 +191,8 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
     /**
      * Retorna o id da PessoaPefil do sistema.
      * 
+     * @deprecated Para maior performance, utilize retornaIdPessoaPerfilSistemaViaSQL()
+     * 
      * @return Int
      */
 	public function retornaIdPessoaPerfilSistema()
@@ -202,6 +204,39 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		if (isset($objPessoaPerfilSistema))
 			// retornando o id de pessoa perfil
 			return $objPessoaPerfilSistema->id;
+
+		return null;
+	}
+
+    /**
+     * Retorna o id da PessoaPefil do sistema, via SQL.
+     * 
+     * @return Int
+     */
+	public static function retornaIdPessoaPerfilSistemaViaSQL()
+	{
+		// recuperando o id do perfil sistema
+		$idPerfilSistema = Basico_OPController_PerfilOPController::retornaIdPerfilPorNomeViaSQL(APPLICATION_SYSTEM_PERFIL);
+		$idPessoaSistema = Basico_OPController_PessoaOPController::retornaIdPessoaSistemaViaSQL();
+
+		 // verificando se id do perfil do sistema foi recuperao/existe
+        if (!isset($idPerfilSistema))
+	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
+
+	    // recuperando informacoes sobre a tabela pessoas perfis
+	    $arrayNomeCampoIdPessoaPerfilSistema = array(self::nomeCampoIdModelo);
+		$condicaoSQL                         = "id_perfil = {$idPerfilSistema} and id_pessoa = {$idPessoaSistema}";
+
+		// recuperando informacoes sobre o id da pessoa perfil sistema, via SQL
+		$arrayIdPessoaPerfilSistema = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoIdPessoaPerfilSistema, $condicaoSQL);
+
+		// verificando o resultado da recuperacao
+		if (count($arrayIdPessoaPerfilSistema) > 0) {
+			// retornando o id da pessoa perfil do usuario sistema
+			return $arrayIdPessoaPerfilSistema[0][self::nomeCampoIdModelo];
+		} else {
+			throw new Exception(MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO);
+		}
 
 		return null;
 	}
@@ -398,7 +433,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 			if (!isset($idPessoaPerfilCriador))
 				// carregando o id do perfil criador do sistema
-				$idPessoaPerfilCriador = $this->retornaIdPessoaPerfilSistema();
+				$idPessoaPerfilCriador = self::retornaIdPessoaPerfilSistemaViaSQL();
 			else if ($idPessoaPerfilCriador <= 0)
 				throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
 

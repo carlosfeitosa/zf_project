@@ -258,7 +258,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	            $controladorMensagem->salvarObjeto($novaMensagemConfirmacao);
 	
 	            // setando e salvando remetente na relacao pessoas perfis mensagem categoria (remetente)
-	            $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	            $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 	            $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
 	            $pessoasPerfisMensagensCategoriasRemetente = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
 	            $pessoasPerfisMensagensCategoriasRemetente->mensagem        = $novaMensagemConfirmacao->id;
@@ -434,7 +434,7 @@ class Basico_LoginController extends Zend_Controller_Action
                          $controladorMensagem->salvarObjeto($novaMensagem);
 
 			             // setando e salvando relacionando pessoa perfil mensagem categoria (remetente)
-			             $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+			             $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 			             $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
 			             $pessoasPerfisMensagensCategoriasRemetente = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
 			             $pessoasPerfisMensagensCategoriasRemetente->mensagem     = $novaMensagem->id;
@@ -584,7 +584,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $controladorMensagem->salvarObjeto($objNovaMensagem);
 
             // setando e salvando remetente na relacao pessoas perfis mensagem categoria (remetente)
-            $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+            $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
             $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
             $pessoasPerfisMensagensCategoriasRemetente = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
             $pessoasPerfisMensagensCategoriasRemetente->mensagem        = $objNovaMensagem->id;

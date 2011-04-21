@@ -111,7 +111,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
     	} else {
     		// recuperando o id de pessoa perfil sistema
-    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
     	}
 
 		// salvando log

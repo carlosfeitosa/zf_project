@@ -14,6 +14,20 @@
 class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
+	 * Nome da tabela pessoa
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'pessoa';
+
+	/**
+	 * Nome do campo id da tabela pessoa
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
 	 * Instância do Controlador Pessoa
 	 * @var Basico_OPController_PessoaOPController
 	 */
@@ -85,7 +99,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -130,7 +144,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_PESSOA, true);
@@ -175,6 +189,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	 */
 	public function retornaIdPessoaSistema()
 	{
+		// recuperando informacoes sobre o rowinfo master
 		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
 		// recuperando o objeto pessoa
 		$objsPessoaSistema = $this->_model->fetchList("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
@@ -182,6 +197,32 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 		// verificando se o objeto foi carregado
 		if (isset($objsPessoaSistema[0]))
 			return $objsPessoaSistema[0]->id;
+
+		return null;
+	}
+
+	/**
+	 * Retorna o id da pessoa master (sistema), via SQL
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdPessoaSistemaViaSQL()
+	{
+		// recuperando informacoes sobre o rowinfo master
+		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
+
+		// recuperando informacoes sobre a tabela pessoa
+		$arrayNomeCampoNome = array(self::nomeCampoIdModelo);
+		$condicaoSQL        = "rowinfo = '{$rowinfoMaster}'";
+
+		// recuperando um array contendo os nomes dos perfis relacionados a uma categoria
+		$arrayPessoa = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoNome, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayPessoa)) and (is_array($arrayPessoa)) and (count($arrayPessoa) > 0)) {
+			// retornando o id da categoria
+			return $arrayPessoa[0][self::nomeCampoIdModelo];
+		}
 
 		return null;
 	}

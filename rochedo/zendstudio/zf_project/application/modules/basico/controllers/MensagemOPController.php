@@ -72,16 +72,17 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 	 * @return void
 	 */
     public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
-    { 
-    	Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mensagem');
+    {
+    	// verificando se o objeto eh da instancia esperada
+    	Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mensagem', true);
+
 	    try{
 	    	// instanciando controladores
 	    	$categoriaControllerController = Basico_OPController_EmailOPController::getInstance();
-	    	$pessoaPerfilControllerController = Basico_OPController_PessoasPerfisOPController::getInstance();
 
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = $pessoaPerfilControllerController->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -113,7 +114,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilSistema();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_MENSAGEM, true);
