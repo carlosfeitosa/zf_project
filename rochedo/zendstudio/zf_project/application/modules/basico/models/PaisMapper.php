@@ -60,7 +60,6 @@ class Basico_Model_PaisMapper
 				'constante_textual_nome'   => $object->getConstanteTextualNome(),
 				'sigla'   => $object->getSigla(),
 				'codigo_ddi'   => $object->getCodigoDDI(),
-                'id_categoria'   => $object->getCategoria(),
 
         );
 
@@ -99,8 +98,7 @@ class Basico_Model_PaisMapper
         $object->setId($row->id)
 				->setConstanteTextualNome($row->constante_textual_nome)
 				->setSigla($row->sigla)
-				->setCodigoDDI($row->codigo_ddi)
-                ->setCategoria($row->id_categoria);
+				->setCodigoDDI($row->codigo_ddi);
     }
 
 	/**
@@ -119,7 +117,6 @@ class Basico_Model_PaisMapper
 				->setConstanteTextualNome($row->constante_textual_nome)
 				->setSigla($row->sigla)
 				->setCodigoDDI($row->codigo_ddi)
-                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -142,7 +139,6 @@ class Basico_Model_PaisMapper
 				->setConstanteTextualNome($row->constante_textual_nome)
 				->setSigla($row->sigla)
 				->setCodigoDDI($row->codigo_ddi)
-                ->setCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -160,8 +156,7 @@ class Basico_Model_PaisMapper
                    array('id' => 'table1.id',
                         'constante_textual_nome' => 'table1.constante_textual_nome' ,
                         'sigla' => 'table1.sigla' ,
-                        'codigo_ddi' => 'table1.codigo_ddi' ,
-                        'id_categoria' => 'table1.id_categoria)'))
+                        'codigo_ddi' => 'table1.codigo_ddi'))
             ->joinInner($join[0])
             ->where($where)
             ->order($order)
@@ -176,7 +171,6 @@ class Basico_Model_PaisMapper
                 ->setConstanteTextualNome($row['constante_textual_nome'])
                 ->setSigla($row['sigla'])
                 ->setCodigoDDI($row['codigo_ddi'])
-                ->setCategoria($row['id_categoria'])
                 ->setMapper($this);
             $entries[] = $entry;
             
@@ -203,7 +197,6 @@ class Basico_Model_PaisMapper
 				->setConstanteTextualNome($row->constante_textual_nome)
 				->setSigla($row->sigla)
 				->setCodigoDDI($row->codigo_ddi)
-                ->setCategoria($row->id_categoria)
                 ->setMapper($this);
             $entries[] = $entry;
         }
