@@ -92,6 +92,7 @@ create table pais (
 	constante_textual_nome character varying (200) not null ,
 	sigla character varying (50) not null ,
 	codigo_ddi character varying (10) null ,
+	codigo_iso3166 character varying (10) null,
 	rowinfo character varying (2000) not null
 )
 with (

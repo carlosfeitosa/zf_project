@@ -65,6 +65,7 @@ create table dbo.pais (
 	constante_textual_nome varchar (200) collate latin1_general_ci_ai not null ,
 	sigla varchar (50) collate latin1_general_ci_ai not null ,
 	codigo_ddi varchar (10) collate latin1_general_ci_ai null ,
+	codigo_iso3166 varchar (10) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
