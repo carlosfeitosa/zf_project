@@ -1748,7 +1748,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_FILTERING_SELECT_PERFIS_VINCULADOS_DISPONIVEIS' AS nome, 'Elemento campo combobox perfis vinculados disponiveis' AS descricao,
                               'FORM_FIELD_PERFIS_VINCULADOS_DISPONIVEIS' AS constante_textual_label,
                               'perfisVinculadosDisponiveis' AS element_name, NULL AS element_attribs,
-                              '''perfisVinculadosDisponiveis''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''perfisVinculadosDisponiveis''' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
