@@ -7,6 +7,7 @@
 * ultimas modificacoes:
 * 								03/11/2010 - criacao das ajudas para o formulario FORM_DIALOG_TELEFONE;
 * 								16/11/2010 - criacao das ajudas para o formulario FORM_DIALOG_EMAIL;
+* 								25/04/2011 - criacao das ajudas para o formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 
 */
 
@@ -337,6 +338,15 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX' AS nome, 'Texto de ajuda para o campo perfis disponiveis.' AS descricao,
        'FORM_FIELD_PERFIS_DISPONIVEIS_AJUDA' AS constante_textual_ajuda,  
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PERFIS_VINCULADOS_DISPONIVEIS_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo perfis vinculados disponiveis.' AS descricao,
+       'FORM_FIELD_PERFIS_VINCULADOS_DISPONIVEIS_AJUDA' AS constante_textual_ajuda,  
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

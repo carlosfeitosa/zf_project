@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 25/04/2011 11:00:05
+* em: 25/04/2011 13:34:06
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 25/04/2011 09:34:21
+* @version    1: 25/04/2011 13:07:28
 */
 class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
 {
@@ -33,16 +33,6 @@ class Basico_Form_CadastrarDadosUsuario extends Zend_Dojo_Form
                 array('TabContainer', array('id' => 'TabContainer', 'style' => 'width: 850px; height: 430px; top: 10px; position: relative; z-index: 3;',
                       'dijitParams' => array('tabPosition' => 'top'),))));
 
-        // Criando array de elementos.
-        $elements = array();
-
-        $elements[0] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
-        $elements[0]->setOrder(0);
-        $elements[0]->setRequired(false);
-        $elements[0]->removeDecorator('Label');
-
-        // Adicionando elementos ao formulario.
-        $this->addElements($elements);
         // Incluindo arquivos de sub-formularios no formulario pai.
         require("subForms/CadastrarDadosUsuarioDadosAcademicos.php");
         // Incluindo arquivos de sub-formularios no formulario pai.

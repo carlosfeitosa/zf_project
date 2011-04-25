@@ -790,9 +790,10 @@ class Basico_Model_Formulario
         }
 
         // verificando se o formulario eh persistente
-        if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_OPController_FormularioOPController::getInstance()->existePersistenciaPorIdFormulario($this->_id)))
+        if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_OPController_FormularioOPController::getInstance()->existePersistenciaPorIdFormulario($this->_id))) {
         	// adicionando elemento hash
         	$arrayObjects[] = Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementoHash();
+        }
         	
 
         return $arrayObjects;

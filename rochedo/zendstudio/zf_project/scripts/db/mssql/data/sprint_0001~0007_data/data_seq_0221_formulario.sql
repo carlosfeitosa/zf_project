@@ -144,8 +144,8 @@ SELECT c.id AS id_categoria,
        'SUBFORM_TABTITLE_PERFIL' AS constante_textual_titulo,
        'CadastrarDadosUsuarioPerfil' AS form_name, 
        'post' AS form_method, 
-       NULL AS form_action, 
-       NULL AS form_attribs,
+       '/basico/dadosusuario/salvar' AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        7 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
