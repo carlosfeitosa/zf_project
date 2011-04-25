@@ -524,6 +524,7 @@ class Basico_OPController_GeradorFormularioOPController
     {
     	// inicializando variaveis
     	$arrayReturn = array();
+    	$baseUrl     = Basico_OPController_UtilOPController::retornaBaseUrl();
 
     	// carregando atributos do sub-formulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_FILENAME_EXTENSION_RECOVERY]           = FORM_GERADOR_RECUPERACAO_EXTENSAO;
@@ -542,11 +543,14 @@ class Basico_OPController_GeradorFormularioOPController
         
         // verificando se o sub-formulario possui metodo
         if ($objSubFormulario->formMethod)
+        	// setando o metodo do sub formulario
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_METHOD]                            = FORM_GERADOR_FORM_SUB_FORM_SETMETHOD . "('{$objSubFormulario->formMethod}');" . QUEBRA_DE_LINHA;
 
 		// verificando se o sub-formulario possui acao
-        if ($objSubFormulario->formAction)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SETACTION . "('{$objSubFormulario->formAction}');" . QUEBRA_DE_LINHA;
+        if ($objSubFormulario->formAction) {
+        	// montando o php para setar o action do form
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SET_ENCRYPTED_ACTION . "('{$baseUrl}{$objSubFormulario->formAction}'));" . QUEBRA_DE_LINHA;
+        }
 
 		// inicializando variaveis
         $tempArraySubFormAttrib = array();
@@ -627,6 +631,7 @@ class Basico_OPController_GeradorFormularioOPController
 
         // verificando se o formulario possui metodo
         if ($objFormulario->formMethod)
+        	// setando o metodo do formulario
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_METHOD]                            = FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');" . QUEBRA_DE_LINHA;
 
         // verificando se o formulario possui acao
