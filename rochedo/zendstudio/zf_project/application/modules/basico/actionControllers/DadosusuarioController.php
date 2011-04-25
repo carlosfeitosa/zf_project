@@ -53,9 +53,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	
     	$formSubmissao = new Basico_Form_CadastrarDadosUsuario();
 	    
-	    $subFormCadastrarDadosUsuarioDadosBiometricos = $this->carregaOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($formSubmissao->getSubForm('CadastrarDadosUsuarioDadosBiometricos'));
-	    
-        var_dump($subFormDadosBiometricos);exit;
+	    $this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($formSubmissao->getSubForm('CadastrarDadosUsuarioDadosBiometricos'));
 	    
 	    // validando o formulario                        
     	if (!$formSubmissao->isValid($this->getRequest()->getPost())) {
@@ -64,12 +62,22 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		return;
     	}
     	
-    	// recuperando array de campos e valores do formulario submetido
-    	$arrayFormPostValues = $this->getRequest()->getPost();
-    	
-    	//var_dump($arrayFormPostValues); exit;
     	// recuperando o id da pessoa logada
     	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
+    	
+    	$this->salvarDadosBiometricos($idPessoa);
+    	
+    	
+    	//renderizando a view
+    	$this->view->form = $formSubmissao;
+    	$this->_helper->Renderizar->renderizar();
+    	
+    }
+    
+    private function salvarDadosBiometricos($idPessoa)
+    {
+    	// recuperando array de campos e valores do formulario submetido
+    	$arrayFormPostValues = $this->getRequest()->getPost();
     	
     	// recuperando o objeto dados biometricos da pessoa
     	$novoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
@@ -80,7 +88,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        $novoDadosBiometricos->setSexo(FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO);
 	    else 
 	        $novoDadosBiometricos->setSexo(FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO);
-    	
+
 	    $novoDadosBiometricos->setAltura($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']);
     	$novoDadosBiometricos->setPeso($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']);
     	$novoDadosBiometricos->setRaca($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']);
@@ -92,21 +100,11 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	
     	// recuperando o objeto PessoaPerfil UsuarioValidado do usuario logado
     	$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa);
-    	
-    	//var_dump($novoDadosBiometricos); exit;
-    	
+
     	// salvando o objeto dadosBiometricos
     	Basico_OPController_DadosBiometricosOPController::getInstance()->salvarObjeto($novoDadosBiometricos, $ultimaVersaoDadosBiometricos, $idPessoaPerfilCriador->id);
-    	
-    	//renderizando a view
-    	$this->view->form = $formSubmissao;
-    	$this->_helper->Renderizar->renderizar();
-    	
-    }
 
-    public function salvarDadosBiometricos($idPessoa)
-    {
-    	
+    	return;
     }
     
     /**
