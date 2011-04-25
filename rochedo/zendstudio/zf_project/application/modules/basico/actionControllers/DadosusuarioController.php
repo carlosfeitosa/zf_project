@@ -14,6 +14,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		return;
     }
 
+    private function getFormDadosUsuario()
+    {
+    	// retornando uma nova instancia do formulario de submissao de dados do usuario
+    	return new Basico_Form_CadastrarDadosUsuario();
+    }
+
     /**
      * Chamada do forulario de cadastro de dados do usuario
      * 
@@ -23,12 +29,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     {
     	// recuperando o id da pessoa logada
     	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
-    	
-    	// instanciando o formulario
-	    $formDadosUsuario = new Basico_Form_CadastrarDadosUsuario();
-	    
+
+    	// recuperando o formulario de submissao de dados do usuario
+    	$formDadosUsuario = $this->getFormDadosUsuario();
+
+    	// carregando informacoes do usuario
     	$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario);
-    	
+
 	    // passando o formulario para a view
 		$this->view->form = $formDadosUsuario;
 		
@@ -96,12 +103,25 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$this->_helper->Renderizar->renderizar();
     	
     }
-    
+
     public function salvarDadosBiometricos($idPessoa)
     {
     	
     }
     
+    /**
+     * Carrega o subformulario PERFIL
+     * 
+     * @param Integer $idPessoa
+     * @param unknown_type $formDadosUsuario
+     * 
+     * @return void
+     */
+    private function carregaPerfis($idPessoa, &$formDadosUsuario)
+    {
+    	
+    }
+
     /**
      * Carrega os elementos do tipo select, radio e checkbox do subform DadosBiometricos
      * 
