@@ -35,13 +35,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
     	// carregando informacoes do usuario
     	$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario);
+    	$this->carregarPerfisVinculadosDisponiveis($idPessoa, $formDadosUsuario);
 
 	    // passando o formulario para a view
 		$this->view->form = $formDadosUsuario;
 		
 		// renderizando a view
-		$this->_helper->Renderizar->renderizar();
-		
+		$this->_helper->Renderizar->renderizar();	
     }
     
     /**
@@ -113,11 +113,11 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * Carrega o subformulario PERFIL
      * 
      * @param Integer $idPessoa
-     * @param unknown_type $formDadosUsuario
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
      * 
      * @return void
      */
-    private function carregaPerfis($idPessoa, &$formDadosUsuario)
+    private function carregarPerfisVinculadosDisponiveis($idPessoa, &$formDadosUsuario)
     {
     	
     }
