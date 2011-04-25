@@ -142,6 +142,17 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
 			throw new Exception($e);
 		}
 	}
+	
+	
+	public function insereObjDadosBiometricos($pessoa, $sexo= null, $raca= null, $altura= null, $peso= null, $tipoSanguineo= null, $historicoMedico= null)
+	{
+		$this->_model = self::retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+	}
+	
+	public static function retornaDadosBiometricosFormularioCadastrarDadosUsuarioDadosBiometricos($request)
+	{
+		
+	}
 
 	/**
 	 * Retorna o objeto dadosBiometricos da pessoa passada
