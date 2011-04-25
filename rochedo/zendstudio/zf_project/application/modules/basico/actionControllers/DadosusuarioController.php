@@ -80,16 +80,20 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando array de campos e valores do formulario submetido
     	$arrayFormPostValues = $this->getRequest()->getPost();
     	
+    	// recuperando o formulario DadosUsuario (TabContainer)
     	$form = $this->getFormDadosUsuario();
     	    	
-    	// descobrindo se a requisicao é do subform dados biometricos
+    	// se a requisição nao vier do form dados Biometricos retorne
     	if (!array_key_exists('CadastrarDadosUsuarioDadosBiometricos', $arrayFormPostValues))
     	    return false;
 
+    	// recuperando o subForm DadosBiometricos    
     	$subFormDadosBiometricos = $form->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
         
+    	// carregando opções dos campos do tipo select e radio
     	$this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($subFormDadosBiometricos);
         
+    	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayFormPostValues)) {
     		// selecionando a aba do subform DadosBiometricos
     	    $subFormDadosBiometricos->setAttrib('selected', 'yes');
@@ -115,20 +119,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    elseif($sexo == 1) 
 	        $dadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
 
-	    //if (strlen($altura)> 0)
-	        $dadosBiometricos->altura = $altura;
-	        
-	    //if (strlen($peso) > 0)    
-    	    $dadosBiometricos->peso = $peso;
-    	    
-    	//if ($raca != "")
-    	    $dadosBiometricos->raca = $raca;
-    	    
-    	//if ($tipoSanguineo != "")
-    	    $dadosBiometricos->tipoSanguineo = $tipoSanguineo;
-    	    
-    	//if ($historicoMedico != "")
-    	    $dadosBiometricos->historicoMedico = $historicoMedico;
+        // carregando dados no objeto dados biometricos
+        $dadosBiometricos->altura          = $altura;
+        $dadosBiometricos->peso            = $peso;
+   	    $dadosBiometricos->raca            = $raca;
+   	    $dadosBiometricos->tipoSanguineo   = $tipoSanguineo;
+   	    $dadosBiometricos->historicoMedico = $historicoMedico;
   	
     	// recuperando a versao do objeto dados biometricos
     	$ultimaVersaoDadosBiometricos = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosBiometricos);
