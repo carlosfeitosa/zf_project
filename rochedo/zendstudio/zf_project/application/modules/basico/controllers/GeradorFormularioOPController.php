@@ -549,7 +549,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// verificando se o sub-formulario possui acao
         if ($objSubFormulario->formAction) {
         	// montando o php para setar o action do form
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SET_ENCRYPTED_ACTION . "('{$baseUrl}{$objSubFormulario->formAction}'));" . QUEBRA_DE_LINHA;
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ACTION]                            = FORM_GERADOR_FORM_SUB_FORM_SET_ENCRYPTED_ACTION . "('{$baseUrl}{$objSubFormulario->formAction}'));" . QUEBRA_DE_LINHA;
         }
 
 		// inicializando variaveis
