@@ -27,7 +27,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// instanciando o formulario
 	    $formDadosUsuario = new Basico_Form_CadastrarDadosUsuario();
 	    
-    	$this->carregaDadosBiometricos($idPessoa, $formDadosUsuario);
+    	$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario);
     	
 	    // passando o formulario para a view
 		$this->view->form = $formDadosUsuario;
@@ -97,11 +97,18 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	
     }
     
+    public function salvarDadosBiometricos($idPessoa)
+    {
+    	
+    }
+    
     /**
+     * Carrega os elementos do tipo select, radio e checkbox do subform DadosBiometricos
      * 
      * @param $subFormCadastrarDadosUsuarioDadosBiometricos
+     * @return void
      */
-    private function carregaOptionsSubFormCadastrarDadosUsuarioDadosBiometricos(&$subFormCadastrarDadosUsuarioDadosBiometricos)
+    private function carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos(&$subFormCadastrarDadosUsuarioDadosBiometricos)
     {
     	// setando options do elemento TipoSanguineo
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo
@@ -124,7 +131,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    //return $subFormCadastrarDadosUsuarioDadosBiometricos;
     }
     
-    private function carregaDadosBiometricos($idPessoa, &$formDadosUsuario)
+    /**
+     * Carrega os dados biometricos da pessoa passada no subform dadosBiometricos
+     * 
+     * @param Int $idPessoa
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
+     */
+    private function carregarDadosBiometricos($idPessoa, &$formDadosUsuario)
     {
 	    // recuperando os dados biometricos da pessoa logada;
 	    $dadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
@@ -133,7 +146,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    $subFormDadosBiometricos =  $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
 	    
 	    // carregando os options do subform
-	    $this->carregaOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($subFormDadosBiometricos);
+	    $this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($subFormDadosBiometricos);
 	    
 	    // recuperando elementos do formulario DadosBiometricos
 	    $formDadosBiometricosElementos =  $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->getElements();
@@ -145,7 +158,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo']->setValue(0);
 	    else 
 	        $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo']->setValue(1);
-	        
+
+	    // setando valores nos campos do subform dadosBiometricos
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']->setValue($dadosBiometricos->raca);    
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']->setValue($dadosBiometricos->peso);
 	    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']->setValue($dadosBiometricos->altura);
