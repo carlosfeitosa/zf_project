@@ -112,11 +112,11 @@ class Basico_OPController_AcoesAplicacaoPerfisOPController extends Basico_Abstra
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_ACOES_APLICACAO_PERFIS, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_ACOES_APLICACAO_PERFIS, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_ACOES_APLICACAO_PERFIS;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVA_ACOES_APLICACAO_PERFIS, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACOES_APLICACAO_PERFIS, true);
 	    		$mensagemLog    = LOG_MSG_NOVA_ACOES_APLICACAO_PERFIS;
 	    	}
 
@@ -155,7 +155,7 @@ class Basico_OPController_AcoesAplicacaoPerfisOPController extends Basico_Abstra
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_ACOES_APLICACAO_PERFIS, true);
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_ACOES_APLICACAO_PERFIS, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_ACOES_APLICACAO_PERFIS;
 
 	    	// apagando o objeto do bando de dados

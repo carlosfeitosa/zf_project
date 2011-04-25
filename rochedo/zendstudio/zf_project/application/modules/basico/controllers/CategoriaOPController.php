@@ -104,11 +104,11 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_CATEGORIA, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_CATEGORIA, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_CATEGORIA;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVA_CATEGORIA, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_CATEGORIA, true);
 	    		$mensagemLog    = LOG_MSG_NOVA_CATEGORIA;
 	    	}
 
@@ -147,7 +147,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_CATEGORIA, true);
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_CATEGORIA, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_CATEGORIA;
 
 	    	// apagando o objeto do bando de dados
@@ -243,7 +243,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Integer
 	 */
-	public function retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $idTipoCategoria = null, $idCategoriaPai = null, $forceCreation = false)
+	public function retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai($nomeCategoria, $idTipoCategoria = null, $idCategoriaPai = null, $forceCreation = false)
 	{
 		// recuperando a categoria
 		$objCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $idTipoCategoria, $idCategoriaPai);
@@ -258,6 +258,49 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		}
 		// estourando excessao de categoria nao encontrada
 		throw new Exception(MSG_ERRO_CATEGORIA_NAO_ENCONTRADA . $nomeCategoria);
+	}
+
+	/**
+	 * Retorna o id da categoria ativa informada por parametro, via SQL
+	 * Eh possivel indicar o tipo categoria setando o parametro $idTipoCategoria com o id do tipo categoria.
+	 * Eh possivel indicar a categoria pai setando o parametro $idCategoriaPai com o id da categoria pai.
+	 * 
+	 * @param String $nomeCategoria
+	 * @param Integer $idTipoCategoria
+	 * @param Integer $idCategoriaPai
+	 * @param Boolean $forceCreation
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL($nomeCategoria, $idTipoCategoria = null, $idCategoriaPai = null)
+	{
+		// recuperando/setando informacoes sobre a a tabela categoria
+		$arrayCampoIdCategoriaAtiva = array(self::nomeCampoIdModelo);
+		$booleanDB                  = Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true);
+		$condicaoSQL                = "nome = '{$nomeCategoria}' AND ativo = {$booleanDB}";
+
+		// verificando se foi passado o id do tipo categoria
+		if ($idTipoCategoria) {
+			// mudando o a condicao SQL
+			$condicaoSQL .= " AND id_tipo_categoria = {$idTipoCategoria}";
+		}
+
+		// verificando se foi passado o id da categoria pai
+		if ($idCategoriaPai) {
+			// mudando a condicao SQL
+			$condicaoSQL .= " AND id_categoria_pai = {$idCategoriaPai}";
+		}
+		
+		// recuperando array com o resultado
+		$arrayIdCategoriaAtiva = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayCampoIdCategoriaAtiva, $condicaoSQL);
+
+		// verificando se o id foi recuperado com sucesso
+		if (count($arrayIdCategoriaAtiva)) {
+			// retornando o id da categoria ativa
+			return $arrayIdCategoriaAtiva[0][self::nomeCampoIdModelo];
+		}
+
+		return null;
 	}
 
 	/**
@@ -294,6 +337,8 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * Retorna o id da categoria de log passada por parametro.
 	 * Caso a categoria nao exista e o parametro $forceCreation for setado para true, o sistema cria a categoria e retorna seu id.
 	 * 
+	 * @deprecated Para maior performance, utilize retornaIdCategoriaLogPorNomeCategoriaViaSQL()
+	 * 
 	 * @param String $nomeCategoria
 	 * @param Boolean $forceCreation
 	 * 
@@ -307,7 +352,39 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaLog)) {
 			// retornando o id da categoria de log passada pelo parametro
-			return $this->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $objCategoriaLog->tipoCategoria, $objCategoriaLog->id, $forceCreation);
+			return $this->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai($nomeCategoria, $objCategoriaLog->tipoCategoria, $objCategoriaLog->id, $forceCreation);
+		}
+	}
+
+	/**
+	 * Retorna o id da categoria de log passada por parametro, via SQL
+	 * Caso a categoria nao exista e o parametro $forceCreation for setado para true, o sistema cria a categoria e retorna seu id.
+	 * 
+	 * @param String $nomeCategoria
+	 * @param Boolean $forceCreation
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaIdCategoriaLogPorNomeCategoriaViaSQL($nomeCategoria, $forceCreation = false)
+	{
+		// recuperando o id da categoria log
+		$idCategoriaPaiLog = self::retornaIdCategoriaLogViaSQL();
+		// recuperando o id do tipo categoria sistema
+		$idTipoCategoriaSistema = Basico_OPController_TipoCategoriaOPController::retornaIdTipoCategoriaSistemaViaSQL();
+
+		// verificando o id foi recuperado
+		if ($idCategoriaPaiLog) {
+			// recuperando o id da categoria
+			$idCategoriaLog = self::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL($nomeCategoria, $idTipoCategoriaSistema, $idCategoriaPaiLog);
+
+			// verificando se o id da categoria de log ativa foi recuperada
+			if ($idCategoriaLog) {
+				// retornando o id da categoria de log
+				return $idCategoriaLog;
+			} else if ($forceCreation) {
+				// criando e retornando o id da categoria de log
+				return Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai($nomeCategoria, $idTipoCategoriaSistema, $idCategoriaPaiLog, $forceCreation);
+			}
 		}
 	}
 

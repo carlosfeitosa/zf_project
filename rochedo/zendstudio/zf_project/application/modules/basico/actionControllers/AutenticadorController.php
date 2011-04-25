@@ -23,7 +23,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin($idLogin);
 
 			// recuperando informacoes de log
-			$idCategoriaLogLogoff   = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_SUCESSO_DESAUTENTICACAO_USUARIO, true);
+			$idCategoriaLogLogoff   = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_SUCESSO_DESAUTENTICACAO_USUARIO, true);
 			$mensagemLogLogoff      = LOG_MSG_SUCESSO_DESAUTENTICACAO_USUARIO;
 
 			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaUsuarioLogado)->id;
@@ -55,7 +55,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
 
 		// recuperando o formulario de autenticacao
-		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
+		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
 		$actionFormularioAutenticao        = Basico_OPController_FormularioOPController::getInstance()->retornaActionFormularioPorNomeFormularioIdCategoria(FORM_AUTENTICACAO_USUARIO, $idCategoriaFormularioAutenticacao);
 
 		// tokenizando o action
@@ -96,10 +96,10 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		// verificando se o login existe e possui perfil de usuario validado
 		if ($objPessoaPerfilUsuarioValidadoLogin->id) {
 			// inserindo log de tentativa de logon
-			Basico_OPController_LogOPController::salvarLogViaSQL($objPessoaPerfilUsuarioValidadoLogin->id, Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
+			Basico_OPController_LogOPController::salvarLogViaSQL($objPessoaPerfilUsuarioValidadoLogin->id, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
 		} else {
 			// inserindo log de perfil de usuario validado nao encontrado para o usuario
-			Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
+			Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
 		}
 
 		// verificando se as credenciais de acesso funcionaram
@@ -116,7 +116,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			// verificando se o sistema deve manter o usuario logado
 			if ($form->getValue(AUTH_KEEP_LOGGED_KEY)) {
 				// recuperando informacoes de log
-				$idCategoriaLogManterUsuarioLogado = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_MANTER_USUARIO_LOGADO, true);
+				$idCategoriaLogManterUsuarioLogado = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_MANTER_USUARIO_LOGADO, true);
 				$mensagemLogManterUsuarioLogado    = LOG_MSG_MANTER_USUARIO_LOGADO;
 
 				// salvando log
@@ -177,7 +177,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$arrayElementosError[] = AUTH_CREDENTIAL_ARRAY_KEY;
 
 		// recuperando o formulario de autenticacao
-		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
+		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
 		$actionFormularioAutenticao        = Basico_OPController_FormularioOPController::getInstance()->retornaActionFormularioPorNomeFormularioIdCategoria(FORM_AUTENTICACAO_USUARIO, $idCategoriaFormularioAutenticacao);
 
 		// tokenizando o action

@@ -88,11 +88,11 @@ class Basico_OPController_MetodoValidacaoOPController extends Basico_Abstract_Ro
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_METODO_VALIDACAO, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_METODO_VALIDACAO, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_METODO_VALIDACAO;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_METODO_VALIDACAO, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_METODO_VALIDACAO, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_METODO_VALIDACAO;
 	    	}
 
@@ -131,7 +131,7 @@ class Basico_OPController_MetodoValidacaoOPController extends Basico_Abstract_Ro
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_METODO_VALIDACAO, true);
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_METODO_VALIDACAO, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_METODO_VALIDACAO;
 
 	    	// apagando o objeto do bando de dados

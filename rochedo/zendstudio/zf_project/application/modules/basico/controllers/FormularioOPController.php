@@ -121,11 +121,11 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_UPDATE_FORMULARIO, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_FORMULARIO, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_NOVO_FORMULARIO, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_FORMULARIO, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_FORMULARIO;
 	    	}
 
@@ -165,7 +165,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_DELETE_FORMULARIO, true);
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_FORMULARIO, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_FORMULARIO;
 
 	    	// apagando o objeto do bando de dados

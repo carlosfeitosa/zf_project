@@ -89,7 +89,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id == NULL) {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaLogPorNomeCategoria(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA, true);
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA, true);
 	    		$mensagemLog    = LOG_MSG_NOVA_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA;
 	    	} else {
 	    		throw new Exception(MSG_ERRO_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA_EXISTE . " : " . $e->getMessage());
