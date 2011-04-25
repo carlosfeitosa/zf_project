@@ -134,7 +134,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setSexo($sexo)
 	{
-		$this->_sexo = (String) $sexo;
+		$this->_sexo = Basico_OPController_UtilOPController::retornaValorTipado($sexo,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -156,7 +156,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setRaca($raca)
 	{
-		$this->_raca = (Int) $raca;
+		$this->_raca = Basico_OPController_UtilOPController::retornaValorTipado($raca,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -178,7 +178,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setAltura($altura)
 	{
-		$this->_altura = (String) $altura;
+		$this->_altura = Basico_OPController_UtilOPController::retornaValorTipado($altura,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -200,7 +200,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setPeso($peso)
 	{
-		$this->_peso = (String) $peso;
+		$this->_peso = Basico_OPController_UtilOPController::retornaValorTipado($peso,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -217,19 +217,19 @@ class Basico_Model_DadosBiometricos
     /**
 	* Set tipoSanguineo
 	* 
-	* @param String $tipoSanguineo 
+	* @param Int $tipoSanguineo 
 	* @return Basico_Model_DadosBiometricos
 	*/
 	public function setTipoSanguineo($tipoSanguineo)
 	{
-		$this->_tipoSanguineo = (String) $tipoSanguineo;
+		$this->_tipoSanguineo = Basico_OPController_UtilOPController::retornaValorTipado($tipoSanguineo,TIPO_INTEIRO,true);
 		return $this;
 	}
 
 	/**
 	* Get tipoSanguineo
 	* 
-	* @return null|String
+	* @return null|Int
 	*/
 	public function getTipoSanguineo()
 	{
@@ -244,7 +244,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setHistoricoMedico($historicoMedico)
 	{
-		$this->_historicoMedico = (String) $historicoMedico;
+		$this->_historicoMedico = Basico_OPController_UtilOPController::retornaValorTipado($historicoMedico,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -266,7 +266,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setPessoa($pessoa)
 	{
-		$this->_pessoa = (int) $pessoa;
+		$this->_pessoa = Basico_OPController_UtilOPController::retornaValorTipado($pessoa,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -288,7 +288,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = (String) $rowinfo;
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -310,7 +310,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setId($id)
 	{
-		$this->_id = (int) $id;
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 

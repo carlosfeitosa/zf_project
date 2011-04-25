@@ -35,6 +35,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
     	// carregando informacoes do usuario
     	$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario);
+    	
     	$this->carregarPerfisVinculadosDisponiveis($idPessoa, $formDadosUsuario);
 
 	    // passando o formulario para a view
@@ -51,25 +52,25 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     public function salvarAction()
     {
     	
-    	$formSubmissao = new Basico_Form_CadastrarDadosUsuario();
-	    
+    	$formSubmissao = $this->getFormDadosUsuario();
+    	
 	    $this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($formSubmissao->getSubForm('CadastrarDadosUsuarioDadosBiometricos'));
-	    
-	    // validando o formulario                        
+	    /*
     	if (!$formSubmissao->isValid($this->getRequest()->getPost())) {
     		$this->view->form = $formSubmissao;
     		$this->_helper->Renderizar->renderizar();
     		return;
     	}
+	    */
+	    
+	    //renderizando a view
+    	$this->view->form = $formSubmissao;
     	
-    	// recuperando o id da pessoa logada
+	    // recuperando o id da pessoa logada
     	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
     	
     	$this->salvarDadosBiometricos($idPessoa);
     	
-    	
-    	//renderizando a view
-    	$this->view->form = $formSubmissao;
     	$this->_helper->Renderizar->renderizar();
     	
     }
@@ -79,32 +80,75 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando array de campos e valores do formulario submetido
     	$arrayFormPostValues = $this->getRequest()->getPost();
     	
+    	$form = $this->getFormDadosUsuario();
+    	    	
+    	// descobrindo se a requisicao é do subform dados biometricos
+    	if (!array_key_exists('CadastrarDadosUsuarioDadosBiometricos', $arrayFormPostValues))
+    	    return false;
+
+    	$subFormDadosBiometricos = $form->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
+        
+    	$this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($subFormDadosBiometricos);
+        
+    	if (!$subFormDadosBiometricos->isValid($arrayFormPostValues)) {
+    		// selecionando a aba do subform DadosBiometricos
+    	    $subFormDadosBiometricos->setAttrib('selected', 'yes');
+    		$this->view->form = $form;
+    		return false;
+    	}
+    	
+    	// recuperando valores do formulario
+    	$sexo            = $arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'];
+    	$altura          = $arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosAltura'];
+	    $peso            = $arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosPeso'];  
+        $raca            = $arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'];
+	    $tipoSanguineo   = $arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo'];
+	    $historicoMedico = $arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico'];
+	    
     	// recuperando o objeto dados biometricos da pessoa
-    	$novoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
+    	$dadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
     	
     	// carregando valores no objeto dadosBiometricos
     	// carregando o radio button do sexo
-	    if ($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'] == 0)
-	        $novoDadosBiometricos->setSexo(FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO);
-	    else 
-	        $novoDadosBiometricos->setSexo(FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO);
+	    if ($sexo == 0)
+	        $dadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;
+	    elseif($sexo == 1) 
+	        $dadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
 
-	    $novoDadosBiometricos->setAltura($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']);
-    	$novoDadosBiometricos->setPeso($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']);
-    	$novoDadosBiometricos->setRaca($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']);
-    	$novoDadosBiometricos->setTipoSanguineo($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo']);
-    	$novoDadosBiometricos->setHistoricoMedico($arrayFormPostValues['CadastrarDadosUsuarioDadosBiometricos']['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']);
-    	
+	    //if (strlen($altura)> 0)
+	        $dadosBiometricos->altura = $altura;
+	        
+	    //if (strlen($peso) > 0)    
+    	    $dadosBiometricos->peso = $peso;
+    	    
+    	//if ($raca != "")
+    	    $dadosBiometricos->raca = $raca;
+    	    
+    	//if ($tipoSanguineo != "")
+    	    $dadosBiometricos->tipoSanguineo = $tipoSanguineo;
+    	    
+    	//if ($historicoMedico != "")
+    	    $dadosBiometricos->historicoMedico = $historicoMedico;
+  	
     	// recuperando a versao do objeto dados biometricos
-    	$ultimaVersaoDadosBiometricos = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($novoDadosBiometricos);
+    	$ultimaVersaoDadosBiometricos = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosBiometricos);
     	
     	// recuperando o objeto PessoaPerfil UsuarioValidado do usuario logado
     	$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa);
 
     	// salvando o objeto dadosBiometricos
-    	Basico_OPController_DadosBiometricosOPController::getInstance()->salvarObjeto($novoDadosBiometricos, $ultimaVersaoDadosBiometricos, $idPessoaPerfilCriador->id);
+    	Basico_OPController_DadosBiometricosOPController::getInstance()->salvarObjeto($dadosBiometricos, $ultimaVersaoDadosBiometricos, $idPessoaPerfilCriador->id);
 
-    	return;
+    	// carregando dados da pessoa no subform DadosBiometricos
+    	$this->carregarDadosBiometricos($idPessoa, $form);
+    	// selecionando a aba do subform DadosBiometricos
+    	$subFormDadosBiometricos->setAttrib('selected', 'yes');
+    	// exibindo mensagem de sucesso
+    	Basico_OPController_UtilOPController::exibirDialogMensagem('dialogMensagem', $this->view->tradutor('VIEW_TITULO_MESSAGEM_SUCESSO'), $this->view->tradutor('VIEW_MESSAGEM_SUCESSO_SALVAR_DADOS_BIOMETRICOS'));
+    	// carregando formulario na view
+    	$this->view->form = $form;
+    	
+    	return true;
     }
     
     /**

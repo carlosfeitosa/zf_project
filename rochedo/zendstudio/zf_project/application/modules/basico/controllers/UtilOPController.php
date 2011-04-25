@@ -1263,4 +1263,20 @@ class Basico_OPController_UtilOPController
     	// retornando o resultado do parser
     	return @eval('return true;' . $phpCode);
     }
+    
+    /**
+     * Exibe um dialog com o conteudo TXT passado como parametro
+     * @param String $dialogId
+     * @param String $dialogTitle
+     * @param String $txtContent
+     * @param Boolean $exibiBotao
+     * 
+     * @return void
+     */
+    public static function exibirDialogMensagem($dialogId, $dialogTitle, $txtContent, $exibiBotao = 1)
+    {
+    	// exibindo mensagem de sucesso
+    	echo "<script type='text/javascript'>showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibiBotao});</script>";
+
+    }
 }
