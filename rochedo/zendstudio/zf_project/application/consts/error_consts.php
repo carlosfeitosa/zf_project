@@ -93,6 +93,7 @@ define("MSG_ERRO_FORMULARIO_SUB_FORMULARIO_CATEGORIA", "Este sub-formulário nã
 define("MSG_ERRO_GERAR_SUB_FORMULARIO", "Não foi possivel gerar este sub-formulário.");
 define("MSG_ERRO_GERAR_TODOS_FORMULARIO", "Erro ao tentar gerar o formulario ");
 define("MSG_ERRO_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_SEM_FORMULARIO", "Não foi encontrado o formulario vinculado com este elemento.");
+define("MSG_ERRO_AO_TENTAR_ADICIONAR_ELEMENTO_AO_FORMULARIO", "Não foi possivel adicionar elemento ao formulario: ");
 
 /*
  * TOKEN

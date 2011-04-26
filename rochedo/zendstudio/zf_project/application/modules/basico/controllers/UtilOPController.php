@@ -1041,38 +1041,34 @@ class Basico_OPController_UtilOPController
     	// retornando o nome do controlador
     	return $actionControllerName = ucfirst($request->getModuleName()) . '_' . ucfirst($request->getControllerName()) . 'Controller';
     }
-    
-    /**
-     * Retorna o formulario presente na requisição passada
-     * 
-     * @param Zend_Controller_Request_Abstract $request
-     * 
-     * @return Array
-     * 
-     * @todo
-     */
-    public function retornaFormularioCarregadoPorRequest($request)
-    {
-    	// recuperando os dados do post da requisicao
-    	$post = $request->getPost();
 
-    	// recuperando as chaves do Array post
-    	$chavesArrayPost = array_keys($post);
-    	
-        // recuperando o nome do modulo da requisicao
-    	$moduleName = $request->getModuleName();
-    	
-    	// montando o nome do formulario
-    	$nomeFormulario = ucfirst($moduleName) . "_" . $chavesArrayPost[0];
-    	
-    	// criando o formulario carregado com os dados do post
-    	$formulario = new $nomeFormulario($post);
-    	
-    	var_dump($formulario); exit;
-    	
-    	// retornando o formulario carregado
-    	return $formulario;
-    } 
+    /**
+     * Adiciona um elemento a um formulario
+     * 
+     * @param Zend_Form|Zend_Dojo_Form $form
+     * @param String $tipoElemento
+     * @param String $nomeElemento
+     * @param Array $arrayOptions
+     * 
+     * @return Boolean
+     */
+    public static function adicionaElementoForm(&$form, $tipoElemento, $nomeElemento, $arrayOptions)
+    {
+    	// verificando se foi passado um form e se ele eh da instancia Zend_Form ou Zend_Dojo_Form
+    	if ((!isset($form)) or !(($form instanceof Zend_Form) or ($form instanceof Zend_Dojo_Form)))
+    		return false;
+
+    	try {
+    		// adicionando elemento ao formulario
+    		$form->addElement($tipoElemento, $nomeElemento, $arrayOptions);
+
+    		return true;
+    	} catch (Exception $e) {
+    		throw new Exception(MSG_ERRO_AO_TENTAR_ADICIONAR_ELEMENTO_AO_FORMULARIO . "{$form->name} -> {$tipoElemento} -> {$nomeElemento}");
+    	}
+
+    	return false;
+    }
 
     /**
      * Retorna o host do servidor.

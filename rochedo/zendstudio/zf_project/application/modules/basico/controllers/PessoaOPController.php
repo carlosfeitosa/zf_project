@@ -239,18 +239,15 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 		// inicializando variaveis
 		$sessionIdPerfilPadraoUsuarioAttribute = PERFIL_ID_PERFIL_PADRAO_KEY;
 
-		// verificando se foi passado o id do perfil padrao
-		if ($idPerfilPadrao) {
-			// registrando/recuperando o namespace do token na sessao
-	        $session = Basico_OPController_SessionOPController::registraSessaoUsuario();
+		// registrando/recuperando o namespace do token na sessao
+        $session = Basico_OPController_SessionOPController::registraSessaoUsuario();
 
-			// verificando se o id do usuario sessao
-			if (!isset($session->$sessionIdPerfilPadraoUsuarioAttribute)) {
-	        	// setando o id do usuario na sessao
-	        	$session->$sessionIdPerfilPadraoUsuarioAttribute = $idPerfilPadrao;
-			}
+		// verificando se o id do usuario sessao
+		if ((!isset($session->$sessionIdPerfilPadraoUsuarioAttribute)) or ($session->$sessionIdPerfilPadraoUsuarioAttribute !== $idPerfilPadrao)) {
+        	// setando o id do usuario na sessao
+        	$session->$sessionIdPerfilPadraoUsuarioAttribute = $idPerfilPadrao;
 
-	        return true;
+        	return true;
 		}
 
 		return false;
@@ -292,5 +289,53 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 
 		// retornando o id do perfil padrao da pessoa
 		return $this->_model->perfilPadrao;
+	}
+
+	/**
+	 * Retorna a versao do objeto pessoa, a partir do id de uma pessoa
+	 * 
+	 * @param Integer $idPessoa
+	 * @param Boolean $forceVersioning
+	 * 
+	 * @return Integer
+	 */
+	public function retornaVersaoObjetoPessoaPorIdPessoa($idPessoa, $forceVersioning = false)
+	{
+		// recuperando objeto pessoa
+		$this->_model->find($idPessoa);
+
+		// retornando a versao do objeto
+		return Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($this->_model, $forceVersioning);
+	}
+
+	/**
+	 * Atualiza o perfil padrao de uma pessoa
+	 * 
+	 * @param Integer $idPessoa
+	 * @param Integer $idPerfilPadrao
+	 * @param Integer $versaoObjetoPessoa
+	 * 
+	 * @return Boolean
+	 */
+	public function atualizaPerfilPadraoPessoa($idPessoa, $idPerfilPadrao, $versaoObjetoPessoa)
+	{
+		// recuperando o objeto pessoa
+		$this->_model->find($idPessoa);
+
+		// verificando se o objeto foi carregado
+		if ($this->_model->id) {
+			// mudando atributo perfilPadrao
+			$this->_model->perfilPadrao = $idPerfilPadrao;
+
+			// recuperando o id pessoa perfil usuario validado da pessoa
+			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+
+			// salvando o objeto
+			$this->salvarObjeto($this->_model, $versaoObjetoPessoa, $idPessoaPerfilUsuarioValidado);
+
+			return true;
+		}
+
+		return false;
 	}
 }

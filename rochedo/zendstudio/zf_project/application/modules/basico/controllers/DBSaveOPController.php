@@ -40,7 +40,6 @@ class Basico_OPController_DBSaveOPController
 		try {
 			// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
 			if (!Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($mixed)) {
-
 				// verificando se o objeto possui atributos de sobrecarga de valores (data)
 				if (property_exists($mixed, PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO))
 					$mixed->PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO = Basico_OPController_UtilOPController::retornaDateTimeAtual();
@@ -58,7 +57,7 @@ class Basico_OPController_DBSaveOPController
 					// verificando se existe transacao iniciada
 					if ($transacaoInicializada) {
 						// cancelando a transacao
-						Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+						$transacaoInicializada = !Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 					}
 
 					throw new Exception(MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO);
@@ -66,7 +65,6 @@ class Basico_OPController_DBSaveOPController
 			}
 			// verificando se, tratando-se de um update, foi informado a versao da tupla
 			else if ((!isset($versaoUpdate)) or ($versaoUpdate <= 0)){
-
 				throw new Exception(MSG_ERRO_SAVE_UPDATE_SEM_INFORMACAO_SOBRE_VERSAO);
 			}
 
@@ -78,7 +76,7 @@ class Basico_OPController_DBSaveOPController
 				// verificando se existe transacao iniciada
 				if ($transacaoInicializada) {
 					// cancelando a transacao
-					Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+					$transacaoInicializada = !Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 				}
 				
 				throw new Exception(MSG_ERRO_SAVE_UPDATE_VERSAO_DESATUALIZADA);
@@ -106,7 +104,7 @@ class Basico_OPController_DBSaveOPController
 					// verificando se existe transacao iniciada
 					if ($transacaoInicializada) {
 						// cancelando a transacao
-						Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+						$transacaoInicializada = !Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 					}
 
 					throw new Exception(MSG_ERRO_SAVE_NAO_ENCONTRADO);
@@ -115,7 +113,7 @@ class Basico_OPController_DBSaveOPController
 				// verificando se existe transacao iniciada
 				if ($transacaoInicializada) {
 					// salva a transacao
-					Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+					$transacaoInicializada = !Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 				}
 
 				return true;
@@ -124,11 +122,11 @@ class Basico_OPController_DBSaveOPController
 				// verificando se houve insercao de nova tupla no banco de dados
 				if (isset($novaTupla) and ($novaTupla) and ($transacaoInicializada)) {
 					// salvando a transacao
-					Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+					$transacaoInicializada = !Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 				}
 				else if ($transacaoInicializada) {
 					// cancelando a transacao
-					Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+					$transacaoInicializada = !Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 				}
 
 				return false;

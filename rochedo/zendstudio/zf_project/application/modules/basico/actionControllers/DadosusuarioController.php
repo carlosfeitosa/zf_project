@@ -85,12 +85,60 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
     	// invocando metodos de salvar os dados do usuario
     	$this->salvarDadosBiometricos($idPessoa, $arrayPost, $formDadosUsuario);
+    	$this->salvarPerfilPadrao($idPessoa, $arrayPost, $formDadosUsuario);
 
     	// setando o formulario na view
     	$this->view->form = $formDadosUsuario;
 
     	// renderizando a view
     	$this->_helper->Renderizar->renderizar();  	
+    }
+
+    /**
+     * Salva o perfil padrao de um usuario
+     * 
+     * @param unknown_type $idPessoa
+     * @param unknown_type $arrayPost
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
+     * 
+     * @return Boolean
+     */
+    private function salvarPerfilPadrao($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
+    {
+    	// verificando se deve processar o request (post)
+    	if (!array_key_exists('CadastrarDadosUsuarioPerfil', $arrayPost))
+    		return false;
+
+    	// recuperando o subform Perfil
+    	$subFormPerfilPadrao = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioPerfil');
+
+    	// validando o sub formulario
+    	if (!$subFormPerfilPadrao->isValid($arrayPost)) {
+    		// selecionando o sub formulario perfil
+    		$subFormPerfilPadrao->setAttrib('selected', 'yes');
+    		return false;
+    	}
+
+    	// recuperando dados do formulario
+    	$idPerfilPadrao     = Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioPerfil']['BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true);
+    	$versaoObjetoPessoa = (int) $arrayPost['CadastrarDadosUsuarioPerfil']['versaoObjetoPessoa'];
+
+    	// setando o perfil padrao do usuario
+    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoa($idPessoa, $idPerfilPadrao, $versaoObjetoPessoa)) {
+			// selecionando a aba do subform perfil padrao
+    		$subFormPerfilPadrao->setAttrib('selected', 'yes');
+
+    		// atualizando o perfil padrao do usuario na sessao
+    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao($idPerfilPadrao);
+
+			// recuperando a versao do objeto pessoa
+    		$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
+
+    		// atualizando a versao do elemento hidden do objeto pessoa
+    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
+
+    		return true;
+    	}
     }
 
     /**
@@ -111,14 +159,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando o subForm DadosBiometricos    
     	$subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
 
-    	// carregando opções dos campos do tipo select e radio
-    	$this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($subFormDadosBiometricos);
-
     	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayPost)) {
     		// selecionando a aba do subform DadosBiometricos
     	    $subFormDadosBiometricos->setAttrib('selected', 'yes');
-    		$this->view->form = $formDadosUsuario;
     		return false;
     	}
     	
@@ -186,6 +230,26 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	
     	// setando options do combobox perfil vinculado padrao
     	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormPerfisVinculadosDisponveis->BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis, $idPerfilPadrao);
+
+    	// recuperando a versao do objeto pessoa
+    	$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
+
+		// adicionando elemento hidden contendo a versao do objeto pessoa
+		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
+    }
+
+    /**
+     * Adiciona um elemento hidden contendo o numero da versao do objeto pessoa existente no banco de dados
+     * 
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
+     * @param Integer $versaoObjetoPessoa
+     * 
+     * @return Boolean
+     */
+    private function adicionaElementoHiddenVersaoObjetoPessoa(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoPessoa)
+    {
+    	// adicionando elemento hidden contendo a versao do objeto pessoa
+		return Basico_OPController_UtilOPController::adicionaElementoForm($formDadosUsuario->getSubForm('CadastrarDadosUsuarioPerfil'), FORM_ELEMENT_HIDDEN, 'versaoObjetoPessoa', array('value' => $versaoObjetoPessoa));
     }
 
 	/**
