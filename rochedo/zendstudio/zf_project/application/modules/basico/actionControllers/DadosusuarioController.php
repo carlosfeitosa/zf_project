@@ -51,28 +51,23 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     public function salvarAction()
     {
-    	
+		// carregando formulario de submissao
     	$formSubmissao = $this->getFormDadosUsuario();
-    	
+
+    	// carregando opcoes do subform cadastro dados usuario dados biometricos
 	    $this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($formSubmissao->getSubForm('CadastrarDadosUsuarioDadosBiometricos'));
-	    /*
-    	if (!$formSubmissao->isValid($this->getRequest()->getPost())) {
-    		$this->view->form = $formSubmissao;
-    		$this->_helper->Renderizar->renderizar();
-    		return;
-    	}
-	    */
-	    
-	    //renderizando a view
+
+	    // renderizando a view
     	$this->view->form = $formSubmissao;
-    	
+
 	    // recuperando o id da pessoa logada
     	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
-    	
+
+    	// invocando o metodo de salvar dados biometricos
     	$this->salvarDadosBiometricos($idPessoa);
-    	
-    	$this->_helper->Renderizar->renderizar();
-    	
+
+    	// renderizando a view
+    	$this->_helper->Renderizar->renderizar();  	
     }
     
     private function salvarDadosBiometricos($idPessoa)
@@ -157,7 +152,47 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     private function carregarPerfisVinculadosDisponiveis($idPessoa, &$formDadosUsuario)
     {
+    	// recuperando subformulario de perfis vinculados disponiveis
+    	$subFormPerfisVinculadosDisponveis = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioPerfil');
+
+    	// recuperando array de objetos dos perfis vinculados disponiveis para selecao de perfil padrao
+    	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaArrayIdDescricaoPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa);
+
+    	// recuperando id do perfil padrao do usuario
+    	$idPerfilPadrao = Basico_OPController_PessoaOPController::retornaIdPerfilPadraoUsuarioSessao();
     	
+    	// setando options do combobox perfil vinculado padrao
+    	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormPerfisVinculadosDisponveis->BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis, $idPerfilPadrao);
+    }
+
+	/**
+	 * Carrega os elementos do combobox Perfil vinculado padrão:
+	 * 
+	 * @param Array $arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa
+	 * @param Zend_Dojo_Form_Element_FilteringSelect $elemento
+	 * @param Integer $idPerfilPadrao
+	 * 
+	 * @return void
+	 */
+    private function carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, Zend_Dojo_Form_Element_FilteringSelect &$elemento, $idPerfilPadrao = null)
+    {
+    	// loop para carregar os elementos
+    	foreach ($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa as $arrayIdDescricaoPerfisVinculadosDisponiveisPessoa) {
+    		// setando a opcao
+    		$elemento->addMultiOption($arrayIdDescricaoPerfisVinculadosDisponiveisPessoa['id'], $arrayIdDescricaoPerfisVinculadosDisponiveisPessoa['descricao']);
+    	}
+
+    	// adicionando a opcao "nao desejo informar"
+    	$elemento->addMultiOption(0, $this->view->tradutor('SELECT_OPTION_NAO_DESEJO_INFORMAR'));
+
+    	// verificando se foi passado o valor para setar no combobox
+    	if ($idPerfilPadrao) {
+    		// setando o valor no elemento
+    		$elemento->setValue($idPerfilPadrao);
+    	} else {
+    		// setando o valor no elemento, como "nao desejo informar"
+    		$elemento->setValue(0);
+    	}
     }
 
     /**

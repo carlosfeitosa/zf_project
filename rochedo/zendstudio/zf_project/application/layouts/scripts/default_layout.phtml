@@ -12,17 +12,26 @@ $applicationHttpBaseUrl = $this->baseUrl();
 // setando cabecalho
 $this->doctype('XHTML1_STRICT');
 $this->headTitle(APPLICATION_NAME_AND_VERSION);
-$this->headTitle()->setSeparator(' - ');
+$this->headTitle()->setSeparator(' :: ');
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
 // verificando ambiente
 if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
 {
+    // verificando se existe usuario logado
+    if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+    	// recuperando a descricao do perfil padrao do usuario logado na sessao
+		$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::getInstance()->retornaDescricaoPerfilPadraoUsuarioSessao();
+
+		// setando o titulo da janela do navegador
+		$this->headTitle($descricaoPerfilPadrao);
+    }
+
 	// recuperando o request do usuario
 	$request = Basico_OPController_UtilOPController::retornaUserRequest();
-    $requestTitle = '('.$request->getModuleName().': '.$request->getControllerName().'/'.$request->getActionName().')';    
-    $this->headTitle($requestTitle);
+    // setando o titulo da janela do navegador
+    $this->headTitle("{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}");
 }
 ?>
 <html> 

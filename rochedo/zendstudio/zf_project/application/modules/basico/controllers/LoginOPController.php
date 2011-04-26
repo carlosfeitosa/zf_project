@@ -536,7 +536,8 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// recuperando informacoes sobre o usuario
 		$idPessoaLogin                      = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
 		$idPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaLogin)->id;
-
+		$idPerfilPadraoUsuarioLogin         = Basico_OPController_PessoaOPController::getInstance()->retornaIdPerfilPadraoPorIdPessoa($idPessoaLogin);
+		
 		// recuperando informacoes de log
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_SUCESSO_AUTENTICACAO_USUARIO, true);
 		$mensagemLog    = LOG_MSG_SUCESSO_AUTENTICACAO_USUARIO;
@@ -546,6 +547,9 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 		// registrando o usuario na sessao
 		$this->registraIdLoginUsuarioSessao($login);
+
+		// registrando o perfil padrao do usuario na sessao
+		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao($idPerfilPadraoUsuarioLogin);
 	}
 
 	/**

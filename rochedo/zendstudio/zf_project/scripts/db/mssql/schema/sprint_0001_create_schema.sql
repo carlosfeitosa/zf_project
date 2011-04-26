@@ -111,6 +111,7 @@ create table dbo.perfil (
 
 create table dbo.pessoa (
 	id int identity (1, 1) not null ,
+	id_perfil_padrao int null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -338,6 +339,14 @@ alter table dbo.dicionario_expressao add constraint ix_dicionario_expressao uniq
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
+
+alter table dbo.pessoa
+	constraint fk_pessoa_id_perfil_padrao foreign key 
+	(
+		id_perfil_padrao
+	) references dbo.perfil (
+		id
+	);
 
 alter table dbo.categoria add 
 	constraint fk_categoria_categoria foreign key 

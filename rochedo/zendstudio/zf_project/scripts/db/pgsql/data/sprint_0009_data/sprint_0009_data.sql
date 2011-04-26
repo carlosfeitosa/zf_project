@@ -167,17 +167,17 @@ AND c.nome = 'en-us';
 -- PERFIS
 
 INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
-SELECT id, 'USUARIO_PUBLICO' AS nome, 0 AS nivel, 'Usuário publico do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT id, 'USUARIO_PUBLICO' AS nome, 0 AS nivel, 'Público' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 
 INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
-SELECT id, 'USUARIO_ADMINISTRADOR' AS nome, 1000 AS nivel, 'Usuário administrador do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT id, 'USUARIO_ADMINISTRADOR' AS nome, 1000 AS nivel, 'Administrador do sistema' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 
 INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
-SELECT id, 'USUARIO_DESENVOLVEDOR' AS nome, 9999 AS nivel, 'Usuário desenvolvedor do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+SELECT id, 'USUARIO_DESENVOLVEDOR' AS nome, 9999 AS nivel, 'Desenvolvedor do sistema' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 

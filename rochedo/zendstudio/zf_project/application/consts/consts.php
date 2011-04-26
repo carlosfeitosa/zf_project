@@ -60,6 +60,7 @@ define("AUTH_CREDENTIAL_COLUMN", "senha");
 define("AUTH_IDENTITY_ARRAY_KEY", "BasicoAutenticacaoUsuarioLogin");
 define("AUTH_CREDENTIAL_ARRAY_KEY", "BasicoAutenticacaoUsuarioSenha");
 define("AUTH_ID_LOGIN_SESSION_KEY", "AUTH_ID_LOGIN_SESSION_KEY");
+define("PERFIL_ID_PERFIL_PADRAO_KEY", "PERFIL_ID_PERFIL_PADRAO_KEY");
 define("AUTH_KEEP_LOGGED_KEY", "BasicoAutenticacaoUsuarioLoginManterLogado");
 define("ROWINFO_SYSTEM_STARTUP_MASTER", "SYSTEM_STARTUP_MASTER");
 define("ROWINFO_ATRIBUTE_NAME", "rowinfo");

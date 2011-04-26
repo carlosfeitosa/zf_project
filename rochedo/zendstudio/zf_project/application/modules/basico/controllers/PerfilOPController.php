@@ -425,4 +425,24 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		// retornando os objetos perfis usuario sistema e perfis usuario
 		return array_merge($arrayPerfisUsuarioSistema, $arrayPerfisUsuario);
 	}
+
+	/**
+	 * Retorna o nome do perfil padrao, encontrado na sessao do usuario logado
+	 * 
+	 * @return String
+	 */
+	public function retornaDescricaoPerfilPadraoUsuarioSessao()
+	{
+		// recupernado o id do perfil padrao do usuario logado (sessao)
+		$idPerfilPadraoSessao = Basico_OPController_PessoaOPController::retornaIdPerfilPadraoUsuarioSessao();
+
+		// verificando se existe perfil padrao
+		if ($idPerfilPadraoSessao) {
+			// retornando a descricao do perfil
+			return $this->_model->find($idPerfilPadraoSessao)->descricao;
+		}
+
+		// retornando "nenhuma opcao informada"
+		return Basico_OPController_TradutorOPController::getInstance()->retornaTraducao('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+	}
 }

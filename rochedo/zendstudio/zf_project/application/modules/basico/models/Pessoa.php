@@ -15,6 +15,11 @@ class Basico_Model_Pessoa
 	protected $_id;
 
 	/**
+	 * @var Integer
+	 */
+	protected $_perfilPadrao;
+
+	/**
 	 * @var Basico_Model_PessoaMapper
 	 */
 	protected $_mapper;
@@ -112,7 +117,41 @@ class Basico_Model_Pessoa
 	{
 		return $this->_id;
 	}
-	
+
+	/**
+	* Set entry perfilPadrao
+	* 
+	* @param  int $perfilPadrao 
+	* @return Basico_Model_Pessoa
+	*/
+	public function setPerfilPadrao($perfilPadrao)
+	{
+		$this->_perfilPadrao = Basico_OPController_UtilOPController::retornaValorTipado($perfilPadrao, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry perfilPadrao
+	* 
+	* @return null|int
+	*/
+	public function getPerfilPadrao()
+	{
+		return $this->_perfilPadrao;
+	}
+
+	public function getPerfilPadraoObject()
+	{
+		// instanciando o modelo perfil
+		$model = new Basico_Model_Perfil();
+
+		// recuperando objeto
+        $object = $model->find($this->_perfilPadrao);
+
+        // retornando o objeto
+        return $object;
+	}
+
 	/**
 	* Set rowinfo
 	* 

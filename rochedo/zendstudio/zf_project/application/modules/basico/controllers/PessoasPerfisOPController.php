@@ -283,6 +283,29 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
     	else
     	    return null;
 	}
+
+	/**
+	 * Retorna as pessoasPerfis com a categoria PERFIL_USUARIO da pessoa passada.
+	 * 
+	 * @param int $idPessoa
+	 * 
+	 * @return Array
+	 */
+	public function retornaArrayIdDescricaoPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa)
+	{
+		// recuperando o id da categoria PERFIL_USUARIO
+		$idCategoriaPerfilUsuario = Basico_OPController_CategoriaOPController::retornaIdCategoriaPerfilUsuarioViaSQL();
+
+		// montando consulta SQL
+		$consultaSQL = "SELECT p.id, p.descricao
+						FROM perfil p
+						LEFT JOIN pessoas_perfis pp ON (p.id = pp.id_perfil)
+						WHERE pp.id_pessoa = {$idPessoa}
+						AND p.id_categoria = {$idCategoriaPerfilUsuario}";
+
+		// recuperando e retornando array de resultados
+		return $arrayIdsDescricoesPerfisVinculadosUsuario = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($consultaSQL);
+	}
 	
 	/**
 	 * Retorna o objeto pessoaPerfil do perfil USUARIO_NAO_VALIDADO da pessoa passada por parametro

@@ -226,4 +226,71 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 
 		return null;
 	}
+
+	/**
+	 * Retorna se conseguiu salvar o id do perfil padrao do usuario na sessao
+	 * 
+	 * @param Integer $idPerfilPadrao
+	 * 
+	 * @return Boolean
+	 */
+	public static function registraIdPerfilPadraoUsuarioSessao($idPerfilPadrao)
+	{
+		// inicializando variaveis
+		$sessionIdPerfilPadraoUsuarioAttribute = PERFIL_ID_PERFIL_PADRAO_KEY;
+
+		// verificando se foi passado o id do perfil padrao
+		if ($idPerfilPadrao) {
+			// registrando/recuperando o namespace do token na sessao
+	        $session = Basico_OPController_SessionOPController::registraSessaoUsuario();
+
+			// verificando se o id do usuario sessao
+			if (!isset($session->$sessionIdPerfilPadraoUsuarioAttribute)) {
+	        	// setando o id do usuario na sessao
+	        	$session->$sessionIdPerfilPadraoUsuarioAttribute = $idPerfilPadrao;
+			}
+
+	        return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Retorna o id do perfil padrao do usuario salvo na sessao
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdPerfilPadraoUsuarioSessao()
+	{
+		// inicializando variaveis
+		$sessionIdPerfilPadraoUsuarioAttribute = PERFIL_ID_PERFIL_PADRAO_KEY;
+
+		// recupernado a sessao do usuario
+		$session = Basico_OPController_SessionOPController::registraSessaoUsuario();
+	
+		// verificando se o id do usuario sessao
+		if (isset($session->$sessionIdPerfilPadraoUsuarioAttribute)) {
+			// retornando o id do perfil padrao do usuario salvo na sessao
+			return $session->$sessionIdPerfilPadraoUsuarioAttribute;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Retorna o id do perfil padrao vinculado ao id de uma pessoa
+	 * 
+	 * @param Integer $idPessoa
+	 * 
+	 * @return Integer|null
+	 */
+	public function retornaIdPerfilPadraoPorIdPessoa($idPessoa)
+	{
+		// recuperando o objeto pessoa
+		$this->_model->find($idPessoa);
+
+		// retornando o id do perfil padrao da pessoa
+		return $this->_model->perfilPadrao;
+	}
 }

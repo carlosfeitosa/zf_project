@@ -138,6 +138,7 @@ alter table perfil owner to rochedo_user;
 
 create table pessoa (
 	id serial not null ,
+	id_perfil_padrao int null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -416,6 +417,9 @@ alter table dicionario_expressao
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
+
+alter table pessoa
+  add constraint fk_pessoa_id_perfil_padrao foreign key (id_perfil_padrao) references perfil (id) on update no action on delete no action;
 
 alter table categoria
   add constraint fk_categoria_categoria foreign key (id_categoria_pai) references categoria (id) on update no action on delete no action ,
