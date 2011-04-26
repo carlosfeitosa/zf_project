@@ -57,7 +57,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// carregando opcoes do subform cadastro dados usuario dados biometricos
 	    $this->carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos($formSubmissao->getSubForm('CadastrarDadosUsuarioDadosBiometricos'));
 
-	    // renderizando a view
+	    // setando o form da view
     	$this->view->form = $formSubmissao;
 
 	    // recuperando o id da pessoa logada
