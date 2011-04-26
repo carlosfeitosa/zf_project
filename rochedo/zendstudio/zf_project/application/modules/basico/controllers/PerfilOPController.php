@@ -429,6 +429,8 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	/**
 	 * Retorna o nome do perfil padrao, encontrado na sessao do usuario logado
 	 * 
+	 * @deprecated Utilize retornaDescricaoPerfilPadraoUsuarioSessaoViaSQL para maior performance
+	 * 
 	 * @return String
 	 */
 	public function retornaDescricaoPerfilPadraoUsuarioSessao()
@@ -440,6 +442,33 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		if ($idPerfilPadraoSessao) {
 			// retornando a descricao do perfil
 			return $this->_model->find($idPerfilPadraoSessao)->descricao;
+		}
+
+		// retornando "nenhuma opcao informada"
+		return Basico_OPController_TradutorOPController::getInstance()->retornaTraducao('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+	}
+
+	/**
+	 * Retorna o nome do perfil padrao, encontrado na sessao do usuario logado
+	 * 
+	 * @return String
+	 */
+	public static function retornaDescricaoPerfilPadraoUsuarioSessaoViaSQL()
+	{
+		// recupernado o id do perfil padrao do usuario logado (sessao)
+		$idPerfilPadraoSessao = Basico_OPController_PessoaOPController::retornaIdPerfilPadraoUsuarioSessao();
+
+		// recuperando informacoes sobre a tabela perfil
+		$arrayNomeCampoDescricaoPerfil = array('descricao');
+		$condicaoSQL                   = "id = {$idPerfilPadraoSessao}";
+
+		// recuperando array com resultados
+		$arrayDescricaoPerfilPadrao = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoDescricaoPerfil, $condicaoSQL);
+
+		// verificando se os dados foram recuperados
+		if (count($arrayDescricaoPerfilPadrao) > 0) {
+			// retornando a descricao do perfil
+			return $arrayDescricaoPerfilPadrao[0]['descricao'];
 		}
 
 		// retornando "nenhuma opcao informada"

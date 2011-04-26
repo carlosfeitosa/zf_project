@@ -22,7 +22,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
     // verificando se existe usuario logado
     if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
     	// recuperando a descricao do perfil padrao do usuario logado na sessao
-		$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::getInstance()->retornaDescricaoPerfilPadraoUsuarioSessao();
+		$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaDescricaoPerfilPadraoUsuarioSessaoViaSQL();
 
 		// setando o titulo da janela do navegador
 		$this->headTitle($descricaoPerfilPadrao);
