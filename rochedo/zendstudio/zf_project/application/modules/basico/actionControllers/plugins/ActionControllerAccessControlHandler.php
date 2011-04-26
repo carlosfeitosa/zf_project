@@ -109,6 +109,14 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				}
 			}
 		}
+
+		// verificando se trata-se da acao de registro de novo usuario
+		if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and (self::verificaRequestRegistroNovoUsuario($request))) {
+			// modificando o request para o index da aplicacao
+			$request->setModuleName('default');
+			$request->setControllerName('index');
+			$request->setActionName('index');
+		}
 	}
 
 	/**
@@ -125,5 +133,18 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				(Basico_OPController_ControleAcessoOPController::getInstance()->verificaRequestCadastrado($request, true)) and
 				(!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoErrorErrorControllerPorRequest($request)) and
 				(Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaExisteAcaoControladorPorRequest($request)));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado ao registro de um novo usuario
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private static function verificaRequestRegistroNovoUsuario(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'cadastrarUsuarioNaoValidado'));
 	}
 }

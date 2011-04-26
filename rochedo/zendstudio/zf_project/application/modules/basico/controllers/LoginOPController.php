@@ -663,12 +663,12 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public function retornaIdPessoaPorIdLogin($idLogin)
 	{
 		// recuperando objeto login
-		$this->_model->find($idLogin);
+		$object = $this->_model->find($idLogin);
 
 		// verificando se o objeto login foi recuperado
-		if ($this->_model->id)
+		if ($object->id)
 			// retornando o id da pessoa
-			return $this->_model->pessoa;
+			return $object->pessoa;
 
 		return null;
 	}
