@@ -25,13 +25,13 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
 		$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaDescricaoPerfilPadraoUsuarioSessaoViaSQL();
 
 		// setando o titulo da janela do navegador
-		$this->headTitle($descricaoPerfilPadrao);
+		$this->headTitle("[ Perfil padrao: {$descricaoPerfilPadrao} ]");
     }
 
 	// recuperando o request do usuario
 	$request = Basico_OPController_UtilOPController::retornaUserRequest();
     // setando o titulo da janela do navegador
-    $this->headTitle("{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}");
+    $this->headTitle("[ MVC: {$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()} ]");
 }
 ?>
 <html> 

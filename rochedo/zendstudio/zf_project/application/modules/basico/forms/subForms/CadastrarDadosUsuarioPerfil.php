@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 25/04/2011 13:34:08
+* em: 26/04/2011 12:03:16
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 25/04/2011 13:07:28
+* @version    1: 26/04/2011 11:54:36
 */
     $basicoCadastrarDadosUsuarioPerfilSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -38,10 +38,17 @@
     if ($options!=null)
         $elements[1]->setValue($options->BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis);
 
-    $elements[2] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioPerfilCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
+    $elements[2] = $this->createElement('submitButton', 'BasicoCadastrarDadosUsuarioPerfilEnviar');
     $elements[2]->setOrder(2);
     $elements[2]->setRequired(false);
-    $elements[2]->removeDecorator('Label');
+    $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+    $elements[2]->removeDecorator('DtDdWrapper');
+    $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
+
+    $elements[3] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioPerfilCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
+    $elements[3]->setOrder(3);
+    $elements[3]->setRequired(false);
+    $elements[3]->removeDecorator('Label');
 
     // Adicionando elementos ao formulario.
     $basicoCadastrarDadosUsuarioPerfilSubForm->addElements($elements);
