@@ -166,16 +166,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		return false;
     	}
     	
-    	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricos($idPessoa, $arrayPost, $formDadosUsuario)) {
+    	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 
 	    	// selecionando a aba do subform DadosBiometricos
 	    	$subFormDadosBiometricos->setAttrib('selected', 'yes');
 	    	
-	    	// recuperando os dados biometricos da pessoa logada;
-	        $dadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
-	        
 	    	// recuperando ultima versao do obj dadosBiometricos da pessoa
-	        $versaoObjetoDadosBiometricos = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosBiometricos);
+	        $versaoObjetoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa);
+	        
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 	    	

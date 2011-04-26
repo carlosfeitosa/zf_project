@@ -211,17 +211,13 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
      * 
      * @param Integer $idPessoa
      * @param Array $arrayPost
-     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
      * 
      * @return Boolean
      */
-    public function salvarDadosBiometricos($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario)
+    public function salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)
     {  	
         // recuperando array dos dados do subForm dadosBiometricos
         $arrayPostDadosBiometricos = $arrayPost['CadastrarDadosUsuarioDadosBiometricos'];
-    	    
-    	// recuperando o subForm DadosBiometricos    
-    	$subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
     	
     	// recuperando valores do formulario
     	$sexo            = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'];
@@ -259,4 +255,24 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
 
     	return true;
     }
+    
+    /**
+	 * Retorna a versao do objeto dadosBiometricos, a partir do id de uma pessoa
+	 * 
+	 * @param Integer $idPessoa
+	 * @param Boolean $forceVersioning
+	 * 
+	 * @return Integer
+	 */
+	public function retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa, $forceVersioning = false)
+	{
+		// recuperando objeto pessoa
+		$dadosBiometricos = $this->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
+		
+		if (count($dadosBiometricos) > 0)
+		    // retornando a versao do objeto
+		    return Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosBiometricos, $forceVersioning);
+
+		
+	}
 }
