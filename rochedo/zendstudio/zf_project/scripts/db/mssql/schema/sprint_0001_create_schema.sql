@@ -340,7 +340,7 @@ alter table dbo.dicionario_expressao add constraint ix_dicionario_expressao uniq
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table dbo.pessoa
+alter table dbo.pessoa add
 	constraint fk_pessoa_id_perfil_padrao foreign key 
 	(
 		id_perfil_padrao
