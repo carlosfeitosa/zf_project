@@ -205,4 +205,58 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
 			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
 		}
 	}
+	
+    /**
+     * Salva os dados biometricos de um usuario
+     * 
+     * @param Integer $idPessoa
+     * @param Array $arrayPost
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
+     * 
+     * @return Boolean
+     */
+    public function salvarDadosBiometricos($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario)
+    {  	
+        // recuperando array dos dados do subForm dadosBiometricos
+        $arrayPostDadosBiometricos = $arrayPost['CadastrarDadosUsuarioDadosBiometricos'];
+    	    
+    	// recuperando o subForm DadosBiometricos    
+    	$subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
+    	
+    	// recuperando valores do formulario
+    	$sexo            = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'];
+    	$altura          = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura'];
+	    $peso            = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso'];  
+        $raca            = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'];
+	    $tipoSanguineo   = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo'];
+	    $historicoMedico = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico'];
+	    
+	    // recuperando a versao do objeto dados biometricos
+    	$ultimaVersaoDadosBiometricos = $arrayPostDadosBiometricos['versaoObjetoDadosBiometricos'];
+	    
+    	// recuperando o objeto dados biometricos da pessoa
+    	$dadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
+    	
+    	// carregando valores no objeto dadosBiometricos
+    	// carregando o radio button do sexo
+	    if ($sexo == 0)
+	        $dadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;
+	    elseif($sexo == 1) 
+	        $dadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
+
+        // carregando dados no objeto dados biometricos
+        $dadosBiometricos->altura          = $altura;
+        $dadosBiometricos->peso            = $peso;
+   	    $dadosBiometricos->raca            = $raca;
+   	    $dadosBiometricos->tipoSanguineo   = $tipoSanguineo;
+   	    $dadosBiometricos->historicoMedico = $historicoMedico;    	
+    	
+    	// recuperando o objeto PessoaPerfil UsuarioValidado do usuario logado
+    	$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa);
+
+    	// salvando o objeto dadosBiometricos
+    	Basico_OPController_DadosBiometricosOPController::getInstance()->salvarObjeto($dadosBiometricos, (int) $ultimaVersaoDadosBiometricos, $idPessoaPerfilCriador->id);
+
+    	return true;
+    }
 }
