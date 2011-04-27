@@ -53,7 +53,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
         $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario()))
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
                      ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
-                     ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);    
+                     ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);
 
         echo $this->dojo();
     ?>
@@ -122,9 +122,10 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 
 				// instanciando e carregando array de informacoes de debug
            		$arrayInfo = array();
-           		$arrayInfo['<b>Perfil padrăo</b>'] 			  =  $descricaoPerfilPadrao;
-           		$arrayInfo['<b>MVC</b>']                      = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
-           		$arrayInfo['<b>Tempo de execuçăo do PHP</b>'] = $tempoExecucaoPHP;
+           		$arrayInfo['Perfil padrão'] 		   =  $descricaoPerfilPadrao;
+           		$arrayInfo['MVC atual']                = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
+           		$arrayInfo['MVC anterior']             = Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests();
+           		$arrayInfo['Tempo de execução do PHP'] = $tempoExecucaoPHP;
 
            		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
            		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDialogMensagemViaArrayInfoDebugInfo($arrayInfo);

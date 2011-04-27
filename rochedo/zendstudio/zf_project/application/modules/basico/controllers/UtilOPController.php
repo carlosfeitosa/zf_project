@@ -1310,7 +1310,7 @@ class Basico_OPController_UtilOPController
     	// loop para montar o texto do dialog
     	foreach ($arrayInfo as $chave => $valor) {
     		// montando o texto que sera exibido no dialog, atraves do array passado como parametro
-    		$textoDialog .= "{$chave}:<br>{$valor}<br><br>";
+    		$textoDialog .= "<b>{$chave}</b>:<br>{$valor}<br><br>";
     	}
 
     	// removendo ultimos "<br><br>" do texto do dialog

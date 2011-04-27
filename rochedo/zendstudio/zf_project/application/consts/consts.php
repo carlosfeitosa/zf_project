@@ -67,6 +67,7 @@ define("ROWINFO_ATRIBUTE_NAME", "rowinfo");
 define("REQUEST_ACTION_KEY", "action");
 define("PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO", "dataHoraUltimaAtualizacao");
 define("SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP", "inicioProcessamentoMicrosegundosPHP");
+define("SESSION_POOL_REQUESTS_ARRAY", "poolRequestsArray");
 
 
 // LOGIN

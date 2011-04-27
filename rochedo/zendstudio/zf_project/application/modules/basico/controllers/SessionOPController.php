@@ -121,6 +121,72 @@ class Basico_OPController_SessionOPController
 	}
 
 	/**
+	 * Registra uma url no pool de 2 elementos de requests
+	 * 
+	 * @param String $url
+	 * 
+	 * @return void
+	 */
+	public static function registraUrlPoolRequests($url)
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionPoolRequestsArray = SESSION_POOL_REQUESTS_ARRAY;
+
+		// verificando se o array ja existe na sessao
+		if (!isset($sessaoUsuario->$sessionPoolRequestsArray)) {
+			// registrando array contendo a url passado por parametro
+			$sessaoUsuario->$sessionPoolRequestsArray = array($url);
+		} else {
+			// recuperando array pool requests
+			$arrayPoolRequests = $sessaoUsuario->$sessionPoolRequestsArray;
+
+			// verificando se existe apenas um elemento no array
+			if (count($arrayPoolRequests) === 1) {
+				// incluindo mais um elemento no array que soh possui 1 elemento
+				$arrayPoolRequests[1] = $url;
+			} else {
+				// impurrando a pilha do array para incluir o novo elemento
+				$arrayPoolRequests[0] = $arrayPoolRequests[1];
+				$arrayPoolRequests[1] = $url;
+			}
+
+			// salvando array na sessao
+			$sessaoUsuario->$sessionPoolRequestsArray = $arrayPoolRequests;
+		}
+
+		return;
+	}
+
+	/**
+	 * Retorna a ultima (anterior a atual) url utilizada no request do usuario, do pool de requests
+	 * 
+	 * @return String|null
+	 */
+	public static function retornaUltimaUrlPoolRequests()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionPoolRequestsArray = SESSION_POOL_REQUESTS_ARRAY;
+
+		// verificando se o array ja existe na sessao
+		if (!isset($sessaoUsuario->$sessionPoolRequestsArray)) {
+			// retornando "ainda nao registrado"
+			return "ainda não registrado";
+		}
+
+		// recupeerando o array do pool de requests
+		$arrayPoolRequests = $sessaoUsuario->$sessionPoolRequestsArray;
+
+		// retornando a ultima (anterior) url chamada
+		return $arrayPoolRequests[0];
+	}
+
+	/**
 	 * Registra o inicio do processamento PHP na sessao do usuario
 	 * 
 	 * @return void
@@ -138,6 +204,8 @@ class Basico_OPController_SessionOPController
 			// registrando a data-hora atual do inicio do processamento php
 			$sessaoUsuario->$sessionInicioProcessesamentoMicrosegundosPHP = Basico_OPController_UtilOPController::retornaMicrosegundosDateTimeAtual();
 		}
+
+		return;
 	}
 
 	/**
@@ -172,6 +240,8 @@ class Basico_OPController_SessionOPController
 
 		// limpando o valor da sessao
 		unset($sessaoUsuario->$sessionInicioProcessesamentoMicrosegundosPHP);
+		
+		return;
 	}
 
 	/**
@@ -183,5 +253,7 @@ class Basico_OPController_SessionOPController
 	{
 		// destruindo a sessao
 		Zend_Session::destroy();
+
+		return;
 	}
 }

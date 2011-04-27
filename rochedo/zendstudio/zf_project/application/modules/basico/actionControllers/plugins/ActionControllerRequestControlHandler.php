@@ -36,7 +36,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 		// verificando se o request deve ser processado
 		if (!$this->verificaSeProcessaRequest($request))
-			return;		
+			return;
 
 		// controlando o request
 		self::controlaRequest($request);
@@ -54,6 +54,9 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 		// recuperando informacoes a decodificacao do token
 		$token = $request->getParam('t');
 		$urlDestino = Basico_OPController_TokenOPController::getInstance()->decodeTokenUrlPorToken($token);
+
+		// registrando a url no pool de requests
+		Basico_OPController_SessionOPController::registraUrlPoolRequests($urlDestino);
 
 		// inicializando variaveis
 		$nomeModuloDestino      = '';
