@@ -5,6 +5,7 @@
 * por: JOÃO HENRIQUE M.BIONE  (joao.henrique.bione@rochedoproject.com)
 * criacao: 30/12/2010
 * ultimas modificacoes:
+* 	26/04/2011 - IGOR PINHO (igor.pinho.souza@rochedoframework.com)
 * 						
 */
 
@@ -24,9 +25,23 @@ with (
 );
 alter table website owner to rochedo_user;
 
+create table municipio (
+	id serial not null ,
+	id_estado integer not null ,
+	nome character varying (200) not null ,
+	rowinfo character varying (2000) not null
+
+)
+with (
+  oids = false
+);
+alter table municipio owner to rochedo_user;
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 alter table website add constraint pk_website primary key (id);
+
+alter table municipio add constraint pk_municipio primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -45,6 +60,9 @@ alter table website add constraint pk_website primary key (id);
 
 alter table website
   add constraint fk_website_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+
+alter table municipio
+  add constraint fk_municipio_estado foreign key (id_estado) references estado (id) on update no action on delete no action;
 
 
 /* CRIACAO DOS CHECK CONSTRAINTS */

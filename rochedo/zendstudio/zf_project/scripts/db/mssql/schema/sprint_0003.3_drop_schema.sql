@@ -5,11 +5,18 @@
 * por: JOÃO HENRIQUE M.BIONE  (joao.henrique.bione@rochedoproject.com)
 * criacao: 30/12/2010
 * ultimas modificacoes:
+* 	26/04/2011 - IGOR PINHO (igor.pinho.souza@rochedoframework.com)
 * 						
 */
 
 if object_id('website') is not null
 begin
   drop table website
+end
+;
+
+if object_id('municipio') is not null
+begin
+  drop table municipio
 end
 ;
