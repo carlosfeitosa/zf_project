@@ -1337,4 +1337,16 @@ class Basico_OPController_UtilOPController
     	
     	return;
     }
+
+    /**
+     * Envia para o cliente uma chamada javascript que muda o focus do tabcontainer para a aba especificada
+     * 
+     * @param String $formName
+     * @param String $subFormName
+     */
+    public static function setaFocusAbaTabContainerDojoFormViaJavaScript($formName, $subFormName)
+    {
+    	// enviando javascript para setar o focus de um tabcontainer em uma aba especifica
+    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}-TabContainer').selectChild('{$subFormName}');});</script>";
+    }
 }

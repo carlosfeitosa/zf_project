@@ -114,15 +114,15 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
     	// validando o sub formulario
     	if (!$subFormPerfilPadrao->isValid($arrayPost)) {
-    		// selecionando o sub formulario perfil
-    		$subFormPerfilPadrao->setAttrib('selected', 'yes');
+			// selecionando a aba do subform perfil padrao
+			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormPerfilPadrao->getName());
     		return false;
     	}
 
     	// setando o perfil padrao do usuario
     	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioPerfil($idPessoa, $arrayPost)) {
 			// selecionando a aba do subform perfil padrao
-    		$subFormPerfilPadrao->setAttrib('selected', 'yes');
+			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormPerfilPadrao->getName());
 
     		// atualizando o perfil padrao do usuario na sessao
     		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao(Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioPerfil']['BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true));
@@ -158,14 +158,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayPost)) {
     		// selecionando a aba do subform DadosBiometricos
-    	    $subFormDadosBiometricos->setAttrib('selected', 'yes');
+			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
     		return false;
     	}
     	
     	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 
 	    	// selecionando a aba do subform DadosBiometricos
-	    	$subFormDadosBiometricos->setAttrib('selected', 'yes');
+	    	Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
 	    	
 	    	// recuperando ultima versao do obj dadosBiometricos da pessoa
 	        $versaoObjetoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa);
