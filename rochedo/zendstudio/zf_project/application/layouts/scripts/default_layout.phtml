@@ -17,8 +17,7 @@ $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
 // verificando ambiente
-if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
-{
+if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
     // verificando se existe usuario logado
     if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
     	// recuperando a descricao do perfil padrao do usuario logado na sessao
@@ -114,8 +113,23 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento())
 
 				// limpando a datahora, em microsegundos, do inicio do processamento PHP
 				Basico_OPController_SessionOPController::limpaRegistroInicioProcessamentoMicrosegundosPHPSessaoUsuario();
+
+				// verificando se nao existe usuario logado no sistema
+				if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+					// setando o perfil padrao para "usuario nao logado"
+					$descricaoPerfilPadrao = 'Usuario nao logado';
+				}
+
+				// instanciando e carregando array de informacoes de debug
+           		$arrayInfo = array();
+           		$arrayInfo['<b>Perfil padrăo</b>'] 			  =  $descricaoPerfilPadrao;
+           		$arrayInfo['<b>MVC</b>']                      = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
+           		$arrayInfo['<b>Tempo de execuçăo do PHP</b>'] = $tempoExecucaoPHP;
+
+           		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
+           		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDialogMensagemViaArrayInfoDebugInfo($arrayInfo);
 	?>
-	<div align="center"><font size="-5">Página executada em <?php echo $tempoExecucaoPHP; ?> segundos</font></div>
+	<div align="left"><font size="-2"><a onClick="<?=$chamadaJavaScriptDebugInfo ?>" href='#'>[ debug info ]</a></font></div>
 	<?php } ?> 
 </div>
 

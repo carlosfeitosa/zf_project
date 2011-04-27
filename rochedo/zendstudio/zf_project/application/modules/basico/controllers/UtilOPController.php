@@ -1262,17 +1262,79 @@ class Basico_OPController_UtilOPController
     
     /**
      * Exibe um dialog com o conteudo TXT passado como parametro
+     * 
      * @param String $dialogId
      * @param String $dialogTitle
      * @param String $txtContent
-     * @param Boolean $exibiBotao
+     * @param Integer $exibirBotao
      * 
-     * @return void
+     * @return String
      */
-    public static function exibirDialogMensagem($dialogId, $dialogTitle, $txtContent, $exibiBotao = 1)
+    public static function exibirDialogMensagem($dialogId, $dialogTitle, $txtContent, $exibirBotao = 1)
     {
     	// exibindo mensagem de sucesso
-    	echo "<script type='text/javascript'>showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibiBotao});</script>";
+    	echo "<script type='text/javascript'>showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibirBotao});</script>";
+    }
 
+    /**
+     * Retorna a chamada javascript que abre um dialog com o conteudo TXT passado como parametro
+     * 
+     * @param String $dialogId
+     * @param String $dialogTitle
+     * @param String $txtContent
+     * @param Integer $exibirBotao
+     * 
+     * @return String
+     */
+    public static function retornaJavaScriptDialogMensagem($dialogId, $dialogTitle, $txtContent, $exibirBotao = 1)
+    {
+    	// exibindo mensagem de sucesso
+    	return "showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibirBotao});";
+    }
+
+    /**
+     * Exibe um dialog com o conteudo extraido de um array
+     * 
+     * @param String $dialogId
+     * @param String $dialogTitle
+     * @param Array $arrayInfo
+     * @param Integer $exibirBotao
+     * 
+     * @return String
+     */
+    public static function retornaJavaScriptDialogMensagemViaArrayInfo($dialogId, $dialogTitle, $arrayInfo, $exibirBotao = 1)
+    {
+    	// instanciando variaveis
+		$textoDialog = '';
+
+    	// loop para montar o texto do dialog
+    	foreach ($arrayInfo as $chave => $valor) {
+    		// montando o texto que sera exibido no dialog, atraves do array passado como parametro
+    		$textoDialog .= "{$chave}:<br>{$valor}<br><br>";
+    	}
+
+    	// removendo ultimos "<br><br>" do texto do dialog
+    	$textoDialog = substr($textoDialog, 0, strlen($textoDialog)-8);
+
+    	// retornando o resultado do metodo exibirDialogMensagem
+    	return self::retornaJavaScriptDialogMensagem($dialogId, $dialogTitle, $textoDialog, $exibirBotao);
+    }
+
+    /**
+     * Exibe um dialog com o conteudo extraido de um array, com o titulo de debug info
+     * 
+     * @param Array $arrayInfo
+     * 
+     * @return String
+     */
+    public static function retornaJavaScriptDialogMensagemViaArrayInfoDebugInfo($arrayInfo)
+    {
+    	// verificando se trata-se de ambiente de desenvolvimento
+    	if (self::ambienteDesenvolvimento()) {
+	    	// retornando o resultado do metodo exibirDialogMensagemViaArrayInfo
+	    	return self::retornaJavaScriptDialogMensagemViaArrayInfo('dialogDebugInfo', ':: DEBUG INFO ::', $arrayInfo, 1);
+    	}
+    	
+    	return;
     }
 }

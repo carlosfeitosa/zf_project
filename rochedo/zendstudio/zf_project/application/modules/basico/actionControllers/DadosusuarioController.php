@@ -119,17 +119,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		return false;
     	}
 
-    	// recuperando dados do formulario
-    	$idPerfilPadrao     = Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioPerfil']['BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true);
-    	$versaoObjetoPessoa = (int) $arrayPost['CadastrarDadosUsuarioPerfil']['versaoObjetoPessoa'];
-
     	// setando o perfil padrao do usuario
-    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoa($idPessoa, $idPerfilPadrao, $versaoObjetoPessoa)) {
+    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioPerfil($idPessoa, $arrayPost)) {
 			// selecionando a aba do subform perfil padrao
     		$subFormPerfilPadrao->setAttrib('selected', 'yes');
 
     		// atualizando o perfil padrao do usuario na sessao
-    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao($idPerfilPadrao);
+    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao(Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioPerfil']['BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true));
 
 			// recuperando a versao do objeto pessoa
     		$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
