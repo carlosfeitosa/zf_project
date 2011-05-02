@@ -58,6 +58,7 @@ create table dbo.estado (
 	id_categoria int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	sigla varchar (50) collate latin1_general_ci_ai not null ,
+	codigo_ddd varchar (3) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 

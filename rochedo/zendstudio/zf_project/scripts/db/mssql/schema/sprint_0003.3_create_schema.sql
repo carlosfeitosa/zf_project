@@ -26,7 +26,7 @@ create table dbo.municipio (
 	id_estado int not null ,
 	id_categoria int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
-	codigo_ddd varchar (3) collate latin1_general_ci_ai ,
+	codigo_ddd varchar (3) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 
 ) on [primary];

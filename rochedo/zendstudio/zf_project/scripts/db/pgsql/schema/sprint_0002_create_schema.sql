@@ -81,6 +81,7 @@ create table estado (
 	id_categoria integer not null ,
 	nome character varying (200) not null ,
 	sigla character varying (50) not null ,
+	codigo_ddd character varying (3) null ,
 	rowinfo character varying (2000) not null
 )
 with (

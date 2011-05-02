@@ -30,7 +30,7 @@ create table municipio (
 	id_estado integer not null ,
 	id_categoria integer not null ,
 	nome character varying (200) not null ,
-	codigo_ddd character varying (3) ,
+	codigo_ddd character varying (3) null ,
 	rowinfo character varying (2000) not null
 
 )
