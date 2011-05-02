@@ -53,6 +53,9 @@ define("LOG_MSG_DELETE_TIPO_CATEGORIA", "Exclusão de tipo categoria no banco de
 define("LOG_MSG_NOVO_PERFIL", "Novo perfil inserido no banco de dados.");
 define("LOG_MSG_UPDATE_PERFIL", "Atualizacao de perfil no banco de dados.");
 define("LOG_MSG_DELETE_PERFIL", "Exclusão de perfil no banco de dados.");
+define("LOG_MSG_NOVO_PAIS", "Novo país inserido no banco de dados.");
+define("LOG_MSG_UPDATE_PAIS", "Atualizacao do país no banco de dados.");
+define("LOG_MSG_DELETE_PAIS", "Exclusão do país no banco de dados.");
 define("LOG_MSG_NOVO_COMPONENTE", "Novo componente inserido no banco de dados.");
 define("LOG_MSG_UPDATE_COMPONENTE", "Atualizacao de componente no banco de dados.");
 define("LOG_MSG_DELETE_COMPONENTE", "Exclusão de componente no banco de dados.");
