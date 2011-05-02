@@ -7,7 +7,7 @@
 * ultimas modificacoes:
 * 								25/11/2010 - criacao do tipo MASCARA
 * 								30/12/2010 - criacao do tipo WEBSITE
-* 
+* 								27/04/2011 - criacao do tipo LOCALIDADE
 */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
@@ -42,3 +42,6 @@ VALUES ('MASCARA', 'Mascaras do sistema', 'SYSTEM_STARTUP');
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('CVC', 'Control Version Class (classe de controle de versão).', 'SYSTEM_STARTUP');
+
+INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+VALUES ('LOCALIDADE', 'Município, Estado, Condado, Distrito, Província, ...', 'SYSTEM_STARTUP');

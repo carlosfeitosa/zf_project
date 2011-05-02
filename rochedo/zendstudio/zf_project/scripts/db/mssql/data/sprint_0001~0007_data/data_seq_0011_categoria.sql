@@ -80,9 +80,11 @@
 * 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT:
 *									   - criacao da categoria LOG_DELETE_PESSOA_PERFIL;
 *							08/04/2011 - remocao de todas as categorias de log (serao criadas por demanda);
+*							27/04/2011 - criacao da categoria LOCALIDADE_ESTADO
+*									   - criacao da categoria LOCALIDADE_MUNICIPIO
+*									   - criacao da categoria LOCALIDADE_NAO_DETERMINADA
 *
 */
-
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id, 'SISTEMA_USUARIO' AS nome, 'Usuários utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -1301,3 +1303,21 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id, 'LOCALIDADE_ESTADO' AS nome, 'Unidade da Federação' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'LOCALIDADE';
+
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id, 'LOCALIDADE_NAO_DETERMINADA' AS nome, 'Localidade não determinada' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'LOCALIDADE';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'LOCALIDADE_ESTADO_MUNICIPIO' AS nome, 'Município' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LOCALIDADE'
+AND c.nome = 'LOCALIDADE_ESTADO';

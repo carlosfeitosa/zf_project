@@ -24,7 +24,9 @@ create table dbo.website (
 create table dbo.municipio (
 	id int identity (1, 1) not null ,
 	id_estado int not null ,
+	id_categoria int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
+	codigo_ddd varchar (3) collate latin1_general_ci_ai ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 
 ) on [primary];
@@ -62,6 +64,14 @@ alter table dbo.municipio add
     (
         id_estado
     ) references dbo.estado (
+        id
+    );
+
+alter table dbo.municipio add 
+    constraint fk_municipio_categoria foreign key 
+    (
+        id_categoria
+    ) references dbo.categoria (
         id
     );
 /* CRIACAO DOS CHECK CONSTRAINTS */

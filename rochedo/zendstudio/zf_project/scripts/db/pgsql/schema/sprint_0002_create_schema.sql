@@ -78,6 +78,7 @@ alter table pessoa_juridica owner to rochedo_user;
 create table estado (
 	id serial not null ,
 	id_pais integer not null ,
+	id_categoria integer not null ,
 	nome character varying (200) not null ,
 	sigla character varying (50) not null ,
 	rowinfo character varying (2000) not null
@@ -196,6 +197,9 @@ alter table dados_biometricos
   
 alter table estado
   add constraint fk_estado_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
+
+alter table estado
+  add constraint fk_estado_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
   
 alter table endereco
   add constraint fk_endereco_pessoa_perfil foreign key (id_pessoa_perfil_validador) references pessoas_perfis (id) on update no action on delete no action ,

@@ -55,6 +55,7 @@ create table dbo.pessoa_juridica (
 create table dbo.estado (
 	id int identity (1, 1) not null ,
 	id_pais int not null ,
+	id_categoria int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	sigla varchar (50) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
@@ -199,6 +200,14 @@ alter table dbo.estado add
     (
         id_pais
     ) references dbo.pais (
+        id
+    );
+
+alter table dbo.estado add 
+    constraint fk_estado_categoria foreign key 
+    (
+        id_categoria
+    ) references dbo.categoria (
         id
     );
   

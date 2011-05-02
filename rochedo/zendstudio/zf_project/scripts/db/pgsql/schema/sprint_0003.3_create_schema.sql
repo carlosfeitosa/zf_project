@@ -28,7 +28,9 @@ alter table website owner to rochedo_user;
 create table municipio (
 	id serial not null ,
 	id_estado integer not null ,
+	id_categoria integer not null ,
 	nome character varying (200) not null ,
+	codigo_ddd character varying (3) ,
 	rowinfo character varying (2000) not null
 
 )
@@ -64,6 +66,8 @@ alter table website
 alter table municipio
   add constraint fk_municipio_estado foreign key (id_estado) references estado (id) on update no action on delete no action;
 
-
+alter table municipio
+  add constraint fk_municipio_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  
 /* CRIACAO DOS CHECK CONSTRAINTS */
   

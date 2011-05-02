@@ -5,8 +5,9 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
-* 									25/11/2010 - criacao do tipo MASCARA
-*									30/12/2010 - criacao do tipo WEBSITE
+* 								25/11/2010 - criacao do tipo MASCARA
+*								30/12/2010 - criacao do tipo WEBSITE
+*								27/04/2011 - criacao do tipo LOCALIDADE
 */
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
@@ -41,3 +42,6 @@ VALUES ('MASCARA', 'Mascaras do sistema', 'SYSTEM_STARTUP');
 
 INSERT INTO tipo_categoria (nome, descricao, rowinfo)
 VALUES ('CVC', 'Control Version Class (classe de controle de versão).', 'SYSTEM_STARTUP');
+
+INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+VALUES ('LOCALIDADE', 'estado, município, província, condado, distrito, regiões, republica, cantões ...', 'SYSTEM_STARTUP');

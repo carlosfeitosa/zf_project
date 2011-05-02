@@ -9,111 +9,219 @@
 */
 
 -- estados brasileiros
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Acre' AS nome, 'AC' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Acre' AS nome, 'AC' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Alagoas' AS nome, 'AL' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Alagoas' AS nome, 'AL' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Amapá' AS nome, 'AP' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Amapá' AS nome, 'AP' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Amazonas' AS nome, 'AM' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Amazonas' AS nome, 'AM' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Bahia' AS nome, 'BA' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Bahia' AS nome, 'BA' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Ceará' AS nome, 'CE' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Ceará' AS nome, 'CE' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Distrito Federal' AS nome, 'DF' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Distrito Federal' AS nome, 'DF' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Espírito Santo' AS nome, 'ES' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Espírito Santo' AS nome, 'ES' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Goiás' AS nome, 'GO' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Goiás' AS nome, 'GO' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Maranhão' AS nome, 'MA' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Maranhão' AS nome, 'MA' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Mato Grosso' AS nome, 'MT' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Mato Grosso' AS nome, 'MT' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Mato Grosso do Sul' AS nome, 'MS' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Mato Grosso do Sul' AS nome, 'MS' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Minas Gerais' AS nome, 'MG' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Minas Gerais' AS nome, 'MG' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Pará' AS nome, 'PA' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Pará' AS nome, 'PA' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Paraíba' AS nome, 'PB' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Paraíba' AS nome, 'PB' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Paraná' AS nome, 'PR' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Paraná' AS nome, 'PR' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Pernambuco' AS nome, 'PE' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Pernambuco' AS nome, 'PE' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Piauí' AS nome, 'PI' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Piauí' AS nome, 'PI' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Rio de Janeiro' AS nome, 'RJ' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Rio de Janeiro' AS nome, 'RJ' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Rio Grande do Norte' AS nome, 'RN' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Rio Grande do Norte' AS nome, 'RN' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Rio Grande do Sul' AS nome, 'RS' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Rio Grande do Sul' AS nome, 'RS' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Rondônia' AS nome, 'RO' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Rondônia' AS nome, 'RO' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Roraima' AS nome, 'RR' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Roraima' AS nome, 'RR' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Santa Catarina' AS nome, 'SC' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Santa Catarina' AS nome, 'SC' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'São Paulo' AS nome, 'SP' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'São Paulo' AS nome, 'SP' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Sergipe' AS nome, 'SE' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Sergipe' AS nome, 'SE' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, nome, sigla, rowinfo)
-SELECT p.id, 'Tocantins' AS nome, 'TO' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO estado (id_pais, id_categoria, nome, sigla, rowinfo)
+SELECT p.id, (SELECT c.id AS id_categoria FROM tipo_categoria t
+                    LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+                WHERE t.nome = 'LOCALIDADE'
+                AND c.nome = 'LOCALIDADE_ESTADO') AS id_categoria,
+'Tocantins' AS nome, 'TO' AS sigla, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 -- fim estados brasileiros
