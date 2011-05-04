@@ -171,6 +171,23 @@ class Basico_Model_DadosBiometricos
 	}
 	
     /**
+	 * Get raca Object
+	 * 
+	 * @return Basico_Model_Raca
+	 */
+	public function getRacaObject()
+	{
+		// instanciando o modelo raca
+		$model = new Basico_Model_Raca();
+
+		// recuperando objeto
+        $object = $model->find($this->_raca);
+
+        // retornando o objeto
+        return $object;
+	}
+	
+    /**
 	* Set altura
 	* 
 	* @param String $altura 
@@ -234,6 +251,23 @@ class Basico_Model_DadosBiometricos
 	public function getTipoSanguineo()
 	{
 		return $this->_tipoSanguineo;
+	}
+	
+	/**
+	 * Get tipoSanguineo Object
+	 * 
+	 * @return Basico_Model_TipoSanguineo
+	 */
+	public function getTipoSanguineoObject()
+	{
+		// instanciando o modelo tiposanguineo
+		$model = new Basico_Model_TipoSanguineo();
+
+		// recuperando objeto
+        $object = $model->find($this->_tipoSanguineo);
+
+        // retornando o objeto
+        return $object;
 	}
 	
     /**
