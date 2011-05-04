@@ -17,8 +17,6 @@
 *  
 */
 
-/* MODULO FORMULARIO */
-
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM modulo m
@@ -376,14 +374,24 @@ SELECT (SELECT m.id
 		AND c.nome = 'FORMULARIO_INPUT_LOGIN'
 		AND f.nome = 'FORM_AUTENTICACAO_USUARIO') AS id_formulario,
 		'SYSTEM_STARTUP' AS rowinfo;
-		
-		
-/**
-* INICIO
-*  
-* DADOS USUARIO - DADOS PESSOAIS
-*/
-		
+
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_INPUT_CVC'
+		AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM modulo m
@@ -400,7 +408,6 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -436,7 +443,6 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS'
         AND f.nome = 'FORM_DIALOG_TELEFONES_PESSOAIS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -454,7 +460,6 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS'
         AND f.nome = 'FORM_DIALOG_EMAILS_PESSOAIS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -472,7 +477,6 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS'
         AND f.nome = 'FORM_DIALOG_WEBSITES_PESSOAIS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -490,17 +494,7 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS'
         AND f.nome = 'FORM_DIALOG_ENDERECOS_PESSOAIS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
-/**
-* FIM - DADOS USUARIO - DADOS PESSOAIS
-*/
-        
-/**
-* INICIO
-*  
-* DADOS USUARIO - INFORMACOES BANCARIAS
-*/
-		
+
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM modulo m
@@ -517,8 +511,7 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
-        
+
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM modulo m
@@ -535,7 +528,6 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -553,7 +545,6 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS'
         AND f.nome = 'FORM_DIALOG_CONTAS_BANCARIAS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -571,7 +562,6 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_INFORMACOES_BANCARIAS_MOVIMENTACAO_FINANCEIRA') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
@@ -589,7 +579,3 @@ SELECT (SELECT m.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA'
         AND f.nome = 'FORM_DIALOG_CONTA_BANCARIA') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
-/**
-* FIM - DADOS USUARIO - INFORMACOES BANCARIAS
-*/

@@ -122,10 +122,11 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 
 				// instanciando e carregando array de informacoes de debug
            		$arrayInfo = array();
-           		$arrayInfo['Perfil padrão'] 		   =  $descricaoPerfilPadrao;
-           		$arrayInfo['MVC atual']                = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
-           		$arrayInfo['MVC anterior']             = Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests();
-           		$arrayInfo['Tempo de execução do PHP'] = $tempoExecucaoPHP;
+           		$arrayInfo['IP usuário sessão / usuário autenticado'] = Basico_OPController_UtilOPController::retornaUserIp() . " / " . Basico_OPController_SessionOPController::retornaIpUsuarioAutenticadoSessaoUsuario();
+           		$arrayInfo['Perfil padrão'] 		   		   		  =  $descricaoPerfilPadrao;
+           		$arrayInfo['MVC atual']                		   		  = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
+           		$arrayInfo['MVC anterior']             		   		  = Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests();
+           		$arrayInfo['Tempo de execução do PHP'] 		   		  = $tempoExecucaoPHP;
 
            		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
            		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDialogMensagemViaArrayInfoDebugInfo($arrayInfo);

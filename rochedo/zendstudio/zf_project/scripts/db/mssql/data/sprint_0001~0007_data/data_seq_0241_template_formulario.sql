@@ -14,10 +14,9 @@
 * 										   - vinculacao do template DOJO para o formulario FORM_DIALOG_ENDERECOS_PROFISSIONAIS;
 * 										   - vinculacao do template DOJO para o formulario FORM_DIALOG_ENDERECO;
 * 								23/11/2010 - vinculacao do template DOJO para o formulario SUBFORM_DADOS_USUARIO_PERFIL;
+* 								02/05/2011 - vinculacao do template DOJO para o formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 *  
 */
-
-/* TEMPLATE FORMULARIO */
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -393,14 +392,24 @@ SELECT (SELECT f.id
 		AND c.nome = 'FORMULARIO_TEMPLATE'
 		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
 	   'SYSTEM_STARTUP' AS rowinfo;
-	   
-	   
-/**
-* INICIO
-*  
-* DADOS USUARIO - DADOS PESSOAIS
-*/
-	   
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_TEMPLATE'
+		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+	   'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -417,8 +426,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
- 
+
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -435,7 +443,6 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -453,7 +460,6 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -471,7 +477,6 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -489,7 +494,6 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -507,18 +511,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
-/**
-* FIM - DADOS USUARIO -DADOS PESSOAIS
-*/
-        	   
-/**
-* INICIO
-*  
-* DADOS USUARIO - INFORMACOES BANCARIAS
-*/
-	   
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -535,9 +528,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
-        
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -554,7 +545,6 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -572,7 +562,6 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
@@ -590,8 +579,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------
-  
+
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -608,8 +596,3 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_TEMPLATE'
         AND p.nome = 'TEMPLATE_DOJO') AS id_template,
         'SYSTEM_STARTUP' AS rowinfo;
------------------------        
-
-/**
-* FIM - DADOS USUARIO - INFORMACOES BANCARIAS
-*/

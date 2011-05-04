@@ -5,6 +5,7 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 16/03/2011
 * ultimas modificacoes:
+* 											03/05/2011 - criacao das constantes textuais para a view de ip do usuario diferente do ip do usuario autenticado durante o processo de logon;
 */
 
 -- DICIONARIO DE EXPRESSOES
@@ -67,6 +68,27 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM' AS constante_textual, 'Caso deseje, clique @link para voltar a página que estava antes de tentar executar esta operação.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO' AS constante_textual, 'Problemas com seu endereço IP!' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO' AS constante_textual, 'Seu atual endereço IP difere do endereço IP registrado durante seu processo de logon.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM' AS constante_textual, 'Este problema ocorre quando o usuário troca de rede/endereço IP após estar autenticado no sistema.<br>Efetue logout e login para resolver esta situação.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -144,6 +166,27 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM' AS constante_textual, 'If desired, click @link to go back to the page that you was before trying to run this operation.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO' AS constante_textual, 'Problems with your IP address!' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO' AS constante_textual, 'Your current IP address differs from the registered IP address for your login process.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM' AS constante_textual, 'This problem occurs when the user change the network / IP address after being authenticated to the the system.<br>Logout and login to resolve this situation.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

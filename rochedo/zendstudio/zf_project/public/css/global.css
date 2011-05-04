@@ -197,3 +197,8 @@ ul#errorUl
 {
 	list-style-image: url('../js/dijit/themes/rochedo/images/warning.png');
 }
+
+div#descricaoElementoFormulario
+{
+	font-size: 11;
+}

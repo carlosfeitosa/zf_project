@@ -205,7 +205,7 @@ class Basico_OPController_UtilOPController
 	    	    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . $e->getMessage());
 	    	}
     }
-	
+
 	/**
 	 * Retorna IP do usuário.
 	 * 
@@ -223,7 +223,7 @@ class Basico_OPController_UtilOPController
 			
 		return $userIp;
 	}
-	
+
 	/**
 	 * Retorna tipo da conexão do usuário.
 	 * 
@@ -255,6 +255,23 @@ class Basico_OPController_UtilOPController
 	{
 		// retornando a requisicao efetuada pelo usuario
 		return Zend_Controller_Front::getInstance()->getRequest();
+	}
+
+	/**
+	 * Retorna a url da requisicao atual do usuario
+	 * 
+	 * @return String
+	 */
+	public static function retornaUrlUserRequest()
+	{
+		// recuperando o request atual
+		$requestAtual = self::retornaUserRequest();
+
+		// montando a url de retorno
+		$urlRetorno = self::retornaBaseUrl() . "{$requestAtual->getModuleName()}/{$requestAtual->getControllerName()}/{$requestAtual->getActionName()}";
+
+		// retornando a url atual do request
+		return $urlRetorno;
 	}
 	
 	/**
@@ -1090,6 +1107,19 @@ class Basico_OPController_UtilOPController
     	return Zend_Controller_Front::getInstance()->getBaseUrl();
     }
 
+    /**
+     * Retorna uma url sem a base url
+     * 
+     * @param String $url
+     * 
+     * @return String
+     */
+    public static function removeBaseUrl($url)
+    {
+    	// retornando a url sem o baseUrl
+    	return str_replace(self::retornaBaseUrl(), '', $url);
+    }
+
 	/**
 	 * Retorna uma string encriptada
 	 * 
@@ -1143,10 +1173,23 @@ class Basico_OPController_UtilOPController
     	// verificando se o request foi enviado via post
     	if ((!$request->isPost()) and ($urlRedirect)) {
     		// redirecionando
-    		Zend_Controller_Action_HelperBroker::getStaticHelper('redirector')->gotoUrl($urlRedirect);
+    		self::redirecionaUsuarioParaAction($urlRedirect);
     	}
 
     	return true;
+    }
+
+    /**
+     * Redireciona o usuario para um action passado por parametro
+     * 
+     * @param String $urlAction
+     * 
+     * @return void
+     */
+    public static function redirecionaUsuarioParaAction($urlAction)
+    {
+   		// redirecionando
+   		Zend_Controller_Action_HelperBroker::getStaticHelper('redirector')->gotoUrl($urlAction);
     }
 
     /**

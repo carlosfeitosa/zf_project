@@ -188,7 +188,7 @@ class Basico_OPController_AutenticadorOPController
 	}
 
 	/**
-	 * Retorna um html contendo uma chamada javascript para a funcao exibirDialogUrl
+	 * Retorna um html contendo uma chamada javascript para a funcao exibirDialogUrl, chamado o dialog de autenticacao de usuario
 	 * 
 	 * @param String $linguaUsuario
 	 * @param String $tituloDialog

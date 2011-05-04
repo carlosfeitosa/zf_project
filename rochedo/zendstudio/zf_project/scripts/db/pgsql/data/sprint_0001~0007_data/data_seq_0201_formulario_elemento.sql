@@ -9,10 +9,9 @@
 * 									16/11/2010 - criacao do elemento FORM_FIELD_EMAIL_TIPO;
 * 									18/04/2011 - modificacao do elemento Csrf (mensagem de erro);
 * 											   - modificacao do elemento Captcha (mensagem de erro);
+* 									02/05/2011 - criacao dos elementos para o formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 *
 */
-
-/* FORMULARIO ELEMENTO */
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
@@ -2370,16 +2369,6 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HASH';
 
-
-
-/**
-* INICIO
-*  
-* CADASTRO DADOS PESSOAIS 
-*/
-
--- formulario - cadastro usuario
--- dados pessoais - pais nascimento - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
@@ -2421,10 +2410,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - uf nascimento - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
@@ -2466,10 +2452,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - uf nascimento - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
@@ -2511,10 +2494,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - municipio nascimento - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
@@ -2556,10 +2536,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - municipio nascimento - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
@@ -2601,10 +2578,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - nome pai - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
@@ -2646,10 +2620,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - nome mae - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
@@ -2691,21 +2662,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
-/**
-* FIM - CADASTRO DADOS PESSOAIS 
-*/
 
-
-
-/**
-* INICIO
-*  
-* CADASTRO DE ENDERECO 
-*/
-
--- formulario - cadastro
--- endereco - tipo - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -2746,10 +2703,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - pais - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -2790,10 +2744,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - uf - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -2834,10 +2785,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - uf - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -2878,10 +2826,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - municipio - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -2922,10 +2867,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - municipio - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -2966,10 +2908,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - cep - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3010,10 +2949,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - logradouro - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3054,10 +2990,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - numero - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3098,10 +3031,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- endereco - complemento - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3142,21 +3072,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
-/**
-* FIM - CADASTRO DE ENDERECO 
-*/
-
-
-/**
-* INICIO
-*  
-* CADASTRO DE CONTA BANCARIA 
-*/
-
--- formulario - cadastro
--- conta bancaria - numero banco - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3197,10 +3113,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- conta bancaria - banco - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3241,10 +3154,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- conta bancaria - agencia - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3285,10 +3195,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- conta bancaria - tipo conta - FilteringSelect
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3329,10 +3236,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- conta bancaria - numero conta - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3373,10 +3277,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
 
--- formulario - cadastro
--- conta bancaria - descricao identificacao conta - ValidationTextBox
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -3417,7 +3318,213 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
--------------
-/**
-* FIM - CADASTRO DE CONTA BANCARIA 
-*/
+
+INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento html com a descricao do formulario do resolvedor de conflito de objeto.' AS descricao,
+                              'htmlTextDescricaoFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlTextDescricaoFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
+
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ZF'
+                              AND cp.nome = 'ZF_button') AS id_componente,
+                              'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento button para chamar dialog contendo os dados atuais do objeto em conflito (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
+                              'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
+                              'htmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
+
+INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento html com a descricao do botao "visualizar dados atuais" (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
+                              'htmlTextDescricaoButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlTextDescricaoButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
+
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ZF'
+                              AND cp.nome = 'ZF_button') AS id_componente,
+                              'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento button para direcionar o usuario para o formulario que gerou o conflito (formulario resolvedor de conflito de objeto apenas).' AS descricao,
+                              'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
+                              'htmlButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
+
+INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento html com a descricao do botao "revisar dados atuais" (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
+                              'htmlTextDescricaoButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlTextDescricaoButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
+
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ZF'
+                              AND cp.nome = 'ZF_button') AS id_componente,
+                              'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento button para sobrescrever a atualizacao com os dados enviados pelo usuario (formulario resolvedor de conflito de objeto apenas).' AS descricao,
+                              'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
+                              'htmlButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
+
+INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento html com a descricao do botao "Sobrescrever a atualizacao com os dados que estou tentando enviar" (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
+                              'htmlTextDescricaoButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlTextDescricaoButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
+
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ZF'
+                              AND cp.nome = 'ZF_button') AS id_componente,
+                              'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento button para cancelar a submissao dos dados enviados pelo usuario (formulario resolvedor de conflito de objeto apenas).' AS descricao,
+                              'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
+                              'htmlButtonCancelarFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlButtonCancelarFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
+
+INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
+							 (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
+                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento html com a descricao do botao "cancelar" (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
+                              'htmlTextDescricaoButtonCancelarFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
+                              '''htmlTextDescricaoButtonCancelarFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';

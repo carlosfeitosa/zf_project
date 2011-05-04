@@ -244,16 +244,22 @@ function marcaElementosErro(errorElements)
 	}
 }
 
-function validateForm(formId, titulo, message) 
+function validateForm(formId, titulo, message, baseUrl) 
 {
+	// recuperando o formulario
     var form = dijit.byId(formId);
-    
+
+    // validando o formulario
     if (!form.validate()) 
     {
+    	// mostando mensagem de erro ao tentar submeter o formulario
 	    showDialogAlert(formId, titulo, message, 1);
+	    // desabilitando underlay
 	    underlay.hide();
+
         return false;
     }
+
     return true;
 }
 	

@@ -289,6 +289,20 @@ class Basico_OPController_ControleAcessoOPController
 	}
 
 	/**
+	 * Verifica se o ip do usuario eh o mesmo ip que foi registrado na sessao no momento do logon
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaIpUsuarioIpUsuarioAutenticadoSessao()
+	{
+		// recupernado o id do usuario
+		$idUsuario = Basico_OPController_UtilOPController::retornaUserIp();
+
+		// retornando o resultado da comparacao entre o ip do usuario e o ip que foi registrado na sessao no momento do logon
+		return (Basico_OPController_SessionOPController::verificaIpSessaoUsuario($idUsuario));
+	}
+
+	/**
 	 * Verifica se um request pode ser acessado pelo usuario logado
 	 * 
 	 * @param Zend_Controller_Request_Abstract $request

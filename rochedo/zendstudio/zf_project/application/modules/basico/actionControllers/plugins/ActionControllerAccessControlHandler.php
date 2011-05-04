@@ -89,8 +89,15 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 				$request->setControllerName($controllerAutenticador);
 				$request->setActionName($actionAutenticador);
 			} else {
-				// verificando se o usuario logado possui o perfil para a requisicao solicitada
-				if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) {
+				if (!$controleAcessoOPController->verificaIpUsuarioIpUsuarioAutenticadoSessao()) { // verificando se o ip do usuario eh o mesmo ip registrado no momento do logon
+					// modificando o request para uma acao que mostrara uma mensagem avisando que ip do usuario eh diferente do ip registrado na sessao no momento do logon
+					$request->setModuleName('basico');
+					$request->setControllerName('controleacesso');
+					$request->setActionName('ipusuariodiferentedoipdousuarioautenticadonasessao');
+		
+					// parando a execucao do plugin
+					return;
+				} else if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) { // verificando se o usuario possui perfil para acessar a acao
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 					$request->setModuleName('basico');
 					$request->setControllerName('controleacesso');
@@ -98,7 +105,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		
 					// parando a execucao do plugin
 					return;
-				} else if (!$controleAcessoOPController->verificaMetodoValidacaoAcaoPorRequestIdPerfilUsuarioLogado($request)) {
+				} else if (!$controleAcessoOPController->verificaMetodoValidacaoAcaoPorRequestIdPerfilUsuarioLogado($request)) { // verificando se o metodo de validacao da associacao do perfil com a acao eh valida
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 					$request->setModuleName('basico');
 					$request->setControllerName('controleacesso');

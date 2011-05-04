@@ -44,7 +44,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		$this->view->form = $formDadosUsuario;
 
 		// renderizando a view
-		$this->_helper->Renderizar->renderizar();	
+		$this->_helper->Renderizar->renderizar();
     }
 
     /**
@@ -172,7 +172,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
-	    	
     	}
     }
     
@@ -193,8 +192,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaArrayIdDescricaoPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa);
 
     	// recuperando id do perfil padrao do usuario
-    	$idPerfilPadrao = Basico_OPController_PessoaOPController::retornaIdPerfilPadraoUsuarioSessao();
-    	
+    	$idPerfilPadrao = Basico_OPController_PessoaOPController::getInstance()->retornaIdPerfilPadraoPorIdPessoa($idPessoa);
+
     	// setando options do combobox perfil vinculado padrao
     	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormPerfisVinculadosDisponveis->BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis, $idPerfilPadrao);
 

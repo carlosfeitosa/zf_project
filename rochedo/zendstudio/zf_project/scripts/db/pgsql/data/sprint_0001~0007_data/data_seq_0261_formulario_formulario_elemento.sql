@@ -8,10 +8,9 @@
 * 								22/10/2010 - criacao de formularios elementos para o formulario FORM_DIALOG_VINCULO_PROFISSIONAL;
 * 								16/11/2010 - criacao de formularios elementos para o formulario FORM_DIALOG_EMAIL;
 * 								26/04/2011 - criacao do botao de submit do formulario SUBFORM_DADOS_USUARIO_PERFIL;
+* 								02/05/2011 - criacao dos elementos do formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 * 								
 */
-
-/* FORMULARIO X FORMULARIO ELEMENTO */
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2573,14 +2572,6 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_FIELD_HIDDEN_URLREDIRECT') AS id_formulario_elemento,
         false AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-/**
-* INICIO
-*  
-* ABA CADASTRO DE USUARIO - DADOS PESSOAIS
-*/
-        
--- formulario - cadastro usuario
--- dados pessoais - pais nascimento - FilteringSelect
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2607,10 +2598,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - uf nascimento - FilteringSelect
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2637,10 +2625,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-        
--- formulario - cadastro usuario
--- dados pessoais - uf nascimento - ValidationTextBox
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2667,10 +2652,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------        
 
--- formulario - cadastro usuario
--- dados pessoais - municipio nascimento - FilteringSelect
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2697,10 +2679,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
- 
--- formulario - cadastro usuario
--- dados pessoais - municipio nascimento - ValidationTextBox
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2727,10 +2706,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DADOS_NASCIMENTO') AS id_grupo_formulario_elemento,
         false AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
-------------- 
 
--- formulario - cadastro usuario
--- dados pessoais - nome pai - ValidationTextBox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2757,10 +2733,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_FILIACAO') AS id_grupo_formulario_elemento,
         false AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-        
--- formulario - cadastro usuario
--- dados pessoais - nome mae - ValidationTextBox
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2787,10 +2760,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_FILIACAO') AS id_grupo_formulario_elemento,
         false AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-        
--- formulario - cadastro usuario
--- dados pessoais - documentos pessoais - button (botão para abrir o container com os documentos pessoais)
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2817,10 +2787,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS') AS id_grupo_formulario_elemento,
         false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - documentos pessoais - linha horizontal no dialog container de documentos pessoais 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2844,10 +2811,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - documentos pessoais - novo documento de identificacao - button (botão para abrir o dialog de cadastro de documento de identificação no container de documentos pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2871,10 +2835,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - documentos pessoais - fechar documentos pessoais - button (botão para fechar o container de documentos pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2898,10 +2859,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - telefones pessoais - button (botão para abrir o container com os telefones pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2928,10 +2886,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO') AS id_grupo_formulario_elemento,
        	false AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - telefones pessoais - linha horizontal no dialog container de telefones pessoais 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2955,10 +2910,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - telefones pessoais - novo telefone pessoal - button (botão para abrir o dialog de cadastro de telefone no container de telefones pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -2982,10 +2934,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - telefones pessoais - fechar telefones pessoais - button (botão para fechar o container de telefones pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3009,10 +2958,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - emails pessoais - button (botão para abrir o container com os e-mails pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3039,10 +2985,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO') AS id_grupo_formulario_elemento,
        	false AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-      
--- formulario - cadastro usuario
--- dados pessoais - emails pessoais - linha horizontal no dialog container de emails pessoais 
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3066,10 +3009,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - emails pessoais - novo email pessoal - button (botão para abrir o dialog de cadastro de email no container de emails pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3093,10 +3033,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - emails pessoais - fechar emails pessoais - button (botão para fechar o container de emails pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3120,10 +3057,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - websites pessoais - button (botão para abrir o container com os websites pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3150,10 +3084,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO') AS id_grupo_formulario_elemento,
        	false AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - websites pessoais - linha horizontal no dialog container de websites pessoais 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3177,10 +3108,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - websites pessoais - novo website pessoal - button (botão para abrir o dialog de cadastro de website no container de websites pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3204,10 +3132,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - websites pessoais - fechar werbsites pessoas - button (botão para fechar o container de websites pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3231,10 +3156,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - enderecos pessoais - button (botão para abrir o container com os enderecos pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3261,10 +3183,7 @@ SELECT (SELECT f.id
        	FROM grupo_formulario_elemento g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS_INFORMACOES_CONTATO') AS id_grupo_formulario_elemento,
        	false AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
- 
--- formulario - cadastro usuario
--- dados pessoais - endereços pessoais - linha horizontal no dialog container de endereços pessoais 
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3288,10 +3207,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formualrio - cadastro usuario
--- dados pessoais - endereços pessoais - novo endereco pessoal - button (botão para abrir o dialog de cadastro de endereço no container de endereços pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3315,10 +3231,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- dados pessoais - endereços pessoais - fechar enderecos pessoais - button (botão para fechar o container de enderecos pessoais)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3342,20 +3255,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
-/**
-* FIM - ABA CADASTRO DE USUARIO - DADOS PESSOAIS
-*/
-
-
-/**
-* INICIO
-* 
-* CADASTRO DE ENDERECO
-*/
--- formulario - cadastro endereco
--- tipo - combobox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3379,10 +3279,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- pais - combobox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3406,10 +3303,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
---formulario - cadastro endereco
--- uf - combobox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3433,10 +3327,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- uf - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3460,10 +3351,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-        
--- formulario - cadastro endereco
--- município - combobox
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3487,10 +3375,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- município - textbox.
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3514,10 +3399,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- cep - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3541,10 +3423,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         true AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- logradouro - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3568,10 +3447,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- numero - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3595,10 +3471,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         true AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------        
-        
--- formulario - cadastro endereco
--- complemento - textbox
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3622,10 +3495,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- linha horizontal  (linha horizontal no dialog de cadastro de endereço) 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3649,10 +3519,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro endereco
--- button submit (button submit do cadastro de endereço)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3676,10 +3543,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-        
--- formulario - cadastro endereco
--- button reset (button reset do cadastro de endereco)
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3703,20 +3567,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
         false AS element_required, 13 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-        
-/**
-* FIM - CADASTRO DE ENDERECO
-*/
-        
-        
-/*
-* INICIO
-* 
-* CADASTRO INFORMACOES BANCARIAS
-*/
--- formulario - cadastro usuario
--- aba informacoes bancarias - subaba dados bancarios - button (botão para abrir o container com as contas bancarias)
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3740,11 +3591,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
        	false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
-
--- formulario - cadastro usuario
--- informacoes bancarias - dados bancarios - linha horizontal no dialog container de contas bancarias 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3768,10 +3615,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formualrio - cadastro usuario
--- informacoes bancarias - dados bancarios - nova conta bancaria - button (botão para abrir o dialog de cadastro de conta bancaria no container de contas bancarias)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3795,10 +3639,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro usuario
--- informacoes bancarias - dados bancarios - fechar contas bancarias - button (botão para fechar o container de contas bancarias)
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3822,22 +3663,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
- 
-        
-/*
- * FIM - CADASTRO INFORMACOES BANCARIAS 
-*/
 
-        
-/**
-* INICIO
-* 
-* CADASTRO DE CONTA BANCARIA
-*/
-        
--- formulario - cadastro conta bancaria
--- numero banco - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3861,10 +3687,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-        
--- formulario - cadastro conta bancaria
--- banco - combobox
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3888,10 +3711,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro conta bancaria
--- agencia - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3915,10 +3735,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro conta bancaria
--- tipo conta - combobox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3942,10 +3759,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro conta bancaria
--- numero conta - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3969,10 +3783,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
 
--- formulario - cadastro conta bancaria
--- descricao identificacao - textbox
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -3996,10 +3807,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
         true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-  
--- formulario - cadastro conta bancaria
--- linha horizontal  (linha horizontal no dialog de cadastro de endereço) 
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -4023,10 +3831,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------        
-      
--- formulario - cadastro conta bancaria
--- button submit (button submit do cadastro de conta bancaria)
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -4050,10 +3855,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
- 
--- formulario - cadastro endereco
--- button reset (button reset do cadastro de endereco)
+
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
@@ -4077,7 +3879,156 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
         false AS element_required, 13 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
--------------
-/**
-* FIM - CADASTRO DE CONTA BANCARIA
-*/
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
+        AND fe.nome = 'FORM_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
+        AND fe.nome = 'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
+        AND fe.nome = 'FORM_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
+        AND fe.nome = 'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
+        AND fe.nome = 'FORM_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
+        AND fe.nome = 'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
+        AND fe.nome = 'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
+        AND fe.nome = 'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_INPUT_CVC'
+        AND f.nome = 'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario,
+       (SELECT fe.id
+        FROM formulario_elemento fe
+        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
+        AND fe.nome = 'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_formulario_elemento,
+        false AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;

@@ -248,6 +248,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 */
 	public static function existeUsuarioLogado()
 	{
+		// retornando o id do usuario logado na sessao
 		return (self::retornaIdLoginUsuarioSessao());
 	}
 
@@ -548,6 +549,9 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// registrando o usuario na sessao
 		$this->registraIdLoginUsuarioSessao($login);
 
+		// registrando o IP do usuario
+		Basico_OPController_SessionOPController::registraIpUsuarioAutenticadoSessaoUsuario(Basico_OPController_UtilOPController::retornaUserIp());
+
 		// registrando o perfil padrao do usuario na sessao
 		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao($idPerfilPadraoUsuarioLogin);
 	}
@@ -572,6 +576,9 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	{
 		// removendo o id do usuario logado na sessao
 		self::removeRegistroIdLoginUsuarioSessao();
+
+		// removendo o ip do usuario logado na sessao
+		Basico_OPController_SessionOPController::removeIpUsuarioAutenticadoSessaoUsuario();
 
 		// limpando a autenticacao existente
 		Zend_Auth::getInstance()->clearIdentity();

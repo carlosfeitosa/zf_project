@@ -78,8 +78,31 @@ class Basico_OPController_DBSaveOPController
 					// cancelando a transacao
 					$transacaoInicializada = !Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 				}
-				
-				throw new Exception(MSG_ERRO_SAVE_UPDATE_VERSAO_DESATUALIZADA);
+
+				// verificando se o sistema pode solicitar ao usuario que ele mesmo resolva o conflito de versoes
+				if (APPLICATION_CVC_USER_RESOLVE_CONFLICT) {
+					// montando parametros para o resolvedor de conflitos
+					$nomeObjetoEmConflito   = get_class($mixed);
+					$idObjetoEmConflito     = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($mixed);
+					$versaoObjetoEmConflito = $versaoUpdate;
+					$urlUltimoRequest       = Basico_OPController_UtilOPController::codificaBarrasUrl(Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests());
+
+					// montando string da url para redirecionamento
+					$urlResolvedorConflitoVersaoObjeto = Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/cvc/resolveconflitoversaoobjeto/nomeObjetoEmConflito/{$nomeObjetoEmConflito}/idObjetoEmConflito/{$idObjetoEmConflito}/versaoObjetoEmConflito/{$versaoObjetoEmConflito}/urlUltimoRequest/{$urlUltimoRequest}";
+
+					// criando token da url para redirecionamento
+					$urlResolvedorConflitoVersaoObjetoTokenizado = Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl($urlResolvedorConflitoVersaoObjeto);
+					// retirando o base url da url do token
+					$urlResolvedorConflitoVersaoObjetoTokenizado = Basico_OPController_UtilOPController::removeBaseUrl($urlResolvedorConflitoVersaoObjetoTokenizado);
+
+					// redirecionando para a acao de resolucao de conflitos
+					Basico_OPController_UtilOPController::redirecionaUsuarioParaAction($urlResolvedorConflitoVersaoObjetoTokenizado);
+
+					return false;
+				} else {
+					// estourando excecao sobre conflito de versao (versao para update diferente da versao do banco de dados)
+					throw new Exception(MSG_ERRO_SAVE_UPDATE_VERSAO_DESATUALIZADA);
+				}
 			}
 
 			// verificando se o objeto deve ser versionado ou ter sua ultima versao atualizada apenas

@@ -129,7 +129,7 @@ create table formulario_elemento (
     id_decorator int null ,
     id_componente int not null ,
     id_mascara int null ,
-	nome character varying (100) not null ,
+	nome character varying (200) not null ,
 	descricao character varying (2000) null ,
 	constante_textual_label character varying (200) null ,
 	element_name character varying (100) not null ,

@@ -13,7 +13,8 @@ require_once(APPLICATION_PATH . "/consts/consts.php");
  */
 define("APPLICATION_NAME", "Rochedo Project");
 define("APPLICATION_VERSION", "1.0");
-define('APPLICATION_TITLE', 'ROCHEDO software');
+define("APPLICATION_TITLE", "ROCHEDO software");
+define("APPLICATION_CVC_USER_RESOLVE_CONFLICT", true);
 
 /*
  * SESSAO

@@ -105,7 +105,7 @@ create table dbo.formulario_elemento (
     id_decorator int null ,
     id_componente int not null ,
     id_mascara int null ,
-	nome varchar (100) collate latin1_general_ci_ai not null ,
+	nome varchar (200) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
 	element_name varchar (100) collate latin1_general_ci_ai not null ,

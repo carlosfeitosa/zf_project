@@ -327,4 +327,28 @@ class Basico_OPController_CVCOPController
     	return $return;
     }
 
+	/**
+	 * Retorna um html contendo uma chamada javascript para a funcao exibirDialogUrl, chamando o dialog de resolucao de conflitos de versao
+	 * 
+	 * @param String $linguaUsuario
+	 * @param String $tituloDialog
+	 * @param String $urlRedirect
+	 * @param String $formAction
+	 * 
+	 * @return String
+	 */
+	public static function retornaHTMLJavaScriptExibirDialogUrlResolvedorConflitoVersaoObjeto($linguaUsuario, $urlRedirect, $formAction = null)
+	{
+		// instanciando tradutor
+		$tradutorController = Basico_OPController_TradutorOPController::getInstance();
+
+		// traduzindo o titulo do dialog
+		$tituloDialog = $tradutorController->retornaTraducao('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO', $linguaUsuario);
+
+		// inicializando variaveis
+		$baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();
+
+		// retornando o javascript que abre o dialog de login
+		return "<script language='javascript'>exibirDialogUrl('Basico_Form_ResolvedorConflitoVersaoObjeto', '{$baseUrl}/public_forms/basico/forms/ResolvedorConflitoVersaoObjeto.{$linguaUsuario}.html', '{$tituloDialog}', null, '{$urlRedirect}', '{$formAction}')</script>";
+	}
 }

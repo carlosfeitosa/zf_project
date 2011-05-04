@@ -80,9 +80,10 @@
 * 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT;
 *									   - criacao da categoria LOG_DELETE_PESSOA_PERFIL;
 *							08/04/2011 - remocao de todas as categorias de log (serao criadas por demanda);
-*							27/04/2011 - criacao da categoria LOCALIDADE_ESTADO
-*									   - criacao da categoria LOCALIDADE_MUNICIPIO
-*									   - criacao da categoria LOCALIDADE_NAO_DETERMINADA
+*							27/04/2011 - criacao da categoria LOCALIDADE_ESTADO;
+*									   - criacao da categoria LOCALIDADE_MUNICIPIO;
+*									   - criacao da categoria LOCALIDADE_NAO_DETERMINADA;
+*							29/04/2011 - criacao da categoria FORMULARIO_INPUT_CVC;
 *
 */
 
@@ -916,6 +917,13 @@ WHERE nome = 'FORMULARIO';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_LOGIN' AS nome, 'Formulários de autenticacao de login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_CVC' AS nome, 'Formulários de controle de versao.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

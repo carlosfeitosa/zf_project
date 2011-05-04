@@ -15,11 +15,10 @@
 *									   - criacao do formulario FORM_DIALOG_ENDERECO_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_DIALOG_ENDERECO;
 * 							13/12/2010 - criacao do formulario FORM_AUTENTICACAO_USUARIO;
-* 							30/12/2010 - criacao do action e attribes do FORM_DIALOG_WEBSITE; 
+* 							30/12/2010 - criacao do action e attribes do FORM_DIALOG_WEBSITE;
+* 							29/04/2011 - criacao do formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO; 
 *  
 */
-
-/* FORMULARIO */
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
@@ -382,14 +381,6 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_LOGIN';
 
-
-/**
-* INICIO
-*  
-* DADSOS USUARIO - DADOS PESSOAIS
-*/
-
--- aba de dados pessoais
 INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, ordem, rowinfo)
@@ -409,9 +400,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
--------------
 
--- container de documentos pessoais
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -426,9 +415,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS';
--------------
 
--- container de telefones pessoais
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -443,9 +430,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS';
--------------
 
--- container de emails pessoais
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -460,9 +445,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS';
--------------
 
--- container de websites pessoais
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -477,9 +460,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS';
--------------
 
--- container de endereços pessoais
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -494,20 +475,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS';
--------------
 
-/**
-* FIM DADSOS USUARIO - DADOS PESSOAIS
-*/
-
-
-/**
-* INICIO
-*  
-* DADSOS USUARIO - INFORMACOES BANCARIAS
-*/
-
--- aba de informações bancárias
 INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_attribs, ordem, rowinfo)
         SELECT c.id AS id_categoria,(SELECT f.id
@@ -524,9 +492,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
--------------
 
--- dados usuario - aba informacoes bancarias - sub aba dados bancarios
 INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
 						constante_textual_titulo, form_name, form_method, form_action,
 						form_attribs, ordem, rowinfo)
@@ -546,10 +512,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
-----------------
 
--- dados usuario - aba informacoes bancarias - sub aba dados bancarios
--- container de contas bancarias
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -564,10 +527,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS';
--------------
 
-
--- dados usuario - informacoes bancarias - sub movimentacao financeira
 INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao, 
 						constante_textual_titulo, form_name, form_method, form_action,
 						form_attribs, ordem, rowinfo)
@@ -587,10 +547,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
-----------------
 
-
--- cadastro de conta bancaria
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)
@@ -606,6 +563,22 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA';
 
-/**
-* FIM DADOS USUARIO - INFORMACOES BANCARIAS
-*/
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
+                        constante_textual_titulo, 
+                        form_name, form_method, form_action, form_attribs, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+       'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+       'Formulário do resolvedor de conflitos de versão de objetos.' AS descricao, 
+       'FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_titulo,
+       'ResolvedorConflitoVersaoObjeto' AS form_name, 'post' AS form_method, '/basico/cvc/resolveConflitoVersaoObjeto' AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CVC';

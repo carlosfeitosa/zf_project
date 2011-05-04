@@ -187,6 +187,82 @@ class Basico_OPController_SessionOPController
 	}
 
 	/**
+	 * Registra o ip do usuario autenticado na sessao do usuario
+	 * 
+	 * @param String $ipUsuarioAutenticado
+	 * 
+	 * @return void
+	 */
+	public static function registraIpUsuarioAutenticadoSessaoUsuario($ipUsuarioAutenticado)
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionAuthenticatedUserIp = SESSION_AUTHENTICATED_USER_IP;
+
+		// verificando se o valor ja se encontra na sessao
+		if (!isset($sessaoUsuario->$sessionAuthenticatedUserIp)) {
+			// registrando o ip do usuario autenticado na sessao
+			$sessaoUsuario->$sessionAuthenticatedUserIp = $ipUsuarioAutenticado;
+		}
+
+		return;
+	}
+
+	public static function retornaIpUsuarioAutenticadoSessaoUsuario()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionAuthenticatedUserIp = SESSION_AUTHENTICATED_USER_IP;
+
+		// verificando se o valor ja se encontra na sessao
+		if (isset($sessaoUsuario->$sessionAuthenticatedUserIp)) {
+			// retornando o ip do usuario autenticado na sessao
+			return $sessaoUsuario->$sessionAuthenticatedUserIp;
+		}
+
+		return;
+	}
+
+	/**
+	 * Remove o ip do usuario logado da sessao
+	 * 
+	 * @return void
+	 */
+	public static function removeIpUsuarioAutenticadoSessaoUsuario()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionAuthenticatedUserIp = SESSION_AUTHENTICATED_USER_IP;
+
+		// verificando se o valor ja se encontra na sessao
+		if (isset($sessaoUsuario->$sessionAuthenticatedUserIp)) {
+			// removendo o ip do usuario autenticado na sessao
+			unset($sessaoUsuario->$sessionAuthenticatedUserIp);
+		}
+
+		return;
+	}
+
+	/**
+	 * Verifica se o ip do usuario eh o mesmo ip que foi regisrado no momento do login
+	 * 
+	 * @param String $ipUsuarioAutenticado
+	 * 
+	 * @return Boolean
+	 */
+	public static function verificaIpSessaoUsuario($ipUsuario)
+	{
+		// retornando o resultado da comparacao do ip passado por parametro com o ip registrado na sessao
+		return ($ipUsuario === self::retornaIpUsuarioAutenticadoSessaoUsuario()); 
+	}
+
+	/**
 	 * Registra o inicio do processamento PHP na sessao do usuario
 	 * 
 	 * @return void

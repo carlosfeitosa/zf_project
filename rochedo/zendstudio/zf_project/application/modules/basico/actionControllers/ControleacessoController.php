@@ -178,4 +178,37 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
+
+    /**
+     * Ação para mostrar mensagem de ip do usuario diferente do ip do usuario autenticado no momento do logon
+     * 
+     * @return void
+     */
+    public function ipusuariodiferentedoipdousuarioautenticadonasessaoAction()
+    {
+    	// recuperando o id da pessoa logada
+    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+
+    	// recuperando informacoes para log
+    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaUsuarioLogado);
+    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO, true);
+    	$mensagemLog = LOG_MSG_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO;
+
+		// salvando log
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+
+    	// carregando o titulo, subtitulo e mensagem da view
+    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO');
+        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO');
+        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM');
+
+    	// carregando array do cabecalho da view
+		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+	            
+	    // setando o cabecalho na view
+		$this->view->cabecalho = $cabecalho;
+		
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
+    }
 }
