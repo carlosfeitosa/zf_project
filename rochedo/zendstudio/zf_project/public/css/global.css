@@ -188,7 +188,9 @@ div.loading
 
 div#divContainerError
 {
-	border: 1 solid #C00;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #C00;
 	margin-bottom: 10;
 	background-color: #FFFFCC;
 }

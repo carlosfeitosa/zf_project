@@ -17,7 +17,8 @@
 * 										   - criacao das expressoes para o captcha;
 * 								20/04/2011 - criacao das expressoes para os paises;
 * 								25/04/2011 - criacao das expressoes para o formulario de perfils vinculados disponiveis (sprint 0003.7);
-* 								02/04/2011 - criacao das expressoes para o formulario FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
+* 								02/05/2011 - criacao das expressoes para o formulario FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
+* 								04/05/2011 - criacao de expressao para titulo do dialog "Visualizar dados atuais", do formulario FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 */
 
 /*
@@ -1917,6 +1918,13 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'DIALOG_HELP_TITLE' AS constante_textual, 'Ajuda' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'DIALOG_FORM_RESOLVEDOR_CONFLITO_VISUALIZAR_DADOS_ATUAIS_TITLE' AS constante_textual, 'DADOS ATUAIS:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6213,6 +6221,13 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'DIALOG_HELP_TITLE' AS constante_textual, 'Help' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'DIALOG_FORM_RESOLVEDOR_CONFLITO_VISUALIZAR_DADOS_ATUAIS_TITLE' AS constante_textual, 'CURRENT DATA:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

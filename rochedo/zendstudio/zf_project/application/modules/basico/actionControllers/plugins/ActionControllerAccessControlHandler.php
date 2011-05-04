@@ -66,6 +66,9 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 
 				// verificando se a sessao expirou, para redirecionar o usuario para index da aplicacao no caso de sucesso
 				if ($sessaoExpirada) {
+					// removendo registro do usuario logado na sessao
+					Basico_OPController_LoginOPController::getInstance()->limpaLoginUsuarioSessaoAuth();
+
 					// montando a url para redirecionar o usuario para o index da aplicacao
 					$requestUrlRedirect = Basico_OPController_UtilOPController::retornaBaseUrl();
 				} else {

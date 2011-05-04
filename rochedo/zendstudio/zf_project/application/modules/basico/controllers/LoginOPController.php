@@ -242,6 +242,17 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	}
 
 	/**
+	 * Limpa a autenticacao do usuario
+	 * 
+	 * @return void
+	 */
+	public static function limpaLoginUsuarioSessaoAuth()
+	{
+		// limpando identity do zend auth
+		Zend_Auth::getInstance()->clearIdentity();
+	}
+
+	/**
 	 * Retorna se existe usuario logado na sessao
 	 * 
 	 * @return Boolean

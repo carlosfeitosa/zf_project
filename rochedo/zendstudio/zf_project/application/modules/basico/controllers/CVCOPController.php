@@ -351,4 +351,34 @@ class Basico_OPController_CVCOPController
 		// retornando o javascript que abre o dialog de login
 		return "<script language='javascript'>exibirDialogUrl('Basico_Form_ResolvedorConflitoVersaoObjeto', '{$baseUrl}/public_forms/basico/forms/ResolvedorConflitoVersaoObjeto.{$linguaUsuario}.html', '{$tituloDialog}', null, '{$urlRedirect}', '{$formAction}')</script>";
 	}
+
+	/**
+	 * Retorna um array contendo os atributos visualizaveis (fora da blacklist de atributos) de um objeto
+	 * 
+	 * @param String $nomeObjeto
+	 * @param Integer $idObjeto
+	 * @param Integer $versao
+	 * 
+	 * @return Array|null
+	 */
+	public function retornaArrayAtributosObjeto($nomeObjeto, $idObjeto, $versao = null)
+	{
+		// verificando se o objeto existe
+		if ((!class_exists($nomeObjeto, true)) or (!$idObjeto))
+			return null;
+
+		// verificando se foi solicitado uma versao especifica do objeto
+		if (!$versao) {
+			// instanciando o modelo do objeto
+			$objeto = new $nomeObjeto();
+
+			// recuperando a versao atual
+			$objeto->find($idObjeto);
+
+			// retornando array com os atributos do objeto
+			return Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_TO_ARRAY_USANDO_BLACKLIST_ATRIBUTOS_SISTEMA);
+		}
+
+		return null;
+	}
 }

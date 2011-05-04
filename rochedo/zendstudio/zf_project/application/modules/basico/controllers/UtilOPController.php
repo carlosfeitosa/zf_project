@@ -547,6 +547,149 @@ class Basico_OPController_UtilOPController
 		return $tempReturn;
 	}
 
+	/**
+	 * Retorna um array contendo os atributos de um objeto
+	 * 
+	 * @param Object $objeto
+	 * @param Array $blacklistAtributos
+	 * 
+	 * @return Array|null
+	 */
+	public static function objectToArray($objeto, array $blacklistAtributos = array())
+	{
+		// verificando se o parametro eh um objeto
+		if (!is_object($objeto))
+			return null;
+
+		// inicializando variaveis
+		$returnArray = array();
+
+		// criando copia do objeto
+		$objetoCopia = $objeto;
+
+   		// verificando se o objeto possui mapper
+   		if (method_exists(get_class($objetoCopia), 'setMapper'))
+   			// removendo mapper
+   			$objetoCopia->setMapper(null);
+
+   		// recuperando atributos do objeto
+   		$arrayAtributosObjetoCopia = self::retornaArrayAtributosGetObjeto($objetoCopia);
+
+		// verificando se foi passado um blacklist para remocao de elementos
+		if (count($blacklistAtributos) > 0) {
+			// loop para remocao dos elementos
+			foreach ($blacklistAtributos as $atributoBlackList) {
+				// recuperando a chave do elemento da blacklist
+				$chaveElementoBlackList = array_search($atributoBlackList, $arrayAtributosObjetoCopia);
+
+				// verificando se a chave foi recuperada
+				if ($chaveElementoBlackList !== false) {
+					// removendo o elemento do array de atributos
+					unset($arrayAtributosObjetoCopia[$chaveElementoBlackList]);
+				}
+			}
+		}
+
+		// loop para recuperar as informacoes do objeto
+		foreach ($arrayAtributosObjetoCopia as $atributoObjetoCopia) {
+			// montando nome do metodo que recupera objeto relacionado ao objeto passado por parametro
+			$nomeAtributoInicioMaiusculo = $atributoObjetoCopia;
+			$nomeAtributoInicioMaiusculo[0] = strtoupper($nomeAtributoInicioMaiusculo[0]);
+			$nomeMetodoRecuperacaoObjetoVinculado = "get{$nomeAtributoInicioMaiusculo}Object";
+			
+			// verificando se o metodo existe no objeto
+			if (method_exists(get_class($objetoCopia), $nomeMetodoRecuperacaoObjetoVinculado)) {
+				// recuperando objeto relacionado
+				$objetoRelacionado = $objetoCopia->$nomeMetodoRecuperacaoObjetoVinculado();
+
+				// verificando se o objeto relacionado possui o atributo "descricao"
+				if ($objetoRelacionado->descricao) {
+					// recuperando a descricao da tupla do objeto relacionado
+					$valorObjetoRelacionado = $objetoRelacionado->descricao;
+				} else if ($objetoRelacionado->nome) {
+					// recuperando a descricao da tupla do objeto relacionado
+					$valorObjetoRelacionado = $objetoRelacionado->nome;
+				} else {
+					$valorObjetoRelacionado = null;
+				}
+
+				// setando informacao no array de resultados
+				$returnArray[$atributoObjetoCopia] = $valorObjetoRelacionado;
+			} else {
+				// recuperando informacao e setando no array de resultados
+				$returnArray[$atributoObjetoCopia] = $objetoCopia->$atributoObjetoCopia;				
+			}
+		}
+
+		// retornando o array de resultados
+		return $returnArray;
+	}
+
+	/**
+	 * Retorna um array contendo os atributos de um objeto, atraves dos metodos get do proprio objeto
+	 * 
+	 * @param Object $objeto
+	 * 
+	 * @return Array|null
+	 */
+	public static function retornaArrayAtributosGetObjeto($objeto)
+	{
+		// verificando se o parametro eh um objeto
+		if (!is_object($objeto))
+			return null;
+
+		// inicializando variaveis
+		$returnArray = array();
+
+		// recupernado os metodos do objeto
+		$metodosObjeto = get_class_methods(get_class($objeto));
+
+		// loop para localizar os metodos get
+		foreach ($metodosObjeto as $metodoObjeto) {
+			// vefificando se o nome do metodo se inicia com "get"
+			if (substr($metodoObjeto, 0, 3) === 'get') {
+				// transformando o nome do metodo em nome do atributo
+				$nomeAtributo = str_replace('get', '', $metodoObjeto);
+				// convertendo para minusculo a primeira letra do nome do atributo
+				$nomeAtributo[0] = strtolower($nomeAtributo[0]);
+
+				// adicionando o nome do atributo no array de resultados
+				$returnArray[] = $nomeAtributo;
+			}
+		}
+
+		// montando array de filtros para exclusao de elementos nao desejados
+		$arrayFilter   = array();
+		$arrayFilter[] = array(ARRAY_FILTER_CHAVE_FILTRO => 'mapper', ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_END);
+		$arrayFilter[] = array(ARRAY_FILTER_CHAVE_FILTRO => 'Object', ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_END);
+
+		// filtrando o array para excluir elementos nao desejados
+		$returnArray = self::filtraArray($returnArray, $arrayFilter);
+		
+		array(ARRAY_FILTER_CHAVE_FILTRO => '.', ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_BEGIN);
+
+		return $returnArray;
+	}
+
+	/**
+	 * Retorna um array contendo os atributos de sistema, nos objetos, que nao devem ser utilizados (blacklist)
+	 * 
+	 * @return 
+	 */
+	private static function retornaArrayBlackListObjetoAtributosSistema()
+	{
+		// instanciando variaveis
+		$arrayBlackListAtributosSistema = array();
+
+		// incluindo os atributos da blacklist
+		$arrayBlackListAtributosSistema[] = 'id';
+		$arrayBlackListAtributosSistema[] = 'rowinfo';
+		$arrayBlackListAtributosSistema[] = 'pessoa';
+
+		// retornando um array contendo os atributos de objetos que estao relacionados ao sistema
+		return $arrayBlackListAtributosSistema;
+	}
+
     /**
      * Codifica um valor
      * 
@@ -558,16 +701,30 @@ class Basico_OPController_UtilOPController
     public static function codificar($valor, $operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
     {
     	// verificando o tipo de operacao
-    	if ($operacao == CODIFICAR_OBJETO_TO_ENCODED_STRING)
-    		// retornando a codificacao do objeto em string codificada
-    		return self::objectToEncodedString($valor);
-    	else if ($operacao == CODIFICAR_ENCODED_STRING_TO_ARRAY)
-    		// retornando a codificacao de string codificada para array
-    		return self::encodedStringToArray($valor);
-    	else
-    		throw new Exception(MSG_ERRO_CODIFICAR_SEM_OPERACAO);
+    	switch ($operacao) {
+    		// verificando se a codificacao eh para codificar um objeto em string codificada
+    		case CODIFICAR_OBJETO_TO_ENCODED_STRING:
+    			// retornando a codificacao do objeto em string codificada
+    			return self::objectToEncodedString($valor);
+    		break;
+    		// verificando se a codificacao eh para codificar uma string em array
+    		case CODIFICAR_ENCODED_STRING_TO_ARRAY:
+    			// retornando a codificacao de string codificada para array
+    			return self::encodedStringToArray($valor);
+    		break;
+    		case CODIFICAR_OBJETO_TO_ARRAY:
+    			// retornando a codificacao de um objeto em array
+    			return self::objectToArray($valor);
+    		break;
+    		case CODIFICAR_OBJETO_TO_ARRAY_USANDO_BLACKLIST_ATRIBUTOS_SISTEMA:
+    			// retornando a codificacao de um objeto em array, utilizando o blacklist de atributos do sistema
+    			return self::objectToArray($valor, self::retornaArrayBlackListObjetoAtributosSistema());
+    		break;
+    		default:
+    			throw new Exception(MSG_ERRO_CODIFICAR_SEM_OPERACAO);
+    	}
     }
-    
+
     /**
      * Converte uma string codificada em um array
      * 
@@ -758,8 +915,16 @@ class Basico_OPController_UtilOPController
 							unset($array[array_search($valor, $array)]);
     					break;
     				case ARRAY_FILTER_EXCLUDE_POSITION_END:
+    					// setando a diferenca entre o tamanho do filtro e o tamanho da string a ser filtrada
+    					$diferencaStrings = strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO]);
+						// verificando o valor da diferenca
+						if ($diferencaStrings < 0) {
+							// transformando a diferenca em um valor positivo
+							$diferencaStrings = $diferencaStrings * -1;
+						}
+
     					// procurando pelo filtro no final do valor
-    					if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) === 0)
+    					if (($diferencaStrings < strlen($valor)) and (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], $diferencaStrings) === $diferencaStrings))
 							// incrementando array de resultados
 							unset($array[array_search($valor, $array)]);
     					break;
