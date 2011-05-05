@@ -435,7 +435,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE' AS constante_textual, 'Valor inserido é inválido, este campo deve se iniciar com letras<br>e não pode possuir caracteres especias exceto: _ , @ e .' AS traducao
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE' AS constante_textual, 'Valor inserido é inválido, este campo deve se iniciar com letras e<br>não pode possuir caracteres especias exceto: _ , @ e .' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -2639,6 +2639,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX_HINT' AS constante_textual, 'Digite aqui a descrição para identificação.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -4653,13 +4654,6 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_INVALID_CSRF' AS constante_textual, 'The form submission''s time has expired. Please, try again.' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'en-us';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'DIALOG_DIV_CONTAINER_ERROR_MSG_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS' AS constante_textual, 'Invalid login/password;' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -4668,6 +4662,13 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA' AS constante_textual, 'The value entered does not match the image. Please try again.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_INVALID_CSRF' AS constante_textual, 'The form submission''s time has expired. Please, try again.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4765,7 +4766,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE' AS constante_textual, 'The inserted value is invalid, this field must start with letters and<br> can''t have special characters, except: _, @ e . .' AS traducao
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE' AS constante_textual, 'The inserted value is invalid, this field must start with letters and<br> can''t have special characters, except: _ , @ e .' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

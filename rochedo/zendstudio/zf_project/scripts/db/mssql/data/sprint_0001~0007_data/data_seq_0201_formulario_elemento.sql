@@ -1177,6 +1177,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
 INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
+
 SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para chamar caixa de dialogo DOJO.' AS descricao,
 	   (SELECT cp.id
         FROM componente cp
@@ -3355,7 +3356,7 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento button para chamar dialog contendo os dados atuais do objeto em conflito (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
                               'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
                               'htmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
-                              '''htmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''htmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -3381,53 +3382,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
                               'FORM_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento html com a descricao do botao "visualizar dados atuais" (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
                               'htmlTextDescricaoButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
-                              '''htmlTextDescricaoButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
-
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
-								 element_name, element_attribs, element, element_reloadable, 
-								 rowinfo)
-
-SELECT c.id AS id_categoria, (SELECT cp.id
-                              FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'COMPONENTE'
-                              AND c.nome = 'COMPONENTE_ZF'
-                              AND cp.nome = 'ZF_button') AS id_componente,
-                              'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento button para direcionar o usuario para o formulario que gerou o conflito (formulario resolvedor de conflito de objeto apenas).' AS descricao,
-                              'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
-                              'htmlButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
-                              '''htmlButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
-
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
-								 element_name, element_attribs, element, element_reloadable, 
-								 rowinfo)
-
-SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'FORMULARIO'
-                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
-                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
-							 (SELECT cp.id
-                              FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'COMPONENTE'
-                              AND c.nome = 'COMPONENTE_ROCHEDO'
-                              AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, 'Elemento html com a descricao do botao "revisar dados atuais" (formulario do resolvedor de conflito de objeto apenas).' AS descricao,
-                              'htmlTextDescricaoButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
-                              '''htmlTextDescricaoButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''htmlTextDescricaoButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

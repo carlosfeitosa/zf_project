@@ -7,6 +7,7 @@
 * ultimas modificacoes:
 * 
 */
+
 INSERT INTO pais (constante_textual_nome, sigla, codigo_ddi, codigo_iso3166, rowinfo)
 SELECT distinct(d.constante_textual), 'AF' AS sigla, '93' AS codigo_ddi, '004' AS codigo_iso3166, 'SYSTEM_STARTUP' AS rowinfo
 FROM dicionario_expressao d
