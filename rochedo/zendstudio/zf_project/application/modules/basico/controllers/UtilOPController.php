@@ -596,7 +596,7 @@ class Basico_OPController_UtilOPController
 			$nomeAtributoInicioMaiusculo = $atributoObjetoCopia;
 			$nomeAtributoInicioMaiusculo[0] = strtoupper($nomeAtributoInicioMaiusculo[0]);
 			$nomeMetodoRecuperacaoObjetoVinculado = "get{$nomeAtributoInicioMaiusculo}Object";
-			
+
 			// verificando se o metodo existe no objeto
 			if (method_exists(get_class($objetoCopia), $nomeMetodoRecuperacaoObjetoVinculado)) {
 				// recuperando objeto relacionado
@@ -617,8 +617,14 @@ class Basico_OPController_UtilOPController
 				// setando informacao no array de resultados
 				$returnArray[$atributoObjetoCopia] = $valorObjetoRelacionado;
 			} else {
-				// recuperando informacao e setando no array de resultados
-				$returnArray[$atributoObjetoCopia] = $objetoCopia->$atributoObjetoCopia;				
+				// verificando se o atributo precisa ser traduzido
+				if ($atributoObjetoCopia = 'constanteTextual') {
+					// recuperando traducao e setando no array de resultados
+					$returnArray[$atributoObjetoCopia] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($objetoCopia->$atributoObjetoCopia);
+				} else {
+					// recuperando informacao e setando no array de resultados
+					$returnArray[$atributoObjetoCopia] = $objetoCopia->$atributoObjetoCopia;
+				}				
 			}
 		}
 
