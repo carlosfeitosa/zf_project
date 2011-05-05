@@ -339,11 +339,8 @@ class Basico_OPController_CVCOPController
 	 */
 	public static function retornaHTMLJavaScriptExibirDialogUrlResolvedorConflitoVersaoObjeto($linguaUsuario, $urlRedirect, $formAction = null)
 	{
-		// instanciando tradutor
-		$tradutorController = Basico_OPController_TradutorOPController::getInstance();
-
 		// traduzindo o titulo do dialog
-		$tituloDialog = $tradutorController->retornaTraducao('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO', $linguaUsuario);
+		$tituloDialog = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO', $linguaUsuario);
 
 		// inicializando variaveis
 		$baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();

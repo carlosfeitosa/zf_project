@@ -201,24 +201,21 @@ class Basico_OPController_AutenticadorOPController
 	 */
 	public static function retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario($linguaUsuario, $tituloDialog, $urlRedirect, $formAction = null, $onLoadValues = null, $errorElements = null)
 	{
-		// instanciando tradutor
-		$tradutorController = Basico_OPController_TradutorOPController::getInstance();
-
 		// inicializando variaveis
 		$baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();
 
 		// verificando se eh preciso enviar valores para o formulario
 		if ($onLoadValues) {
 			// carregando informacoes sobre o problema na autenticacao
-			$mensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_MSG_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
-			$tituloMensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_TITLE_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
+			$mensagemErro       = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_MSG_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
+			$tituloMensagemErro = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_TITLE_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
 
 			$onLoadValuesCallAndErrorMessage = ", '{$formAction}', {$onLoadValues}, '{$mensagemErro}', '{$tituloMensagemErro}', {$errorElements}";
 		} else if (Basico_OPController_UtilOPController::retornaUserRequest()->getParam('sessaoExpirada')) {
 			// carregando informacoes sobre a sessao expirada
-			$mensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_MSG_SESSAO_EXPIRADA');
-			$tituloMensagemErro = $tradutorController->retornaTraducao('DIALOG_DIV_CONTAINER_ERROR_TITLE_SESSAO_EXPIRADA');
-			$onLoadValues = Basico_OPController_UtilOPController::codificaArrayJson(array('nada' => 'nada'));
+			$mensagemErro       = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_MSG_SESSAO_EXPIRADA');
+			$tituloMensagemErro = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_TITLE_SESSAO_EXPIRADA');
+			$onLoadValues       = Basico_OPController_UtilOPController::codificaArrayJson(array('nada' => 'nada'));
 
 			$onLoadValuesCallAndErrorMessage = ", '{$formAction}', {$onLoadValues}, '{$mensagemErro}', '{$tituloMensagemErro}', null";
 		} else {

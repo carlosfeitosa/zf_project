@@ -160,9 +160,6 @@ class Basico_OPController_RacaOPController
 	 */
 	public static function retornaArrayRacasOptions()
 	{
-		// inicializando controladores
-		$controladorTradutor = Basico_OPController_TradutorOPController::getInstance();
-		
 		$objRaca = new Basico_Model_Raca();
 		
 		$racas = $objRaca->fetchAll();
@@ -171,7 +168,7 @@ class Basico_OPController_RacaOPController
 		if (count($racas) > 0) {
 			
 			foreach ($racas as $raca) {
-				$arrayResultado[$raca->id] =  $controladorTradutor->retornaTraducao($raca->constanteTextual);
+				$arrayResultado[$raca->id] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($raca->constanteTextual);
 			}
 			
 		}

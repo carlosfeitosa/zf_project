@@ -53,7 +53,7 @@ class Basico_CvcController extends Zend_Controller_Action
     	$formResolucaoConflitoVersao = $this->retornaFormResolvedorConflitoVersaoObjeto();
 
     	// recuperando chamada javascript que abre um dialog contendo os dados atuais do objeto
-    	$jsVisualizarDadosAtuais = Basico_OPController_UtilOPController::retornaJavaScriptDialogMensagemViaArrayInfo('resolvedorConflitoObjetosVisualizarDados', Basico_OPController_TradutorOPController::getInstance()->retornaTraducao('DIALOG_FORM_RESOLVEDOR_CONFLITO_VISUALIZAR_DADOS_ATUAIS_TITLE'), Basico_OPController_CVCOPController::getInstance()->retornaArrayAtributosObjeto($nomeObjetoConflito, $idObjetoConflito));
+    	$jsVisualizarDadosAtuais = Basico_OPController_UtilOPController::retornaJavaScriptDialogMensagemViaArrayInfo('resolvedorConflitoObjetosVisualizarDados', Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_FORM_RESOLVEDOR_CONFLITO_VISUALIZAR_DADOS_ATUAIS_TITLE'), Basico_OPController_CVCOPController::getInstance()->retornaArrayAtributosObjeto($nomeObjetoConflito, $idObjetoConflito));
 
     	// vinculando o evento "onClick" do botao "visualizar dados atuais" com a chamada javascript que abre um dialog contendo os atributos do objeto
     	$formResolucaoConflitoVersao->BasicoResolvedorConflitoVersaoObjetoHtmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto->setAttrib('onClick', $jsVisualizarDadosAtuais);

@@ -611,7 +611,7 @@ class Basico_OPController_UtilOPController
 					$valorObjetoRelacionado = $objetoRelacionado->nome;
 				} else if (property_exists(get_class($objetoRelacionado), '_constanteTextual')) {
 					// recuperando traducao da constante textual
-					$valorObjetoRelacionado = Basico_OPController_TradutorOPController::getInstance()->retornaTraducao($objetoRelacionado->constanteTextual);
+					$valorObjetoRelacionado = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($objetoRelacionado->constanteTextual);
 				} else {
 					// zerando o valor
 					$valorObjetoRelacionado = null;

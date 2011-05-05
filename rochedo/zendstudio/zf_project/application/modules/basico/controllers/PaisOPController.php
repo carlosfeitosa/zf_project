@@ -166,7 +166,7 @@ class Basico_OPController_PaisOPController extends Basico_Abstract_RochedoPersis
 		
 		if (count($objPais) > 0) {
 			foreach ($objPais as $pais) {
-				$arrayResult[$pais->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::getInstance()->retornaTraducao("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,Basico_OPController_TradutorOPController::getInstance()->retornaTraducao($pais->constanteTextualNome));				
+				$arrayResult[$pais->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,Basico_OPController_TradutorOPController::getInstance()->retornaTraducao($pais->constanteTextualNome));				
 			}
 			
 			return $arrayResult;

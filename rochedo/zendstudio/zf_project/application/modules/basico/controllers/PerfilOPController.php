@@ -445,7 +445,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		}
 
 		// retornando "nenhuma opcao informada"
-		return Basico_OPController_TradutorOPController::getInstance()->retornaTraducao('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+		return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
 	}
 
 	/**
@@ -475,6 +475,6 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		}
 
 		// retornando "nenhuma opcao informada"
-		return Basico_OPController_TradutorOPController::getInstance()->retornaTraducao('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+		return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
 	}
 }

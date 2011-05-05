@@ -72,6 +72,8 @@ class Basico_OPController_TradutorOPController
 	 * Retorna uma tradução de uma expressão, através de uma constante
 	 * e língua de destino.
 	 * 
+	 * @deprecated utilize retornaTraducaoViaSQL para maior performance
+	 * 
 	 * @param String $constanteTextual
 	 * @param String $linguaDestino
 	 * 
@@ -89,10 +91,10 @@ class Basico_OPController_TradutorOPController
         $objTradutor = $this->_tradutor->fetchList("id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
 
         // verificando a traducao existe no banco de dados para a lingua passada por parametro
-        if (isset($objTradutor[0]))
+        if (isset($objTradutor[0])) {
         	// retornando traducao na lingua passada por parametro
             return $objTradutor[0]->traducao;
-        else if ($linguaDestino !== DEFAULT_SYSTEM_LANGUAGE){
+        } else if ($linguaDestino !== DEFAULT_SYSTEM_LANGUAGE){
         	// recuperando objeto categoria de lingua padrao do sistema
             $objCategoriaLinguagem = $categoriaOPController->retornaObjetoCategoriaLinguagem(DEFAULT_SYSTEM_LANGUAGE);
 
@@ -112,7 +114,58 @@ class Basico_OPController_TradutorOPController
 
         throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '{$linguaDestino}'.");
 	}
-	
+
+	/**
+	 * Retorna uma tradução de uma expressão, através de uma constante
+	 * e língua de destino, via SQL.
+	 * 
+	 * @param String $constanteTextual
+	 * @param String $linguaDestino
+	 * 
+	 * @return String
+	 */
+	public static function retornaTraducaoViaSQL($constanteTextual, $linguaDestino = DEFAULT_SYSTEM_LANGUAGE)
+	{
+		// montando query para recuperacao da traducao na lingua passada pelo usuario
+		$consultaSQL = "SELECT d.traducao
+						FROM dicionario_expressao d
+						INNER JOIN categoria c ON (d.id_categoria = c.id)
+						WHERE c.nome = '{$linguaDestino}'
+						AND d.constante_textual = '{$constanteTextual}'";
+
+		// recuperando array com o resultado
+		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($consultaSQL);
+
+		// verificando o resultado da recuperacao
+		if (count($arrayResultado) > 0) {
+			// retornando a traducao
+			return $arrayResultado[0]['traducao'];
+		} else {
+			// recuperando a categoria da lingua padrao do sistema
+			$linguaDestinoPadraoSistema = DEFAULT_SYSTEM_LANGUAGE;
+			// montando query para recuperacao da traducao na lingua passada pelo usuario
+			$consultaSQL = "SELECT d.traducao
+							FROM dicionario_expressao d
+							INNER JOIN categoria c ON (d.id_categoria = c.id)
+							WHERE c.nome = '{$linguaDestinoPadraoSistema}'
+							AND d.constante_textual = '{$constanteTextual}'";
+
+			// recuperando array com o resultado
+			$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($consultaSQL);
+
+			// verificando o resultado da recuperacao
+			if (count($arrayResultado) > 0) {
+				// retornando a traducao
+				return $arrayResultado[0]['traducao'];
+			} else {
+				
+				throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '" . $linguaDestinoPadraoSistema . "'");
+			}
+		}
+
+		throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '{$linguaDestino}'.");
+	}
+
 	/**
 	 * Retorna um array de objetos Basico_Model_Categoria contendo as linguas ativas no sistema
 	 * 

@@ -320,27 +320,24 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// inicializando variaveis
 		$tempReturn = '';
 
-		// instanciando controladores
-		$tradutorOPController = Basico_OPController_TradutorOPController::getInstance();
-
 		// recuperando os problemas de logon
 		$arrayProblemasLogon = $this->retornaArrayLoginPodeLogar($login);
 
 		// verificando se existe problema de login nao ativo
 		if (!$arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . "</li>";
 
 		// verificando se existe problema de login travado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . "</li>";
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . $tradutorOPController->retornaTraducao('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		return $tempReturn;
 	}
@@ -608,17 +605,14 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 */
 	public function retornaJsonMensagensPasswordStrengthChecker()
 	{
-		// inicializando controladores
-		$tradutorOPController = Basico_OPController_TradutorOPController::getInstance();
-		
 		// carregando array com as mensagens utilizadas
-		$arrayMensagens = array('muito_fraca' => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
-		                        'fraca'       => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
-		                        'boa'         => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
-		                        'forte'       => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
-		                        'muito_forte' => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
-		                        'digite_senha'=> $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
-		                        'abaixo'      => $tradutorOPController->retornaTraducao('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
+		$arrayMensagens = array('muito_fraca' => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
+		                        'fraca'       => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
+		                        'boa'         => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
+		                        'forte'       => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
+		                        'muito_forte' => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
+		                        'digite_senha'=> Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
+		                        'abaixo'      => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
 	                           );
 	                           
 	    // codificando o array e retornando-o.

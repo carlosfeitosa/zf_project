@@ -256,7 +256,6 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
 		$dadosBiometricosControllerController   = Basico_OPController_DadosBiometricosOPController::getInstance();
 		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
-		$tradutorControllerController           = Basico_OPController_TradutorOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
 		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT);
@@ -282,9 +281,9 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		
         // substituindo a tag de tratamento de acordo com o sexo do usuario
 		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorControllerController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
 		else
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, $tradutorControllerController->retornaTraducao('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
 		
 		// substituindo a tag do nome do usuario    
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);

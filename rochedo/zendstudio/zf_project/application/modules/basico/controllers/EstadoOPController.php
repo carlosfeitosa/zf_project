@@ -166,7 +166,7 @@ class Basico_OPController_EstadoOPController extends Basico_Abstract_RochedoPers
 		
 		if (count($objEstado) > 0) {
 			foreach ($objEstado as $estado) {
-				$arrayResult[$estado->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::getInstance()->retornaTraducao("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,$estado->nome);				
+				$arrayResult[$estado->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,$estado->nome);				
 			}
 			
 			return $arrayResult;
