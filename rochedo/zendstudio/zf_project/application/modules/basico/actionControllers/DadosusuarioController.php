@@ -189,7 +189,16 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$subFormPerfisVinculadosDisponveis = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioPerfil');
 
     	// recuperando array de objetos dos perfis vinculados disponiveis para selecao de perfil padrao
-    	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaArrayIdDescricaoPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa);
+    	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoaViaSQL($idPessoa);
+
+    	// loop para traduzir as constantes textuais dos perfis
+    	foreach ($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa as $chave => $arrayIdConstanteTextualPerfilVinculadoDisponivelPessoa) {
+    		// traduzindo constante textual
+    		$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['traducao'] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['constante_textual']);
+
+    		// removendo o elemento 'constante_textual'
+    		unset($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['constante_textual']);
+    	}
 
     	// recuperando id do perfil padrao do usuario
     	$idPerfilPadrao = Basico_OPController_PessoaOPController::getInstance()->retornaIdPerfilPadraoPorIdPessoa($idPessoa);
@@ -232,7 +241,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// loop para carregar os elementos
     	foreach ($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa as $arrayIdDescricaoPerfisVinculadosDisponiveisPessoa) {
     		// setando a opcao
-    		$elemento->addMultiOption($arrayIdDescricaoPerfisVinculadosDisponiveisPessoa['id'], $arrayIdDescricaoPerfisVinculadosDisponiveisPessoa['descricao']);
+    		$elemento->addMultiOption($arrayIdDescricaoPerfisVinculadosDisponiveisPessoa['id'], $arrayIdDescricaoPerfisVinculadosDisponiveisPessoa['traducao']);
     	}
 
     	// adicionando a opcao "nao desejo informar"

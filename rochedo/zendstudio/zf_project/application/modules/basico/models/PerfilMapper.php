@@ -59,6 +59,7 @@ class Basico_Model_PerfilMapper
         $data = array(
 				'nome'                        => $object->getNome(),
 				'descricao'                   => $object->getDescricao(),
+        		'constante_textual'           => $object->getConstanteTextual(),
         		'nivel'						  => $object->getNivel(),
 				'ativo'                       => $object->getAtivo(),
                 'id_categoria'                => $object->getCategoria(),
@@ -100,6 +101,7 @@ class Basico_Model_PerfilMapper
         $object->setId($row->id)
 			   ->setNome($row->nome)
 			   ->setDescricao($row->descricao)
+			   ->setConstanteTextual($row->constante_textual)
 			   ->setNivel($row->nivel)
 			   ->setAtivo($row->ativo)
 			   ->setDataHoraCadastro($row->datahora_cadastro)
@@ -122,6 +124,7 @@ class Basico_Model_PerfilMapper
 			$entry->setId($row->id)
 				  ->setNome($row->nome)
 				  ->setDescricao($row->descricao)
+				  ->setConstanteTextual($row->constante_textual)
 				  ->setNivel($row->nivel)
 				  ->setAtivo($row->ativo)
 				  ->setDataHoraCadastro($row->datahora_cadastro)
@@ -148,6 +151,7 @@ class Basico_Model_PerfilMapper
 			$entry->setId($row->id)
 				  ->setNome($row->nome)
 				  ->setDescricao($row->descricao)
+				  ->setConstanteTextual($row->constante_textual)
 				  ->setAtivo($row->ativo)
 				  ->setNivel($row->nivel)
 				  ->setDataHoraCadastro($row->datahora_cadastro)

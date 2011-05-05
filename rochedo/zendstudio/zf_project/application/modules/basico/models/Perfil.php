@@ -28,6 +28,10 @@ class Basico_Model_Perfil
 	 */
 	protected $_descricao;
 	/**
+	 * @var String
+	 */
+	protected $_constanteTextual;
+	/**
      * @var Integer
      */
     protected $_nivel;
@@ -54,6 +58,7 @@ class Basico_Model_Perfil
 	 * Constructor
 	 * 
 	 * @param  array|null $options 
+	 * 
 	 * @return void
 	 */
 	public function __construct(array $options = null)
@@ -69,6 +74,7 @@ class Basico_Model_Perfil
 	 * 
 	 * @param  string $name 
 	 * @param  mixed $value 
+	 * 
 	 * @return void
 	 */
 	public function __set($name, $value)
@@ -85,6 +91,7 @@ class Basico_Model_Perfil
 	 * Overloading: allow property access
 	 * 
 	 * @param  string $name 
+	 * 
 	 * @return mixed
 	 */
 	public function __get($name)
@@ -101,6 +108,7 @@ class Basico_Model_Perfil
 	 * Set object state
 	 * 
 	 * @param  array $options 
+	 * 
 	 * @return Basico_Model_Perfil
 	 */
 	public function setOptions(array $options)
@@ -121,7 +129,8 @@ class Basico_Model_Perfil
 	* Set nome
 	* 
 	* @param String $nome 
-	* @return Basico_Model_Nome
+	* 
+	* @return Basico_Model_Perfil
 	*/
 	public function setNome($nome)
 	{
@@ -143,7 +152,8 @@ class Basico_Model_Perfil
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Basico_Model_Descricao
+	* 
+	* @return Basico_Model_Perfil
 	*/
 	public function setDescricao($descricao)
 	{
@@ -162,11 +172,34 @@ class Basico_Model_Perfil
 	}
 
 	/**
+	* Set constanteTextual
+	* 
+	* @param String $constanteTextual
+	* 
+	* @return Basico_Model_Perfil
+	*/
+	public function setConstanteTextual($constanteTextual)
+	{
+		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get constanteTextual
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextual()
+	{
+		return $this->_constanteTextual;
+	}
+
+	/**
 	* Set nivel
 	* 
 	* @param int $nivel
 	* 
-	* @return Basico_Model_Categoria
+	* @return Basico_Model_Perfil
 	*/
 	public function setNivel($nivel)
 	{
@@ -188,7 +221,8 @@ class Basico_Model_Perfil
 	* Set ativo
 	* 
 	* @param Boolean $ativo 
-	* @return Basico_Model_Ativo
+	* 
+	* @return Basico_Model_Perfil
 	*/
 	public function setAtivo($ativo)
 	{
@@ -210,6 +244,7 @@ class Basico_Model_Perfil
 	* Set dataHoraCadastro
 	* 
 	* @param String $dataHoraCadastro 
+	* 
 	* @return Basico_Model_Perfil
 	*/
 	public function setDataHoraCadastro($dataHoraCadastro)
@@ -232,6 +267,7 @@ class Basico_Model_Perfil
 	* Set dataHoraUltimaAtualizacao
 	* 
 	* @param String $dataHoraUltimaAtualizacao
+	* 
 	* @return Basico_Model_Perfil
 	*/
 	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
@@ -254,7 +290,8 @@ class Basico_Model_Perfil
 	* Set categoria
 	* 
 	* @param int $categoria 
-	* @return Basico_Model_Categoria
+	* 
+	* @return Basico_Model_Perfil
 	*/
 	public function setCategoria($categoria)
 	{
@@ -274,7 +311,8 @@ class Basico_Model_Perfil
  
     /**
      * Get categoria object
-     * @return null|Categoria
+     * 
+     * @return null|Basico_Model_Categoria
      */
     public function getCategoriaObject()
     {
@@ -287,6 +325,7 @@ class Basico_Model_Perfil
 	* Set entry id
 	* 
 	* @param  int $id 
+	* 
 	* @return Basico_Model_Perfil
 	*/
 	public function setId($id)
@@ -309,6 +348,7 @@ class Basico_Model_Perfil
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
+	* 
 	* @return Basico_Model_Perfil
 	*/
 	public function setMapper($mapper)
@@ -338,6 +378,7 @@ class Basico_Model_Perfil
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
+	* 
 	* @return Basico_Model_Perfil
 	*/
 	public function find($id)

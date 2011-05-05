@@ -6,6 +6,7 @@
 * criacao: 16/03/2011
 * ultimas modificacoes:
 * 											03/05/2011 - criacao das constantes textuais para a view de ip do usuario diferente do ip do usuario autenticado durante o processo de logon;
+* 											05/05/2011 - criacao das constantes textuais para traducao dos perfis;
 */
 
 -- DICIONARIO DE EXPRESSOES
@@ -109,6 +110,27 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_PUBLICO' AS constante_textual, 'Público' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_ADMINISTRADOR' AS constante_textual, 'Administrador do sistema' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_DESENVOLVEDOR' AS constante_textual, 'Desenvolvedor do sistema' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO' AS constante_textual, 'Action desabled!' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -206,21 +228,42 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_PUBLICO' AS constante_textual, 'Public' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_ADMINISTRADOR' AS constante_textual, 'System administrator' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_DESENVOLVEDOR' AS constante_textual, 'System developer' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
 
 -- PERFIS
 
-INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
-SELECT id, 'USUARIO_PUBLICO' AS nome, 0 AS nivel, 'Público' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, nivel, descricao, constante_textual, rowinfo)
+SELECT id, 'USUARIO_PUBLICO' AS nome, 0 AS nivel, 'Perfil público' AS descricao, 'PERFIL_USUARIO_PUBLICO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 
-INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
-SELECT id, 'USUARIO_ADMINISTRADOR' AS nome, 1000 AS nivel, 'Administrador do sistema' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, nivel, descricao, constante_textual, rowinfo)
+SELECT id, 'USUARIO_ADMINISTRADOR' AS nome, 1000 AS nivel, 'Perfil de administrador do sistema' AS descricao, 'PERFIL_USUARIO_ADMINISTRADOR' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 
-INSERT INTO perfil (id_categoria, nome, nivel, descricao, rowinfo)
-SELECT id, 'USUARIO_DESENVOLVEDOR' AS nome, 9999 AS nivel, 'Desenvolvedor do sistema' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, nivel, descricao, constante_textual, rowinfo)
+SELECT id, 'USUARIO_DESENVOLVEDOR' AS nome, 9999 AS nivel, 'Perfil de desenvolvedor do sistema' AS descricao, 'PERFIL_USUARIO_DESENVOLVEDOR'  AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO';
 

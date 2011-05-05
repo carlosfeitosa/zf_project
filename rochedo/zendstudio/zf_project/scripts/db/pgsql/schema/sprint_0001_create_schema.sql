@@ -15,6 +15,7 @@
 * 									   "id_generico_proprietario" (abstracao do dono);
 * 						- 29/10/2010 - inclusao da criacao da tabela "modulo", proviniente do sprint 0004;
 *                       - 28/02/2011 - inclusão de campos date para registro de eventos temporais;
+* 						- 05/05/2011 - criacao do campo "constante_textual" na tabela "perfil";
 */
 
 /* CRIACAO DAS TABELAS */
@@ -125,10 +126,11 @@ create table perfil (
 	id serial not null ,
 	id_categoria integer not null ,
 	nome character varying (100) not null ,
-	descricao character varying (2000)  ,
+	descricao character varying (2000) ,
+	constante_textual character varying (200) not null , 
 	ativo boolean not null ,
-	datahora_cadastro timestamp with time zone not null,
-	datahora_ultima_atualizacao timestamp with time zone not null,
+	datahora_cadastro timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -479,3 +481,18 @@ alter table token
   
 alter table dicionario_expressao
   add constraint fk_dicionario_expressao_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+
+  
+/* CRIACAO DAS FUNCOES */
+
+create function fn_CheckConstanteTextualExists(character varying (200))
+returns int as 
+'select id from dicionario_expressao where constante_textual = $1 limit 1'
+language 'sql';
+
+
+/* CRIACAO DOS CHECK CONSTRAINTS */
+
+alter table perfil add
+    constraint ck_perfil_constante_textual check
+    ((constante_textual is null) or (fn_CheckConstanteTextualExists(constante_textual) is not null));

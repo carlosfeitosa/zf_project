@@ -8,17 +8,17 @@
 * 
 */
 
-INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
-SELECT id, 'SISTEMA' AS nome, 'Usuário sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, descricao, constante_textual, rowinfo)
+SELECT id, 'SISTEMA' AS nome, 'Perfil do usuário sistema.' AS descricao, 'PERFIL_SISTEMA' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'SISTEMA_USUARIO';
 
-INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
-SELECT id, 'USUARIO_NAO_VALIDADO' AS nome, 'Usuário não validado pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, descricao, constante_textual, rowinfo)
+SELECT id, 'USUARIO_NAO_VALIDADO' AS nome, 'Perfil dos usuários não validados pelo sistema.' AS descricao, 'PERFIL_USUARIO_NAO_VALIDADO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO_SISTEMA';
 
-INSERT INTO perfil (id_categoria, nome, descricao, rowinfo)
-SELECT id, 'USUARIO_VALIDADO' AS nome, 'Usuário validado pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+INSERT INTO perfil (id_categoria, nome, descricao, constante_textual, rowinfo)
+SELECT id, 'USUARIO_VALIDADO' AS nome, 'Perfil dos usuários validados pelo sistema.' AS descricao, 'PERFIL_USUARIO_VALIDADO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
 FROM categoria
 WHERE nome = 'PERFIL_USUARIO_SISTEMA';

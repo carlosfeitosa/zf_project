@@ -291,13 +291,13 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	 * 
 	 * @return Array
 	 */
-	public function retornaArrayIdDescricaoPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa)
+	public static function retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoaViaSQL($idPessoa)
 	{
 		// recuperando o id da categoria PERFIL_USUARIO
 		$idCategoriaPerfilUsuario = Basico_OPController_CategoriaOPController::retornaIdCategoriaPerfilUsuarioViaSQL();
 
 		// montando consulta SQL
-		$consultaSQL = "SELECT p.id, p.descricao
+		$consultaSQL = "SELECT p.id, p.constante_textual
 						FROM perfil p
 						LEFT JOIN pessoas_perfis pp ON (p.id = pp.id_perfil)
 						WHERE pp.id_pessoa = {$idPessoa}

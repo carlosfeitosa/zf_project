@@ -3,6 +3,7 @@
 * 
 * versao: 1.0 (MSSQL 2000)
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
+* criacao: 20/10/2010
 * ultimas modificacoes:
 * 								22/10/2010 - criacao das expressoes para o formulario de telefones profissionais e telefone (sprint 0003.3);
 * 								03/10/2010 - criacao das expressoes para o formulario de emails profissionais e e-mail (sprint 0003.3);
@@ -19,6 +20,7 @@
 * 								25/04/2011 - criacao das expressoes para o formulario de perfils vinculados disponiveis (sprint 0003.7);
 * 								02/05/2011 - criacao das expressoes para o formulario FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 * 								04/05/2011 - criacao de expressao para titulo do dialog "Visualizar dados atuais", do formulario FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
+* 								05/05/2011 - criacao das expressoes que traduzem os perfis;
 */
 
 /*
@@ -1820,6 +1822,27 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual, 'Outras informações:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_SISTEMA' AS constante_textual, 'Perfil do sistema' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_NAO_VALIDADO' AS constante_textual, 'Usuário não validado pelo sistema' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_VALIDADO' AS constante_textual, 'Usuário validado pelo sistema' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6116,6 +6139,27 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual, 'Type in this field other informations about yout bond' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_SISTEMA' AS constante_textual, 'System profile' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_NAO_VALIDADO' AS constante_textual, 'User not validated by the system' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'PERFIL_USUARIO_VALIDADO' AS constante_textual, 'User validated by the system' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

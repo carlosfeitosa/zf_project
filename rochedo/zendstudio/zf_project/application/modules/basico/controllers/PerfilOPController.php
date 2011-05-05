@@ -477,4 +477,34 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		// retornando "nenhuma opcao informada"
 		return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
 	}
+
+	/**
+	 * Retorna a traducao do perfil padrao, encontrado na sessao do usuario logado
+	 * 
+	 * @return String
+	 */
+	public static function retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL()
+	{
+		// recupernado o id do perfil padrao do usuario logado (sessao)
+		$idPerfilPadraoSessao = Basico_OPController_PessoaOPController::retornaIdPerfilPadraoUsuarioSessao();
+
+		// verificando se existe perfil padrao setado na sessao
+		if ($idPerfilPadraoSessao) {
+			// recuperando informacoes sobre a tabela perfil
+			$arrayNomeCampoDescricaoPerfil = array('constante_textual');
+			$condicaoSQL                   = "id = {$idPerfilPadraoSessao}";
+	
+			// recuperando array com resultados
+			$arrayDescricaoPerfilPadrao = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoDescricaoPerfil, $condicaoSQL);
+	
+			// verificando se os dados foram recuperados
+			if (count($arrayDescricaoPerfilPadrao) > 0) {
+				// retornando a descricao do perfil
+				return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($arrayDescricaoPerfilPadrao[0]['constante_textual']);
+			}
+		}
+
+		// retornando "nenhuma opcao informada"
+		return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+	}
 }

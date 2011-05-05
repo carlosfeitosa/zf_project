@@ -15,6 +15,7 @@
 * 									   "id_generico_proprietario" (abstracao do dono);
 * 						- 29/10/2010 - inclusao da criacao da tabela "modulo", proviniente do sprint 0004;
 *                       - 28/02/2011 - inclusão de campos date para registro de eventos temporais;
+* 						- 05/05/2011 - criacao do campo "constante_textual" na tabela "perfil";
 */
 
 /* CRIACAO DAS TABELAS */
@@ -103,9 +104,10 @@ create table dbo.perfil (
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
+	constante_textual varchar (200) not null , 
 	ativo bit not null ,
-	datahora_cadastro datetime not null,
-	datahora_ultima_atualizacao datetime not null,
+	datahora_cadastro datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -514,5 +516,10 @@ alter table dbo.dicionario_expressao add
 	) references dbo.categoria (
 		id
 	);
-	
-	
+
+
+/* CRIACAO DOS CHECK CONSTRAINTS */
+
+alter table dbo.perfil add
+    constraint ck_perfil_constante_textual_nome check
+    ((constante_textual is null) or (dbo.fn_CheckConstanteTextualExists(constante_textual) is not null));

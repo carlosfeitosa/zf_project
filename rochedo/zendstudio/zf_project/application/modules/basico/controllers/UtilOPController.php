@@ -603,12 +603,9 @@ class Basico_OPController_UtilOPController
 				$objetoRelacionado = $objetoCopia->$nomeMetodoRecuperacaoObjetoVinculado();
 
 				// verificando se o objeto relacionado possui o atributo "descricao"
-				if (property_exists(get_class($objetoRelacionado), '_descricao')) {
+				if (property_exists(get_class($objetoRelacionado), '_rotulo')) {
 					// recuperando a descricao da tupla do objeto relacionado
-					$valorObjetoRelacionado = $objetoRelacionado->descricao;
-				} else if (property_exists(get_class($objetoRelacionado), '_nome')) {
-					// recuperando a descricao da tupla do objeto relacionado
-					$valorObjetoRelacionado = $objetoRelacionado->nome;
+					$valorObjetoRelacionado = $objetoRelacionado->rotulo;
 				} else if (property_exists(get_class($objetoRelacionado), '_constanteTextual')) {
 					// recuperando traducao da constante textual
 					$valorObjetoRelacionado = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($objetoRelacionado->constanteTextual);

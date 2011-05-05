@@ -42,7 +42,6 @@ class Basico_CvcController extends Zend_Controller_Action
     	$nomeObjetoConflito = $this->_request->getParam('nomeObjetoEmConflito');
     	$idObjetoConflito   = $this->_request->getParam('idObjetoEmConflito');
 
-
 		// carregando array do cabecalho da view
 		$cabecalho =  array('tituloView' => $this->view->tradutor('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO'));
 
