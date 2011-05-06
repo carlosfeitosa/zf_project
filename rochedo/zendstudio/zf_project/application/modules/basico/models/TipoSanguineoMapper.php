@@ -59,7 +59,7 @@ class Basico_Model_TipoSanguineoMapper
         $data = array(
 				'nome'           => $object->getNome(),
 				'descricao'      => $object->getDescricao(),
-				'tipo_sanguineo' => $object->getTipoSanguineo(),
+				'rotulo'         => $object->getRotulo(),
                 'rowinfo'        => $object->getRowinfo(),  
 
         );
@@ -100,7 +100,7 @@ class Basico_Model_TipoSanguineoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setTipoSanguineo($row->tipo_sanguineo)
+				->setRotulo($row->rotulo)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -120,7 +120,7 @@ class Basico_Model_TipoSanguineoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setTipoSanguineo($row->tipo_sanguineo)
+				->setRotulo($row->rotulo)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -144,7 +144,7 @@ class Basico_Model_TipoSanguineoMapper
 
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setTipoSanguineo($row->tipo_sanguineo)
+				->setRotulo($row->rotulo)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

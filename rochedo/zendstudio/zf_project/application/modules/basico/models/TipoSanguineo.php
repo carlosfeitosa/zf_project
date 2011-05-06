@@ -30,7 +30,7 @@ class Basico_Model_TipoSanguineo
 	/**
 	 * @var String
 	 */
-	protected $_TipoSanguineo;
+	protected $_rotulo;
 	/**
 	 * @var String
 	 */
@@ -147,25 +147,25 @@ class Basico_Model_TipoSanguineo
 	}
      
 	/**
-	* Set TipoSanguineo
+	* Set rotulo
 	* 
-	* @param String $TipoSanguineo 
+	* @param String $rotulo 
 	* @return Basico_Model_TipoSanguineo
 	*/
-	public function setTipoSanguineo($TipoSanguineo)
+	public function setRotulo($rotulo)
 	{
-		$this->_TipoSanguineo = Basico_OPController_UtilOPController::retornaValorTipado($TipoSanguineo, TIPO_STRING, true);
+		$this->_rotulo = Basico_OPController_UtilOPController::retornaValorTipado($rotulo, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get TipoSanguineo
+	* Get rotulo
 	* 
 	* @return null|String
 	*/
-	public function getTipoSanguineo()
+	public function getRotulo()
 	{
-		return $this->_TipoSanguineo;
+		return $this->_rotulo;
 	}
 	
 	/**

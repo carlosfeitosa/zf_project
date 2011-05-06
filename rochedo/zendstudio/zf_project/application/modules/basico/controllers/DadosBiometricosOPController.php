@@ -220,12 +220,12 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
         $arrayPostDadosBiometricos = $arrayPost['CadastrarDadosUsuarioDadosBiometricos'];
     	
     	// recuperando valores do formulario
-    	$sexo            = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'];
-    	$altura          = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura'];
-	    $peso            = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso'];  
-        $raca            = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'];
-	    $tipoSanguineo   = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo'];
-	    $historicoMedico = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico'];
+    	$sexo                 = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'];
+    	$altura               = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura'];
+	    $peso                 = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso'];  
+        $ConstanteTextualRaca = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'];
+	    $tipoSanguineo        = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo'];
+	    $historicoMedico      = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico'];
 	    
 	    // recuperando a versao do objeto dados biometricos
     	$ultimaVersaoDadosBiometricos = $arrayPostDadosBiometricos['versaoObjetoDadosBiometricos'];
@@ -241,12 +241,12 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
 	        $dadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
 
         // carregando dados no objeto dados biometricos
-        $dadosBiometricos->altura          = $altura;
-        $dadosBiometricos->peso            = $peso;
-   	    $dadosBiometricos->raca            = $raca;
-   	    $dadosBiometricos->tipoSanguineo   = $tipoSanguineo;
-   	    $dadosBiometricos->historicoMedico = $historicoMedico;    	
-    	
+        $dadosBiometricos->altura               = $altura;
+        $dadosBiometricos->peso                 = $peso;
+   	    $dadosBiometricos->constanteTextualRaca = $ConstanteTextualRaca;
+   	    $dadosBiometricos->tipoSanguineo        = $tipoSanguineo;
+   	    $dadosBiometricos->historicoMedico      = $historicoMedico;    	
+   	    
     	// recuperando o objeto PessoaPerfil UsuarioValidado do usuario logado
     	$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa);
 

@@ -168,7 +168,7 @@ class Basico_OPController_RacaOPController
 		if (count($racas) > 0) {
 			
 			foreach ($racas as $raca) {
-				$arrayResultado[$raca->id] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($raca->constanteTextual);
+				$arrayResultado[$raca->constanteTextual] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($raca->constanteTextual);
 			}
 			
 		}

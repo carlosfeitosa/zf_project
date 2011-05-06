@@ -44,10 +44,10 @@ create table dados_biometricos (
 	id serial not null ,
 	id_pessoa integer not null ,
 	sexo char (1) not null ,
-	id_raca integer null,
+	constante_textual_raca character varying (200) null,
 	altura numeric (3,2) null,
 	peso numeric (6,3) null,
-	tipo_sanguineo character varying (3) null,
+	id_tipo_sanguineo integer null,
 	historico_medico character varying (2000) null,
 	rowinfo character varying (2000) not null
 )

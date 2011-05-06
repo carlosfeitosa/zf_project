@@ -624,14 +624,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ALTURA_AJUDA' AS constante_textual, 'Digite neste campo a sua altura.' AS traducao
+SELECT c.id, 'FORM_FIELD_ALTURA_AJUDA' AS constante_textual, 'Digite neste campo a sua altura em metros (m).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ALTURA_HINT' AS constante_textual, 'Digite aqui a sua altura.' AS traducao
+SELECT c.id, 'FORM_FIELD_ALTURA_HINT' AS constante_textual, 'Digite aqui a sua altura em metros (m).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -645,14 +645,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PESO_AJUDA' AS constante_textual, 'Digite neste campo o seu peso.' AS traducao
+SELECT c.id, 'FORM_FIELD_PESO_AJUDA' AS constante_textual, 'Digite neste campo o seu peso em kilogramas (Kg).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PESO_HINT' AS constante_textual, 'Digite aqui o seu peso.' AS traducao
+SELECT c.id, 'FORM_FIELD_PESO_HINT' AS constante_textual, 'Digite aqui o seu peso em kilogramas (Kg).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4955,14 +4955,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ALTURA_AJUDA' AS constante_textual, 'Type your height.' AS traducao
+SELECT c.id, 'FORM_FIELD_ALTURA_AJUDA' AS constante_textual, 'Type your height in meters (m).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ALTURA_HINT' AS constante_textual, 'Type your height.' AS traducao
+SELECT c.id, 'FORM_FIELD_ALTURA_HINT' AS constante_textual, 'Type your height in meters (m).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4976,14 +4976,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PESO_AJUDA' AS constante_textual, 'Type your weight.' AS traducao
+SELECT c.id, 'FORM_FIELD_PESO_AJUDA' AS constante_textual, 'Type your weight in kilograms (Kg).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PESO_HINT' AS constante_textual, 'Type your weight.' AS traducao
+SELECT c.id, 'FORM_FIELD_PESO_HINT' AS constante_textual, 'Type your weight in kilograms (Kg).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

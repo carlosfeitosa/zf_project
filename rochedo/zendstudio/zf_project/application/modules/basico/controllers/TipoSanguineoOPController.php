@@ -26,7 +26,7 @@ class Basico_OPController_TipoSanguineoOPController
 		
 		if (count($objTipoSanguineo) > 0) {
 			foreach ($objTipoSanguineo as $tipoSanguineo) {
-				$arrayResult[$tipoSanguineo->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,$tipoSanguineo->tipoSanguineo);
+				$arrayResult[$tipoSanguineo->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,$tipoSanguineo->rotulo);
 			}
 			
 			return $arrayResult;

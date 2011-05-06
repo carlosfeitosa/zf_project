@@ -21,7 +21,7 @@ create table dbo.tipo_sanguineo (
 	id int identity (1, 1) not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	descricao varchar (200) collate latin1_general_ci_ai not null ,
-	tipo_sanguineo varchar (20) collate latin1_general_ci_ai not null ,
+	rotulo varchar (20) collate latin1_general_ci_ai not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 
 ) on [primary];
@@ -49,21 +49,14 @@ alter table dbo.tipo_sanguineo add
 	) on [primary];
 	
 alter table dbo.tipo_sanguineo add
-	constraint ix_tipo_sanguineo_tipo_sanguineo unique nonclustered
+	constraint ix_tipo_sanguineo_rotulo unique nonclustered
 	(
-		tipo_sanguineo
+		rotulo
 	) on [primary];
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table dbo.dados_biometricos add
-    constraint fk_dados_biometricos_raca foreign key 
-    (
-        id_raca
-    ) references dbo.raca (
-        id
-    );
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
   

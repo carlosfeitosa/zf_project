@@ -32,7 +32,7 @@ class Basico_Model_DadosBiometricos
 	/**
 	 * @var String
 	 */
-	protected $_raca;
+	protected $_constanteTextualRaca;
 	
 	/**
 	 * @var Numeric
@@ -45,7 +45,7 @@ class Basico_Model_DadosBiometricos
 	protected $_peso;
 	
 	/**
-	 * @var String
+	 * @var Int
 	 */
 	protected $_tipoSanguineo;
 	
@@ -149,25 +149,25 @@ class Basico_Model_DadosBiometricos
 	}
 	
     /**
-	* Set raca
+	* Set constanteTextualRaca
 	* 
-	* @param Int $raca 
+	* @param Int $constanteTextualRaca 
 	* @return Basico_Model_DadosBiometricos
 	*/
-	public function setRaca($raca)
+	public function setConstanteTextualRaca($constanteTextualRaca)
 	{
-		$this->_raca = Basico_OPController_UtilOPController::retornaValorTipado($raca,TIPO_INTEIRO,true);
+		$this->_constanteTextualRaca = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualRaca,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get raca
+	* Get constanteTextualRaca
 	* 
 	* @return null|String
 	*/
-	public function getRaca()
+	public function getConstanteTextualRaca()
 	{
-		return $this->_raca;
+		return $this->_constanteTextualRaca;
 	}
 	
     /**

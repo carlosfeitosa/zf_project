@@ -57,14 +57,14 @@ class Basico_Model_DadosBiometricosMapper
     public function save(Basico_Model_DadosBiometricos $object)
     {
         $data = array(
-                'id_pessoa'        => $object->getPessoa(),
-				'sexo'             => $object->getSexo(),
-                'id_raca'             => $object->getRaca(),
-                'altura'           => $object->getAltura(),
-                'peso'             => $object->getPeso(),
-                'tipo_sanguineo'   => $object->getTipoSanguineo(),
-                'historico_medico' => $object->getHistoricoMedico(),
-                'rowinfo'          => $object->getRowinfo(),
+                'id_pessoa'              => $object->getPessoa(),
+				'sexo'                   => $object->getSexo(),
+                'constante_textual_raca' => $object->getConstanteTextualRaca(),
+                'altura'                 => $object->getAltura(),
+                'peso'                   => $object->getPeso(),
+                'id_tipo_sanguineo'         => $object->getTipoSanguineo(),
+                'historico_medico'       => $object->getHistoricoMedico(),
+                'rowinfo'                => $object->getRowinfo(),
 
         );
 
@@ -103,10 +103,10 @@ class Basico_Model_DadosBiometricosMapper
         $object->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
-				->setRaca($row->id_raca)
+				->setConstanteTextualRaca($row->constante_textual_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
-				->setTipoSanguineo($row->tipo_sanguineo)
+				->setTipoSanguineo($row->id_tipo_sanguineo)
 				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo);
     }
@@ -126,10 +126,10 @@ class Basico_Model_DadosBiometricosMapper
 			$entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
-				->setRaca($row->id_raca)
+				->setConstanteTextualRaca($row->constante_textual_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
-				->setTipoSanguineo($row->tipo_sanguineo)
+				->setTipoSanguineo($row->id_tipo_sanguineo)
 				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
@@ -153,10 +153,10 @@ class Basico_Model_DadosBiometricosMapper
 			$entry->setId($row->id)
                 ->setPessoa($row->id_pessoa)
 				->setSexo($row->sexo)
-				->setRaca($row->id_raca)
+				->setConstanteTextualRaca($row->constante_textual_raca)
 				->setAltura($row->altura)
 				->setPeso($row->peso)
-				->setTipoSanguineo($row->tipo_sanguineo)
+				->setTipoSanguineo($row->id_tipo_sanguineo)
 				->setHistoricoMedico($row->historico_medico)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);

@@ -25,7 +25,7 @@ create table tipo_sanguineo (
 	id serial not null ,
 	nome character varying (200) not null ,
 	descricao character varying (200) not null ,
-	tipo_sanguineo character varying (20) not null ,
+	rotulo character varying (20) not null ,
 	rowinfo character varying (2000) not null
 
 )
@@ -54,13 +54,10 @@ alter table tipo_sanguineo
   add constraint ix_tipo_sanguineo_nome unique (nome);
   
 alter table tipo_sanguineo
-  add constraint ix_tipo_sanguineo_tipo_sanguineo unique (tipo_sanguineo);
+  add constraint ix_tipo_sanguineo_rotulo unique (rotulo);
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
-
-alter table dados_biometricos
-  add constraint fk_dados_biometricos_raca foreign key (id_raca) references raca (id) on update no action on delete no action;
 
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
