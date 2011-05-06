@@ -223,8 +223,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     private function adicionaElementoHiddenVersaoObjetoPessoa(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoPessoa)
     {
+    	// recuperando o subformulario "CadastrarDadosUsuarioPerfil"
+    	$subformCadastrarDadosUsuarioPerfil = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioPerfil');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
-		return Basico_OPController_UtilOPController::adicionaElementoForm($formDadosUsuario->getSubForm('CadastrarDadosUsuarioPerfil'), FORM_ELEMENT_HIDDEN, 'versaoObjetoPessoa', array('value' => $versaoObjetoPessoa));
+		return Basico_OPController_UtilOPController::adicionaElementoForm($subformCadastrarDadosUsuarioPerfil, FORM_ELEMENT_HIDDEN, 'versaoObjetoPessoa', array('value' => $versaoObjetoPessoa));
     }
 
 	/**
@@ -341,7 +343,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     private function adicionaElementoHiddenVersaoObjetoDadosBiometricos(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoDadosBiometricos)
     {
+    	// recuperando o subformulario "CadastrarDadosUsuarioDadosBiometricos"
+    	$subFormCadastrarDadosUsuarioDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
-		return Basico_OPController_UtilOPController::adicionaElementoForm($formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos'), FORM_ELEMENT_HIDDEN, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
+		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosBiometricos, FORM_ELEMENT_HIDDEN, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
     }
 }

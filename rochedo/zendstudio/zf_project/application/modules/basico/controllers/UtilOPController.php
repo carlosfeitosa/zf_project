@@ -618,7 +618,7 @@ class Basico_OPController_UtilOPController
 				$returnArray[$atributoObjetoCopia] = $valorObjetoRelacionado;
 			} else {
 				// verificando se o atributo precisa ser traduzido
-				if ($atributoObjetoCopia = 'constanteTextual') {
+				if (strpos($atributoObjetoCopia, 'constanteTextual') !== false) {
 					// recuperando traducao e setando no array de resultados
 					$returnArray[$atributoObjetoCopia] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($objetoCopia->$atributoObjetoCopia);
 				} else {
@@ -1522,11 +1522,16 @@ class Basico_OPController_UtilOPController
     	// instanciando variaveis
 		$textoDialog = '';
 
-    	// loop para montar o texto do dialog
-    	foreach ($arrayInfo as $chave => $valor) {
-    		// montando o texto que sera exibido no dialog, atraves do array passado como parametro
-    		$textoDialog .= "<b>{$chave}</b>:<br>{$valor}<br><br>";
-    	}
+		if (count($arrayInfo) > 0) {
+	    	// loop para montar o texto do dialog
+	    	foreach ($arrayInfo as $chave => $valor) {
+	    		// montando o texto que sera exibido no dialog, atraves do array passado como parametro
+	    		$textoDialog .= "<b>{$chave}</b>:<br>{$valor}<br><br>";
+	    	}
+		} else {
+			// montando resultado vazio
+			$textoDialog = '';
+		}
 
     	// removendo ultimos "<br><br>" do texto do dialog
     	$textoDialog = substr($textoDialog, 0, strlen($textoDialog)-8);

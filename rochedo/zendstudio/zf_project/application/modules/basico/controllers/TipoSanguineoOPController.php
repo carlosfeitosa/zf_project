@@ -4,7 +4,7 @@ class Basico_OPController_TipoSanguineoOPController
 	/**
 	 * Retorna um novo objeto tipo sanguinio
 	 */
-	public function retornaNovoObjTipoSanguineo()
+	public static function retornaNovoObjTipoSanguineo()
 	{
 		// retornando novo obj tipo sanguinio
 		return new Basico_Model_TipoSanguineo();
