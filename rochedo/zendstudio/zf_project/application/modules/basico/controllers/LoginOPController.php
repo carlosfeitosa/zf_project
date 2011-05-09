@@ -696,7 +696,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	{
 		// recuperando informacoes sobre a tabela login
 		$nomeCampoIdLogin      = self::nomeCampoIdModelo;
-		$arrayNomeCampoIdLogin = array($nomeCampoIdLogin);
+		$arrayNomeCampoIdLogin = array('id_pessoa');
 		$condicaoSQL           = "{$nomeCampoIdLogin} = {$idLogin}";
 
 		// recuperando um array contendo o id da categoria cujo nome foi passado como parametro
@@ -705,7 +705,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// verificando se a consulta obteve resultados
 		if ((isset($arrayLogin)) and (is_array($arrayLogin)) and (count($arrayLogin) > 0)) {
 			// retornando o id da categoria
-			return $arrayLogin[0][self::nomeCampoIdModelo];
+			return $arrayLogin[0]['id_pessoa'];
 		}
 
 		return null;
