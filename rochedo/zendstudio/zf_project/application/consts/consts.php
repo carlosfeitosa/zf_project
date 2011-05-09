@@ -70,7 +70,14 @@ define("REQUEST_ACTION_KEY", "action");
 define("PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO", "dataHoraUltimaAtualizacao");
 define("SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP", "inicioProcessamentoMicrosegundosPHP");
 define("SESSION_POOL_REQUESTS_ARRAY", "poolRequestsArray");
+define("SESSION_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");
+define("SESSION_POST_ULTIMO_REQUEST", "postUltimoRequest");
 define("SESSION_AUTHENTICATED_USER_IP", "authenticatedUserIp");
+define("CVC_PARAM_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");
+define("CVC_PARAM_SOBRESCREVER_ATUALIZACAO", "sobrescreverAtualizacao");
+define("CVC_PARAM_CANCELAR", "cancelar");
+define("CVC_PARAM_NOME_OBJETO_EM_CONFLITO", "nomeObjetoEmConflito");
+define("CVC_PARAM_ID_OBJETO_EM_CONFLITO", "idObjetoEmConflito");
 
 
 // LOGIN
@@ -412,9 +419,9 @@ define("FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR", '->removeDecorator');
 define("FORM_GERADOR_FORM_ELEMENT_SETLABEL", '->setLabel');
 define("FORM_GERADOR_FORM_ELEMENT_GETNAME", '->getName()');
 define("FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE", '->setInvalidMessage');
-define("FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE", 'if ($options!=null)');
+define("FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE", 'if (($options!=null) and ');
 define("FORM_GERADOR_FORM_ELEMENT_SETVALUE", '->setValue');
-define("FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE", '$options->');
+define("FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE", '$options[');
 
 define("FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL", '$this->getView()->tradutor');
 

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 25/04/2011 13:34:20
+* em: 09/05/2011 10:19:40
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 25/04/2011 13:07:28
+* @version    1: 09/05/2011 10:16:55
 */
 class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
 {
@@ -44,8 +44,8 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_TELEFONE_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_TIPO_AJUDA')) . '\', 1)</script></button>');
-        if ($options!=null)
-            $elements[1]->setValue($options->BasicoCadastrarTelefoneTelefoneTipo);
+        if (($options!=null) and (isset($options['BasicoCadastrarTelefoneTelefoneTipo'])))
+            $elements[1]->setValue($options['BasicoCadastrarTelefoneTelefoneTipo']);
 
         $elements[2] = $this->createElement('NumberTextBox', 'BasicoCadastrarTelefoneTelefoneCodigoPais', array('style' => 'width: 40px;', 'places' => 0));
         $elements[2]->setOrder(2);
@@ -58,8 +58,8 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $tempVariable = $elements[2]->getDijitParam('constraints');
         $tempVariable['pattern'] = '##0.##';
         $elements[2]->setDijitParam('constraints', $tempVariable);
-        if ($options!=null)
-            $elements[2]->setValue($options->BasicoCadastrarTelefoneTelefoneCodigoPais);
+        if (($options!=null) and (isset($options['BasicoCadastrarTelefoneTelefoneCodigoPais'])))
+            $elements[2]->setValue($options['BasicoCadastrarTelefoneTelefoneCodigoPais']);
 
         $elements[3] = $this->createElement('NumberTextBox', 'BasicoCadastrarTelefoneTelefoneCodigoArea', array('style' => 'width: 40px;', 'places' => 0));
         $elements[3]->setOrder(3);
@@ -72,8 +72,8 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $tempVariable = $elements[3]->getDijitParam('constraints');
         $tempVariable['pattern'] = '##0.##';
         $elements[3]->setDijitParam('constraints', $tempVariable);
-        if ($options!=null)
-            $elements[3]->setValue($options->BasicoCadastrarTelefoneTelefoneCodigoArea);
+        if (($options!=null) and (isset($options['BasicoCadastrarTelefoneTelefoneCodigoArea'])))
+            $elements[3]->setValue($options['BasicoCadastrarTelefoneTelefoneCodigoArea']);
 
         $elements[4] = $this->createElement('NumberTextBox', 'BasicoCadastrarTelefoneTelefone', array('style' => 'width: 70px;', 'places' => 0));
         $elements[4]->setOrder(4);
@@ -86,8 +86,8 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $tempVariable = $elements[4]->getDijitParam('constraints');
         $tempVariable['pattern'] = '##0.##';
         $elements[4]->setDijitParam('constraints', $tempVariable);
-        if ($options!=null)
-            $elements[4]->setValue($options->BasicoCadastrarTelefoneTelefone);
+        if (($options!=null) and (isset($options['BasicoCadastrarTelefoneTelefone'])))
+            $elements[4]->setValue($options['BasicoCadastrarTelefoneTelefone']);
 
         $elements[5] = $this->createElement('NumberTextBox', 'BasicoCadastrarTelefoneTelefoneRamal', array('style' => 'width: 40px;', 'places' => 0));
         $elements[5]->setOrder(5);
@@ -100,8 +100,8 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $tempVariable = $elements[5]->getDijitParam('constraints');
         $tempVariable['pattern'] = '##0.##';
         $elements[5]->setDijitParam('constraints', $tempVariable);
-        if ($options!=null)
-            $elements[5]->setValue($options->BasicoCadastrarTelefoneTelefoneRamal);
+        if (($options!=null) and (isset($options['BasicoCadastrarTelefoneTelefoneRamal'])))
+            $elements[5]->setValue($options['BasicoCadastrarTelefoneTelefoneRamal']);
 
         $elements[6] = $this->createElement('SimpleTextarea', 'BasicoCadastrarTelefoneTelefoneDescricao', array('style' => 'width: 300px;'));
         $elements[6]->setOrder(6);
@@ -110,8 +110,8 @@ class Basico_Form_CadastrarTelefone extends Zend_Dojo_Form
         $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_TELEFONE_DESCRICAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarTelefone\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TELEFONE_DESCRICAO_AJUDA')) . '\', 1)</script></button>');
-        if ($options!=null)
-            $elements[6]->setValue($options->BasicoCadastrarTelefoneTelefoneDescricao);
+        if (($options!=null) and (isset($options['BasicoCadastrarTelefoneTelefoneDescricao'])))
+            $elements[6]->setValue($options['BasicoCadastrarTelefoneTelefoneDescricao']);
 
         $elements[7] = $this->createElement('html', 'BasicoCadastrarTelefoneLinhaHorizontal', array('value' => '<hr>'));
         $elements[7]->setOrder(7);

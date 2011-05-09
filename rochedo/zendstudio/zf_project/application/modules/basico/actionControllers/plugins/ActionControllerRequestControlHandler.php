@@ -58,6 +58,25 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 		// registrando a url no pool de requests
 		Basico_OPController_SessionOPController::registraUrlPoolRequests($urlDestino);
 
+		// verificando se o request eh do tipo post
+		if ($request->isPost()) {
+			// recuperando o post
+			$ultimoPost = $request->getPost();
+			// recuperando chaves do post
+			$chavesPost = array_keys($ultimoPost);
+
+			// registrando na sessao o nome da primeira chave encontrada no post
+			Basico_OPController_SessionOPController::registraChavePostUltimoRequest($chavesPost[0]);
+			// verificando se o post veio de um subformulario
+			if (is_array($ultimoPost[$chavesPost[0]])) {
+				// registrando na sessao o post do ultimo request, do subformulario
+				Basico_OPController_SessionOPController::registraPostUltimoRequest($ultimoPost[$chavesPost[0]]);
+			} else {
+				// registrando na sessao o post do ultimo request
+				Basico_OPController_SessionOPController::registraPostUltimoRequest($ultimoPost);
+			}
+		}
+
 		// inicializando variaveis
 		$nomeModuloDestino      = '';
 		$nomeControladorDestino = '';

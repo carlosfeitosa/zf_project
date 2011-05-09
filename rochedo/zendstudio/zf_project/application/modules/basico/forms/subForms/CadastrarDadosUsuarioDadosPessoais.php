@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 26/04/2011 12:03:17
+* em: 09/05/2011 10:19:27
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 26/04/2011 11:54:36
+* @version    1: 09/05/2011 10:16:55
 */
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -35,8 +35,8 @@
     $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_PAIS_NASCIMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosPessoais\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
-    if ($options!=null)
-        $elements[1]->setValue($options->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento'])))
+        $elements[1]->setValue($options['BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento']);
 
     $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento');
     $elements[2]->setOrder(2);
@@ -45,8 +45,8 @@
     $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_UF_NASCIMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosPessoais\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
-    if ($options!=null)
-        $elements[2]->setValue($options->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento'])))
+        $elements[2]->setValue($options['BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento']);
 
     $elements[3] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosPessoaisTextboxUfNascimento');
     $elements[3]->setOrder(3);
@@ -56,8 +56,8 @@
     $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_UF_NASCIMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosPessoais\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[3]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_HINT'));
-    if ($options!=null)
-        $elements[3]->setValue($options->BasicoCadastrarDadosUsuarioDadosPessoaisTextboxUfNascimento);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxUfNascimento'])))
+        $elements[3]->setValue($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxUfNascimento']);
 
     $elements[4] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento');
     $elements[4]->setOrder(4);
@@ -66,8 +66,8 @@
     $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_MUNICIPIO_NASCIMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosPessoais\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
-    if ($options!=null)
-        $elements[4]->setValue($options->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento'])))
+        $elements[4]->setValue($options['BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento']);
 
     $elements[5] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento');
     $elements[5]->setOrder(5);
@@ -77,8 +77,8 @@
     $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_MUNICIPIO_NASCIMENTO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosPessoais\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[5]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX_HINT'));
-    if ($options!=null)
-        $elements[5]->setValue($options->BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento'])))
+        $elements[5]->setValue($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento']);
 
     $elements[6] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomePai');
     $elements[6]->setOrder(6);
@@ -88,8 +88,8 @@
     $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
     $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_NOME_PAI_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosPessoais\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_PAI_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[6]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_PAI_TEXT_BOX_HINT'));
-    if ($options!=null)
-        $elements[6]->setValue($options->BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomePai);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomePai'])))
+        $elements[6]->setValue($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomePai']);
 
     $elements[7] = $this->createElement('ValidationTextBox', 'BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae');
     $elements[7]->setOrder(7);
@@ -99,8 +99,8 @@
     $elements[7]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[7]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_NOME_MAE_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosPessoais\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_MAE_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[7]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_MAE_TEXT_BOX_HINT'));
-    if ($options!=null)
-        $elements[7]->setValue($options->BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae'])))
+        $elements[7]->setValue($options['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae']);
 
     $elements[8] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosPessoaisButtonDialogDojo1');
     $elements[8]->setOrder(8);

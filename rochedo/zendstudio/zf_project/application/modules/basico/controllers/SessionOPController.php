@@ -121,6 +121,92 @@ class Basico_OPController_SessionOPController
 	}
 
 	/**
+	 * Registra a chave de um post do ultimo request
+	 * 
+	 * @param String $chavePost
+	 * 
+	 * @return void
+	 */
+	public static function registraChavePostUltimoRequest($chavePost)
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePostUltimoRequest = SESSION_CHAVE_POST_ULTIMO_REQUEST;
+
+		// registrando a chave do post do ultimo request
+		$sessaoUsuario->$sessionChavePostUltimoRequest = $chavePost;
+
+		return;
+	}
+
+	/**
+	 * Retorna a chave do post do ultimo request
+	 * 
+	 * @return String
+	 */
+	public static function retornaChavePostUltimoRequest()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePostUltimoRequest = SESSION_CHAVE_POST_ULTIMO_REQUEST;
+
+		// verificando se existe a chave, dentro da sessao
+		if (isset($sessaoUsuario->$sessionChavePostUltimoRequest)) {
+			// retornando a chave do post do ultimo request
+			return $sessaoUsuario->$sessionChavePostUltimoRequest;
+		}
+
+		return;
+	}
+
+	/**
+	 * Registra o post do ultimo request
+	 * 
+	 * @param array $postUltimoRequest
+	 * 
+	 * @return void
+	 */
+	public static function registraPostUltimoRequest(array $postUltimoRequest)
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionPostUltimoRequest = SESSION_POST_ULTIMO_REQUEST;
+
+		// registrando a chave do post do ultimo request
+		$sessaoUsuario->$sessionPostUltimoRequest = $postUltimoRequest;
+
+		return;
+	}
+
+	/**
+	 * Retorna o post do ultimo request
+	 * 
+	 * @return array
+	 */
+	public static function retornaPostUltimoRequest()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChaveUltimoRequest = SESSION_POST_ULTIMO_REQUEST;
+
+		// verificando se existe a chave, dentro da sessao
+		if (isset($sessaoUsuario->$sessionChaveUltimoRequest)) {
+			// retornando a chave do post do ultimo request
+			return $sessaoUsuario->$sessionChaveUltimoRequest;
+		}
+
+		return array();
+	}
+
+	/**
 	 * Registra uma url no pool de 2 elementos de requests
 	 * 
 	 * @param String $url

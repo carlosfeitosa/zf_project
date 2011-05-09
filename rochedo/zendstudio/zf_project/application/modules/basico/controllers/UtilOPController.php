@@ -1508,7 +1508,7 @@ class Basico_OPController_UtilOPController
     }
 
     /**
-     * Exibe um dialog com o conteudo extraido de um array
+     * Retorna uma chamada javascript que abre um dialog com o conteudo extraido de um array
      * 
      * @param String $dialogId
      * @param String $dialogTitle
@@ -1525,6 +1525,9 @@ class Basico_OPController_UtilOPController
 		if (count($arrayInfo) > 0) {
 	    	// loop para montar o texto do dialog
 	    	foreach ($arrayInfo as $chave => $valor) {
+	    		// convertendo "LINE BREAK" em <BR>
+	    		$valor = str_replace(chr(13) . chr(10), QUEBRA_DE_LINHA_HTML, $valor);
+
 	    		// montando o texto que sera exibido no dialog, atraves do array passado como parametro
 	    		$textoDialog .= "<b>{$chave}</b>:<br>{$valor}<br><br>";
 	    	}
@@ -1541,7 +1544,7 @@ class Basico_OPController_UtilOPController
     }
 
     /**
-     * Exibe um dialog com o conteudo extraido de um array, com o titulo de debug info
+     * Retorna uma chamada javascript que abre um dialog com o conteudo extraido de um array, com o titulo de debug info
      * 
      * @param Array $arrayInfo
      * 
@@ -1559,14 +1562,42 @@ class Basico_OPController_UtilOPController
     }
 
     /**
+     * Retorna uma chamada javascript que redireciona o usuario para uma pagina, passada por parametro (url)
+     * 
+     * @param String $urlRedirect
+     * 
+     * @return String
+     */
+    public static function retornaJavaScriptRedirectUrl($urlRedirect)
+    {
+    	// retornando javascript que redireciona para uma pagina
+    	return "javascript:window.location = '{$urlRedirect}';";
+    }
+
+    /**
      * Envia para o cliente uma chamada javascript que muda o focus do tabcontainer para a aba especificada
      * 
      * @param String $formName
      * @param String $subFormName
+     * 
+     * @return void
      */
     public static function setaFocusAbaTabContainerDojoFormViaJavaScript($formName, $subFormName)
     {
     	// enviando javascript para setar o focus de um tabcontainer em uma aba especifica
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}-TabContainer').selectChild('{$subFormName}');});</script>";
+    }
+
+    /**
+     * Envia para o cliente uma chamada javascript para submeter os dados de um formulario
+     * 
+     * @param String $formName
+     * 
+     * @return void
+     */
+    public static function submeteDojoFormViaJavaScript($formName)
+    {
+    	// enviando javascript para setar o focus de um tabcontainer em uma aba especifica
+    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}').submit();});</script>";
     }
 }

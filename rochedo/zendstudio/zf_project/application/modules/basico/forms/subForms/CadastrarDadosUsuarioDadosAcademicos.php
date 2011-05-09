@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 26/04/2011 12:03:14
+* em: 09/05/2011 10:19:24
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 26/04/2011 11:54:36
+* @version    1: 09/05/2011 10:16:55
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -34,8 +34,8 @@
     $elements[1]->addFilters(array('StringTrim', 'StripTags'));
     $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CATEGORIA_BOLSA_CNPQ_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
-    if ($options!=null)
-        $elements[1]->setValue($options->BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq'])))
+        $elements[1]->setValue($options['BasicoCadastrarDadosUsuarioDadosAcademicosCategoriaBolsaCnpq']);
 
     $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao');
     $elements[2]->setOrder(2);
@@ -44,8 +44,8 @@
     $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
     $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_MAIOR_TITULACAO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
-    if ($options!=null)
-        $elements[2]->setValue($options->BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao'])))
+        $elements[2]->setValue($options['BasicoCadastrarDadosUsuarioDadosAcademicosMaiorTitulacao']);
 
     $elements[3] = $this->createElement('FilteringSelect', 'BasicoCadastrarDadosUsuarioDadosAcademicosInstituicaoQueConcedeu');
     $elements[3]->setOrder(3);
@@ -71,8 +71,8 @@
     $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_NOME_CURSO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarDadosUsuarioDadosAcademicos\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
     $elements[5]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_CURSO_TEXT_BOX_HINT'));
-    if ($options!=null)
-        $elements[5]->setValue($options->BasicoCadastrarDadosUsuarioDadosAcademicosNomeCurso);
+    if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosAcademicosNomeCurso'])))
+        $elements[5]->setValue($options['BasicoCadastrarDadosUsuarioDadosAcademicosNomeCurso']);
 
     $elements[6] = $this->createElement('DateTextBox', 'BasicoCadastrarDadosUsuarioDadosAcademicosDataObtencao');
     $elements[6]->setOrder(6);

@@ -327,7 +327,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               'FORM_FIELD_RADIO_BUTTON_SEXO' AS nome, 'Elemento para seleção de gênero.' AS descricao,
                               'FORM_FIELD_SEXO' AS constante_textual_label,
                               'sexo' AS element_name, NULL AS element_attribs,
-                              '''sexo'', array(''separator'' => " ")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''sexo'', array(''separator'' => " ")' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

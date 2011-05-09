@@ -126,6 +126,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
            		$arrayInfo['Perfil padrão'] 		   		   		  =  $descricaoPerfilPadrao;
            		$arrayInfo['MVC atual']                		   		  = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
            		$arrayInfo['MVC anterior']             		   		  = Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests();
+           		$arrayInfo['Chave post']                              = Basico_OPController_SessionOPController::retornaChavePostUltimoRequest();
            		$arrayInfo['Tempo de execução do PHP'] 		   		  = $tempoExecucaoPHP;
 
            		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
