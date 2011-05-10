@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 09/05/2011 10:19:27
+* em: 10/05/2011 15:58:17
 *
 * LICENÇA DE USO
 *
@@ -22,7 +22,7 @@
     $basicoCadastrarDadosUsuarioPerfilSubForm->setName('CadastrarDadosUsuarioPerfil');
     $basicoCadastrarDadosUsuarioPerfilSubForm->setMethod('post');
     $basicoCadastrarDadosUsuarioPerfilSubForm->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
-    $basicoCadastrarDadosUsuarioPerfilSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_PERFIL'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_PERFIL'),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioPerfil', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+    $basicoCadastrarDadosUsuarioPerfilSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioPerfil', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
     $basicoCadastrarDadosUsuarioPerfilSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioPerfilSubForm->setOrder(7);
 

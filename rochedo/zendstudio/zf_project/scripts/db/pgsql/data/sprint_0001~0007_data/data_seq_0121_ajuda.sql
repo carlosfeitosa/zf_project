@@ -8,6 +8,7 @@
 * 								03/11/2010 - criacao das ajudas para o formulario FORM_DIALOG_TELEFONE;
 * 								16/11/2010 - criacao das ajudas para o formulario FORM_DIALOG_EMAIL;
 * 								25/04/2011 - criacao das ajudas para o formulario SUBFORM_DADOS_USUARIO_PERFIL;
+* 							    10/05/2011 - criacao das ajudas para os campos "Senha atual" e "Nova senha" o formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 
 */
 
@@ -81,7 +82,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_DATA_NASCIMENTO_DATE_TEXT_B
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';4
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_LOGIN_TEXT_BOX' AS nome, 'Texto de ajuda para o campo login do cadastro de usuários validados.' AS descricao,
@@ -188,7 +189,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_AREA_CONHECIMENTO_CURSO_ATU
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
+WHERE t.nome = 'AJUDA'4
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
@@ -347,6 +348,24 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_PERFIS_VINCULADOS_DISPONIVEIS_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo perfis vinculados disponiveis.' AS descricao,
        'FORM_FIELD_PERFIS_VINCULADOS_DISPONIVEIS_AJUDA' AS constante_textual_ajuda,  
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_SENHA_ATUAL_TEXT_BOX' AS nome, 'Texto de ajuda para o campo senha atual.' AS descricao,
+       'FORM_FIELD_SENHA_ATUAL_AJUDA' AS constante_textual_ajuda,  
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_NOVA_SENHA_TEXT_BOX' AS nome, 'Texto de ajuda para o campo nova senha.' AS descricao,
+       'FORM_FIELD_NOVA_SENHA_AJUDA' AS constante_textual_ajuda,  
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
