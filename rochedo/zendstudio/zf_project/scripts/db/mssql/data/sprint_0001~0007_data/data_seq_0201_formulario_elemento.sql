@@ -1726,7 +1726,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
-                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX') AS id_ajuda,
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_SENHA_ATUAL_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -1776,7 +1776,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_PasswordTextBox') AS id_componente,
                               'FORM_FIELD_PASSWORD_TEXT_BOX_NOVA_SENHA' AS nome, 'Elemento password textbox para digitacao da nova senha' AS descricao,
-                              'FORM_FIELD_NOVA_SENNHA' AS constante_textual_label,
+                              'FORM_FIELD_NOVA_SENHA' AS constante_textual_label,
                               'novaSenha' AS element_name, NULL AS element_attribs,
                               '''novaSenha''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t

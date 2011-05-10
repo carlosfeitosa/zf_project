@@ -1871,20 +1871,6 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_SENHA_ATUAL_AJUDA' AS constante_textual, 'Digite neste campo sua senha atual' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_PERFIS_VINCULADOS_DISPONIVEIS_AJUDA' AS constante_textual, 'Escolha o perfil padrão para ser vinculado a seu usuário' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PERFIS_DISPONIVEIS' AS constante_textual, 'Perfis disponíveis:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -1913,7 +1899,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_NOVA_SENNHA' AS constante_textual, 'Nova senha:' AS traducao
+SELECT c.id, 'FORM_FIELD_NOVA_SENHA' AS constante_textual, 'Nova senha:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6047,7 +6033,6 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
-
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGO_HINT' AS constante_textual, 'Type the role of the bond' AS traducao
 FROM tipo_categoria t
@@ -6266,7 +6251,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_NOVA_SENNHA' AS constante_textual, 'New password:' AS traducao
+SELECT c.id, 'FORM_FIELD_NOVA_SENHA' AS constante_textual, 'New password:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

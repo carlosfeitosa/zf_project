@@ -82,7 +82,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_DATA_NASCIMENTO_DATE_TEXT_B
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_FIELD';4
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_LOGIN_TEXT_BOX' AS nome, 'Texto de ajuda para o campo login do cadastro de usuários validados.' AS descricao,
@@ -189,7 +189,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_AREA_CONHECIMENTO_CURSO_ATU
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'4
+WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)

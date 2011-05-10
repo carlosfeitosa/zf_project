@@ -138,7 +138,7 @@ SELECT c.id AS id_categoria,
    	   (SELECT f.id
         FROM formulario f
         WHERE f.nome = 'FORM_DADOS_USUARIO') AS id_formulario_pai,
-       'SUBFORM_DADOS_USUARIO_PERFIL' AS nome,
+       'SUBFORM_DADOS_USUARIO_CONTA' AS nome,
        'Formulário de vinculacao de perfis de usuario.' AS descricao, 
        'SUBFORM_TABTITLE_CONTA' AS constante_textual_titulo,
        'CadastrarDadosUsuarioPerfil' AS form_name, 
