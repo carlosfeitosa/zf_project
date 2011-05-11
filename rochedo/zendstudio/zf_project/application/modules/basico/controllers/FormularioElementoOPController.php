@@ -197,7 +197,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 		$objetoFormularioFormularioElemento = $objetoFormularioElemento->getFormularioFormularioElementoObjectPorIdFormulario($idFormulario);
 
 		// verificando se o objeto formularioFormularioElemento foi recuperado
-		if (isset($objetoFormularioFormularioElemento->id)) {
+		if (isset($objetoFormularioFormularioElemento)) {
 			// retornando o resultado da recuperacao do atributo elementRequired da vinculacao do formulario elemento com o formulario
 			return $objetoFormularioFormularioElemento->elementRequired;
 		}

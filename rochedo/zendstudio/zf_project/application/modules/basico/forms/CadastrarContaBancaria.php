@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/05/2011 13:59:20
+* em: 11/05/2011 15:21:35
 *
 * LICENÇA DE USO
 *
@@ -39,64 +39,64 @@ class Basico_Form_CadastrarContaBancaria extends Zend_Dojo_Form
 
         $elements[1] = $this->createElement('ValidationTextBox', 'BasicoCadastrarContaBancariaContaBancariaNumeroBancoTextBox');
         $elements[1]->setOrder(1);
-        $elements[1]->setRequired(false);
+        $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_TEXT_BOX_HINT'));
         if (($options!=null) and (isset($options['BasicoCadastrarContaBancariaContaBancariaNumeroBancoTextBox'])))
             $elements[1]->setValue($options['BasicoCadastrarContaBancariaContaBancariaNumeroBancoTextBox']);
 
         $elements[2] = $this->createElement('FilteringSelect', 'BasicoCadastrarContaBancariaContaBancariaBancoComboBox');
         $elements[2]->setOrder(2);
-        $elements[2]->setRequired(false);
+        $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_BANCO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_BANCO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_BANCO_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_BANCO_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if (($options!=null) and (isset($options['BasicoCadastrarContaBancariaContaBancariaBancoComboBox'])))
             $elements[2]->setValue($options['BasicoCadastrarContaBancariaContaBancariaBancoComboBox']);
 
         $elements[3] = $this->createElement('ValidationTextBox', 'BasicoCadastrarContaBancariaContaBancariaAgenciaTextBox');
         $elements[3]->setOrder(3);
-        $elements[3]->setRequired(false);
+        $elements[3]->setRequired(true);
         $elements[3]->addFilters(array('StringTrim', 'StripTags'));
         $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[3]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_AGENCIA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_AGENCIA_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[3]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_AGENCIA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_AGENCIA_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[3]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_AGENCIA_TEXT_BOX_HINT'));
         if (($options!=null) and (isset($options['BasicoCadastrarContaBancariaContaBancariaAgenciaTextBox'])))
             $elements[3]->setValue($options['BasicoCadastrarContaBancariaContaBancariaAgenciaTextBox']);
 
         $elements[4] = $this->createElement('FilteringSelect', 'BasicoCadastrarContaBancariaContaBancariaTipoContaComboBox');
         $elements[4]->setOrder(4);
-        $elements[4]->setRequired(false);
+        $elements[4]->setRequired(true);
         $elements[4]->addFilters(array('StringTrim', 'StripTags'));
         $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
+        $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_FILTERING_SELECT_AJUDA')) . '\', 1)</script></button>');
         if (($options!=null) and (isset($options['BasicoCadastrarContaBancariaContaBancariaTipoContaComboBox'])))
             $elements[4]->setValue($options['BasicoCadastrarContaBancariaContaBancariaTipoContaComboBox']);
 
         $elements[5] = $this->createElement('ValidationTextBox', 'BasicoCadastrarContaBancariaContaBancariaNumeroContaTextBox');
         $elements[5]->setOrder(5);
-        $elements[5]->setRequired(false);
+        $elements[5]->setRequired(true);
         $elements[5]->addFilters(array('StringTrim', 'StripTags'));
         $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[5]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[5]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_TEXT_BOX_HINT'));
         if (($options!=null) and (isset($options['BasicoCadastrarContaBancariaContaBancariaNumeroContaTextBox'])))
             $elements[5]->setValue($options['BasicoCadastrarContaBancariaContaBancariaNumeroContaTextBox']);
 
         $elements[6] = $this->createElement('ValidationTextBox', 'BasicoCadastrarContaBancariaContaBancariaDescricaoIdentificacaoContaTextBox');
         $elements[6]->setOrder(6);
-        $elements[6]->setRequired(false);
+        $elements[6]->setRequired(true);
         $elements[6]->addFilters(array('StringTrim', 'StripTags'));
         $elements[6]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
-        $elements[6]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
+        $elements[6]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_LABEL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarContaBancaria\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX_AJUDA')) . '\', 1)</script></button>');
         $elements[6]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX_HINT'));
         if (($options!=null) and (isset($options['BasicoCadastrarContaBancariaContaBancariaDescricaoIdentificacaoContaTextBox'])))
             $elements[6]->setValue($options['BasicoCadastrarContaBancariaContaBancariaDescricaoIdentificacaoContaTextBox']);

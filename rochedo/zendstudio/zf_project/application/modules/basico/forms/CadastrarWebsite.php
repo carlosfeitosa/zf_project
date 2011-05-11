@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/05/2011 13:59:39
+* em: 11/05/2011 15:21:53
 *
 * LICENÇA DE USO
 *
@@ -41,22 +41,22 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
 
         $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarWebsiteWebSiteTipo');
         $elements[1]->setOrder(1);
-        $elements[1]->setRequired(false);
+        $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_WEBSITE_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarWebsite\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_WEBSITE_TIPO_AJUDA')) . '\', 1)</script></button>');
+        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_WEBSITE_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarWebsite\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_WEBSITE_TIPO_AJUDA')) . '\', 1)</script></button>');
         if (($options!=null) and (isset($options['BasicoCadastrarWebsiteWebSiteTipo'])))
             $elements[1]->setValue($options['BasicoCadastrarWebsiteWebSiteTipo']);
 
         $elements[2] = $this->createElement('ValidationTextBox', 'BasicoCadastrarWebsiteWebSitelEndereco');
         $elements[2]->setOrder(2);
         $elements[2]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
-        $elements[2]->setRequired(false);
+        $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_WEBSITE_ENDERECO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarWebsite\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_WEBSITE_ENDERECO_AJUDA')) . '\', 1)</script></button>');
+        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_WEBSITE_ENDERECO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarWebsite\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_WEBSITE_ENDERECO_AJUDA')) . '\', 1)</script></button>');
         if (($options!=null) and (isset($options['BasicoCadastrarWebsiteWebSitelEndereco'])))
             $elements[2]->setValue($options['BasicoCadastrarWebsiteWebSitelEndereco']);
 

@@ -1,26 +1,26 @@
 <form id="CadastrarContaBancaria" method="post" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
-<div id="float-left"><label class="optional">Número do banco:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite o número do banco.', 1)</script></button></label>
+<div id="float-left"><label class="required">* Número do banco:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite o número do banco.', 1)</script></button></label>
 <dd>
-<input id="BasicoCadastrarContaBancariaContaBancariaNumeroBancoTextBox" name="BasicoCadastrarContaBancariaContaBancariaNumeroBancoTextBox" value="" type="text" invalidMessage="Digite aqui o número do banco." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
-<div id="float-left"><label class="optional">Banco:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Selecione o banco.', 1)</script></button></label>
+<input id="BasicoCadastrarContaBancariaContaBancariaNumeroBancoTextBox" name="BasicoCadastrarContaBancariaContaBancariaNumeroBancoTextBox" value="" type="text" invalidMessage="Digite aqui o número do banco." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<div id="float-left"><label class="required">* Banco:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Selecione o banco.', 1)</script></button></label>
 <dd>
-<select name="BasicoCadastrarContaBancariaContaBancariaBancoComboBox" id="BasicoCadastrarContaBancariaContaBancariaBancoComboBox" required="false" dojoType="dijit.form.FilteringSelect">
+<select name="BasicoCadastrarContaBancariaContaBancariaBancoComboBox" id="BasicoCadastrarContaBancariaContaBancariaBancoComboBox" required="true" dojoType="dijit.form.FilteringSelect">
     
 </select></dd></div>
-<div id="float-left-clear-both"><label class="optional">Agência:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite o número da agência.', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="required">* Agência:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite o número da agência.', 1)</script></button></label>
 <dd>
-<input id="BasicoCadastrarContaBancariaContaBancariaAgenciaTextBox" name="BasicoCadastrarContaBancariaContaBancariaAgenciaTextBox" value="" type="text" invalidMessage="Digite aqui o número da agência." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
-<div id="float-left"><label class="optional">Tipo da conta:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Selecione o tipo da conta.', 1)</script></button></label>
+<input id="BasicoCadastrarContaBancariaContaBancariaAgenciaTextBox" name="BasicoCadastrarContaBancariaContaBancariaAgenciaTextBox" value="" type="text" invalidMessage="Digite aqui o número da agência." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<div id="float-left"><label class="required">* Tipo da conta:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Selecione o tipo da conta.', 1)</script></button></label>
 <dd>
-<select name="BasicoCadastrarContaBancariaContaBancariaTipoContaComboBox" id="BasicoCadastrarContaBancariaContaBancariaTipoContaComboBox" required="false" dojoType="dijit.form.FilteringSelect">
+<select name="BasicoCadastrarContaBancariaContaBancariaTipoContaComboBox" id="BasicoCadastrarContaBancariaContaBancariaTipoContaComboBox" required="true" dojoType="dijit.form.FilteringSelect">
     
 </select></dd></div>
-<div id="float-left-clear-both"><label class="optional">Número da conta:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite o número da conta.', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="required">* Número da conta:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite o número da conta.', 1)</script></button></label>
 <dd>
-<input id="BasicoCadastrarContaBancariaContaBancariaNumeroContaTextBox" name="BasicoCadastrarContaBancariaContaBancariaNumeroContaTextBox" value="" type="text" invalidMessage="Digite aqui o número da conta." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
-<div id="float-left"><label class="optional">Descrição para identificação:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite a descrição para identificação.', 1)</script></button></label>
+<input id="BasicoCadastrarContaBancariaContaBancariaNumeroContaTextBox" name="BasicoCadastrarContaBancariaContaBancariaNumeroContaTextBox" value="" type="text" invalidMessage="Digite aqui o número da conta." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<div id="float-left"><label class="required">* Descrição para identificação:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarContaBancaria', 'Ajuda', 'Digite a descrição para identificação.', 1)</script></button></label>
 <dd>
-<input id="BasicoCadastrarContaBancariaContaBancariaDescricaoIdentificacaoContaTextBox" name="BasicoCadastrarContaBancariaContaBancariaDescricaoIdentificacaoContaTextBox" value="" type="text" invalidMessage="Digite aqui a descrição para identificação." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<input id="BasicoCadastrarContaBancariaContaBancariaDescricaoIdentificacaoContaTextBox" name="BasicoCadastrarContaBancariaContaBancariaDescricaoIdentificacaoContaTextBox" value="" type="text" invalidMessage="Digite aqui a descrição para identificação." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
 <div id="width100percent-clear-both"><dt id="BasicoCadastrarContaBancariaLinhaHorizontal-label">&#160;</dt>
 <dd id="BasicoCadastrarContaBancariaLinhaHorizontal-element">
 <hr></dd></div>
@@ -29,4 +29,4 @@
 <div id="float-right-margin-right10px">
 <button name="BasicoCadastrarContaBancariaResetar" id="BasicoCadastrarContaBancariaResetar" type="reset" onClick='hideDialog("Basico_Form_CadastrarContaBancaria", "/rochedo_project/public");' required="false" dojoType="dijit.form.Button">Cancelar</button></div>
 <dd id="BasicoCadastrarContaBancariaCsrf-element">
-<input type="hidden" name="BasicoCadastrarContaBancariaCsrf" value="deeca8288578514002c3525338c73c46" id="BasicoCadastrarContaBancariaCsrf"></dd></dl></form>
+<input type="hidden" name="BasicoCadastrarContaBancariaCsrf" value="78cb5800297116f889e8d7943916e787" id="BasicoCadastrarContaBancariaCsrf"></dd></dl></form>
