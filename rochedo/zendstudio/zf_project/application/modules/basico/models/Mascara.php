@@ -35,6 +35,10 @@ class Basico_Model_Mascara
      * @var Integer
      */
     protected $_categoria;
+    /**
+	 * @var String
+	 */
+	protected $_rowinfo;
 
 	/**
 	 * Constructor
@@ -62,7 +66,7 @@ class Basico_Model_Mascara
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		$this->$method($value);
 	}
@@ -78,7 +82,7 @@ class Basico_Model_Mascara
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		return $this->$method();
 	}
@@ -201,6 +205,28 @@ class Basico_Model_Mascara
         $object = $model->find($this->_categoria);
         return $object;
     }
+    
+	/**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_Mascara
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
 	/**
 	* Set entry id

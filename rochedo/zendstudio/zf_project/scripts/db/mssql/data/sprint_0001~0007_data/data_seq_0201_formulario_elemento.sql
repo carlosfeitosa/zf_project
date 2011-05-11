@@ -90,7 +90,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO' AS nome, 'Elemento campo tipo sanguinio.' AS descricao,
                               'FORM_FIELD_TIPO_SANGUINEO' AS constante_textual_label,
                               'tipoSanguineo' AS element_name, NULL AS element_attribs,
-                              '''tipoSanguineo'', array(''style'' => ''width: 50px;'', ''places'' => 2)' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''tipoSanguineo'', array(''style'' => ''width: 50px;'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -130,8 +130,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
                               'FORM_FIELD_NUMBER_TEXT_BOX_ALTURA' AS nome, 'Elemento campo altura.' AS descricao,
                               'FORM_FIELD_ALTURA' AS constante_textual_label,
-                              'altura' AS element_name, NULL AS element_attribs,
-                              '''altura'', array(''style'' => ''width: 40px;'', ''places'' => 2)' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'altura' AS element_name, '''maxlength'' => ''4''' AS element_attribs,
+                              '''altura'', array(''style'' => ''width: 40px;'', ''pattern'' => ''#,##'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -171,8 +171,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
                               'FORM_FIELD_NUMBER_TEXT_BOX_PESO' AS nome, 'Elemento campo peso.' AS descricao,
                               'FORM_FIELD_PESO' AS constante_textual_label,
-                              'peso' AS element_name, NULL AS element_attribs,
-                              '''peso'', array(''style'' => ''width: 40px;'', ''places'' => 3)' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'peso' AS element_name, '''maxlength'' => ''7''' AS element_attribs,
+                              '''peso'', array(''style'' => ''width: 50px;'', ''pattern'' => ''###,###'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1744,7 +1744,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_ATUAL' AS nome, 'Elemento password textbox para digitacao da senha atual' AS descricao,
                               'FORM_FIELD_SENHA_ATUAL' AS constante_textual_label,
                               'senhaAtual' AS element_name, NULL AS element_attribs,
-                              '''senhaAtual''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''senhaAtual''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1778,7 +1778,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_PASSWORD_TEXT_BOX_NOVA_SENHA' AS nome, 'Elemento password textbox para digitacao da nova senha' AS descricao,
                               'FORM_FIELD_NOVA_SENHA' AS constante_textual_label,
                               'novaSenha' AS element_name, NULL AS element_attribs,
-                              '''novaSenha''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''novaSenha''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

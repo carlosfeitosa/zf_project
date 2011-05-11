@@ -132,8 +132,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
                               'FORM_FIELD_NUMBER_TEXT_BOX_ALTURA' AS nome, 'Elemento campo altura.' AS descricao,
                               'FORM_FIELD_ALTURA' AS constante_textual_label,
-                              'altura' AS element_name, NULL AS element_attribs,
-                              '''altura'', array(''style'' => ''width: 40px;'', ''places'' => 2)' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'altura' AS element_name, '''maxlength'' => ''4''' AS element_attribs,
+                              '''altura'', array(''style'' => ''width: 40px;'', ''pattern'' => ''#,##'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -173,8 +173,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
                               'FORM_FIELD_NUMBER_TEXT_BOX_PESO' AS nome, 'Elemento campo peso.' AS descricao,
                               'FORM_FIELD_PESO' AS constante_textual_label,
-                              'peso' AS element_name, NULL AS element_attribs,
-                              '''peso'', array(''style'' => ''width: 40px;'', ''places'' => 3)' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'peso' AS element_name, '''maxlength'' => ''7''' AS element_attribs,
+                              '''peso'', array(''style'' => ''width: 50px;'', ''pattern'' => ''###,###'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

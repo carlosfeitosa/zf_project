@@ -27,7 +27,7 @@ class Basico_Model_MascaraMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -61,6 +61,7 @@ class Basico_Model_MascaraMapper
 				'descricao'    => $object->getDescricao(),
 				'mascara'      => $object->getMascara(),
                 'id_categoria' => $object->getCategoria(),
+                'rowinfo'      => $object->getRowinfo(),
 
         );
 
@@ -101,7 +102,8 @@ class Basico_Model_MascaraMapper
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setMascara($row->mascara)
-                ->setCategoria($row->id_categoria);
+                ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -122,6 +124,7 @@ class Basico_Model_MascaraMapper
 				->setDescricao($row->descricao)
 				->setMascara($row->mascara)
                 ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -146,6 +149,7 @@ class Basico_Model_MascaraMapper
 				->setDescricao($row->descricao)
 				->setMascara($row->mascara)
                 ->setCategoria($row->id_categoria)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
