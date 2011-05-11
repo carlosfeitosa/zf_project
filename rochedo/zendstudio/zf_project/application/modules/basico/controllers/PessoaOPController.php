@@ -337,18 +337,18 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	}
 
 	/**
-	 * Atualiza o perfil padrao de uma pessoa, via arrayPost do formulario CadastrarDadosUsuarioPerfil
+	 * Atualiza o perfil padrao de uma pessoa, via arrayPost do formulario CadastrarDadosUsuarioConta
 	 * 
 	 * @param Integer $idPessoa
 	 * @param Array $arrayPost
 	 * 
 	 * @return Boolean
 	 */
-	public function atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioPerfil($idPessoa, $arrayPost)
+	public function atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioConta($idPessoa, $arrayPost)
 	{
     	// recuperando dados do post
-    	$idPerfilPadrao     = Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioPerfil']['BasicoCadastrarDadosUsuarioPerfilPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true);
-    	$versaoObjetoPessoa = (int) $arrayPost['CadastrarDadosUsuarioPerfil']['versaoObjetoPessoa'];
+    	$idPerfilPadrao     = Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true);
+    	$versaoObjetoPessoa = (int) $arrayPost['CadastrarDadosUsuarioConta']['versaoObjetoPessoa'];
 
     	// retornando o resultado do metodo atualizaPerfilPadraoPessoa
     	return $this->atualizaPerfilPadraoPessoa($idPessoa, $idPerfilPadrao, $versaoObjetoPessoa);
