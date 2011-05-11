@@ -297,7 +297,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		// verificando se o id foi recuperado com sucesso
 		if (count($arrayIdCategoriaAtiva)) {
 			// retornando o id da categoria ativa
-			return $arrayIdCategoriaAtiva[0][self::nomeCampoIdModelo];
+			return (int) $arrayIdCategoriaAtiva[0][self::nomeCampoIdModelo];
 		}
 
 		return null;
@@ -726,7 +726,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		// verificando se a consulta obteve resultados
 		if ((isset($arrayCategoria)) and (is_array($arrayCategoria)) and (count($arrayCategoria) > 0)) {
 			// retornando o id da categoria
-			return $arrayCategoria[0][self::nomeCampoIdModelo];
+			return (int) $arrayCategoria[0][self::nomeCampoIdModelo];
 		}
 
 		return null;

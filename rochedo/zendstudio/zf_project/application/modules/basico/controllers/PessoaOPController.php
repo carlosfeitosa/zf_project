@@ -221,7 +221,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 		// verificando se a consulta obteve resultados
 		if ((isset($arrayPessoa)) and (is_array($arrayPessoa)) and (count($arrayPessoa) > 0)) {
 			// retornando o id da categoria
-			return $arrayPessoa[0][self::nomeCampoIdModelo];
+			return (int) $arrayPessoa[0][self::nomeCampoIdModelo];
 		}
 
 		return null;

@@ -194,7 +194,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 		// verificando se a consulta obteve resultados
 		if ((isset($arrayIdTipoCategoria)) and (is_array($arrayIdTipoCategoria)) and (count($arrayIdTipoCategoria) > 0)) {
 			// retornando o id do tipo categoria
-			return $arrayIdTipoCategoria[0][self::nomeCampoIdModelo];
+			return (int) $arrayIdTipoCategoria[0][self::nomeCampoIdModelo];
 		}
 
 		return null;

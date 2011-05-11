@@ -198,7 +198,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		// verificando se a consulta obteve resultados
 		if ((isset($arrayPerfis)) and (is_array($arrayPerfis)) and (count($arrayPerfis) > 0)) {
 			// retornando o id da categoria
-			return $arrayPerfis[0][self::nomeCampoIdModelo];
+			return (int) $arrayPerfis[0][self::nomeCampoIdModelo];
 		}
 
 		return null;

@@ -135,7 +135,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario, $carregarDadosBiometricos);
 
     	// carregando informacoes sobre o perfil padrao
-    	$this->carregarPerfisVinculadosDisponiveis($idPessoa, $formDadosUsuario, $carregarDadosPerfilPadrao);
+    	$this->carregarDadosConta($idPessoa, $formDadosUsuario, $carregarDadosPerfilPadrao);
     }
 
     /**
@@ -255,7 +255,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * 
      * @return void
      */
-    private function carregarPerfisVinculadosDisponiveis($idPessoa, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $carregarDados = true)
+    private function carregarDadosConta($idPessoa, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $carregarDados = true)
     {
     	// recuperando subformulario de perfis vinculados disponiveis
     	$subFormPerfisVinculadosDisponveis = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');

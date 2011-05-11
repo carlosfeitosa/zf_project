@@ -233,7 +233,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		// verificando o resultado da recuperacao
 		if (count($arrayIdPessoaPerfilSistema) > 0) {
 			// retornando o id da pessoa perfil do usuario sistema
-			return $arrayIdPessoaPerfilSistema[0][self::nomeCampoIdModelo];
+			return (int) $arrayIdPessoaPerfilSistema[0][self::nomeCampoIdModelo];
 		} else {
 			throw new Exception(MSG_ERROR_PESSOAPERFIL_SISTEMA_NAO_ENCONTRADO);
 		}
@@ -394,7 +394,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		// verificando se houve recuperacao do perfil
 		if ((isset($arrayIdPessoaPerfil)) and (is_array($arrayIdPessoaPerfil)) and (count($arrayIdPessoaPerfil) > 0))
 			// retornando o id pessoa perfil
-			return $arrayIdPessoaPerfil[0][self::nomeCampoIdModelo];
+			return (int) $arrayIdPessoaPerfil[0][self::nomeCampoIdModelo];
 
 		return null;
 	}
