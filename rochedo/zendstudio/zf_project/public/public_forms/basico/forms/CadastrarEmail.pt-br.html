@@ -1,12 +1,12 @@
 <form id="CadastrarEmail" method="post" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
-<div id="float-left-clear-both"><label class="required">* Tipo de e-mail:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Escolha neste campo o tipo de e-mail que esta cadastrando', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="optional">Tipo de e-mail:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Escolha neste campo o tipo de e-mail que esta cadastrando', 1)</script></button></label>
 <dd>
-<select name="BasicoCadastrarEmailEmailTipo" id="BasicoCadastrarEmailEmailTipo" required="true" dojoType="dijit.form.FilteringSelect">
+<select name="BasicoCadastrarEmailEmailTipo" id="BasicoCadastrarEmailEmailTipo" required="false" dojoType="dijit.form.FilteringSelect">
     
 </select></dd></div>
-<div id="float-left-clear-both"><label class="required">* E-mail:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Digite neste campo o seu e-mail. Digite apenas 1 (um) endereço, sem espaços.', 1)</script></button></label>
+<div id="float-left-clear-both"><label class="optional">E-mail:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Digite neste campo o seu e-mail. Digite apenas 1 (um) endereço, sem espaços.', 1)</script></button></label>
 <dd>
-<input size="100" style="width: 300px;" id="BasicoCadastrarEmailEmail" name="BasicoCadastrarEmailEmail" value="" type="text" invalidMessage="Preencha este campo com seu e-mail." required="true" dojoType="dijit.form.ValidationTextBox"></dd></div>
+<input size="100" style="width: 300px;" id="BasicoCadastrarEmailEmail" name="BasicoCadastrarEmailEmail" value="" type="text" invalidMessage="Preencha este campo com seu e-mail." required="false" dojoType="dijit.form.ValidationTextBox"></dd></div>
 <div id="float-left-clear-both"><label class="optional">Descrição:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarEmail', 'Ajuda', 'Digite neste campo alguma informação que achar pertinente sobre o e-mail', 1)</script></button></label>
 <dd>
 <textarea style="width: 300px;" id="BasicoCadastrarEmailEmailDescricao" name="BasicoCadastrarEmailEmailDescricao" type="textarea" required="false" dojoType="dijit.form.SimpleTextarea"></textarea>
@@ -19,4 +19,4 @@
 <div id="float-right-margin-right10px">
 <button name="BasicoCadastrarEmailResetar" id="BasicoCadastrarEmailResetar" type="reset" onClick='hideDialog("Basico_Form_CadastrarEmail", "/rochedo_project/public");' required="false" dojoType="dijit.form.Button">Cancelar</button></div>
 <dd id="BasicoCadastrarEmailCsrf-element">
-<input type="hidden" name="BasicoCadastrarEmailCsrf" value="070c19e8da45046e9b1e834c8e59eaae" id="BasicoCadastrarEmailCsrf"></dd></dl></form>
+<input type="hidden" name="BasicoCadastrarEmailCsrf" value="f3472b21f69d85a34bb69af85f53c1a3" id="BasicoCadastrarEmailCsrf"></dd></dl></form>

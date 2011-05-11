@@ -286,6 +286,8 @@ create unique index ix_formulario_form_name on dbo.formulario (form_name) on [pr
 
 create unique index ix_componente_nome on dbo.componente (nome) on [primary];
 
+create unique index ix_grupo_formulario_elemento_nome on dbo.grupo_formulario_elemento (nome) on [primary];
+
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 

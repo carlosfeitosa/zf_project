@@ -998,7 +998,7 @@ class Basico_OPController_GeradorFormularioOPController
 			}
 
 			// descobrindo se o campo é requerido
-            if (($formularioElementoObject->getFormularioFormularioElementoObject()) and ($formularioElementoObject->getFormularioFormularioElementoObject()->elementRequired == true)) {
+			if (Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementRequiredFormularioElementoFormulario($formularioElementoObject->id, $objFormulario->id)) {
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";" . QUEBRA_DE_LINHA;
             	
             	// setando variavel de label de campo requerido

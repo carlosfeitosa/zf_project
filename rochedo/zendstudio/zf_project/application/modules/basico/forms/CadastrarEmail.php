@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 09/05/2011 10:19:37
+* em: 11/05/2011 13:59:33
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 09/05/2011 10:16:55
+* @version    1: 11/05/2011 11:47:43
 */
 class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 {
@@ -39,18 +39,18 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 
         $elements[1] = $this->createElement('FilteringSelect', 'BasicoCadastrarEmailEmailTipo');
         $elements[1]->setOrder(1);
-        $elements[1]->setRequired(true);
+        $elements[1]->setRequired(false);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_TIPO_AJUDA')) . '\', 1)</script></button>');
+        $elements[1]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_EMAIL_TIPO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_TIPO_AJUDA')) . '\', 1)</script></button>');
         if (($options!=null) and (isset($options['BasicoCadastrarEmailEmailTipo'])))
             $elements[1]->setValue($options['BasicoCadastrarEmailEmailTipo']);
 
         $elements[2] = $this->createElement('ValidationTextBox', 'BasicoCadastrarEmailEmail');
         $elements[2]->setOrder(2);
         $elements[2]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
-        $elements[2]->setRequired(true);
+        $elements[2]->setRequired(false);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true, 'messages' => array(Zend_Validate_EmailAddress::INVALID_FORMAT     => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT'), 
@@ -62,7 +62,7 @@ class Basico_Form_CadastrarEmail extends Zend_Dojo_Form
 																												 Zend_Validate_EmailAddress::INVALID_LOCAL_PART => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART'),),));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
+        $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarEmail\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
         $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));
         if (($options!=null) and (isset($options['BasicoCadastrarEmailEmail'])))
             $elements[2]->setValue($options['BasicoCadastrarEmailEmail']);

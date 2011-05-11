@@ -1251,8 +1251,15 @@ class Basico_OPController_UtilOPController
     		// adicionando elemento ao formulario
     		$form->addElement($tipoElemento, $nomeElemento, $arrayOptions);
 
+    		// verificando se deve remover o decorator Label
+    		if ($tipoElemento === FORM_ELEMENT_HIDDEN) {
+    			// removendo o decorator Label
+    			$form->getElement($nomeElemento)->removeDecorator('Label');
+    		}
+
     		return true;
     	} catch (Exception $e) {
+    		// estourando excessao
     		throw new Exception(MSG_ERRO_AO_TENTAR_ADICIONAR_ELEMENTO_AO_FORMULARIO . "{$form->name} -> {$tipoElemento} -> {$nomeElemento}");
     	}
 

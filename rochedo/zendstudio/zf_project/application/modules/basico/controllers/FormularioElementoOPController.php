@@ -175,4 +175,31 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 
 		return null;
 	}
+
+	/**
+	 * Retorna o atributo elementRequired da relacao do formulario elemento com o formulario
+	 * 
+	 * @param Integer $idFormularioElemento
+	 * @param Integer $idFormulario
+	 * 
+	 * @return Boolean|null
+	 */
+	public function retornaElementRequiredFormularioElementoFormulario($idFormularioElemento, $idFormulario)
+	{
+		// verificando se foi passado o parametro do id do formulario elemento e o id do formulario
+		if ((!$idFormulario) or (!$idFormularioElemento))
+			return null;
+
+		// recuperando o objeto formulario elemento
+		$objetoFormularioElemento = $this->_model->find($idFormularioElemento);
+
+		// recuperando o objeto formularioFormularioElemento
+		$objetoFormularioFormularioElemento = $objetoFormularioElemento->getFormularioFormularioElementoObjectPorIdFormulario($idFormulario);
+
+		// verificando se o objeto formularioFormularioElemento foi recuperado
+		if (isset($objetoFormularioFormularioElemento->id)) {
+			// retornando o resultado da recuperacao do atributo elementRequired da vinculacao do formulario elemento com o formulario
+			return $objetoFormularioFormularioElemento->elementRequired;
+		}
+	}
 }

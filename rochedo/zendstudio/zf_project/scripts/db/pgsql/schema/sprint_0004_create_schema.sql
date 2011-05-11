@@ -358,6 +358,9 @@ create unique index ix_formulario_form_name
 create unique index ix_componente_nome 
   on componente using btree (nome);
 
+create unique index ix_grupo_formulario_elemento_nome
+  on grupo_formulario_elemento using btree (nome);
+
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 

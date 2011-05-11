@@ -563,7 +563,33 @@ class Basico_Model_FormularioElemento
 
 		return null;
     }
-    
+
+    /**
+     * Get formularioFormularioElemento object
+     * 
+     * @param Integer $idFormulario
+     * 
+     * @return null|formularioFormularioElemento
+     */
+    public function getFormularioFormularioElementoObjectPorIdFormulario($idFormulario)
+    {
+    	// verificando se foi passado o id do formulario
+    	if (!$idFormulario)
+    		return null;
+
+    	// instanciando modelo de formulario formulario elemento
+        $model = new Basico_Model_FormularioFormularioElemento();
+
+        // recuperando objeto
+        $object = $model->fetchList("id_formulario_elemento = {$this->_id} and id_formulario = {$idFormulario}");
+
+        // verificando se o objeto existe
+        if (count($object))
+        	return $object[0];
+
+		return null;
+    }
+
     /**
      * Get formularioElementoValidators objects
      * @return null|formularioElementoValidatods

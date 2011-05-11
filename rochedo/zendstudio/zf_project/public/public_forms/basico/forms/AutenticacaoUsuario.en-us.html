@@ -1,10 +1,10 @@
-<form id="AutenticacaoUsuario" method="post" action="/rochedo_project/public/basico/token/decode/t/db619d9690e546caa8b3981598ef4c21" onSubmit="loading();return(validateForm('AutenticacaoUsuario', 'Attention', 'Please fill all required fields before continue.'))" dojoType="dijit.form.Form"><dl>
-<label class="required">* Login:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Help', 'Type in this field your username that will be used to indentify you in our system.<br>Example: john<br>         john@provider.com<br>         john1984<br>         john.doe123', 1)</script></button></label>
+<form id="AutenticacaoUsuario" method="post" action="/rochedo_project/public/basico/token/decode/t/eda845b6292758063891e412cd1ed50d" onSubmit="loading();return(validateForm('AutenticacaoUsuario', 'Attention', 'Please fill all required fields before continue.'))" dojoType="dijit.form.Form"><dl>
+<label class="optional">Login:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Help', 'Type in this field your username that will be used to indentify you in our system.<br>Example: john<br>         john@provider.com<br>         john1984<br>         john.doe123', 1)</script></button></label>
 <dd>
-<input id="BasicoAutenticacaoUsuarioLogin" name="BasicoAutenticacaoUsuarioLogin" value="" type="text" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
-<label class="required">* Password:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Help', 'Type the password to access the system.', 1)</script></button></label>
+<input id="BasicoAutenticacaoUsuarioLogin" name="BasicoAutenticacaoUsuarioLogin" value="" type="text" required="false" dojoType="dijit.form.ValidationTextBox"></dd>
+<label class="optional">Password:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Help', 'Type the password to access the system.', 1)</script></button></label>
 <dd>
-<input id="BasicoAutenticacaoUsuarioSenha" name="BasicoAutenticacaoUsuarioSenha" value="" type="password" required="true" dojoType="dijit.form.ValidationTextBox"></dd>
+<input id="BasicoAutenticacaoUsuarioSenha" name="BasicoAutenticacaoUsuarioSenha" value="" type="password" required="false" dojoType="dijit.form.ValidationTextBox"></dd>
 
 <input name="BasicoAutenticacaoUsuarioLoginManterLogado" value="0" type="hidden"><input id="BasicoAutenticacaoUsuarioLoginManterLogado" required="false" dojoType="dijit.form.CheckBox" name="BasicoAutenticacaoUsuarioLoginManterLogado" value="1" type="checkbox">
 <label class="optional">Keep me logged.&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AutenticacaoUsuario', 'Help', 'Mark this option if you want that the system keep you logged in.<br>Unmark this option if you are using a public/shared computer.<br>Non authorized people may use your credentials.', 1)</script></button></label>
@@ -22,4 +22,4 @@
 
 <input type="hidden" name="BasicoAutenticacaoUsuarioUrlRedirect" value="" id="BasicoAutenticacaoUsuarioUrlRedirect">
 <dd id="BasicoAutenticacaoUsuarioCsrf-element">
-<input type="hidden" name="BasicoAutenticacaoUsuarioCsrf" value="fb51c79e40aa78b92d93fa7758061c44" id="BasicoAutenticacaoUsuarioCsrf"></dd></dl></form>
+<input type="hidden" name="BasicoAutenticacaoUsuarioCsrf" value="f02436fe35474f18b4bef0b842dd1fce" id="BasicoAutenticacaoUsuarioCsrf"></dd></dl></form>
