@@ -266,6 +266,16 @@ create table grupo_formulario_elemento (
 );
 alter table grupo_formulario_elemento owner to rochedo_user;
 
+create table mascaras_formularios_elementos (
+	id serial not null ,
+	id_mascara int null ,
+	id_formulario_elemento int null ,
+	rowinfo character varying (2000) not null
+) with (
+  oids = false
+);
+alter table grupo_formulario_elemento owner to rochedo_user;
+
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
@@ -300,6 +310,8 @@ alter table formulario_formulario_elemento_formulario add constraint pk_formular
 alter table componente add constraint pk_componente primary key (id);
 
 alter table grupo_formulario_elemento add constraint pk_grupo_formulario_elemento primary key (id);
+
+alter table mascaras_formularios_elementos add constraint pk_mascaras_formularios_elementos primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -393,6 +405,9 @@ alter table formulario_formulario_elemento_formulario
 
 alter table componente 
   add constraint ix_componente_categoria_componente unique (id_categoria, componente);
+  
+alter table mascaras_formularios_elementos
+  add constraint ix_mascaras_formularios_elementos unique (id_mascara, id_formulario_elemento);
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
@@ -463,7 +478,10 @@ alter table componente
 alter table grupo_formulario_elemento
   add constraint fk_grupo_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action;
 
-
+alter table mascaras_formularios_elementos
+  add constraint fk_mascaras_formularios_elementos_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
+  add constraint fk_mascaras_formularios_elementos_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
+  
 /* CRIACAO DOS CHECK CONSTRAINTS */
   
 alter table grupo_formulario_elemento add

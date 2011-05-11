@@ -208,6 +208,12 @@ create table dbo.grupo_formulario_elemento (
 	rowinfo varchar (2000) not null
 ) on [primary];
 
+create table dbo.mascaras_formularios_elementos (
+	id int identity (1, 1) not null ,
+	id_formulario_elemento int not null ,
+	id_mascara int not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
@@ -242,6 +248,8 @@ alter table dbo.formulario_formulario_elemento_formulario with nocheck add const
 alter table dbo.componente with nocheck add constraint pk_componente primary key (id) on [primary];
 
 alter table dbo.grupo_formulario_elemento with nocheck add constraint pk_grupo_formulario_elemento primary key (id) on [primary];
+
+alter table dbo.mascaras_formularios_elementos with nocheck add constraint pk_mascaras_formularios_elementos primary key (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -384,6 +392,13 @@ alter table dbo.componente add
 	(
 		id_categoria,
 		nome
+	) on [primary];
+	
+alter table dbo.mascaras_formularios_elementos add
+	constraint ix_mascaras_formularios_elementos unique nonclustered
+	(
+		id_formulario_elemento,
+		id_mascara
 	) on [primary];
 
 
@@ -622,6 +637,20 @@ alter table grupo_formulario_elemento add
 	(
 		id_decorator
 	) references decorator (
+		id
+	);
+	
+alter table dbo.mascaras_formularios_elementos add
+	constraint fk_mascaras_formularios_elementos_formulario_elemento foreign key
+	(
+		id_formulario_elemento
+	) references dbo.formulario_elemento (
+		id
+	),
+	constraint fk_mascaras_formularios_elementos_mascara foreign key
+	(
+		id_mascara
+	) references dbo.mascara (
 		id
 	);
 
