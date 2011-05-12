@@ -31,6 +31,7 @@
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
 * 						07/04/2011 - remocao da criacao da tabela "pessoa_perfil" - descontinuado;
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
+* 						12/05/2011 - criacao do campo "validator_options" na tabela formulario_elemento_formulario_elemento_validator;
 */
 
 /* CRIACAO DAS TABELAS */
@@ -217,6 +218,7 @@ create table formulario_elemento_formulario_elemento_validator (
 	id serial not null ,
 	id_formulario_elemento int not null ,
 	id_formulario_elemento_validator int not null ,
+	validator_options character varying (2000) null ,
 	rowinfo character varying (2000) not null 
 )
 with (

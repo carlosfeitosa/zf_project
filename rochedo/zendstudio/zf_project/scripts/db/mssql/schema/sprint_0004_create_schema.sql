@@ -31,6 +31,7 @@
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
 * 						07/04/2011 - remocao da criacao da tabela "formulario_perfil" - descontinuado;
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
+* 						12/05/2011 - criacao do campo "options" na tabela formulario_elemento_formulario_elemento_validator;
 */
 
 
@@ -173,6 +174,7 @@ create table dbo.formulario_elemento_formulario_elemento_validator (
 	id int identity (1, 1) not null ,
 	id_formulario_elemento int not null ,
 	id_formulario_elemento_validator int not null ,
+	validator_options varchar (2000) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 

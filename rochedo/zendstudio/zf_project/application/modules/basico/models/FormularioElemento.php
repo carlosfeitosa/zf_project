@@ -615,7 +615,28 @@ class Basico_Model_FormularioElemento
        
         return $arrayObjects; 	
     }
-    
+
+    /**
+     * Retorna os objetos FormularioElementoFormularioElementoValidator
+     * 
+     * @return Array|null
+     */
+    public function getFormularioElementoFormularioElementoValidatorObjects()
+    {
+    	// recuperando modelo
+    	$modelFormularioElementoFormularioElementoValidator = new Basico_Model_FormularioElementoFormularioElementoValidator();
+    	// recuperando objetos
+    	$arrayFormularioElementoFormularioElementoValidatorObjects = $modelFormularioElementoFormularioElementoValidator->fetchList("id_formulario_elemento = {$this->_id}");
+
+    	// verificando o resultado da recuperacao
+    	if (count($arrayFormularioElementoFormularioElementoValidatorObjects) > 0) {
+    		// retornando array de objetos FormularioElementoFormularioElementoValidator
+    		return $arrayFormularioElementoFormularioElementoValidatorObjects;
+    	}
+
+    	return null;
+    }
+
     /**
      * Get formularioElementoFormularioVinculado object
      * @param $objFormulario

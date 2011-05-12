@@ -129,13 +129,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     {
     	// recuperando informacao sobre qual formulario nao recuperar os dados do banco de dados
 		$carregarDadosBiometricos  = ($subFormNaoCarregarDados !== 'CadastrarDadosUsuarioDadosBiometricos');
-		$carregarDadosPerfilPadrao = ($subFormNaoCarregarDados !== 'CadastrarDadosUsuarioConta');
+		$carregarDadosConta        = ($subFormNaoCarregarDados !== 'CadastrarDadosUsuarioConta');
 
     	// carregando informacoes do usuario
     	$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario, $carregarDadosBiometricos);
 
     	// carregando informacoes sobre o perfil padrao
-    	$this->carregarDadosConta($idPessoa, $formDadosUsuario, $carregarDadosPerfilPadrao);
+    	$this->carregarDadosConta($idPessoa, $formDadosUsuario, $carregarDadosConta);
     }
 
     /**
@@ -287,10 +287,16 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		unset($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['constante_textual']);
     	}
 
+    	// recuperando array de mensagens json sobre a forca da senha
+    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+
+    	// setando atributo do elemento nova senha
+    	$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker})"));
+
     	// setando o campo que tem que ser identico ao campo senhaConfirmacao
-		$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setToken("BasicoCadastrarDadosUsuarioContaNovaSenha");
+		//$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setToken("BasicoCadastrarDadosUsuarioContaNovaSenha");
     	// setando mensagens do validator Identical para o campo senhaConfirmacao
-    	$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+    	//$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
 
     	// verificando se deve carregar os dados
     	if ($carregarDados) {

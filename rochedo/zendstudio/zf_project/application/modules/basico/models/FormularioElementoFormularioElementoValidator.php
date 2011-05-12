@@ -28,6 +28,11 @@ class Basico_Model_FormularioElementoFormularioElementoValidator
      * @var FormularioElemento
      */
     protected $_formularioElemento;
+
+    /**
+     * @var String
+     */
+    protected $_validatorOptions;
     
     /**
      * @var rowinfo
@@ -166,7 +171,30 @@ class Basico_Model_FormularioElementoFormularioElementoValidator
         $object = $model->find($this->_formularioElemento);
         return $object;
     }
-    
+
+    /**
+	* Set validatorOptions
+	* 
+	* @param String $validatorOptions
+	* 
+	* @return Basico_Model_FormularioElementoFormularioElementoValidator
+	*/
+	public function setValidatorOptions($validatorOptions)
+	{
+		$this->_validatorOptions = Basico_OPController_UtilOPController::retornaValorTipado($validatorOptions, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get validatorOptions
+	* 
+	* @return null|String
+	*/
+	public function getValidatorOptions()
+	{
+		return $this->_validatorOptions;
+	}
+
     /**
 	* Set rowinfo
 	* 

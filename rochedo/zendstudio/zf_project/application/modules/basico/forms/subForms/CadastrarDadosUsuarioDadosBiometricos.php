@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/05/2011 15:21:38
+* em: 12/05/2011 18:15:19
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/05/2011 11:47:43
+* @version    1: 12/05/2011 17:14:02
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -48,8 +48,9 @@
     if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'])))
         $elements[2]->setValue($options['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']);
 
-    $elements[3] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosAltura', array('style' => 'width: 40px;', 'places' => 2));
+    $elements[3] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosAltura', array('style' => 'width: 40px;', 'pattern' => '#,##'));
     $elements[3]->setOrder(3);
+    $elements[3]->setAttribs(array('maxlength' => '4'));
     $elements[3]->setRequired(false);
     $elements[3]->addFilters(array('StringTrim', 'StripTags'));
     $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
@@ -58,8 +59,9 @@
     if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosBiometricosAltura'])))
         $elements[3]->setValue($options['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']);
 
-    $elements[4] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosPeso', array('style' => 'width: 40px;', 'places' => 3));
+    $elements[4] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosPeso', array('style' => 'width: 50px;', 'pattern' => '###,###'));
     $elements[4]->setOrder(4);
+    $elements[4]->setAttribs(array('maxlength' => '7'));
     $elements[4]->setRequired(false);
     $elements[4]->addFilters(array('StringTrim', 'StripTags'));
     $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));

@@ -58,8 +58,9 @@ class Basico_Model_FormularioElementoFormularioElementoValidatorMapper
     {
         $data = array(
                 'id_formulario_elemento_validator' => $object->getFormularioElementoValidator(),
-                'id_formulario_elemento' => $object->getFormularioElemento(),
-                'rowinfo'             => $object->getRowinfo(),
+                'id_formulario_elemento'           => $object->getFormularioElemento(),
+        		'validator_options'                => $object->getValidatorOptions(),
+                'rowinfo'                          => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -97,6 +98,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidatorMapper
         $object->setId($row->id)
                ->setFormularioElementoValidator($row->id_formulario_elemento_validator)
                ->setFormularioElemento($row->id_formulario_elemento)
+               ->setValidatorOptions($row->validator_options)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -116,6 +118,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidatorMapper
                 ->setFormularioElementoValidator($row->id_formulario_elemento_validator)
                 ->setFormularioElemento($row->id_formulario_elemento)
                 ->setRowinfo($row->rowinfo)
+                ->setValidatorOptions($row->validator_options)
                 ->setMapper($this);
             $entries[] = $entry;
         }
@@ -137,6 +140,7 @@ class Basico_Model_FormularioElementoFormularioElementoValidatorMapper
             $entry->setId($row->id)
                   ->setFormularioElementoValidator($row->id_formulario_elemento_validator)
                   ->setFormularioElemento($row->id_formulario_elemento)
+                  ->setValidatorOptions($row->validator_options)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

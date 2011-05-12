@@ -1014,11 +1014,30 @@ class Basico_OPController_GeradorFormularioOPController
             if ($formularioElementoObject->getFormularioElementoFilterObject()->id)
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDFILTERS . "(array({$formularioElementoObject->getFormularioElementoFilterObject()->filter}));" . QUEBRA_DE_LINHA;
 
-			// adicionando validadores
-            $arrayFormularioElementoValidators = $formularioElementoObject->getFormularioElementoValidatorsObjects();
+            // recuperando validators
+            $arrayFormularioElementoFormularioElementoValidatorObjects = $formularioElementoObject->getFormularioElementoFormularioElementoValidatorObjects();
 
-            foreach($arrayFormularioElementoValidators as $formularioElementoValidator){
-            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR . "({$formularioElementoValidator->validator});" . QUEBRA_DE_LINHA;
+            // verificando o resultado da recuperacao
+            if (count($arrayFormularioElementoFormularioElementoValidatorObjects) > 0) {
+	            // loop para adicao dos validators
+	            foreach ($arrayFormularioElementoFormularioElementoValidatorObjects as $formularioElementoFormularioElementoValidatorObject) {
+	            	// recuperando options do validator
+	            	$validatorOptions = $formularioElementoFormularioElementoValidatorObject->validatorOptions;
+	            	// verificando se foi recuperado os options do validator
+	            	if ($validatorOptions) {
+	            		// montando parametro
+	            		$parametroOptionsValidator = ", {$validatorOptions}";
+	            	} else {
+	            		// inicializando variaveis vazia
+	            		$parametroOptionsValidator = "";
+	            	}
+	
+	            	// recuperando validator
+	            	$formularioElementoValidator = $formularioElementoFormularioElementoValidatorObject->getFormularioElementoValidatorObject();
+	
+	            	// vinculado o validator com o elemento do formulario
+	            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR . "({$formularioElementoValidator->validator}{$parametroOptionsValidator});" . QUEBRA_DE_LINHA;
+            }
             }
 
 			// adiciona o decorator para os elementos que possuem decorator

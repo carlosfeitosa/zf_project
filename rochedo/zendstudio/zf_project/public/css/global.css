@@ -204,3 +204,16 @@ div#descricaoElementoFormulario
 {
 	font-size: 11;
 }
+
+fieldset legend 
+{
+	color: #4682B4;
+	font-weight: bold;
+
+}
+
+fieldset 
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

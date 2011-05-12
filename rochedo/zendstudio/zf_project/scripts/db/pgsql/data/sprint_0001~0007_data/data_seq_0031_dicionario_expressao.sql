@@ -23,6 +23,7 @@
 * 								05/05/2011 - criacao das expressoes que traduzem os perfis;
 * 								10/05/2011 - criacao de elementos do subformulario perfil;
 * 								11/05/2011 - criacao de elementos para o subformulario conta;
+* 								12/05/2011 - criacao de elementos para o subformulario conta;
 */
 
 /*
@@ -1907,6 +1908,27 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CONFIRMACAO_NOVA_SENHA_AJUDA' AS constante_textual, 'Digite neste campo sua nova senha, novamente' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CONFIRMACAO_NOVA_SENHA' AS constante_textual, 'Repita sua nova senha:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:490px;''><b>ATENÇÃO!</b><br><br>O preenchimento dos campos ao lado, no grupo "Trocar de senha", só deve ser realizado caso você queira trocar sua senha. Se você não quer mudar sua senha, deixe o campo "Senha atual" em branco.</div>' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PERFIS_VINCULADOS_DISPONIVEIS' AS constante_textual, 'Perfil vinculado padrão:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -1914,14 +1936,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_PERFIL_VINCULADO_PADRAO' AS constante_textual, 'Perfil padrão:' AS traducao
+SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_PERFIL_VINCULADO_PADRAO' AS constante_textual, 'Perfil padrão' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_TROCA_DE_SENHA' AS constante_textual, 'Troca de senha:' AS traducao
+SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_TROCA_DE_SENHA' AS constante_textual, 'Troca de senha' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6273,6 +6295,27 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CONFIRMACAO_NOVA_SENHA_AJUDA' AS constante_textual, 'Enter your new password in this field, again' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_CONFIRMACAO_NOVA_SENHA' AS constante_textual, 'Repeat your new password:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:490px;''><b>ATTENTION!</b><br><br>The fields of the "Change password" group should only be filled if you want to change your password. If you don''t want to change your password, leave the "Current Password" field blank.</div>' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PERFIS_DISPONIVEIS' AS constante_textual, 'Avaiable profiles:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -6287,14 +6330,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_PERFIL_VINCULADO_PADRAO' AS constante_textual, 'Default profile:' AS traducao
+SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_PERFIL_VINCULADO_PADRAO' AS constante_textual, 'Default profile' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_TROCA_DE_SENHA' AS constante_textual, 'Password change:' AS traducao
+SELECT c.id, 'FORM_DISPLAY_GROUP_LABEL_TROCA_DE_SENHA' AS constante_textual, 'Password change' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
