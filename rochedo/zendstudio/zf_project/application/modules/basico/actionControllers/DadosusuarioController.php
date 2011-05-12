@@ -157,28 +157,41 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// inicializando o formulario
     	$this->initFormDadosUsuario($idPessoa, $formDadosUsuario);
 
-    	// invocando metodos de salvar os dados do usuario
-    	$this->salvarDadosBiometricos($idPessoa, $arrayPost, $formDadosUsuario);
-    	$this->salvarPerfilPadrao($idPessoa, $arrayPost, $formDadosUsuario);
+    	// invocando metodos de salvar os dados do usuario e verificando se houve houve erro
+    	$podeContinuar = $this->salvarDadosBiometricos($idPessoa, $arrayPost, $formDadosUsuario);
+    	// verificando resultado de salvar os dados biometricos
+    	if ($podeContinuar !== false) {
+    		// salvando dados da conta do usuario
+    		$podeContinuar = $this->salvarDadosConta($idPessoa, $arrayPost, $formDadosUsuario);
+    	}
 
-    	// redirecionando para o index
-		$this->_forward('index');
+    	// verificando se a acao deve redirecionar o usuario para o index
+    	if ($podeContinuar !== false) {
+    		// redirecionando para o index
+			$this->_forward('index');
+    	} else {
+		    // passando o formulario para a view
+			$this->view->form = $formDadosUsuario;
+	
+			// renderizando a view
+			$this->_helper->Renderizar->renderizar();
+    	}
     }
 
     /**
-     * Salva o perfil padrao de um usuario
+     * Salva os dados da conta de um usuario
      * 
-     * @param unknown_type $idPessoa
-     * @param unknown_type $arrayPost
+     * @param Integer $idPessoa
+     * @param Array $arrayPost
      * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
      * 
-     * @return Boolean
+     * @return Boolean|null
      */
-    private function salvarPerfilPadrao($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
+    private function salvarDadosConta($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
     {
     	// verificando se deve processar o request (post)
     	if (!array_key_exists('CadastrarDadosUsuarioConta', $arrayPost))
-    		return false;
+    		return null;
 
     	// recuperando o subform Perfil
     	$subFormPerfilPadrao = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
@@ -215,13 +228,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * @param Array $arrayPost
      * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
      * 
-     * @return Boolean
+     * @return Boolean|null
      */
     private function salvarDadosBiometricos($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
     {  	
     	// se a requisição nao vier do form dados Biometricos retorne
     	if (!array_key_exists('CadastrarDadosUsuarioDadosBiometricos', $arrayPost))
-    	    return false;
+    	    return null;
 
     	// recuperando o subForm DadosBiometricos    
     	$subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
@@ -244,6 +257,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
     	}
+    	
+    	return true;
     }
     
     /**
@@ -258,7 +273,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     private function carregarDadosConta($idPessoa, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $carregarDados = true)
     {
     	// recuperando subformulario de perfis vinculados disponiveis
-    	$subFormPerfisVinculadosDisponveis = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
+    	$subFormConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
 
     	// recuperando array de objetos dos perfis vinculados disponiveis para selecao de perfil padrao
     	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoaViaSQL($idPessoa);
@@ -272,13 +287,18 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		unset($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['constante_textual']);
     	}
 
+    	// setando o campo que tem que ser identico ao campo senhaConfirmacao
+		$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setToken("BasicoCadastrarDadosUsuarioContaNovaSenha");
+    	// setando mensagens do validator Identical para o campo senhaConfirmacao
+    	$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+
     	// verificando se deve carregar os dados
     	if ($carregarDados) {
 	    	// recuperando id do perfil padrao do usuario
 	    	$idPerfilPadrao = Basico_OPController_PessoaOPController::getInstance()->retornaIdPerfilPadraoPorIdPessoa($idPessoa);
 	
 	    	// setando options do combobox perfil vinculado padrao
-	    	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormPerfisVinculadosDisponveis->BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis, $idPerfilPadrao);
+	    	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormConta->BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis, $idPerfilPadrao);
 	
 	    	// recuperando a versao do objeto pessoa
 	    	$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
@@ -287,9 +307,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
     	} else {
     		// setando options do combobox perfil vinculado padrao
-	    	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormPerfisVinculadosDisponveis->BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis);
+	    	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormConta->BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis);
     	}
-
     }
 
     /**
