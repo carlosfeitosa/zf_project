@@ -28,7 +28,7 @@ class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Bas
 	 * 
 	 * @return void
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
@@ -42,7 +42,7 @@ class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Bas
 	 * 
 	 * @return void
 	 */
-	private function init()
+	protected  function init()
 	{
 		return;
 	}
