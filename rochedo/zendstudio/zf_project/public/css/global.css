@@ -209,11 +209,9 @@ fieldset legend
 {
 	color: #4682B4;
 	font-weight: bold;
-
 }
 
 fieldset 
 {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin: 5px;
 }
