@@ -1841,7 +1841,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS nome, 'Elemento password textbox para digitacao da confirmacao da nova senha' AS descricao,
                               'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual_label,
                               'descricaoMudancaSenha' AS element_name, NULL AS element_attribs,
-                              '''descricaoMudancaSenha''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''descricaoMudancaSenha''' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
