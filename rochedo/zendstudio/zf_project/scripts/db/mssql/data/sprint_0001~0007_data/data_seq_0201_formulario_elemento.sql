@@ -19,7 +19,6 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
-
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
                               LEFT JOIN categoria c ON (a.id_categoria = c.id)
@@ -89,7 +88,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO' AS nome, 'Elemento campo tipo sanguinio.' AS descricao,
+                              'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO' AS nome, 'Elemento campo tipo sanguineo.' AS descricao,
                               'FORM_FIELD_TIPO_SANGUINEO' AS constante_textual_label,
                               'tipoSanguineo' AS element_name, NULL AS element_attribs,
                               '''tipoSanguineo'', array(''style'' => ''width: 50px;'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo

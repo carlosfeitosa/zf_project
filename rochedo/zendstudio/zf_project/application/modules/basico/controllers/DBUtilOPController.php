@@ -132,28 +132,35 @@ class Basico_OPController_DBUtilOPController
      */
     public static function resetaBD()
     {
-    	//checando se está no ambiente de desenvolvimento
-    	if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
-    		//salvando log de inicio da operação
-	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_INICIO);
-	    	//incializando transacao
+    	try {
+    		//incializando transacao
 			Basico_OPController_PersistenceOPController::bdControlaTransacao();
-			//dropando as tabelas do sistema
-	    	self::dropDbTables();
-	    	//criando as tabelas do sistema
-	    	self::createDbTables();
-	    	//inserindo os dados básicos do sistema
-	    	self::insertDbData(self::retornaDBDataScriptsPath());
-	    	// confirmando execucao dos scripts
-	        Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-	        //resetando login do usuario master no arquivo .htaccess
-	        self::resetaLoginUsuarioMaster();
-	        //salvando log de sucesso da operação
-	        Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_SUCESSO);
-
-	        return true;
-    	}else{
-    	    return false;
+	    	//checando se está no ambiente de desenvolvimento
+	    	if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
+	    		//salvando log de inicio da operação
+		    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_INICIO);
+		    	
+				//dropando as tabelas do sistema
+		    	self::dropDbTables();
+		    	//criando as tabelas do sistema
+		    	self::createDbTables();
+		    	//inserindo os dados básicos do sistema
+		    	self::insertDbData(self::retornaDBDataScriptsPath());
+		    	// confirmando execucao dos scripts
+		        Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+		        //resetando login do usuario master no arquivo .htaccess
+		        self::resetaLoginUsuarioMaster();
+		        //salvando log de sucesso da operação
+		        Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_SUCESSO);
+	
+		        return true;
+	    	}else{
+	    	    return false;
+	    	}
+    	}catch (Exception $e) {
+    		// voltando a transação
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . $e->getMessage());
     	}
     }
     
@@ -183,6 +190,8 @@ class Basico_OPController_DBUtilOPController
     private static function dropDbTables() 
     {
     	try {
+    		// inicializando transação
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao();
     		//salvando log de inicio da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_DROP_DB_INICIO);
 	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
@@ -194,9 +203,16 @@ class Basico_OPController_DBUtilOPController
 	    	}
 	    	//salvando log de sucesso da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_DROP_DB_SUCESSO);
+	    	
+	    	// finalizando a transação
+	    	Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+	    	
 	    	return true;
 
     	}catch(Exception $e) {
+    		// voltando transação
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+    		// lançando erro
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
     }
@@ -209,6 +225,8 @@ class Basico_OPController_DBUtilOPController
     private static function createDbTables() 
     {
     	try {
+    		// inicializando transação
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao();
 	    	//salvando log de inicio da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_DB_INCIO);
 	    	// carregando array com o fullFileName dos arquivos de drop do banco utilizado.
@@ -220,9 +238,16 @@ class Basico_OPController_DBUtilOPController
 	    	}
 	    	//salvando log de sucesso da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_DB_SUCESSO);
+	    	
+	    	// finalizando a transação
+	    	Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+	    	
 	    	return true;
 
     	}catch(Exception $e) {
+    		// voltando transação
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+    		// lançando erro
     		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
     }
@@ -234,6 +259,8 @@ class Basico_OPController_DBUtilOPController
     private static function insertDbData($caminhoArquivos) 
     {
     	try {
+    		// inicializando transação
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao();
 	    	//salvando log de inicio da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_INICIO);
 
@@ -256,9 +283,16 @@ class Basico_OPController_DBUtilOPController
 
 	    	//salvando log de sucesso da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_INSERT_DB_DATA_SUCESSO);
+	    	
+	    	// finalizando a transação
+	    	Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
 	    	return true;
     	}catch(Exception $e) {
+    		
+    		// voltando transação
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+    		
     		// recuperando a origem do erro
 			if (isset($file))
 				$origemException = $file;
@@ -289,14 +323,12 @@ class Basico_OPController_DBUtilOPController
 		    	//executando script SQL
 		    	if ($script != "")
 		    		$auxDb->getConnection()->exec($script);
-
+		
 				return true;
     		}
 
     		return false;
     	} catch(Exception $e) {
-    		// cancelando execucao do script
-    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
     		// salvando log do erro
     		Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_ERRO_EXECUCAO_SCRIPT);
     		// lançando o erro
