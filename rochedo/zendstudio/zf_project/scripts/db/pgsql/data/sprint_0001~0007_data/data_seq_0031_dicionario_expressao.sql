@@ -1803,7 +1803,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Salário bruto:' AS traducao
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Salário bruto (em R$):' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1922,7 +1922,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:490px;''><b>ATENÇÃO!</b><br><br>O preenchimento dos campos ao lado, no grupo "Trocar de senha", só deve ser realizado caso você queira trocar sua senha. Se você não quer mudar sua senha, deixe o campo "Senha atual" em branco.</div>' AS traducao
+SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:440px;''><b>ATENÇÃO!</b><br><br>O preenchimento dos campos ao lado, no grupo "Trocar de senha", só deve ser realizado caso você queira trocar sua senha. Se você não quer mudar sua senha, deixe o campo "Senha atual" em branco.</div>' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6197,7 +6197,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Gross income:' AS traducao
+SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Gross income (in R$):' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6309,7 +6309,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:490px;''><b>ATTENTION!</b><br><br>The fields of the "Change password" group should only be filled if you want to change your password. If you don''t want to change your password, leave the "Current Password" field blank.</div>' AS traducao
+SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:440px;''><b>ATTENTION!</b><br><br>The fields of the "Change password" group should only be filled if you want to change your password. If you don''t want to change your password, leave the "Current Password" field blank.</div>' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

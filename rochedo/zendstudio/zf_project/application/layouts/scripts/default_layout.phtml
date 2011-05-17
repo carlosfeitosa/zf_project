@@ -14,6 +14,7 @@ $this->doctype('XHTML1_STRICT');
 $this->headTitle(APPLICATION_NAME_AND_VERSION);
 $this->headTitle()->setSeparator(' :: ');
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
+$this->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
 // verificando ambiente

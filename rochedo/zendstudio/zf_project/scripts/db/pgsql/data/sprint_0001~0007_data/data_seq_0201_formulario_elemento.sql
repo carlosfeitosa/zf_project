@@ -1587,7 +1587,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_CurrencyTextBox') AS id_componente,
                               'FORM_FIELD_CURRENCY_TEXT_BOX_SALARIO_BRUTO' AS nome, 'Elemento campo CurrencyTextBox para salario bruto' AS descricao,
                               'FORM_FIELD_SALARIO_BRUTO' AS constante_textual_label,
-                              'salarioBruto' AS element_name, NULL AS element_attribs,
+                              'salarioBruto' AS element_name, '''currency'' => ''$ ''' AS element_attribs,
                               '''salarioBruto'', array(''style'' => ''width: 90px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
