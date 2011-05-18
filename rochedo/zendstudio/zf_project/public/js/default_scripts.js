@@ -329,3 +329,8 @@ function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetod
 		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "";
 	}
 }
+
+function exibirMensagem(mensagem)
+{
+	humanMsg.displayMsg('<span class="indent">' + mensagem + '</span>');
+}

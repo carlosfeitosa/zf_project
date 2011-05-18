@@ -17,6 +17,11 @@ $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
+// adicionando plugin Jquery Humanized Messages
+$this->headLink()->appendStylesheet($this->baseUrl('/js/plugins/humanizedMessages/humanmsg.css'));
+$this->headScript()->appendFile($this->baseUrl("/js/plugins/humanizedMessages/jquery.js"));
+$this->headScript()->appendFile($this->baseUrl("/js/plugins/humanizedMessages/humanmsg.js"));
+
 // verificando ambiente
 if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
     // verificando se existe usuario logado
@@ -59,8 +64,9 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
         echo $this->dojo();
     ?>
     <?php echo $this->headScript()?>
-   
-</head> 
+
+</head>
+
 <body class="rochedo">
 <div class="loading"></div>
 <div id="header">

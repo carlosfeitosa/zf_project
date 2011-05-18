@@ -1541,6 +1541,22 @@ class Basico_OPController_UtilOPController
     	// exibindo mensagem de sucesso
     	echo "<script type='text/javascript'>showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibirBotao});</script>";
     }
+    
+	/**
+     * Exibe uma mensagem utilizando o plugin JQuery HumanizedMessages
+     * 
+     * @param String $mensagem
+     * @return String
+     */
+    public static function exibirMensagem($mensagem)
+    {
+    	// exibindo mensagem
+    	echo "<script type='text/javascript'>
+    	          $(document).ready (function(){
+    	              humanMsg.displayMsg(\"<span class='indent'>{$mensagem}</span>\");
+                  })
+              </script>";
+    }
 
     /**
      * Retorna a chamada javascript que abre um dialog com o conteudo TXT passado como parametro

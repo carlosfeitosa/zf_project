@@ -146,12 +146,12 @@ class Basico_OPController_DBUtilOPController
 		    	self::createDbTables();
 		    	//inserindo os dados básicos do sistema
 		    	self::insertDbData(self::retornaDBDataScriptsPath());
-		    	// confirmando execucao dos scripts
-		        Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-		        //resetando login do usuario master no arquivo .htaccess
+		    	//resetando login do usuario master no arquivo .htaccess
 		        self::resetaLoginUsuarioMaster();
 		        //salvando log de sucesso da operação
 		        Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_SUCESSO);
+		        // confirmando execucao dos scripts
+		        Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 	
 		        return true;
 	    	}else{
