@@ -1269,7 +1269,7 @@ class Basico_OPController_UtilOPController
     /**
      * Retorna o nome do primeiro elemento do objeto formulario passado como parametro
      * 
-     * @param Zend_Form|Zend_Dojo_Form $objFormulario
+     * @param Zend_Form $objFormulario
      * 
      * @return String
      */
@@ -1307,6 +1307,42 @@ class Basico_OPController_UtilOPController
     		}
     	}
 
+    	return null;
+    }
+
+    /**
+     * Retorna o tipo do container utilizado para agrupar os subformularios de um formulario
+     * 
+     * @param Zend_Form $objFormulario
+     * 
+     * @return String
+     */
+    public static function retornaTipoContainerFormulario($objFormulario)
+    {
+        // verificando se o parametro eh uma instancia de Zend_Form ou Zend_Dojo_Form
+    	if (!($objFormulario instanceof Zend_Form)) {
+    		// retornando null
+    		return null;
+    	}
+
+    	// verificando se o formulario possui filhos
+    	if (count($objFormulario->getSubForms()) > 0) {
+	    	// recuperando decorators do formulario
+	    	$arrayDecoratorsFormulario = $objFormulario->getDecorators();
+	    	
+	    	// verificando se foram recuperados decorators
+	    	if (count($arrayDecoratorsFormulario) > 0) {
+	    		// loop para localizar o elemento que contem "Container" no nome
+	    		foreach ($arrayDecoratorsFormulario as $decoratorFormulario) {
+	    			// verificando se o elemento eh um "Container"
+	    			if ((property_exists(get_class($decoratorFormulario), '_helper')) and (strpos($decoratorFormulario->getHelper(), 'Container'))) {
+	    				// retornando o id do decorator
+	    				return $decoratorFormulario->getHelper();
+	    			}
+	    		}
+	    	}
+    	}
+    	
     	return null;
     }
 
@@ -1664,7 +1700,7 @@ class Basico_OPController_UtilOPController
      */
     public static function submeteDojoFormViaJavaScript($formName)
     {
-    	// enviando javascript para setar o focus de um tabcontainer em uma aba especifica
+    	// enviando javascript para submeter formulario
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}').submit();});</script>";
     }
 
@@ -1675,8 +1711,23 @@ class Basico_OPController_UtilOPController
      * 
      * @return void
      */
-    public static function setaFocusElementoFormulario($formElementName)
+    public static function setaFocusElementoFormularioViaJavaScript($formElementName)
     {
+    	// enviando javascript para setar o focus em um elemento especifico
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function() {setaFocoElemento('{$formElementName}')});</script>";
+    }
+
+    /**
+     * Envia para o cliente uma chamada javascript para setar o foco no primeiro elemento de um formulario selecionado atraves de abas
+     * 
+     * @param String $formName
+     * @param String $tipoContainer (default para TabContainer)
+     * 
+     * @return void
+     */
+    public static function setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaJavaScript($formName, $tipoContainer = 'TabContainer')
+    {
+    	// enviando javascript para setar o focus para o primeiro elemento de um formulario, dentro de uma aba
+    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function() {dojo.connect(dijit.byId('{$formName}-{$tipoContainer}'), 'selectChild', function(page){setaFocoPrimeiroElementoFormulario(page.id);});});</script>";
     }
 }

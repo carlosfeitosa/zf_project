@@ -727,7 +727,7 @@ class Basico_Model_Formulario
     	
     	$stringIdsFormularios = implode(',', $arrayIdsFormularios);
     	
-    	$arrayObjects = $modelFormulario->fetchList("id IN ({$stringIdsFormularios})");
+    	$arrayObjects = $modelFormulario->fetchList("id IN ({$stringIdsFormularios})", "ordem");
         
         return $arrayObjects;
     }
