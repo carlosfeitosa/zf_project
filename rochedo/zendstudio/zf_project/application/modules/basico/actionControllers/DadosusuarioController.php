@@ -217,6 +217,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		// atualizando a versao do elemento hidden do objeto pessoa
     		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 
+	        // exibindo mensagem de sucesso
+	        Basico_OPController_UtilOPController::exibirMensagem("Dados da conta salvos com sucesso.");
+
     		return true;
     	}
     }
@@ -245,18 +248,18 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
     		return false;
     	}
-    	
-    	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 
+    	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 	    	// selecionando a aba do subform DadosBiometricos
 	    	Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
-	    	
+
 	    	// recuperando ultima versao do obj dadosBiometricos da pessoa
 	        $versaoObjetoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa);
-	        
+
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
-	        
+
+	        // exibindo mensagem de sucesso
 	        Basico_OPController_UtilOPController::exibirMensagem("Dados biometricos salvos com sucesso.");
     	}
     	
@@ -296,9 +299,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker})"));
 
     	// setando o campo que tem que ser identico ao campo senhaConfirmacao
-		//$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setToken("BasicoCadastrarDadosUsuarioContaNovaSenha");
+		$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->getValidator('Identical')->setToken("BasicoCadastrarDadosUsuarioContaNovaSenha");
     	// setando mensagens do validator Identical para o campo senhaConfirmacao
-    	//$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+    	$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
 
     	// verificando se deve carregar os dados
     	if ($carregarDados) {
