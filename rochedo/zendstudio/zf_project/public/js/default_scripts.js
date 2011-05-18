@@ -244,6 +244,55 @@ function marcaElementosErro(errorElements)
 	}
 }
 
+function setaFocoElemento(nomeElemento)
+{
+	// recupernado o elemento via dojo
+	elemento = recuperaElemento(nomeElemento);
+
+	// verificando se o elemento esta carregado no cliente
+	if (elemento) {
+		// setando o foco no elemento
+		elemento.focus();
+	}
+}
+
+function setaFocoPrimeiroElementoFormulario(nomeFormulario)
+{
+	// recupernado o elemento via dojo
+	elemento = recuperaElemento(nomeFormulario);
+
+	// verificando se o elemento foi recuperado
+	if (elemento) {
+		// recuperando elementos filhos
+		elementosFilhos = elemento.getChildren();
+
+		// loop para localizar o primeiro elemento "focavel"
+		for (chaveElementoFilho in elementosFilhos) {
+			// verificando se o elemento eh "focavel"
+			if ((elementosFilhos[chaveElementoFilho].isFocusable()) && (elementosFilhos[chaveElementoFilho].tabIndex != -1)) {
+				// setando foco no elemento
+				elementosFilhos[chaveElementoFilho].focus();
+				// saindo do loop
+				break;
+			}
+		}
+	}
+}
+
+function recuperaElemento(nomeElemento)
+{
+	// recupernado o elemento via dojo
+	elemento = dijit.byId(nomeElemento);
+
+	// verificando se o elemento esta carregado no cliente
+	if (!elemento) {
+		// recuperando o elemento via DOM 
+		elemento = document.getElementsByName(nomeElemento)[0];
+	}
+	
+	return elemento;
+}
+
 function validateForm(formId, titulo, message, baseUrl) 
 {
 	// recuperando o formulario
