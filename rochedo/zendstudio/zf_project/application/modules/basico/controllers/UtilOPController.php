@@ -1267,6 +1267,50 @@ class Basico_OPController_UtilOPController
     }
 
     /**
+     * Retorna o nome do primeiro elemento do objeto formulario passado como parametro
+     * 
+     * @param Zend_Form|Zend_Dojo_Form $objFormulario
+     * 
+     * @return String
+     */
+    public static function retornaNomePrimeiroElementoFormulario($objFormulario)
+    {
+    	// verificando se o parametro eh uma instancia de Zend_Form ou Zend_Dojo_Form
+    	if (!($objFormulario instanceof Zend_Form)) {
+    		// retornando null
+    		return null;
+    	}
+
+    	// recuperando elementos do formulario
+    	$arrayElementosFormulario = $objFormulario->getElementsAndSubFormsOrdered();
+
+    	// verificando se existem elementos no formulario
+    	if (count($arrayElementosFormulario) > 0) {
+    		// loop para descobrir o primeiro elemento do formulario
+    		foreach ($arrayElementosFormulario as $primeiroElementoFormulario) {
+	    		// verificando se o primeiro elemento eh um elemento de formulario ou se eh um subformulario
+	    		if (($primeiroElementoFormulario instanceof Zend_Form_Element) and !($primeiroElementoFormulario instanceof Zend_Form_Element_Hash)) {
+	    			// recuperando o nome do elemento
+	    			$elementName = $primeiroElementoFormulario->getName();
+
+	    			// verificando se o formulario eh um subformulario
+	    			if ($objFormulario instanceof Zend_Form_SubForm) {
+	    				// concatenando o nome do subform com o elemento
+	    				$elementName = "{$objFormulario->getName()}-{$elementName}"; 
+	    			}
+					// retornando o nome do elemento
+					return $elementName;
+	    		} else if ($primeiroElementoFormulario instanceof Zend_Form) { // o primeiro elemento eh um subformulario
+	    			// retornando recursividade
+	    			return self::retornaNomePrimeiroElementoFormulario($primeiroElementoFormulario);
+    			}
+    		}
+    	}
+
+    	return null;
+    }
+
+    /**
      * Retorna o host do servidor.
      * 
      * @return String
@@ -1606,5 +1650,17 @@ class Basico_OPController_UtilOPController
     {
     	// enviando javascript para setar o focus de um tabcontainer em uma aba especifica
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}').submit();});</script>";
+    }
+
+    /**
+     * Envia para o cliente uma chamada javascript para setar o foco em um elemento do formulario
+     * 
+     * @param String $formElementName
+     * 
+     * @return void
+     */
+    public static function setaFocusElementoFormulario($formElementName)
+    {
+    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function() {setaFocoElemento('{$formElementName}')});</script>";
     }
 }
