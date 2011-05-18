@@ -21,6 +21,11 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 
     	// recuperando o helper view
     	$view = $this->getActionController()->view;
+    	
+    	// adicionando plugin Jquery Humanized Messages
+		$view->headLink()->appendStylesheet($view->baseUrl('/js/plugins/humanizedMessages/humanmsg.css'));
+		$view->headScript()->prependFile($view->baseUrl("/js/plugins/humanizedMessages/humanmsg.js"));
+		$view->headScript()->prependFile($view->baseUrl("/js/plugins/humanizedMessages/jquery.js"));
 
 		// recuperando view e formulario vinculado a view
 		$form = $view->form;
@@ -57,10 +62,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							// verificando se o stylesheet eh local ou remoto
 							if (strpos($objTemplateFormulario->stylesheetFullFilename, 'http://' === 0))
 								// adicionando stylesheet remoto
-								$view->dojo()->addStylesheet($objTemplateFormulario->stylesheetFullFilename);
+								$view->headLink()->appendStylesheet($objTemplateFormulario->stylesheetFullFilename);
 							else
 								// adicionando stylesheet local
-								$view->dojo()->addStylesheet($applicationHttpBaseUrl . $objTemplateFormulario->stylesheetFullFilename);
+								$view->headLink()->appendStylesheet($applicationHttpBaseUrl . $objTemplateFormulario->stylesheetFullFilename);
 						}
 
 						// verificando se o template possui arquivo javascript
@@ -68,10 +73,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							// verificando se o javascript eh local ou remoto
 							if (strpos($objTemplateFormulario->stylesheetFullFilename, 'http://' === 0))
 								// adicionando javascript remoto
-								$view->dojo()->addLayer($objTemplateFormulario->javascriptFullFilename);
+								$view->headScript()->appendFile($objTemplateFormulario->javascriptFullFilename);
 							else
 								// adicionando javascript local
-								$view->dojo()->addLayer($applicationHttpBaseUrl . $objTemplateFormulario->javascriptFullFilename);
+								$view->headScript()->appendFile($applicationHttpBaseUrl . $objTemplateFormulario->javascriptFullFilename);
 						}
 					}
 				}

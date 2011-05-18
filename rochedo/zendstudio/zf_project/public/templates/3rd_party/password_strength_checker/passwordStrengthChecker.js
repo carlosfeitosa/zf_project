@@ -38,7 +38,7 @@ function addLoadEvent(func) {
 	}
 }
 
-function $() {
+function _$() {
 	var arrElms = [];
 	for (var i=0; i < arguments.length; i++) {
 		var elm = arguments[i];
@@ -60,10 +60,10 @@ String.prototype.strReverse = function() {
 };
 
 function chkPass(pwd, messages) {
-	var oScorebar = $("scorebar");
-	var oScore = $("score");
-	var oComplexity = $("complexity");
-	var oScorebarBorder = $("scorebarBorder");
+	var oScorebar = _$("scorebar");
+	var oScore = _$("score");
+	var oComplexity = _$("complexity");
+	var oScorebarBorder = _$("scorebarBorder");
 	
 	//transformando json passado em objeto com as mensagens do componente.
 	var messages = eval(messages);
@@ -263,18 +263,18 @@ function initPwdChk(restart) {
 	var arrPassDivs = ["div_nAlphasOnly","div_nNumbersOnly","div_nRepChar","div_nConsecAlphaUC","div_nConsecAlphaLC","div_nConsecNumber","div_nSeqAlpha","div_nSeqNumber","div_nSeqSymbol"];
 	var arrFailPars = ["nLengthBonus","nAlphaUCBonus","nAlphaLCBonus","nNumberBonus","nSymbolBonus","nMidCharBonus","nRequirementsBonus"];
 	var arrFailDivs = ["div_nLength","div_nAlphaUC","div_nAlphaLC","div_nNumber","div_nSymbol","div_nMidChar","div_nRequirements"];
-	for (var i in arrZeros) { $(arrZeros[i]).innerHTML = "0"; }
-	for (var i in arrPassPars) { $(arrPassPars[i]).parentNode.className = "pass"; }
-	for (var i in arrPassDivs) { $(arrPassDivs[i]).className = "pass"; }
-	for (var i in arrFailPars) { $(arrFailPars[i]).parentNode.className = "fail"; }
-	for (var i in arrFailDivs) { $(arrFailDivs[i]).className = "fail"; }
-	$("passwordPwd").value = "";
-	$("passwordTxt").value = "";
-	$("scorebar").style.backgroundPosition = "0";
+	for (var i in arrZeros) { _$(arrZeros[i]).innerHTML = "0"; }
+	for (var i in arrPassPars) { _$(arrPassPars[i]).parentNode.className = "pass"; }
+	for (var i in arrPassDivs) { _$(arrPassDivs[i]).className = "pass"; }
+	for (var i in arrFailPars) { _$(arrFailPars[i]).parentNode.className = "fail"; }
+	for (var i in arrFailDivs) { _$(arrFailDivs[i]).className = "fail"; }
+	_$("passwordPwd").value = "";
+	_$("passwordTxt").value = "";
+	_$("scorebar").style.backgroundPosition = "0";
 	if (restart) {
-		$("passwordPwd").className = "";
-		$("passwordTxt").className = "hide";
-		$("mask").checked = true;
+		_$("passwordPwd").className = "";
+		_$("passwordTxt").className = "hide";
+		_$("mask").checked = true;
 	}
 }
 

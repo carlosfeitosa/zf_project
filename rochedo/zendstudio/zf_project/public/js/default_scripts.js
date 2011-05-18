@@ -11,7 +11,6 @@ dojo.require("dijit.form.DateTextBox");
 dojo.require("dijit.form.CurrencyTextBox");
 dojo.require("dijit.form.CheckBox");
 
-
 var underlay;
 
 /*

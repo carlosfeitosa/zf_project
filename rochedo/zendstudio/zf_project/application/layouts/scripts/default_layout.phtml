@@ -17,10 +17,8 @@ $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
-// adicionando plugin Jquery Humanized Messages
-$this->headLink()->appendStylesheet($this->baseUrl('/js/plugins/humanizedMessages/humanmsg.css'));
-$this->headScript()->appendFile($this->baseUrl("/js/plugins/humanizedMessages/jquery.js"));
-$this->headScript()->appendFile($this->baseUrl("/js/plugins/humanizedMessages/humanmsg.js"));
+// adicionando o arquivo javascript padrao
+$this->headScript()->appendFile($this->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
 
 // verificando ambiente
 if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
@@ -58,8 +56,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
     <?php
         $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario()))
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
-                     ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
-                     ->addLayer($applicationHttpBaseUrl . DEFAULT_JAVASCRIPT_FILE_PATH);
+                     ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH);
 
         echo $this->dojo();
     ?>
