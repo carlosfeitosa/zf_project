@@ -256,6 +256,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
+	        
+	        Basico_OPController_UtilOPController::exibirMensagem("Dados biometricos salvos com sucesso.");
     	}
     	
     	return true;
