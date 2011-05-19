@@ -135,16 +135,21 @@ class Basico_OPController_TokenOPController
 	    $session = Basico_OPController_SessionOPController::registraSessaoToken();
 
 	    // verificando se existem urls-token na sessao
-	    if (isset($session->arrayTokensUrls))
+	    if (isset($session->arrayTokensUrls)) {
 	    	// recuperando array de tokens-url encontrados na sessao
 		    self::$_arrayTokensUrls = $session->arrayTokensUrls;
+	    }
 
 		// verificando se o token existe na sessao
-        if (array_key_exists($token, self::$_arrayTokensUrls))
+        if (array_key_exists($token, self::$_arrayTokensUrls)) {
         	// recuperando a url
             $url = self::$_arrayTokensUrls[$token];
-        else
+        } else if (APPLICATION_INVALID_REQUEST_TOKEN_REDIRECT_TO_INDEX) {
+        	// setando a url para vazio (index da aplicacao)
+        	$url = "";
+        } else {
             throw new Exception(MSG_ERRO_TOKEN_SESSAO_NAO_ENCONTRADO);
+        }
 
 		// montando URL
         $baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();

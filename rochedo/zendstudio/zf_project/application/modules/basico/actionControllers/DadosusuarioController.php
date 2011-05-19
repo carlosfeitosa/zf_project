@@ -283,7 +283,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		// verificando o resultado do metodo de trocar senha
 	    		if (!Basico_OPController_LoginOPController::getInstance()->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
 	    			// invocando excessao
-	    			throw new Exception('Nao foi possivel trocar a senha do usuario.');
+	    			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA);
 	    		}
 	    	}
 
@@ -315,7 +315,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 
     		// estourando excesao
-    		throw new Exception("Erro ao tentar salvar os dados da conta: {$e->getMessage()}");
+    		throw new Exception(MSG_ERRO_DADOS_PESSOAIS_DADOS_CONTA . $e->getMessage());
     	}
     }
 
