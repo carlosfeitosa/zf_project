@@ -474,8 +474,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 * @param String $login
 	 * 
 	 * @return null
-	 * 
-	 * @todo implementar uso do rowinfo utilizando o metodo publico da classe abstrata que esta classe vai estender
 	 */
 	private function limpaTentativasInvalidasLogon($login)
 	{
@@ -484,9 +482,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 		// verificando se o objeto foi carregado
 		if ($objLogin->id) {
-			// instanciando controladores
-			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-
 			// recuperando a ultima versao do objeto
 			$versaoUpdate = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
 
@@ -496,8 +491,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			$objLogin->travado = false;
 
 			// preparando XML rowinfo
-			$rowinfoOPController->prepareXml($objLogin, true);
-			$objLogin->rowinfo  = $rowinfoOPController->getXml();
+			$this->prepareSetRowinfoXML($objLogin, true);
 
 			// salvando o objeto
 			$this->salvarObjeto($objLogin, $versaoUpdate);
@@ -686,6 +680,27 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	}
 
 	/**
+	 * Retorna o id do login atraves de um id pessoa
+	 * 
+	 * @param Integer $idPessoa
+	 * 
+	 * @return Integer|null
+	 */
+	public function retornaIdLoginPorIdPessoa($idPessoa)
+	{
+		// recuperando o objeto login
+		$object = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+
+		// verificando o resultado da recuperacao do objeto
+		if (isset($object[0])) {
+			// retornando o id do login
+			return $object[0]->id;
+		}
+
+		return null;
+	}
+
+	/**
 	 * Retorna o id da pessoa pelo id do login, via SQL
 	 *
 	 * @param Integer $idLogin
@@ -737,4 +752,77 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
     	return null;
     }
+
+	/**
+	 * Retorna a versao do objeto login, a partir do id de uma pessoa
+	 * 
+	 * @param Integer $idPessoa
+	 * @param Boolean $forceVersioning
+	 * 
+	 * @return Integer
+	 */
+	public function retornaVersaoObjetoLoginPorIdPessoa($idPessoa, $forceVersioning = false)
+	{
+		// recuperando objeto pessoa
+		$arrayObjects = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+
+		// verificando se o objeto foi recuperado
+		if (count($arrayObjects) > 0) {
+			// retornando a versao do objeto login
+			return Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($arrayObjects[0], $forceVersioning);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Verifica a senha de um usuario
+	 * 
+	 * @param Integer $idLogin
+	 * @param String $senhaEncriptada
+	 * 
+	 * @return Boolean
+	 */
+	public function verificaSenhaUsuario($idLogin, $senhaEncriptada)
+	{
+		// recuperando o objeto login
+		$objLogin = $this->_model->find($idLogin);
+
+		// verificando se o objeto foi recuperado
+		if ($objLogin->id) {
+			// retornando o resultado da comparacao entre as senhas
+			return ($objLogin->senha === $senhaEncriptada);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Troca a senha do usuario
+	 * 
+	 * @param Integer $idLogin
+	 * @param String $novaSenhaNaoEncriptada
+	 * @param Integer $versaoObjetoLoginUsuario
+	 * @param Integer $idPessoaPerfilUsuario
+	 * 
+	 * @return Boolean
+	 */
+	public function alterarSenhaUsuario($idLogin, $novaSenhaNaoEncriptada, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario)
+	{
+		// recuperando o objeto login
+		$objLogin = $this->_model->find($idLogin);
+
+		// verificando se o objeto foi recuperado
+		if (($objLogin->id) and ($versaoObjetoLoginUsuario) and ($idPessoaPerfilUsuario)) {
+			// trocando a senha do usuario
+			$objLogin->senha = Basico_OPController_UtilOPController::retornaStringEncriptada($novaSenhaNaoEncriptada);
+
+			// retornando o resultado do metodo de salvar o login
+			$this->salvarObjeto($objLogin, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);
+
+			return true;
+		}
+
+		return false;
+	}
 }

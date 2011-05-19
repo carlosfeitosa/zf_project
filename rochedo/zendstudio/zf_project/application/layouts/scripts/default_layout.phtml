@@ -134,7 +134,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
            		$arrayInfo['Tempo de execução do PHP'] 		   		  = $tempoExecucaoPHP;
 
            		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
-           		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDialogMensagemViaArrayInfoDebugInfo($arrayInfo);
+           		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDojoDialogMensagemViaArrayInfoDebugInfo($arrayInfo);
 	?>
 	<div align="left"><font size="-2"><a onClick="<?=$chamadaJavaScriptDebugInfo ?>" href='#'>[ debug info ]</a></font></div>
 	<?php } ?> 

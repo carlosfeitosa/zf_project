@@ -130,7 +130,6 @@ class Basico_LoginController extends Zend_Controller_Action
      */
     public function salvarusuariovalidadoAction()
     {
-    	
     	try {
 	        // capturando dados da requisição
 	    	$idPessoa = (int) $this->getRequest()->getParam('idPessoa');

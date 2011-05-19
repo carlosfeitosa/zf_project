@@ -1908,6 +1908,20 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_NOVA_SENHA_CONFIRMACAO' AS constante_textual, 'O valor deste campo precisa ser indêntico ao do campo nova senha.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA' AS constante_textual, 'A senha informada não confere com a sua senha atual.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CONFIRMACAO_NOVA_SENHA' AS constante_textual, 'Repita sua nova senha:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -1915,7 +1929,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:440px;''><b>ATENÇÃO!</b><br><br>O preenchimento dos campos ao lado, no grupo "Trocar de senha", só deve ser realizado caso você queira trocar sua senha. Se você não quer mudar sua senha, deixe o campo "Senha atual" em branco.</div>' AS traducao
+SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:355px;''><b>ATENÇÃO!</b><br><br>O preenchimento dos campos ao lado, no grupo "Trocar de senha", só deve ser realizado caso você queira trocar sua senha. Se você não quer mudar sua senha, deixe o campo "Senha atual" em branco.</div>' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO' AS constante_textual, 'Os dados de sua conta foram salvos com sucesso!' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4797,7 +4818,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO' AS constante_textual, 'The two given passwords do not match. ' AS traducao
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO' AS constante_textual, 'The two given passwords do not match.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6303,6 +6324,20 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_NOVA_SENHA_CONFIRMACAO' AS constante_textual, 'The two given passwords do not match.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA' AS constante_textual, 'The specified password does not match your current password.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CONFIRMACAO_NOVA_SENHA' AS constante_textual, 'Repeat your new password:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -6310,7 +6345,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:440px;''><b>ATTENTION!</b><br><br>The fields of the "Change password" group should only be filled if you want to change your password. If you don''t want to change your password, leave the "Current Password" field blank.</div>' AS traducao
+SELECT c.id, 'FORM_ELEMENT_HTML_TEXT_INSTRUCOES_MUDANCA_SENHA_SUBFORM_DADOS_USUARIO_CONTA' AS constante_textual, '<div id=''descricaoElementoFormulario'' style=''float: left;margin-top: 10px; margin-left: 10px; width:355px;''><b>ATTENTION!</b><br><br>The fields of the "Change password" group should only be filled if you want to change your password. If you don''t want to change your password, leave the "Current Password" field blank.</div>' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO' AS constante_textual, 'Your account informations where successfully saved.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

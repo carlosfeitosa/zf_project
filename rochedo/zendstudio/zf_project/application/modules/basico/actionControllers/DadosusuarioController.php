@@ -106,7 +106,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		// verificando se deve sobrescrever as informacoes de um objeto
 		if ($sobrescreverAtualizacao) {
 			// chamando metodo que submete o formulario
-			Basico_OPController_UtilOPController::submeteDojoFormViaJavaScript($nomeSubFormSetarAba);
+			Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba);
 		}
 
 	    // passando o formulario para a view
@@ -194,33 +194,128 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		return null;
 
     	// recuperando o subform Perfil
-    	$subFormPerfilPadrao = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
+    	$subFormConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
+
+    	// recuperando conteudo do div de forca da senha
+    	$valorDivForcaSenha = $subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->getValue();
+
+		// recuperando a senha atual informada no formulario
+		$senhaAtual = $arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaSenhaAtual'];
+
+		// verificando se a senha atual foi preenchida
+		if (trim($senhaAtual) !== '') {
+			// encriptando a senha informada
+			$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptada($senhaAtual);
+
+			// instanciando o controlador de login
+			$loginOpController = Basico_OPController_LoginOPController::getInstance();
+
+			// verificando se a senha informada corresponde a senha do usuario
+			if (!$loginOpController->verificaSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $senhaAtual)) {
+				// marcando o elemento do formulario com invalido
+				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->addError(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
+				// criando array com os elementos que devem ser marcados como erro
+				$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual');
+				// marcando os elementos com erro
+				Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+
+				// selecionando a aba do subform conta
+				Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				// setando foco no primeiro elemento com erro
+				Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+				// recolocando o valor do div de forca da senha
+				$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+	    		return false;
+			}
+			
+		} else {
+			// verificando se foi informado a nova senha e/ou confirmacao de senha
+			if ((trim($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha']) !== '') or (trim($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha']) !== '')) {
+				// marcando o elemento do formulario com invalido
+				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->addError(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
+				// criando array com os elementos que devem ser marcados como erro
+				$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual',
+											 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
+											 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha');
+				// marcando os elementos com erro
+				Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+
+				// selecionando a aba do subform conta
+				Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				// setando foco no primeiro elemento com erro
+				Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+				// recolocando o valor do div de forca da senha
+				$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+	    		return false;
+			}
+
+			// removendo campos de senha do post
+			unset($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaSenhaAtual']);
+			unset($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha']);
+			unset($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha']);
+		}
 
     	// validando o sub formulario
-    	if (!$subFormPerfilPadrao->isValid($arrayPost)) {
-			// selecionando a aba do subform perfil padrao
-			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormPerfilPadrao->getName());
+    	if (!$subFormConta->isValid($arrayPost)) {
+			// selecionando a aba do subform conta
+			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+			// recolocando o valor do div de forca da senha
+			$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+			// limpando as senhas digitadas
+			$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setValue(null);
+			$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setValue(null);
+			$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->setValue(null);
     		return false;
     	}
 
-    	// setando o perfil padrao do usuario
-    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioConta($idPessoa, $arrayPost)) {
-			// selecionando a aba do subform perfil padrao
-			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormPerfilPadrao->getName());
+    	// tentando salvar as informacoes sobre a conta
+    	try {
+    		// iniciando transacao
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
-    		// atualizando o perfil padrao do usuario na sessao
-    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao(Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true));
+    	   	// verificando se foi solicitado a troca de senhas
+	    	if (trim($senhaAtual) !== '') {
+	    		// recuperando a nova senha
+	    		$novaSenha         = $arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha'];
+	    		$versaoObjetoLogin = (int) $arrayPost['CadastrarDadosUsuarioConta']['versaoObjetoLogin'];
+	    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
-			// recuperando a versao do objeto pessoa
-    		$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
+	    		// verificando o resultado do metodo de trocar senha
+	    		if (!Basico_OPController_LoginOPController::getInstance()->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
+	    			// invocando excessao
+	    			throw new Exception('Nao foi possivel trocar a senha do usuario.');
+	    		}
+	    	}
 
-    		// atualizando a versao do elemento hidden do objeto pessoa
-    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
+	    	// setando o perfil padrao do usuario
+	    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioConta($idPessoa, $arrayPost)) {
+				// selecionando a aba do subform perfil padrao
+				Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+	
+	    		// atualizando o perfil padrao do usuario na sessao
+	    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao(Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true));
+	
+				// recuperando a versao do objeto pessoa
+	    		$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
+	
+	    		// atualizando a versao do elemento hidden do objeto pessoa
+	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
+	
+		        // exibindo mensagem de sucesso
+		        Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO'));
+	    	}   	
 
-	        // exibindo mensagem de sucesso
-	        Basico_OPController_UtilOPController::exibirMensagem("Dados da conta salvos com sucesso.");
+    		// salvando a transacao
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
+    		// retornando o resultado
     		return true;
+    	} catch (Exception $e) {
+    		// voltando transacao
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+
+    		// estourando excesao
+    		throw new Exception("Erro ao tentar salvar os dados da conta: {$e->getMessage()}");
     	}
     }
 
@@ -260,7 +355,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 
 	        // exibindo mensagem de sucesso
-	        Basico_OPController_UtilOPController::exibirMensagem("Dados biometricos salvos com sucesso.");
+	        Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso.");
     	}
     	
     	return true;
@@ -301,7 +396,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// setando o campo que tem que ser identico ao campo senhaConfirmacao
 		$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->getValidator('Identical')->setToken("BasicoCadastrarDadosUsuarioContaNovaSenha");
     	// setando mensagens do validator Identical para o campo senhaConfirmacao
-    	$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+    	$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_NOVA_SENHA_CONFIRMACAO')));
 
     	// verificando se deve carregar os dados
     	if ($carregarDados) {
@@ -311,11 +406,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    	// setando options do combobox perfil vinculado padrao
 	    	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormConta->BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis, $idPerfilPadrao);
 	
-	    	// recuperando a versao do objeto pessoa
+	    	// recuperando a versao do objeto pessoa e login
 	    	$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
+	    	$versaoObjetoLogin  = Basico_OPController_LoginOPController::getInstance()->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
 	
-			// adicionando elemento hidden contendo a versao do objeto pessoa
+			// adicionando elemento hidden contendo a versao do objeto pessoa e login
 			$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
+			$this->adicionaElementoHiddenVersaoObjetoLogin($formDadosUsuario, $versaoObjetoLogin);
     	} else {
     		// setando options do combobox perfil vinculado padrao
 	    	$this->carregarOptionsPerfisVinculadosDisponiveis($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa, $subFormConta->BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis);
@@ -336,6 +433,22 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$subformCadastrarDadosUsuarioConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
 		return Basico_OPController_UtilOPController::adicionaElementoForm($subformCadastrarDadosUsuarioConta, FORM_ELEMENT_HIDDEN, 'versaoObjetoPessoa', array('value' => $versaoObjetoPessoa));
+    }
+
+    /**
+     * Adiciona um elemento hidden contendo o numero da versao do objeto login existente no banco de dados
+     * 
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
+     * @param Integer $versaoObjetoLogin
+     * 
+     * @return Boolean
+     */
+    private function adicionaElementoHiddenVersaoObjetoLogin(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoLogin)
+    {
+    	// recuperando o subformulario "CadastrarDadosUsuarioConta"
+    	$subformCadastrarDadosUsuarioConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
+    	// adicionando elemento hidden contendo a versao do objeto pessoa
+		return Basico_OPController_UtilOPController::adicionaElementoForm($subformCadastrarDadosUsuarioConta, FORM_ELEMENT_HIDDEN, 'versaoObjetoLogin', array('value' => $versaoObjetoLogin));
     }
 
 	/**

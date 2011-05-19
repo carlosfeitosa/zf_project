@@ -1572,9 +1572,9 @@ class Basico_OPController_UtilOPController
      * 
      * @return String
      */
-    public static function exibirDialogMensagem($dialogId, $dialogTitle, $txtContent, $exibirBotao = 1)
+    public static function exibirDojoDialogMensagemViaJavaScript($dialogId, $dialogTitle, $txtContent, $exibirBotao = 1)
     {
-    	// exibindo mensagem de sucesso
+    	// exibindo mensagem
     	echo "<script type='text/javascript'>showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibirBotao});</script>";
     }
     
@@ -1584,7 +1584,7 @@ class Basico_OPController_UtilOPController
      * @param String $mensagem
      * @return String
      */
-    public static function exibirMensagem($mensagem)
+    public static function exibirJQueryHumanizedMessageViaJavaScript($mensagem)
     {
     	// exibindo mensagem
     	echo "<script type='text/javascript'>
@@ -1604,7 +1604,7 @@ class Basico_OPController_UtilOPController
      * 
      * @return String
      */
-    public static function retornaJavaScriptDialogMensagem($dialogId, $dialogTitle, $txtContent, $exibirBotao = 1)
+    public static function retornaJavaScriptDojoDialogMensagem($dialogId, $dialogTitle, $txtContent, $exibirBotao = 1)
     {
     	// exibindo mensagem de sucesso
     	return "showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibirBotao});";
@@ -1620,7 +1620,7 @@ class Basico_OPController_UtilOPController
      * 
      * @return String
      */
-    public static function retornaJavaScriptDialogMensagemViaArrayInfo($dialogId, $dialogTitle, $arrayInfo, $exibirBotao = 1)
+    public static function retornaJavaScriptDojoDialogMensagemViaArrayInfo($dialogId, $dialogTitle, $arrayInfo, $exibirBotao = 1)
     {
     	// instanciando variaveis
 		$textoDialog = '';
@@ -1643,7 +1643,7 @@ class Basico_OPController_UtilOPController
     	$textoDialog = substr($textoDialog, 0, strlen($textoDialog)-8);
 
     	// retornando o resultado do metodo exibirDialogMensagem
-    	return self::retornaJavaScriptDialogMensagem($dialogId, $dialogTitle, $textoDialog, $exibirBotao);
+    	return self::retornaJavaScriptDojoDialogMensagem($dialogId, $dialogTitle, $textoDialog, $exibirBotao);
     }
 
     /**
@@ -1653,12 +1653,12 @@ class Basico_OPController_UtilOPController
      * 
      * @return String
      */
-    public static function retornaJavaScriptDialogMensagemViaArrayInfoDebugInfo($arrayInfo)
+    public static function retornaJavaScriptDojoDialogMensagemViaArrayInfoDebugInfo($arrayInfo)
     {
     	// verificando se trata-se de ambiente de desenvolvimento
     	if (self::ambienteDesenvolvimento()) {
 	    	// retornando o resultado do metodo exibirDialogMensagemViaArrayInfo
-	    	return self::retornaJavaScriptDialogMensagemViaArrayInfo('dialogDebugInfo', ':: DEBUG INFO ::', $arrayInfo, 1);
+	    	return self::retornaJavaScriptDojoDialogMensagemViaArrayInfo('dialogDebugInfo', ':: DEBUG INFO ::', $arrayInfo, 1);
     	}
     	
     	return;
@@ -1698,7 +1698,7 @@ class Basico_OPController_UtilOPController
      * 
      * @return void
      */
-    public static function submeteDojoFormViaJavaScript($formName)
+    public static function submeteDojoFormViaDojoJavaScript($formName)
     {
     	// enviando javascript para submeter formulario
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}').submit();});</script>";
@@ -1711,7 +1711,7 @@ class Basico_OPController_UtilOPController
      * 
      * @return void
      */
-    public static function setaFocusElementoFormularioViaJavaScript($formElementName)
+    public static function setaFocusElementoFormularioViaDojoJavaScript($formElementName)
     {
     	// enviando javascript para setar o focus em um elemento especifico
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function() {setaFocoElemento('{$formElementName}')});</script>";
@@ -1725,9 +1725,23 @@ class Basico_OPController_UtilOPController
      * 
      * @return void
      */
-    public static function setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaJavaScript($formName, $tipoContainer = 'TabContainer')
+    public static function setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($formName, $tipoContainer = 'TabContainer')
     {
     	// enviando javascript para setar o focus para o primeiro elemento de um formulario, dentro de uma aba
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function() {dojo.connect(dijit.byId('{$formName}-{$tipoContainer}'), 'selectChild', function(page){setaFocoPrimeiroElementoFormulario(page.id);});});</script>";
+    }
+
+    /**
+     * Envia para o cliente uma chamada javascript para marcar, os elementos do array passado como parametro, com erro
+     * 
+     * @param Array $arrayNomesElementosErros
+     */
+    public static function marcaElementosComErroViaDojoJavaScript(array $arrayNomesElementosErros)
+    {
+    	// transformando o array em json
+    	$arrayElementosErrorJson = Basico_OPController_UtilOPController::codificaArrayJson($arrayNomesElementosErros);
+
+    	// enviando javascript para setar os elementos com erro
+    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {marcaElementosErro($arrayElementosErrorJson);});</script>";
     }
 }

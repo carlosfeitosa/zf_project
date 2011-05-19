@@ -54,6 +54,15 @@ form
 	padding-bottom:20px;
 }
 
+hr
+{
+	height: 1px;
+	border-color: darkGrey;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
 span#index_application_name
 {
 	color: #000033;
@@ -85,7 +94,8 @@ div#header
 {
 	height: 18px;
 	border-bottom: solid;
-	border-width: thin;
+	border-width: 1px;
+	border-color: darkGrey;
 }
 
 div#header-logo
@@ -112,7 +122,8 @@ div#footer
 	float: left;
 	height: 18px;
 	border-top: solid;
-	border-width: thin;
+	border-width: 1px;
+	border-color: darkGrey;
 }
 
 div#footer_poweredby
@@ -197,6 +208,16 @@ div#divContainerError
 
 ul#errorUl 
 {
+	list-style-image: url('../js/dijit/themes/rochedo/images/warning.png');
+}
+
+ul.errors
+{
+	padding-left: 25px;
+	margin-top: 0px;
+	background-color: #FFFFCC;
+	font-weight: bold;
+	font-size: 11px;
 	list-style-image: url('../js/dijit/themes/rochedo/images/warning.png');
 }
 
