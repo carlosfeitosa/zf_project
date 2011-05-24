@@ -84,7 +84,7 @@ define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.rochedo");
  * JAVASCRIPT FILES
  */
 define("DEFAULT_JAVASCRIPT_FILE_PATH", "/js/default_scripts.js");
-define("MENU_JAVASCRIPT_FILE_PATH", "/js/dhtmlMenu.js");
+define("DEFAULT_JAVASCRIPT_MASKS_FILE_PATH", "/js/default_masks_scripts.js");
 
 /*
  * MENU JAVASCRIPT/CSS FILES

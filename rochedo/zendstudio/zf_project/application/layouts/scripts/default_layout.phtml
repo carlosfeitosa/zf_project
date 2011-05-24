@@ -17,8 +17,9 @@ $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 $this->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
 $this->headLink()->appendStylesheet($applicationHttpCSSHome);
 
-// adicionando o arquivo javascript padrao
+// adicionando arquivos javascript padrao
 $this->headScript()->appendFile($this->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
+$this->headScript()->appendFile($this->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
 
 // verificando ambiente
 if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {

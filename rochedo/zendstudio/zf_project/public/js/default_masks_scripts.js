@@ -1,14 +1,19 @@
 var v_obj;
 var v_fun;
 
-function mascara(o,f){
-    v_obj=o;
-    v_fun=f;
-    setTimeout("execmascara()",1);
+function mascara(element,arrayFunctionsNames){
+    
+	v_obj = dijit.byId(element.id);
+	
+	for (functionName in arrayFunctionsNames) {
+    	v_fun = arrayFunctionsNames[functionName];
+        setTimeout("execmascara()",1);
+    }
+    
 }
 
 function execmascara(){
-    v_obj.value=v_fun(v_obj.value);
+	dojo.byId(v_obj.id).value = v_fun(dojo.byId(v_obj.id).value);
 }
 
 function m_leech(v){
@@ -22,26 +27,15 @@ function m_leech(v){
     return v;
 }
 
-function dateMask(inputData, e){
-	if(document.all) // Internet Explorer
-	var tecla = event.keyCode;
-	else //Outros Browsers
-	var tecla = e.which;
-
-	if(tecla >= 47 && tecla < 58){ // numeros de 0 a 9 e "/"
-	var data = inputData.value;
-	if (data.length == 2 || data.length == 5){
-	data += '/';
-	inputData.value = data;
-	}
-	}else if(tecla == 8 || tecla == 0) // Backspace, Delete e setas direcionais(para mover o cursor, apenas para FF)
-	return true;
-	else
-	return false;
-	}
+function m_data(v){
+    v=v.replace(/\D/g,""); 
+    v=v.replace(/(\d{2})(\d)/,"$1/$2"); 
+    v=v.replace(/(\d{2})(\d)/,"$1/$2"); 
+    return v;
+}
 
 function m_soNumeros(v){
-    return v.replace(/\D/g,"");
+	return v.replace(/\D/g,"");
 }
 
 function m_telefone(v){
