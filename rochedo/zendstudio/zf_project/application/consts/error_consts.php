@@ -31,6 +31,7 @@ define("MSG_ERRO_TIPO_NAO_TRATADO", "Tipo de dado não tratado.");
 define("MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO", "O valor informado não é do tipo INTEIRO.");
 define("MSG_ERRO_TIPO_ERRADO_TIPO_STRING", "O valor informado não é do tipo STRING.");
 define("MSG_ERRO_TIPO_ERRADO_TIPO_BOOLEAN", "O valor informado não é do tipo BOOLEAN.");
+define("MSG_ERRO_TIPO_ERRADO_TIPO_FLOAT", "O valor informado não é do tipo FLOAT.");
 define("MSG_ERRO_TIPO_ERRADO_TIPO_ARRAY", "O valor informado não é do tipo ARRAY.");
 define("MSG_ERRO_ARRAY_FILTER_CHAVE_POSICAO_NAO_ENCONTRADA", "Não foi encontrado a chave de posicao no array contendo os filtros.");
 define("MSG_ERRO_ARRAY_FILTER_CHAVE_FILTRO_NAO_ENCONTRADA", "Não foi encontrado a chave de filtro no array contendo os filtros.");

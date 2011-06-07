@@ -881,6 +881,22 @@ class Basico_OPController_UtilOPController
     		else
     			return $valorBoolean;
     		
+    		break;
+    	case TIPO_FLOAT:
+    		// transformando o valor em ponto flutuante, para comparacao
+    		$valorFloat = (float) $valor;
+
+    		// verificando se o valor eh do tipo informado
+    		if ((!is_float($valorFloat)) or ($valorFloat != $valor))
+    			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_BOOLEAN);
+
+    		// verificando nulidade do valor
+    		if (($checaNulidade) and (is_null($valor)))
+    			return null;
+    		else
+    			return $valorFloat;
+
+    		break;
     	default:
     		throw new Exception(MSG_ERRO_TIPO_NAO_TRATADO);
     	}

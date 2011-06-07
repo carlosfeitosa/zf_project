@@ -56,6 +56,7 @@ define("ID_GENERICO", "id_generico");
 define("TIPO_INTEIRO", 11);
 define("TIPO_STRING", 12);
 define("TIPO_BOOLEAN", 13);
+define("TIPO_FLOAT", 14);
 define("AUTH_TABLE", "login");
 define("AUTH_IDENTITY_COLUMN", "login");
 define("AUTH_CREDENTIAL_COLUMN", "senha");
