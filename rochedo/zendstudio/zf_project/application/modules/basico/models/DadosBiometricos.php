@@ -35,12 +35,12 @@ class Basico_Model_DadosBiometricos
 	protected $_constanteTextualRaca;
 	
 	/**
-	 * @var Numeric
+	 * @var Float
 	 */
 	protected $_altura;
 	
 	/**
-	 * @var Numeric
+	 * @var Float
 	 */
 	protected $_peso;
 	
@@ -195,7 +195,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setAltura($altura)
 	{
-		$this->_altura = Basico_OPController_UtilOPController::retornaValorTipado($altura,TIPO_STRING,true);
+		$this->_altura = Basico_OPController_UtilOPController::retornaValorTipado($altura,TIPO_FLOAT,true);
 		return $this;
 	}
 
@@ -217,7 +217,7 @@ class Basico_Model_DadosBiometricos
 	*/
 	public function setPeso($peso)
 	{
-		$this->_peso = Basico_OPController_UtilOPController::retornaValorTipado($peso,TIPO_STRING,true);
+		$this->_peso = Basico_OPController_UtilOPController::retornaValorTipado($peso,TIPO_FLOAT,true);
 		return $this;
 	}
 
