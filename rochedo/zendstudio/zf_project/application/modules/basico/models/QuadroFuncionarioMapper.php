@@ -5,15 +5,15 @@
  */
  
 /**
- * RegimeTrabalho data mapper
+ * QuadroFuncionario data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_RegimeTrabalho
+ * @uses       Basico_Model_DbTable_QuadroFuncionario
  * @subpackage Model
  */
-class Basico_Model_RegimeTrabalhoMapper
+class Basico_Model_QuadroFuncionarioMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +24,7 @@ class Basico_Model_RegimeTrabalhoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_RegimeTrabalhoMapper
+     * @return Basico_Model_QuadroFuncionarioMapper
      */
     public function setDbTable($dbTable)
     {
@@ -41,31 +41,33 @@ class Basico_Model_RegimeTrabalhoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_RegimeTrabalho if no instance registered
+     * Lazy loads Basico_Model_DbTable_QuadroFuncionario if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_RegimeTrabalho');
+            $this->setDbTable('Basico_Model_DbTable_QuadroFuncionario');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a RegimeTrabalho entry
+     * Save a QuadroFuncionario entry
      * 
-     * @param  Basico_Model_RegimeTrabalho $object
+     * @param  Basico_Model_QuadroFuncionario $object
      * @return void
      */
-    public function save(Basico_Model_RegimeTrabalho $object)
+    public function save(Basico_Model_QuadroFuncionario $object)
     {
         $data = array(
-                'id_regime_trabalho_pai' => $object->getRegimeTrabalhoPai(),
-				'nome'                   => $object->getNome(),
-				'descricao' 			 => $object->getDescricao(),
-        		'rowinfo'   			 => $object->getRowinfo(),
+                'id_categoria'           => $object->getCategoria(),
+                'id_pessoa_juridica'     => $object->getPessoaJuridica(),
+                'id_titulacao_academica' => $object->getTitulacaoAcademica(),
+				'quantidade'             => $object->getQuantidade(),
+				'descricao'              => $object->getDescricao(),
+        		'rowinfo'                => $object->getRowinfo(),
 
         );
 
@@ -78,23 +80,23 @@ class Basico_Model_RegimeTrabalhoMapper
     }
     
 	/**
-	* Delete a RegimeTrabalho entry
-	* @param Basico_Model_RegimeTrabalho $object
+	* Delete a QuadroFuncionario entry
+	* @param Basico_Model_QuadroFuncionario $object
 	* @return void
 	*/
-	public function delete(Basico_Model_RegimeTrabalho $object)
+	public function delete(Basico_Model_QuadroFuncionario $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a RegimeTrabalho entry by id
+     * Find a QuadroFuncionario entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_RegimeTrabalho $object 
+     * @param  Basico_Model_QuadroFuncionario $object 
      * @return void
      */
-    public function find($id, Basico_Model_RegimeTrabalho $object)
+    public function find($id, Basico_Model_QuadroFuncionario $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -102,14 +104,17 @@ class Basico_Model_RegimeTrabalhoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-        	   ->setRegimeTrabalhoPai($row->id_regime_trabalho_pai)
-			   ->setNome($row->nome)
+               ->setCategoria($row->id_categoria)
+               ->setPessoaJuridica($row->id_pessoa_juridica)
+               ->setTitulacaoAcademica($row->id_titulacao_academica)
+			   ->setQuantidade($row->quantidade)
 			   ->setDescricao($row->descricao)
 			   ->setRowinfo($row->rowinfo);
+
     }
 
 	/**
-	 * Fetch all regimetrabalho entries
+	 * Fetch all quadrofuncionario entries
 	 * 
 	 * @return array
 	 */
@@ -119,20 +124,23 @@ class Basico_Model_RegimeTrabalhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_RegimeTrabalho();
+			$entry = new Basico_Model_QuadroFuncionario();
 			$entry->setId($row->id)
-				  ->setRegimeTrabalhoPai($row->id_regime_trabalho_pai)
-				  ->setNome($row->nome)
+                  ->setCategoria($row->id_categoria)
+                  ->setPessoaJuridica($row->id_pessoa_juridica)
+                  ->setTitulacaoAcademica($row->id_titulacao_academica)
+				  ->setQuantidade($row->quantidade)
 				  ->setDescricao($row->descricao)
 				  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
+
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
 	}
 	
 	/**
-	 * Fetch all regimetrabalho entries
+	 * Fetch all quadrofuncionario entries
 	 * 
 	 * @return array
 	 */
@@ -142,13 +150,16 @@ class Basico_Model_RegimeTrabalhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_RegimeTrabalho();
+			$entry = new Basico_Model_QuadroFuncionario();
 			$entry->setId($row->id)
-				  ->setRegimeTrabalhoPai($row->id_regime_trabalho_pai)
-				  ->setNome($row->nome)
+                  ->setCategoria($row->id_categoria)
+                  ->setPessoaJuridica($row->id_pessoa_juridica)
+                  ->setTitulacaoAcademica($row->id_titulacao_academica)
+				  ->setQuantidade($row->quantidade)
 				  ->setDescricao($row->descricao)
 				  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
+
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;

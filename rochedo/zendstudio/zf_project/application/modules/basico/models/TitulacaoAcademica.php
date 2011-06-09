@@ -1,13 +1,18 @@
 <?php
 /**
- * Raca model
+ * This is automatically generated file using the BOZA Framework generator
+ * version 1.0
+ */
+ 
+/**
+ * TitulacaoAcademica model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_RacaMapper
+ * @uses       Basico_Model_TitulacaoAcademicaMapper
  * @subpackage Model
  */
-class Basico_Model_Raca
+class Basico_Model_TitulacaoAcademica
 {
 	/**
 	* @var int
@@ -15,19 +20,22 @@ class Basico_Model_Raca
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_RacaMapper
+	 * @var Basico_Model_TitulacaoAcademicaMapper
 	 */
 	protected $_mapper;
 
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextual;
+	protected $_constanteTextualNome;
+	/**
+	 * @var String
+	 */
+	protected $_descricao;
 	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
-    
 
 	/**
 	 * Constructor
@@ -80,7 +88,7 @@ class Basico_Model_Raca
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Raca
+	 * @return Basico_Model_TitulacaoAcademica
 	 */
 	public function setOptions(array $options)
 	{
@@ -97,36 +105,58 @@ class Basico_Model_Raca
 	}
     
 	/**
-	* Set constanteTextual
+	* Set constanteTextualNome
 	* 
-	* @param String $constanteTextual
-	* @return Basico_Model_Raca
+	* @param String $constanteTextualNome 
+	* @return Basico_Model_TitulacaoAcademica
 	*/
-	public function setConstanteTextual($constanteTextual)
+	public function setConstanteTextualNome($constanteTextualNome)
 	{
-		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual,TIPO_STRING,true);
+		$this->_constanteTextualNome = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualNome, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get constanteTextual
+	* Get constanteTextualNome
 	* 
 	* @return null|String
 	*/
-	public function getConstanteTextual()
+	public function getConstanteTextualNome()
 	{
-		return $this->_constanteTextual;
+		return $this->_constanteTextualNome;
 	}
-	
+     
+	/**
+	* Set descricao
+	* 
+	* @param String $descricao 
+	* @return Basico_Model_TitulacaoAcademica
+	*/
+	public function setDescricao($descricao)
+	{
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get descricao
+	* 
+	* @return null|String
+	*/
+	public function getDescricao()
+	{
+		return $this->_descricao;
+	}
+ 
     /**
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Raca
+	* @return Basico_Model_TitulacaoAcademica
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -139,16 +169,16 @@ class Basico_Model_Raca
 	{
 		return $this->_rowinfo;
 	}
-
+	
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Default_Model_Raca
+	* @return Basico_Model_TitulacaoAcademica
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -166,7 +196,7 @@ class Basico_Model_Raca
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Default_Model_Raca
+	* @return Basico_Model_TitulacaoAcademica
 	*/
 	public function setMapper($mapper)
 	{
@@ -177,29 +207,29 @@ class Basico_Model_Raca
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_RacaMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_TitulacaoAcademicaMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_RacaMapper
+	* @return Basico_Model_TitulacaoAcademicaMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_RacaMapper());
+			$this->setMapper(new Basico_Model_TitulacaoAcademicaMapper());
 		}
 		return $this->_mapper;
 	}
-
+	
 	/**
 	* Find an entry
 	*
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Raca
+	* @return Basico_Model_TitulacaoAcademica
 	*/
 	public function find($id)
 	{
-		$this->getMapper()->find((Int) $id, $this);
+		$this->getMapper()->find((int) $id, $this);
 		return $this;
 	}
 

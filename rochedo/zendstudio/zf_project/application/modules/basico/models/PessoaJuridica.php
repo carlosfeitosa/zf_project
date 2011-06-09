@@ -1,5 +1,10 @@
 <?php
 /**
+ * This is automatically generated file using the BOZA Framework generator
+ * version 1.0
+ */
+ 
+/**
  * PessoaJuridica model
  *
  * Utilizes the Data Mapper pattern to persist data.
@@ -23,23 +28,58 @@ class Basico_Model_PessoaJuridica
 	 * @var Integer
 	 */
 	protected $_nivelHierarquia;
-	/**
-	 * @var String
-	 */
-	protected $_nome;
-	/**
-	 * @var String
-	 */
-	protected $_sigla;
+    /**
+     * @var Integer
+     */
+    protected $_pessoaJuridicaPai;
     /**
      * @var Integer
      */
     protected $_categoria;
-
     /**
      * @var Integer
      */
-    protected $_pessoa;
+    protected $_pessoaResponsavelCadastro;
+    /**
+     * @var Integer
+     */
+    protected $_naturezaPessoaJuridica;
+    /**
+     * @var Integer
+     */
+    protected $_areaEconomiaDefault;
+    /**
+     * @var Integer
+     */
+    protected $_telefoneDefault;
+    /**
+     * @var Integer
+     */
+    protected $_emailDefault;   
+    /**
+     * @var Integer
+     */
+    protected $_websiteDefault;
+    /**
+     * @var Integer
+     */
+    protected $_enderecoCorrespondencia;
+    /**
+     * @var Integer
+     */
+    protected $_enderecoDefault;
+	/**
+	 * @var Date
+	 */
+	protected $_dataCriacao;
+	/**
+	 * @var Date
+	 */
+	protected $_dataUltimaModificacao;
+	/**
+	 * @var String
+	 */
+	protected $_rowinfo;
 
 	/**
 	 * Constructor
@@ -107,12 +147,12 @@ class Basico_Model_PessoaJuridica
 		}
 		return $this;
 	}
-    
+
 	/**
 	* Set nivelHierarquia
 	* 
 	* @param Integer $nivelHierarquia 
-	* @return Basico_Model_NivelHierarquia
+	* @return Basico_Model_PessoaJuridica
 	*/
 	public function setNivelHierarquia($nivelHierarquia)
 	{
@@ -129,56 +169,48 @@ class Basico_Model_PessoaJuridica
 	{
 		return $this->_nivelHierarquia;
 	}
-     
+
 	/**
-	* Set nome
+	* Set pessoaJuridicaPai
 	* 
-	* @param String $nome 
-	* @return Basico_Model_Nome
+	* @param int $pessoaJuridicaPai
+	* @return Basico_Model_PessoaJuridica
 	*/
-	public function setNome($nome)
+	public function setPessoaJuridicaPai($pessoaJuridicaPai)
 	{
-		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_pessoaJuridicaPai = Basico_OPController_UtilOPController::retornaValorTipado($pessoaJuridicaPai, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get nome
+	* Get pessoaJuridicaPai
 	* 
-	* @return null|String
+	* @return null|int
 	*/
-	public function getNome()
+	public function getPessoaJuridicaPai()
 	{
-		return $this->_nome;
+		return $this->_pessoaJuridicaPai;
 	}
-     
-	/**
-	* Set sigla
-	* 
-	* @param String $sigla 
-	* @return Basico_Model_Sigla
-	*/
-	public function setSigla($sigla)
-	{
-		$this->_sigla = Basico_OPController_UtilOPController::retornaValorTipado($sigla, TIPO_STRING, true);
-		return $this;
-	}
+ 
+    /**
+     * Get pessoaJuridicaPai object
+     * @return null|Basico_Model_PessoaJuridica
+     */
+    public function getPessoaJuridicaPaiObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_PessoaJuridica();
+        // recuperando objeto
+        $object = $model->find($this->_pessoaJuridicaPai);
+        // retornando objeto
+        return $object;
+    }
 
-	/**
-	* Get sigla
-	* 
-	* @return null|String
-	*/
-	public function getSigla()
-	{
-		return $this->_sigla;
-	}
-     
 	/**
 	* Set categoria
 	* 
-	* @param int $categoria 
-	* @return Basico_Model_Categoria
+	* @param int $categoria
+	* @return Basico_Model_PessoaJuridica
 	*/
 	public function setCategoria($categoria)
 	{
@@ -198,47 +230,371 @@ class Basico_Model_PessoaJuridica
  
     /**
      * Get categoria object
-     * @return null|Categoria
+     * @return null|Basico_Model_Categoria
      */
     public function getCategoriaObject()
     {
+    	// recuperando modelo
         $model = new Basico_Model_Categoria();
+        // recuperando objeto
         $object = $model->find($this->_categoria);
+        // retornando objeto
         return $object;
     }
-    
+
 	/**
-	* Set pessoa
+	* Set pessoaResponsavelCadastro
 	* 
-	* @param int $pessoa 
-	* @return Basico_Model_Pessoa
+	* @param int $pessoaResponsavelCadastro 
+	* @return Basico_Model_PessoaJuridica
 	*/
-	public function setPessoa($pessoa)
+	public function setPessoaResponsavelCadastro($pessoaResponsavelCadastro)
 	{
-		$this->_pessoa = Basico_OPController_UtilOPController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
+		$this->_pessoaResponsavelCadastro = Basico_OPController_UtilOPController::retornaValorTipado($pessoaResponsavelCadastro, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get pessoa
+	* Get pessoaResponsavelCadastro
 	* 
 	* @return null|int
 	*/
-	public function getPessoa()
+	public function getPessoaResponsavelCadastro()
 	{
-		return $this->_pessoa;
+		return $this->_pessoaResponsavelCadastro;
 	}
  
     /**
-     * Get pessoa object
-     * @return null|Pessoa
+     * Get pessoaResponsavelCadastro object
+     * @return null|Basico_Model_Pessoa
      */
-    public function getPessoaObject()
+    public function getPessoaResponsavelCadastroObject()
     {
-        $model = new Basico_Model_Pessoa();
-        $object = $model->find($this->_pessoa);
+    	// recuperando modelo
+        $model = new Basico_Model_PessoaResponsavelCadastro();
+        // recuperando objeto
+        $object = $model->find($this->_pessoaResponsavelCadastro);
+        // retornando objeto
         return $object;
     }
+
+	/**
+	* Set naturezaPessoaJuridica
+	* 
+	* @param int $naturezaPessoaJuridica 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setNaturezaPessoaJuridica($naturezaPessoaJuridica)
+	{
+		$this->_naturezaPessoaJuridica = Basico_OPController_UtilOPController::retornaValorTipado($naturezaPessoaJuridica, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get naturezaPessoaJuridica
+	* 
+	* @return null|int
+	*/
+	public function getNaturezaPessoaJuridica()
+	{
+		return $this->_naturezaPessoaJuridica;
+	}
+ 
+    /**
+     * Get naturezaPessoaJuridica object
+     * @return null|Basico_Model_NaturezaPessoaJuridica
+     */
+    public function getNaturezaPessoaJuridicaObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_NaturezaPessoaJuridica();
+        // recuperando objeto
+        $object = $model->find($this->_naturezaPessoaJuridica);
+        // retornando objeto
+        return $object;
+    }
+
+	/**
+	* Set areaEconomiaDefault
+	* 
+	* @param int $naturezaPessoaJuridica 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setAreaEconomiaDefault($areaEconomiaDefault)
+	{
+		$this->_areaEconomiaDefault = Basico_OPController_UtilOPController::retornaValorTipado($areaEconomiaDefault, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get areaEconomiaDefault
+	* 
+	* @return null|int
+	*/
+	public function getAreaEconomiaDefault()
+	{
+		return $this->_areaEconomiaDefault;
+	}
+ 
+    /**
+     * Get areaEconomiaDefault object
+     * @return null|Basico_Model_AreaEconomia
+     */
+    public function getAreaEconomiaDefaultObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_AreaEconomia();
+        // recuperando objeto
+        $object = $model->find($this->_areaEconomiaDefault);
+        // retornando objeto
+        return $object;
+    }
+
+	/**
+	* Set telefoneDefault
+	* 
+	* @param int $telefoneDefault 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setTelefoneDefault($telefoneDefault)
+	{
+		$this->_telefoneDefault = Basico_OPController_UtilOPController::retornaValorTipado($telefoneDefault, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get telefoneDefault
+	* 
+	* @return null|int
+	*/
+	public function getTelefoneDefault()
+	{
+		return $this->_telefoneDefault;
+	}
+
+    /**
+     * Get telefoneDefault object
+     * @return null|Basico_Model_Telefone
+     */
+    public function getTelefoneDefaultObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_Telefone();
+        // recuperando objeto
+        $object = $model->find($this->_telefoneDefault);
+        // retornando objeto
+        return $object;
+    }
+
+	/**
+	* Set emailDefault
+	* 
+	* @param int $emailDefault 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setEmailDefault($emailDefault)
+	{
+		$this->_emailDefault = Basico_OPController_UtilOPController::retornaValorTipado($emailDefault, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get emailDefault
+	* 
+	* @return null|int
+	*/
+	public function getEmailDefault()
+	{
+		return $this->_emailDefault;
+	}
+
+    /**
+     * Get emailDefault object
+     * @return null|Basico_Model_Email
+     */
+    public function getEmailDefaultObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_Email();
+        // recuperando objeto
+        $object = $model->find($this->_emailDefault);
+        // retornando objeto
+        return $object;
+    }
+
+	/**
+	* Set websiteDefault
+	* 
+	* @param int $websiteDefault 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setWebsiteDefault($websiteDefault)
+	{
+		$this->_websiteDefault = Basico_OPController_UtilOPController::retornaValorTipado($websiteDefault, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get websiteDefault
+	* 
+	* @return null|int
+	*/
+	public function getWebsiteDefault()
+	{
+		return $this->_websiteDefault;
+	}
+ 
+    /**
+     * Get websiteDefault object
+     * @return null|Basico_Model_WebSite
+     */
+    public function getWebsiteDefaultObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_Website();
+        // recuperando objeto
+        $object = $model->find($this->_websiteDefault);
+        // retornando objeto
+        return $object;
+    }
+
+	/**
+	* Set enderecoCorrespondencia
+	* 
+	* @param int $enderecoCorrespondencia 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setEnderecoCorrespondencia($enderecoCorrespondencia)
+	{
+		$this->_enderecoCorrespondencia = Basico_OPController_UtilOPController::retornaValorTipado($enderecoCorrespondencia, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get enderecoCorrespondencia
+	* 
+	* @return null|int
+	*/
+	public function getEnderecoCorrespondencia()
+	{
+		return $this->_enderecoCorrespondencia;
+	}
+
+    /**
+     * Get enderecoCorrespondencia object
+     * @return null|Basico_Model_Endereco
+     */
+    public function getEnderecoCorrespondenciaObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_Endereco();
+        // recuperando objeto
+        $object = $model->find($this->_enderecoCorrespondencia);
+        // retornando objeto
+        return $object;
+    }
+
+	/**
+	* Set enderecoDefault
+	* 
+	* @param int $enderecoDefault 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setEnderecoDefault($enderecoDefault)
+	{
+		$this->_enderecoDefault = Basico_OPController_UtilOPController::retornaValorTipado($enderecoDefault, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get enderecoDefault
+	* 
+	* @return null|int
+	*/
+	public function getEnderecoDefault()
+	{
+		return $this->_enderecoDefault;
+	}
+
+    /**
+     * Get enderecoDefault object
+     * @return null|Basico_Model_Endereco
+     */
+    public function getEnderecoDefaultObject()
+    {
+    	// recuperando modelo
+        $model = new Basico_Model_Endereco();
+        // recuperando objeto
+        $object = $model->find($this->_enderecoDefault);
+        // retornando objeto
+        return $object;
+    }
+
+	/**
+	* Set dataCriacao
+	* 
+	* @param String $dataCriacao 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setDataCriacao($dataCriacao)
+	{
+		$this->_dataCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataCriacao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDataCriacao()
+	{
+		return $this->_dataCriacao;
+	}
+
+	/**
+	* Set dataUltimaModificacao
+	* 
+	* @param String $dataUltimaModificacao 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setDataUltimaModificacao($dataUltimaModificacao)
+	{
+		$this->_dataUltimaModificacao = Basico_OPController_UtilOPController::retornaValorTipado($dataUltimaModificacao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get dataUltimaModificacao
+	* 
+	* @return null|String
+	*/
+	public function getDataUltimaModificacao()
+	{
+		return $this->_dataUltimaModificacao;
+	}
+
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_PessoaJuridica
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
 	/**
 	* Set entry id
@@ -248,7 +604,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = (int) $id;
 		return $this;
 	}
 
@@ -273,7 +629,7 @@ class Basico_Model_PessoaJuridica
 		$this->_mapper = $mapper;
 		return $this;
 	}
-	
+
 	/**
 	* Get data mapper
 	*
@@ -299,7 +655,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function find($id)
 	{
-		$this->getMapper()->find((Int) $id, $this);
+		$this->getMapper()->find((int) $id, $this);
 		return $this;
 	}
 
@@ -312,7 +668,7 @@ class Basico_Model_PessoaJuridica
 	{
 		return $this->getMapper()->fetchAll();
 	}
-	
+
 	/**
 	* Fetch a list of entries that satisfy the parameters <params>
 	* 
@@ -322,25 +678,4 @@ class Basico_Model_PessoaJuridica
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-	   
-    /**
-    * fetch list of entries satisfying the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-
 }

@@ -5,26 +5,27 @@
  */
  
 /**
- * RegimeTrabalho model
+ * Profissao model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_RegimeTrabalhoMapper
+ * @uses       Basico_Model_ProfissaoMapper
  * @subpackage Model
  */
-class Basico_Model_RegimeTrabalho
+class Basico_Model_Profissao
 {
 	/**
 	* @var int
 	*/
 	protected $_id;
-
+	
 	/**
 	* @var int
 	*/
-	protected $_regimeTrabalhoPai;
+	protected $_categoria;
+
 	/**
-	 * @var Basico_Model_RegimeTrabalhoMapper
+	 * @var Basico_Model_ProfissaoMapper
 	 */
 	protected $_mapper;
 
@@ -39,7 +40,12 @@ class Basico_Model_RegimeTrabalho
 	/**
 	 * @var String
 	 */
+	protected $_codigo;
+	/**
+	 * @var String
+	 */
 	protected $_rowinfo;
+	
 	/**
 	 * Constructor
 	 * 
@@ -91,7 +97,7 @@ class Basico_Model_RegimeTrabalho
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_RegimeTrabalho
+	 * @return Basico_Model_Profissao
 	 */
 	public function setOptions(array $options)
 	{
@@ -108,78 +114,46 @@ class Basico_Model_RegimeTrabalho
 	}
 
 	/**
-	* Set entry regimeTrabalhoPai
+	* Set categoria
 	* 
-	* @param  int $id 
-	* @return Basico_Model_RegimeTrabalho
+	* @param int $categoria 
+	* @return Basico_Model_Profissao
 	*/
-	public function setRegimeTrabalhoPai($id)
+	public function setCategoria($categoria)
 	{
-		$this->_regimeTrabalhoPai = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Retrieve entry regimeTrabalhoPai
+	* Get categoria
 	* 
 	* @return null|int
 	*/
-	public function getRegimeTrabalhoPai()
+	public function getCategoria()
 	{
-		return $this->_regimeTrabalhoPai;
+		return $this->_categoria;
 	}
-
-	/**
-	 * Get RootRegimeTrabalhoPai Object
-	 * 
-	 * @return null|Basico_Model_RegimeTrabalho
-	 */
-	public function getRootRegimeTrabalhoPaiObject()
-	{
-		/* instancia modelo */
-		$rootRegimeTrabalhoPaiObject = new Basico_Model_RegimeTrabalho();
-		
-		/* localiza o id da categoria pai ou utiliza o id da propria categoria */
-		if ($this->_regimeTrabalhoPai)
-			// recuperando o id do regime de trabalho pai
-			$idRegimeTrabalhoParaLocalizar = $this->_regimeTrabalhoPai;
-		else
-			// recuperando o id do regime de trabalho
-			$idRegimeTrabalhoParaLocalizar = $this->_id;
-		
-		/* localiza a categoria */
-		$rootRegimeTrabalhoPaiObject->find($idRegimeTrabalhoParaLocalizar);
-		
-		/* loop para chegar na categoria raiz */
-		while ($rootRegimeTrabalhoPaiObject->regimeTrabalhoPai) {
-			// localizando regime de trabalho pai
-			$rootRegimeTrabalhoPaiObject->find($rootRegimeTrabalhoPaiObject->regimeTrabalhoPai);
-		}
-
-		// retornando o objeto root
-		return $rootRegimeTrabalhoPaiObject;
-	}
-
-	/**
-	 * Retorna o objeto RegimeTrabalhoPai
-	 * 
-	 * @return null|Basico_Model_RegimeTrabalho
-	 */
-	public function getRegimeTrabalhoObject()
-	{
-		// recuperando o modelo
-		$model = new Basico_Model_RegimeTrabalho();
-		// recuperando o objeto
-		$object = $model->find($this->_regimeTrabalhoPai);
-		// retornando o objeto
-		return $object;
-	}
-
+ 
+    /**
+     * Get categoria object
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+    	// recuperando modelo
+        $model = new Default_Model_Categoria();
+        // recuperando objeto
+        $object = $model->find($this->_categoria);
+        // retornando objeto
+        return $object;
+    }
+	
 	/**
 	* Set nome
 	* 
 	* @param String $nome 
-	* @return Basico_Model_RegimeTrabalho
+	* @return Basico_Model_Profissao
 	*/
 	public function setNome($nome)
 	{
@@ -201,7 +175,7 @@ class Basico_Model_RegimeTrabalho
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Basico_Model_RegimeTrabalho
+	* @return Basico_Model_Profissao
 	*/
 	public function setDescricao($descricao)
 	{
@@ -218,12 +192,34 @@ class Basico_Model_RegimeTrabalho
 	{
 		return $this->_descricao;
 	}
+     
+	/**
+	* Set codigo
+	* 
+	* @param String $codigo 
+	* @return Basico_Model_Profissao
+	*/
+	public function setCodigo($codigo)
+	{
+		$this->_codigo = Basico_OPController_UtilOPController::retornaValorTipado($codigo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get codigo
+	* 
+	* @return null|String
+	*/
+	public function getCodigo()
+	{
+		return $this->_codigo;
+	}
 
     /**
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_RegimeTrabalho
+	* @return Basico_Model_Profissao
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -245,7 +241,7 @@ class Basico_Model_RegimeTrabalho
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_RegimeTrabalho
+	* @return Basico_Model_Profissao
 	*/
 	public function setId($id)
 	{
@@ -267,7 +263,7 @@ class Basico_Model_RegimeTrabalho
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_RegimeTrabalho
+	* @return Basico_Model_Profissao
 	*/
 	public function setMapper($mapper)
 	{
@@ -278,14 +274,14 @@ class Basico_Model_RegimeTrabalho
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_RegimeTrabalhoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_ProfissaoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_RegimeTrabalhoMapper
+	* @return Basico_Model_ProfissaoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_RegimeTrabalhoMapper());
+			$this->setMapper(new Basico_Model_ProfissaoMapper());
 		}
 		return $this->_mapper;
 	}
@@ -296,7 +292,7 @@ class Basico_Model_RegimeTrabalho
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
-	* @return Basico_Model_RegimeTrabalho
+	* @return Basico_Model_Profissao
 	*/
 	public function find($id)
 	{

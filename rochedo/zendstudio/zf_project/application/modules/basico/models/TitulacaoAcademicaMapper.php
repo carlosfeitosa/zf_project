@@ -5,15 +5,15 @@
  */
  
 /**
- * RegimeTrabalho data mapper
+ * TitulacaoAcademica data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_RegimeTrabalho
+ * @uses       Basico_Model_DbTable_TitulacaoAcademica
  * @subpackage Model
  */
-class Basico_Model_RegimeTrabalhoMapper
+class Basico_Model_TitulacaoAcademicaMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +24,7 @@ class Basico_Model_RegimeTrabalhoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_RegimeTrabalhoMapper
+     * @return Basico_Model_TitulacaoAcademicaMapper
      */
     public function setDbTable($dbTable)
     {
@@ -41,31 +41,30 @@ class Basico_Model_RegimeTrabalhoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_RegimeTrabalho if no instance registered
+     * Lazy loads Basico_Model_DbTable_TitulacaoAcademica if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_RegimeTrabalho');
+            $this->setDbTable('Basico_Model_DbTable_TitulacaoAcademica');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a RegimeTrabalho entry
+     * Save a TitulacaoAcademica entry
      * 
-     * @param  Basico_Model_RegimeTrabalho $object
+     * @param  Basico_Model_TitulacaoAcademica $object
      * @return void
      */
-    public function save(Basico_Model_RegimeTrabalho $object)
+    public function save(Basico_Model_TitulacaoAcademica $object)
     {
         $data = array(
-                'id_regime_trabalho_pai' => $object->getRegimeTrabalhoPai(),
-				'nome'                   => $object->getNome(),
-				'descricao' 			 => $object->getDescricao(),
-        		'rowinfo'   			 => $object->getRowinfo(),
+				'constante_textual_nome' => $object->getConstanteTextualNome(),
+				'descricao'              => $object->getDescricao(),
+        		'rowinfo'                => $object->getRowinfo(),
 
         );
 
@@ -78,23 +77,23 @@ class Basico_Model_RegimeTrabalhoMapper
     }
     
 	/**
-	* Delete a RegimeTrabalho entry
-	* @param Basico_Model_RegimeTrabalho $object
+	* Delete a TitulacaoAcademica entry
+	* @param Basico_Model_TitulacaoAcademica $object
 	* @return void
 	*/
-	public function delete(Basico_Model_RegimeTrabalho $object)
+	public function delete(Basico_Model_TitulacaoAcademica $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a RegimeTrabalho entry by id
+     * Find a TitulacaoAcademica entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_RegimeTrabalho $object 
+     * @param  Basico_Model_TitulacaoAcademica $object 
      * @return void
      */
-    public function find($id, Basico_Model_RegimeTrabalho $object)
+    public function find($id, Basico_Model_TitulacaoAcademica $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -102,14 +101,13 @@ class Basico_Model_RegimeTrabalhoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-        	   ->setRegimeTrabalhoPai($row->id_regime_trabalho_pai)
-			   ->setNome($row->nome)
+   			   ->setConstanteTextualNome($row->constante_textual_nome)
 			   ->setDescricao($row->descricao)
 			   ->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all regimetrabalho entries
+	 * Fetch all titulacaoacademica entries
 	 * 
 	 * @return array
 	 */
@@ -119,10 +117,9 @@ class Basico_Model_RegimeTrabalhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_RegimeTrabalho();
+			$entry = new Basico_Model_TitulacaoAcademica();
 			$entry->setId($row->id)
-				  ->setRegimeTrabalhoPai($row->id_regime_trabalho_pai)
-				  ->setNome($row->nome)
+ 				  ->setConstanteTextualNome($row->constante_textual_nome)
 				  ->setDescricao($row->descricao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
@@ -132,7 +129,7 @@ class Basico_Model_RegimeTrabalhoMapper
 	}
 	
 	/**
-	 * Fetch all regimetrabalho entries
+	 * Fetch all titulacaoacademica entries
 	 * 
 	 * @return array
 	 */
@@ -142,10 +139,9 @@ class Basico_Model_RegimeTrabalhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_RegimeTrabalho();
+			$entry = new Basico_Model_TitulacaoAcademica();
 			$entry->setId($row->id)
-				  ->setRegimeTrabalhoPai($row->id_regime_trabalho_pai)
-				  ->setNome($row->nome)
+				  ->setConstanteTextualNome($row->constante_textual_nome)
 				  ->setDescricao($row->descricao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
