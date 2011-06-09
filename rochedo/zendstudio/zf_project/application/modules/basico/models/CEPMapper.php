@@ -27,7 +27,7 @@ class Basico_Model_CEPMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -57,12 +57,13 @@ class Basico_Model_CEPMapper
     public function save(Basico_Model_CEP $object)
     {
         $data = array(
-				'cep'   => $object->getCep(),
-				'data_ultima_atualizacao'   => $object->getDataUltimaAtualizacao(),
-              	'id_pais'   => $object->getPais(),
-              	'id_categoria'   => $object->getCategoria(),
-              	'id_estado'   => $object->getEstado(),
-              	'id_municipio'   => $object->getMunicipio(),
+				'cep'   				  => $object->getCep(),
+				'data_ultima_atualizacao' => $object->getDataUltimaAtualizacao(),
+              	'id_pais'   			  => $object->getPais(),
+              	'id_categoria'   		  => $object->getCategoria(),
+              	'id_estado'   			  => $object->getEstado(),
+              	'id_municipio'   		  => $object->getMunicipio(),
+        		'rowinfo'                 =>$object->getRowinfo(),
 
         );
 
@@ -99,13 +100,13 @@ class Basico_Model_CEPMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
-				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria)
-                ->setEstado($row->id_estado)
-                ->setMunicipio($row->id_municipio);
+			   ->setCep($row->cep)
+			   ->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
+               ->setPais($row->id_pais)
+               ->setCategoria($row->id_categoria)
+               ->setEstado($row->id_estado)
+               ->setMunicipio($row->id_municipio)
+               ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -121,14 +122,14 @@ class Basico_Model_CEPMapper
 		{
 			$entry = new Basico_Model_CEP();
 			$entry->setId($row->id)
-
-				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria)
-                ->setEstado($row->id_estado)
-                ->setMunicipio($row->id_municipio)
-                ->setMapper($this);
+				  ->setCep($row->cep)
+				  ->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
+                  ->setPais($row->id_pais)
+                  ->setCategoria($row->id_categoria)
+                  ->setEstado($row->id_estado)
+                  ->setMunicipio($row->id_municipio)
+                  ->setRowinfo($row->rowinfo)
+                  ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -147,83 +148,16 @@ class Basico_Model_CEPMapper
 		{
 			$entry = new Basico_Model_CEP();
 			$entry->setId($row->id)
-
-				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria)
-                ->setEstado($row->id_estado)
-                ->setMunicipio($row->id_municipio)
-				->setMapper($this);
+				  ->setCep($row->cep)
+				  ->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
+                  ->setPais($row->id_pais)
+                  ->setCategoria($row->id_categoria)
+                  ->setEstado($row->id_estado)
+                  ->setMunicipio($row->id_municipio)
+                  ->setRowinfo($row->rowinfo)
+				  ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
 	}
-
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'cep'),
-                   array('id' => 'table1.id',
-                        'cep' => 'table1.cep' ,
-                        'data_ultima_atualizacao' => 'table1.data_ultima_atualizacao' ,
-                        'id_pais' => 'table1.id_pais)',
-                        'id_categoria' => 'table1.id_categoria)',
-                        'id_estado' => 'table1.id_estado)',
-                        'id_municipio' => 'table1.id_municipio)'))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_CEP();
-            $entry->setId($row['id'])
-                ->setCep($row['cep'])
-                ->setDataUltimaAtualizacao($row['data_ultima_atualizacao'])
-                ->setPais($row['id_pais'])
-                ->setCategoria($row['id_categoria'])
-                ->setEstado($row['id_estado'])
-                ->setMunicipio($row['id_municipio'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_CEP();
-            $entry->setId($row->id)
-				->setCep($row->cep)
-				->setDataUltimaAtualizacao($row->data_ultima_atualizacao)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria)
-                ->setEstado($row->id_estado)
-                ->setMunicipio($row->id_municipio)
-                ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }    
 }
