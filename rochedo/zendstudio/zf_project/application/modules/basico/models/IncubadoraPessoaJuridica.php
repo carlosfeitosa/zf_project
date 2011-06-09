@@ -206,7 +206,7 @@ class Basico_Model_IncubadoraPessoaJuridica
      * Get pessoaJuridica object
      * @return null|Basico_Model_PessoaJuridica
      */
-    public function getPessoaJuridicaObject()
+    public function getPessoaJuridicaObjectIncubadora()
     {
     	// recuperando modelo
         $model = new Basico_Model_PessoaJuridica();
