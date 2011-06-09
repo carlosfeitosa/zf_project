@@ -68,7 +68,7 @@ class Basico_Model_DadosProfissionais
     /**
      * @var Integer
      */
-    protected $_vinculoEmpregaticio;
+    protected $_vinculoProfissional;
 
     /**
      * @var Integer
@@ -417,14 +417,14 @@ class Basico_Model_DadosProfissionais
     }
     
 	/**
-	* Set vinculoEmpregaticio
+	* Set vinculoProfissional
 	* 
-	* @param int $vinculoEmpregaticio 
+	* @param int $vinculoProfissional
 	* @return Basico_Model_DadosProfissionais
 	*/
-	public function setVinculoEmpregaticio($vinculoEmpregaticio)
+	public function setVinculoEmpregaticio($vinculoProfissional)
 	{
-		$this->_vinculoEmpregaticio = Basico_OPController_UtilOPController::retornaValorTipado($vinculoEmpregaticio, TIPO_INTEIRO, true);
+		$this->_vinculoProfissional = Basico_OPController_UtilOPController::retornaValorTipado($vinculoProfissional, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -433,19 +433,22 @@ class Basico_Model_DadosProfissionais
 	* 
 	* @return null|int
 	*/
-	public function getVinculoEmpregaticio()
+	public function getVinculoProfissional()
 	{
-		return $this->_vinculoEmpregaticio;
+		return $this->_vinculoProfissional;
 	}
  
     /**
-     * Get vinculoEmpregaticio object
-     * @return null|Basico_Model_VinculoEmpregaticio
+     * Get vinculoProfissional object
+     * @return null|Basico_Model_VinculoProfissional
      */
-    public function getVinculoEmpregaticioObject()
+    public function getVinculoProfissionalObject()
     {
-        $model = new Basico_Model_VinculoEmpregaticio();
-        $object = $model->find($this->_vinculoEmpregaticio);
+    	// recuperando modelo
+        $model = new Basico_Model_VinculoProfissional();
+        // recuperando objeto
+        $object = $model->find($this->_vinculoProfissional);
+        // retornando objeto
         return $object;
     }
     

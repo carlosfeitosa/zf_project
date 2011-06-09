@@ -202,7 +202,7 @@ class Basico_Model_Log
      */
     public function getPessoaPerfilObject()
     {
-        $model = new Basico_Model_PessoaPerfil();
+        $model = new Basico_Model_PessoasPerfis();
         $object = $model->find($this->_pessoaperfil);
         return $object;
     }

@@ -140,7 +140,7 @@ class Basico_Model_MetodoValidacao
 	*/
 	public function setCategoria($categoria)
 	{
-		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_INTEIRO, true);
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 

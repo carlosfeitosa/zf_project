@@ -139,7 +139,7 @@ class Basico_Model_MascarasFormulariosElementos
     * @param int $ 
     * @return Basico_Model_FormularioElemento
     */
-    public function setFormularioElemento($formularioelemento)
+    public function setFormularioElemento($formularioElemento)
     {
         $this->_formularioelemento = Basico_OPController_UtilOPController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
         return $this;
