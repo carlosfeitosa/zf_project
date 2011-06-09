@@ -22,10 +22,6 @@ class Basico_Model_DadosProfissionais
 	/**
 	 * @var String
 	 */
-	protected $_departamento;
-	/**
-	 * @var String
-	 */
 	protected $_cargo;
 	/**
 	 * @var String
@@ -79,6 +75,16 @@ class Basico_Model_DadosProfissionais
      */
     protected $_regimeTrabalho;
 
+    /**
+     * @var Integer
+     */
+    protected $_profissao;
+	/**
+	 * @var String
+	 */
+	protected $_rowinfo;
+
+
 	/**
 	 * Constructor
 	 * 
@@ -105,7 +111,7 @@ class Basico_Model_DadosProfissionais
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		$this->$method($value);
 	}
@@ -121,7 +127,7 @@ class Basico_Model_DadosProfissionais
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		return $this->$method();
 	}
@@ -147,32 +153,10 @@ class Basico_Model_DadosProfissionais
 	}
     
 	/**
-	* Set departamento
-	* 
-	* @param String $departamento 
-	* @return Basico_Model_Departamento
-	*/
-	public function setDepartamento($departamento)
-	{
-		$this->_departamento = Basico_OPController_UtilOPController::retornaValorTipado($departamento, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Get departamento
-	* 
-	* @return null|String
-	*/
-	public function getDepartamento()
-	{
-		return $this->_departamento;
-	}
-     
-	/**
 	* Set cargo
 	* 
 	* @param String $cargo 
-	* @return Basico_Model_Cargo
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setCargo($cargo)
 	{
@@ -194,7 +178,7 @@ class Basico_Model_DadosProfissionais
 	* Set funcao
 	* 
 	* @param String $funcao 
-	* @return Basico_Model_Funcao
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setFuncao($funcao)
 	{
@@ -216,7 +200,7 @@ class Basico_Model_DadosProfissionais
 	* Set atividadesDesenvolvidas
 	* 
 	* @param String $atividadesDesenvolvidas 
-	* @return Basico_Model_AtividadesDesenvolvidas
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setAtividadesDesenvolvidas($atividadesDesenvolvidas)
 	{
@@ -238,7 +222,7 @@ class Basico_Model_DadosProfissionais
 	* Set dataAdmissao
 	* 
 	* @param String $dataAdmissao 
-	* @return Basico_Model_DataAdmissao
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setDataAdmissao($dataAdmissao)
 	{
@@ -260,7 +244,7 @@ class Basico_Model_DadosProfissionais
 	* Set dataDemissao
 	* 
 	* @param String $dataDemissao 
-	* @return Basico_Model_DataDemissao
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setDataDemissao($dataDemissao)
 	{
@@ -282,7 +266,7 @@ class Basico_Model_DadosProfissionais
 	* Set cargaHorariaSemanal
 	* 
 	* @param Integer $cargaHorariaSemanal 
-	* @return Basico_Model_CargaHorariaSemanal
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setCargaHorariaSemanal($cargaHorariaSemanal)
 	{
@@ -304,7 +288,7 @@ class Basico_Model_DadosProfissionais
 	* Set dedicacaoExclusiva
 	* 
 	* @param Boolean $dedicacaoExclusiva 
-	* @return Basico_Model_DedicacaoExclusiva
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setDedicacaoExclusiva($dedicacaoExclusiva)
 	{
@@ -326,11 +310,11 @@ class Basico_Model_DadosProfissionais
 	* Set salarioBruto
 	* 
 	* @param Double $salarioBruto 
-	* @return Basico_Model_SalarioBruto
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setSalarioBruto($salarioBruto)
 	{
-		$this->_salarioBruto = (Double) $salarioBruto;
+		$this->_salarioBruto = Basico_OPController_UtilOPController::retornaValorTipado($salarioBruto, TIPO_FLOAT, true);
 		return $this;
 	}
 
@@ -348,7 +332,7 @@ class Basico_Model_DadosProfissionais
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Basico_Model_Descricao
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setDescricao($descricao)
 	{
@@ -370,7 +354,7 @@ class Basico_Model_DadosProfissionais
 	* Set pessoa
 	* 
 	* @param int $pessoa 
-	* @return Basico_Model_Pessoa
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setPessoa($pessoa)
 	{
@@ -390,7 +374,7 @@ class Basico_Model_DadosProfissionais
  
     /**
      * Get pessoa object
-     * @return null|Pessoa
+     * @return null|Basico_Model_Pessoa
      */
     public function getPessoaObject()
     {
@@ -403,7 +387,7 @@ class Basico_Model_DadosProfissionais
 	* Set pessoaJuridicaVinculo
 	* 
 	* @param int $pessoaJuridicaVinculo 
-	* @return Basico_Model_PessoaJuridicaVinculo
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setPessoaJuridicaVinculo($pessoaJuridicaVinculo)
 	{
@@ -423,7 +407,7 @@ class Basico_Model_DadosProfissionais
  
     /**
      * Get pessoaJuridicaVinculo object
-     * @return null|PessoaJuridica
+     * @return null|Basico_Model_PessoaJuridicaVinculo
      */
     public function getPessoaJuridicaVinculoObject()
     {
@@ -436,7 +420,7 @@ class Basico_Model_DadosProfissionais
 	* Set vinculoEmpregaticio
 	* 
 	* @param int $vinculoEmpregaticio 
-	* @return Basico_Model_VinculoEmpregaticio
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setVinculoEmpregaticio($vinculoEmpregaticio)
 	{
@@ -456,7 +440,7 @@ class Basico_Model_DadosProfissionais
  
     /**
      * Get vinculoEmpregaticio object
-     * @return null|VinculoPessoaJuridica
+     * @return null|Basico_Model_VinculoEmpregaticio
      */
     public function getVinculoEmpregaticioObject()
     {
@@ -469,7 +453,7 @@ class Basico_Model_DadosProfissionais
 	* Set regimeTrabalho
 	* 
 	* @param int $regimeTrabalho 
-	* @return Basico_Model_RegimeTrabalho
+	* @return Basico_Model_DadosProfissionais
 	*/
 	public function setRegimeTrabalho($regimeTrabalho)
 	{
@@ -489,7 +473,7 @@ class Basico_Model_DadosProfissionais
  
     /**
      * Get regimeTrabalho object
-     * @return null|RegimeTrabalho
+     * @return null|Basico_Model_RegimeTrabalho
      */
     public function getRegimeTrabalhoObject()
     {
@@ -497,6 +481,61 @@ class Basico_Model_DadosProfissionais
         $object = $model->find($this->_regimeTrabalho);
         return $object;
     }
+    
+	/**
+	* Set profissao
+	* 
+	* @param int $profissao 
+	* @return Basico_Model_DadosProfissionais
+	*/
+	public function setProfissao($profissao)
+	{
+		$this->_profissao = Basico_OPController_UtilOPController::retornaValorTipado($profissao, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get profissao
+	* 
+	* @return null|int
+	*/
+	public function getProfissao()
+	{
+		return $this->_profissao;
+	}
+ 
+    /**
+     * Get profissao object
+     * @return null|Basico_Model_Profissao
+     */
+    public function getProfissaoObject()
+    {
+        $model = new Basico_Model_Profissao();
+        $object = $model->find($this->_profissao);
+        return $object;
+    }
+
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
 	/**
 	* Set entry id
@@ -506,7 +545,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id =  Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -547,6 +586,7 @@ class Basico_Model_DadosProfissionais
 		return $this->_mapper;
 	}
 
+
 	/**
 	* Find an entry
 	*
@@ -557,7 +597,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function find($id)
 	{
-		$this->getMapper()->find((Int) $id, $this);
+		$this->getMapper()->find((int)$id, $this);
 		return $this;
 	}
 
@@ -580,25 +620,4 @@ class Basico_Model_DadosProfissionais
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
-	   
-    /**
-    * fetch list of entries satisfying the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-
 }
