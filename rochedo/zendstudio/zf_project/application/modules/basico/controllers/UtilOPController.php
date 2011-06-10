@@ -309,7 +309,7 @@ class Basico_OPController_UtilOPController
 	 * @var String $locale
 	 * @return String
 	 */
-	public static function retornaDateTimeAtual($locale = "en-us")
+	public static function retornaDateTimeAtual($locale = DEFAULT_SYSTEM_DATETIME_LOCALE)
 	{
 		// retornando o datetime atual
 	    return Zend_Date::now($locale);

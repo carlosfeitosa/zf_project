@@ -473,7 +473,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 * 
 	 * @param String $login
 	 * 
-	 * @return null
+	 * @return void
 	 */
 	private function limpaTentativasInvalidasLogon($login)
 	{
@@ -501,6 +501,34 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	}
 
 	/**
+	 * Seta a data-hora do ultimo logon
+	 * 
+	 * @param String $login
+	 * 
+	 * @return void
+	 */
+	private function setaDataHoraLogon($login)
+	{
+		// recuperando o objeto login
+		$objLogin = $this->retornaObjetoLoginPorLogin($login);
+
+		// verificando se o objeto foi carregado
+		if ($objLogin->id) {
+			// recuperando a ultima versao do objeto
+			$versaoUpdate = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
+
+			// setando a data-hora do ultimo login
+			$objLogin->dataHoraUltimoLogon = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+
+			// preparando XML rowinfo
+			$this->prepareSetRowinfoXML($objLogin, true);
+
+			// salvando o objeto
+			$this->salvarObjeto($objLogin, $versaoUpdate);
+		}
+	}
+
+	/**
 	 * Efetua o logon do usuario atraves do login
 	 * 
 	 * @param String $login
@@ -519,6 +547,9 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 				// limpa as tentativas falhas
 				$this->limpaTentativasInvalidasLogon($login);
 			}
+
+			// setando data-hora do login
+			$this->setaDataHoraLogon($login);
 
 			// rodando metodo de logon
 			$this->inicializaLogon($login);
