@@ -203,9 +203,9 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		
 	    		// setando a pessoa dona dos dadosBiometricos
 	    		$novoDadosBiometricos->pessoa = $idPessoa;
-	    		
+	    		$controladorRowinfo->prepareXml($novoDadosBiometricos, true);
 	    		// setando rowinfo dos DadosBiometricos
-	    		$novoDadosBiometricos->rowinfo = "SYSTEM_STARTUP";
+	    		$novoDadosBiometricos->rowinfo = $controladorRowinfo->getXml();
 	    		
 	    		// setando o sexo
 	    		if ($sexo === 0)
@@ -223,6 +223,10 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$novoLogin->travado = false;
 	    		$novoLogin->resetado = false;
 	    		$novoLogin->podeExpirar = true;
+	    		
+	    		$controladorRowinfo->prepareXml($novoLogin, true);
+	    		$novoLogin->rowinfo = $controladorRowinfo->getXml();
+	    		
 	    		$novoLogin->login  = trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'));
 	    		$novoLogin->senha  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha')));
 	    		$novoLogin->ativo  = true;
