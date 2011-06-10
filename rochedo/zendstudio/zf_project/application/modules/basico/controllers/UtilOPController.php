@@ -305,15 +305,29 @@ class Basico_OPController_UtilOPController
 	}
 	
 	/**
-	 * Retorna o datetime atual no locale passado ou no default que é 'en-us'
+	 * Retorna o datetime atual no locale passado ou no default que é 'en_US'
+	 * 
 	 * @var String $locale
+	 * 
 	 * @return String
 	 */
 	public static function retornaDateTimeAtual($locale = DEFAULT_SYSTEM_DATETIME_LOCALE)
 	{
 		// retornando o datetime atual
 	    return Zend_Date::now($locale);
-	    
+	}
+
+	/**
+	 * Retorna um Zend_Date a partir de uma data e formato
+	 * 
+	 * @param String $stringDate
+	 * 
+	 * @param String $format
+	 */
+	public static function retornaZend_Date($stringDate, $format = DEFAULT_DATABASE_DATETIME_FORMAT)
+	{
+		// retornando um zend_date da data e formato informados
+		return new Zend_Date($stringDate, $format);
 	}
 
 	/**

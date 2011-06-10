@@ -381,7 +381,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public static function retornaLoginTravado(Basico_Model_Login $objLogin)
 	{
 		// carregando a data hora da ultima tentativa de login, acrescida de uma hora
-		$dataHoraUltimaTentativaFalhaLogin = new Zend_Date($objLogin->dataHoraUltimaTentativaFalha);
+		$dataHoraUltimaTentativaFalhaLogin = Basico_OPController_UtilOPController::retornaZend_Date($objLogin->dataHoraUltimaTentativaFalha);
 		$dataHoraUltimaTentativaFalhaLogin->addHour(1);
 
 		// verificando se o login esta travado

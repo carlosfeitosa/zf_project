@@ -98,4 +98,5 @@ define("MENU_CSS_FILE", "/css/menu.css");
  * LANGUAGE SETTINGS
  */
 define("DEFAULT_SYSTEM_LANGUAGE", LANGUAGE_PT_BR);
-define("DEFAULT_SYSTEM_DATETIME_LOCALE", "en-us");
+define("DEFAULT_SYSTEM_DATETIME_LOCALE", "en_US");
+define("DEFAULT_DATABASE_DATETIME_FORMAT", "yyyy-MM-dd hh:mm:ss");
