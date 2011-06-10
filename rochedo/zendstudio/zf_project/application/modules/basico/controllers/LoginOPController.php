@@ -303,6 +303,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO]        = self::retornaLoginTravado($objLogin);
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO]       = self::retornaLoginResetado($objLogin);
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA] = self::retornaLoginSenhaExpirada($objLogin);
+		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO]       = self::retornaLoginExpirado($objLogin);
 
 		// retornando array de resultados
 		return $tempReturn;
@@ -335,9 +336,13 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO])
 			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
-		// verificando se existe problema de login resetado
+		// verificando se existe problema de senha expirada
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA])
 			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+
+		// verificando se existe problema de login expirada
+		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO])
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_EXPIRADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		return $tempReturn;
 	}
@@ -355,7 +360,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$arrayLoginPodeLogar = $this->retornaArrayLoginPodeLogar($login);
 
 		// retornando se o login pode logar
-		return (($arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA]));
+		return (($arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO]));
 	}
 
 	/**
@@ -426,6 +431,36 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	{
 		// retornando se a senha esta expirada
 		return (($objLogin->dataHoraExpiracaoSenha) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraExpiracaoSenha) <= Basico_OPController_UtilOPController::retornaDateTimeAtual()->getTimestamp()));
+	}
+
+	/**
+	 * Retrona se o login esta expirado
+	 * 
+	 * @param Basico_Model_Login $objLogin
+	 * 
+	 * @return Boolean
+	 */
+	public static function retornaLoginExpirado(Basico_Model_Login $objLogin)
+	{
+		// recuperando se o login pode expirar e esta expirado
+		$loginExpirado = (($objLogin->podeExpirar) and ($objLogin->dataHoraProximaExpiracao) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraProximaExpiracao) <= Basico_OPController_UtilOPController::retornaDateTimeAtual()->getTimestamp()));
+
+		// verificando se o login esta expirado e se a data-hora da ultima expiracao eh igual a data-hora da proxima expiracao
+		if (($loginExpirado) and ($objLogin->dataHoraProximaExpiracao <> $objLogin->dataHoraUltimaExpiracao)) {
+			// recuperando a versao do objeto
+			$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
+			
+			// setando a data-hora da ultima expiracao
+			$objLogin->dataHoraUltimaExpiracao = $objLogin->dataHoraProximaExpiracao;
+			// setando rowinfo
+			Basico_OPController_LoginOPController::getInstance()->prepareSetRowinfoXML($objLogin);
+
+			// salvando o objeto
+			Basico_OPController_LoginOPController::getInstance()->salvarObjeto($objLogin, $versaoObjeto);
+		}
+
+		// retornando se o login esta expirado
+		return $loginExpirado;
 	}
 
 	/**
