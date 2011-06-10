@@ -217,16 +217,16 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$controladorDadosBiometricos->salvarObjeto($novoDadosBiometricos);
 	    		    
 	    		// criando o login do usuario
-	    		$novoLogin = Basico_OPController_LoginOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_LoginOPController'); 
+	    		$novoLogin = $controladorLogin->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_LoginOPController'); 
 	    		$novoLogin->pessoa = $idPessoa;
 	    		$novoLogin->tentativasFalhas = 0;
 	    		$novoLogin->travado = false;
 	    		$novoLogin->resetado = false;
 	    		$novoLogin->podeExpirar = true;
-	    		$novoLogin->rowinfo = "SYSTEM_STARTUP";
 	    		$novoLogin->login  = trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'));
 	    		$novoLogin->senha  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha')));
 	    		$novoLogin->ativo  = true;
+	    		$controladorLogin->prepareSetRowinfoXML($novoLogin);
 	    		$controladorLogin->salvarObjeto($novoLogin);
 	    		
 	    		
