@@ -100,6 +100,16 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		
 					// parando a execucao do plugin
 					return;
+				} else if (!Basico_OPController_LoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao())) { // verificando se o usuario pode estar logado 
+					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
+					$request->setModuleName('basico');
+					$request->setControllerName('autenticador');
+					$request->setActionName('problemaslogin');
+					$request->setParam('login', Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
+					Basico_OPController_LoginOPController::getInstance()->removeRegistroIdLoginUsuarioSessao();
+		
+					// parando a execucao do plugin
+					return;
 				} else if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) { // verificando se o usuario possui perfil para acessar a acao
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 					$request->setModuleName('basico');
@@ -121,7 +131,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		}
 
 		// verificando se trata-se da acao de registro de novo usuario
-		if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and ((self::verificaRequestRegistroNovoUsuario($request)) or (self::verificaRequestProblemasLogin($request)))) {
+		if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and ((self::verificaRequestRegistroNovoUsuario($request)) or ((self::verificaRequestProblemasLogin($request)) and (Basico_OPController_LoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))))) {
 			// modificando o request para o index da aplicacao
 			$request->setModuleName('default');
 			$request->setControllerName('index');

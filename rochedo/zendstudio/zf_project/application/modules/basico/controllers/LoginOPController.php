@@ -364,6 +364,38 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	}
 
 	/**
+	 * Retorna se o login pode logar, via SQL
+	 * 
+	 * @param String $login
+	 * 
+	 * @return Boolean
+	 */
+	public static function retornaLoginPodeLogarViaSQL($login)
+	{
+		// recuperando informacoes sobre a tabela login
+		$arrayNomeCampoIdLogin = array('id');
+		$condicaoSQL           = "(" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    (ativo = FALSE) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    (travado = TRUE) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    (resetado = TRUE) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    ((datahora_expiracao_senha IS NOT NULL) AND (datahora_expiracao_senha < current_timestamp)) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    ((pode_expirar = TRUE) AND (datahora_proxima_expiracao < current_timestamp))" . QUEBRA_DE_LINHA;
+		$condicaoSQL		  .= ")" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "AND login = '{$login}'";
+
+		// recuperando um array contendo o id da categoria cujo nome foi passado como parametro
+		$arrayLogin = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoIdLogin, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayLogin)) and (is_array($arrayLogin)) and (count($arrayLogin) > 0)) {
+			// retornando false
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Retorna se o login esta ativo
 	 * 
 	 * @param Basico_Model_Login $objLogin
