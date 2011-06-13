@@ -375,13 +375,16 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// recuperando informacoes sobre a tabela login
 		$arrayNomeCampoIdLogin = array('id');
 		$condicaoSQL           = "(" . QUEBRA_DE_LINHA;
-		$condicaoSQL          .= "    (ativo = FALSE) OR" . QUEBRA_DE_LINHA;
-		$condicaoSQL          .= "    (travado = TRUE) OR" . QUEBRA_DE_LINHA;
-		$condicaoSQL          .= "    (resetado = TRUE) OR" . QUEBRA_DE_LINHA;
-		$condicaoSQL          .= "    ((datahora_expiracao_senha IS NOT NULL) AND (datahora_expiracao_senha < current_timestamp)) OR" . QUEBRA_DE_LINHA;
-		$condicaoSQL          .= "    ((pode_expirar = TRUE) AND (datahora_proxima_expiracao < current_timestamp))" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    (ativo = @false) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    (travado = @true) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    (resetado = @true) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    ((datahora_expiracao_senha IS NOT NULL) AND (datahora_expiracao_senha < @now)) OR" . QUEBRA_DE_LINHA;
+		$condicaoSQL          .= "    ((pode_expirar = @true) AND (datahora_proxima_expiracao < @now))" . QUEBRA_DE_LINHA;
 		$condicaoSQL		  .= ")" . QUEBRA_DE_LINHA;
 		$condicaoSQL          .= "AND login = '{$login}'";
+
+		// fazendo substituicoes de tags
+		Basico_OPController_DBUtilOPController::substituiTagsSQLScriptDB($condicaoSQL);
 
 		// recuperando um array contendo o id da categoria cujo nome foi passado como parametro
 		$arrayLogin = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoIdLogin, $condicaoSQL);

@@ -664,7 +664,46 @@ class Basico_OPController_DBUtilOPController
     	else
     		return $tempReturn;
     }
-    
+
+    /**
+     * Retorna a funcao que retorna a data-hora atual do servidor, relacionado ao banco de dados ativo
+     * 
+     * @return String
+     */
+    public static function retornaFuncaoDataHoraAtualDB()
+    {
+    	// recuperando o tipo de banco de dados ativo
+    	$pdoTypeBancoAtivo = self::retornaPdoTypeConexaoAtiva();
+
+    	// verificando o tipo de banco de dados
+    	switch ($pdoTypeBancoAtivo) {
+    		case 'MSSQL':
+    			return 'getdate()';
+    		break;
+    		case 'PGSQL';
+    			return 'current_timestamp';
+    		break;
+    		default:
+    			return null;
+    		break;
+    	}
+    }
+
+    /**
+     * Modifica uma string substituindo tags pelos valores relacionados ao banco de dados ativo
+     * 
+     * @param String $sqlScript
+     * 
+     * @return void
+     */
+    public static function substituiTagsSQLScriptDB(&$sqlScript)
+    {
+    	// fazendo substituicoes de tags
+    	$sqlScript = str_replace('@false', self::retornaBooleanDB(false, true) , $sqlScript);
+    	$sqlScript = str_replace('@true',  self::retornaBooleanDB(true, true) , $sqlScript);
+    	$sqlScript = str_replace('@now',   self::retornaFuncaoDataHoraAtualDB() , $sqlScript);
+    }
+
     /**
      * Retorna o path dos arquivos de Create para o banco que está sendo utilizado.
      * 
