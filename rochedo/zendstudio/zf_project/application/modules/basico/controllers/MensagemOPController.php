@@ -306,4 +306,104 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		// retornando a mensagem
 		return $this->_model;
 	}
+
+	/**
+	 * Cria as relacoes das pessoas envolvidas na mensagem, com a propria mensagem e categorias
+	 * 
+	 * @param Basico_Model_Mensagem $objMensagem
+	 * @param Integer $idPessoaPerfilRemetente
+	 * @param Array $arrayIdsPessoasPerfisDestinatarios
+	 * @param Array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada
+	 * @param Array $arrayIdsPessoasPerfisDestinatariosCopiaOculta 
+	 * 
+	 * @return Boolean
+	 */
+	public function criaRelacaoPessoasPerfisMensagensCategoriasAssossiadas(Basico_Model_Mensagem $objMensagem, $idPessoaPerfilRemetente, array $arrayIdsPessoasPerfisDestinatarios, array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada = array(), array $arrayIdsPessoasPerfisDestinatariosCopiaOculta = array())
+	{
+		// verificando se os parametros foram informados
+		if ((!$objMensagem->id) or (!$objMensagem->remetente) or (!count($objMensagem->destinatariosArray) > 0) or (!$idPessoaPerfilRemetente) or (!count($arrayIdsPessoasPerfisDestinatarios) > 0) or ($objMensagem->enviada)) {
+			// retornando falso e parando a execucao do metodo
+			return false;
+		}
+
+		// instanciando controladores
+		$pessoasPerfisMensagensCategoriaOPController = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance();
+
+		// recuperando modelos vazios 
+		$modeloPessoasPerfisMensagensCategoriasRemetente     = $pessoasPerfisMensagensCategoriaOPController->retornaNovoObjetoModeloPorNomeOPController($pessoasPerfisMensagensCategoriaOPController->retornaNomeClassePorObjeto($modeloPessoasPerfisMensagensCategoriasRemetente));
+		$modeloPessoasPerfisMensagensCategoriasDestinatarios = $pessoasPerfisMensagensCategoriaOPController->retornaNovoObjetoModeloPorNomeOPController($pessoasPerfisMensagensCategoriaOPController->retornaNomeClassePorObjeto($modeloPessoasPerfisMensagensCategoriasRemetente));
+
+		// iniciando bloco de tentativas
+		try {
+			// iniciando transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao();
+
+			// setando atributos no modelo para remetente
+			$modeloPessoasPerfisMensagensCategoriasRemetente->mensagem     = $objMensagem->id;
+			$modeloPessoasPerfisMensagensCategoriasRemetente->categoria    = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
+			$modeloPessoasPerfisMensagensCategoriasRemetente->pessoaPerfil = $idPessoaPerfilRemetente;
+			// setando rowinfo
+			$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoasPerfisMensagensCategoriasRemetente, $idPessoaPerfilRemetente);
+			// salvando objeto
+			$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoasPerfisMensagensCategoriasRemetente, null, $idPessoaPerfilRemetente);
+
+			// loop para associar os destinatarios
+			foreach ($arrayIdsPessoasPerfisDestinatarios as $idPessoaPerfilDestinatario) {
+				// criando copia do modelo
+				$modeloPessoaPerfilMensagemCategoriaDestinatario = $modeloPessoasPerfisMensagensCategoriasDestinatarios;
+
+				// setando atributos no modelo para destinatario
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->mensagem = $objMensagem->id;
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->categoria = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfilDestinatario;
+				// setando rowinfo
+				$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoaPerfilMensagemCategoriaDestinatario, $idPessoaPerfilRemetente);
+				// salvando objeto
+				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
+			}
+
+			// loop para associar os destinatarios em copia cabonada
+			foreach ($arrayIdsPessoasPerfisDestinatarios as $idPessoaPerfilDestinatario) {
+				// criando copia do modelo
+				$modeloPessoaPerfilMensagemCategoriaDestinatario = $modeloPessoasPerfisMensagensCategoriasDestinatarios;
+
+				// setando atributos no modelo para destinatario
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->mensagem     = $objMensagem->id;
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->categoria    = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA);
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfilDestinatario;
+				// setando rowinfo
+				$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoaPerfilMensagemCategoriaDestinatario, $idPessoaPerfilRemetente);
+				// salvando objeto
+				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
+			}
+
+			// loop para associar os destinatarios em copia cabonada oculta
+			foreach ($arrayIdsPessoasPerfisDestinatarios as $idPessoaPerfilDestinatario) {
+				// criando copia do modelo
+				$modeloPessoaPerfilMensagemCategoriaDestinatario = $modeloPessoasPerfisMensagensCategoriasDestinatarios;
+
+				// setando atributos no modelo para destinatario
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->mensagem = $objMensagem->id;
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->categoria = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA_OCULTA);
+				$modeloPessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfilDestinatario;
+				// setando rowinfo
+				$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoaPerfilMensagemCategoriaDestinatario, $idPessoaPerfilRemetente);
+				// salvando objeto
+				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
+			}
+
+			// salvando transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+
+			// retornando sucesso
+			return true;
+		} catch (Exception $e) {
+			// voltando a transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+
+			// estourando excessao
+			throw new Exception(MSG_ERRO_ASSOCIACAO_PESSOAS_PEFIS_MENSAGENS_CATEGORIAS_FALHOU . $e->getMessage());
+		}
+
+	}
 }

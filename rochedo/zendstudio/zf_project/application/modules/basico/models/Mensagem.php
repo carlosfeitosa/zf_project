@@ -209,7 +209,22 @@ class Basico_Model_Mensagem
 		$destinatarios = explode(';', $this->_destinatarios);
 		return $destinatarios;
 	}
-     
+
+	/**
+	 * Retorna um array contendo os objetos PessoasPerfisMensagensCategorias relacionado a mensagem
+	 * 
+	 * @return Array|null
+	 */
+	public function getPessoasPerfisMensagensCategoriasObjects()
+	{
+		// recuperando modelo
+		$model = new Basico_Model_PessoasPerfisMensagensCategorias();
+		// recuperando objetos
+		$objetosPessoasPerfisMensagensCategorias = $model->fetchList("id_mensagem = {$this->_id}");
+		// retornando objetos
+		return $objetosPessoasPerfisMensagensCategorias;
+	}
+
 	/**
 	* Set assunto
 	* 
@@ -275,7 +290,18 @@ class Basico_Model_Mensagem
 	{
 		return $this->_dataHoraEnvio;
 	}
-     
+
+	/**
+	 * Retorna se a mensagem foi enviada ou nao
+	 * 
+	 * @return Boolean
+	 */
+	public function getEnviada()
+	{
+		// retornando se a mensagem possui data-hora de envio e possui 2 ou mais pessoas associadas em PessoasPerfisMensagensCategorias
+		return (($this->_dataHoraEnvio) and (count($this->getPessoasPerfisMensagensCategoriasObjects())) >= 2);
+	}
+
 	/**
 	* Set mensagem
 	* 

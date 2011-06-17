@@ -153,6 +153,7 @@ define("MSG_ERRO_CATEGORIA_SISTEMA_EMAIL", "Categoria Email de Sistema não enco
 define("MSG_ERRO_ASSINATURA_MENSAGEM_EMAIL_SISTEMA", "Assinatura de Mensagem de e-mail do sistema não encontrada.");
 define("MSG_ERRO_TRANSPORT_INVALIDO", "Problemas na inicialização do transporte SMTP: ");
 define("MSG_ERRO_ENVIAR_EMAIL", "Não foi possível enviar o e-mail: ");
+define("MSG_ERRO_ASSOCIACAO_PESSOAS_PEFIS_MENSAGENS_CATEGORIAS_FALHOU", "Nao foi possivel salvar as pessoas perfis relacionadas com a mensagem e categorias: ");
 
 /*
  * EMAIL
