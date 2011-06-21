@@ -108,12 +108,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// chamando metodo que submete o formulario
 			Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba);
 		}
-
+	
 	    // passando o formulario para a view
 		$this->view->form = $formDadosUsuario;
-
+		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
+		
+		
     }
 
     /**

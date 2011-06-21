@@ -129,7 +129,6 @@ create table formulario_elemento (
 	id_formulario_elemento_filter int null ,
     id_decorator int null ,
     id_componente int not null ,
-    id_mascara int null ,
 	nome character varying (200) not null ,
 	descricao character varying (2000) null ,
 	constante_textual_label character varying (200) null ,
@@ -268,7 +267,7 @@ create table grupo_formulario_elemento (
 );
 alter table grupo_formulario_elemento owner to rochedo_user;
 
-create table mascaras_formularios_elementos (
+create table formularios_elementos_mascaras (
 	id serial not null ,
 	id_mascara int null ,
 	id_formulario_elemento int null ,
@@ -313,7 +312,7 @@ alter table componente add constraint pk_componente primary key (id);
 
 alter table grupo_formulario_elemento add constraint pk_grupo_formulario_elemento primary key (id);
 
-alter table mascaras_formularios_elementos add constraint pk_mascaras_formularios_elementos primary key (id);
+alter table formularios_elementos_mascaras add constraint pk_formularios_elementos_mascaras primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -411,8 +410,8 @@ alter table formulario_formulario_elemento_formulario
 alter table componente 
   add constraint ix_componente_categoria_componente unique (id_categoria, componente);
   
-alter table mascaras_formularios_elementos
-  add constraint ix_mascaras_formularios_elementos unique (id_mascara, id_formulario_elemento);
+alter table formularios_elementos_mascaras
+  add constraint ix_formularios_elementos_mascaras unique (id_mascara, id_formulario_elemento);
 
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
@@ -447,8 +446,7 @@ alter table formulario_elemento
   add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_formulario_elemento_filter foreign key (id_formulario_elemento_filter) references formulario_elemento_filter (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_componente foreign key (id_componente) references componente (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
+  add constraint fk_formulario_elemento_componente foreign key (id_componente) references componente (id) on update no action on delete no action;
 
 alter table formulario_elemento_validator
   add constraint fk_formulario_elemento_validator_categoria foreign key	(id_categoria) references categoria (id) on update no action on delete no action;
@@ -483,9 +481,9 @@ alter table componente
 alter table grupo_formulario_elemento
   add constraint fk_grupo_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action;
 
-alter table mascaras_formularios_elementos
-  add constraint fk_mascaras_formularios_elementos_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
-  add constraint fk_mascaras_formularios_elementos_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
+alter table formularios_elementos_mascaras
+  add constraint fk_formularios_elementos_mascaras_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
+  add constraint fk_formularios_elementos_mascaras_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
   
 /* CRIACAO DOS CHECK CONSTRAINTS */
   

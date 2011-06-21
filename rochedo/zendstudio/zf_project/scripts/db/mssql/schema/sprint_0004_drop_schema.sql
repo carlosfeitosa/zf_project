@@ -16,9 +16,9 @@
 * 						07/04/2011 - remocao do drop da tabela "formulario_perfil" - descontinuado;
 */
 
-if object_id('mascaras_formularios_elementos') is not null
+if object_id('formularios_elementos_mascaras') is not null
 begin
-drop table mascaras_formularios_elementos;
+drop table formularios_elementos_mascaras;
 end
 ;
 

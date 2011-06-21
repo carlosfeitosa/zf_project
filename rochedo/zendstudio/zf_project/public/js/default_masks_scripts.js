@@ -74,34 +74,37 @@ function m_decimal_1_2(v){
 function m_completa_decimal_1_2(v) {
 	v=v.replace(/^(\d{1})(\d{0}$)/,"$1,00");
     v=v.replace(/^(\d{1})(\d{1}$)/,"$1,$20");
+    v=v.replace(/^(\d{1},)(\d{1}$)/,"$1$20");
+    v=v.replace(/^(\d{1},)(\d{2}$)/,"$1$2");
 	return v;
 }
 
 function m_decimal_3_3(v){
-	v=v.replace(/\D/g,",");
-    v=v.replace(/^(\d{1}(\d{0}$))/,"00,00$1");
-    //v=v.replace(/^(d{2})(\d{0}$)/,"00,00$2");
-    v=v.replace(/^(d{2})(\d{1}$)/,"00,00$2");
-    v=v.replace(/^(0{2}),(0{2})(\d{1}$)/,"00,$2$3");
-    v=v.replace(/^(0{2}),(0{1})(\d{1})(\d{1})(\d{1}$)/,"$1,$3$4$5");
-    v=v.replace(/^(0{2}),(\d{1})(\d{1})(\d{1})(\d{1}$)/,"0$2,$3$4$5");
-    v=v.replace(/^(0{1})(\d{1}),(\d{1})(\d{1})(\d{1})(\d{1}$)/,"$2$3,$4$5$6");
-    v=v.replace(/^(\d{2}),(\d{1})(\d{1})(\d{1})(\d{1}$)/,"$1$2,$3$4$5");
-    v=v.replace(/^(\d{2}),(\d{1})(\d{1})(\d{1})(\D$)/,"$1$2,$3$4$5");
-    v=v.replace(/^(\d{3}),(\d{1})(\d{1})(\d{1})(\d$)/,"$1,$2$3$4");
-    v=v.replace(/^(\d{3}),(\d{1})(\d{1})(\d{1})(\D$)/,"$1,$2$3$4");
+	v=v.replace(/\D/g,"");  //permite digitar apenas números
+    v=v.replace(/[0-9]{7}/,"");   //limita pra máximo 999,999
+    v=v.replace(/(\d{2})(\d{0})$/,"$1,");  //coloca ponto antes dos últimos 8 digitos
+    v=v.replace(/(\d{2},)(\d{1})(\d{0})$/,"$1$2");  //coloca ponto antes dos últimos 8 digitos
+    v=v.replace(/(\d{2},)(\d{2})(\d{0})$/,"$1$2");  //coloca ponto antes dos últimos 8 digitos
+    v=v.replace(/(\d{2},)(\d{3})(\d{0})$/,"$1$2");  //coloca ponto antes dos últimos 8 digitos
+    v=v.replace(/(\d{2}),(\d{1})(\d{2})(\d{1})$/,"$1$2,$3$4");  //coloca ponto antes dos últimos 5 digitos
+    
     return v;
 }
 
 function m_completa_decimal_3_3(v) {
 	v=v.replace(/^(\d{1})(\d{0}$)/,"$1,000");
     v=v.replace(/^(\d{1},)(\d{1}$)/,"$1$200");
+    v=v.replace(/^(\d{1},)(\d{2}$)/,"$1$20");
+    v=v.replace(/^(\d{2})(\d{0}$)/,"$1,000");
     v=v.replace(/^(\d{2},)(\d{0}$)/,"$1000");
+    v=v.replace(/^(\d{2},)(\d{1}$)/,"$1$200");
+    v=v.replace(/^(\d{2},)(\d{2}$)/,"$1$20");
     v=v.replace(/^(\d{2})(\d{3}$)/,"$1,$2");
     v=v.replace(/^(\d{3})(\d{0}$)/,"$1,000");
-    v=v.replace(/^(\d{3})(\d{1}$)/,"$1,$200");
-    v=v.replace(/^(\d{3})(\d{2}$)/,"$1,$20");
-    v=v.replace(/^(\d{3})(\d{2}$)/,"$10");
+    v=v.replace(/^(\d{3}),(\d{0}$)/,"$1,000");
+    v=v.replace(/^(\d{3}),(\d{1}$)/,"$1,$200");
+    v=v.replace(/^(\d{3},)(\d{2}$)/,"$1$20");
+    v=v.replace(/^(\d{3})(\d{3}$)/,"$1,$2");
 	return v;
 }
 

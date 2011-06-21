@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/05/2011 16:31:55
+* em: 21/06/2011 17:10:19
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 17/05/2011 11:20:34
+* @version    1: 21/06/2011 17:07:09
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -25,6 +25,9 @@
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioDadosBiometricos', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setOrder(4);
+
+    // inserindo script para setar mascaras jquery
+    Basico_OPController_UtilOPController::escreveJavaScriptEvento('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorModuloFormulario('BASICO', 'SUBFORM_DADOS_USUARIO_DADOS_BIOMETRICOS'));
 
     // Criando array de elementos.
     $elements = array();
@@ -48,9 +51,9 @@
     if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'])))
         $elements[2]->setValue($options['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']);
 
-    $elements[3] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosAltura', array('style' => 'width: 40px;', 'pattern' => '#,##'));
+    $elements[3] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosAltura', array('style' => 'width: 40px;'));
     $elements[3]->setOrder(3);
-    $elements[3]->setAttribs(array('maxlength' => '4'));
+    $elements[3]->setAttribs(array('maxlength' => '5'));
     $elements[3]->setRequired(false);
     $elements[3]->addFilters(array('StringTrim', 'StripTags'));
     $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
@@ -59,7 +62,7 @@
     if (($options!=null) and (isset($options['BasicoCadastrarDadosUsuarioDadosBiometricosAltura'])))
         $elements[3]->setValue($options['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']);
 
-    $elements[4] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosPeso', array('style' => 'width: 50px;', 'pattern' => '###,###'));
+    $elements[4] = $this->createElement('NumberTextBox', 'BasicoCadastrarDadosUsuarioDadosBiometricosPeso', array('style' => 'width: 50px;'));
     $elements[4]->setOrder(4);
     $elements[4]->setAttribs(array('maxlength' => '7'));
     $elements[4]->setRequired(false);

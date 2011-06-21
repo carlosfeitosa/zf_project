@@ -15,7 +15,7 @@
 * 						19/10/2010 - remocao do drop da tabela "modulo" para o sprint 0001;
 * 						07/04/2011 - remocao do drop da tabela "formulario_perfil" - descontinuado;
 */
-drop table if exists mascaras_formularios_elementos;
+drop table if exists formularios_elementos_mascaras;
 drop table if exists formulario_formulario_elemento_formulario;
 drop table if exists template_formulario;
 drop table if exists formulario_formulario_elemento;

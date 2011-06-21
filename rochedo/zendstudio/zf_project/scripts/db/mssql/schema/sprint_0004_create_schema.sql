@@ -104,8 +104,7 @@ create table dbo.formulario_elemento (
 	id_ajuda int null ,
     id_formulario_elemento_filter int null ,
     id_decorator int null ,
-    id_componente int not null ,
-    id_mascara int null ,
+    id_componente int not null,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
 	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
@@ -210,7 +209,7 @@ create table dbo.grupo_formulario_elemento (
 	rowinfo varchar (2000) not null
 ) on [primary];
 
-create table dbo.mascaras_formularios_elementos (
+create table dbo.formularios_elementos_mascaras (
 	id int identity (1, 1) not null ,
 	id_formulario_elemento int not null ,
 	id_mascara int not null ,
@@ -251,7 +250,7 @@ alter table dbo.componente with nocheck add constraint pk_componente primary key
 
 alter table dbo.grupo_formulario_elemento with nocheck add constraint pk_grupo_formulario_elemento primary key (id) on [primary];
 
-alter table dbo.mascaras_formularios_elementos with nocheck add constraint pk_mascaras_formularios_elementos primary key (id) on [primary];
+alter table dbo.formularios_elementos_mascaras with nocheck add constraint pk_formularios_elementos_mascaras primary key (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -398,8 +397,8 @@ alter table dbo.componente add
 		nome
 	) on [primary];
 	
-alter table dbo.mascaras_formularios_elementos add
-	constraint ix_mascaras_formularios_elementos unique nonclustered
+alter table dbo.formularios_elementos_mascaras add
+	constraint ix_formularios_elementos_mascaras unique nonclustered
 	(
 		id_formulario_elemento,
 		id_mascara
@@ -517,12 +516,6 @@ alter table dbo.formulario_elemento add
 	(
 		id_componente
 	) references dbo.componente (
-		id
-	),
-	constraint fk_formulario_elemento_mascara foreign key
-	(
-		id_mascara
-	) references dbo.mascara (
 		id
 	);
 
@@ -644,14 +637,14 @@ alter table grupo_formulario_elemento add
 		id
 	);
 	
-alter table dbo.mascaras_formularios_elementos add
-	constraint fk_mascaras_formularios_elementos_formulario_elemento foreign key
+alter table dbo.formularios_elementos_mascaras add
+	constraint fk_formularios_elementos_mascaras_formulario_elemento foreign key
 	(
 		id_formulario_elemento
 	) references dbo.formulario_elemento (
 		id
 	),
-	constraint fk_mascaras_formularios_elementos_mascara foreign key
+	constraint fk_formularios_elementos_mascaras_mascara foreign key
 	(
 		id_mascara
 	) references dbo.mascara (

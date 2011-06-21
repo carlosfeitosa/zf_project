@@ -243,6 +243,17 @@ class Basico_OPController_GeradorFormularioOPController
                 // verifica se o formulario possui elementos
                 if (Basico_OPController_FormularioOPController::getInstance()->existeElementosPorIdFormulario($objFormulario->id)) {
 
+                	//recuperando elementos com mascara
+                	$elementosMascaras = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSql($moduleName, $objFormulario->nome);
+                	
+                	// verificando se existem elementos com mascara
+                	if ($elementosMascaras) {
+                		// escrevendo comentario para insercao de script
+                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "// inserindo script para setar mascaras jquery" . QUEBRA_DE_LINHA);
+                		// escrevendo chamada para aplicação de mascaras Jquery
+                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "Basico_OPController_UtilOPController::escreveJavaScriptEvento('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorModuloFormulario('{$moduleName}', '{$objFormulario->nome}'));" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA);
+                	}
+                	
                 	// adicao dos prefix e paths de componentes nao ZF
                 	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objFormulario->id, $formAddPrefixPathComment);
 
@@ -455,7 +466,18 @@ class Basico_OPController_GeradorFormularioOPController
 
                 // verifica se o formulario possui elementos
                 if (Basico_OPController_FormularioOPController::getInstance()->existeElementosPorIdFormulario($objSubFormulario->id)){
-
+					
+	                //recuperando elementos com mascara
+                	$elementosMascaras = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSql($moduleName, $objSubFormulario->nome);
+                	
+                	// verificando se existem elementos com mascara
+                	if ($elementosMascaras) {
+                		// escrevendo comentario da chamada
+                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "// inserindo script para setar mascaras jquery" . QUEBRA_DE_LINHA);
+                		// escrevendo chamada para aplicação de mascaras Jquery                		
+                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "Basico_OPController_UtilOPController::escreveJavaScriptEvento('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorModuloFormulario('{$moduleName}', '{$objSubFormulario->nome}'));" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA);
+                	}
+                	
                 	// adicao dos prefix e paths de componentes nao ZF
                 	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objSubFormulario->id, $formAddPrefixPathComment);
 

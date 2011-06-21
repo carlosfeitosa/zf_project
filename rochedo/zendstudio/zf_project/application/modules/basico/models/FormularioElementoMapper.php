@@ -69,7 +69,6 @@ class Basico_Model_FormularioElementoMapper
                 'id_formulario_elemento_filter' => $object->getFormularioElementoFilter(),
                 'id_decorator'                  => $object->getDecorator(),
         		'id_componente'					=> $object->getComponente(),
-        		'id_mascara'					=> $object->getMascara(),
                 'rowinfo'   => $object->getRowinfo(),
 
         );
@@ -120,7 +119,6 @@ class Basico_Model_FormularioElementoMapper
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
-				->setMascara($row->id_mascara)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -150,7 +148,6 @@ class Basico_Model_FormularioElementoMapper
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
-				->setMascara($row->id_mascara)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -184,7 +181,6 @@ class Basico_Model_FormularioElementoMapper
 				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
 				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
-				->setMascara($row->id_mascara)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

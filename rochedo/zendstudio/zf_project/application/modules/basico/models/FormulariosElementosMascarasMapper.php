@@ -1,14 +1,14 @@
 <?php
 /**
- * MascarasFormulariosElementos data mapper
+ * FormulariosElementosMascaras data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_MascarasFormulariosElementos
+ * @uses       Basico_Model_DbTable_FormulariosElementosMascaras
  * @subpackage Model
  */
-class Basico_Model_MascarasFormulariosElementosMapper
+class Basico_Model_FormulariosElementosMascarasMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_MascarasFormulariosElementosMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_MascarasFormulariosElementosMapper
+     * @return Basico_Model_FormulariosElementosMascarasMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_MascarasFormulariosElementosMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_MascarasFormulariosElementos if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormulariosElementosMascaras if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_MascarasFormulariosElementos');
+            $this->setDbTable('Basico_Model_DbTable_FormulariosElementosMascaras');
         }
         return $this->_dbTable;
     }
@@ -51,10 +51,10 @@ class Basico_Model_MascarasFormulariosElementosMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_MascarasFormulariosElementos $object
+     * @param  Basico_Model_FormulariosElementosMascaras $object
      * @return void
      */
-    public function save(Basico_Model_MascarasFormulariosElementos $object)
+    public function save(Basico_Model_FormulariosElementosMascaras $object)
     {
         $data = array(
                 'mascara' => $object->getMascara(),
@@ -71,11 +71,11 @@ class Basico_Model_MascarasFormulariosElementosMapper
     }
     
     /**
-    * Delete a MascarasFormulariosElementos entry
-    * @param Basico_Model_MascarasFormulariosElementos $object
+    * Delete a FormulariosElementosMascaras entry
+    * @param Basico_Model_FormulariosElementosMascaras $object
     * @return void
     */
-    public function delete(Basico_Model_MascarasFormulariosElementos $object)
+    public function delete(Basico_Model_FormulariosElementosMascaras $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -84,10 +84,10 @@ class Basico_Model_MascarasFormulariosElementosMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_MascarasFormulariosElementos $object 
+     * @param  Basico_Model_FormulariosElementosMascaras $object 
      * @return void
      */
-    public function find($id, Basico_Model_MascarasFormulariosElementos $object)
+    public function find($id, Basico_Model_FormulariosElementosMascaras $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -101,7 +101,7 @@ class Basico_Model_MascarasFormulariosElementosMapper
     }
 
     /**
-     * Fetch all MascarasFormulariosElementos entries
+     * Fetch all FormulariosElementosMascaras entries
      * 
      * @return array
      */
@@ -111,7 +111,7 @@ class Basico_Model_MascarasFormulariosElementosMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_MascarasFormulariosElementos();
+            $entry = new Basico_Model_FormulariosElementosMascaras();
             $entry->setId($row->id)
                 ->setMascara($row->mascara)
                 ->setFormularioElemento($row->formulario_elemento)
@@ -133,7 +133,7 @@ class Basico_Model_MascarasFormulariosElementosMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_MascarasFormulariosElementos();
+            $entry = new Basico_Model_FormulariosElementosMascaras();
             $entry->setId($row->id)
                   ->setMascara($row->mascara)
                   ->setFormularioElemento($row->formulario_elemento)

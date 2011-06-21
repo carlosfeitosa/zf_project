@@ -1,13 +1,13 @@
 <?php
 /**
- * MascarasFormulariosElementos model
+ * FormulariosElementosMascaras model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_MascarasFormulariosElementosMapper
+ * @uses       Basico_Model_FormulariosElementosMascarasMapper
  * @subpackage Model
  */
-class Basico_Model_MascarasFormulariosElementos
+class Basico_Model_FormulariosElementosMascaras
 {
     /**
     * @var int
@@ -15,7 +15,7 @@ class Basico_Model_MascarasFormulariosElementos
     protected $_id;
 
     /**
-     * @var Basico_Model_MascarasFormulariosElementosMapper
+     * @var Basico_Model_FormulariosElementosMascarasMapper
      */
     protected $_mapper;
 
@@ -27,7 +27,7 @@ class Basico_Model_MascarasFormulariosElementos
     /**
      * @var Integer
      */
-    protected $_formularioelemento;
+    protected $_formularioElemento;
     /**
      * @var String
      */
@@ -84,7 +84,7 @@ class Basico_Model_MascarasFormulariosElementos
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_MascarasFormulariosElementos
+     * @return Basico_Model_FormulariosElementosMascaras
      */
     public function setOptions(array $options)
     {
@@ -134,25 +134,25 @@ class Basico_Model_MascarasFormulariosElementos
     }
     
     /**
-    * Set formularioelemento
+    * Set formularioElemento
     * 
     * @param int $ 
     * @return Basico_Model_FormularioElemento
     */
     public function setFormularioElemento($formularioElemento)
     {
-        $this->_formularioelemento = Basico_OPController_UtilOPController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
+        $this->_formularioElemento = Basico_OPController_UtilOPController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
         return $this;
     }
 
     /**
-    * Get formularioelemento
+    * Get formularioElemento
     * 
     * @return null|int
     */
     public function getFormularioElemento()
     {
-        return $this->_formularioelemento;
+        return $this->_formularioElemento;
     }
  
     /**
@@ -170,7 +170,7 @@ class Basico_Model_MascarasFormulariosElementos
     * Set entry rowinfo
     * 
     * @param  string $rowinfo 
-    * @return Basico_Model_MascarasFormulariosElementos
+    * @return Basico_Model_FormulariosElementosMascaras
     */
     public function setRowinfo($rowinfo)
     {
@@ -192,7 +192,7 @@ class Basico_Model_MascarasFormulariosElementos
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_MascarasFormulariosElementos
+    * @return Basico_Model_FormulariosElementosMascaras
     */
     public function setId($id)
     {
@@ -214,7 +214,7 @@ class Basico_Model_MascarasFormulariosElementos
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_MascarasFormulariosElementos
+    * @return Basico_Model_FormulariosElementosMascaras
     */
     public function setMapper($mapper)
     {
@@ -225,14 +225,14 @@ class Basico_Model_MascarasFormulariosElementos
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_MascarasFormulariosElementosMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_FormulariosElementosMascarasMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_MascarasFormulariosElementosMapper
+    * @return Basico_Model_FormulariosElementosMascarasMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_MascarasFormulariosElementosMapper());
+            $this->setMapper(new Basico_Model_FormulariosElementosMascarasMapper());
         }
         return $this->_mapper;
     }
@@ -262,7 +262,7 @@ class Basico_Model_MascarasFormulariosElementos
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Basico_Model_MascarasFormulariosElementos
+    * @return Basico_Model_FormulariosElementosMascaras
       
     */
     public function find($id)

@@ -27,6 +27,11 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		$view->headScript()->prependFile($view->baseUrl("/js/plugins/humanizedMessages/humanmsg.js"));
 		$view->headScript()->prependFile($view->baseUrl("/js/plugins/humanizedMessages/jquery.js"));
 
+		// adicionando plugin Jquery maskMoney
+		$view->headScript()->prependFile($view->baseUrl("/js/jquery/jquery-1.6.1.min.js"));
+		$view->headScript()->appendFile($view->baseUrl("/js/plugins/maskMoney/jquery.maskMoney.js"));
+		
+		
 		// recuperando view e formulario vinculado a view
 		$form = $view->form;
 

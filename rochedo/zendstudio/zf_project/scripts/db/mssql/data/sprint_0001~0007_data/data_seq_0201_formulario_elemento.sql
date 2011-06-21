@@ -131,8 +131,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
                               'FORM_FIELD_NUMBER_TEXT_BOX_ALTURA' AS nome, 'Elemento campo altura.' AS descricao,
                               'FORM_FIELD_ALTURA' AS constante_textual_label,
-                              'altura' AS element_name, '''maxlength'' => ''4''' AS element_attribs,
-                              '''altura'', array(''style'' => ''width: 40px;'', ''pattern'' => ''#,##'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'altura' AS element_name, '''maxlength'' => ''5''' AS element_attribs,
+                              '''altura'', array(''style'' => ''width: 40px;'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -173,7 +173,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'FORM_FIELD_NUMBER_TEXT_BOX_PESO' AS nome, 'Elemento campo peso.' AS descricao,
                               'FORM_FIELD_PESO' AS constante_textual_label,
                               'peso' AS element_name, '''maxlength'' => ''7''' AS element_attribs,
-                              '''peso'', array(''style'' => ''width: 50px;'', ''pattern'' => ''###,###'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              '''peso'', array(''style'' => ''width: 50px;'')' AS element, 1 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1922,7 +1922,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
-								 id_decorator, id_componente, id_mascara, nome, descricao, constante_textual_label, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1953,13 +1953,6 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
-							 (SELECT m.id
-                              FROM mascara m
-                              LEFT JOIN categoria c ON (m.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'MASCARA'
-                              AND c.nome = 'MASCARA_NUMERICA'
-                              AND m.nome = 'MASCARA_NUMERICA_SEM_SEPARADOR_DECIMAL') AS id_mascara,
                               'FORM_FIELD_NUMBER_TEXT_BOX_TELEFONE_CODIGO_PAIS' AS nome, 'Elemento campo numbertextbox codigo do pais (telefone)' AS descricao,
                               'FORM_FIELD_TELEFONE_CODIGO_PAIS' AS constante_textual_label,
                               'telefoneCodigoPais' AS element_name, NULL AS element_attribs,
@@ -1970,7 +1963,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
-								 id_decorator, id_componente, id_mascara, nome, descricao, constante_textual_label, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2001,13 +1994,6 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
-							 (SELECT m.id
-                              FROM mascara m
-                              LEFT JOIN categoria c ON (m.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'MASCARA'
-                              AND c.nome = 'MASCARA_NUMERICA'
-                              AND m.nome = 'MASCARA_NUMERICA_SEM_SEPARADOR_DECIMAL') AS id_mascara,
                               'FORM_FIELD_NUMBER_TEXT_BOX_TELEFONE_CODIGO_AREA' AS nome, 'Elemento campo numbertextbox codigo de area (telefone)' AS descricao,
                               'FORM_FIELD_TELEFONE_CODIGO_AREA' AS constante_textual_label,
                               'telefoneCodigoArea' AS element_name, NULL AS element_attribs,
@@ -2018,7 +2004,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
-								 id_decorator, id_componente, id_mascara, nome, descricao, constante_textual_label, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2049,13 +2035,6 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
-							 (SELECT m.id
-                              FROM mascara m
-                              LEFT JOIN categoria c ON (m.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'MASCARA'
-                              AND c.nome = 'MASCARA_NUMERICA'
-                              AND m.nome = 'MASCARA_NUMERICA_SEM_SEPARADOR_DECIMAL') AS id_mascara,
                               'FORM_FIELD_NUMBER_TEXT_BOX_TELEFONE' AS nome, 'Elemento campo numbertextbox telefone' AS descricao,
                               'FORM_FIELD_TELEFONE' AS constante_textual_label,
                               'telefone' AS element_name, NULL AS element_attribs,
@@ -2066,7 +2045,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
-								 id_decorator, id_componente, id_mascara, nome, descricao, constante_textual_label, 
+								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2097,13 +2076,6 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
-							 (SELECT m.id
-                              FROM mascara m
-                              LEFT JOIN categoria c ON (m.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
-                              WHERE t.nome = 'MASCARA'
-                              AND c.nome = 'MASCARA_NUMERICA'
-                              AND m.nome = 'MASCARA_NUMERICA_SEM_SEPARADOR_DECIMAL') AS id_mascara,
                               'FORM_FIELD_NUMBER_TEXT_BOX_TELEFONE_RAMAL' AS nome, 'Elemento campo numbertextbox codigo de area (telefone)' AS descricao,
                               'FORM_FIELD_TELEFONE_RAMAL' AS constante_textual_label,
                               'telefoneRamal' AS element_name, NULL AS element_attribs,

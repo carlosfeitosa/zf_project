@@ -1774,4 +1774,47 @@ class Basico_OPController_UtilOPController
     	// enviando javascript para setar os elementos com erro
     	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {marcaElementosErro($arrayElementosErrorJson);});</script>";
     }
+    
+    /**
+     * Escreve uma instrução javascript passada como parametro para um evento tambem passado por parametro
+     * 
+     * @param String $evento
+     * @param String $script
+     */
+    public static function escreveJavaScriptEvento($evento, $script)
+    {
+    	// montando tags com o script e evento
+    	$result = "<script type='text/javascript' event='{$evento}'>
+    				{$script}
+    			   </script>";
+    	
+    	// escrevendo resultado
+    	echo $result;
+    }
+    
+    /**
+     * Retorna script para aplicacao de mascaras jquery
+     * 
+     * @param String $nomeModulo
+     * @param String $nomeForm
+     */
+    public static function retornaScriptAplicacaoMascarasPorModuloFormulario($nomeModulo, $nomeForm)
+    {
+    	// recuperando array de elementos que possuem mascara
+    	$arrayElementosComMascara = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSql($nomeModulo, $nomeForm);
+    	
+    	// iniciando montagem do script (Jquery)
+    	$scriptAplicacaoMascara = "$(function () {";
+    	
+    		// montando a chamada jquery para cada elemento
+    		foreach ($arrayElementosComMascara as $elemento => $mascara) {
+    			$scriptAplicacaoMascara .= "$('#{$elemento}').{$mascara};";
+    		}
+
+		// finalizando montagem do script    		
+		$scriptAplicacaoMascara .= "});";
+		
+		// retornando script
+		return $scriptAplicacaoMascara;
+    }
 }
