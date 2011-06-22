@@ -1,3 +1,4 @@
+/*
 dojo.require("dijit.Dialog");
 dojo.require("dijit.form.Form");
 dojo.require("dijit.form.Button");
@@ -10,7 +11,7 @@ dojo.require("dijit.form.SimpleTextarea");
 dojo.require("dijit.form.DateTextBox");
 dojo.require("dijit.form.CurrencyTextBox");
 dojo.require("dijit.form.CheckBox");
-
+*/
 var underlay;
 
 /*
@@ -332,4 +333,191 @@ function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetod
 function exibirMensagem(mensagem)
 {
 	humanMsg.displayMsg('<span class="indent">' + mensagem + '</span>');
+}
+
+function adicionaMensagemErroZendDojoFormElement(elementName, errorMessage)
+{
+	// inicializando variaveis
+	var arrayErrorMessages = new Array();
+	
+	// recuperando elemento
+	element = dojo.byId(elementName);
+
+	// verificando se o element foi recuperado
+	if (element) {
+		// verificando se a mensagem de erro eh um array
+		if ((errorMessage instanceof Array) === false)
+			arrayErrorMessages[0] = errorMessage;
+		else
+			arrayErrorMessages = errorMessage;
+		
+		// criando elemento ul
+		var elementUlErrorMessage = document.createElement('ul');
+		// setando o id da ul
+		elementUlErrorMessage.id = 'errorUl';
+		elementUlErrorMessage.className = 'errors';
+
+		// loop para recuperar as mensagens de erro
+		for (chave in arrayErrorMessages) {
+			// criando elemento li item
+			var itemErrorMessage = document.createElement('li');
+			// setando o conteudo do elemento li item
+			itemErrorMessage.innerHTML = arrayErrorMessages[chave];
+			// adicionado o elemento li ao elemento ul
+			elementUlErrorMessage.appendChild(itemErrorMessage);
+		}
+		// adicionando o elemento ul apos o elemento
+		dojo.place(elementUlErrorMessage, element.id, "after");
+	}
+}
+
+
+function limparMensagemErroZendDojoForm(formName)
+{
+	//verifica se o nome do formulario foi passada e se existe o formulario
+	if (formName && dojo.query('form[id="' + formName + '"]'))
+		parametro = 'form[id="' + formName + '"]';		
+	else
+		parametro = '';
+	
+	// carrega os elementos de erros com className 'errors', do formulario passado ou de todos os formularios
+	var errors = dojo.query(parametro + ' .errors');
+
+    // remove todos os elementos encontrados
+    for (var i = 0; i < errors.length; i++) {
+		dojo._destroyElement(dojo.byId(errors[i]));
+    }
+}
+
+
+function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
+{
+
+	if(typeof data == "error") {
+    	// erro nos dados
+		console.warn("error!",args);
+    	
+	}else if (data == true) {
+		
+		// dados validados
+		console.warn("data true: ",data);
+		
+		console.debug('formThis:', formThis);
+		console.debug('formThis:', formThis.form.id);
+		
+		dialogForm = dijit.byId(formThis.form.id);
+		console.debug('dialogForm eh:', dialogForm);
+
+		classDialogForm = dialogForm.declaredClass;
+		console.debug('classe do classDialogForm:', classDialogForm);
+		if (classDialogForm == 'dijit.Dialog'){
+			hideDialog(formThis.form.id);
+			console.debug('formulário hide');
+		}
+		
+		if (callbackFunction) {
+			eval(callbackFunction);
+			console.debug('callbackFunction:', callbackFunction);
+		}else{
+			console.debug('not callbackFunction');
+		}
+
+		
+		
+	}else{
+		console.debug('formulario não validado.: ', data);
+		
+		// show our response 
+		console.debug('data response: ', data);
+		json = eval(data); //json = eval("(" + data + ")");
+		console.debug('data evaluated: ', json);
+/*
+		var zendDijits = [{"id":"CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento","params":{"invalidMessage":"Digite aqui seu Munic\u00edpio de nascimento.","required":"true","value":"xxxxxx","dojoType":"dijit.form.ValidationTextBox"}}];
+		console.debug('json.dijits',json.dijits);
+		console.debug('zendDijits',zendDijits);
+	    dojo.forEach(json.dijits, function(info) {
+	    	console.debug('entrou ...');
+	        var n = dojo.byId(info.id);
+	        if (null != n) {
+	            dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
+	            console.debug('dojo attr sucess');
+	        }
+	    });
+	   //dojo.parser.parse();
+	    console.debug('dojo parser ok');
+*/
+		
+		// Get html elements
+		console.debug(json.view.html);
+		for (idElemento in json.view.html)	{
+			console.debug('elemento:', idElemento);
+			//console.debug('json.view.html[idElemento]', htmlElements[idElemento]);
+			//elemento = dijit.byId(idElemento);
+			
+			dojo.byId(idElemento).innerHTML = json.view.html[idElemento];
+	
+		}
+		
+		//dojo.parser.parse();
+		alert('ok');
+		
+		// get the modules
+        dojo.forEach(json.view.modules, function(module)
+        {
+            dojo.require(module);
+            console.debug('modulo carregado:', module);
+        });
+        
+	    
+		// Get zendFormsMessages
+		zendFormsMessages = json.view.zendFormsMessages;
+		for (form in zendFormsMessages)	{
+			console.debug('form in zendFormsMessages:', form);
+			
+			formulario = dijit.byId(form);
+			console.debug('formulario eh:', formulario);	
+			
+			class_form = formulario.declaredClass;
+			console.debug('classe do formulario:', class_form);
+
+			limparMensagemErroZendDojoForm(form);
+			
+			for (elementForm in zendFormsMessages[form])	{
+				console.debug('elementForm in zendFormsMessages[form]:', elementForm);
+				
+				nomeElemento = form + '-' + elementForm;
+				console.debug('nomeElemento:', nomeElemento);
+				
+				elementoFormulario = dijit.byId(nomeElemento);
+				console.debug('elemento formulario eh:', elementoFormulario);
+
+				for (mensagens in zendFormsMessages[form][elementForm]) {
+					console.debug('mensagens in zendFormsMessages[form][elementForm] :', mensagens);
+					mensagem = zendFormsMessages[form][elementForm][mensagens];
+					console.debug('mensagen:', mensagem); 
+					
+					adicionaMensagemErroZendDojoFormElement('widget_' + nomeElemento,mensagem);						
+				}
+			}
+			
+
+		}
+		
+		
+		console.debug('iniciando foreache dojo attr');
+		dojo.forEach(json.view.zendFormDijits, function(info, i) {
+			console.debug(info, "at index", i);
+			
+        	var n = dojo.byId(info.id);
+        	if (null != n) {
+            	dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
+            	console.debug('dojo mixin');
+        	}
+        });
+        console.debug('finalizado foreache dojo attr');
+        
+        
+        //dojo.parser.parse();
+        console.debug('dojo parser end.');
+	}	
 }
