@@ -1817,4 +1817,17 @@ class Basico_OPController_UtilOPController
 		// retornando script
 		return $scriptAplicacaoMascara;
     }
+
+    /**
+     * 
+     * retorna um texto sem HTML Tags 
+     * @param string $texto
+     * 
+     * @return string
+     */
+    public static function retornaTextoSemHTML($texto)
+    {
+    	// retornando texto sem Tags HTML
+    	return strip_tags($texto);
+    }
 }

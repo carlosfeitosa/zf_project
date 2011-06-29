@@ -97,18 +97,46 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 					$request->setModuleName('basico');
 					$request->setControllerName('controleacesso');
 					$request->setActionName('ipusuariodiferentedoipdousuarioautenticadonasessao');
-		
+			
+					// recurperando login do usuario a sessao 
+					$loginUsuarioSessao = Basico_OPController_LoginOPController::retornaLoginUsuarioSessao(); 
+					
+					// carregando tradução da mensagem e problema com ip do login diferente do ip atual 
+					$mensagemProblemaLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_ALERTA_PROBLEMAS_LOGIN_IP_DIFERENETE_IP_ATUAL');
+					
+					// recuperando ip atual do usuario 
+					$ipAtualUsuario = Basico_OPController_UtilOPController::retornaUserIp();
+					
+					// recuperando ip da autenticaca(login) do usuario
+					$ipLoginUsuario = Basico_OPController_SessionOPController::retornaIpUsuarioAutenticadoSessaoUsuario();
+					
+					// substituindo TGAS no corpo a mensagem  
+					$mensagemProblemaLogin = str_replace("@IPAtual",$ipAtualUsuario , $mensagemProblemaLogin);
+					$mensagemProblemaLogin = str_replace("@IPLogon",$ipLoginUsuario , $mensagemProblemaLogin);
+					$mensagemProblemaLogin = str_replace("@linkDocumentacaoOnline",LINK_DOCUMENTACAO_ONLINE , $mensagemProblemaLogin);
+					$mensagemProblemaLogin = str_replace("@emailSuporte",SUPPORT_EMAIL , $mensagemProblemaLogin);
+
+					// enviando mensagem de alerta de problemas com login
+					Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($loginUsuarioSessao, $mensagemProblemaLogin); 
+
 					// parando a execucao do plugin
 					return;
 				} else if (!Basico_OPController_LoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao())) { // verificando se o usuario pode estar logado 
+					// recurperando login do usuario a sessao 
+					$loginUsuarioSessao = Basico_OPController_LoginOPController::retornaLoginUsuarioSessao(); 
+
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 					$request->setModuleName('basico');
 					$request->setControllerName('autenticador');
 					$request->setActionName('problemaslogin');
-					$request->setParam('login', Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
+					$request->setParam('login', $loginUsuarioSessao);
+					
 					Basico_OPController_LoginOPController::getInstance()->removeRegistroIdLoginUsuarioSessao();
-		
-					// parando a execucao do plugin
+
+					// enviando mensagem de alerta de problemas com login
+					Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($loginUsuarioSessao); 
+										
+		            // parando a execucao do plugin
 					return;
 				} else if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) { // verificando se o usuario possui perfil para acessar a acao
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado

@@ -308,7 +308,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	 * @return Basico_Model_Email
 	 * 
 	 */
-	public function retornaEmailPrimarioPessoa($idPessoa)
+	public function retornaObjetoEmailPrimarioPessoa($idPessoa)
 	{
 		if ((Int) $idPessoa > 0) {
 			// instanciando controladores

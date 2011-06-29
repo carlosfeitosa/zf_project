@@ -235,7 +235,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		
 	    		
 	    		// recuperando o email primario do usuario
-	    		$emailPrimario = $controladorEmail->retornaEmailPrimarioPessoa($idPessoa);
+	    		$emailPrimario = $controladorEmail->retornaObjetoEmailPrimarioPessoa($idPessoa);
 	    		
 	    		// recuperando a ultima versao do email
 	    	    $versaoUpdateEmail = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($emailPrimario);
@@ -260,30 +260,9 @@ class Basico_LoginController extends Zend_Controller_Action
 	            $novaMensagemConfirmacao->rowinfo             = $controladorRowinfo->getXml();
 	            $controladorMensagem->salvarObjeto($novaMensagemConfirmacao);
 	
-	            // setando e salvando remetente na relacao pessoas perfis mensagem categoria (remetente)
-	            $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
-	            $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
-	            $pessoasPerfisMensagensCategoriasRemetente = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
-	            $pessoasPerfisMensagensCategoriasRemetente->mensagem        = $novaMensagemConfirmacao->id;
-	            $pessoasPerfisMensagensCategoriasRemetente->categoria       = $idCategoriaRemetente;
-	            $pessoasPerfisMensagensCategoriasRemetente->pessoaPerfil    = $idPessoaPerfilSistema;
-	            $controladorRowinfo->prepareXml($pessoasPerfisMensagensCategoriasRemetente, true);
-	            $pessoasPerfisMensagensCategoriasRemetente->rowinfo         = $controladorRowinfo->getXml();
-	            $controladorPessoasPerfisMensagensCategorias->salvarObjeto($pessoasPerfisMensagensCategoriasRemetente);
-	
-	            // setando e salvando destinatario na relacao pessoas perfis mensagem categoria (destinatario)
-	            $idCategoriaDestinatario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
-	            $pessoasPerfisMensagensCategoriasDestinatario = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
-	            $pessoasPerfisMensagensCategoriasDestinatario->mensagem     = $novaMensagemConfirmacao->id;
-	            $pessoasPerfisMensagensCategoriasDestinatario->categoria    = $idCategoriaDestinatario;
-	            $pessoasPerfisMensagensCategoriasDestinatario->pessoaPerfil = $controladorPessoasPerfils->retornaObjetoPessoaPerfilPorIdPessoaIdPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id)->id;
-	            $controladorRowinfo->prepareXml($pessoasPerfisMensagensCategoriasDestinatario, true);
-	            $pessoasPerfisMensagensCategoriasDestinatario->rowinfo      = $controladorRowinfo->getXml();
-	            $controladorPessoasPerfisMensagensCategorias->salvarObjeto($pessoasPerfisMensagensCategoriasDestinatario);
-	
 	            // enviando a mensagem
-	            $controladorMensageiro->enviar($novaMensagemConfirmacao);
-		    	
+	            $controladorMensageiro->enviar($novaMensagemConfirmacao, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa)));
+	            		    	
 		    	// salvando a transacao
 			    Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
@@ -514,35 +493,14 @@ class Basico_LoginController extends Zend_Controller_Action
 			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
                          $controladorMensagem->salvarObjeto($novaMensagem);
 
-			             // setando e salvando relacionando pessoa perfil mensagem categoria (remetente)
-			             $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
-			             $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
-			             $pessoasPerfisMensagensCategoriasRemetente = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
-			             $pessoasPerfisMensagensCategoriasRemetente->mensagem     = $novaMensagem->id;
-			             $pessoasPerfisMensagensCategoriasRemetente->categoria    = $idCategoriaRemetente;
-			             $pessoasPerfisMensagensCategoriasRemetente->pessoaPerfil = $idPessoaPerfilSistema;
-			             $controladorRowInfo->prepareXml($pessoasPerfisMensagensCategoriasRemetente, true);
-			             $pessoasPerfisMensagensCategoriasRemetente->rowinfo      = $controladorRowInfo->getXml();
-			             $controladorPessoasPerfisMensagensCategorias->salvarObjeto($pessoasPerfisMensagensCategoriasRemetente);
-
-			             // setando e salvando relacionando pessoa perfil mensagem categoria (destinatario)
-			             $idCategoriaDestinatario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
-			             $pessoasPerfisMensagensCategoriasDestinatario = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
-			             $pessoasPerfisMensagensCategoriasDestinatario->mensagem     = $novaMensagem->id;
-			             $pessoasPerfisMensagensCategoriasDestinatario->categoria    = $idCategoriaDestinatario;
-			             $pessoasPerfisMensagensCategoriasDestinatario->pessoaPerfil = $idPessoaPerfil;
-			             $controladorRowInfo->prepareXml($pessoasPerfisMensagensCategoriasDestinatario, true);
-			             $pessoasPerfisMensagensCategoriasDestinatario->rowinfo      = $controladorRowInfo->getXml();
-			             $controladorPessoasPerfisMensagensCategorias->salvarObjeto($pessoasPerfisMensagensCategoriasDestinatario);
-
 			             // enviando a mensagem
-			             $controladorMensageiro->enviar($novaMensagem);
-			             		            
+			             $controladorMensageiro->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
+			             
 			             // salvando a transacao
 			             Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 						
-						// redirecionando para a view de e-mail nao validado ja existente no sistema
-		                $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
+						 // redirecionando para a view de e-mail nao validado ja existente no sistema
+		                 $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
 		                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
@@ -664,30 +622,9 @@ class Basico_LoginController extends Zend_Controller_Action
             $objNovaMensagem->rowinfo             = $controladorRowInfo->getXml();
             $controladorMensagem->salvarObjeto($objNovaMensagem);
 
-            // setando e salvando remetente na relacao pessoas perfis mensagem categoria (remetente)
-            $idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
-            $idCategoriaRemetente = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
-            $pessoasPerfisMensagensCategoriasRemetente = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
-            $pessoasPerfisMensagensCategoriasRemetente->mensagem        = $objNovaMensagem->id;
-            $pessoasPerfisMensagensCategoriasRemetente->categoria       = $idCategoriaRemetente;
-            $pessoasPerfisMensagensCategoriasRemetente->pessoaPerfil    = $idPessoaPerfilSistema;
-            $controladorRowInfo->prepareXml($pessoasPerfisMensagensCategoriasRemetente, true);
-            $pessoasPerfisMensagensCategoriasRemetente->rowinfo         = $controladorRowInfo->getXml();
-            $controladorPessoasPerfisMensagensCategorias->salvarObjeto($pessoasPerfisMensagensCategoriasRemetente);
-
-            // setando e salvando destinatario na relacao pessoas perfis mensagem categoria (destinatario)
-            $idCategoriaDestinatario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
-            $pessoasPerfisMensagensCategoriasDestinatario = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisMensagensCategoriasOPController');
-            $pessoasPerfisMensagensCategoriasDestinatario->mensagem     = $objNovaMensagem->id;
-            $pessoasPerfisMensagensCategoriasDestinatario->categoria    = $idCategoriaDestinatario;
-            $pessoasPerfisMensagensCategoriasDestinatario->pessoaPerfil = $novaPessoasPerfis->id;
-            $controladorRowInfo->prepareXml($pessoasPerfisMensagensCategoriasDestinatario, true);
-            $pessoasPerfisMensagensCategoriasDestinatario->rowinfo      = $controladorRowInfo->getXml();
-            $controladorPessoasPerfisMensagensCategorias->salvarObjeto($pessoasPerfisMensagensCategoriasDestinatario);
-
-            // enviando a mensagem
-            $controladorMensageiro->enviar($objNovaMensagem);
-
+	        // enviando a mensagem
+	        $controladorMensageiro->enviar($objNovaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($novaPessoasPerfis->id));
+            
             // salvando a transacao
             Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 

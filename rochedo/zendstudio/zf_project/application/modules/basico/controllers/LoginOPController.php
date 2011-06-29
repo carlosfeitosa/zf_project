@@ -316,7 +316,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	 * 
 	 * @return String
 	 */
-	public function retornaMensagensErroLoginNaoPodeLigarHTMLLI($login)
+	public function retornaMensagensErroLoginNaoPodeLogarHTMLLI($login)
 	{
 		// inicializando variaveis
 		$tempReturn = '';
@@ -326,11 +326,11 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 		// verificando se existe problema de login nao ativo
 		if (!$arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login travado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . "</li>";
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO])
@@ -346,7 +346,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 		return $tempReturn;
 	}
-
+	
 	/**
 	 * Retorna se o login pode logar
 	 *
@@ -521,6 +521,14 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			// incrementa a quantidade e data/hora da tentativa falha
 			$objLogin->tentativasFalhas++;
 			$objLogin->dataHoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+			
+			// verificando a quantidade de tentativas falhas para envio de mensagem de alerta
+			if($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_FALHAS_MINIMA_ENVIO_MENSAGEM_ALERTA){
+				// carregando mensagem de problema com login
+				$mesagemProblemaLogin = "{$objLogin->tentativasFalhas} ". Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_ALERTA_PROBLEMAS_LOGIN_SENHA_INCORRETA');
+				// enviando mensagem de alerta de problemas com login
+				Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($login, $mesagemProblemaLogin); 
+			}
 
 			// verificando se o limite de tentativas invalidas foi atingido
 			if ($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_LOGIN_MAX)
@@ -925,5 +933,78 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		}
 
 		return false;
+	}
+
+	/**
+	 * 
+	 * metodo responsavel por enviar uma mensagem de alerta de problemas com login 
+	 * @param string $login
+	 * @param string $mensagemProblemaLogin
+	 * 
+	 * @return Boolean
+	 */
+	public function enviaMensagemAlertaProblemasLogin($login, $mensagemProblemaLogin = null)
+	{
+		try{
+			
+			// recuperando o id da pessoa(destinatario) a partir do login
+			$idPessoaDestinatario = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
+			
+			// recuperando nome do destinatario
+			$nomePessoaDestinatario = $nomeDestinatario = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaDestinatario);
+			
+			$sexoUsuario = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaSexoPorIdPessoa($idPessoaDestinatario);
+			
+		    // substituindo a tag de tratamento de acordo com o sexo do usuario
+			if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
+			    $tratamentoPessoaDestinatario = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO');
+			else
+			    $tratamentoPessoaDestinatario = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO');
+
+			// verificando se mensagem de problema foi passada 
+			if($mensagemProblemaLogin === null){
+
+			   // carregando mensagem de erro de login
+			   $mensagemProblemaLogin = Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login);
+				
+			   // substituindo quebra de linha HTML(<br>) pro quebra e linha plain/text(\n)
+			   $mensagemProblemaLogin = str_replace("<br>", "\\n", $mensagemProblemaLogin);
+			   
+			   // retornando mensagem de erro de login sem HTML Tags
+			   $mensagemProblemaLogin = Basico_OPController_UtilOPController::retornaTextoSemHTML(Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login));
+			}	
+			
+			// carregando array de TAGS
+			$arrayTagsMensagemProblemasLogin["@tratamento"]  		= $tratamentoPessoaDestinatario;
+			$arrayTagsMensagemProblemasLogin["@nomeUsuario"] 		= $nomePessoaDestinatario;
+			$arrayTagsMensagemProblemasLogin["@problemas"]	 		= $mensagemProblemaLogin;
+			$arrayTagsMensagemProblemasLogin["@login"]	     		= $login;
+			$arrayTagsMensagemProblemasLogin["@assinaturaMensagem"] = Basico_OPController_DadosPessoasPerfisOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
+			
+			// recuperando mensagem template de alerta sobre falhas no login
+			$modeloMensagemProblemaLogin = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT, array($idPessoaDestinatario), null, $arrayTagsMensagemProblemasLogin);
+			
+			// recuperando o objeto categoria da mensagem
+			$objCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT);
+
+			// setando categoria da mensagem de alerta  
+			$modeloMensagemProblemaLogin->categoria = $objCategoriaMensagem->id;
+			
+			// recuperando o id da pessoa perfil o destinatario
+			$idPessoaPerfilUsuarioValidadoDestinatario = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaDestinatario);
+			
+			// salvano objeto da mensagem
+			Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($modeloMensagemProblemaLogin);
+			
+			// enviando a mensagem
+            Basico_OPController_MensageiroOPController::getInstance()->enviar($modeloMensagemProblemaLogin, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfilUsuarioValidadoDestinatario));
+            
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    		
+    	}
+                        
+		
 	}
 }

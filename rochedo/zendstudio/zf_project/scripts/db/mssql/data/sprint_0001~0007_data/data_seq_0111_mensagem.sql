@@ -5,6 +5,7 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 21/10/2010
 * ultimas modificacoes:
+* 							20/06/2011 - criacao de templeta de mensagem de alerta sobre problemas com login; 
 * 
 */
 
@@ -137,3 +138,53 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_en-us';
+
+INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
+SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Problema(s) com seu login' AS assunto,
+'@tratamento @nomeUsuario,
+
+
+Nosso sistema encontrou problema(s) com seu login, abaixo infomado(s):
+
+
+Login: @login
+@problemas
+    
+
+Para solucionar este inconveniente, por favor:
+
+- acesse a documentação online do sistema onde é explicado como tentar resolver estes problemas;
+- entre em contato com o suporte, informando seu login. Tenha em mãos seus documentos para comprovação e cadastro.
+
+
+Atenciosamente,
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br';
+
+INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
+SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Problem(s) with your login' AS assunto,
+'@tratamento @nomeUsuario,
+
+
+Our system encountered problem(s) with your login below informed:
+
+
+Login: @login
+@problemas
+    
+
+To solve this inconvenience, please:
+
+- access the online documentation system. There you can find the explanation to solve these problems;
+- contact the support, informing your login. Please have your documents for verification and registration.
+
+
+Sincerely,
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us';

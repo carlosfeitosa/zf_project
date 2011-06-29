@@ -104,8 +104,11 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 
 		// verificando se as credenciais de acesso funcionaram
 		if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuarioPorArrayParametros($form->getValues())) {
-			// verificando se o login pode realizar login
+			// verificando se o login pode realizar logon
 			if (!Basico_OPController_LoginOPController::getInstance()->retornaLoginPodeLogar($login)) {
+				// enviando mensagem de alerta de problemas com login
+				Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($login); 
+				
 				// redirecionando para a pagina de problemas com login
 				$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->view->urlEncrypt($this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login)))));
 			}
@@ -200,7 +203,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $this->getRequest()->getParam('login');
 
 		// montando a mensagem de erro
-		$errorMessage = Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLigarHTMLLI($login);
+		$errorMessage = Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login);
 
 		// recuperando o link para documentacao online
 		$linkDocumentacaoOnLine     = $this->_helper->url('problemasLogin', 'login', 'basico');

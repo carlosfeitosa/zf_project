@@ -24,6 +24,8 @@
 * 								10/05/2011 - criacao de elementos do subformulario perfil;
 * 								11/05/2011 - criacao de elementos para o subformulario conta;
 * 								12/05/2011 - criacao de elementos para o subformulario conta;
+* 								28/06/2011 - criacao de constante para problemas com login(senha incorreta);
+* 								29/06/2011 - criacao de constante para problemas com login(ip do login diferente do ip atual);
 */
 
 /*
@@ -4469,6 +4471,37 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_ALERTA_PROBLEMAS_LOGIN_SENHA_INCORRETA' AS constante_textual, 'tentativas de acesso com a senha errada.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_ALERTA_PROBLEMAS_LOGIN_IP_DIFERENETE_IP_ATUAL' AS constante_textual, 
+'O endereco IP atual difere do endereco IP utilizado no momento do logon.
+
+No momento da autenticacao de sua conta, seu acesso foi realizado
+atraves de um endereco de rede (@IPLogon) diferente do endereco de rede
+atual (@IPAtual).
+Isto representa uma possivel tentativa de acesso nao autorizado ao
+sistema.
+
+Especificamente, neste caso, nao se trata de um acesso simultaneo a sua
+conta, atraves do seu login e senha.
+
+Se voce perdeu sua conexao de rede e realizou novo acesso, por favor
+logue novamente. Caso contrario, voce pode estar sendo vitima de uma
+tentativa de acao mal intencionada.
+
+Caso voce tenha duvidas sobre este problema, por favor acesse a documentação 
+online(@linkDocumentacaoOnline) ou entre com contato com o nosso suporte(@emailSuporte).' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
 /* 
 * (Inglês dos E.U.A. - EN_US)
 * 
@@ -8893,6 +8926,36 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'NOME_PAIS_ZAMBIA' AS constante_textual, 'Zambia' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_ALERTA_PROBLEMAS_LOGIN_SENHA_INCORRETA' AS constante_textual, 'access attempts with the wrong password.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'MENSAGEM_ALERTA_PROBLEMAS_LOGIN_IP_DIFERENETE_IP_ATUAL' AS constante_textual, 
+'The current IP address differs from the IP address used at logon time.
+
+At authentication time of your account, your access has been achieved
+through a network address (@ IPLogon) other than the current network
+address (@ IPAtual).
+This represents a possible unauthorized attempt to access the system.
+
+Specifically, in this case, it is not a simultaneous access to your
+account, through your login and password.
+
+If you lost your connection and made a new network access, please try to
+logon again. Otherwise, you may be a victim of a malicious action
+attempt.
+
+If you have questions about this issue, please visit the documentation 
+online(@linkDocumentacaoOnline) or contact our support(@emailSuporte).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

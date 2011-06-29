@@ -207,7 +207,10 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 	            
 	    // setando o cabecalho na view
 		$this->view->cabecalho = $cabecalho;
-		
+
+		// efetuando logoff
+		Basico_OPController_LoginOPController::removeRegistroIdLoginUsuarioSessao();
+
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }

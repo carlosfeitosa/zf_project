@@ -52,7 +52,9 @@
 * 							04/03/2011 - criacao da categoria LOG_NOVA_CATEGORIA;
 * 									   - criacao da categoria LOG_UPDATE_CATEGORIA;
 *                           21/03/2011 - criacao da categoria LOG_DELETE_MENSAGEM;
-*                                      - criacao da categoria LOG_DELETE_CATEGORIA;
+*                                      - criacao da categoria LOG_DELETE_CATEGORIA*							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN
+*									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT	
+;
 *                                      - criacao da categoria LOG_NOVO_COMPONENTE;
 *                                      - criacao da categoria LOG_UPDATE_COMPONENTE;
 *                                      - criacao da categoria LOG_DELETE_COMPONENTE;
@@ -84,9 +86,15 @@
 *									   - criacao da categoria LOCALIDADE_MUNICIPIO;
 *									   - criacao da categoria LOCALIDADE_NAO_DETERMINADA;
 *							29/04/2011 - criacao da categoria FORMULARIO_INPUT_CVC;
+*							20/06/2011 - criacao da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT;
+*									   - criacao da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br;
+*									   - criacao da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us;
+*							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN
+*									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT	
 *							28/06/2011 - criacao da categoria FORMULARIO_INPUT_SUGESTOES_LOGIN;
 *
 */
+
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id, 'SISTEMA_USUARIO' AS nome, 'Usuários utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -180,6 +188,27 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT';
 
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT' AS nome, 'Categoria do template de mensagens de problemas com login do usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br' AS nome, 'Categoria do template de mensagens de problemas com login do usuário em pt-br.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us' AS nome, 'Categoria do template de mensagens de problemas com login do usuário em en-us.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT';
+
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'LOG' AS nome, 'Histórico de operações do sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -241,6 +270,20 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'MENSAGEM'
 AND c.nome = 'MENSAGEM_EMAIL_VALIDACAO_USUARIO';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN' AS nome, 'Mensagens do tipo e-mail de alerta de problemas com login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'MENSAGEM'
+AND c.nome = 'MENSAGEM_EMAIL';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 3 AS nivel, 'MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT' AS nome, 'Mensagens do tipo e-mail PLAIN TEXT de alerta de problemas com login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'MENSAGEM'
+AND c.nome = 'MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN';
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'MENSAGEM_PESSOAS_ENVOLVIDAS' AS nome, 'Pessoas envolvidas na mensagem.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo

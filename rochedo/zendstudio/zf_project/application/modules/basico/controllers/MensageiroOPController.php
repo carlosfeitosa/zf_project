@@ -75,9 +75,28 @@ class Basico_OPController_MensageiroOPController
 	 * 
 	 * @return void
 	 */
-    public function enviar(Basico_Model_Mensagem $mensagem) {
+    public function enviar(Basico_Model_Mensagem $mensagem, $idPessoaPerfilRemetente, array $arrayIdsPessoasPerfisDestinatarios, array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada = array(), array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonadaOculta = array()) {
+
+    	// verificando se a mensagem foi enviada
+    	if($mensagem->enviada){
+    		// interrompendo execucao do metodo e retornando falso
+    		return false;
+    	}
         
+    	// bloco de tentativa de envio de mensagem
     	try {
+    		// iniciando transacao 
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao();
+    		
+    		// associando / verificando as pessoas envolvidas na mensagem
+			if(!Basico_OPController_MensagemOPController::getInstance()->criaRelacaoPessoasPerfisMensagensCategoriasAssossiadas($mensagem,  $idPessoaPerfilRemetente, $arrayIdsPessoasPerfisDestinatarios, $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada, $arrayIdsPessoasPerfisDestinatariosCopiaCarbonadaOculta)){
+    		   // cancelando transacao
+    		   Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+	    	   
+    		   // interrompendo execucao do metodo e retornando falso
+	    	   return false;
+    		}
+    		  
     		// salvando log de tentativa de envio de mensagem
     		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL);
 
@@ -120,10 +139,18 @@ class Basico_OPController_MensageiroOPController
 
     		// salvando log de sucesso no envio de mensagem
     		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);
+    		
+    		// finalizando transacao
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+    		 
 		} catch(Exception $e){
-
+    		
+			// cancelando transacao
+    		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+			
 			// salvando log de falha no envio de mensagem
     		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_FALHA . $e->getMessage());
+    		
 			throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }
 	}
