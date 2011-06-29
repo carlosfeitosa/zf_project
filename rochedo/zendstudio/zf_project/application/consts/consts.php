@@ -506,6 +506,7 @@ define("MENSAGEM_TAG_TRATAMENTO", "@tratamento");
 define("MENSAGEM_TAG_LOGIN", "@login");
 define("MENSAGEM_TAG_LINK_VALIDACAO_EMAIL", "@linkValidacaoEmail");
 define("MENSAGEM_TAG_LINK_MEU_PERFIL", "@linkMeuPerfil");
+define("MENSAGEM_TAG_LINK_SUGESTOES_LOGIN", "@linkSugestoesLogin");
 define("MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO", '@dataHoraFinalizacaoCadastro');
 define("MENSAGEM_TAG_ASSINATURA_MENSAGEM", '@assinaturaMensagem');
 

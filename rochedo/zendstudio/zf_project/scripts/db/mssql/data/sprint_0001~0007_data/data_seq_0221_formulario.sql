@@ -16,9 +16,25 @@
 * 									   - criacao do formulario FORM_DIALOG_ENDERECO;
 * 							13/12/2010 - criacao do formulario FORM_AUTENTICACAO_USUARIO;
 * 							30/12/2010 - criacao do action e attribes do FORM_DIALOG_WEBSITE;
-* 							29/04/2011 - criacao do formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO; 
+* 							29/04/2011 - criacao do formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
+* 							28/06/2011 - criacao do formulario FORM_DIALOG_SUGESTAO_LOGIN; 
 *  
 */
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo,form_name, form_method, form_action, 
+                        form_attribs, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_SUGESTAO_LOGIN' AS nome, 
+		'Dialog para escolha de sugestao de login.' AS descricao, 
+        'FORM_TITLE_SUGESTAO_LOGIN' AS constante_textual_titulo, 
+        'SugestaoLogin' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_SUGESTAO_LOGIN';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id

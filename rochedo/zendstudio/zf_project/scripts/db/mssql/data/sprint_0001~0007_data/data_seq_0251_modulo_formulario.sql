@@ -15,8 +15,26 @@
 * 										   - vinculacao do modulo basico ao formulario FORM_DIALOG_ENDERECO;
 * 								23/11/2010 - vinculacao do modulo basico ao formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 								02/05/2011 - vinculacao do modulo basico ao formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
+* 								28/06/2011 - vinculacao do modulo basico ao formulario FORM_DIALOG_SUGESTAO_LOGIN;
 *  
 */
+
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_INPUT_SUGESTAO_LOGIN'
+		AND f.nome = 'FORM_DIALOG_SUGESTAO_LOGIN') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id

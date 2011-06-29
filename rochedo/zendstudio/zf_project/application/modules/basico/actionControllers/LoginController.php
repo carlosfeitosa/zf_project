@@ -348,24 +348,102 @@ class Basico_LoginController extends Zend_Controller_Action
      */
     public function verificadisponibilidadeloginAction()
     {
-    	if ($this->getRequest()->getParam('stringPesquisa') != "") {
+    	// recuperando os parametros da requisicao
+    	$post = $this->getRequest()->getParams();
+    	
+    	if ($post['stringPesquisa'] != "") {
 	    	//desabilitando layout e render
 	    	$this->_helper->layout()->disableLayout();
 	        $this->_helper->viewRenderer->setNoRender(true);
 	
 	        //checando a disponibilidade do login
-	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('stringPesquisa'));
+	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $post['stringPesquisa']);
+	    	
+	    	
 	        
-	    	if (!$loginDisponivel) {	
-				echo "<span style='color: red; font-weight: bold;'>{$this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')}</span>";
+	    	if (!$loginDisponivel) {
+	    		
+	    		// recuperando as sugestoes de login
+	    		$arraySugestoesLogin = self::retornaArraySugestoesLogin($post['stringPesquisa'], $post['nome'], $post['dataNascimento']);
+	    		
+	    		// recuperando a lingua do usuario
+	    		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
+	    		
+	    		// recuperando url do formulario de sugestao de login
+	    		$urlFormularioSugestaoLogin = "{$this->view->baseUrl()}/public_forms/basico/forms/SugestaoLogin.{$linguaUsuario}.html";
+	    		
+	    		// recuperando o titulo do dialog
+	    		$tituloDialogSugestaoLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
+	    		
+	    		// escrevendo mensagem de login nao disponivel	
+				echo "<span style='color: red; font-weight: bold;'>" .
+					 str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '{$urlFormularioSugestaoLogin}', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
+				     "</span>";
+				
 			}else{
+				// escrevendo mensagem de login disponivel
 			    echo "<span style='color: green; font-weight: bold;'>{$this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_DISPONIVEL')}</span>";
+			    
 			}
     	}else{
     		echo "";
     	}
     	
     }
+    
+    /**
+     * Retorna um array com 6 sugestoes de login utilizando os parametros como base para montar as sugestoes
+     * 
+     * @param String $nome
+     * @param String $login
+     * @param String $dataNascimento
+     */
+    public static function retornaArraySugestoesLogin($login, $nome = NULL, $dataNascimento = NULL)
+    {
+    	// verificando se o nome foi passado
+    	if ($nome != NULL && trim($nome != "")) {
+    		
+	    	// transformando cada nome em um elemento de uma array
+	    	$arrayNome = explode(' ', $nome);
+	    	
+	    	// retirando elementos com 3 ou menos caracteres
+	    	foreach ($arrayNome as $chave => $nome) {
+	    	    if (strlen($nome) <= 3)
+	    	    	unset($arrayNome[$chave]);
+	    	}
+    	}
+
+    	// verificando se a dataNascimento foi preenchida
+    	if (trim($dataNascimento) != "" && $dataNascimento != NULL) {
+	    	// recuperando o ano da data de nascimento passada
+	    	$dataNascimento = new Zend_Date($dataNascimento);
+	    	$ano  = $dataNascimento->toString("YYYY");
+    	}else{
+    		// se a data nascimento nao foi preenchida utiliza a data atual
+    		$ano = new Zend_Date();
+    		$ano = $ano->toString("YYYY");
+    	}
+    	
+    	// inicializando variaveis
+    	$arraySugestoes      = array();
+    	$arraySugestoesLogin = array();
+    	$arraySugestoesNome  = array();
+    	
+    	/*
+    	// loop para montar o array com as sugestoes
+    	while (count($arraySugestoes) < NUMERO_SUGESTOES_LOGIN_TOTAL) {
+    		
+    		// loop para montar as sugestoes utilizando o login
+    		while (count($arraySugestoesLogin) < NUMERO_SUGESTOES_LOGIN_UTILIZANDO_LOGIN) {
+    			
+    			
+    			
+    		}
+    		
+    	}
+    	*/
+    	
+    } 
     
     /**
 	 * Verifica a existência ou não do email a ser cadastrado no sistema e toma uma das seguintes ações: 

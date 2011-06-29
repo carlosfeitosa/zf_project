@@ -32,6 +32,13 @@
 */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_TITLE_SUGESTAO_LOGIN' AS constante_textual, 'Sugestões de login' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_TITULO_MESSAGEM_SUCESSO' AS constante_textual, 'Sucesso' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -123,7 +130,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL' AS constante_textual, 'Login não está disponível.<br>Por favor, tente outro login,<br>ou aceite a sugestão abaixo.' AS traducao
+SELECT c.id, 'SUBTITULO_FORM_SUGESTAO_LOGIN' AS constante_textual, '<strong>Por favor, selecione um dos logins abaixo:</strong>' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL' AS constante_textual, 'Login não está disponível.<br>Por favor, tente outro login,<br>ou clique @linkSugestoesLogin para escolher<br>uma das sugestões do sistema.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4461,6 +4475,13 @@ AND c.nome = 'pt-br';
 */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_TITLE_SUGESTAO_LOGIN' AS constante_textual, 'Login suggestions' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_TITULO_MESSAGEM_SUCESSO' AS constante_textual, 'Sucess' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -4552,7 +4573,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL' AS constante_textual, 'The login isn''t available.<br>Please, try other,<br>or choose one of the suggestions below.' AS traducao
+SELECT c.id, 'SUBTITULO_FORM_SUGESTAO_LOGIN' AS constante_textual, '<strong>Please, select one of the logins below:</strong>' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL' AS constante_textual, 'The login isn''t available.<br>Please, try other,<br>or click @linkSugestoesLogin to see<br>the suggestions of the system.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

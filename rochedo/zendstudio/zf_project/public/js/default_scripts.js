@@ -1,4 +1,4 @@
-/*
+
 dojo.require("dijit.Dialog");
 dojo.require("dijit.form.Form");
 dojo.require("dijit.form.Button");
@@ -11,7 +11,7 @@ dojo.require("dijit.form.SimpleTextarea");
 dojo.require("dijit.form.DateTextBox");
 dojo.require("dijit.form.CurrencyTextBox");
 dojo.require("dijit.form.CheckBox");
-*/
+
 var underlay;
 
 /*
@@ -312,15 +312,15 @@ function validateForm(formId, titulo, message, baseUrl)
     return true;
 }
 	
-function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, urlMetodo)
+function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, nome, dataNascimento, urlMetodo)
 {	
 	if (stringPesquisa != "") {
 		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
 		
 		dojo.xhrGet({
-	    	url: urlMetodo + stringPesquisa,
+	    	url: urlMetodo + stringPesquisa + "/nome/" + nome + "/dataNascimento/" + dataNascimento,
 	    	timeout: 5000,
-	    	load: function(response, ioArgs) 
+	    	load: function(response, ioArgs)
 	    	{
 			dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = response;
 	    	}
