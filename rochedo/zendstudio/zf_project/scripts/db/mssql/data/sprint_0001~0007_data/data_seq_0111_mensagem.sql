@@ -148,6 +148,8 @@ Nosso sistema encontrou problema(s) com seu login, abaixo infomado(s):
 
 
 Login: @login
+Problema(s):
+
 @problemas
     
 
@@ -173,6 +175,8 @@ Our system encountered problem(s) with your login below informed:
 
 
 Login: @login
+Problem(s):
+
 @problemas
     
 

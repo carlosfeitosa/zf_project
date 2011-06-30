@@ -4480,22 +4480,22 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'MENSAGEM_ALERTA_PROBLEMAS_LOGIN_IP_DIFERENETE_IP_ATUAL' AS constante_textual, 
-'O endereco IP atual difere do endereco IP utilizado no momento do logon.
+'O endereço IP atual difere do endereço IP utilizado no momento do logon.
 
-No momento da autenticacao de sua conta, seu acesso foi realizado
-atraves de um endereco de rede (@IPLogon) diferente do endereco de rede
+No momento da autenticação de sua conta, seu acesso foi realizado
+através de um endereço de rede (@IPLogon) diferente do endereço de rede
 atual (@IPAtual).
-Isto representa uma possivel tentativa de acesso nao autorizado ao
+Isto representa uma possível tentativa de acesso não autorizado ao
 sistema.
 
-Especificamente, neste caso, nao se trata de um acesso simultaneo a sua
-conta, atraves do seu login e senha.
+Especificamente, neste caso, não se trata de um acesso simultâneo a sua
+conta, através do seu login e senha.
 
-Se voce perdeu sua conexao de rede e realizou novo acesso, por favor
-logue novamente. Caso contrario, voce pode estar sendo vitima de uma
-tentativa de acao mal intencionada.
+Se você perdeu sua conexão de rede e realizou novo acesso, por favor
+logue novamente. Caso contrario, você pode estar sendo vitima de uma 
+ação mal intencionada.
 
-Caso voce tenha duvidas sobre este problema, por favor acesse a documentação 
+Caso você tenha duvidas sobre este problema, por favor acesse a documentação 
 online(@linkDocumentacaoOnline) ou entre com contato com o nosso suporte(@emailSuporte).' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
