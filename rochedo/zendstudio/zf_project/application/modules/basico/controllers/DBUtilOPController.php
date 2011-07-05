@@ -321,9 +321,9 @@ class Basico_OPController_DBUtilOPController
 		    	$auxDb  = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
 
 		    	//executando script SQL
-		    	if ($script != "")
+		    	if ($script != "") {
 		    		$auxDb->getConnection()->exec($script);
-		
+		    	}
 				return true;
     		}
 

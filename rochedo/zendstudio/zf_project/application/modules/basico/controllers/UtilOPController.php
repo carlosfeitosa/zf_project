@@ -139,7 +139,7 @@ class Basico_OPController_UtilOPController
     {
     	$patterns = array('@(/\*.*?\*/)@se',
     	                  '@(--.*?\n)@se',
-    	                  '@(//.*?\n)@se'
+    	                  '@(^//.*?\n)@se'
     	                 );
     	
     	return preg_replace($patterns, '',$string);
@@ -1829,5 +1829,25 @@ class Basico_OPController_UtilOPController
     {
     	// retornando texto sem Tags HTML
     	return strip_tags($texto);
+    }
+    
+    /**
+     * Remove acentos da string
+     * 
+     * @param String $string
+     * 
+     * @return String
+     */
+    public static function removeAcentosString($string) {
+    	
+    	$a = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ';
+		$b = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr';
+		
+		$string = utf8_decode($string);
+		
+		$string = strtr($string, utf8_decode($a), $b); //substitui letras acentuadas por &quot;normais&quot;
+		$string = str_replace(' ', '', $string); // retira espaco
+		
+		return utf8_encode($string); 
     }
 }
