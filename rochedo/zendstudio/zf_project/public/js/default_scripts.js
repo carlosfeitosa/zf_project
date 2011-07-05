@@ -447,19 +447,6 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
 	    console.debug('dojo parser ok');
 */
 		
-		// Get html elements
-		console.debug(json.view.html);
-		for (idElemento in json.view.html)	{
-			console.debug('elemento:', idElemento);
-			//console.debug('json.view.html[idElemento]', htmlElements[idElemento]);
-			//elemento = dijit.byId(idElemento);
-			
-			dojo.byId(idElemento).innerHTML = json.view.html[idElemento];
-	
-		}
-		
-		//dojo.parser.parse();
-		alert('ok');
 		
 		// get the modules
         dojo.forEach(json.view.modules, function(module)
@@ -467,7 +454,18 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
             dojo.require(module);
             console.debug('modulo carregado:', module);
         });
-        
+		
+		// Get html elements
+		console.debug(json.view.html);
+		for (idElemento in json.view.html)	{
+			console.debug('elemento:', idElemento);
+			
+			if (dojo.byId(idElemento)) {
+				dojo.byId(idElemento).innerHTML = json.view.html[idElemento];
+			} else {
+				console.debug('elemento html nao encontrado:', idElemento);
+			}
+		}  
 	    
 		// Get zendFormsMessages
 		zendFormsMessages = json.view.zendFormsMessages;
@@ -488,7 +486,7 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
 				nomeElemento = form + '-' + elementForm;
 				console.debug('nomeElemento:', nomeElemento);
 				
-				elementoFormulario = dijit.byId(nomeElemento);
+				elementoFormulario = dojo.byId(nomeElemento);
 				console.debug('elemento formulario eh:', elementoFormulario);
 
 				for (mensagens in zendFormsMessages[form][elementForm]) {
@@ -496,14 +494,35 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
 					mensagem = zendFormsMessages[form][elementForm][mensagens];
 					console.debug('mensagen:', mensagem); 
 					
-					adicionaMensagemErroZendDojoFormElement('widget_' + nomeElemento,mensagem);						
+					adicionaMensagemErroZendDojoFormElement('widget_' + elementForm, mensagem);						
 				}
 			}
-			
-
 		}
 		
+		/*
+		//----------------------
+		console.debug('iniciando foreache dojo attr dijits');
+		dojo.forEach(json.view.dijits, function(info, i) {
+			console.debug(info, "at index", i);
+			
+        	var n = dojo.byId(info.id);
+        	if (null != n) {
+            	dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
+            	console.debug('dojo mixin');
+        	}
+        });
+        console.debug('finalizado foreache dojo attr dijits');
+        
+        
+        dojo.parser.parse();
+        console.debug('dojo parser end.');
+        //---------------
+		*/
+		dojo.parser.parse();
 		
+		
+		
+		/*
 		console.debug('iniciando foreache dojo attr');
 		dojo.forEach(json.view.zendFormDijits, function(info, i) {
 			console.debug(info, "at index", i);
@@ -519,5 +538,17 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
         
         //dojo.parser.parse();
         console.debug('dojo parser end.');
+        */
+        
 	}	
+}
+
+function linkAjax() {
+	dojo.xhrPost({ url: '/rochedo_project/public/basico/dadosusuario',
+				  handleAs: 'json',
+				  load: function(data,args){
+						processaResponseDojoFormRequest(data,args, this, "alert('teste callback function')");
+				  }
+				
+	});
 }
