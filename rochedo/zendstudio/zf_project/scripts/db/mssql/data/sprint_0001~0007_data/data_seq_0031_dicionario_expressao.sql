@@ -24,6 +24,7 @@
 * 								10/05/2011 - criacao de elementos do subformulario perfil;
 * 								11/05/2011 - criacao de elementos para o subformulario conta;
 * 								12/05/2011 - criacao de elementos para o subformulario conta;
+* 								29/06/1011 - criacao de expressoes para o validador de email do formulario de cadastro de usuario nao validado
 * 								28/06/2011 - criacao de constante para problemas com login(senha incorreta);
 * 								29/06/2011 - criacao de constante para problemas com login(ip do login diferente do ip atual);
 */
@@ -413,6 +414,76 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART' AS constante_textual, '''%localPart%'' não é um usuário valido para o endereço de e-mail ''%value%''' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID' AS constante_textual, '''%value%'' O tipo informado parece ser inválido, o valor deveria ser uma cadêia de caractéres(string) ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_IP_ADDRESS_NOT_ALLOWED' AS constante_textual, '''%value%'' parece ser um endereço IP válido, mas infelimente, endereços IP não são permitidos ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_UNKNOWN_TLD' AS constante_textual, '''%value%'' parece ser um DNS válido, mas a comparação com a lista conhecida de domínios(TLD) não é válida ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_DASH' AS constante_textual, '''%value%'' parece ser um DNS válido, mas possui um hífen em uma posição que o torna inválido ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME_SCHEMA' AS constante_textual, '''%value%'' parece ser um DNS válido, mas não pode ser comparado com o esquema de nomes válidos para domínios ''%tld%''' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_UNDECIPHERABLE_TLD' AS constante_textual, '''%value%'' parece ser um DNS válido, mas não é possível a extração do nome do domínio ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME' AS constante_textual, '''%value%'' não coincide com a estrutura esperada de um nome de domínio válido ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_LOCAL_NAME' AS constante_textual, '''%value%'' não parece ser um nome válido de rede local ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_LOCAL_NAME_NOT_ALLOWED' AS constante_textual, '''%value%'' parece ser um domínio de rede local, mas infelizmente, domínios de redes locais não são permitidos ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_CANNOT_DECODE_PUNYCODE' AS constante_textual, '''%value%'' parece ser um DNS válido, mas a numeração informada do punycode não pode ser decodificada ' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4893,6 +4964,76 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID' AS constante_textual, '''%value%'' Invalid type given, value should be a string ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_IP_ADDRESS_NOT_ALLOWED' AS constante_textual, '''%value%'' appears to be an IP address, but IP addresses are not allowed ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_UNKNOWN_TLD' AS constante_textual, '''%value%'' appears to be a DNS hostname but cannot match TLD against known list ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_DASH' AS constante_textual, '''%value%'' appears to be a DNS hostname but contains a dash in an invalid position ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME_SCHEMA' AS constante_textual, '''%value%'' appears to be a DNS hostname but cannot match against hostname schema for TLD ''%tld%''' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_UNDECIPHERABLE_TLD' AS constante_textual, '''%value%'' appears to be a DNS hostname but cannot extract TLD part ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME' AS constante_textual, '''%value%'' does not match the expected structure for a DNS hostname ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_LOCAL_NAME' AS constante_textual, '''%value%'' does not appear to be a valid local network name ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_LOCAL_NAME_NOT_ALLOWED' AS constante_textual, '''%value%'' appears to be a local network name but local network names are not allowed ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_CANNOT_DECODE_PUNYCODE' AS constante_textual, '''%value%'' appears to be a DNS hostname but the given punycode notation cannot be decoded ' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO' AS constante_textual, 'The two given passwords do not match.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -5780,7 +5921,7 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
-
+	
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_TITLE_VINCULO_PROFISSIONAL' AS constante_textual, 'Professional Bond' AS traducao
 FROM tipo_categoria t
