@@ -2,99 +2,140 @@
 require_once 'Zend/Json.php';
 
 
-//-----------------------------------------------
+/*
+ * retorna as mensagens do zend_form, em um formato padronizado para zend_form e zend_form_subForm
+ */
 function retornaZendFormMessages(Zend_Form $form = null){
-	
 	$messages = array();
-	
-	if ($form and $form->isErrors()) {
-		if ($form->getSubForms())
-			$messages = $form->getMessages();
-		else
-			$messages[$form->getName()] = $form->getMessages();
-			 
-	}	
+	if ($form and $form->getMessages()) {
+		$nomeFormulario = $form->getName();
+		foreach ($form->getMessages() as $key => $value) {	
+			foreach ($value as $messageKey => $messageValue) {
+				if (is_subclass_of($form, 'Zend_Form_SubForm')) {
+					$nomeElemento = $nomeFormulario . '-' . $messageKey;
+					$valorElemento = $messageValue;
+				} else {
+					$nomeElemento = $key;
+					$valorElemento = $value;
+				}
+				$messages[$nomeFormulario][$nomeElemento] = $valorElemento;
+			}	
+		}
+	}
 	return $messages;
 }
+
+
 
 $scripts           = null;
 $modules 		   = null;
 $dijits 		   = null;
 $zendFormsMessages = array();
-$viewHeaderHtml    = null;
-$viewContentHtml   = null;
-$viewFooterHtml    = null;
 $formularios       = array();
 
 $formsRenders = array();
 
-// recupera as variáveis e objetos da view
+
+$html = null;
+
+$existeFormNoRequest = null;
+
+
+// percorre as variáveis e objetos contidas na view
 foreach ($this->getVars() as $key => $value){
-	
+
 	// verifica se existe objetos do tipo formulário na view
 	if (is_subclass_of($value, 'Zend_Form')) {
-		Basico_OPController_UtilOPController::print_debug($key);
-		
-		$formularios[] = $key;		
-		$zendFormsMessages += retornaZendFormMessages($this->$key);
 			
-	}else {
+		// verifica se existe subforms no formulário
+		if ($value->getSubForms()) {	
+			
+			// percorre os subforms
+			foreach ($value->getSubForms() as $subForm) {
+				
+				// verifica se existe o formulário no idResquestSource.
+				if (isset($_REQUEST['idRequestSource']) and ($subForm->getName() == $_REQUEST['idRequestSource'])) {
+					$existeFormNoRequest = true;
+										
+					$zendFormsMessages = retornaZendFormMessages($subForm);
+					break;
+				} else {
+					$formularios[] = $key;
+				}
+			}
+			 
+		} else {
+			
+			//Basico_OPController_UtilOPController::print_debug($_REQUEST);
+					
+			// verifica se existe o formulário no request
+			if (isset($_REQUEST['idRequestSource']) and ($value->getName() == $_REQUEST['idRequestSource'])) {
+				
+				$existeFormNoRequest = true;
+				
+				$zendFormsMessages = retornaZendFormMessages($value);
+			} else {
+				$formularios[] = $key;
+			}
+		}
+
+	} else {
 		
 	}
 }
 
-Basico_OPController_UtilOPController::print_debug($formularios);
-//exit;
 
-if (!$zendFormsMessages) {
-	echo "não existe mensagens de form";
+// se não existir formulario(s) no reques
+if (!$existeFormNoRequest) {
 	
 	// seta o form para Programmatic
-	Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
+	//Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
+	//Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 	
-	/*
-	 * monta dijits a partir do dojo view helper
-	 * apos o $this->form->render();
-	 */
-	
+	// renderiza todos os formularios da view
 	foreach ($formularios as $key => $value){
 		$formsRenders[$value] = $this->$value->render();
 	}
 	
+	// carrega os javaScripts caso exista.
 	$scripts          = $this->dojo()->getJavascript();
+	
+	// carrega os módulos do dojo necessarios aos formulários.
 	$modules          = $this->dojo()->getModules();
+	
 	$dijits           = $this->dojo()->getDijits();
+
+	// varrega todos os formulários renderizados para serem devolvidos via json. 
+	foreach ($formsRenders as $keyFormRender => $valueFormRender) {	
+		$html[$keyFormRender] = $valueFormRender; 
+	}
 	
 }else{
-	echo "existe mensagens de form";
-
+	//echo "existe form ou subform no request";
 }
 
-Basico_OPController_UtilOPController::print_debug($formsRenders);
-exit;
 
 $js = <<<JS
 alert('ok');
 JS;
-
-$this->dojo()->addJavascript($js);
-
+//$this->dojo()->addJavascript($js);
 
 $response = array('view' => array('scripts'           => $scripts,
-								  //'modules'           => $modules,
-								  //'dijits'            => $dijits,
-								  'html'              => array(//'header' => $viewHeaderHtml,
-															   //'content' => $viewContentHtml,
-															   'footer' => $viewFooterHtml),
+								  'modules'           => $modules,
+								  'dijits'            => $dijits,
 								  'zendFormsMessages' => $zendFormsMessages,
+								  'html'  		      => $html,
 								  
 								 ),
 				 );
 
 //Basico_OPController_UtilOPController::print_debug($response);
 echo Zend_Json::encode($response);
-exit;
+return;
 //-----------------------------------------------
+
+
+
 
 
 
