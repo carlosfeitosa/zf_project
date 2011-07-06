@@ -54,19 +54,47 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
 
     protected function _renderHandler($userArgs)
     {
+    	
+$handle = <<<HANDLE
+function(error, ioargs) {
+	var message = "";
+    switch (ioargs.xhr.status) {
+    	case 200:
+        	message = "Good request.";
+        	console.debug(this.form.id);
+            break;
+        case 404:
+        	message = "The requested page was not found";
+            break;
+        case 500:
+            message = "The server reported an error.";
+            break;
+        case 407:
+			message = "You need to authenticate with a proxy.";
+            break;
+        default:
+            message = "Unknown error.";
+     }
+     console.debug(message);
+     
+     console.debug('desativando underlay....');
+     underlay.hide();
+     console.debug('underlay desativado');
+     
+} 
+HANDLE;
     	$standardArgs = array(
     		
-    		// content deve ser um objeto javaScript de pares nome/valor
-    		'content' => new Zend_Json_Expr("{idRequestSource: '{$this->idRequestSource}',
+    		// content deve receber um objeto javaScript de pares nome/valor. 
+    		'content'  => new Zend_Json_Expr("{idRequestSource: '{$this->idRequestSource}',
     										  key1: 'value1',
 					    					  key2: 'value2',
 					    					  key3: 'value3'
     										 }"),
-    		'testeArgs' => 'xxxxxxxxxxxxxxxxxxxx',
-    		//'postData' => 'data postado....',
     	
             'form'     => new Zend_Json_Expr('this.domNode'),
             'handleAs' => 'json',
+    		'handle'   => new Zend_Json_Expr($handle),
 
         );
         
@@ -78,18 +106,19 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
         }
         $xhrArgs = Zend_Json::encode($args,false,array('enableJsonExprFinder' => true));
 
-        $content =<<<EOQ
+        
+        $titulo = Basico_View_Helper_Tradutor::tradutor('FORM_VALIDATION_TITLE');    
+        $mensagem = Basico_View_Helper_Tradutor::tradutor('FORM_VALIDATION_MESSAGE');
+        
+        $content = <<<EOQ
 <script type="dojo/method" event="onSubmit">
-//loading();
-validateForm('CadastrarUsuarioValidado', 'titulo', 'mensagem....', '');
-return;
-if (validateForm('CadastrarUsuarioValidado', 'titulo', 'mensagem....', '')){
+loading();
+if (validateForm(this, '{$titulo}', '{$mensagem}')){
 	if (this.validate()) {
 	    dojo.xhrPost($xhrArgs);
 	}
 	return false;
 }
-//loading('hide');
 return false;
 </script>
 EOQ;
