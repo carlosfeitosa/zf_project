@@ -544,11 +544,37 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
 }
 
 function linkAjax() {
+	loading();
 	dojo.xhrPost({ url: '/rochedo_project/public/basico/dadosusuario',
 				  handleAs: 'json',
 				  load: function(data,args){
-						processaResponseDojoFormRequest(data,args, this, "alert('teste callback function')");
-				  }
+							processaResponseDojoFormRequest(data,args, this, "alert('teste callback function')");
+				  		},
+				  handle: 	function(error, ioargs) {
+								var message = "";
+							    switch (ioargs.xhr.status) {
+							    	case 200:
+							        	message = "Good request.";
+							            break;
+							        case 404:
+							        	message = "The requested page was not found";
+							            break;
+							        case 500:
+							            message = "The server reported an error.";
+							            break;
+							        case 407:
+										message = "You need to authenticate with a proxy.";
+							            break;
+							        default:
+							            message = "Unknown error.";
+							     }
+							     console.debug(message);
+							     
+							     console.debug('desativando underlay....');
+							     underlay.hide();
+							     console.debug('underlay desativado');
+							     
+							} 
 				
 	});
 }
