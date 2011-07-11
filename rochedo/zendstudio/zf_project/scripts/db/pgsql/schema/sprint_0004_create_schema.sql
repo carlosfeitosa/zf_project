@@ -147,8 +147,8 @@ create table formulario_elemento_validator (
 	id serial not null ,
 	id_categoria int not null ,
 	nome character varying (100) not null ,
-	descricao character varying (2000) null ,
-	validator character varying (2000) not null ,
+	descricao character varying (1000) null ,
+	validator character varying (4000) not null ,
 	rowinfo character varying (2000) not null 
 )
 with (
