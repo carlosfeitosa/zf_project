@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 29/06/2011 14:54:32
+* em: 11/07/2011 14:01:57
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 29/06/2011 14:38:57
+* @version    1: 11/07/2011 13:48:43
 */
 class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
 {
@@ -28,7 +28,7 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
         // Inicializando o formulário.
         parent::__construct($options);
 
-        $this->setName('SugestaoLogin');
+        $this->setName('BasicoSugestaoLogin');
         $this->setMethod('post');
 
         // Adicionando paths para localizacao de componentes nao ZF.

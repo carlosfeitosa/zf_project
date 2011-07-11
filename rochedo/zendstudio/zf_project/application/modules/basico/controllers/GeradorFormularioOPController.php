@@ -238,7 +238,7 @@ class Basico_OPController_GeradorFormularioOPController
                 
                 // nivel 2 de identação
                 $nivelIdentacao++;
-                Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoFormulario($nivelIdentacao, $formConstructorComment, $formConstructorInherits, $formName, $formMethod, $formAction, $formAttribs, $formDecorator));
+                Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoFormulario($nivelIdentacao, $formConstructorComment, $formConstructorInherits, str_replace($objFormulario->formName, ucfirst(strtolower($moduleName)) . $objFormulario->formName, $formName), $formMethod, $formAction, $formAttribs, $formDecorator));
 
                 // verifica se o formulario possui elementos
                 if (Basico_OPController_FormularioOPController::getInstance()->existeElementosPorIdFormulario($objFormulario->id)) {

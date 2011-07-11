@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/05/2011 15:21:46
+* em: 11/07/2011 14:01:47
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/05/2011 11:47:43
+* @version    1: 11/07/2011 13:48:43
 */
 class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais extends Zend_Dojo_Form
 {
@@ -28,7 +28,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais e
         // Inicializando o formulário.
         parent::__construct($options);
 
-        $this->setName('CadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais');
+        $this->setName('BasicoCadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais');
         $this->setMethod('post');
 
         // Adicionando paths para localizacao de componentes nao ZF.

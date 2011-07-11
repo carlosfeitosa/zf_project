@@ -1,4 +1,4 @@
-<form id="CadastrarTelefone" method="post" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
+<form id="BasicoCadastrarTelefone" method="post" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
 <div id="float-left-clear-both"><label class="required">* Phone's type:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarTelefone', 'Help', 'Choose in this field the phone\'s type', 1)</script></button></label>
 <dd>
 <select name="BasicoCadastrarTelefoneTelefoneTipo" id="BasicoCadastrarTelefoneTelefoneTipo" required="true" dojoType="dijit.form.FilteringSelect">
@@ -6,16 +6,16 @@
 </select></dd></div>
 <div id="float-left-clear-both"><label class="required">* International dialing code:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarTelefone', 'Help', 'Type in this field the telephone\'s international dialing code (numeric value)<br><br>1 fo USA', 1)</script></button></label>
 <dd>
-<input style="width: 40px;" id="BasicoCadastrarTelefoneTelefoneCodigoPais" name="BasicoCadastrarTelefoneTelefoneCodigoPais" value="" type="text" constraints="{'places':0,'pattern':'##0.##'}" invalidMessage="Type the telephone's international dialing code (numeric value)&lt;br&gt;&lt;br&gt;1 for USA" required="true" dojoType="dijit.form.NumberTextBox"></dd></div>
+<input style="width: 40px;" id="BasicoCadastrarTelefoneTelefoneCodigoPais" name="BasicoCadastrarTelefoneTelefoneCodigoPais" value="" type="text" constraints="{'places':0}" invalidMessage="Type the telephone's international dialing code (numeric value)&lt;br&gt;&lt;br&gt;1 for USA" required="true" dojoType="dijit.form.NumberTextBox"></dd></div>
 <div id="float-left-clear-both"><label class="required">* Distance dialing code:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarTelefone', 'Help', 'Type in this field the telephone\'s distance dialing code (numeric value)', 1)</script></button></label>
 <dd>
-<input style="width: 40px;" id="BasicoCadastrarTelefoneTelefoneCodigoArea" name="BasicoCadastrarTelefoneTelefoneCodigoArea" value="" type="text" constraints="{'places':0,'pattern':'##0.##'}" invalidMessage="Type the telephone's distance dialing code (numeric value)" required="true" dojoType="dijit.form.NumberTextBox"></dd></div>
+<input style="width: 40px;" id="BasicoCadastrarTelefoneTelefoneCodigoArea" name="BasicoCadastrarTelefoneTelefoneCodigoArea" value="" type="text" constraints="{'places':0}" invalidMessage="Type the telephone's distance dialing code (numeric value)" required="true" dojoType="dijit.form.NumberTextBox"></dd></div>
 <div id="float-left-clear-both-margin-right10px"><label class="required">* Telephone's number:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarTelefone', 'Help', 'Type in this field the telephone\' number (numeric value)', 1)</script></button></label>
 <dd>
-<input style="width: 70px;" id="BasicoCadastrarTelefoneTelefone" name="BasicoCadastrarTelefoneTelefone" value="" type="text" constraints="{'places':0,'pattern':'##0.##'}" invalidMessage="Type the telephone's number (numeric value)" required="true" dojoType="dijit.form.NumberTextBox"></dd></div>
+<input style="width: 70px;" id="BasicoCadastrarTelefoneTelefone" name="BasicoCadastrarTelefoneTelefone" value="" type="text" constraints="{'places':0}" invalidMessage="Type the telephone's number (numeric value)" required="true" dojoType="dijit.form.NumberTextBox"></dd></div>
 <div id="float-left"><label class="optional">Telephone's extension:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarTelefone', 'Help', 'Type in this field the telephone\'s extension number (numeric value)', 1)</script></button></label>
 <dd>
-<input style="width: 40px;" id="BasicoCadastrarTelefoneTelefoneRamal" name="BasicoCadastrarTelefoneTelefoneRamal" value="" type="text" constraints="{'places':0,'pattern':'##0.##'}" invalidMessage="Type the telephone's extension number (numeric value)" required="false" dojoType="dijit.form.NumberTextBox"></dd></div>
+<input style="width: 40px;" id="BasicoCadastrarTelefoneTelefoneRamal" name="BasicoCadastrarTelefoneTelefoneRamal" value="" type="text" constraints="{'places':0}" invalidMessage="Type the telephone's extension number (numeric value)" required="false" dojoType="dijit.form.NumberTextBox"></dd></div>
 <div id="float-left-clear-both"><label class="optional">Description:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('CadastrarTelefone', 'Help', 'Type in this field any information that you consider important about the telephone', 1)</script></button></label>
 <dd>
 <textarea style="width: 300px;" id="BasicoCadastrarTelefoneTelefoneDescricao" name="BasicoCadastrarTelefoneTelefoneDescricao" type="textarea" required="false" dojoType="dijit.form.SimpleTextarea"></textarea>
@@ -28,4 +28,4 @@
 <div id="float-right-margin-right10px">
 <button name="BasicoCadastrarTelefoneResetar" id="BasicoCadastrarTelefoneResetar" type="reset" onClick='hideDialog("Basico_Form_CadastrarTelefone", "/rochedo_project/public");' required="false" dojoType="dijit.form.Button">Cancel</button></div>
 <dd id="BasicoCadastrarTelefoneCsrf-element">
-<input type="hidden" name="BasicoCadastrarTelefoneCsrf" value="d4438feef28b7e69f5f38a125ff01549" id="BasicoCadastrarTelefoneCsrf"></dd></dl></form>
+<input type="hidden" name="BasicoCadastrarTelefoneCsrf" value="c47a00e43af21c734a61bd0d43ae3cd3" id="BasicoCadastrarTelefoneCsrf"></dd></dl></form>

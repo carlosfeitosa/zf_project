@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 21/06/2011 17:10:21
+* em: 11/07/2011 14:01:38
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 21/06/2011 17:07:09
+* @version    1: 11/07/2011 13:48:43
 */
     $basicoCadastrarDadosUsuarioContaSubForm = new Zend_Dojo_Form_SubForm();
 

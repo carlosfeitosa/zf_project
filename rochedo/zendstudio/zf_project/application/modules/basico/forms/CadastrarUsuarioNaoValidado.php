@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/05/2011 15:21:50
+* em: 11/07/2011 14:01:51
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/05/2011 11:47:43
+* @version    1: 11/07/2011 13:48:43
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -28,7 +28,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         // Inicializando o formulário.
         parent::__construct($options);
 
-        $this->setName('CadastrarUsuarioNaoValidado');
+        $this->setName('BasicoCadastrarUsuarioNaoValidado');
         $this->setMethod('post');
         $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/login/verificaNovoLogin'));
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioNaoValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
@@ -55,7 +55,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
         $elements[2]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
-        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true, 'messages' => array(Zend_Validate_EmailAddress::INVALID_FORMAT      => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT'), 
+        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true, 'messages' => array(Zend_Validate_EmailAddress::INVALID_FORMAT     => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT'), 
 																												 Zend_Validate_EmailAddress::INVALID_HOSTNAME    => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME'),
 																												 Zend_Validate_EmailAddress::INVALID_MX_RECORD   => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD'),
 																												 Zend_Validate_EmailAddress::INVALID_SEGMENT     => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT'),
