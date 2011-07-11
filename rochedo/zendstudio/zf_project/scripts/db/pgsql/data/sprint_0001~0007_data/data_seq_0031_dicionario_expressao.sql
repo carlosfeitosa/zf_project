@@ -419,48 +419,6 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME' AS constante_textual, '''%hostname%'' não é um provedor válido para o endereço de e-mail ''%value%''' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD' AS constante_textual, '''%hostname%'' parece não ter um registro MX válido para o endereço de e-mail ''%value%''' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT' AS constante_textual, '''%hostname%'' não é um segmento de rede roteável válido. O endereço de e-mail ''%value%'' não pode ser resolvido a partir de uma rede pública.' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_EMAILADDRESS_DOT_ATOM' AS constante_textual, '''%localPart%'' não pode ser resolvido contra o formato dot-atom' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_EMAILADDRESS_QUOTED_STRING' AS constante_textual, '''%localPart%'' não pode ser resolvido contra o formato texto entre aspas' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART' AS constante_textual, '''%localPart%'' não é um usuário valido para o endereço de e-mail ''%value%''' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID' AS constante_textual, '''%value%'' O tipo informado parece ser inválido, o valor deveria ser uma cadêia de caractéres(string) ' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
