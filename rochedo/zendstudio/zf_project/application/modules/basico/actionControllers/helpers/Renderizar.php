@@ -96,26 +96,23 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		// AJAX REQUEST
     		
     		// Desliga a renderizacao
-    		$controller->getHelper('viewRenderer')->setNoRender(true);
+
+    		//$controller->getHelper('viewRenderer')->setNoRender(false);
+    		//$controller->getHelper('viewRenderer')->setNoController(true);
     		
     		// Desliga o layout do Zend para requisições do tipo AJAX(XmlHttpRequest)
     		$controller->getHelper('layout')->disableLayout(true);
     		
-    		// Seta o tipo de requisição para a view
-    		$controller->view->postOnBackground = true;
-    		
     		$contexto = 'ajax';
     	}else{
     		// NORMAL REQUEST
-    		
-    		// Seta o tipo de requisição para a view
-    		$controller->view->postOnBackground = false;
+
     	}
     	
     	if($disableLayout)
     		$controller->getHelper('layout')->disableLayout(true);
 
-    		if(!$viewScript){
+   		if(!$viewScript){
 
     		/*
     		 * Renderiza a view baseada no contexto
