@@ -1,4 +1,3 @@
-
 dojo.require("dijit.Dialog");
 dojo.require("dijit.form.Form");
 dojo.require("dijit.form.Button");
@@ -380,17 +379,29 @@ function limparMensagemErroZendDojoForm(formName)
 	else
 		parametro = '';
 	
-	// carrega os elementos de erros com className 'errors', do formulario passado ou de todos os formularios
+	// busca todos os elementos de erros com className 'errors', do formulario passado ou de todos os formularios
 	var errors = dojo.query(parametro + ' .errors');
 
     // remove todos os elementos encontrados
     for (var i = 0; i < errors.length; i++) {
 		dojo._destroyElement(dojo.byId(errors[i]));
     }
+    
+    // busca todas as mensagens com o id='divContainerError'  
+    var mensagens = dojo.query(parametro + ' #divContainerError');
+    
+    // remove todas as mensagens encontradas no formulário. 
+    for (var i = 0; i < mensagens.length; i++) {
+		dojo._destroyElement(dojo.byId(mensagens[i]));
+    }
 }
 
+function strpos (haystack, needle, offset) {
+	var i = (haystack + '').indexOf(needle, (offset || 0));
+	return i === -1 ? false : i;
+}
 
-function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
+function processaResponseDojoFormRequest(data,args, formThis)
 {
 
 	if(typeof data == "error") {
@@ -399,8 +410,7 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
     	
 	}else if (data == true) {
 		
-		// dados validados
-		console.warn("data true: ",data);
+		console.warn("data response true: ",data);
 		
 		console.debug('formThis:', formThis);
 		console.debug('formThis:', formThis.form.id);
@@ -415,20 +425,19 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
 			console.debug('formulário hide');
 		}
 		
-		if (callbackFunction) {
-			eval(callbackFunction);
-			console.debug('callbackFunction:', callbackFunction);
+		if (sucessCallbackFunction) {
+			eval(sucessCallbackFunction);
+			console.debug('sucessCallbackFunction:', sucessCallbackFunction);
 		}else{
-			console.debug('not callbackFunction');
+			console.debug('not sucessCallbackFunction');
 		}
-
 		
 		
 	}else{
-		console.debug('formulario não validado.: ', data);
+		console.debug('data response...: ', data);
 		
 		// show our response 
-		console.debug('data response: ', data);
+		console.debug('data response: ', data);	
 		json = eval(data); //json = eval("(" + data + ")");
 		console.debug('data evaluated: ', json);
 /*
@@ -446,7 +455,7 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
 	   //dojo.parser.parse();
 	    console.debug('dojo parser ok');
 */
-		
+	
 		
 		// get the modules
         dojo.forEach(json.view.modules, function(module)
@@ -467,39 +476,60 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
 			}
 		}  
 	    
-		// Get zendFormsMessages
-		zendFormsMessages = json.view.zendFormsMessages;
-		for (form in zendFormsMessages)	{
-			console.debug('form in zendFormsMessages:', form);
+		
+		if (dojo.byId(json.view.idResponseSource)) {
 			
-			formulario = dijit.byId(form);
-			console.debug('formulario eh:', formulario);	
+			// Get zendFormsMessages
+			zendFormsMessages = json.view.zendFormsMessages;
 			
-			class_form = formulario.declaredClass;
-			console.debug('classe do formulario:', class_form);
-
-			limparMensagemErroZendDojoForm(form);
+			limparMensagemErroZendDojoForm(json.view.idResponseSource);
 			
-			for (elementForm in zendFormsMessages[form])	{
-				console.debug('elementForm in zendFormsMessages[form]:', elementForm);
-				
-				nomeElemento = form + '-' + elementForm;
-				console.debug('nomeElemento:', nomeElemento);
-				
-				elementoFormulario = dojo.byId(nomeElemento);
-				console.debug('elemento formulario eh:', elementoFormulario);
-
-				for (mensagens in zendFormsMessages[form][elementForm]) {
-					console.debug('mensagens in zendFormsMessages[form][elementForm] :', mensagens);
-					mensagem = zendFormsMessages[form][elementForm][mensagens];
-					console.debug('mensagen:', mensagem); 
+			if (zendFormsMessages.length != 0) {
+				for (form in zendFormsMessages)	{
+					console.debug('form in zendFormsMessages:', form);
 					
-					adicionaMensagemErroZendDojoFormElement('widget_' + elementForm, mensagem);						
+					formulario = dijit.byId(form);
+					console.debug('formulario eh:', formulario);	
+					
+					class_form = formulario.declaredClass;
+					console.debug('classe do formulario:', class_form);					
+					
+					for (nomeElementForm in zendFormsMessages[form])	{
+						console.debug('nomeElementForm in zendFormsMessages[form]:', nomeElementForm);
+						
+						nomeElemento = form + '-' + nomeElementForm;
+						console.debug('nomeElemento:', nomeElemento);
+						
+						elementoFormulario = dojo.byId(nomeElemento);
+						console.debug('elemento formulario eh:', elementoFormulario);
+
+						for (mensagens in zendFormsMessages[form][nomeElementForm]) {
+							console.debug('mensagens in zendFormsMessages[form][nomeElementForm] :', mensagens);
+							mensagem = zendFormsMessages[form][nomeElementForm][mensagens];
+							console.debug('mensagen:', mensagem); 
+							
+							
+							elemento = dojo.byId(nomeElementForm);
+							console.debug('elemento :', elemento, 'nomeElemento:', nomeElementForm);
+							if (elemento != null && elemento.type == 'hidden') {
+								
+								console.debug('elemento hiddden encontrado:', elemento);
+								
+								// procura pela a string Csrf () no final do nome do elemento.
+								csrfEncontrado = strpos(elemento.name, 'Csrf', 0);
+								if (csrfEncontrado) {
+									adicionaElementoMensagemErro('Basico_Form_CadastrarTelefone', mensagem, 'Tempo de envio do formulario esgotou. Tente novamente.')
+								}
+							}
+							
+							adicionaMensagemErroZendDojoFormElement('widget_' + nomeElementForm, mensagem);
+						}
+					}
 				}
+				
 			}
 		}
 		
-		/*
 		//----------------------
 		console.debug('iniciando foreache dojo attr dijits');
 		dojo.forEach(json.view.dijits, function(info, i) {
@@ -512,33 +542,19 @@ function processaResponseDojoFormRequest(data,args, formThis, callbackFunction)
         	}
         });
         console.debug('finalizado foreache dojo attr dijits');
-        
-        
-        dojo.parser.parse();
-        console.debug('dojo parser end.');
         //---------------
-		*/
+		
+        
 		dojo.parser.parse();
 		
-		
-		
-		/*
-		console.debug('iniciando foreache dojo attr');
-		dojo.forEach(json.view.zendFormDijits, function(info, i) {
-			console.debug(info, "at index", i);
-			
-        	var n = dojo.byId(info.id);
-        	if (null != n) {
-            	dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
-            	console.debug('dojo mixin');
-        	}
-        });
-        console.debug('finalizado foreache dojo attr');
-        
-        
-        //dojo.parser.parse();
-        console.debug('dojo parser end.');
-        */
+		// processa scripts
+		console.debug('verificando se existe scripts');
+		scripts = json.view.scripts;
+		for (script in scripts)	{
+				eval(scripts[script]);
+				console.debug('script processado(', script, ')');
+		}
+		console.debug('scripts end...');
         
 	}	
 }
