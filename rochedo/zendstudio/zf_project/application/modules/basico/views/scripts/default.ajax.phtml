@@ -1,7 +1,6 @@
 <?php
 require_once 'Zend/Json.php';
 
-
 /*
  * retorna as mensagens do zend_form, em um formato padronizado para zend_form e zend_form_subForm
  */
@@ -26,39 +25,54 @@ function retornaZendFormMessages(Zend_Form $form = null){
 }
 
 
-
-$scripts           = null;
-$modules 		   = null;
-$dijits 		   = null;
-$zendFormsMessages = array();
-$formularios       = array();
-
-$formsRenders = array();
-
-
-$html = null;
-
+$scripts             = null;
+$modules 		     = null;
+$dijits 		     = null;
+$zendFormsMessages   = array();
+$formularios         = array();
+$formsRenders        = array();
+$html                = null;
 $existeFormNoRequest = null;
-
+$idResponseSource	 = null;
+$callbackFunction    = null;
 
 // percorre as variáveis e objetos contidas na view
 foreach ($this->getVars() as $key => $value){
 
+	$i = 0;
 	// verifica se existe objetos do tipo formulário na view
 	if (is_subclass_of($value, 'Zend_Form')) {
 			
 		// verifica se existe subforms no formulário
-		if ($value->getSubForms()) {	
+		if ($value->getSubForms()) {
 			
 			// percorre os subforms
 			foreach ($value->getSubForms() as $subForm) {
 				
 				// verifica se existe o formulário no idResquestSource.
 				if (isset($_REQUEST['idRequestSource']) and ($subForm->getName() == $_REQUEST['idRequestSource'])) {
+					
+					$idResponseSource = $_REQUEST['idRequestSource'];
 					$existeFormNoRequest = true;
 										
 					$zendFormsMessages = retornaZendFormMessages($subForm);
-					break;
+					
+					// percorre todos os elementos do subform em busca do elemento hash
+					foreach ($subForm->getElements() as $elementoSubform){
+						
+						if ($elementoSubform->getType() == 'Zend_Form_Element_Hash') {
+							//echo "elemento hash encontrado....(".$elementoSubform->getName().')';
+							
+							// renderizando elemento hash, para ser gerado o novo valor do hash 
+							$elementoSubform->render();
+							$dijits[$i]['id'] = $subForm->getName() . '-' . $elementoSubform->getName();
+							$dijitParametros['value'] = $elementoSubform->getValue();
+							$dijits[$i]['params'] = $dijitParametros;
+						}
+					}
+
+					
+					break 2;
 				} else {
 					$formularios[] = $key;
 				}
@@ -71,21 +85,35 @@ foreach ($this->getVars() as $key => $value){
 			// verifica se existe o formulário no request
 			if (isset($_REQUEST['idRequestSource']) and ($value->getName() == $_REQUEST['idRequestSource'])) {
 				
+				$idResponseSource = $_REQUEST['idRequestSource'];
 				$existeFormNoRequest = true;
 				
 				$zendFormsMessages = retornaZendFormMessages($value);
+				
+				// percorre todos os elementos do form em busca do elemento hash
+				foreach ($value->getElements() as $elementoform){
+					if ($elementoform->getType() == 'Zend_Form_Element_Hash') {
+						//echo "elemento hash encontrado....(".$elementoSubform->getName().')';
+						$elementoform->render();
+						$dijits[$i]['id'] = $elementoform->getName();
+						$dijitParametros['value'] = $elementoform->getValue();
+						$dijits[$i]['params'] = $dijitParametros;
+					}
+				}
+				
+				break;
 			} else {
 				$formularios[] = $key;
 			}
 		}
 
-	} else {
-		
 	}
+	$i++;
+	
 }
 
 
-// se não existir formulario(s) no reques
+// se não existir formulario(s) no reques, devolve o(s) formulario(s) enviados do controller
 if (!$existeFormNoRequest) {
 	
 	// seta o form para Programmatic
@@ -99,21 +127,22 @@ if (!$existeFormNoRequest) {
 	
 	// carrega os javaScripts caso exista.
 	$scripts          = $this->dojo()->getJavascript();
-	
 	// carrega os módulos do dojo necessarios aos formulários.
 	$modules          = $this->dojo()->getModules();
-	
+	// dijits
 	$dijits           = $this->dojo()->getDijits();
 
-	// varrega todos os formulários renderizados para serem devolvidos via json. 
+	// carrega todos os formulários renderizados, para serem devolvidos via json. 
 	foreach ($formsRenders as $keyFormRender => $valueFormRender) {	
 		$html[$keyFormRender] = $valueFormRender; 
-	}
-	
-}else{
-	//echo "existe form ou subform no request";
+	}	
+} else {
+
+
 }
 
+// carrega os javaScripts caso exista.
+$scripts          = $this->dojo()->getJavascript();
 
 $js = <<<JS
 alert('ok');
@@ -123,6 +152,7 @@ JS;
 $response = array('view' => array('scripts'           => $scripts,
 								  'modules'           => $modules,
 								  'dijits'            => $dijits,
+								  'idResponseSource'  => $idResponseSource,
 								  'zendFormsMessages' => $zendFormsMessages,
 								  'html'  		      => $html,
 								  
@@ -130,9 +160,28 @@ $response = array('view' => array('scripts'           => $scripts,
 				 );
 
 //Basico_OPController_UtilOPController::print_debug($response);
+//$response = true;
+
 echo Zend_Json::encode($response);
 return;
 //-----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
