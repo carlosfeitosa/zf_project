@@ -11,25 +11,20 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
     {
         $form = $this->getElement();
         if (!$form instanceof Zend_Form) {
-        	echo 'not instanceof Zend_Form';
-        	exit;
             return $content;
         }
 
         if (!$this->getOption('load')) {
-		   	//echo "getOption('load')";
-        	//exit;   
             return $content;
         }
         
         
         if (!$form->getAction()) {
             $form->setAction('.');
-            echo "no getAction()";
-        	exit;
+            return $content;
         } 
 
-        // setando o nome do formulario no id para poder ser identific
+        // setando o nome do formulario no idRequestSource para poder ser identificado pelo controller
         $this->idRequestSource = $form->getName();
 
         $xhrPostArgs = array ( );
@@ -54,7 +49,7 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
 
     protected function _renderHandler($userArgs)
     {
-    	
+    	 	
 $handle = <<<HANDLE
 function(error, ioargs) {
 	var message = "";
@@ -88,13 +83,12 @@ HANDLE;
     		// content deve receber um objeto javaScript de pares nome/valor. 
     		'content'  => new Zend_Json_Expr("{idRequestSource: '{$this->idRequestSource}',
     										  key1: 'value1',
-					    					  key2: 'value2',
-					    					  key3: 'value3'
     										 }"),
     	
             'form'     => new Zend_Json_Expr('this.domNode'),
-            'handleAs' => 'json',
     		'handle'   => new Zend_Json_Expr($handle),
+    		'handleAs' => 'json',
+    		'preventCache' => true,
 
         );
         
@@ -106,7 +100,7 @@ HANDLE;
         }
         $xhrArgs = Zend_Json::encode($args,false,array('enableJsonExprFinder' => true));
 
-        
+        // carrega título e mensagem da validação
         $titulo = Basico_View_Helper_Tradutor::tradutor('FORM_VALIDATION_TITLE');    
         $mensagem = Basico_View_Helper_Tradutor::tradutor('FORM_VALIDATION_MESSAGE');
         
