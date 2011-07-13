@@ -935,6 +935,128 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		return false;
 	}
 
+	
+	/**
+     * Retorna um array com 6 sugestoes de login utilizando os parametros como base para montar as sugestoes
+     * 
+     * @param String $nome
+     * @param String $login
+     * @param String $dataNascimento
+     */
+    public static function retornaArraySugestoesLogin($login, $idPessoa, $nome = NULL, $dataNascimento = NULL)
+    {
+    	// verificando se o nome foi passado
+    	if ($nome != NULL && trim($nome != "")) {
+    		
+	    	// transformando cada nome em um elemento de uma array
+	    	$arrayNome = explode(' ', strtolower($nome));
+	    	
+	    	// retirando elementos com 3 ou menos caracteres
+	    	foreach ($arrayNome as $chave => $nome) {
+	    	    if (strlen($nome) <= 3)
+	    	    	unset($arrayNome[$chave]);
+	    	}
+    	}
+    	
+    	// verificando se a dataNascimento foi preenchida
+    	if (trim($dataNascimento) != "null") {
+	    	// recuperando o ano da data de nascimento passada
+	    	$dataNascimento = new Zend_Date($dataNascimento, 'EEE MMM dd YYYY HH:mm:ss');
+	    	$ano  = $dataNascimento->toString("YYYY");
+    	}else{
+    		// se a data nascimento nao foi preenchida utiliza a data atual
+    		$dataAtual = new Zend_Date();
+    		$ano       = $dataAtual->toString("YYYY");
+    	}
+    	
+    	
+    	// inicializando variaveis
+    	$objEmailUsuario     = Basico_OPController_EmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoa);
+    	$arraySugestoes      = array();
+    	$arraySugestoesLogin = array();
+    	$arraySugestoesNome  = array();
+    	$arraySugestoesEmail = array();
+		
+    	
+    		
+    	// loop para montar as sugestoes utilizando o login
+    	$i = 1;
+    	while (count($arraySugestoesLogin) < NUMERO_SUGESTOES_LOGIN_UTILIZANDO_LOGIN) {
+    			
+    		$loginAno = $login . $ano;
+    		
+    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $loginAno) && !array_search($loginAno, $arraySugestoesLogin))
+    			$arraySugestoesLogin[] = $loginAno;
+    				
+    		$loginContador = $login . $i;
+    				
+    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $loginContador) && !array_search($loginContador, $arraySugestoesLogin))
+    			$arraySugestoesLogin[] = $loginContador;
+    				
+    		$i++;
+    	}
+    		
+    	foreach ($arraySugestoesLogin as $sugestaoLogin) {
+    			
+    		if (!array_search($sugestaoLogin, $arraySugestoes))
+    			$arraySugestoes[] = $sugestaoLogin;
+    			
+    	}
+    		
+    	// verificando se o nome foi passado
+    	if (count($arrayNome) > 0) {
+	    	// loop para montar as sugestoes utilizando o nome
+	    	$i = 1;
+	    	while (count($arraySugestoesNome) < NUMERO_SUGESTOES_LOGIN_UTILIZANDO_NOME) {
+	    			
+	    		$nome = Basico_OPController_UtilOPController::removeAcentosString($arrayNome[0]);
+	    			
+	    		$nomeAno = $nome . $ano;
+	    			
+	    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $nomeAno) && !array_search($nomeAno, $arraySugestoesNome))
+	    			$arraySugestoesNome[] = $nomeAno;
+	    				
+	    		$nomeContador = $nome . $i;
+	    				
+	    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $nomeContador) && !array_search($nomeContador, $arraySugestoesNome))
+	    			$arraySugestoesNome[] = $nomeContador;
+	    				
+	    		$i++;
+	    	}	
+	    		
+		    // carregando sugestoes utilizando nome no array resultado
+		    foreach ($arraySugestoesNome as $sugestaoNome) {
+		    	$arraySugestoes[] = $sugestaoNome;
+		    }
+	    		
+    	}
+    		
+   		// loop para montar as sugestoes utilizando o email
+    	$i = 1;
+    	$email = substr($objEmailUsuario->email, 0, strpos($objEmailUsuario->email, '@'));
+	    	
+    	while (count($arraySugestoesEmail) < NUMERO_SUGESTOES_LOGIN_UTILIZANDO_EMAIL) {
+	    			
+    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $email))
+    			$arraySugestoesEmail[] = $email;
+    			
+   			$emailAno = $email . $ano;
+
+    			
+   			if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $emailAno))
+   				$arraySugestoesEmail[] = $emailAno;
+    				
+   			$i++;
+   		}
+	    		
+	    foreach ($arraySugestoesEmail as $sugestaoEmail) {
+	    	$arraySugestoes[] = $sugestaoEmail;
+	    }
+    	
+    	return $arraySugestoes;
+    }
+
+
 	/**
 	 * 
 	 * metodo responsavel por enviar uma mensagem de alerta de problemas com login 
@@ -1007,4 +1129,69 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
                         
 		
 	}
+
+	/**
+	 * Salva e retorna a mensagem do cadastro de usuario nao validado
+	 * 
+	 * @param Array $arrayDestinatarios
+	 * @param Int $idCategoria
+	 * @param String $token
+	 */
+	public function retornaMensagemCadastroUsuarioNaoValidado($nomeDestinatario, $emailDestinatario, $token)
+	{
+		// recuperando o link para continuacao do cadastro
+		$link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $token;
+		// recuperando o objeto mensagem já preenchido com os dados da template
+        $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);
+        // setando destinatario da mensagem          
+        $objNovaMensagem->destinatarios       = array($emailDestinatario);
+        // setando a datahora da mensagem
+        $objNovaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+        // recuperando a categoria da mensagem
+		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+		// setando a categoria da mensagem
+        $objNovaMensagem->categoria           = $idCategoriaMensagem;
+        // gerando e setando o rowinfo da mensagem
+        Basico_OPController_MensagemOPController::getInstance()->prepareSetRowinfoXML($objNovaMensagem, true);
+        // salvando a mensagem
+        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
+        
+        // retornando o objeto mensagem
+        return $objNovaMensagem;
+	}
+	
+	/**
+	 * Salva e retorna a mensagem do cadastro de usuario nao validado Reenvio
+	 * 
+	 * @param Array $arrayDestinatarios
+	 * @param Int $idCategoria
+	 * @param String $token
+	 */
+	public function retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $emailDestinatario, $token)
+	{
+		// recuperando o link para continuacao do cadastro
+		$link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $token;
+		
+		// recuperando o objeto mensagem já preenchido com os dados da template
+        $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);
+        
+        // setando destinatario da mensagem          
+        $objNovaMensagem->destinatarios       = array($emailDestinatario);
+        // setando a datahora da mensagem
+        $objNovaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+        // recuperando a categoria da mensagem
+		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
+		
+		// setando a categoria da mensagem
+        $objNovaMensagem->categoria           = $idCategoriaMensagem;
+        // gerando e setando o rowinfo da mensagem
+        Basico_OPController_MensagemOPController::getInstance()->prepareSetRowinfoXML($objNovaMensagem, true);
+        
+        // salvando a mensagem
+        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
+        
+        // retornando o objeto mensagem
+        return $objNovaMensagem;
+	}
+
 }

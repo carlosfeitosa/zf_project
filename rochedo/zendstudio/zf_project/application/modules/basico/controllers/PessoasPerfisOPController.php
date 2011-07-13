@@ -492,4 +492,27 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 
 		}
 	}
+	
+	/**
+	 * Cria uma nova relacao pessoaPerfil e retorna o id
+	 * 
+	 * @param Int $idPessoa
+	 * @param Int $idPerfil
+	 * @return Int
+	 */
+	public function retornaIdNovoObjetoPessoasPerfis($idPessoa, $idPerfil)
+	{
+		// criando o novo objeto pessoasPerfis
+		$novaPessoasPerfisNovaPessoa = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		// setando a pessoa
+		$novaPessoasPerfisNovaPessoa->pessoa = $idPessoa;
+		// setando o perfil
+		$novaPessoasPerfisNovaPessoa->perfil = $idPerfil;
+		// gerando e setando o rowinfo
+		$this->prepareSetRowinfoXML($novaPessoasPerfisNovaPessoa, true);
+		// salvando o objeto pessoasPefis
+		$this->salvarObjeto($novaPessoasPerfisNovaPessoa);
+		
+		return $novaPessoasPerfisNovaPessoa->id;
+	}
 }

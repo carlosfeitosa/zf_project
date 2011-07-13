@@ -248,4 +248,45 @@ class Basico_OPController_TokenOPController
 
     	return null;
 	}
+	
+	/**
+	 * Retorna o token pelo o id passado
+	 * 
+	 * @param Int $id
+	 * 
+	 * @return String|null
+	 */
+	public function retornaTokenEmailPorId($id)
+	{
+		// recuperando objeto token
+		$objToken = $this->_token->fetchList("id = '{$id}'", null, 1, 0);
+
+		// verificando se o objeto do token existe
+		if (isset($objToken[0]))
+			// retornando objeto
+    	    return $objToken[0]->token;
+
+    	return null;
+	}
+	
+	public function retornaIdNovoObjetoToken($idGenerico, $idCategoriaToken)
+	{
+		// criando o novo objeto token
+		$novoToken = $this->retornaNovoObjetoToken();
+		// gerando e setando o token
+        $novoToken->token = $this->gerarTokenPorModelo($novoToken, 'token');
+        // setando o id generico
+        $novoToken->idGenerico = $idGenerico;
+        // setando a categoria do token
+        $novoToken->categoria = $idCategoriaToken;
+        // gerando o rowinfo
+        Basico_OPController_RowinfoOPController::getInstance()->prepareXml($novoToken, true);
+        // setando o rowinfo
+        $novoToken->rowinfo = Basico_OPController_RowinfoOPController::getInstance()->getXml();
+        // salvando o novo objeto token
+        $this->salvarToken($novoToken);
+        
+        // retornando o id
+        return $novoToken->id;
+	}
 }

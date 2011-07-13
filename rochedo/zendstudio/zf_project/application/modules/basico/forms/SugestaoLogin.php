@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/07/2011 14:01:57
+* em: 13/07/2011 09:32:23
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/07/2011 13:48:43
+* @version    1: 13/07/2011 09:07:05
 */
 class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
 {
@@ -41,16 +41,19 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
         $elements[1]->setOrder(1);
         $elements[1]->setRequired(false);
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
+        $elements[1]->removeDecorator('DtDdWrapper');
 
         $elements[2] = $this->createElement('html', 'BasicoSugestaoLoginContentDinamico', array('value' => ""));
         $elements[2]->setOrder(2);
         $elements[2]->setRequired(false);
-        $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left',));
+        $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+        $elements[2]->removeDecorator('DtDdWrapper');
 
         $elements[3] = $this->createElement('html', 'BasicoSugestaoLoginLinhaHorizontal', array('value' => '<hr>'));
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(false);
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));
+        $elements[3]->removeDecorator('DtDdWrapper');
 
         $elements[4] = $this->createElement('submitButton', 'BasicoSugestaoLoginEnviar');
         $elements[4]->setOrder(4);

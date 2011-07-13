@@ -339,11 +339,12 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $post['stringPesquisa']);
 	    	
 	    	
+	    	
 	        
 	    	if (!$loginDisponivel) {
 	    		
 	    		// recuperando as sugestoes de login
-	    		$arraySugestoesLogin = self::retornaArraySugestoesLogin($post['stringPesquisa'], $post['nome'], $post['dataNascimento']);
+	    		$arraySugestoesLogin = Basico_OPController_LoginOPController::retornaArraySugestoesLogin($post['stringPesquisa'], $post['idPessoa'], $post['nome'], $post['dataNascimento']);
 	    		
 	    		// recuperando a lingua do usuario
 	    		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
@@ -354,9 +355,27 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		// recuperando o titulo do dialog
 	    		$tituloDialogSugestaoLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
 	    		
+	    		$elementosSugestaoLogin = "";
+	    		
+	    		foreach ($arraySugestoesLogin as $sugestaoLogin) {
+	    			$radioSugestaoLogin = new Zend_Dojo_Form_Element_RadioButton('sugestao');
+	    			$radioSugestaoLogin->setLabel($sugestaoLogin);
+	    			$radioSugestaoLogin->setValue($sugestaoLogin);
+	    			
+	    			$elementosSugestaoLogin .= $radioSugestaoLogin;
+	    		}
+	    		
+	    		echo "<script type='text/javascript'>
+		    		      function carregaSugestoesLogin() {
+			    		    							            
+							    document.getElementById('BasicoSugestaoLoginContentDinamico-label').innerHTML = {$elementosSugestaoLogin};
+							
+	    				  }
+    				  </script>";
+		    		
 	    		// escrevendo mensagem de login nao disponivel	
 				echo "<span style='color: red; font-weight: bold;'>" .
-					 str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '{$urlFormularioSugestaoLogin}', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
+					 	str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '{$urlFormularioSugestaoLogin}', '{$tituloDialogSugestaoLogin}'); carregaSugestoesLogin();\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
 				     "</span>";
 				
 			}else{
@@ -371,60 +390,6 @@ class Basico_LoginController extends Zend_Controller_Action
     }
     
     /**
-     * Retorna um array com 6 sugestoes de login utilizando os parametros como base para montar as sugestoes
-     * 
-     * @param String $nome
-     * @param String $login
-     * @param String $dataNascimento
-     */
-    public static function retornaArraySugestoesLogin($login, $nome = NULL, $dataNascimento = NULL)
-    {
-    	// verificando se o nome foi passado
-    	if ($nome != NULL && trim($nome != "")) {
-    		
-	    	// transformando cada nome em um elemento de uma array
-	    	$arrayNome = explode(' ', $nome);
-	    	
-	    	// retirando elementos com 3 ou menos caracteres
-	    	foreach ($arrayNome as $chave => $nome) {
-	    	    if (strlen($nome) <= 3)
-	    	    	unset($arrayNome[$chave]);
-	    	}
-    	}
-
-    	// verificando se a dataNascimento foi preenchida
-    	if (trim($dataNascimento) != "" && $dataNascimento != NULL) {
-	    	// recuperando o ano da data de nascimento passada
-	    	$dataNascimento = new Zend_Date($dataNascimento);
-	    	$ano  = $dataNascimento->toString("YYYY");
-    	}else{
-    		// se a data nascimento nao foi preenchida utiliza a data atual
-    		$ano = new Zend_Date();
-    		$ano = $ano->toString("YYYY");
-    	}
-    	
-    	// inicializando variaveis
-    	$arraySugestoes      = array();
-    	$arraySugestoesLogin = array();
-    	$arraySugestoesNome  = array();
-    	
-    	/*
-    	// loop para montar o array com as sugestoes
-    	while (count($arraySugestoes) < NUMERO_SUGESTOES_LOGIN_TOTAL) {
-    		
-    		// loop para montar as sugestoes utilizando o login
-    		while (count($arraySugestoesLogin) < NUMERO_SUGESTOES_LOGIN_UTILIZANDO_LOGIN) {
-    			
-    			
-    			
-    		}
-    		
-    	}
-    	*/
-    	
-    } 
-    
-    /**
 	 * Verifica a existência ou não do email a ser cadastrado no sistema e toma uma das seguintes ações: 
 	 * Cadastro ou re-envio de email ou mensagem alertando sobre email existente e já validado.
 	 * 
@@ -437,10 +402,9 @@ class Basico_LoginController extends Zend_Controller_Action
 
     	// verificando se o formulario passou por sua validacao
         if($this->validaForm($form) == true){
-        	// carregando o controlador de e-mail
-	        $controladorEmail = Basico_OPController_EmailOPController::getInstance();
+        	
 	        // verifica se o e-mail existe no banco de dados
-	        $emailParaValidacao = $controladorEmail->verificaEmailExistente($this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'));
+	        $emailParaValidacao = Basico_OPController_EmailOPController::getInstance()->verificaEmailExistente($this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'));
 
 	        // checando o resultado da verificacao de existencia do e-mail
 	        if ($emailParaValidacao !== NULL){
@@ -454,47 +418,21 @@ class Basico_LoginController extends Zend_Controller_Action
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
 	            	try {
-		            	 // instanciando os controladores
-		            	 $controladorEmail                            = Basico_OPController_EmailOPController::getInstance();
-	                     $controladorPessoasPerfis                     = Basico_OPController_PessoasPerfisOPController::getInstance();
-	                     $controladorLog                              = Basico_OPController_LogOPController::getInstance();
-	                     $controladorRowInfo                          = Basico_OPController_RowinfoOPController::getInstance();
-	                     $controladorMensagem                         = Basico_OPController_MensagemOPController::getInstance();
-	                     $controladorMensageiro                       = Basico_OPController_MensageiroOPController::getInstance();
-	                     $controladorPessoasPerfisMensagensCategorias = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance();
-	                     $controladorToken                            = $this->getInvokeArg('bootstrap')->tokenizer;
-
-		            	 // recuperando a categoria da mensagem
-		            	 $idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
-
-			             // carregando parametros
+			             // recuperando parametros
 			             $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
-			             $idEmail           = $controladorEmail->retornaIdEmailPorEmail($email);
+			             $idEmail           = Basico_OPController_EmailOPController::getInstance()->retornaIdEmailPorEmail($email);
 			             $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
-			             $idPessoa          = $controladorEmail->retornaIdProprietarioEmailPorIdEmail($idEmail);
-			             $idPessoaPerfil    = $controladorPessoasPerfis->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
+			             $idPessoa          = Basico_OPController_EmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($idEmail);
+			             $idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
 			             // setando e salvando token
-			             $novoToken = Basico_OPController_TokenOPController::getInstance()->retornaNovoObjetoToken();
-			             $novoToken->token       = $controladorToken->gerarTokenPorModelo($novoToken, 'token');
-			             $novoToken->idGenerico  = $idEmail;
-			             $novoToken->categoria   = $idCategoriaToken;
-			             $controladorRowInfo->prepareXml($novoToken, true);
-			             $novoToken->rowinfo     = $controladorRowInfo->getXml();
-			             $controladorToken->salvarToken($novoToken);
-
+			             $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);
+			             
 			             // setando e salvando mensagem
-			             $link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
-			             $novaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);       
-			             $novaMensagem->destinatarios    = array($email);
-			             $novaMensagem->dataHoraMensagem = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-			             $novaMensagem->categoria        = $idCategoriaMensagem;
-			             $controladorRowInfo->prepareXml($novaMensagem, true);
-			             $novaMensagem->rowinfo          = $controladorRowInfo->getXml();
-                         $controladorMensagem->salvarObjeto($novaMensagem);
-
+			             $novaMensagem = Basico_OPController_LoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $email, Basico_OPController_TokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));       
+			             
 			             // enviando a mensagem
-			             $controladorMensageiro->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
+			             Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			             
 			             // salvando a transacao
 			             Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
@@ -538,92 +476,45 @@ class Basico_LoginController extends Zend_Controller_Action
 	 */
     public function salvarusuarionaovalidadoAction()
     {
-        // instanciando controladores
-        $controladorPessoa                           = Basico_OPController_PessoaOPController::getInstance();
-        $controladorDadosPessoais                    = Basico_OPController_DadosPessoaisOPController::getInstance();
-        $controladorEmail                            = Basico_OPController_EmailOPController::getInstance();
-        $controladorPerfil                           = Basico_OPController_PerfilOPController::getInstance();
-        $controladorPessoasPerfis                    = Basico_OPController_PessoasPerfisOPController::getInstance();
-        $controladorLog                              = Basico_OPController_LogOPController::getInstance();
-        $controladorRowInfo                          = Basico_OPController_RowinfoOPController::getInstance();
-        $controladorMensagem                         = Basico_OPController_MensagemOPController::getInstance();
-        $controladorMensageiro                       = Basico_OPController_MensageiroOPController::getInstance();
-        $controladorPessoasPerfisMensagensCategorias = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance();
-        $controladorToken                            = $this->getInvokeArg('bootstrap')->tokenizer;
-        
         // iniciando transacao
         Basico_OPController_PersistenceOPController::bdControlaTransacao();
         
         try {
-            // setando e salvando uma nova pessoa
-            $novaPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaOPController');
-            $controladorRowInfo->prepareXml($novaPessoa, true);
-            $novaPessoa->rowinfo = $controladorRowInfo->getXml();
-            $controladorPessoa->salvarObjeto($novaPessoa);
-
+            // recuperando o id da nova pessoa
+            $idNovaPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaIdNovoObjetoPessoa();
+            
             // carregando o objeto perfil do usuario nao validado
-            $objPerfilUsuarioNaoValidado = $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado();
+            $objPerfilUsuarioNaoValidado = Basico_OPController_PerfilOPController::getInstance()->retornaObjetoPerfilUsuarioNaoValidado();
 
             // setando e salvando a relacao de pessoa com perfil
-            $novaPessoasPerfis = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoasPerfisOPController');
-            $novaPessoasPerfis->pessoa = $novaPessoa->id;
-            $novaPessoasPerfis->perfil = $objPerfilUsuarioNaoValidado->id;
-            $novaPessoasPerfis->rowinfo = $controladorRowInfo->getXml();
-            $controladorPessoasPerfis->salvarObjeto($novaPessoasPerfis); 
+            $idNovaPessoasPerfis = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idNovaPessoa, $objPerfilUsuarioNaoValidado->id);
 
             // setando e salvando os dados pessoais
-            $novoDadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosPessoaisOPController');
-            $novoDadosPessoais->pessoa = $novaPessoa->id;
-            $novoDadosPessoais->nome     = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
-            $novoDadosPessoais->rowinfo  = $controladorRowInfo->getXml();
-            $controladorDadosPessoais->salvarObjeto($novoDadosPessoais);
+            $idNovoDadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaIdNovoObjetoDadosPessoais($idNovaPessoa, $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome'));
 
             // recuperando o id do objeto categoria de email primario
             $idCategoriaEmailPrimario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO);
 
-            // recupera uniqueId
-            $uniqueIdValido = $controladorEmail->retornaNovoUniqueIdEmail();
-
-            // setando e salvando o e-mail 
-            $novoEmail = Basico_OPController_EmailOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_EmailOPController');
-            $novoEmail->idGenericoProprietario = $novaPessoa->id;
-            $novoEmail->uniqueId  			   = $uniqueIdValido;
-            $novoEmail->categoria 			   = $idCategoriaEmailPrimario;
-            $novoEmail->email     			   = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
-            $novoEmail->validado  			   = 0;
-            $novoEmail->ativo     			   = 0;
-            $novoEmail->rowinfo   			   = $controladorRowInfo->getXml();
-            $controladorEmail->salvarObjeto($novoEmail);
+            // salvando o e-mail e recuperando o id 
+            $idNovoEmail = Basico_OPController_EmailOPController::getInstance()->retornaIdNovoObjetoEmail($this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'), $idNovaPessoa, $idCategoriaEmailPrimario);
 
             // recuperando objeto categoria email validacao plain text template
             $idCategoriaToken = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 
             // setando e salvando o token
-            $novoToken = Basico_OPController_TokenOPController::getInstance()->retornaNovoObjetoToken();
-            $novoToken->setToken($controladorToken->gerarTokenPorModelo($novoToken, 'token'));
-            $novoToken->setIdGenerico($novoEmail->id);
-            $novoToken->setCategoria($idCategoriaToken);
-            $controladorRowInfo->prepareXml($novoToken, true);
-            $novoToken->setRowinfo($controladorRowInfo->getXml());
-            $controladorToken->salvarToken($novoToken);
+            $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idNovoEmail, $idCategoriaToken);
 
             // recuperando a categoria de mensagem a ser enviada e template
             $idCategoriaTemplate = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
 
             // setando e salvando a mensagem
             $nomeDestinatario = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
-            
-            $link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $novoToken->token;
-            $objNovaMensagem = $controladorMensagem->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);          
-            $objNovaMensagem->destinatarios       = array($novoEmail->email);
-            $objNovaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-            $objNovaMensagem->categoria           = $idCategoriaToken;
-            $controladorRowInfo->prepareXml($objNovaMensagem, true);
-            $objNovaMensagem->rowinfo             = $controladorRowInfo->getXml();
-            $controladorMensagem->salvarObjeto($objNovaMensagem);
 
+            // salvando e recuperando a mensagem para envio
+            $objNovaMensagem = Basico_OPController_LoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidado($nomeDestinatario, $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'), Basico_OPController_TokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));
+            
 	        // enviando a mensagem
-	        $controladorMensageiro->enviar($objNovaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($novaPessoasPerfis->id));
+	        Basico_OPController_MensageiroOPController::getInstance()->enviar($objNovaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idNovaPessoasPerfis));
             
             // salvando a transacao
             Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);

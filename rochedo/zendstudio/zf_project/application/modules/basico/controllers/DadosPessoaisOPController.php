@@ -186,4 +186,27 @@ class Basico_OPController_DadosPessoaisOPController extends Basico_Abstract_Roch
 			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
 		}
 	}
+	
+	/**
+	 * Salva um novo objeto dadosPessoais e retorna o id
+	 * 
+	 * @param Int $idPessoa
+	 * @param String $nome
+	 */
+	public function retornaIdNovoObjetoDadosPessoais($idPessoa, $nome)
+	{
+		// criando um novo obj DadosPessoais
+		$novoDadosPessoais = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		// setando a pessoa
+        $novoDadosPessoais->pessoa = $idPessoa;
+        // setando o nome
+        $novoDadosPessoais->nome     = $nome;
+        // gerando e setando o rowinfo
+        $this->prepareSetRowinfoXML($novoDadosPessoais, true);
+        // salvando o objeto dadosPessoais
+        $this->salvarObjeto($novoDadosPessoais);
+        
+        // retornando o id
+        return $novoDadosPessoais->id;
+	}
 }

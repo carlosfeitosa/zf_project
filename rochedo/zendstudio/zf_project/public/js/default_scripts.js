@@ -311,13 +311,13 @@ function validateForm(formId, titulo, message, baseUrl)
     return true;
 }
 	
-function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, nome, dataNascimento, urlMetodo)
+function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa, nome, dataNascimento, urlMetodo)
 {	
 	if (stringPesquisa != "") {
 		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
 		
 		dojo.xhrGet({
-	    	url: urlMetodo + stringPesquisa + "/nome/" + nome + "/dataNascimento/" + dataNascimento,
+	    	url: urlMetodo + stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento,
 	    	timeout: 5000,
 	    	load: function(response, ioArgs)
 	    	{

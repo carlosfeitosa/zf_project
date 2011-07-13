@@ -37,7 +37,11 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 
 		// verificando informacoes sobre o formulario
 		if (isset($form)) {
-			$nomeForm = $form->getName();
+			// recuperando o nome do modulo para remocação do nome do form
+			$nomeModulo = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
+			
+			// recuperando o nome do form se o modulo
+			$nomeForm = str_replace($nomeModulo, "", $form->getName());
 
 			// instanciando modelo "formulario"
 			$modelFormulario = new Basico_Model_Formulario();

@@ -51,7 +51,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	/**
 	 * Inicializa o controlador Email.
 	 * 
-	 * @return Basico_EmailController
+	 * @return Basico_OPController_EmailOPController
 	 */
 	public static function getInstance()
 	{
@@ -351,5 +351,39 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
     	//retornando o objeto proprietario
     	return $model->find($email->idGenericoProprietario);
     	
+    }
+    
+    /**
+     * Salva um novo objeto email e retorna o id
+     * 
+     * @param String $email
+     * @param Int $idGenericoProprietario
+     * @param Int $idCategoria
+     * 
+     * @return Int
+     */
+    public function retornaIdNovoObjetoEmail($email, $idGenericoProprietario, $idCategoria)
+    {
+    	// criando novo objeto email
+		$novoEmail = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		// setando o idGenericoProprietario
+        $novoEmail->idGenericoProprietario = $idGenericoProprietario;
+        // setando o uniqueId 
+        $novoEmail->uniqueId  			   = $this->retornaNovoUniqueIdEmail();
+        // setando a categoria
+        $novoEmail->categoria 			   = $idCategoria;
+        // setando o email
+        $novoEmail->email     			   = $email;
+        // setando o email como não validado
+        $novoEmail->validado  			   = false;
+        // setando o email como nao ativo
+        $novoEmail->ativo     			   = false;
+        // gerando e setando o rowinfo
+        $this->prepareSetRowinfoXML($novoEmail, true);
+        // salvando o objeto email
+        $this->salvarObjeto($novoEmail);
+
+        // retornando o id
+        return $novoEmail->id;
     }
 }

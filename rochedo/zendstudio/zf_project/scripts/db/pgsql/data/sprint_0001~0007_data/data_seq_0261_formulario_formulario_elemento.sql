@@ -57,8 +57,8 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
+        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
+        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)

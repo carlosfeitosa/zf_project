@@ -1075,7 +1075,7 @@ class Basico_OPController_GeradorFormularioOPController
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$decoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
 
 			// verificando se o elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO ou o elemento eh da categoria FORMULARIO_ELEMENTO_BUTTON
-            if (($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) or ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON)) {
+            if (($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) or ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON) or ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_HTML)) {
             	// removendo decorator DtDdWrapper
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
             }
