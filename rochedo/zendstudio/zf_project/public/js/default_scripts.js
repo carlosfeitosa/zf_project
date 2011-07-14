@@ -295,7 +295,7 @@ function recuperaElemento(nomeElemento)
 function validateForm(formId, titulo, message, baseUrl) 
 {
 	// recuperando o formulario
-    var form = dijit.byId(formId);
+    var form = dojo.byId(formId);
 
     // validando o formulario
     if (!form.validate()) 
@@ -401,61 +401,18 @@ function strpos (haystack, needle, offset) {
 	return i === -1 ? false : i;
 }
 
-function processaResponseDojoFormRequest(data,args, formThis)
+function processaResponseDojoFormRequest(data, args, formThis)
 {
-
 	if(typeof data == "error") {
     	// erro nos dados
-		console.warn("error!",args);
-    	
-	}else if (data == true) {
-		
-		console.warn("data response true: ",data);
-		
-		console.debug('formThis:', formThis);
-		console.debug('formThis:', formThis.form.id);
-		
-		dialogForm = dijit.byId(formThis.form.id);
-		console.debug('dialogForm eh:', dialogForm);
-
-		classDialogForm = dialogForm.declaredClass;
-		console.debug('classe do classDialogForm:', classDialogForm);
-		if (classDialogForm == 'dijit.Dialog'){
-			hideDialog(formThis.form.id);
-			console.debug('formulário hide');
-		}
-		
-		if (sucessCallbackFunction) {
-			eval(sucessCallbackFunction);
-			console.debug('sucessCallbackFunction:', sucessCallbackFunction);
-		}else{
-			console.debug('not sucessCallbackFunction');
-		}
-		
-		
+		console.warn("error!",args);	
 	}else{
 		console.debug('data response...: ', data);
 		
-		// show our response 
+		// parser data 
 		console.debug('data response: ', data);	
 		json = eval(data); //json = eval("(" + data + ")");
 		console.debug('data evaluated: ', json);
-/*
-		var zendDijits = [{"id":"CadastrarDadosUsuarioDadosPessoais-BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento","params":{"invalidMessage":"Digite aqui seu Munic\u00edpio de nascimento.","required":"true","value":"xxxxxx","dojoType":"dijit.form.ValidationTextBox"}}];
-		console.debug('json.dijits',json.dijits);
-		console.debug('zendDijits',zendDijits);
-	    dojo.forEach(json.dijits, function(info) {
-	    	console.debug('entrou ...');
-	        var n = dojo.byId(info.id);
-	        if (null != n) {
-	            dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
-	            console.debug('dojo attr sucess');
-	        }
-	    });
-	   //dojo.parser.parse();
-	    console.debug('dojo parser ok');
-*/
-	
 		
 		// get the modules
         dojo.forEach(json.view.modules, function(module)
@@ -476,7 +433,6 @@ function processaResponseDojoFormRequest(data,args, formThis)
 			}
 		}  
 	    
-		
 		if (dojo.byId(json.view.idResponseSource)) {
 			
 			// Get zendFormsMessages
@@ -554,8 +510,7 @@ function processaResponseDojoFormRequest(data,args, formThis)
 				eval(scripts[script]);
 				console.debug('script processado(', script, ')');
 		}
-		console.debug('scripts end...');
-        
+		console.debug('scripts end...'); 
 	}	
 }
 
