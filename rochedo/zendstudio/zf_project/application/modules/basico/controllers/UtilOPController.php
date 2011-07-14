@@ -1789,7 +1789,7 @@ class Basico_OPController_UtilOPController
     			   </script>";
     	
     	// escrevendo resultado
-    	echo $result;
+    	return $result;
     }
     
     /**
