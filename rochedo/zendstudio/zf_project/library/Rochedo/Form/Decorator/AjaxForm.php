@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * Decorator Ajax Form
+ * 
+ * Decorator responsável por submeter formulario via ajax
+ * 
+ * @package Basico
+ * 
+ * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
+ * 
+ * @since 14/07/2011
+ */
 class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
 {
     private $possibleXhrArgs = array ('load','error','handle','headers','timeout','sync');
@@ -15,10 +25,9 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
         }
 
         if (!$this->getOption('load')) {
-            return $content;
+            //return $content;
         }
-        
-        
+         
         if (!$form->getAction()) {
             $form->setAction('.');
             return $content;
@@ -49,7 +58,12 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
 
     protected function _renderHandler($userArgs)
     {
-    	 	
+$load = <<<LOAD
+function(data,args){
+	processaResponseDojoFormRequest(data,args, this);
+}
+LOAD;
+
 $handle = <<<HANDLE
 function(error, ioargs) {
 	var message = "";
@@ -74,8 +88,7 @@ function(error, ioargs) {
      
      console.debug('desativando underlay....');
      underlay.hide();
-     console.debug('underlay desativado');
-     
+     console.debug('underlay desativado');   
 } 
 HANDLE;
     	$standardArgs = array(
@@ -86,6 +99,7 @@ HANDLE;
     										 }"),
     	
             'form'     => new Zend_Json_Expr('this.domNode'),
+    		'load'     => new Zend_Json_Expr($load),
     		'handle'   => new Zend_Json_Expr($handle),
     		'handleAs' => 'json',
     		'preventCache' => true,
