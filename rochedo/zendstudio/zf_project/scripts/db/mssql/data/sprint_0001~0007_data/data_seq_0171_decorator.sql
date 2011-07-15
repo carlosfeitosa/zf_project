@@ -7,6 +7,7 @@
 * ultimas modificacoes:
 * 							22/10/2010 - criacao do decorator FORMULARIO_SUB_FORMULARIO_CONTENT_PANE1_DECORATOR;
 * 							30/11/2010 - criacao do decorator DECORATOR_FORM_FIELD_DIV_WIDTH_300PX;
+* 							15/07/2011 - criacao do decorator DECORATOR_FORM_SUBMIT_AJAX;
 *  
 */
 
@@ -15,6 +16,14 @@
 INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_SUBMIT' AS nome, 'Decorator para submissão de formulários.' AS descricao,
        '''FormElements'', array(''HtmlTag'', array(''tag'' => ''dl'')), array(''DijitForm'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DECORATOR';
+
+INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_FORM_SUBMIT_AJAX' AS nome, 'Decorator para submissão de formulários via ajax.' AS descricao,
+       '''FormElements'', array(''HtmlTag'', array(''tag'' => ''dl'')), array(''AjaxForm''), array(''DijitForm'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
