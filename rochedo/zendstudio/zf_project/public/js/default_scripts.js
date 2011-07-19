@@ -514,9 +514,9 @@ function processaResponseDojoFormRequest(data, args, formThis)
 	}	
 }
 
-function linkAjax() {
+function urlAjaxCall(urlCall) {
 	loading();
-	dojo.xhrPost({ url: '/rochedo_project/public/basico/dadosusuario',
+	dojo.xhrPost({ url: urlCall,
 				  handleAs: 'json',
 				  load: function(data,args){
 							processaResponseDojoFormRequest(data,args, this, "alert('teste callback function')");
