@@ -164,6 +164,17 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
 	    	
 	    	if ($form->isValid($_POST)) {
+	    		
+	    		// verificando a disponibilidade do login
+	    		if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
+	    			// setando mensagem de erro de login não disponivel
+	    			$form->getElement('BasicoCadastrarUsuarioValidadoLogin')->addErrorMessage("Login não está disponível.");
+	    			// setando o form para view
+	    			$this->view->form = $form;
+	    			$this->_helper->Renderizar->renderizar();
+	    			return;
+	    		}
+	    		
 	
 	    		// iniciando a transacao
            		Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -338,44 +349,14 @@ class Basico_LoginController extends Zend_Controller_Action
 	        //checando a disponibilidade do login
 	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $post['stringPesquisa']);
 	    	
-	    	
-	    	
-	        
 	    	if (!$loginDisponivel) {
-	    		
-	    		// recuperando as sugestoes de login
-	    		$arraySugestoesLogin = Basico_OPController_LoginOPController::retornaArraySugestoesLogin($post['stringPesquisa'], $post['idPessoa'], $post['nome'], $post['dataNascimento']);
-	    		
-	    		// recuperando a lingua do usuario
-	    		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
-	    		
-	    		// recuperando url do formulario de sugestao de login
-	    		$urlFormularioSugestaoLogin = "{$this->view->baseUrl()}/public_forms/basico/forms/SugestaoLogin.{$linguaUsuario}.html";
 	    		
 	    		// recuperando o titulo do dialog
 	    		$tituloDialogSugestaoLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
 	    		
-	    		$elementosSugestaoLogin = "";
-	    		
-	    		foreach ($arraySugestoesLogin as $sugestaoLogin) {
-	    			$radioSugestaoLogin = new Zend_Dojo_Form_Element_RadioButton('sugestao');
-	    			$radioSugestaoLogin->setLabel($sugestaoLogin);
-	    			$radioSugestaoLogin->setValue($sugestaoLogin);
-	    			
-	    			$elementosSugestaoLogin .= $radioSugestaoLogin;
-	    		}
-	    		
-	    		echo "<script type='text/javascript'>
-		    		      function carregaSugestoesLogin() {
-			    		    							            
-							    document.getElementById('BasicoSugestaoLoginContentDinamico-label').innerHTML = {$elementosSugestaoLogin};
-							
-	    				  }
-    				  </script>";
-		    		
 	    		// escrevendo mensagem de login nao disponivel	
 				echo "<span style='color: red; font-weight: bold;'>" .
-					 	str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '{$urlFormularioSugestaoLogin}', '{$tituloDialogSugestaoLogin}'); carregaSugestoesLogin();\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
+					 	str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '/rochedo_project/public/basico/login/exibirformsugestaologin/stringPesquisa/" . $post['stringPesquisa'] . "/idPessoa/" . $post['idPessoa'] . "/nome/" . $post['nome'] . "/dataNascimento/" . $post['dataNascimento'] . "', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
 				     "</span>";
 				
 			}else{
@@ -594,5 +575,39 @@ class Basico_LoginController extends Zend_Controller_Action
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
+    }
+    
+    /**
+     * Action para exibição do formulario de sugestao de login
+     */
+    public function exibirformsugestaologinAction()
+    {
+    	//desabilitando layout e render
+	    $this->_helper->layout()->disableLayout();
+	    $this->_helper->viewRenderer->setNoRender(true);
+	    
+	    // recuperando os parametros da requisicao
+	    $post = $this->getRequest()->getParams();
+	    
+	    // recuperando as sugestoes de login
+	    $arraySugestoesLogin = Basico_OPController_LoginOPController::retornaArraySugestoesLogin($post['stringPesquisa'], $post['idPessoa'], $post['nome'], $post['dataNascimento']);
+		
+	    // criando o formulario
+		$form = new Basico_Form_SugestaoLogin();
+				
+		// incluindo opcoes para escolha de login
+		foreach ($arraySugestoesLogin as $sugestaoLogin) {
+	    			
+			$form->getElement('BasicoSugestaoLoginSugestaoLogin')->addMultiOption($sugestaoLogin, $sugestaoLogin);
+		}
+		
+		// recuperando url da ação de verificar disponibilidade do login
+		$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+		
+		// setando atributo onclick do formulario
+		$form->BasicoSugestaoLoginEnviar->setAttribs(array('onClick' => "carregaSugestaoLogin({$urlMetodo});"));
+		
+		// escrevendo o form
+    	echo $form;
     }
 }

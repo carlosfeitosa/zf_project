@@ -549,3 +549,25 @@ function urlAjaxCall(urlCall) {
 				
 	});
 }
+
+/**
+ * função que transporta o login escolhido, para o campo login do formulario de cadastro de usuario validado
+ * @param String urlMetodo 
+ */
+function carregaSugestaoLogin(urlMetodo) {
+	// recuperando o valor da opção de login escolhida pelo usuario
+	for (var i=0; i < document.forms['BasicoSugestaoLogin'].BasicoSugestaoLoginSugestaoLogin.length; i++)
+	{
+	   if (document.forms['BasicoSugestaoLogin'].BasicoSugestaoLoginSugestaoLogin[i].checked)
+       {
+	      var radioValue = document.forms['BasicoSugestaoLogin'].BasicoSugestaoLoginSugestaoLogin[i].value;
+	   }
+	}
+	
+	// setando valor do campo login
+	dijit.byId('BasicoCadastrarUsuarioValidadoLogin').setValue(radioValue);
+	// escondendo o dialog de sugestao
+	hideDialog('Basico_Form_SugestaoLogin');
+	// executando funcao para verificar a disponibilidade do login escolhido
+	verificaDisponibilidade('login', 'login', radioValue, dojo.byId('idPessoa').value, dojo.byId('BasicoCadastrarUsuarioValidadoNome').value, dojo.byId('BasicoCadastrarUsuarioValidadoDataNascimento').value, urlMetodo);
+}

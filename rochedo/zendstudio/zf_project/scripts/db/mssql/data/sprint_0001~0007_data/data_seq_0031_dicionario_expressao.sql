@@ -42,6 +42,13 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SUGESTAO_LOGIN' AS constante_textual, 'Por favor, selecione um dos logins abaixo:' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_TITULO_MESSAGEM_SUCESSO' AS constante_textual, 'Sucesso' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -127,13 +134,6 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM' AS constante_textual, 'Para preencher seu cadastro completo clique @linkMeuPerfil ou, a qualquer momento, acesse seu perfil para atualizar/complementar suas informações.' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBTITULO_FORM_SUGESTAO_LOGIN' AS constante_textual, '<strong>Por favor, selecione um dos logins abaixo:</strong>' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4579,7 +4579,14 @@ AND c.nome = 'pt-br';
 */
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_TITLE_SUGESTAO_LOGIN' AS constante_textual, 'Login suggestions' AS traducao
+SELECT c.id, 'FORM_TITLE_SUGESTAO_LOGIN' AS constante_textual, 'Username suggestions' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'FORM_FIELD_SUGESTAO_LOGIN' AS constante_textual, 'Please, select one of the usernames below:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4671,13 +4678,6 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM' AS constante_textual, 'Click @linkMeuPerfil to complete your profile, or at any time, access your profile to update/insert your information.' AS traducao
-FROM tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'en-us';
-
-INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'SUBTITULO_FORM_SUGESTAO_LOGIN' AS constante_textual, '<strong>Please, select one of the logins below:</strong>' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
