@@ -274,4 +274,36 @@ class Basico_OPController_LogOPController
 			throw new Exception($e);
 		}
 	}
+
+	/**
+	 * Retorna a quantidade de tentativas sem sucesso de logon de um determinado login/ip a partir da data-hora do ultimo logon
+	 * 
+	 * @param String $login
+	 * @param String $ip
+	 * @param String $dataHoraUltimoLogon
+	 * 
+	 * @return Integer
+	 */
+	public static function retornaQuantidadeTentativasLoginPorIpViaSQL($login, $ip, $dataHoraUltimoLogon) 
+	{
+		// recuperando o id da pessoa perfil de usuario validado da pessoa relacionada ao login
+		$idPessoaPerfilLogin = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
+
+		// recuperando a categoria do log LOG_TENTATIVA_AUTENTICACAO_USUARIO
+		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO);
+
+		// montando query para recuperar os logs das tentativas de autenticacao deste usuario
+		$queryLogTentativasAutenticacaoLoginPorIp = "SELECT id
+													 FROM log
+													 WHERE id_categoria = {$idCategoriaLog}
+													 AND id_perfil_pessoa = {$idPessoaPerfilLogin}
+													 AND datahora_evento > '{$dataHoraUltimoLogon}'
+													 AND xml like '%<ip>{$ip}%'";
+
+		// recuperando array contendo os ids dos logs
+		$arrayIdsLog = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryLogTentativasAutenticacaoLoginPorIp);
+
+		// retornando o total de tentativas de autenticacao por IP
+		return (count($arrayIdsLog));
+	}
 }

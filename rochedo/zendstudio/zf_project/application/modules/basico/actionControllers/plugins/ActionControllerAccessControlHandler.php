@@ -42,6 +42,17 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		// instanciando controladores
 		$controleAcessoOPController = Basico_OPController_ControleAcessoOPController::getInstance();
 
+		// verificando se o IP do usuario encontra-se na blacklist de hosts (hosts_denny.ini)
+		if (!$controleAcessoOPController::verificaPermissaoIP(Basico_OPController_UtilOPController::retornaUserIp())) {
+			// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
+			$request->setModuleName('basico');
+			$request->setControllerName('controleacesso');
+			$request->setActionName('hostbanido');
+
+			// parando a execucao do plugin
+			return;
+		}
+
 		// verificando se a acao da aplicacao esta ativa
 		if (!$controleAcessoOPController->verificaRequestAtivoPorRequest($request)) {
 			// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado

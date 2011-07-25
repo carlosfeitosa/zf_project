@@ -214,4 +214,43 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
+
+    public function hostbanidoAction()
+    {
+    	// recuperando o id da pessoa logada
+    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+
+    	// verificando se existe usuario logado
+    	if ($idPessoaUsuarioLogado) {
+    		// recuperando o id da pessoa perfil logada
+    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaUsuarioLogado);
+
+			// efetuando logoff
+			Basico_OPController_LoginOPController::removeRegistroIdLoginUsuarioSessao();
+    	} else {
+    		// recuperando o id da pessoa perfil do sistema
+    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+    	}
+
+    	// recuperando informacoes para log
+    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_ACESSO_HOST_BANIDO, true);
+    	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_HOST_BANIDO;
+
+		// salvando log
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+
+		// carregando o titulo, subtitulo e mensagem da view
+    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO');
+        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO');
+        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM');
+
+    	// carregando array do cabecalho da view
+		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+	            
+	    // setando o cabecalho na view
+		$this->view->cabecalho = $cabecalho;
+
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
+    }
 }

@@ -7,7 +7,8 @@
 * ultimas modificacoes:
 * 											03/05/2011 - criacao das constantes textuais para a view de ip do usuario diferente do ip do usuario autenticado durante o processo de logon;
 * 											05/05/2011 - criacao das constantes textuais para traducao dos perfis;
-* 											29/06/2011 - criacao criacao e acao ipusuariodiferentedoipdousuarioautenticadonasessao
+* 											29/06/2011 - criacao das constantes textuais para a view ipusuariodiferentedoipdousuarioautenticadonasessao;
+* 											25/07/2011 - criacao das constantes textuais para a view de host banido;
 */
 
 -- DICIONARIO DE EXPRESSOES
@@ -91,6 +92,27 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM' AS constante_textual, 'Este problema ocorre quando o usuário troca de rede/endereço IP após estar autenticado no sistema.<br>Efetue logout e login para resolver esta situação.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO' AS constante_textual, 'Host banido!' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO' AS constante_textual, 'Seu atual endereço IP esta banido em nosso sistema.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM' AS constante_textual, 'Entre em contato com o suporte para tentar desbanir seu host.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -210,6 +232,27 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM' AS constante_textual, 'This problem occurs when the user change the network / IP address after being authenticated to the the system.<br>Logout and login to resolve this situation.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO' AS constante_textual, 'Host banned!' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO' AS constante_textual, 'Your current IP address is banned in our system.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM' AS constante_textual, 'Please contact our support to try to unban your host.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

@@ -591,4 +591,201 @@ class Basico_OPController_ControleAcessoOPController
 		// retornando o resultado da verificacao
 		return ($this->_acl->has($nomeAcaoAplicacaoCompleta)) and ($this->_acl->isAllowed($nomePerfil, $nomeAcaoAplicacaoCompleta));
 	}
+
+	/**
+	 * Verifica se um determinado IP pode ou nao utilizar o sistema (banimento)
+	 * 
+	 * @param String $ip
+	 * 
+	 * @return Boolean
+	 */
+	public static function verificaPermissaoIP($ip)
+	{
+		// verificando se o IP pode utilizar o sistema
+		if (self::verificaPermissaoIPHostsBanidosSistema($ip)) {
+			// retornando true
+			return true;
+		}
+
+		// retornando false o IP nao possui permissao
+		return false;
+	}
+
+	/**
+	 * Verifica se um determinado IP encontra-se no arquivo do sistema que contem os IP banidos
+	 * 
+	 * @param String $ip
+	 * 
+	 * @return boolean
+	 */
+	private static function verificaPermissaoIPHostsBanidosSistema($ip)
+	{
+		// carregando arquivo de configuracao de hosts banidos
+		$arrayINI = Basico_OPController_UtilOPController::retornaArrayViaArquivoINI(HOSTS_DENNY);
+
+		// verificando se o IP foi encontrado no arquivo de configuracao de hosts banidos
+		if ((array_key_exists($ip, $arrayINI)) and ($arrayINI[$ip]['ativo'] == true)) {
+			// verificando se o banimento foi por tempo determinado
+			if ($arrayINI[$ip]['termino']) {
+				// recuperando data-hora do termino do banimento
+				$dataTerminoBanimento = strtotime($arrayINI[$ip]['termino']);
+
+				// verificando se ja foi ultrapassado o tempo do banimento
+				if ($dataTerminoBanimento < strtotime(Basico_OPController_UtilOPController::retornaDateTimeAtual()->toString())) {
+					// retornando o resultado do desativando do banimento e parando a execucao
+					return self::removeIPHostsBanidosSistema($ip);
+				}
+			}
+
+			// retornando false
+			return false;
+		}
+
+		// retornando true
+		return true;
+	}
+
+	/**
+	 * Adiciona um IP a lista de IPs banidos pelo sistema
+	 * 
+	 * @param String $ip
+	 * @param String $motivo
+	 * @param String $dataHoraInicioBanimento
+	 * @param String $dataHoraTerminoBanimento
+	 * 
+	 * @return Boolean
+	 */
+	public static function adicionaIPHostsBanidosSistema($ip, $motivo, $dataHoraInicioBanimento, $dataHoraTerminoBanimento = null)
+	{
+		// carregando arquivo de configuracao de hosts banidos
+		$arrayINI = Basico_OPController_UtilOPController::retornaArrayViaArquivoINI(HOSTS_DENNY);
+
+		// verificando se o IP foi encontrado no arquivo de configuracao de hosts banidos
+		if (array_key_exists($ip, $arrayINI)) {
+			// verificando se o IP encontrado na lista de IPs banidos pelo sistema encontra-se ativado
+			if ($arrayINI[$ip]['ativo'] == true) {
+				// retornando true (e parando a execucao) pois o banimento do IP esta ativo
+				return true;
+			} else {
+				// ativando o banimento do IP e parando a execucao retornando o resultado do metodo de ativacao
+				return self::ativaIPHostsBanidosSistema($ip);
+			}			
+		}
+
+		// adicionando o IP banido no array recuperado com as informacoes contidas no arquivo de configuracao de hosts banidos
+		$arrayINI[$ip] = array('motivo' => $motivo, 'inicio' => $dataHoraInicioBanimento, 'termino' => $dataHoraTerminoBanimento, 'ativo' => true);
+
+		// recuperando informacoes para log
+    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ADICIONA_IP_HOSTS_DENY, true);
+    	$mensagemLog = LOG_MSG_ADICIONA_IP_HOSTS_DENY . $ip . ")";
+		
+		// salvando log de operacoes
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+
+		// retornando o resultado do metodo de salvar o arquivo de configuracoes de hosts banidos
+		return Basico_OPController_UtilOPController::escreveArquivoINIViaArray(HOSTS_DENNY, $arrayINI);
+	}
+
+	/**
+	 * Remove um IP da lista de IPs banidos pelo sistema
+	 * 
+	 * @param String $ip
+	 * 
+	 * @return Boolean
+	 */
+	public static function removeIPHostsBanidosSistema($ip)
+	{
+		// carregando arquivo de configuracao de hosts banidos
+		$arrayINI = Basico_OPController_UtilOPController::retornaArrayViaArquivoINI(HOSTS_DENNY);
+
+		// verificando se o IP foi encontrado no arquivo de configuracao de hosts banidos
+		if (array_key_exists($ip, $arrayINI)) {
+			// removendo o no do array
+			unset($arrayINI[$ip]);
+
+			// recuperando informacoes para log
+	    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_REMOVE_IP_HOSTS_DENY, true);
+	    	$mensagemLog = LOG_MSG_REMOVE_IP_HOSTS_DENY . $ip . ")";
+			
+			// salvando log de operacoes
+			Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+
+			// retornando o resultado do metodo de salvar o arquivo de configuracoes de hosts banidos
+			return Basico_OPController_UtilOPController::escreveArquivoINIViaArray(HOSTS_DENNY, $arrayINI);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Desativa o banimento de um IP da lista de IPs banidos pelo sistema
+	 * 
+	 * @param String $ip
+	 * 
+	 * @return Boolean
+	 */
+	public static function desativaIPHostsBanidosSistema($ip) 
+	{
+		// carregando arquivo de configuracao de hosts banidos
+		$arrayINI = Basico_OPController_UtilOPController::retornaArrayViaArquivoINI(HOSTS_DENNY);
+
+		// verificando se o IP foi encontrado no arquivo de configuracoes de hosts banidos
+		if (array_key_exists($ip, $arrayINI)) {
+			// verificando se o banimento esta ativado
+			if ($arrayINI[$ip]['ativo'] == true) {
+				// setando o ativamento para falso
+				$arrayINI[$ip]['ativo'] = false;
+			}
+
+			// recuperando informacoes para log
+	    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DESATIVA_IP_HOSTS_DENY, true);
+	    	$mensagemLog = LOG_MSG_DESATIVA_IP_HOSTS_DENY . $ip . ")";
+			
+			// salvando log de operacoes
+			Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+
+			// retornando o resultado do metodo de salvar o arquivo de configuracoes de hosts banidos
+			return Basico_OPController_UtilOPController::escreveArquivoINIViaArray(HOSTS_DENNY, $arrayINI);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Ativa o banimento de um IP da lista de IPs banidos pelo sistema
+	 * 
+	 * @param String $ip
+	 * 
+	 * @return Boolean
+	 */
+	public static function ativaIPHostsBanidosSistema($ip)
+	{
+		// carregando arquivo de configuracao de hosts banidos
+		$arrayINI = Basico_OPController_UtilOPController::retornaArrayViaArquivoINI(HOSTS_DENNY);
+
+		// verificando se o IP foi encontrado no arquivo de configuracoes de hosts banidos
+		if (array_key_exists($ip, $arrayINI)) {
+			// verificando se o banimento esta desativado
+			if ($arrayINI[$ip]['ativo'] == false) {
+				// setando o ativamento para falso
+				$arrayINI[$ip]['ativo'] = true;
+			}
+
+			// recuperando informacoes para log
+	    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ATIVA_IP_HOSTS_DENY, true);
+	    	$mensagemLog = LOG_MSG_ATIVA_IP_HOSTS_DENY . $ip . ")";
+			
+			// salvando log de operacoes
+			Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
+
+			// retornando o resultado do metodo de salvar o arquivo de configuracoes de hosts banidos
+			return Basico_OPController_UtilOPController::escreveArquivoINIViaArray(HOSTS_DENNY, $arrayINI);
+		}
+
+		return false;
+	}
 }

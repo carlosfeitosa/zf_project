@@ -200,10 +200,88 @@ class Basico_OPController_UtilOPController
     
     public static function escreveConteudoArquivo($fullFileName, $conteudo) {
 	    try {
-	    	    return file_put_contents($fullFileName, $conteudo);
+	    	    return (file_put_contents($fullFileName, $conteudo) !== false);
 	    	}catch (Exception $e){
 	    	    throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO . $e->getMessage());
 	    	}
+    }
+
+    /**
+     * Retorna um array contendo as informacoes contidas dentro de um arquivo .INI
+     * 
+     * @param String $nomeArquivoIni
+     * 
+     * @return Array|null
+     */
+    public static function retornaArrayViaArquivoINI($nomeArquivoIni)
+    {
+		// verificando se o arquivo existe
+		if (!file_exists($nomeArquivoIni)) {
+			// parando a execucao do metodo
+			return null;
+		}
+
+    	// retornando um array contendo o conteudo do arquivo ini
+		return parse_ini_file($nomeArquivoIni, true);
+    }
+
+    /**
+     * Escreve um array em um arquivo no formato de arquivo INI
+     * 
+     * @param String $nomeArquivoIni
+     * @param Array $arrayConteudo
+     * 
+     * @return Boolean
+     */
+    public static function escreveArquivoINIViaArray($nomeArquivoIni, Array $arrayConteudo)
+    {
+    	// inicializando variaveis
+    	$stringArquivo = '';
+
+    	// verificando se o array possui conteudo para processamento
+    	if (count($arrayConteudo)) {
+    		// loop para montar estrutura do arquivo
+    		foreach ($arrayConteudo as $chave => $propriedades) {
+				// adicionando a chave principal
+				$stringArquivo .= "[{$chave}]" . QUEBRA_DE_LINHA;
+
+				// verificando se o valor da chave eh um array
+				if (is_array($propriedades)) {
+					// loop para adicionar as propriedades da chave
+					foreach ($propriedades as $chavePropriedade => $valorPropriedade) {
+						// verificando se trata-se de tipos que nao precisam de encapsulamento via aspas
+						if (is_bool($valorPropriedade)) { // booleano
+							// setando o valor para booleano
+							$valorPropriedade = Basico_OPController_UtilOPController::retornaValorTipado($valorPropriedade, TIPO_BOOLEAN, true);
+						} else if (is_numeric($valorPropriedade)) { // numerico
+							// setando o valor para inteiro
+							$valorPropriedade = Basico_OPController_UtilOPController::retornaValorTipado($valorPropriedade, TIPO_INTEIRO, true);
+						} else {
+							// encapsulando o valor entre aspas
+							$valorPropriedade = Basico_OPController_UtilOPController::retornaStringEntreCaracter($valorPropriedade, '"');
+						}
+
+						// adicionando atributos da chave
+						$stringArquivo .= "{$chavePropriedade} = {$valorPropriedade}" . QUEBRA_DE_LINHA;
+					}
+
+					// adicionando quebra de linha
+					$stringArquivo .= QUEBRA_DE_LINHA;
+				}
+    		}
+
+    		// verificando o resultado da recuperacao de informacoes
+    		if ($stringArquivo <> '') {
+    			// escrevendo o arquivo
+    			return self::escreveConteudoArquivo($nomeArquivoIni, $stringArquivo);
+    		}
+    	} else if (is_array($arrayConteudo)) {
+    		// escrevendo arquivo vazio
+    		return self::escreveConteudoArquivo($nomeArquivoIni, '');
+    	}
+
+    	// retornando false, se nao conseguiu processar
+    	return false;
     }
 
 	/**

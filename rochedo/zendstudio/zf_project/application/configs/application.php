@@ -46,6 +46,7 @@ define("BASICO_DB_MSSQL_CREATE_SCHEMA_SCRIPTS_PATH", BASICO_DB_SCRIPTS_PATH . "/
 define("BASICO_DB_PGSQL_DATA_SCRIPTS_PATH", BASICO_DB_SCRIPTS_PATH . "/pgsql/data");
 define("BASICO_DB_MSSQL_DATA_SCRIPTS_PATH", BASICO_DB_SCRIPTS_PATH . "/mssql/data");
 define("HTACCESS_FULLFILENAME", PUBLIC_PATH . "/.htaccess");
+define("HOSTS_DENNY", APPLICATION_PATH . "/modules/basico/config/hosts_denny.ini");
 
 
 /*

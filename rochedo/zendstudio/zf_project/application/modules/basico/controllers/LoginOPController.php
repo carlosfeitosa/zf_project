@@ -530,10 +530,26 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 				Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($login, $mesagemProblemaLogin); 
 			}
 
-			// verificando se o limite de tentativas invalidas foi atingido
-			if ($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_LOGIN_MAX)
+			// verificando se o limite de tentativas invalidas foi atingido (para travar)
+			if ($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_LOGIN_MAX) {
 				// travando o login
 				$objLogin->travado = true;
+			}
+
+			// verificando se o limite de tentativas invalidas foi atingido (para banir o ip)
+			if ($objLogin->tentativasFalhas) {
+				// recuperando o IP do usuario
+				$userIP = Basico_OPController_UtilOPController::retornaUserIp();
+
+				// recuperando quantidade de tentativas falhas do mesmo IP
+				$quantidadeTentativasFalhasPorIP = Basico_OPController_LogOPController::retornaQuantidadeTentativasLoginPorIpViaSQL($login, $userIP , $objLogin->dataHoraUltimoLogon);
+
+				// verificando se a quantidade maxima de tentativas por IP foi atingida
+				if ($quantidadeTentativasFalhasPorIP >= QUANTIDADE_TENTATIVAS_LOGIN_IP_BAN_MAX) {
+					// banindo o IP por 1 dia
+					Basico_OPController_ControleAcessoOPController::adicionaIPHostsBanidosSistema($userIP, MSG_ERRO_TENTATIVAS_FALHAS_LOGIN_IP_BAN, Basico_OPController_UtilOPController::retornaDateTimeAtual()->toString(), Basico_OPController_UtilOPController::retornaDateTimeAtual()->addDate(1)->toString());
+				}
+			}
 
 			// preparando XML rowinfo
 			$rowinfoOPController->prepareXml($objLogin, true);

@@ -37,6 +37,7 @@ define("MSG_ERRO_ARRAY_FILTER_CHAVE_POSICAO_NAO_ENCONTRADA", "Não foi encontrad
 define("MSG_ERRO_ARRAY_FILTER_CHAVE_FILTRO_NAO_ENCONTRADA", "Não foi encontrado a chave de filtro no array contendo os filtros.");
 define("MSG_ERRO_ARRAY_FILTER_TIPO_OPERACAO_NAO_CONHECIDA", "Não foi encontrado o tipo de operação do filtro informado no array contendo os filtros.");
 define("MSG_ERRO_UPDATE_NAO_PERMITIDO", "Este objeto não permite atualização.");
+define("MSG_ERRO_TENTATIVAS_FALHAS_LOGIN_IP_BAN", "IP banido por tentativas excessivas, sem sucesso, de logon.");
 
 /*
  * CATEGORIA

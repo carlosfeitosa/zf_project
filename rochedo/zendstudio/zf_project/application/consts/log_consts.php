@@ -84,6 +84,11 @@ define("LOG_MSG_TENTATIVA_ACESSO_ACAO_DESATIVADA", "Tentativa de acesso a acao d
 define("LOG_MSG_TENTATIVA_ACESSO_ACAO_NAO_PERMITIDA", "Tentativa de acesso a acao nao permitida.");
 define("LOG_MSG_TENTATIVA_ACESSO_ACAO_INDISPONIVEL_ATRAVES_DE_URL", "Tentativa de acesso a acao indisponivel atraves de url.");
 define("LOG_MSG_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO", "Tentativa de acesso de usuario logado atraves de IP diferente do registrado na sessao durante o processo de logon.");
+define("LOG_MSG_TENTATIVA_ACESSO_HOST_BANIDO", "Tentativa de acesso a partir de host banido.");
+define("LOG_MSG_ADICIONA_IP_HOSTS_DENY", "Adicao de IP na lista de IPs bloqueados pelo sistema (");
+define("LOG_MSG_REMOVE_IP_HOSTS_DENY", "Remocao de IP na lista de IPs bloqueados pelo sistema (");
+define("LOG_MSG_ATIVA_IP_HOSTS_DENY", "Ativacao de IP na lista de IPs bloqueados pelo sistema (");
+define("LOG_MSG_DESATIVA_IP_HOSTS_DENY", "Desativacao de IP na lista de IPs bloqueados pelo sistema (");
 define("LOG_MSG_NOVO_LOGIN", "Novo login inserido no banco de dados.");
 define("LOG_MSG_UPDATE_LOGIN", "Atualizacao de login no banco de dados.");
 define("LOG_MSG_NOVA_RACA", "Nova raça inserida no banco de dados.");
