@@ -375,7 +375,7 @@ create index ix_dados_pessoais_nome
 create index ix_mensagem_assunto
   on mensagem using btree (assunto asc nulls last);
 
-create index ix_login_login
+create unique index ix_login_login
   on login using btree (login asc nulls last);
 
 create index ix_tipo_categoria_nome

@@ -132,6 +132,7 @@ class Basico_LoginController extends Zend_Controller_Action
     {
     	try {
 	        // capturando dados da requisição
+	        $post     = $this->getRequest()->getPost();
 	    	$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
 	    	$sexo     = (int) $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSexo');
 	    	$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
@@ -161,15 +162,22 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
 	    	
 	    	// adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
-	    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
+	    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
 	    	
 	    	if ($form->isValid($_POST)) {
 	    		
 	    		// verificando a disponibilidade do login
 	    		if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
 	    			// setando mensagem de erro de login não disponivel
-	    			$form->getElement('BasicoCadastrarUsuarioValidadoLogin')->addErrorMessage("Login não está disponível.");
-	    			// setando o form para view
+	    			// recuperando o titulo do dialog
+		    		$tituloDialogSugestaoLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
+		    		
+		    		// escrevendo mensagem de login nao disponivel	
+					$form->BasicoCadastrarUsuarioValidadoLoginDisponivel->setValue("<span style='color: red; font-weight: bold;'>" .
+							str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '/rochedo_project/public/basico/login/exibirformsugestaologin/stringPesquisa/" . $post['BasicoCadastrarUsuarioValidadoLogin'] . "/idPessoa/" . $post['idPessoa'] . "/nome/" . $post['BasicoCadastrarUsuarioValidadoNome'] . "/dataNascimento/" . $post['BasicoCadastrarUsuarioValidadoDataNascimento'] . "', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
+							"</span>");
+
+					// setando o form para view
 	    			$this->view->form = $form;
 	    			$this->_helper->Renderizar->renderizar();
 	    			return;
@@ -348,6 +356,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	
 	        //checando a disponibilidade do login
 	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $post['stringPesquisa']);
+	    	
+	    	
 	    	
 	    	if (!$loginDisponivel) {
 	    		

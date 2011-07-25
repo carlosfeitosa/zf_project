@@ -314,18 +314,18 @@ function validateForm(formId, titulo, message, baseUrl)
 function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa, nome, dataNascimento, urlMetodo)
 {	
 	if (stringPesquisa != "") {
-		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
+		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
 		
 		dojo.xhrGet({
 	    	url: urlMetodo + stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento,
 	    	timeout: 5000,
 	    	load: function(response, ioArgs)
 	    	{
-			dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = response;
+			dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = response;
 	    	}
 	    });
 	}else{
-		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-label").innerHTML = "";
+		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = "";
 	}
 }
 
