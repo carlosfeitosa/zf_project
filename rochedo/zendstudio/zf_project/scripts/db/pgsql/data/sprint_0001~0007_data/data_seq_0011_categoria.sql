@@ -92,9 +92,8 @@
 *							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN
 *									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT	
 *							28/06/2011 - criacao da categoria FORMULARIO_INPUT_SUGESTOES_LOGIN;
-*
+*							26/07/2011 - criacao da categoria FORMULARIO_OUTPUT_AJAX;
 */
-
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id, 'SISTEMA_USUARIO' AS nome, 'Usuários utilizados pelo sistema.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
@@ -944,6 +943,13 @@ AND c.nome = 'FORMULARIO_OUTPUT';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_OUTPUT_HTML' AS nome, 'Saida HTML.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_OUTPUT';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_OUTPUT_AJAX' AS nome, 'Saida AJAX.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
