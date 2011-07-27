@@ -29,4 +29,4 @@ SELECT c.id AS id_categoria, 'OUTPUT_AJAX' AS nome, 'Formato de saida AJAX.' AS 
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_OUTPUT_HTML';
+AND c.nome = 'FORMULARIO_OUTPUT_AJAX';
