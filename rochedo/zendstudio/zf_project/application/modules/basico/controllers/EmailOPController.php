@@ -386,4 +386,28 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
         // retornando o id
         return $novoEmail->id;
     }
+    
+    /**
+     * Valida o email primario da pessoa passada
+     * 
+     * @param Int $idPessoa
+     */
+    public function validarEmailPrimarioPessoa($idPessoa)
+    {
+    	// recuperando o email primario do usuario
+    	$emailPrimario = $this->retornaObjetoEmailPrimarioPessoa($idPessoa);
+    		
+    	// recuperando a ultima versao do email
+    	$versaoUpdateEmail = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($emailPrimario);
+    		
+    	// validando o e-mail no objeto
+	    $emailPrimario->datahoraUltimaValidacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+	    $emailPrimario->validado = 1;
+	    $emailPrimario->ativo    = 1;
+	    	
+	    // salvando o objeto e-mail no banco de dados
+	    $this->salvarObjeto($emailPrimario, $versaoUpdateEmail);
+	    
+	    return $emailPrimario;
+    }
 }

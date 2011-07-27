@@ -257,6 +257,32 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
     }
     
     /**
+     * Salva os dados biometricos atraves dos dados submetidos pelo form Basico_Form_CadastrarUsuarioValidado
+     * 
+     * @param array $arrayPost
+     */
+    public function salvarDadosBiometricosViaFormCadastrarUsuarioValidado($arrayPost)
+    {
+    	//criando dadosBiometricos do usuario
+  		$novoDadosBiometricos = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosBiometricosOPController');
+   		
+   		// setando a pessoa dona dos dadosBiometricos
+   		$novoDadosBiometricos->pessoa = $arrayPost['idPessoa'];
+   		
+   		// gerando e setando o rowinfo
+   		$this->prepareSetRowinfoXML($novoDadosBiometricos, true);
+   		
+   		// setando o sexo
+   		if ($arrayPost['BasicoCadastrarUsuarioValidadoSexo'] == 0)
+   		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;
+   		else if ($arrayPost['BasicoCadastrarUsuarioValidadoSexo'] == 1)
+		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
+   		
+		// salvando os dadosBiometricos
+    	$this->salvarObjeto($novoDadosBiometricos);
+    }
+    
+    /**
 	 * Retorna a versao do objeto dadosBiometricos, a partir do id de uma pessoa
 	 * 
 	 * @param Integer $idPessoa

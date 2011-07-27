@@ -11,12 +11,7 @@
  */
 
 class Basico_LoginController extends Zend_Controller_Action
-{
-	/**
-	* @var object
-	*/
-	private $request;
-	
+{	
     /**
 	 * Inicializa controlador Login
 	 * 
@@ -24,9 +19,6 @@ class Basico_LoginController extends Zend_Controller_Action
 	 */
 	public function init()
     {
-    	// recuperando a requisicao
-        $this->request = Basico_OPController_UtilOPController::retornaUserRequest();
-
 		// definindo o contexto
 		$pdfParametros = array('suffix' => 'pdf', 'headers' => array('Content-Type' => 'application/pdf'));
 		$xlsParametros = array('suffix' => 'xls', 'headers' => array('Content-Type' => 'application/xls'));
@@ -124,6 +116,128 @@ class Basico_LoginController extends Zend_Controller_Action
 		$this->_helper->Renderizar->renderizar();
     }
     
+    private function initFormCadastrarUsuarioValidado(Basico_Form_CadastrarUsuarioValidado &$formCadastrarUsuarioValidado, $idPessoa, $versaoDadosPessoais)
+    {
+    	// inserindo elementos hidden e setando valores
+    	Basico_OPController_UtilOPController::adicionaElementoForm($formCadastrarUsuarioValidado, 'hidden', 'idPessoa', array('value' => $idPessoa));
+    	Basico_OPController_UtilOPController::adicionaElementoForm($formCadastrarUsuarioValidado, 'hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
+    	// removendo labels dos elementos hidden
+	    $formCadastrarUsuarioValidado->idPessoa->removeDecorator('Label');
+		$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
+		
+		//adicionando chamada a função do password strength checker para o campo senha
+		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker() . ")"));
+		
+		//adicionando multi-options para o radioButton sexo
+	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+	    
+	    // setando mensagens do validator Identical para o campo senhaConfirmacao
+	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
+	    // setando o campo que tem que ser identico ao campo senhaConfirmacao
+		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
+		
+		// capturando a url do metodo que retorna se o login esta disponivel ou nao 
+	    $urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+	    	
+	    // adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
+	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
+	    
+	    // colocando o div do password strenght checker
+	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setValue("<div id='scorebarBorder'><div id='score'>0%</div><div id='scorebar'>&nbsp;</div></div><div id='complexity'></div>");
+    }
+
+    /**
+     * Salva os dados do usuario validado atraves dos dados submetidos pelo formulario Basico_Form_CadastrarUsuarioValidado
+     * 
+     * @param Array $arrayPost
+     * @param Basico_Form_CadastrarUsuarioValidado $formCadastrarUsuarioValidado
+     */
+    private function salvarDadosUsuarioValidado($arrayPost, Basico_Form_CadastrarUsuarioValidado $formCadastrarUsuarioValidado)
+    {
+    	try {
+    		// iniciando a transação
+			Basico_OPController_PersistenceOPController::bdControlaTransacao();
+    		
+	    	// inicializando o formulario
+	    	$this->initFormCadastrarUsuarioValidado($formCadastrarUsuarioValidado, $arrayPost['idPessoa'], $arrayPost['versaoDadosPessoais']);
+	    	
+	    	// validando formulario
+		    if ($formCadastrarUsuarioValidado->isValid($arrayPost)) {
+		    		
+		    	// verificando a disponibilidade do login
+		    	if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
+		    		
+		    		// carregando array do cabecalho da view
+				    $this->view->cabecalho =  array('tituloView' => $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'), 
+				    					        	'subtituloView' => $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
+		    		
+		    		// recuperando o titulo do dialog
+			   		$tituloDialogSugestaoLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
+			   		
+			   		// escrevendo mensagem de login nao disponivel	
+					$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLoginDisponivel->setValue("<span style='color: red; font-weight: bold;'>" .
+							str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '/rochedo_project/public/basico/login/exibirformsugestaologin/stringPesquisa/" . $arrayPost['BasicoCadastrarUsuarioValidadoLogin'] . "/idPessoa/" . $arrayPost['idPessoa'] . "/nome/" . $arrayPost['BasicoCadastrarUsuarioValidadoNome'] . "/dataNascimento/" . $arrayPost['BasicoCadastrarUsuarioValidadoDataNascimento'] . "', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
+							"</span>");
+	
+					// setando o form para view
+		    		$this->view->form = $formCadastrarUsuarioValidado;
+		    		
+		    		return;
+		    	}
+		
+		    	// salvando os dados pessoais
+		    	Basico_OPController_DadosPessoaisOPController::getInstance()->salvarDadosPessoaisViaFormCadastrarUsuarioValidado($arrayPost);
+		    	
+		    	// atualizando pessoaPerfil do usuario para usuarioValidado
+		    	Basico_OPController_PessoasPerfisOPController::getInstance()->editarPessoaPerfil($arrayPost['idPessoa'], Basico_OPController_PerfilOPController::getInstance()->retornaObjetoPerfilUsuarioNaoValidado()->id, Basico_OPController_PerfilOPController::getInstance()->retornaObjetoPerfilUsuarioValidado()->id);
+		    	
+		    	// salvando os dados biometricos do usuario
+		   		Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarUsuarioValidado($arrayPost);
+	
+		   		// salvando e recuperando o login do usuario
+		   		$novoLogin = Basico_OPController_LoginOPController::getInstance()->salvarLoginViaFormCadastrarUsuarioValidado($arrayPost);	    	
+		    		
+		   		// validando e recuperando o email primario da pessoa
+		    	$emailPrimario = Basico_OPController_EmailOPController::getInstance()->validarEmailPrimarioPessoa($arrayPost['idPessoa']);
+				
+		    	// recuperando a mensagem de confirmacao da conclusao do cadastro
+		    	$mensagemConclusaoCadastro = Basico_OPController_LoginOPController::getInstance()->retornaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($arrayPost['idPessoa'], $emailPrimario->email);
+		    	
+		    	// enviando a mensagem
+	        	Basico_OPController_MensageiroOPController::getInstance()->enviar($mensagemConclusaoCadastro, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($arrayPost['idPessoa'])));
+		    	
+				// salvando a transacao
+				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);		    
+	
+				// verificando credenciais
+				if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuarioPorLoginSenha($novoLogin->login, $novoLogin->senha)) { 
+				 	// efetuando o logon
+				   	Basico_OPController_LoginOPController::getInstance()->efetuaLogon($novoLogin->login);
+	
+				    // montando url para redirecionamento
+				    $urlRedirect = str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->view->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'sucessosalvarusuariovalidado'), null, true));
+					// redirecionando para a acao de sucesso no cadastro do usuario
+					$this->_redirect($urlRedirect);
+				}
+				
+	    	}else{
+	    		
+	    		// carregando array do cabecalho da view
+			    $this->view->cabecalho =  array('tituloView' => $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'), 
+			    					        	'subtituloView' => $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
+			    
+	    		// carregando form na view
+	    		$this->view->form = $formCadastrarUsuarioValidado;
+	    		
+	    		return;
+	    	}
+    	}catch (Exception $e){
+    		// voltando a transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+			throw new Exception($e->getMessage());
+    	}
+    }
+    
     /**
      * Cadastra o usuario já validado.
      * @return void
@@ -132,191 +246,23 @@ class Basico_LoginController extends Zend_Controller_Action
     {
     	try {
 	        // capturando dados da requisição
-	        $post     = $this->getRequest()->getPost();
-	    	$idPessoa = (int) $this->getRequest()->getParam('idPessoa');
-	    	$sexo     = (int) $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSexo');
-	    	$versaoDadosPessoais = (int) $this->getRequest()->getParam('versaoDadosPessoais');
+	        $post                = $this->getRequest()->getPost();
+	    	$idPessoa            = (int) $post['idPessoa'];
+	    	$sexo                = (int) $post['BasicoCadastrarUsuarioValidadoSexo'];
+	    	$versaoDadosPessoais = (int) $post['versaoDadosPessoais'];
 	    	
 	    	// inicializando controladores
 	    	$controladorLogin = Basico_OPController_LoginOPController::getInstance();
 	    	
 	    	// capturando formulario e setando propriedades
-	        $form = $this->getFormCadastroUsuarioValidado();
-	    	$form->addElement('hidden', 'idPessoa', array('value' => $idPessoa));
-	    	$form->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
-	    	$form->idPessoa->removeDecorator('Label');
-			$form->versaoDadosPessoais->removeDecorator('Label');
+	        $formCadastrarUsuarioValidado = $this->getFormCadastroUsuarioValidado();
+	        // inicializando formulario
+	        $this->initFormCadastrarUsuarioValidado($formCadastrarUsuarioValidado, $idPessoa, $versaoDadosPessoais);
 			
-			//adicionando chamada a função do password strength checker para o campo senha
-			$form->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, {$controladorLogin->retornaJsonMensagensPasswordStrengthChecker()})"));
-	    	
-			//adicionando multi-options para o radioButton sexo
-	    	$form->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
-	    	
-	    	// setando mensagens do validator Identical para o campo senhaConfirmacao
-	    	$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
-	    	// setando o campo que tem que ser identico ao campo senhaConfirmacao
-			$form->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
-	    	
-			// capturando a url do metodo que retorna se o login esta disponivel ou nao 
-	    	$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
-	    	
-	    	// adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
-	    	$form->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
-	    	
-	    	if ($form->isValid($_POST)) {
-	    		
-	    		// verificando a disponibilidade do login
-	    		if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
-	    			// setando mensagem de erro de login não disponivel
-	    			// recuperando o titulo do dialog
-		    		$tituloDialogSugestaoLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
-		    		
-		    		// escrevendo mensagem de login nao disponivel	
-					$form->BasicoCadastrarUsuarioValidadoLoginDisponivel->setValue("<span style='color: red; font-weight: bold;'>" .
-							str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '/rochedo_project/public/basico/login/exibirformsugestaologin/stringPesquisa/" . $post['BasicoCadastrarUsuarioValidadoLogin'] . "/idPessoa/" . $post['idPessoa'] . "/nome/" . $post['BasicoCadastrarUsuarioValidadoNome'] . "/dataNascimento/" . $post['BasicoCadastrarUsuarioValidadoDataNascimento'] . "', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
-							"</span>");
-
-					// setando o form para view
-	    			$this->view->form = $form;
-	    			$this->_helper->Renderizar->renderizar();
-	    			return;
-	    		}
-	    		
-	
-	    		// iniciando a transacao
-           		Basico_OPController_PersistenceOPController::bdControlaTransacao();
-           		
-	    	    // inicializando controladores
-	    		$controladorDadosPessoais    = Basico_OPController_DadosPessoaisOPController::getInstance();
-	    		$controladorLogin            = Basico_OPController_LoginOPController::getInstance();
-	    		$controladorPerfil           = Basico_OPController_PerfilOPController::getInstance();
-	    		$controladorPessoasPerfils   = Basico_OPController_PessoasPerfisOPController::getInstance();
-	    		$controladorDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance();
-	    		$controladorEmail            = Basico_OPController_EmailOPController::getInstance();
-	    		$controladorMensagem         = Basico_OPController_MensagemOPController::getInstance();
-	    		$controladorMensageiro       = Basico_OPController_MensageiroOPController::getInstance();
-	    		$controladorRowinfo          = Basico_OPController_RowinfoOPController::getInstance();
-	    		$controladorPessoasPerfisMensagensCategorias = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance();
-	
-	    		// capturando obj dados pessoais da pessoa passada
-	    		$dadosPessoaisObj = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa);
-	    		
-	
-	    		// checando se o obj dadosPessoais foi capturado com sucesso
-	    		if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais === false)
-	    		    throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);
-	    		    
-	    		// setando valores do obj dadosPessoais    
-	    		$dadosPessoaisObj->nome           = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoNome');
-	    		$dadosPessoaisObj->dataNascimento = $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoDataNascimento');
-	    		
-	    		// salvando os DadosPessoais
-	    		$controladorDadosPessoais->salvarObjeto($dadosPessoaisObj, $versaoDadosPessoais);
-	    		
-	    		// atualizando pessoaPerfil do usuario para usuarioValidado
-	    		$controladorPessoasPerfils->editarPessoaPerfil($idPessoa, $controladorPerfil->retornaObjetoPerfilUsuarioNaoValidado()->id, $controladorPerfil->retornaObjetoPerfilUsuarioValidado()->id);
-	
-	    		//criando dadosBiometricos do usuario
-	    		$novoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosBiometricosOPController');
-	    		
-	    		// setando a pessoa dona dos dadosBiometricos
-	    		$novoDadosBiometricos->pessoa = $idPessoa;
-	    		$controladorRowinfo->prepareXml($novoDadosBiometricos, true);
-	    		// setando rowinfo dos DadosBiometricos
-	    		$novoDadosBiometricos->rowinfo = $controladorRowinfo->getXml();
-	    		
-	    		// setando o sexo
-	    		if ($sexo === 0)
-	    		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;
-	    		else if ($sexo === 1)
-	    		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
-	
-	    		// salvando os dadosBiometricos
-	    		$controladorDadosBiometricos->salvarObjeto($novoDadosBiometricos);
-	    		    
-	    		// criando o login do usuario
-	    		$novoLogin = $controladorLogin->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_LoginOPController'); 
-	    		$novoLogin->pessoa = $idPessoa;
-	    		$novoLogin->tentativasFalhas = 0;
-	    		$novoLogin->travado = false;
-	    		$novoLogin->resetado = false;
-	    		$novoLogin->podeExpirar = true;
-	    		
-	    		$controladorRowinfo->prepareXml($novoLogin, true);
-	    		$novoLogin->rowinfo = $controladorRowinfo->getXml();
-	    		
-	    		$novoLogin->login  = trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'));
-	    		$novoLogin->senha  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoSenha')));
-	    		$novoLogin->ativo  = true;
-	    		$controladorLogin->prepareSetRowinfoXML($novoLogin);
-	    		$controladorLogin->salvarObjeto($novoLogin);
-	    		
-	    		
-	    		// recuperando o email primario do usuario
-	    		$emailPrimario = $controladorEmail->retornaObjetoEmailPrimarioPessoa($idPessoa);
-	    		
-	    		// recuperando a ultima versao do email
-	    	    $versaoUpdateEmail = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($emailPrimario);
-	    		
-	    		// validando o e-mail no objeto
-		    	$emailPrimario->datahoraUltimaValidacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-		    	$emailPrimario->validado = 1;
-		    	$emailPrimario->ativo    = 1;
-		    	
-		    	// salvando o objeto e-mail no banco de dados
-		    	$controladorEmail->salvarObjeto($emailPrimario, $versaoUpdateEmail);
-		    	
-		    	$novaMensagemConfirmacao = $controladorMensagem->retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa);
-		    	
-	            // recuperando o nome do destinatario
-	            $nomeDestinatario = $dadosPessoaisObj->nome;
-	                     
-	            $novaMensagemConfirmacao->destinatarios       = array($emailPrimario->email);
-	            $novaMensagemConfirmacao->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
-	            $novaMensagemConfirmacao->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-	            $controladorRowinfo->prepareXml($novaMensagemConfirmacao, true);
-	            $novaMensagemConfirmacao->rowinfo             = $controladorRowinfo->getXml();
-	            $controladorMensagem->salvarObjeto($novaMensagemConfirmacao);
-	
-	            // enviando a mensagem
-	            $controladorMensageiro->enviar($novaMensagemConfirmacao, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa)));
-	            		    	
-		    	// salvando a transacao
-			    Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-
-			    // verificando credenciais
-			    if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuarioPorLoginSenha($novoLogin->login, $novoLogin->senha))
-			    	// efetuando o logon
-			    	Basico_OPController_LoginOPController::getInstance()->efetuaLogon($novoLogin->login);
-
-			    // montando url para redirecionamento
-			    $urlRedirect = str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->view->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'sucessosalvarusuariovalidado'), null, true));
-				// redirecionando para a acao de sucesso no cadastro do usuario
-				$this->_redirect($urlRedirect);
-	    	}else{
-	    		
-	    		 // carregando o titulo e subtitulo da view
-			    $tituloView     = $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO');
-			    $subtituloView  = $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO');
-	
-			    // carregando array do cabecalho da view
-			    $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
-			    
-			    // carregando o cabecalho na view
-				$this->view->cabecalho = $cabecalho;
-				
-				$form->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setValue("<div id='scorebarBorder'><div id='score'>0%</div><div id='scorebar'>&nbsp;</div></div><div id='complexity'></div>");
-				
-	    		// carregando form na view
-	    		$this->view->form = $form;
-	    		
-	    		// renderizando a view
-	    		$this->_helper->Renderizar->renderizar();
-	    	}
+        	$this->salvarDadosUsuarioValidado($post, $formCadastrarUsuarioValidado);
+	        
+        	$this->_helper->Renderizar->renderizar();
     	}catch(Exception $e){
-    		// cancelando a transacao
-	        Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
     		// lançando o erro
 	        throw new Exception($e->getMessage());
     	}

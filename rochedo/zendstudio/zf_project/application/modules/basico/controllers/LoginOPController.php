@@ -992,11 +992,10 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     	$arraySugestoesLogin = array();
     	$arraySugestoesNome  = array();
     	$arraySugestoesEmail = array();
-		
-    	
-    		
+			
     	// loop para montar as sugestoes utilizando o login
     	$i = 1;
+    	
     	while (count($arraySugestoesLogin) < NUMERO_SUGESTOES_LOGIN_UTILIZANDO_LOGIN) {
     			
     		$loginAno = $login . $ano;
@@ -1208,6 +1207,59 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
         
         // retornando o objeto mensagem
         return $objNovaMensagem;
+	}
+	
+	/**
+	 * Retorna a mensagem de confirmação da conclusão do cadastro de usuario validado
+	 * 
+	 * @param Int $idPessoa
+	 * @param String $emailPrimario
+	 */
+	public function retornaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($idPessoa, $emailPrimario)
+	{
+		// recuperando a template da mensagem
+		$novaMensagemConfirmacao = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa);
+		    	
+        // recuperando o nome do destinatario
+        $nomeDestinatario = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
+	    // setando atributos da mensagem                     
+        $novaMensagemConfirmacao->destinatarios       = array($emailPrimario);
+        $novaMensagemConfirmacao->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+        $novaMensagemConfirmacao->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+        // gerando e setando o rowinfo
+        Basico_OPController_MensagemOPController::getInstance()->prepareSetRowinfoXML($novaMensagemConfirmacao, true);
+        // salvando objeto
+        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($novaMensagemConfirmacao);
+	
+        return $novaMensagemConfirmacao;
+        
+	}
+	
+	/**
+	 * Salva o obj login atraves dos dados submetidos pelo formulario Basico_Form_CadastrarUsuarioValidado
+	 * 
+	 * @param Array $arrayPost
+	 */
+	public function salvarLoginViaFormCadastrarUsuarioValidado($arrayPost)
+	{
+		// criando o login do usuario
+    	$novoLogin = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_LoginOPController');
+    	// setando atributos do login do usuario 
+    	$novoLogin->pessoa = $arrayPost['idPessoa'];
+    	$novoLogin->tentativasFalhas = 0;
+    	$novoLogin->travado = false;
+    	$novoLogin->resetado = false;
+    	$novoLogin->podeExpirar = true;
+    	$novoLogin->login  = trim($arrayPost['BasicoCadastrarUsuarioValidadoLogin']);
+    	$novoLogin->senha  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
+    	$novoLogin->ativo  = true;
+    	// gerando e setando o rowinfo
+    	$this->prepareSetRowinfoXML($novoLogin, true);
+    	
+    	// salvando o objeto login
+    	$this->salvarObjeto($novoLogin);
+    	
+    	return $novoLogin;
 	}
 
 }

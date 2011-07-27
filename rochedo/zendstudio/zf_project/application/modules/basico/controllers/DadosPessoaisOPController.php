@@ -209,4 +209,26 @@ class Basico_OPController_DadosPessoaisOPController extends Basico_Abstract_Roch
         // retornando o id
         return $novoDadosPessoais->id;
 	}
+	
+	/**
+	 * Salva os dados pessoais atraves dos dados submetidos pelo form Basico_Form_CadastrarUsuarioValidado
+	 * 
+	 * @param Array $arrayPost
+	 */
+	public function salvarDadosPessoaisViaFormCadastrarUsuarioValidado($arrayPost)
+	{
+		// capturando obj dados pessoais da pessoa passada
+	    $dadosPessoaisObj = $this->retornaObjetoDadosPessoaisPorIdPessoa($arrayPost['idPessoa']);
+
+	    // checando se o obj dadosPessoais foi capturado com sucesso
+	    if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais === false)
+	        throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);
+	    	    
+	    // setando valores do obj dadosPessoais    
+    	$dadosPessoaisObj->nome           = $arrayPost['BasicoCadastrarUsuarioValidadoNome'];
+    	$dadosPessoaisObj->dataNascimento = $arrayPost['BasicoCadastrarUsuarioValidadoDataNascimento'];
+    	
+    	// salvando os DadosPessoais
+    	$this->salvarObjeto($dadosPessoaisObj, (int) $arrayPost['versaoDadosPessoais']);
+	}
 }
