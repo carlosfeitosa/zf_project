@@ -363,8 +363,6 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	{
 		// criando uma nova pessoa
 		$novaPessoa = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-		// gerando e setando o rowinfo
-        $this->prepareSetRowinfoXML($novaPessoa, true);
         // salvando o novo objeto pessoa
         $this->salvarObjeto($novaPessoa);
         

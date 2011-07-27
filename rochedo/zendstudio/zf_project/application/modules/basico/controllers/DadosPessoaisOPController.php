@@ -201,8 +201,6 @@ class Basico_OPController_DadosPessoaisOPController extends Basico_Abstract_Roch
         $novoDadosPessoais->pessoa = $idPessoa;
         // setando o nome
         $novoDadosPessoais->nome     = $nome;
-        // gerando e setando o rowinfo
-        $this->prepareSetRowinfoXML($novoDadosPessoais, true);
         // salvando o objeto dadosPessoais
         $this->salvarObjeto($novoDadosPessoais);
         

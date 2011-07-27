@@ -378,8 +378,6 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
         $novoEmail->validado  			   = false;
         // setando o email como nao ativo
         $novoEmail->ativo     			   = false;
-        // gerando e setando o rowinfo
-        $this->prepareSetRowinfoXML($novoEmail, true);
         // salvando o objeto email
         $this->salvarObjeto($novoEmail);
 

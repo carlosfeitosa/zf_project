@@ -268,10 +268,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
    		
    		// setando a pessoa dona dos dadosBiometricos
    		$novoDadosBiometricos->pessoa = $arrayPost['idPessoa'];
-   		
-   		// gerando e setando o rowinfo
-   		$this->prepareSetRowinfoXML($novoDadosBiometricos, true);
-   		
+   		   		
    		// setando o sexo
    		if ($arrayPost['BasicoCadastrarUsuarioValidadoSexo'] == 0)
    		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;

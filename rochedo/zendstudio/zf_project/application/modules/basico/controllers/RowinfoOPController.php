@@ -106,12 +106,19 @@ class Basico_OPController_RowinfoOPController
 	        if (!isset($modelo->id))
 	        {
 	        	// setando informacoes sobre criacao
-	            $this->_rowinfo->setGenericDateTimeCreation(Basico_OPController_UtilOPController::retornaDateTimeAtual());
-	            $this->_rowinfo->setGenericIdLoginCreation($idPessoaPerfil);
+	            $this->_rowinfo->genericDateTimeCreation = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+	            $this->_rowinfo->genericIdLoginCreation  = $idPessoaPerfil;
 	        }
+
 	        // setando informacoes sobre modificacao
-	        $this->_rowinfo->setGenericDateTimeLastModified(Basico_OPController_UtilOPController::retornaDateTimeAtual());
-	        $this->_rowinfo->setGenericIdLoginLastModified($idPessoaPerfil);
+	        $this->_rowinfo->genericDateTimeLastModified = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+	        $this->_rowinfo->genericIdLoginLastModified  = $idPessoaPerfil;
+
+	        // verificando a necessidade de fazer um checksum para o objeto
+	        if (APPLICATION_DATABASE_MAKE_CHECKSUM) {
+	        	// adicionando ao rowinfo o checksum do objeto
+	        	$this->_rowinfo->checksum = Basico_OPController_UtilOPController::retornaChecksumObjeto($modelo);
+	        }
 	        
 	        return true;	
 		} catch (Exception $e) {

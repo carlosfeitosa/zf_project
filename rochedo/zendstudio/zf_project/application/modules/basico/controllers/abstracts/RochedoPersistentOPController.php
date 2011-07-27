@@ -134,31 +134,4 @@ abstract class Basico_Abstract_RochedoPersistentOPController
 	 * @return Boolean
 	 */
 	abstract public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfil = null);
-
-	/**
-	 * Prepara e seta o XML Rowinfo para o objeto
-	 * 
-	 * @param Object $objeto
-	 * @param Boolean $utilizarUsuarioSistema
-	 */
-	final public function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
-	{
-		// verificando se existe o atributo de rowinfo no modelo da classe
-		if (property_exists($objeto, "_" . ROWINFO_ATRIBUTE_NAME)) {
-			// instanciando o controlador de rowinfo
-			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-
-			// preparando o XML
-			$rowinfoOPController->prepareXml($objeto, $utilizarUsuarioSistema);
-
-			// setando o nome do atributo do objeto
-			$rowinfoAtributeSet = "set" . ucfirst(ROWINFO_ATRIBUTE_NAME);
-			
-			// setando o atributo rowinfo no objeto
-			$objeto->$rowinfoAtributeSet($rowinfoOPController->getXML());
-		} else {
-			// rowinfo nao encontrado para o objeto
-			throw new Exception(MSG_ERRO_ROWINFO_NAO_ENCONTRADO);
-		}
-	}
 }

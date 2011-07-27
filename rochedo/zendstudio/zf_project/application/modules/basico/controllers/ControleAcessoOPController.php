@@ -423,8 +423,6 @@ class Basico_OPController_ControleAcessoOPController
 				$modeloAcaoAplicacao->controller = $nomeControllerRequest;
 				$modeloAcaoAplicacao->action = $nomeAcaoRequest;
 				$modeloAcaoAplicacao->ativo = true;
-				// setando rowinfo
-				$acaoAplicacaoOpController->prepareSetRowinfoXML($modeloAcaoAplicacao, true);
 	
 				// salvando o acao aplicacao
 				$acaoAplicacaoOpController->salvarObjeto($modeloAcaoAplicacao);
@@ -438,8 +436,6 @@ class Basico_OPController_ControleAcessoOPController
 				// setando informacoes sobre a vinculacao da nova acao com o perfil de desenvolvedor
 				$modeloAcoesAplicacaoPerfis->perfil = $idPerfilUsuarioDesenvolvedor;
 				$modeloAcoesAplicacaoPerfis->acaoAplicacao = $modeloAcaoAplicacao->id;
-				// setando rowinfo
-				$acoesAplicacaoPerfisOpController->prepareSetRowinfoXML($modeloAcoesAplicacaoPerfis, true);
 	
 				// salvando a vinculacao entre a nova acao e o perfil de desenvolvedor
 				$acoesAplicacaoPerfisOpController->salvarObjeto($modeloAcoesAplicacaoPerfis);

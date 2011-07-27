@@ -68,6 +68,11 @@ class Basico_OPController_DBUtilOPController
      */
     public static function retornaTableNameObjeto($objeto)
     {
+	    //verificando se o parametro passado é um objeto
+    	if (!is_object($objeto)) {
+    		throw new Exception(MSG_ERRO_NAO_OBJETO);
+    	}
+
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
 
@@ -87,6 +92,11 @@ class Basico_OPController_DBUtilOPController
      */
     public static function retornaPrimaryKeyObjeto($objeto)
     {
+    	//verificando se o parametro passado é um objeto
+    	if (!is_object($objeto)) {
+    		throw new Exception(MSG_ERRO_NAO_OBJETO);
+    	}
+
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
 
@@ -106,6 +116,11 @@ class Basico_OPController_DBUtilOPController
      */
     public static function retornaNomeCampoIdGenericoObjeto($objeto)
     {
+	    //verificando se o parametro passado é um objeto
+    	if (!is_object($objeto)) {
+    		throw new Exception(MSG_ERRO_NAO_OBJETO);
+    	}
+
 		// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
 

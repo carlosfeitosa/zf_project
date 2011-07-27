@@ -220,9 +220,6 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
         
         // setando data-hora da mensagem
         $modelMensagem->dataHoraMensagem = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-
-        // setano rowinfo
-        $this->prepareSetRowinfoXML($modelMensagem, true);
         
         // retornando a mensagem
 		return $modelMensagem;
@@ -442,8 +439,6 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 			$modeloPessoasPerfisMensagensCategoriasRemetente->mensagem     = $objMensagem->id;
 			$modeloPessoasPerfisMensagensCategoriasRemetente->categoria    = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
 			$modeloPessoasPerfisMensagensCategoriasRemetente->pessoaPerfil = $idPessoaPerfilRemetente;
-			// setando rowinfo
-			$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoasPerfisMensagensCategoriasRemetente, $idPessoaPerfilRemetente);
 			// salvando objeto
 			$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoasPerfisMensagensCategoriasRemetente, null, $idPessoaPerfilRemetente);
 
@@ -456,8 +451,6 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->mensagem = $objMensagem->id;
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->categoria = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfilDestinatario;
-				// setando rowinfo
-				$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoaPerfilMensagemCategoriaDestinatario, $idPessoaPerfilRemetente);
 				// salvando objeto
 				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
 			}
@@ -471,8 +464,6 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->mensagem     = $objMensagem->id;
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->categoria    = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA);
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfilDestinatario;
-				// setando rowinfo
-				$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoaPerfilMensagemCategoriaDestinatario, $idPessoaPerfilRemetente);
 				// salvando objeto
 				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
 			}
@@ -486,8 +477,6 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->mensagem = $objMensagem->id;
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->categoria = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA_OCULTA);
 				$modeloPessoaPerfilMensagemCategoriaDestinatario->pessoaPerfil = $idPessoaPerfilDestinatario;
-				// setando rowinfo
-				$pessoasPerfisMensagensCategoriaOPController->prepareSetRowinfoXML($modeloPessoaPerfilMensagemCategoriaDestinatario, $idPessoaPerfilRemetente);
 				// salvando objeto
 				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
 			}

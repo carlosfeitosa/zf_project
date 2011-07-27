@@ -481,7 +481,6 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		// recuperando o perfil de usuario validado
 		$perfilUsuarioValidado = $this->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idProprietarioEmail);
 
-
 		// retornando se o perfil de usuario validado existe para esta pessoa
 		if (isset($perfilUsuarioValidado)) {
 
@@ -508,8 +507,6 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		$novaPessoasPerfisNovaPessoa->pessoa = $idPessoa;
 		// setando o perfil
 		$novaPessoasPerfisNovaPessoa->perfil = $idPerfil;
-		// gerando e setando o rowinfo
-		$this->prepareSetRowinfoXML($novaPessoasPerfisNovaPessoa, true);
 		// salvando o objeto pessoasPefis
 		$this->salvarObjeto($novaPessoasPerfisNovaPessoa);
 		

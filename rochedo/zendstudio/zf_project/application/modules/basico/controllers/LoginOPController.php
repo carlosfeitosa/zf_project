@@ -487,8 +487,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			
 			// setando a data-hora da ultima expiracao
 			$objLogin->dataHoraUltimaExpiracao = $objLogin->dataHoraProximaExpiracao;
-			// setando rowinfo
-			Basico_OPController_LoginOPController::getInstance()->prepareSetRowinfoXML($objLogin);
 
 			// salvando o objeto
 			Basico_OPController_LoginOPController::getInstance()->salvarObjeto($objLogin, $versaoObjeto);
@@ -584,9 +582,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			// setando o login como destravado
 			$objLogin->travado = false;
 
-			// preparando XML rowinfo
-			$this->prepareSetRowinfoXML($objLogin, true);
-
 			// salvando o objeto
 			$this->salvarObjeto($objLogin, $versaoUpdate);
 		}
@@ -613,9 +608,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 			// setando a data-hora do ultimo login
 			$objLogin->dataHoraUltimoLogon = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-
-			// preparando XML rowinfo
-			$this->prepareSetRowinfoXML($objLogin, true);
 
 			// salvando o objeto
 			$this->salvarObjeto($objLogin, $versaoUpdate);
@@ -1166,8 +1158,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
 		// setando a categoria da mensagem
         $objNovaMensagem->categoria           = $idCategoriaMensagem;
-        // gerando e setando o rowinfo da mensagem
-        Basico_OPController_MensagemOPController::getInstance()->prepareSetRowinfoXML($objNovaMensagem, true);
         // salvando a mensagem
         Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
         
@@ -1199,8 +1189,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		
 		// setando a categoria da mensagem
         $objNovaMensagem->categoria           = $idCategoriaMensagem;
-        // gerando e setando o rowinfo da mensagem
-        Basico_OPController_MensagemOPController::getInstance()->prepareSetRowinfoXML($objNovaMensagem, true);
         
         // salvando a mensagem
         Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
@@ -1226,8 +1214,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
         $novaMensagemConfirmacao->destinatarios       = array($emailPrimario);
         $novaMensagemConfirmacao->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
         $novaMensagemConfirmacao->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-        // gerando e setando o rowinfo
-        Basico_OPController_MensagemOPController::getInstance()->prepareSetRowinfoXML($novaMensagemConfirmacao, true);
         // salvando objeto
         Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($novaMensagemConfirmacao);
 	
@@ -1253,8 +1239,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     	$novoLogin->login  = trim($arrayPost['BasicoCadastrarUsuarioValidadoLogin']);
     	$novoLogin->senha  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
     	$novoLogin->ativo  = true;
-    	// gerando e setando o rowinfo
-    	$this->prepareSetRowinfoXML($novoLogin, true);
     	
     	// salvando o objeto login
     	$this->salvarObjeto($novoLogin);

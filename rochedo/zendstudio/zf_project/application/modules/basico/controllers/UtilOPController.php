@@ -859,6 +859,52 @@ class Basico_OPController_UtilOPController
     }
 
     /**
+     * Retorna o checksum de um objeto passado por parametro
+     * 
+     * @param Object $objeto
+     * 
+     * @return String
+     */
+    public static function retornaChecksumObjeto($objeto)
+    {
+	    // verificando se o parametro eh um objeto
+    	self::verificaVariavelRepresentaObjeto($objeto, true);
+
+    	// transformando o objeto em string
+    	$objetoCodificado = self::codificar($objeto);
+
+    	// retornando o md5 do objeto
+    	return self::retornaStringEncriptada($objetoCodificado);
+    }
+
+	/**
+	 * Prepara e seta o XML Rowinfo para o objeto
+	 * 
+	 * @param Object $objeto
+	 * @param Boolean $utilizarUsuarioSistema
+	 */
+	public static function prepareSetRowinfoXML($objeto, $utilizarUsuarioSistema = false)
+	{
+		// verificando se existe o atributo de rowinfo no modelo da classe
+		if (property_exists($objeto, "_" . ROWINFO_ATRIBUTE_NAME)) {
+			// instanciando o controlador de rowinfo
+			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
+
+			// preparando o XML
+			$rowinfoOPController->prepareXml($objeto, $utilizarUsuarioSistema);
+
+			// setando o nome do atributo do objeto
+			$rowinfoAtributeSet = "set" . ucfirst(ROWINFO_ATRIBUTE_NAME);
+			
+			// setando o atributo rowinfo no objeto
+			$objeto->$rowinfoAtributeSet($rowinfoOPController->getXML());
+		} else {
+			// rowinfo nao encontrado para o objeto
+			throw new Exception(MSG_ERRO_ROWINFO_NAO_ENCONTRADO);
+		}
+	}
+
+    /**
      * Retorna se conseguir gerar o ponto de restauracao
      * 
      * @param String $fullFileName

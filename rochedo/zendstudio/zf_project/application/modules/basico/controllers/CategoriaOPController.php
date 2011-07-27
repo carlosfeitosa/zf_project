@@ -420,8 +420,6 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			$novaCategoria->ativo         = true;
 			$novaCategoria->nome          = $nomeCategoria;
 			$novaCategoria->descricao     = DESCRICAO_CATEGORIA_CRIADA_POR_DEMANDA;
-			// setando rowinfo
-			$this->prepareSetRowinfoXML($novaCategoria, true);
 
 			// salvando o objeto
 			$this->salvarObjeto($novaCategoria);
@@ -637,8 +635,6 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			$objCategoria->ativo         = true;
 			$objCategoria->nome          = $nomeCategoriaLogAcaoControlador;
 			$objCategoria->descricao     = DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR;
-			// preparando o XML do rowinfo
-			$objCategoria->prepareSetRowinfoXML($objCategoria, true);
 
 			// salvando o objeto categoria
 			$this->salvarObjeto($objCategoria);

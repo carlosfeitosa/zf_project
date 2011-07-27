@@ -44,6 +44,9 @@ class Basico_OPController_DBSaveOPController
 				if (property_exists($mixed, PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO))
 					$mixed->PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
+				// preparando o rowinfo xml do objeto
+				Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, ($idPessoaPerfil === Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL()));
+
 				// salvando o objeto
 				if (self::saveObjectDbTable($mixed)) {
 
@@ -117,6 +120,11 @@ class Basico_OPController_DBSaveOPController
 
 			// verificando se houve atualizacao da versao
 			if ($ultimaVersao !== $versaoVersionamento) {
+
+				// preparando o rowinfo xml do objeto
+				Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, ($idPessoaPerfil === Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL()));
+
+				// salvando o objeto
 				if (self::saveObjectDbTable($mixed)) {
 
 					// criando log de operacoes
@@ -183,7 +191,7 @@ class Basico_OPController_DBSaveOPController
 
 		// verificando se objeto possui o metodo getMapper()->save()
 		if ((method_exists($objeto, 'getMapper')) and (method_exists($objeto->getMapper(), 'save'))) {
-			
+
 			// salvando o objeto
 			$objeto->getMapper()->save($objeto);
 

@@ -30,6 +30,11 @@ class Basico_Model_RowInfo
 	 */
 	protected $_genericIdLoginCreation;
 	/**
+	 * @var String
+	 */
+	protected $_checksum;
+	
+	/**
 	 * Constructor
 	 * 
 	 * @param  array|null $options 
@@ -100,6 +105,7 @@ class Basico_Model_RowInfo
 	* Set xml
 	* 
 	* @param String $xml 
+	* 
 	* @return Basico_Model_Xml
 	*/
 	public function setXml($xml)
@@ -112,7 +118,8 @@ class Basico_Model_RowInfo
 	* Set genericDateTimeLastModified
 	* 
 	* @param String $genericDateTimeLastModified
-	* @return Basico_Model_GenericDateTimeLastModified
+	* 
+	* @return Basico_Model_RowInfo
 	*/
 	public function setGenericDateTimeLastModified($genericDateTimeLastModified)
 	{
@@ -134,7 +141,8 @@ class Basico_Model_RowInfo
 	* Set genericIdLoginLastModified
 	* 
 	* @param String genericIdLoginLastModified
-	* @return Basico_Model_GenericIdLoginLastModified
+	* 
+	* @return Basico_Model_RowInfo
 	*/
 	public function setGenericIdLoginLastModified($genericIdLoginLastModified)
 	{
@@ -157,7 +165,8 @@ class Basico_Model_RowInfo
 	* Set genericDateTimeCreation
 	* 
 	* @param String $genericDateTimeCreation
-	* @return Basico_Model_GenericDateCreation
+	* 
+	* @return Basico_Model_RowInfo
 	*/
 	public function setGenericDateTimeCreation($genericDateTimeCreation)
 	{
@@ -179,11 +188,12 @@ class Basico_Model_RowInfo
 	* Set genericIdLoginCreation
 	* 
 	* @param String genericIdLoginLastModified
-	* @return Basico_Model_GenericIdLoginLastModified
+	* 
+	* @return Basico_Model_RowInfo
 	*/
 	public function setGenericIdLoginCreation($genericIdLoginCreation)
 	{
-		$this->_genericIdLoginCreation = Basico_OPController_UtilOPController::retornaValorTipado($genericIdLoginCreation, TIPO_STRING, true);
+		$this->_genericIdLoginCreation = Basico_OPController_UtilOPController::retornaValorTipado($genericIdLoginCreation, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -195,5 +205,28 @@ class Basico_Model_RowInfo
 	public function getGenericIdLoginCreation()
 	{
 		return $this->_genericIdLoginCreation;
+	}
+
+	/**
+	* Set checksum
+	* 
+	* @param String $checksum
+	* 
+	* @return Basico_Model_RowInfo
+	*/
+	public function setChecksum($checksum)
+	{
+		$this->_checksum = Basico_OPController_UtilOPController::retornaValorTipado($checksum, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get checksum
+	* 
+	* @return null|String
+	*/
+	public function getChecksum()
+	{
+		return $this->_checksum;
 	}
 }
