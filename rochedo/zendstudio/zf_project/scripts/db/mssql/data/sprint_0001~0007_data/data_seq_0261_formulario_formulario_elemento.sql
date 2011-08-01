@@ -74,7 +74,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
-        AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_BUTTON') AS id_formulario_elemento,
        (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)

@@ -15,6 +15,23 @@
 *
 */
 
+INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+                                 element_name, element, rowinfo)
+SELECT c.id AS id_categoria, 'FORM_BUTTON' AS nome, 'Botão para executar funçoes javascript.' AS descricao,
+	   (SELECT cp.id
+        FROM componente cp
+        LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'COMPONENTE'
+        AND c.nome = 'COMPONENTE_ZF'
+        AND cp.nome = 'ZF_button') AS id_componente,
+       'FORM_BUTTON_SUBMIT' AS constante_textual_label, 'enviar' AS element_name, 
+       '''enviar''' AS element, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
+
 INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
@@ -258,7 +275,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label, 
+INSERT INTO formulario_elemento (id_categoria, id_componente, id_decorator, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -269,6 +286,13 @@ SELECT c.id AS id_categoria,(SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_RadioButton') AS id_componente,
+                              (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
                               'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN' AS nome, 'Elemento para escolha de sugestao de login.' AS descricao,
                               'FORM_FIELD_SUGESTAO_LOGIN' AS constante_textual_label,
                               'sugestaoLogin' AS element_name, NULL AS element_attribs,

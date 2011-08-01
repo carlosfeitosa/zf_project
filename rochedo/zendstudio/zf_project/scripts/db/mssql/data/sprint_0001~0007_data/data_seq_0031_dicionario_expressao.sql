@@ -42,7 +42,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_SUGESTAO_LOGIN' AS constante_textual, 'Por favor, selecione um dos logins abaixo:' AS traducao
+SELECT c.id, 'FORM_FIELD_SUGESTAO_LOGIN' AS constante_textual, '<b>Por favor, selecione um dos logins abaixo:</b><br><br>' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

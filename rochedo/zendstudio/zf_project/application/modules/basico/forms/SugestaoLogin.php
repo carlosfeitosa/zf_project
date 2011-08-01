@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 20/07/2011 14:56:48
+* em: 01/08/2011 17:29:47
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 20/07/2011 14:52:03
+* @version    1: 01/08/2011 17:26:29
 */
 class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
 {
@@ -30,7 +30,6 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
 
         $this->setName('BasicoSugestaoLogin');
         $this->setMethod('post');
-        $this->addAttribs(array('onSubmit' => "return false;"));
 
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
@@ -41,6 +40,7 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
         $elements[2] = $this->createElement('RadioButton', 'BasicoSugestaoLoginSugestaoLogin', array('separator' => "<br>"));
         $elements[2]->setOrder(2);
         $elements[2]->setRequired(false);
+        $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_SUGESTAO_LOGIN') . '');
         if (($options!=null) and (isset($options['BasicoSugestaoLoginSugestaoLogin'])))
@@ -52,7 +52,7 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));
         $elements[3]->removeDecorator('DtDdWrapper');
 
-        $elements[4] = $this->createElement('submitButton', 'BasicoSugestaoLoginEnviar');
+        $elements[4] = $this->createElement('button', 'BasicoSugestaoLoginEnviar');
         $elements[4]->setOrder(4);
         $elements[4]->setRequired(false);
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
