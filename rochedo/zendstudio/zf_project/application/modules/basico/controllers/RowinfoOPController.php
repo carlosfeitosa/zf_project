@@ -89,19 +89,19 @@ class Basico_OPController_RowinfoOPController
 	/**
 	* Prepara o XML do Rowinfo
 	* 
-	* @param objeto $modelo
-	* @param boolean $utilizarUsuarioSistema
+	* @param Object $modelo
+	* @param Integer $idPessoaPerfil
 	* 
 	* @return null|Boolean
 	*/
-	public function prepareXml($modelo, $utilizarUsuarioSistema = false)
+	public function prepareXml($modelo, $idPessoaPerfil = null)
 	{
 		try {
 			// verificando se a solicitacao foi feita pelo sistema
-		    if ($utilizarUsuarioSistema)
+		    if (!$idPessoaPerfil)
 		    	// recuperando o id do usuario do sistema
-		        $idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();;
-	
+		        $idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+
 		    // verificando se existe id no objeto
 	        if (!isset($modelo->id))
 	        {
@@ -119,7 +119,7 @@ class Basico_OPController_RowinfoOPController
 	        	// adicionando ao rowinfo o checksum do objeto
 	        	$this->_rowinfo->checksum = Basico_OPController_UtilOPController::retornaChecksumObjeto($modelo);
 	        }
-	        
+
 	        return true;	
 		} catch (Exception $e) {
 			

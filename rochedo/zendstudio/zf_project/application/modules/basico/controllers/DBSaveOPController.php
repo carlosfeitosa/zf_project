@@ -45,7 +45,7 @@ class Basico_OPController_DBSaveOPController
 					$mixed->PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 				// preparando o rowinfo xml do objeto
-				Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, ($idPessoaPerfil === Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL()));
+				Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, $idPessoaPerfil);
 
 				// salvando o objeto
 				if (self::saveObjectDbTable($mixed)) {
@@ -65,9 +65,7 @@ class Basico_OPController_DBSaveOPController
 
 					throw new Exception(MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO);
 				}
-			}
-			// verificando se, tratando-se de um update, foi informado a versao da tupla
-			else if ((!isset($versaoUpdate)) or ($versaoUpdate <= 0)){
+			} else if ((!isset($versaoUpdate)) or ($versaoUpdate <= 0)){ // verificando se, tratando-se de um update, foi informado a versao da tupla
 				throw new Exception(MSG_ERRO_SAVE_UPDATE_SEM_INFORMACAO_SOBRE_VERSAO);
 			}
 

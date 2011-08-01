@@ -1537,13 +1537,14 @@ class Basico_OPController_UtilOPController
 	 * Retorna uma string encriptada
 	 * 
 	 * @param String $string
+	 * @param String $salt
 	 * 
 	 * @return String
 	 */
-    public static function retornaStringEncriptada($string)
+    public static function retornaStringEncriptada($string, $salt = APPLICATION_CRYPT_SALT)
     {
     	// retornando a string encriptada, usando a propria string como chave
-    	return crypt(md5($string), md5($string));
+    	return crypt(md5($string), $salt);
     }
 
     /**

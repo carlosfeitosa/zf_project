@@ -22,6 +22,7 @@ create table dbo.cvc (
 	id_categoria_chave_estrangeira int not null ,
 	versao integer not null ,
 	objeto varchar (4000) collate latin1_general_ci_ai not null ,
+	checksum varchar (200) collate latin1_general_ci_ai not null ,
 	validade_inicio datetime not null ,
 	validade_termino datetime null ,
 	ultima_atualizacao datetime null ,

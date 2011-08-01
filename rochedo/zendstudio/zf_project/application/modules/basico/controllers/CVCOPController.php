@@ -207,6 +207,7 @@ class Basico_OPController_CVCOPController
     	$modelCVC->categoriaChaveEstrangeira = $objCategoriaChaveEstrangeira->id;
     	$modelCVC->idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
     	$modelCVC->objeto = $objeto;
+    	$modelCVC->checksum = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
 
     	// recuperando versao
     	$versao = $this->retornaUltimaVersao($objeto);
@@ -269,6 +270,7 @@ class Basico_OPController_CVCOPController
     	$objUltimaVersao->versao++;
     	$objUltimaVersao->ultimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
     	$objUltimaVersao->objeto = $objeto;
+    	$objUltimaVersao->checksum = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
 
     	// salvando o objeto
     	$objUltimaVersao->getMapper()->save($objUltimaVersao);

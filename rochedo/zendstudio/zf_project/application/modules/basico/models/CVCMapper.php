@@ -66,6 +66,7 @@ class Basico_Model_CVCMapper
 				'versao'   						 => $object->getVersao(),
                 'id_categoria_chave_estrangeira' => $object->getCategoriaChaveEstrangeira(),
         		'objeto'						 => $object->getObjeto(),
+        		'checksum'						 => $object->getChecksum(),
         		'validade_termino'				 => $object->getValidadeTermino(),
         		'ultima_atualizacao'             => $object->getUltimaAtualizacao(),
         		'rowinfo'						 => $object->getRowinfo(),
@@ -110,6 +111,7 @@ class Basico_Model_CVCMapper
 				->setVersao($row->versao)
                 ->setCategoriaChaveEstrangeira($row->id_categoria_chave_estrangeira)
                 ->setObjeto($row->objeto)
+                ->setChecksum($row->checksum)
                 ->setValidadeInicio($row->validade_inicio)
                 ->setValidadeTermino($row->validade_termino)
                 ->setUltimaAtualizacao($row->ultima_atualizacao)
@@ -134,6 +136,7 @@ class Basico_Model_CVCMapper
 				->setVersao($row->versao)
                 ->setCategoriaChaveEstrangeira($row->id_categoria_chave_estrangeira)
                 ->setObjeto($row->objeto)
+                ->setChecksum($row->checksum)
                 ->setValidadeInicio($row->validade_inicio)
                 ->setValidadeTermino($row->validade_termino)
                 ->setUltimaAtualizacao($row->ultima_atualizacao)
@@ -162,6 +165,7 @@ class Basico_Model_CVCMapper
 				->setVersao($row->versao)
                 ->setCategoriaChaveEstrangeira($row->id_categoria_chave_estrangeira)
                 ->setObjeto($row->objeto)
+                ->setChecksum($row->checksum)
                 ->setValidadeInicio($row->validade_inicio)
                 ->setValidadeTermino($row->validade_termino)
                 ->setUltimaAtualizacao($row->ultima_atualizacao)
@@ -171,62 +175,4 @@ class Basico_Model_CVCMapper
 		}
 		return $entries;
 	}
-
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'cvc'),
-                   array('id' => 'table1.id',
-                        'idGenerico' => 'table1.idGenerico' ,
-                        'versao' => 'table1.versao' ,
-                        'categoriaChaveEstrangeira' => 'table1.categoriaChaveEstrangeira)'))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_CVC();
-            $entry->setId($row['id'])
-                ->setIdGenerico($row['idGenerico'])
-                ->setVersao($row['versao'])
-                ->setCategoriaChaveEstrangeira($row['categoriaChaveEstrangeira'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_CVC();
-            $entry->setId($row->id)
-				->setIdGenerico($row->idGenerico)
-				->setVersao($row->versao)
-                ->setCategoriaChaveEstrangeira($row->categoriaChaveEstrangeira)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
 }

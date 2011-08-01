@@ -42,6 +42,10 @@ class Basico_Model_CVC
 	 */
 	protected $_objeto;
 	/**
+	 * @var String
+	 */
+	protected $_checksum;
+	/**
 	 * @var Date
 	 */
 	protected $_validadeInicio;
@@ -77,6 +81,7 @@ class Basico_Model_CVC
 	 * 
 	 * @param  string $name 
 	 * @param  mixed $value 
+	 * 
 	 * @return void
 	 */
 	public function __set($name, $value)
@@ -93,6 +98,7 @@ class Basico_Model_CVC
 	 * Overloading: allow property access
 	 * 
 	 * @param  string $name 
+	 * 
 	 * @return mixed
 	 */
 	public function __get($name)
@@ -109,6 +115,7 @@ class Basico_Model_CVC
 	 * Set object state
 	 * 
 	 * @param  array $options 
+	 * 
 	 * @return Basico_Model_CVC
 	 */
 	public function setOptions(array $options)
@@ -129,7 +136,8 @@ class Basico_Model_CVC
 	* Set idGenerico
 	* 
 	* @param Integer $idGenerico 
-	* @return Basico_Model_IdGenerico
+	* 
+	* @return Basico_Model_CVC
 	*/
 	public function setIdGenerico($idGenerico)
 	{
@@ -154,7 +162,8 @@ class Basico_Model_CVC
 	* Set versao
 	* 
 	* @param Double $versao 
-	* @return Basico_Model_Versao
+	* 
+	* @return Basico_Model_CVC
 	*/
 	public function setVersao($versao)
 	{
@@ -178,8 +187,9 @@ class Basico_Model_CVC
 	/**
 	* Set categoriaChaveEstrangeira
 	* 
-	* @param int $categoriaChaveEstrangeira 
-	* @return Basico_Model_CategoriaChaveEstrangeira
+	* @param int $categoriaChaveEstrangeira
+	*  
+	* @return Basico_Model_CVC
 	*/
 	public function setCategoriaChaveEstrangeira($categoriaChaveEstrangeira)
 	{
@@ -204,7 +214,8 @@ class Basico_Model_CVC
  
     /**
      * Get categoriaChaveEstrangeira object
-     * @return null|CategoriaChaveEstrangeira
+     * 
+     * @return null|Basico_Model_CategoriaChaveEstrangeira
      */
     public function getCategoriaChaveEstrangeiraObject()
     {
@@ -217,7 +228,8 @@ class Basico_Model_CVC
 	* Set objeto
 	* 
 	* @param String $objeto 
-	* @return Basico_Model_Objeto
+	* 
+	* @return Basico_Model_CVC
 	*/
 	public function setObjeto($objeto)
 	{
@@ -242,6 +254,30 @@ class Basico_Model_CVC
 		else
 			return null;
 	}
+
+	/**
+	* Set checksum
+	* 
+	* @param String $checksum 
+	* 
+	* @return Basico_Model_CVC
+	*/
+	public function setChecksum($checksum)
+	{
+		$this->_checksum = Basico_OPController_UtilOPController::retornaValorTipado($checksum, TIPO_STRING, true);
+		
+		return $this;
+	}
+
+	/**
+	* Get checksum
+	* 
+	* @return null|String
+	*/
+	public function getChecksum()
+	{
+		return $this->_checksum;
+	}
 	
 	/**
 	 * get objeto as array
@@ -257,7 +293,8 @@ class Basico_Model_CVC
 	* Set validadeInicio
 	* 
 	* @param String $validadeInicio 
-	* @return Basico_Model_ValidadeInicio
+	* 
+	* @return Basico_Model_CVC
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
@@ -282,7 +319,8 @@ class Basico_Model_CVC
 	* Set validadeTermino
 	* 
 	* @param String $validadeTermino 
-	* @return Basico_Model_ValidadeTermino
+	* 
+	* @return Basico_Model_CVC
 	*/
 	public function setValidadeTermino($validadeTermino)
 	{
@@ -321,7 +359,8 @@ class Basico_Model_CVC
 	* Set validadeTermino
 	* 
 	* @param String $validadeTermino 
-	* @return Basico_Model_ValidadeTermino
+	* 
+	* @return Basico_Model_CVC
 	*/
 	public function setUltimaAtualizacao($ultimaAtualizacao)
 	{
@@ -333,7 +372,8 @@ class Basico_Model_CVC
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Categoria
+	* 
+	* @return Basico_Model_CVC
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -380,6 +420,7 @@ class Basico_Model_CVC
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
+	* 
 	* @return Basico_Model_CVC
 	*/
 	public function setMapper($mapper)
@@ -409,6 +450,7 @@ class Basico_Model_CVC
 	* Resets entry state if matching id found.
 	* 
 	* @param  int $id 
+	* 
 	* @return Basico_Model_CVC
 	*/
 	public function find($id)
@@ -435,27 +477,5 @@ class Basico_Model_CVC
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
 		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-	   
-    /**
-    * fetch list of entries satisfying the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-    
-  
+	}  
 }

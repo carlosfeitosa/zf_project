@@ -35,6 +35,7 @@ create table cvc (
 	id_categoria_chave_estrangeira int not null ,
 	versao integer not null ,
 	objeto character varying (4000) not null ,
+	checksum character varying (200) not null ,
 	validade_inicio timestamp with time zone not null ,
 	validade_termino timestamp with time zone null ,
 	ultima_atualizacao timestamp with time zone null ,
