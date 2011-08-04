@@ -401,11 +401,11 @@ function strpos (haystack, needle, offset) {
 	return i === -1 ? false : i;
 }
 
-function processaResponseDojoFormRequest(data, args, formThis)
+function processaResponseDojoFormRequest(data)
 {
 	if(typeof data == "error") {
     	// erro nos dados
-		console.warn("error!",args);	
+		console.warn("error!");	
 	}else{
 		console.debug('data response...: ', data);
 		
@@ -418,18 +418,34 @@ function processaResponseDojoFormRequest(data, args, formThis)
         dojo.forEach(json.view.modules, function(module)
         {
             dojo.require(module);
-            console.debug('modulo carregado:', module);
+            console.debug('... modulo carregado:', module);
         });
 		
 		// Get html elements
 		console.debug(json.view.html);
 		for (idElemento in json.view.html)	{
-			console.debug('elemento:', idElemento);
 			
 			if (dojo.byId(idElemento)) {
+				
+				// retorna os elementos filhos que estão na raiz do elemento pai
+				var elementosDestroy = dojo.query('>*', idElemento);
+
+				var iDsElementosDestroy = new Array();
+				for (var i = 0; i < elementosDestroy.length; i++) {
+					if (elementosDestroy[i].id != '') {
+						iDsElementosDestroy[i] = elementosDestroy[i].id;	
+					}
+				}
+
+			    // remove todos os elementos filhos do elemento pai, que estão registrados no dojo.
+				dijit.registry.forEach(function(w){ 
+				   if(dojo.indexOf(iDsElementosDestroy, w)){
+				        w.destroyRecursive();
+				   }
+				});
+				
+				// adiciona o conteúdo no elemento.
 				dojo.byId(idElemento).innerHTML = json.view.html[idElemento];
-			} else {
-				console.debug('elemento html nao encontrado:', idElemento);
 			}
 		}  
 	    
@@ -486,8 +502,7 @@ function processaResponseDojoFormRequest(data, args, formThis)
 			}
 		}
 		
-		//----------------------
-		console.debug('iniciando foreache dojo attr dijits');
+		console.debug('iniciando dojo attr dijits');
 		dojo.forEach(json.view.dijits, function(info, i) {
 			console.debug(info, "at index", i);
 			
@@ -497,8 +512,7 @@ function processaResponseDojoFormRequest(data, args, formThis)
             	console.debug('dojo mixin');
         	}
         });
-        console.debug('finalizado foreache dojo attr dijits');
-        //---------------
+        console.debug('finalizado dojo attr dijits');
 		
         
 		dojo.parser.parse();
@@ -515,11 +529,12 @@ function processaResponseDojoFormRequest(data, args, formThis)
 }
 
 function urlAjaxCall(urlCall) {
+
 	loading();
-	dojo.xhrPost({ url: urlCall,
+	dojo.xhrGet({ url: urlCall,
 				  handleAs: 'json',
 				  load: function(data,args){
-							processaResponseDojoFormRequest(data,args, this, "alert('teste callback function')");
+							processaResponseDojoFormRequest(data);
 				  		},
 				  handle: 	function(error, ioargs) {
 								var message = "";
@@ -548,6 +563,7 @@ function urlAjaxCall(urlCall) {
 							} 
 				
 	});
+	return false;
 }
 
 /**

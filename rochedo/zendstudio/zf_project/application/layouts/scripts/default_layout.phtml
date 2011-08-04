@@ -55,7 +55,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
          }
     </style>
     <?php
-        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario()))
+        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true))
                      ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
                      ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH);
 
@@ -68,6 +68,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 <body class="rochedo">
 <div class="loading"></div>
 <div id="header">
+<?php echo $this->header ?>
     <div id="header-logo">
            <?php echo "<a onClick='loading()' href=" . "'" . $applicationHttpHome . "'" . ">" . APPLICATION_NAME_AND_VERSION . "</a>" ?>
     </div>
@@ -79,7 +80,10 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
                                                          true)) ?>"><?php echo $this->tradutor('MENU_ITEM_REGISTRE_SE') ?></a> |
 		<?php }?>
 		<?php if (Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
-		<a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
+		<a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
+            array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
+            null, 
+            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Minha Conta" ?></a> |
@@ -94,14 +98,77 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
         <?php }?>
         <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) echo "Login"; else echo "Logout";?></a>
     </div>
+    
+<?php
+
+//retornaConteudoElementoHtml($this->content);
+
+	$content = $this->header;
+	
+	if (is_array($content)) {
+		foreach ($content as $key => $value) {
+			echo $value;		
+		}
+	} else {
+		echo $content;
+	}
+
+
+
+?>   
 </div>
 <div id="content">
-<?php echo $this->layout()->content ?>
+<?php
+//$this->EscreveViewVar('content');
+
+function retornaConteudoElementoHtml($variavelView) {
+	if (isset($variavelView)) {
+		
+		if (is_array($variavelView)) {
+			foreach ($variavelView as $key => $value) {
+				echo $value;		
+			}
+		} else {
+			echo $variavelView;
+		}
+	} 	
+}
+
+	
+//retornaConteudoElementoHtml($this->content);
+
+	$content = $this->content;
+	
+	if (is_array($content)) {
+		foreach ($content as $key => $value) {
+			echo $value;		
+		}
+	} else {
+		echo $content;
+	}
+
+
+
+?>
 </div>
 
 <br>
 
 <div id="footer">
+<?php
+	retornaConteudoElementoHtml($this->footer);	
+
+/*
+	$footer = $this->footer;
+	
+	if (is_array($footer)) {
+		foreach ($footer as $key => $value) {
+			echo $value;		
+		}
+	}
+
+*/
+?>
 	<br>
 	<div id="footer_poweredby">
 		<a href="http://framework.zend.com/" target="_blank" ><img alt="Powered by ZendFramework" src="<?php echo $applicationHttpImagesHome . 'zf/PoweredBy_ZF_4LightBG.png' ?>" /></a>

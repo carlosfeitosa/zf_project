@@ -62,7 +62,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);
 
     	// enviando o script para o cliente
-    	echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect, $actionFormularioAutenticao);
+    	$this->view->content = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect, $actionFormularioAutenticao);
 
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
@@ -184,7 +184,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);
 
 		// enviando scripts para o usuario
-		echo Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
+		$this->view->content = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
 
 		// carregando cabecalho da view
 		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));

@@ -88,15 +88,13 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	$versaoDadosPessoais = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
     	
     	    // carregando o titulo e subtitulo da view
-		    $tituloView     = $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO');
-		    $subtituloView  = $this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO');
+		    $tituloView     = '<h3>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO').'</h3>';
+		    $subtituloView  = '<h4>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO').'</h4>';
 
-		    // carregando array do cabecalho da view
-		    $cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+		    // carregando o array de conteúdo da página
+	    	$content[] = $tituloView;
+	    	$content[] = $subtituloView;
 		    
-		    // carregando o cabecalho na view
-			$this->view->cabecalho = $cabecalho;
-
 			// formando a url do metodo que verifica disponibilidade de login via json
 			$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
 
@@ -121,8 +119,12 @@ class Basico_EmailController extends Zend_Controller_Action
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
 			$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
 			
+			
+			// carregando o array de conteúdo da página
+	    	$content[] = $formCadastrarUsuarioValidado;
+	    	
 			// carregando painel no form
-			$this->view->form = $formCadastrarUsuarioValidado;
+			$this->view->content = $content;
 			
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();

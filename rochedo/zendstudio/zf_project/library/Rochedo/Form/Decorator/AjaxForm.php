@@ -60,7 +60,7 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
     {
 $load = <<<LOAD
 function(data,args){
-	processaResponseDojoFormRequest(data,args, this);
+	processaResponseDojoFormRequest(data);
 }
 LOAD;
 

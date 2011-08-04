@@ -108,14 +108,23 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// chamando metodo que submete o formulario
 			Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba);
 		}
-	
-	    // passando o formulario para a view
-		$this->view->form = $formDadosUsuario;
+		
+		
+		//$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais')->addPrefixPath('Rochedo_Form_Decorator', 'Rochedo/Form/Decorator', 'decorator');
+		//$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais')->addDecorator('AjaxForm');
+		$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais')->isValid($_POST);
+		$content[] = $formDadosUsuario;
+		
+		//$footer[] = new Basico_Form_AutenticacaoUsuario();
+		//$this->view->footer = $footer;
+		//$header[] = new Basico_Form_CadastrarUsuarioNaoValidado();
+		//$this->view->header = $header;
+		//$content[] = new Basico_Form_CadastrarUsuarioNaoValidado();
+		// passando o formulario para a view
+		$this->view->content = $content;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
-		
-		
     }
 
     /**
@@ -166,17 +175,28 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		// salvando dados da conta do usuario
     		$podeContinuar = $this->salvarDadosConta($idPessoa, $arrayPost, $formDadosUsuario);
     	}
-
+    	
     	// verificando se a acao deve redirecionar o usuario para o index
     	if ($podeContinuar !== false) {
     		// redirecionando para o index
 			$this->_forward('index');
     	} else {
-		    // passando o formulario para a view
-			$this->view->form = $formDadosUsuario;
-	
+			
+			$content[] = $formDadosUsuario;
+			
+			// passando o formulario para a view
+			$this->view->content = $content;
+						
+			$js = <<<JS
+//alert('script postado do controller para o cliente. (browser');
+JS;
+			$this->view->dojo()->addJavascript($js);
+			
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
+			
+
+			
     	}
     }
 
@@ -339,10 +359,11 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando o subForm DadosBiometricos    
     	$subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
 
+    	
     	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayPost)) {
     		// selecionando a aba do subform DadosBiometricos
-			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
+			//Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
     		return false;
     	}
 

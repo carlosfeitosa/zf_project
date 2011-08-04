@@ -22,14 +22,14 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     public function init()
     {
         // carregando titulo e subtitulo da view
-        $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO');
-        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO');
+        $tituloView    = '<h3>'.$this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO').'</h3>';
+        $subtituloView = '<h4>'.$this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO').'</h4>';
 
         // carregando array do cabecalho da view
         $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
         
         // carregando o cabecalho na view
-        $this->view->cabecalho = $cabecalho;
+        $this->view->content = $cabecalho;
     }
 
     
@@ -76,14 +76,14 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
 		if (Basico_OPController_GeradorOPController::geradorFormularioGerarTodosFormularios()) {
 
 	        // carregando o titulo e subtitulo da view
-	        $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO');
-			$subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIOS_SUBTITULO');
+	        $tituloView    = '<h3>'.$this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO').'</h3>';
+			$subtituloView = '<h4>'.$this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIOS_SUBTITULO').'</h4>';
 
 	        // carregando array do cabecalho da view
 	        $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
 
 	        // carregando o cabecalho na view
-	        $this->view->cabecalho = $cabecalho;
+	        $this->view->content = $cabecalho;
 
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
@@ -101,7 +101,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
     {        
         // recuperando o objeto form gerador formulario
         $formGeradorFormulario = $this->getObjectFormGeradorFormulario();
-        
+
         // recuperando os elementos do formulario
         $elements = $formGeradorFormulario->getElements();
         
@@ -147,12 +147,10 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
                 // carregando o titulo e subtitulo da view
                 $tituloView    = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO');
 		        $subtituloView = $this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO');
-		        
-		        // carregando array do cabecalho da view
-		        $cabecalho     =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
 
-		        // carregando o cabecalho na view
-		        $this->view->cabecalho = $cabecalho;
+		        // carregando o array de conteúdo da página
+		    	$content[] = $tituloView;
+		    	$content[] = $subtituloView;
 
 		        // renderizando a view
                 $this->_helper->Renderizar->renderizar();
@@ -161,8 +159,11 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
             }
         }
         
+        // carregando o array de conteúdo da página
+		$content[] = $formGeradorFormulario;
+        
         // carregando o formulario na view
-        $this->view->form = $formGeradorFormulario;
+        $this->view->content = $content;        
         
         // renderizando a view
         $this->_helper->Renderizar->renderizar();
