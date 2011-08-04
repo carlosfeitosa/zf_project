@@ -125,6 +125,7 @@ foreach ($this->getVars() as $key0 => $value0){
 						} else {
 							$formularios[] = $value;
 							
+							// renderizando o formulario
 							if (array_key_exists($key0, $html)) {
 								$html[$key0] .= $value->render();	
 							} else {
@@ -141,7 +142,6 @@ foreach ($this->getVars() as $key0 => $value0){
 	}
 }
 
-
 // se não existir formulario(s) no reques, devolve o(s) formulario(s) enviados do controller
 if (!$existeFormNoRequest) {
 	
@@ -149,28 +149,13 @@ if (!$existeFormNoRequest) {
 	//Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
 	//Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 	
-	// renderiza todos os formularios da view
-	foreach ($formularios as $key => $value){
-		//Basico_OPController_UtilOPController::print_debug($value);
-		//exit;
-		//$formsRenders[$value] = $this->$value->render();
-		
-		$formsRenders[$key] = $value->render();
-	}
-	//Basico_OPController_UtilOPController::print_debug($formsRenders);
-	//exit;
-	
 	// carrega os javaScripts caso exista.
 	$scripts          = $this->dojo()->getJavascript();
 	// carrega os módulos do dojo necessarios aos formulários.
 	$modules          = $this->dojo()->getModules();
 	// dijits
 	$dijits           = $this->dojo()->getDijits();
-
-	// carrega todos os formulários renderizados, para serem devolvidos via json. 
-	foreach ($formsRenders as $keyFormRender => $valueFormRender) {	
-		//$html[$keyFormRender] = $valueFormRender; 
-	}	
+	
 } else {
 	$html = null;
 

@@ -407,29 +407,28 @@ function processaResponseDojoFormRequest(data)
     	// erro nos dados
 		console.warn("error!");	
 	}else{
-		console.debug('data response...: ', data);
+		console.debug('dados recebidos....: ', data);
 		
 		// parser data 
-		console.debug('data response: ', data);	
-		json = eval(data); //json = eval("(" + data + ")");
-		console.debug('data evaluated: ', json);
+		json = eval(data);
+		console.debug('dados validados.....');
 		
-		// get the modules
+		// Percorrendo os módulos para adiciona-los.
         dojo.forEach(json.view.modules, function(module)
         {
-            dojo.require(module);
+        	dojo.require(module);
             console.debug('... modulo carregado:', module);
         });
 		
-		// Get html elements
-		console.debug(json.view.html);
+		// Percorrendo os elementos HTMLs
 		for (idElemento in json.view.html)	{
 			
 			if (dojo.byId(idElemento)) {
 				
-				// retorna os elementos filhos que estão na raiz do elemento pai
+				// Retorna os elementos filhos que estão na raiz do elemento pai
 				var elementosDestroy = dojo.query('>*', idElemento);
 
+				// Carregando array com os Ids dos elementos que serão destruídos.
 				var iDsElementosDestroy = new Array();
 				for (var i = 0; i < elementosDestroy.length; i++) {
 					if (elementosDestroy[i].id != '') {
@@ -437,63 +436,55 @@ function processaResponseDojoFormRequest(data)
 					}
 				}
 
-			    // remove todos os elementos filhos do elemento pai, que estão registrados no dojo.
+			    // Remove todos os elementos filhos do elemento pai, que estão registrados no dojo.
 				dijit.registry.forEach(function(w){ 
 				   if(dojo.indexOf(iDsElementosDestroy, w)){
 				        w.destroyRecursive();
 				   }
 				});
 				
-				// adiciona o conteúdo no elemento.
+				// Adicionando conteúdo ao elemento.
 				dojo.byId(idElemento).innerHTML = json.view.html[idElemento];
 			}
 		}  
 	    
 		if (dojo.byId(json.view.idResponseSource)) {
 			
-			// Get zendFormsMessages
+			// Recebendo as mensagens zendFormsMessages
 			zendFormsMessages = json.view.zendFormsMessages;
 			
+			// Limpando as mensagens de erros no formulário.
 			limparMensagemErroZendDojoForm(json.view.idResponseSource);
 			
+			// Verificando se existe mensagems zendFormsMessages.
 			if (zendFormsMessages.length != 0) {
+				
+				// Percorrendo as mensagens zendFormsMessages
 				for (form in zendFormsMessages)	{
-					console.debug('form in zendFormsMessages:', form);
 					
 					formulario = dijit.byId(form);
-					console.debug('formulario eh:', formulario);	
+					class_form = formulario.declaredClass;					
 					
-					class_form = formulario.declaredClass;
-					console.debug('classe do formulario:', class_form);					
-					
+					// Percorrendo os formulários com as mensagens
 					for (nomeElementForm in zendFormsMessages[form])	{
-						console.debug('nomeElementForm in zendFormsMessages[form]:', nomeElementForm);
 						
 						nomeElemento = form + '-' + nomeElementForm;
-						console.debug('nomeElemento:', nomeElemento);
-						
 						elementoFormulario = dojo.byId(nomeElemento);
-						console.debug('elemento formulario eh:', elementoFormulario);
 
+						// Percorrendo as mensagens do formulário
 						for (mensagens in zendFormsMessages[form][nomeElementForm]) {
-							console.debug('mensagens in zendFormsMessages[form][nomeElementForm] :', mensagens);
-							mensagem = zendFormsMessages[form][nomeElementForm][mensagens];
-							console.debug('mensagen:', mensagem); 
-							
-							
+
+							mensagem = zendFormsMessages[form][nomeElementForm][mensagens];							
 							elemento = dojo.byId(nomeElementForm);
-							console.debug('elemento :', elemento, 'nomeElemento:', nomeElementForm);
-							if (elemento != null && elemento.type == 'hidden') {
-								
-								console.debug('elemento hiddden encontrado:', elemento);
-								
-								// procura pela a string Csrf () no final do nome do elemento.
-								csrfEncontrado = strpos(elemento.name, 'Csrf', 0);
-								if (csrfEncontrado) {
-									adicionaElementoMensagemErro('Basico_Form_CadastrarTelefone', mensagem, 'Tempo de envio do formulario esgotou. Tente novamente.')
-								}
+							
+							// Verificando se o elemento é hidden Csrf existe.;
+							if (elemento != null && elemento.type == 'hidden' && strpos(elemento.name, 'Csrf', 0)) {
+								console.debug('id formulario:',formulario.id);
+								adicionaElementoMensagemErro('BasicoCadastrarDadosUsuario', mensagem, 'Tempo de envio do formulario esgotou. Tente novamente.')
+								continue;
 							}
 							
+							// Setando a mensagem de erro no elemento.
 							adicionaMensagemErroZendDojoFormElement('widget_' + nomeElementForm, mensagem);
 						}
 					}
@@ -502,29 +493,25 @@ function processaResponseDojoFormRequest(data)
 			}
 		}
 		
-		console.debug('iniciando dojo attr dijits');
+		// Percorrendo os dijits.
 		dojo.forEach(json.view.dijits, function(info, i) {
-			console.debug(info, "at index", i);
 			
         	var n = dojo.byId(info.id);
         	if (null != n) {
+        		// Setando os atributos do dijit
             	dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
-            	console.debug('dojo mixin');
         	}
         });
-        console.debug('finalizado dojo attr dijits');
 		
-        
-		dojo.parser.parse();
-		
-		// processa scripts
-		console.debug('verificando se existe scripts');
+		// Percorrendo os scripts
 		scripts = json.view.scripts;
 		for (script in scripts)	{
-				eval(scripts[script]);
-				console.debug('script processado(', script, ')');
-		}
-		console.debug('scripts end...'); 
+			// Processando o script	
+			eval(scripts[script]);
+		}		
+		
+		// Parser dojo.
+		dojo.parser.parse();
 	}	
 }
 

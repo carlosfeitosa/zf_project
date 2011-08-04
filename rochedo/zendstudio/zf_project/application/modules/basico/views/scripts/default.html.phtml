@@ -1,12 +1,7 @@
 <?php
-
 // percorre as variáveis e objetos contidas na view
 foreach ($this->getVars() as $key => $value){
-//Basico_OPController_UtilOPController::print_debug($this->getVars());
-//exit;
-
 	
-//Basico_OPController_UtilOPController::print_debug($value);	
 	if (is_array($value)) {
 		
 		foreach ($value as $chave => $conteudo){

@@ -70,7 +70,6 @@ function(error, ioargs) {
     switch (ioargs.xhr.status) {
     	case 200:
         	message = "Good request.";
-        	console.debug(this.form.id);
             break;
         case 404:
         	message = "The requested page was not found";
