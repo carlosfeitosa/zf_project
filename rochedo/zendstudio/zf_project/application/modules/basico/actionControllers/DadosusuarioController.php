@@ -109,17 +109,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba);
 		}
 		
-		
-		//$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais')->addPrefixPath('Rochedo_Form_Decorator', 'Rochedo/Form/Decorator', 'decorator');
-		//$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais')->addDecorator('AjaxForm');
-		$formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais')->isValid($_POST);
 		$content[] = $formDadosUsuario;
 		
-		//$footer[] = new Basico_Form_AutenticacaoUsuario();
-		//$this->view->footer = $footer;
-		//$header[] = new Basico_Form_CadastrarUsuarioNaoValidado();
-		//$this->view->header = $header;
-		//$content[] = new Basico_Form_CadastrarUsuarioNaoValidado();
 		// passando o formulario para a view
 		$this->view->content = $content;
 		
@@ -194,9 +185,6 @@ JS;
 			
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
-			
-
-			
     	}
     }
 
