@@ -174,14 +174,14 @@ function carregaValoresElementos(stringParametrosJson) {
 	}
 }
 
-function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle)
+function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle, renderizarPrimeiroElemento)
 {
 	// inicializando variaveis
 	var arrayErrorMessages = new Array();
 
 	// recuperando dialog
 	dialog = dijit.byId(dialogName);
-	
+
 	// verificando se o dialog foi recuperado
 	if (dialog) {
 		
@@ -224,8 +224,15 @@ function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle)
 			containerUlErrorMessage.appendChild(itemErrorMessage);
 		}
 
-		// adicionando o elemento container ul no dialog
-		dojo.place(containerDivErrorMessage, dialog.domNode.childNodes[3].childNodes[0].childNodes[0],  "before");
+		if (renderizarPrimeiroElemento) {
+			dojo.place(containerDivErrorMessage, dialog.id,  "first");
+		} else {
+			// adicionando o elemento container ul no dialog
+			dojo.place(containerDivErrorMessage, dialog.domNode.childNodes[3].childNodes[0].childNodes[0],  "before");
+		}
+		
+		
+		
 	}
 }
 
@@ -480,7 +487,7 @@ function processaResponseDojoFormRequest(data)
 							// Verificando se o elemento é hidden Csrf existe.;
 							if (elemento != null && elemento.type == 'hidden' && strpos(elemento.name, 'Csrf', 0)) {
 								console.debug('id formulario:',formulario.id);
-								adicionaElementoMensagemErro('BasicoCadastrarDadosUsuario', mensagem, 'Tempo de envio do formulario esgotou. Tente novamente.')
+								adicionaElementoMensagemErro('CadastrarDadosUsuarioDadosPessoais', mensagem, 'Tempo de envio do formulario esgotou. Tente novamente.', true);
 								continue;
 							}
 							

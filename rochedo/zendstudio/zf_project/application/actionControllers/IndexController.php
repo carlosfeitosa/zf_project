@@ -23,6 +23,15 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+        $content[] = '<center>
+					  <span id="index_application_name">'. APPLICATION_NAME .'</span><br>
+					  <span id="index_application_title">'. APPLICATION_TITLE .'</span>
+					  </center>';
+        
+		$this->view->content = $content;
+		
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
     }
 }
 

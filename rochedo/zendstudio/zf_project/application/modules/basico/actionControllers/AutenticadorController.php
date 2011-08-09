@@ -52,7 +52,8 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$urlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(Basico_OPController_UtilOPController::retornaUserRequest()->getParam('urlRedirect'));
 
     	// carregando cabecalho da view
-		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
+		$content[] = '<h3>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO').'</h3>';
+		
 
 		// recuperando o formulario de autenticacao
 		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
@@ -62,8 +63,11 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);
 
     	// enviando o script para o cliente
-    	$this->view->content = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect, $actionFormularioAutenticao);
+    	$content[] = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect, $actionFormularioAutenticao);
 
+    	// enviado a mensagem para a view
+		$this->view->content = $content;
+    	
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
 	}
@@ -181,13 +185,16 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$actionFormularioAutenticao        = Basico_OPController_FormularioOPController::getInstance()->retornaActionFormularioPorNomeFormularioIdCategoria(FORM_AUTENTICACAO_USUARIO, $idCategoriaFormularioAutenticacao);
 
 		// tokenizando o action
-		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);
-
-		// enviando scripts para o usuario
-		$this->view->content = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
+		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);		
 
 		// carregando cabecalho da view
-		$this->view->cabecalho = array('tituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
+		$content[] = '<h3>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO').'</h3>';
+		
+		// enviando scripts para o usuario
+		$content[] = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
+		
+		// enviado o conteúdo para a view
+		$this->view->content = $content;
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -210,10 +217,12 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$htmlLinkDocumentacaoOnline = "<a href='{$linkDocumentacaoOnLine}'>Clique aqui para ir para a documentacao online onde eh explicado como tentar resolver estes problemas</a>";
 
 		// setando o cabecalho da view
-		$this->view->cabecalho = array('tituloView'    => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_TITULO'), 
-		                               'subtituloView' => $this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SUBTITULO'),
-									   'mensagemView'  => TAG_ABRE_LISTA_NAO_ORDENADA_ERROR . $errorMessage . TAG_FECHA_LISTA_NAO_ORDENADA . QUEBRA_DE_LINHA_HTML . QUEBRA_DE_LINHA_HTML . $htmlLinkDocumentacaoOnline);
+		$content[] = '<h3>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_TITULO').'</h3>';
+		$content[] = '<h4>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SUBTITULO').'</h4>';
+		$content[] = '<h4>'.TAG_ABRE_LISTA_NAO_ORDENADA_ERROR . $errorMessage . TAG_FECHA_LISTA_NAO_ORDENADA . QUEBRA_DE_LINHA_HTML . QUEBRA_DE_LINHA_HTML . $htmlLinkDocumentacaoOnline.'</h4>';
 
+		$this->view->content = $content;
+		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
 	}

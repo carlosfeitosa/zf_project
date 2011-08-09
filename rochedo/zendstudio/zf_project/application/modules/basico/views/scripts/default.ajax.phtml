@@ -32,11 +32,9 @@ $modules 		     = null;
 $dijits 		     = null;
 $zendFormsMessages   = array();
 $formularios         = array();
-$formsRenders        = array();
 $html                = array();
 $existeFormNoRequest = null;
 $idResponseSource	 = null;
-$callbackFunction    = null;
 
 // percorre as variáveis e objetos contidas na view
 foreach ($this->getVars() as $key0 => $value0){
@@ -138,6 +136,8 @@ foreach ($this->getVars() as $key0 => $value0){
 			}
 		}
 	} else{
+		// verifica se o conteúdo é um script..
+		// implementar
 		
 	}
 }
@@ -162,7 +162,7 @@ if (!$existeFormNoRequest) {
 }
 
 // carrega os javaScripts caso exista.
-$scripts          = $this->dojo()->getJavascript();
+//$scripts          = $this->dojo()->getJavascript();
 
 $response = array('view' => array('scripts'           => $scripts,
 								  'modules'           => $modules,
