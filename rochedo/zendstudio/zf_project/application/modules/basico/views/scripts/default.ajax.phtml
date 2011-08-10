@@ -37,20 +37,25 @@ $existeFormNoRequest = null;
 $idResponseSource	 = null;
 
 // percorre as variáveis e objetos contidas na view
-foreach ($this->getVars() as $key0 => $value0){
+foreach ($this->getVars() as $keyVarView => $valueVarView){
 	
 	// verifica se a variável é do tipo array.
-	if (is_array($value0)) {
+	if (is_array($valueVarView)) {
 		
 		// percorre o array enviado da view 
-		foreach ($value0 as $key => $value) {
+		foreach ($valueVarView as $key => $value) {
 			
-			// se o conteúdo da possição percorrida não for um array, carrega o conteúdo no array $html[]. 
+			if ($keyVarView === 'scripts') {
+				$scripts[] = $value;
+				continue;
+			}
+			
+			// se o conteúdo da possição percorrida não for um objeto, carrega o conteúdo no array $html[]. 
 			if (!is_object($value)) {
-				if (array_key_exists($key0, $html)) {
-					$html[$key0] .= $value;	
+				if (array_key_exists($keyVarView, $html)) {
+					$html[$keyVarView] .= $value;	
 				} else {
-					$html[$key0] = $value;
+					$html[$keyVarView] = $value;
 				}
 					
 			} else {
@@ -84,17 +89,17 @@ foreach ($this->getVars() as $key0 => $value0){
 										$dijits[$i]['params'] = $dijitParametros;
 									}
 								}
-								break 3;
+								break 2;
 								
 							} else {
 								$formularios[] = $value;
 							}
 						}
 						
-						if (array_key_exists($key0, $html)) {
-							$html[$key0] .= $value->render();	
+						if (array_key_exists($keyVarView, $html)) {
+							$html[$keyVarView] .= $value->render();	
 						} else {
-							$html[$key0] = $value->render();
+							$html[$keyVarView] = $value->render();
 						}
 						
 					} else {
@@ -124,10 +129,10 @@ foreach ($this->getVars() as $key0 => $value0){
 							$formularios[] = $value;
 							
 							// renderizando o formulario
-							if (array_key_exists($key0, $html)) {
-								$html[$key0] .= $value->render();	
+							if (array_key_exists($keyVarView, $html)) {
+								$html[$keyVarView] .= $value->render();	
 							} else {
-								$html[$key0] = $value->render();
+								$html[$keyVarView] = $value->render();
 							}
 						}
 					}
@@ -136,8 +141,18 @@ foreach ($this->getVars() as $key0 => $value0){
 			}
 		}
 	} else{
-		// verifica se o conteúdo é um script..
-		// implementar
+		
+		// escreve conteúdo do javascript
+		if ($keyVarView === 'scripts') {
+			$scripts[] = $valueVarView;
+		}
+		
+		// escreve conteúdo do elemento html.
+		if (array_key_exists($keyVarView, $html)) {
+			$html[$keyVarView] .= $valueVarView;	
+		} else {
+			$html[$keyVarView] = $valueVarView;
+		}
 		
 	}
 }
@@ -145,12 +160,6 @@ foreach ($this->getVars() as $key0 => $value0){
 // se não existir formulario(s) no reques, devolve o(s) formulario(s) enviados do controller
 if (!$existeFormNoRequest) {
 	
-	// seta o form para Programmatic
-	//Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
-	//Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
-	
-	// carrega os javaScripts caso exista.
-	$scripts          = $this->dojo()->getJavascript();
 	// carrega os módulos do dojo necessarios aos formulários.
 	$modules          = $this->dojo()->getModules();
 	// dijits
@@ -161,9 +170,7 @@ if (!$existeFormNoRequest) {
 
 }
 
-// carrega os javaScripts caso exista.
-//$scripts          = $this->dojo()->getJavascript();
-
+// monta resposta para o cliente...
 $response = array('view' => array('scripts'           => $scripts,
 								  'modules'           => $modules,
 								  'dijits'            => $dijits,

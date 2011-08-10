@@ -486,8 +486,7 @@ function processaResponseDojoFormRequest(data)
 							
 							// Verificando se o elemento é hidden Csrf existe.;
 							if (elemento != null && elemento.type == 'hidden' && strpos(elemento.name, 'Csrf', 0)) {
-								console.debug('id formulario:',formulario.id);
-								adicionaElementoMensagemErro('CadastrarDadosUsuarioDadosPessoais', mensagem, 'Tempo de envio do formulario esgotou. Tente novamente.', true);
+								adicionaElementoMensagemErro(formulario.id, mensagem, 'Atenção', true);
 								continue;
 							}
 							
@@ -512,11 +511,14 @@ function processaResponseDojoFormRequest(data)
 		
 		// Percorrendo os scripts
 		scripts = json.view.scripts;
+		console.debug('iniciando scripts...');
 		for (script in scripts)	{
 			// Processando o script	
-			eval(scripts[script]);
+			//eval(scripts[script]);
+			processaScript(scripts[script]);
+			console.debug('script processado', scripts[script]);
 		}		
-		
+		console.debug('final scripts...');
 		// Parser dojo.
 		dojo.parser.parse();
 	}	
@@ -558,6 +560,59 @@ function urlAjaxCall(urlCall) {
 				
 	});
 	return false;
+}
+
+
+/**
+ * função processa javacript
+ * @param String texto
+ */
+function processaScript(script){
+	var ini, pos_src, fim, codigo, texto_pesquisa;
+	var objScript = null;
+	//Joga na variavel de pesquisa o texto todo em minusculo para na hora da pesquisa nao ter problema com case-sensitive
+	texto_pesquisa = script.toLowerCase();
+	// Busca a primeira tag <script
+	ini = texto_pesquisa.indexOf('<script', 0);
+	// Executa o loop enquanto achar um <script
+	while (ini!=-1){
+		//Inicia o objeto script
+		var objScript = document.createElement("script");
+
+		//Busca se tem algum src a partir do inicio do script
+		pos_src = texto_pesquisa.indexOf(' src', ini);
+		// Define o inicio para depois do fechamento dessa tag
+		ini = texto_pesquisa.indexOf('>', ini) + 1;
+
+		//Verifica se este e um bloco de script ou include para um arquivo de scripts
+		if (pos_src < ini && pos_src >=0){//Se encontrou um "src" dentro da tag script, esta e um include de um arquivo script
+			//Marca como sendo o inicio do nome do arquivo para depois do src
+			ini = pos_src + 4;
+			//Procura pelo ponto do nome da extencao do arquivo e marca para depois dele
+			fim = texto_pesquisa.indexOf('.', ini)+4;
+			//Pega o nome do arquivo
+			codigo = script.substring(ini,fim);
+			//Elimina do nome do arquivo os caracteres que possam ter sido pegos por engano
+			codigo = codigo.replace("=","").replace(" ","").replace("\"","").replace("\"","").replace("\'","").replace("\'","").replace(">","");
+			// Adiciona o arquivo de script ao objeto que sera adicionado ao documento
+			objScript.src = codigo;
+		}else{//Se nao encontrou um "src" dentro da tag script, esta e um bloco de codigo script
+			// Procura o final do script
+			fim = texto_pesquisa.indexOf('</script>', ini);
+			// Extrai apenas o script
+			codigo = script.substring(ini,fim);
+			// Adiciona o bloco de script ao objeto que sera adicionado ao documento
+			objScript.text = codigo;
+		}
+
+		//Adiciona o script ao documento
+		document.body.appendChild(objScript);
+		// Procura a proxima tag de <script
+		ini = script.indexOf('<script', fim);
+
+		//Limpa o objeto de script
+		objScript = null;
+	}
 }
 
 /**
