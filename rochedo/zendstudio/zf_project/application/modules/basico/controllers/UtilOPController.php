@@ -40,14 +40,16 @@ class Basico_OPController_UtilOPController
 	public static function escreveErro($erroConst, $mensagem)
 	{
 		// escreve um cabecalho na pagina
-		echo "<h1>" . MSG_ERRO_APLICACAO . "</h1>";
-
-		// carrega mensagem para exibicao em ambiente de desenvolvimento
-        $mensagemDesenv = "Erro: {$erroConst}<br><h>Detalhes: {$mensagem}</h>";
+		$return =  "<h1>" . MSG_ERRO_APLICACAO . "</h1>";
         
         // checa se a aplicacao esta rodando em ambiente de desenvolvimento para impressao dos detalhes
-        if (self::ambienteDesenvolvimento())
-			echo $mensagemDesenv; 
+        if (self::ambienteDesenvolvimento()) {
+        	// carrega mensagem para exibicao em ambiente de desenvolvimento
+        	$return .= "Erro: {$erroConst}<br><h>Detalhes: {$mensagem}</h>";
+        }
+			
+
+		return $return;
 	}
 	
 	/**
@@ -1730,7 +1732,7 @@ class Basico_OPController_UtilOPController
     public static function exibirDojoDialogMensagemViaJavaScript($dialogId, $dialogTitle, $txtContent, $exibirBotao = 1)
     {
     	// exibindo mensagem
-    	echo "<script type='text/javascript'>showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibirBotao});</script>";
+    	return "<script type='text/javascript'>showDialogAlert('{$dialogId}', '{$dialogTitle}', '{$txtContent}', {$exibirBotao});</script>";
     }
     
 	/**
@@ -1742,11 +1744,12 @@ class Basico_OPController_UtilOPController
     public static function exibirJQueryHumanizedMessageViaJavaScript($mensagem)
     {
     	// exibindo mensagem
-    	echo "<script type='text/javascript'>
+    	$script = "<script type='text/javascript'>
     	          $(document).ready (function(){
     	              humanMsg.displayMsg(\"<span class='indent'>{$mensagem}</span>\");
                   })
               </script>";
+    	return $script;
     }
 
     /**
@@ -1843,7 +1846,7 @@ class Basico_OPController_UtilOPController
     public static function setaFocusAbaTabContainerDojoFormViaJavaScript($formName, $subFormName)
     {
     	// enviando javascript para setar o focus de um tabcontainer em uma aba especifica
-    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}-TabContainer').selectChild('{$subFormName}');});</script>";
+    	return "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}-TabContainer').selectChild('{$subFormName}');});</script>";
     }
 
     /**
@@ -1856,7 +1859,7 @@ class Basico_OPController_UtilOPController
     public static function submeteDojoFormViaDojoJavaScript($formName)
     {
     	// enviando javascript para submeter formulario
-    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}').submit();});</script>";
+    	return "<script type=\"text/javascript\">dojo.addOnLoad(function () {dijit.byId('{$formName}').submit();});</script>";
     }
 
     /**
@@ -1869,7 +1872,7 @@ class Basico_OPController_UtilOPController
     public static function setaFocusElementoFormularioViaDojoJavaScript($formElementName)
     {
     	// enviando javascript para setar o focus em um elemento especifico
-    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function() {setaFocoElemento('{$formElementName}')});</script>";
+    	return "<script type=\"text/javascript\">dojo.addOnLoad(function() {setaFocoElemento('{$formElementName}')});</script>";
     }
 
     /**
@@ -1883,7 +1886,7 @@ class Basico_OPController_UtilOPController
     public static function setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($formName, $tipoContainer = 'TabContainer')
     {
     	// enviando javascript para setar o focus para o primeiro elemento de um formulario, dentro de uma aba
-    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function() {dojo.connect(dijit.byId('{$formName}-{$tipoContainer}'), 'selectChild', function(page){setaFocoPrimeiroElementoFormulario(page.id);});});</script>";
+    	return "<script type=\"text/javascript\">dojo.addOnLoad(function() {dojo.connect(dijit.byId('{$formName}-{$tipoContainer}'), 'selectChild', function(page){setaFocoPrimeiroElementoFormulario(page.id);});});</script>";
     }
 
     /**
@@ -1897,7 +1900,7 @@ class Basico_OPController_UtilOPController
     	$arrayElementosErrorJson = Basico_OPController_UtilOPController::codificaArrayJson($arrayNomesElementosErros);
 
     	// enviando javascript para setar os elementos com erro
-    	echo "<script type=\"text/javascript\">dojo.addOnLoad(function () {marcaElementosErro($arrayElementosErrorJson);});</script>";
+    	return "<script type=\"text/javascript\">dojo.addOnLoad(function () {marcaElementosErro($arrayElementosErrorJson);});</script>";
     }
     
     /**
