@@ -12,7 +12,7 @@ foreach ($this->getVars() as $key => $value){
 				echo $conteudo;
 			
 				// setando o foco para o primeiro elemento do formulario
-				//Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript(Basico_OPController_UtilOPController::retornaNomePrimeiroElementoFormulario($this->form));
+				echo Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript(Basico_OPController_UtilOPController::retornaNomePrimeiroElementoFormulario($this->form));
 			
 				// recuperando o tipo de container que agraga os subformularios do formulario, caso o formulario possuia filhos
 				$tipoContainerFormulario = Basico_OPController_UtilOPController::retornaTipoContainerFormulario($conteudo);
@@ -20,7 +20,7 @@ foreach ($this->getVars() as $key => $value){
 				// verificando se eh preciso setar funcao para setar focus
 				if ($tipoContainerFormulario) {
 					// setando funcao para setar o focus para o primeiro elemento de uma aba selecionada, para um formulario com subformularios
-					//Basico_OPController_UtilOPController::setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($conteudo->getName(), $tipoContainerFormulario);
+					echo Basico_OPController_UtilOPController::setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($conteudo->getName(), $tipoContainerFormulario);
 				}
 			} else {
 				echo $conteudo;

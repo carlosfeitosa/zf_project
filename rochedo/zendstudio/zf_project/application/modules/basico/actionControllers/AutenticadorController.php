@@ -67,6 +67,9 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 
     	// enviado conteúdo para a view
 		$this->view->content = $content;
+		
+		// enviado script para a view
+		$this->view->scripts = $scripts;
     	
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
@@ -187,14 +190,17 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		// tokenizando o action
 		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);		
 
-		// carregando cabecalho da view
+		// carregando título na view
 		$content[] = '<h3>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO').'</h3>';
 		
-		// enviando scripts para o usuario
-		$content[] = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
+		// carregando scripts 
+		$scripts[] = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
 		
 		// enviado o conteúdo para a view
 		$this->view->content = $content;
+		
+		// enviado os scripts para a view
+		$this->view->scripts = $scripts;
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
