@@ -341,6 +341,12 @@ function exibirMensagem(mensagem)
 	humanMsg.displayMsg('<span class="indent">' + mensagem + '</span>');
 }
 
+/**
+ * Função responsável por escrever mensagem de erro em elemento dojoZendFormElement.
+ * 
+ * @param String elementName - Nome do elemento que receberá a mensagem.
+ * @param String errorMessage - Mensagem que será exibida.
+ */
 function adicionaMensagemErroZendDojoFormElement(elementName, errorMessage)
 {
 	// inicializando variaveis
@@ -378,8 +384,15 @@ function adicionaMensagemErroZendDojoFormElement(elementName, errorMessage)
 }
 
 
+/**
+ * Função responsável por limpar as mendagens dojoZendForm dos elementos e do(s) formulário(s).
+ * 
+ * @param String formName - Nome do formulário a ser limpo. Caso seja null, remove todas as mensagens existentes
+ */
 function limparMensagemErroZendDojoForm(formName)
 {
+	/* Limpando as mensagens dos elementos do formulários ou de todos os elementos da view */
+	
 	//verifica se o nome do formulario foi passada e se existe o formulario
 	if (formName && dojo.query('form[id="' + formName + '"]'))
 		parametro = 'form[id="' + formName + '"]';		
@@ -394,6 +407,9 @@ function limparMensagemErroZendDojoForm(formName)
 		dojo._destroyElement(dojo.byId(errors[i]));
     }
     
+    
+    /* Limpando as mensagens do formulário ou de todos os formulários */ 
+    
     // busca todas as mensagens com o id='divContainerError'  
     var mensagens = dojo.query(parametro + ' #divContainerError');
     
@@ -403,11 +419,25 @@ function limparMensagemErroZendDojoForm(formName)
     }
 }
 
+
+/**
+ * Função responsável por encontra a posição da primeira ocorrência de uma string.
+ * 
+ * @param String haystack
+ * @param String needle
+ * @param String offset
+ */
 function strpos (haystack, needle, offset) {
 	var i = (haystack + '').indexOf(needle, (offset || 0));
 	return i === -1 ? false : i;
 }
 
+
+/**
+ * Função responsável por processar a resposta do servidor, em requisições ajax. 
+ * 
+ * @param json data - resposta do servidor.
+ */
 function processaResponseDojoFormRequest(data)
 {
 	if(typeof data == "error") {
@@ -555,9 +585,7 @@ function urlAjaxCall(urlCall) {
 							     console.debug('desativando underlay....');
 							     underlay.hide();
 							     console.debug('underlay desativado');
-							     
 							} 
-				
 	});
 	return false;
 }
@@ -565,7 +593,7 @@ function urlAjaxCall(urlCall) {
 
 /**
  * função processa javacript
- * @param String texto
+ * @param String script - script que será processado.
  */
 function processaScript(script){
 	var ini, pos_src, fim, codigo, texto_pesquisa;

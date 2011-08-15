@@ -100,19 +100,28 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
         // verificando se deve setar uma aba
 		if (isset($nomeSubFormSetarAba)) {
 			// selecionando a aba do subform perfil padrao
-			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $nomeSubFormSetarAba);
+			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $nomeSubFormSetarAba);
 		}
 
 		// verificando se deve sobrescrever as informacoes de um objeto
 		if ($sobrescreverAtualizacao) {
 			// chamando metodo que submete o formulario
-			Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba);
+			$scripts[] = Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba);
 		}
 		
+		//$formDadosUsuario->isValid($_POST);
 		$content[] = $formDadosUsuario;
 		
-		// passando o formulario para a view
+		// enviado conteúdo para a view
 		$this->view->content = $content;
+		
+		//$this->view->scripts = array("<script language='javascript'>alert('Enviado do controlller....xxxXX'); </script>");
+		
+		// carregando script humanized
+		//$scripts[] = Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso.");
+		
+		// enviando os scripts para a view
+		//$this->view->scripts = $scripts;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -172,16 +181,17 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		// redirecionando para o index
 			$this->_forward('index');
     	} else {
-			
+			// carregando formulário para a view
 			$content[] = $formDadosUsuario;
 			
-			// passando o formulario para a view
+			// enviado conteúdo para a view
 			$this->view->content = $content;
 						
-			$js = <<<JS
-//alert('script postado do controller para o cliente. (browser');
-JS;
-			$this->view->dojo()->addJavascript($js);
+			// carregando script humanized
+			$scripts[] = Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso.");
+		
+			// enviado os cripts para a view
+			$this->view->scripts = $scripts;
 			
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
@@ -365,8 +375,9 @@ JS;
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 
-	        // exibindo mensagem de sucesso
-	        Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso.");
+	        
+	        // enviado scripts para a view
+	        $this->view->scripts = array(Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso."));
     	}
     	
     	return true;

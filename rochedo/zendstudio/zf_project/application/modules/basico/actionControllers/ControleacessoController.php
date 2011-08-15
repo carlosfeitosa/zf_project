@@ -30,9 +30,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO');
-        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO');
-        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM');
+    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO').'</h3>';
+        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO').'</h3>';
+        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM').'</h4>';
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -42,10 +42,12 @@ class Basico_ControleacessoController extends Zend_Controller_Action
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
     	// carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+		$content[] = $tituloView;
+		$content[] = $subtituloView;
+		$content[] = $mensagemView;
 	            
-	    // setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
+	    // enviado conteúdo para a view
+		$this->view->content = $content;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -70,9 +72,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO');
-        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO');
-        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM');
+    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO').'</h3>';
+        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO').'</h3>';
+        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM').'</h4>';
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -82,10 +84,12 @@ class Basico_ControleacessoController extends Zend_Controller_Action
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
     	// carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+		$content[] = $tituloView;
+		$content[] = $subtituloView;
+		$content[] = $mensagemView;
 	            
-	    // setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
+	    // enviado conteúdo para a view
+		$this->view->content = $content;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -118,9 +122,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO');
-        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO');
-        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM');
+    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO').'</h3>';
+        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO').'</h3>';
+        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM').'</h4>';
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -130,10 +134,12 @@ class Basico_ControleacessoController extends Zend_Controller_Action
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
     	// carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+		$content[] = $tituloView;
+		$content[] = $subtituloView;
+		$content[] = $mensagemView;
 	            
-	    // setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
+	    // enviado conteúdo para a view
+		$this->view->content = $content;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -158,9 +164,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_TITULO');
-        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_SUBTITULO');
-        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM');
+    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_TITULO').'</h3>';
+        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_SUBTITULO').'</h3>';
+        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM').'</h4>';
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -170,10 +176,12 @@ class Basico_ControleacessoController extends Zend_Controller_Action
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
     	// carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+		$content[] = $tituloView;
+		$content[] = $subtituloView;
+		$content[] = $mensagemView;
 	            
 	    // setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
+		$this->view->content = $content;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -198,15 +206,17 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO');
-        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO');
-        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM');
+    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO').'</h3>';
+        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO').'</h3>';
+        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM').'</h4>';
 
     	// carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+		$content[] = $tituloView;
+		$content[] = $subtituloView;
+		$content[] = $mensagemView;
 	            
-	    // setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
+	    // enviado conteúdo para a view
+		$this->view->content = $content;
 
 		// efetuando logoff
 		Basico_OPController_LoginOPController::removeRegistroIdLoginUsuarioSessao();
@@ -240,15 +250,17 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
 		// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = $this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO');
-        $subtituloView = $this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO');
-        $mensagemView  = $this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM');
+    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO').'</h3>';
+        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO').'</h3>';
+        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM').'</h4>';
 
     	// carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView, 'mensagemView' => $mensagemView);
+		$content[] = $tituloView;
+		$content[] = $subtituloView;
+		$content[] = $mensagemView;
 	            
-	    // setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
+	    // enviado conteúdo para a view
+		$this->view->content = $content;
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();

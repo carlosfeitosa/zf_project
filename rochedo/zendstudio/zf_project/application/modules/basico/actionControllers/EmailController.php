@@ -123,7 +123,7 @@ class Basico_EmailController extends Zend_Controller_Action
 			// carregando o array de conteúdo da página
 	    	$content[] = $formCadastrarUsuarioValidado;
 	    	
-			// carregando painel no form
+			// enviado conteúdo para a view
 			$this->view->content = $content;
 			
 			// renderizando a view
@@ -144,10 +144,11 @@ class Basico_EmailController extends Zend_Controller_Action
         $mensagemView          = "<a href='../login/cadastrarUsuarioNaoValidado/'>{$linkRecomecarCadastro}</a>";
         
         // carregando array com o cabecalho da view
-    	$cabecalho             = array('tituloView' => $tituloView, 'mensagemView' => $mensagemView);
+    	$content[] = $tituloView;
+    	$content[] = $mensagemView;
     
-	    // carregando cabelhaco na view
-		$this->view->cabecalho = $cabecalho;
+	    // enviado conteúdo para a view
+		$this->view->content = $content;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -161,11 +162,10 @@ class Basico_EmailController extends Zend_Controller_Action
     public function errotokeninvalidoAction() 
     {
     	// carregando titulo, link para re-cadastro e mensagem
-        $tituloView            = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO);
-        $cabecalho =  array('tituloView' => $tituloView);
+        $content[] = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO);
     
-	    // carregando array com o cabecalho da view
-		$this->view->cabecalho = $cabecalho;
+	    // enviado conteúdo para a view
+		$this->view->content = $content;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();

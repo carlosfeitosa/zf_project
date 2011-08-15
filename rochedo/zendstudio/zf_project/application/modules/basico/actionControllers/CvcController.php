@@ -125,12 +125,6 @@ class Basico_CvcController extends Zend_Controller_Action
     	$fullUrlUltimoRequestTokenizedSobrescreverAtualizacao  = Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncrypt(Basico_OPController_UtilOPController::decodificaBarrasUrl($urlUltimoRequest . $paramsUrlUltimoRequestSobrescreverAtualizacao));
     	$fullUrlUltimoRequestTokenizedCancelar                 = Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncrypt(Basico_OPController_UtilOPController::decodificaBarrasUrl($urlUltimoRequest . $paramsUrlUltimoRequestCancelar));
 
-		// carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $this->view->tradutor('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO'));
-
-	    // setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
-
     	// recuperando o formulario de resolucao de conflito de versao
     	$formResolucaoConflitoVersao = $this->retornaFormResolvedorConflitoVersaoObjeto();
 
@@ -151,8 +145,14 @@ class Basico_CvcController extends Zend_Controller_Action
     	$jsCancelar = Basico_OPController_UtilOPController::retornaJavaScriptRedirectUrl($fullUrlUltimoRequestTokenizedCancelar);
     	$formResolucaoConflitoVersao->BasicoResolvedorConflitoVersaoObjetoHtmlButtonCancelarFormResolvedorConflitoVersaoObjeto->setAttrib('onClick', $jsCancelar);
 
-    	// setando o form na view
-    	$this->view->form = $formResolucaoConflitoVersao;
+    	// carregando array do cabecalho da view
+		$content[] = $this->view->tradutor('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO');
+    	
+    	// carregando o formulário
+    	$content[] = $formResolucaoConflitoVersao;
+    	
+    	// enviado conteúdo para a view
+		$this->view->content = $content;
 
     	// renderizando a view
 		$this->_helper->Renderizar->renderizar();

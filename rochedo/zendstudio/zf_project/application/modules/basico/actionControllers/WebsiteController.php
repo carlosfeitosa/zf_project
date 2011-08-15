@@ -32,8 +32,9 @@ class Basico_WebsiteController extends Zend_Controller_Action
         
         // verificando se o formulario passou pela validacao
 		if (!$formEntrada->isValid($this->getRequest()->getPost())) {
+			$content[] = $formEntrada;
 			// recuperando o formulario
-            $this->view->form = $formEntrada;
+            $this->view->content = $content;
             
             return;
         }
@@ -47,8 +48,11 @@ class Basico_WebsiteController extends Zend_Controller_Action
 	 */
     public function indexAction()
     {
-    	// setando o form na view
-        $this->view->form = $this->getForm();
+    	// carregando o formulario
+    	$content[] = $this->getForm();
+    	
+    	// enviado conteúdo para a view
+        $this->view->content = $content;
     }
     
     
