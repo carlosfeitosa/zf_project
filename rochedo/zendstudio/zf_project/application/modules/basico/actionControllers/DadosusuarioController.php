@@ -115,14 +115,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		// enviado conteúdo para a view
 		$this->view->content = $content;
 		
-		//$this->view->scripts = array("<script language='javascript'>alert('Enviado do controlller....xxxXX'); </script>");
-		
-		// carregando script humanized
-		//$scripts[] = Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso.");
-		
-		// enviando os scripts para a view
-		//$this->view->scripts = $scripts;
-		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
