@@ -20,6 +20,10 @@ define("MSG_ERRO_PATH_INEXISTENTE", "Caminho não encontrado no sistema de arqui
 define("MSG_ERRO_CODIFICAR_SEM_OPERACAO", "Operação de codificação não encontrada.");
 define("MSG_ERRO_VALOR_NAO_OBJETO", "O valor não é um objeto.");
 define("MSG_ERRO_VALOR_NAO_OBJETO_MODELO", "O valor não é uma instancia da classe: ");
+define("MSG_ERRO_FIND_METODO_NAO_ENCONTRADO", "O objeto não possui o metodo getMapper()->find().");
+define("MSG_ERRO_FETCHALL_METODO_NAO_ENCONTRADO", "O objeto não possui o metodo getMapper()->fetchAll().");
+define("MSG_ERRO_FETCHLIST_METODO_NAO_ENCONTRADO", "O objeto não possui o metodo getMapper()->fetchList().");
+define("MSG_ERRO_DATABASE_CHECKSUM_INVALIDO", "Manipulacao humana de informacoes do banco de dados detectada (checksum invalido).");
 define("MSG_ERRO_SAVE_METODO_NAO_ENCONTRADO", "O objeto não possui o metodo getMapper()->save().");
 define("MSG_ERRO_DELETE_METODO_NAO_ENCONTRADO", "O objeto não possui o metodo getMapper()->delete().");
 define("MSG_ERRO_DELETE_EXISTEM_FILHOS", "Não é possivel apagar este registro pois ele possui registro(s) filho(s) vinculado e não foi especificado delete em cascata.");
@@ -38,6 +42,7 @@ define("MSG_ERRO_ARRAY_FILTER_CHAVE_FILTRO_NAO_ENCONTRADA", "Não foi encontrado
 define("MSG_ERRO_ARRAY_FILTER_TIPO_OPERACAO_NAO_CONHECIDA", "Não foi encontrado o tipo de operação do filtro informado no array contendo os filtros.");
 define("MSG_ERRO_UPDATE_NAO_PERMITIDO", "Este objeto não permite atualização.");
 define("MSG_ERRO_TENTATIVAS_FALHAS_LOGIN_IP_BAN", "IP banido por tentativas excessivas, sem sucesso, de logon.");
+define("MSG_ERRO_CVC_FALHOU", "Nao foi possivel versionar este objeto: ");
 
 /*
  * CATEGORIA
@@ -108,6 +113,7 @@ define("MSG_ERRO_TOKEN_ARRAYURLS_INEXISTENTE", "Não foi encontrado a listagem d
  * LOGIN
  */
 define("MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO", "Usuário master não encontrado no sistema.");
+define("MSG_ERRO_CRIACAO_LOGIN_ADMIN", "Nao foi possivel criar o usuario administrador: ");
 
 /*
  * PERFIL
@@ -135,7 +141,7 @@ define("MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA", "'Nao foi possivel trocar a senha 
 define("MSG_ERRO_DADOS_PESSOAIS_DADOS_CONTA", "Erro ao tentar salvar os dados da conta: ");
 
 
-/**
+/*
  * PARAMETROS
  */
 define("MSG_ERRO_PARAMETRO_ID_INVALIDO", "O id passado como parametro é inválido");
@@ -145,6 +151,7 @@ define("MSG_ERRO_PARAMETRO_ID_INVALIDO", "O id passado como parametro é inváli
  * MAPPER
  */
 define("MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO", "Table data gateway inválido.");
+define("MSG_ERRO_MAPPER_NAO_ENCONTRADO", "O objeto não possui mapper.");
 
 /*
  * SENDING EMAIL
@@ -163,7 +170,7 @@ define("MSG_ERRO_EMAIL_JA_VALIDADO", "Email já validado no sistema.");
 define("MSG_ERRO_EMAIL_VALIDACAO_EXPIRADO", "Link para validação expirado, recomeçe o seu cadastro.");
 define("MSG_ERRO_EMAIL_CHECK_CONSTRAINT","Chave estrangeira do e-mail não confere.");
 
-/**
+/*
  * OBJETO
  */
 define("MSG_ERRO_NAO_OBJETO", "O parametro passado não é um objeto.");
