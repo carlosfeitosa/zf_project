@@ -136,6 +136,15 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	// verificando o resultado do reset
     	if (Basico_OPController_PersistenceOPController::bdResetaBD()) {
 
+			// verificando se o sistema deve gerar versoes para os objetos do sistema
+	        if (APPLICATION_DATABASE_RESET_MAKE_SYSTEM_CHECKSUM) {
+		        // versionando todos os objetos do sistema
+		        Basico_OPController_PersistenceOPController::bdVersionaObjetosNaoVersionados();
+	        }
+
+	        // criando o usuario admin
+	        Basico_OPController_LoginOPController::getInstance()->criaLoginAdmin();
+
     		// retirando o usuario da sessao
     		Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
 
