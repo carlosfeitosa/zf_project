@@ -1,32 +1,71 @@
 <?php
-// percorre as variáveis e objetos contidas na view
-foreach ($this->getVars() as $key => $value){
+function concatenaConteudoElementoArray($array, $key, $value) {
+
+	if (array_key_exists($key, $array)) {
+		$array[$key] .= $value;	
+	} else {
+		$array[$key] = $value;
+	}
 	
-	if (is_array($value)) {
+	return $array;
+}
+
+// percorre as variáveis e objetos contidas na view
+foreach ($this->getVars() as $keyVarView => $valueVarView){
+	
+	if (is_array($valueVarView)) {
 		
-		foreach ($value as $chave => $conteudo){
-				// verifica se existe objetos do tipo formulário na view
-			if (is_object($conteudo) and is_subclass_of($conteudo, 'Zend_Form')) {
-		
-				// carregando o form na view
-				echo $conteudo;
+		foreach ($valueVarView as $chave => $conteudo){
+
+			if ($keyVarView === 'scripts') {
+				$arrayScripts[] = $conteudo;
+				continue;
+			}
 			
-				// setando o foco para o primeiro elemento do formulario
-				echo Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript(Basico_OPController_UtilOPController::retornaNomePrimeiroElementoFormulario($this->form));
-			
-				// recuperando o tipo de container que agraga os subformularios do formulario, caso o formulario possuia filhos
-				$tipoContainerFormulario = Basico_OPController_UtilOPController::retornaTipoContainerFormulario($conteudo);
-			
-				// verificando se eh preciso setar funcao para setar focus
-				if ($tipoContainerFormulario) {
-					// setando funcao para setar o focus para o primeiro elemento de uma aba selecionada, para um formulario com subformularios
-					echo Basico_OPController_UtilOPController::setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($conteudo->getName(), $tipoContainerFormulario);
-				}
+			// se o conteúdo da possição percorrida não for um objeto, carrega o conteúdo no array $html[]. 
+			if (!is_object($conteudo)) {
+				
+				// adicionando o conteúdo da variável da view no array de elementos html
+				$arrayHtmlElements = concatenaConteudoElementoArray($arrayHtmlElements, $keyVarView, $conteudo);
+					
 			} else {
-				echo $conteudo;
+				
+				// verifica se existe objetos do tipo formulário na view
+				if (is_object($conteudo) and is_subclass_of($conteudo, 'Zend_Form')) {
+			
+					$arrayHtmlElements = concatenaConteudoElementoArray($arrayHtmlElements, $keyVarView, $conteudo->render());
+
+					// setando o foco para o primeiro elemento do formulario
+					$arrayHtmlElements = concatenaConteudoElementoArray($arrayHtmlElements, $keyVarView, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript(Basico_OPController_UtilOPController::retornaNomePrimeiroElementoFormulario($conteudo)));
+				
+					// recuperando o tipo de container que agraga os subformularios do formulario, caso o formulario possuia filhos
+					$tipoContainerFormulario = Basico_OPController_UtilOPController::retornaTipoContainerFormulario($conteudo);
+				
+					// verificando se eh preciso setar funcao para setar focus
+					if ($tipoContainerFormulario) {
+						// setando funcao para setar o focus para o primeiro elemento de uma aba selecionada, para um formulario com subformularios
+						$scriptFocuAba =  Basico_OPController_UtilOPController::setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($conteudo->getName(), $tipoContainerFormulario);
+						$arrayHtmlElements = concatenaConteudoElementoArray($arrayHtmlElements, $keyVarView, $scriptFocuAba);
+					}
+				}				
 			}		
 		}
 	} else {
-		echo $value;
-	}	
+		
+		// verificando se a variavel da view é um javascript
+		if ($keyVarView === 'scripts') {
+			// adicionando o script no array de scripts
+			$arrayScripts = concatenaConteudoElementoArray($arrayHtmlElements, $keyVarView, $valueVarView);
+			continue;
+		}
+		
+		// adicionando o conteúdo da variável da view no array de elementos html
+		$arrayHtmlElements = concatenaConteudoElementoArray($arrayHtmlElements, $keyVarView, $valueVarView);
+	}
+
+	// enviando o conteúdo do elemento para o layout
+	$this->$keyVarView = $arrayHtmlElements[$keyVarView];
+	
 }
+// enviando os scripts para o layout
+$this->scripts = $arrayScripts;
