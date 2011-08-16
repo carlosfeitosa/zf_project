@@ -181,7 +181,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			$condicaoSQL .= " and id_categoria_pai = {$idCategoriaPai}";
 
 		// recuperando objeto categoria
-		$objCategoria = $this->_model->fetchList($condicaoSQL, null, 1, 0);
+		$objCategoria = $this->retornaObjetosPorParametros($this->_model, $condicaoSQL, null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoria[0]))
@@ -213,8 +213,14 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		if ((isset($idCategoriaPai)) and ($idCategoriaPai >= 1))
 			$condicaoSQL .= " and id_categoria_pai = {$idCategoriaPai}";
 
-		// recuperando objeto categoria
-		$objsCategoria = $this->_model->fetchList($condicaoSQL, null, 1, 0);
+		// verificando se trata-se da categoria CVC
+		if ($nomeCategoria === CATEGORIA_CVC) {
+			// dando bypass nos metodos de checksum
+			$objsCategoria = $this->_model->getMapper()->fetchList($condicaoSQL, null, 1, 0);
+		} else {
+			// recuperando objeto categoria
+			$objsCategoria = $this->retornaObjetosPorParametros($this->_model, $condicaoSQL, null, 1, 0);
+		}
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objsCategoria[0])) {
@@ -483,7 +489,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		$nomeTipoCategoriaCVC = TIPO_CATEGORIA_CVC;
 
 		// recuperando objeto
-		$objTipoCategoriaCVC = $modelTipoCategoria->fetchList("nome = '{$nomeTipoCategoriaCVC}'", null, 1, 0);
+		$objTipoCategoriaCVC = $modelTipoCategoria->getMapper()->fetchList("nome = '{$nomeTipoCategoriaCVC}'", null, 1, 0);
 		
 		// checando se o objeto foi recuperado
 		if (isset($objTipoCategoriaCVC[0]))
@@ -540,7 +546,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 			$condicao = "id_tipo_categoria = {$idTipoCategoriaLinguagem} and ativo = 1";
 
 		// recuperando categorias de liguas ativas
-		$objsCategoriasLinguasAtivas = $this->_model->fetchList($condicao);
+		$objsCategoriasLinguasAtivas = $this->retornaObjetosPorParametros($this->_model, $condicao);
 		
 		// retornando o array de objetos contendo as categorias de linguas ativas
 		return $objsCategoriasLinguasAtivas;

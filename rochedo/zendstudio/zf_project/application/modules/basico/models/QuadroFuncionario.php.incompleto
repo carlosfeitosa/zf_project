@@ -193,7 +193,7 @@ class Basico_Model_QuadroFuncionario
     	// recuperando o modelo
         $model = new Basico_Model_Categoria();
         // recuperando o objeto
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         // retornando o objeto
         return $object;
     }
@@ -229,7 +229,7 @@ class Basico_Model_QuadroFuncionario
     	// recuperando o modelo
         $model = new Basico_Model_PessoaJuridica();
         // recuperando o objeto
-        $object = $model->find($this->_pessoaJuridica);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaJuridica);
         // retornando o objeto
         return $object;
     }
@@ -265,7 +265,7 @@ class Basico_Model_QuadroFuncionario
     	// recuperando o modelo
         $model = new Basico_Model_TitulacaoAcademica();
         // recuperando o objeto
-        $object = $model->find($this->_titulacaoAcademica);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_titulacaoAcademica);
         // retornando o objeto
         return $object;
     }
@@ -339,39 +339,5 @@ class Basico_Model_QuadroFuncionario
 			$this->setMapper(new Basico_Model_QuadroFuncionarioMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_QuadroFuncionario
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find($id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

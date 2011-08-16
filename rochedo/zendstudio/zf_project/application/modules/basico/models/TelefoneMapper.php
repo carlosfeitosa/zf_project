@@ -27,7 +27,7 @@ class Basico_Model_TelefoneMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -163,5 +163,4 @@ class Basico_Model_TelefoneMapper
 		}
 		return $entries;
 	}
-
 }

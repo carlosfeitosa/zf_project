@@ -130,7 +130,7 @@ class Basico_Model_TemplateFormulario
     public function getTemplateObject()
     {
         $model = new Basico_Model_Template();
-        $object = $model->find($this->_template);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_template);
         return $object;
     }
     
@@ -163,7 +163,7 @@ class Basico_Model_TemplateFormulario
     public function getFormularioObject()
     {
         $model = new Basico_Model_Formulario();
-        $object = $model->find($this->_formulario);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_formulario);
         return $object;
     }
     
@@ -238,60 +238,4 @@ class Basico_Model_TemplateFormulario
         }
         return $this->_mapper;
     }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_TemplateFormulario
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find((Int) $id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
-    }
-        
-    /**
-    * fetch list of entries that satisfy the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-
 }

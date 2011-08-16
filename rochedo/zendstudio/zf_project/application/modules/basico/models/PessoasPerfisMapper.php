@@ -57,9 +57,11 @@ class Basico_Model_PessoasPerfisMapper
     public function save(Basico_Model_PessoasPerfis $object)
     {
         $data = array(
-                'id_pessoa' => $object->getPessoa(),
-                'id_perfil' => $object->getPerfil(),
-        		'rowinfo'   => $object->getRowinfo(),
+                'id_pessoa'                   => $object->getPessoa(),
+                'id_perfil'                   => $object->getPerfil(),
+        		'datahora_cadastro'           => $object->getDataHoraCadastro(),
+        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
+        		'rowinfo'                     => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {

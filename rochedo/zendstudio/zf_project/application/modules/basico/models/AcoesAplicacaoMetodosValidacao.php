@@ -140,7 +140,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
     public function getAcaoAplicacaoObject()
     {
         $model = new Basico_Model_AcaoAplicacao();
-        $object = $model->find($this->_acaoaplicacao);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_acaoaplicacao);
         return $object;
     }
     
@@ -173,7 +173,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
     public function getMetodoValidacaoObject()
     {
         $model = new Basico_Model_MetodoValidacao();
-        $object = $model->find($this->_metodovalidacao);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_metodovalidacao);
         return $object;
     }
 
@@ -206,7 +206,7 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
     public function getPerfilObject()
     {
         $model = new Basico_Model_Perfil();
-        $object = $model->find($this->_perfil);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_perfil);
         return $object;
     }
 
@@ -279,39 +279,5 @@ class Basico_Model_AcoesAplicacaoMetodosValidacao
             $this->setMapper(new Basico_Model_AcoesAplicacaoMetodosValidacaoMapper());
         }
         return $this->_mapper;
-    }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_AcaoAplicacaoMetodoValidacao
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find($id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
     }
 }

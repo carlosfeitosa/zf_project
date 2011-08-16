@@ -148,12 +148,12 @@ class Basico_Model_RegimeTrabalho
 			$idRegimeTrabalhoParaLocalizar = $this->_id;
 		
 		/* localiza a categoria */
-		$rootRegimeTrabalhoPaiObject->find($idRegimeTrabalhoParaLocalizar);
+		$rootRegimeTrabalhoPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootRegimeTrabalhoPaiObject, $idRegimeTrabalhoParaLocalizar);
 		
 		/* loop para chegar na categoria raiz */
 		while ($rootRegimeTrabalhoPaiObject->regimeTrabalhoPai) {
 			// localizando regime de trabalho pai
-			$rootRegimeTrabalhoPaiObject->find($rootRegimeTrabalhoPaiObject->regimeTrabalhoPai);
+			$rootRegimeTrabalhoPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootRegimeTrabalhoPaiObject, $rootRegimeTrabalhoPaiObject->regimeTrabalhoPai);
 		}
 
 		// retornando o objeto root
@@ -170,7 +170,7 @@ class Basico_Model_RegimeTrabalho
 		// recuperando o modelo
 		$model = new Basico_Model_RegimeTrabalho();
 		// recuperando o objeto
-		$object = $model->find($this->_regimeTrabalhoPai);
+		$object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_regimeTrabalhoPai);
 		// retornando o objeto
 		return $object;
 	}
@@ -288,39 +288,5 @@ class Basico_Model_RegimeTrabalho
 			$this->setMapper(new Basico_Model_RegimeTrabalhoMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_RegimeTrabalho
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

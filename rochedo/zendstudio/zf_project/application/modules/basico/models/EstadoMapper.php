@@ -27,7 +27,7 @@ class Basico_Model_EstadoMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -152,69 +152,4 @@ class Basico_Model_EstadoMapper
 		}
 		return $entries;
 	}
-
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'estado'),
-                   array('id' => 'table1.id',
-                        'nome' => 'table1.nome' ,
-                        'sigla' => 'table1.sigla' ,
-                        'codigo_ddd' => 'table1.codigo_ddd' ,
-                        'id_pais' => 'table1.id_pais)',
-                        'id_categoria' => 'table1.id_categoria)'))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_Estado();
-            $entry->setId($row['id'])
-                ->setNome($row['nome'])
-                ->setSigla($row['sigla'])
-                ->setCodigoDDD($row['codigo_ddd'])
-                ->setPais($row['id_pais'])
-                ->setCategoria($row['id_categoria'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_Estado();
-            $entry->setId($row->id)
-				->setNome($row->nome)
-				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigo_ddd)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria)
-                ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }    
-
 }

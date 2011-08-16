@@ -57,8 +57,8 @@ class Basico_Model_FormulariosElementosMascarasMapper
     public function save(Basico_Model_FormulariosElementosMascaras $object)
     {
         $data = array(
-                'mascara' => $object->getMascara(),
-                'formulario_elemento' => $object->getFormularioElemento(),
+                'id_mascara' => $object->getMascara(),
+                'id_formulario_elemento' => $object->getFormularioElemento(),
                 'rowinfo'             => $object->getRowinfo(),
         );
 
@@ -95,8 +95,8 @@ class Basico_Model_FormulariosElementosMascarasMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setMascara($row->mascara)
-               ->setFormularioElemento($row->formulario_elemento)
+               ->setMascara($row->id_mascara)
+               ->setFormularioElemento($row->id_formulario_elemento)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -113,8 +113,8 @@ class Basico_Model_FormulariosElementosMascarasMapper
         {
             $entry = new Basico_Model_FormulariosElementosMascaras();
             $entry->setId($row->id)
-                ->setMascara($row->mascara)
-                ->setFormularioElemento($row->formulario_elemento)
+                ->setMascara($row->id_mascara)
+                ->setFormularioElemento($row->id_formulario_elemento)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
@@ -135,8 +135,8 @@ class Basico_Model_FormulariosElementosMascarasMapper
         {
             $entry = new Basico_Model_FormulariosElementosMascaras();
             $entry->setId($row->id)
-                  ->setMascara($row->mascara)
-                  ->setFormularioElemento($row->formulario_elemento)
+                  ->setMascara($row->id_mascara)
+                  ->setFormularioElemento($row->id_formulario_elemento)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

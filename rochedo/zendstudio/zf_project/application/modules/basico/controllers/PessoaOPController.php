@@ -185,6 +185,8 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	/**
 	 * Retorna o id da pessoa master (sistema)
 	 * 
+	 * @deprecated
+	 * 
 	 * @return Integer
 	 */
 	public function retornaIdPessoaSistema()
@@ -192,7 +194,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 		// recuperando informacoes sobre o rowinfo master
 		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
 		// recuperando o objeto pessoa
-		$objsPessoaSistema = $this->_model->fetchList("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
+		$objsPessoaSistema = $this->retornaObjetosPorParametros($this->_model, "rowinfo = '{$rowinfoMaster}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado
 		if (isset($objsPessoaSistema[0]))
@@ -285,7 +287,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	public function retornaIdPerfilPadraoPorIdPessoa($idPessoa)
 	{
 		// retornando o id do perfil padrao da pessoa
-		return $this->_model->find($idPessoa)->perfilPadrao;
+		return $this->retornaObjetoPorId($this->_model, $idPessoa)->perfilPadrao;
 	}
 
 	/**
@@ -299,7 +301,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	public function retornaVersaoObjetoPessoaPorIdPessoa($idPessoa, $forceVersioning = false)
 	{
 		// recuperando objeto pessoa
-		$object = $this->_model->find($idPessoa);
+		$object = $this->retornaObjetoPorId($this->_model, $idPessoa);
 
 		// retornando a versao do objeto
 		return Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($object, $forceVersioning);
@@ -317,7 +319,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	public function atualizaPerfilPadraoPessoa($idPessoa, $idPerfilPadrao, $versaoObjetoPessoa)
 	{
 		// recuperando o objeto pessoa
-		$object = $this->_model->find($idPessoa);
+		$object = $this->retornaObjetoPorId($this->_model, $idPessoa);
 
 		// verificando se o objeto foi carregado
 		if ($object->id) {

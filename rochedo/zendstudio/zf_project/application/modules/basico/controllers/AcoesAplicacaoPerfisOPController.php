@@ -71,7 +71,7 @@ class Basico_OPController_AcoesAplicacaoPerfisOPController extends Basico_Abstra
 	public function retornaTodosObjetosAcoesAplicacaoPerfis()
 	{
 		// retornando acoes da aplicacao
-		return $this->_model->fetchAll();
+		return $this->retornaTodosObjetos($this->_model);
 	}
 
 	public static function retornaArrayNomePerfilNomeModuloNomeControllerNomeActionTodasAcoesAplicacaoPerfisViaSQL()

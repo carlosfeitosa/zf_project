@@ -57,8 +57,8 @@ class Basico_Model_ModuloPerfilMapper
     public function save(Basico_Model_ModuloPerfil $object)
     {
         $data = array(
-                'modulo' => $object->getModulo(),
-                'perfil' => $object->getPerfil(),
+                'id_modulo' => $object->getModulo(),
+                'id_perfil' => $object->getPerfil(),
                 'rowinfo'=> $object->getRowinfo(),
         );
 
@@ -95,8 +95,8 @@ class Basico_Model_ModuloPerfilMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setModulo($row->modulo)
-               ->setPerfil($row->perfil)
+               ->setModulo($row->id_modulo)
+               ->setPerfil($row->id_perfil)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -113,8 +113,8 @@ class Basico_Model_ModuloPerfilMapper
         {
             $entry = new Basico_Model_ModuloPerfil();
             $entry->setId($row->id)
-                ->setModulo($row->modulo)
-                ->setPerfil($row->perfil)
+                ->setModulo($row->id_modulo)
+                ->setPerfil($row->id_perfil)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
@@ -135,8 +135,8 @@ class Basico_Model_ModuloPerfilMapper
         {
             $entry = new Basico_Model_ModuloPerfil();
             $entry->setId($row->id)
-                  ->setModulo($row->modulo)
-                  ->setPerfil($row->perfil)
+                  ->setModulo($row->id_modulo)
+                  ->setPerfil($row->id_perfil)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

@@ -181,14 +181,15 @@ class Basico_OPController_DBUtilOPController
     
     /**
      * Reseta o login do usuário master do sistema no arquivo .htaccess
+     * 
      * @return Boolean
      */
     private static function resetaLoginUsuarioMaster()
     {
-    	//setando a mascara
+	   	//setando a mascara
     	$pattern = "@(". QUEBRA_DE_LINHA ."SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . QUEBRA_DE_LINHA . ")@";
     	//setando string de substituicao
-    	$replacement = QUEBRA_DE_LINHA . 'SetEnv APPLICATION_SYSTEM_LOGIN ' . Basico_OPController_LoginOPController::getInstance()->retornaLoginUsuarioMasterDB() . QUEBRA_DE_LINHA;
+    	$replacement = QUEBRA_DE_LINHA . 'SetEnv APPLICATION_SYSTEM_LOGIN ' . Basico_OPController_LoginOPController::getInstance()->retornaLoginUsuarioMasterDBViaSQL() . QUEBRA_DE_LINHA;
     	//recuperando conteudo do arquivo htaccess
     	$conteudoHtaccess = Basico_OPController_UtilOPController::retornaConteudoArquivo(HTACCESS_FULLFILENAME);
         //recuperando o novo conteudo do arquivo htaccess
@@ -196,7 +197,7 @@ class Basico_OPController_DBUtilOPController
     	//reescrevendo o arquivo htaccess
     	Basico_OPController_UtilOPController::escreveConteudoArquivo(HTACCESS_FULLFILENAME, $conteudoNovoHtaccess);
     }
-     
+
     /**
      * Apaga todas as tabelas do banco que está sendo utilizado.
      * 

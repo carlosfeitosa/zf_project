@@ -59,7 +59,7 @@ class Basico_Model_Municipio
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		$this->$method($value);
 	}
@@ -75,7 +75,7 @@ class Basico_Model_Municipio
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		return $this->$method();
 	}
@@ -151,7 +151,7 @@ class Basico_Model_Municipio
     public function getEstadoObject()
     {
         $model = new Basico_Model_Estado();
-        $object = $model->find($this->_estado);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_estado);
         return $object;
     }
     
@@ -184,7 +184,7 @@ class Basico_Model_Municipio
     public function getCategoriaObject()
     {
         $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         return $object;
     }
 
@@ -236,59 +236,4 @@ class Basico_Model_Municipio
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Municipio
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-	   
-    /**
-    * fetch list of entries satisfying the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-
 }

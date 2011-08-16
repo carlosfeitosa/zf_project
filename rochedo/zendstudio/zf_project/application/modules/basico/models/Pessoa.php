@@ -146,7 +146,7 @@ class Basico_Model_Pessoa
 		$model = new Basico_Model_Perfil();
 
 		// recuperando objeto
-        $object = $model->find($this->_perfilPadrao);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_perfilPadrao);
 
         // retornando o objeto
         return $object;
@@ -199,39 +199,5 @@ class Basico_Model_Pessoa
 			$this->setMapper(new Basico_Model_PessoaMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Pessoa
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

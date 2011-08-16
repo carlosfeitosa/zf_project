@@ -90,16 +90,38 @@ abstract class Basico_Abstract_RochedoPersistentOPController
 	 */
 	public function retornaObjetoPorId($model, $idObjeto)
 	{
-		// verificando se o parametro eh um objeto
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, true);
+		// retornando o objeto por id
+		return Basico_OPController_PersistenceOPController::bdObjectFind($model, $idObjeto);
+	}
 
-		// verificando se o objeto possui o metodo find
-		if (method_exists($model, 'find')) {
-			// retornando o objeto por id
-			return $model->find($idObjeto);
-		}
+	/**
+	 * Retorna todos os objetos do modelo passado por parametro
+	 * 
+	 * @param Object $model
+	 * 
+	 * @return Array|null
+	 */
+	public function retornaTodosObjetos($model)
+	{
+		// retorna todos os objetos do modelo especificado
+		return Basico_OPController_PersistenceOPController::bdObjectFetchAll($model);
+	}
 
-		return null;
+	/**
+	 * Retorna todos os objetos de um modelo atraves dos parametros passados
+	 * 
+	 * @param Object $model
+	 * @param String $where
+	 * @param String $order
+	 * @param Integer $count
+	 * @param Integer $offset
+	 * 
+	 * @return Array|null
+	 */
+	public function retornaObjetosPorParametros($model, $where=null, $order=null, $count=null, $offset=null)
+	{
+		// retorna todos os objetos do modelo especificado atraves dos parametros passados
+		return Basico_OPController_PersistenceOPController::bdObjectFetchList($model, $where, $order, $count, $offset);
 	}
 
 	/**

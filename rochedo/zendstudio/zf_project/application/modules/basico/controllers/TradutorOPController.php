@@ -88,7 +88,7 @@ class Basico_OPController_TradutorOPController
         $idCategoriaLinguagem = $categoriaOPController->retornaIdCategoriaLinguagem($linguaDestino);
 
         // recuperando traducao
-        $objTradutor = $this->_tradutor->fetchList("id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
+        $objTradutor = Basico_OPController_PersistenceOPController::bdObjectFetchList($this->_tradutor, "id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
 
         // verificando a traducao existe no banco de dados para a lingua passada por parametro
         if (isset($objTradutor[0])) {
@@ -102,7 +102,7 @@ class Basico_OPController_TradutorOPController
             $idCategoriaLinguagem = $objCategoriaLinguagem->id;
 
             // recuperando traducao
-            $objTradutor = $this->_tradutor->fetchList("id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
+            $objTradutor = Basico_OPController_PersistenceOPController::bdObjectFetchList($this->_tradutor, "id_categoria = {$idCategoriaLinguagem} AND constante_textual = '{$constanteTextual}'", null, 1, 0);
 
             // verificando a traducao existe no banco de dados para a lingua padrao do sistema
             if (isset($objTradutor[0]))

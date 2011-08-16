@@ -5,14 +5,14 @@
  */
  
 /**
- * Faturamento model
+ * Produto model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_FaturamentoMapper
+ * @uses       Basico_Model_ProdutoMapper
  * @subpackage Model
  */
-class Basico_Model_Faturamento
+class Basico_Model_Produto
 {
 	/**
 	* @var int
@@ -20,18 +20,34 @@ class Basico_Model_Faturamento
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_FaturamentoMapper
+	 * @var Basico_Model_ProdutoMapper
 	 */
 	protected $_mapper;
 
 	/**
 	 * @var Integer
 	 */
-	protected $_anoFiscal;
+	protected $_idGenericoProprietario;
+	/**
+	 * @var String
+	 */
+	protected $_nome;
+	/**
+	 * @var String
+	 */
+	protected $_descricao;
 	/**
 	 * @var Double
 	 */
-	protected $_faturamento;
+	protected $_custoProducao;
+	/**
+	 * @var Double
+	 */
+	protected $_valorComercial;
+	/**
+	 * @var Double
+	 */
+	protected $_baseImposto;
     /**
      * @var Integer
      */
@@ -92,7 +108,7 @@ class Basico_Model_Faturamento
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Faturamento
+	 * @return Basico_Model_Produto
 	 */
 	public function setOptions(array $options)
 	{
@@ -109,54 +125,142 @@ class Basico_Model_Faturamento
 	}
     
 	/**
-	* Set anoFiscal
+	* Set idGenericoProprietario
 	* 
-	* @param Integer $anoFiscal 
-	* @return Basico_Model_Faturamento
+	* @param Integer $idGenericoProprietario 
+	* @return Basico_Model_Produto
 	*/
-	public function setAnoFiscal($anoFiscal)
+	public function setIdGenericoProprietario($idGenericoProprietario)
 	{
-		$this->_anoFiscal = Basico_OPController_UtilOPController::retornaValorTipado($anoFiscal, TIPO_INTEIRO, true);
+		$this->_idGenericoProprietario = Basico_OPController_UtilOPController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get anoFiscal
+	* Get idGenericoProprietario
 	* 
 	* @return null|Integer
 	*/
-	public function getAnoFiscal()
+	public function getIdGenericoProprietario()
 	{
-		return $this->_anoFiscal;
+		return $this->_idGenericoProprietario;
 	}
      
 	/**
-	* Set faturamento
+	* Set nome
 	* 
-	* @param Double $faturamento 
-	* @return Basico_Model_Faturamento
+	* @param String $nome 
+	* @return Basico_Model_Produto
 	*/
-	public function setFaturamento($faturamento)
+	public function setNome($nome)
 	{
-		$this->_faturamento = Basico_OPController_UtilOPController::retornaValorTipado($faturamento, TIPO_FLOAT, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get faturamento
+	* Get nome
+	* 
+	* @return null|String
+	*/
+	public function getNome()
+	{
+		return $this->_nome;
+	}
+     
+	/**
+	* Set descricao
+	* 
+	* @param String $descricao 
+	* @return Basico_Model_Produto
+	*/
+	public function setDescricao($descricao)
+	{
+		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get descricao
+	* 
+	* @return null|String
+	*/
+	public function getDescricao()
+	{
+		return $this->_descricao;
+	}
+     
+	/**
+	* Set custoProducao
+	* 
+	* @param Double $custoProducao 
+	* @return Basico_Model_Produto
+	*/
+	public function setCustoProducao($custoProducao)
+	{
+		$this->_custoProducao = Basico_OPController_UtilOPController::retornaValorTipado($custoProducao, TIPO_FLOAT, true);
+		return $this;
+	}
+
+	/**
+	* Get custoProducao
 	* 
 	* @return null|Double
 	*/
-	public function getFaturamento()
+	public function getCustoProducao()
 	{
-		return $this->_faturamento;
+		return $this->_custoProducao;
+	}
+     
+	/**
+	* Set valorComercial
+	* 
+	* @param Double $valorComercial 
+	* @return Basico_Model_Produto
+	*/
+	public function setValorComercial($valorComercial)
+	{
+		$this->_valorComercial = Basico_OPController_UtilOPController::retornaValorTipado($valorComercial, TIPO_FLOAT, true);
+		return $this;
+	}
+
+	/**
+	* Get valorComercial
+	* 
+	* @return null|Double
+	*/
+	public function getValorComercial()
+	{
+		return $this->_valorComercial;
+	}
+     
+	/**
+	* Set baseImposto
+	* 
+	* @param Double $baseImposto 
+	* @return Basico_Model_Produto
+	*/
+	public function setBaseImposto($baseImposto)
+	{
+		$this->_baseImposto = Basico_OPController_UtilOPController::retornaValorTipado($baseImposto, TIPO_FLOAT, true);
+		return $this;
+	}
+
+	/**
+	* Get baseImposto
+	* 
+	* @return null|Double
+	*/
+	public function getBaseImposto()
+	{
+		return $this->_baseImposto;
 	}
      
 	/**
 	* Set categoria
 	* 
 	* @param int $categoria 
-	* @return Basico_Model_Faturamento
+	* @return Basico_Model_Produto
 	*/
 	public function setCategoria($categoria)
 	{
@@ -183,7 +287,7 @@ class Basico_Model_Faturamento
     	// recuperando modelo
         $model = new Basico_Model_Categoria();
         // recuperando objeto
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         // retornando objeto
         return $object;
     }
@@ -192,7 +296,7 @@ class Basico_Model_Faturamento
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Faturamento
+	* @return Basico_Model_Categoria
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -214,7 +318,7 @@ class Basico_Model_Faturamento
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Faturamento
+	* @return Basico_Model_Produto
 	*/
 	public function setId($id)
 	{
@@ -236,7 +340,7 @@ class Basico_Model_Faturamento
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Faturamento
+	* @return Basico_Model_Produto
 	*/
 	public function setMapper($mapper)
 	{
@@ -247,49 +351,15 @@ class Basico_Model_Faturamento
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_FaturamentoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_ProdutoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_FaturamentoMapper
+	* @return Basico_Model_ProdutoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_FaturamentoMapper());
+			$this->setMapper(new Basico_Model_ProdutoMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Faturamento
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

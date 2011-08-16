@@ -288,7 +288,7 @@ class Basico_Model_Ajuda
     public function getFormularioObject()
     {
         $model = new Basico_Model_Formulario();
-        $object = $model->find($this->_formulario);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_formulario);
         return $object;
     }
     
@@ -321,7 +321,7 @@ class Basico_Model_Ajuda
     public function getFormularioElementoObject()
     {
         $model = new Basico_Model_FormularioElemento();
-        $object = $model->find($this->_formularioElemento);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_formularioElemento);
         return $object;
     }
     
@@ -395,39 +395,4 @@ class Basico_Model_Ajuda
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Ajuda
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-
 }

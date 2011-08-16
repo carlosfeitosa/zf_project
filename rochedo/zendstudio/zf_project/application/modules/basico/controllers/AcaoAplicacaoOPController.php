@@ -71,7 +71,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 	public function retornaTodosObjetosAcaoAplicacao()
 	{
 		// retornando todas as acoes da aplicacao
-		return $this->_model->fetchAll();
+		return $this->retornaTodosObjetos($this->_model);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 
 		// retornando todas as acoes aplicacao ativas
-		return $this->_model->fetchList("ativo = {$ativo}");
+		return $this->retornaObjetosPorParametros($this->_model, "ativo = {$ativo}");
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(false, true);
 		
 		// retornando todas as acoes aplicacao desativadas
-		return $this->_model->fetchList("ativo = {$ativo}");
+		return $this->retornaObjetosPorParametros($this->_model, "ativo = {$ativo}");
 	}
 
 	/**
@@ -141,7 +141,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule);
 
 		// recuperando objeto acao aplicacao
-		$objsAcaoAplicacao = $this->_model->fetchList("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
+		$objsAcaoAplicacao = $this->retornaObjetosPorParametros($this->_model, "id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado com sucesso
 		if ($objsAcaoAplicacao[0]->id)

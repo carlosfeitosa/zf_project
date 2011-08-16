@@ -108,7 +108,7 @@ class Basico_OPController_CVCOPController
     private function retornaObjUltimaVersao($idCategoriaChaveEstrangeira, $idGenerico)
     {
     	// recuperando a tupla
-    	$arrayObjsCVC = $this->_cvc->fetchList("id_categoria_chave_estrangeira = {$idCategoriaChaveEstrangeira} and id_generico = {$idGenerico} and validade_termino is null", null, 1, 0);
+    	$arrayObjsCVC = $this->_cvc->getMapper()->fetchList("id_categoria_chave_estrangeira = {$idCategoriaChaveEstrangeira} and id_generico = {$idGenerico} and validade_termino is null", null, 1, 0);
     	
     	// verificando se a tupla existe
     	if (isset($arrayObjsCVC[0]))
@@ -117,7 +117,7 @@ class Basico_OPController_CVCOPController
     	else
     		return null; 
     }
-    
+
     /**
      * Compara o objeto com o objeto da ultima versao
      * Retorna true se o objeto for igual a ultima versao contida no CVC.
@@ -185,7 +185,46 @@ class Basico_OPController_CVCOPController
 			return null;
 		}
     }
-    
+
+    /**
+     * Retorna o checksum de um objeto, atraves de sua ultima versao
+     * 
+     * @param Object $objeto
+     * 
+     * @return String|null
+     */
+    public function retornaChecksumObjeto($objeto)
+    {
+    	// instanciando controladores
+    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+
+    	// recuperando o valor do id generico vindo do objeto
+		$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
+
+		// verificando se o valor de id generico existe
+		if (!$idGenerico)
+			return null;
+
+		// recuperando a relacao categoria chave estrangeira
+		$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
+
+		// verificando se existe a relacao com categoria chave estrangeira
+		if (isset($objCategoriaChaveEstrangeira)) {
+			// recuperando objeto CVC
+			$objCVC = $this->retornaObjUltimaVersao($objCategoriaChaveEstrangeira->id, $idGenerico);
+
+			// verificando a tupla existe
+			if (isset($objCVC)) {
+				// retorna o checksum da tupla
+				return $objCVC->checksum;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+    }
+
     /**
      * Versiona um objeto e retorna o numero da versão
      * 
@@ -260,9 +299,9 @@ class Basico_OPController_CVCOPController
 		$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
 
     	// recuperando id da relacao de categoria chave estrangeira
-    	$categoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaCategoriaChaveEstrangeira($objeto);
+    	$categoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
     	// recuperando id generico do objeto
-    	$idGenerico = Basico_OPController_UtilOPController::retornaIdGenericoObjeto($objeto);
+    	$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
     	// recuperando objeto CVC contendo a ultima versao do objeto
     	$objUltimaVersao = self::retornaObjUltimaVersao($categoriaChaveEstrangeira->id, $idGenerico);
 
@@ -288,8 +327,11 @@ class Basico_OPController_CVCOPController
      */
     private function adicionaIdObjetoManipuladoArrayObjetosManipulados($idObjeto)
     {
-    	// adicionando o id objeto no atributo-array
-    	$this->_arrayObjetosManipulados[] = $idObjeto;
+    	// verificando se o atributo _arrayObjetosManipulados foi inicializado
+    	if (is_array($this->_arrayObjetosManipulados)) {
+	    	// adicionando o id objeto no atributo-array
+	    	$this->_arrayObjetosManipulados[] = $idObjeto;
+    	}
     }
 
     /**
@@ -301,6 +343,17 @@ class Basico_OPController_CVCOPController
     {
     	// limpando o array de ids de objetos manipulados
     	$this->_arrayObjetosManipulados = array();
+    }
+
+    /**
+     * Desabilita o pool de ids de objetos cvc manipulados
+     * 
+     * @return void
+     */
+    private function desabilitaPoolIdsObjetosManipulados()
+    {
+    	// setando para null o atributo _arrayObjetosManipulados
+    	$this->_arrayObjetosManipulados = null;
     }
 
     /**
@@ -372,12 +425,195 @@ class Basico_OPController_CVCOPController
 			$objeto = new $nomeObjeto();
 
 			// recuperando a versao atual
-			$objeto->find($idObjeto);
+			$objeto = Basico_OPController_PersistenceOPController::bdObjectFind($objeto, $idObjeto);
 
 			// retornando array com os atributos do objeto
 			return Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_TO_ARRAY_USANDO_BLACKLIST_ATRIBUTOS_SISTEMA);
 		}
 
 		return null;
+	}
+
+	/**
+	 * Varre os modelos do sistema procurando por objetos nao versionados e versiona-os
+	 * 
+	 * @return Boolean
+	 */
+	public function versionarObjetosNaoVersionados()
+	{
+		// recuperando o tempo de execucao do php
+		$tempoExecucaoPhp = ini_get('max_execution_time');
+
+		// setando o tempo maximo de execucao do php para 600 segundos para que esta operacao funcione
+		set_time_limit(APPLICATION_DATABASE_MAKE_SYSTEM_CHECKSUM_MAXTIME_SECONDS);
+		// desabilitado o pool de ids de objetos manipulados (p/log)
+		self::desabilitaPoolIdsObjetosManipulados();
+
+		// recuperando todos os modelos dos sistema
+		$arrayNomesModelosSistema = Basico_OPController_UtilOPController::retornaArrayNomeTodosModelosSistema(true);
+
+		// recuperando array de objetos que nao devem ser versionados
+		$arrayNomesObjetosNaoVersionais = self::retornaArrayNomesObjetosNaoVerionaveis();
+
+		// loop para remover os objetos nao verionaveis do array de modelos do sistema
+		foreach ($arrayNomesObjetosNaoVersionais as $nomeObjetoNaoVersionavel) {
+			// localizando o objeto nao versionavel no array de modelos do sistema
+			if (($chaveObjetoNaoVersionavel = array_search($nomeObjetoNaoVersionavel, $arrayNomesModelosSistema)) !== false) {
+				// removendo elemento
+				unset($arrayNomesModelosSistema[$chaveObjetoNaoVersionavel]);
+			}
+		}
+
+		// iniciando transacao
+		Basico_OPController_PersistenceOPController::bdControlaTransacao();
+
+		// loop para recuperar todos os objetos dos modelos
+		foreach ($arrayNomesModelosSistema as $nomeModelo) {
+			try {			
+				// instanciando o modelo
+				$modelo = new $nomeModelo();
+
+				// verificando se o modelo possui mapper
+				if ((property_exists($modelo, '_mapper')) and (method_exists($modelo, 'getMapper')) and (method_exists($modelo->getMapper(), 'fetchAll'))) {
+					// recuperando os objetos
+					$objetos = $modelo->getMapper()->fetchAll();
+	
+					// verificando se houve recuperacao de objetos
+					if (count($objetos)) {
+						// loop para verificar se o objeto foi versionado
+						foreach ($objetos as $objeto) {
+							// versionando objetos nao versionados
+							$versaoObjeto = self::retornaUltimaVersao($objeto, true);
+						}
+					}
+				}
+			} catch (Exception $e) {
+				// voltando a transacao
+				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+
+				// estourando excessao
+				throw new Exception(MSG_ERRO_CVC_FALHOU . $nomeModelo . " " . $e->getMessage());
+			}
+		}
+
+		// salvando a transacao
+		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+
+		// voltando o tempo de execucao do php
+		set_time_limit($tempoExecucaoPhp);
+		// inicializando atributo $this->_arrayObjetosManipulados
+		$this->limpaArrayIdsObjetosManipulados();
+
+		// retornando sucesso
+		return true;
+	}
+
+	/**
+	 * Retorna um array contendo os objetos que o CVC nao deve versionar
+	 * 
+	 * @return Array|null
+	 */
+	public static function retornaArrayNomesObjetosNaoVerionaveis()
+	{
+		// instanciando veriaveis
+		$arrayResultado = array();
+
+		// adicionando objetos
+		$arrayResultado[] = 'Basico_Model_CVC';
+		$arrayResultado[] = 'Basico_Model_Log';
+		$arrayResultado[] = 'Basico_Model_Token';
+
+		// retornando resultado
+		return $arrayResultado;
+	}
+
+	/**
+	 * Regera o checksum de um objeto
+	 * 
+	 * @param Object $nomeModelo
+	 * @param Integer $id
+	 * 
+	 * @return Boolean
+	 */
+	public function regerarChecksumModelo($nomeModelo, $id = null)
+	{
+		// verificando se o modelo existe
+		if (!class_exists($nomeModelo, true)) {
+			// retornando fracasso
+			return false;
+		}
+
+		// recuperando array de objetos nao versionaveis
+		$arrayObjetosNaoVersionais = self::retornaArrayNomesObjetosNaoVerionaveis();
+
+		// verificando se o modelo nao se encontra no array de objetos nao versionaveis
+		if (array_search($nomeModelo, $arrayObjetosNaoVersionais)) {
+			// retornando fracasso
+			return false;
+		}
+
+		// instanciando o modelo
+		$modelo = new $nomeModelo();
+
+		// verificando se o id foi passado para localizar o objeto
+		if ($id) {
+			// localizando o objeto
+			$modelo->getMapper()->find($id, $modelo);
+			// instanciando o objeto
+			$arrayObjetos = array($modelo);
+		} else {
+			// instanciando todos os objetos
+			$arrayObjetos = $modelo->getMapper()->fetchAll();
+		}
+
+		// loop para gerar os checksum
+		foreach ($arrayObjetos as $objeto) {
+			// verificando se o objeto possui versionamento
+			$versaoObjeto = $this->retornaUltimaVersao($objeto);
+
+			// verificando se o resultado da recuperacao da versao do objeto
+			if ($versaoObjeto) {
+				// atualizando versao
+				$this->atualizaVersao($objeto);
+			} else {
+				// versionando objeto
+				$this->versionar($objeto);
+			}
+		}
+
+		// retornando sucesso
+		return true;
+	}
+
+	/**
+	 * Regera o checksum de todos os objetos do sistema
+	 * 
+	 * @return Boolean
+	 */
+	public function regerarCheckSumTodosModelos()
+	{
+		// recuperando todos os modelos do sistema
+		$arrayNomesModelosSistema = Basico_OPController_UtilOPController::retornaArrayNomeTodosModelosSistema(true);
+
+		// recuperando array de objetos nao versionaveis
+		$arrayNomesObjetosNaoVersionais = self::retornaArrayNomesObjetosNaoVerionaveis();
+
+		// loop para verificar se o array de modelos dos sitema possui algum modelo nao versionavel
+		foreach ($arrayNomesObjetosNaoVersionais as $nomeObjetoNaoVersionavel) {
+			// verificando se o modelo nao versionavel existe no array de modelos dos sitema
+			if (($chaveObjetoNaoVersionavel = array_search($nomeObjetoNaoVersionavel, $arrayNomesModelosSistema)) !== false) {
+				// removendo elemento
+				unset($arrayNomesModelosSistema[$chaveObjetoNaoVersionavel]);
+			}
+		}
+
+		// loop para regerar o checksum de todos os modelos do sistema
+		foreach ($arrayNomesModelosSistema as $nomeModeloSistema) {
+			// regerando checksum
+			$this->regerarChecksumModelo($nomeModeloSistema);
+		}
+
+		// retornando sucesso
+		return true;
 	}
 }

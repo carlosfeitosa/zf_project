@@ -38,7 +38,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 	 * 
 	 * @var Basico_Model_TipoCategoria
 	 */
-	private $_tipoCategoria;
+	private $_model;
 
 	/**
 	 * Carrega a variavel tipo categoria com um novo objeto Basico_Model_TipoCategoria
@@ -48,7 +48,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_tipoCategoria = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 	}
 
 	/**
@@ -166,7 +166,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 	private function retornaIdTipoCategoriaPorNome($nomeTipoCategoria)
 	{
 		// recuperando os objetos tipo categoria
-		$objsTipoCategoria = $this->_tipoCategoria->fetchList("NOME = '{$nomeTipoCategoria}'", null, 1, 0);
+		$objsTipoCategoria = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeTipoCategoria}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objsTipoCategoria[0]))

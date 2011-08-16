@@ -11,13 +11,13 @@
  * @since 22/03/2011
  */
 
-class Basico_OPController_RacaOPController
+class Basico_OPController_RacaOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Raca
 	 * @var Basico_OPController_RacaOPController
 	 */
-	private static $singleton;
+	private static $_singleton;
 	
 	/**
 	 * Instância do Modelo Raca.
@@ -158,11 +158,9 @@ class Basico_OPController_RacaOPController
 	 * Retorna um array contendo as raças cadastradas no sistema
 	 * @return Array
 	 */
-	public static function retornaArrayRacasOptions()
-	{
-		$objRaca = new Basico_Model_Raca();
-		
-		$racas = $objRaca->fetchAll();
+	public function retornaArrayRacasOptions()
+	{	
+		$racas = $this->retornaTodosObjetos($this->_model);
 		
 		$arrayResultado[] = "";
 		if (count($racas) > 0) {

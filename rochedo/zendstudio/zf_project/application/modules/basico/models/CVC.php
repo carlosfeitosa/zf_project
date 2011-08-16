@@ -220,7 +220,7 @@ class Basico_Model_CVC
     public function getCategoriaChaveEstrangeiraObject()
     {
         $model = new Basico_Model_CategoriaChaveEstrangeira();
-        $object = $model->find($this->_categoriaChaveEstrangeira);
+        $object = $model->getMapper()->find($this->_categoriaChaveEstrangeira);
         return $object;
     }
     
@@ -298,7 +298,7 @@ class Basico_Model_CVC
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
-		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio,TIPO_STRING,true);
+		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio,TIPO_DATE,true);
 		return $this;
 	}
 
@@ -325,7 +325,7 @@ class Basico_Model_CVC
 	public function setValidadeTermino($validadeTermino)
 	{
 		if (isset($validadeTermino))
-			$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino,TIPO_STRING,true);
+			$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino,TIPO_DATE,true);
 		return $this;
 	}
 	
@@ -364,7 +364,7 @@ class Basico_Model_CVC
 	*/
 	public function setUltimaAtualizacao($ultimaAtualizacao)
 	{
-		$this->_ultimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($ultimaAtualizacao,TIPO_STRING,true);
+		$this->_ultimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($ultimaAtualizacao,TIPO_DATE,true);
 		return $this;
 	}
 	
@@ -443,39 +443,4 @@ class Basico_Model_CVC
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* 
-	* @return Basico_Model_CVC
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}  
 }

@@ -57,14 +57,16 @@ class Basico_Model_EmailMapper
     public function save(Basico_Model_Email $object)
     {   
         $data = array(
-                      'id_generico_proprietario'  => $object->getIdGenericoProprietario(),
-                      'id_categoria'              => $object->getCategoria(),
-    			 	  'unique_id'                 => $object->getUniqueId(),
-    				  'email'                     => $object->getEmail(),
-    				  'validado'                  => $object->getValidado(),
-    				  'datahora_ultima_validacao' => $object->getDataHoraUltimaValidacao(),
-    				  'ativo'                     => $object->getAtivo(),
-        			  'rowinfo'				      => $object->getRowinfo(),
+                      'id_generico_proprietario'    => $object->getIdGenericoProprietario(),
+                      'id_categoria'                => $object->getCategoria(),
+    			 	  'unique_id'                   => $object->getUniqueId(),
+    				  'email'                       => $object->getEmail(),
+    				  'validado'                    => $object->getValidado(),
+    				  'datahora_ultima_validacao'   => $object->getDataHoraUltimaValidacao(),
+    				  'ativo'                       => $object->getAtivo(),
+        			  'datahora_cadastro'			=> $object->getDataHoraCadastro(),
+        			  'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
+        			  'rowinfo'				        => $object->getRowinfo(),
                     );
 
         if (null === ($id = $object->getId())) {

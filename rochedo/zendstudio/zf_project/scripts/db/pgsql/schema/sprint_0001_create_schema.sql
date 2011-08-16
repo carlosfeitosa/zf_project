@@ -88,7 +88,7 @@ create table log (
 	id_categoria integer not null ,
 	id_perfil_pessoa integer not null ,
 	datahora_evento timestamp with time zone not null ,
-	xml character varying (2000) not null 
+	xml character varying (7000) not null 
 )
 with (
   oids = false

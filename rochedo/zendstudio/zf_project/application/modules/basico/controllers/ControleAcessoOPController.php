@@ -552,7 +552,7 @@ class Basico_OPController_ControleAcessoOPController
 	{
 		// codificando o nome do acao completa
 		$nomeAcaoAplicacaoCompleta = $this->retornaNomeAcaoAplicacaoCompleta($request->getModuleName(), $request->getControllerName(), $request->getActionName());
-		$nomePerfilPublico = Basico_OPController_PerfilOPController::getInstance()->retornaNomePerfilUsuarioPublico();
+		$nomePerfilPublico = Basico_OPController_PerfilOPController::getInstance()->retornaNomePerfilUsuarioPublicoViaSQL();
 
 		// retornando o resultado da verificacao
 		return $this->verificaAssociacaoAcaoAplicacaoPerfil($nomePerfilPublico, $nomeAcaoAplicacaoCompleta);

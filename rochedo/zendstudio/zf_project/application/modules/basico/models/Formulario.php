@@ -490,7 +490,7 @@ class Basico_Model_Formulario
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
-		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio, TIPO_STRING, true);
+		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -512,7 +512,7 @@ class Basico_Model_Formulario
 	*/
 	public function setValidadeTermino($validadeTermino)
 	{
-		$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino, TIPO_STRING, true);
+		$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -534,7 +534,7 @@ class Basico_Model_Formulario
 	*/
 	public function setDataDesativacao($dataDesativacao)
 	{
-		$this->_dataDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataDesativacao, TIPO_STRING, true);
+		$this->_dataDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataDesativacao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -556,7 +556,7 @@ class Basico_Model_Formulario
 	*/
 	public function setDataAutoReativar($dataAutoReativar)
 	{
-		$this->_dataAutoReativar = Basico_OPController_UtilOPController::retornaValorTipado($dataAutoReativar, TIPO_STRING, true);
+		$this->_dataAutoReativar = Basico_OPController_UtilOPController::retornaValorTipado($dataAutoReativar, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -665,7 +665,7 @@ class Basico_Model_Formulario
 	public function getCategoriaObject()
 	{
 		$model = new Basico_Model_Categoria();
-		$object = $model->find($this->_categoria);
+		$object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
 		return $object;
 	}
 	
@@ -676,7 +676,7 @@ class Basico_Model_Formulario
     public function getDecoratorObject()
     {
         $model = new Basico_Model_Decorator();
-        $object = $model->find($this->_decorator);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_decorator);
         return $object;
     }
     
@@ -687,7 +687,7 @@ class Basico_Model_Formulario
     public function getAjudaObject()
     {
         $model = new Basico_Model_Ajuda();
-        $object = $model->find($this->_ajuda);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_ajuda);
         return $object;
     }
 
@@ -704,7 +704,7 @@ class Basico_Model_Formulario
     		$modelFormulario = new Basico_Model_Formulario();
     		
     		// recuperando o objeto formulario pai
-    		$modelFormulario->find($this->_formularioPai);
+    		$modelFormulario = Basico_OPController_PersistenceOPController::bdObjectFind($modelFormulario, $this->_formularioPai);
 
     		// retornando o objeto formulario pai
     		return $modelFormulario;
@@ -718,7 +718,7 @@ class Basico_Model_Formulario
     public function getFormulariosFilhosObjects()
     {
     	$modelFormulario = new Basico_Model_Formulario();
-    	$arrayFormulariosObjects = $modelFormulario->fetchList("id_formulario_pai = {$this->_id}", "ordem");
+    	$arrayFormulariosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormulario, "id_formulario_pai = {$this->_id}", "ordem");
     	
     	$arrayIdsFormularios = array();
     	foreach ($arrayFormulariosObjects as $formularioObject){
@@ -727,7 +727,7 @@ class Basico_Model_Formulario
     	
     	$stringIdsFormularios = implode(',', $arrayIdsFormularios);
     	
-    	$arrayObjects = $modelFormulario->fetchList("id IN ({$stringIdsFormularios})", "ordem");
+    	$arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormulario, "id IN ({$stringIdsFormularios})", "ordem");
         
         return $arrayObjects;
     }
@@ -739,7 +739,7 @@ class Basico_Model_Formulario
     public function getModulosObjects(array $excludeModulesNames = null)
     {
         $modelModuloFormulario = new Basico_Model_ModuloFormulario();
-        $arrayModulosFormulariosObjects = $modelModuloFormulario->fetchList("id_formulario = {$this->_id}");
+        $arrayModulosFormulariosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModuloFormulario, "id_formulario = {$this->_id}");
         $modelModulo = new Basico_Model_Modulo();
         
         $arrayIdsModulos = array();
@@ -758,9 +758,9 @@ class Basico_Model_Formulario
             $stringExcludeModulesNames = null;
         
         if (($stringIdsModulos) and ($stringExcludeModulesNames)) 
-            $arrayObjects = $modelModulo->fetchList("id IN ({$stringIdsModulos}) and nome NOT IN ({$stringExcludeModulesNames})");
+            $arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModulo, "id IN ({$stringIdsModulos}) and nome NOT IN ({$stringExcludeModulesNames})");
         else if ($stringIdsModulos) 
-            $arrayObjects = $modelModulo->fetchList("id IN ({$stringIdsModulos})");
+            $arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModulo, "id IN ({$stringIdsModulos})");
         else
             $arrayObjects = array();
         
@@ -774,7 +774,7 @@ class Basico_Model_Formulario
     public function getFormularioElementosObjects()
     {
         $modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-        $arrayFormularioFormularioElementosObjects = $modelFormularioFormularioElemento->fetchList("id_formulario = {$this->_id}", "ordem");
+        $arrayFormularioFormularioElementosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormularioFormularioElemento, "id_formulario = {$this->_id}", "ordem");
         $modelFormularioElemento = new Basico_Model_FormularioElemento();
         
         $arrayIdsFormularioElementos = array();
@@ -786,7 +786,7 @@ class Basico_Model_Formulario
         
         foreach ($arrayIdsFormularioElementos as $idFormularioElemento) {
         	$modelFormularioElemento = new Basico_Model_FormularioElemento();
-        	$arrayObjects[] = $modelFormularioElemento->find($idFormularioElemento);
+        	$arrayObjects[] = Basico_OPController_PersistenceOPController::bdObjectFind($model, $idFormularioElemento);
         }
 
         // verificando se o formulario eh persistente
@@ -802,7 +802,7 @@ class Basico_Model_Formulario
     public function getTemplatesObjects()
     {
         $modelTemplateFormulario = new Basico_Model_TemplateFormulario();
-        $arrayTemplatesFormularios = $modelTemplateFormulario->fetchList("id_formulario = {$this->_id}");
+        $arrayTemplatesFormularios = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelTemplateFormulario, "id_formulario = {$this->_id}");
         $modelTemplate = new Basico_Model_Template();
 
         $arrayIdsTemplates = array();
@@ -814,7 +814,7 @@ class Basico_Model_Formulario
         
         if (count($arrayIdsTemplates)){
 			$stringIdsTemplates = implode(',', $arrayIdsTemplates);
-        	$arrayObjects = $modelTemplate->fetchList("id IN ({$stringIdsTemplates})");
+        	$arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelTemplate, "id IN ({$stringIdsTemplates})");
         } 
         
         return $arrayObjects;
@@ -846,39 +846,4 @@ class Basico_Model_Formulario
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Formulario
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-
 }

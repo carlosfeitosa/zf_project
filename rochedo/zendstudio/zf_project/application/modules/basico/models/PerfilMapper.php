@@ -62,6 +62,8 @@ class Basico_Model_PerfilMapper
         		'constante_textual'           => $object->getConstanteTextual(),
         		'nivel'						  => $object->getNivel(),
 				'ativo'                       => $object->getAtivo(),
+        		'data_cadastro'				  => $object->getDataHoraCadastro(),
+        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
                 'id_categoria'                => $object->getCategoria(),
 
         );

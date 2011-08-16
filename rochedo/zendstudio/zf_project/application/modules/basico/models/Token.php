@@ -138,7 +138,7 @@ class Basico_Model_Token
 	*/
 	public function setDatahoraExpiracao($datahoraExpiracao)
 	{
-		$this->_datahoraExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraExpiracao, TIPO_STRING, true);
+		$this->_datahoraExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraExpiracao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -203,7 +203,7 @@ class Basico_Model_Token
     public function getCategoriaObject()
     {
         $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         return $object;
     }
 
@@ -277,39 +277,4 @@ class Basico_Model_Token
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Token
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-	
 }

@@ -232,7 +232,7 @@ class Basico_Model_Categoria
     public function getTipoCategoriaObject()
     {
         $model = new Basico_Model_TipoCategoria();
-        $object = $model->find($this->_tipoCategoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_tipoCategoria);
         return $object;
     }
     
@@ -257,7 +257,7 @@ class Basico_Model_Categoria
     public function getCategoriaObject()
     {
         $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         return $object;
     }
 
@@ -300,11 +300,11 @@ class Basico_Model_Categoria
 			$idCategoriaParaLocalizar = $this->_id;
 		
 		/* localiza a categoria */
-		$rootCategoriaPaiObject->find($idCategoriaParaLocalizar);
+		$rootCategoriaPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootCategoriaPaiObject, $idCategoriaParaLocalizar);
 		
 		/* loop para chegar na categoria raiz */
 		while ($rootCategoriaPaiObject->categoria) {
-			$rootCategoriaPaiObject->find($rootCategoriaPaiObject->categoria);
+			$rootCategoriaPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootCategoriaPaiObject, $rootCategoriaPaiObject->categoria);
 		}
 		
 		return $rootCategoriaPaiObject;
@@ -379,40 +379,5 @@ class Basico_Model_Categoria
 			$this->setMapper(new Basico_Model_CategoriaMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Categoria
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-	
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

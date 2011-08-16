@@ -58,7 +58,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				$objetoEmConflito = new $nomeObjetoEmConflito();
 
 				// recuperando informacoes
-				$objetoEmConflito->find($idObjetoEmConflito);
+				$objetoEmConflito = Basico_OPController_PersistenceOPController::bdObjectFind($objetoEmConflito, $idObjetoEmConflito);
 			}
 
 			// descobrindo qual subformulario esta sendo carregado
@@ -390,7 +390,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$subFormConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
 
     	// recuperando array de objetos dos perfis vinculados disponiveis para selecao de perfil padrao
-    	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoaViaSQL($idPessoa);
+    	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa);
 
     	// loop para traduzir as constantes textuais dos perfis
     	foreach ($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa as $chave => $arrayIdConstanteTextualPerfilVinculadoDisponivelPessoa) {
@@ -514,7 +514,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    
 	    // setando options do elemento raca
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
-	                            ->addMultiOptions(Basico_OPController_RacaOPController::retornaArrayRacasOptions());
+	                            ->addMultiOptions(Basico_OPController_RacaOPController::getInstance()->retornaArrayRacasOptions());
 	    
 	    // setando options do elemento sexo 
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo

@@ -63,7 +63,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							$modelFormulario = new Basico_Model_Formulario();
 				
 							// recuperando objeto formulario
-							$arrayObjsFormulario = $modelFormulario->fetchList("form_name = '{$nomeForm}'", null, 1, 0);
+							$arrayObjsFormulario = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormulario, "form_name = '{$nomeForm}'", null, 1, 0);
 				
 							// verificando se o objeto foi carregado
 							if (isset($arrayObjsFormulario[0])) {

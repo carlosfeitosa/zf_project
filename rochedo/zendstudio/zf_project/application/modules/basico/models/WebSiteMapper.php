@@ -27,7 +27,7 @@ class Basico_Model_WebSiteMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -155,69 +155,4 @@ class Basico_Model_WebSiteMapper
 		}
 		return $entries;
 	}
-
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'website'),
-                   array('id' => 'table1.id',
-                        'id_generico_proprietario' => 'table1.id_generico_proprietario' ,
-                        'descricao' => 'table1.descricao' ,
-                        'url' => 'table1.url' ,
-                   		'rowinfo' => 'table1.rowinfo' ,
-                        'id_categoria' => 'table1.id_categoria)'))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_WebSite();
-            $entry->setId($row['id'])
-                ->setIdGenericoProprietario($row['id_generico_proprietario'])
-                ->setDescricao($row['descricao'])
-                ->setUrl($row['url'])
-                ->setCategoria($row['id_categoria'])
-                ->setRowinfo($row['rowinfo'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_WebSite();
-            $entry->setId($row->id)
-				->setIdGenericoProprietario($row->id_generico_proprietario)
-				->setDescricao($row->descricao)
-				->setUrl($row->url)
-                ->setCategoria($row->id_categoria)
-                ->setRowinfo($row->rowinfo)
-                ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }    
-
 }

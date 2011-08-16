@@ -130,7 +130,7 @@ class Basico_Model_ModuloPerfil
     public function getModuloObject()
     {
         $model = new Basico_Model_Modulo();
-        $object = $model->find($this->_modulo);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_modulo);
         return $object;
     }
     
@@ -163,10 +163,31 @@ class Basico_Model_ModuloPerfil
     public function getPerfilObject()
     {
         $model = new Basico_Model_Perfil();
-        $object = $model->find($this->_perfil);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_perfil);
         return $object;
     }
-    
+
+    /**
+    * Set entry rowinfo
+    * 
+    * @param  String $rowinfo 
+    * @return Basico_Model_ModuloPerfil
+    */
+    public function setRowinfo($rowinfo)
+    {
+        $this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+        return $this;
+    }
+
+    /**
+    * Retrieve entry Rowinfo
+    * 
+    * @return null|int
+    */
+    public function getRowinfo()
+    {
+        return $this->_rowinfo;
+    }
 
     /**
     * Set entry id
@@ -216,60 +237,4 @@ class Basico_Model_ModuloPerfil
         }
         return $this->_mapper;
     }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_ModuloPerfil
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find((Int) $id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
-    }
-        
-    /**
-    * fetch list of entries that satisfy the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-
 }

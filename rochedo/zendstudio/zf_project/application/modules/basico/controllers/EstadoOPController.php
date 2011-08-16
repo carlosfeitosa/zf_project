@@ -156,10 +156,8 @@ class Basico_OPController_EstadoOPController extends Basico_Abstract_RochedoPers
 	 */
 	public static function retornaEstadoOptions()
 	{
-		// recuperando obj país
-		$objEstado = self::retornaNovoObjEstado();
-		// recuperando todos os países
-		$objEstado = $objEstado->fetchAll();
+		// recuperando todos os estados
+		$objEstado = $this->retornaTodosObjetos($this->_model);
 		
 		// adicionando opção em branco
 		$arrayResult = array('' => '');

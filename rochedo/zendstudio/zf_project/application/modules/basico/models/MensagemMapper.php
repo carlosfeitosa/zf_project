@@ -164,5 +164,4 @@ class Basico_Model_MensagemMapper
 		}
 		return $entries;
 	}
-
 }

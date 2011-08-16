@@ -73,7 +73,7 @@ create table dbo.log (
 	id_categoria int not null ,
 	id_perfil_pessoa int not null ,
 	datahora_evento datetime not null ,
-	xml varchar (2000) collate latin1_general_ci_ai not null 
+	xml varchar (7000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
 create table dbo.login (

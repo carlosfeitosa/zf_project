@@ -206,7 +206,7 @@ class Basico_Model_Componente
 	*/
 	public function setValidadeInicio($validadeInicio)
 	{
-		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio,TIPO_STRING,true);
+		$this->_validadeInicio = Basico_OPController_UtilOPController::retornaValorTipado($validadeInicio,TIPO_DATE,true);
 		return $this;
 	}
 
@@ -228,7 +228,7 @@ class Basico_Model_Componente
 	*/
 	public function setValidadeTermino($validadeTermino)
 	{
-		$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino,TIPO_STRING,true);
+		$this->_validadeTermino = Basico_OPController_UtilOPController::retornaValorTipado($validadeTermino,TIPO_DATE,true);
 		return $this;
 	}
 
@@ -250,7 +250,7 @@ class Basico_Model_Componente
 	*/
 	public function setDataDesativacao($dataDesativacao)
 	{
-		$this->_dataDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataDesativacao,TIPO_STRING,true);
+		$this->_dataDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataDesativacao,TIPO_DATE,true);
 		return $this;
 	}
 
@@ -272,7 +272,7 @@ class Basico_Model_Componente
 	*/
 	public function setDataAutoReativar($dataAutoReativar)
 	{
-		$this->_dataAutoReativar = Basico_OPController_UtilOPController::retornaValorTipado($dataAutoReativar,TIPO_STRING,true);
+		$this->_dataAutoReativar = Basico_OPController_UtilOPController::retornaValorTipado($dataAutoReativar,TIPO_DATE,true);
 		return $this;
 	}
 
@@ -337,7 +337,7 @@ class Basico_Model_Componente
     public function getCategoriaObject()
     {
         $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         return $object;
     }
     
@@ -411,58 +411,4 @@ class Basico_Model_Componente
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Componente
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-	   
-    /**
-    * fetch list of entries satisfying the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
 }

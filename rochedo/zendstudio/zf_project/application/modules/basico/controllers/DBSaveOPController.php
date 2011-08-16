@@ -20,7 +20,7 @@ class Basico_OPController_DBSaveOPController
 	 * 
 	 * @return Boolean
 	 */
-	static public function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	public static function save($mixed, $versaoUpdate = null, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// verificando os tipos dos parametros
 		if ((!is_null($versaoUpdate)) and (!is_int($versaoUpdate)))
@@ -37,15 +37,24 @@ class Basico_OPController_DBSaveOPController
 		// iniciando transacao
 		$transacaoInicializada = Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
+		// instanciando variaveis para sobrecarga de atributos
+		$nomeAtributoDataHoraCadastro          = PROPRIEDADE_DATAHORA_CADASTRO;
+		$nomeAtributoDataHoraUltimaAtualizacao = PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO;
+
+		// verificando se o objeto possui atributos de sobrecarga de valores (data cadastro)
+		if ((property_exists($mixed, CARACTER_PREFIXO_ATRIBUTO_PRIVADO_OBJETO . $nomeAtributoDataHoraCadastro)) and (!$mixed->$nomeAtributoDataHoraCadastro))
+			$mixed->$nomeAtributoDataHoraCadastro = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+
+		// verificando se o objeto possui atributos de sobrecarga de valores (data ultima atualizacao)
+		if (property_exists($mixed, CARACTER_PREFIXO_ATRIBUTO_PRIVADO_OBJETO . $nomeAtributoDataHoraUltimaAtualizacao))
+			$mixed->$nomeAtributoDataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+
+		// preparando o rowinfo xml do objeto
+		Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, $idPessoaPerfil);
+
 		try {
 			// descobrindo se a tupla existe no banco de dados, para o CVC funcionar
 			if (!Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($mixed)) {
-				// verificando se o objeto possui atributos de sobrecarga de valores (data)
-				if (property_exists($mixed, PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO))
-					$mixed->PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-
-				// preparando o rowinfo xml do objeto
-				Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, $idPessoaPerfil);
 
 				// salvando o objeto
 				if (self::saveObjectDbTable($mixed)) {
@@ -119,9 +128,6 @@ class Basico_OPController_DBSaveOPController
 			// verificando se houve atualizacao da versao
 			if ($ultimaVersao !== $versaoVersionamento) {
 
-				// preparando o rowinfo xml do objeto
-				Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, ($idPessoaPerfil === Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL()));
-
 				// salvando o objeto
 				if (self::saveObjectDbTable($mixed)) {
 
@@ -181,7 +187,7 @@ class Basico_OPController_DBSaveOPController
 	 * 
 	 * @return true
 	 */
-	private static function saveObjectDbTable($objeto)
+	private static function saveObjectDbTable(&$objeto)
 	{
 		// verificando se foi passado um objeto, por parametro
 		if (!is_object($objeto))

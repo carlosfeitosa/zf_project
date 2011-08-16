@@ -5,14 +5,14 @@
  */
  
 /**
- * TitulacaoAcademica model
+ * NaturezaPessoaJuridica model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_TitulacaoAcademicaMapper
+ * @uses       Basico_Model_NaturezaPessoaJuridicaMapper
  * @subpackage Model
  */
-class Basico_Model_TitulacaoAcademica
+class Basico_Model_NaturezaPessoaJuridica
 {
 	/**
 	* @var int
@@ -20,7 +20,7 @@ class Basico_Model_TitulacaoAcademica
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_TitulacaoAcademicaMapper
+	 * @var Basico_Model_NaturezaPessoaJuridicaMapper
 	 */
 	protected $_mapper;
 
@@ -32,6 +32,10 @@ class Basico_Model_TitulacaoAcademica
 	 * @var String
 	 */
 	protected $_descricao;
+	/**
+	 * @var String
+	 */
+	protected $_ativo;
 	/**
 	 * @var String
 	 */
@@ -88,7 +92,7 @@ class Basico_Model_TitulacaoAcademica
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_TitulacaoAcademica
+	 * @return Basico_Model_NaturezaPessoaJuridica
 	 */
 	public function setOptions(array $options)
 	{
@@ -108,7 +112,7 @@ class Basico_Model_TitulacaoAcademica
 	* Set constanteTextualNome
 	* 
 	* @param String $constanteTextualNome 
-	* @return Basico_Model_TitulacaoAcademica
+	* @return Basico_Model_NaturezaPessoaJuridica
 	*/
 	public function setConstanteTextualNome($constanteTextualNome)
 	{
@@ -130,7 +134,7 @@ class Basico_Model_TitulacaoAcademica
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Basico_Model_TitulacaoAcademica
+	* @return Basico_Model_NaturezaPessoaJuridica
 	*/
 	public function setDescricao($descricao)
 	{
@@ -147,12 +151,34 @@ class Basico_Model_TitulacaoAcademica
 	{
 		return $this->_descricao;
 	}
- 
-    /**
+     
+	/**
+	* Set ativo
+	* 
+	* @param Boolean $ativo 
+	* @return Basico_Model_NaturezaPessoaJuridica
+	*/
+	public function setAtivo($ativo)
+	{
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
+		return $this;
+	}
+
+	/**
+	* Get ativo
+	* 
+	* @return null|String
+	*/
+	public function getAtivo()
+	{
+		return $this->_ativo;
+	}
+
+	/**
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_TitulacaoAcademica
+	* @return Basico_Model_NaturezaPessoaJuridica
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -169,12 +195,12 @@ class Basico_Model_TitulacaoAcademica
 	{
 		return $this->_rowinfo;
 	}
-	
+ 
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_TitulacaoAcademica
+	* @return Basico_Model_NaturezaPessoaJuridica
 	*/
 	public function setId($id)
 	{
@@ -196,7 +222,7 @@ class Basico_Model_TitulacaoAcademica
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_TitulacaoAcademica
+	* @return Basico_Model_NaturezaPessoaJuridica
 	*/
 	public function setMapper($mapper)
 	{
@@ -207,49 +233,15 @@ class Basico_Model_TitulacaoAcademica
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_TitulacaoAcademicaMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_NaturezaPessoaJuridicaMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_TitulacaoAcademicaMapper
+	* @return Basico_Model_NaturezaPessoaJuridicaMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_TitulacaoAcademicaMapper());
+			$this->setMapper(new Basico_Model_NaturezaPessoaJuridicaMapper());
 		}
 		return $this->_mapper;
-	}
-	
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_TitulacaoAcademica
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

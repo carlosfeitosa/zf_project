@@ -273,7 +273,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public function retornaObjetoLoginPorLogin($login)
 	{
 		// recuperando o array com o objeto login
-		$arrayObjsLogin = $this->_model->fetchList("login = '{$login}'");
+		$arrayObjsLogin = $this->retornaObjetosPorParametros($this->_model, "login = '{$login}'");
 
 		// verificando o resultado da recuperacao
 		if ($arrayObjsLogin)
@@ -427,7 +427,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// verificando se o login esta travado
 		if ($objLogin->travado) {
 			// verificando se passou-se uma hora apos a ultima tentativa de logon
-			if ($dataHoraUltimaTentativaFalhaLogin->getTimestamp() < Basico_OPController_UtilOPController::retornaDateTimeAtual()->getTimestamp()) {
+			if ($dataHoraUltimaTentativaFalhaLogin->getTimestamp() < Basico_OPController_UtilOPController::retornaTimestamp()) {
 				// instanciando controladores
 				$loginOPController = Basico_OPController_LoginOPController::getInstance();
 
@@ -465,7 +465,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public static function retornaLoginSenhaExpirada(Basico_Model_Login $objLogin)
 	{
 		// retornando se a senha esta expirada
-		return (($objLogin->dataHoraExpiracaoSenha) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraExpiracaoSenha) <= Basico_OPController_UtilOPController::retornaDateTimeAtual()->getTimestamp()));
+		return (($objLogin->dataHoraExpiracaoSenha) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraExpiracaoSenha) <= Basico_OPController_UtilOPController::retornaTimestamp()));
 	}
 
 	/**
@@ -478,7 +478,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public static function retornaLoginExpirado(Basico_Model_Login $objLogin)
 	{
 		// recuperando se o login pode expirar e esta expirado
-		$loginExpirado = (($objLogin->podeExpirar) and ($objLogin->dataHoraProximaExpiracao) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraProximaExpiracao) <= Basico_OPController_UtilOPController::retornaDateTimeAtual()->getTimestamp()));
+		$loginExpirado = (($objLogin->podeExpirar) and ($objLogin->dataHoraProximaExpiracao) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraProximaExpiracao) <= Basico_OPController_UtilOPController::retornaTimestamp()));
 
 		// verificando se o login esta expirado e se a data-hora da ultima expiracao eh igual a data-hora da proxima expiracao
 		if (($loginExpirado) and ($objLogin->dataHoraProximaExpiracao <> $objLogin->dataHoraUltimaExpiracao)) {
@@ -742,7 +742,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objLogin = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objLogin = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (isset($objLogin[0]))
@@ -769,7 +769,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$objLogin = $this->retornaObjetoLoginPorLogin($login);
 
 		// verificando se o login existe
-		if ($objLogin->id)
+		if ((is_object($objLogin)) and ($objLogin->id))
 			// retornando o id da pessoa
 			return $objLogin->pessoa;
 
@@ -786,7 +786,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public function retornaIdPessoaPorIdLogin($idLogin)
 	{
 		// recuperando objeto login
-		$object = $this->_model->find($idLogin);
+		$object = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idLogin);
 
 		// verificando se o objeto login foi recuperado
 		if ($object->id)
@@ -806,7 +806,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public function retornaIdLoginPorIdPessoa($idPessoa)
 	{
 		// recuperando o objeto login
-		$object = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+		$object = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
 
 		// verificando o resultado da recuperacao do objeto
 		if (isset($object[0])) {
@@ -846,21 +846,17 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     /**
      * Retorna o login do usuario master do sistema cadastrado no banco de dados
      * 
+     * @deprecated
+     * 
      * @return String
      */
     public function retornaLoginUsuarioMasterDB() 
-    {
-    	// instanciando controladores
-    	$pessoaPerfilOPController = Basico_OPController_PessoasPerfisOPController::getInstance();
-    	
+    {   	
     	//recuperando o objeto pessoaPerfil do sistema
-    	$objetoPessoaPerfilSistema = $pessoaPerfilOPController->retornaObjetoPessoaPerfilSistema();
-    	  	
-    	//recuperando resource do banco de dados
-    	$auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
-    	
+    	$objetoPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilSistema();
+
     	//recuperando o login do usuario master do sistema
-    	$objsLogin = $this->_model->fetchList("id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
+    	$objsLogin = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
 
     	// verificando se o objeto foi recuperado com sucesso
     	if (isset($objsLogin[0]))    	
@@ -868,6 +864,32 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     		return $objsLogin[0]->login;
 
     	return null;
+    }
+
+    /**
+     * Retorna o login do usuario master do sistema cadastrado no banco de dados, via SQL
+     * 
+     * @return String
+     */
+    public function retornaLoginUsuarioMasterDBViaSQL()
+    {
+    	// recuperando o id do usuario master
+    	$idPessoaUsuarioMaster = Basico_OPController_PessoaOPController::getInstance()->retornaIdPessoaSistemaViaSQL();
+
+		// recuperando informacoes sobre a tabela login
+		$arrayNomeCampoLogin = array('login');
+		$condicaoSQL           = "id_pessoa = {$idPessoaUsuarioMaster}";
+
+    	// recuperando login do usuario master
+		$arrayLogin = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoLogin, $condicaoSQL);
+		
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayLogin)) and (is_array($arrayLogin)) and (count($arrayLogin) > 0)) {
+			// retornando o id da categoria
+			return (String) $arrayLogin[0]['login'];
+		}
+
+		return null;
     }
 
 	/**
@@ -881,7 +903,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public function retornaVersaoObjetoLoginPorIdPessoa($idPessoa, $forceVersioning = false)
 	{
 		// recuperando objeto pessoa
-		$arrayObjects = $this->_model->fetchList("id_pessoa = {$idPessoa}", null, 1, 0);
+		$arrayObjects = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (count($arrayObjects) > 0) {
@@ -903,7 +925,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public function verificaSenhaUsuario($idLogin, $senhaEncriptada)
 	{
 		// recuperando o objeto login
-		$objLogin = $this->_model->find($idLogin);
+		$objLogin = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idLogin);
 
 		// verificando se o objeto foi recuperado
 		if ($objLogin->id) {
@@ -927,7 +949,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	public function alterarSenhaUsuario($idLogin, $novaSenhaNaoEncriptada, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario)
 	{
 		// recuperando o objeto login
-		$objLogin = $this->_model->find($idLogin);
+		$objLogin = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idLogin);
 
 		// verificando se o objeto foi recuperado
 		if (($objLogin->id) and ($versaoObjetoLoginUsuario) and ($idPessoaPerfilUsuario)) {
@@ -1246,4 +1268,62 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     	return $novoLogin;
 	}
 
+    /**
+     * Cria o usuario "admin"
+     * 
+     * @return True
+     */
+    public function criaLoginAdmin()
+    {
+		// bloco de tentativa de persistencia
+		try {
+	    	// iniciando transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao();
+
+			// criando uma nova pessoa no banco de dados
+			$idPessoaAdmin = Basico_OPController_PessoaOPController::getInstance()->retornaIdNovoObjetoPessoa();
+	
+			// criando os dados pessoais
+			$idDadosPessoaisAdmin = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaIdNovoObjetoDadosPessoais($idPessoaAdmin, ADMIN_LOGIN_NAME_DATABASE_RESET);
+
+			// criando o email
+            $idEmailAdmin = Basico_OPController_EmailOPController::getInstance()->retornaIdNovoObjetoEmail(SUPPORT_EMAIL, $idPessoaAdmin, Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO));
+
+            // recuperando os perfis desejados para o administrador
+            $idPerfilUsuarioValidado      = Basico_OPController_PerfilOPController::retornaIdPerfilPorNomeViaSQL(PERFIL_USUARIO_VALIDADO);
+            $idPerfilUsuarioAdministrador = Basico_OPController_PerfilOPController::retornaIdPerfilPorNomeViaSQL(PERFIL_USUARIO_ADMINISTRADOR);
+            // associando a pessoa "admin" aos perfis necessarios
+            $idPessoaPerfilAdminUsuarioValidado      = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idPessoaAdmin, $idPerfilUsuarioValidado);
+            $idPessoaPerfilAdminUsuarioAdministrador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idPessoaAdmin, $idPerfilUsuarioAdministrador);
+	    	
+	    	// recuperando o modelo de login
+	    	$objLoginAdmin = $this->_model;
+	
+	    	// populando objeto
+	    	$objLoginAdmin->pessoa = $idPessoaAdmin;
+	    	$objLoginAdmin->tentativasFalhas = 0;
+	    	$objLoginAdmin->travado = false;
+	    	$objLoginAdmin->resetado = false;
+	    	$objLoginAdmin->podeExpirar = true;
+	    	$objLoginAdmin->login = ADMIN_LOGIN_NAME_DATABASE_RESET;
+	    	$objLoginAdmin->senha = Basico_OPController_UtilOPController::retornaStringEncriptada(ADMIN_LOGIN_NAME_DATABASE_RESET);
+	    	$objLoginAdmin->ativo = true;
+
+	    	// salvando o objeto login
+    		$this->salvarObjeto($objLoginAdmin);
+
+			// salvando a transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+    	
+		} catch (Exception $e) {
+			// voltando a transacao
+			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
+
+			// estourando excecao
+			throw new Exception(MSG_ERRO_CRIACAO_LOGIN_ADMIN . $e->getMessage());
+		}
+
+		// retornando sucesso
+		return true;
+    }
 }

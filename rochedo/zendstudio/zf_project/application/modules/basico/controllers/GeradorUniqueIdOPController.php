@@ -19,13 +19,13 @@ class Basico_OPController_GeradorUniqueIdOPController
 	    $uniqueId = md5(uniqid(rand(), true));
 	    
 	    // buscando pelo id no banco de dados
-	    $buscaUniqueId = $modelo->fetchList("{$nomeDoCampoBancoDeDados} = '{$uniqueId}'", null, 1, 0);
+	    $buscaUniqueId = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelo, "{$nomeDoCampoBancoDeDados} = '{$uniqueId}'", null, 1, 0);
 
 	    // certificando-se que o id nao existe no banco de dados
 	    while (isset($buscaUniqueId[0]->id))
 	    {
             $uniqueId = md5(uniqid(rand(), true));
-	        $buscaUniqueId = $modelo->fetchList("{$nomeDoCampoBancoDeDados} = '{$uniqueId}'", null, 1, 0);
+	        $buscaUniqueId = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelo, "{$nomeDoCampoBancoDeDados} = '{$uniqueId}'", null, 1, 0);
 	    }
 	    
 	    // retorna o id unico

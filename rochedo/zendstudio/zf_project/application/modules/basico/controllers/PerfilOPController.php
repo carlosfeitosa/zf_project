@@ -165,7 +165,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	public function retornaObjetoPerfilPorNome($nomePerfil)
 	{
 		// recuperando array de perfis
-		$objPerfil = $this->_model->fetchList("nome = '{$nomePerfil}'", null, 1, 0);
+		$objPerfil = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomePerfil}'", null, 1, 0);
 		
 		// verificando se existe o objeto
 		if (isset($objPerfil[0]))
@@ -216,7 +216,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		// verificando se o id do perfil foi passado
 		if ($idPerfil > 0) {
 			// recuperando o objeto
-			return $this->_model->find($idPerfil);			
+			return $this->retornaObjetoPorId($this->_model, $idPerfil);
 		}
 	}
 	
@@ -332,6 +332,8 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	 * Retorna o nome do perfil de usuario publico
 	 * 
 	 * @return String|null
+	 * 
+	 * @deprecated
 	 */
 	public function retornaNomePerfilUsuarioPublico()
 	{
@@ -347,6 +349,30 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	}
 
 	/**
+	 * Retorna o nome do perfil do usuario publico, via SQL
+	 * 
+	 * @return String|null
+	 */
+	public function retornaNomePerfilUsuarioPublicoViaSQL()
+	{
+		// recuperando informacoes sobre a tabela perfil
+		$arrayNomeCampoNome = array('nome');
+		$nomePerfilPublico  = PERFIL_USUARIO_PUBLICO;
+		$condicaoSQL        = "nome = '{$nomePerfilPublico}'";
+
+		// recuperando um array contendo os nomes dos perfis relacionados a uma categoria
+		$arrayPerfis = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoNome, $condicaoSQL);
+
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayPerfis)) and (is_array($arrayPerfis)) and (count($arrayPerfis) > 0)) {
+			// retornando o id da categoria
+			return $arrayPerfis[0]['nome'];
+		}
+
+		return null;
+	}
+
+	/**
 	 * Retorna os objetos perfis associados a uma categoria (passada por id)
 	 * 
 	 * @param Integer $idCategoria
@@ -356,7 +382,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	private function retornaObjetosPerfisPorIdCategoria($idCategoria)
 	{
 		// retornando objetos
-		return $this->_model->fetchList("id_categoria = {$idCategoria}");
+		return $this->retornaObjetosPorParametros($this->_model, "id_categoria = {$idCategoria}");
 	}
 
 	/**
@@ -441,7 +467,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 		// verificando se existe perfil padrao
 		if ($idPerfilPadraoSessao) {
 			// retornando a descricao do perfil
-			return $this->_model->find($idPerfilPadraoSessao)->descricao;
+			return $this->retornaObjetoPerfilPorIdPerfil($idPerfilPadraoSessao)->descricao;
 		}
 
 		// retornando "nenhuma opcao informada"

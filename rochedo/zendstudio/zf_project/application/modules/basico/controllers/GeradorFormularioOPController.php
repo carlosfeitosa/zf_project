@@ -1399,7 +1399,7 @@ class Basico_OPController_GeradorFormularioOPController
 			$arrayElementosDisplayGroup = array();
 			
 			// carregando objeto GrupoFormularioElemento
-			$objGrupoFormularioElemento->find($idDisplayGroup);
+			$objGrupoFormularioElemento = Basico_OPController_PersistenceOPController::bdObjectFind($objGrupoFormularioElemento, $idDisplayGroup);
 
 			// loop para descarregar os elementos do grupo
 			foreach ($arrayOrdemElementosDisplayGroup as $ordemElementoDisplayGroup) {

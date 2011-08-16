@@ -129,7 +129,7 @@ class Basico_Model_DadosProfissionaisAreasConhecimento
     public function getDadosProfissionaisObject()
     {
         $model = new Basico_Model_DadosProfissionais();
-        $object = $model->find($this->_dadosprofissionais);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_dadosprofissionais);
         return $object;
     }
     
@@ -162,7 +162,7 @@ class Basico_Model_DadosProfissionaisAreasConhecimento
     public function getAreaConhecimentoObject()
     {
         $model = new Basico_Model_AreaConhecimento();
-        $object = $model->find($this->_areaconhecimento);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_areaconhecimento);
         return $object;
     }
     
@@ -236,40 +236,5 @@ class Basico_Model_DadosProfissionaisAreasConhecimento
             $this->setMapper(new Basico_Model_DadosProfissionaisAreasConhecimentoMapper());
         }
         return $this->_mapper;
-    }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_DadosProfissionaisAreasConhecimento
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find((int)$id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
     }
 }

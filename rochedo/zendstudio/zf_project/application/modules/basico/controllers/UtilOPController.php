@@ -388,13 +388,14 @@ class Basico_OPController_UtilOPController
 	 * Retorna o datetime atual no locale passado ou no default que é 'en_US'
 	 * 
 	 * @var String $locale
+	 * @var String $format
 	 * 
 	 * @return String
 	 */
-	public static function retornaDateTimeAtual($locale = DEFAULT_SYSTEM_DATETIME_LOCALE)
+	public static function retornaDateTimeAtual($locale = DEFAULT_SYSTEM_DATETIME_LOCALE, $format = DEFAULT_DATABASE_DATETIME_FORMAT)
 	{
 		// retornando o datetime atual
-	    return Zend_Date::now($locale);
+	    return Zend_Date::now($locale)->toString($format);
 	}
 
 	/**
@@ -852,7 +853,7 @@ class Basico_OPController_UtilOPController
     	self::verificaVariavelRepresentaObjeto($object, true);
 
    		// verificando se o objeto possui mapper
-   		if (property_exists($object, 'mapper'))
+   		if (property_exists($object, '_mapper'))
    			// removendo mapper
    			$object->setMapper(null);
 
@@ -871,6 +872,12 @@ class Basico_OPController_UtilOPController
     {
 	    // verificando se o parametro eh um objeto
     	self::verificaVariavelRepresentaObjeto($objeto, true);
+
+		// verificando se o objeto possui mapper
+   		if (property_exists($objeto, '_mapper')) {
+   			// removendo mapper
+   			$objeto->setMapper(null);
+   		}
 
     	// transformando o objeto em string
     	$objetoCodificado = self::codificar($objeto);
@@ -981,7 +988,7 @@ class Basico_OPController_UtilOPController
     	case TIPO_INTEIRO:
     		// transformando o valor em inteiro, para comparacao
     		$valorInteiro = (Int) $valor;
-    		
+
     		// verificando se o valor eh do tipo informado
     		if ((!is_integer($valorInteiro)) or ($valorInteiro != $valor))
     			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO);
@@ -995,7 +1002,7 @@ class Basico_OPController_UtilOPController
     		break;
     	case TIPO_STRING:
     		$valorString = (String) $valor;
-    		
+
 			// verificando se o valor eh do tipo informado
 			if ((!is_string($valorString)) and ($valorString != $valor))
 				throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_STRING);
@@ -1020,7 +1027,7 @@ class Basico_OPController_UtilOPController
     			return null;
     		else
     			return $valorBoolean;
-    		
+
     		break;
     	case TIPO_FLOAT:
     		// transformando o valor em ponto flutuante, para comparacao
@@ -1037,6 +1044,24 @@ class Basico_OPController_UtilOPController
     			return $valorFloat;
 
     		break;
+    	case TIPO_DATE:
+    		$valorString = (String) $valor;
+
+			// verificando se o valor eh do tipo informado
+			if ((!is_string($valorString)) and ($valorString != $valor))
+				throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_STRING);
+
+			// verificando nulidade do valor
+			if (($checaNulidade) and (!strlen($valor)))
+				return null;
+			else {
+				// recuperando a data
+				$dataHoraZendDate = new Zend_Date($valor, DEFAULT_DATABASE_DATETIME_FORMAT, DEFAULT_SYSTEM_DATETIME_LOCALE);
+				// retornando a data no formato esperado
+				return $dataHoraZendDate->toString(DEFAULT_DATABASE_DATETIME_FORMAT);
+			}
+
+			break;
     	default:
     		throw new Exception(MSG_ERRO_TIPO_NAO_TRATADO);
     	}
@@ -1154,6 +1179,43 @@ class Basico_OPController_UtilOPController
     {
     	// retornando array de resultados
     	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_INCLUDE_POSITION_END);
+    }
+
+    /**
+     * Retorna um array contendo o filtro para arquivos com a extensao .php
+     * 
+     * @param String $stringBusca
+     */
+    public static function retornaArrayFiltroNomesArquivosPHP($stringBusca = '.php')
+    {
+    	// retornando array de resultados
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_INCLUDE_POSITION_END);
+    }
+
+    /**
+     * Retorna um array contendo o filtro de exclusao para mappers de modelos
+     * 
+     * @param String $stringBusca
+     * 
+     * @return Array
+     */
+    public static function retornaArrayFiltroExcludeMapperModels($stringBusca = 'Mapper.php')
+    {
+    	// retornando o resultado do metodo retornaArrayFiltroExcludeArquivosTerminadosCom
+    	return self::retornaArrayFiltroExcludeArquivosTerminadosCom($stringBusca);
+    }
+
+    /**
+     * Retorna um array contendo o filtro de exclusao para arquivos terminandos com a string passada como parametro
+     * 
+     * @param String $stringBusca
+     * 
+     * @return Array
+     */
+    public static function retornaArrayFiltroExcludeArquivosTerminadosCom($stringBusca)
+    {
+    	// retornando array de resultados
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_END);
     }
 
     /**
@@ -1977,5 +2039,100 @@ class Basico_OPController_UtilOPController
 		$string = str_replace(' ', '', $string); // retira espaco
 		
 		return utf8_encode($string); 
+    }
+
+    /**
+     * Retorna todos os modelos do sistema
+     * 
+     * @param Boolean $apenasModelosPersistentes
+     * 
+     * @return Array|null
+     */
+    public static function retornaArrayNomeTodosModelosSistema($apenasModelosPersistentes = false)
+    {
+    	// recuperando os modulos do sistema
+    	$arrayNomesCaminhosModulos = self::retornaArrayNomesCaminhosModulosSistema();
+
+    	// verificando o resultado da recuperacao
+    	if (count($arrayNomesCaminhosModulos)) {
+    		// inicializando variaveis
+    		$arrayResultado = array();
+
+    		// loop para recuperar os modelos de cada modulo
+    		foreach ($arrayNomesCaminhosModulos as $nomeModulo => $caminho) {
+    			// recuperando o caminho da pasta contendo os modelos do modulo
+    			$caminhoModelos = $caminho . DIRECTORY_SEPARATOR . 'models';
+
+    			// verificando se existe a pasta de modelos
+    			if ((file_exists($caminho)) and (is_dir($caminho)) and (file_exists($caminhoModelos)) and (is_dir($caminhoModelos))) {
+					// montando array de filtros
+					$filterArray = array(self::retornaArrayFiltroArquivosOcultos(), self::retornaArrayFiltroExcludeMapperModels(), self::retornaArrayFiltroNomesArquivosPHP());
+    				// recuperando os arquivos existentes dentro da pasta
+    				$arrayNomesArquivos = self::retornaArrayArquivosCaminho($caminhoModelos, $filterArray);
+
+    				// loop para recuperar os nomes dos modulos
+    				foreach ($arrayNomesArquivos as $nomeArquivo) {
+    					// verificando se o elemento do loop eh um arquivo
+    					if (is_file($caminhoModelos . DIRECTORY_SEPARATOR . $nomeArquivo)) {
+	    					// recuperando o nome dos modelos
+		    				$nomeModelo = ucfirst($nomeModulo) . "_Model_" . ucfirst(str_replace('.php', '', $nomeArquivo));
+	
+		    				// verificando se eh preciso verificar se o modelo eh persistente
+		    				if ($apenasModelosPersistentes) {
+		    					// instanciando o modelo
+		    					$modelo = new $nomeModelo();
+	
+		    					// verificando se o modelo possui mapper
+		    					if (property_exists($modelo, '_mapper')) {
+		    						// adicionando elemento ao array de resultados
+		    						$arrayResultado[] = $nomeModelo;
+		    					}
+		    				} else {
+		    					$arrayResultado[] = $nomeModelo;
+		    				}
+    					}
+    				}
+    			}
+    		}
+
+    		// retornando o resultado
+    		return $arrayResultado;
+    	}
+
+    	return null;
+    }
+
+    /**
+     * Retorna um array contendo os nomes dos modulos instalados no sistema de arquivos do sistema
+     * 
+     * @return Array|null
+     */
+    public static function retornaArrayNomesCaminhosModulosSistema()
+    {
+    	// recuperando o conteudo da pasta de modulos
+    	$arrayNomesPastasModulos = scandir(APPLICATION_MODULES_PATH);
+
+    	// verificando se as pastas foram recuperadas
+    	if (count($arrayNomesPastasModulos)) {
+    		// instanciando variaveis
+    		$arrayResultado = array();
+
+    		// filtrando as pastas apenas
+    		foreach ($arrayNomesPastasModulos as $nomePastaModulo) {
+    			// montando o caminho
+    			$caminhoModulo = APPLICATION_MODULES_PATH . DIRECTORY_SEPARATOR . $nomePastaModulo;
+
+    			// verificando se trata-se de uma pasta
+    			if ((is_dir($caminhoModulo)) and (strpos($nomePastaModulo, ".") !== 0)) {
+    				// adicionando pasta ao array de resultados
+    				$arrayResultado[$nomePastaModulo] = $caminhoModulo;
+    			}
+    		}
+
+    		// retornando resultado
+    		return $arrayResultado;
+    	}
+
+    	return null;
     }
 }

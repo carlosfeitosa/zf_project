@@ -5,10 +5,10 @@
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_DadosProfissionais
+ * @uses       Basico_Model_DbTable_DadosProfissionais
  * @subpackage Model
  */
-class Default_Model_DadosProfissionaisMapper
+class Basico_Model_DadosProfissionaisMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Default_Model_DadosProfissionaisMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_DadosProfissionaisMapper
+     * @return Basico_Model_DadosProfissionaisMapper
      */
     public function setDbTable($dbTable)
     {
@@ -27,7 +27,7 @@ class Default_Model_DadosProfissionaisMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -36,14 +36,14 @@ class Default_Model_DadosProfissionaisMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_DadosProfissionais if no instance registered
+     * Lazy loads Basico_Model_DbTable_DadosProfissionais if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_DadosProfissionais');
+            $this->setDbTable('Basico_Model_DbTable_DadosProfissionais');
         }
         return $this->_dbTable;
     }
@@ -51,10 +51,10 @@ class Default_Model_DadosProfissionaisMapper
     /**
      * Save a DadosProfissionais entry
      * 
-     * @param  Default_Model_DadosProfissionais $object
+     * @param  Basico_Model_DadosProfissionais $object
      * @return void
      */
-    public function save(Default_Model_DadosProfissionais $object)
+    public function save(Basico_Model_DadosProfissionais $object)
     {
         $data = array(
 		'cargo'   => $object->getCargo(),
@@ -85,10 +85,10 @@ class Default_Model_DadosProfissionaisMapper
     
 	/**
 	* Delete a DadosProfissionais entry
-	* @param Default_Model_DadosProfissionais $object
+	* @param Basico_Model_DadosProfissionais $object
 	* @return void
 	*/
-	public function delete(Default_Model_DadosProfissionais $object)
+	public function delete(Basico_Model_DadosProfissionais $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
@@ -97,10 +97,10 @@ class Default_Model_DadosProfissionaisMapper
      * Find a DadosProfissionais entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_DadosProfissionais $object 
+     * @param  Basico_Model_DadosProfissionais $object 
      * @return void
      */
-    public function find($id, Default_Model_DadosProfissionais $object)
+    public function find($id, Basico_Model_DadosProfissionais $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -136,7 +136,7 @@ class Default_Model_DadosProfissionaisMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_DadosProfissionais();
+			$entry = new Basico_Model_DadosProfissionais();
 			$entry->setId($row->id)
 				->setCargo($row->cargo)
 				->setFuncao($row->funcao)
@@ -170,7 +170,7 @@ class Default_Model_DadosProfissionaisMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Default_Model_DadosProfissionais();
+			$entry = new Basico_Model_DadosProfissionais();
 			$entry->setId($row->id)
 				->setCargo($row->cargo)
 				->setFuncao($row->funcao)

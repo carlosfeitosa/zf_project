@@ -166,7 +166,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 		$nomeElemento = FORM_ELEMENT_HASH;
 
 		// recuperando array de resultados
-		$objsFormularioElemento = $this->_model->fetchList("nome = '{$nomeElemento}'");
+		$objsFormularioElemento = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeElemento}'");
 
 		// verificando se o elemento foi recuperado
 		if (count($objsFormularioElemento) > 0)
@@ -191,7 +191,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 			return null;
 
 		// recuperando o objeto formulario elemento
-		$objetoFormularioElemento = $this->_model->find($idFormularioElemento);
+		$objetoFormularioElemento = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idFormularioElemento);
 
 		// recuperando o objeto formularioFormularioElemento
 		$objetoFormularioFormularioElemento = $objetoFormularioElemento->getFormularioFormularioElementoObjectPorIdFormulario($idFormulario);

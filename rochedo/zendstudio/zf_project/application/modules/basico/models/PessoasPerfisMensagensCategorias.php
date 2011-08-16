@@ -135,7 +135,7 @@ class Basico_Model_PessoasPerfisMensagensCategorias
     public function getPessoaPerfilObject()
     {
         $model = new Basico_Model_PessoasPerfis();
-        $object = $model->find($this->_pessoaPerfil);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaPerfil);
         return $object;
     }
     
@@ -168,7 +168,7 @@ class Basico_Model_PessoasPerfisMensagensCategorias
     public function getMensagemObject()
     {
         $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_mensagem);
         return $object;
     }
     
@@ -201,7 +201,7 @@ class Basico_Model_PessoasPerfisMensagensCategorias
     public function getCategoriaObject()
     {
         $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         return $object;
     }
     
@@ -275,40 +275,4 @@ class Basico_Model_PessoasPerfisMensagensCategorias
         }
         return $this->_mapper;
     }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_PessoasPerfisMensagensCategorias
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find((Int) $id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
-    }
-
 }

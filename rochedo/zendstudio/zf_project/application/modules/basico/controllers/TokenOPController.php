@@ -239,7 +239,7 @@ class Basico_OPController_TokenOPController
 	    // recuperando objeto categoria do token-email
 		$idCategoriaTokenEmail = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 		// recuperando objeto token
-		$objToken = $this->_token->fetchList("id_categoria = {$idCategoriaTokenEmail} and token = '{$token}'", null, 1, 0);
+		$objToken = Basico_OPController_PersistenceOPController::bdObjectFetchList($this->_token, "id_categoria = {$idCategoriaTokenEmail} and token = '{$token}'", null, 1, 0);
 
 		// verificando se o objeto do token existe
 		if (isset($objToken[0]))
@@ -259,7 +259,7 @@ class Basico_OPController_TokenOPController
 	public function retornaTokenEmailPorId($id)
 	{
 		// recuperando objeto token
-		$objToken = $this->_token->fetchList("id = '{$id}'", null, 1, 0);
+		$objToken = Basico_OPController_PersistenceOPController::bdObjectFetchList($this->_token, "id = '{$id}'", null, 1, 0);
 
 		// verificando se o objeto do token existe
 		if (isset($objToken[0]))
@@ -279,10 +279,10 @@ class Basico_OPController_TokenOPController
         $novoToken->idGenerico = $idGenerico;
         // setando a categoria do token
         $novoToken->categoria = $idCategoriaToken;
-        // gerando o rowinfo
-        Basico_OPController_RowinfoOPController::getInstance()->prepareXml($novoToken, true);
-        // setando o rowinfo
-        $novoToken->rowinfo = Basico_OPController_RowinfoOPController::getInstance()->getXml();
+		// setando data-hora da expiracao
+		$dataHoraExpiracao = Zend_Date::now(DEFAULT_SYSTEM_DATETIME_LOCALE);
+		$dataHoraExpiracao->addHour(36);
+		$novoToken->datahoraExpiracao = $dataHoraExpiracao->toString(DEFAULT_DATABASE_DATETIME_FORMAT);
         // salvando o novo objeto token
         $this->salvarToken($novoToken);
         

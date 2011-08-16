@@ -73,6 +73,8 @@ class Basico_Model_LoginMapper
                       'datahora_ultima_tentativa_falha' => $object->getDataHoraUltimaTentativaFalha(),
                       'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
                       'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
+        			  'datahora_cadastro'				=> $object->getDataHoraCadastro(),
+        			  'datahora_ultima_atualizacao'     => $object->getDataHoraUltimaAtualizacao(),
                       'rowinfo'                    => $object->getRowinfo(),
                     );
 

@@ -250,7 +250,7 @@ class Basico_Model_AnexoMensagem
     public function getMensagemObject()
     {
         $model = new Basico_Model_Mensagem();
-        $object = $model->find($this->_mensagem);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_mensagem);
         return $object;
     }
 
@@ -302,39 +302,4 @@ class Basico_Model_AnexoMensagem
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_AnexoMensagem
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find($id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-
 }

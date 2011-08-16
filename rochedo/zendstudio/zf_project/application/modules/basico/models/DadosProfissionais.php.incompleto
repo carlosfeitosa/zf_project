@@ -226,7 +226,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setDataAdmissao($dataAdmissao)
 	{
-		$this->_dataAdmissao = Basico_OPController_UtilOPController::retornaValorTipado($dataAdmissao, TIPO_STRING, true);
+		$this->_dataAdmissao = Basico_OPController_UtilOPController::retornaValorTipado($dataAdmissao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -248,7 +248,7 @@ class Basico_Model_DadosProfissionais
 	*/
 	public function setDataDemissao($dataDemissao)
 	{
-		$this->_dataDemissao = Basico_OPController_UtilOPController::retornaValorTipado($dataDemissao, TIPO_STRING, true);
+		$this->_dataDemissao = Basico_OPController_UtilOPController::retornaValorTipado($dataDemissao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -379,7 +379,7 @@ class Basico_Model_DadosProfissionais
     public function getPessoaObject()
     {
         $model = new Basico_Model_Pessoa();
-        $object = $model->find($this->_pessoa);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoa);
         return $object;
     }
     
@@ -411,8 +411,8 @@ class Basico_Model_DadosProfissionais
      */
     public function getPessoaJuridicaVinculoObject()
     {
-        $model = new Basico_Model_PessoaJuridicaVinculo();
-        $object = $model->find($this->_pessoaJuridicaVinculo);
+        $model = new Basico_Model_PessoaJuridica();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaJuridicaVinculo);
         return $object;
     }
     
@@ -447,7 +447,7 @@ class Basico_Model_DadosProfissionais
     	// recuperando modelo
         $model = new Basico_Model_VinculoProfissional();
         // recuperando objeto
-        $object = $model->find($this->_vinculoProfissional);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_vinculoProfissional);
         // retornando objeto
         return $object;
     }
@@ -481,7 +481,7 @@ class Basico_Model_DadosProfissionais
     public function getRegimeTrabalhoObject()
     {
         $model = new Basico_Model_RegimeTrabalho();
-        $object = $model->find($this->_regimeTrabalho);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_regimeTrabalho);
         return $object;
     }
     
@@ -514,7 +514,7 @@ class Basico_Model_DadosProfissionais
     public function getProfissaoObject()
     {
         $model = new Basico_Model_Profissao();
-        $object = $model->find($this->_profissao);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_profissao);
         return $object;
     }
 
@@ -587,40 +587,5 @@ class Basico_Model_DadosProfissionais
 			$this->setMapper(new Basico_Model_DadosProfissionaisMapper());
 		}
 		return $this->_mapper;
-	}
-
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_DadosProfissionais
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((int)$id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

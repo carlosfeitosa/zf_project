@@ -156,10 +156,8 @@ class Basico_OPController_PaisOPController extends Basico_Abstract_RochedoPersis
 	 */
 	public static function retornaPaisOptions()
 	{
-		// recuperando obj país
-		$objPais = self::retornaNovoObjPais();
 		// recuperando todos os países
-		$objPais = $objPais->fetchAll();
+		$objPais = $this->retornaTodosObjetos($this->_model);
 		
 		// adicionando opção em branco
 		$arrayResult = array('' => '');

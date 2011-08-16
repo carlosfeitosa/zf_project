@@ -18,7 +18,7 @@ class Basico_OPController_DBCheckOPController
         // instanciando modelo de categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_CategoriaChaveEstrangeiraOPController');
 		// recuperando a tupla referente a categoria passada por parametro
-		$arrayCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
+		$arrayCategoriaChaveEstrangeira = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelCategoriaChaveEstrangeira, "id_categoria = {$idCategoria}", null, 1, 0);
 
 		// verificando se existe a relacao da categoria com uma chave estrangeira
 		if (isset($arrayCategoriaChaveEstrangeira[0]))
@@ -43,7 +43,7 @@ class Basico_OPController_DBCheckOPController
     	// instanciando modelo de categoria chave estrangeira
 		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_CategoriaChaveEstrangeiraOPController');
 		// recuperando a tupla referente a categoria passada por parametro
-		$arrayCategoriaChaveEstrangeira = $modelCategoriaChaveEstrangeira->fetchList("id_categoria = {$idCategoria}", null, 1, 0);
+		$arrayCategoriaChaveEstrangeira = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelCategoriaChaveEstrangeira, "id_categoria = {$idCategoria}", null, 1, 0);
 
 		// verificando se existe a relacao da categoria com uma chave estrangeira
 		if (!isset($arrayCategoriaChaveEstrangeira[0])){
@@ -56,11 +56,8 @@ class Basico_OPController_DBCheckOPController
 		// recuperando o nome do campo da tabela estrangeira
 		$campoTabelaEstrangeira = $arrayCategoriaChaveEstrangeira[0]->campoEstrangeiro;
 
-		// recuperando o banco de dados da sessao
-		$auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
-
 		// verificando a existencia do valor passado por parametro na tabela estrangeira recuperada
-		$checkConstraint = $auxDb->fetchAll("SELECT {$campoTabelaEstrangeira} FROM {$nomeTabelaEstrangeira} WHERE {$campoTabelaEstrangeira} = ?", array($valor));
+		$checkConstraint = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery("SELECT {$campoTabelaEstrangeira} FROM {$nomeTabelaEstrangeira} WHERE {$campoTabelaEstrangeira} = {$valor}");
 
 		// checando verificacao obteve sucesso
 		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
@@ -237,7 +234,7 @@ class Basico_OPController_DBCheckOPController
 		$stringIdsCategoriasNaoChecarRelacao = implode(',', $arrayIdsCategoriasNaoChecarRelacao);
 
 		// recuperando array de objetos categoria chave estrangeira relacionados com a tabela do objeto
-		$arrayObjsCategoriaChaveEstrangeiraObjeto = $modelCategoriaChaveEstrangeira->fetchList("tabela_estrangeira = '{$nomeTabela}' and id_categoria not in ({$stringIdsCategoriasNaoChecarRelacao})");
+		$arrayObjsCategoriaChaveEstrangeiraObjeto = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelCategoriaChaveEstrangeira, "tabela_estrangeira = '{$nomeTabela}' and id_categoria not in ({$stringIdsCategoriasNaoChecarRelacao})");
 
 		// recuperando ids de categoria chave estrangeira
 		foreach ($arrayObjsCategoriaChaveEstrangeiraObjeto as $objCategoriaChaveEsrtrangeiraObjeto) {

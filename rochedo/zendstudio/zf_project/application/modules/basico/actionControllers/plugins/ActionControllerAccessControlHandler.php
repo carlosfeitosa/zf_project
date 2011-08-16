@@ -15,7 +15,13 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	 * @var Boolean
 	 */
 	protected $_pluginAtivo = true;
-	
+
+	/**
+	 * Metodo de pre-despacho
+	 * 
+	 * (non-PHPdoc)
+	 * @see Zend_Controller_Plugin_Abstract::preDispatch()
+	 */
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se o request deve ser processado
@@ -204,8 +210,9 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	 */
 	private static function verificaRequestRegistroNovoUsuario(Zend_Controller_Request_Abstract $request)
 	{
-		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
-		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'cadastrarUsuarioNaoValidado'));
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador login, acao cadastrarUsuarioNaoValidado ou verificaNovoLogin
+		return ((($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'cadastrarUsuarioNaoValidado')) or 
+			   (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'verificaNovoLogin')));
 	}
 
 	/**

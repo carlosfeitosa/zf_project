@@ -70,6 +70,7 @@ class Basico_Model_MetodoValidacaoMapper
 				'motivo_desativacao'   => $object->getMotivoDesativacao(),
 				'datahora_desativacao' => $object->getDataHoraDesativacao(),
 				'datahora_reativacao'  => $object->getDataHoraReativacao(),
+        		'data_cadastro'		   => $object->getDataHoraCadastro(),
         		'rowinfo'              => $object->getRowinfo(),
 
         );

@@ -66,7 +66,7 @@ class Basico_Model_WebSite
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		$this->$method($value);
 	}
@@ -82,7 +82,7 @@ class Basico_Model_WebSite
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		return $this->$method();
 	}
@@ -111,7 +111,7 @@ class Basico_Model_WebSite
 	* Set idGenericoProprietario
 	* 
 	* @param Integer $idGenericoProprietario 
-	* @return Basico_Model_IdGenericoProprietario
+	* @return Basico_Model_WebSite
 	*/
 	public function setIdGenericoProprietario($idGenericoProprietario)
 	{
@@ -133,7 +133,7 @@ class Basico_Model_WebSite
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Basico_Model_Descricao
+	* @return Basico_Model_WebSite
 	*/
 	public function setDescricao($descricao)
 	{
@@ -155,7 +155,7 @@ class Basico_Model_WebSite
 	* Set url
 	* 
 	* @param String $url 
-	* @return Basico_Model_Url
+	* @return Basico_Model_WebSite
 	*/
 	public function setUrl($url)
 	{
@@ -177,7 +177,7 @@ class Basico_Model_WebSite
 	* Set categoria
 	* 
 	* @param int $categoria 
-	* @return Basico_Model_Categoria
+	* @return Basico_Model_WebSite
 	*/
 	public function setCategoria($categoria)
 	{
@@ -197,12 +197,12 @@ class Basico_Model_WebSite
  
     /**
      * Get categoria object
-     * @return null|Categoria
+     * @return null|Basico_Model_Categoria
      */
     public function getCategoriaObject()
     {
         $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         return $object;
     }
 
@@ -231,7 +231,7 @@ class Basico_Model_WebSite
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Rowinfo
+	* @return Basico_Model_WebSite
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -275,59 +275,4 @@ class Basico_Model_WebSite
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_WebSite
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-	   
-    /**
-    * fetch list of entries satisfying the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-
 }

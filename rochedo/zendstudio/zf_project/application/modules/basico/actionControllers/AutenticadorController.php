@@ -101,7 +101,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$objPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
 
 		// verificando se o login existe e possui perfil de usuario validado
-		if ($objPessoaPerfilUsuarioValidadoLogin->id) {
+		if ((is_object($objPessoaPerfilUsuarioValidadoLogin)) and ($objPessoaPerfilUsuarioValidadoLogin->id)) {
 			// inserindo log de tentativa de logon
 			Basico_OPController_LogOPController::salvarLogViaSQL($objPessoaPerfilUsuarioValidadoLogin->id, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
 		} else {

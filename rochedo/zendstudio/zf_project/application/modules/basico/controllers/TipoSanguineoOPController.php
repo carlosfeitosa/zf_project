@@ -19,7 +19,7 @@ class Basico_OPController_TipoSanguineoOPController
 		// recuperando obj tipoSanguineo
 		$objTipoSanguineo = self::retornaNovoObjTipoSanguineo();
 		// recuperando todos os tipos sanguineos
-		$objTipoSanguineo = $objTipoSanguineo->fetchAll();
+		$objTipoSanguineo = Basico_OPController_PersistenceOPController::bdObjectFetchAll($objTipoSanguineo);
 		
 		// adicionando opção em branco
 		$arrayResult = array('' => '');

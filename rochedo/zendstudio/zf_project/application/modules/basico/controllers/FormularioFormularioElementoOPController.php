@@ -77,7 +77,7 @@ class Basico_OPController_FormularioFormularioElementoOPController extends Basic
 	public function retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($idFormulario, $idFormularioElemento, $ordem)
 	{		
 		// recuperando objeto
-		$objsFormularioFormularioElemento = $this->_model->fetchList("id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and ordem = {$ordem}", null, 1, 0);
+		$objsFormularioFormularioElemento = $this->retornaObjetosPorParametros($this->_model, "id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and ordem = {$ordem}", null, 1, 0);
 
 		// verificando o resultado da recuperacao do objeto
 		if (!isset($objsFormularioFormularioElemento[0]) or (!$objsFormularioFormularioElemento[0]->decorator))
@@ -103,7 +103,7 @@ class Basico_OPController_FormularioFormularioElementoOPController extends Basic
 		$arrayReturn = array();
 
 		// recuperando objeto
-		$objsFormularioFormularioElemento = $this->_model->fetchList("id_formulario = {$idFormulario}", "ordem");
+		$objsFormularioFormularioElemento = $this->retornaObjetosPorParametros($this->_model, "id_formulario = {$idFormulario}", "ordem");
 
 		// verificando o resultado da recuperacao do objeto
 		if (count($objsFormularioFormularioElemento) > 0) {
@@ -131,7 +131,7 @@ class Basico_OPController_FormularioFormularioElementoOPController extends Basic
 	public function retornaObjetosFormularioFormularioElementoGrupoFormularioElemento(Basico_Model_Formulario $objFormulario)
 	{
 		// recuperando objetos
-		$objsFormularioFormularioElemento = $this->_model->fetchList("id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
+		$objsFormularioFormularioElemento = $this->retornaObjetosPorParametros($this->_model, "id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
 
 		// retornando array de objetos
 		return $objsFormularioFormularioElemento;

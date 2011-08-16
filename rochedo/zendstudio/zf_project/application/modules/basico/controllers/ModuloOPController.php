@@ -155,11 +155,32 @@ class Basico_OPController_ModuloOPController extends Basico_Abstract_RochedoPers
 		$nomeModulo = strtoupper($nomeModulo);
 
 		// recuperando objeto
-		$objModulo = $this->_model->fetchList("nome = '{$nomeModulo}'", null, 1, 0);
+		$objModulo = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeModulo}'", null, 1, 0);
 
 		// verificando resultado da recuperacao
 		if (isset($objModulo[0]))
 			return $objModulo[0];
+
+		return null;
+	}
+
+	public function retornaIdModuloPorNomeViaSQL($nomeModulo)
+	{
+		// transformando a string contendo o nome do modulo em UPPERCASE
+		$nomeModulo = strtoupper($nomeModulo);
+
+		// recuperando informacoes sobre a tabela modulo
+		$arrayNomeCampoIdModulo = array('id');
+		$condicaoSQL           = "nome = '{$nomeModulo}'";
+
+    	// recuperando login do usuario master
+		$arrayModulo = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL('modulo', $arrayNomeCampoIdModulo, $condicaoSQL);
+		
+		// verificando se a consulta obteve resultados
+		if ((isset($arrayModulo)) and (is_array($arrayModulo)) and (count($arrayModulo) > 0)) {
+			// retornando o id da categoria
+			return (Int) $arrayModulo[0]['id'];
+		}
 
 		return null;
 	}

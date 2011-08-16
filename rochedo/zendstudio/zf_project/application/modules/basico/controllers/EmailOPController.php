@@ -96,7 +96,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	public function retornaUniqueIdEmail($email) 
 	{
 		// recuperando objetos e-mail
-		$arrayObjsEmail = $this->_model->fetchList("email = '{$email}'", null, 1, 0);
+		$arrayObjsEmail = self::retornaObjetoEmailPorEmail($email);
 		
 		// verificando se o objeto foi recuperado/existe
 		if (isset($arrayObjsEmail[0]))
@@ -116,7 +116,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	private function retornaObjetoEmailPorEmail($email)
 	{
 		// recuperando objetos e-mail
-		$objsEmail = $this->_model->fetchList("email = '{$email}'", null, 1, 0);
+		$objsEmail = $this->retornaObjetosPorParametros($this->_model, "email = '{$email}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
 		if (isset($objsEmail[0]))
@@ -156,7 +156,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	public function retornaObjetoEmailPorId($id)
 	{
 		// retornando o objeto email atraves do id
-		return $this->_model->find($id);
+		return Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $id);
 	}
 
 	/**
@@ -169,7 +169,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 	public function retornaIdProprietarioEmailPorIdEmail($idEmail)
 	{
 		// recuperando objetos e-mail
-		$objsEmail = $this->_model->fetchList("id = '{$idEmail}'", null, 1, 0);
+		$objsEmail = $this->retornaObjetosPorParametros($this->_model, "id = '{$idEmail}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
 		if (isset($objsEmail[0]))
@@ -290,7 +290,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 
 		// buscando o e-mail do sistema
 		$idCategoriaEmailSistema = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_EMAIL);
-		$objEmailSistema = $this->_model->fetchList("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
+		$objEmailSistema = $this->retornaObjetosPorParametros($this->_model, "id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
 		if (isset($objEmailSistema[0]))
@@ -318,7 +318,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
 			$idCategoriaEmailPrimario = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO);
 
 			// recuperando o email primario da pessoa passada
-			$objEmailPrimario = $this->_model->fetchList("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
+			$objEmailPrimario = $this->retornaObjetosPorParametros($this->_model, "id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
 			
 			// checando se o email foi encontrado
 			if (isset($objEmailPrimario[0])) {
@@ -349,7 +349,7 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
     	$model = new $nomeClasse();
     	
     	//retornando o objeto proprietario
-    	return $model->find($email->idGenericoProprietario);
+    	return Basico_OPController_PersistenceOPController::bdObjectFind($model, $email->idGenericoProprietario);
     	
     }
     

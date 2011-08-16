@@ -107,7 +107,7 @@ class Basico_Model_PessoaJuridica
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		$this->$method($value);
 	}
@@ -123,7 +123,7 @@ class Basico_Model_PessoaJuridica
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception('Invalid property specified');
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
 		}
 		return $this->$method();
 	}
@@ -201,7 +201,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_PessoaJuridica();
         // recuperando objeto
-        $object = $model->find($this->_pessoaJuridicaPai);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaJuridicaPai);
         // retornando objeto
         return $object;
     }
@@ -237,7 +237,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_Categoria();
         // recuperando objeto
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         // retornando objeto
         return $object;
     }
@@ -271,9 +271,9 @@ class Basico_Model_PessoaJuridica
     public function getPessoaResponsavelCadastroObject()
     {
     	// recuperando modelo
-        $model = new Basico_Model_PessoaResponsavelCadastro();
+        $model = new Basico_Model_Pessoa();
         // recuperando objeto
-        $object = $model->find($this->_pessoaResponsavelCadastro);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaResponsavelCadastro);
         // retornando objeto
         return $object;
     }
@@ -309,7 +309,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_NaturezaPessoaJuridica();
         // recuperando objeto
-        $object = $model->find($this->_naturezaPessoaJuridica);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_naturezaPessoaJuridica);
         // retornando objeto
         return $object;
     }
@@ -345,7 +345,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_AreaEconomia();
         // recuperando objeto
-        $object = $model->find($this->_areaEconomiaDefault);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_areaEconomiaDefault);
         // retornando objeto
         return $object;
     }
@@ -381,7 +381,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_Telefone();
         // recuperando objeto
-        $object = $model->find($this->_telefoneDefault);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_telefoneDefault);
         // retornando objeto
         return $object;
     }
@@ -417,7 +417,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_Email();
         // recuperando objeto
-        $object = $model->find($this->_emailDefault);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_emailDefault);
         // retornando objeto
         return $object;
     }
@@ -453,7 +453,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_Website();
         // recuperando objeto
-        $object = $model->find($this->_websiteDefault);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_websiteDefault);
         // retornando objeto
         return $object;
     }
@@ -489,7 +489,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_Endereco();
         // recuperando objeto
-        $object = $model->find($this->_enderecoCorrespondencia);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_enderecoCorrespondencia);
         // retornando objeto
         return $object;
     }
@@ -525,7 +525,7 @@ class Basico_Model_PessoaJuridica
     	// recuperando modelo
         $model = new Basico_Model_Endereco();
         // recuperando objeto
-        $object = $model->find($this->_enderecoDefault);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_enderecoDefault);
         // retornando objeto
         return $object;
     }
@@ -538,7 +538,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setDataCriacao($dataCriacao)
 	{
-		$this->_dataCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataCriacao, TIPO_STRING, true);
+		$this->_dataCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataCriacao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -560,7 +560,7 @@ class Basico_Model_PessoaJuridica
 	*/
 	public function setDataUltimaModificacao($dataUltimaModificacao)
 	{
-		$this->_dataUltimaModificacao = Basico_OPController_UtilOPController::retornaValorTipado($dataUltimaModificacao, TIPO_STRING, true);
+		$this->_dataUltimaModificacao = Basico_OPController_UtilOPController::retornaValorTipado($dataUltimaModificacao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -643,39 +643,5 @@ class Basico_Model_PessoaJuridica
 			$this->setMapper(new Basico_Model_PessoaJuridicaMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_PessoaJuridica
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

@@ -159,7 +159,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		}
 		
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 		
 		// verificando se a mensagem foi carregada
 		if (!isset($objMensagemTemplate)){
@@ -248,7 +248,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// verificando se a mensagem foi carregada
 		if (!isset($objMensagemTemplate))
@@ -306,7 +306,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 		
 		// carregando a mensagem template
-		$objsMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objcategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objsMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id FROM categoria WHERE nome = '{$objcategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// verificando se a mensagem foi carregada
 		if (!isset($objsMensagemTemplate))
@@ -367,7 +367,7 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->_model->fetchList("id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// recuperando o assunto
 		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());

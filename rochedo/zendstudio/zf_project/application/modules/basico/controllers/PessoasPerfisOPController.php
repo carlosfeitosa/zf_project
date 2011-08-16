@@ -178,7 +178,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
 
 	    // recuperando o objeto pessoa perfil do sistema
-        $objPessoaPerfilSistema = $this->_model->fetchList("id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
+        $objPessoaPerfilSistema = $this->retornaObjetosPorParametros($this->_model, "id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
         
         // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
         if (!$objPessoaPerfilSistema[0]->id)
@@ -274,8 +274,8 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	public function retornaObjetosPessoasPerfisPorIdPessoa($idPessoa)
 	{
 		// recuperando array de objetos Basico_Model_PessoaPefil
-		$objsPessoasPerfis = $this->_model->fetchList("id_pessoa = '{$idPessoa}'", null, 1, 0);
-		
+		$objsPessoasPerfis = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = '{$idPessoa}'");
+
 		// verificando se o objeto existe
 		if (count($objsPessoasPerfis) > 0)
 			// retornando o objeto
@@ -306,7 +306,44 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		// recuperando e retornando array de resultados
 		return $arrayIdsDescricoesPerfisVinculadosUsuario = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($consultaSQL);
 	}
-	
+
+	/**
+	 * Retorna as pessoasPerfis com a categoria PERFIL_USUARIO da pessoa passada.
+	 * 
+	 * @param int $idPessoa
+	 * 
+	 * @return Array
+	 */
+	public function retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa)
+	{
+		// inicializando variaveis
+		$arrayResultado = array();
+
+		// recuperando o id da categoria PERFIL_USUARIO
+		$idCategoriaPerfilUsuario = Basico_OPController_CategoriaOPController::retornaIdCategoriaPerfilUsuarioViaSQL();
+
+		// recuperando perfis do usuario
+		$objsPerfisUsuario = $this->retornaObjetosPessoasPerfisPorIdPessoa($idPessoa);
+
+		// verificando se foram recuperados os perfis do usuario
+		if (count($objsPerfisUsuario) > 0) {
+			// loop para carregar array de resultados
+			foreach ($objsPerfisUsuario as $objPerfilUsuario) {
+				// recuperando objeto perfil
+				$objPerfil = $objPerfilUsuario->getPerfilObject();
+
+				// verificando se o perfil eh da cateroria de perfil de usuario
+				if ($objPerfil->categoria === $idCategoriaPerfilUsuario) {
+					// carregando array de resultados
+					$arrayResultado[] = array('id' => $objPerfil->id, 'constante_textual' => $objPerfil->constanteTextual);
+				}
+			}
+		}
+
+		// retornando resultado
+		return $arrayResultado;
+	}
+
 	/**
 	 * Retorna o objeto pessoaPerfil do perfil USUARIO_NAO_VALIDADO da pessoa passada por parametro
 	 * 
@@ -327,7 +364,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		$perfilUsuarioNaoValidado = $perfilOPController->retornaObjetoPerfilUsuarioNaoValidado();
 
 		// recuperando o objeto pessoa perfil de usuario nao validado
-    	$objPessoaPerfilPessoa = $this->_model->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
+    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfilPessoa[0])) {
@@ -357,7 +394,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		$objPerfilUsuarioValidado = $perfilOPController->retornaObjetoPerfilUsuarioValidado();
 
 		// recuperando o objeto pessoa pefil
-    	$objPessoaPerfil = $this->_model->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
+    	$objPessoaPerfil = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfil[0])) {
@@ -420,7 +457,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		$objPerfil = $perfilOPController->retornaObjetoPerfilPorIdPerfil($idPerfil);
 
 		// recuperando o objeto pessoa perfil
-    	$objPessoaPerfilPessoa = $this->_model->fetchList("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
+    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfilPessoa[0])) {

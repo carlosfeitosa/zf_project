@@ -199,7 +199,7 @@ class Basico_Model_Login
     public function getPessoaObject()
     {
         $model = new Basico_Model_Pessoa();
-        $object = $model->find($this->_pessoa);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoa);
         return $object;
     }
     
@@ -343,7 +343,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimoLogon($dataHoraUltimoLogon)
 	{
-		$this->_dataHoraUltimoLogon = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoLogon, TIPO_STRING, true);
+		$this->_dataHoraUltimoLogon = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoLogon, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -409,7 +409,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraProximaExpiracao($dataHoraProximaExpiracao)
 	{
-		$this->_dataHoraProximaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraProximaExpiracao, TIPO_STRING, true);
+		$this->_dataHoraProximaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraProximaExpiracao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -431,7 +431,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaExpiracao($dataHoraUltimaExpiracao)
 	{
-		$this->_dataHoraUltimaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaExpiracao, TIPO_STRING, true);
+		$this->_dataHoraUltimaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaExpiracao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -453,7 +453,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraExpiracaoSenha($dataHoraExpiracaoSenha)
 	{
-		$this->_dataHoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraExpiracaoSenha, TIPO_STRING, true);
+		$this->_dataHoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraExpiracaoSenha, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -475,7 +475,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaTentativaFalha($dataHoraUltimaTentativaFalha)
 	{
-		$this->_dataHoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTentativaFalha, TIPO_STRING, true);
+		$this->_dataHoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTentativaFalha, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -497,7 +497,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimoReset($dataHoraUltimoReset)
 	{
-		$this->_dataHoraUltimoReset = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoReset, TIPO_STRING, true);
+		$this->_dataHoraUltimoReset = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoReset, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -519,7 +519,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaTrocaSenha($dataHoraUltimaTrocaSenha)
 	{
-		$this->_dataHoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTrocaSenha, TIPO_STRING, true);
+		$this->_dataHoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTrocaSenha, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -541,7 +541,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraCadastro($dataHoraCadastro)
 	{
-		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -563,7 +563,7 @@ class Basico_Model_Login
 	*/
 	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
 	{
-		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING, true);
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -646,39 +646,5 @@ class Basico_Model_Login
 			$this->setMapper(new Basico_Model_LoginMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Login
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

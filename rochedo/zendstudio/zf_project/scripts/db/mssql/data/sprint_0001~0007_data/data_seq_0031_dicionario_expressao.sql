@@ -27,6 +27,7 @@
 * 								29/06/1011 - criacao de expressoes para o validador de email do formulario de cadastro de usuario nao validado
 * 								28/06/2011 - criacao de constante para problemas com login(senha incorreta);
 * 								29/06/2011 - criacao de constante para problemas com login(ip do login diferente do ip atual);
+* 								15/08/2011 - criacao de constante para link no menu administrador para regerar checksum de um modelo;
 */
 
 /*
@@ -925,6 +926,13 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_ADMIN_FORM_GENERATE_ALL_SYSTEM_FORMS_BUTTON_LABEL' AS constante_textual, 'Gerar todos os formularios do sistema.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_FORM_REGENERATE_CHECKSUM_MODELS' AS constante_textual, 'Regerar checksum de modelos.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -5469,6 +5477,13 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_ADMIN_FORM_GENERATE_ALL_SYSTEM_FORMS_BUTTON_LABEL' AS constante_textual, 'Generate all system forms.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao(id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_ADMIN_FORM_REGENERATE_CHECKSUM_MODELS' AS constante_textual, 'Regenerate models checksum.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

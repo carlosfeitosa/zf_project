@@ -220,7 +220,7 @@ class Basico_Model_Mensagem
 		// recuperando modelo
 		$model = new Basico_Model_PessoasPerfisMensagensCategorias();
 		// recuperando objetos
-		$objetosPessoasPerfisMensagensCategorias = $model->fetchList("id_mensagem = {$this->_id}");
+		$objetosPessoasPerfisMensagensCategorias = Basico_OPController_PersistenceOPController::bdObjectFetchList($model, "id_mensagem = {$this->_id}");
 		// retornando objetos
 		return $objetosPessoasPerfisMensagensCategorias;
 	}
@@ -255,7 +255,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setDataHoraMensagem($dataHoraMensagem)
 	{
-		$this->_dataHoraMensagem = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraMensagem, TIPO_STRING, true);
+		$this->_dataHoraMensagem = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraMensagem, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -277,7 +277,7 @@ class Basico_Model_Mensagem
 	*/
 	public function setDataHoraEnvio($dataHoraEnvio)
 	{
-		$this->_dataHoraEnvio = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraEnvio, TIPO_STRING, true);
+		$this->_dataHoraEnvio = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraEnvio, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -417,39 +417,4 @@ class Basico_Model_Mensagem
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Mensagem
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-
 }

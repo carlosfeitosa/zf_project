@@ -224,7 +224,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setDataHoraDesativacao($dataHoraDesativacao)
 	{
-		$this->_dataHoraDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraDesativacao, TIPO_STRING, true);
+		$this->_dataHoraDesativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraDesativacao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -246,7 +246,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setDataHoraReativacao($dataHoraReativacao)
 	{
-		$this->_dataHoraReativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraReativacao, TIPO_STRING, true);
+		$this->_dataHoraReativacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraReativacao, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -268,7 +268,7 @@ class Basico_Model_AcaoAplicacao
 	*/
 	public function setDataHoraCadastro($dataHoraCadastro)
 	{
-		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_DATE, true);
 		return $this;
 	}
 
@@ -311,7 +311,7 @@ class Basico_Model_AcaoAplicacao
     public function getModuloObject()
     {
         $model = new Basico_Model_Modulo();
-        $object = $model->find($this->_modulo);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_modulo);
         return $object;
     }
 
@@ -384,39 +384,5 @@ class Basico_Model_AcaoAplicacao
 			$this->setMapper(new Basico_Model_AcaoAplicacaoMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_AcaoAplicacao
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find($id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

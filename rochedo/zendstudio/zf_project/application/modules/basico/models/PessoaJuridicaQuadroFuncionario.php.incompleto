@@ -5,14 +5,14 @@
  */
  
 /**
- * PessoaJuridicaAreaEconomia model
+ * QuadroFuncionarioPessoaJuridica model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_PessoasJuridicasAreasEconomiaMapper
+ * @uses       Basico_Model_QuadroFuncionarioPessoaJuridicaMapper
  * @subpackage Model
  */
-class Basico_Model_PessoasJuridicasAreasEconomia
+class Basico_Model_PessoaJuridicaQuadroFuncionario
 {
     /**
     * @var int
@@ -20,23 +20,24 @@ class Basico_Model_PessoasJuridicasAreasEconomia
     protected $_id;
 
     /**
-     * @var Basico_Model_PessoasJuridicasAreasEconomiaMapper
+     * @var Basico_Model_QuadroFuncionarioPessoaJuridicaMapper
      */
     protected $_mapper;
 
     /**
+     * @var QuadroFuncionario
+     */
+    protected $_quadrofuncionario;
+    
+    /**
      * @var PessoaJuridica
      */
     protected $_pessoajuridica;
-    /**
-     * @var AreaEconomia
-     */
-    protected $_areaeconomia;
 	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
-
+    
     /**
      * Constructor
      * 
@@ -88,7 +89,7 @@ class Basico_Model_PessoasJuridicasAreasEconomia
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_PessoasJuridicasAreasEconomia
+     * @return Basico_Model_QuadroFuncionarioPessoaJuridica
      */
     public function setOptions(array $options)
     {
@@ -105,14 +106,47 @@ class Basico_Model_PessoasJuridicasAreasEconomia
     }
     
     /**
+    * Set quadrofuncionario
+    * 
+    * @param int $ 
+    * @return Basico_Model_QuadroFuncionarioPessoaJuridica
+    */
+    public function setQuadroFuncionario($quadrofuncionario)
+    {
+        $this->_quadrofuncionario = Basico_OPController_UtilOPController::retornaValorTipado($quadrofuncionario, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get quadrofuncionario
+    * 
+    * @return null|int
+    */
+    public function getQuadroFuncionario()
+    {
+        return $this->_quadrofuncionario;
+    }
+ 
+    /**
+     * Get quadrofuncionario object
+     * @return null|Basico_Model_QuadroFuncionario
+     */
+    public function getQuadroFuncionarioObject()
+    {
+        $model = new Basico_Model_QuadroFuncionario();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_quadrofuncionario);
+        return $object;
+    }
+    
+    /**
     * Set pessoajuridica
     * 
     * @param int $ 
-    * @return Basico_Model_PessoasJuridicasAreasEconomia
+    * @return Basico_Model_QuadroFuncionarioPessoaJuridica
     */
     public function setPessoaJuridica($pessoajuridica)
     {
-        $this->_pessoajuridica = Basico_OPController_UtilOPController::retornaValorTipado($pessoajuridica, TIPO_INTEIRO, true);
+        $this->_pessoajuridica = Basico_OPController_UtilOPController::retornaValorTipado($pessoajuridica, TIPO_INTEIRO, true) ;
         return $this;
     }
 
@@ -132,47 +166,8 @@ class Basico_Model_PessoasJuridicasAreasEconomia
      */
     public function getPessoaJuridicaObject()
     {
-    	// recuperando modelo
         $model = new Basico_Model_PessoaJuridica();
-        // recuperando objeto
-        $object = $model->find($this->_pessoajuridica);
-        // retornando objeto
-        return $object;
-    }
-    
-    /**
-    * Set areaeconomia
-    * 
-    * @param int $ 
-    * @return Basico_Model_PessoasJuridicasAreasEconomia
-    */
-    public function setAreaEconomia($areaeconomia)
-    {
-        $this->_areaeconomia = Basico_OPController_UtilOPController::retornaValorTipado($areaeconomia, TIPO_INTEIRO, true);
-        return $this;
-    }
-
-    /**
-    * Get areaeconomia
-    * 
-    * @return null|int
-    */
-    public function getAreaEconomia()
-    {
-        return $this->_areaeconomia;
-    }
- 
-    /**
-     * Get areaeconomia object
-     * @return null|Basico_Model_AreaEconomia
-     */
-    public function getAreaEconomiaObject()
-    {
-    	// recuperando modelo
-        $model = new Basico_Model_AreaEconomia();
-        // recuperando objeto
-        $object = $model->find($this->_areaeconomia);
-        // retornando objeto
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoajuridica);
         return $object;
     }
 
@@ -180,7 +175,7 @@ class Basico_Model_PessoasJuridicasAreasEconomia
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_PessoasJuridicasAreasEconomia
+	* @return Basico_Model_QuadroFuncionarioPessoaJuridica
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -197,12 +192,13 @@ class Basico_Model_PessoasJuridicasAreasEconomia
 	{
 		return $this->_rowinfo;
 	}
+    
 
     /**
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_PessoasJuridicasAreasEconomia
+    * @return Basico_Model_QuadroFuncionarioPessoaJuridica
     */
     public function setId($id)
     {
@@ -224,7 +220,7 @@ class Basico_Model_PessoasJuridicasAreasEconomia
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_PessoasJuridicasAreasEconomia
+    * @return Basico_Model_QuadroFuncionarioPessoaJuridica
     */
     public function setMapper($mapper)
     {
@@ -235,69 +231,15 @@ class Basico_Model_PessoasJuridicasAreasEconomia
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_PessoaJuridicaAreaEconomiaMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_QuadroFuncionarioPessoaJuridicaMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_PessoasJuridicasAreasEconomiaMapper
+    * @return Basico_Model_QuadroFuncionarioPessoaJuridicaMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Basico_Model_PessoaJuridicaAreaEconomiaMapper());
+            $this->setMapper(new Basico_Model_QuadroFuncionarioPessoaJuridicaMapper());
         }
         return $this->_mapper;
-    }
-
-    /**
-    * Save the current entry
-    * 
-    * @return void
-    */
-    public function save()
-    {
-        $this->getMapper()->save($this);
-    }
-    
-    /**
-     * Delete the current entry
-     * @return void
-     */
-    public function delete()
-    {
-        $this->getMapper()->delete($this);
-    }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_PessoasJuridicasAreasEconomia
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find((int) $id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
     }
 }

@@ -27,7 +27,7 @@ class Basico_Model_EnderecoMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -180,91 +180,4 @@ class Basico_Model_EnderecoMapper
 		}
 		return $entries;
 	}
-
-	/**
-    * Fetch all entries but allowing a join
-    * @return array
-    */
-    public function fetchJoinList($join=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        $select = $this->getDbTable()->getAdapter()->select()
-            ->from(array('table1' => 'endereco'),
-                   array('id' => 'table1.id',
-                        'id_generico_proprietario' => 'table1.id_generico_proprietario' ,
-                        'descricao' => 'table1.descricao' ,
-                        'id_cep' => 'table1.id_cep' ,
-                        'logradouro' => 'table1.logradouro' ,
-                        'numero' => 'table1.numero' ,
-                        'complemento' => 'table1.complemento' ,
-                        'caixa_postal' => 'table1.caixa_postal' ,
-                        'data_validacao' => 'table1.data_validacao' ,
-                        'id_categoria' => 'table1.id_categoria)',
-                        'id_pais' => 'table1.id_pais)',
-                        'id_estado' => 'table1.id_estado)',
-                        'id_municipio' => 'table1.id_municipio)'))
-            ->joinInner($join[0])
-            ->where($where)
-            ->order($order)
-            ->limit($count, $offset);
-        $stmt = $this->getDbTable()->getAdapter()->query($select);
-        $resultSet = $stmt->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-      	
-            $entry = new Basico_Model_Endereco();
-            $entry->setId($row['id'])
-                ->setIdGenericoProprietario($row['id_generico_proprietario'])
-                ->setDescricao($row['descricao'])
-                ->setCep($row['id_cep'])
-                ->setLogradouro($row['logradouro'])
-                ->setNumero($row['numero'])
-                ->setComplemento($row['complemento'])
-                ->setCaixaPostal($row['caixa_postal'])
-                ->setDataValidacao($row['data_validacao'])
-                ->setCategoria($row['id_categoria'])
-                ->setPais($row['id_pais'])
-                ->setEstado($row['id_estado'])
-                ->setMunicipio($row['id_municipio'])
-                ->setMapper($this);
-            $entries[] = $entry;
-            
-        }
-        return $entries;
-    }
-    
-    
-    /**
-    * Fetch all entries but allowing a join. This is an alternative method similar to fetchJoinList
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby, $where=null, $order=null)
-    {
-        $select = $this->getDbTable()->select();
-        $select->join($jointable, $joinby, array());
-        $select->where($where, array());
-        $resultSet = $this->getDbTable()->fetchAll($select);
-        $entries   = array();
-        foreach ($resultSet as $row)
-        {
-            $entry = new Basico_Model_Endereco();
-            $entry->setId($row->id)
-				->setIdGenericoProprietario($row->id_generico_proprietario)
-				->setDescricao($row->descricao)
-				->setCep($row->id_cep)
-				->setLogradouro($row->logradouro)
-				->setNumero($row->numero)
-				->setComplemento($row->complemento)
-				->setCaixaPostal($row->caixa_postal)
-				->setDataValidacao($row->data_validacao)
-                ->setCategoria($row->id_categoria)
-                ->setPais($row->id_pais)
-                ->setEstado($row->id_estado)
-                ->setMunicipio($row->id_municipio)
-                ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }    
-
 }

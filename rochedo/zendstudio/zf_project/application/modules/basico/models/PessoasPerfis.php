@@ -140,7 +140,7 @@ class Basico_Model_PessoasPerfis
     public function getPessoaObject()
     {
         $model = new Basico_Model_Pessoa();
-        $object = $model->find($this->_pessoa);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoa);
         return $object;
     }
     
@@ -173,7 +173,7 @@ class Basico_Model_PessoasPerfis
     public function getPerfilObject()
     {
         $model = new Basico_Model_Perfil();
-        $object = $model->find($this->_perfil);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_perfil);
         return $object;
     }
     
@@ -207,7 +207,7 @@ class Basico_Model_PessoasPerfis
      */
     public function setDataHoraCadastro($dataHoraCadastro)
     {
-    	$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_STRING, true);
+    	$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_DATE, true);
     	return $this;
     }
     
@@ -227,7 +227,7 @@ class Basico_Model_PessoasPerfis
      */
     public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
     {
-    	$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_STRING, true);
+    	$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE, true);
     	return $this;
     }
     
@@ -287,40 +287,5 @@ class Basico_Model_PessoasPerfis
             $this->setMapper(new Basico_Model_PessoasPerfisMapper());
         }
         return $this->_mapper;
-    }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_PessoasPerfis
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find((Int) $id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
     }
 }

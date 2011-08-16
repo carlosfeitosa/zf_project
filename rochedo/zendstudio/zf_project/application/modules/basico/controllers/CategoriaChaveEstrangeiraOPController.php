@@ -77,7 +77,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 		$stringImplodidaArrayIdsCategoriasExclusao = implode(',', $arrayIdsCategoriasExclusao);
 
 		// recuperando todas as tuplas, excluindo as que possuem a categoria no array de exclusao passado por parametro
-		$objsCategoriaChaveEstrangeira = $this->_model->fetchList("id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
+		$objsCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros($this->_model, "id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
 		
 		// loop para recuperar o nome das tabelas
 		foreach($objsCategoriaChaveEstrangeira as $objCategoriaChaveEstrangeira) {
@@ -167,32 +167,24 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 		$idCategoriaCVC = $categoriaOPController->retornaIdCategoriaCVC();
 	
 		// recuperando a categoria chave estrangeira relacionada ao objeto
-		$arrayCategoriasChaveEstrangeira = $this->_model->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
+		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
 		
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($arrayCategoriasChaveEstrangeira[0])) {
 			// retornando a relacao
 			return $arrayCategoriasChaveEstrangeira[0];
 		} else if ($forceCreateRelationship) {
-			// instanciando controladores
-			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-			$moduloOPController  = Basico_OPController_ModuloOPController::getInstance();
-
 			// recuperando modelo vazio de categoria chave estrangeira
 			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 			
 			// recuperando objeto modulo do objeto
-			$objModulo = $moduloOPController->retornaObjetoModuloPorNome(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
+			$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
 
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->categoria = $idCategoriaCVC;
-			$modelCategoriaChaveEstrangeira->modulo = $objModulo->id;
+			$modelCategoriaChaveEstrangeira->modulo = $idModulo;
 			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
-			
-			// preparando XML rowinfo
-			$rowinfoOPController->prepareXml($modelCategoriaChaveEstrangeira, true);
-			$modelCategoriaChaveEstrangeira->rowinfo = $rowinfoOPController->getXml();
 			
 			// salvando objeto
 			$this->salvarObjeto($modelCategoriaChaveEstrangeira);
@@ -214,7 +206,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	public function retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
 	{
 		// recuperando todas as tuplas vinculadas a categoria passara por parametro
-		$objCategoriaChaveEstrangeira = $this->_model->fetchList("id_categoria = {$idCategoria}");
+		$objCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros($this->_model, "id_categoria = {$idCategoria}");
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaChaveEstrangeira[0]))

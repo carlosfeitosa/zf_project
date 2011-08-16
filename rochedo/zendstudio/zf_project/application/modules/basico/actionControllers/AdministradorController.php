@@ -41,7 +41,88 @@ class Basico_AdministradorController extends Zend_Controller_Action
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
-    
+
+    /**
+     * Acao para regerar os checksum de um determinado modelo ou de todos os modelos
+     * 
+     * @return void
+     */
+    public function regerarchecksummodeloAction()
+    {
+    	// inicializando variaveis
+    	$nomeModelo = null;
+    	$idModelo = null;
+
+    	// recuperando parametros
+    	$parametros = $this->getRequest()->getParams();
+
+    	// verificando se foi passado os parametros para regeracao de checksum
+    	if (array_key_exists('modelo', $parametros)) {
+    		// recuperando o modelo
+    		$nomeModelo = $parametros['modelo'];
+			// verificando se foi passado o id do modelo que deseja regerar o checksum
+    		if (array_key_exists('id', $parametros)) {
+    			// recuperando o id do modelo
+    			$idModelo = (Int) $parametros['id'];
+    		}
+
+    		// verificando se o sistema deve regerar o checksum de um modelo especifico ou de todos
+    		if (strtolower($nomeModelo) === 'todos') {
+    			// regerando o checksum de todos os objetos do sistema
+    			Basico_OPController_CVCOPController::getInstance()->regerarCheckSumTodosModelos();
+    		} else {
+    			// verificando se o modelo existe
+    			if (class_exists($nomeModelo, true)) {
+    				// regerando o checksum do modelo
+    				Basico_OPController_CVCOPController::getInstance()->regerarChecksumModelo($nomeModelo, $idModelo);
+    				
+    			} else {
+			    	// setando o titulo e subtitulo da view
+			    	$tituloView = 'Problemas ao tentar regerar checksum!';
+					// setando subtitulo da view
+		    	    $subtituloView = "Modelo informado nao existe.";
+		
+			    	// carregando array do cabecalho da view
+					$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+			
+				    // setando o cabecalho na view
+					$this->view->cabecalho = $cabecalho;
+		
+					// renderizando a view
+					$this->_helper->Renderizar->renderizar();
+    			}
+    		}
+    	} else {
+	    	// setando o titulo e subtitulo da view
+	    	$tituloView = 'Problemas ao tentar regerar checksum!';
+			// setando subtitulo da view
+    	    $subtituloView = "Nao foi informado o modelo para regeracao.";
+
+	    	// carregando array do cabecalho da view
+			$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+	
+		    // setando o cabecalho na view
+			$this->view->cabecalho = $cabecalho;
+
+			// renderizando a view
+			$this->_helper->Renderizar->renderizar();
+    	}
+
+    	// setando o titulo e subtitulo da view
+		$tituloView = 'Sucesso ao regerar checksum!';
+		// setando subtitulo da view
+    	$subtituloView = "O modelo {$nomeModelo} teve seu checksum regerado com sucesso.";
+
+	    // carregando array do cabecalho da view
+		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+	
+		// setando o cabecalho na view
+		$this->view->cabecalho = $cabecalho;
+
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
+    }
+
     /**
      * Ação para resetar o banco de dados.
      * 

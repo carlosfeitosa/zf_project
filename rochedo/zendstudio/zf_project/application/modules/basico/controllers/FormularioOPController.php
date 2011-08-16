@@ -74,7 +74,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
     public function existeFormulariosFilhosPorIdFormulario($idFormulario)
     {
 	   	// recuperando formularios filhos
-    	$objsFormulariosFilho = $this->_model->fetchList("id_formulario_pai = {$idFormulario}");
+    	$objsFormulariosFilho = $this->retornaObjetosPorParametros($this->_model, "id_formulario_pai = {$idFormulario}");
 
     	// retornando se existe(m) formulario(s) filho(s)
     	return (count($objsFormulariosFilho) > 0);
@@ -90,7 +90,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
    	public function existeElementosPorIdFormulario($idFormulario)
    	{
    		// recuperando elementos do formulario
-   		$objsFormularioElemento = $this->_model->find($idFormulario)->getFormularioElementosObjects();
+   		$objsFormularioElemento = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idFormulario)->getFormularioElementosObjects();
 
         // retornando se existe(m) elemento(s)
         return (count($objsFormularioElemento) > 0);
@@ -187,7 +187,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 		$arrayReturn = array();
 
 		// recuperando todos os formularios do sistema, ordenados pelo nome
-		$objsFormulario = $this->_model->fetchList(null, 'form_name');
+		$objsFormulario = $this->retornaObjetosPorParametros($this->_model, null, 'form_name');
 
 		// loop para recuperar apenas os formulario que nao sao sub formularios
 		foreach ($objsFormulario as $formularioObject) {
@@ -239,7 +239,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 			return null;
 
 		// recuperando o formulario
-		$objsFormulario = $this->_model->fetchList("nome = '{$nomeFormulario}' and id_categoria = {$idCategoria}", null, 1, 0);
+		$objsFormulario = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeFormulario}' and id_categoria = {$idCategoria}", null, 1, 0);
 
 		// verificando se o formulario foi recuperado
 		if (isset($objsFormulario[0])) {

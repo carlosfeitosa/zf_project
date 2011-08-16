@@ -46,6 +46,17 @@ class Basico_OPController_PersistenceOPController
     	return Basico_OPController_DBTransactionOPController::getInstance()->controlaTransacaoBD($tipoTransacao);
     }
 
+    /**
+     * Versiona todos os objetos do sistema que ainda nao foram versionados
+     *
+     * @return Boolean
+     */
+    public static function bdVersionaObjetosNaoVersionados()
+    {
+    	// retornando o resultado do metodo "versionarObjetosNaoVersionados" do controlador "Basico_OPController_CVCOPController"
+    	return Basico_OPController_CVCOPController::getInstance()->versionarObjetosNaoVersionados();
+    }
+
   	/**
      * Retorna a versao de uma tupla
      * 
@@ -84,6 +95,63 @@ class Basico_OPController_PersistenceOPController
     {
     	// retornando o resultado do metodo "atualizaVersao" do controlador "Basico_OPController_CVCOPController"
     	return Basico_OPController_CVCOPController::atualizaVersao($objeto);
+    }
+
+    /**
+     * Retorna o checksum de objeto, via CVC
+     * 
+     * @param Object $objeto
+     * 
+     * @return String|null
+     */
+    public static function bdRetornaChecksumObjetoViaCVC($objeto)
+    {
+    	// retornando o resultado do metodo "retornaChecksumObjeto" do controlador "Basico_OPController_CVCOPController"
+    	return Basico_OPController_CVCOPController::getInstance()->retornaChecksumObjeto($objeto);
+    }
+
+    /**
+     * Retorna um objeto atraves do seu ID
+     * 
+     * @param Object $model
+     * @param Integer $id
+     * 
+     * @return Object|null
+     */
+    public static function bdObjectFind($model, $id)
+    {
+    	// retornando o resultado do metodo "find" do controlador "Basico_OPController_DBOpenOPController"
+    	return Basico_OPController_DBOpenOPController::find($model, $id);
+    }
+
+    /**
+     * Retorna todos os objetos de um modelo
+     * 
+     * @param Object $model
+     * 
+     * @return Array|null
+     */
+    public static function bdObjectFetchAll($model)
+    {
+    	// retornando o resultado do metodo "fetchAll" do controlador "Basico_OPController_DBOpenOPController"
+    	return Basico_OPController_DBOpenOPController::fetchAll($model);
+    }
+
+    /**
+     * Retorna todos os objetos de um modelo, atraves dos parametros passados
+     * 
+     * @param Object $model
+     * @param String $where
+     * @param String $order
+     * @param Integer $count
+     * @param Integer $offset
+     * 
+     * @return Array|null
+     */
+    public static function bdObjectFetchList($model, $where=null, $order=null, $count=null, $offset=null)
+    {
+    	// retornando o resultado do metodo "fetchList" do controlador "Basico_OPController_DBOpenOPController"
+    	return Basico_OPController_DBOpenOPController::fetchList($model, $where, $order, $count, $offset);
     }
 
 	/**

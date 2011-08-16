@@ -181,7 +181,7 @@ class Basico_Model_DadosBiometricos
 		$model = new Basico_Model_Raca();
 
 		// recuperando objeto
-        $object = $model->find($this->_raca);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_raca);
 
         // retornando o objeto
         return $object;
@@ -264,7 +264,7 @@ class Basico_Model_DadosBiometricos
 		$model = new Basico_Model_TipoSanguineo();
 
 		// recuperando objeto
-        $object = $model->find($this->_tipoSanguineo);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_tipoSanguineo);
 
         // retornando o objeto
         return $object;
@@ -384,39 +384,4 @@ class Basico_Model_DadosBiometricos
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_DadosBiometricos
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find($id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-
 }

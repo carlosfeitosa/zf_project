@@ -111,7 +111,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         //verifica se existe valor no elemento selectFormulario enviado via post
         if (isset($_POST['selectFormulario']) ) {
         	// recuperando o id do formulario
-            $idFormulario = $_POST['selectFormulario'];
+            $idFormulario = (int) $_POST['selectFormulario'];
             
             // definindo o conteúdo do elemento 'modulosFormulario' com o id e nome dos modelos do formulário
             $arrayModulosFormulario = $this->retornaArrayNomesModulosFormulario($idFormulario);
@@ -210,7 +210,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
        	$modelFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaObjetoPorId($modelFormulario, $idFormulario);
 
     	// verificando se o formulario foi recuperado
-        if ($modelFormulario->id) {
+        if ((is_object($modelFormulario)) and ($modelFormulario->id)) {
         	// recuperando modulos do formulario
 	        $arrayObjsModulosFormularioObjects = $modelFormulario->getModulosObjects();
 	        

@@ -65,8 +65,13 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 			// recuperando chaves do post
 			$chavesPost = array_keys($ultimoPost);
 
-			// registrando na sessao o nome da primeira chave encontrada no post
-			Basico_OPController_SessionOPController::registraChavePostUltimoRequest($chavesPost[0]);
+			// verificando se o post possui chave
+			if ((is_array($ultimoPost[$chavesPost[0]]))) {
+				// registrando na sessao o nome da primeira chave encontrada no post
+				Basico_OPController_SessionOPController::registraChavePostUltimoRequest($chavesPost[0]);
+			} else {
+				Basico_OPController_SessionOPController::registraChavePostUltimoRequest(null);
+			}
 			// verificando se o post veio de um subformulario
 			if (is_array($ultimoPost[$chavesPost[0]])) {
 				// registrando na sessao o post do ultimo request, do subformulario

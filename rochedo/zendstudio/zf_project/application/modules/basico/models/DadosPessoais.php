@@ -146,7 +146,7 @@ class Basico_Model_DadosPessoais
 	*/
 	public function setDataNascimento($dataNascimento)
 	{
-		$this->_dataNascimento = Basico_OPController_UtilOPController::retornaValorTipado($dataNascimento,TIPO_STRING,true);
+		$this->_dataNascimento = Basico_OPController_UtilOPController::retornaValorTipado($dataNascimento,TIPO_DATE,true);
 		return $this;
 	}
 	
@@ -241,39 +241,5 @@ class Basico_Model_DadosPessoais
 			$this->setMapper(new Basico_Model_DadosPessoaisMapper());
 		}
 		return $this->_mapper;
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_DadosPessoais
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((Int) $id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
 	}
 }

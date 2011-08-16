@@ -202,7 +202,7 @@ class Basico_Model_GrupoFormularioElemento
     public function getTipoCategoriaObject()
     {
         $model = new Basico_Model_Decorator();
-        $object = $model->find($this->_decorator);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_decorator);
         return $object;
     }
 	
@@ -276,78 +276,4 @@ class Basico_Model_GrupoFormularioElemento
 		}
 		return $this->_mapper;
 	}
-
-	/**
-	* Save the current entry
-	* 
-	* @return void
-	*/
-	public function save()
-	{
-		$this->getMapper()->save($this);
-	}
-	
-	/**
-	 * Delete the current entry
-	 * @return void
-	 */
-	public function delete()
-	{
-		$this->getMapper()->delete($this);
-	}
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_GrupoFormularioElemento
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find($id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-	   
-    /**
-    * fetch list of entries satisfying the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-
 }

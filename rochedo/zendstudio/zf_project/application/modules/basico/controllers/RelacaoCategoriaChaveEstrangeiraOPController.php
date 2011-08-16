@@ -136,7 +136,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 	public function checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo, $forceRelationship = false)
 	{
 		// recuperando objeto
-		$objsRelacaoCategoriaChaveEstrangeira = $this->_model->fetchList("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
+		$objsRelacaoCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros($this->_model, "tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperando
 		if (isset($objsRelacaoCategoriaChaveEstrangeira[0]))
@@ -194,7 +194,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 		$arrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira = array();
 
 		// recuperando todas as tuplas
-		$objsRelacaoCategoriaChaveEstrangeira = $this->_model->fetchAll();
+		$objsRelacaoCategoriaChaveEstrangeira = $this->retornaTodosObjetos($this->_model);
 
 		// loop para recuperar o nome das tabelas
 		foreach($objsRelacaoCategoriaChaveEstrangeira as $objRelacaoCategoriaChaveEstrangeira) {

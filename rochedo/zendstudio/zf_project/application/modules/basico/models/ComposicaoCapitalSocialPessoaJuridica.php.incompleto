@@ -1,13 +1,13 @@
--<?php
+<?php
 /**
- * AreaConhecimento model
+ * ComposicaoCapitalSocialPessoaJuridica model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AreaConhecimentoMapper
+ * @uses       Basico_Model_ComposicaoCapitalSocialPessoaJuridicaMapper
  * @subpackage Model
  */
-class Basico_Model_AreaConhecimento
+class Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 {
 	/**
 	* @var int
@@ -15,30 +15,22 @@ class Basico_Model_AreaConhecimento
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_AreaConhecimentoMapper
+	 * @var Basico_Model_ComposicaoCapitalSocialPessoaJuridicaMapper
 	 */
 	protected $_mapper;
 
 	/**
 	 * @var String
 	 */
-	protected $_nome;
+	protected $_constanteTextualNome;
 	/**
 	 * @var String
 	 */
 	protected $_descricao;
 	/**
-	 * @var String
+	 * @var Boolean
 	 */
-	protected $_codigo;
-	/**
-	 * @var String
-	 */
-	protected $_dataCriacao;
-	/**
-	 * @var String
-	 */
-	protected $_dataUltimaModificacao;
+	protected $_ativo;
     /**
      * @var Integer
      */
@@ -47,11 +39,12 @@ class Basico_Model_AreaConhecimento
     /**
      * @var Integer
      */
-    protected $_areaConhecimento;
+    protected $_pessoaJuridica;
 	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
+
 	/**
 	 * Constructor
 	 * 
@@ -103,7 +96,7 @@ class Basico_Model_AreaConhecimento
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_AreaConhecimento
+	 * @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	 */
 	public function setOptions(array $options)
 	{
@@ -120,32 +113,32 @@ class Basico_Model_AreaConhecimento
 	}
     
 	/**
-	* Set nome
+	* Set constanteTextualNome
 	* 
-	* @param String $nome 
-	* @return Basico_Model_AreaConhecimento
+	* @param String $constanteTextualNome 
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
-	public function setNome($nome)
+	public function setConstanteTextualNome($constanteTextualNome)
 	{
-		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_constanteTextualNome = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualNome, TIPO_STRING, true) ;
 		return $this;
 	}
 
 	/**
-	* Get nome
+	* Get constanteTextualNome
 	* 
 	* @return null|String
 	*/
-	public function getNome()
+	public function getConstanteTextualNome()
 	{
-		return $this->_nome;
+		return $this->_constanteTextualNome;
 	}
      
 	/**
 	* Set descricao
 	* 
 	* @param String $descricao 
-	* @return Basico_Model_AreaConhecimento
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
 	public function setDescricao($descricao)
 	{
@@ -164,76 +157,32 @@ class Basico_Model_AreaConhecimento
 	}
      
 	/**
-	* Set codigo
+	* Set ativo
 	* 
-	* @param String $codigo 
-	* @return Basico_Model_AreaConhecimento
+	* @param Boolean $ativo 
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
-	public function setCodigo($codigo)
+	public function setAtivo($ativo)
 	{
-		$this->_codigo = Basico_OPController_UtilOPController::retornaValorTipado($codigo, TIPO_STRING, true);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true) ;
 		return $this;
 	}
 
 	/**
-	* Get codigo
+	* Get ativo
 	* 
-	* @return null|String
+	* @return null|Boolean
 	*/
-	public function getCodigo()
+	public function getAtivo()
 	{
-		return $this->_codigo;
-	}
-     
-	/**
-	* Set dataCriacao
-	* 
-	* @param String $dataCriacao 
-	* @return Basico_Model_AreaConhecimento
-	*/
-	public function setDataCriacao($dataCriacao)
-	{
-		$this->_dataCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataCriacao, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get dataCriacao
-	* 
-	* @return null|String
-	*/
-	public function getDataCriacao()
-	{
-		return $this->_dataCriacao;
-	}
-     
-	/**
-	* Set dataUltimaModificacao
-	* 
-	* @param String $dataUltimaModificacao 
-	* @return Basico_Model_AreaConhecimento
-	*/
-	public function setDataUltimaModificacao($dataUltimaModificacao)
-	{
-		$this->_dataUltimaModificacao = Basico_OPController_UtilOPController::retornaValorTipado($dataUltimaModificacao, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get dataUltimaModificacao
-	* 
-	* @return null|String
-	*/
-	public function getDataUltimaModificacao()
-	{
-		return $this->_dataUltimaModificacao;
+		return $this->_ativo;
 	}
      
 	/**
 	* Set categoria
 	* 
 	* @param int $categoria 
-	* @return Basico_Model_AreaConhecimento
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
 	public function setCategoria($categoria)
 	{
@@ -258,49 +207,50 @@ class Basico_Model_AreaConhecimento
     public function getCategoriaObject()
     {
         $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
         return $object;
     }
     
 	/**
-	* Set areaConhecimento
+	* Set pessoaJuridica
 	* 
-	* @param int $areaConhecimento 
-	* @return Basico_Model_AreaConhecimento
+	* @param int $pessoaJuridica 
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
-	public function setAreaConhecimento($areaConhecimento)
+	public function setPessoaJuridica($pessoaJuridica)
 	{
-		$this->_areaConhecimento = Basico_OPController_UtilOPController::retornaValorTipado($areaConhecimento, TIPO_INTEIRO, true) ;
+		$this->_pessoaJuridica =  Basico_OPController_UtilOPController::retornaValorTipado($pessoaJuridica, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get areaConhecimento
+	* Get pessoaJuridica
 	* 
 	* @return null|int
 	*/
-	public function getAreaConhecimento()
+	public function getPessoaJuridica()
 	{
-		return $this->_areaConhecimento;
+		return $this->_pessoaJuridica;
 	}
  
     /**
-     * Get areaConhecimento object
-     * @return null|Basico_Model_AreaConhecimento
+     * Get pessoaJuridica object
+     * @return null|Basico_Model_PessoaJuridica
      */
-    public function getAreaConhecimentoObject()
+    public function getPessoaJuridicaObject()
     {
-        $model = new Basico_Model_AreaConhecimento();
-        $object = $model->find($this->_areaConhecimento);
+        $model = new Basico_Model_PessoaJuridica();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaJuridica);
         return $object;
     }
+
 
 
     /**
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_AreaConhecimento
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -322,7 +272,7 @@ class Basico_Model_AreaConhecimento
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AreaConhecimento
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
 	public function setId($id)
 	{
@@ -344,7 +294,7 @@ class Basico_Model_AreaConhecimento
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_AreaConhecimento
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridica
 	*/
 	public function setMapper($mapper)
 	{
@@ -355,51 +305,15 @@ class Basico_Model_AreaConhecimento
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AreaConhecimentoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_ComposicaoCapitalSocialPessoaJuridicaMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AreaConhecimentoMapper
+	* @return Basico_Model_ComposicaoCapitalSocialPessoaJuridicaMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AreaConhecimentoMapper());
+			$this->setMapper(new Basico_Model_ComposicaoCapitalSocialPessoaJuridicaMapper());
 		}
 		return $this->_mapper;
 	}
-
-
-	/**
-	* Find an entry
-	*
-	* Resets entry state if matching id found.
-	* 
-	* @param  int $id 
-	* @return Basico_Model_AreaConhecimento
-	*/
-	public function find($id)
-	{
-		$this->getMapper()->find((int)$id, $this);
-		return $this;
-	}
-
-	/**
-	* Fetch all entries
-	* 
-	* @return array
-	*/
-	public function fetchAll()
-	{
-		return $this->getMapper()->fetchAll();
-	}
-	
-	/**
-	* Fetch a list of entries that satisfy the parameters <params>
-	* 
-	* @return array
-	*/
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		return $this->getMapper()->fetchList($where, $order, $count, $offset);
-	}
-	   
- }
+}
