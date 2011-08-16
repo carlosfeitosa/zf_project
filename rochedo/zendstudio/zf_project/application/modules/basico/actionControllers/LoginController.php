@@ -395,6 +395,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		// carregando o titulo e subtitulo da view
     	$content[] = '<h3>'.$this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO).'</h3>';
     	$content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO).'</h4>';
+    	$content[] = $form;
           
 	    // enviado conteúdo para a view
 		$this->view->content = $content;
