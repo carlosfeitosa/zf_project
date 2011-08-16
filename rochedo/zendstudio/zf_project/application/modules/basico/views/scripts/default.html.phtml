@@ -1,6 +1,9 @@
 <?php
 function concatenaConteudoElementoArray($array, $key, $value) {
 
+	if (!is_array($array))
+		return array();
+		
 	if (array_key_exists($key, $array)) {
 		$array[$key] .= $value;	
 	} else {
@@ -9,6 +12,10 @@ function concatenaConteudoElementoArray($array, $key, $value) {
 	
 	return $array;
 }
+
+// inicializando variavéis
+$arrayHtmlElements = array();
+$arrayScripts      = array();
 
 // percorre as variáveis e objetos contidas na view
 foreach ($this->getVars() as $keyVarView => $valueVarView){
@@ -63,6 +70,9 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 		$arrayHtmlElements = concatenaConteudoElementoArray($arrayHtmlElements, $keyVarView, $valueVarView);
 	}
 
+	if ($keyVarView === 'scripts')
+		continue;
+		
 	// enviando o conteúdo do elemento para o layout
 	$this->$keyVarView = $arrayHtmlElements[$keyVarView];
 	

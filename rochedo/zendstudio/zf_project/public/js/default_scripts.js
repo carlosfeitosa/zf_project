@@ -474,10 +474,12 @@ function processaResponseDojoFormRequest(data)
 				}
 
 			    // Remove todos os elementos filhos do elemento pai, que estão registrados no dojo.
-				dijit.registry.forEach(function(w){ 
-				   if(dojo.indexOf(iDsElementosDestroy, w)){
-				        w.destroyRecursive();
-				   }
+				dijit.registry.forEach(function(w){
+					var position = dojo.indexOf(iDsElementosDestroy, w.id);
+					
+					if(position >= 0){
+						w.destroyRecursive();
+					}
 				});
 				
 				// Adicionando conteúdo ao elemento.
@@ -554,9 +556,16 @@ function processaResponseDojoFormRequest(data)
 	}	
 }
 
+
+
+function submitAjaxForm(){
+	
+}
+
+
 function urlAjaxCall(urlCall) {
 
-	loading();
+	//loading();
 	dojo.xhrGet({ url: urlCall,
 				  handleAs: 'json',
 				  load: function(data,args){

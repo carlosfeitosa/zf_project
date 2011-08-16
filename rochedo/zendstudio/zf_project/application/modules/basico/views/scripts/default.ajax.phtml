@@ -27,12 +27,12 @@ function retornaZendFormMessages(Zend_Form $form = null){
 }
 
 
-$scripts             = null;
+$arrayScripts        = null;
 $modules 		     = null;
 $dijits 		     = null;
 $zendFormsMessages   = array();
 $formularios         = array();
-$html                = array();
+$arrayHtmlElements   = array();
 $existeFormNoRequest = null;
 $idResponseSource	 = null;
 
@@ -46,16 +46,16 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 		foreach ($valueVarView as $key => $value) {
 			
 			if ($keyVarView === 'scripts') {
-				$scripts[] = $value;
+				$arrayScripts[] = $value;
 				continue;
 			}
 			
 			// se o conteúdo da possição percorrida não for um objeto, carrega o conteúdo no array $html[]. 
 			if (!is_object($value)) {
-				if (array_key_exists($keyVarView, $html)) {
-					$html[$keyVarView] .= $value;	
+				if (array_key_exists($keyVarView, $arrayHtmlElements)) {
+					$arrayHtmlElements[$keyVarView] .= $value;	
 				} else {
-					$html[$keyVarView] = $value;
+					$arrayHtmlElements[$keyVarView] = $value;
 				}
 					
 			} else {
@@ -96,10 +96,10 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 							}
 						}
 						
-						if (array_key_exists($keyVarView, $html)) {
-							$html[$keyVarView] .= $value->render();	
+						if (array_key_exists($keyVarView, $arrayHtmlElements)) {
+							$arrayHtmlElements[$keyVarView] .= $value->render();	
 						} else {
-							$html[$keyVarView] = $value->render();
+							$arrayHtmlElements[$keyVarView] = $value->render();
 						}
 						
 					} else {
@@ -129,10 +129,10 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 							$formularios[] = $value;
 							
 							// renderizando o formulario
-							if (array_key_exists($keyVarView, $html)) {
-								$html[$keyVarView] .= $value->render();	
+							if (array_key_exists($keyVarView, $arrayHtmlElements)) {
+								$arrayHtmlElements[$keyVarView] .= $value->render();	
 							} else {
-								$html[$keyVarView] = $value->render();
+								$arrayHtmlElements[$keyVarView] = $value->render();
 							}
 						}
 					}
@@ -144,14 +144,14 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 		
 		// escreve conteúdo do javascript
 		if ($keyVarView === 'scripts') {
-			$scripts[] = $valueVarView;
+			$arrayScripts[] = $valueVarView;
 		}
 		
 		// escreve conteúdo do elemento html.
-		if (array_key_exists($keyVarView, $html)) {
-			$html[$keyVarView] .= $valueVarView;	
+		if (array_key_exists($keyVarView, $arrayHtmlElements)) {
+			$arrayHtmlElements[$keyVarView] .= $valueVarView;	
 		} else {
-			$html[$keyVarView] = $valueVarView;
+			$arrayHtmlElements[$keyVarView] = $valueVarView;
 		}
 		
 	}
@@ -166,17 +166,17 @@ if (!$existeFormNoRequest) {
 	$dijits           = $this->dojo()->getDijits();
 	
 } else {
-	$html = null;
+	$arrayHtmlElements = null;
 
 }
 
 // monta resposta para o cliente...
-$response = array('view' => array('scripts'           => $scripts,
+$response = array('view' => array('scripts'           => $arrayScripts,
 								  'modules'           => $modules,
 								  'dijits'            => $dijits,
 								  'idResponseSource'  => $idResponseSource,
 								  'zendFormsMessages' => $zendFormsMessages,
-								  'html'  		      => $html,
+								  'html'  		      => $arrayHtmlElements,
 								  
 								 ),
 				 );
