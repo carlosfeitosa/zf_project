@@ -79,6 +79,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     	// carregando a view   
         $view = new Zend_View();
 
+        // setando o caminho dos scripts
+        $view->setScriptPath(BASICO_VIEW_SCRIPTS_PATH);
+
         // Localiza os helpers dos modulos e adiciona os paths caso eles existam
         if (file_exists(BASICO_VIEW_HELPERS_PATH))
             $view->addHelperPath(BASICO_VIEW_HELPERS_PATH, 'Basico_View_Helper');
