@@ -1275,6 +1275,12 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
      */
     public function criaLoginAdmin()
     {
+    	// verificando se o login "admin" ja foi criado
+		if (Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(ADMIN_LOGIN_NAME_DATABASE_RESET)) {
+			// retornando true
+			return true;
+		}
+
 		// bloco de tentativa de persistencia
 		try {
 	    	// iniciando transacao

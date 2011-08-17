@@ -142,9 +142,6 @@ class Basico_AdministradorController extends Zend_Controller_Action
 		        Basico_OPController_PersistenceOPController::bdVersionaObjetosNaoVersionados();
 	        }
 
-	        // criando o usuario admin
-	        Basico_OPController_LoginOPController::getInstance()->criaLoginAdmin();
-
     		// retirando o usuario da sessao
     		Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
 
@@ -164,6 +161,9 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function sucessoresetadbAction()
     {
+        // criando o usuario admin
+        Basico_OPController_LoginOPController::getInstance()->criaLoginAdmin();
+
     	// carregando o titulo
 	    $content[] = '<h3>'.$this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO').'</h3>';
 
