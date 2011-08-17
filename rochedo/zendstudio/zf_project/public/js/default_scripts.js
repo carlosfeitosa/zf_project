@@ -305,7 +305,7 @@ function validateForm(formId, titulo, message, baseUrl)
     var form = dojo.byId(formId);
 
     // validando o formulario
-    if (!form.validate()) 
+    if (!form == undefined && !form.validate()) 
     {
     	// mostando mensagem de erro ao tentar submeter o formulario
 	    showDialogAlert(formId, titulo, message, 1);

@@ -2258,4 +2258,29 @@ class Basico_OPController_UtilOPController
 
     	return null;
     }
+    
+    
+    
+	/**
+	 * 
+	 * Concatena o valor de uma chave passada como parametro, caso a chave não exista, cria a chave.
+	 * 
+	 * @param Array $array
+	 * @param String $key
+	 * @param String $value
+	 * @return Array
+	 */
+	public static function concatenaConteudoChaveArray($array, $key, $value)
+	{
+	
+		if (!is_array($array))
+			return;
+			
+		if (array_key_exists($key, $array))
+			$array[$key] .= $value;
+		else
+			$array[$key] = $value;
+		
+		return $array;
+	}
 }

@@ -52,12 +52,8 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 			
 			// se o conteúdo da possição percorrida não for um objeto, carrega o conteúdo no array $html[]. 
 			if (!is_object($value)) {
-				if (array_key_exists($keyVarView, $arrayHtmlElements)) {
-					$arrayHtmlElements[$keyVarView] .= $value;	
-				} else {
-					$arrayHtmlElements[$keyVarView] = $value;
-				}
-					
+				
+				$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $value);
 			} else {
 
 				$i = 0;
@@ -75,18 +71,31 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 								$idResponseSource = $_REQUEST['idRequestSource'];
 								$existeFormNoRequest = true;
 													
+								// carrega array com as mensagens do form
 								$zendFormsMessages = retornaZendFormMessages($subForm);
 								
-								// percorre todos os elementos do subform em busca do elemento hash
+								// percorre todos os elementos do subform
 								foreach ($subForm->getElements() as $elementoSubform){
 									
+									// verifica se o elemento e do tipo hash
 									if ($elementoSubform->getType() == 'Zend_Form_Element_Hash') {
-										
-										// renderizando elemento hash, para ser gerado o novo valor do hash 
+										// renderizando elemento hash, para ser gerado o novo valor do hash e ficar disponível em dojo()->getDijits();
 										$elementoSubform->render();
-										$dijits[$i]['id'] = $subForm->getName() . '-' . $elementoSubform->getName();
-										$dijitParametros['value'] = $elementoSubform->getValue();
-										$dijits[$i]['params'] = $dijitParametros;
+									}
+									
+									if ($elementoSubform->getName() === 'BasicoCadastrarDadosUsuarioDadosPessoaisTextboxMunicipioNascimento'){
+										$elementoSubform->setValue('modificado pela view do ajax...');
+									}
+									// percorrendo o request em busca de elementos modificados.
+									foreach ($_REQUEST[$subForm->getName()] as $keyRequest => $valueRequest) {
+										
+										// verificando se o valor do elemento enviado do request é diferente do valor existente no controller.
+										if ( ($elementoSubform->getName() === $keyRequest) and ($elementoSubform->getValue() !== $valueRequest) ) {
+											$idDijit = $subForm->getName() . '-' . $elementoSubform->getName();
+											$dijitParametros['value'] = $elementoSubform->getValue();
+																													
+											$this->dojo()->addDijit($idDijit, $dijitParametros);
+										}
 									}
 								}
 								break 2;
@@ -96,11 +105,7 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 							}
 						}
 						
-						if (array_key_exists($keyVarView, $arrayHtmlElements)) {
-							$arrayHtmlElements[$keyVarView] .= $value->render();	
-						} else {
-							$arrayHtmlElements[$keyVarView] = $value->render();
-						}
+						$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $value->render());
 						
 					} else {
 								
@@ -116,24 +121,29 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 							foreach ($value->getElements() as $elementoform){
 								
 								if ($elementoform->getType() == 'Zend_Form_Element_Hash') {
+									// renderizando elemento hash, para ser gerado o novo valor do hash e ficar disponível em dojo()->getDijits();
 									$elementoform->render();
-									$dijits[$i]['id'] = $elementoform->getName();
-									$dijitParametros['value'] = $elementoform->getValue();
-									$dijits[$i]['params'] = $dijitParametros;
+								}
+								
+								// percorrendo o request em busca de elementos modificados.
+								foreach ($_REQUEST as $keyRequest => $valueRequest) {
+									
+									// verificando se o valor do elemento enviado do request, é diferente do valor existente no controller.
+									if ( ($elementoform->getName() === $keyRequest) and ($elementoform->getValue() !== $valueRequest) ) {
+										$idDijit = $subForm->getName() . '-' . $elementoform->getName();
+										$dijitParametros['value'] = $elementoform->getValue();
+																												
+										$this->dojo()->addDijit($idDijit, $dijitParametros);
+									}
 								}
 							}
-							
 							break;
 							
 						} else {
 							$formularios[] = $value;
 							
 							// renderizando o formulario
-							if (array_key_exists($keyVarView, $arrayHtmlElements)) {
-								$arrayHtmlElements[$keyVarView] .= $value->render();	
-							} else {
-								$arrayHtmlElements[$keyVarView] = $value->render();
-							}
+							$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $value->render());
 						}
 					}
 				}
@@ -148,27 +158,21 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 		}
 		
 		// escreve conteúdo do elemento html.
-		if (array_key_exists($keyVarView, $arrayHtmlElements)) {
-			$arrayHtmlElements[$keyVarView] .= $valueVarView;	
-		} else {
-			$arrayHtmlElements[$keyVarView] = $valueVarView;
-		}
-		
+		$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $valueVarView);		
 	}
 }
 
 // se não existir formulario(s) no reques, devolve o(s) formulario(s) enviados do controller
 if (!$existeFormNoRequest) {
-	
 	// carrega os módulos do dojo necessarios aos formulários.
-	$modules          = $this->dojo()->getModules();
-	// dijits
-	$dijits           = $this->dojo()->getDijits();
+	$modules = $this->dojo()->getModules();
 	
 } else {
 	$arrayHtmlElements = null;
-
 }
+
+// carregando os dijits.
+$dijits = $this->dojo()->getDijits();
 
 // monta resposta para o cliente...
 $response = array('view' => array('scripts'           => $arrayScripts,
