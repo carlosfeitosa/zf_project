@@ -381,12 +381,12 @@ FROM modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'ErroEmailNaoValidadoExistenteNoSistema' AS action, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'login' AS controller, 'erroemailnaovalidadoexistentenosistema' AS action, 'SYSTEM_STARTUP' AS rowinfo
 FROM modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'ErroEmailValidadoExistenteNoSistema' AS action, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'login' AS controller, 'erroemailvalidadoexistentenosistema' AS action, 'SYSTEM_STARTUP' AS rowinfo
 FROM modulo m
 WHERE m.nome = 'BASICO';
 
@@ -587,7 +587,7 @@ SELECT (SELECT p.id
         LEFT JOIN modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'login'
-        AND a.action = 'ErroEmailNaoValidadoExistenteNoSistema') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'erroemailnaovalidadoexistentenosistema') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
@@ -600,7 +600,7 @@ SELECT (SELECT p.id
         LEFT JOIN modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'login'
-        AND a.action = 'ErroEmailValidadoExistenteNoSistema') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'erroemailvalidadoexistentenosistema') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
