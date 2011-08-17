@@ -348,36 +348,41 @@ class Basico_LoginController extends Zend_Controller_Action
 	        if ($emailParaValidacao !== NULL){
 	        	// checando se o e-mail ja foi validado
 	            if ($emailParaValidacao == true){
-	            	// redirecionando para view de e-mail ja validado no sistema
-	            	$this->_helper->redirector('ErroEmailValidadoExistenteNoSistema');
+	            	// recuperando url tokenizada
+	            	$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', null, true);
+
+	            	// redirecionando o usuario
+	            	$this->_redirect($urlTokenizada);
 				}
 	            else {
 	            	// iniciando a transacao
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
 	            	try {
-			             // recuperando parametros
-			             $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
-			             $idEmail           = Basico_OPController_EmailOPController::getInstance()->retornaIdEmailPorEmail($email);
-			             $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
-			             $idPessoa          = Basico_OPController_EmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($idEmail);
-			             $idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
+			            // recuperando parametros
+			            $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
+			            $idEmail           = Basico_OPController_EmailOPController::getInstance()->retornaIdEmailPorEmail($email);
+			            $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+			            $idPessoa          = Basico_OPController_EmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($idEmail);
+			            $idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
-			             // setando e salvando token
-			             $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);
+			            // setando e salvando token
+			            $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);
 			             
-			             // setando e salvando mensagem
-			             $novaMensagem = Basico_OPController_LoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $email, Basico_OPController_TokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));       
+			            // setando e salvando mensagem
+			            $novaMensagem = Basico_OPController_LoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $email, Basico_OPController_TokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));       
 			             
-			             // enviando a mensagem
-			             Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
+			            // enviando a mensagem
+			            Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			             
-			             // salvando a transacao
-			             Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-						
-						 // redirecionando para a view de e-mail nao validado ja existente no sistema
-		                 $this->_helper->redirector('ErroEmailNaoValidadoExistenteNoSistema');
-		                
+			            // salvando a transacao
+			            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+
+						// recuperando url tokenizada
+	            		$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailnaovalidadoexistentenosistema', null, true);
+
+		            	// redirecionando o usuario
+		            	$this->_redirect($urlTokenizada);		                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
 	            		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
@@ -461,9 +466,12 @@ class Basico_LoginController extends Zend_Controller_Action
             
             throw new Exception($e->getMessage());
         }
-        
+
+        // recuperando url tokenizada
+        $urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'SucessoSalvarUsuarioNaoValidado', null, true);
+
         // redirecionando para a view de sucesso na operacao
-		$this->_helper->redirector('SucessoSalvarUsuarioNaoValidado');
+	    $this->_redirect($urlTokenizada);
     }
     
     /**
@@ -493,9 +501,9 @@ class Basico_LoginController extends Zend_Controller_Action
     public function erroemailvalidadoexistentenosistemaAction()
     {
         // carregando o titulo, subtitulo e mensagem da view
-	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
-	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO));
-	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM));
 	    
 	    // enviado conteúdo para a view
 		$this->view->content = $content;
@@ -512,9 +520,9 @@ class Basico_LoginController extends Zend_Controller_Action
     public function erroemailnaovalidadoexistentenosistemaAction()
     {
 		// carregando o titulo, subtitulo e mensagem da view
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM));
 		
 		// enviado conteúdo para a view
 		$this->view->content = $content;

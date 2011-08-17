@@ -109,15 +109,12 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	}
 
     	// setando o titulo e subtitulo da view
-		$tituloView = 'Sucesso ao regerar checksum!';
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Sucesso ao regerar checksum!');
 		// setando subtitulo da view
-    	$subtituloView = "O modelo {$nomeModelo} teve seu checksum regerado com sucesso.";
-
-	    // carregando array do cabecalho da view
-		$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("O modelo {$nomeModelo} teve seu checksum regerado com sucesso.");
 	
 		// setando o cabecalho na view
-		$this->view->cabecalho = $cabecalho;
+		$this->view->content = $content;
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();

@@ -1,14 +1,17 @@
 <?php
 
-class Basico_View_Helper_UrlEncrypt extends Zend_View_Helper_Abstract
+class Basico_View_Helper_UrlEncryptModuleControllerAction extends Zend_View_Helper_Abstract
 {
     /**
     * Gera um Token para uma URL
     * @param String $url
     * @return String
     */
-    public function urlEncrypt($url, $removeBaseUrl = false)  
+    public function urlEncryptModuleControllerAction($module, $controller, $action, $params = array(), $removeBaseUrl = false)  
     {
+    	// recuperando url
+    	$url = $this->view->url(array('module' => $module, 'controller' => $controller, 'action' => $action, $params));
+
     	// recuperando url encriptada
     	$urlEncriptada = Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl($url);
 
