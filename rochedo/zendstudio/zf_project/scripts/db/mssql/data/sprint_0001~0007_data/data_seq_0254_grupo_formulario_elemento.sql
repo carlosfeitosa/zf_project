@@ -12,6 +12,16 @@
 /* GRUPO FORMULARIO ELEMENTO */
 
 INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('ACEITE', 
+        'Grupo para de campo para aceitação de termos de uso.',
+		'FORM_DISPLAY_GROUP_LABEL_ACEITE', 'SYSTEM_STARTUP');
+
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('DOWNLOAD', 
+        'Grupo para exibicao de links para download.',
+		'FORM_DISPLAY_GROUP_LABEL_DOWNLOAD', 'SYSTEM_STARTUP');
+
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
 VALUES ('DADOS_USUARIO_DADOS_USUARIO', 
         'Grupo que mantêm os dados sobre informações do usuário',
 		'FORM_DISPLAY_GROUP_LABEL_INFORMACOES_USUARIO', 'SYSTEM_STARTUP');

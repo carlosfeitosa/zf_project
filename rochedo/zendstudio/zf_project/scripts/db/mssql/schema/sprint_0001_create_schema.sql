@@ -95,6 +95,7 @@ create table dbo.login (
 	datahora_ultimo_reset datetime null,
 	datahora_ultima_troca_senha datetime null,
 	datahora_cadastro datetime not null,
+	datahora_aceite_termo_uso datetime null,
 	datahora_ultima_atualizacao datetime not null,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];

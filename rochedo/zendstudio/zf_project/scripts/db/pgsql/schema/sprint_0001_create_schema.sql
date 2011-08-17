@@ -114,6 +114,7 @@ create table login (
 	datahora_ultimo_reset timestamp with time zone ,
 	datahora_ultima_troca_senha timestamp with time zone ,
 	datahora_cadastro timestamp with time zone not null,
+	datahora_aceite_termo_uso timestamp with time zone null,
 	datahora_ultima_atualizacao timestamp with time zone not null,
 	rowinfo character varying (2000) not null 
 )

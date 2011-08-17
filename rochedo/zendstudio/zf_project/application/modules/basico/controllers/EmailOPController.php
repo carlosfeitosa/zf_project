@@ -394,18 +394,49 @@ class Basico_OPController_EmailOPController extends Basico_Abstract_RochedoPersi
     {
     	// recuperando o email primario do usuario
     	$emailPrimario = $this->retornaObjetoEmailPrimarioPessoa($idPessoa);
-    		
-    	// recuperando a ultima versao do email
-    	$versaoUpdateEmail = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($emailPrimario);
-    		
-    	// validando o e-mail no objeto
-	    $emailPrimario->datahoraUltimaValidacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-	    $emailPrimario->validado = 1;
-	    $emailPrimario->ativo    = 1;
-	    	
-	    // salvando o objeto e-mail no banco de dados
-	    $this->salvarObjeto($emailPrimario, $versaoUpdateEmail);
+    	
+    	// validando o email
+    	$emailPrimario = $this->validarEmail($emailPrimario);
 	    
 	    return $emailPrimario;
+    }
+    
+    /**
+     * Valida o email passado
+     * 
+     * @param Basico_Model_Email $email
+     */
+    public function validarEmail(Basico_Model_Email $email)
+    {
+		// recuperando a ultima versao do email
+    	$versaoUpdateEmail = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($email);
+    		
+    	// validando o e-mail no objeto
+	    $email->datahoraUltimaValidacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+	    $email->validado = 1;
+	    $email->ativo    = 1;
+	    	
+	    // salvando o objeto e-mail no banco de dados
+	    $this->salvarObjeto($email, $versaoUpdateEmail);
+
+	    return $email;
+    }
+    
+    /**
+     * Verifica se o email eh primario
+     * 
+     * @param Int $objEmail
+     */
+    public function verificaEmailPrimario(Basico_Model_Email $objEmail)
+    {
+    	// recuperando o id da categoria EMAIL_PRIMARIO
+		$idCategoriaEmailPrimario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO);
+		
+		// verificando se o email passado eh da categoria email primario
+		if ($objEmail->categoria === $idCategoriaEmailPrimario) {
+			return true;
+		}else{
+			return false;
+		}
     }
 }

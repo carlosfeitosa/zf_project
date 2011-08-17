@@ -74,6 +74,7 @@ class Basico_Model_LoginMapper
                       'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
                       'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
         			  'datahora_cadastro'				=> $object->getDataHoraCadastro(),
+        			  'datahora_aceite_termo_uso'      => $object->getDataHoraAceiteTermoUso(),
         			  'datahora_ultima_atualizacao'     => $object->getDataHoraUltimaAtualizacao(),
                       'rowinfo'                    => $object->getRowinfo(),
                     );
@@ -128,6 +129,7 @@ class Basico_Model_LoginMapper
 			   ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
 			   ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
 			   ->setDataHoraCadastro($row->datahora_cadastro)
+			   ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
 			   ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 			   ->setRowinfo($row->rowinfo);
     }
@@ -162,6 +164,7 @@ class Basico_Model_LoginMapper
 			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
 			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
 			      ->setDataHoraCadastro($row->datahora_cadastro)
+			      ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
 			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
@@ -200,6 +203,7 @@ class Basico_Model_LoginMapper
 			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
 			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
 			      ->setDataHoraCadastro($row->datahora_cadastro)
+			      ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
 			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);

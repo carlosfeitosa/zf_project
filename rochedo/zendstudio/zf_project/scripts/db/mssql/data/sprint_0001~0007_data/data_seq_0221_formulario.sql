@@ -21,6 +21,27 @@
 *  
 */
 
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
+                        constante_textual_titulo, constante_textual_subtitulo,
+                        form_name, form_method, form_action, form_attribs, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+       'FORM_ACEITE_TERMOS_USO' AS nome,
+       'Formulário aceitação dos termos de uso do sistema.' AS descricao, 
+       'VIEW_ACEITE_TERMOS_USO_TITULO' AS constante_textual_titulo,
+       'VIEW_ACEITE_TERMOS_USO_SUBTITULO' AS constante_textual_subtitulo,
+       'AceiteTermosUso' AS form_name, 'post' AS form_method, NULL AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
+
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
                         form_attribs, rowinfo)

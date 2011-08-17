@@ -113,6 +113,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		$this->_helper->Renderizar->renderizar();
     }
     
+    
     private function initFormCadastrarUsuarioValidado(Basico_Form_CadastrarUsuarioValidado &$formCadastrarUsuarioValidado, $idPessoa, $versaoDadosPessoais)
     {
     	// inserindo elementos hidden e setando valores
@@ -187,37 +188,32 @@ class Basico_LoginController extends Zend_Controller_Action
 		    	// salvando os dados pessoais
 		    	Basico_OPController_DadosPessoaisOPController::getInstance()->salvarDadosPessoaisViaFormCadastrarUsuarioValidado($arrayPost);
 		    	
-		    	// atualizando pessoaPerfil do usuario para usuarioValidado
-		    	Basico_OPController_PessoasPerfisOPController::getInstance()->editarPessoaPerfil($arrayPost['idPessoa'], Basico_OPController_PerfilOPController::getInstance()->retornaObjetoPerfilUsuarioNaoValidado()->id, Basico_OPController_PerfilOPController::getInstance()->retornaObjetoPerfilUsuarioValidado()->id);
-		    	
 		    	// salvando os dados biometricos do usuario
 		   		Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarUsuarioValidado($arrayPost);
 	
 		   		// salvando e recuperando o login do usuario
 		   		$novoLogin = Basico_OPController_LoginOPController::getInstance()->salvarLoginViaFormCadastrarUsuarioValidado($arrayPost);	    	
 		    		
-		   		// validando e recuperando o email primario da pessoa
-		    	$emailPrimario = Basico_OPController_EmailOPController::getInstance()->validarEmailPrimarioPessoa($arrayPost['idPessoa']);
-				
-		    	// recuperando a mensagem de confirmacao da conclusao do cadastro
-		    	$mensagemConclusaoCadastro = Basico_OPController_LoginOPController::getInstance()->retornaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($arrayPost['idPessoa'], $emailPrimario->email);
+		   		// recuperando o email primario da pessoa
+		    	$emailPrimario = Basico_OPController_EmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($arrayPost['idPessoa']);
 		    	
-		    	// enviando a mensagem
-	        	Basico_OPController_MensageiroOPController::getInstance()->enviar($mensagemConclusaoCadastro, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($arrayPost['idPessoa'])));
+		    	// validando o email primario do usuario
+		    	Basico_OPController_EmailOPController::getInstance()->validarEmailPrimarioPessoa($arrayPost['idPessoa']);
 		    	
-				// salvando a transacao
-				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);		    
-	
-				// verificando credenciais
+		    	// atualizando pessoaPerfil do usuario para usuarioValidado
+			    Basico_OPController_PessoasPerfisOPController::getInstance()->editarPessoaPerfil($arrayPost['idPessoa'], Basico_OPController_PerfilOPController::getInstance()->retornaObjetoPerfilUsuarioNaoValidado()->id, Basico_OPController_PerfilOPController::getInstance()->retornaObjetoPerfilUsuarioValidado()->id);
+
+		    	// verificando credenciais
 				if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuarioPorLoginSenha($novoLogin->login, $novoLogin->senha)) { 
 				 	// efetuando o logon
 				   	Basico_OPController_LoginOPController::getInstance()->efetuaLogon($novoLogin->login);
-	
-				    // montando url para redirecionamento
-				    $urlRedirect = str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->view->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'sucessosalvarusuariovalidado'), null, true));
-					// redirecionando para a acao de sucesso no cadastro do usuario
-					$this->_redirect($urlRedirect);
 				}
+			    
+		    	// salvando a transacao
+				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+
+				// redirecionando para a view de sucesso na conclusao do cadastro
+				$this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'sucessosalvarusuariovalidado', null, true));
 				
 	    	}else{
 	    		
@@ -231,13 +227,36 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		// enviado conteúdo para a view
 	    		$this->view->content = $content;  
 	    		
-	    		return;
+	    		
+	    		
 	    	}
+	    	
+	    	$this->_helper->Renderizar->renderizar();
+	    	
     	}catch (Exception $e){
     		// voltando a transacao
 			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 			throw new Exception($e->getMessage());
     	}
+    }
+    
+    /**
+     * Exibe o form para aceitação dos termos de uso do sistema
+     * 
+     */
+    public function exibirformaceitetermosusoAction()
+    {
+    	// carregando array do cabecalho da view
+		$content[] = '<h3>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO').'</h3>'; 
+		$content[] = '<h4>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO').'</h4>';
+			    
+		$form = $this->initFormAceiteTermosUso($this->getRequest()->getParam('idPessoa'));
+			    
+	    // carregando form na view
+	    $content[] = $form;
+	    $this->view->content = $content;
+
+	    $this->_helper->Renderizar->renderizar();
     }
     
     /**
@@ -253,17 +272,31 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	$sexo                = (int) $post['BasicoCadastrarUsuarioValidadoSexo'];
 	    	$versaoDadosPessoais = (int) $post['versaoDadosPessoais'];
 	    	
-	    	// inicializando controladores
-	    	$controladorLogin = Basico_OPController_LoginOPController::getInstance();
+	    	// recuperando data do aceite dos termos de uso do sistema
+	    	$session = Basico_OPController_SessionOPController::registraSessaoUsuario();
 	    	
-	    	// capturando formulario e setando propriedades
-	        $formCadastrarUsuarioValidado = $this->getFormCadastroUsuarioValidado();
-	        // inicializando formulario
-	        $this->initFormCadastrarUsuarioValidado($formCadastrarUsuarioValidado, $idPessoa, $versaoDadosPessoais);
-			
-        	$this->salvarDadosUsuarioValidado($post, $formCadastrarUsuarioValidado);
-	        
-        	$this->_helper->Renderizar->renderizar();
+	    	if ($session->dataAceite != "") { 
+	    		
+	    		// colocando a data do aceite no array do post
+	    		$post['dataAceite'] = $session->dataAceite;
+	    		
+		    	// inicializando controladores
+		    	$controladorLogin = Basico_OPController_LoginOPController::getInstance();
+		    	
+		    	// capturando formulario e setando propriedades
+		        $formCadastrarUsuarioValidado = $this->getFormCadastroUsuarioValidado();
+		        
+		        // inicializando formulario
+		        $this->initFormCadastrarUsuarioValidado($formCadastrarUsuarioValidado, $idPessoa, $versaoDadosPessoais);
+				
+		        // salvando dados do usuario
+	        	$this->salvarDadosUsuarioValidado($post, $formCadastrarUsuarioValidado);
+	        	
+    		}else{
+    			
+    		}
+		        
+	        $this->_helper->Renderizar->renderizar();
     	}catch(Exception $e){
     		// lançando o erro
 	        throw new Exception($e->getMessage());

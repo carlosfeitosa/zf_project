@@ -96,6 +96,11 @@ class Basico_Model_Login
 	 * 
 	 * @var Date
 	 */
+	protected $_dataHoraAceiteTermoUso;
+	/**
+	 * 
+	 * @var Date
+	 */
 	protected $_dataHoraUltimaAtualizacao;
 	/**
 	 * @var String
@@ -553,6 +558,28 @@ class Basico_Model_Login
 	public function getDataHoraCadastro()
 	{
 		return $this->_dataHoraCadastro;
+	}
+	
+	/**
+	* Set dataHoraAceiteTermoUso
+	* 
+	* @param String $dataHoraAceiteTermoUso 
+	* @return Basico_Model_Login
+	*/
+	public function setDataHoraAceiteTermoUso($dataHoraAceiteTermoUso)
+	{
+		$this->_dataHoraAceiteTermoUso = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraAceiteTermoUso, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraAceiteTermoUso
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraAceiteTermoUso()
+	{
+		return $this->_dataHoraAceiteTermoUso;
 	}
 	
     /**

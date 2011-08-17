@@ -519,6 +519,8 @@ define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG", "</script>");
 define("FORM_GERADOR_RECUPERACAO_EXTENSAO", ".lkg");
 define("FORM_GERADOR_RECUPERACAO_PATH_SUFIXO", "/_lkg/");
 
+define("FORM_ACEITE_TERMOS_USO_TAG_STRING_CONFIRMACAO", "@stringConfirmacao");
+
 /**
  * MENSAGEM
  */

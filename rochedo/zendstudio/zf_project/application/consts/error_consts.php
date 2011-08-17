@@ -113,6 +113,7 @@ define("MSG_ERRO_TOKEN_ARRAYURLS_INEXISTENTE", "Não foi encontrado a listagem d
  * LOGIN
  */
 define("MSG_ERRO_USUARIO_MASTER_NAO_ENCONTRADO", "Usuário master não encontrado no sistema.");
+define("MSG_ERRO_LOGIN_NAO_ENCONTRADO", "Login não encontrado.");
 define("MSG_ERRO_CRIACAO_LOGIN_ADMIN", "Nao foi possivel criar o usuario administrador: ");
 
 /*

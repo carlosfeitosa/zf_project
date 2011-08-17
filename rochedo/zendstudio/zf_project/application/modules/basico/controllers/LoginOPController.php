@@ -964,6 +964,30 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 		return false;
 	}
+	
+	/**
+	 * Retorna o objLogin pelo id da pessoa passado como parametro
+	 * 
+	 * @param Int $idPessoa
+	 */
+	public function retornaObjetoLoginPorIdPessoa($idPessoa)
+	{
+		// verificando o id da pessoa
+		if (is_int($idPessoa)) {
+			
+			//recuperando o objLogin
+			$login = $this->_model->fetchList("id_pessoa = {$idPessoa}");
+			
+			// verificando se retornou um login
+			if (count($login) > 0)
+				return $login[0];
+			else
+				return false;
+		}else{
+			// lançando erro de nao inteiro
+			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO);
+		}
+	}
 
 	
 	/**
@@ -1253,19 +1277,40 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// criando o login do usuario
     	$novoLogin = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_LoginOPController');
     	// setando atributos do login do usuario 
-    	$novoLogin->pessoa = $arrayPost['idPessoa'];
-    	$novoLogin->tentativasFalhas = 0;
-    	$novoLogin->travado = false;
-    	$novoLogin->resetado = false;
-    	$novoLogin->podeExpirar = true;
-    	$novoLogin->login  = trim($arrayPost['BasicoCadastrarUsuarioValidadoLogin']);
-    	$novoLogin->senha  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
-    	$novoLogin->ativo  = true;
+    	$novoLogin->pessoa                 = $arrayPost['idPessoa'];
+    	$novoLogin->tentativasFalhas       = 0;
+    	$novoLogin->travado                = false;
+    	$novoLogin->resetado               = false;
+    	$novoLogin->podeExpirar            = true;
+    	$novoLogin->login                  = trim($arrayPost['BasicoCadastrarUsuarioValidadoLogin']);
+    	$novoLogin->senha                  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
+    	$novoLogin->ativo                  = true;
+    	$novoLogin->dataHoraAceiteTermoUso = $arrayPost['dataAceite'];
     	
     	// salvando o objeto login
     	$this->salvarObjeto($novoLogin);
     	
     	return $novoLogin;
+	}
+	
+	/**
+	 * Ativa o login da pessoa passada como parametro
+	 * @param int $idPessoa
+	 */
+	public function ativarLoginPessoa($idPessoa)
+	{
+		// recuperando o obj login da pessoa
+		$objLogin = $this->retornaObjetoLoginPorIdPessoa($idPessoa);
+
+		// se o login nao foi encontrado lança uma excessao
+		if (!$objLogin)
+			throw new Exception(MSG_ERRO_LOGIN_NAO_ENCONTRADO);
+			
+		// ativando o login
+		$objLogin->ativo = true;
+		
+		// salvando o login
+		$this->salvarObjeto($objLogin, Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin));
 	}
 
     /**
