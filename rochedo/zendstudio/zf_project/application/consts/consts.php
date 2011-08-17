@@ -37,6 +37,12 @@ define("TAG_ABRE_LISTA_NAO_ORDENADA_ERROR", "<ul id = 'errorUl'>");
 define("TAG_FECHA_LISTA_NAO_ORDENADA", "</ul>");
 define("TAG_ABRE_ITEM_LISTA_NAO_ORDENADA", "<li>");
 define("TAG_FECHA_ITEM_LISTA_NAO_ORDENADA", "</li>");
+define("TAG_ABRE_TITULO", "<h3>");
+define("TAG_FECHA_TITULO", "</h3>");
+define("TAG_ABRE_SUBTITULO", "<h4>");
+define("TAG_FECHA_SUBTITULO", "</h4>");
+define("TAG_ABRE_MENSAGEM", "<h5>");
+define("TAG_FECHA_MENSAGEM", "</h5>");
 define("ASPAS_SIMPLES_ESCAPADA_HTML", '\\\'');
 define("CARACTER_QUEBRA_ELEMENTOS_OBJETO", ",");
 define("CARACTER_PREFIXO_ATRIBUTO_PRIVADO_OBJETO", "_");
@@ -309,7 +315,7 @@ define("FORM_GERADOR_OUTPUT_HTML", "OUTPUT_HTML");
 define("FORM_GERADOR_OUTPUT_AJAX", "OUTPUT_AJAX");
 define("FORM_ELEMENTO_NAME_VALIDAR_URL", "validarUrl");
 
-
+define("OUTPUT_HTML", "OUTPUT_HTML");
 
 $header = <<<TEXT
 /**

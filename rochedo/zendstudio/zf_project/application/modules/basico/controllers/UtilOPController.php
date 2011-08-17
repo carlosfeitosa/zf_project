@@ -2020,7 +2020,130 @@ class Basico_OPController_UtilOPController
     	// retornando texto sem Tags HTML
     	return strip_tags($texto);
     }
-    
+
+    /**
+     * Retorna um texto formatado para titulo, no formato passado por parametro
+     * 
+     * @param String $texto
+     * @param String $formato
+     * 
+     * @return String
+     */
+    public static function retornaTextoFormatadoTitulo($texto, $formato = OUTPUT_HTML)
+    {
+    	// verificando o formato passado
+    	switch ($formato) {
+    		case OUTPUT_HTML:
+    			// retornando o texto formatado em html
+    			return self::retornaTextoHtmlTituloView($texto);
+    		break;
+    		
+    		default:
+    			// retornando o texto sem alteracoes
+    			return $texto;
+    		break;
+    	}
+    }
+
+    /**
+     * Retorna um texto formatado para sub-titulo, no formato passado por parametro
+     * 
+     * @param String $texto
+     * @param String $formato
+     * 
+     * @return String
+     */
+    public static function retornaTextoFormatadoSubTitulo($texto, $formato = OUTPUT_HTML)
+    {
+    	// verificando o formato passado
+    	switch ($formato) {
+    		case OUTPUT_HTML:
+    			// retornando o texto formatado em html
+    			return self::retornaTextoHtmlSubTituloView($texto);
+    		break;
+    		
+    		default:
+    			// retornando o texto sem alteracoes
+    			return $texto;
+    		break;
+    	}
+    }
+
+    /**
+     * Retorna um texto formatado para mensagem, no formato passado por parametro
+     * 
+     * @param String $texto
+     * @param String $formato
+     * 
+     * @return String
+     */
+    public static function retornaTextoFormatadoMensagem($texto, $formato = OUTPUT_HTML)
+    {
+    	// verificando o formato passado
+    	switch ($formato) {
+    		case OUTPUT_HTML:
+    			// retornando o texto formatado em html
+    			return self::retornaTextoHtmlMensagemView($texto);
+    		break;
+    		
+    		default:
+    			// retornando o texto sem alteracoes
+    			return $texto;
+    		break;
+    	}
+    }
+
+    /**
+     * Retorna um texto formatado para titulo em HTML
+     * 
+     * @param String $texto
+     * 
+     * @return String
+     */
+    public static function retornaTextoHtmlTituloView($texto)
+    {
+    	// recuperando as tags de abertura e fechamento de titulo
+    	$tagAberturaTitulo   = TAG_ABRE_TITULO;
+    	$tagFechamentoTitulo = TAG_FECHA_TITULO;
+
+    	// retornando o texto com as tags de titulo em HTML
+    	return "{$tagAberturaTitulo}{$texto}{$tagFechamentoTitulo}";
+    }
+
+    /**
+     * Retorna um texto formatado para sub-titulo em HTML
+     * 
+     * @param String $texto
+     * 
+     * @return String
+     */
+    public static function retornaTextoHtmlSubTituloView($texto)
+    {
+    	// recuperando as tags de abertura e fechamento de titulo
+    	$tagAberturaSubTitulo   = TAG_ABRE_SUBTITULO;
+    	$tagFechamentoSubTitulo = TAG_FECHA_SUBTITULO;
+
+    	// retornando o texto com as tags de titulo em HTML
+    	return "{$tagAberturaSubTitulo}{$texto}{$tagFechamentoSubTitulo}";
+    }
+
+    /**
+     * Retorna um texto formatado para mensagem em HTML
+     * 
+     * @param String $texto
+     * 
+     * @return String
+     */
+    public static function retornaTextoHtmlMensagemView($texto)
+    {
+    	// recuperando as tags de abertura e fechamento de titulo
+    	$tagAberturaMensagem   = TAG_ABRE_MENSAGEM;
+    	$tagFechamentoMensagem = TAG_FECHA_MENSAGEM;
+
+    	// retornando o texto com as tags de titulo em HTML
+    	return "{$tagAberturaMensagem}{$texto}{$tagFechamentoMensagem}";
+    }
+
     /**
      * Remove acentos da string
      * 

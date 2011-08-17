@@ -88,8 +88,8 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	$versaoDadosPessoais = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
     	
     	    // carregando o titulo e subtitulo da view
-		    $tituloView     = '<h3>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO').'</h3>';
-		    $subtituloView  = '<h4>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO').'</h4>';
+		    $tituloView     = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'));
+		    $subtituloView  = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
 
 		    // carregando o array de conteúdo da página
 	    	$content[] = $tituloView;

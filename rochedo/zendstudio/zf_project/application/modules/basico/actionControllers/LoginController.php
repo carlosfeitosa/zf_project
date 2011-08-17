@@ -100,8 +100,8 @@ class Basico_LoginController extends Zend_Controller_Action
     public function cadastrarusuarionaovalidadoAction()
     {   
         // carregando o titulo e subtitulo da view
-    	$content[] = '<h3>'.$this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO).'</h3>';
-    	$content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO).'</h4>';
+    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO));
+    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO));
 		
     	// carrega o formulario na view
     	$content[] = $this->getFormCadastroUsuarioLoginNaoValidado();
@@ -165,8 +165,8 @@ class Basico_LoginController extends Zend_Controller_Action
 		    	if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
 		    		
 		    		// carregando array do cabecalho da view
-				    $content[] = '<h3>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO').'</h3>';
-				    $content[] = '<h4>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO').'</h4>';
+				    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'));
+				    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
 		    		
 		    		// recuperando o titulo do dialog
 			   		$tituloDialogSugestaoLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
@@ -222,8 +222,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	}else{
 	    		
 	    		// carregando array do cabecalho da view
-			    $content[] = '<h3>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO').'</h3>'; 
-			    $content[] = '<h4>'.$this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO').'</h4>';
+			    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO')); 
+			    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
 			    
 	    		// carregando form na view
 	    		$content[] = $formCadastrarUsuarioValidado;
@@ -273,11 +273,11 @@ class Basico_LoginController extends Zend_Controller_Action
 	public function sucessosalvarusuariovalidadoAction()
 	{
 		// carregando array do cabelho
-    	$content[] = '<h3>'.$this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_TITULO").'</h3>';
-    	$content[] = '<h3>'.$this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_SUBTITULO").'</h4>';
+    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_TITULO"));
+    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_SUBTITULO"));
     	$content[] = str_replace(MENSAGEM_TAG_LINK_MEU_PERFIL , 
     	                                                       "<a href='{$this->view->urlEncrypt($this->_helper->url('index', 'dadosusuario', 'basico'))}'>{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>",
-    	                                                       $this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM")
+    	                                                       Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM"))
     	                                                       );
 
 		// enviado conteúdo para a view
@@ -393,8 +393,8 @@ class Basico_LoginController extends Zend_Controller_Action
         }       	
        	
 		// carregando o titulo e subtitulo da view
-    	$content[] = '<h3>'.$this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO).'</h3>';
-    	$content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO).'</h4>';
+    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO));
+    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO));
     	$content[] = $form;
           
 	    // enviado conteúdo para a view
@@ -474,9 +474,9 @@ class Basico_LoginController extends Zend_Controller_Action
     public function sucessosalvarusuarionaovalidadoAction()
     {
         // carregando o titulo, subtitulo e mensagem da view
-		$content[] = '<h3>'.$this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO).'</h3>';
-		$content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO).'</h4>';
-		$content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM).'</h4>';
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor(VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM));
 	            
 	    // enviado conteúdo para a view
 		$this->view->content = $content;
@@ -493,9 +493,9 @@ class Basico_LoginController extends Zend_Controller_Action
     public function erroemailvalidadoexistentenosistemaAction()
     {
         // carregando o titulo, subtitulo e mensagem da view
-	    $content[] = '<h3>'.$this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO).'</h3>';
-	    $content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO).'</h4>';
-	    $content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM).'</h4>';
+	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
+	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO));
+	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM));
 	    
 	    // enviado conteúdo para a view
 		$this->view->content = $content;
@@ -512,9 +512,9 @@ class Basico_LoginController extends Zend_Controller_Action
     public function erroemailnaovalidadoexistentenosistemaAction()
     {
 		// carregando o titulo, subtitulo e mensagem da view
-		$content[] = '<h3>'.$this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO).'</h3>';
-		$content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO).'</h4>';
-		$content[] = '<h4>'.$this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM).'</h4>';
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_TITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_SUBTITULO));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor(VIEW_LOGIN_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA_MENSAGEM));
 		
 		// enviado conteúdo para a view
 		$this->view->content = $content;

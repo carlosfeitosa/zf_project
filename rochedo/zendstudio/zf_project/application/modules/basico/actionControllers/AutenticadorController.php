@@ -52,7 +52,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$urlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(Basico_OPController_UtilOPController::retornaUserRequest()->getParam('urlRedirect'));
 
     	// carregando título
-		$content[] = '<h3>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO').'</h3>';
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
 		
 
 		// recuperando o formulario de autenticacao
@@ -191,7 +191,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);		
 
 		// carregando título na view
-		$content[] = '<h3>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO').'</h3>';
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
 		
 		// carregando scripts 
 		$scripts[] = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
@@ -223,9 +223,9 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$htmlLinkDocumentacaoOnline = "<a href='{$linkDocumentacaoOnLine}'>Clique aqui para ir para a documentacao online onde eh explicado como tentar resolver estes problemas</a>";
 
 		// carregando as mensagens
-		$content[] = '<h3>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_TITULO').'</h3>';
-		$content[] = '<h4>'.$this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SUBTITULO').'</h4>';
-		$content[] = '<h4>'.TAG_ABRE_LISTA_NAO_ORDENADA_ERROR . $errorMessage . TAG_FECHA_LISTA_NAO_ORDENADA . QUEBRA_DE_LINHA_HTML . QUEBRA_DE_LINHA_HTML . $htmlLinkDocumentacaoOnline.'</h4>';
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_TITULO'));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SUBTITULO'));
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem(TAG_ABRE_LISTA_NAO_ORDENADA_ERROR . $errorMessage . TAG_FECHA_LISTA_NAO_ORDENADA . QUEBRA_DE_LINHA_HTML . QUEBRA_DE_LINHA_HTML . $htmlLinkDocumentacaoOnline);
 
 		// enviado conteúdo para a view
 		$this->view->content = $content;

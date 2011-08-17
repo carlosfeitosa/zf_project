@@ -18,13 +18,13 @@ class Basico_AdministradorController extends Zend_Controller_Action
     public function indexAction() 
     {
     	// carregando o titulo
-    	$tituloView = '<h3>'.$this->view->tradutor('VIEW_ADMIN_INDEX_TITULO').'</h3>';
+    	$tituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ADMIN_INDEX_TITULO'));
 
     	// verificando se a aplicacao esta rodando em ambiente de desenvolvimento
     	if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
     		// carregando subtitulo
-    	    $subtituloView = "<h4><a onClick='loading()' href='" . $this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'administrador', 'action' => 'resetadb'))) . "'>" . $this->view->tradutor('VIEW_ADMIN_BD_RESET_BUTTON_LABEL') . "</a>" .
-    	                     "<br><a onClick='loading()' href='" . $this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'geradorformulario', 'action' => 'gerartodosformularios'))) . "'>" . $this->view->tradutor('VIEW_ADMIN_FORM_GENERATE_ALL_SYSTEM_FORMS_BUTTON_LABEL') . "</a></h4>";
+    	    $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("<a onClick='loading()' href='" . $this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'administrador', 'action' => 'resetadb'))) . "'>" . $this->view->tradutor('VIEW_ADMIN_BD_RESET_BUTTON_LABEL') . "</a>" .
+    	                     																	  "<br><a onClick='loading()' href='" . $this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'geradorformulario', 'action' => 'gerartodosformularios'))) . "'>" . $this->view->tradutor('VIEW_ADMIN_FORM_GENERATE_ALL_SYSTEM_FORMS_BUTTON_LABEL') . "</a>");
     	}
     	else {
     		// setando subtitulo para vazio
@@ -165,7 +165,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
         Basico_OPController_LoginOPController::getInstance()->criaLoginAdmin();
 
     	// carregando o titulo
-	    $content[] = '<h3>'.$this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO').'</h3>';
+	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO'));
 
 	    // enviado conteúdo para a view
 		$this->view->content = $content;

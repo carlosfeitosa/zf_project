@@ -30,9 +30,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO').'</h3>';
-        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO').'</h3>';
-        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM').'</h4>';
+    	$tituloView    = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO'));
+        $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO'));
+        $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM'));
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -72,9 +72,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO').'</h3>';
-        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO').'</h3>';
-        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM').'</h4>';
+    	$tituloView    = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO'));
+        $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO'));
+        $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM'));
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -122,9 +122,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO').'</h3>';
-        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO').'</h3>';
-        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM').'</h4>';
+    	$tituloView    = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO'));
+        $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO'));
+        $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM'));
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -164,9 +164,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_TITULO').'</h3>';
-        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_SUBTITULO').'</h3>';
-        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM').'</h4>';
+    	$tituloView    = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_TITULO'));
+        $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_SUBTITULO'));
+        $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM'));
 
         // montando link para voltar para a pagina anterior
         $textoLink = $this->view->tradutor('MENSAGEM_TEXTO_LINK_AQUI');
@@ -206,9 +206,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
     	// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO').'</h3>';
-        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO').'</h3>';
-        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM').'</h4>';
+    	$tituloView    = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO'));
+        $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO'));
+        $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM'));
 
     	// carregando array do cabecalho da view
 		$content[] = $tituloView;
@@ -250,9 +250,9 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog);
 
 		// carregando o titulo, subtitulo e mensagem da view
-    	$tituloView    = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO').'</h3>';
-        $subtituloView = '<h3>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO').'</h3>';
-        $mensagemView  = '<h4>'.$this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM').'</h4>';
+    	$tituloView    = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO'));
+        $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO'));
+        $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM'));
 
     	// carregando array do cabecalho da view
 		$content[] = $tituloView;
