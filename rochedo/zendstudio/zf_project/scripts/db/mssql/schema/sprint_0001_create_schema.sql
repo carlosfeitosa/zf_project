@@ -285,7 +285,6 @@ alter table dbo.token add
 
 
 /* CRIACAO DOS INDICES */
-
 create unique index ix_email_unique_id on dbo.email (unique_id) on [primary];
 
 create unique index ix_email_email on dbo.email (email) on [primary];
@@ -312,6 +311,13 @@ create index ix_dicionario_expressao_constante_textual on dbo.dicionario_express
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
+
+alter table dbo.email add 
+	constraint ix_email_proprietario_categoria_email unique
+	(
+		id_generico_proprietario, 
+		id_categoria, 
+		email) on [primary];
 
 alter table dbo.modulo add
 	constraint ix_modulo_categoria_nome unique nonclustered

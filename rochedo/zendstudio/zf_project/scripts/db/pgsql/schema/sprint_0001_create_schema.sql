@@ -396,6 +396,9 @@ create index ix_dicionario_expressao_constante_textual
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
+alter table email
+  add constraint ix_email_proprietario_categoria_email unique (id_generico_proprietario, id_categoria, email);
+
 alter table categoria
   add constraint ix_categoria_tipo_categoria_nome unique (id_tipo_categoria, nome);
 
