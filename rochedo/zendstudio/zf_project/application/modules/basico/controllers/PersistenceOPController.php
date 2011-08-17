@@ -121,7 +121,7 @@ class Basico_OPController_PersistenceOPController
     public static function bdObjectFind($model, $id)
     {
     	// retornando o resultado do metodo "find" do controlador "Basico_OPController_DBOpenOPController"
-    	return Basico_OPController_DBOpenOPController::find($model, $id);
+    	return Basico_OPController_DBOpenOPController::find($model, (int) $id);
     }
 
     /**

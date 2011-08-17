@@ -26,7 +26,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         $content[] = '<h4>'.$this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO').'</h4>';
         
         // enviado conteúdo para a view
-        $this->view->content = $cabecalho;
+        $this->view->content = $content;
     }
 
     

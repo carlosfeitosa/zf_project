@@ -786,7 +786,7 @@ class Basico_Model_Formulario
         
         foreach ($arrayIdsFormularioElementos as $idFormularioElemento) {
         	$modelFormularioElemento = new Basico_Model_FormularioElemento();
-        	$arrayObjects[] = Basico_OPController_PersistenceOPController::bdObjectFind($model, $idFormularioElemento);
+        	$arrayObjects[] = Basico_OPController_PersistenceOPController::bdObjectFind($modelFormularioElemento, $idFormularioElemento);
         }
 
         // verificando se o formulario eh persistente
