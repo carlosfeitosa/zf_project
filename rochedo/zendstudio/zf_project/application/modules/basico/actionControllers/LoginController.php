@@ -208,6 +208,12 @@ class Basico_LoginController extends Zend_Controller_Action
 				 	// efetuando o logon
 				   	Basico_OPController_LoginOPController::getInstance()->efetuaLogon($novoLogin->login);
 				}
+				
+				// recuperando a mensagem de confirmacao da conclusao do cadastro
+			    $mensagemConclusaoCadastro = Basico_OPController_LoginOPController::getInstance()->retornaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($arrayPost['idPessoa'], $emailPrimario->email);
+			    	
+			    // enviando a mensagem
+		        Basico_OPController_MensageiroOPController::getInstance()->enviar($mensagemConclusaoCadastro, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($arrayPost['idPessoa'])));
 			    
 		    	// salvando a transacao
 				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);

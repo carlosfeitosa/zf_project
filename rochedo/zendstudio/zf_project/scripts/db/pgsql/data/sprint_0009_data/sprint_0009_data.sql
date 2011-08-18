@@ -356,6 +356,11 @@ AND c.nome = 'SISTEMA_MODULO';
 -- ACAO_APLICACAO
 
 INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
+SELECT m.id AS id_modulo, 'fs' AS controller, 'download' AS action, 'SYSTEM_STARTUP' AS rowinfo
+FROM modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
 SELECT m.id AS id_modulo, 'login' AS controller, 'exibirformaceitetermosuso' AS action, 'SYSTEM_STARTUP' AS rowinfo
 FROM modulo m
 WHERE m.nome = 'BASICO';
@@ -507,6 +512,19 @@ WHERE m.nome = 'BASICO';
 
 
 -- ACOES_APLICACAO_PERFIS
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_PUBLICO') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'fs'
+        AND a.action = 'download') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id

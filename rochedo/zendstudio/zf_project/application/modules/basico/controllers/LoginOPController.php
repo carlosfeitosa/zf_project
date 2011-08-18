@@ -1295,7 +1295,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$form->getElement('BasicoAceiteTermosUsoHtmlButtonCancelar')->setAttrib('onclick', "location.href='{$baseUrl}'");
 		
 		// recuperando a url do arquivo para montar link para download
-		$urlArquivoTermos = "http://" . $_SERVER['HTTP_HOST'] . $baseUrl . "/docs/termos/termo.txt";
+		$urlArquivoTermos = Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl("/basico/fs/download/tipo/termos/fileName/termos.txt");
 		
 		// setando link para download do termo de uso
 		$form->getElement('BasicoAceiteTermosUsoLinks')->setValue("<a href='$urlArquivoTermos'><img src='{$baseUrl}/images/icons/pdf.png'></a>");
