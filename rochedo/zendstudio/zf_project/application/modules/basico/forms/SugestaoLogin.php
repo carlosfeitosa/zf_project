@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 01/08/2011 17:29:47
+* em: 18/08/2011 13:06:57
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 01/08/2011 17:26:29
+* @version    1: 18/08/2011 11:28:19
 */
 class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
 {

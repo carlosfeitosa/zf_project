@@ -241,32 +241,13 @@ class Basico_LoginController extends Zend_Controller_Action
     }
     
     /**
-     * Exibe o form para aceitação dos termos de uso do sistema
-     * 
-     */
-    public function exibirformaceitetermosusoAction()
-    {
-    	// carregando array do cabecalho da view
-		$content[] = '<h3>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO').'</h3>'; 
-		$content[] = '<h4>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO').'</h4>';
-			    
-		$form = $this->initFormAceiteTermosUso($this->getRequest()->getParam('idPessoa'));
-			    
-	    // carregando form na view
-	    $content[] = $form;
-	    $this->view->content = $content;
-
-	    $this->_helper->Renderizar->renderizar();
-    }
-    
-    /**
      * Cadastra o usuario já validado.
      * @return void
      */
     public function salvarusuariovalidadoAction()
     {
     	try {
-	        // capturando dados da requisição
+	        // recuperando dados da requisição
 	        $post                = $this->getRequest()->getPost();
 	    	$idPessoa            = (int) $post['idPessoa'];
 	    	$sexo                = (int) $post['BasicoCadastrarUsuarioValidadoSexo'];
@@ -283,7 +264,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		    	// inicializando controladores
 		    	$controladorLogin = Basico_OPController_LoginOPController::getInstance();
 		    	
-		    	// capturando formulario e setando propriedades
+		    	// recuperando formulario e setando propriedades
 		        $formCadastrarUsuarioValidado = $this->getFormCadastroUsuarioValidado();
 		        
 		        // inicializando formulario
@@ -293,10 +274,22 @@ class Basico_LoginController extends Zend_Controller_Action
 	        	$this->salvarDadosUsuarioValidado($post, $formCadastrarUsuarioValidado);
 	        	
     		}else{
-    			
+    			// carregando array do cabecalho da view
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO')); 
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
+	
+				// recuperando form inicializado
+				$form = Basico_OPController_LoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
+	
+		    	// carregando form e conteudo na view
+		    	$content[] = $form;
+		    	$this->view->content = $content;
+		    	
     		}
 		        
+    		// renderizando a view
 	        $this->_helper->Renderizar->renderizar();
+	        
     	}catch(Exception $e){
     		// lançando o erro
 	        throw new Exception($e->getMessage());

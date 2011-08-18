@@ -27,48 +27,6 @@ class Basico_EmailController extends Zend_Controller_Action
     	// recuperando a requisicao
         $this->request = Zend_Controller_Front::getInstance()->getRequest();
     }
-    
-	/**
-     * retorna o formulario de aceite de termos de uso inicializado
-     * 
-     * @param Int $idPessoa
-     */
-    private function initFormAceiteTermosUso($idPessoa)
-    {
-    	// recuperando o objFormulario
-    	$form = new Basico_Form_AceiteTermosUso();
-			    
-    	// adicionando elemento hidden com o id da pessoa
-		Basico_OPController_UtilOPController::adicionaElementoForm($form, 'hidden', 'idPessoa', array('value' => $idPessoa));
-			    
-		// setando atributos de tamanho do formulario e dos displayGroups
-		$form->setAttrib('style', 'width: 472px;');
-		$form->getDisplayGroup('download')->setAttrib('style', 'width: 455px;');
-		$form->getDisplayGroup('aceite')->setAttrib('style', 'width: 455px;');
-		
-		// setando conteudo do textArea dos termos de uso
-		$form->getElement('BasicoAceiteTermosUsoTermosUso')->setValue(Basico_OPController_UtilOPController::retornaConteudoArquivo(PUBLIC_PATH . "/docs/termos/termo.txt"));
-
-		// recuperando a url da acao de cancelamento do cadastro
-		$urlCancelarCadastro = $this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'cancelarcadastro', 'idPessoa' => $idPessoa)));
-		
-		// setando link para download do termo
-		$form->getElement('BasicoAceiteTermosUsoHtmlButtonCancelar')->setAttrib('onclick', "location.href='{$urlCancelarCadastro}'");
-		
-		// recuperando a url do arquivo para montar link para download
-		$urlArquivoTermos = "http://" . $_SERVER['HTTP_HOST'] . $this->view->baseUrl() . "/docs/termos/termo.txt";
-		
-		// setando link para download do termo de uso
-		$form->getElement('BasicoAceiteTermosUsoLinks')->setValue("<a href='$urlArquivoTermos'><img src='{$this->view->baseUrl()}/images/icons/pdf.png'></a>");
-			    
-		// recuperando a string de confirmação do aceite
-    	$stringConfirmacao = Basico_OPController_TradutorOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO");
-			    
-    	// substituindo string de confirmacao no label do campo de confirmacao do aceite
-		$elementoAceiteLabel = str_replace(FORM_ACEITE_TERMOS_USO_TAG_STRING_CONFIRMACAO, $stringConfirmacao, $form->getElement('BasicoAceiteTermosUsoAceiteTermosUso')->getLabel());
-		
-		return $form;
-    }
 
     /**
      * Valida um e-mail
@@ -137,7 +95,7 @@ class Basico_EmailController extends Zend_Controller_Action
 				$content[] = '<h3>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO').'</h3>'; 
 				$content[] = '<h4>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO').'</h4>';
 					    
-				$form = $this->initFormAceiteTermosUso($proprietarioEmail->id);
+				$form = Basico_OPController_LoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
 					    
 			    // carregando form na view
 			    $content[] = $form;
@@ -150,10 +108,10 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	}
 	    	
 	    	// recuperando a string de confirmação do aceite
-	    	$stringConfirmacao = Basico_OPController_TradutorOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO");
+	    	$stringConfirmacao = Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), Basico_OPController_TradutorOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO"));
 	    	
 	    	// verificando a digitação do aceite
-	    	if (strtoupper($_POST['BasicoAceiteTermosUsoAceiteTermosUso']) === strtoupper($stringConfirmacao)) {
+	    	if (strtoupper(Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), $_POST['BasicoAceiteTermosUsoAceiteTermosUso'])) === strtoupper($stringConfirmacao)) {
 	    		
 	    		// registrando data do aceite na sessao
 		    	$session = Basico_OPController_SessionOPController::registraSessaoUsuario();
@@ -211,11 +169,11 @@ class Basico_EmailController extends Zend_Controller_Action
 				$this->_helper->Renderizar->renderizar();
 	    	}else{
 	    		// carregando array do cabecalho da view
-				$content[] = '<h3>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO').'</h3>'; 
-				$content[] = '<h4>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO').'</h4>';
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO')); 
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
 	
 				// recuperando form inicializado
-				$form = $this->initFormAceiteTermosUso($proprietarioEmail->id);
+				$form = Basico_OPController_LoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
 	
 		    	// carregando form na view
 		    	$content[] = $form;

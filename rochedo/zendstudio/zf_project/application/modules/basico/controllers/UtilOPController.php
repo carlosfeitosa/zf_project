@@ -2283,4 +2283,21 @@ class Basico_OPController_UtilOPController
 		
 		return $array;
 	}
+	
+	/**
+	 * Remove os caracteres passados da string passada
+	 * 
+	 * @param String $string
+	 */
+	public static function removeCaracteresString($arrayCaracteres, $string)
+	{
+		// removendo caracteres da string
+		foreach ($arrayCaracteres as $caractere) {
+			$string = str_replace($caractere, "", $string);	
+		}
+		
+		return $string;
+		
+	}
+	
 }
