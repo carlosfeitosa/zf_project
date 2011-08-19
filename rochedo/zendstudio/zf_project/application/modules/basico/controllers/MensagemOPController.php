@@ -403,6 +403,71 @@ class Basico_OPController_MensagemOPController extends Basico_Abstract_RochedoPe
 		// retornando a mensagem
 		return $this->_model;
 	}
+	
+	/**
+	 * Retorna a mensagem carregada com os dados da template de Mensagem de email de tentativa de registro com email primario de usuario do sistema
+	 * 
+	 * @param Int $idPessoa
+	 * 
+	 * @return Basico_Model_Mensagem 
+	 */
+    public function retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa) 
+    {
+		// instanciando os controladores
+		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
+		$loginControllerController              = Basico_OPController_LoginOPController::getInstance();
+		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
+		$dadosBiometricosControllerController   = Basico_OPController_DadosBiometricosOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+
+		// recuperando o objeto categoria email template validacao plain text reenvio
+		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
+
+		// recuperando o sexo do usuario
+		$sexoUsuario    = $dadosBiometricosControllerController->retornaSexoPorIdPessoa($idPessoa);
+
+		// recuperando o nome do destinatario
+		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
+		
+		// recuperando a lingua do usuario
+		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
+
+		// carregando a mensagem template
+		$objMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id FROM categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+
+		// recuperando o assunto
+		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());
+		// recuperando assinatura da mensagem
+		$assinatura            = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
+		// recuperando a mensagem
+		$corpoMensagemTemplate = $objMensagemTemplate[0]->getMensagem();
+		
+        // substituindo a tag de tratamento de acordo com o sexo do usuario
+		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
+		else
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
+		
+		// substituindo a tag do nome do usuario    
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
+        // substituindo a tag de assinatura da mensagem
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
+        // substituindo a tag de assinatura da mensagem
+        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_SUPORTE_EMAIL, SUPPORT_EMAIL, $corpoMensagemTemplate);
+        
+        // carregando a mensagem no modelo
+        $this->_model->setMensagem($corpoMensagemTemplate);
+		
+		// recuperando o endereco de e-mail do sistema
+		$emailSistema = $emailControllerController->retornaEmailSistema();
+		// setando remetente
+		$this->_model->setRemetente($emailSistema);
+		$this->_model->setRemetenteNome(APPLICATION_NAME);
+		
+		// retornando a mensagem
+		return $this->_model;
+	}
 
 	/**
 	 * Cria as relacoes das pessoas envolvidas na mensagem, com a propria mensagem e categorias

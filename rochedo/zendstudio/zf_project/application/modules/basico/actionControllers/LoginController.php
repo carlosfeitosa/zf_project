@@ -373,30 +373,42 @@ class Basico_LoginController extends Zend_Controller_Action
     	// verificando se o formulario passou por sua validacao
         if($this->validaForm($form) == true){
         	
-	        // verifica se o e-mail existe no banco de dados
-	        $emailParaValidacao = Basico_OPController_EmailOPController::getInstance()->verificaEmailExistente($this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'));
+	        // recuperando parametros
+            $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
+            
+            // verifica se o e-mail existe no banco de dados
+	        $emailParaValidacao = Basico_OPController_EmailOPController::getInstance()->verificaEmailExistente($email);
 
 	        // checando o resultado da verificacao de existencia do e-mail
 	        if ($emailParaValidacao !== NULL){
+
+	        	// recuperando parametros
+		        $idEmail           = Basico_OPController_EmailOPController::getInstance()->retornaIdEmailPorEmail($email);
+	            $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
+	            $idPessoa          = Basico_OPController_EmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($idEmail);
+	            $idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa)->id;
+	            
 	        	// checando se o e-mail ja foi validado
 	            if ($emailParaValidacao == true){
+
+	            	// enviando mensagem de aviso de tentativa de registro utilizando o email primario de usuario do sistema
+	            	
+	            	// setando e salvando mensagem
+			        $novaMensagem = Basico_OPController_LoginOPController::getInstance()->retornaMensagemTentativaRegistroEmailPrimario($idPessoa, $email);       
+			             
+			        // enviando a mensagem
+			        Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
+			            
 	            	// recuperando url tokenizada
 	            	$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', null, true);
 
 	            	// redirecionando o usuario
 	            	$this->_redirect($urlTokenizada);
-				}
-	            else {
+				}else {
 	            	// iniciando a transacao
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
 	            	try {
-			            // recuperando parametros
-			            $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
-			            $idEmail           = Basico_OPController_EmailOPController::getInstance()->retornaIdEmailPorEmail($email);
-			            $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
-			            $idPessoa          = Basico_OPController_EmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($idEmail);
-			            $idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
 			            // setando e salvando token
 			            $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);

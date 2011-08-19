@@ -11,6 +11,56 @@
 */
 
 INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
+SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios,
+'Trying to register using your primary email' AS assunto,
+'@tratamento @nomeUsuario,
+ 
+ 
+We recently received a request for registration in our system,
+related to your e-mail to which this message was sent.
+
+If you made this request, we inform you that your account is active. If you want to recover your password, please try to "reset" your password through the system rather than trying to re-register.
+
+If you have not requested this record, it is possible that someone is trying to register using your primary e-mail, recipient of this message. If this is the case, rest easy knowing your information remains secure.
+
+
+If you wish, please send us this message by e-mail @linkEmailSuporte so we can audit this inconvenience.
+
+
+Sincerely,
+@assinaturaMensagem' as mensagem, c.id AS id_categoria,
+current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_en-us';
+
+INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
+SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios,
+'Tentativa de registro utilizando seu email primário' AS assunto,
+'@tratamento @nomeUsuario,
+ 
+ 
+Recentemente recebemos uma solicitação de registro em nosso sistema,
+relacionado ao seu endereço de e-mail a qual esta mensagem foi enviada.
+
+Caso você tenha feito esta solicitação, informamos que sua conta encontra-se ativa. Caso deseje recuperar sua senha, por favor tente "resetar" sua senha através do sistema ao invés de tentar registrar-se novamente.
+
+Caso você não tenha solicitado este registro, é possível que alguem esteja tentando se registrar utilizando seu email primario, destinatário desta mensagem. Se for este o caso, fique tranquilo pois suas informações continuam seguras.
+
+
+Se desejar, por favor nos encaminhe esta mensagem, através do e-mail @linkEmailSuporte, para que possamos auditar este inconveniente.
+
+
+Atenciosamente,
+@assinaturaMensagem' as mensagem, c.id AS id_categoria,
+current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'SISTEMA'
+AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_pt-br';
+
+INSERT INTO mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
 SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Confirmação de Registro' AS assunto,
 'Prezado(a) sr.(a) @nomeUsuario,
 

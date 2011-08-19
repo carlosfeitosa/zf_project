@@ -1273,6 +1273,30 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	}
 	
 	/**
+	 * Retorna a mensagem de aviso sobre tentativa de registro utilizando email primario de usuario do sistema
+	 * 
+	 * @param Int $idPessoa
+	 * @param String $emailPrimario
+	 */
+	public function retornaMensagemTentativaRegistroEmailPrimario($idPessoa, $emailPrimario)
+	{
+		// recuperando a template da mensagem
+		$novaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa);
+		    	
+        // recuperando o nome do destinatario
+        $nomeDestinatario = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
+	    // setando atributos da mensagem                     
+        $novaMensagem->destinatarios       = array($emailPrimario);
+        $novaMensagem->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
+        $novaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+        // salvando objeto
+        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($novaMensagem);
+	
+        return $novaMensagem;
+        
+	}
+	
+	/**
      * retorna o formulario de aceite de termos de uso inicializado
      * 
      * @param Int $idPessoa
@@ -1310,6 +1334,9 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			    
     	// substituindo string de confirmacao no label do campo de confirmacao do aceite
 		$elementoAceiteLabel = str_replace(FORM_ACEITE_TERMOS_USO_TAG_STRING_CONFIRMACAO, $stringConfirmacao, $form->getElement('BasicoAceiteTermosUsoAceiteTermosUso')->getLabel());
+		
+		// setando o label do campo confirmacao do aceite
+		$form->getElement('BasicoAceiteTermosUsoAceiteTermosUso')->setLabel($elementoAceiteLabel);
 		
 		return $form;
     }

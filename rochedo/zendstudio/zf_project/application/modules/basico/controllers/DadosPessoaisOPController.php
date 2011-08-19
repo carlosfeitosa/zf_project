@@ -151,7 +151,7 @@ class Basico_OPController_DadosPessoaisOPController extends Basico_Abstract_Roch
 	public function retornaNomePessoaPorIdPessoa($idPessoa) 
 	{
 		// recuperando o objeto dados pessoais
-		$objDadosPessoais = $this->retornaTodosObjetos($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+		$objDadosPessoais = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objDadosPessoais[0]))

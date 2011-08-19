@@ -63,14 +63,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ACEITE_TERMOS_USO' AS constante_textual, 'No campo abaixo, digite "EU ACEITO" para aceitar os termos de uso do serviço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ACEITE_TERMOS_USO' AS constante_textual, 'No campo abaixo, digite "@stringConfirmacao" para aceitar os termos de uso do serviço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ACEITE_TERMOS_USO_AJUDA' AS constante_textual, 'Digite "EU ACEITO" neste campo para<br>aceitar os termos de uso do serviço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ACEITE_TERMOS_USO_AJUDA' AS constante_textual, 'Digite "@stringConfirmacao" neste campo para<br>aceitar os termos de uso do serviço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
