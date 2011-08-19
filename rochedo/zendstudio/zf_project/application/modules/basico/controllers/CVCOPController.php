@@ -443,9 +443,14 @@ class Basico_OPController_CVCOPController
 	{
 		// recuperando o tempo de execucao do php
 		$tempoExecucaoPhp = ini_get('max_execution_time');
+		// recuperando o limite de memoria do php
+		$limiteMemoriaPhp = ini_get('memory_limit');
 
 		// setando o tempo maximo de execucao do php para 600 segundos para que esta operacao funcione
 		set_time_limit(APPLICATION_DATABASE_MAKE_SYSTEM_CHECKSUM_MAXTIME_SECONDS);
+		// setando o limite de memoria do php para 512M
+		ini_set('memory_limit', '512M');
+
 		// desabilitado o pool de ids de objetos manipulados (p/log)
 		self::desabilitaPoolIdsObjetosManipulados();
 
@@ -501,6 +506,9 @@ class Basico_OPController_CVCOPController
 
 		// voltando o tempo de execucao do php
 		set_time_limit($tempoExecucaoPhp);
+		// voltando o limite de memoria do php
+		ini_set('memory_limit', $limiteMemoriaPhp);
+
 		// inicializando atributo $this->_arrayObjetosManipulados
 		$this->limpaArrayIdsObjetosManipulados();
 

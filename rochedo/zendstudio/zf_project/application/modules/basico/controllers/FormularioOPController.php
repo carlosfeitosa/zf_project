@@ -249,4 +249,50 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 
 		return null;
 	}
+
+	/**
+	 * Retorna um array contendo os caminhos para os arquivos css e js de um formulario
+	 * 
+	 * @param String $nomeForm
+	 * 
+	 * @return Array|null
+	 */
+	public static function retornaArraysTemplateStylesheetFullFilenameJavascriptFullFilenamePorNomeFormularioViaSQL($nomeForm)
+	{
+		// verificando se foi passado o nome do form
+		if (!$nomeForm) {
+			// retornando nulo
+			return null;
+		}
+
+		// montando query que recupera informacoes sobre o template do formulario
+		$queryRecuperaStylesheetFullFilenameEJavascriptFullFilename = "SELECT t.stylesheet_full_filename AS stylesheetfullfilename, t.javascript_full_filename AS javascriptfullfilename, o.nome AS output
+																	   FROM template t
+																	   LEFT JOIN output o ON (t.id_output = o.id)
+																	   LEFT JOIN template_formulario tf ON (t.id = tf.id_template)
+																	   LEFT JOIN formulario f ON (tf.id_formulario = f.id)
+																	   WHERE (t.stylesheet_full_filename IS NOT NULL OR t.javascript_full_filename IS NOT NULL)
+																	   AND f.form_name = '{$nomeForm}'";
+
+		// executando query e recuperando o resultados em um array
+		$arrayResultadoQuery = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRecuperaStylesheetFullFilenameEJavascriptFullFilename);
+
+		// verificando se houve resultado na recuperacao
+		if (count($arrayResultadoQuery)) {
+			// inicializando variaveis
+			$arrayRetorno = array();
+
+			// loop para montar o resultado em formato de array
+			foreach ($arrayResultadoQuery as $chave => $valor) {
+				// guardando as informacoes no array de resultados
+				$arrayRetorno[$chave] = $valor;
+			}
+
+			// retornando resultado
+			return $arrayRetorno;
+		}
+
+		// retornando nulo
+		return null;
+	}
 }

@@ -1052,11 +1052,13 @@ class Basico_OPController_UtilOPController
 				throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_STRING);
 
 			// verificando nulidade do valor
-			if (($checaNulidade) and (!strlen($valor)))
+			if (($checaNulidade) and (!strlen($valor))) {
 				return null;
+			}
 			else {
 				// recuperando a data
-				$dataHoraZendDate = new Zend_Date($valor, DEFAULT_DATABASE_DATETIME_FORMAT, DEFAULT_SYSTEM_DATETIME_LOCALE);
+				$dataHoraZendDate = new Zend_Date($valor, Basico_OPController_DBUtilOPController::retornaFormatoDateTimeDB(), DEFAULT_SYSTEM_DATETIME_LOCALE);
+
 				// retornando a data no formato esperado
 				return $dataHoraZendDate->toString(DEFAULT_DATABASE_DATETIME_FORMAT);
 			}

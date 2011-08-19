@@ -113,6 +113,8 @@ define("MENU_CSS_FILE", "/css/menu.css");
 define("DEFAULT_SYSTEM_LANGUAGE", LANGUAGE_PT_BR);
 define("DEFAULT_SYSTEM_DATETIME_LOCALE", "en_US");
 define("DEFAULT_DATABASE_DATETIME_FORMAT", "yyyy-MM-dd HH:mm:ss");
+define("DEFAULT_PG_DATABASE_DATETIME_FORMAT", "yyyy-MM-dd HH:mm:ss");
+define("DEFAULT_MSSQL_DATABASE_DATETIME_FORMAT", "MMM d yyyy hh:mm:ss:Sa");
 
 /*
  * SUGESTAO DE LOGIN

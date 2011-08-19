@@ -156,7 +156,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
 		$content[] = $formGeradorFormulario;
         
         // enviado conteúdo para a view
-        $this->view->content = $content;        
+        $this->view->content = array_merge($this->view->content, $content);        
         
         // renderizando a view
         $this->_helper->Renderizar->renderizar();

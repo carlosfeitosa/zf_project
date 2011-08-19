@@ -706,6 +706,32 @@ class Basico_OPController_DBUtilOPController
     }
 
     /**
+     * Retorna o formato de data do banco de dados em uso
+     * 
+     * @return String|null
+     */
+    public static function retornaFormatoDateTimeDB()
+    {
+       	// recuperando o tipo de banco de dados ativo
+    	$pdoTypeBancoAtivo = self::retornaPdoTypeConexaoAtiva();
+
+    	// verificando o tipo de banco de dados
+    	switch ($pdoTypeBancoAtivo) {
+    		case 'MSSQL':
+    			return DEFAULT_MSSQL_DATABASE_DATETIME_FORMAT;
+    		break;
+
+    		case 'PGSQL';
+    			return DEFAULT_PG_DATABASE_DATETIME_FORMAT;
+    		break;
+
+    		default:
+    			return null;
+    		break;
+    	}
+    }
+
+    /**
      * Modifica uma string substituindo tags pelos valores relacionados ao banco de dados ativo
      * 
      * @param String $sqlScript
