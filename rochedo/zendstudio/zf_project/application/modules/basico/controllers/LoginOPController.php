@@ -959,9 +959,11 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			// retornando o resultado do metodo de salvar o login
 			$this->salvarObjeto($objLogin, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);
 
+			// retornando sucesso
 			return true;
 		}
 
+		// retornando falso
 		return false;
 	}
 	
@@ -979,10 +981,13 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			$login = $this->_model->fetchList("id_pessoa = {$idPessoa}");
 			
 			// verificando se retornou um login
-			if (count($login) > 0)
+			if (count($login) > 0) {
+				// retornando o objeto login
 				return $login[0];
-			else
+			} else {
+				// retornando falso
 				return false;
+			}
 		}else{
 			// lançando erro de nao inteiro
 			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_INTEIRO);
