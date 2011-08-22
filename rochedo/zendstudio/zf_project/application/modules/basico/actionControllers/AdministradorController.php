@@ -155,12 +155,9 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function sucessoresetadbAction()
     {
-    	//salvando log de inicio da operação
-	    Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_ADMIN_INICIO);
+
         // criando o usuario admin
         Basico_OPController_LoginOPController::getInstance()->criaLoginAdmin();
-        // salvando log de sucesso na operação
-	    Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_ADMIN_SUCESSO);
 
     	// carregando o titulo
 	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO'));

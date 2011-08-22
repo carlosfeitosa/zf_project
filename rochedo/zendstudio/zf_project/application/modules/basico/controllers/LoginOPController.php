@@ -1402,6 +1402,8 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 		// bloco de tentativa de persistencia
 		try {
+			//salvando log de inicio da operação
+	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_ADMIN_INICIO);
 	    	// iniciando transacao
 			Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
@@ -1439,6 +1441,9 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 
 			// salvando a transacao
 			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+
+			// salvando log de sucesso na operação
+	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_ADMIN_SUCESSO);
     	
 		} catch (Exception $e) {
 			// voltando a transacao
