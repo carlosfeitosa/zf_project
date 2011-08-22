@@ -441,6 +441,9 @@ class Basico_OPController_CVCOPController
 	 */
 	public function versionarObjetosNaoVersionados()
 	{
+		//salvando log de inicio da operação
+	    Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_CVC_INICIO);
+
 		// recuperando o tempo de execucao do php
 		$tempoExecucaoPhp = ini_get('max_execution_time');
 		// recuperando o limite de memoria do php
@@ -511,6 +514,9 @@ class Basico_OPController_CVCOPController
 
 		// inicializando atributo $this->_arrayObjetosManipulados
 		$this->limpaArrayIdsObjetosManipulados();
+
+		// salvando log de sucesso na operação
+	    Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_CVC_SUCESSO);
 
 		// retornando sucesso
 		return true;

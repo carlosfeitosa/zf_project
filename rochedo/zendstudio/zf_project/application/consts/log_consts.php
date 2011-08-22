@@ -160,5 +160,9 @@ define("LOG_MSG_CREATE_DB_INCIO", "Create do banco de dados iniciado.");
 define("LOG_MSG_CREATE_DB_SUCESSO", "Create do banco de dados efetuado com sucesso.");
 define("LOG_MSG_INSERT_DB_DATA_INICIO", "Insert dos dados no banco de dados iniciado.");
 define("LOG_MSG_INSERT_DB_DATA_SUCESSO", "Insert dos dados no banco de dados efetuado com sucesso.");
+define("LOG_MSG_CREATE_CVC_INICIO", "Criacao dos objetos nao versionados iniciado.");
+define("LOG_MSG_CREATE_CVC_SUCESSO", "Criacao dos objetos nao versionados efetuado com sucesso.");
+define("LOG_MSG_CREATE_ADMIN_INICIO", "Criacao do usuario admin iniciado.");
+define("LOG_MSG_CREATE_ADMIN_SUCESSO", "Criacao do usuario admin efetuado com sucesso.");
 define("LOG_MSG_ERRO_EXECUCAO_SCRIPT", "Erro na execução do script.");
 
