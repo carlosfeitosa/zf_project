@@ -127,9 +127,6 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function resetadbAction()
     {
-    	// desabilitando layout
-    	$this->getHelper('layout')->disableLayout();
-
     	// verificando o resultado do reset
     	if (Basico_OPController_PersistenceOPController::bdResetaBD()) {
 
