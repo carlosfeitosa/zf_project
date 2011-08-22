@@ -55,9 +55,9 @@ class Basico_AdministradorController extends Zend_Controller_Action
 
     	// recuperando parametros
     	$parametros = $this->getRequest()->getParams();
-
+    	
     	// verificando se foi passado os parametros para regeracao de checksum
-    	if (array_key_exists('modelo', $parametros)) {
+    	if (array_key_exists('modelo', $parametros) === true) {
     		// recuperando o modelo
     		$nomeModelo = $parametros['modelo'];
 			// verificando se foi passado o id do modelo que deseja regerar o checksum
@@ -77,35 +77,34 @@ class Basico_AdministradorController extends Zend_Controller_Action
     				Basico_OPController_CVCOPController::getInstance()->regerarChecksumModelo($nomeModelo, $idModelo);
     				
     			} else {
-			    	// setando o titulo e subtitulo da view
-			    	$tituloView = 'Problemas ao tentar regerar checksum!';
+			    	// setando o titulo da view
+			    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar regerar checksum!');
+
 					// setando subtitulo da view
-		    	    $subtituloView = "Modelo informado nao existe.";
-		
-			    	// carregando array do cabecalho da view
-					$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
+		    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Modelo informado nao existe.");
+
+		    	    // setando o conteudo na view
+					$this->view->content = $content;
 			
-				    // setando o cabecalho na view
-					$this->view->cabecalho = $cabecalho;
-		
 					// renderizando a view
 					$this->_helper->Renderizar->renderizar();
+
+					return;
     			}
     		}
     	} else {
-	    	// setando o titulo e subtitulo da view
-	    	$tituloView = 'Problemas ao tentar regerar checksum!';
+	    	// setando o titulo da view
+	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar regerar checksum!');
 			// setando subtitulo da view
-    	    $subtituloView = "Nao foi informado o modelo para regeracao.";
+    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Nao foi informado o modelo para regeracao.");
 
-	    	// carregando array do cabecalho da view
-			$cabecalho =  array('tituloView' => $tituloView, 'subtituloView' => $subtituloView);
-	
-		    // setando o cabecalho na view
-			$this->view->cabecalho = $cabecalho;
+    	    // setando o conteudo na view
+			$this->view->content = $content;
 
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
+
+			return;
     	}
 
     	// setando o titulo e subtitulo da view
