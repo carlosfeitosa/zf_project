@@ -66,7 +66,7 @@ class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
         $elements[4]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-
+        
 
         $elements[5] = $this->createElement('submitButton', 'BasicoTrocaDeSenhaEnviar');
         $elements[5]->setOrder(5);
