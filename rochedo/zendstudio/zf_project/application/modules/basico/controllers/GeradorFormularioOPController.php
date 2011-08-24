@@ -188,7 +188,7 @@ class Basico_OPController_GeradorFormularioOPController
         $formEndTag                             = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_END_TAG];
         
         // verifica se existe decorator para o formulario
-        if ($objFormulario->getDecoratorObject()->id)
+        if ($objFormulario->getDecoratorObject())
             $formDecorator                      = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR];
 
         // recuperando modulos relacionados com o formulario
@@ -680,7 +680,7 @@ class Basico_OPController_GeradorFormularioOPController
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
         }
 
-        if ($objFormulario->getDecoratorObject()->id)
+        if ($objFormulario->getDecoratorObject())
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SETDECORATORS . "(array({$objFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
 
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ELEMENTS_COMMENT]                      = FORM_GERADOR_ADD_ELEMENTS_COMMENT . QUEBRA_DE_LINHA;

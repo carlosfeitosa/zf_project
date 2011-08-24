@@ -22,40 +22,30 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 <html>
 <head>
 	<?php
+	// enviando ao cliente as informacoes sobre do cabecalho do documento html
 	echo $this->headTitle();
 	echo $this->headMeta();
 	echo $this->headLink();
-	?>
-    
-    <style type="text/css">
-         body, html { 
-            font-family:helvetica,arial,sans-serif; 
-            font-size:90%; 
-            text-decoration: none;
-         }
-         
-         body, html a { 
-            text-decoration: none;
-         }
-    </style>
-    
-	<?php echo $this->dojo(); ?>
-    <?php echo $this->headScript()?>
-	
-    
-    <?php 
-    	$content = $this->scripts;
-	
-	if (is_array($content)) {
-		foreach ($content as $key => $value) {
+
+	// setando o dojo
+	echo $this->dojo();
+    echo $this->headScript();
+
+    // recuperando os scripts incluidos na view
+   	$scriptsContent = $this->scripts;
+
+   	// verificando se os scripts sao um array
+	if (is_array($scriptsContent)) {
+		// loop para enviar os scripts
+		foreach ($scriptsContent as $key => $value) {
+			// enviando script
 			echo $value;		
 		}
 	} else {
-		echo $content;
+		// enviando scripts
+		echo $scriptsContent;
 	}
-    
     ?>
-
 </head>
 
 <body class="rochedo">
@@ -96,14 +86,14 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 
 //retornaConteudoElementoHtml($this->content);
 
-	$content = $this->header;
+	$scriptsContent = $this->header;
 	
-	if (is_array($content)) {
-		foreach ($content as $key => $value) {
+	if (is_array($scriptsContent)) {
+		foreach ($scriptsContent as $key => $value) {
 			echo $value;		
 		}
 	} else {
-		echo $content;
+		echo $scriptsContent;
 	}
 
 
@@ -130,14 +120,14 @@ function retornaConteudoElementoHtml($variavelView) {
 	
 //retornaConteudoElementoHtml($this->content);
 
-	$content = $this->content;
+	$scriptsContent = $this->content;
 	
-	if (is_array($content)) {
-		foreach ($content as $key => $value) {
+	if (is_array($scriptsContent)) {
+		foreach ($scriptsContent as $key => $value) {
 			echo $value;		
 		}
 	} else {
-		echo $content;
+		echo $scriptsContent;
 	}
 
 
