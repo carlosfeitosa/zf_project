@@ -28,14 +28,14 @@ class Basico_Form_frutaDedoogle extends Zend_Dojo_Form
         // Inicializando o formulário.
         parent::__construct($options);
 
-        $this->setName('BasicofrutaDedoogle');
-        $this->setMethod('post');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('frutaDedoogle', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
-        $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
 
+        // Adicionando paths para localizacao de componentes nao ZF.
+        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
 
+        // Criando array de elementos.
+        $elements = array();
 
-
+ 
     }
 }
 ?>
