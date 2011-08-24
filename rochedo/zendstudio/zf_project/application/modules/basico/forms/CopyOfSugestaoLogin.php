@@ -30,6 +30,7 @@ class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
 
         $this->setName('BasicoTrocaDeSenha');
         $this->setMethod('post');
+        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('TrocaDeSenha', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
 
         // Adicionando paths para localizacao de componentes nao ZF.
