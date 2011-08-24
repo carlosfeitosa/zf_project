@@ -99,15 +99,19 @@ class Basico_OPController_GeradorFormularioOPController
 	       		// checando se pode continuar
 	    		if ($tempReturn){
 	    			// checando o tipo de ouput para redirecionar para metodos especificos
-		    		if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_DOJO)
+		    		if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_DOJO) {
+		    			// gerando formulario dojo
 		    			$tempReturn = self::gerarDOJO($objFormulario, FORM_CLASS_EXTENDS_DOJO_FORM, $excludeModulesNames);
-		    		else if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_HTML)
+		    		} else if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_HTML) {
+		    			// gerando formulario zend
 		    			$tempReturn = self::gerarHTML($objFormulario, FORM_CLASS_EXTENDS_ZEND_FORM, $excludeModulesNames);
+		    		}
 	    		}
 	    	}
-    	}
-    	else
+    	} else {
+    		// estourando excecao
     		throw new Exception(MSG_ERRO_FORMULARIO_SEM_TEMPLATE);
+    	}
 
     	// retornando resultado
     	return $tempReturn;
@@ -1033,7 +1037,7 @@ class Basico_OPController_GeradorFormularioOPController
             }
 
 			// adicionando filtros
-            if ($formularioElementoObject->getFormularioElementoFilterObject()->id)
+            if ($formularioElementoObject->getFormularioElementoFilterObject())
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDFILTERS . "(array({$formularioElementoObject->getFormularioElementoFilterObject()->filter}));" . QUEBRA_DE_LINHA;
 
             // recuperando validators
@@ -1059,11 +1063,11 @@ class Basico_OPController_GeradorFormularioOPController
 	
 	            	// vinculado o validator com o elemento do formulario
 	            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR . "({$formularioElementoValidator->validator}{$parametroOptionsValidator});" . QUEBRA_DE_LINHA;
-            }
+            	}
             }
 
 			// adiciona o decorator para os elementos que possuem decorator
-			if ($formularioElementoObject->getDecoratorObject()->id)
+			if ($formularioElementoObject->getDecoratorObject())
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA;
 
 			// recuperando decorator de formularioFormularioElemento
@@ -1089,13 +1093,14 @@ class Basico_OPController_GeradorFormularioOPController
             if ($formularioElementoObject->constanteTextualLabel){
 					
 				// adicionando o link de ajuda
-                if ($formularioElementoObject->getAjudaObject()->id){
+                if ($formularioElementoObject->getAjudaObject()){
 					if ($formularioElementoObject->getAjudaObject()->url){
 						$href = Basico_OPController_UtilOPController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->url, ASPAS_SIMPLES_ESCAPADA_HTML);
                         $target = Basico_OPController_UtilOPController::retornaStringEntreCaracter('_blank', ASPAS_SIMPLES_ESCAPADA_HTML);
                         $urlAjuda = ' . "<br><br>URL: <a href=' . $href . ' target=' . $target . '>' . $formularioElementoObject->getAjudaObject()->url . '</a>"';
-                    } else
+                    } else {
                         $urlAjuda = '';
+                    }
 
                     $constanteTextoAjuda = Basico_OPController_UtilOPController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'");
                     $chamadaJavaScriptDialog = Basico_OPController_UtilOPController::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(\'' . DIALOG_HELP_TITLE . '\')', 'Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor(' . $constanteTextoAjuda . '))' . $urlAjuda);
@@ -1107,7 +1112,7 @@ class Basico_OPController_GeradorFormularioOPController
                 $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_OPController_UtilOPController::retornaStringEntreCaracter($labelCampoRequerido, "'") . " . " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}') . {$linkAjuda});" . QUEBRA_DE_LINHA;
 			}
 
-			if (($formularioElementoObject->getAjudaObject()->id) and ($formularioElementoObject->getAjudaObject()->constanteTextualHint))
+			if (($formularioElementoObject->getAjudaObject()) and ($formularioElementoObject->getAjudaObject()->constanteTextualHint))
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}'));" . QUEBRA_DE_LINHA;
 
         	// verificando se o elemento possui mascara e se o formulario eh do tipo DOJO
@@ -1426,7 +1431,7 @@ class Basico_OPController_GeradorFormularioOPController
 			}
 			$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
 			// verificando se existe decorator setado para o displaygroup
-			if ($arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator)
+			if (($arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]) and ($arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator))
 				$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$arrayDecoratorsDisplayGroups[$arrayOrdemElementosDisplayGroup[0]]->decorator});" . QUEBRA_DE_LINHA;
 		}
 		

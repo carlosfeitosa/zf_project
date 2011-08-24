@@ -882,8 +882,8 @@ class Basico_OPController_UtilOPController
     	// transformando o objeto em string
     	$objetoCodificado = self::codificar($objeto);
 
-    	// retornando o md5 do objeto
-    	return self::retornaStringEncriptada($objetoCodificado);
+    	// retornando o objeto encriptado
+    	return self::retornaStringEncriptadaCVC($objetoCodificado);
     }
 
 	/**
@@ -1607,10 +1607,21 @@ class Basico_OPController_UtilOPController
 	 * 
 	 * @return String
 	 */
-    public static function retornaStringEncriptada($string, $salt = APPLICATION_CRYPT_SALT)
+    public static function retornaStringEncriptadaCryptMd5($string, $salt = APPLICATION_CRYPT_SALT)
     {
-    	// retornando a string encriptada, usando a propria string como chave
+    	// retornando a string encriptada
     	return crypt(md5($string), $salt);
+    }
+
+    /**
+     * Retorna uma string encriptada para o checksum do CVC
+     * 
+     * @param String $string
+     */
+    public static function retornaStringEncriptadaCVC($string)
+    {
+    	// retornando a string encriptada
+    	return sha1($string);
     }
 
     /**
