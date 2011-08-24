@@ -954,7 +954,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		// verificando se o objeto foi recuperado
 		if (($objLogin->id) and ($versaoObjetoLoginUsuario) and ($idPessoaPerfilUsuario)) {
 			// trocando a senha do usuario
-			$objLogin->senha = Basico_OPController_UtilOPController::retornaStringEncriptada($novaSenhaNaoEncriptada);
+			$objLogin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($novaSenhaNaoEncriptada);
 
 			// retornando o resultado do metodo de salvar o login
 			$this->salvarObjeto($objLogin, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);
@@ -1357,7 +1357,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     	$novoLogin->resetado               = false;
     	$novoLogin->podeExpirar            = true;
     	$novoLogin->login                  = trim($arrayPost['BasicoCadastrarUsuarioValidadoLogin']);
-    	$novoLogin->senha                  = Basico_OPController_UtilOPController::retornaStringEncriptada(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
+    	$novoLogin->senha                  = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
     	$novoLogin->ativo                  = true;
     	$novoLogin->dataHoraAceiteTermoUso = $arrayPost['dataAceite'];
     	
@@ -1433,7 +1433,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	    	$objLoginAdmin->resetado = false;
 	    	$objLoginAdmin->podeExpirar = true;
 	    	$objLoginAdmin->login = ADMIN_LOGIN_NAME_DATABASE_RESET;
-	    	$objLoginAdmin->senha = Basico_OPController_UtilOPController::retornaStringEncriptada(ADMIN_LOGIN_NAME_DATABASE_RESET);
+	    	$objLoginAdmin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(ADMIN_LOGIN_NAME_DATABASE_RESET);
 	    	$objLoginAdmin->ativo = true;
 
 	    	// salvando o objeto login

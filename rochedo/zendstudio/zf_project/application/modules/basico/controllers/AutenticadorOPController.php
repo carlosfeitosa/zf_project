@@ -100,7 +100,7 @@ class Basico_OPController_AutenticadorOPController
 	{
 		// setando parametros do autenticador com as credenciais do usuario
 		$this->_authAdapter->setIdentity($parametros[AUTH_IDENTITY_ARRAY_KEY])
-						   ->setCredential(Basico_OPController_UtilOPController::retornaStringEncriptada($parametros[AUTH_CREDENTIAL_ARRAY_KEY]));
+						   ->setCredential(Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($parametros[AUTH_CREDENTIAL_ARRAY_KEY]));
 
 		// retornando o adaptador de autenticacao com banco de dados
 		return $this->_authAdapter;

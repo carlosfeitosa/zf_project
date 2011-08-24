@@ -28,6 +28,19 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     }
 
     /**
+     * Retorna uma nova instancia do formulario de troca de senha
+     * 
+     * @param array $options
+     * 
+     * @return Basico_Form_TrocaDeSenha
+     */
+    private function getFormTrocaDeSenha(array $options = array())
+    {
+    	// retornando uma nova instancia do formulario de submissao de troca de senha
+    	return new Basico_Form_TrocaDeSenha($options);
+    }
+
+    /**
      * Chamada do forulario de cadastro de dados do usuario
      * 
      * @return void
@@ -114,6 +127,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		
 		// enviado conteúdo para a view
 		$this->view->content = $content;
+
+		// verificando se deve setar os scripts na view
+		if (isset($scripts)) {
+			// adicionando scripts na view
+			$this->view->scripts = $scripts;
+		}
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -217,7 +236,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		// verificando se a senha atual foi preenchida
 		if (trim($senhaAtual) !== '') {
 			// encriptando a senha informada
-			$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptada($senhaAtual);
+			$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($senhaAtual);
 
 			// instanciando o controlador de login
 			$loginOpController = Basico_OPController_LoginOPController::getInstance();
@@ -225,14 +244,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// verificando se a senha informada corresponde a senha do usuario
 			if (!$loginOpController->verificaSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $senhaAtual)) {
 				// marcando o elemento do formulario com invalido
-				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->addError(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
+				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->addError($this->view->tradutor('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
 				// criando array com os elementos que devem ser marcados como erro
 				$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual');
 				// marcando os elementos com erro
 				Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
 
 				// selecionando a aba do subform conta
-				Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
 				// setando foco no primeiro elemento com erro
 				Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
 				// recolocando o valor do div de forca da senha
@@ -244,7 +263,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// verificando se foi informado a nova senha e/ou confirmacao de senha
 			if ((trim($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha']) !== '') or (trim($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha']) !== '')) {
 				// marcando o elemento do formulario com invalido
-				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->addError(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
+				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->addError($this->view->tradutor('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
 				// criando array com os elementos que devem ser marcados como erro
 				$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual',
 											 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
@@ -253,7 +272,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
 
 				// selecionando a aba do subform conta
-				Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
 				// setando foco no primeiro elemento com erro
 				Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
 				// recolocando o valor do div de forca da senha
@@ -270,7 +289,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// validando o sub formulario
     	if (!$subFormConta->isValid($arrayPost)) {
 			// selecionando a aba do subform conta
-			Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+			$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
 			// recolocando o valor do div de forca da senha
 			$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
 			// limpando as senhas digitadas
@@ -302,7 +321,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    	// setando o perfil padrao do usuario
 	    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioConta($idPessoa, $arrayPost)) {
 				// selecionando a aba do subform perfil padrao
-				Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
 	
 	    		// atualizando o perfil padrao do usuario na sessao
 	    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao(Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true));
@@ -314,7 +333,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 	
 		        // exibindo mensagem de sucesso
-		        Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO'));
+		        Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript($this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO'));
 	    	}   	
 
     		// salvando a transacao
@@ -353,13 +372,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayPost)) {
     		// selecionando a aba do subform DadosBiometricos
-			//Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
+			$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
     		return false;
     	}
 
     	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 	    	// selecionando a aba do subform DadosBiometricos
-	    	Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
+	    	$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
 
 	    	// recuperando ultima versao do obj dadosBiometricos da pessoa
 	        $versaoObjetoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa);
@@ -395,7 +414,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// loop para traduzir as constantes textuais dos perfis
     	foreach ($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa as $chave => $arrayIdConstanteTextualPerfilVinculadoDisponivelPessoa) {
     		// traduzindo constante textual
-    		$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['traducao'] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['constante_textual']);
+    		$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['traducao'] = $this->view->tradutor($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['constante_textual']);
 
     		// removendo o elemento 'constante_textual'
     		unset($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa[$chave]['constante_textual']);
@@ -586,5 +605,130 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$subFormCadastrarDadosUsuarioDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
 		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosBiometricos, FORM_ELEMENT_HIDDEN, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
+    }
+
+    /**
+     * Mostra o formulario de troca de senha de usuario e faz a troca, quando os dados forem postados
+     * 
+     * @return void
+     */
+    public function trocarsenhaexpiradaAction()
+    {
+    	// carregando o formulario de troca de senha
+		$formTrocaDeSenha = self::getFormTrocaDeSenha();
+
+    	// recuperando conteudo do div de forca da senha
+    	$valorDivForcaSenha = $formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->getValue();
+
+		// inicializando o formulario de troca de senha
+		self::carregaFormularioTrocaDeSenha($formTrocaDeSenha);
+
+		// verificando se nao trata-se de um post
+		if (!$this->getRequest()->isPost()) {
+			// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
+			$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+			// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
+			$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+
+			// incluindo o formulario de troca de senha no conteudo que sera renderizado
+			$content[] = $formTrocaDeSenha;
+		} else {
+			// recuperando o post
+			$post = $this->getRequest()->getPost();
+
+			// verificando se o formulario eh valido
+			if ($formTrocaDeSenha->isValid($post)) {
+				// recuperando o id da pessoa logada
+				$idPessoa = Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao();
+
+				// recuperando a senha atual informada no formulario e encriptando-a
+				$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($post['BasicoTrocaDeSenhaSenhaAtual']);
+
+				// instanciando o controlador de login
+				$loginOpController = Basico_OPController_LoginOPController::getInstance();
+	
+				// verificando se a senha informada nao corresponde a senha do usuario
+				if (!$loginOpController->verificaSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $senhaAtual)) {
+					// marcando o elemento do formulario com invalido
+					$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->addError($this->view->tradutor('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
+					// criando array com os elementos que devem ser marcados como erro
+					$arrayElementosErros = array('BasicoTrocaDeSenhaSenhaAtual');
+					// marcando os elementos com erro
+					Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+	
+					// limpando os campos de senha
+					$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue();
+					$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue();
+					$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue();
+
+					// recolocando o valor do div de forca da senha
+					$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+	
+					// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
+					$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+					// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
+					$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+				
+					// incluindo o formulario de troca de senha no conteudo que sera renderizado
+					$content[] = $formTrocaDeSenha;
+				} else { // trocando a senha do usuario
+					// recuperando a nova senha
+		    		$novaSenha = $post['BasicoTrocaDeSenhaNovaSenha'];
+
+		    		// recuperando a versao do objeto login
+		    		$versaoObjetoLogin = $loginOpController->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
+
+		    		// recuperando o id da pessoa perfil vinculado ao usuario (perfil de usuario validado)
+		    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+	
+		    		// verificando o resultado do metodo de trocar senha
+		    		if (!$loginOpController->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
+		    			// invocando excessao
+		    			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA);
+		    		} else {
+		    			
+		    		}
+				}
+				
+			} else { // o formulario nao passou pela validacao
+				// recolocando o valor do div de forca da senha
+				$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+
+				// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+				// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+			
+				// incluindo o formulario de troca de senha no conteudo que sera renderizado
+				$content[] = $formTrocaDeSenha;
+			}
+		}
+
+		// passando o conteudo para a view
+		$this->view->content = $content;
+
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
+    }
+
+    /**
+     * Inicializa o formulario de troca de senha
+     * 
+     * @param Basico_Form_TrocaDeSenha $formTrocaDeSenha
+     * 
+     * @return Boolean
+     */
+    private function carregaFormularioTrocaDeSenha(Basico_Form_TrocaDeSenha &$formTrocaDeSenha)
+    {
+    	// recuperando array de mensagens json sobre a forca da senha
+    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+
+    	// setando atributo do elemento nova senha
+    	$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('BasicoTrocaDeSenhaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker})"));
+
+    	// setando o campo que tem que ser identico ao campo senhaConfirmacao
+		$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->getValidator('Identical')->setToken("BasicoTrocaDeSenhaNovaSenha");
+    	// setando mensagens do validator Identical para o campo senhaConfirmacao
+    	$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_NOVA_SENHA_CONFIRMACAO')));
     }
 }
