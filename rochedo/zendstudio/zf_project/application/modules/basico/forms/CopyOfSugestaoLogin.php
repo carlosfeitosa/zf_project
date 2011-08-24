@@ -28,7 +28,7 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
         // Inicializando o formulário.
         parent::__construct($options);
 
-        $this->setName('BasicoSugestaoLogin');
+        $this->setName('BasicoSugestaoLogsfsdfsdfsdfsdfsdfsdfin');
         $this->setMethod('post');
 
         // Adicionando paths para localizacao de componentes nao ZF.
