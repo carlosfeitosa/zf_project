@@ -35,7 +35,15 @@ class Basico_Form_frutaDedoogle extends Zend_Dojo_Form
         // Criando array de elementos.
         $elements = array();
 
- 
+   
+        $elements[2] = $this->createElement('passocaTextBox', 'BasicofrutaDedoogleNovadoogle');
+        $elements[2]->setOrder(2);
+        $elements[2]->setRequired(true);
+        $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
+        $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+
+
+
     }
 }
 ?>
