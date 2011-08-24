@@ -24,9 +24,11 @@
 * 								10/05/2011 - criacao de elementos do subformulario perfil;
 * 								11/05/2011 - criacao de elementos para o subformulario conta;
 * 								12/05/2011 - criacao de elementos para o subformulario conta;
+* 								29/06/1011 - criacao de expressoes para o validador de email do formulario de cadastro de usuario nao validado;
 * 								28/06/2011 - criacao de constante para problemas com login(senha incorreta);
 * 								29/06/2011 - criacao de constante para problemas com login(ip do login diferente do ip atual);
 * 								15/08/2011 - criacao de constante para link no menu administrador para regerar checksum de um modelo;
+* 								19/08/2011 - criacao das expressoes para o formulario de troca de senha (titulo e sub-titulo);
 */
 
 /*
@@ -99,6 +101,20 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_ACEITE_TERMOS_USO_SUBTITULO' AS constante_textual, 'Por favor, leia os termos de uso do sistema e aceite-os para continuar.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_TROCA_DE_SENHA_TITULO' AS constante_textual, 'Troca de senha' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_TROCA_DE_SENHA_SUBTITULO' AS constante_textual, 'Sua senha expirou. Por este motivo, por favor, preencha os dados abaixo para trocar de senha.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4720,6 +4736,20 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_ACEITE_TERMOS_USO_SUBTITULO' AS constante_textual, 'Please read the terms of use of the system and accept them to continue.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_TROCA_DE_SENHA_TITULO' AS constante_textual, 'Password change' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_TROCA_DE_SENHA_SUBTITULO' AS constante_textual, 'Your password has expired. For this reason, please fill out the form below to change password.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

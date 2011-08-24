@@ -52,9 +52,9 @@
 * 							04/03/2011 - criacao da categoria LOG_NOVA_CATEGORIA;
 * 									   - criacao da categoria LOG_UPDATE_CATEGORIA;
 *                           21/03/2011 - criacao da categoria LOG_DELETE_MENSAGEM;
-*                                      - criacao da categoria LOG_DELETE_CATEGORIA*							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN
-*									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT	
-;
+*                                      - criacao da categoria LOG_DELETE_CATEGORIA;
+* 							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN;
+*									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT;
 *                                      - criacao da categoria LOG_NOVO_COMPONENTE;
 *                                      - criacao da categoria LOG_UPDATE_COMPONENTE;
 *                                      - criacao da categoria LOG_DELETE_COMPONENTE;
@@ -91,8 +91,9 @@
 *									   - criacao da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us;
 *							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN
 *									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT	
-*							28/06/2011 - criacao da categoria FORMULARIO_INPUT_SUGESTOES_LOGIN;
+*							28/06/2011 - criacao da categoria FORMULARIO_INPUT_SUGESTAO_LOGIN;
 *							26/07/2011 - criacao da categoria FORMULARIO_OUTPUT_AJAX;
+*							19/08/2011 - criacao da categoria FORMULARIO_INPUT_TROCA_DE_SENHA;
 */
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
@@ -995,6 +996,13 @@ AND c.nome = 'FORMULARIO_INPUT';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_SUGESTAO_LOGIN' AS nome, 'Formulários para escolha da sugestao de login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_TROCA_DE_SENHA' AS nome, 'Formulários para troca de senha.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

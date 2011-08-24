@@ -18,6 +18,7 @@
 * 							30/12/2010 - criacao do action e attribes do FORM_DIALOG_WEBSITE;
 * 							29/04/2011 - criacao do formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 * 							28/06/2011 - criacao do formulario FORM_DIALOG_SUGESTAO_LOGIN;
+* 							22/08/2011 - criacao do formulario FORM_TROCA_DE_SENHA;
 *  
 */
 
@@ -36,6 +37,27 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_ACEITE_TERMOS_USO_TITULO' AS constante_textual_titulo,
        'VIEW_ACEITE_TERMOS_USO_SUBTITULO' AS constante_textual_subtitulo,
        'AceiteTermosUso' AS form_name, 'post' AS form_method, NULL AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
+
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
+                        constante_textual_titulo, constante_textual_subtitulo,
+                        form_name, form_method, form_action, form_attribs, rowinfo)
+SELECT c.id AS id_categoria, (SELECT d.id
+                              FROM decorator d
+                              LEFT JOIN categoria c ON (d.id_categoria= c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'FORMULARIO'
+                              AND c.nome = 'FORMULARIO_DECORATOR'
+                              AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+       'FORM_TROCA_DE_SENHA' AS nome,
+       'Formulário de troca de senha de usuario.' AS descricao, 
+       'VIEW_TROCA_DE_SENHA_TITULO' AS constante_textual_titulo,
+       'VIEW_TROCA_DE_SENHA_SUBTITULO' AS constante_textual_subtitulo,
+       'TrocaDeSenha' AS form_name, 'post' AS form_method, NULL AS form_action, 
        '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

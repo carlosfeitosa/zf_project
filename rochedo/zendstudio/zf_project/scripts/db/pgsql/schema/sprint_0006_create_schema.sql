@@ -72,6 +72,9 @@ create index ix_cvc_id_categoria_chave_estrangeira
 alter table cvc
   add constraint ix_cvc_id_generico_id_categoria_chave_estrangeira_versao unique (id_generico, id_categoria_chave_estrangeira, versao);
 
+create unique index ix_cvc_checksum
+  on cvc using btree (checksum);
+
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 

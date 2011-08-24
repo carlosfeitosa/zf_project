@@ -46,6 +46,7 @@ alter table dbo.cvc add
 
 create index ix_cvc_id_generico on dbo.cvc (id_generico) on [primary];
 create index ix_cvc_id_categoria_chave_estrangeira on dbo.cvc (id_categoria_chave_estrangeira) on [primary];
+create unique index ix_cvc_checksum on dbo.cvc (checksum) on [primary];
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
