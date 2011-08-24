@@ -44,7 +44,7 @@ class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
         $elements[1]->setRequired(true);
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-
+        $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_SENHA_ATUAL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'TrocaDeSenha\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_ATUAL_AJUDA')) . '\', 1)</script></button>');
 
         $elements[2] = $this->createElement('PasswordTextBox', 'BasicoTrocaDeSenhaNovaSenha');
         $elements[2]->setOrder(2);
