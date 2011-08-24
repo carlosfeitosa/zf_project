@@ -6,20 +6,6 @@
 // setando variaveis
 $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
 $applicationHttpImagesHome = $this->baseUrl('/images/');
-$applicationHttpCSSHome = $this->baseUrl('/css/global.css');
-$applicationHttpBaseUrl = $this->baseUrl();
-
-// setando cabecalho
-$this->doctype('XHTML1_STRICT');
-$this->headTitle(APPLICATION_NAME_AND_VERSION);
-$this->headTitle()->setSeparator(' :: ');
-$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
-$this->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
-$this->headLink()->appendStylesheet($applicationHttpCSSHome);
-
-// adicionando arquivos javascript padrao
-$this->headScript()->appendFile($this->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
-$this->headScript()->appendFile($this->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
 
 // verificando ambiente
 if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
@@ -27,22 +13,20 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
     if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
     	// recuperando a descricao do perfil padrao do usuario logado na sessao
 		$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
-
-		// setando o titulo da janela do navegador
-		$this->headTitle("[ Perfil padrao: {$descricaoPerfilPadrao} ]");
     }
 
 	// recuperando o request do usuario
 	$request = Basico_OPController_UtilOPController::retornaUserRequest();
-    // setando o titulo da janela do navegador
-    $this->headTitle("[ MVC: {$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()} ]");
 }
 ?>
-<html> 
+<html>
 <head>
-    <?php echo $this->headTitle() ?>
-    <?php echo $this->headMeta() ?>
-    <?php echo $this->headLink() ?> 
+	<?php
+	echo $this->headTitle();
+	echo $this->headMeta();
+	echo $this->headLink();
+	?>
+    
     <style type="text/css">
          body, html { 
             font-family:helvetica,arial,sans-serif; 
@@ -54,15 +38,10 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
             text-decoration: none;
          }
     </style>
-    <?php
-        $this->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true))
-                     ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
-                     ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH);
-
-        echo $this->dojo();
-    ?>
-    <?php echo $this->headScript()?>
     
+	<?php echo $this->dojo(); ?>
+    <?php echo $this->headScript()?>
+	
     
     <?php 
     	$content = $this->scripts;

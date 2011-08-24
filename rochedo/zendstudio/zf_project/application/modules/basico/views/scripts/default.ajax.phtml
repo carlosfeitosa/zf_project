@@ -174,8 +174,21 @@ if (!$existeFormNoRequest) {
 // carregando os dijits.
 $dijits = $this->dojo()->getDijits();
 
+// carrengando scripts do header
+//Basico_OPController_UtilOPController::print_debug($arrayScripts, true);
+$header['title']    = $this->headTitle()->toString();
+$header['link']     = $this->headLink()->toString(); 
+$header['script'][] = $this->headScript()->toString();
+$header['script'][] = $arrayScripts;
+
+
+//Basico_OPController_UtilOPController::print_debug($arrayScripts, true, false, true);
+
+
+
 // monta resposta para o cliente...
-$response = array('view' => array('scripts'           => $arrayScripts,
+$response = array('view' => array('header'            => $header,
+								  'scripts'           => $arrayScripts,
 								  'modules'           => $modules,
 								  'dijits'            => $dijits,
 								  'idResponseSource'  => $idResponseSource,

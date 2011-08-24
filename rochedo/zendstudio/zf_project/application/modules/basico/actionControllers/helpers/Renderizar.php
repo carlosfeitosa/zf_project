@@ -6,6 +6,11 @@
 class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_Helper_Abstract
 {
     /**
+     * @var Zend_View_Interface
+     */
+    private $_view;
+    
+    /**
     * Renderiza as views do sistema
     * 
     * @param Nome do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml'
@@ -17,19 +22,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     	$controller = $this->_actionController;
 
     	// recuperando o helper view
-    	$view = $this->getActionController()->view;
-
-    	// adicionando plugin Jquery Humanized Messages
-		$view->headLink()->appendStylesheet($view->baseUrl('/js/plugins/humanizedMessages/humanmsg.css'));
-		$view->headScript()->prependFile($view->baseUrl("/js/plugins/humanizedMessages/humanmsg.js"));
-		$view->headScript()->prependFile($view->baseUrl("/js/plugins/humanizedMessages/jquery.js"));
-
-		// adicionando plugin Jquery maskMoney
-		$view->headScript()->prependFile($view->baseUrl("/js/jquery/jquery-1.6.1.min.js"));
-		$view->headScript()->appendFile($view->baseUrl("/js/plugins/maskMoney/jquery.maskMoney.js"));
+    	$this->_view = $this->getActionController()->view;
 
 		// percorre as variáveis e objetos contidas na view
-		foreach ($view->getVars() as $key0 => $value0){
+		foreach ($this->_view->getVars() as $key0 => $value0){
 
 			// verifica se a variável é do tipo array.
 			if (is_array($value0)) {
@@ -75,10 +71,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 										// verificando se o stylesheet eh local ou remoto
 										if (strpos($arrayTemplateFormulario['stylesheetfullfilename'], 'http://' === 0))
 											// adicionando stylesheet remoto
-											$view->headLink()->appendStylesheet($arrayTemplateFormulario['stylesheetfullfilename']);
+											$this->_view->headLink()->appendStylesheet($arrayTemplateFormulario['stylesheetfullfilename']);
 										else
 											// adicionando stylesheet local
-											$view->headLink()->appendStylesheet($applicationHttpBaseUrl . $arrayTemplateFormulario['stylesheetfullfilename']);
+											$this->_view->headLink()->appendStylesheet($applicationHttpBaseUrl . $arrayTemplateFormulario['stylesheetfullfilename']);
 									}
 
 									// verificando se o template possui arquivo javascript
@@ -86,10 +82,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 										// verificando se o javascript eh local ou remoto
 										if (strpos($arrayTemplateFormulario['javascriptfullfilename'], 'http://' === 0))
 											// adicionando javascript remoto
-											$view->headScript()->appendFile($arrayTemplateFormulario['javascriptfullfilename']);
+											$this->_view->headScript()->appendFile($arrayTemplateFormulario['javascriptfullfilename']);
 										else
 											// adicionando javascript local
-											$view->headScript()->appendFile($applicationHttpBaseUrl . $arrayTemplateFormulario['javascriptfullfilename']);
+											$this->_view->headScript()->appendFile($applicationHttpBaseUrl . $arrayTemplateFormulario['javascriptfullfilename']);
 									}
 
 									// verificando se o formulario possui saida AJAX para inclusao de prefixPath e decorator
@@ -166,12 +162,75 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 	    			break;
 
 	    		// Renderiza para a view defult HTML
-	    		default : $controller->renderScript('default.html.phtml');
+	    		default :
+	    			$this->inicializaContextoHtml();    			
+	    			$controller->renderScript('default.html.phtml');
 	    	}
 	    	
     	}else{
     		$controller->renderScript($viewScript);
     	}
     	
+    }
+    
+    private function inicializaContextoHtml()
+    {
+    	// adicionando plugin Jquery Humanized Messages
+		$this->_view->headLink()->appendStylesheet($this->_view->baseUrl('/js/plugins/humanizedMessages/humanmsg.css'));
+		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/plugins/humanizedMessages/humanmsg.js"));
+		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/plugins/humanizedMessages/jquery.js"));
+
+		// adicionando plugin Jquery maskMoney
+		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/jquery/jquery-1.6.1.min.js"));
+		$this->_view->headScript()->appendFile($this->_view->baseUrl("/js/plugins/maskMoney/jquery.maskMoney.js"));
+		
+
+		// setando variaveis
+		$applicationHttpHome = $this->_view->urlEncrypt($this->_view->url(array('controller'=>'index'), null, true));
+		$applicationHttpImagesHome = $this->_view->baseUrl('/images/');
+		$applicationHttpCSSHome = $this->_view->baseUrl('/css/global.css');
+		$applicationHttpBaseUrl = $this->_view->baseUrl();
+		
+		// setando cabecalho
+		$this->_view->doctype('XHTML1_STRICT');
+		$this->_view->headTitle(APPLICATION_NAME_AND_VERSION);
+		
+		$headTitle = APPLICATION_NAME_AND_VERSION;
+		// headerTitle separator
+		$headTitleSeparator = ' :: ';
+		
+		$this->_view->headTitle()->setSeparator(' :: ');
+		
+		$this->_view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
+		$this->_view->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
+		$this->_view->headLink()->appendStylesheet($applicationHttpCSSHome);
+		
+		
+		
+		// adicionando arquivos javascript padrao
+		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
+		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
+		
+		// verificando ambiente
+		if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
+		    // verificando se existe usuario logado
+		    if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+		    	// recuperando a descricao do perfil padrao do usuario logado na sessao
+				$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
+		
+				// setando o titulo da janela do navegador
+				$this->_view->headTitle("[ Perfil padrao: {$descricaoPerfilPadrao} ]");
+		    }
+		
+			// recuperando o request do usuario
+			$request = Basico_OPController_UtilOPController::retornaUserRequest();
+		    // setando o titulo da janela do navegador
+		    $this->_view->headTitle("[ MVC: {$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()} ]"); 
+		}
+		
+		// setando parametros do dojo
+		$this->_view->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true))
+        			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
+                     ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH);	
     }
 }

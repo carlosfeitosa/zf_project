@@ -549,14 +549,50 @@ function processaResponseDojoFormRequest(data)
 			//eval(scripts[script]);
 			processaScript(scripts[script]);
 			console.debug('script processado', scripts[script]);
-		}		
+		}
 		console.debug('final scripts...');
+		
+		
+		
+		// Processando header
+		header = json.view.header;
+		console.debug('iniciando header...');
+		for (item in header) {
+			// Processando o script	
+			//eval(scripts[script]);
+			switch(item) {
+			
+			case 'title':
+				//processa title;
+				// implementar...
+				break;
+				
+			case 'script':
+				//processa script;
+				if ((header[item] instanceof Array) === true) {
+					for (script in header[item]) {
+						processaScript(header[item][script]);
+						console.debug('item processado', header[item][script]);
+					}
+				} else {
+					processaScript(header[item]);
+				}
+				break;
+				
+			case 'link' :
+				//processa link;
+				processaHeaderLink(header[item]);
+				console.debug('link processado:', header[item]);
+				break;
+			}
+		}
+		console.debug('final header...');
+		
+		
 		// Parser dojo.
 		dojo.parser.parse();
 	}	
 }
-
-
 
 function submitAjaxForm(){
 	
@@ -599,12 +635,72 @@ function urlAjaxCall(urlCall) {
 	return false;
 }
 
+/**
+ * função processa headerLink
+ * @param String headerLink - link que será processado.
+ */
+function processaHeaderLink(headerLink){
+	if (headerLink == null || headerLink == '')
+		return;
+	
+	var ini, pos_href, fim, codigo, texto_pesquisa;
+	var objScript = null;
+	//Joga na variavel de pesquisa o texto todo em minusculo para na hora da pesquisa nao ter problema com case-sensitive
+	texto_pesquisa = headerLink.toLowerCase();
+	// Busca a primeira tag <script
+	ini = texto_pesquisa.indexOf('<link', 0);
+	// Executa o loop enquanto achar um <script
+	
+	var ii = 0;
+	while (ini!=-1){
+		//Inicia o objeto script
+		var objLink = document.createElement("link");
+
+		//Busca se tem algum src a partir do inicio do script
+		pos_href = texto_pesquisa.indexOf(' href', ini);
+		// Define o inicio para depois do fechamento dessa tag
+		ini = texto_pesquisa.indexOf('>', ini) + 1;
+
+		//Verifica se este e um bloco de script ou include para um arquivo de scripts
+		if (pos_href >=0){//Se encontrou um "src" dentro da tag script, esta e um include de um arquivo script
+			//Marca como sendo o inicio do nome do arquivo para depois do src
+			ini = pos_href + 6;
+			//Procura pelo ponto do nome da extencao do arquivo e marca para depois dele
+			fim = texto_pesquisa.indexOf('.', ini)+4;
+			//Pega o nome do arquivo
+			codigo = headerLink.substring(ini,fim);
+			//Elimina do nome do arquivo os caracteres que possam ter sido pegos por engano
+			codigo = codigo.replace("=","").replace(" ","").replace("\"","").replace("\"","").replace("\'","").replace("\'","").replace(">","");
+			// Adiciona o arquivo de script ao objeto que sera adicionado ao documento
+			objLink.href = codigo;
+			
+			var headID = document.getElementsByTagName("head")[0];
+			objLink.type = 'text/css';
+			objLink.rel = 'stylesheet';
+			objLink.media = 'screen';
+			
+			//Adiciona o link ao documento
+			headID.appendChild(objLink);
+		}
+		
+		// Procura a proxima tag de <script
+		ini = headerLink.indexOf('<link', fim);
+
+		//Limpa o objeto de script
+		objLink = null;
+	}
+}
+
+
 
 /**
  * função processa javacript
  * @param String script - script que será processado.
  */
 function processaScript(script){
+	if (script == null || script == '')
+		return;
+	
 	var ini, pos_src, fim, codigo, texto_pesquisa;
 	var objScript = null;
 	//Joga na variavel de pesquisa o texto todo em minusculo para na hora da pesquisa nao ter problema com case-sensitive
