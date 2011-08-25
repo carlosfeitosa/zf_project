@@ -67,7 +67,7 @@ class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
         $elements[4]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
         $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONFIRMACAO_NOVA_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<scrapt type="dojo/method" event="onClick" args="evt">showDialogAlert(\'TrocaDeSenha\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONFIRMACAO_NOVA_SENHA_AJUDA')) . '\', 1)</script></button>');
+        $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONFIRMACAO_NOVA_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'TrocaDeSenha\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONFIRMACAO_NOVA_SENHA_AJUDA')) . '\', 1)</script></button>');
 
         $elements[5] = $this->createElement('submitButton', 'BasicoTrocaDeSenhaEnviar');
         $elements[5]->setOrder(5);
