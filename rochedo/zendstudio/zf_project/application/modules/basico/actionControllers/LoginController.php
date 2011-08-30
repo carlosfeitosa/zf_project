@@ -124,7 +124,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
 		
 		//adicionando chamada a função do password strength checker para o campo senha
-		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['CadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker() . ")"));
+		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker() . ")"));
 		
 		//adicionando multi-options para o radioButton sexo
 	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
@@ -226,6 +226,9 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		// carregando array do cabecalho da view
 			    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO')); 
 			    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
+			    
+			    // inicializando o formulario
+	    		$this->initFormCadastrarUsuarioValidado($formCadastrarUsuarioValidado, $arrayPost['idPessoa'], $arrayPost['versaoDadosPessoais']);
 			    
 	    		// carregando form na view
 	    		$content[] = $formCadastrarUsuarioValidado;

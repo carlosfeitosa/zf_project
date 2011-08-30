@@ -10,6 +10,7 @@ require_once("modules/basico/controllers/TokenOPController.php");
 require_once("modules/basico/controllers/UtilOPController.php");
 require_once("modules/basico/controllers/PersistenceOPController.php");
 require_once("modules/basico/controllers/SessionOPController.php");
+require_once("modules/basico/controllers/TradutorOPController.php");
 
 /**
  * Bootstrap primário do sistema.
@@ -55,6 +56,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // registrando o inicio da execucao do PHP
         Basico_OPController_SessionOPController::registraInicioProcessamentoMicrosegundosPHPSessaoUsuario();
+        
+        // traduzindo mensagens de erro dos validators
+        Basico_OPController_UtilOPController::traduzMensagensErrosZendFormElements();
+   		
     }
 
     /**
