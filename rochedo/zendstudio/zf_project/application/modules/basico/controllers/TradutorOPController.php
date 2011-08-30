@@ -121,6 +121,7 @@ class Basico_OPController_TradutorOPController
 	 * 
 	 * @param String $constanteTextual
 	 * @param String $linguaDestino
+	 * @param Boolean $excessao
 	 * 
 	 * @return String
 	 */
