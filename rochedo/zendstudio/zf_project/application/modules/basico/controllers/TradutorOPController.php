@@ -124,7 +124,7 @@ class Basico_OPController_TradutorOPController
 	 * 
 	 * @return String
 	 */
-	public static function retornaTraducaoViaSQL($constanteTextual, $linguaDestino = DEFAULT_SYSTEM_LANGUAGE)
+	public static function retornaTraducaoViaSQL($constanteTextual, $linguaDestino = DEFAULT_SYSTEM_LANGUAGE, $excessao = true)
 	{
 		// montando query para recuperacao da traducao na lingua passada pelo usuario
 		$consultaSQL = "SELECT d.traducao
@@ -159,7 +159,11 @@ class Basico_OPController_TradutorOPController
 				return $arrayResultado[0]['traducao'];
 			} else {
 				
-				throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '" . $linguaDestinoPadraoSistema . "'");
+				if ($excessao)
+					throw new Exception(MSG_ERRO_TRADUCAO_NAO_ENCONTRADA . " | Expressão: '{$constanteTextual}' para a língua: '" . $linguaDestinoPadraoSistema . "'");
+				else{
+					return MSG_ERRO_TRADUCAO_NAO_ENCONTRADA;
+				}
 			}
 		}
 
