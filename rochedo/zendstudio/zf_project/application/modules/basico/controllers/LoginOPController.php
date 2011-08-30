@@ -1356,7 +1356,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
     	$novoLogin->travado                = false;
     	$novoLogin->resetado               = false;
     	$novoLogin->podeExpirar            = true;
-    	$novoLogin->login                  = trim($arrayPost['BasicoCadastrarUsuarioValidadoLogin']);
+    	$novoLogin->login                  = trim(strtolower($arrayPost['BasicoCadastrarUsuarioValidadoLogin']));
     	$novoLogin->senha                  = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
     	$novoLogin->ativo                  = true;
     	$novoLogin->dataHoraAceiteTermoUso = $arrayPost['dataAceite'];
