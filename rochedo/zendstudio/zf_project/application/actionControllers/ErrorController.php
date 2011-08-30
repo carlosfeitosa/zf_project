@@ -24,17 +24,66 @@ class ErrorController extends Zend_Controller_Action
 
                 // 404 error -- controller or action not found
                 $this->getResponse()->setHttpResponseCode(404);
-                $this->view->message = MSG_ERRO_PAGINA_NAO_ENCONTRADA;
+                $message = MSG_ERRO_PAGINA_NAO_ENCONTRADA;
                 break;
             default:
                 // application error 
                 $this->getResponse()->setHttpResponseCode(500);
-                $this->view->message = MSG_ERRO_APLICACAO;
+                $message = MSG_ERRO_APLICACAO;
                 break;
         }
         
-        $this->view->exception = $errors->exception;
-        $this->view->request   = $errors->request;
-        
+		// carregando informacoes que serão enviadas para a view
+		$searchImageLocalPath = PUBLIC_PATH . '/images/temp/';
+		$applicationHttpImagesHomeTemp = $this->view->baseUrl('/images/temp/');
+		$nomeArquivoAleatorioErrorImage = Basico_OPController_UtilOPController::retornaNomeArquivoAleatorio($searchImageLocalPath);
+		$nomeCompletoArquivoAleatorioErrorImage = $applicationHttpImagesHomeTemp . $nomeArquivoAleatorioErrorImage;
+		$supportEmail = SUPPORT_EMAIL;
+		$dataHoraAtual = date('d/m/Y H:i:s');
+		// iniciando output buffer
+		ob_start();
+		var_dump($errors->request->getParams());
+		// recuperando e limpando o buffer de output
+		$requestParams = ob_get_clean();
+		
+		// inicializando variaveis
+		$debugInfo = null;
+
+		// verificando se o sistema esta rodando em ambiente de desenvolvimento
+		if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
+
+		// carregando informacoes de debug
+		$debugInfo = <<<TEXT
+<hr />
+<h1>** DEBUG INFO **</h1>
+
+<h3>Informa&ccedil;&otilde;es do Exception:</h3>
+<p>
+  <b>Message:</b> {$errors->exception->getMessage()}
+</p>
+<h3>Stack trace:</h3>
+<pre>{$errors->exception->getTraceAsString()}
+</pre>
+<h3>Parametros do Request:</h3>
+<pre>{$requestParams}</pre>
+<h3>Error image:</h3>
+<img alt="Crocro error!" src="{$nomeCompletoArquivoAleatorioErrorImage}"/>
+<pre>{$nomeArquivoAleatorioErrorImage}</pre>
+TEXT;
+
+		}
+
+		$localContent = <<<TEXT
+<h1>Infelizmente aconteceu um erro.</h1>
+<h2>{$message}</h2>
+<pre>Informe ao <a href="mailto:<?php echo {$supportEmail} ?>">suporte</a> seu login e data/hora do erro (<b>{$dataHoraAtual}</b>)</pre>
+{$debugInfo}
+TEXT;
+
+		// enviando conteúdo do erro para a view
+		$this->view->content = $localContent;
+
+		// renderizando a view
+       	$this->getHelper('renderizar')->renderizar();
     }
 }

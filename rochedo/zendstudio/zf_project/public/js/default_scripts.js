@@ -571,8 +571,10 @@ function processaResponseDojoFormRequest(data)
 				//processa script;
 				if ((header[item] instanceof Array) === true) {
 					for (script in header[item]) {
-						processaScript(header[item][script]);
-						console.debug('item processado', header[item][script]);
+						if (header[item][script] != null) {
+							processaScript(header[item][script]);
+							console.debug('script processado', header[item][script]);
+						}
 					}
 				} else {
 					processaScript(header[item]);
@@ -615,9 +617,17 @@ function urlAjaxCall(urlCall) {
 							            break;
 							        case 404:
 							        	message = "The requested page was not found";
+							        	//document.body.innerHTML = ioargs.xhr.responseText;
+							        	processaResponseDojoFormRequest(ioargs.xhr.responseText);
 							            break;
 							        case 500:
 							            message = "The server reported an error.";
+							            
+							            // parseando a resposta enviada via json. Quando erro 500, a resposta enviada no formato JSON não é parseada automaticamente.
+							            resposta = JSON.parse(ioargs.xhr.responseText);
+							            processaResponseDojoFormRequest(resposta);
+							            //document.body.innerHTML = ioargs.xhr.responseText;
+							            
 							            break;
 							        case 407:
 										message = "You need to authenticate with a proxy.";
