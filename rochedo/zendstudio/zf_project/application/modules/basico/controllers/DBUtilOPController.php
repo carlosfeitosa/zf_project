@@ -25,7 +25,7 @@ class Basico_OPController_DBUtilOPController
 
 		} catch (Exception $e) {
             // escreve o erro na tela.
-        	Basico_OPController_UtilOPController::escreveErro(MSG_ERRO_CONEXAO_BANCO, $e->getMessage());
+        	echo Basico_OPController_UtilOPController::retornaMensagemErro(MSG_ERRO_CONEXAO_BANCO, $e->getMessage());
 
         	// salva o logFS do erro
             $logController = Basico_OPController_LogOPController::getInstance();

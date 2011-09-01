@@ -37,7 +37,7 @@ class Basico_OPController_UtilOPController
 	 * 
 	 * @return void
 	 */
-	public static function escreveErro($erroConst, $mensagem)
+	public static function retornaMensagemErro($erroConst, $mensagem)
 	{
 		// escreve um cabecalho na pagina
 		$return =  "<h1>" . MSG_ERRO_APLICACAO . "</h1>";
