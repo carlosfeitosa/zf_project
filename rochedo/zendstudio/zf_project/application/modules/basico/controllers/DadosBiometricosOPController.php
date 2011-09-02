@@ -230,9 +230,13 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_Abstract_R
 	        $dadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
 
         // carregando dados no objeto dados biometricos
-        $dadosBiometricos->altura               = $altura;
-        $dadosBiometricos->peso                 = $peso;
-   	    $dadosBiometricos->constanteTextualRaca = $ConstanteTextualRaca;
+        if ($altura != "")
+        	$dadosBiometricos->altura               = $altura;
+        	
+        if ($peso != "")
+        	$dadosBiometricos->peso                 = $peso;
+
+        $dadosBiometricos->constanteTextualRaca = $ConstanteTextualRaca;
    	    $dadosBiometricos->tipoSanguineo        = $tipoSanguineo;
    	    $dadosBiometricos->historicoMedico      = $historicoMedico;    	
    	    
