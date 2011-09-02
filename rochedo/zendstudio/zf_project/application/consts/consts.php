@@ -310,6 +310,7 @@ define('LOG_DELETE_MODULO', 'LOG_DELETE_MODULO');
 
 
 define("FORM_ELEMENT_HASH", "FORM_HASH");
+define("FORM_ELEMENT_HTML_DINAMIC_CONTENT", "FORM_FIELD_HTML_CONTENT_DINAMICO");
 
 define("FORM_GERADOR_OUTPUT_DOJO", "OUTPUT_DOJO");
 define("FORM_GERADOR_OUTPUT_HTML", "OUTPUT_HTML");
@@ -394,6 +395,11 @@ $header = <<<TEXT
 // Adicionando elementos ao formulario.
 TEXT;
 define("FORM_GERADOR_ADD_ELEMENTS_TO_FORM_COMMENT", $header);
+
+$header = <<<TEXT
+// Removendo escapes das mensagens de erro dos elementos do formulario.
+TEXT;
+define("FORM_GERADOR_REMOVE_ZEND_FORM_ELEMENTS_ERROR_MESSAGES_ESCAPE", $header);
 
 $header = <<<TEXT
 // Adicionando sub-formulario ao formulario pai.
@@ -559,3 +565,4 @@ define("LINK_CONTROLADOR_TOKENS", "/basico/token/decode/t/");
 define("COMPONENTE_NAO_ZF_PREFIX", "COMPONENTE_NAO_ZF_PREFIX");
 define("COMPONENTE_NAO_ZF_PATH", "COMPONENTE_NAO_ZF_PATH");
 define("CATEGORIA_COMPONENTE_DOJO", "COMPONENTE_DOJO");
+define("CATEGORIA_COMPONENTE_ROCHEDO", "COMPONENTE_ROCHEDO");

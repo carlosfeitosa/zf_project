@@ -102,7 +102,7 @@ class Basico_LoginController extends Zend_Controller_Action
         // carregando o titulo e subtitulo da view
     	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO));
     	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO));
-		
+
     	// carrega o formulario na view
     	$content[] = $this->getFormCadastroUsuarioLoginNaoValidado();
 		
@@ -235,9 +235,6 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		
 	    		// enviado conteúdo para a view
 	    		$this->view->content = $content;  
-	    		
-	    		
-	    		
 	    	}
 	    	
 	    	$this->_helper->Renderizar->renderizar();
@@ -389,10 +386,11 @@ class Basico_LoginController extends Zend_Controller_Action
 		        $idEmail           = Basico_OPController_EmailOPController::getInstance()->retornaIdEmailPorEmail($email);
 	            $idCategoriaToken  = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 	            $idPessoa          = Basico_OPController_EmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($idEmail);
-	            $idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa)->id;
-	            
+
 	        	// checando se o e-mail ja foi validado
 	            if ($emailParaValidacao == true){
+	            	// recuperando pessoa perfil de usuario validado
+	            	$idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa)->id;
 
 	            	// enviando mensagem de aviso de tentativa de registro utilizando o email primario de usuario do sistema
 	            	
@@ -412,6 +410,8 @@ class Basico_LoginController extends Zend_Controller_Action
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
 	            	try {
+		            	// recuperando pessoa perfil de usuario validado
+		            	$idPessoaPerfil    = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
 			            // setando e salvando token
 			            $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);

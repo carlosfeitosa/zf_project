@@ -292,21 +292,23 @@ class Basico_Model_Categoria
 	{
 		/* instancia modelo */
 		$rootCategoriaPaiObject = new Basico_Model_Categoria();
-		
+
 		/* localiza o id da categoria pai ou utiliza o id da propria categoria */
-		if ($this->_categoria)
+		if ($this->_categoria) {
 			$idCategoriaParaLocalizar = $this->_categoria;
-		else
+		} else {
 			$idCategoriaParaLocalizar = $this->_id;
-		
+		}
+
 		/* localiza a categoria */
 		$rootCategoriaPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootCategoriaPaiObject, $idCategoriaParaLocalizar);
-		
+
 		/* loop para chegar na categoria raiz */
 		while ($rootCategoriaPaiObject->categoria) {
 			$rootCategoriaPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootCategoriaPaiObject, $rootCategoriaPaiObject->categoria);
 		}
-		
+
+		// retornando a categoria pai
 		return $rootCategoriaPaiObject;
 	}
 	

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/07/2011 14:01:51
+* em: 31/08/2011 23:08:51
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/07/2011 13:48:43
+* @version    1: 31/08/2011 22:53:34
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -42,7 +42,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[1]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $elements[1]->setRequired(true);
         $elements[1]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[1]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
+        $elements[1]->addValidator('NotEmpty');
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[1]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
         $elements[1]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_NOME_HINT'));
@@ -54,24 +54,8 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[2]->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $elements[2]->setRequired(true);
         $elements[2]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[2]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
-        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true, 'messages' => array(Zend_Validate_EmailAddress::INVALID_FORMAT     => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT'), 
-																												 Zend_Validate_EmailAddress::INVALID_HOSTNAME    => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME'),
-																												 Zend_Validate_EmailAddress::INVALID_MX_RECORD   => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD'),
-																												 Zend_Validate_EmailAddress::INVALID_SEGMENT     => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT'),
-																												 Zend_Validate_EmailAddress::DOT_ATOM            => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_DOT_ATOM'),
-																												 Zend_Validate_EmailAddress::QUOTED_STRING       => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_QUOTED_STRING'),
-																												 Zend_Validate_EmailAddress::INVALID_LOCAL_PART  => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART'),
-																												 Zend_Validate_Hostname::INVALID                 => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID'),
-																												 Zend_Validate_Hostname::IP_ADDRESS_NOT_ALLOWED  => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_IP_ADDRESS_NOT_ALLOWED'),
-																												 Zend_Validate_Hostname::UNKNOWN_TLD             => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_UNKNOWN_TLD'),
-																												 Zend_Validate_Hostname::INVALID_DASH            => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_DASH'),
-																												 Zend_Validate_Hostname::INVALID_HOSTNAME_SCHEMA => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME_SCHEMA'),
-																												 Zend_Validate_Hostname::UNDECIPHERABLE_TLD      => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_UNDECIPHERABLE_TLD'),
-																												 Zend_Validate_Hostname::INVALID_HOSTNAME        => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME'),
-																												 Zend_Validate_Hostname::INVALID_LOCAL_NAME      => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_LOCAL_NAME'),
-																												 Zend_Validate_Hostname::LOCAL_NAME_NOT_ALLOWED  => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_LOCAL_NAME_NOT_ALLOWED'),
-																												 Zend_Validate_Hostname::CANNOT_DECODE_PUNYCODE  => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_HOSTNAME_CANNOT_DECODE_PUNYCODE'),),));
+        $elements[2]->addValidator('NotEmpty');
+        $elements[2]->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true));
         $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[2]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA')) . '\', 1)</script></button>');
         $elements[2]->setInvalidMessage($this->getView()->tradutor('FORM_FIELD_EMAIL_HINT'));

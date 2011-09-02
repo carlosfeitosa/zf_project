@@ -643,6 +643,32 @@ class Basico_OPController_UtilOPController
 	}
 
 	/**
+	 * Retorna uma string com o dolar ($) escapado para uso em javascript contido em um arquivo php
+	 * 
+	 * @param String $string
+	 * 
+	 * @return String
+	 */
+	public static function escapaDolarPHP($string)
+	{
+		// retornando dolar escapado
+		return str_replace('$', '\$', $string);
+	}
+
+	/**
+	 * Retorna uma string com a aspas duplas (") escapada para uso em javascript contido em um arquivo php
+	 * 
+	 * @param String $string
+	 * 
+	 * @return String
+	 */
+	public static function escapaAspasDuplasPHP($string)
+	{
+		// retornando dolar escapado
+		return str_replace('"', '\"', $string);
+	}
+
+	/**
 	 * Retorna um array contendo os atributos de um objeto
 	 * 
 	 * @param Object $objeto
@@ -1844,6 +1870,33 @@ class Basico_OPController_UtilOPController
     }
 
     /**
+     * Retorna a chamada javascript que abre um dialog com uma mensagem e um botao ok
+     * 
+     * @param String $titulo
+     * @param String $mensagem
+     * 
+     * @return String
+     */
+    public static function retornaJavaScriptDojoAlert($titulo, $mensagem)
+    {
+    	// retornando javascript
+    	return self::retornaJavaScriptEntreTagsScriptHtmlDojo(self::retornaJavaScriptDojoDialogMensagem('alertDialog', $titulo, $mensagem));
+    }
+
+    /**
+     * Retorna uma chamada javascript atraves do metodo OnLoad do DOJO
+     * 
+     * @param String $script
+     * 
+     * @return String
+     */
+    public static function retornaJavaScriptEntreTagsScriptHtmlDojo($script)
+    {
+    	// retornando o javascript
+    	return "<script type=\"text/javascript\">dojo.addOnLoad(function () {{$script};});</script>";
+    }
+
+    /**
      * Retorna uma chamada javascript que abre um dialog com o conteudo extraido de um array
      * 
      * @param String $dialogId
@@ -1981,15 +2034,24 @@ class Basico_OPController_UtilOPController
     /**
      * Escreve uma instrução javascript passada como parametro para um evento tambem passado por parametro
      * 
-     * @param String $evento
      * @param String $script
+     * @param String $evento
+     * 
+     * @return String
      */
-    public static function escreveJavaScriptEvento($evento, $script)
+    public static function retornaJavaScriptEntreTagsScriptHtml($script, $evento = null)
     {
+    	// inicializando variaveis
+    	$eventoDoScript = '';
+
+    	// verificando se foi passado o evento
+    	if ($evento) {
+    		// setando o evento
+    		$eventoDoScript = " event='{$evento}'";
+    	}
+
     	// montando tags com o script e evento
-    	$result = "<script type='text/javascript' event='{$evento}'>
-    				{$script}
-    			   </script>";
+    	$result = "<script type='text/javascript'{$eventoDoScript}>{$script}</script>";
     	
     	// escrevendo resultado
     	return $result;
@@ -2000,25 +2062,32 @@ class Basico_OPController_UtilOPController
      * 
      * @param String $nomeModulo
      * @param String $nomeForm
+     * 
+     * @return Array|null
      */
-    public static function retornaScriptAplicacaoMascarasPorModuloFormulario($nomeModulo, $nomeForm)
+    public static function retornaScriptAplicacaoMascarasPorNomeModuloNomeFormulario($nomeModulo, $nomeForm)
     {
     	// recuperando array de elementos que possuem mascara
-    	$arrayElementosComMascara = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSql($nomeModulo, $nomeForm);
-    	
-    	// iniciando montagem do script (Jquery)
-    	$scriptAplicacaoMascara = "$(function () {";
-    	
-    		// montando a chamada jquery para cada elemento
-    		foreach ($arrayElementosComMascara as $elemento => $mascara) {
-    			$scriptAplicacaoMascara .= "$('#{$elemento}').{$mascara};";
-    		}
+    	$arrayElementosComMascara = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSQL($nomeModulo, $nomeForm);
 
-		// finalizando montagem do script    		
-		$scriptAplicacaoMascara .= "});";
-		
-		// retornando script
-		return $scriptAplicacaoMascara;
+    	// verificando resultado da recuperacao das mascaras por nome modulo e nome formulario
+    	if (($arrayElementosComMascara) and (count($arrayElementosComMascara) > 0)) {
+	    	// iniciando montagem do script (Jquery)
+	    	$scriptAplicacaoMascara = "$(function () {";
+	    	
+	    		// montando a chamada jquery para cada elemento
+	    		foreach ($arrayElementosComMascara as $elemento => $mascara) {
+	    			$scriptAplicacaoMascara .= "$('#{$elemento}').{$mascara};";
+	    		}
+	
+			// finalizando montagem do script    		
+			$scriptAplicacaoMascara .= "});";
+			
+			// retornando script
+			return $scriptAplicacaoMascara;
+    	}
+
+    	return null;
     }
 
     /**
@@ -2271,10 +2340,8 @@ class Basico_OPController_UtilOPController
 
     	return null;
     }
-    
-    
-    
-	/**
+
+    /**
 	 * 
 	 * Concatena o valor de uma chave passada como parametro, caso a chave não exista, cria a chave.
 	 * 
@@ -2285,7 +2352,6 @@ class Basico_OPController_UtilOPController
 	 */
 	public static function concatenaConteudoChaveArray($array, $key, $value)
 	{
-	
 		if (!is_array($array))
 			return;
 			
@@ -2306,13 +2372,57 @@ class Basico_OPController_UtilOPController
 	{
 		// removendo caracteres da string
 		foreach ($arrayCaracteres as $caractere) {
+			// removendo caracteres
 			$string = str_replace($caractere, "", $string);	
 		}
-		
+
+		// retornando string
 		return $string;
 		
 	}
-	
+
+	/**
+	 * Seta as configuracoes do PHP para rodar tarefas administrativas
+	 * Retorna um array com as configuracoes antigas
+	 * 
+	 * @param array $arrayConfig
+	 * 
+	 * @return Array
+	 */
+	public static function setaDiretivasAdministrativasPHP(array $arrayConfig = array())
+	{
+		// recuperando o tempo de execucao do php
+		$tempoExecucaoPhp = ini_get('max_execution_time');
+		// recuperando o limite de memoria do php
+		$limiteMemoriaPhp = ini_get('memory_limit');
+
+		// verificando se foi passado o array de configuracao
+		if (count($arrayConfig) > 1) {
+			// verificando se foi passado o limite de tempo de execucao
+			if (array_key_exists('max_execution_time', $arrayConfig)) {
+				// setando o tempo maximo de execucao do php para 600 segundos para que esta operacao funcione
+				set_time_limit($arrayConfig['max_execution_time']);
+			}
+
+			// verificando se foi passado o limite de memoria de execucao
+			if ((array_key_exists('memory_limit', $arrayConfig)) and ($limiteMemoriaPhp < $arrayConfig['memory_limit'])) {
+				// setando o limite de memoria do php para 512M
+				ini_set('memory_limit', $arrayConfig['memory_limit']);
+			}
+		} else {
+			// setando o tempo maximo de execucao do php para 600 segundos para que esta operacao funcione
+			set_time_limit(APPLICATION_DATABASE_MAKE_SYSTEM_CHECKSUM_MAXTIME_SECONDS);
+
+			// verificando a configuracao sobre o limite da memoria do php
+			if ($limiteMemoriaPhp < APPLICATION_ADMIN_MEMORY_SIZE) {
+				// setando o limite de memoria do php para 512M
+				ini_set('memory_limit', APPLICATION_ADMIN_MEMORY_SIZE);
+			}
+		}
+
+		// retornando array com a configuracao antiga
+		return array('max_execution_time' => $tempoExecucaoPhp, 'memory_limit' => $limiteMemoriaPhp);
+	}
 	/**
 	 * Remove o escape do decorator Errors dos elementos do formulario
 	 * 

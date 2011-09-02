@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 18/08/2011 13:06:57
+* em: 31/08/2011 23:09:01
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 18/08/2011 11:28:19
+* @version    1: 31/08/2011 22:53:34
 */
 class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
 {
@@ -66,10 +66,10 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
         $elements[5]->removeDecorator('DtDdWrapper');
         $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_CLOSE_DIALOG') . '');
 
-        $elements[6] = $this->createElement('hash', 'BasicoSugestaoLoginCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
-        $elements[6]->setOrder(6);
-        $elements[6]->setRequired(false);
-        $elements[6]->removeDecorator('Label');
+        $elements[5] = $this->createElement('hash', 'BasicoSugestaoLoginCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
+        $elements[5]->setOrder(5);
+        $elements[5]->setRequired(false);
+        $elements[5]->removeDecorator('Label');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

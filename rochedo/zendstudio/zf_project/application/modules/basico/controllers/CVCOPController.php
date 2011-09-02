@@ -444,16 +444,9 @@ class Basico_OPController_CVCOPController
 		//salvando log de inicio da operação
 	    Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_CVC_INICIO);
 
-		// recuperando o tempo de execucao do php
-		$tempoExecucaoPhp = ini_get('max_execution_time');
-		// recuperando o limite de memoria do php
-		$limiteMemoriaPhp = ini_get('memory_limit');
-
-		// setando o tempo maximo de execucao do php para 600 segundos para que esta operacao funcione
-		set_time_limit(APPLICATION_DATABASE_MAKE_SYSTEM_CHECKSUM_MAXTIME_SECONDS);
-		// setando o limite de memoria do php para 512M
-		ini_set('memory_limit', '512M');
-
+	    // setando as diretrizes administraticas para execucao de metodos administrativos e recuperando as configuracoes atuais do servidor
+	    $arrayConfigAtualPHP = Basico_OPController_UtilOPController::setaDiretivasAdministrativasPHP();
+	    
 		// desabilitado o pool de ids de objetos manipulados (p/log)
 		self::desabilitaPoolIdsObjetosManipulados();
 
@@ -507,10 +500,8 @@ class Basico_OPController_CVCOPController
 		// salvando a transacao
 		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
-		// voltando o tempo de execucao do php
-		set_time_limit($tempoExecucaoPhp);
-		// voltando o limite de memoria do php
-		ini_set('memory_limit', $limiteMemoriaPhp);
+		// voltando as diretrizes administrativas
+		Basico_OPController_UtilOPController::setaDiretivasAdministrativasPHP($arrayConfigAtualPHP);
 
 		// inicializando atributo $this->_arrayObjetosManipulados
 		$this->limpaArrayIdsObjetosManipulados();

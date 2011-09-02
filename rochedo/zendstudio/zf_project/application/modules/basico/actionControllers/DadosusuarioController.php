@@ -181,12 +181,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
     	// invocando metodos de salvar os dados do usuario e verificando se houve houve erro
     	$podeContinuar = $this->salvarDadosBiometricos($idPessoa, $arrayPost, $formDadosUsuario);
+
     	// verificando resultado de salvar os dados biometricos
     	if ($podeContinuar !== false) {
     		// salvando dados da conta do usuario
     		$podeContinuar = $this->salvarDadosConta($idPessoa, $arrayPost, $formDadosUsuario);
     	}
-    	
+
     	// verificando se a acao deve redirecionar o usuario para o index
     	if ($podeContinuar !== false) {
     		// redirecionando para o index
@@ -194,16 +195,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	} else {
 			// carregando formulário para a view
 			$content[] = $formDadosUsuario;
-			
+
 			// enviado conteúdo para a view
 			$this->view->content = $content;
-						
-			// carregando script humanized
-			$scripts[] = Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso.");
-		
-			// enviado os cripts para a view
-			$this->view->scripts = $scripts;
-			
+
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
     	}
@@ -220,6 +215,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     private function salvarDadosConta($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
     {
+    	// inicializando array de javascripts de retorno para o cliente
+    	$scripts = array();
+
     	// verificando se deve processar o request (post)
     	if (!array_key_exists('CadastrarDadosUsuarioConta', $arrayPost))
     		return null;
@@ -247,16 +245,28 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->addError($this->view->tradutor('FORM_ELEMENT_MESSAGE_SENHA_ATUAL_INVALIDA'));
 				// criando array com os elementos que devem ser marcados como erro
 				$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual');
+				
 				// marcando os elementos com erro
-				Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+				$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
 
 				// selecionando a aba do subform conta
-				$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				
 				// setando foco no primeiro elemento com erro
-				Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+
 				// recolocando o valor do div de forca da senha
 				$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+
+				// setando os scripts na view
+				$this->view->scripts = $scripts;
+
 	    		return false;
+			} else {
+				// setando campos como requerido
+				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setRequired(true);
+				$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setRequired(true);
+				$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->setRequired(true);
 			}
 			
 		} else {
@@ -269,14 +279,20 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 											 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
 											 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha');
 				// marcando os elementos com erro
-				Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+				$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
 
 				// selecionando a aba do subform conta
-				$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+
 				// setando foco no primeiro elemento com erro
-				Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+
 				// recolocando o valor do div de forca da senha
 				$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+
+				// setando scripts na view
+				$this->view->scripts = $scripts;
+
 	    		return false;
 			}
 
@@ -289,13 +305,28 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// validando o sub formulario
     	if (!$subFormConta->isValid($arrayPost)) {
 			// selecionando a aba do subform conta
-			$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+
 			// recolocando o valor do div de forca da senha
 			$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
 			// limpando as senhas digitadas
 			$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setValue(null);
 			$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setValue(null);
 			$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->setValue(null);
+
+			// criando array com os elementos que devem ser marcados como erro
+			$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual',
+										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
+										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha');
+			// marcando os elementos com erro
+			$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+
+			// setando foco no primeiro elemento com erro
+			$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+
+			// setando scripts na view
+			$this->view->scripts = $scripts;
+
     		return false;
     	}
 
@@ -321,7 +352,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    	// setando o perfil padrao do usuario
 	    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioConta($idPessoa, $arrayPost)) {
 				// selecionando a aba do subform perfil padrao
-				$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
 	
 	    		// atualizando o perfil padrao do usuario na sessao
 	    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao(Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true));
@@ -333,7 +364,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 	
 		        // exibindo mensagem de sucesso
-		        Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript($this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO'));
+		        $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoAlert("Dados do usuario", $this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO'));
+
+				// setando scripts na view
+				$this->view->scripts = $scripts;
 	    	}   	
 
     		// salvando a transacao
@@ -360,7 +394,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * @return Boolean|null
      */
     private function salvarDadosBiometricos($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
-    {  	
+    {
+    	// inicializando array de javascripts de retorno para o cliente
+    	$scripts = array();
+
     	// se a requisição nao vier do form dados Biometricos retorne
     	if (!array_key_exists('CadastrarDadosUsuarioDadosBiometricos', $arrayPost))
     	    return null;
@@ -368,17 +405,20 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando o subForm DadosBiometricos    
     	$subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
 
-    	
     	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayPost)) {
     		// selecionando a aba do subform DadosBiometricos
-			$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
+			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
+
+			// setando os scripts na view
+			$this->view->scripts = $scripts;
+
     		return false;
     	}
 
     	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 	    	// selecionando a aba do subform DadosBiometricos
-	    	$this->view->scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
+	    	$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
 
 	    	// recuperando ultima versao do obj dadosBiometricos da pessoa
 	        $versaoObjetoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa);
@@ -386,9 +426,11 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 
-	        
-	        // enviado scripts para a view
-	        $this->view->scripts = array(Basico_OPController_UtilOPController::exibirJQueryHumanizedMessageViaJavaScript("Dados biometricos salvos com sucesso."));
+	        // setando mensagem
+	        $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoAlert("Dados do usuario", "Dados biometricos salvos com sucesso.");
+
+			// setando os scripts na view
+			$this->view->scripts = $scripts;
     	}
     	
     	return true;
@@ -686,13 +728,35 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		    			// invocando excessao
 		    			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA);
 		    		} else {
-		    			
+		    			// recuperando possivel redirecionamento
+		    			$urlRedirect = $this->getRequest()->getParam('urlRedirect');
+
+		    			// verificando se existe uma url para redirecionamento
+		    			if ($urlRedirect) {
+							// removendo o baseUrl do redirect
+							$realUrlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $urlRedirect));
+
+							// redirecionando para a url de redirect
+							$this->_redirect($realUrlRedirect);
+		    			} else {
+							// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
+							$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+							// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
+							$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_SUBTITULO'));
+							// incluindo a mensagem da view de troca de senha no conteudo que sera renderizado
+							$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_MENSAGEM'));
+		    			}
 		    		}
 				}
 				
 			} else { // o formulario nao passou pela validacao
 				// recolocando o valor do div de forca da senha
 				$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+
+				// limpando os campos de senha
+				$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue();
+				$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue();
+				$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue();
 
 				// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
 				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));

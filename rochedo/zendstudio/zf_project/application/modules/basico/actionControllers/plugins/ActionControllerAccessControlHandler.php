@@ -147,7 +147,8 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 					$request->setControllerName('autenticador');
 					$request->setActionName('problemaslogin');
 					$request->setParam('login', $loginUsuarioSessao);
-					
+
+					// removendo autenticacao do usuario
 					Basico_OPController_LoginOPController::getInstance()->removeRegistroIdLoginUsuarioSessao();
 
 					// enviando mensagem de alerta de problemas com login
@@ -155,6 +156,17 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 										
 		            // parando a execucao do plugin
 					return;
+				} else if (Basico_OPController_LoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao())) { // verificando se a senha do usuario esta expirada
+					// montando a url atual para caso a troca de senha seja efetuado com sucesso
+					//$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($request->getParams(), null, true);
+
+					// modificando o request para a acao de troca de senha expirada
+					$request->setModuleName('basico');
+					$request->setControllerName('dadosusuario');
+					$request->setActionName('trocarsenhaexpirada');
+					// setando redirecionamento
+					//$request->setParam('urlRedirect', $requestUrlRedirect);
+
 				} else if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) { // verificando se o usuario possui perfil para acessar a acao
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 					$request->setModuleName('basico');

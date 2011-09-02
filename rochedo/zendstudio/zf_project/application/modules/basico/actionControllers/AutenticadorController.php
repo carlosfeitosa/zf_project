@@ -53,7 +53,6 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 
     	// carregando título
 		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
-		
 
 		// recuperando o formulario de autenticacao
 		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
@@ -94,7 +93,11 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			$this->_helper->Renderizar->renderizar();
 		}
 
-		// recuperando login
+		// recupernado nome do elemento do formulario que contem o login
+		$nomeElementoInputLogin = AUTH_IDENTITY_ARRAY_KEY;
+		// convertendo o login para minusculo
+		$form->$nomeElementoInputLogin->setValue(strtolower($form->getValue(AUTH_IDENTITY_ARRAY_KEY)));
+		// recuperando o login
 		$login = $form->getValue(AUTH_IDENTITY_ARRAY_KEY);
 
 		// recuperando objeto pessoa perfil usuario validado do login

@@ -56,6 +56,9 @@ class Basico_OPController_GeradorFormularioOPController
      */
     public static function gerarTodos()
     {
+    	// setando as diretrizes administraticas para execucao de metodos administrativos e recuperando as configuracoes atuais do servidor
+	    $arrayConfigAtualPHP = Basico_OPController_UtilOPController::setaDiretivasAdministrativasPHP();
+
 		// recuperando os objetos formulario dos sistema
 		$objsFormularios = Basico_OPController_FormularioOPController::getInstance()->retornaTodosObjsFormularios();
 
@@ -68,6 +71,9 @@ class Basico_OPController_GeradorFormularioOPController
 				throw new Exception(MSG_ERRO_GERAR_TODOS_FORMULARIO . $objFormulario->nome . QUEBRA_DE_LINHA . $e->getMessage());
 			}
 		}
+
+		// voltando as diretrizes administrativas
+		Basico_OPController_UtilOPController::setaDiretivasAdministrativasPHP($arrayConfigAtualPHP);
 
     	return true;
     }
@@ -95,6 +101,7 @@ class Basico_OPController_GeradorFormularioOPController
 		
     	// veririca se existe templates
     	if (count($templatesPossiveis)){
+    		// loop paara processar os templates
 	       	foreach($templatesPossiveis as $templateObject){
 	       		// checando se pode continuar
 	    		if ($tempReturn){
@@ -152,7 +159,7 @@ class Basico_OPController_GeradorFormularioOPController
         $formAction         = '';
         $formAttribs        = '';
         $formDecorator      = '';
-        	
+
     	// inicializacao de atributos do formulario
         $filenameExtensionRecovery              = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_FILENAME_EXTENSION_RECOVERY];
         $headerFormulario                       = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_HEADER_FORM];
@@ -167,7 +174,7 @@ class Basico_OPController_GeradorFormularioOPController
         $formConstructorComment                 = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_CONSTRUCTOR_COMMENT];
         $formName                               = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_NAME];
         $formAddPrefixPathComment               = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_ADDPREFIXPATH_COMMENT];
-        
+
         // verificando se o formulario possui metodo de init
         if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_METHOD, $arrayInitForm))
         	$formMethod                         = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_METHOD];
@@ -188,11 +195,12 @@ class Basico_OPController_GeradorFormularioOPController
         $formEndTag                             = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_END_TAG];
         
         // verifica se existe decorator para o formulario
-        if ($objFormulario->getDecoratorObject())
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR, $arrayInitForm))
             $formDecorator                      = $arrayInitForm[FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR];
 
         // recuperando modulos relacionados com o formulario
         $modulosObjects = $objFormulario->getModulosObjects($excludeModulesNames);
+
         // verificando se existem modulos relacionados com o formulario
         if (!count($modulosObjects))
         	throw new Exception(MSG_ERRO_FORMULARIO_SEM_MODULO);
@@ -213,6 +221,7 @@ class Basico_OPController_GeradorFormularioOPController
 
             // loop para criar o formulario em diversos caminhos de modulos
             foreach ($modulesPath as $moduleName => $modulePath){
+            	// montando o nome do arquivo de saida
                 $fullFileName = $modulePath . $nomeArquivoSaida;
 
                 // criando ponto de restauração do arquivo de formulário, caso exista.
@@ -245,37 +254,58 @@ class Basico_OPController_GeradorFormularioOPController
                 Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoFormulario($nivelIdentacao, $formConstructorComment, $formConstructorInherits, str_replace($objFormulario->formName, ucfirst(strtolower($moduleName)) . $objFormulario->formName, $formName), $formMethod, $formAction, $formAttribs, $formDecorator));
 
                 // verifica se o formulario possui elementos
-                if (Basico_OPController_FormularioOPController::getInstance()->existeElementosPorIdFormulario($objFormulario->id)) {
+                if (Basico_OPController_FormularioOPController::existeElementosPorIdFormularioViaSQL($objFormulario->id)) {
 
-                	//recuperando elementos com mascara
-                	$elementosMascaras = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSql($moduleName, $objFormulario->nome);
-                	
-                	// verificando se existem elementos com mascara
-                	if ($elementosMascaras) {
-                		// escrevendo comentario para insercao de script
-                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "// inserindo script para setar mascaras jquery" . QUEBRA_DE_LINHA);
-                		// escrevendo chamada para aplicação de mascaras Jquery
-                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "Basico_OPController_UtilOPController::escreveJavaScriptEvento('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorModuloFormulario('{$moduleName}', '{$objFormulario->nome}'));" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA);
-                	}
-                	
                 	// adicao dos prefix e paths de componentes nao ZF
                 	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objFormulario->id, $formAddPrefixPathComment);
 
+                	// verificando se existem mascaras para serem inseridas no formulario para adicao do prefix para o elemento html dinamico
+                	if (Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorNomeModuloNomeFormulario($moduleName, $objFormulario->nome)) {
+                		// recuperando prefix paths do componente html
+                		$arrayPrefixPathComponenteHtml = Basico_OPController_ComponenteOPController::retornaArrayPrefixPathComponentesNaoZF(array(CATEGORIA_COMPONENTE_ROCHEDO));
+
+                		// verificando o resultado da recuperacao
+                		if (count($arrayPrefixPathComponenteHtml) > 0) {
+                			// recuperando string de adicao de prefix path
+                			$stringAddPrefixPathComponenteHtml = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . FORM_GERADOR_FORM_ADDPREFIXPATH . "('{$arrayPrefixPathComponenteHtml[0][COMPONENTE_NAO_ZF_PREFIX]}', '{$arrayPrefixPathComponenteHtml[0][COMPONENTE_NAO_ZF_PATH]}');" . QUEBRA_DE_LINHA;
+
+                			// verificando se este prefix path para ser incluido no formulario, por haver algum elemento de terceiros
+                			if ($stringAddPrefixPath) {
+                				// verificando se o prefix path do elemento html ja nao esta sendo incluido no formulario por haver algum elemento que carregue este prefix path
+                				if (strpos($stringAddPrefixPath, $stringAddPrefixPathComponenteHtml) === false) {
+                					// adicionando o prefix path a string de prefix paths do formulario
+                					$stringAddPrefixPath .= $stringAddPrefixPathComponenteHtml;
+                				}
+                			} else {
+                				// setando string prefix path
+                				$stringAddPrefixPath = str_replace('@identacao', Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao), $formAddPrefixPathComment) . QUEBRA_DE_LINHA . $stringAddPrefixPathComponenteHtml . QUEBRA_DE_LINHA;
+                			}
+                		}
+                	}
+
                 	// verificando se existem addprefixpaths para serem incluidos no formulario
-					if (isset($stringAddPrefixPath))
+					if (isset($stringAddPrefixPath)) {
+						// adicionando prefix paths
                 		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, $stringAddPrefixPath);
+					}
                 	
                 	// adição dos elementos do formulário
                 	Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $formElementsComment, $formElementAddElementToFormComment, $formArrayElements, $objFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $formCodigoCheckAmbienteDesenvolvimento, $objFormulario, $moduloObject, $formCodeBlockEndTag));
-                };
-                
-                // verificacao sobre formularios filhos
-                if (Basico_OPController_FormularioOPController::getInstance()->existeFormulariosFilhosPorIdFormulario($objFormulario->id)) {
-                	$formulariosFilhosObjects = $objFormulario->getFormulariosFilhosObjects();
-                	foreach ($formulariosFilhosObjects as $formularioFilhoObject){
-                		if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames))
-                			throw new Exception(MSG_ERRO_GERAR_SUB_FORMULARIO);
+                }
 
+                // verificacao sobre formularios filhos
+                if (Basico_OPController_FormularioOPController::existeFormulariosFilhosPorIdFormularioViaSQL($objFormulario->id)) {
+                	// recuperando subformularios filhos
+                	$formulariosFilhosObjects = $objFormulario->getFormulariosFilhosObjects();
+
+                	// loop para gerar os subformularios filhos
+                	foreach ($formulariosFilhosObjects as $formularioFilhoObject){
+                		// gerando subformularios filhos
+                		if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames)) {
+                			throw new Exception(MSG_ERRO_GERAR_SUB_FORMULARIO);
+                		}
+
+                		// incluindo o subformulario
                 		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaIncludeSubForm($nivelIdentacao, $formularioFilhoObject));
                 	}
                 }
@@ -283,16 +313,22 @@ class Basico_OPController_GeradorFormularioOPController
                 // nivel 1 de identação
                 $nivelIdentacao--;
                 $identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
+                // escrevendo fim de bloco
                 Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaFimDeBloco($nivelIdentacao, $formCodeBlockEndTag));
 
                 // nivel 0 de identação
                 $nivelIdentacao--;
                 $identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
+                // escrevendo fim de bloco
 				Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaFimDeBloco($nivelIdentacao, $formCodeBlockEndTag));
+				// escrevendo o fim do script
 				Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $formEndTag));
 
-                if ($fileResource)
+				// verificando se existe arquivo aberto
+                if ($fileResource) {
+                	// fechando arquivo
                     $resultado = Basico_OPController_UtilOPController::fechaArquivo($fileResource);
+                }
 
                 // gerando formulario versao HTML
                 $resultado = self::escreveObjetoFormularioDOJOHTMLTodasLinguasAtivas($objFormulario, $moduleName);
@@ -300,6 +336,7 @@ class Basico_OPController_GeradorFormularioOPController
 
         } catch (Exception $e) {
 
+        	// verificando se o arquivo encontra-se aberto
             if ($fileResource)
                 Basico_OPController_UtilOPController::fechaArquivo($fileResource);
 
@@ -326,29 +363,40 @@ class Basico_OPController_GeradorFormularioOPController
 		$tempReturn = true;
 		
 		// verifica se o formulario possui formulario pai
-    	if (!$objSubFormulario->formularioPai)
+    	if (!$objSubFormulario->formularioPai) {
     		throw new Exception(MSG_ERRO_SUBFORMULARIO_SEM_FORMULARIO_PAI);
+    	}
 
     	// verifica se o objeto eh da categoria FORMULARIO_SUB_FORMULARIO
-    	if ($objSubFormulario->getCategoriaObject()->getRootCategoriaPaiObject()->nome != FORMULARIO_SUB_FORMULARIO)
+    	if ($objSubFormulario->getCategoriaObject()->getRootCategoriaPaiObject()->nome != FORMULARIO_SUB_FORMULARIO) {
     		throw new Exception(MSG_ERRO_FORMULARIO_SUB_FORMULARIO_CATEGORIA);
+    	}
 
     	$templatesPossiveis = $objSubFormulario->getTemplatesObjects();
     	
     	// veririca se existe templates
     	if (count($templatesPossiveis)){
+    		// loop para gerar cada template do subform
 	       	foreach($templatesPossiveis as $templateObject){
+	       		// verificando o resultado dos metodos abaixo executados
 	    		if ($tempReturn){
-		    		if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_DOJO)
+	    			// recuperando output do template
+	    			$outputTemplate = $templateObject->getOutputObject();
+					// verificando template
+		    		if ($outputTemplate->nome === FORM_GERADOR_OUTPUT_DOJO) {
+		    			// gerando subformulario dojo
 		    			$tempReturn = self::gerarSubDOJO($objSubFormulario, FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM, $excludeModulesNames);
-		    		else if ($templateObject->getOutputObject()->nome === FORM_GERADOR_OUTPUT_HTML)
+		    		} else if ($outputTemplate->nome === FORM_GERADOR_OUTPUT_HTML) {
+		    			// gerando subformulario html
 		    			$tempReturn = self::gerarSubHTML($objSubFormulario, FORM_CLASS_EXTENDS_ZEND_FORM_SUB_FORM, $excludeModulesNames);
+		    		}
 	    		}
 	    	}
-    	}
-    	else
+    	} else {
     		throw new Exception(MSG_ERRO_SUBFORMULARIO_SEM_TEMPLATE);
+    	}
 
+    	// retornando resultado
     	return $tempReturn;
     }
     
@@ -416,11 +464,12 @@ class Basico_OPController_GeradorFormularioOPController
         $subFormEndTag                             = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_END_TAG];
        
         // verifica se existe decorator para o formulario
-        if ($objSubFormulario->getDecoratorObject()->id)
+        if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR, $arrayInitSubForm))
             $subFormDecorator                   = $arrayInitSubForm[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR];
 
         // recuperando modulos relacionados com o formulario
         $modulosObjects = $objSubFormulario->getModulosObjects($excludeModulesNames);
+
         // verificando se existem modulos relacionados com o formulario
         if (!count($modulosObjects))
         	throw new Exception(MSG_ERRO_FORMULARIO_SEM_MODULO);
@@ -435,8 +484,8 @@ class Basico_OPController_GeradorFormularioOPController
             $subFormVariablesInstances[$moduloObject->nome] = self::retornaNomeVariavelSubForm($moduloObject, $objSubFormulario);
         }
         try {
+        	// inicializando variaveis
             $arrayArquivosModificados = array();
-
             $podeContinuar = true;
 
             // loop para criar o formulario em diversos caminhos de modulos
@@ -450,40 +499,56 @@ class Basico_OPController_GeradorFormularioOPController
                 }
 
                 // verifica se a copia foi bem sucedida
-                if (!$podeContinuar)
+                if (!$podeContinuar) {
                     throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_LEITURA . "'{$fullFileName}'");
+                }
 
                 // abre arquivo com permissoes de escrita
                 $fileResource = Basico_OPController_UtilOPController::abreArquivoLimpo($fullFileName);
 
                 // verifica se o sistema conseguiu abrir o arquivo
-                if (!$fileResource)
+                if (!$fileResource) {
                     throw new Exception(MSG_ERRO_MANIPULACAO_ARQUIVO_PERMISSAO_ESCRITA . "'{$fullFileName}'");
+                }
 
                 // nivel 0 de identação
 				$nivelIdentacao = 0;
+				// escrevendo instanciamento do subformulario
                 Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaInstanciamentoSubFormulario($nivelIdentacao, $subFormBeginTag, $moduleName, $headerSubFormulario, $subFormClassInstances[$moduleName]));
                 
                 // nivel 1 de identação
                 $nivelIdentacao++;
+                // escrevendo a inicializacao do formulario
                 Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaInicializacaoSubFormulario($nivelIdentacao, $subFormInitComment, $subFormName, $subFormMethod, $subFormAction, $subFormAttribs, $subFormDecorator, $subFormVariablesInstances[$moduleName], $subFormOrder));
 
                 // verifica se o formulario possui elementos
-                if (Basico_OPController_FormularioOPController::getInstance()->existeElementosPorIdFormulario($objSubFormulario->id)){
-					
-	                //recuperando elementos com mascara
-                	$elementosMascaras = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSql($moduleName, $objSubFormulario->nome);
-                	
-                	// verificando se existem elementos com mascara
-                	if ($elementosMascaras) {
-                		// escrevendo comentario da chamada
-                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "// inserindo script para setar mascaras jquery" . QUEBRA_DE_LINHA);
-                		// escrevendo chamada para aplicação de mascaras Jquery                		
-                		Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . "Basico_OPController_UtilOPController::escreveJavaScriptEvento('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorModuloFormulario('{$moduleName}', '{$objSubFormulario->nome}'));" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA);
-                	}
-                	
+                if (Basico_OPController_FormularioOPController::existeElementosPorIdFormularioViaSQL($objSubFormulario->id)){
                 	// adicao dos prefix e paths de componentes nao ZF
                 	$stringAddPrefixPath = self::retornaAddPrefixPathElementosNaoZFFormulario($nivelIdentacao, $objSubFormulario->id, $formAddPrefixPathComment);
+
+                    // verificando se existem mascaras para serem inseridas no formulario para adicao do prefix para o elemento html dinamico
+                	if (Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorNomeModuloNomeFormulario($moduleName, $objSubFormulario->nome)) {
+                		// recuperando prefix paths do componente html
+                		$arrayPrefixPathComponenteHtml = Basico_OPController_ComponenteOPController::retornaArrayPrefixPathComponentesNaoZF(array(CATEGORIA_COMPONENTE_ROCHEDO));
+
+                		// verificando o resultado da recuperacao
+                		if (count($arrayPrefixPathComponenteHtml) > 0) {
+                			// recuperando string de adicao de prefix path
+                			$stringAddPrefixPathComponenteHtml = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . FORM_GERADOR_FORM_ADDPREFIXPATH . "('{$arrayPrefixPathComponenteHtml[0][COMPONENTE_NAO_ZF_PREFIX]}', '{$arrayPrefixPathComponenteHtml[0][COMPONENTE_NAO_ZF_PATH]}');" . QUEBRA_DE_LINHA;
+
+                			// verificando se este prefix path para ser incluido no formulario, por haver algum elemento de terceiros
+                			if ($stringAddPrefixPath) {
+                				// verificando se o prefix path do elemento html ja nao esta sendo incluido no formulario por haver algum elemento que carregue este prefix path
+                				if (strpos($stringAddPrefixPath, $stringAddPrefixPathComponenteHtml) === false) {
+                					// adicionando o prefix path a string de prefix paths do formulario
+                					$stringAddPrefixPath .= $stringAddPrefixPathComponenteHtml;
+                				}
+                			} else {
+                				// setando string prefix path
+                				$stringAddPrefixPath = str_replace('@identacao', Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao), $formAddPrefixPathComment) . QUEBRA_DE_LINHA .  $stringAddPrefixPathComponenteHtml . QUEBRA_DE_LINHA;
+                			}
+                		}
+                	}
 
                 	// verificando se existem addprefixpaths para serem incluidos no formulario
 					if ($stringAddPrefixPath)
@@ -491,26 +556,35 @@ class Basico_OPController_GeradorFormularioOPController
 
                 	// adição dos elementos do formulário
                 	Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaElementosFormulario($nivelIdentacao, $subFormElementsComment, $subFormElementAddElementToFormComment, $subFormArrayElements, $objSubFormulario->getFormularioElementosObjects(), $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento, $subFormCodigoCheckAmbienteDesenvolvimento, $objSubFormulario, $moduloObject, $subFormCodeBlockEndTag, $subFormVariablesInstances[$moduleName]));
-                };
+                }
+
+                // recuperando formulario pai
+                $objFormularioPai = $objSubFormulario->getFormularioPaiObject();
 
 				// verificando se o pai do formulario eh da categoria FORMULARIO_SUB_FORMULARIO
-    			if ($objSubFormulario->getFormularioPaiObject()->getCategoriaObject()->getRootCategoriaPaiObject()->nome === FORMULARIO_SUB_FORMULARIO) {
+    			if ($objFormularioPai->getCategoriaObject()->getRootCategoriaPaiObject()->nome === FORMULARIO_SUB_FORMULARIO) {
     				// recuperando o nome da variavel que instancia o sub formulario pai
-    				$formPaiVariableInstance = self::retornaNomeVariavelSubForm(Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($moduleName), $objSubFormulario->getFormularioPaiObject());
+    				$formPaiVariableInstance = self::retornaNomeVariavelSubForm(Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($moduleName), $objFormularioPai);
 	                // adicionanando sub-formulario ao sub formulario pai
 	                Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName, $formPaiVariableInstance));
-    			}
-	            else
+    			} else {
 					// adicionanando sub-formulario ao formulario pai
 	                Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaAdicaoFormularioSubFormulario($nivelIdentacao, $subFormVariablesInstances[$moduleName], $objSubFormulario->formName));
+    			}
 
             	// verificacao sobre formularios filhos
-				if (Basico_OPController_FormularioOPController::getInstance()->existeFormulariosFilhosPorIdFormulario($objSubFormulario->id)) {
+				if (Basico_OPController_FormularioOPController::existeFormulariosFilhosPorIdFormularioViaSQL($objSubFormulario->id)) {
+					// recuperando formularios filhos
 					$formulariosFilhosObjects = $objSubFormulario->getFormulariosFilhosObjects();
+
+					// loop para gerar os formularios filhos
 					foreach ($formulariosFilhosObjects as $formularioFilhoObject){
-						if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames))
+						// verificando o resultado da geracao do formulario filho
+						if (!self::gerarSubForm($formularioFilhoObject, $excludeModulesNames)) {
 		                	throw new Exception(MSG_ERRO_GERAR_SUB_FORMULARIO);
-		
+						}
+
+						// escrevendo include do subform
 		                Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, QUEBRA_DE_LINHA . self::retornaIncludeSubForm($nivelIdentacao, $formularioFilhoObject));
 					}
 				}
@@ -518,14 +592,18 @@ class Basico_OPController_GeradorFormularioOPController
 				// nivel 0 de identação
                 $nivelIdentacao--;
                 $identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
+                // escrevendo a finalizacao do arquivo (script)
 				Basico_OPController_UtilOPController::escreveLinhaFileResource($fileResource, self::retornaFimDeScript($nivelIdentacao, $subFormEndTag));
 
-                if ($fileResource)
+				// verificando se o arquivo encontra-se aberto
+                if ($fileResource) {
+                	// recuperando resultado da acao de fechar o arquivo
                     $resultado = Basico_OPController_UtilOPController::fechaArquivo($fileResource);
+                }
             }
 
         } catch (Exception $e) {
-
+        	// verificando se o arquivo encontra-se aberto
             if ($fileResource)
                 Basico_OPController_UtilOPController::fechaArquivo($fileResource);
 
@@ -601,13 +679,17 @@ class Basico_OPController_GeradorFormularioOPController
 
         	// setando atributo
 			$tempArraySubFormAttrib[] = $tempSubFormAttrib;
-        }        
-        	 
+        }
+
+        // adicionando atributos do subformulario
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_ATTRIBS]                               = FORM_GERADOR_FORM_SUB_FORM_ADDATTRIBS . "(array(" . implode(",", $tempArraySubFormAttrib) . "));" . QUEBRA_DE_LINHA;
 
+        // recuperando decorator do subform
+        $objdecoratorSubForm = $objSubFormulario->getDecoratorObject();
+
         // verificando se o sub-formulario possui decorator
-        if ($objSubFormulario->getDecoratorObject()->id)
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SUB_FORM_SETDECORATORS . "(array({$objSubFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA;
+        if ($objdecoratorSubForm)
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_SUB_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SUB_FORM_SETDECORATORS . "(array({$objdecoratorSubForm->decorator}));" . QUEBRA_DE_LINHA;
 
         // verificando se o sub-formulario possui ordem
         if ($objSubFormulario->ordem)
@@ -656,9 +738,10 @@ class Basico_OPController_GeradorFormularioOPController
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ADDPREFIXPATH_COMMENT]                 = FORM_GERADOR_ADDPREFIXPATH_COMMENT;
 
         // verificando se o formulario possui metodo
-        if ($objFormulario->formMethod)
+        if ($objFormulario->formMethod) {
         	// setando o metodo do formulario
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_METHOD]                            = FORM_GERADOR_FORM_SETMETHOD . "('{$objFormulario->formMethod}');" . QUEBRA_DE_LINHA;
+        }
 
         // verificando se o formulario possui acao
         if ($objFormulario->formAction) {
@@ -680,8 +763,14 @@ class Basico_OPController_GeradorFormularioOPController
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
         }
 
-        if ($objFormulario->getDecoratorObject())
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SETDECORATORS . "(array({$objFormulario->getDecoratorObject()->decorator}));" . QUEBRA_DE_LINHA; 
+        // recuperando decorators do formulario
+        $objDecorator = $objFormulario->getDecoratorObject();
+
+        // verificando se o objeto foi carregado
+        if ($objDecorator) {
+        	// carregando decorator
+        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_DECORATOR]                         = FORM_GERADOR_FORM_SETDECORATORS . "(array({$objDecorator->decorator}));" . QUEBRA_DE_LINHA;
+        } 
 
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ELEMENTS_COMMENT]                      = FORM_GERADOR_ADD_ELEMENTS_COMMENT . QUEBRA_DE_LINHA;
         $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ADD_ELEMENTS_TO_FORM_COMMENT]          = FORM_GERADOR_ADD_ELEMENTS_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
@@ -874,10 +963,11 @@ class Basico_OPController_GeradorFormularioOPController
 		$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
 		
 		// recuperando array de prefixos e paths de componentes nao ZF
-		$arrayNomesCategoriasComponentesNaoZFFormulario = Basico_OPController_CategoriaOPController::getInstance()->retornaArrayNomesCategoriasComponentesNaoZFPorIdFormulario($idFormulario);
+		$arrayNomesCategoriasComponentesNaoZFFormulario = Basico_OPController_CategoriaOPController::retornaArrayNomesCategoriasComponentesNaoZFPorIdFormularioViaSQL($idFormulario);
 		
 		// verificando o resultado da recuperacao do array
 		if ((isset($arrayNomesCategoriasComponentesNaoZFFormulario)) and (count($arrayNomesCategoriasComponentesNaoZFFormulario > 0)))
+			// recuperando array
 			$arrayPrefixPaths = Basico_OPController_ComponenteOPController::retornaArrayPrefixPathComponentesNaoZF($arrayNomesCategoriasComponentesNaoZFFormulario);
 
 		// verificando o resultado da recuperacao do array de prefixos e paths
@@ -886,10 +976,12 @@ class Basico_OPController_GeradorFormularioOPController
 
 		// adicionando comentario
 		if ($addPrefixComment)
+			// montando retorno
 			$tempReturn .= str_replace('@identacao', $identacao, $addPrefixComment) . QUEBRA_DE_LINHA;
 
 		// loop para preencher string de retorno
-		foreach ($arrayPrefixPaths as $arrayPrefixPath) {			
+		foreach ($arrayPrefixPaths as $arrayPrefixPath) {
+			// montando retorno			
 			$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDPREFIXPATH . "('{$arrayPrefixPath[COMPONENTE_NAO_ZF_PREFIX]}', '{$arrayPrefixPath[COMPONENTE_NAO_ZF_PATH]}');" . QUEBRA_DE_LINHA;
 		}
 
@@ -930,7 +1022,22 @@ class Basico_OPController_GeradorFormularioOPController
         $totalFormularioElementoFormulariosVinculados = 0;
 
         // recuperando ordem dos elementos
-        $arrayOrdemElementos = Basico_OPController_FormularioFormularioElementoOPController::getInstance()->retornaArrayOrdemPorIdFormulario($objFormulario->id);
+        $arrayOrdemElementos = Basico_OPController_FormularioFormularioElementoOPController::retornaArrayOrdemPorIdFormularioViaSQL($objFormulario->id);
+
+        // recuperando mascaras do formulario
+        $scriptMascarasFormulario = Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorNomeModuloNomeFormulario($objModulo->nome, $objFormulario->nome);
+
+        // verificando se o formulario possui mascaras
+        if ($scriptMascarasFormulario) {
+        	// carregando tags javascript
+        	$scriptMascarasFormulario = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml(Basico_OPController_UtilOPController::escapaAspasDuplasPHP(Basico_OPController_UtilOPController::escapaDolarPHP($scriptMascarasFormulario)));
+
+        	// adicionando elemento html, com conteudo dinamico, para insercao por ULTIMO no formulario
+        	$formularioElementosObjects[] = Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementoHTMLContentDinamico();
+
+        	// adicionando mais um elemento no array de ordem de elementos
+        	$arrayOrdemElementos[] = count($arrayOrdemElementos) + 1;
+        }
 
         // loop para todos os elementos do formulario
         foreach ($formularioElementosObjects as $formularioElementoObject){
@@ -944,16 +1051,22 @@ class Basico_OPController_GeradorFormularioOPController
 			// setando a ordem do elemento
         	$formElementLoop = str_replace('@contador', $arrayOrdemElementos[$contador], $formElement);
 
+        	// recuperando o nome da categoria do formularioElemento
+        	$nomeCategoriaFormularioElemento = $formularioElementoObject->getCategoriaObject()->nome;
+
         	// verificando se o é preciso determinar ambiente de desenvolvimento
-        	if (false !== array_search($formularioElementoObject->getCategoriaObject()->nome, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento)){
+        	if (false !== array_search($nomeCategoriaFormularioElemento, $arrayNomesCategoriasParaChecarAmbienteDesenvolvimento)){
+        		// setando verificacao de ambiente de desenvolvimento
 				$elementoAmbienteDesenvolvimento = true;
 				$tempReturn .= $identacao . $formCodigoCheckAmbienteDesenvolvimento;
                 $identacao = Basico_OPController_UtilOPController::retornaIdentacao(++$nivelIdentacao);
-            } else
+            } else {
+            	// marcando que nao precisa verificar ambiente de desenvolvimento
             	$elementoAmbienteDesenvolvimento = false;
+            }
 
             // verifica se elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
-            if ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) {
+            if ($nomeCategoriaFormularioElemento === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) {
             	// localiza formulario vinculado
             	$formularioElementoFormularioVinculado = $formularioElementoObject->getFormularioElementoFormularioVinculadoObject($objFormulario, $totalFormularioElementoFormulariosVinculados);
             	$formularioElementoConstanteTextualTitulo = $formularioElementoObject->getFormularioElementoConstanteTextualTitulo($objFormulario, $totalFormularioElementoFormulariosVinculados);
@@ -963,21 +1076,23 @@ class Basico_OPController_GeradorFormularioOPController
 
             	// incrementa variavel de offset
             	$totalFormularioElementoFormulariosVinculados++;
-            }
-            else {           	
-            	if (isset($nomeClasseSubForm))
+            } else {
+            	// removendo variaveis, se setadas           	
+            	if (isset($nomeClasseSubForm)) {
             		unset($nomeClasseSubForm);
+            	}
 
-            	if (isset($formularioElementoConstanteTextualTitulo))
+            	if (isset($formularioElementoConstanteTextualTitulo)) {
             		unset($formularioElementoConstanteTextualTitulo);
+            	}
             }
 
             // faz substituicao de tags caso o elemento seja do tipo FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO
             if (isset($formularioElementoConstanteTextualTitulo)){
+            	// substituindo tags
             	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoConstanteTextualTitulo}')", $formularioElementoObject->element);
             	$tempFormElement = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_OFFSET, $totalFormularioElementoFormulariosVinculados, $tempFormElement);
-            }  	
-            else {
+            } else {
             	// carregando elemento
             	$tempFormElement = $formularioElementoObject->element;
 
@@ -995,8 +1110,11 @@ class Basico_OPController_GeradorFormularioOPController
 			// substituindo string
 			$tempFormElement = str_replace($stringToReplace, $stringConcatenadaSubstituicao, $tempFormElement);
 
+			// recuperando componente
+			$objComponenteFormularioElemento = $formularioElementoObject->getComponenteObject();
+
 			// criando elemento
-			$tempReturn .= $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$formularioElementoObject->getComponenteObject()->componente}, {$tempFormElement});" . QUEBRA_DE_LINHA;
+			$tempReturn .= $identacao . $formElementLoop . " = " . FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT . "({$objComponenteFormularioElemento->componente}, {$tempFormElement});" . QUEBRA_DE_LINHA;
 
 			// setando a ordem do elemento
 			$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETORDER . "($arrayOrdemElementos[$contador]);" . QUEBRA_DE_LINHA;
@@ -1007,38 +1125,46 @@ class Basico_OPController_GeradorFormularioOPController
 				if (isset($nomeClasseSubForm)) {
 
 					// descobrindo o tipo de formulario (form ou sub-form)
-					if ($formularioElementoFormularioVinculado->getCategoriaObject()->getRootCategoriaPaiObject() === 'FORMULARIO_SUB_FORMULARIO')
+					if ($formularioElementoFormularioVinculado->getCategoriaObject()->getRootCategoriaPaiObject() === 'FORMULARIO_SUB_FORMULARIO') {
 						$publicFormsSubPath = '/subforms/';
-					else
+					} else {
 						$publicFormsSubPath = '/forms/';
+					}
 
 					// substituindo tags
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_URL, Basico_OPController_UtilOPController::retornaBaseUrl() . '/public_forms/' . strtolower($objModulo->nome) . $publicFormsSubPath . $formularioElementoFormularioVinculado->formName . '." . ' . "Basico_OPController_PessoaOPController::retornaLinguaUsuario() . " . '".html', $formularioElementoObject->elementAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_FORM_NAME, $nomeClasseSubForm, $tempFormAttribs);
 					$tempFormAttribs = str_replace(FORM_GERADOR_FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO_TITLE_DIALOG, FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoConstanteTextualTitulo}')", $tempFormAttribs);
-				}
-				else
+				} else {
+					// setando atribs
 					$tempFormAttribs = $formularioElementoObject->elementAttribs;
-					
+				}
+
+				// setando atributos do elemento
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETATTRIBS . "(array({$tempFormAttribs}));" . QUEBRA_DE_LINHA;
 			}
 
 			// descobrindo se o campo é requerido
-			if (Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementRequiredFormularioElementoFormulario($formularioElementoObject->id, $objFormulario->id)) {
+			if (Basico_OPController_FormularioFormularioElementoOPController::retornaElementRequiredPorIdFormularioIdFormularioElementoViaSQL($objFormulario->id, $formularioElementoObject->id)) {
+				// setando campo como requerido
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";" . QUEBRA_DE_LINHA;
             	
             	// setando variavel de label de campo requerido
             	$labelCampoRequerido = FORM_GERADOR_FORM_ELEMENT_LABEL_REQUIRED;
             } else {
+            	// setando o campo como nao requerido
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_FALSE . ";" . QUEBRA_DE_LINHA;
             	
             	// limpando variavel de label de campo requerido
             	$labelCampoRequerido = '';
             }
 
+            // recuperando filtros
+            $objFormElementFilter = $formularioElementoObject->getFormularioElementoFilterObject();
+
 			// adicionando filtros
-            if ($formularioElementoObject->getFormularioElementoFilterObject())
-            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDFILTERS . "(array({$formularioElementoObject->getFormularioElementoFilterObject()->filter}));" . QUEBRA_DE_LINHA;
+            if ($objFormElementFilter)
+            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDFILTERS . "(array({$objFormElementFilter->filter}));" . QUEBRA_DE_LINHA;
 
             // recuperando validators
             $arrayFormularioElementoFormularioElementoValidatorObjects = $formularioElementoObject->getFormularioElementoFormularioElementoValidatorObjects();
@@ -1066,43 +1192,47 @@ class Basico_OPController_GeradorFormularioOPController
             	}
             }
 
+            // recuperando decoratos
+            $objFormDecorator = $formularioElementoObject->getDecoratorObject();
+
 			// adiciona o decorator para os elementos que possuem decorator
-			if ($formularioElementoObject->getDecoratorObject())
-				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$formularioElementoObject->getDecoratorObject()->decorator});" . QUEBRA_DE_LINHA;
+			if ($objFormDecorator)
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$objFormDecorator->decorator});" . QUEBRA_DE_LINHA;
 
 			// recuperando decorator de formularioFormularioElemento
-			$decoratorFormularioFormularioElemento = Basico_OPController_FormularioFormularioElementoOPController::getInstance()->retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
+			$objDecoratorFormularioFormularioElemento = Basico_OPController_FormularioFormularioElementoOPController::getInstance()->retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
 
 			// verificando o resultado da recuperacao do decorator
-			if (isset($decoratorFormularioFormularioElemento))
+			if (isset($objDecoratorFormularioFormularioElemento))
 				// setando decorator para o elemento a partir de formularioFormularioElemento
-				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$decoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$objDecoratorFormularioFormularioElemento->decorator});" . QUEBRA_DE_LINHA;
 
 			// verificando se o elemento é da categoria FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO ou o elemento eh da categoria FORMULARIO_ELEMENTO_BUTTON
-            if (($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) or ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_BUTTON) or ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_HTML)) {
+            if (($nomeCategoriaFormularioElemento === FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO) or ($nomeCategoriaFormularioElemento === FORMULARIO_ELEMENTO_BUTTON) or ($nomeCategoriaFormularioElemento === FORMULARIO_ELEMENTO_HTML)) {
             	// removendo decorator DtDdWrapper
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
-            }
-            // verificanso se o elemento eh da categoria FORMULARIO_ELEMENTO_HASH
-            else if ($formularioElementoObject->getCategoriaObject()->nome === FORMULARIO_ELEMENTO_HASH) {
+            } else if ($nomeCategoriaFormularioElemento === FORMULARIO_ELEMENTO_HASH) { // verificanso se o elemento eh da categoria FORMULARIO_ELEMENTO_HASH
             	// removendo decorator label
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('Label');" . QUEBRA_DE_LINHA;
             }
 
         	// adicionando elementos label e ajuda
             if ($formularioElementoObject->constanteTextualLabel){
-					
+
+            	// recuperando a ajuda do element
+            	$objAjudaFormularioElemento = $formularioElementoObject->getAjudaObject();
+
 				// adicionando o link de ajuda
-                if ($formularioElementoObject->getAjudaObject()){
-					if ($formularioElementoObject->getAjudaObject()->url){
-						$href = Basico_OPController_UtilOPController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->url, ASPAS_SIMPLES_ESCAPADA_HTML);
+                if ($objAjudaFormularioElemento){
+					if ($objAjudaFormularioElemento->url){
+						$href = Basico_OPController_UtilOPController::retornaStringEntreCaracter($objAjudaFormularioElemento->url, ASPAS_SIMPLES_ESCAPADA_HTML);
                         $target = Basico_OPController_UtilOPController::retornaStringEntreCaracter('_blank', ASPAS_SIMPLES_ESCAPADA_HTML);
-                        $urlAjuda = ' . "<br><br>URL: <a href=' . $href . ' target=' . $target . '>' . $formularioElementoObject->getAjudaObject()->url . '</a>"';
+                        $urlAjuda = ' . "<br><br>URL: <a href=' . $href . ' target=' . $target . '>' . $objAjudaFormularioElemento->url . '</a>"';
                     } else {
                         $urlAjuda = '';
                     }
 
-                    $constanteTextoAjuda = Basico_OPController_UtilOPController::retornaStringEntreCaracter($formularioElementoObject->getAjudaObject()->constanteTextualAjuda, "'");
+                    $constanteTextoAjuda = Basico_OPController_UtilOPController::retornaStringEntreCaracter($objAjudaFormularioElemento->constanteTextualAjuda, "'");
                     $chamadaJavaScriptDialog = Basico_OPController_UtilOPController::retornaJavaScriptDialog($objFormulario->formName, '$this->getView()->tradutor(\'' . DIALOG_HELP_TITLE . '\')', 'Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor(' . $constanteTextoAjuda . '))' . $urlAjuda);
                     $linkAjuda = "&nbsp;" . FORM_GERADOR_AJUDA_BUTTON_BEGIN_TAG . AJUDA_BUTTON_LABEL . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_BEGIN_TAG . $chamadaJavaScriptDialog . FORM_GERADOR_AJUDA_BUTTON_SCRIPT_END_TAG . FORM_GERADOR_AJUDA_BUTTON_END_TAG;
                 } else
@@ -1110,18 +1240,14 @@ class Basico_OPController_GeradorFormularioOPController
 
                 $linkAjuda = Basico_OPController_UtilOPController::retornaStringEntreCaracter($linkAjuda, "'");
                 $tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETLABEL . "(" . Basico_OPController_UtilOPController::retornaStringEntreCaracter($labelCampoRequerido, "'") . " . " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->constanteTextualLabel}') . {$linkAjuda});" . QUEBRA_DE_LINHA;
+			} else {
+				// limpando o objeto ajuda
+            	unset($objAjudaFormularioElemento);
 			}
 
-			if (($formularioElementoObject->getAjudaObject()) and ($formularioElementoObject->getAjudaObject()->constanteTextualHint))
-				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$formularioElementoObject->getAjudaObject()->constanteTextualHint}'));" . QUEBRA_DE_LINHA;
-
-        	// verificando se o elemento possui mascara e se o formulario eh do tipo DOJO
-			if (($formularioElementoObject->mascara) and  ($formularioElementoObject->getComponenteObject()->getCategoriaObject()->nome === CATEGORIA_COMPONENTE_DOJO)){
-				// setando mascara
-				$tempReturn .= $identacao . FORM_GERADOR_FORM_TEMP_VARIABLE . " = " . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_GET_DIJITPARAM . "('" . FORM_GERADOR_FORM_ELEMENT_DIJITPARAM_CONSTRAINTS . "');" . QUEBRA_DE_LINHA;
-				$tempReturn .= $identacao . FORM_GERADOR_FORM_TEMP_VARIABLE . "['" . FORM_GERADOR_FORM_ELEMENT_DIJITPARAM_CONTRAINTS_PATTERN . "'] = {$formularioElementoObject->getMascaraObject()->mascara};" . QUEBRA_DE_LINHA;
-				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SET_DIJITPARAM . "('" . FORM_GERADOR_FORM_ELEMENT_DIJITPARAM_CONSTRAINTS . "', " . FORM_GERADOR_FORM_TEMP_VARIABLE . ");" . QUEBRA_DE_LINHA;
-			}
+			// verificando se o formulario elemento possui ajuda e se ele possui hint para setar no elemento
+			if ((isset($objAjudaFormularioElemento)) and ($objAjudaFormularioElemento->constanteTextualHint))
+				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE . "(" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objAjudaFormularioElemento->constanteTextualHint}'));" . QUEBRA_DE_LINHA;
 
         	// verificando se o elemento pode ser carregando com dados
             if ($formularioElementoObject->elementReloadable){
@@ -1136,7 +1262,7 @@ class Basico_OPController_GeradorFormularioOPController
 				$nivelIdentacao--;
 				$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
 			}
-			
+
         	// verificando se o é preciso determinar ambiente de desenvolvimento
             if ($elementoAmbienteDesenvolvimento){
 				$nivelIdentacao--;
@@ -1144,16 +1270,35 @@ class Basico_OPController_GeradorFormularioOPController
 				$tempReturn .= $identacao . $formCodeBlockEndTag;
 			}
 
-			$tempReturn .= QUEBRA_DE_LINHA;
-            $contador++;
-        }      	
+            // verificando se existem mascaras para o formulario, se trata-se da ULTIMA volta e se trata-se do elemento FORM_FIELD_HTML_CONTENT_DINAMICO, para insercao de script de mascaras
+            if (($formularioElementoObject->nome === FORM_ELEMENT_HTML_DINAMIC_CONTENT) and ($scriptMascarasFormulario) and ($contador + 1 > count($arrayOrdemElementos)-1)) {
+            	// setando valor no elemento html
+            	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(\"{$scriptMascarasFormulario}\");" . QUEBRA_DE_LINHA;
+            }
 
+			// adicionando quebra de linha
+			$tempReturn .= QUEBRA_DE_LINHA;
+
+			// incrementando contador
+            $contador++;
+        }
+
+       	// adicionando comentario sobre a remocao de escapes nas mensagens de erro dos elementos do zend form
+       	$tempReturn .= $identacao . FORM_GERADOR_REMOVE_ZEND_FORM_ELEMENTS_ERROR_MESSAGES_ESCAPE . QUEBRA_DE_LINHA;
+       	// adicionando metodo para remocao do escape nas mensagens de erro dos elementos zend form
+       	$tempReturn .= $identacao . "Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA . QUEBRA_DE_LINHA;
+
+		// adicionando comentarios sobre adicao de elementos
         $tempReturn .= $identacao . $formElementsAddToFormComment;
 
-        if (!$subFormVariableInstance)
+        // verificando se foi passado a instancia do subformulario
+        if (!$subFormVariableInstance) {
+        	// adicionando elementos no formulario
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
-        else {
+        } else {
+        	// adicionando elementos no formulario
         	$tempReturn .= $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDELEMENTS . "(" . FORM_GERADOR_ELEMENTS . ");" . QUEBRA_DE_LINHA;
+        	// adicionando subformularios
         	$tempReturn =  str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
         	$tempReturn .=  $identacao . FORM_GERADOR_ADD_SUB_FORM_TO_FORM_COMMENT . QUEBRA_DE_LINHA;
         }
@@ -1305,8 +1450,9 @@ class Basico_OPController_GeradorFormularioOPController
     	$caminhoPastaPublicSubForms = $caminhoPastaPublicForms . '/subforms';
 
 		// verificando se o caminho existe
-		if (!file_exists($caminhoPastaPublicForms) | !file_exists($caminhoPastaPublicSubForms))
+		if (!file_exists($caminhoPastaPublicForms) | !file_exists($caminhoPastaPublicSubForms)) {
 			throw new Exception(MSG_ERRO_PATH_INEXISTENTE);
+		}
 
 		// recuperando dados do objeto formulario
 		$nomeClasseFormulario  = self::retornaNomeClasseForm(Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($moduleName), $objetoFormularioDOJO);

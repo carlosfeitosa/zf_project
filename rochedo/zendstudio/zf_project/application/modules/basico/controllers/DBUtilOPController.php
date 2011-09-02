@@ -154,7 +154,7 @@ class Basico_OPController_DBUtilOPController
 	    	if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 	    		//salvando log de inicio da operação
 		    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_INICIO);
-		    	
+
 				//dropando as tabelas do sistema
 		    	self::dropDbTables();
 		    	//criando as tabelas do sistema
@@ -718,7 +718,7 @@ class Basico_OPController_DBUtilOPController
     	// verificando o tipo de banco de dados
     	switch ($pdoTypeBancoAtivo) {
     		case 'MSSQL':
-    			return DEFAULT_MSSQL_DATABASE_DATETIME_FORMAT;
+    			return Zend_Date::ISO_8601;
     		break;
 
     		case 'PGSQL';

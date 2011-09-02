@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/07/2011 14:01:37
+* em: 01/09/2011 10:12:28
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/07/2011 13:48:43
+* @version    1: 31/08/2011 22:53:34
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -26,8 +26,8 @@
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setOrder(4);
 
-    // inserindo script para setar mascaras jquery
-    Basico_OPController_UtilOPController::escreveJavaScriptEvento('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorModuloFormulario('BASICO', 'SUBFORM_DADOS_USUARIO_DADOS_BIOMETRICOS'));
+    // Adicionando paths para localizacao de componentes nao ZF.
+    $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
 
     // Criando array de elementos.
     $elements = array();
@@ -104,6 +104,15 @@
     $elements[8]->setOrder(8);
     $elements[8]->setRequired(false);
     $elements[8]->removeDecorator('Label');
+
+    $elements[9] = $this->createElement('html', 'BasicoCadastrarDadosUsuarioDadosBiometricosContentDinamico', array('value' => ""));
+    $elements[9]->setOrder(9);
+    $elements[9]->setRequired(false);
+    $elements[9]->removeDecorator('DtDdWrapper');
+    $elements[9]->setValue("<script type='text/javascript'>\$(function () {\$('#CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosAltura').maskMoney({decimal:\",\", precision: 2});\$('#CadastrarDadosUsuarioDadosBiometricos-BasicoCadastrarDadosUsuarioDadosBiometricosPeso').maskMoney({decimal:\",\", precision: 3});});</script>");
+
+    // Removendo escapes das mensagens de erro dos elementos do formulario.
+    Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
 
     // Adicionando elementos ao formulario.
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addElements($elements);

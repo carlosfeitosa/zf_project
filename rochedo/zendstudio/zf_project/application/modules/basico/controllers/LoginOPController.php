@@ -302,7 +302,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO]          = self::retornaLoginAtivo($objLogin);
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO]        = self::retornaLoginTravado($objLogin);
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO]       = self::retornaLoginResetado($objLogin);
-		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA] = self::retornaLoginSenhaExpirada($objLogin);
 		$tempReturn[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO]       = self::retornaLoginExpirado($objLogin);
 
 		// retornando array de resultados
@@ -336,10 +335,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO])
 			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
-		// verificando se existe problema de senha expirada
-		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SENHA_EXPIRADA_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
-
 		// verificando se existe problema de login expirada
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO])
 			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_EXPIRADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
@@ -360,7 +355,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$arrayLoginPodeLogar = $this->retornaArrayLoginPodeLogar($login);
 
 		// retornando se o login pode logar
-		return (($arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_SENHA_EXPIRADA]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO]));
+		return (($arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO]) and (!$arrayLoginPodeLogar[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO]));
 	}
 
 	/**
@@ -378,7 +373,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$condicaoSQL          .= "    (ativo = @false) OR" . QUEBRA_DE_LINHA;
 		$condicaoSQL          .= "    (travado = @true) OR" . QUEBRA_DE_LINHA;
 		$condicaoSQL          .= "    (resetado = @true) OR" . QUEBRA_DE_LINHA;
-		$condicaoSQL          .= "    ((datahora_expiracao_senha IS NOT NULL) AND (datahora_expiracao_senha < @now)) OR" . QUEBRA_DE_LINHA;
 		$condicaoSQL          .= "    ((pode_expirar = @true) AND (datahora_proxima_expiracao < @now))" . QUEBRA_DE_LINHA;
 		$condicaoSQL		  .= ")" . QUEBRA_DE_LINHA;
 		$condicaoSQL          .= "AND login = '{$login}'";
@@ -466,6 +460,22 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	{
 		// retornando se a senha esta expirada
 		return (($objLogin->dataHoraExpiracaoSenha) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraExpiracaoSenha) <= Basico_OPController_UtilOPController::retornaTimestamp()));
+	}
+
+	/**
+	 * Retorna se a senha do login esta expirada
+	 * 
+	 * @param String $login
+	 * 
+	 * @return Boolean
+	 */
+	public static function retornaLoginSenhaExpiradaViaSQL($login)
+	{
+		// recuperando o id do login, caso a senha estiver expirada
+		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, array(self::nomeCampoIdModelo), "login = '{$login}' AND datahora_expiracao_senha <= " . Basico_OPController_DBUtilOPController::retornaFuncaoDataHoraAtualDB());
+
+		// retornando resultado
+		return (count($arrayResultado) > 0);
 	}
 
 	/**
@@ -955,6 +965,10 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		if (($objLogin->id) and ($versaoObjetoLoginUsuario) and ($idPessoaPerfilUsuario)) {
 			// trocando a senha do usuario
 			$objLogin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($novaSenhaNaoEncriptada);
+			// salvando a datahora da ultima expiracao
+			$objLogin->dataHoraUltimaExpiracao = $objLogin->dataHoraExpiracaoSenha;
+			// limpando datahora expiracao
+			$objLogin->dataHoraExpiracaoSenha = null;
 
 			// retornando o resultado do metodo de salvar o login
 			$this->salvarObjeto($objLogin, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 30/08/2011 13:41:23
+* em: 31/08/2011 23:07:54
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 30/08/2011 13:22:59
+* @version    1: 31/08/2011 22:53:34
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {

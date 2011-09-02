@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 24/08/2011 16:28:20
+* em: 31/08/2011 23:09:04
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 24/08/2011 15:19:43
+* @version    1: 31/08/2011 22:53:34
 */
 class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
 {
@@ -32,6 +32,7 @@ class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
         $this->setMethod('post');
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('TrocaDeSenha', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
+        $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/trocarsenhaexpirada'));
 
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
@@ -63,8 +64,8 @@ class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
         $elements[4]->setOrder(4);
         $elements[4]->setRequired(true);
         $elements[4]->addValidator('identical', false, array('token' => '@identicalElementName', 'invalidMessage' => '@identicalInvalidMessage'));
-        $elements[4]->addValidator('stringLength', false, array(6, 100, 'messages' => array(Zend_Validate_StringLength::TOO_SHORT => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_6_100_ERROR_MESSAGE_TOO_SHORT'), Zend_Validate_StringLength::TOO_LONG => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_6_100_ERROR_MESSAGE_TOO_LONG') )));
-        $elements[4]->addValidator('NotEmpty', array('messages' => array(Zend_Validate_NotEmpty::IS_EMPTY => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE'), )));
+        $elements[4]->addValidator('stringLength', false, array(6, 100));
+        $elements[4]->addValidator('NotEmpty');
         $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
         $elements[4]->setLabel('* ' . $this->getView()->tradutor('FORM_FIELD_CONFIRMACAO_NOVA_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'TrocaDeSenha\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CONFIRMACAO_NOVA_SENHA_AJUDA')) . '\', 1)</script></button>');

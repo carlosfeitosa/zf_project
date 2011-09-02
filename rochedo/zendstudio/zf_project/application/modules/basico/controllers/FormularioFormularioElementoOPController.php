@@ -14,6 +14,13 @@
 class Basico_OPController_FormularioFormularioElementoOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
+	 * Nome da tabela FormularioFormularioElemento
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'formulario_formulario_elemento';
+
+	/**
 	 * Instância do Controlador FormularioFormularioElemento
 	 * @var Basico_OPController_FormularioFormularioElementoOPController
 	 */
@@ -90,15 +97,15 @@ class Basico_OPController_FormularioFormularioElementoOPController extends Basic
 	/**
 	 * Retorna um array contendo as ordens encontradas na relacao formualrio_formulario_elemento
 	 * 
+	 * 
 	 * @param Integer $idFormulario
 	 * 
 	 * @return Array
+	 * 
+	 * @deprecated
 	 */
 	public function retornaArrayOrdemPorIdFormulario($idFormulario)
 	{
-		// instanciando controladores
-		$formularioOPController = Basico_OPController_FormularioOPController::getInstance();
-
 		// inicializando variaveis
 		$arrayReturn = array();
 
@@ -112,12 +119,74 @@ class Basico_OPController_FormularioFormularioElementoOPController extends Basic
 			}
 
 			// verificando se o formulario eh persistente
-			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and ($formularioOPController->existePersistenciaPorIdFormulario($idFormulario)))
+			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_OPController_FormularioOPController::existePersistenciaPorIdFormularioViaSQL($idFormulario)))
 				$arrayReturn[] = $objFormularioFormularioElemento->ordem + 1;
 		}
 
 		// retornando array com os resultados
 		return $arrayReturn;
+	}
+
+	/**
+	 * Retorna um array contendo as ordens encontradas na relacao formualrio_formulario_elemento, via SQL
+	 * 
+	 * @param Integer $idFormulario
+	 * 
+	 * @return Array
+	 */
+	public static function retornaArrayOrdemPorIdFormularioViaSQL($idFormulario)
+	{
+		// recuperando array com a ordem dos elementos de um formulario
+		$arrayRetorno = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, array('ordem'), "id_formulario = {$idFormulario}", array('ordem'));
+
+		// verificando se houve recuperacao de dados
+		if (count($arrayRetorno)) {
+			// inicializando variaveis
+			$contador = 0;
+
+			// loop para formatar o array resposta
+			foreach ($arrayRetorno as $arrayOrdem) {
+				// recuperando o valor e setado no array de respostas
+				$arrayRetorno[$contador] = $arrayOrdem['ordem'];
+
+				// incrementando contador
+				$contador ++;
+			}
+
+			// verificando se o formulario eh persistente
+			if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_OPController_FormularioOPController::existePersistenciaPorIdFormularioViaSQL($idFormulario))) {
+				// adicionando mais um elemento ao array
+				$arrayRetorno[] = count($arrayRetorno) + 1;
+			}
+		}
+
+		// retornando o array de resultados
+		return $arrayRetorno;
+	}
+
+	/**
+	 * Retorna se o elemento de um formulario, dentro de sua relacao com o proprio, eh requerido, via SQL
+	 * 
+	 * @param Integer $idFormulario
+	 * @param Integer $idFormularioElemento
+	 * 
+	 * @return Boolean|null
+	 */
+	public static function retornaElementRequiredPorIdFormularioIdFormularioElementoViaSQL($idFormulario, $idFormularioElemento)
+	{
+		// verificando se foi passado o parametro do id do formulario elemento e o id do formulario
+		if ((!$idFormulario) or (!$idFormularioElemento)) {
+			return null;
+		}
+
+		// carregando o tipo boolean atraves do tipo de banco de dados
+		$requiredTrue = Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true);
+
+		// recuperando array de resultado
+		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, array('element_required'), "id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and element_required = {$requiredTrue}");
+
+		// retornando se encontrou o elemento como requerido
+		return (count($arrayResultado) > 0);
 	}
 
 	/**

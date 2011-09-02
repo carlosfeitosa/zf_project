@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/07/2011 14:01:35
+* em: 01/09/2011 10:12:23
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/07/2011 13:48:43
+* @version    1: 31/08/2011 22:53:34
 */
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -148,6 +148,9 @@
     $elements[15]->setOrder(15);
     $elements[15]->setRequired(false);
     $elements[15]->removeDecorator('Label');
+
+    // Removendo escapes das mensagens de erro dos elementos do formulario.
+    Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
 
     // Adicionando elementos ao formulario.
     $basicoCadastrarDadosUsuarioDadosAcademicosSubForm->addElements($elements);

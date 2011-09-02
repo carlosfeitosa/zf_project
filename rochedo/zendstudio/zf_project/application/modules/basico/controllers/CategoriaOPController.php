@@ -560,7 +560,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @return Array|null
 	 */
-	public function retornaArrayNomesCategoriasComponentesNaoZFPorIdFormulario($idFormulario)
+	public static function retornaArrayNomesCategoriasComponentesNaoZFPorIdFormularioViaSQL($idFormulario)
 	{
 		// inicializando variaveis
 		$arrayRetorno = array();

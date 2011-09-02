@@ -162,9 +162,30 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	 */
 	public function retornaElementoHash()
 	{
-		// inicializando variaveis
-		$nomeElemento = FORM_ELEMENT_HASH;
+		// retornando o elemento
+		return self::retornaElementoPorNome(FORM_ELEMENT_HASH);
+	}
 
+	/**
+	 * Retorna o elemento html que permite inclusao de qualquer codigo, sem escapes
+	 * 
+	 * @return Basico_Model_FormularioElemento|null
+	 */
+	public function retornaElementoHTMLContentDinamico()
+	{
+		// retornando elemento
+		return self::retornaElementoPorNome(FORM_ELEMENT_HTML_DINAMIC_CONTENT);
+	}
+
+	/**
+	 * Retorna o elemento cujo nome foi passado por parametro
+	 * 
+	 * @param unknown_type $nomeElemento
+	 * 
+	 * @return Basico_Model_FormularioElemento|null
+	 */
+	private function retornaElementoPorNome($nomeElemento)
+	{
 		// recuperando array de resultados
 		$objsFormularioElemento = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeElemento}'");
 
@@ -187,8 +208,9 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	public function retornaElementRequiredFormularioElementoFormulario($idFormularioElemento, $idFormulario)
 	{
 		// verificando se foi passado o parametro do id do formulario elemento e o id do formulario
-		if ((!$idFormulario) or (!$idFormularioElemento))
+		if ((!$idFormulario) or (!$idFormularioElemento)) {
 			return null;
+		}
 
 		// recuperando o objeto formulario elemento
 		$objetoFormularioElemento = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idFormularioElemento);

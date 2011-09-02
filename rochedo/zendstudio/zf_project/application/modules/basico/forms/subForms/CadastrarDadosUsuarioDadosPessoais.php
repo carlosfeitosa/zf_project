@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/07/2011 14:01:34
+* em: 01/09/2011 10:12:19
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/07/2011 13:48:43
+* @version    1: 31/08/2011 22:53:34
 */
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -137,10 +137,20 @@
     $elements[12]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
     $elements[12]->removeDecorator('DtDdWrapper');
 
-    $elements[13] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioDadosPessoaisCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
+    $elements[13] = $this->createElement('submitButton', 'BasicoCadastrarDadosUsuarioDadosPessoaisEnviar');
     $elements[13]->setOrder(13);
     $elements[13]->setRequired(false);
-    $elements[13]->removeDecorator('Label');
+    $elements[13]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
+    $elements[13]->removeDecorator('DtDdWrapper');
+    $elements[13]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
+
+    $elements[14] = $this->createElement('hash', 'BasicoCadastrarDadosUsuarioDadosPessoaisCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
+    $elements[14]->setOrder(14);
+    $elements[14]->setRequired(false);
+    $elements[14]->removeDecorator('Label');
+
+    // Removendo escapes das mensagens de erro dos elementos do formulario.
+    Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
 
     // Adicionando elementos ao formulario.
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->addElements($elements);

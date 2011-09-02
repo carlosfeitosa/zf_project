@@ -718,18 +718,7 @@ class Basico_Model_Formulario
     public function getFormulariosFilhosObjects()
     {
     	$modelFormulario = new Basico_Model_Formulario();
-    	$arrayFormulariosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormulario, "id_formulario_pai = {$this->_id}", "ordem");
-    	
-    	$arrayIdsFormularios = array();
-    	foreach ($arrayFormulariosObjects as $formularioObject){
-    		$arrayIdsFormularios[] = $formularioObject->id;
-    	}
-    	
-    	$stringIdsFormularios = implode(',', $arrayIdsFormularios);
-    	
-    	$arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormulario, "id IN ({$stringIdsFormularios})", "ordem");
-        
-        return $arrayObjects;
+    	return Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormulario, "id_formulario_pai = {$this->_id}", "ordem");
     }
 	
     /**
@@ -769,36 +758,48 @@ class Basico_Model_Formulario
 
     /**
      * Get formularioElemento objects
+     * 
      * @return null|array
      */
     public function getFormularioElementosObjects()
     {
+    	// recuperando modelos
         $modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
-        $arrayFormularioFormularioElementosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormularioFormularioElemento, "id_formulario = {$this->_id}", "ordem");
-        $modelFormularioElemento = new Basico_Model_FormularioElemento();
-        
+
+        // recuperando objetos
+        $arrayFormularioFormularioElementosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormularioFormularioElemento, "id_formulario = {$this->_id}", "ordem");      
+
+        // inicializando variaveis
         $arrayIdsFormularioElementos = array();
+        $arrayObjectsFormularioElemento = array();
+
+        // loop para recuperar os ids dos formularioselementos
         foreach ($arrayFormularioFormularioElementosObjects as $formularioElementoObject){
+        	// recuperando ids
             $arrayIdsFormularioElementos[] = $formularioElementoObject->formularioElemento;
         }
-        
-        $arrayObjects = array();
-        
+
+        // loop para recuperar os formularioElemento
         foreach ($arrayIdsFormularioElementos as $idFormularioElemento) {
-        	$modelFormularioElemento = new Basico_Model_FormularioElemento();
-        	$arrayObjects[] = Basico_OPController_PersistenceOPController::bdObjectFind($modelFormularioElemento, $idFormularioElemento);
+        	// recuperando objetos formularioElemento
+        	$arrayObjectsFormularioElemento[] = Basico_OPController_PersistenceOPController::bdObjectFind(new Basico_Model_FormularioElemento(), $idFormularioElemento);
         }
 
         // verificando se o formulario eh persistente
-        if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_OPController_FormularioOPController::getInstance()->existePersistenciaPorIdFormulario($this->_id))) {
+        if ((GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT) and (Basico_OPController_FormularioOPController::getInstance()->existePersistenciaPorIdFormularioViaSQL($this->_id))) {
         	// adicionando elemento hash
-        	$arrayObjects[] = Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementoHash();
+        	$arrayObjectsFormularioElemento[] = Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementoHash();
         }
-        	
 
-        return $arrayObjects;
+        // retornando array de objetos formulario elemento
+        return $arrayObjectsFormularioElemento;
     }
 
+    /**
+     * Get template objects
+     * 
+     * @return null|array
+     */
     public function getTemplatesObjects()
     {
         $modelTemplateFormulario = new Basico_Model_TemplateFormulario();

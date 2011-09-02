@@ -98,21 +98,21 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
 
         // recuperando os elementos do formulario
         $elements = $formGeradorFormulario->getElements();
-        
+
         // definindo o conteúdo do elemento 'selectFormulario' com o id e nome dos formulários
         $elements['selectFormulario']->setMultiOptions($this->retornaArrayNomeFormularios());
-        
+
         // recuperando os dados dos elementos enviados no post do formulário
         $formGeradorFormulario->populate($_POST);   	
-        
+
         // inicializando variaveis
         $idFormulario = 0;
-        
+
         //verifica se existe valor no elemento selectFormulario enviado via post
         if (isset($_POST['selectFormulario']) ) {
         	// recuperando o id do formulario
             $idFormulario = (int) $_POST['selectFormulario'];
-            
+
             // definindo o conteúdo do elemento 'modulosFormulario' com o id e nome dos modelos do formulário
             $arrayModulosFormulario = $this->retornaArrayNomesModulosFormulario($idFormulario);
 
@@ -121,12 +121,12 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
                 $elements['modulosFormulario']->setMultiOptions($arrayModulosFormulario);
             }
         }
-        
+
         // checando se foi utilizado o metodo post e se botao 'enviar' foi acionado
         if ((isset($_POST['enviar'])) and ($formGeradorFormulario->isValid($_POST))) {
         	// recuperando objeto formulario
         	$modeloFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaObjetoPorId(Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_FormularioOPController'), $idFormulario);
-        	
+
             // verificando se foram selecionados modulos para exclusao da geracao
             if (isset($_POST['excludeModulesNames'])){
             	// setando os modulos selecionados para exclusao
@@ -134,30 +134,30 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
             }else{
                 $excludeModulesNames = null;            	
             }
-            
+
             // gerando os formulários
             if (Basico_OPController_GeradorOPController::geradorFormularioGerarFormulario($modeloFormulario, $excludeModulesNames)) {
-                
+
                 // carregando o titulo e subtitulo da view
                 $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO'));
 		        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO'));
-				
+
 		    	// enviado conteúdo para a view
 		    	$this->view->content = $content;
-		    	
+
 		        // renderizando a view
                 $this->_helper->Renderizar->renderizar();
-                
-                return;
+
+				return;
             }
         }
         
         // carregando o array de conteúdo da página
 		$content[] = $formGeradorFormulario;
-        
+
         // enviado conteúdo para a view
         $this->view->content = array_merge($this->view->content, $content);        
-        
+
         // renderizando a view
         $this->_helper->Renderizar->renderizar();
     }

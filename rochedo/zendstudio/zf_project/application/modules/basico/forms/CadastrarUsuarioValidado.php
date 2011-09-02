@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 30/08/2011 13:42:28
+* em: 01/09/2011 10:11:24
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 30/08/2011 13:22:59
+* @version    1: 31/08/2011 22:53:34
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -33,7 +33,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/login/salvarUsuarioValidado'));
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
-		
+
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
         $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
@@ -125,12 +125,13 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[10]->setOrder(10);
         $elements[10]->setRequired(false);
         $elements[10]->removeDecorator('Label');
-	
+
+        // Removendo escapes das mensagens de erro dos elementos do formulario.
         Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
-        
+
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
-        
+
         // Adicionando displays groups.
         $this->addDisplayGroup(array($elements[1]->getName(),$elements[2]->getName(),$elements[3]->getName()), 'dados_usuario_dados_pessoais', array('legend' => $this->getView()->tradutor('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_PESSOAIS'), 'order' => 1));
         $dados_usuario_dados_pessoais = $this->getDisplayGroup('dados_usuario_dados_pessoais');

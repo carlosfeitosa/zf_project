@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/07/2011 14:01:56
+* em: 31/08/2011 23:09:00
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/07/2011 13:48:43
+* @version    1: 31/08/2011 22:53:34
 */
 class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
 {
@@ -44,6 +44,7 @@ class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
         $elements[1]->setOrder(1);
         $elements[1]->setRequired(false);
         $elements[1]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
+        $elements[1]->removeDecorator('DtDdWrapper');
 
         $elements[2] = $this->createElement('button', 'BasicoResolvedorConflitoVersaoObjetoHtmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto');
         $elements[2]->setOrder(2);
@@ -55,6 +56,7 @@ class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(false);
         $elements[3]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
+        $elements[3]->removeDecorator('DtDdWrapper');
 
         $elements[4] = $this->createElement('button', 'BasicoResolvedorConflitoVersaoObjetoHtmlButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto');
         $elements[4]->setOrder(4);
@@ -66,6 +68,7 @@ class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
         $elements[5]->setOrder(5);
         $elements[5]->setRequired(false);
         $elements[5]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
+        $elements[5]->removeDecorator('DtDdWrapper');
 
         $elements[6] = $this->createElement('button', 'BasicoResolvedorConflitoVersaoObjetoHtmlButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto');
         $elements[6]->setOrder(6);
@@ -77,6 +80,7 @@ class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
         $elements[7]->setOrder(7);
         $elements[7]->setRequired(false);
         $elements[7]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
+        $elements[7]->removeDecorator('DtDdWrapper');
 
         $elements[8] = $this->createElement('button', 'BasicoResolvedorConflitoVersaoObjetoHtmlButtonCancelarFormResolvedorConflitoVersaoObjeto');
         $elements[8]->setOrder(8);
@@ -88,6 +92,7 @@ class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
         $elements[9]->setOrder(9);
         $elements[9]->setRequired(false);
         $elements[9]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
+        $elements[9]->removeDecorator('DtDdWrapper');
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

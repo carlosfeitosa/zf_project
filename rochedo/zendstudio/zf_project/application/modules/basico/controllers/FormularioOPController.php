@@ -13,6 +13,13 @@
 class Basico_OPController_FormularioOPController extends Basico_Abstract_RochedoPersistentOPController
 {
 	/**
+	 * Nome da tabela categoria
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'formulario';
+
+	/**
 	 * Instância do Controlador Formulario
 	 * @var Basico_OPController_FormularioOPController
 	 */
@@ -70,6 +77,8 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
      * @param Integer $idFormulario
      * 
      * @return Boolean
+     * 
+     * @deprecated
      */
     public function existeFormulariosFilhosPorIdFormulario($idFormulario)
     {
@@ -79,13 +88,31 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
     	// retornando se existe(m) formulario(s) filho(s)
     	return (count($objsFormulariosFilho) > 0);
     }
-    
+
+    /**
+     * Retorna se existem formularios filhos, via SQL
+     *
+     * @param Integer $idFormulario
+     * 
+     * @return Boolean
+     */
+    public static function existeFormulariosFilhosPorIdFormularioViaSQL($idFormulario)
+    {
+    	// recuperando array de formularios filhos
+    	$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, array('id'), "id_formulario_pai = {$idFormulario}");
+
+    	// retornando se foi recuperado elementos
+    	return (count($arrayResultado) > 0);
+    }
+
     /**
      * Retorna se existe elementos
      * 
      * @param Integer $idFormulario
      * 
      * @return Boolean
+     * 
+     * @deprecated
      */
    	public function existeElementosPorIdFormulario($idFormulario)
    	{
@@ -94,6 +121,22 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 
         // retornando se existe(m) elemento(s)
         return (count($objsFormularioElemento) > 0);
+   	}
+
+   	/**
+   	 * Retorna se existe elementos, via SQL
+   	 * 
+   	 * @param Integer $idFormulario
+   	 * 
+   	 * @return Boolean
+   	 */
+   	public static function existeElementosPorIdFormularioViaSQL($idFormulario)
+   	{
+   		// recuperando elementos de um formulario
+   		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL('formulario_formulario_elemento', array('id'), "id_formulario = {$idFormulario}");
+
+   		// retornando se foi recuperado elementos
+   		return (count($arrayResultado) > 0);
    	}
 
    	/**
@@ -207,7 +250,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 	 * 
 	 * @return Boolean
 	 */
-	public function existePersistenciaPorIdFormulario($idFormulario)
+	public static function existePersistenciaPorIdFormularioViaSQL($idFormulario)
 	{
 		// montando a query que verifica se o formulario eh persistente
 		$queryVerificaPersistenciaFormulario = "SELECT DISTINCT fe.element_reloadable

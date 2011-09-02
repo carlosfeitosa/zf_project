@@ -23,7 +23,7 @@ class Rochedo_Form_Decorator_MascaraJQueryElementos extends Zend_Form_Decorator_
         $modulo = $this->getOption('modulo');
         $formulario = $this->getOption('formulario');
         
-   		$script = Basico_OPController_UtilOPController::escreveJavaScriptEvento('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorModuloFormulario($modulo, $formulario));
+   		$script = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml('onLoad', Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorNomeModuloNomeFormulario($modulo, $formulario));
 
         $separator = $this->getSeparator();
         switch ($this->getPlacement()) {

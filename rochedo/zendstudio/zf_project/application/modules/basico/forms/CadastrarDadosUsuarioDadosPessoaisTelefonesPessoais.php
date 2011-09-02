@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 11/07/2011 14:01:42
+* em: 31/08/2011 23:08:32
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 11/07/2011 13:48:43
+* @version    1: 31/08/2011 22:53:34
 */
 class Basico_Form_CadastrarDadosUsuarioDadosPessoaisTelefonesPessoais extends Zend_Dojo_Form
 {
@@ -41,6 +41,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosPessoaisTelefonesPessoais extends Ze
         $elements[1]->setOrder(1);
         $elements[1]->setRequired(false);
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));
+        $elements[1]->removeDecorator('DtDdWrapper');
 
         $elements[2] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosPessoaisTelefonesPessoaisButtonDialogDojo1');
         $elements[2]->setOrder(2);

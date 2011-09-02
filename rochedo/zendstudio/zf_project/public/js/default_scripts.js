@@ -230,9 +230,6 @@ function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle, rend
 			// adicionando o elemento container ul no dialog
 			dojo.place(containerDivErrorMessage, dialog.domNode.childNodes[3].childNodes[0].childNodes[0],  "before");
 		}
-		
-		
-		
 	}
 }
 

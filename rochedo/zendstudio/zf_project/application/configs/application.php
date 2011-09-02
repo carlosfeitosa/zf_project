@@ -20,6 +20,7 @@ define("APPLICATION_DATABASE_MAKE_CHECKSUM", true);
 define("APPLICATION_DATABASE_CHECK_CHECKSUM", true);
 define("APPLICATION_DATABASE_RESET_MAKE_SYSTEM_CHECKSUM", true);
 define("APPLICATION_DATABASE_MAKE_SYSTEM_CHECKSUM_MAXTIME_SECONDS", 1200);
+define("APPLICATION_ADMIN_MEMORY_SIZE", "512M");
 define("APPLICATION_CRYPT_SALT", "$6$");
 
 /*
@@ -98,6 +99,7 @@ define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.rochedo");
  */
 define("DEFAULT_JAVASCRIPT_FILE_PATH", "/js/default_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_FILE_PATH", "/js/default_masks_scripts.js");
+define("DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH", "/js/plugins/maskMoney/jquery.maskMoney.js");
 
 /*
  * MENU JAVASCRIPT/CSS FILES
