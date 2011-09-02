@@ -20,7 +20,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 }
 ?>
 <html>
-<head>
+<head>    
 	<?php
 	// enviando ao cliente as informacoes sobre do cabecalho do documento html
 	echo $this->headTitle();
@@ -30,11 +30,17 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 	// setando o dojo
 	echo $this->dojo();
     echo $this->headScript();
+    ?>
+   
+</head>
+<a onClick="mensagem();">Teste</a>
+<body class="rochedo">
 
+    <?php 
     // recuperando os scripts incluidos na view
    	$scriptsContent = $this->scripts;
 
-   	// verificando se os scripts sao um array
+   	// verificando se o scripts eh array
 	if (is_array($scriptsContent)) {
 		// loop para enviar os scripts
 		foreach ($scriptsContent as $key => $value) {
@@ -45,10 +51,8 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 		// enviando scripts
 		echo $scriptsContent;
 	}
-    ?>
-</head>
+?>
 
-<body class="rochedo">
 <div class="loading"></div>
 <div id="header">
 <?php echo $this->header ?>

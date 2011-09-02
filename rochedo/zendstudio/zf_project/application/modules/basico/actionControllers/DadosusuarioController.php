@@ -134,6 +134,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			$this->view->scripts = $scripts;
 		}
 		
+		//$this->view->scripts = array("<script>alert('teste view script');</script>"); 
+		//$this->view->headScript()->prependScript("alert('teste header append script ');");
+		
+		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -364,7 +368,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 	
 		        // exibindo mensagem de sucesso
-		        $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoAlert("Dados do usuario", $this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO'));
+		        $scripts[] = "<script>new messagePop.ui.Error({message: '".$this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO')."'});</script>";
 
 				// setando scripts na view
 				$this->view->scripts = $scripts;
@@ -412,7 +416,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
 			// setando os scripts na view
 			$this->view->scripts = $scripts;
-
+			
     		return false;
     	}
 
@@ -427,8 +431,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 
 	        // setando mensagem
-	        $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoAlert("Dados do usuario", "Dados biometricos salvos com sucesso.");
-
+			$scripts[] = "<script>new messagePop.ui.Error({message: 'Dados biometricos salvos com sucesso.'});</script>";
+	        
 			// setando os scripts na view
 			$this->view->scripts = $scripts;
     	}
@@ -466,7 +470,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$jsonMensagensPasswordStrengthChecker = Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
 
     	// setando atributo do elemento nova senha
-    	$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker})"));
+    	$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker});"));
 
     	// setando o campo que tem que ser identico ao campo senhaConfirmacao
 		$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->getValidator('Identical')->setToken("BasicoCadastrarDadosUsuarioContaNovaSenha");
