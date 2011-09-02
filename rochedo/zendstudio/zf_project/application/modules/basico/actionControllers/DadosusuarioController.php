@@ -663,6 +663,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// carregando o formulario de troca de senha
 		$formTrocaDeSenha = self::getFormTrocaDeSenha();
 
+		// setando action do formulario
+		$formTrocaDeSenha->setAction($this->view->urlEncryptModuleControllerAction('basico', 'dadosusuario', 'trocarsenhaexpirada', null, true));
+
     	// recuperando conteudo do div de forca da senha
     	$valorDivForcaSenha = $formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->getValue();
 
