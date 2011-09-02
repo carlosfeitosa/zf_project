@@ -965,8 +965,6 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		if (($objLogin->id) and ($versaoObjetoLoginUsuario) and ($idPessoaPerfilUsuario)) {
 			// trocando a senha do usuario
 			$objLogin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($novaSenhaNaoEncriptada);
-			// salvando a datahora da ultima expiracao
-			$objLogin->dataHoraUltimaExpiracao = $objLogin->dataHoraExpiracaoSenha;
 			// limpando datahora expiracao
 			$objLogin->dataHoraExpiracaoSenha = null;
 
