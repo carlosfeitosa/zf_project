@@ -1033,7 +1033,7 @@ class Basico_OPController_GeradorFormularioOPController
         	$scriptMascarasFormulario = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml(Basico_OPController_UtilOPController::escapaAspasDuplasPHP(Basico_OPController_UtilOPController::escapaDolarPHP($scriptMascarasFormulario)));
 
         	// adicionando elemento html, com conteudo dinamico, para insercao por ULTIMO no formulario
-        	$formularioElementosObjects[] = Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementoHTMLContentDinamico();
+        	$formularioElementosObjects[] = Basico_OPController_FormularioElementoOPController::getInstance()->retornaElementoJavaScript();
 
         	// adicionando mais um elemento no array de ordem de elementos
         	$arrayOrdemElementos[] = count($arrayOrdemElementos) + 1;
@@ -1271,7 +1271,7 @@ class Basico_OPController_GeradorFormularioOPController
 			}
 
             // verificando se existem mascaras para o formulario, se trata-se da ULTIMA volta e se trata-se do elemento FORM_FIELD_HTML_CONTENT_DINAMICO, para insercao de script de mascaras
-            if (($formularioElementoObject->nome === FORM_ELEMENT_HTML_DINAMIC_CONTENT) and ($scriptMascarasFormulario) and ($contador + 1 > count($arrayOrdemElementos)-1)) {
+            if (($formularioElementoObject->nome === FORM_ELEMENT_HTML_JAVASCRIPT_CONTENT) and ($scriptMascarasFormulario) and ($contador + 1 > count($arrayOrdemElementos)-1)) {
             	// setando valor no elemento html
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETVALUE . "(\"{$scriptMascarasFormulario}\");" . QUEBRA_DE_LINHA;
             }

@@ -5,6 +5,8 @@
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 20/10/2010
 * ultimas modificacoes:
+* 
+* 											05/09/2011 - criacao do componente JavaScript;
 *  
 */
 
@@ -149,6 +151,14 @@ AND c.nome = 'COMPONENTE_ZF';
 INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'ROCHEDO_html' AS nome, 'Componente Rochedo de conteudo HTML.' AS descricao,
 	   '''html''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_ROCHEDO';
+
+INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
+SELECT c.id AS id_categoria, 'ROCHEDO_javascript' AS nome, 'Componente Rochedo de conteudo JavaScript.' AS descricao,
+	   '''JavaScript''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'

@@ -178,6 +178,17 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	}
 
 	/**
+	 * Retorna o elemento javascript
+	 * 
+	 * @return Basico_Model_FormularioElemento|null
+	 */
+	public function retornaElementoJavaScript()
+	{
+		// retornando elemento
+		return self::retornaElementoPorNome(FORM_ELEMENT_HTML_JAVASCRIPT_CONTENT);
+	}
+
+	/**
 	 * Retorna o elemento cujo nome foi passado por parametro
 	 * 
 	 * @param unknown_type $nomeElemento

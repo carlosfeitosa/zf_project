@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 01/09/2011 10:12:28
+* em: 05/09/2011 09:22:56
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 31/08/2011 22:53:34
+* @version    1: 01/09/2011 15:44:40
 */
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -105,7 +105,7 @@
     $elements[8]->setRequired(false);
     $elements[8]->removeDecorator('Label');
 
-    $elements[9] = $this->createElement('html', 'BasicoCadastrarDadosUsuarioDadosBiometricosContentDinamico', array('value' => ""));
+    $elements[9] = $this->createElement('JavaScript', 'BasicoCadastrarDadosUsuarioDadosBiometricosJavaScript', array('value' => ""));
     $elements[9]->setOrder(9);
     $elements[9]->setRequired(false);
     $elements[9]->removeDecorator('DtDdWrapper');

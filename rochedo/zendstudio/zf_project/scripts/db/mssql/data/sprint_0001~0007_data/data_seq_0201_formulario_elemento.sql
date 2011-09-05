@@ -12,6 +12,7 @@
 * 									02/05/2011 - criacao dos elementos para o formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 * 									10/05/2011 - criacao dos elementos "Senha atual" e "Nova senha";
 * 									12/05/2011 - criacao dos elementos "Repita sua nova senha" e html explicativo sobre a troca de senha;
+* 									05/09/2011 - criacao do elemento FORM_FIELD_HTML_JAVASCRIPT para inclusao de javascripts em formularios;
 *
 */
 
@@ -435,6 +436,24 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               'FORM_FIELD_HTML_CONTENT_DINAMICO' AS nome, 'Elemento html para exibicao de conteudo dinamico.' AS descricao,
                               'contentDinamico' AS element_name, NULL AS element_attribs,
                               '''contentDinamico'', array(''value'' => "")' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
+
+INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria, (SELECT cp.id
+                              FROM componente cp
+                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_ROCHEDO'
+                              AND cp.nome = 'ROCHEDO_javascript') AS id_componente,
+                              'FORM_FIELD_HTML_JAVASCRIPT' AS nome, 'Elemento html javasript para inclusao de javascript.' AS descricao,
+                              'javaScript' AS element_name, NULL AS element_attribs,
+                              '''javaScript'', array(''value'' => "")' AS element, 0 AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
