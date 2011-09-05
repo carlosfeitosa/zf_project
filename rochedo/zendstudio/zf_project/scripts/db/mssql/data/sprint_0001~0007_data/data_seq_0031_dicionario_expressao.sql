@@ -30,6 +30,7 @@
 * 								15/08/2011 - criacao de constante para link no menu administrador para regerar checksum de um modelo;
 * 								19/08/2011 - criacao das expressoes para o formulario de troca de senha (titulo e sub-titulo);
 * 								01/09/2011 - criacao das expressoes para o formulario de troca de senha (sub-titulo e mensagem de sucesso ao trocar a senha);
+* 								05/09/2011 - criacao da mensagem de erro ao tentar troca senha pela senha antiga;
 */
 
 /*
@@ -130,6 +131,13 @@ AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_TROCA_DE_SENHA_SUCESSO_MENSAGEM' AS constante_textual, 'A partir deste momento utilize sua nova senha. Não é preciso realizar novo logon.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM' AS constante_textual, 'Não é possível utilizar a senha atual como nova senha.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -4765,6 +4773,13 @@ AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'VIEW_TROCA_DE_SENHA_SUCESSO_MENSAGEM' AS constante_textual, 'From now on use your new password. There''s no need for new logon.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM' AS constante_textual, 'You cannot use the your current password as new password.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

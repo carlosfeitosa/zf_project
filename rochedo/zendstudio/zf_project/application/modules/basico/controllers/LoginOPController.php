@@ -938,7 +938,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 		$objLogin = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idLogin);
 
 		// verificando se o objeto foi recuperado
-		if ($objLogin->id) {
+		if (is_object($objLogin)) {
 			// retornando o resultado da comparacao entre as senhas
 			return ($objLogin->senha === $senhaEncriptada);
 		}
@@ -967,6 +967,8 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 			$objLogin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($novaSenhaNaoEncriptada);
 			// limpando datahora expiracao
 			$objLogin->dataHoraExpiracaoSenha = null;
+			// setando datahora da troca de senha
+			$objLogin->dataHoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 			// retornando o resultado do metodo de salvar o login
 			$this->salvarObjeto($objLogin, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);
@@ -1447,6 +1449,7 @@ class Basico_OPController_LoginOPController extends Basico_Abstract_RochedoPersi
 	    	$objLoginAdmin->login = ADMIN_LOGIN_NAME_DATABASE_RESET;
 	    	$objLoginAdmin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(ADMIN_LOGIN_NAME_DATABASE_RESET);
 	    	$objLoginAdmin->ativo = true;
+	    	$objLoginAdmin->dataHoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 	    	// salvando o objeto login
     		$this->salvarObjeto($objLoginAdmin);

@@ -173,3 +173,6 @@ define("LOG_MSG_CREATE_ADMIN_INICIO", "Criacao do usuario admin iniciado.");
 define("LOG_MSG_CREATE_ADMIN_SUCESSO", "Criacao do usuario admin efetuado com sucesso.");
 define("LOG_MSG_ERRO_EXECUCAO_SCRIPT", "Erro na execução do script.");
 
+// CHESKSUM
+define("LOG_MSG_TENTATIVA_REGERAR_CHECKSUM", "Iniciando tentativa de regerar checksum do modelo ");
+define("LOG_MSG_SUCESSO_REGERAR_CHECKSUM", "Sucesso ao regerar checksum do modelo ");

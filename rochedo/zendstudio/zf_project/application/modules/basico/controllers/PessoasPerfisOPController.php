@@ -406,7 +406,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	}
 
 	/**
-	 * Retorna o objeto pessoaPerfil do perfil USUARIO_VALIDADO da pessoa passada por parametro, via SQL
+	 * Retorna o id pessoaPerfil do perfil USUARIO_VALIDADO da pessoa passada por parametro, via SQL
 	 * 
 	 * @param Int $idPessoa
 	 * 

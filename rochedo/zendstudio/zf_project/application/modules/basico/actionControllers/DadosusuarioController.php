@@ -334,6 +334,37 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		return false;
     	}
 
+    	// verificando se a senha atual eh igual a nova senha
+    	if ($senhaAtual === Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha'])) {
+			// limpando as senhas digitadas
+			$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setValue(null);
+			$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setValue(null);
+			$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->setValue(null);
+
+			// marcando o elemento do formulario com invalido
+			$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->addError($this->view->tradutor('VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM'));
+			// criando array com os elementos que devem ser marcados como erro
+			$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual',
+										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
+										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha');
+			// marcando os elementos com erro
+			$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+
+			// selecionando a aba do subform conta
+			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+
+			// setando foco no primeiro elemento com erro
+			$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+
+			// recolocando o valor do div de forca da senha
+			$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
+
+			// setando scripts na view
+			$this->view->scripts = $scripts;
+
+    		return false;
+    	}
+
     	// tentando salvar as informacoes sobre a conta
     	try {
     		// iniciando transacao
@@ -653,6 +684,20 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosBiometricos, FORM_ELEMENT_HIDDEN, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
     }
 
+     /**
+     * Adiciona um elemento hidden contendo uma url para redirecionamento
+     * 
+     * @param Basico_Form_TrocaDeSenha $formDadosTrocaSenha
+     * @param String $urlRedirect
+     * 
+     * @return Boolean
+     */
+    private function adicionaElementoHiddenUrlRedirect(Basico_Form_TrocaDeSenha &$formDadosTrocaSenha, $urlRedirect)
+    {
+    	// adicionando elemento hidden contendo a url para redirecionamento
+		return Basico_OPController_UtilOPController::adicionaElementoForm($formDadosTrocaSenha, FORM_ELEMENT_HIDDEN, 'urlRedirect', array('value' => $urlRedirect));
+    }
+
     /**
      * Mostra o formulario de troca de senha de usuario e faz a troca, quando os dados forem postados
      * 
@@ -660,6 +705,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     public function trocarsenhaexpiradaAction()
     {
+    	// recuperando urlRedirect
+		$urlRedirect = $this->getRequest()->getParam('urlRedirect');
+
     	// carregando o formulario de troca de senha
 		$formTrocaDeSenha = self::getFormTrocaDeSenha();
 
@@ -679,6 +727,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
 			$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
 
+			// verificando se existe url para redirect
+			if ($urlRedirect) {
+				// adicionando hidden ao formulario contendo a url para redirecionamento
+				self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+			}
+
 			// incluindo o formulario de troca de senha no conteudo que sera renderizado
 			$content[] = $formTrocaDeSenha;
 		} else {
@@ -688,7 +742,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// verificando se o formulario eh valido
 			if ($formTrocaDeSenha->isValid($post)) {
 				// recuperando o id da pessoa logada
-				$idPessoa = Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao();
+				$idPessoa = Basico_OPController_LoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
 
 				// recuperando a senha atual informada no formulario e encriptando-a
 				$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($post['BasicoTrocaDeSenhaSenhaAtual']);
@@ -703,12 +757,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 					// criando array com os elementos que devem ser marcados como erro
 					$arrayElementosErros = array('BasicoTrocaDeSenhaSenhaAtual');
 					// marcando os elementos com erro
-					Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+					$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
 	
 					// limpando os campos de senha
-					$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue();
-					$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue();
-					$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue();
+					$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue(null);
+					$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue(null);
+					$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue(null);
 
 					// recolocando o valor do div de forca da senha
 					$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
@@ -717,6 +771,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 					$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
 					// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
 					$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+
+					// verificando se existe url para redirect
+					if ($urlRedirect) {
+						// adicionando hidden ao formulario contendo a url para redirecionamento
+						self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+					}
 				
 					// incluindo o formulario de troca de senha no conteudo que sera renderizado
 					$content[] = $formTrocaDeSenha;
@@ -724,35 +784,66 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 					// recuperando a nova senha
 		    		$novaSenha = $post['BasicoTrocaDeSenhaNovaSenha'];
 
-		    		// recuperando a versao do objeto login
-		    		$versaoObjetoLogin = $loginOpController->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
+		    		// verificando se a senha nova eh igual a senha antiga
+		    		if ($senhaAtual === Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($novaSenha)) {
+						// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
+						$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+						// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
+						$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+						// incluindo a mensagem da view de troca de senha no conteudo que sera renderizado
+						$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM'));
 
-		    		// recuperando o id da pessoa perfil vinculado ao usuario (perfil de usuario validado)
-		    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+						// marcando o elemento do formulario com invalido
+						$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->addError($this->view->tradutor('VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM'));
+						// criando array com os elementos que devem ser marcados como erro
+						$arrayElementosErros = array('BasicoTrocaDeSenhaNovaSenha');
+						// marcando os elementos com erro
+						$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+
+						// limpando os campos de senha
+						$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue(null);
+						$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue(null);
+						$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue(null);
 	
-		    		// verificando o resultado do metodo de trocar senha
-		    		if (!$loginOpController->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
-		    			// invocando excessao
-		    			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA);
-		    		} else {
-		    			// recuperando possivel redirecionamento
-		    			$urlRedirect = $this->getRequest()->getParam('urlRedirect');
+						// recolocando o valor do div de forca da senha
+						$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
 
-		    			// verificando se existe uma url para redirecionamento
-		    			if ($urlRedirect) {
-							// removendo o baseUrl do redirect
-							$realUrlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $urlRedirect));
-
-							// redirecionando para a url de redirect
-							$this->_redirect($realUrlRedirect);
-		    			} else {
-							// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
-							$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
-							// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
-							$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_SUBTITULO'));
-							// incluindo a mensagem da view de troca de senha no conteudo que sera renderizado
-							$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_MENSAGEM'));
-		    			}
+						// verificando se existe url para redirect
+						if ($urlRedirect) {
+							// adicionando hidden ao formulario contendo a url para redirecionamento
+							self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+						}
+					
+						// incluindo o formulario de troca de senha no conteudo que sera renderizado
+						$content[] = $formTrocaDeSenha;
+		    		} else { // senhas diferentes (nova e antiga)
+			    		// recuperando a versao do objeto login
+			    		$versaoObjetoLogin = $loginOpController->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
+	
+			    		// recuperando o id da pessoa perfil vinculado ao usuario (perfil de usuario validado)
+			    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+		
+			    		// verificando o resultado do metodo de trocar senha
+			    		if (!$loginOpController->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
+			    			// invocando excessao
+			    			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA);
+			    		} else {
+			    			// verificando se existe uma url para redirecionamento
+			    			if ($urlRedirect) {
+								// removendo o baseUrl do redirect
+								$realUrlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $urlRedirect));
+	
+								// redirecionando para a url de redirect
+								$this->_redirect($realUrlRedirect);
+			    			} else {
+								// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
+								$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+								// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
+								$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_SUBTITULO'));
+								// incluindo a mensagem da view de troca de senha no conteudo que sera renderizado
+								$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_MENSAGEM'));
+			    			}
+			    		}
 		    		}
 				}
 				
@@ -761,14 +852,20 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
 
 				// limpando os campos de senha
-				$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue();
-				$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue();
-				$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue();
+				$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue(null);
+				$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue(null);
+				$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue(null);
 
 				// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
 				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
 				// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
 				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+
+				// verificando se existe url para redirect
+				if ($urlRedirect) {
+					// adicionando hidden ao formulario contendo a url para redirecionamento
+					self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+				}
 			
 				// incluindo o formulario de troca de senha no conteudo que sera renderizado
 				$content[] = $formTrocaDeSenha;
@@ -777,6 +874,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
 		// passando o conteudo para a view
 		$this->view->content = $content;
+
+		$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript('BasicoTrocaDeSenhaSenhaAtual');
+
+		// verificando se existem scripts para inclusao na view
+		if (isset($scripts)) {
+			$this->view->scripts = $scripts;
+		}
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();

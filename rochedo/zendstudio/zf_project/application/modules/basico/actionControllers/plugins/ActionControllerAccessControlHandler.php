@@ -156,16 +156,20 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 										
 		            // parando a execucao do plugin
 					return;
-				} else if (Basico_OPController_LoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao())) { // verificando se a senha do usuario esta expirada
+				} else if ((!self::verificaRequestTrocaDeSenhaExpirada($request)) and (Basico_OPController_LoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))) { // verificando se a senha do usuario esta expirada
 					// montando a url atual para caso a troca de senha seja efetuado com sucesso
-					//$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($request->getParams(), null, true);
+					$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($request->getParams(), null, true);
+					// removendo base url da url de redirect
+					$requestUrlRedirect = Basico_OPController_UtilOPController::removeBaseUrl($requestUrlRedirect);
+					// codificando barras
+					$requestUrlRedirect = Basico_OPController_UtilOPController::codificaBarrasUrl($requestUrlRedirect);
 
 					// modificando o request para a acao de troca de senha expirada
 					$request->setModuleName('basico');
 					$request->setControllerName('dadosusuario');
 					$request->setActionName('trocarsenhaexpirada');
 					// setando redirecionamento
-					//$request->setParam('urlRedirect', $requestUrlRedirect);
+					$request->setParam('urlRedirect', $requestUrlRedirect);
 
 				} else if (!$controleAcessoOPController->verificaPermissaoAcessoRequestPerfilPorRequest($request)) { // verificando se o usuario possui perfil para acessar a acao
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
@@ -187,8 +191,8 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 			}
 		}
 
-		// verificando se trata-se da acao de registro de novo usuario
-		if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and ((self::verificaRequestRegistroNovoUsuario($request)) or ((self::verificaRequestProblemasLogin($request)) and (Basico_OPController_LoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))))) {
+		// verificando se trata-se da acao de registro de novo usuario, validacao de usuario nao validado ou metodo administrativo
+		if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and ((self::verificaRequestRegistroNovoUsuario($request)) or (self::verificaRequestRegistroValidacaoUsuario($request)) or (self::verificaRequestAcoesAdministrativas($request)) or ((self::verificaRequestProblemasLogin($request)) and (Basico_OPController_LoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))))) {
 			// modificando o request para o index da aplicacao
 			$request->setModuleName('default');
 			$request->setControllerName('index');
@@ -224,7 +228,22 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador login, acao cadastrarUsuarioNaoValidado ou verificaNovoLogin
 		return ((($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'cadastrarUsuarioNaoValidado')) or 
-			   (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'verificaNovoLogin')));
+			    (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'verificaNovoLogin')) or
+			    (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'erroemailvalidadoexistentenosistema')));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a validacao de usuario
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private static function verificaRequestRegistroValidacaoUsuario(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador email, acoes de registro de usuario
+		return ((($request->getModuleName() === 'basico') and ($request->getControllerName() === 'email') and ($request->getActionName() === 'validarEmail')) or 
+			    (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'email') and ($request->getActionName() === 'sucessosalvarusuariovalidado')));
 	}
 
 	/**
@@ -238,5 +257,31 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
 		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'autenticador') and ($request->getActionName() === 'problemaslogin'));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a troca de senha expirada
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private static function verificaRequestTrocaDeSenhaExpirada(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'dadosusuario') and ($request->getActionName() === 'trocarsenhaexpirada'));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a acoes administrativas
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private static function verificaRequestAcoesAdministrativas(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'administrador') and ($request->getActionName() === 'sucessoresetadb'));
 	}
 }

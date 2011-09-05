@@ -142,6 +142,16 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 
 			// efetuando o logon
 			Basico_OPController_LoginOPController::getInstance()->efetuaLogon($login);
+
+			// verificando se a senha do usuario esta expirada
+			if (Basico_OPController_LoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))
+			{
+				// montando url para redirecionamento
+				$urlTrocaDeSenhaExpirada = $this->view->urlEncryptModuleControllerAction('basico', 'dadosusuario', 'trocarsenhaexpirada', null, true);
+
+				// redirecionando para a pagina de troca de senha
+				$this->_redirect($urlTrocaDeSenhaExpirada);
+			}
 		} else {
 			// incrementando tentativas invalidas
 			Basico_OPController_LoginOPController::getInstance()->checaTentativaInvalidaLogon($login);

@@ -542,6 +542,14 @@ class Basico_OPController_CVCOPController
 	 */
 	public function regerarChecksumModelo($nomeModelo, $id = null)
 	{
+		// recuperando elementos para log
+		$idPessoaPerfilUsuario = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
+		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_REGERAR_CHECKSUM, true);
+
+		// salvando log de tentativa de regerar checksum
+		Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_TENTATIVA_REGERAR_CHECKSUM . $nomeModelo);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfilUsuario, $idCategoriaLog, LOG_MSG_TENTATIVA_REGERAR_CHECKSUM . $nomeModelo);
+
 		// verificando se o modelo existe
 		if (!class_exists($nomeModelo, true)) {
 			// retornando fracasso
@@ -585,6 +593,13 @@ class Basico_OPController_CVCOPController
 				$this->versionar($objeto);
 			}
 		}
+
+		// recuperando id da categoria de log de sucesso ao regerar checksum
+		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_SUCESSO_REGERAR_CHECKSUM, true);
+
+		// salvando log de sucesso ao regerar checksum
+		Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_SUCESSO_REGERAR_CHECKSUM . $nomeModelo);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfilUsuario, $idCategoriaLog, LOG_MSG_SUCESSO_REGERAR_CHECKSUM . $nomeModelo);
 
 		// retornando sucesso
 		return true;
