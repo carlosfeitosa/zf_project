@@ -143,6 +143,13 @@ define("LOG_MSG_EMAIL", "Operação de envio de e-mail.");
 define("LOG_MSG_EMAIL_SUCESSO", "Operação de envio de e-mail SUCESSO.");
 define("LOG_MSG_EMAIL_FALHA", "Operação de envio de e-mail FALHA: ");
 
+/**
+ * RASCUNHO
+ */
+define("LOG_MSG_NOVO_RASCUNHO", "Novo rascunho inserido no banco de dados.");
+define("LOG_MSG_UPDATE_RASCUNHO", "Atualização de rascunho no banco de dados.");
+define("LOG_MSG_DELETE_RASCUNHO", "Exclusão de rascunho no banco de dados.");
+
 /*
  * OUTPUT
  */
