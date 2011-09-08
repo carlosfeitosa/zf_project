@@ -594,12 +594,15 @@ class Basico_OPController_CVCOPController
 			}
 		}
 
+		// recuperando login do usuario que esta realizando a operacao
+		$loginUsuarioLogado = Basico_OPController_LoginOPController::retornaLoginUsuarioSessao();
+
 		// recuperando id da categoria de log de sucesso ao regerar checksum
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_SUCESSO_REGERAR_CHECKSUM, true);
 
 		// salvando log de sucesso ao regerar checksum
 		Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_SUCESSO_REGERAR_CHECKSUM . $nomeModelo);
-		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfilUsuario, $idCategoriaLog, LOG_MSG_SUCESSO_REGERAR_CHECKSUM . $nomeModelo);
+		Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfilUsuario, $idCategoriaLog, LOG_MSG_SUCESSO_REGERAR_CHECKSUM . $nomeModelo . " ({$loginUsuarioLogado})");
 
 		// retornando sucesso
 		return true;
