@@ -86,7 +86,7 @@ $arrayScripts        = array();
 $modules 		     = null;
 $dijits 		     = null;
 $zendFormsMessages   = null;
-$arrayHtmlElements   = null;
+$arrayHtmlElements   = array();
 $existeFormNoRequest = null;
 $idResponseSource	 = null;
 
@@ -172,13 +172,11 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 	}
 }
 
-// se não existir formulario(s) no reques, devolve o(s) formulario(s) enviados do controller
+// se não existir formulario(s) no reques, carrega os módulos dos pormularios
 if (!$existeFormNoRequest) {
 	// carrega os módulos do dojo necessarios aos formulários.
 	$modules = $this->dojo()->getModules();
 	
-} else {
-	$arrayHtmlElements = null;
 }
 
 // carregando os dijits.
