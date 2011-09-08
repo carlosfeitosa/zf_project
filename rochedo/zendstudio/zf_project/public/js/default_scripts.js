@@ -538,12 +538,15 @@ function processaResponseDojoFormRequest(data)
         	}
         });
 		
+		
+		// Parser dojo.
+		dojo.parser.parse();
+		
 		// Percorrendo os scripts
 		scripts = json.view.scripts;
 		console.debug('iniciando scripts...');
 		for (script in scripts)	{
-			// Processando o script	
-			//eval(scripts[script]);
+			// Processando o script
 			processaScript(scripts[script]);
 			console.debug('script processado', scripts[script]);
 		}
@@ -560,11 +563,13 @@ function processaResponseDojoFormRequest(data)
 			switch(item) {
 			
 			case 'title':
+				console.debug('head title nao implementado...');
 				//processa title;
 				// implementar...
 				break;
 				
 			case 'script':
+				console.debug('head script...');
 				//processa script;
 				if ((header[item] instanceof Array) === true) {
 					for (script in header[item]) {
@@ -586,10 +591,6 @@ function processaResponseDojoFormRequest(data)
 			}
 		}
 		console.debug('final header...');
-		
-		
-		// Parser dojo.
-		dojo.parser.parse();
 	}	
 }
 
@@ -612,23 +613,25 @@ function urlAjaxCall(urlCall) {
 							    	case 200:
 							        	message = "Good request.";
 							            break;
+							            
 							        case 404:
 							        	message = "The requested page was not found";
 							        	//document.body.innerHTML = ioargs.xhr.responseText;
 							        	processaResponseDojoFormRequest(ioargs.xhr.responseText);
 							            break;
+							            
 							        case 500:
 							            message = "The server reported an error.";
 							            
 							            // parseando a resposta enviada via json. Quando erro 500, a resposta enviada no formato JSON não é parseada automaticamente.
 							            resposta = JSON.parse(ioargs.xhr.responseText);
 							            processaResponseDojoFormRequest(resposta);
-							            //document.body.innerHTML = ioargs.xhr.responseText;
-							            
 							            break;
+							            
 							        case 407:
 										message = "You need to authenticate with a proxy.";
 							            break;
+							            
 							        default:
 							            message = "Unknown error.";
 							     }

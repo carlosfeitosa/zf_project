@@ -221,7 +221,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
         			 ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
 					
                      // registrando o path do moludo messagePop
-                     ->registerModulePath('messagePop', '../plugins/dojo/messagePop')
+                     ->registerModulePath('messagePop', $applicationHttpBaseUrl.'/js/plugins/dojo/messagePop')
                      ->requireModule('messagePop.ui.Error')
                      ;	
     }

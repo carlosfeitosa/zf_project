@@ -399,7 +399,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 	
 		        // exibindo mensagem de sucesso
-		        $scripts[] = "<script>new messagePop.ui.Error({message: '".$this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO')."'});</script>";
+		        $scripts[] = "<script>new messagePop.ui.Error({message: '".$this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO')."', timeout: 7000});</script>";
 
 				// setando scripts na view
 				$this->view->scripts = $scripts;
@@ -462,7 +462,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 
 	        // setando mensagem
-			$scripts[] = "<script>new messagePop.ui.Error({message: 'Dados biometricos salvos com sucesso.'});</script>";
+			$scripts[] = "<script>new messagePop.ui.Error({message: 'Dados biometricos salvos com sucesso.', timeout: 7000});</script>";
 	        
 			// setando os scripts na view
 			$this->view->scripts = $scripts;
