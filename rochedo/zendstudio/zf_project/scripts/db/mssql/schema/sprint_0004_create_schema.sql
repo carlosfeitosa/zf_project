@@ -155,6 +155,7 @@ create table dbo.formulario (
 	data_auto_reativar datetime null ,
 	motivo_desativacao varchar (1000) collate latin1_general_ci_ai null ,
 	ordem int null ,
+	permite_rascunho bit not null,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
@@ -257,6 +258,9 @@ alter table dbo.formularios_elementos_mascaras with nocheck add constraint pk_fo
 
 alter table dbo.formulario add 
 	constraint df_formulario_validade_inicio default (getdate()) for validade_inicio;
+	
+alter table dbo.formulario add 
+	constraint df_formulario_permite_rascunho default 1 for permite_rascunho;
 
 alter table dbo.formulario_elemento add
 	constraint df_formulario_elemento_element_realoadable default 0 for element_reloadable;

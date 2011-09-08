@@ -191,6 +191,7 @@ create table formulario (
 	data_auto_reativar timestamp with time zone null ,
 	motivo_desativacao character varying (1000) null ,
 	ordem int null ,
+	permite_rascunho boolean not null,
 	rowinfo character varying (2000) not null 
 )
 with (
@@ -319,6 +320,9 @@ alter table formularios_elementos_mascaras add constraint pk_formularios_element
 
 alter table formulario
     alter column validade_inicio set default (current_timestamp);
+   
+alter table formulario
+    alter column permite_rascunho set default true;
 
 alter table formulario_elemento
 	alter column element_reloadable set default false;
