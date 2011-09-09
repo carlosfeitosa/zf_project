@@ -17,6 +17,11 @@
 * 								02/05/2011 - vinculacao do template DOJO para o formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 * 								26/07/2011 - vinculacao do template AJAX para o formulario SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS;
 * 								22/08/2011 - vinculacao do template DOJO e TEMPLATE_PASSWORD_STRENGTH_CHECKER para o formulario FORM_TROCA_DE_SENHA;
+* 								09/09/2011 - vinculacao do template AJAX para o formulario SUBFORM_DADOS_USUARIO_DADOS_BIOMETRICOS;
+* 								09/09/2011 - vinculacao do template AJAX para o formulario FORM_CADASTRAR_USUARIO_VALIDADO;
+* 								09/09/2011 - vinculacao do template AJAX para o formulario FORM_ACEITE_TERMOS_USO;
+* 								09/09/2011 - vinculacao do template AJAX para o formulario FORM_CADASTRAR_USUARIO_NAO_VALIDADO;
+* 								09/09/2011 - vinculacao do template AJAX para o formulario SUBFORM_DADOS_USUARIO_CONTA;
 *  
 */
 
