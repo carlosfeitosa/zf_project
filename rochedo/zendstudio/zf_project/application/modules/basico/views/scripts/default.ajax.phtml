@@ -25,7 +25,7 @@ function retornaZendFormMessages(Zend_Form $form = null){
 	return $messages;
 }
 
-function processaForm($form) {
+function processaForm($form, $dojo) {
 	
 	// declarando variavéis da função
 	$existeFormNoRequest = null;
@@ -73,7 +73,7 @@ function processaForm($form) {
 					$idDijit = $form->getName() . '-' . $elementoSubform->getName();
 					$dijitParametros['value'] = $elementoSubform->getValue();
 																							
-					$this->dojo()->addDijit($idDijit, $dijitParametros);
+					$dojo->addDijit($idDijit, $dijitParametros);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 						// percorre os subforms
 						foreach ($value->getSubForms() as $subForm) {						
 							// processando formulario
-							$dados = processaForm($subForm);
+							$dados = processaForm($subForm, $this->dojo());
 
 							if (isset($dados['existeFormNoRequest'])) {
 								$existeFormNoRequest = $dados['existeFormNoRequest'];
@@ -137,7 +137,7 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 						
 					} else {
 						// processando formulario
-						$dados = processaForm($value);
+						$dados = processaForm($value, $this->dojo());
 
 						if (isset($dados['existeFormNoRequest'])) {
 							$existeFormNoRequest = $dados['existeFormNoRequest'];
