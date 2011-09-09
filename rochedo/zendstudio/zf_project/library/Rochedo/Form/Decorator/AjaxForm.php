@@ -27,6 +27,8 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
         if (!$this->getOption('load')) {
             //return $content;
         }
+        //$form->addAttribs(array('onSubmit'=>"alert('aaaaaaaa')"));
+        
          
         if (!$form->getAction()) {
             $form->setAction('.');
@@ -76,6 +78,10 @@ function(error, ioargs) {
             break;
         case 500:
             message = "The server reported an error.";
+            
+            // parseando a resposta enviada via json. Quando erro 500, a resposta enviada no formato JSON não é parseada automaticamente.
+            resposta = JSON.parse(ioargs.xhr.responseText);
+            processaResponseDojoFormRequest(resposta);
             break;
         case 407:
 			message = "You need to authenticate with a proxy.";
@@ -88,7 +94,7 @@ function(error, ioargs) {
      console.debug('desativando underlay....');
      underlay.hide();
      console.debug('underlay desativado');   
-} 
+}
 HANDLE;
     	$standardArgs = array(
     		
@@ -114,8 +120,8 @@ HANDLE;
         $xhrArgs = Zend_Json::encode($args,false,array('enableJsonExprFinder' => true));
 
         // carrega título e mensagem da validação
-        $titulo = Basico_View_Helper_Tradutor::tradutor('FORM_VALIDATION_TITLE');    
-        $mensagem = Basico_View_Helper_Tradutor::tradutor('FORM_VALIDATION_MESSAGE');
+        $titulo = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_VALIDATION_TITLE');    
+        $mensagem = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_VALIDATION_MESSAGE');
         
         $content = <<<EOQ
 <script type="dojo/method" event="onSubmit">
