@@ -16,6 +16,7 @@
 * 								23/11/2010 - vinculacao do modulo basico ao formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 								02/05/2011 - vinculacao do modulo basico ao formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 * 								28/06/2011 - vinculacao do modulo basico ao formulario FORM_DIALOG_SUGESTAO_LOGIN;
+*								05/08/2011 - correcao da categoria do formulario SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 * 								22/08/2011 - vinculacao do modulo basico ao formulario FORM_TROCA_DE_SENHA;
 *  
 */
@@ -459,7 +460,7 @@ SELECT (SELECT m.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
         'SYSTEM_STARTUP' AS rowinfo;
 
