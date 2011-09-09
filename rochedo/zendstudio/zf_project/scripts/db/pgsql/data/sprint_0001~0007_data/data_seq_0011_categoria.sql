@@ -53,8 +53,6 @@
 * 									   - criacao da categoria LOG_UPDATE_CATEGORIA;
 *                           21/03/2011 - criacao da categoria LOG_DELETE_MENSAGEM;
 *                                      - criacao da categoria LOG_DELETE_CATEGORIA;
-* 							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN;
-*									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT;
 *                                      - criacao da categoria LOG_NOVO_COMPONENTE;
 *                                      - criacao da categoria LOG_UPDATE_COMPONENTE;
 *                                      - criacao da categoria LOG_DELETE_COMPONENTE;
@@ -90,7 +88,7 @@
 *									   - criacao da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br;
 *									   - criacao da categoria SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us;
 *							22/05/2011 - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN
-*									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT	
+*									   - criacao da categoria MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT
 *							28/06/2011 - criacao da categoria FORMULARIO_INPUT_SUGESTAO_LOGIN;
 *							26/07/2011 - criacao da categoria FORMULARIO_OUTPUT_AJAX;
 *							05/08/2011 - criacao da categoria FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS

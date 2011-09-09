@@ -77,7 +77,7 @@
 * 	 								   - criacao da categoria LOG_DELETE_FORMULARIO;
 * 							22/03/2011 - criacao da categoria LOG_DELETE_FORMULARIO_ELEMENTO;
 * 									   - criacao da categoria LOG_DELETE_RACA;
-* 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT:
+* 							22/03/2011 - criacao da categoria LOG_DELETE_OUTPUT;
 *									   - criacao da categoria LOG_DELETE_PESSOA_PERFIL;
 *							08/04/2011 - remocao de todas as categorias de log (serao criadas por demanda);
 *							27/04/2011 - criacao da categoria LOCALIDADE_ESTADO;
