@@ -4,7 +4,7 @@
 * versao: 1.0 (MSSQL 2000)
 * por: ADRIANO DUPRAT LEMOS (adriano.lemos@rochedoproject.com)
 * criacao: 20/10/2010
-* ultimas modificacoes:dados_
+* ultimas modificacoes:
 * 							22/10/2010 - remocao do decorator do formulario SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_DIALOG_TELEFONES_PROFISSIONAIS;
 * 									   - criacao do formulario FORM_FIALOG_TELEFONE;
@@ -18,6 +18,7 @@
 * 							30/12/2010 - criacao do action e attribes do FORM_DIALOG_WEBSITE;
 * 							29/04/2011 - criacao do formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
 * 							28/06/2011 - criacao do formulario FORM_DIALOG_SUGESTAO_LOGIN;
+* 							05/08/2011 - correcao da categoria no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 * 							22/08/2011 - criacao do formulario FORM_TROCA_DE_SENHA;
 *  
 */
@@ -466,7 +467,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
