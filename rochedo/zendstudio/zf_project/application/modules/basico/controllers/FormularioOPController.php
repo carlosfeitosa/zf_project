@@ -315,6 +315,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 																	   LEFT JOIN template_formulario tf ON (t.id = tf.id_template)
 																	   LEFT JOIN formulario f ON (tf.id_formulario = f.id)
 																	   WHERE (t.stylesheet_full_filename IS NOT NULL OR t.javascript_full_filename IS NOT NULL)
+																	   OR (t.id = tf.id_template)
 																	   AND f.form_name = '{$nomeForm}'";
 
 		// executando query e recuperando o resultados em um array
