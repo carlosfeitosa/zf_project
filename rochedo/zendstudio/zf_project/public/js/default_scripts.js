@@ -437,6 +437,7 @@ function strpos (haystack, needle, offset) {
  */
 function processaResponseDojoFormRequest(data)
 {
+	console.debug('iniciando processamento da resposta....: ', data);
 	if(typeof data == "error") {
     	// erro nos dados
 		console.warn("error!");	
@@ -605,9 +606,11 @@ function urlAjaxCall(urlCall) {
 	dojo.xhrGet({ url: urlCall,
 				  handleAs: 'json',
 				  load: function(data,args){
+					  		console.debug('------------------------------ AJAX LINK LOAD....');
 							processaResponseDojoFormRequest(data);
 				  		},
 				  handle: 	function(error, ioargs) {
+					  			console.debug('------------------------------ AJAX LINK HADLE....');
 								var message = "";
 							    switch (ioargs.xhr.status) {
 							    	case 200:

@@ -22,16 +22,10 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
         $form = $this->getElement();
         if (!$form instanceof Zend_Form) {
             return $content;
-        }
-
-        if (!$this->getOption('load')) {
-            //return $content;
-        }
-        //$form->addAttribs(array('onSubmit'=>"alert('aaaaaaaa')"));
-        
+        } 
          
         if (!$form->getAction()) {
-            $form->setAction('.');
+            //$form->setAction('.');
             return $content;
         } 
 
@@ -62,12 +56,14 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
     {
 $load = <<<LOAD
 function(data,args){
+	console.debug('------------------------------ AJAX LOAD....');
 	processaResponseDojoFormRequest(data);
 }
 LOAD;
 
 $handle = <<<HANDLE
 function(error, ioargs) {
+	console.debug('------------------------------ AJAX HANDLE....');
 	var message = "";
     switch (ioargs.xhr.status) {
     	case 200:
@@ -98,9 +94,8 @@ function(error, ioargs) {
 HANDLE;
     	$standardArgs = array(
     		
-    		// content deve receber um objeto javaScript de pares nome/valor. 
+    		// content deve receber um objeto javaScript, de pares, nome/valor. 
     		'content'  => new Zend_Json_Expr("{idRequestSource: '{$this->idRequestSource}',
-    										  key1: 'value1',
     										 }"),
     	
             'form'     => new Zend_Json_Expr('this.domNode'),

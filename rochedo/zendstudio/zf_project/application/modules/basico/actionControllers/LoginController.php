@@ -25,6 +25,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		$plaintextParametros = array('suffix' => 'plaintext', 'headers' => array('Content-Type' => 'application/plaintext'));
 		$impressaoParametros = array('suffix' => 'impressao', 'headers' => array('Content-Type' => 'application/impressao'));
         
+		/*
 		// adicionando os contextos e definindo as permissoes por acao
     	$this->_helper->contextSwitch()
     					->addContext('pdf', $pdfParametros)
@@ -34,6 +35,7 @@ class Basico_LoginController extends Zend_Controller_Action
         	            ->addActionContext('cadastrarusuarionaovalidado', array('pdf', 'plaintext', 'impressao'))
 						->setAutoJsonSerialization(true)
 						->initContext();
+		*/
     }
 
     /**
@@ -68,7 +70,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		// verificando se a requisicao eh foi enviada por post
 		if (!$this->getRequest()->isPost()) {
 			// redirecionando para o proprio formulario
-            return $this->_helper->redirector($formEntrada->getName());
+            return $this->_forward($formEntrada->getName());
         }
         
         // verificando se o formulario passou pela validacao
@@ -219,7 +221,7 @@ class Basico_LoginController extends Zend_Controller_Action
 				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
 				// redirecionando para a view de sucesso na conclusao do cadastro
-				$this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'sucessosalvarusuariovalidado', null, true));
+				$this->_forward('sucessosalvarusuariovalidado');
 				
 	    	}else{
 	    		
@@ -401,10 +403,10 @@ class Basico_LoginController extends Zend_Controller_Action
 			        Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			            
 	            	// recuperando url tokenizada
-	            	$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', null, true);
+	            	//$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', null, true);
 
 	            	// redirecionando o usuario
-	            	$this->_redirect($urlTokenizada);
+	            	$this->_forward('erroemailvalidadoexistentenosistema');
 				}else {
 	            	// iniciando a transacao
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -429,7 +431,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	            		$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailnaovalidadoexistentenosistema', null, true);
 
 		            	// redirecionando o usuario
-		            	$this->_redirect($urlTokenizada);		                
+		            	$this->_forward('erroemailnaovalidadoexistentenosistema');		                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
 	            		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
@@ -518,7 +520,7 @@ class Basico_LoginController extends Zend_Controller_Action
         $urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'SucessoSalvarUsuarioNaoValidado', null, true);
 
         // redirecionando para a view de sucesso na operacao
-	    $this->_redirect($urlTokenizada);
+	    $this->_forward('SucessoSalvarUsuarioNaoValidado');
     }
     
     /**

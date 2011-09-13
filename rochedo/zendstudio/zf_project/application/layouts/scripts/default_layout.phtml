@@ -74,11 +74,17 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
                                                          array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Minha Conta" ?></a> |
-		<a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
+		<a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
+            array('module'=>'basico', 'controller'=>'geradorformulario', 'action'=>'gerarformulario'), 
+            null, 
+            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'geradorformulario', 'action'=>'gerarformulario'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Gerador de Formularios" ?></a> |
-        <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
+        <a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
+            array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
+            null, 
+            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Administração" ?></a> |
