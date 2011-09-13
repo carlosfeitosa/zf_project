@@ -20,6 +20,7 @@
 * 							28/06/2011 - criacao do formulario FORM_DIALOG_SUGESTAO_LOGIN;
 * 							05/08/2011 - correcao da categoria no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 * 							22/08/2011 - criacao do formulario FORM_TROCA_DE_SENHA;
+* 							09/09/2011 - inclusao do form_action e form_attribs no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS 
 *  
 */
 
@@ -488,8 +489,8 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        'SUBFORM_TABTITLE_DADOS_PESSOAIS' AS constante_textual_titulo,
        'CadastrarDadosUsuarioDadosPessoais' AS form_name, 
        'post' AS form_method, 
-       NULL AS form_action, 
-       NULL AS form_attribs, 
+       '/basico/dadosusuario/salvar' AS form_action, 
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t

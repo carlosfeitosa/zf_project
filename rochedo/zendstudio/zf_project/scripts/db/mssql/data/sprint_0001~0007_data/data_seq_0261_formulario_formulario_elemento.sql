@@ -9,6 +9,7 @@
 * 								16/11/2010 - criacao de formularios elementos para o formulario FORM_DIALOG_EMAIL;
 * 								26/04/2011 - criacao do botao de submit do formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 								02/05/2011 - criacao dos elementos do formulario FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO;
+*	 							05/08/2011 - correcao da categoria no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 *  
 */
 
@@ -3058,7 +3059,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3085,7 +3086,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3112,7 +3113,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3139,7 +3140,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3166,7 +3167,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3193,7 +3194,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3220,7 +3221,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3247,7 +3248,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3346,7 +3347,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3445,7 +3446,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3544,7 +3545,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
@@ -3643,7 +3644,7 @@ SELECT (SELECT f.id
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
+        AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
