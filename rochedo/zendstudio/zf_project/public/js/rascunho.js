@@ -1,47 +1,106 @@
-$(':input').each(function() {
-	if($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null){
-		if ($(this).attr("type") == 'radio') {
-			$(this).data('initialValue', $(this).attr("checked"));
+/**
+* Inicializa array com os dados iniciais do form
+*
+*/
+function initRascunho() 
+{
+	$(':input').each(function() {
+		if($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null && strpos($(this).attr("id"), "Csrf") === false){
+			if ($(this).attr("type") == 'radio') {
+				if ($(this).attr("checked") != '')
+					$(this).data('initialValue', $(this).attr("checked"));
+				else
+					$(this).data('initialValue', null);
+			}
+			else {
+				if ($(this).val() != '')
+					$(this).data('initialValue', $(this).val());
+				else
+					$(this).data('initialValue', null);
+			}
 		}
-		else {
-			$(this).data('initialValue', $(this).val());
-		}
-	}
-});
+    });
+}
 
-window.onbeforeunload = function(){
+/**
+ * Checa mudanças nos campos dos formularios
+ * @returns Array
+ */
+function formChangesCheck() 
+{
 	
 	var msg = 'There are unsaved changes:';
 	var changed = false;
 	var arrayChangedElements = new Array();
+	var arrayElement         = new Array();
 	var current = '';
-	
+
 	$(':input').each(function () {
+
+		if ($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null && strpos($(this).attr("id"), "Csrf") === false) {
 		
-		if ($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null){
-			
 			if ($(this).attr("type") == 'radio') {
-				current = $(this).attr("checked");
+				if ($(this).attr("checked") != '')
+					current = $(this).attr("checked");
+				else
+					current = null;
 			}
 			else {
-				current = $(this).val();
+				if ($(this).val() != '')
+					current = $(this).val();
+				else
+					current = null;
 			}
 			
-			if ($(this).data('initialValue') == null && current != "") {
-				if ($(this).data('initialValue') != current){
-					changed = true;
-					alert($(this).data('initialValue') + ' - ' + current);
-					arrayChangedElements[$(this).attr("id")] = $(this).val();
-					msg = msg+'\n - '+$('label[for="'+$(this).attr("id")+'"]').html();
-				}
+			if (($(this).data('initialValue') != current)){
+				changed = true;
+				arrayElement[$(this).attr("id")] = $(this).val();
+				arrayChangedElements[$(this).closest("form").attr("id")] = arrayElement;
+
 			}
+		
 		}
 	});
-	
-	if(changed == true) {
-		console.debug('Array: ', arrayChangedElements);
-	}else{
+
+  	//alert(JSON.stringify());
+	return arrayChangedElements;
+}
+
+/**
+ * Funcao que dispara um requisicao ajax para salvar o rascunho de um formulario
+ * @param arrayElementosValores
+ */
+function salvarRascunho() 
+{
+	console.debug('salvar rascunho chamado.');
+
+	var arrayChangedElements = formChangesCheck();
+
+	if (arrayChangedElements.length > 0) {
+		alert('salvar');
 		return false;
 	}
 
-};
+	/*
+	$.ajax({
+		  type: 'POST',
+		  url: '/rochedo_project/public/basico/rascunho/salvar',
+		  data: arrayElementosValores,
+		  success: success,
+		  dataType: dataType
+		});
+	*/
+}
+
+
+/**
+ * Chamando funcoes do rascunho quando o documento estiver carregado
+ */
+$(document).ready(function() {
+	// Handler for .ready() called.
+
+	initRascunho();
+
+	window.setInterval('salvarRascunho()', 15000);
+
+});
