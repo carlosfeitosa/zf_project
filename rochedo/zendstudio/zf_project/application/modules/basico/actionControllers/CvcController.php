@@ -146,7 +146,7 @@ class Basico_CvcController extends Zend_Controller_Action
     	$formResolucaoConflitoVersao->BasicoResolvedorConflitoVersaoObjetoHtmlButtonCancelarFormResolvedorConflitoVersaoObjeto->setAttrib('onClick', $jsCancelar);
 
     	// carregando array do cabecalho da view
-		$content[] = $this->view->tradutor('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO');
+		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO'));
     	
     	// carregando o formulário
     	$content[] = $formResolucaoConflitoVersao;
