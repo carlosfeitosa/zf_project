@@ -23,7 +23,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 
     	// recuperando o helper view
     	$this->_view = $this->getActionController()->view;
-
+    	
 		// percorre as variáveis e objetos contidas na view
 		foreach ($this->_view->getVars() as $key0 => $value0){
 
@@ -37,6 +37,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 					if (is_object($value) and is_subclass_of($value, 'Zend_Form')) {
 						// carregando formulario
 						$form = $value;
+						
 						// carregando subformularios
 						$arraySubForms = $form->getSubForms();
 						// inicializando array que deve conter o form e seus subforms
@@ -109,8 +110,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 				}
 			}
 		}
-
-
+	    
 		// verificando se o formulario e o sistema permite salvar rascunho
         if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and (APPLICATION_FORM_DRAFT == true))
 			//inserindo arquivo JS do rascunho			        
@@ -212,7 +212,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		    if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
 		    	// recuperando a descricao do perfil padrao do usuario logado na sessao
 				$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
-
+				
 				// setando o titulo da janela do navegador
 				$this->_view->headTitle("[ Perfil padrao: {$descricaoPerfilPadrao} ]");
 		    }
