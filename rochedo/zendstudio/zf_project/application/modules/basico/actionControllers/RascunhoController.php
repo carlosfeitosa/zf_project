@@ -19,4 +19,10 @@ class Basico_RascunhoController extends Zend_Controller_Action
     {
     	
     }
+    
+    public function salvarAction()
+    {
+    	var_dump($this->getRequest()->getPost());
+    	exit;
+    }
 }

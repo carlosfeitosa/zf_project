@@ -32,11 +32,11 @@ function formChangesCheck()
 	var msg = 'There are unsaved changes:';
 	var changed = false;
 	var arrayChangedElements = new Array();
-	var arrayElement         = new Array();
 	var current = '';
+	var i = 0;
 
 	$(':input').each(function () {
-
+		
 		if ($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null && strpos($(this).attr("id"), "Csrf") === false) {
 		
 			if ($(this).attr("type") == 'radio') {
@@ -54,12 +54,12 @@ function formChangesCheck()
 			
 			if (($(this).data('initialValue') != current)){
 				changed = true;
-				arrayElement[$(this).attr("id")] = $(this).val();
-				arrayChangedElements[$(this).closest("form").attr("id")] = arrayElement;
+				arrayChangedElements[i] = $(this).attr("id");
 
 			}
 		
 		}
+		i++;
 	});
 
 	return arrayChangedElements;
@@ -68,24 +68,64 @@ function formChangesCheck()
 
 
 /**
- * Funcao que dispara um requisicao ajax para salvar o rascunho de um formulario
+ * Funcao que dispara uma requisicao ajax para salvar o rascunho de cada formulario que possue campos que foram modificados
  * @param arrayElementosValores
  */
 function salvarRascunho() 
 {
 	console.debug('salvar rascunho chamado.');
 
-	var arrayChangedElements = formChangesCheck();
+	// recuperando os ids dos elementos modificados	
+	var arrayChangedElements = formChangesCheck();	
 
-	/*
-	$.ajax({
-		  type: 'POST',
-		  url: '/rochedo_project/public/basico/rascunho/salvar',
-		  data: arrayElementosValores,
-		  success: success,
-		  dataType: dataType
-		});
-	*/
+	// verificando se existem elementos modificados
+	if (arrayChangedElements.length > 0) {
+		// inicializando variaveis
+		var arrayNomesFormsPais = new Array();	
+		var i = 0;
+	
+		// recuperando os nome dos forms pais 
+		for (element in arrayChangedElements) {
+			
+			var nomeFormPai = $("#" + arrayChangedElements[element]).closest("form").attr("id");
+			
+			if (jQuery.inArray(nomeFormPai, arrayNomesFormsPais) == -1) {
+				arrayNomesFormsPais[i] = nomeFormPai;
+				i++;
+			}
+		}
+
+		//percorrendo os forms para montagem do post
+		for (form in arrayNomesFormsPais) {
+			// inicializando variavel do post
+			var postData = "";
+			// recuperando o nome do form
+			var nomeForm =	arrayNomesFormsPais[form];
+			// inicio montando do post
+			postData += '{"formName": "' + nomeForm + '"';		
+			
+			// percorrendo elementos
+			for (element in arrayChangedElements) {
+				// recuperando o nome do elemento
+				var nomeElemento  = arrayChangedElements[element];
+				// verificando se elemento pertence ao form 
+				if ($("#" + nomeElemento).closest("form").attr("id") == nomeForm) {
+	 				// recuperando o valor do elemento
+					var valorElemento = $("#" + nomeElemento).val();
+					// inserindo elemento no post
+					postData += ', "' + nomeElemento + '": "' + valorElemento + '"'; 
+				}
+			}
+
+			postData += "}";
+
+			$.post('http://localhost/rochedo_project/public/basico/rascunho/salvar', jQuery.parseJSON(postData));
+	
+		}		
+
+	}else{
+		return false;
+	}
 }
 
 /**
