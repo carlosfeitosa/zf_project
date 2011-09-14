@@ -62,8 +62,6 @@ function formChangesCheck()
 		}
 	});
 
-
-  	alert(JSON.stringify(arrayChangedElements[0]));
 	return arrayChangedElements;
 }
 
@@ -78,11 +76,6 @@ function salvarRascunho()
 	console.debug('salvar rascunho chamado.');
 
 	var arrayChangedElements = formChangesCheck();
-
-	if (arrayChangedElements.length > 0) {
-	    alert('salvar');
-	    return false;
-	}
 
 	/*
 	$.ajax({
