@@ -78,6 +78,7 @@ class Basico_Model_FormularioMapper
 				'data_auto_reativar'            => $object->getDataAutoReativar(),
 				'motivo_desativacao'            => $object->getMotivoDesativacao(),
         		'ordem'							=> $object->getOrdem(),
+       			'permite_rascunho'				=> $object->getPermiteRascunho(),
                 'rowinfo'                       => $object->getRowinfo(),         
 
         );
@@ -135,6 +136,7 @@ class Basico_Model_FormularioMapper
 				->setDataAutoReativar($row->data_auto_reativar)
 				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
+				->setPermiteRascunho($row->permite_rascunho)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -171,6 +173,7 @@ class Basico_Model_FormularioMapper
 				->setDataAutoReativar($row->data_auto_reativar)
 				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
+				->setPermiteRascunho($row->permite_rascunho)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -212,6 +215,7 @@ class Basico_Model_FormularioMapper
 				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
 				->setRowinfo($row->rowinfo)
+				->setPermiteRascunho($row->permite_rascunho)				
 				->setMapper($this);
 			$entries[] = $entry;
 		}

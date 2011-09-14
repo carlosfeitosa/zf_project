@@ -794,3 +794,18 @@ function carregaSugestaoLogin(urlMetodo) {
 	// executando funcao para verificar a disponibilidade do login escolhido
 	verificaDisponibilidade('login', 'login', radioValue, dojo.byId('idPessoa').value, dojo.byId('BasicoCadastrarUsuarioValidadoNome').value, dojo.byId('BasicoCadastrarUsuarioValidadoDataNascimento').value, urlMetodo);
 }
+
+/**
+ * Timer para executar funcoes
+ *
+ * @param interval Int
+ * @param callBack String
+ * 
+ */
+function timer(interval,callBack){
+	if(!isNaN(interval)){
+	   window.setInterval(callBack, interval);
+	}else{
+	
+	}
+}

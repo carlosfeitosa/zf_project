@@ -62,9 +62,12 @@ function formChangesCheck()
 		}
 	});
 
-  	//alert(JSON.stringify());
+
+  	alert(JSON.stringify(arrayChangedElements[0]));
 	return arrayChangedElements;
 }
+
+
 
 /**
  * Funcao que dispara um requisicao ajax para salvar o rascunho de um formulario
@@ -77,8 +80,8 @@ function salvarRascunho()
 	var arrayChangedElements = formChangesCheck();
 
 	if (arrayChangedElements.length > 0) {
-		alert('salvar');
-		return false;
+	    alert('salvar');
+	    return false;
 	}
 
 	/*
@@ -92,7 +95,6 @@ function salvarRascunho()
 	*/
 }
 
-
 /**
  * Chamando funcoes do rascunho quando o documento estiver carregado
  */
@@ -100,7 +102,7 @@ $(document).ready(function() {
 	// Handler for .ready() called.
 
 	initRascunho();
-
-	window.setInterval('salvarRascunho()', 15000);
+	timer(10000,'salvarRascunho()');
+	
 
 });

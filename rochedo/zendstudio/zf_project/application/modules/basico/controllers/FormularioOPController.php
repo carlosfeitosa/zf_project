@@ -339,4 +339,28 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 		// retornando nulo
 		return null;
 	}
+	
+	/**
+	 * Retorna se o formulario permite salvar rascunho 
+	 * 
+	 * @param String $formName
+	 * 
+	 * @return boolean 
+	 */
+	public function retornaPermiteRascunhoPorFormName($formName)
+	{
+		// checando o nome do formulario e condicionando query
+		if ((isset($formName)))
+			$condicaoSQL = "form_name = '{$formName}'";
+	  
+		// recuperando objeto formulario
+		$objFormulario = $this->retornaObjetosPorParametros($this->_model, $condicaoSQL, null, 1, 0);
+ 		
+	
+		// verificando se o objeto foi recuperado
+		if ($objFormulario[0]->permiteRascunho)
+			// retornando o objeto
+    	    return $objFormulario[0]->permiteRascunho;
+    	return NULL;
+	}
 }

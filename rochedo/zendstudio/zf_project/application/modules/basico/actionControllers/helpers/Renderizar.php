@@ -39,14 +39,17 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 						$form = $value;
 						// carregando subformularios
 						$arraySubForms = $form->getSubForms();
-
 						// inicializando array que deve conter o form e seus subforms
 						$arrayFormsSubForms = array();
 						// adicionando o formualario ao array
 						$arrayFormsSubForms[] = $form;
 						// adicionando os subformularios ao array
 						$arrayFormsSubForms += $arraySubForms;
+						
 
+						// recuperando o nome do modulo para remocação do nome do form
+						$nomeModuloForm = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
+						
 						// verificando informacoes sobre o formulario
 						foreach ($arrayFormsSubForms as $form) {
 							// recuperando o nome do modulo para remocação do nome do form
@@ -106,6 +109,12 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 				}
 			}
 		}
+
+
+		// verificando se o formulario e o sistema permite salvar rascunho
+        if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and (APPLICATION_FORM_DRAFT == true))
+			//inserindo arquivo JS do rascunho			        
+			$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO));
 
     	// Seta o tipo de contexto da view  
     	$contexto = $controller->getRequest()->getParam('format');

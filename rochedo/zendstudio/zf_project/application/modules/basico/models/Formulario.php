@@ -100,6 +100,10 @@ class Basico_Model_Formulario
 	* @var int
 	*/
 	protected $_ordem;
+  	/**
+     * @var Boolean
+     */
+    protected $_permiteRascunho;
 	/**
 	 * @var String
 	 */
@@ -613,6 +617,30 @@ class Basico_Model_Formulario
 	{
 		return $this->_ordem;
 	}
+	
+	/**
+	* Get permiteRascunho
+	* 
+	* @return null|Boolena
+	*/
+	public function getPermiteRascunho()
+	{
+		return $this->_permiteRascunho;
+	}
+     
+	/**
+	* Set permiteRascunho
+	* 
+	* @param boolean permiteRascunho 
+	* @return Basico_Model_Formulario
+	*/
+	public function setPermiteRascunho($permiteRascunho)
+	{
+		$this->_permiteRascunho = Basico_OPController_UtilOPController::retornaValorTipado($permiteRascunho,TIPO_BOOLEAN,true);
+		return $this;
+	}
+	
+	
     /**
 	* Set rowinfo
 	* 
