@@ -5,7 +5,9 @@
 function initRascunho() 
 {
 	$(':input').each(function() {
-		if($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null && strpos($(this).attr("id"), "Csrf") === false){
+		
+		if($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null){
+
 			if ($(this).attr("type") == 'radio') {
 				if ($(this).attr("checked") != '')
 					$(this).data('initialValue', $(this).attr("checked"));
@@ -37,7 +39,7 @@ function formChangesCheck()
 
 	$(':input').each(function () {
 		
-		if ($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null && strpos($(this).attr("id"), "Csrf") === false) {
+		if ($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null) {
 		
 			if ($(this).attr("type") == 'radio') {
 				if ($(this).attr("checked") != '')
@@ -60,6 +62,7 @@ function formChangesCheck()
 		
 		}
 		i++;
+
 	});
 
 	return arrayChangedElements;
@@ -71,7 +74,7 @@ function formChangesCheck()
  * Funcao que dispara uma requisicao ajax para salvar o rascunho de cada formulario que possue campos que foram modificados
  * @param arrayElementosValores
  */
-function salvarRascunho() 
+function salvarRascunho(urlPost) 
 {
 	console.debug('salvar rascunho chamado.');
 
@@ -89,7 +92,9 @@ function salvarRascunho()
 			
 			var nomeFormPai = $("#" + arrayChangedElements[element]).closest("form").attr("id");
 			
-			if (jQuery.inArray(nomeFormPai, arrayNomesFormsPais) == -1) {
+			var permiteRascunho = ($("#" + nomeFormPai).attr("rascunho") == "true");
+
+			if ((jQuery.inArray(nomeFormPai, arrayNomesFormsPais) == -1) && (permiteRascunho)) {
 				arrayNomesFormsPais[i] = nomeFormPai;
 				i++;
 			}
@@ -119,7 +124,7 @@ function salvarRascunho()
 
 			postData += "}";
 
-			$.post('http://localhost/rochedo_project/public/basico/rascunho/salvar', jQuery.parseJSON(postData));
+			$.post(urlPost, jQuery.parseJSON(postData));
 	
 		}		
 
@@ -135,7 +140,7 @@ $(document).ready(function() {
 	// Handler for .ready() called.
 
 	initRascunho();
-	timer(10000,'salvarRascunho()');
+	timer(10000,"salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar')");
 	
 
 });

@@ -361,6 +361,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 		if ($objFormulario[0]->permiteRascunho)
 			// retornando o objeto
     	    return $objFormulario[0]->permiteRascunho;
-    	return NULL;
+    	    
+    	return false;
 	}
 }

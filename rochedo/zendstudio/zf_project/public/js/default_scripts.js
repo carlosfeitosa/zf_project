@@ -132,6 +132,8 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, f
 
     // carregando o conteudo da url no dialog
     dojo.xhrGet(xhrArgs);
+
+    initRascunho();
 }
 
 function showDialogAlert(txtDialogId, txtTitle, txtContent, botaoFechar)
