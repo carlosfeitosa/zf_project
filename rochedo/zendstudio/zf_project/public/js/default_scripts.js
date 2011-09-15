@@ -457,18 +457,18 @@ function processaResponseDojoFormRequest(data)
 		console.debug('dados recebidos....: ', data);
 		
 		// parser data 
-		json = eval(data);
+		jsonResponse = eval(data);
 		console.debug('dados validados.....');
 		
 		// Percorrendo os módulos para adiciona-los.
-        dojo.forEach(json.view.modules, function(module)
+        dojo.forEach(jsonResponse.view.modules, function(module)
         {
         	dojo.require(module);
             console.debug('... modulo carregado:', module);
         });
 		
 		// Percorrendo os elementos HTMLs
-		for (idElemento in json.view.html)	{
+		for (idElemento in jsonResponse.view.html)	{
 			
 			if (dojo.byId(idElemento)) {
 				
@@ -493,17 +493,17 @@ function processaResponseDojoFormRequest(data)
 				});
 				
 				// Adicionando conteúdo ao elemento.
-				dojo.byId(idElemento).innerHTML = json.view.html[idElemento];
+				dojo.byId(idElemento).innerHTML = jsonResponse.view.html[idElemento];
 			}
 		}  
 	    
-		if (dojo.byId(json.view.idResponseSource)) {
+		if (dojo.byId(jsonResponse.view.idResponseSource)) {
 			
 			// Recebendo as mensagens zendFormsMessages
-			zendFormsMessages = json.view.zendFormsMessages;
+			zendFormsMessages = jsonResponse.view.zendFormsMessages;
 			
 			// Limpando as mensagens de erros no formulário.
-			limparMensagemErroZendDojoForm(json.view.idResponseSource);
+			limparMensagemErroZendDojoForm(jsonResponse.view.idResponseSource);
 			
 			// Verificando se existe mensagems zendFormsMessages.
 			if (zendFormsMessages.length != 0) {
@@ -542,7 +542,7 @@ function processaResponseDojoFormRequest(data)
 		}
 		
 		// Percorrendo os dijits.
-		dojo.forEach(json.view.dijits, function(info, i) {
+		dojo.forEach(jsonResponse.view.dijits, function(info, i) {
 			
         	var n = dojo.byId(info.id);
         	if (null != n) {
@@ -556,7 +556,7 @@ function processaResponseDojoFormRequest(data)
 		dojo.parser.parse();
 		
 		// Percorrendo os scripts
-		scripts = json.view.scripts;
+		scripts = jsonResponse.view.scripts;
 		console.debug('iniciando scripts...');
 		for (script in scripts)	{
 			// Processando o script
@@ -568,7 +568,7 @@ function processaResponseDojoFormRequest(data)
 		
 		
 		// Processando header
-		header = json.view.header;
+		header = jsonResponse.view.header;
 		console.debug('iniciando header...');
 		for (item in header) {
 			// Processando o script	

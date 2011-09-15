@@ -43,8 +43,8 @@ class Basico_EmailController extends Zend_Controller_Action
 
     	// verificando se o objeto existe
     	if ($tokenObj == NULL){
-    		// redirecionando para view de erro token invalido
-    		$this->_forward('errotokeninvalido');  
+    		// encaminhado para a ação de erro token invalido
+    		return $this->_forward('errotokeninvalido');  
     	}
     	
     	// recuperando o e-mail
@@ -67,9 +67,8 @@ class Basico_EmailController extends Zend_Controller_Action
 
     	//verificando se o usuario possui o perfil de UsuarioValidado
     	if (Basico_OPController_PessoasPerfisOPController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
-    		// redirecionando para o action erroemailvalidadoexistentenosistema do loginController
-            $this->_forward('erroemailvalidadoexistentenosistema');
-            exit;
+    		// encaminhado para a ação erroemailvalidadoexistentenosistema do loginController
+            return $this->_forward('erroemailvalidadoexistentenosistema');
     	}
     	
     	// recuperando data hora de expiracao
@@ -81,8 +80,8 @@ class Basico_EmailController extends Zend_Controller_Action
     	if ($email != NULL) {
 			// checando expiracao do token
 	    	if ($dataHoraExpiracaoUnixTimeStamp < $dataHoraAtualUnixTimeStamp){
-	    		// redirecionando para view de token expirado
-	    		$this->_forward('errotokenexpirado');   		
+	    		// encaminhado para a ação de token expirado
+	    		return $this->_forward('errotokenexpirado');   		
 	    	}
 	    	
 	    	// recuperando o objeto pessoa do dono do email

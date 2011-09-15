@@ -69,7 +69,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	{
 		// verificando se a requisicao eh foi enviada por post
 		if (!$this->getRequest()->isPost()) {
-			// redirecionando para o proprio formulario
+			
+			// encaminhado para a ação do proprio formulario
             return $this->_forward($formEntrada->getName());
         }
         
@@ -220,8 +221,8 @@ class Basico_LoginController extends Zend_Controller_Action
 		    	// salvando a transacao
 				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
-				// redirecionando para a view de sucesso na conclusao do cadastro
-				$this->_forward('sucessosalvarusuariovalidado');
+				// encaminhado para a ação de sucesso na conclusao do cadastro
+				return $this->_forward('sucessosalvarusuariovalidado');
 				
 	    	}else{
 	    		
@@ -236,7 +237,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	    		$content[] = $formCadastrarUsuarioValidado;
 	    		
 	    		// enviado conteúdo para a view
-	    		$this->view->content = $content;  
+	    		$this->view->content = $content;
 	    	}
 	    	
 	    	$this->_helper->Renderizar->renderizar();
@@ -376,7 +377,7 @@ class Basico_LoginController extends Zend_Controller_Action
         if($this->validaForm($form) == true){
         	
 	        // recuperando parametros
-            $email             = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
+            $email = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail');
             
             // verifica se o e-mail existe no banco de dados
 	        $emailParaValidacao = Basico_OPController_EmailOPController::getInstance()->verificaEmailExistente($email);
@@ -402,11 +403,8 @@ class Basico_LoginController extends Zend_Controller_Action
 			        // enviando a mensagem
 			        Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			            
-	            	// recuperando url tokenizada
-	            	//$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', null, true);
-
-	            	// redirecionando o usuario
-	            	$this->_forward('erroemailvalidadoexistentenosistema');
+	            	// encaminhado para a ação erroemailvalidadoexistentenosistema
+	            	return $this->_forward('erroemailvalidadoexistentenosistema');
 				}else {
 	            	// iniciando a transacao
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -427,11 +425,9 @@ class Basico_LoginController extends Zend_Controller_Action
 			            // salvando a transacao
 			            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
-						// recuperando url tokenizada
-	            		$urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailnaovalidadoexistentenosistema', null, true);
-
-		            	// redirecionando o usuario
-		            	$this->_forward('erroemailnaovalidadoexistentenosistema');		                
+		            	// encaminhado para a ação erroemailnaovalidadoexistentenosistema
+		            	return $this->_forward('erroemailnaovalidadoexistentenosistema');	
+		            		                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
 	            		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
@@ -441,8 +437,8 @@ class Basico_LoginController extends Zend_Controller_Action
 	           	}
 	        }
 	        else {
-	        	// redirecionando para a acao de salvar usuario nao validado
-	            $this->salvarusuarionaovalidadoAction();
+	        	// encaminhado para a ação salvar usuario nao validado
+	            return $this->_forward('salvarusuarionaovalidado');
 	        }
         }       	
        	
@@ -519,8 +515,8 @@ class Basico_LoginController extends Zend_Controller_Action
         // recuperando url tokenizada
         $urlTokenizada = $this->view->urlEncryptModuleControllerAction('basico', 'login', 'SucessoSalvarUsuarioNaoValidado', null, true);
 
-        // redirecionando para a view de sucesso na operacao
-	    $this->_forward('SucessoSalvarUsuarioNaoValidado');
+        // encaminhado para a ação SucessoSalvarUsuarioNaoValidado
+	    return $this->_forward('SucessoSalvarUsuarioNaoValidado');
     }
     
     /**

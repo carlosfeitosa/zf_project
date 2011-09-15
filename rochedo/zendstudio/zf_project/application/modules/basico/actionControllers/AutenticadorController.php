@@ -148,9 +148,12 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			{
 				// montando url para redirecionamento
 				$urlTrocaDeSenhaExpirada = $this->view->urlEncryptModuleControllerAction('basico', 'dadosusuario', 'trocarsenhaexpirada', null, true);
-
-				// redirecionando para a pagina de troca de senha
-				$this->_redirect($urlTrocaDeSenhaExpirada);
+				
+				// limpando o $_SERVER['REQUEST_METHOD'], para não existir o metodo post no forward. Isto impede que o formulário seja validado quando forward.  
+				unset($_SERVER['REQUEST_METHOD']);
+				
+				//encaminhado para a ação de troca de senha
+				return $this->_forward('trocarsenhaexpirada', 'dadosusuario', 'basico', null);
 			}
 		} else {
 			// incrementando tentativas invalidas
