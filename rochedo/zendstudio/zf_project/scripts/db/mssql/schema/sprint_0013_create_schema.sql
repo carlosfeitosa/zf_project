@@ -10,7 +10,7 @@
 
 create table dbo.rascunho (
 	id int identity (1, 1) not null ,
-	id_rascunho_pai int not null ,
+	id_rascunho_pai int null ,
 	id_categoria int not null ,
 	id_pessoa int not null ,
 	id_perfil int not null ,
@@ -35,7 +35,7 @@ alter table dbo.rascunho add
 	constraint df_rascunho_datahora_criacao default (getdate()) for datahora_criacao;
 	
 alter table dbo.rascunho add
-	constraint df_rascunho_datahora_expiracao default (dateadd(day, 90, getdate())) for datahora_expiracao;
+	constraint df_rascunho_datahora_expiracao default (dateadd(month, 18, getdate())) for datahora_expiracao;
 	
 /* CRIACAO DOS INDICES */
 
@@ -54,6 +54,14 @@ create index ix_rascunho_datahora_expiracao on dbo.rascunho (datahora_expiracao)
 create index ix_rascunho_datahora_ultima_atualizacao on dbo.rascunho (datahora_ultima_atualizacao) on [primary];
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
+
+alter table dbo.rascunho add
+	constraint fk_rascunho_pai foreign key 
+	(
+		id_rascunho_pai
+	) references dbo.rascunho (
+		id
+	);
 
 alter table dbo.rascunho add
 	constraint fk_rascunho_categoria foreign key 

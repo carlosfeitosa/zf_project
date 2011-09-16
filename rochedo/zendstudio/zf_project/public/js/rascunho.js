@@ -94,20 +94,26 @@ function salvarRascunho(urlPost)
 			
 			var permiteRascunho = ($("#" + nomeFormPai).attr("rascunho") == "true");
 
-			if ((jQuery.inArray(nomeFormPai, arrayNomesFormsPais) == -1) && (permiteRascunho)) {
+			if ((jQuery.inArray(nomeFormPai, arrayNomesFormsPais) == -1)) {
 				arrayNomesFormsPais[i] = nomeFormPai;
 				i++;
 			}
 		}
-
+		
+		// recuperando os elementos do tipo hashs 	
+		var hashElements = $(":input[id$='Csrf']");
+	
 		//percorrendo os forms para montagem do post
 		for (form in arrayNomesFormsPais) {
 			// inicializando variavel do post
 			var postData = "";
 			// recuperando o nome do form
-			var nomeForm =	arrayNomesFormsPais[form];
+			var nomeForm =	arrayNomesFormsPais[form];		
+			// recuperando o action do form 
+			var acaoForm = $("#" + nomeForm).attr('action');
+
 			// inicio montando do post
-			postData += '{"formName": "' + nomeForm + '"';		
+			postData += '{"formName": "' + nomeForm + '", "' + 'formAction": "' + acaoForm + '"';		
 			
 			// percorrendo elementos
 			for (element in arrayChangedElements) {
@@ -121,6 +127,17 @@ function salvarRascunho(urlPost)
 					postData += ', "' + nomeElemento + '": "' + valorElemento + '"'; 
 				}
 			}
+
+			// adicionando elemento hash no post do form corrente
+			for (hash in hashElements) {
+				if (hashElements[hash].id != null) {
+					elementHash = $("#" + hashElements[hash].id);
+					if (elementHash.closest("form").attr("id") == nomeForm) {
+						postData += ', "' + hashElements[hash].id + '": "' + elementHash.val() + '"';
+					}
+				}
+			}
+
 
 			postData += "}";
 

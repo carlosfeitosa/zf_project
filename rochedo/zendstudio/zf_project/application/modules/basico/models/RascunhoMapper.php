@@ -68,6 +68,7 @@ class Basico_Model_RascunhoMapper
               	'id_categoria'                => $object->getCategoria(),
               	'id_pessoa'                   => $object->getPessoa(),
               	'id_perfil'                   => $object->getPerfil(),
+        		'rowinfo'					  => $object->getRowinfo(),
 
         );
 
@@ -115,7 +116,8 @@ class Basico_Model_RascunhoMapper
                 ->setRascunhoPai($row->id_rascunho_pai)
                 ->setCategoria($row->id_categoria)
                 ->setPessoa($row->id_pessoa)
-                ->setPerfil($row->id_perfil);
+                ->setPerfil($row->id_perfil)
+                ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -143,6 +145,7 @@ class Basico_Model_RascunhoMapper
                 ->setCategoria($row->id_categoria)
                 ->setPessoa($row->id_pessoa)
                 ->setPerfil($row->id_perfil)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -174,6 +177,7 @@ class Basico_Model_RascunhoMapper
                 ->setCategoria($row->id_categoria)
                 ->setPessoa($row->id_pessoa)
                 ->setPerfil($row->id_perfil)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}

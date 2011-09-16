@@ -10,7 +10,7 @@
 
 create table rascunho (
 	id serial not null ,
-	id_rascunho_pai int not null ,
+	id_rascunho_pai int null ,
 	id_categoria int not null ,
 	id_pessoa int not null ,
 	id_perfil int not null ,
@@ -37,7 +37,7 @@ alter table rascunho
     alter column datahora_criacao set default (current_timestamp);
 
 alter table rascunho
-    alter column datahora_expiracao set default (current_timestamp + interval '90 days');
+    alter column datahora_expiracao set default (current_timestamp + interval '18 months');
 
 	
 /* CRIACAO DOS INDICES */
@@ -66,6 +66,9 @@ create index ix_rascunho_datahora_ultima_atualizacao
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
+alter table rascunho
+  add constraint fk_rascunho_pai foreign key (id_rascunho_pai) references rascunho (id) on update no action on delete no action;
+  
 alter table rascunho
   add constraint fk_rascunho_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
   

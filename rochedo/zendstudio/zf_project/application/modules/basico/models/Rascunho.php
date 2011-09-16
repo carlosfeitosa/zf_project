@@ -50,7 +50,7 @@ class Basico_Model_Rascunho
     /**
      * @var Integer
      */
-    protected $_rascunho;
+    protected $_rascunhoPai;
 
     /**
      * @var Integer
@@ -66,6 +66,10 @@ class Basico_Model_Rascunho
      * @var Integer
      */
     protected $_perfil;
+    /**
+	 * @var String
+	 */
+	protected $_rowinfo;
 
 	/**
 	 * Constructor
@@ -142,7 +146,12 @@ class Basico_Model_Rascunho
 	*/
 	public function setRequest($request)
 	{
-		$this->_request = Basico_OPController_UtilOPController::retornaValorTipado($request,TIPO_STRING,true);
+		if (is_object($request)) {
+			$this->_request = Basico_OPController_UtilOPController::codificar($request);
+		}
+		else
+			$this->_request = $request;
+		
 		return $this;
 	}
 
@@ -419,6 +428,28 @@ class Basico_Model_Rascunho
         $object = $model->find($this->_perfil);
         return $object;
     }
+    
+	/**
+	* Set entry rowinfo
+	* 
+	* @param  string $rowinfo 
+	* @return Basico_Model_Rascunho
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry rowinfo
+	* 
+	* @return null|string
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
 	/**
 	* Set entry id

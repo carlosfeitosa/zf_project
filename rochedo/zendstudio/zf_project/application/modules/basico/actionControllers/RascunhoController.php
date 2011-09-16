@@ -29,27 +29,15 @@ class Basico_RascunhoController extends Zend_Controller_Action
     	// recuperando array do post
     	$arrayPost = $this->getRequest()->getPost();
     	
-    	// recuperando o nome do formulario
-    	$nomeForm = $arrayPost["formName"];
+    	// chamando metodo que salva o rascunho
+    	$sucesso = Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($arrayPost, $this->getRequest());
     	
-    	// recuperando o hash do formulario
-    	foreach ($post as $key => $value) {
-    		if (strpos($key, "Csrf") !== false)
-    			$formHash = $value;
+    	if ($sucesso) {
+    		// escreve mensagem de sucesso para o usuario
+    		
+    		return;
     	}
     	
-    	// verificando se o hash do form veio no post
-    	if (isset($formHash)) {
-    	
-	    	if ($post['idRascunho'] != "") {
-	    		// recupera rascunho existente
-	    		
-	    		// atualizar versao do rascunho na sessao
-	    	}else{
-	    		// cria novo rascunho
-	    		
-	    		// insere id e versao do rascunho na sessao utilizando o hash do form como chave do array de pool
-	    	}
-    	}
+    	return false;
     }
 }

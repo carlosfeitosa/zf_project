@@ -549,4 +549,17 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		
 		return $novaPessoasPerfisNovaPessoa->id;
 	}
+	
+	public function retornaObjetoPessoaPerfilPerfilPadraoUsuarioSessao()
+	{
+		// recuperando o id da pessoa logada
+		$idPessoa = Basico_OPController_LoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+		// recuperando o id do perfil padrao da pessoa logada
+		$idPerfil = Basico_OPController_PessoaOPController::getInstance()->retornaIdPerfilPadraoPorIdPessoa($idPessoa);
+		// recuperando o objeto pessoaPerfil do perfil padrao da pessoa logada
+		$pessoaPerfil = $this->retornaObjetoPessoaPerfilPorIdPessoaIdPerfil($idPessoa, $idPerfil);
+		
+		// retornando objeto pessoasPerfis
+		return $pessoaPerfil;
+	}
 }

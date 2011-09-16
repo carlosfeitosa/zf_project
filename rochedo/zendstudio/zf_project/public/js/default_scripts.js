@@ -50,18 +50,6 @@ function loading()
     underlay.show();
 }
 
-/**
- * Retorna a posicao do needle passado no haystack ou false se nao encontrar
- * @param haystack
- * @param needle
- * @param offset
- * @returns Int||Boolean
- */
-function strpos (haystack, needle, offset) {
-    var i = (haystack+'').indexOf(needle, (offset || 0));
-    return i === -1 ? false : i;
-}
-
 function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements)
 {
 	// procurando se o dialog ja existe na sessao do usuario

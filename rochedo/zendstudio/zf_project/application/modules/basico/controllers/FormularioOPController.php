@@ -364,4 +364,22 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
     	    
     	return false;
 	}
+	
+	/**
+	 * Retorna o id da categoria do formulario pelo formName passado
+	 * 
+	 * @param String $formName
+	 * @return String|false
+	 */
+	public function retornaIdCategoriaFormularioPorFormName($formName)
+	{
+		// recuperando o obj formulario pelo formName passado
+		$objFormulario = $this->retornaObjetosPorParametros($this->_model, "form_name = '{$formName}'");
+		
+		// se retornou um objeto retorna o id da categoria
+		if (count($objFormulario) > 0)
+			return $objFormulario[0]->categoria;
+			
+		return false;
+	}
 }
