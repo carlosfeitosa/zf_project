@@ -663,22 +663,31 @@ class Basico_OPController_GeradorFormularioOPController
         $tempArraySubFormAttrib[] = "'title' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objSubFormulario->constanteTextualTitulo}')";
         $tempArraySubFormAttrib[] = "'legend' => " . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('{$objSubFormulario->constanteTextualTitulo}')";
 
-        // verificando se o sub-formulario possui atributos
-        if ($objSubFormulario->formAttribs) {
-        	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
-        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_TITLE . "')}";
-        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_MESSAGE . "')}";
+        // verificando se o sub-formulario possui atributos ou permite rascunho
+        if (($objSubFormulario->formAttribs) or ($objSubFormulario->permiteRascunho)) {
+        	// verificando se o sub-form possui atributos
+        	if ($objSubFormulario->formAttribs) {
+	        	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
+	        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_TITLE . "')}";
+	        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_MESSAGE . "')}";
+	
+	        	// carregando atributos
+	        	$tempSubFormAttrib = $objSubFormulario->formAttribs;
+	
+	        	// substituicao de tags para caixa de dialogo de validacao
+	        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG, $objSubFormulario->formName, $tempSubFormAttrib);
+	        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG, $tituloDialogValidacao, $tempSubFormAttrib);
+	        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $tempSubFormAttrib);
+	
+	        	// setando atributo
+				$tempArraySubFormAttrib[] = $tempSubFormAttrib;
+        	}
 
-        	// carregando atributos
-        	$tempSubFormAttrib = $objSubFormulario->formAttribs;
-
-        	// substituicao de tags para caixa de dialogo de validacao
-        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG, $objSubFormulario->formName, $tempSubFormAttrib);
-        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG, $tituloDialogValidacao, $tempSubFormAttrib);
-        	$tempSubFormAttrib = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $tempSubFormAttrib);
-
-        	// setando atributo
-			$tempArraySubFormAttrib[] = $tempSubFormAttrib;
+			// verificando se o sub-formulario permite rascunho
+			if ($objSubFormulario->permiteRascunho) {
+        		// adicionando linha de adicao de atributo de permissao de rascunho
+        		$tempArraySubFormAttrib[] = "'rascunho' => true"; 
+			}
         }
 
         // adicionando atributos do subformulario
@@ -749,18 +758,32 @@ class Basico_OPController_GeradorFormularioOPController
         	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ACTION]                            = FORM_GERADOR_FORM_SET_ENCRYPTED_ACTION . "('{$baseUrl}{$objFormulario->formAction}'));" . QUEBRA_DE_LINHA;
         }
 
-        // verificando se o formulario possui atributos
-        if ($objFormulario->formAttribs){
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
-        	
-        	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
-        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_TITLE . "')}";
-        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_MESSAGE . "')}";
-        	
-        	// substituicao de tags para caixa de dialogo de validacao
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]						     = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG, $objFormulario->formName, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG, $tituloDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
-        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
+        // verificando se o formulario possui atributos ou permite rascunho
+        if (($objFormulario->formAttribs) or ($objFormulario->permiteRascunho)){
+        	if ($objFormulario->formAttribs) {
+	        	// montando php para adicao de atributos
+	        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = FORM_GERADOR_FORM_ADDATTRIBS . "(array({$objFormulario->formAttribs}));" . QUEBRA_DE_LINHA;
+	        	
+	        	// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
+	        	$tituloDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_TITLE . "')}";
+	        	$labelDialogValidacao = "{" . FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL . "('" . FORM_VALIDATION_MESSAGE . "')}";
+	        	
+	        	// substituicao de tags para caixa de dialogo de validacao
+	        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]						     = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG, $objFormulario->formName, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
+	        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG, $tituloDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
+	        	$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]                           = str_replace(FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG, $labelDialogValidacao, $arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS]);
+        	}
+
+        	// verificando se o formulario permite rascunho
+        	if ($objFormulario->permiteRascunho) {
+        		if (array_key_exists(FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS, $arrayReturn)) {
+	        		// adicionando linha de adicao de atributo de permissao de rascunho
+	        		$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS] .= '@identacao' . FORM_GERADOR_FORM_ADDATTRIBS . "(array('rascunho' => true));" . QUEBRA_DE_LINHA;
+        		} else {
+	        		// adicionando linha de adicao de atributo de permissao de rascunho
+	        		$arrayReturn[FORM_GERADOR_ARRAY_INIT_FORM_ATTRIBS] = FORM_GERADOR_FORM_ADDATTRIBS . "(array('rascunho' => true));" . QUEBRA_DE_LINHA;
+        		} 
+        	}
         }
 
         // recuperando decorators do formulario
@@ -884,7 +907,7 @@ class Basico_OPController_GeradorFormularioOPController
     	$tempReturn = '';
     	
     	$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacaoInicial);
-    	$tempReturn .= str_replace('@identacao', $identacao, $formConstructorComment);
+    	$tempReturn .= $formConstructorComment;
     	$tempReturn .= $identacao . $formConstructorInherits;
     	$tempReturn .= QUEBRA_DE_LINHA;
     	$tempReturn .= $identacao . $formName;
@@ -896,7 +919,10 @@ class Basico_OPController_GeradorFormularioOPController
     		$tempReturn .= $identacao . $formAttribs;
     	if ($formDecorator)
     		$tempReturn .= $identacao . $formDecorator;
-    	$tempReturn .= QUEBRA_DE_LINHA; 
+    	$tempReturn .= QUEBRA_DE_LINHA;
+
+    	// trocando tags de identacao
+    	$tempReturn = str_replace('@identacao', $identacao, $tempReturn);
 
     	// retornando __construct
 		return $tempReturn;
