@@ -56,10 +56,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // registrando o inicio da execucao do PHP
         Basico_OPController_SessionOPController::registraInicioProcessamentoMicrosegundosPHPSessaoUsuario();
-        
-        // traduzindo mensagens de erro dos validators
-        Basico_OPController_UtilOPController::traduzMensagensErrosZendFormElements();
-   		
+		
+		// verifica se existe a tabela  dicionario_expressao 
+		if (Basico_OPController_DBUtilOPController::tabelaExiste('dicionario_expressao')) {
+        	// traduzindo mensagens de erro dos validators
+        	Basico_OPController_UtilOPController::traduzMensagensErrosZendFormElements();
+		}
     }
 
     /**
