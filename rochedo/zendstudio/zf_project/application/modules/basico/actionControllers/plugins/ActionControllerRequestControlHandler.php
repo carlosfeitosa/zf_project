@@ -60,26 +60,11 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 		// verificando se o request eh do tipo post
 		if ($request->isPost()) {
-			// recuperando o post
-			$ultimoPost = $request->getPost();
-			// recuperando chaves do post
-			$chavesPost = array_keys($ultimoPost);
+			// registrando o ultimo post
+			self::registraPostUltimoRequest($request);
 
-			// verificando se o post possui chave
-			if ((is_array($ultimoPost[$chavesPost[0]]))) {
-				// registrando na sessao o nome da primeira chave encontrada no post
-				Basico_OPController_SessionOPController::registraChavePostUltimoRequest($chavesPost[0]);
-			} else {
-				Basico_OPController_SessionOPController::registraChavePostUltimoRequest(null);
-			}
-			// verificando se o post veio de um subformulario
-			if (is_array($ultimoPost[$chavesPost[0]])) {
-				// registrando na sessao o post do ultimo request, do subformulario
-				Basico_OPController_SessionOPController::registraPostUltimoRequest($ultimoPost[$chavesPost[0]]);
-			} else {
-				// registrando na sessao o post do ultimo request
-				Basico_OPController_SessionOPController::registraPostUltimoRequest($ultimoPost);
-			}
+			// adicionando elementos ocultos no post
+			self::recuperaElementosOcultosPost($request);
 		}
 
 		// inicializando variaveis
@@ -109,6 +94,105 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 			// parando a execucao do plugin
 			return;
 		}
+	}
+
+	/**
+	 * Descarrega os elementos associados as chaves dos formularios (hash) enviados e coloca no post
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return void
+	 */
+	private static function recuperaElementosOcultosPost(Zend_Controller_Request_Abstract $request)
+	{
+		// inicializando variaveis
+		$chaveCsrf = null;
+
+		// recuperando o post
+		$arrayPost = $request->getPost();
+
+		// loop para localizar o elemento CSRF dentro do post do form
+		foreach ($arrayPost as $chavePost => $valorPost) {
+			// verificando se nao trata-se de um subform
+			if (is_array($valorPost)) {
+				// loop para encontrar o elemento CSRF dentro do post do subform
+				foreach ($valorPost as $chavePostSubForm => $valorPostSubForm) {
+					// recuperando a posicao da substring 'Csrf' dentro da chave do elemento
+					$posicaoCsrf = strpos($chavePostSubForm, FORM_TOKEN_ELEMENT_NAME);
+
+					// verificando se a soma entre a posicao encontrada e tamanho da string 'Csrf' eh igual ao tamanho da chave
+					if (($posicaoCsrf + strlen(FORM_TOKEN_ELEMENT_NAME)) === strlen($chavePostSubForm)) {
+						// setando a chave Csrf
+						$chaveCsrf = $chavePostSubForm;
+
+						// saindo dos dois foreach
+						break 2;
+					}
+				}
+			} else {
+				// recuperando a posicao da substring 'Csrf' dentro da chave do elemento
+				$posicaoCsrf = strpos($chavePost, FORM_TOKEN_ELEMENT_NAME);
+
+				// verificando se a soma entre a posicao encontrada e tamanho da string 'Csrf' eh igual ao tamanho da chave
+				if (($posicaoCsrf) and (($posicaoCsrf + strlen(FORM_TOKEN_ELEMENT_NAME)) === strlen($chavePost))) {
+					// setando a chave Csrf
+					$chaveCsrf = $chavePost;
+
+					// saindo do foreach
+					break 1;
+				}
+			}
+		}
+
+		// verificando se foi recuperado a chave Csrf
+		if ($chaveCsrf) {
+			// descarregando elementos relacionados com a chave
+			$arrayElementosOcultosChave = Basico_OPController_SessionOPController::descarregaPoolElementosOcultos($chaveCsrf);
+
+			// verificando se o resultado
+			if ((is_array($arrayElementosOcultosChave)) and (count($arrayElementosOcultosChave))) {
+				// adicionamento elementos ao array post
+				$arrayPost = array_merge($arrayPost, $arrayElementosOcultosChave);
+
+				// setando o post no request
+				$request->setPost($arrayPost);
+			}
+		}
+
+		return;
+	}
+
+	/**
+	 * Registra o post do ultimo request na sessao
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return void
+	 */
+	private static function registraPostUltimoRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// recuperando o post
+		$ultimoPost = $request->getPost();
+		// recuperando chaves do post
+		$chavesPost = array_keys($ultimoPost);
+
+		// verificando se o post possui chave
+		if ((is_array($ultimoPost[$chavesPost[0]]))) {
+			// registrando na sessao o nome da primeira chave encontrada no post
+			Basico_OPController_SessionOPController::registraChavePostUltimoRequest($chavesPost[0]);
+		} else {
+			Basico_OPController_SessionOPController::registraChavePostUltimoRequest(null);
+		}
+		// verificando se o post veio de um subformulario
+		if (is_array($ultimoPost[$chavesPost[0]])) {
+			// registrando na sessao o post do ultimo request, do subformulario
+			Basico_OPController_SessionOPController::registraPostUltimoRequest($ultimoPost[$chavesPost[0]]);
+		} else {
+			// registrando na sessao o post do ultimo request
+			Basico_OPController_SessionOPController::registraPostUltimoRequest($ultimoPost);
+		}
+		
+		return;
 	}
 
 	/**
