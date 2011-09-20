@@ -105,7 +105,7 @@ class Basico_OPController_SessionOPController
 	 */
 	public static function registraSessaoUsuario()
 	{
-		// registrando o namespace "token"
+		// registrando o namespace "user_session"
 	    $session = new Zend_Session_Namespace('user_session');
 
 	    // verificando se a sessao foi inicializada
@@ -118,6 +118,264 @@ class Basico_OPController_SessionOPController
 
 	    // retorna a sessao
 	    return $session;
+	}
+
+	public static function registraSessaoPoolElementosOcultos()
+	{
+		// registrando o namespace "pool_hidden_post"
+	    $session = new Zend_Session_Namespace('pool_hidden_post');
+
+	    // verificando se a sessao foi inicializada
+	    if (!isset($session->initialized)) {
+	    	// regerando o id da sessao
+            Zend_Session::regenerateId();
+            // marca a sessao como inicializada
+            $session->initialized = true;
+	    }
+
+	    // retorna a sessao
+	    return $session;
+	}
+
+	/**
+	 * Registra um post, no pool de elementos ocultos, associado a uma chave passada por parametro
+	 * 
+	 * @param String $chave
+	 * @param Array $arrayPost
+	 * 
+	 * @return void
+	 */
+	public static function registraPostPoolElementosOcultos($chave, array $arrayPostElementosOcultos)
+	{
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePost = $chave;
+
+		// recuperando o pool de posts ocultos
+		$arrayPoolElementosOcultos = $sessaoPoolPosts->$sessionChavePost;
+
+		// loop para adicionar/atualizar elementos
+		foreach ($arrayPostElementosOcultos as $chavePost => $valorPost) {
+			// verificando se o valor do post eh um array
+			if (is_array($valorPost)) {
+				// loop para adicionar/atualizar elementos
+				foreach ($valorPost as $chavePostValorPost => $valorPostValorPost) {
+					// verificando se o valor esta setado
+					if ($valorPostValorPost) {
+						// atualizando  o valor do array de elementos ocultos
+						$arrayPoolElementosOcultos[$chavePostValorPost] = $valorPostValorPost;
+					} else {
+						// verificando se o elemento existe no array de elementos ocultos
+						if (key_exists($chavePostValorPost, $arrayPoolElementosOcultos)) {
+							// removendo o elemento
+							unset($arrayPoolElementosOcultos[$chavePostValorPost]);
+						}
+					}
+				}
+			} else {
+				// verificando se o valor esta setado
+				if ($valorPost) {
+					// atualizando  o valor do array de elementos ocultos
+					$arrayPoolElementosOcultos[$chavePost] = $valorPost;
+				} else {
+					// verificando se o elemento existe no array de elementos ocultos
+					if (key_exists($chavePost, $arrayPoolElementosOcultos)) {
+						// removendo o elemento
+						unset($arrayPoolElementosOcultos[$chavePost]);
+					}
+				}
+			}
+		}
+
+		// setando de volta na sessao os elementos ocultos
+		$sessaoPoolPosts->$sessionChavePost = $arrayPoolElementosOcultos;
+
+		return;
+	}
+
+	/**
+	 * Verifica se a chave de elementos ocultos existe na sessao
+	 * 
+	 * @param String $chave
+	 * 
+	 * @return Boolean
+	 */
+	public static function existePostPoolElementosOcultos($chave)
+	{
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePost = $chave;
+
+		return isset($sessaoPoolPosts->$sessionChavePost);
+	}
+
+	/**
+	 * Remove um elemento do pool de elementos ocultos
+	 * 
+	 * @param String $chave
+	 * @param String $chaveElemento
+	 * 
+	 * @return void
+	 */
+	public static function removeElementoPoolElementosOcultos($chave, $chaveElemento)
+	{
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePost = $chave;
+
+		// recuperando o pool de posts ocultos
+		$arrayPoolElementosOcultos = $sessaoPoolPosts->$sessionChavePost;
+
+		// verificando se o elemento existe no array de pool de elementos ocultos
+		if (key_exists($chaveElemento, $arrayPoolElementosOcultos)) {
+			// removendo elemento do array de pool de elementos ocultos
+			unset($arrayPoolElementosOcultos[$chaveElemento]);
+		}
+
+		// setando de volta na sessao os elementos ocultos
+		$sessaoPoolPosts->$sessionChavePost = $arrayPoolElementosOcultos;
+	}
+
+	/**
+	 * Limpa uma chave no pool de elementos ocultos
+	 * 
+	 * @param String $chave
+	 * 
+	 * @return void
+	 */
+	public static function limpaPoolElementosOcultos($chave)
+	{
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePost = $chave;
+
+		// recuperando o pool de posts ocultos
+		$arrayPoolElementosOcultos = $sessaoPoolPosts->$sessionChavePost;
+
+		// verificando se o elemento existe no array de pool de elementos ocultos
+		if ($arrayPoolElementosOcultos) {
+			// removendo elemento do array de pool de elementos ocultos
+			unset($sessaoPoolPosts->$sessionChavePost);
+		}
+
+		return;
+	}
+
+	/**
+	 * Limpa todas as chaves do pool de elementos ocultos
+	 * 
+	 * @return void
+	 */
+	public static function limpaTodasChavesPoolElementosOcultos()
+	{
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando iterator
+		$sessaoPoolPostsIterator = $sessaoPoolPosts->getIterator();
+
+		// loop para limpar todas as chaves
+		foreach ($sessaoPoolPostsIterator as $chave => $valor) {
+			// verificando se o valor eh um array
+			if (is_array($valor)) {
+				// limpando chave
+				unset($sessaoPoolPosts->$chave);
+			}
+		}
+
+		return;
+	}
+
+	/**
+	 * Retorna os elementos do pool de elementos ocultos associados a uma chave
+	 * 
+	 * @param String $chave
+	 * 
+	 * @return Array|null
+	 */
+	public static function recuperaElementosPoolElementosOcultos($chave)
+	{
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePost = $chave;
+
+		// retornando o pool de posts ocultos
+		return $sessaoPoolPosts->$sessionChavePost;
+	}
+
+	/**
+	 * Retorna todos os elementos do pool de elementos ocultos
+	 * 
+	 * @return Array
+	 */
+	public static function recuperaTodosElementosPoolElementosOcultos()
+	{
+		// inicializando variaveis
+		$arrayRetorno = array();
+
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando iterator
+		$sessaoPoolPostsIterator = $sessaoPoolPosts->getIterator();
+
+		// loop para recuperar todas as chaves
+		foreach ($sessaoPoolPostsIterator as $chave => $valor) {
+			// verificando se o valor eh um array
+			if (is_array($valor)) {
+				// recuperando chave
+				$arrayRetorno[$chave] = $sessaoPoolPosts->$chave;
+			}
+		}
+
+		// retornando array contendo todos os elementos contidos no pool de elementos ocultos
+		return $arrayRetorno;
+	}
+
+	/**
+	 * Retorna todos os elementos do pool de elementos ocultos e depois apaga da sessao
+	 * 
+	 * @param String $chave
+	 * 
+	 * @return Array|null
+	 */
+	public static function descarregaPoolElementosOcultos($chave)
+	{
+		// recuperando elementos
+		$arrayRetorno = self::recuperaElementosPoolElementosOcultos($chave);
+
+		// limpando elementos
+		self::limpaPoolElementosOcultos($chave);
+
+		// retornando array de elementos
+		return $arrayRetorno;
+	}
+
+	/**
+	 * Retorna todos os elementos do pool de elementos ocultos e depois apaga da sessao
+	 * 
+	 * @return Array
+	 */
+	public static function descarregaTodoPoolElementosOcultos()
+	{
+		// recuperando todos os elementos
+		$arrayRetorno = self::recuperaTodosElementosPoolElementosOcultos();
+
+		// limpando os elementos
+		self::limpaTodasChavesPoolElementosOcultos();
+		
+		// retornando array de elementos
+		return $arrayRetorno;
 	}
 
 	/**
@@ -402,7 +660,7 @@ class Basico_OPController_SessionOPController
 
 		// limpando o valor da sessao
 		unset($sessaoUsuario->$sessionInicioProcessesamentoMicrosegundosPHP);
-		
+
 		return;
 	}
 
