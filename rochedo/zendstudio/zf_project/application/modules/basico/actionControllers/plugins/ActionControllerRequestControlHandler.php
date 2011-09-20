@@ -151,9 +151,15 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 			// verificando se o resultado
 			if ((is_array($arrayElementosOcultosChave)) and (count($arrayElementosOcultosChave))) {
-				// adicionamento elementos ao array post
-				$arrayPost = array_merge($arrayPost, $arrayElementosOcultosChave);
-
+				
+				// verificando se os elementos ocultos sao de subform
+				if (isset($chavePostSubForm)) {
+					// adicionando elementos ao array do post do subform
+					$arrayPost[$chavePost] = array_merge($arrayPost[$chavePost], $arrayElementosOcultosChave);
+				}else{
+					// adicionamento elementos ao array post
+					$arrayPost = array_merge($arrayPost, $arrayElementosOcultosChave);
+				}
 				// setando o post no request
 				$request->setPost($arrayPost);
 			}
