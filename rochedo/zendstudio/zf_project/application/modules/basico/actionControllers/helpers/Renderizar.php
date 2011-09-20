@@ -20,6 +20,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     {
     	// Instancia a controlador
     	$controller = $this->_actionController;
+    	
+    	if($disableLayout) {
+    		$controller->getHelper('layout')->disableLayout(true);
+    	}
 
     	// recuperando o helper view
     	$this->_view = $this->getActionController()->view;
@@ -127,11 +131,13 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		$contexto = 'ajax';
     	}else{
     		// NORMAL REQUEST
-
+    		
+    		// adicionando o headerMenu.
+    		$this->_view->renderToPlaceholder('headerMenu.phtml', 'headerMenu');
+    		// adicionando footer.
+    		$this->_view->renderToPlaceholder('footer.phtml', 'footer');
     	}
 
-    	if($disableLayout)
-    		$controller->getHelper('layout')->disableLayout(true);
 
    		if(!$viewScript){
 

@@ -1,0 +1,58 @@
+<?php 
+/**
+ * Footer padrão do sistema.
+ */
+
+// setando variaveis
+$applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
+$applicationHttpImagesHome = $this->baseUrl('/images/');
+
+// verificando ambiente
+if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
+    // verificando se existe usuario logado
+    if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+    	// recuperando a descricao do perfil padrao do usuario logado na sessao
+		$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
+    }
+
+	// recuperando o request do usuario
+	$request = Basico_OPController_UtilOPController::retornaUserRequest();
+}
+?>
+	<br>
+	<div id="footer_poweredby">
+		<a href="http://framework.zend.com/" target="_blank" ><img alt="Powered by ZendFramework" src="<?php echo $applicationHttpImagesHome . 'zf/PoweredBy_ZF_4LightBG.png' ?>" /></a>
+	</div>
+	<?php if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
+				// recuperando a darahora atual, em microsegundos, do inicio do processamento
+				$phpProcessingStartTime = Basico_OPController_SessionOPController::retornaInicioProcessamentoMicrosegundosPHPSessaoUsuario();
+		
+				// recuperando a datahora atual, em microsegundos
+				$phpProcessingEndTime = Basico_OPController_UtilOPController::retornaMicrosegundosDateTimeAtual();
+
+				// calculando tempo de execucao
+				$tempoExecucaoPHP = Basico_OPController_UtilOPController::retornaDiferencaArredondadaMicrotime($phpProcessingEndTime, $phpProcessingStartTime);
+
+				// limpando a datahora, em microsegundos, do inicio do processamento PHP
+				Basico_OPController_SessionOPController::limpaRegistroInicioProcessamentoMicrosegundosPHPSessaoUsuario();
+
+				// verificando se nao existe usuario logado no sistema
+				if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+					// setando o perfil padrao para "usuario nao logado"
+					$descricaoPerfilPadrao = 'Usuario nao logado';
+				}
+
+				// instanciando e carregando array de informacoes de debug
+           		$arrayInfo = array();
+           		$arrayInfo['IP usuário sessão / usuário autenticado'] = Basico_OPController_UtilOPController::retornaUserIp() . " / " . Basico_OPController_SessionOPController::retornaIpUsuarioAutenticadoSessaoUsuario();
+           		$arrayInfo['Perfil padrão'] 		   		   		  =  $descricaoPerfilPadrao;
+           		$arrayInfo['MVC atual']                		   		  = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
+           		$arrayInfo['MVC anterior']             		   		  = Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests();
+           		$arrayInfo['Chave post']                              = Basico_OPController_SessionOPController::retornaChavePostUltimoRequest();
+           		$arrayInfo['Tempo de execução do PHP'] 		   		  = $tempoExecucaoPHP;
+
+           		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
+           		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDojoDialogMensagemViaArrayInfoDebugInfo($arrayInfo);
+	?>
+	<div align="left"><font size="-2"><a onClick="<?=$chamadaJavaScriptDebugInfo ?>" href='#'>[ debug info ]</a></font></div>
+	<?php } ?> 

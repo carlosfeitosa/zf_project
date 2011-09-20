@@ -2,22 +2,6 @@
 /**
  * Layout padrão do sistema.
  */
-
-// setando variaveis
-$applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
-$applicationHttpImagesHome = $this->baseUrl('/images/');
-
-// verificando ambiente
-if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
-    // verificando se existe usuario logado
-    if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
-    	// recuperando a descricao do perfil padrao do usuario logado na sessao
-		$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
-    }
-
-	// recuperando o request do usuario
-	$request = Basico_OPController_UtilOPController::retornaUserRequest();
-}
 ?>
 <html>
 <head>    
@@ -30,13 +14,7 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 	// setando o dojo
 	echo $this->dojo();
     echo $this->headScript();
-    ?>
-   
-</head>
-
-<body class="rochedo">
-
-    <?php 
+    
     // recuperando os scripts incluidos na view
    	$scriptsContent = $this->scripts;
 
@@ -51,50 +29,21 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 		// enviando scripts
 		echo $scriptsContent;
 	}
-?>
+    ?>
+</head>
+
+<body class="rochedo">
 
 <div class="loading"></div>
 <div id="header">
-<?php echo $this->header ?>
-    <div id="header-logo">
-           <?php echo "<a onClick='loading()' href=" . "'" . $applicationHttpHome . "'" . ">" . APPLICATION_NAME_AND_VERSION . "</a>" ?>
-    </div>
-    <div id="header-navigation">
-		<?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
-        <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
-                                                         array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
-                                                         null, 
-                                                         true)) ?>"><?php echo $this->tradutor('MENU_ITEM_REGISTRE_SE') ?></a> |
-		<?php }?>
-		<?php if (Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
-		<a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
-            array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
-            null, 
-            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
-                                                         array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
-                                                         null, 
-                                                         true)) ?>"><?php echo "Minha Conta" ?></a> |
-		<a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
-            array('module'=>'basico', 'controller'=>'geradorformulario', 'action'=>'gerarformulario'), 
-            null, 
-            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
-                                                         array('module'=>'basico', 'controller'=>'geradorformulario', 'action'=>'gerarformulario'), 
-                                                         null, 
-                                                         true)) ?>"><?php echo "Gerador de Formularios" ?></a> |
-        <a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
-            array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
-            null, 
-            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
-                                                         array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
-                                                         null, 
-                                                         true)) ?>"><?php echo "Administração" ?></a> |
-        <?php }?>
-        <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) echo "Login"; else echo "Logout";?></a>
-    </div>
-    
-<?php
+<?php 
+	// recupera o conteudo do placeholder headerMenu
+	$headerMenu = $this->placeholder('headerMenu')->getValue();
+	// verifica se algo foi escrito
+	if(!empty($headerMenu)) {
+		echo $this->placeholder('headerMenu');
+	}
 
-//retornaConteudoElementoHtml($this->content);
 
 	$scriptsContent = $this->header;
 	
@@ -106,14 +55,10 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 		echo $scriptsContent;
 	}
 
-
-
 ?>   
 </div>
 <div id="content">
 <?php
-//$this->EscreveViewVar('content');
-
 function retornaConteudoElementoHtml($variavelView) {
 	if (isset($variavelView)) {
 		
@@ -127,9 +72,7 @@ function retornaConteudoElementoHtml($variavelView) {
 	} 	
 }
 
-	
 //retornaConteudoElementoHtml($this->content);
-
 	$scriptsContent = $this->content;
 	
 	if (is_array($scriptsContent)) {
@@ -139,66 +82,19 @@ function retornaConteudoElementoHtml($variavelView) {
 	} else {
 		echo $scriptsContent;
 	}
-
-
-
 ?>
 </div>
 
 <br>
-
 <div id="footer">
-<?php
-	retornaConteudoElementoHtml($this->footer);	
-
-/*
-	$footer = $this->footer;
-	
-	if (is_array($footer)) {
-		foreach ($footer as $key => $value) {
-			echo $value;		
-		}
+<?php 
+	// recupera o conteudo do placeholder footer
+	$footer = $this->placeholder('footer')->getValue();
+	// verifica se algo foi escrito
+	if(!empty($footer)) {
+		echo $this->placeholder('footer');
 	}
-
-*/
-?>
-	<br>
-	<div id="footer_poweredby">
-		<a href="http://framework.zend.com/" target="_blank" ><img alt="Powered by ZendFramework" src="<?php echo $applicationHttpImagesHome . 'zf/PoweredBy_ZF_4LightBG.png' ?>" /></a>
-	</div>
-	<?php if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
-				// recuperando a darahora atual, em microsegundos, do inicio do processamento
-				$phpProcessingStartTime = Basico_OPController_SessionOPController::retornaInicioProcessamentoMicrosegundosPHPSessaoUsuario();
-		
-				// recuperando a datahora atual, em microsegundos
-				$phpProcessingEndTime = Basico_OPController_UtilOPController::retornaMicrosegundosDateTimeAtual();
-
-				// calculando tempo de execucao
-				$tempoExecucaoPHP = Basico_OPController_UtilOPController::retornaDiferencaArredondadaMicrotime($phpProcessingEndTime, $phpProcessingStartTime);
-
-				// limpando a datahora, em microsegundos, do inicio do processamento PHP
-				Basico_OPController_SessionOPController::limpaRegistroInicioProcessamentoMicrosegundosPHPSessaoUsuario();
-
-				// verificando se nao existe usuario logado no sistema
-				if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
-					// setando o perfil padrao para "usuario nao logado"
-					$descricaoPerfilPadrao = 'Usuario nao logado';
-				}
-
-				// instanciando e carregando array de informacoes de debug
-           		$arrayInfo = array();
-           		$arrayInfo['IP usuário sessão / usuário autenticado'] = Basico_OPController_UtilOPController::retornaUserIp() . " / " . Basico_OPController_SessionOPController::retornaIpUsuarioAutenticadoSessaoUsuario();
-           		$arrayInfo['Perfil padrão'] 		   		   		  =  $descricaoPerfilPadrao;
-           		$arrayInfo['MVC atual']                		   		  = "{$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()}";
-           		$arrayInfo['MVC anterior']             		   		  = Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests();
-           		$arrayInfo['Chave post']                              = Basico_OPController_SessionOPController::retornaChavePostUltimoRequest();
-           		$arrayInfo['Tempo de execução do PHP'] 		   		  = $tempoExecucaoPHP;
-
-           		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
-           		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDojoDialogMensagemViaArrayInfoDebugInfo($arrayInfo);
-	?>
-	<div align="left"><font size="-2"><a onClick="<?=$chamadaJavaScriptDebugInfo ?>" href='#'>[ debug info ]</a></font></div>
-	<?php } ?> 
+?>   
 </div>
 
 </body>

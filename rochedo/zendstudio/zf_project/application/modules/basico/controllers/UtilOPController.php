@@ -2484,7 +2484,8 @@ class Basico_OPController_UtilOPController
 	 * @param Zend_Form $form
 	 * @return Array
 	 */
-	public static function retornaZendFormMessages(Zend_Form $form = null){
+	public static function retornaZendFormMessages(Zend_Form $form = null)
+	{
 		$messages = array();
 		if ($form and $form->getMessages()) {
 			$nomeFormulario = $form->getName();
@@ -2513,7 +2514,8 @@ class Basico_OPController_UtilOPController
 	 * 
 	 * @return Array
 	 */
-	public static function processaZendDojoForm($form, $dojo) {
+	public static function processaZendDojoForm($form, $dojo)
+	{
 		
 		// declarando variavéis da função
 		$existeFormNoRequest = false;
@@ -2578,6 +2580,5 @@ class Basico_OPController_UtilOPController
 		}
 		
 		return $return;
-	}	
-	
+	}
 }

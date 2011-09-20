@@ -1,0 +1,43 @@
+<?php 
+/**
+ * HeaderMenu padrão do sistema.
+ */
+
+// setando variaveis
+$applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index'), null, true));
+?>
+    <div id="header-logo">
+           <?php echo "<a onClick='loading()' href=" . "'" . $applicationHttpHome . "'" . ">" . APPLICATION_NAME_AND_VERSION . "</a>" ?>
+    </div>
+	<div id="header-navigation">
+		<?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
+        <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
+                                                         array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
+                                                         null, 
+                                                         true)) ?>"><?php echo $this->tradutor('MENU_ITEM_REGISTRE_SE') ?></a> |
+		<?php }?>
+		<?php if (Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
+		<a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
+            array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
+            null, 
+            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
+                                                         array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
+                                                         null, 
+                                                         true)) ?>"><?php echo "Minha Conta" ?></a> |
+		<a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
+            array('module'=>'basico', 'controller'=>'geradorformulario', 'action'=>'gerarformulario'), 
+            null, 
+            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
+                                                         array('module'=>'basico', 'controller'=>'geradorformulario', 'action'=>'gerarformulario'), 
+                                                         null, 
+                                                         true)) ?>"><?php echo "Gerador de Formularios" ?></a> |
+        <a onClick="loading(); urlAjaxCall('<?php echo $this->urlEncrypt($this->url(
+            array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
+            null, 
+            true)) ?>'); return false;" href="<?php echo $this->urlEncrypt($this->url(
+                                                         array('module'=>'basico', 'controller'=>'administrador', 'action'=>'index'), 
+                                                         null, 
+                                                         true)) ?>"><?php echo "Administração" ?></a> |
+        <?php }?>
+        <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) echo "Login"; else echo "Logout";?></a>
+    </div>
