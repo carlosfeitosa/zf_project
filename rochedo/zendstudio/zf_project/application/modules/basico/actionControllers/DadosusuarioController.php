@@ -134,6 +134,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			$this->view->scripts = $scripts;
 		}
 		
+		/*
+		//$footer[]= $this->view->renderToPlaceholder('footer.phtml', 'footer');
+		$this->view->placeholder('footer')->set('xxxxxxxxxxxx');
+		$footer[]= Zend_View_Helper_Placeholder_Registry::getRegistry();
+		Basico_OPController_UtilOPController::print_debug(Zend_View_Helper_Placeholder_Registry::getRegistry());
+		exit;
+		$this->view->footer = $footer;
+		*/
 		//$this->view->scripts = array("<script>alert('teste view script');</script>"); 
 		//$this->view->headScript()->prependScript("alert('teste header append script ');");
 		
@@ -542,7 +550,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando o subformulario "CadastrarDadosUsuarioConta"
     	$subformCadastrarDadosUsuarioConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
-		return Basico_OPController_UtilOPController::adicionaElementoForm($subformCadastrarDadosUsuarioConta, FORM_ELEMENT_HIDDEN, 'versaoObjetoPessoa', array('value' => $versaoObjetoPessoa));
+		return Basico_OPController_UtilOPController::adicionaElementoForm($subformCadastrarDadosUsuarioConta, FORM_ELEMENT_OCULTO, 'versaoObjetoPessoa', array('value' => $versaoObjetoPessoa));
     }
 
     /**
@@ -558,7 +566,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando o subformulario "CadastrarDadosUsuarioConta"
     	$subformCadastrarDadosUsuarioConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
-		return Basico_OPController_UtilOPController::adicionaElementoForm($subformCadastrarDadosUsuarioConta, FORM_ELEMENT_HIDDEN, 'versaoObjetoLogin', array('value' => $versaoObjetoLogin));
+		return Basico_OPController_UtilOPController::adicionaElementoForm($subformCadastrarDadosUsuarioConta, FORM_ELEMENT_OCULTO, 'versaoObjetoLogin', array('value' => $versaoObjetoLogin));
     }
 
 	/**
@@ -681,7 +689,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando o subformulario "CadastrarDadosUsuarioDadosBiometricos"
     	$subFormCadastrarDadosUsuarioDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
-		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosBiometricos, FORM_ELEMENT_HIDDEN, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
+		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosBiometricos, FORM_ELEMENT_OCULTO, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
     }
 
      /**
@@ -695,7 +703,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     private function adicionaElementoHiddenUrlRedirect(Basico_Form_TrocaDeSenha &$formDadosTrocaSenha, $urlRedirect)
     {
     	// adicionando elemento hidden contendo a url para redirecionamento
-		return Basico_OPController_UtilOPController::adicionaElementoForm($formDadosTrocaSenha, FORM_ELEMENT_HIDDEN, 'urlRedirect', array('value' => $urlRedirect));
+		return Basico_OPController_UtilOPController::adicionaElementoForm($formDadosTrocaSenha, FORM_ELEMENT_OCULTO, 'urlRedirect', array('value' => $urlRedirect));
     }
 
     /**

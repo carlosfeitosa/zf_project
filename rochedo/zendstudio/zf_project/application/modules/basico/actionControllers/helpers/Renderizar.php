@@ -55,6 +55,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 						// recuperando o nome do modulo para remocação do nome do form
 						$nomeModuloForm = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
 						
+						Basico_OPController_SessionOPController::limpaTodasChavesPoolElementosOcultos();
 						// verificando informacoes sobre o formulario
 						foreach ($arrayFormsSubForms as $form) {
 							// recuperando o nome do modulo para remocação do nome do form
@@ -108,6 +109,35 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 										$form->addDecorators(array('AjaxForm', 'DijitForm'));
 									}
 								}
+							}
+							
+							$elementosOcultos = array();
+							// percorre todos os elementos do form
+							foreach ($form->getElements() as $elementoForm){
+																
+								// verifica se o elemento e do tipo hash
+								if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {									
+									
+									// renderizando elemento hash para ser gerado o value.
+									$elementoForm->render();
+									// recuperando chave do arrayPool
+									$chaveArrayPool = $elementoForm->getValue();
+								}
+								
+								if ($elementoForm->getType() == 'Rochedo_Form_Element_Oculto') {
+									
+									// renderizando elemento hash para ser gerado o value.
+									$elementoForm->render();
+									// montando array de elementos ocultos.
+									$elementosOcultos[$elementoForm->getId()] = $elementoForm->getValue();
+									// removendo elemento do formulário
+									$form->removeElement($elementoForm->getName());
+								}
+							}
+							// verificando se existe elementos no array de elementos ocultos.
+							if (count($elementosOcultos)> 0) {
+								// registrando elementos na sessão
+								Basico_OPController_SessionOPController::registraPostPoolElementosOcultos($chaveArrayPool, $elementosOcultos);
 							}
 						}
 					}					
