@@ -18,8 +18,8 @@ create table dbo.rascunho (
 	post varchar (MAX) collate latin1_general_ci_ai not null ,
 	form_action varchar (300) collate latin1_general_ci_ai not null ,
 	form_name varchar (300) collate latin1_general_ci_ai not null ,
-	datahora_expiracao datetime not null ,
-	datahora_criacao datetime not null ,
+	datahora_expiracao datetime null ,
+	datahora_criacao datetime null ,
 	datahora_ultima_atualizacao datetime not null ,
     rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];

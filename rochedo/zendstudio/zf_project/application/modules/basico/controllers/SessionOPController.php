@@ -136,6 +136,81 @@ class Basico_OPController_SessionOPController
 	    // retorna a sessao
 	    return $session;
 	}
+	
+	/**
+	 * Registra um namespace na sessao para os rascunhos
+	 * 
+	 */
+	public static function registraSessaoRascunho()
+	{
+		// registrando o namespace "rascunho"
+	    $session = new Zend_Session_Namespace('rascunho');
+
+	    // verificando se a sessao foi inicializada
+	    if (!isset($session->initialized)) {
+	    	// regerando o id da sessao
+            Zend_Session::regenerateId();
+            // marca a sessao como inicializada
+            $session->initialized = true;
+	    }
+
+	    // retorna a sessao
+	    return $session;
+	}
+	
+	/**
+	 * Registra o id de um rascunho pai na sessao
+	 * 
+	 * @param Int $idRascunhoPai
+	 */
+	public function registraRascunhoPaiSessao($idRascunhoPai)
+	{
+		$sessaoRascunho = self::registraSessaoRascunho();
+		
+		// verificando se o array de pais ja existe na sessao
+		if (!is_array($sessaoRascunho->arrayRascunhoPai) || !isset($sessaoRascunho->arrayRascunhoPai)) {
+			// se nao existe cria
+			$sessaoRascunho->arrayRascunhosPai = array($idRascunhoPai);
+			return true;
+			
+		}else {
+			// se existe, recupera e manipula
+			$arraySessaoRascunho = $session->arrayRascunhoPai;
+
+			// verificando se o pai ja esta registrado
+			if (array_search($idRascunhoPai, $arraySessaoRascunho) === false) {
+				$arraySessaoRascunho[] = $idRascunhoPai;
+				$sessaoRascunho->arrayRascunhosPai = $arraySessaoRascunho;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Remove o id de um rascunho pai na sessao
+	 * 
+	 * @param Int $idRascunhoPai
+	 */
+	public function removeRascunhoPaiSessao($idRascunhoPai)
+	{
+		$sessaoRascunho = self::registraSessaoRascunho();
+		
+		// se existe, recupera e manipula
+		$arraySessaoRascunho = $session->arrayRascunhoPai;
+
+		// verificando se o pai ja esta registrado
+		$chaveRascunhoPai = array_search($idRascunhoPai, $arraySessaoRascunho);
+		
+		if ($chaveRascunhoPai !== false) {
+			unset($arraySessaoRascunho[$chaveRascunhoPai]);
+			$sessaoRascunho->arrayRascunhosPai = $arraySessaoRascunho;
+			return true;
+		}
+	
+		return false;
+	}
 
 	/**
 	 * Registra um post, no pool de elementos ocultos, associado a uma chave passada por parametro
@@ -241,6 +316,34 @@ class Basico_OPController_SessionOPController
 		// setando de volta na sessao os elementos ocultos
 		$sessaoPoolPosts->$sessionChavePost = $arrayPoolElementosOcultos;
 	}
+	
+	/**
+	 * Registra um elemento no pool de elementos ocultos
+	 * 
+	 * @param String $chavePool
+	 * @param String $chaveElemento
+	 * @param String $valorElemento
+	 * 
+	 * @return void
+	 */
+	public static function registraElementoPoolElementosOcultos($chavePool, $chaveElemento, $valorElemento)
+	{
+		// recuperando a sessao do pool de posts ocultos
+		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionChavePost = $chavePool;
+
+		// recuperando o pool de posts ocultos
+		$arrayPoolElementosOcultos = $sessaoPoolPosts->$sessionChavePost;
+		
+		// setando elemento no array de elementos ocultos
+		$arrayPoolElementosOcultos[$chaveElemento] = $valorElemento;
+
+		// setando de volta na sessao os elementos ocultos
+		$sessaoPoolPosts->$sessionChavePost = $arrayPoolElementosOcultos;
+	}
+	
 
 	/**
 	 * Limpa uma chave no pool de elementos ocultos

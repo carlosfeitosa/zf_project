@@ -30,12 +30,10 @@ class Basico_RascunhoController extends Zend_Controller_Action
     	$arrayPost = $this->getRequest()->getPost();
     	
     	// chamando metodo que salva o rascunho
-    	$sucesso = Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($arrayPost, $this->getRequest());
-    	
-    	if ($sucesso) {
+    	if (Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($arrayPost, $this->getRequest())) {
     		// escreve mensagem de sucesso para o usuario
     		
-    		return;
+    		return true;
     	}
     	
     	return false;

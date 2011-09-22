@@ -18,8 +18,8 @@ create table rascunho (
 	post text not null ,
 	form_action character varying (300) not null ,
 	form_name character varying (300) not null ,
-	datahora_expiracao timestamp with time zone not null ,
-	datahora_criacao timestamp with time zone not null ,
+	datahora_expiracao timestamp with time zone null ,
+	datahora_criacao timestamp with time zone null ,
 	datahora_ultima_atualizacao timestamp with time zone not null ,
     rowinfo character varying (2000) not null
 ) with (
