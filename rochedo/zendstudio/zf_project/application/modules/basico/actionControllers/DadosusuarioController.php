@@ -470,7 +470,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 
 	        // setando mensagem
-			$scripts[] = "<script>new messagePop.ui.Error({message: 'Dados biometricos salvos com sucesso.', timeout: 7000});</script>";
+			$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("VIEW_MESSAGEM_SUCESSO_SALVAR_DADOS_BIOMETRICOS"));
 	        
 			// setando os scripts na view
 			$this->view->scripts = $scripts;

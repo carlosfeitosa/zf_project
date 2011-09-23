@@ -1882,6 +1882,17 @@ class Basico_OPController_UtilOPController
     	// retornando javascript
     	return self::retornaJavaScriptEntreTagsScriptHtmlDojo(self::retornaJavaScriptDojoDialogMensagem('alertDialog', $titulo, $mensagem));
     }
+    
+    /**
+     * Retorna a chamada javascript que exibe um messagePop
+     * 
+     * @param String $mensagem
+     * @param Int $timeOut
+     */
+    public static function retornaJavaScriptDojoPopMessage($mensagem, $timeOut = 5000)
+    {
+    	return "<script>new messagePop.ui.Error({message: '{$mensagem}', timeout: {$timeOut}});</script>";
+    }
 
     /**
      * Retorna uma chamada javascript atraves do metodo OnLoad do DOJO
