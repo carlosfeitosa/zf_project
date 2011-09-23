@@ -289,63 +289,6 @@ class Basico_OPController_SessionOPController
 	}
 
 	/**
-	 * Remove um elemento do pool de elementos ocultos
-	 * 
-	 * @param String $chave
-	 * @param String $chaveElemento
-	 * 
-	 * @return void
-	 */
-	public static function removeElementoPoolElementosOcultos($chave, $chaveElemento)
-	{
-		// recuperando a sessao do pool de posts ocultos
-		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
-
-		// recuperando o nome do atributo que sera utilizado para guardar a informacao
-		$sessionChavePost = $chave;
-
-		// recuperando o pool de posts ocultos
-		$arrayPoolElementosOcultos = $sessaoPoolPosts->$sessionChavePost;
-
-		// verificando se o elemento existe no array de pool de elementos ocultos
-		if (key_exists($chaveElemento, $arrayPoolElementosOcultos)) {
-			// removendo elemento do array de pool de elementos ocultos
-			unset($arrayPoolElementosOcultos[$chaveElemento]);
-		}
-
-		// setando de volta na sessao os elementos ocultos
-		$sessaoPoolPosts->$sessionChavePost = $arrayPoolElementosOcultos;
-	}
-	
-	/**
-	 * Registra um elemento no pool de elementos ocultos
-	 * 
-	 * @param String $chavePool
-	 * @param String $chaveElemento
-	 * @param String $valorElemento
-	 * 
-	 * @return void
-	 */
-	public static function registraElementoPoolElementosOcultos($chavePool, $chaveElemento, $valorElemento)
-	{
-		// recuperando a sessao do pool de posts ocultos
-		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
-
-		// recuperando o nome do atributo que sera utilizado para guardar a informacao
-		$sessionChavePost = $chavePool;
-
-		// recuperando o pool de posts ocultos
-		$arrayPoolElementosOcultos = $sessaoPoolPosts->$sessionChavePost;
-		
-		// setando elemento no array de elementos ocultos
-		$arrayPoolElementosOcultos[$chaveElemento] = $valorElemento;
-
-		// setando de volta na sessao os elementos ocultos
-		$sessaoPoolPosts->$sessionChavePost = $arrayPoolElementosOcultos;
-	}
-	
-
-	/**
 	 * Limpa uma chave no pool de elementos ocultos
 	 * 
 	 * @param String $chave

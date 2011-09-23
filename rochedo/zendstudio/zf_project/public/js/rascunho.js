@@ -141,7 +141,11 @@ function salvarRascunho(urlPost)
 
 			postData += "}";
 
-			$.post(urlPost, jQuery.parseJSON(postData));
+			$.post(urlPost, jQuery.parseJSON(postData),
+			  function (data) {
+				processaScript(data);
+			  }	
+			);
 	
 		}		
 

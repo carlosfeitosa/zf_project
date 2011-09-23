@@ -32,7 +32,7 @@ class Basico_RascunhoController extends Zend_Controller_Action
     	// chamando metodo que salva o rascunho
     	if (Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($arrayPost, $this->getRequest())) {
     		// escreve mensagem de sucesso para o usuario
-    		
+    		echo Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("initRascunho()");
     		return true;
     	}
     	

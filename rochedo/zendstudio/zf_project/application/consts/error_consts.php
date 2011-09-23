@@ -210,3 +210,6 @@ define("MSG_ERRO_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA_EXISTE", "Não foi possíve
 
 //DADOS PESSOAIS
 define("MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS", "Objeto dados pessoais não encontrado.");
+
+// RASCUNHO
+define("MSG_ERRO_SALVAR_RASCUNHO", "Erro ao salvar rascunho: ");

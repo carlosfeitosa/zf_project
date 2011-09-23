@@ -185,9 +185,6 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	public function salvarRascunho($arrayPost, $request)
 	{
 		try {
-			// iniciando a transacao
-			Basico_OPController_PersistenceOPController::bdControlaTransacao();
-			
 			// recuperando o formName
 			$nomeForm = $arrayPost["formName"];
 			
@@ -297,7 +294,7 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	    	   	Basico_OPController_SessionOPController::getInstance()->registraRascunhoPaiSessao($objRascunho->id);
 	    	   	
 	    	   	// inserindo id do rascunho no pool de elementos ocultos
-	    	   	Basico_OPController_SessionOPController::getInstance()->registraElementoPoolElementosOcultos($formHash, 'idRascunho', $objRascunho->id);
+	    	   	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('idRascunho' => $objRascunho->id));
 	    	 	
 	    	    $sucesso = true;
 	    	}
@@ -306,15 +303,11 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	    	$versaoAtualRascunho = Basico_OPController_RascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho);
 	    	
 	    	// inserindo a versao atual do rascunho no pool de elementos ocultos
-	    	Basico_OPController_SessionOPController::getInstance()->registraElementoPoolElementosOcultos($formHash, 'versaoObjetoRascunho', $versaoAtualRascunho);
-	    	
-	    	// finalizando a transacao
-	    	Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
+	    	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('versaoObjetoRascunho' => $versaoAtualRascunho));
 	    	
 	    	return $sucesso;
 		}catch (Exception $e) {
-			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
-			throw new Exception($e->getMessage());
+			throw new Exception(MSG_ERRO_SALVAR_RASCUNHO . $e->getMessage());
 		}
     	
 	}
