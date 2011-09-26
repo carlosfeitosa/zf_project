@@ -126,7 +126,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 								
 								if ($elementoForm->getType() == 'Rochedo_Form_Element_Oculto') {
 									
-									// renderizando elemento hash para ser gerado o value.
+									// renderizando elemento do tipo oculto, para ser gerado o value.
 									$elementoForm->render();
 									// montando array de elementos ocultos.
 									$elementosOcultos[$elementoForm->getId()] = $elementoForm->getValue();
@@ -134,8 +134,8 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 									$form->removeElement($elementoForm->getName());
 								}
 							}
-							// verificando se existe elementos no array de elementos ocultos.
-							if (count($elementosOcultos)> 0) {
+							// verificando se existe a $chaveArrayPool e  elementos no array de elementos ocultos.
+							if (isset($chaveArrayPool) and count($elementosOcultos)> 0) {
 								// registrando elementos na sessão
 								Basico_OPController_SessionOPController::registraPostPoolElementosOcultos($chaveArrayPool, $elementosOcultos);
 							}
@@ -163,9 +163,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		// NORMAL REQUEST
     		
     		// adicionando o headerMenu.
-    		$this->_view->renderToPlaceholder('headerMenu.phtml', 'headerMenu');
+    		$this->_view->placeholder('headerMenu')->set($this->_view->render('headerMenu.phtml'));
     		// adicionando footer.
-    		$this->_view->renderToPlaceholder('footer.phtml', 'footer');
+    		$this->_view->placeholder('footer')->set($this->_view->render('footer.phtml'));
     	}
 
 
