@@ -89,8 +89,8 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 
 		// validando o formulario
 		if (!$form->isValid($this->getRequest()->getPost())) {
-			// renderiza o formulario para revalidacao
-			$this->_helper->Renderizar->renderizar();
+			// redirecionando o usuario para revalidacao
+			return $this->_forward('autenticarusuario', 'autenticador', 'basico');
 		}
 
 		// recupernado nome do elemento do formulario que contem o login
