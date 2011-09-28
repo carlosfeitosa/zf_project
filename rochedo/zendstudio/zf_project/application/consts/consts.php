@@ -81,6 +81,7 @@ define("PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO", "dataHoraUltimaAtualizacao");
 define("SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP", "inicioProcessamentoMicrosegundosPHP");
 define("SESSION_POOL_REQUESTS_ARRAY", "poolRequestsArray");
 define("SESSION_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");
+define("SESSION_FILA_RASCUNHO_PAI", "filaRascunhoPai");
 define("SESSION_POST_ULTIMO_REQUEST", "postUltimoRequest");
 define("SESSION_AUTHENTICATED_USER_IP", "authenticatedUserIp");
 define("CVC_PARAM_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");

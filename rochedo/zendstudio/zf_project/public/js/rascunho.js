@@ -3,18 +3,22 @@
 *
 */
 function initRascunho() 
-{
+{	
+	// loop para carregar o array inicial de elemenstos 
 	$(':input').each(function() {
 		
+		// verificando tipos e elementos 
 		if($(this).attr("type") != 'submit' && $(this).attr("type") != 'button' && $(this).attr("id") != null){
-
+			
+			// verificano se e do tip radio
 			if ($(this).attr("type") == 'radio') {
+				// carregando valor inicial do elemento no array				
 				if ($(this).attr("checked") != '')
 					$(this).data('initialValue', $(this).attr("checked"));
 				else
 					$(this).data('initialValue', null);
-			}
-			else {
+			}else {
+				// carregando valor inicial do elemento no array
 				if ($(this).val() != '')
 					$(this).data('initialValue', $(this).val());
 				else
@@ -73,33 +77,43 @@ function formChangesCheck()
 /**
  * Funcao que dispara uma requisicao ajax para salvar o rascunho de cada formulario que possue campos que foram modificados
  * @param arrayElementosValores
+ * @param forceSave
  */
-function salvarRascunho(urlPost) 
+function salvarRascunho(urlPost,forceSave,nomeFormPai) 
 {
-	console.debug('salvar rascunho chamado.');
+	console.debug('salvar rascunho chamado.'+forceSave+'-'+nomeFormPai);
 
 	// recuperando os ids dos elementos modificados	
 	var arrayChangedElements = formChangesCheck();	
-
+	
 	// verificando se existem elementos modificados
-	if (arrayChangedElements.length > 0) {
+	if (arrayChangedElements.length > 0 || forceSave == true) {
 		// inicializando variaveis
 		var arrayNomesFormsPais = new Array();	
 		var i = 0;
-	
+		
+		// verificando se formPai existe
+		if(nomeFormPai){
+		   // carregando form pai no caso de dialog
+		   arrayNomesFormsPais[0] = nomeFormPai;	
+		}
+
 		// recuperando os nome dos forms pais 
 		for (element in arrayChangedElements) {
-			
+			// carregando nome do form dos elementos
 			var nomeFormPai = $("#" + arrayChangedElements[element]).closest("form").attr("id");
-			
+			// verificando se o form permite rascunho
 			var permiteRascunho = ($("#" + nomeFormPai).attr("rascunho") == "true");
-
+			// verificano se o forma ja existe no array
 			if ((jQuery.inArray(nomeFormPai, arrayNomesFormsPais) == -1)) {
+				// carregando o nome do  forme no array
 				arrayNomesFormsPais[i] = nomeFormPai;
 				i++;
 			}
 		}
-		
+
+		  
+
 		// recuperando os elementos do tipo hashs 	
 		var hashElements = $(":input[id$='Csrf']");
 	
@@ -161,7 +175,7 @@ $(document).ready(function() {
 	// Handler for .ready() called.
 
 	initRascunho();
-	timer(10000,"salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar')");
+	timer(10000,"salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar',false,null)");
 	
 
 });

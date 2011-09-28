@@ -166,21 +166,22 @@ class Basico_OPController_SessionOPController
 	public function registraRascunhoPaiSessao($idRascunhoPai)
 	{
 		$sessaoRascunho = self::registraSessaoRascunho();
+		$filaSessaoRascunhoPai = SESSION_FILA_RASCUNHO_PAI;
 		
 		// verificando se o array de pais ja existe na sessao
-		if (!is_array($sessaoRascunho->arrayRascunhoPai) || !isset($sessaoRascunho->arrayRascunhoPai)) {
+		if (!is_array($sessaoRascunho->$filaSessaoRascunhoPai) || !isset($sessaoRascunho->$filaSessaoRascunhoPai)) {
 			// se nao existe cria
-			$sessaoRascunho->arrayRascunhosPai = array($idRascunhoPai);
+			$sessaoRascunho->$filaSessaoRascunhoPai = array($idRascunhoPai);
 			return true;
 			
 		}else {
 			// se existe, recupera e manipula
-			$arraySessaoRascunho = $session->arrayRascunhoPai;
+			$arraySessaoRascunho = $sessaoRascunho->$filaSessaoRascunhoPai;
 
 			// verificando se o pai ja esta registrado
 			if (array_search($idRascunhoPai, $arraySessaoRascunho) === false) {
 				$arraySessaoRascunho[] = $idRascunhoPai;
-				$sessaoRascunho->arrayRascunhosPai = $arraySessaoRascunho;
+				$sessaoRascunho->$filaSessaoRascunhoPai = $arraySessaoRascunho;
 				return true;
 			}
 		}
@@ -196,22 +197,46 @@ class Basico_OPController_SessionOPController
 	public function removeRascunhoPaiSessao($idRascunhoPai)
 	{
 		$sessaoRascunho = self::registraSessaoRascunho();
+		$filaSessaoRascunhoPai	 = SESSION_FILA_RASCUNHO_PAI;
 		
 		// se existe, recupera e manipula
-		$arraySessaoRascunho = $session->arrayRascunhoPai;
+		$arraySessaoRascunho = $sessaoRascunho->$filaSessaoRascunhoPai;
 
 		// verificando se o pai ja esta registrado
 		$chaveRascunhoPai = array_search($idRascunhoPai, $arraySessaoRascunho);
 		
 		if ($chaveRascunhoPai !== false) {
 			unset($arraySessaoRascunho[$chaveRascunhoPai]);
-			$sessaoRascunho->arrayRascunhosPai = $arraySessaoRascunho;
+			$sessaoRascunho->$filaSessaoRascunhoPai = $arraySessaoRascunho;
 			return true;
 		}
 	
 		return false;
 	}
 
+	
+	/**
+	 * retorna o id do ultimo rascunho pai da fila na sessao
+	 * 
+	 * @return int
+	 */
+	public function retornaUltimoRascunhoPaiSessao()
+	{
+		$sessaoRascunho = self::registraSessaoRascunho();
+		$filaSessaoRascunhoPai = SESSION_FILA_RASCUNHO_PAI;
+		
+		// se existe, recupera e manipula
+		$arraySessaoRascunho = $sessaoRascunho->$filaSessaoRascunhoPai;
+
+		if (is_array($arraySessaoRascunho)) {
+			// recuperando o ultimo elemento da fila de rascunhos pai
+			$ultimoRascunhoPai = end($arraySessaoRascunho);
+			// retornando o ultimo rascunho pai da fila
+			return $ultimoRascunhoPai;
+		}
+	
+		return false;
+	}
 	/**
 	 * Registra um post, no pool de elementos ocultos, associado a uma chave passada por parametro
 	 * 
