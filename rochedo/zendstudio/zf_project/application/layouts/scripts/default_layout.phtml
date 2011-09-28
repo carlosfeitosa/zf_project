@@ -59,21 +59,31 @@
 </div>
 <div id="content">
 <?php
-function retornaConteudoElementoHtml($variavelView) {
-	if (isset($variavelView)) {
-		
-		if (is_array($variavelView)) {
-			foreach ($variavelView as $key => $value) {
-				echo $value;		
-			}
-		} else {
-			echo $variavelView;
-		}
-	} 	
-}
+	// recupera o conteudo do placeholder headerMenu
+	$content = $this->placeholder('content')->getValue();
+	// verifica se algo foi escrito
+	if(!empty($content)) {
+		echo $this->placeholder('content');
+	}
 
-//retornaConteudoElementoHtml($this->content);
+
 	$scriptsContent = $this->content;
+	
+	if (is_array($scriptsContent)) {
+		foreach ($scriptsContent as $key => $value) {
+			//echo $value;		
+		}
+	} else {
+		//echo $scriptsContent;
+	}
+?>
+</div>
+
+<br>
+<div id="footer">
+<?php 
+
+	$scriptsContent = $this->footer;
 	
 	if (is_array($scriptsContent)) {
 		foreach ($scriptsContent as $key => $value) {
@@ -82,12 +92,7 @@ function retornaConteudoElementoHtml($variavelView) {
 	} else {
 		echo $scriptsContent;
 	}
-?>
-</div>
-
-<br>
-<div id="footer">
-<?php 
+	echo "<br> - ";
 	// recupera o conteudo do placeholder footer
 	$footer = $this->placeholder('footer')->getValue();
 	// verifica se algo foi escrito

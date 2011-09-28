@@ -243,7 +243,7 @@ class Basico_OPController_SessionOPController
 						$arrayPoolElementosOcultos[$chavePostValorPost] = $valorPostValorPost;
 					} else {
 						// verificando se o elemento existe no array de elementos ocultos
-						if (key_exists($chavePostValorPost, $arrayPoolElementosOcultos)) {
+						if ((is_array($arrayPoolElementosOcultos)) and (key_exists($chavePostValorPost, $arrayPoolElementosOcultos))) {
 							// removendo o elemento
 							unset($arrayPoolElementosOcultos[$chavePostValorPost]);
 						}
@@ -256,7 +256,7 @@ class Basico_OPController_SessionOPController
 					$arrayPoolElementosOcultos[$chavePost] = $valorPost;
 				} else {
 					// verificando se o elemento existe no array de elementos ocultos
-					if (key_exists($chavePost, $arrayPoolElementosOcultos)) {
+					if ((is_array($arrayPoolElementosOcultos)) and (key_exists($chavePost, $arrayPoolElementosOcultos))) {
 						// removendo o elemento
 						unset($arrayPoolElementosOcultos[$chavePost]);
 					}

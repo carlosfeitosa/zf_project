@@ -597,8 +597,109 @@ function processaResponseDojoFormRequest(data)
 	}	
 }
 
-function submitAjaxForm(){
+
+/**
+ * Função responsável por solicitar requisições dojo ajax, via GET ou POST
+ * 
+ * @param String method - Método de requisição. POST ou GET
+ * @param Array arrayParametros - 
+ * 			Parametros: 
+ * 				urlCall - URL a ser chamada.
+ * 				form - formulário a ser enviado. Exe.: this.domNode 
+ * 				content : Variáveis que podem ser enviadas na requisição. Formato: {chave, valor}
+ * 				handleAs : - Especifica como os dados da resposta do servidor são tratados. Tipos: 'json' , 'text', 'xml'
+ * 				loadFunction - Função a ser processada após a resposta, caso sucesso. Exe.: "alert('load function');"
+ * 				loadFunctionData - Função a ser processada após a resposta, caso sucesso, tendo como parametro, a resposta do servidor. Exe.: 'nomeFuncaoProcessadaAposResposta' sem()
+ * 				handleFunction - Função a ser processada sempre após a resposta do servidor. Exe.: "alert('handle function');"
+ * 				handleFunctionData - Função a ser processada sempre após a resposta do servidor. Exe.: 'nomeFuncaoProcessadaAposResposta' sem()
+ * 
+ */
+function dojoRequestAjaxAbstract(method, arrayParametros){
+
+	urlCall			   = arrayParametros['url'];
+	formContent		   = arrayParametros['form'];
+	contentValues	   = arrayParametros['content'];
+	handleAsValue	   = arrayParametros['handleAs'];
+	loadFunction       = arrayParametros['loadFunction'];
+	loadFunctionData   = arrayParametros['loadFunctionData'];
+	handleFunction     = arrayParametros['handleFunction'];
+	handleFunctionData = arrayParametros['handleFunctionData'];
+
+	if (handleAsValue == undefined) {
+		handleAsValue = 'json';
+	}
+	var xhrArgs = {
+			url: urlCall,
+    		form: formContent,
+    		content: contentValues,
+			handleAs: handleAsValue,
+			preventCache: true,			
+			
+			load: function(data,args){
+	            if (loadFunction != undefined) {
+					console.debug('load Function: ', loadFunction);
+					var result = eval(loadFunction);
+				}
+				if (loadFunctionData != undefined) {
+					console.debug('load FunctionData: ', '(' + loadFunctionData + '(' + args.xhr.responseText + '))');
+			    	var funcCall = loadFunctionData + "(" + args.xhr.responseText + ")";
+			    	console.debug('iniciando call function...');
+			    	var result = eval(funcCall);
+			    	console.debug('concluido call function...');
+				}
+			},
+			  	  
+			handle: function(error, ioargs) {
+						var message = "";
+
+					    switch (ioargs.xhr.status) {
+					    	case 200:
+					        	message = "Sucesso na resposta.";
+					            break; 
+					        case 404:
+					        	message = "A página requisitada não pode ser encontrada";
+					            break;
+					        case 500:
+					            message = "O servidor reportou um erro.";
+					            break;   
+					        case 407:
+								message = "Você precisa se autenticar com um proxy.";
+					            break;
+					        default:
+					            message = "Erro desconhecido.";
+					    }
+					    console.debug(message);
+					    if (handleFunction != undefined) {
+					    	console.debug('handle Function: ', handleFunction);
+					    	var result = eval(handleFunction);
+						}
+					    if (handleFunctionData != undefined) {
+					    	console.debug('handle FunctionData: ', '(' + handleFunctionData + '(' + ioargs.xhr.responseText + '))');
+					    	var funcCall = handleFunctionData + "(" + ioargs.xhr.responseText + ")";
+					    	console.debug('iniciando call function...');
+					    	var result = eval(funcCall);
+					    	console.debug('concluido call function...');
+						}
+			},
+			
+			error: function(error) {
+	            console.debug("Um erro inesperado ocorreu:");
+	        }
+    };
 	
+	console.debug('Argumentos xhrRequest: ', xhrArgs);
+	
+	method = method.toLowerCase();
+	switch(method) {
+	
+	case 'post':
+		dojo.xhrPost(xhrArgs);
+		break;
+		
+	case 'get':
+		dojo.xhrGet(xhrArgs);
+		break;
+	}
 }
 
 
