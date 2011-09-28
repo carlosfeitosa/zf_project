@@ -62,7 +62,7 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 		continue;
 		
 	// enviando o conteúdo do elemento para o layout
-	$this->$keyVarView = $arrayHtmlElements[$keyVarView];
+	$this->placeholder($keyVarView)->set($arrayHtmlElements[$keyVarView]);
 	
 }
 // enviando os scripts para o layout
