@@ -703,54 +703,6 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 }
 
 
-function urlAjaxCall(urlCall) {
-
-	//loading();
-	dojo.xhrGet({ url: urlCall,
-				  handleAs: 'json',
-				  load: function(data,args){
-					  		console.debug('------------------------------ AJAX LINK LOAD....');
-							processaResponseDojoFormRequest(data);
-				  		},
-				  handle: 	function(error, ioargs) {
-					  			console.debug('------------------------------ AJAX LINK HADLE....');
-								var message = "";
-							    switch (ioargs.xhr.status) {
-							    	case 200:
-							        	message = "Good request.";
-							            break;
-							            
-							        case 404:
-							        	message = "The requested page was not found";
-							        	//document.body.innerHTML = ioargs.xhr.responseText;
-							        	processaResponseDojoFormRequest(ioargs.xhr.responseText);
-							            break;
-							            
-							        case 500:
-							            message = "The server reported an error.";
-							            
-							            // parseando a resposta enviada via json. Quando erro 500, a resposta enviada no formato JSON não é parseada automaticamente.
-							            resposta = JSON.parse(ioargs.xhr.responseText);
-							            processaResponseDojoFormRequest(resposta);
-							            break;
-							            
-							        case 407:
-										message = "You need to authenticate with a proxy.";
-							            break;
-							            
-							        default:
-							            message = "Unknown error.";
-							     }
-							     console.debug(message);
-							     
-							     console.debug('desativando underlay....');
-							     underlay.hide();
-							     console.debug('underlay desativado');
-							} 
-	});
-	return false;
-}
-
 /**
  * função processa headerLink
  * @param String headerLink - link que será processado.
