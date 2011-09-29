@@ -343,9 +343,11 @@ class Basico_OPController_SessionOPController
 	/**
 	 * Limpa todas as chaves do pool de elementos ocultos
 	 * 
+	 * @param Array $arrayChavesExclude
+	 * 
 	 * @return void
 	 */
-	public static function limpaTodasChavesPoolElementosOcultos()
+	public static function limpaTodasChavesPoolElementosOcultos(array $arrayChavesExclude = array())
 	{
 		// recuperando a sessao do pool de posts ocultos
 		$sessaoPoolPosts = self::registraSessaoPoolElementosOcultos();
@@ -356,7 +358,7 @@ class Basico_OPController_SessionOPController
 		// loop para limpar todas as chaves
 		foreach ($sessaoPoolPostsIterator as $chave => $valor) {
 			// verificando se o valor eh um array
-			if (is_array($valor)) {
+			if (!(key_exists($chave, $sessaoPoolPostsIterator)) and (is_array($valor))) {
 				// limpando chave
 				unset($sessaoPoolPosts->$chave);
 			}
