@@ -56,7 +56,7 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
     		// content deve receber um objeto javaScript, de pares, nome/valor. 
     		'content'  => new Zend_Json_Expr("{idRequestSource: '{$this->idRequestSource}'}"),
             'form'     => new Zend_Json_Expr('this.domNode'),
-    		'loadFunctionData' => 'processaResponseDojoFormRequest',
+            'loadFunctionData' => 'processaResponseDojoFormRequest',
     		'handleFunctionData'   => 'processaResponseDojoFormRequest',
     		'handleAs' => 'json',
     		'preventCache' => true,
@@ -76,13 +76,11 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
         
         $content = <<<EOQ
 <script type="dojo/method" event="onSubmit">
-loading();
 if (validateForm(this, '{$titulo}', '{$mensagem}')){
 	if (this.validate()) {
 	    dojoRequestAjaxAbstract('post', {$xhrArgs});
 	}
 }
-underlay.hide();
 return false;
 </script>
 EOQ;

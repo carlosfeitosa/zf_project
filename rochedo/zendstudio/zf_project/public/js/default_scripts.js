@@ -611,16 +611,19 @@ function processaResponseDojoFormRequest(data)
  * 			Parametros: 
  * 				urlCall - URL a ser chamada.
  * 				form - formulário a ser enviado. Exe.: this.domNode 
- * 				content : Variáveis que podem ser enviadas na requisição. Formato: {chave, valor}
- * 				handleAs : - Especifica como os dados da resposta do servidor são tratados. Tipos: 'json' , 'text', 'xml'
- * 				loadFunction - Função a ser processada após a resposta, caso sucesso. Exe.: "alert('load function');"
- * 				loadFunctionData - Função a ser processada após a resposta, caso sucesso, tendo como parametro, a resposta do servidor. Exe.: 'nomeFuncaoProcessadaAposResposta' sem()
- * 				handleFunction - Função a ser processada sempre após a resposta do servidor. Exe.: "alert('handle function');"
- * 				handleFunctionData - Função a ser processada sempre após a resposta do servidor. Exe.: 'nomeFuncaoProcessadaAposResposta' sem()
+ * 				content : Variáveis que podem ser enviadas na requisição. Formato: {chave, valor} .
+ * 				handleAs : - Especifica como os dados da resposta do servidor são tratados. Tipos: 'json' , 'text', 'xml'.
+ * 				loadFunction - Função a ser processada após a resposta, caso sucesso. Exe.: "alert('load function');" .
+ * 				loadFunctionData - Função a ser processada após a resposta, caso sucesso, tendo como parametro, a resposta do servidor. 
+ * 									Exe.: 'nomeFuncaoProcessadaAposResposta' sem().
+ * 				handleFunction - Função a ser processada sempre após a resposta do servidor. Exe.: "alert('handle function');" .
+ * 				handleFunctionData - Função a ser processada sempre após a resposta do servidor. Exe.: 'nomeFuncaoProcessadaAposResposta' sem().
+ * 				idLocationLoading - Id do elemento onde deverá aparecer o loading. Caso este parametro não seja passado, o loading será exibido de forma modal.
+ * 								 	Exe.: 'idElementoLoading' .
  * 
  */
 function dojoRequestAjaxAbstract(method, arrayParametros){
-
+	
 	urlCall			   = arrayParametros['url'];
 	formContent		   = arrayParametros['form'];
 	contentValues	   = arrayParametros['content'];
@@ -629,6 +632,16 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 	loadFunctionData   = arrayParametros['loadFunctionData'];
 	handleFunction     = arrayParametros['handleFunction'];
 	handleFunctionData = arrayParametros['handleFunctionData'];
+	idLocationLoading  = arrayParametros['idLocationLoading'];
+	
+	// Verificando se o Loading, deve ser exibido de forma modal ou em um elemento específico
+	if (idLocationLoading == undefined) {
+		// processando o Loading de forma modal
+		loading();
+	} else if (dojo.byId(idLocationLoading)) {
+		// processando o Loading, no elemento passado como parametro.
+		dojo.byId(idLocationLoading).innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
+	}
 
 	if (handleAsValue == undefined) {
 		handleAsValue = 'json';
@@ -685,6 +698,13 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 					    	var result = eval(funcCall);
 					    	console.debug('concluido call function...');
 						}
+					     
+					    // Desligando Loading...
+					    if (idLocationLoading == undefined) {
+					    	underlay.hide();
+						} else {
+							dojo.byId(idLocationLoading).innerHTML = "";
+						}
 			},
 			
 			error: function(error) {
@@ -692,8 +712,9 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 	        }
     };
 	
-	console.debug('Argumentos xhrRequest: ', xhrArgs);
-	
+	// chamando o loading...
+	console.debug('Parametros xhrRequest: ', xhrArgs);
+
 	method = method.toLowerCase();
 	switch(method) {
 	
