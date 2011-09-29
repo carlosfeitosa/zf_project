@@ -249,4 +249,32 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
 	}
+
+	/**
+	 * Retorna o formulario de autenticacao do usuario
+	 * 
+	 * @return Zend_Form
+	 */
+	private function retornaFormularioAutenticacao()
+	{
+		// retornando o formulario de autenticacao de usuario
+		return new Basico_Form_AutenticacaoUsuario();
+	}
+
+	/**
+	 * Retorna a chamada para o dialog de autenticacao de usuario
+	 * 
+	 * @return void
+	 */
+	public function dialogautenticacaoAction()
+	{
+		// recuperando formulario de autenticacao do usuario
+		$formAutenticacao = $this->retornaFormularioAutenticacao();
+
+		// setando o conteudo da resposta
+		$this->view->content = array($formAutenticacao);
+
+		// renderizando a resposta
+		$this->_helper->Renderizar->renderizar('default.html.phtml', true);
+	}
 }

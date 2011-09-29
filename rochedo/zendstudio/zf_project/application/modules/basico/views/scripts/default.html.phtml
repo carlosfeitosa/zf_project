@@ -61,9 +61,15 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 	if ($keyVarView === 'scripts')
 		continue;
 		
-	// enviando o conteúdo do elemento para o layout
-	$this->placeholder($keyVarView)->set($arrayHtmlElements[$keyVarView]);
-	
+	// verificando se o layout esta desabilitado
+	if (!Zend_Layout::getMvcInstance()->isEnabled()) {
+		// ecoando o conteudo
+		echo $arrayHtmlElements[$keyVarView];
+	} else {
+		// enviando o conteúdo do elemento para o layout
+		$this->placeholder($keyVarView)->set($arrayHtmlElements[$keyVarView]);
+	}
 }
-// enviando os scripts para o layout
+
+// setando scripts no layout
 $this->scripts = $arrayScripts;

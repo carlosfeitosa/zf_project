@@ -224,7 +224,7 @@ class Basico_OPController_AutenticadorOPController
 		}
 
 		// retornando o javascript que abre o dialog de login
-		return "<script language='javascript'>exibirDialogUrl('Basico_Form_AutenticacaoUsuario', '{$baseUrl}/public_forms/basico/forms/AutenticacaoUsuario.{$linguaUsuario}.html', '{$tituloDialog}', '{$urlRedirect}', '{$baseUrl}'{$onLoadValuesCallAndErrorMessage})</script>";
+		return "<script language='javascript'>exibirDialogUrl('Basico_Form_AutenticacaoUsuario', '{$baseUrl}/basico/autenticador/dialogautenticacao', '{$tituloDialog}', '{$urlRedirect}', '{$baseUrl}'{$onLoadValuesCallAndErrorMessage})</script>";
 	}
 
 	/**

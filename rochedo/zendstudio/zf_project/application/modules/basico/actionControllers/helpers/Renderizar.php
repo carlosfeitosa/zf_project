@@ -13,14 +13,17 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     /**
     * Renderiza as views do sistema
     * 
-    * @param Nome do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml'
-    * @param Ativa a renderizarção do leiaute
+    * @param String $viewScript Nome do viewScript - Ex.: 'login/sucesso-salvar-usuario-nao-validado.phtml'
+    * @param Boolean $disableLayout Ativa a renderizarção do leiaute
+    * 
+    * @return void
     */
     public function renderizar($viewScript = null, $disableLayout = false)  
     {
     	// Instancia a controlador
     	$controller = $this->_actionController;
-    	
+
+    	// desabilitando o layout
     	if($disableLayout) {
     		$controller->getHelper('layout')->disableLayout(true);
     	}
@@ -168,9 +171,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		$this->_view->placeholder('footer')->set($this->_view->render('footer.phtml'));
     	}
 
-
    		if(!$viewScript){
-
     		/*
     		 * Renderiza a view baseada no contexto
     		 * Contextos permitidos: HTML, PDF, XLS, XML, AJAX, PLAINTEXT, IMPRESSAO e NULL
