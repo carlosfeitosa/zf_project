@@ -1535,7 +1535,9 @@ class Basico_OPController_UtilOPController
     		// loop para descobrir o primeiro elemento do formulario
     		foreach ($arrayElementosFormulario as $primeiroElementoFormulario) {
 	    		// verificando se o primeiro elemento eh um elemento de formulario ou se eh um subformulario
-	    		if (($primeiroElementoFormulario instanceof Zend_Form_Element) and !($primeiroElementoFormulario instanceof Zend_Form_Element_Hash)) {
+	    		if (($primeiroElementoFormulario instanceof Zend_Form_Element) and !($primeiroElementoFormulario instanceof Zend_Form_Element_Hash) and 
+	    			!($primeiroElementoFormulario instanceof Zend_Form_Element_Hidden) and !($primeiroElementoFormulario instanceof Rochedo_Form_Element_Html) and
+	    			!($primeiroElementoFormulario instanceof Rochedo_Form_Element_JavaScript) and !($primeiroElementoFormulario->getAttrib('readOnly'))) {
 	    			// recuperando o nome do elemento
 	    			$elementName = $primeiroElementoFormulario->getName();
 
