@@ -50,11 +50,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 						// inicializando array que deve conter o form e seus subforms
 						$arrayFormsSubForms = array();
 						// adicionando o formualario ao array
-						$arrayFormsSubForms[] = $form;
+						$arrayFormsSubForms[$form->getName()] = $form;
 						// adicionando os subformularios ao array
 						$arrayFormsSubForms += $arraySubForms;
 						
-
 						// recuperando o nome do modulo para remocação do nome do form
 						$nomeModuloForm = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
 						
@@ -125,6 +124,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 									$elementoForm->render();
 									// recuperando chave do arrayPool
 									$chaveArrayPool = $elementoForm->getValue();
+									$arrayPool[] = $elementoForm->getValue();
 								}
 								
 								if ($elementoForm->getType() == 'Rochedo_Form_Element_Oculto') {
@@ -140,7 +140,14 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							// verificando se existe a $chaveArrayPool e  elementos no array de elementos ocultos.
 							if (isset($chaveArrayPool) and count($elementosOcultos)> 0) {
 								// registrando elementos na sessão
+								
 								Basico_OPController_SessionOPController::registraPostPoolElementosOcultos($chaveArrayPool, $elementosOcultos);
+							}
+							
+							// verificando se existe rascunho no form
+							if ($form->getAttrib('rascunho')){
+								// Adicionando o formulário com o atributo rascunho, no dojo(). Isto permitindo que o parametro seja reconhecido pelo dojo.
+								$this->_view->dojo()->addDijit($form->getName(), array('rascunho'=>'true'));
 							}
 						}
 					}					
