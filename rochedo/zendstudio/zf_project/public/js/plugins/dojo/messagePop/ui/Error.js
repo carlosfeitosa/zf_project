@@ -50,7 +50,6 @@ dojo.declare('messagePop.ui.Error', [dijit._Widget, dijit._Templated], {
             
             dojo.attr(this.container, 'id', 'messagePopUiErrorContainer');
             dojo.style(this.container, this.containerStyles);
-            console.debug('ssssssssss', dojo);
             dojo.place(this.container, dojo.body());
         }
     },
