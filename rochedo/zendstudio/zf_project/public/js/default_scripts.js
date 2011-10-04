@@ -104,10 +104,15 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 
 function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements,formPai)
 {    
-    if($("#" + formPai).attr('rascunho') == "true"){
-       salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar', true, formPai);	
+    // verificando se o formulario tem form pai 
+    if(formPai != null){ 
+       // verificando se o form pai permite rascunho
+       if($("#" + formPai).attr('rascunho') == "true"){
+          // chamando ajax para salvar rascunho
+          salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar', true, formPai);	
+       }
     }
-	
+
     // setando os parametros do xhrGet: url, como manipular e os callbacks
     var xhrArgs = {
         url: url,
