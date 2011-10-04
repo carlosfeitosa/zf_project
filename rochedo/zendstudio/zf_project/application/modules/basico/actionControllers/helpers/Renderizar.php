@@ -154,11 +154,6 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 				}
 			}
 		}
-	    
-		// verificando se o formulario e o sistema permite salvar rascunho
-        if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and (APPLICATION_FORM_DRAFT == true))
-			//inserindo arquivo JS do rascunho			        
-			$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO));
 
     	// Seta o tipo de contexto da view  
     	$contexto = $controller->getRequest()->getParam('format');
@@ -221,7 +216,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     {
 		// adicionando plugin Jquery maskMoney
 		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/jquery/jquery-1.6.1.min.js"));
-
+		
 		// setando variaveis
 		$applicationHttpHome = $this->_view->urlEncrypt($this->_view->url(array('controller'=>'index'), null, true));
 		$applicationHttpImagesHome = $this->_view->baseUrl('/images/');
@@ -249,7 +244,13 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH));
-
+		
+		// verificando se o formulario e o sistema permite salvar rascunho
+        if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and (APPLICATION_FORM_DRAFT == true))
+			//inserindo arquivo JS do rascunho			        
+			$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO));
+		
+		
 		// verificando ambiente
 		if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 		    // verificando se existe usuario logado

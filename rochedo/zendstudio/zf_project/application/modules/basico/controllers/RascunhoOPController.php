@@ -207,7 +207,7 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	    	$arrayPool = Basico_OPController_SessionOPController::getInstance()->recuperaTodosElementosPoolElementosOcultos();
 	    	
 	    	// verificando se o hash do form veio no post
-	    	if (isset($formHash)) {
+	    	if (isset($formHash) && ($arrayPost['formAction'] != "" && $arrayPost['formName'] != "")) {
 	    	
 		    	if (isset($arrayPost['idRascunho']) and $arrayPost['idRascunho'] != "") {
 		    		$idRascunho = $arrayPost['idRascunho'];

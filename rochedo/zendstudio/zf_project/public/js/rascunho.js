@@ -81,8 +81,8 @@ function formChangesCheck()
  */
 function salvarRascunho(urlPost,forceSave,nomeFormPai) 
 {
-	console.debug('salvar rascunho chamado.'+forceSave+'-'+nomeFormPai);
 
+	console.debug('salvar rascunho chamado.'+forceSave+'-'+nomeFormPai);
 	// recuperando os ids dos elementos modificados	
 	var arrayChangedElements = formChangesCheck();	
 	
@@ -96,6 +96,7 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 		if(nomeFormPai){
 		   // carregando form pai no caso de dialog
 		   arrayNomesFormsPais[0] = nomeFormPai;	
+		   i = 1;
 		}
 
 		// recuperando os nome dos forms pais 
@@ -126,6 +127,11 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 			// recuperando o action do form 
 			var acaoForm = $("#" + nomeForm).attr('action');
 
+			if (!acaoForm) {
+				alert('ERRO ao salvar rascunho: Form action não encontrado para o form: ' + nomeForm);
+				return false;
+			}
+
 			// inicio montando do post
 			postData += '{"formName": "' + nomeForm + '", "' + 'formAction": "' + acaoForm + '"';		
 			
@@ -143,22 +149,30 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 			}
 
 			// adicionando elemento hash no post do form corrente
+			var hashAdicionado = false;
 			for (hash in hashElements) {
 				if (hashElements[hash].id != null) {
 					elementHash = $("#" + hashElements[hash].id);
 					if (elementHash.closest("form").attr("id") == nomeForm) {
 						postData += ', "' + hashElements[hash].id + '": "' + elementHash.val() + '"';
+						hashAdicionado = true;
 					}
 				}
 			}
 
+			if (hashAdicionado != true) {
+				alert('ERRO: Form hash não encontrado para o form ' + nomeForm);
+				return false;
+			}			
 
 			postData += "}";
 
 			$.post(urlPost, jQuery.parseJSON(postData),
 			  function (data) {
-				processaScript(data);
-			  }	
+				processaResponseDojoFormRequest(data);
+		
+			  },
+			  "json"
 			);
 	
 		}		
