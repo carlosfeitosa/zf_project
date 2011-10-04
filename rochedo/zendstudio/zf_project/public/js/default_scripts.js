@@ -104,10 +104,25 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 
 function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements,formPai)
 {    
-    // verificando se o formulario tem form pai 
-    if(formPai != null){ 
-       // verificando se o form pai permite rascunho
-       if($("#" + formPai).attr('rascunho') == "true"){
+	
+	// verificando se o formulario tem form pai 
+	if(formPai != null){
+		
+		// recuperando os elementos do tipo hashs 	
+		var hashElements = $(":input[id$='Csrf']");
+
+		// verificando elementos hash no form pai 
+		for (hash in hashElements) {
+			if (hashElements[hash].id != null) {
+				elementHash = $("#" + hashElements[hash].id);
+				if (elementHash.closest("form").attr("id") == formPai) {
+				    hash = true;	
+				}
+			}
+		}
+
+       // verificando se o form pai permite rascunho e possui hash
+       if(($("#" + formPai).attr('rascunho') == "true") && (hash == true)){
           // chamando ajax para salvar rascunho
           salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar', true, formPai);	
        }
