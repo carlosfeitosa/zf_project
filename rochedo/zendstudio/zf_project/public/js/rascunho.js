@@ -198,7 +198,7 @@ function excluirRascunho(){
 	 
          // montando o post
 	 postData = '{"'+ hashElement.attr("id") + '": "' + hashElement.attr("value") + '"}';
-	 alert(postData);
+	 
 
 }
 
