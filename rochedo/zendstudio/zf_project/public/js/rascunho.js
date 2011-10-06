@@ -128,7 +128,7 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 			var acaoForm = $("#" + nomeForm).attr('action');
 
 			if (!acaoForm) {
-				alert('ERRO ao salvar rascunho: Form action não encontrado para o form: ' + nomeForm);
+				console.debug('ERRO ao salvar rascunho: Form action não encontrado para o form: ' + nomeForm);
 				return false;
 			}
 
@@ -161,7 +161,7 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 			}
 
 			if (hashAdicionado != true) {
-				alert('ERRO: Form hash não encontrado para o form ' + nomeForm);
+				console.debug('ERRO: Form hash não encontrado para o form ' + nomeForm);
 				return false;
 			}			
 
@@ -180,6 +180,28 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 	}else{
 		return false;
 	}
+}
+
+/**
+ * Funcao que verifica se existem informacoes nao salvas no momento do fechamento do dialog e
+ * oferece a opção de salvar ou descartar o rascunho 
+ */
+function verificaElementosModificadosRascunho()
+{
+	// recuperando elementos com informações não salvas
+	var arrayChangedElements = formChangesCheck();	
+	// verificando se existem elementos com informações não salvas												
+	if (arrayChangedElements.length > 0) {
+		// perguntando ao usuario se deseja salvar as alterações
+		if (confirm('Existem alterações não salvas, deseja salva-las?') == true) {
+			// chamando ajax para salvar rascunho
+			salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar');
+		}else{
+			// excluindo rascunho
+					
+		}
+	}										
+
 }
 
 /**

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 31/08/2011 23:09:00
+* em: 06/10/2011 10:25:39
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 31/08/2011 22:53:34
+* @version    1: 05/10/2011 11:05:13
 */
 class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
 {
@@ -93,6 +93,9 @@ class Basico_Form_ResolvedorConflitoVersaoObjeto extends Zend_Dojo_Form
         $elements[9]->setRequired(false);
         $elements[9]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
         $elements[9]->removeDecorator('DtDdWrapper');
+
+        // Removendo escapes das mensagens de erro dos elementos do formulario.
+        Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

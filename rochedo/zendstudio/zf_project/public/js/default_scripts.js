@@ -59,9 +59,13 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 		// criando dialog
 		var dialog = new dijit.Dialog({title: title, content: content, id: dialogName,
 										onHide: dojo.hitch(this, function(){
+										
+											//verificando rascunho
+											verificaElementosModificadosRascunho();
+
 											// verificando se o dialog possui o hidden para redirect
 											if (document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0] && urlRedirectHide)
-							                	window.location = urlRedirectHide;
+							                			window.location = urlRedirectHide;
 							            })});
 
 		// setando tempo de fadein

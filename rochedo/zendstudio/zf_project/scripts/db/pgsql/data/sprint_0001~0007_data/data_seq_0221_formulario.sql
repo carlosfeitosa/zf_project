@@ -26,7 +26,7 @@
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,
-                        form_name, form_method, form_action, form_attribs, rowinfo)
+                        form_name, form_method, form_action, form_attribs, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
@@ -39,7 +39,8 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_ACEITE_TERMOS_USO_TITULO' AS constante_textual_titulo,
        'VIEW_ACEITE_TERMOS_USO_SUBTITULO' AS constante_textual_subtitulo,
        'AceiteTermosUso' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -47,7 +48,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,
-                        form_name, form_method, form_action, form_attribs, rowinfo)
+                        form_name, form_method, form_action, form_attribs, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
@@ -60,7 +61,8 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_TROCA_DE_SENHA_TITULO' AS constante_textual_titulo,
        'VIEW_TROCA_DE_SENHA_SUBTITULO' AS constante_textual_subtitulo,
        'TrocaDeSenha' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -68,20 +70,20 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_SUGESTAO_LOGIN' AS nome, 
 		'Dialog para escolha de sugestao de login.' AS descricao, 
         'FORM_TITLE_SUGESTAO_LOGIN' AS constante_textual_titulo, 
         'SugestaoLogin' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_SUGESTAO_LOGIN';
 
-INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
+INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -92,6 +94,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'FORM_DADOS_USUARIO' AS nome,
        'Formulário de cadastro do usuário validado.' AS descricao,
        'CadastrarDadosUsuario' AS form_name,
+       false AS permite_rascunho, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -128,14 +131,16 @@ AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DAD
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_COORDENACAO_POS_GRADUACAO' AS nome, 
 		'Dialog de selecao de cursos que nao estao amarrados a nenhum coordenador de pos-graduacao.' AS descricao, 
         'FORM_TITLE_COODENACAO_POS_GRADUACAO' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioDadosAcademicosCoordenacaoPosGraduacao' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs,
+        false AS permite_rascunho, 
+        'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -143,14 +148,14 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_COORDENACAO_POS_GRADUACAO';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_ORIENTACOES' AS nome, 
 		'Dialog de selecao de cursos que nao estao amarrados a nenhum coordenador de pos-graduacao.' AS descricao, 
         'FORM_TITLE_ORIENTACOES' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioDadosAcademicosOrientacoes' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -159,7 +164,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES';
 
 INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, ordem, rowinfo)
+                        form_attribs, ordem, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria,
 		(SELECT d.id
 	          FROM decorator d
@@ -179,6 +184,7 @@ SELECT c.id AS id_categoria,
        NULL AS form_action, 
        NULL AS form_attribs,
        3 AS ordem,
+       false AS permite_rascunho, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -215,7 +221,7 @@ AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DAD
 
 INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, ordem, rowinfo)
+                        form_attribs, ordem, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria,
 		(SELECT d.id
 	          FROM decorator d
@@ -235,6 +241,7 @@ SELECT c.id AS id_categoria,
        '/basico/dadosusuario/salvar' AS form_action, 
        '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        7 AS ordem,
+       false AS permite_rascunho, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -258,14 +265,14 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_TELEFONES_PROFISSIONAIS' AS nome, 
 		'Dialog para visualizacao de telefones profissionais.' AS descricao, 
         'FORM_TITLE_TELEFONES_PROFISSIONAIS' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioDadosProfissionaisTelefonesProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -273,14 +280,14 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_P
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_EMAILS_PROFISSIONAIS' AS nome, 
 		'Dialog para visualizacao de e-mails profissionais.' AS descricao, 
         'FORM_TITLE_EMAILS_PROFISSIONAIS' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioDadosProfissionaisEmailsProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -288,14 +295,14 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_PROF
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_WEBSITES_PROFISSIONAIS' AS nome, 
 		'Dialog para visualizacao de websites profissionais.' AS descricao, 
         'FORM_TITLE_WEBSITES_PROFISSIONAIS' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioDadosProfissionaisWebsitesProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -303,14 +310,14 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_PR
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_ENDERECOS_PROFISSIONAIS' AS nome, 
 		'Dialog para visualizacao de enderecos profissionais.' AS descricao, 
         'FORM_TITLE_ENDERECOS_PROFISSIONAIS' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioDadosProfissionaisEnderecosProfissionais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -381,7 +388,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_ENDERECO';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,
-                        form_name, form_method, form_action, form_attribs, rowinfo)
+                        form_name, form_method, form_action, form_attribs, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
@@ -394,7 +401,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
        'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, '/basico/login/verificaNovoLogin' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -402,7 +409,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,
-                        form_name, form_method, form_action, form_attribs, rowinfo)
+                        form_name, form_method, form_action, form_attribs, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
@@ -415,7 +422,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
        'CadastrarUsuarioValidado' AS form_name, 'post' AS form_method, '/basico/login/salvarUsuarioValidado' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -451,7 +458,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,
-                        form_name, form_method, form_action, form_attribs, rowinfo)
+                        form_name, form_method, form_action, form_attribs, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
@@ -464,7 +471,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_AUTENTICACAO_USUARIO_SUBTITULO' AS constante_textual_subtitulo,
        'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/autenticador/verificaAutenticacaoUsuario' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -500,14 +507,14 @@ AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DAD
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_DOCUMENTOS_PESSOAIS' AS nome, 
 		'Dialog para visualizacao de documentos pessoais.' AS descricao, 
         'FORM_TITLE_DOCUMENTOS_PESSOAIS' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioDadosPessoaisDocumentosPessoais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -574,7 +581,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS';
 
 INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
-                        constante_textual_titulo,form_name, form_attribs, ordem, rowinfo)
+                        constante_textual_titulo,form_name, form_attribs, ordem, permite_rascunho, rowinfo)
         SELECT c.id AS id_categoria,
 		(SELECT d.id
 	          FROM decorator d
@@ -592,6 +599,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        'CadastrarDadosUsuarioInformacoesBancarias' AS form_name, 
        NULL AS form_attribs, 
        5 AS ordem,
+       false AS permite_rascunho, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -619,7 +627,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        'post' AS form_method, 
        NULL AS form_action, 
        NULL AS form_attribs, 
-       1,
+       1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -628,14 +636,14 @@ AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
                         constante_textual_titulo,form_name, form_method, form_action, 
-                        form_attribs, rowinfo)
+                        form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_CONTAS_BANCARIAS' AS nome, 
 		'Dialog para visualizacao de contas bancárias.' AS descricao, 
         'FORM_TITLE_CONTAS_BANCARIAS' AS constante_textual_titulo, 
         'CadastrarDadosUsuarioInformacoesBancariasContasBancarias' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
-        NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -643,7 +651,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANC
 
 INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, descricao, 
 						constante_textual_titulo, form_name, form_method, form_action,
-						form_attribs, ordem, rowinfo)
+						form_attribs, ordem, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria,
 		(SELECT d.id
 	          FROM decorator d
@@ -662,7 +670,8 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        'post' AS form_method, 
        NULL AS form_action, 
        NULL AS form_attribs, 
-       2,
+       2 AS ordem,
+       false AS permite_rascunho, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -674,7 +683,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
                         form_attribs, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_CONTA_BANCARIA' AS nome, 
-		'Dialog para edicao de conta bancária.' AS descricao, 
+		'Dialog para cadastro de conta bancária.' AS descricao, 
         'FORM_TITLE_CONTA_BANCARIA' AS constante_textual_titulo, 
         'CadastrarContaBancaria' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
@@ -686,7 +695,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, 
-                        form_name, form_method, form_action, form_attribs, rowinfo)
+                        form_name, form_method, form_action, form_attribs, permite_rascunho, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
@@ -698,7 +707,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'Formulário do resolvedor de conflitos de versão de objetos.' AS descricao, 
        'FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_titulo,
        'ResolvedorConflitoVersaoObjeto' AS form_name, 'post' AS form_method, '/basico/cvc/resolveConflitoVersaoObjeto' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

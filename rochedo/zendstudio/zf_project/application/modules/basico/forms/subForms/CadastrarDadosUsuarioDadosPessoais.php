@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 05/09/2011 09:22:47
+* em: 06/10/2011 10:24:31
 *
 * LICENÇA DE USO
 *
@@ -14,14 +14,15 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 01/09/2011 15:44:40
+* @version    1: 05/10/2011 11:05:13
 */
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm = new Zend_Dojo_Form_SubForm();
 
     // Inicializando o sub-formulário.
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setName('CadastrarDadosUsuarioDadosPessoais');
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setMethod('post');
-    $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_PESSOAIS'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_PESSOAIS')));
+    $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
+    $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_PESSOAIS'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_PESSOAIS'),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioDadosPessoais', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))",'rascunho' => true));
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setOrder(1);
 

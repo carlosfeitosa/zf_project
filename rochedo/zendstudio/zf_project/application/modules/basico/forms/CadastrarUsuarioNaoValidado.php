@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 31/08/2011 23:08:51
+* em: 06/10/2011 10:25:25
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 31/08/2011 22:53:34
+* @version    1: 05/10/2011 11:05:13
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -93,6 +93,9 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $elements[5]->setOrder(5);
         $elements[5]->setRequired(false);
         $elements[5]->removeDecorator('Label');
+
+        // Removendo escapes das mensagens de erro dos elementos do formulario.
+        Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);

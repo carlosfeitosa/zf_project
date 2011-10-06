@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 31/08/2011 23:08:57
+* em: 06/10/2011 10:25:35
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 31/08/2011 22:53:34
+* @version    1: 05/10/2011 11:05:13
 */
 class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
 {
@@ -32,6 +32,7 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
         $this->setMethod('post');
         $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/website/salvarwebsite'));
         $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarWebsite', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+        $this->addAttribs(array('rascunho' => true));
 
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
@@ -94,6 +95,9 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
         $elements[7]->setOrder(7);
         $elements[7]->setRequired(false);
         $elements[7]->removeDecorator('Label');
+
+        // Removendo escapes das mensagens de erro dos elementos do formulario.
+        Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
 
         // Adicionando elementos ao formulario.
         $this->addElements($elements);
