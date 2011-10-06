@@ -183,24 +183,54 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 }
 
 /**
+ * Funcao para excluir rascunho no momento de fechar um dialog. 
+ * 
+ */
+
+function excluirRascunho(){
+
+	 // declarando variaveis 
+	 var postData = "";
+	 var hashElement = "";
+	
+	 // localizando elemento hash do form 	
+	 hashElement = $(":input[id$='Csrf']");
+	 
+         // montando o post
+	 postData = '{"'+ hashElement.attr("id") + '": "' + hashElement.attr("value") + '"}';
+	 alert(postData);
+
+}
+
+/**
  * Funcao que verifica se existem informacoes nao salvas no momento do fechamento do dialog e
- * oferece a opção de salvar ou descartar o rascunho 
+ * oferece a opção de salvar ou descartar do o rascunho 
  */
 function verificaElementosModificadosRascunho()
 {
 	// recuperando elementos com informações não salvas
 	var arrayChangedElements = formChangesCheck();	
 	// verificando se existem elementos com informações não salvas												
-	if (arrayChangedElements.length > 0) {
-		// perguntando ao usuario se deseja salvar as alterações
-		if (confirm('Existem alterações não salvas, deseja salva-las?') == true) {
-			// chamando ajax para salvar rascunho
-			salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar');
-		}else{
-			// excluindo rascunho
-					
+	/*if (arrayChangedElements.length > 0) {
+
+		for (elemento in arrayChangedElements) {
+			var formName = $("#" + arrayChangedElements[elemento]).closest("form").attr("id");		
 		}
-	}										
+
+		if ($("#" + formName).attr("rascunho") == "true") {*/
+
+			// perguntando ao usuario se deseja salvar as alterações
+			if (confirm('Existem alterações não salvas, deseja salva-las?') == true) {
+				// chamando ajax para salvar rascunho
+				salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar');
+			}else{
+				// excluindo rascunho
+				excluirRascunho('http://localhost/rochedo_project/public/basico/rascunho/excluir');	
+			}
+		//}
+	//}
+
+	//return false;										
 
 }
 

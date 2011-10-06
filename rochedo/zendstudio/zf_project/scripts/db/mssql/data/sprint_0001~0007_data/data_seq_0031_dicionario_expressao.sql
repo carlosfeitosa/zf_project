@@ -31,12 +31,27 @@
 * 								19/08/2011 - criacao das expressoes para o formulario de troca de senha (titulo e sub-titulo);
 * 								01/09/2011 - criacao das expressoes para o formulario de troca de senha (sub-titulo e mensagem de sucesso ao trocar a senha);
 * 								05/09/2011 - criacao da mensagem de erro ao tentar troca senha pela senha antiga;
+* 								06/10/2011 - criacao das mensagens (erro e sucesso) para exclusao de rascunho;
 */
 
 /*
 * (Português do Brasil - PT_BR)
 * 
 */
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'RASCUNHO_MENSAGEM_SUCESSO_EXCLUIR' AS constante_textual, 'Rascunho excluído com sucesso.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'RASCUNHO_MENSAGEM_ERRO_EXCLUIR' AS constante_textual, 'Erro ao excluir rascunho.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_CANCELAR_LABEL' AS constante_textual, 'Cancelar' AS traducao
@@ -4686,6 +4701,20 @@ AND c.nome = 'pt-br';
 * (Inglês dos E.U.A. - EN_US)
 * 
 */
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'RASCUNHO_MENSAGEM_SUCESSO_EXCLUIR' AS constante_textual, 'Draft sucessfully deleted.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
+SELECT c.id, 'RASCUNHO_MENSAGEM_ERRO_EXCLUIR' AS constante_textual, 'Error excluding draft.' AS traducao
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_CANCELAR_LABEL' AS constante_textual, 'Cancel' AS traducao

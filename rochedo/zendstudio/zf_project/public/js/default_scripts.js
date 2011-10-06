@@ -62,7 +62,6 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 										
 											//verificando rascunho
 											verificaElementosModificadosRascunho();
-
 											// verificando se o dialog possui o hidden para redirect
 											if (document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0] && urlRedirectHide)
 							                			window.location = urlRedirectHide;

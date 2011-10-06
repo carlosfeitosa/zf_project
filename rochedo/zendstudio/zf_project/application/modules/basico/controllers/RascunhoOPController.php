@@ -163,6 +163,28 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	}
 	
 	/**
+	 * Retorna os objetos rascunho filhos do rascunho passado
+	 * 
+	 * @param Int $idRascunhoPai
+	 * @return Array|false
+	 */
+	public function retornaObjetosRascunhosFilhos($idRascunhoPai)
+	{
+		// verificando id passado
+		if ((Int) $idRascunhoPai > 0) {
+			// recuperando objetos rascunhos filhos
+			$objetosRascunhosFilhos = $this->retornaObjetosPorParametros('Basico_Model_Rascunho', "id_rascunho_pai = {$idRascunhoPai}");
+
+			// verificando se existem rascunhos filhos
+			if (count($objetosRascunhosFilhos) > 0)
+				return $objetosRascunhosFilhos;
+			
+		}	
+		
+		return false;
+	}
+	
+	/**
 	 * Retorna a versao do objeto rascunho, a partir do id de um rascunho
 	 * 
 	 * @param Basico_Model_Rascunho $objRascunho
@@ -331,6 +353,33 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 			throw new Exception(MSG_ERRO_SALVAR_RASCUNHO . $e->getMessage());
 		}
     	
+	}
+	
+	/**
+	 * Funçao para exclusao de rascunho
+	 * 
+	 */
+	public function excluirRascunho($idRascunho, $request)
+	{
+		// verificando o id passado
+		if ((int) $idRascunho > 0) {
+			
+			// recuperando objeto rascunho
+			$objetoRascunho = $this->retornaObjetoPorId('Basico_Model_Rascunho', $idRascunho);
+			
+			// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
+		    $objPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
+			
+		    // excluindo rascunho em cascata
+			if ($this->apagarObjeto($objeto, true, $objPessoaPerfil->id)) {
+				// removendo rascunho da lista de rascunhos pais da sessao
+				Basico_OPController_SessionOPController::getInstance()->removeRascunhoPaiSessao($idRascunho);
+				
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 }
