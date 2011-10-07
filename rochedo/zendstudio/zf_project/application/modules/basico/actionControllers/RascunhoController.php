@@ -44,9 +44,9 @@ class Basico_RascunhoController extends Zend_Controller_Action
     {
     	// recuperando o array do post
     	$arrayPost = $this->getRequest()->getPost();
-
+    	
     	// removendo rascunho
-    	if (Basico_OPController_RascunhoOPController::getInstance()->excluirRascunho($arrayPost['idRascunho'], $this->getRequest())) {
+    	if (Basico_OPController_RascunhoOPController::getInstance()->excluirRascunho($arrayPost, $this->getRequest())) {
     		// setando script na view
     		$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_SUCESSO_EXCLUIR"));
     	}else{

@@ -187,19 +187,52 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
  * 
  */
 
-function excluirRascunho(){
-
+function excluirRascunho(urlPost){
+	 
 	 // declarando variaveis 
 	 var postData = "";
 	 var hashElement = "";
-	
-	 // localizando elemento hash do form 	
-	 hashElement = $(":input[id$='Csrf']");
+	 var form = "";
 	 
-         // montando o post
-	 postData = '{"'+ hashElement.attr("id") + '": "' + hashElement.attr("value") + '"}';
-	 
+	 // verificando se a url de exclusao e rascunho foi inicializada
+	 if(urlPost){	
 
+	    // carregando nome do form
+	    $(':input').each(function() {
+	      nomeForm =  $(this).closest("form").attr("id");	
+	    });	
+
+	    console.debug('excluir rascunho chamado.'+nomeForm);
+
+	    // carregando elemento hash do form 	
+	    hashElement = $(":input[id$='" + nomeForm + "Csrf']");
+
+	    // verificando se o hash do form foi encontrado 
+	    if((hashElement != "") && (hashElement != null)){ 		 
+
+	       // montando o post
+	       postData = '{"'+ hashElement.attr("id") + '": "' + hashElement.attr("value") + '"}';
+	 
+	       console.debug(postData);
+
+	       // executando acao e excluir rascunho via ajax	
+	       $.post(urlPost, 
+		      jQuery.parseJSON(postData),
+		      function (data) {
+			        processaResponseDojoFormRequest(data);
+
+		      },
+		      "json"
+	       ); 
+
+	    }else{	
+	       console.debug('ERRO: Form hash não encontrado para o form ' + nomeForm);
+	       return false;	
+	    }	
+	 }else{
+	    console.debug('ERRO: Url para exclusão do rascunho não informada.');
+	    return false;	
+	 }
 }
 
 /**

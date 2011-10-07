@@ -369,6 +369,11 @@ FROM modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
+SELECT m.id AS id_modulo, 'rascunho' AS controller, 'excluir' AS action, 'SYSTEM_STARTUP' AS rowinfo
+FROM modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT INTO acao_aplicacao (id_modulo, controller, action, rowinfo)
 SELECT m.id AS id_modulo, 'email' AS controller, 'errotokenexpirado' AS action, 'SYSTEM_STARTUP' AS rowinfo
 FROM modulo m
 WHERE m.nome = 'BASICO';
@@ -571,6 +576,19 @@ SELECT (SELECT p.id
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'rascunho'
         AND a.action = 'salvar') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM PERFIL p
+        LEFT JOIN categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
+       (SELECT a.id
+        FROM acao_aplicacao a
+        LEFT JOIN modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'rascunho'
+        AND a.action = 'excluir') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;   
         
 INSERT INTO acoes_aplicacao_perfis (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id

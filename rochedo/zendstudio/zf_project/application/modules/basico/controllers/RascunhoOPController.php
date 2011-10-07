@@ -325,7 +325,7 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 		    	 	
 		    	 	// setando datahora da ultima atualizacao    	 	
 		    	 	$objRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-		    	 	
+
 		    	    // executando insert
 		    	   	$this->salvarObjeto($objRascunho, null, $idPessoaPerfilCriador);
 		    	   	
@@ -359,19 +359,32 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	 * Funçao para exclusao de rascunho
 	 * 
 	 */
-	public function excluirRascunho($idRascunho, $request)
+	public function excluirRascunho($arrayPost, $request)
 	{
 		// verificando o id passado
-		if ((int) $idRascunho > 0) {
+		if (count($arrayPost) > 0) {
+
+			// recuperando o hash do formulario
+	    	foreach ($arrayPost as $key => $value) {
+	    		if (strpos($key, "Csrf") !== false)
+	    			$formHash = $value;
+	    	}
+	    	
+	    	// iniciando array pool
+	    	$arrayPool = Basico_OPController_SessionOPController::getInstance()->recuperaTodosElementosPoolElementosOcultos();
+			
+			$idRascunho = $arrayPool[$formHash]['idRascunho'];
+			// recuperando objeto do modelo rascunho
+			$objModeloRascunho = $this->retornaNovoObjetoModeloPorNomeOPController(get_class($this));
 			
 			// recuperando objeto rascunho
-			$objetoRascunho = $this->retornaObjetoPorId('Basico_Model_Rascunho', $idRascunho);
-			
+			$objetoRascunho = $this->retornaObjetoPorId($objModeloRascunho, $idRascunho);
+
 			// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
 		    $objPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
 			
 		    // excluindo rascunho em cascata
-			if ($this->apagarObjeto($objeto, true, $objPessoaPerfil->id)) {
+			if ($this->apagarObjeto($objetoRascunho, true, $objPessoaPerfil->id)) {
 				// removendo rascunho da lista de rascunhos pais da sessao
 				Basico_OPController_SessionOPController::getInstance()->removeRascunhoPaiSessao($idRascunho);
 				
