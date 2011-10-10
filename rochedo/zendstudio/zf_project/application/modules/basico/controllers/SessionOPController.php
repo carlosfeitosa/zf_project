@@ -358,7 +358,7 @@ class Basico_OPController_SessionOPController
 		// loop para limpar todas as chaves
 		foreach ($sessaoPoolPostsIterator as $chave => $valor) {
 			// verificando se o valor eh um array
-			if (!(key_exists($chave, $sessaoPoolPostsIterator)) and (is_array($valor))) {
+			if ((array_search($chave, $arrayChavesExclude) === false) and (is_array($valor))) {
 				// limpando chave
 				unset($sessaoPoolPosts->$chave);
 			}

@@ -2564,7 +2564,7 @@ class Basico_OPController_UtilOPController
 			
 			// verifica se o elemento e do tipo hash
 			if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {
-				// renderizando elemento hash para ser gerado o novo valor, e ficar disponível em dojo()->getDijits();
+				// renderizando elemento hash para ser gerado o novo valor do hash.
 				$elementoForm->render();
 			}
 			

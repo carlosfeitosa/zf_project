@@ -347,16 +347,22 @@ function validateForm(formId, titulo, message, baseUrl)
 function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa, nome, dataNascimento, urlMetodo)
 {	
 	if (stringPesquisa != "") {
-		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
+
+		var urlRequest = urlMetodo + stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento; 
 		
-		dojo.xhrGet({
-	    	url: urlMetodo + stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento,
-	    	timeout: 5000,
-	    	load: function(response, ioArgs)
-	    	{
-			dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = response;
-	    	}
-	    });
+		// processando requisicao
+		var deferred = dojoRequestAjaxAbstract('get', {url: urlRequest, handleAs: 'text', idLoadingLocation: 'BasicoCadastrarUsuarioValidadoLoginDisponivel-element'});
+        
+		// Adicionando callback adicional 
+		deferred.addCallback(function(data) {
+            //Replace newlines with nice HTML tags.
+            data = data.replace(/\n/g, "<br>");
+
+            //Replace tabs with spacess.
+            data = data.replace(/\t/g, "&nbsp;&nbsp;&nbsp;");
+
+            dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = data;
+        });		
 	}else{
 		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = "";
 	}
@@ -473,9 +479,8 @@ function processaResponseDojoFormRequest(data)
 	}else{
 		console.debug('dados recebidos....: ', data);
 		
-		// parser data 
-		jsonResponse = eval(data);
-		console.debug('dados validados.....');
+		// Carregando os dados recebidos 
+		jsonResponse = data;
 		
 		// Percorrendo os módulos para adiciona-los.
         dojo.forEach(jsonResponse.view.modules, function(module)
@@ -483,6 +488,9 @@ function processaResponseDojoFormRequest(data)
         	dojo.require(module);
             console.debug('... modulo carregado:', module);
         });
+        
+		// Limpando as mensagens de erros dos formulário.
+		limparMensagemErroZendDojoForm();
 		
 		// Percorrendo os elementos HTMLs
 		for (idElemento in jsonResponse.view.html)	{
@@ -511,6 +519,10 @@ function processaResponseDojoFormRequest(data)
 				
 				// Adicionando conteúdo ao elemento.
 				dojo.byId(idElemento).innerHTML = jsonResponse.view.html[idElemento];
+				
+				// verifica se existe scripts no html para serem processados
+				console.warn('verifica se existe scripts no html para serem processados');
+				//processaScript(jsonResponse.view.html[idElemento]);
 			}
 		}  
 	    
@@ -631,38 +643,45 @@ function processaResponseDojoFormRequest(data)
  * @param String method - Método de requisição. POST ou GET
  * @param Array arrayParametros - 
  * 			Parametros: 
- * 				urlCall - URL a ser chamada.
- * 				form - formulário a ser enviado. Exe.: this.domNode 
- * 				content : Variáveis que podem ser enviadas na requisição. Formato: {chave, valor} .
- * 				handleAs : - Especifica como os dados da resposta do servidor são tratados. Tipos: 'json' , 'text', 'xml'.
- * 				loadFunction - Função a ser processada após a resposta, caso sucesso. Exe.: "alert('load function');" .
- * 				loadFunctionData - Função a ser processada após a resposta, caso sucesso, tendo como parametro, a resposta do servidor. 
- * 									Exe.: 'nomeFuncaoProcessadaAposResposta' sem().
- * 				handleFunction - Função a ser processada sempre após a resposta do servidor. Exe.: "alert('handle function');" .
- * 				handleFunctionData - Função a ser processada sempre após a resposta do servidor. Exe.: 'nomeFuncaoProcessadaAposResposta' sem().
- * 				idLocationLoading - Id do elemento onde deverá aparecer o loading. Caso este parametro não seja passado, o loading será exibido de forma modal.
- * 								 	Exe.: 'idElementoLoading' .
+ * 				urlCall				- URL a ser chamada.
+ * 				form 				- formulário a ser enviado. Exe.: this.domNode 
+ * 				content				- Variáveis que podem ser enviadas na requisição. Formato: {chave1: valor1, cheve2: valor2} .
+ * 				handleAs			- Especifica como os dados da resposta do servidor são tratados. Tipos: 'json' , 'text', 'xml'.
+ * 				timeOut
+ * 				headers				- Cabeçalho a ser venviado na requisição. Formato: {chave1: valor1, cheve2: valor2} . 
+ * 				loadFunction 		- Função a ser processada após a resposta, caso sucesso. Exe.: "alert('load function');" .
+ * 				loadFunctionData 	- Função a ser processada após a resposta, caso sucesso, tendo como parametro, a resposta do servidor. 
+ * 									  Exe.: 'nomeFuncaoProcessadaAposResposta' sem().
+ * 				handleFunction 		- Função a ser processada sempre após a resposta do servidor. Exe.: "alert('handle function');" .
+ * 				handleFunctionData 	- Função a ser processada sempre após a resposta do servidor. Exe.: 'nomeFuncaoProcessadaAposResposta' sem().
+ * 				idLoadingLocation 	- Id do elemento onde o loading deverá aparecer. Caso este parametro não seja passado, o loading será exibido de forma modal.
+ * 								 	  Exe.: 'idElementoLoading'.
+ * @return dojo.Deferred - Este objeto permite definir callbacks adicionais para o sucesso e condições de erro.
  * 
  */
 function dojoRequestAjaxAbstract(method, arrayParametros){
 	
-	urlCall			   = arrayParametros['url'];
-	formContent		   = arrayParametros['form'];
-	contentValues	   = arrayParametros['content'];
-	handleAsValue	   = arrayParametros['handleAs'];
-	loadFunction       = arrayParametros['loadFunction'];
-	loadFunctionData   = arrayParametros['loadFunctionData'];
-	handleFunction     = arrayParametros['handleFunction'];
-	handleFunctionData = arrayParametros['handleFunctionData'];
-	idLocationLoading  = arrayParametros['idLocationLoading'];
+	var urlCall			   = arrayParametros['url'];
+	var formContent		   = arrayParametros['form'];
+	var contentValues	   = arrayParametros['content'];
+	var handleAsValue	   = arrayParametros['handleAs'];
+	var timeOut			   = arrayParametros['timeOut'];
+	var headersValue	   = arrayParametros['headersValue'];
+	var loadFunction       = arrayParametros['loadFunction'];
+	var loadFunctionData   = arrayParametros['loadFunctionData'];
+	var handleFunction     = arrayParametros['handleFunction'];
+	var handleFunctionData = arrayParametros['handleFunctionData'];
+	var errorFunction      = arrayParametros['errorFunction'];
+	var errorFunctionData  = arrayParametros['errorFunctionData'];
+	var idLoadingLocation  = arrayParametros['idLoadingLocation'];
 	
-	// Verificando se o Loading, deve ser exibido de forma modal ou em um elemento específico
-	if (idLocationLoading == undefined) {
-		// processando o Loading de forma modal
+	// Verificando se o Loading deve ser exibido de forma modal ou em um elemento específico.
+	if (idLoadingLocation == undefined) {
+		// processando o Loading de forma modal.
 		loading();
-	} else if (dojo.byId(idLocationLoading)) {
-		// processando o Loading, no elemento passado como parametro.
-		dojo.byId(idLocationLoading).innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
+	} else if (dojo.byId(idLoadingLocation)) {
+		// processando o Loading no elemento passado como parametro.
+		dojo.byId(idLoadingLocation).innerHTML = "<img src='/rochedo_project/public/images/loading.gif' style='width: 15px; height: 15px;'>";
 	}
 
 	if (handleAsValue == undefined) {
@@ -674,63 +693,81 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
     		content: contentValues,
 			handleAs: handleAsValue,
 			preventCache: true,			
+			timeout: timeOut,
+            headers: headersValue,
+
 			
 			load: function(data,args){
+				console.debug('iniciando load function....');
 	            if (loadFunction != undefined) {
 					console.debug('load Function: ', loadFunction);
-					var result = eval(loadFunction);
+					var resultLoadFunction = eval(loadFunction);
 				}
 				if (loadFunctionData != undefined) {
-					console.debug('load FunctionData: ', '(' + loadFunctionData + '(' + args.xhr.responseText + '))');
-			    	var funcCall = loadFunctionData + "(" + args.xhr.responseText + ")";
+					console.debug('load FunctionData: ', loadFunctionData + '(dataResponse)');
+			    	var nomeFunctionLoadData = loadFunctionData + "(" + args.xhr.responseText + ")";
 			    	console.debug('iniciando call function...');
-			    	var result = eval(funcCall);
+			    	var resultLoadFunctionData = eval(nomeFunctionLoadData);
 			    	console.debug('concluido call function...');
 				}
+				console.debug('Concluido load function....');
 			},
 			  	  
 			handle: function(error, ioargs) {
-						var message = "";
+				console.debug('iniciando handle function....');
+				var message = "";
 
-					    switch (ioargs.xhr.status) {
-					    	case 200:
-					        	message = "Sucesso na resposta.";
-					            break; 
-					        case 404:
-					        	message = "A página requisitada não pode ser encontrada";
-					            break;
-					        case 500:
-					            message = "O servidor reportou um erro.";
-					            break;   
-					        case 407:
-								message = "Você precisa se autenticar com um proxy.";
-					            break;
-					        default:
-					            message = "Erro desconhecido.";
-					    }
-					    console.debug(message);
-					    if (handleFunction != undefined) {
-					    	console.debug('handle Function: ', handleFunction);
-					    	var result = eval(handleFunction);
-						}
-					    if (handleFunctionData != undefined) {
-					    	console.debug('handle FunctionData: ', '(' + handleFunctionData + '(' + ioargs.xhr.responseText + '))');
-					    	var funcCall = handleFunctionData + "(" + ioargs.xhr.responseText + ")";
-					    	console.debug('iniciando call function...');
-					    	var result = eval(funcCall);
-					    	console.debug('concluido call function...');
-						}
-					     
-					    // Desligando Loading...
-					    if (idLocationLoading == undefined) {
-					    	underlay.hide();
-						} else {
-							dojo.byId(idLocationLoading).innerHTML = "";
-						}
+			    switch (ioargs.xhr.status) {
+			    	case 200:
+			        	message = "Sucesso na resposta.";
+			            break; 
+			        case 404:
+			        	message = "A página requisitada não pode ser encontrada";
+			            break;
+			        case 500:
+			            message = "O servidor reportou um erro.";
+			            break;   
+			        case 407:
+						message = "Você precisa se autenticar com um proxy.";
+			            break;
+			        default:
+			            message = "Erro desconhecido.";
+			    }
+			    console.debug(message);
+			    if (handleFunction != undefined) {
+			    	console.debug('handle Function: ', handleFunction);
+			    	var resultHandleFunction = eval(handleFunction);
+				}
+			    if (handleFunctionData != undefined) {
+			    	console.debug('handle FunctionData: ', handleFunctionData +'(dataResponse)');
+			    	var nomeFunctionHandleData = handleFunctionData + "(" + ioargs.xhr.responseText + ")";
+			    	console.debug('iniciando handleFunctionData function...');
+			    	var resultHandleFunctionData = eval(nomeFunctionHandleData);
+			    	console.debug('concluido handleFunctionData function...');
+				}
+			     
+			    // Desligando Loading...
+			    if (idLoadingLocation == undefined) {
+			    	underlay.hide();
+				} else {
+					dojo.byId(idLoadingLocation).innerHTML = "";
+				}
+			    
+			    console.debug('Concluido handle function....');
 			},
 			
 			error: function(error) {
 	            console.debug("Um erro inesperado ocorreu:");
+	            if (errorFunction != undefined) {
+			    	console.debug('error Function: ', errorFunction);
+			    	var resultErrorFunction = eval(errorFunction);
+				}
+			    if (errorFunctionData != undefined) {
+			    	var nomeFunctionErrorData = errorFunctionData + "(" + ioargs.xhr.responseText + ")";
+			    	console.debug('iniciando errorFunctionData function...');
+			    	var resultErrorFunctionData = eval(nomeFunctionErrorData);
+			    	console.debug('concluido errorFunctionData function...');
+				}
 	        }
     };
 	
@@ -741,11 +778,11 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 	switch(method) {
 	
 	case 'post':
-		dojo.xhrPost(xhrArgs);
+		return dojo.xhrPost(xhrArgs);
 		break;
 		
 	case 'get':
-		dojo.xhrGet(xhrArgs);
+		return dojo.xhrGet(xhrArgs);
 		break;
 	}
 }
@@ -810,26 +847,34 @@ function processaHeaderLink(headerLink){
 
 
 /**
- * função processa javacript
- * @param String script - script que será processado.
+ * Função processa javacript
+ * @param String texto - Texto contendo script que será processado.
+ * @param Boolean processaScriptEvent - Se true, processa os scripts que estão relacionados a algum evento.  
  */
-function processaScript(script){
-	if (script == null || script == '')
+function processaScript(texto, processaScriptEvent){
+	if (texto == null || texto == '')
 		return;
-	
+
 	var ini, pos_src, fim, codigo, texto_pesquisa;
 	var objScript = null;
+	
 	//Joga na variavel de pesquisa o texto todo em minusculo para na hora da pesquisa nao ter problema com case-sensitive
-	texto_pesquisa = script.toLowerCase();
+	texto_pesquisa = texto.toLowerCase();
 	// Busca a primeira tag <script
 	ini = texto_pesquisa.indexOf('<script', 0);
+		
 	// Executa o loop enquanto achar um <script
 	while (ini!=-1){
+				
 		//Inicia o objeto script
 		var objScript = document.createElement("script");
-
-		//Busca se tem algum src a partir do inicio do script
-		pos_src = texto_pesquisa.indexOf(' src', ini);
+		
+		//Busca se tem algum event a partir do inicio do script até >
+		pos_event = texto_pesquisa.substring(ini, texto_pesquisa.indexOf('>', ini)).indexOf(' event');
+				
+		//Busca se tem algum src a partir do inicio do script ate >
+		pos_src = texto_pesquisa.substring(ini, texto_pesquisa.indexOf('>', ini)).indexOf(' src');
+		
 		// Define o inicio para depois do fechamento dessa tag
 		ini = texto_pesquisa.indexOf('>', ini) + 1;
 
@@ -840,7 +885,7 @@ function processaScript(script){
 			//Procura pelo ponto do nome da extencao do arquivo e marca para depois dele
 			fim = texto_pesquisa.indexOf('.', ini)+4;
 			//Pega o nome do arquivo
-			codigo = script.substring(ini,fim);
+			codigo = texto.substring(ini,fim);
 			//Elimina do nome do arquivo os caracteres que possam ter sido pegos por engano
 			codigo = codigo.replace("=","").replace(" ","").replace("\"","").replace("\"","").replace("\'","").replace("\'","").replace(">","");
 			// Adiciona o arquivo de script ao objeto que sera adicionado ao documento
@@ -849,15 +894,20 @@ function processaScript(script){
 			// Procura o final do script
 			fim = texto_pesquisa.indexOf('</script>', ini);
 			// Extrai apenas o script
-			codigo = script.substring(ini,fim);
+			codigo = texto.substring(ini,fim);
 			// Adiciona o bloco de script ao objeto que sera adicionado ao documento
 			objScript.text = codigo;
 		}
 
-		//Adiciona o script ao documento
-		document.body.appendChild(objScript);
+		if (pos_event >=0 && !processaScriptEvent){
+			pos_event = -1;
+		} else {
+			//Adiciona o script ao documento
+			document.body.appendChild(objScript);
+		}
+				
 		// Procura a proxima tag de <script
-		ini = script.indexOf('<script', fim);
+		ini = texto.indexOf('<script', fim);
 
 		//Limpa o objeto de script
 		objScript = null;
