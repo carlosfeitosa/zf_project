@@ -203,8 +203,9 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	 * 
 	 * @param Array $arrayPost
 	 * @param Object $request
+	 * @param boolean $forceSave
 	 */
-	public function salvarRascunho($arrayPost, $request)
+	public function salvarRascunho($arrayPost, $request, $forceSave = false)
 	{
 		try {
 			
@@ -250,7 +251,7 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	
 		    	// recuperando ultimo rascunho pai da fila da sessao
 		    	$rascunhoPai = Basico_OPController_SessionOPController::getInstance()->retornaUltimoRascunhoPaiSessao();
-		    	
+		    			    	   	
 		    	// verificando se existe rascunho 
 		    	if(isset($idRascunho)){ 
 		    		
@@ -320,7 +321,7 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 		    	 	$objRascunho->categoria = $idCategoriaRascunho;
 	
 		    	 	// verificando se há rascunho pai na sessao 
-		    	 	if($rascunhoPai !== false)
+		    	 	if($rascunhoPai)
 			    	   // setando o rascunho pai
 					   $objRascunho->rascunhoPai = $rascunhoPai;
 		    	 	
@@ -329,10 +330,12 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 
 		    	    // executando insert
 		    	   	$this->salvarObjeto($objRascunho, null, $idPessoaPerfilCriador);
-		    	   	
-		    	   	// registrando id do rascunho na sessao
-		    	   	Basico_OPController_SessionOPController::getInstance()->registraRascunhoPaiSessao($objRascunho->id);
-		    	   	
+					
+		    	   	// verificando se forceSave foi setado
+		    	   	if($forceSave !== "false"){
+		    	   	   // registrando id do rascunho na sessao
+		    	   	   Basico_OPController_SessionOPController::getInstance()->registraRascunhoPaiSessao($objRascunho->id);
+		    		}
 		    	   	// inserindo id do rascunho no pool de elementos ocultos
 		    	   	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('idRascunho' => $objRascunho->id));
 

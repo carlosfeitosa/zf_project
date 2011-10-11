@@ -24,9 +24,15 @@ class Basico_RascunhoController extends Zend_Controller_Action
     {
     	// recuperando array do post
     	$arrayPost = $this->getRequest()->getPost();
-    	
+   	
+    	// recuperando forceSave
+    	$forceSave = $arrayPost["forceSave"];
+
+    	// retrirando o parametro forcesave do arrayPost
+		unset($arrayPost["forceSave"]);
+
     	// chamando metodo que salva o rascunho
-    	if (Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($arrayPost, $this->getRequest())) {
+    	if (Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($arrayPost, $this->getRequest(),$forceSave)) {
 			// inicializa o rascunho no cliente
     	    $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("initRascunho(); ");
        		// escreve mensagem de sucesso para o usuario

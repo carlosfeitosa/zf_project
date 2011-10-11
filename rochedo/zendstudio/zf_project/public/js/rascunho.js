@@ -133,7 +133,7 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 			}
 
 			// inicio montando do post
-			postData += '{"formName": "' + nomeForm + '", "' + 'formAction": "' + acaoForm + '"';		
+			postData += '{"formName": "' + nomeForm + '", "formAction": "' + acaoForm + '","forceSave":"' + forceSave+'"';		
 			
 			// percorrendo elementos
 			for (element in arrayChangedElements) {
@@ -167,12 +167,13 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 
 			postData += "}";
 
-			$.post(urlPost, jQuery.parseJSON(postData),
-			  function (data) {
-				processaResponseDojoFormRequest(data);
+			$.post(urlPost, 
+                               jQuery.parseJSON(postData),
+			       function (data) {
+					 processaResponseDojoFormRequest(data);
 		
-			  },
-			  "json"
+			       },
+			       "json"
 			);
 	
 		}		
