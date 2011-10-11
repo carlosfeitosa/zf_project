@@ -136,7 +136,7 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	    	$mensagemLog    = LOG_MSG_DELETE_RASCUNHO;
 
 	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
+	    	return Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);
@@ -253,12 +253,13 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 		    	
 		    	// verificando se existe rascunho 
 		    	if(isset($idRascunho)){ 
+		    		
 		    		// recuperando o objeto rascunho 
 		    	   	$objRascunho = Basico_OPController_RascunhoOPController::getInstance()->retornaObjetoRascunhoPorId($idRascunho);
-		    	   		
+
 		    	   	// recuperando a ultima versão do rascunho 
 		    	   	$ultimaVersaoRasunho = Basico_OPController_RascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho); 
-		    	   
+		    	
 		    	   	// decodificando JSON do post
 		    	   	$postRascunho = Zend_Json_Decoder::decode($objRascunho->post);
 		    	   
@@ -385,8 +386,11 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 			
 		    // excluindo rascunho em cascata
 			if ($this->apagarObjeto($objetoRascunho, true, $objPessoaPerfil->id)) {
+				
 				// removendo rascunho da lista de rascunhos pais da sessao
 				Basico_OPController_SessionOPController::getInstance()->removeRascunhoPaiSessao($idRascunho);
+				// inserindo id do rascunho no pool de elementos ocultos
+		    	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('idRascunho' => null));
 				
 				return true;
 			}
