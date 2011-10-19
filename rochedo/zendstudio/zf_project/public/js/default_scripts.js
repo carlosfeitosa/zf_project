@@ -756,7 +756,7 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 			    console.debug('Concluido handle function....');
 			},
 			
-			error: function(error) {
+			error: function(error, ioargs) {
 	            console.debug("Um erro inesperado ocorreu:");
 	            if (errorFunction != undefined) {
 			    	console.debug('error Function: ', errorFunction);
