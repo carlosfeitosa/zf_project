@@ -55,9 +55,9 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
     	$standardArgs = array(    		
     		// content deve receber um objeto javaScript, de pares, nome/valor. 
     		'content'  => new Zend_Json_Expr("{idRequestSource: '{$this->idRequestSource}'}"),
-            'form'     => new Zend_Json_Expr('this.domNode'),
+            'form'     => new Zend_Json_Expr("'{$this->getElement()->getName()}'"),
             'loadFunctionData' => 'processaResponseDojoFormRequest',
-    		'handleFunctionData'   => 'processaResponseDojoFormRequest',
+    		'errorFunctionData'   => 'processaResponseDojoFormRequest',
     		'handleAs' => 'json',
     		'preventCache' => true,
         );
@@ -75,13 +75,29 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
         $mensagem = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_VALIDATION_MESSAGE');
         
         $content = <<<EOQ
-<script type="dojo/method" event="onSubmit">
-if (validateForm(this, '{$titulo}', '{$mensagem}')){
-	if (this.validate()) {
-	    dojoRequestAjaxAbstract('post', {$xhrArgs});
-	}
+<script type="dojo/method">
+function formBackgroundSubmit() {
+console.debug('funcao formBackgroundSubmit processada');
+
+	var form = dojo.byId("{$this->getElement()->getName()}");
+
+	dojo.connect(form, "onsubmit", function(event) {
+		console.debug('conectando ao evento:', event);
+		
+		//Parando o evento Submit
+	    console.debug('Parando o evento:', event);
+		dojo.stopEvent(event);
+		
+		// validando o formulario
+		if (validateForm(this, '{$titulo}', '{$mensagem}')){
+			console.debug('formulario validado....');
+			
+			var deferred = dojoRequestAjaxAbstract('post', {$xhrArgs});
+		}
+	});
 }
-return false;
+dojo.addOnLoad(formBackgroundSubmit);
+console.debug('dojo.addOnLoad(formBackgroundSubmit): "{$this->getElement()->getName()}"');
 </script>
 EOQ;
 
