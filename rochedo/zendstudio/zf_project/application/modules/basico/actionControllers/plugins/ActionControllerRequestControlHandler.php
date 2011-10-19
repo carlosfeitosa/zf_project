@@ -147,7 +147,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 		// verificando se foi recuperado a chave Csrf
 		if ($chaveCsrf) {
 			// verificando se existe um subform
-			if ($valorPostSubForm) {
+			if (isset($valorPostSubForm) and ($valorPostSubForm)) {
 				// recupernado chave csrf do post
 				$valorChaveCsrf = $valorPostSubForm;
 			} else {
