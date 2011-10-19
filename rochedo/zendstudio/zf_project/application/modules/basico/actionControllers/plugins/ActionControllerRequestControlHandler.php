@@ -146,8 +146,17 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 		// verificando se foi recuperado a chave Csrf
 		if ($chaveCsrf) {
+			// verificando se existe um subform
+			if ($valorPostSubForm) {
+				// recupernado chave csrf do post
+				$valorChaveCsrf = $valorPostSubForm;
+			} else {
+				// recupernado chave csrf do post
+				$valorChaveCsrf = $valorPost;
+			}
+			
 			// descarregando elementos relacionados com a chave
-			$arrayElementosOcultosChave = Basico_OPController_SessionOPController::descarregaPoolElementosOcultos($chaveCsrf);
+			$arrayElementosOcultosChave = Basico_OPController_SessionOPController::descarregaPoolElementosOcultos($valorChaveCsrf);
 
 			// verificando se o resultado
 			if ((is_array($arrayElementosOcultosChave)) and (count($arrayElementosOcultosChave))) {

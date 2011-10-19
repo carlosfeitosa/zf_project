@@ -128,11 +128,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 								}
 								
 								if ($elementoForm->getType() == 'Rochedo_Form_Element_Oculto') {
-									
-									// renderizando elemento do tipo oculto, para ser gerado o value.
-									$elementoForm->render();
+
 									// montando array de elementos ocultos.
-									$elementosOcultos[$elementoForm->getId()] = $elementoForm->getValue();
+									$elementosOcultos[$elementoForm->getName()] = $elementoForm->getValue();
 									// removendo elemento do formulário
 									$form->removeElement($elementoForm->getName());
 								}
