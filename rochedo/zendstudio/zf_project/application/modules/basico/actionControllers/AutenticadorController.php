@@ -274,6 +274,22 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		// setando o conteudo da resposta
 		$this->view->content = array($formAutenticacao);
 
+		// script para adicao do "loading" no submit deste form
+		$script[] = 'dojo.connect(form, "onsubmit", function(event) {
+		console.debug('conectando ao evento:', event);
+		
+		//Parando o evento Submit
+	    console.debug('Parando o evento:', event);
+		dojo.stopEvent(event);
+		
+		// validando o formulario
+		if (validateForm(this, '{$titulo}', '{$mensagem}')){
+			console.debug('formulario validado....');
+			
+			var deferred = dojoRequestAjaxAbstract('post', {$xhrArgs});
+		}
+	});'
+
 		// renderizando a resposta
 		$this->_helper->Renderizar->renderizar('default.html.phtml', true);
 	}

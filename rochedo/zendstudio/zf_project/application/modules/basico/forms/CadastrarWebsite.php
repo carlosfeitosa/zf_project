@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:25:35
+* em: 20/10/2011 10:28:09
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
 class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
 {
@@ -31,7 +31,7 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
         $this->setName('BasicoCadastrarWebsite');
         $this->setMethod('post');
         $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/website/salvarwebsite'));
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarWebsite', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+        $this->addAttribs(array('onSubmit'=>"return(validateForm('CadastrarWebsite', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->addAttribs(array('rascunho' => true));
 
         // Adicionando paths para localizacao de componentes nao ZF.
@@ -84,7 +84,7 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
         $elements[5]->removeDecorator('DtDdWrapper');
         $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[6] = $this->createElement('button', 'BasicoCadastrarWebsiteResetar', array('type' => 'reset', 'onClick' => 'hideDialog("Basico_Form_CadastrarWebsite", "/rochedo_project/public");'));
+        $elements[6] = $this->createElement('button', 'BasicoCadastrarWebsiteResetar', array('type' => 'reset', 'onClick' => 'hideDialog(\"Basico_Form_CadastrarWebsite\", \"/rochedo_project/public\");'));
         $elements[6]->setOrder(6);
         $elements[6]->setRequired(false);
         $elements[6]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-margin-right10px',));

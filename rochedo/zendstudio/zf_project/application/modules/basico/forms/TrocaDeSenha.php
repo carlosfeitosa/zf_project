@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:25:44
+* em: 20/10/2011 10:28:14
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
 class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
 {
@@ -30,7 +30,7 @@ class Basico_Form_TrocaDeSenha extends Zend_Dojo_Form
 
         $this->setName('BasicoTrocaDeSenha');
         $this->setMethod('post');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('TrocaDeSenha', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+        $this->addAttribs(array('onSubmit'=>"return(validateForm('TrocaDeSenha', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
 
         // Adicionando paths para localizacao de componentes nao ZF.

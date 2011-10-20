@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:25:14
+* em: 20/10/2011 10:27:57
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
 class Basico_Form_CadastrarDocumento extends Zend_Dojo_Form
 {
@@ -30,7 +30,7 @@ class Basico_Form_CadastrarDocumento extends Zend_Dojo_Form
 
         $this->setName('BasicoCadastrarDocumento');
         $this->setMethod('post');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarDocumento', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+        $this->addAttribs(array('onSubmit'=>"return(validateForm('CadastrarDocumento', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->addAttribs(array('rascunho' => true));
 
         // Criando array de elementos.
@@ -49,7 +49,7 @@ class Basico_Form_CadastrarDocumento extends Zend_Dojo_Form
         $elements[5]->removeDecorator('DtDdWrapper');
         $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
 
-        $elements[6] = $this->createElement('button', 'BasicoCadastrarDocumentoResetar', array('type' => 'reset', 'onClick' => 'hideDialog("Basico_Form_CadastrarDocumento", "/rochedo_project/public");'));
+        $elements[6] = $this->createElement('button', 'BasicoCadastrarDocumentoResetar', array('type' => 'reset', 'onClick' => 'hideDialog(\"Basico_Form_CadastrarDocumento\", \"/rochedo_project/public\");'));
         $elements[6]->setOrder(6);
         $elements[6]->setRequired(false);
         $elements[6]->removeDecorator('DtDdWrapper');

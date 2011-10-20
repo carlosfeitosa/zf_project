@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:24:51
+* em: 20/10/2011 10:27:45
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
 class Basico_Form_CadastrarDadosUsuarioDadosAcademicosOrientacoes extends Zend_Dojo_Form
 {
@@ -43,7 +43,7 @@ class Basico_Form_CadastrarDadosUsuarioDadosAcademicosOrientacoes extends Zend_D
         $elements[1]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));
         $elements[1]->removeDecorator('DtDdWrapper');
 
-        $elements[2] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosAcademicosOrientacoesFechar', array('onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioDadosAcademicosOrientacoes");'));
+        $elements[2] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioDadosAcademicosOrientacoesFechar', array('onClick' => 'hideDialog(\"Basico_Form_CadastrarDadosUsuarioDadosAcademicosOrientacoes\");'));
         $elements[2]->setOrder(2);
         $elements[2]->setRequired(false);
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));

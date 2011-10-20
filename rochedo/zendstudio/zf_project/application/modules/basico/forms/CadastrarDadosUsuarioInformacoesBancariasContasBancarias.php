@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:25:12
+* em: 20/10/2011 10:27:57
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
 class Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias extends Zend_Dojo_Form
 {
@@ -50,7 +50,7 @@ class Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias exten
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
         $elements[2]->removeDecorator('DtDdWrapper');
 
-        $elements[3] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioInformacoesBancariasContasBancariasFechar', array('onClick' => 'hideDialog("Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias");'));
+        $elements[3] = $this->createElement('button', 'BasicoCadastrarDadosUsuarioInformacoesBancariasContasBancariasFechar', array('onClick' => 'hideDialog(\"Basico_Form_CadastrarDadosUsuarioInformacoesBancariasContasBancarias\");'));
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(false);
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));

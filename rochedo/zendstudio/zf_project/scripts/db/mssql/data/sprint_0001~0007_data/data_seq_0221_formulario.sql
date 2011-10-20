@@ -40,7 +40,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_ACEITE_TERMOS_USO_TITULO' AS constante_textual_titulo,
        'VIEW_ACEITE_TERMOS_USO_SUBTITULO' AS constante_textual_subtitulo,
        'AceiteTermosUso' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -63,7 +63,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_TROCA_DE_SENHA_TITULO' AS constante_textual_titulo,
        'VIEW_TROCA_DE_SENHA_SUBTITULO' AS constante_textual_subtitulo,
        'TrocaDeSenha' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -195,7 +195,7 @@ SELECT c.id AS id_categoria,
        'CadastrarDadosUsuarioDadosBiometricos' AS form_name, 
        'post' AS form_method, 
        '/basico/dadosusuario/salvar' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        4 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -216,7 +216,7 @@ SELECT c.id AS id_categoria,
        'CadastrarDadosUsuarioConta' AS form_name, 
        'post' AS form_method, 
        '/basico/dadosusuario/salvar' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        7 AS ordem,
        0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
@@ -345,7 +345,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarWebsite' AS form_name, 
         'post' AS form_method,
         '/basico/website/salvarwebsite' AS form_action, 
-        '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"'  AS form_attribs,
+        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"'  AS form_attribs,
         'SYSTEM_STARTUP' AS rowinfo       
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -382,7 +382,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
        'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, '/basico/login/verificaNovoLogin' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -404,7 +404,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUBTITULO' AS constante_textual_subtitulo,
        'CadastrarUsuarioValidado' AS form_name, 'post' AS form_method, '/basico/login/salvarUsuarioValidado' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -419,7 +419,7 @@ SELECT c.id AS id_categoria,
        'Formulário de cadastro de documentos de identificação.' AS descricao, 
        'FORM_DOCUMENTOS_IDENTIFICACAO_TITULO' AS constante_textual_titulo,
        'DocumentosIdentificacao' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -434,7 +434,7 @@ SELECT c.id AS id_categoria,
        'Formulário de cadastro de documento.' AS descricao, 
        'FORM_DOCUMENTO_TITULO' AS constante_textual_titulo,
        'CadastrarDocumento' AS form_name, 'post' AS form_method, NULL AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -455,7 +455,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO' AS constante_textual_titulo,
        'VIEW_LOGIN_AUTENTICACAO_USUARIO_SUBTITULO' AS constante_textual_subtitulo,
        'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/autenticador/verificaAutenticacaoUsuario' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -482,7 +482,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        'CadastrarDadosUsuarioDadosPessoais' AS form_name, 
        'post' AS form_method, 
        '/basico/dadosusuario/salvar' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -694,7 +694,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'Formulário do resolvedor de conflitos de versão de objetos.' AS descricao, 
        'FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_titulo,
        'ResolvedorConflitoVersaoObjeto' AS form_name, 'post' AS form_method, '/basico/cvc/resolveConflitoVersaoObjeto' AS form_action, 
-       '''onSubmit''=>"loading();return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
+       '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        0 AS permite_rascunho,'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

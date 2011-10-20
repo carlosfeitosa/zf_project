@@ -133,19 +133,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// adicionando scripts na view
 			$this->view->scripts = $scripts;
 		}
-		
-		/*
-		//$footer[]= $this->view->renderToPlaceholder('footer.phtml', 'footer');
-		$this->view->placeholder('footer')->set('xxxxxxxxxxxx');
-		$footer[]= Zend_View_Helper_Placeholder_Registry::getRegistry();
-		Basico_OPController_UtilOPController::print_debug(Zend_View_Helper_Placeholder_Registry::getRegistry());
-		exit;
-		$this->view->footer = $footer;
-		*/
-		//$this->view->scripts = array("<script>alert('teste view script');</script>"); 
-		//$this->view->headScript()->prependScript("alert('teste header append script ');");
-		
-		
+
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -186,10 +174,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$arrayPost = $this->getRequest()->getPost();
 
     	// recuperando o formulario de dados do usuario
-    	$formDadosUsuario = $this->getFormDadosUsuario();
+    	$formDadosUsuario = $this->getFormDadosUsuario($arrayPost);
 
     	// inicializando o formulario
     	$this->initFormDadosUsuario($idPessoa, $formDadosUsuario);
+
+    	$content[] = $formDadosUsuario;
+    	$this->view->content = $content;
+    	$this->_helper->Renderizar->renderizar();
 
     	// invocando metodos de salvar os dados do usuario e verificando se houve houve erro
     	$podeContinuar = $this->salvarDadosBiometricos($idPessoa, $arrayPost, $formDadosUsuario);
@@ -343,7 +335,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	}
 
     	// verificando se a senha atual eh igual a nova senha
-    	if ($senhaAtual === Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha'])) {
+    	if ((trim($senhaAtual) !== '') and ($senhaAtual === Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha']))) {
 			// limpando as senhas digitadas
 			$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setValue(null);
 			$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setValue(null);
@@ -407,7 +399,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 	
 		        // exibindo mensagem de sucesso
-		        $scripts[] = "<script>new messagePop.ui.Error({message: '".$this->view->tradutor('FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO')."', timeout: 7000});</script>";
+		        $scripts[] =  Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO"));
 
 				// setando scripts na view
 				$this->view->scripts = $scripts;
@@ -450,13 +442,16 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
     	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayPost)) {
+			// enviando formulario com problemas
+			$this->view->content = array($formDadosUsuario);
+
     		// selecionando a aba do subform DadosBiometricos
 			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
 
 			// setando os scripts na view
 			$this->view->scripts = $scripts;
 			
-    		return false;
+    		$this->_helper->Renderizar->renderizar();
     	}
 
     	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {

@@ -1373,7 +1373,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_RESET' AS nome, 'Botão para reset de 
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
        'FORM_BUTTON_RESET' AS constante_textual_label, 'resetar' AS element_name, 
-       '''resetar'', array(''type'' => ''reset'', ''onClick'' => ''hideDialog(\"@nomeForm\", \"@baseUrl\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       '''resetar'', array(''type'' => ''reset'', ''onClick'' => ''hideDialog("@nomeForm", "@baseUrl");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1390,7 +1390,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome, 'Botão para fe
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
        'FORM_BUTTON_CLOSE_DIALOG' AS constante_textual_label, 'fechar' AS element_name, 
-       '''fechar'', array(''onClick'' => ''hideDialog(\"@nomeForm\");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       '''fechar'', array(''onClick'' => ''hideDialog("@nomeForm");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -1406,7 +1406,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para cha
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
        'buttonDialogDojo' AS element_name, 
-       '''label'' => "{@tituloForm}", ''onClick'' => "exibirDialogUrl(\\"@nomeForm\\", \\"@urlForm\\", \\"{@tituloForm}\\")"' AS element_attribs,
+       '''label'' => "{@tituloForm}", ''onClick'' => "exibirDialogUrl(\"@nomeForm\", \"@urlForm\", \"{@tituloForm}\")"' AS element_attribs,
        '''buttonDialogDojo@offset''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)

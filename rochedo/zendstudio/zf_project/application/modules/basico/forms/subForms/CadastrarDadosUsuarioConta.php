@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:24:46
+* em: 20/10/2011 10:27:42
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
     $basicoCadastrarDadosUsuarioContaSubForm = new Zend_Dojo_Form_SubForm();
 
@@ -22,7 +22,7 @@
     $basicoCadastrarDadosUsuarioContaSubForm->setName('CadastrarDadosUsuarioConta');
     $basicoCadastrarDadosUsuarioContaSubForm->setMethod('post');
     $basicoCadastrarDadosUsuarioContaSubForm->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
-    $basicoCadastrarDadosUsuarioContaSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'onSubmit'=>"loading();return(validateForm('CadastrarDadosUsuarioConta', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+    $basicoCadastrarDadosUsuarioContaSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'onSubmit'=>"return(validateForm('CadastrarDadosUsuarioConta', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
     $basicoCadastrarDadosUsuarioContaSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioContaSubForm->setOrder(7);
 

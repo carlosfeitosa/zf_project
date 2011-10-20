@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:25:37
+* em: 20/10/2011 10:28:10
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
 class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
 {
@@ -30,7 +30,7 @@ class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
 
         $this->setName('BasicoDocumentosIdentificacao');
         $this->setMethod('post');
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('DocumentosIdentificacao', id_decorator, '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+        $this->addAttribs(array('onSubmit'=>"return(validateForm('DocumentosIdentificacao', id_decorator, '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->addAttribs(array('rascunho' => true));
 
         // Adicionando paths para localizacao de componentes nao ZF.
@@ -52,7 +52,7 @@ class Basico_Form_DocumentosIdentificacao extends Zend_Dojo_Form
         $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
         $elements[2]->removeDecorator('DtDdWrapper');
 
-        $elements[3] = $this->createElement('button', 'BasicoDocumentosIdentificacaoFechar', array('onClick' => 'hideDialog("Basico_Form_DocumentosIdentificacao");'));
+        $elements[3] = $this->createElement('button', 'BasicoDocumentosIdentificacaoFechar', array('onClick' => 'hideDialog(\"Basico_Form_DocumentosIdentificacao\");'));
         $elements[3]->setOrder(3);
         $elements[3]->setRequired(false);
         $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));

@@ -3,7 +3,7 @@
 * Rochedo Framework
 *
 * Formulário gerado automáticamente pelo Gerador rochedo
-* em: 06/10/2011 10:25:31
+* em: 20/10/2011 10:28:06
 *
 * LICENÇA DE USO
 *
@@ -14,7 +14,7 @@
 * @package    BASICO
 * @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
 * @license    (implementar)
-* @version    1: 05/10/2011 11:05:13
+* @version    1: 20/10/2011 10:21:47
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -31,7 +31,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->setName('BasicoCadastrarUsuarioValidado');
         $this->setMethod('post');
         $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/login/salvarUsuarioValidado'));
-        $this->addAttribs(array('onSubmit'=>"loading();return(validateForm('CadastrarUsuarioValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+        $this->addAttribs(array('onSubmit'=>"return(validateForm('CadastrarUsuarioValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
 
         // Adicionando paths para localizacao de componentes nao ZF.
@@ -77,7 +77,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $elements[4]->setOrder(4);
         $elements[4]->setRequired(true);
         $elements[4]->addFilters(array('StringTrim', 'StripTags'));
-        $elements[4]->addValidator('Regex', true, array('pattern'=>'/^[(a-zA-Z)]+[(a-zA-Z0-9_@.)]*$/', 'messages' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE'))));
+        $elements[4]->addValidator('Regex', true, array('pattern'=>'/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/', 'messages' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE'))));
         $elements[4]->addValidator('stringLength', false, array(3, 100));
         $elements[4]->addValidator('NotEmpty');
         $elements[4]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
