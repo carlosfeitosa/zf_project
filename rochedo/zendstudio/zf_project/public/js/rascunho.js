@@ -27,7 +27,6 @@ function initRascunho()
 		}
     });
 
-    alert('teste');
 
 }
 
