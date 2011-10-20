@@ -61,7 +61,9 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 										onHide: dojo.hitch(this, function(){
 										
 											//verificando rascunho
-											verificaElementosModificadosRascunho();
+											if (typeof verificaElementosModificadosRascunho == 'function')
+												verificaElementosModificadosRascunho();
+
 											// verificando se o dialog possui o hidden para redirect
 											if (document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0] && urlRedirectHide)
 							                			window.location = urlRedirectHide;
@@ -148,7 +150,9 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, f
     // carregando o conteudo da url no dialog
     dojo.xhrGet(xhrArgs);
 
-    initRascunho();
+    if (typeof initRascunho == 'function') {	
+        initRascunho();
+    }
 }
 
 function showDialogAlert(txtDialogId, txtTitle, txtContent, botaoFechar)
@@ -577,6 +581,7 @@ function processaResponseDojoFormRequest(data)
         	if (null != n) {
         		// Setando os atributos do dijit
             	dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
+		console.warn('criando atributos do dijit: ' + n.id, info.params);
         	}
         });
 		

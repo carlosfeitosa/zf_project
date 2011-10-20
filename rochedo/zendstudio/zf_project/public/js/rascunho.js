@@ -26,6 +26,9 @@ function initRascunho()
 			}
 		}
     });
+
+    alert('teste');
+
 }
 
 /**
@@ -34,9 +37,6 @@ function initRascunho()
  */
 function formChangesCheck() 
 {
-	
-	var msg = 'There are unsaved changes:';
-	var changed = false;
 	var arrayChangedElements = new Array();
 	var current = '';
 	var i = 0;
@@ -59,9 +59,7 @@ function formChangesCheck()
 			}
 			
 			if (($(this).data('initialValue') != current)){
-				changed = true;
 				arrayChangedElements[i] = $(this).attr("id");
-
 			}
 		
 		}
@@ -90,12 +88,12 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 	if (arrayChangedElements.length > 0 || forceSave == true) {
 		// inicializando variaveis
 		var arrayNomesFormsPais = new Array();	
-		var i = 0;
-		
+		var i = 0;		
+
 		// verificando se formPai existe
 		if(nomeFormPai){
 		   // carregando form pai no caso de dialog
-		   arrayNomesFormsPais[0] = nomeFormPai;	
+		   arrayNomesFormsPais[0] = nomeFormPai;
 		   i = 1;
 		}
 
@@ -111,6 +109,7 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 				arrayNomesFormsPais[i] = nomeFormPai;
 				i++;
 			}
+			console.debug(arrayChangedElements[element]);
 		}
 
 		  
@@ -126,6 +125,12 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 			var nomeForm =	arrayNomesFormsPais[form];		
 			// recuperando o action do form 
 			var acaoForm = $("#" + nomeForm).attr('action');
+
+			// verificando se o form permite rascunho
+		        if ($("#" + nomeForm).attr('rascunho') != "true") {
+				console.debug('O Form ' + nomeForm + ' não permite rascunho.');
+				continue;	
+			}
 
 			if (!acaoForm) {
 				console.debug('ERRO ao salvar rascunho: Form action não encontrado para o form: ' + nomeForm);
@@ -244,14 +249,14 @@ function verificaElementosModificadosRascunho()
 {
 	// recuperando elementos com informações não salvas
 	var arrayChangedElements = formChangesCheck();	
-	// verificando se existem elementos com informações não salvas												
-	/*if (arrayChangedElements.length > 0) {
+	// verificando se existem elementos com informações não salvas 												
+	if (arrayChangedElements.length > 0) {
 
 		for (elemento in arrayChangedElements) {
 			var formName = $("#" + arrayChangedElements[elemento]).closest("form").attr("id");		
 		}
 
-		if ($("#" + formName).attr("rascunho") == "true") {*/
+		if ($("#" + formName).attr("rascunho") == "true") {
 
 			// perguntando ao usuario se deseja salvar as alterações
 			if (confirm('Existem alterações não salvas, deseja salva-las?') == true) {
@@ -261,10 +266,10 @@ function verificaElementosModificadosRascunho()
 				// excluindo rascunho
 				excluirRascunho('http://localhost/rochedo_project/public/basico/rascunho/excluir');	
 			}
-		//}
-	//}
+		}
+	}
 
-	//return false;										
+	return false;										
 
 }
 
@@ -272,10 +277,8 @@ function verificaElementosModificadosRascunho()
  * Chamando funcoes do rascunho quando o documento estiver carregado
  */
 $(document).ready(function() {
-	// Handler for .ready() called.
 
 	initRascunho();
 	timer(10000,"salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar',false,null)");
-	
 
 });
