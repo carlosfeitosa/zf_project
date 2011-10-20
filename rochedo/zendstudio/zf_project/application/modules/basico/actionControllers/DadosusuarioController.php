@@ -179,10 +179,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// inicializando o formulario
     	$this->initFormDadosUsuario($idPessoa, $formDadosUsuario);
 
-    	$content[] = $formDadosUsuario;
-    	$this->view->content = $content;
-    	$this->_helper->Renderizar->renderizar();
-
     	// invocando metodos de salvar os dados do usuario e verificando se houve houve erro
     	$podeContinuar = $this->salvarDadosBiometricos($idPessoa, $arrayPost, $formDadosUsuario);
 
@@ -469,9 +465,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        
 			// setando os scripts na view
 			$this->view->scripts = $scripts;
+			
+			// processando rascunho
+			$this->_helper->Rascunho->processar();
+			
+			return true;
     	}
     	
-    	return true;
+    	return false;
     }
     
     /**

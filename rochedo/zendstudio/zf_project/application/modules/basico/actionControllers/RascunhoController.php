@@ -28,11 +28,11 @@ class Basico_RascunhoController extends Zend_Controller_Action
     	// recuperando forceSave
     	$forceSave = $arrayPost["forceSave"];
 
-    	// retrirando o parametro forcesave do arrayPost
+    	// retirando o parametro forcesave do arrayPost
 		unset($arrayPost["forceSave"]);
 
     	// chamando metodo que salva o rascunho
-    	if (Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($arrayPost, $this->getRequest(),$forceSave)) {
+    	if (Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($this->getRequest(),$forceSave)) {
 			// inicializa o rascunho no cliente
     	    $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("initRascunho(); ");
        		// escreve mensagem de sucesso para o usuario
@@ -48,11 +48,8 @@ class Basico_RascunhoController extends Zend_Controller_Action
     
     public function excluirAction()
     {
-    	// recuperando o array do post
-    	$arrayPost = $this->getRequest()->getPost();
-    	
     	// removendo rascunho
-    	if (Basico_OPController_RascunhoOPController::getInstance()->excluirRascunho($arrayPost, $this->getRequest())) {
+    	if (Basico_OPController_RascunhoOPController::getInstance()->excluirRascunho($this->getRequest())) {
     		// setando script na view
     		$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_SUCESSO_EXCLUIR"));
     	}else{

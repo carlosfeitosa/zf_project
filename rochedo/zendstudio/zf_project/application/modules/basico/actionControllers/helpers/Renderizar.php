@@ -54,6 +54,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 						// adicionando os subformularios ao array
 						$arrayFormsSubForms += $arraySubForms;
 						
+						// inicializando variaveis
+						$permiteRascunho = false;
+						
 						// recuperando o nome do modulo para remocação do nome do form
 						$nomeModuloForm = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
 						
@@ -143,11 +146,25 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							}
 							
 							// verificando se existe rascunho no form
-							if ($form->getAttrib('rascunho')){
+							if ($form->getAttrib('rascunho')) {
 								// Adicionando o formulário com o atributo rascunho, no dojo(). Isto permitindo que o parametro seja reconhecido pelo dojo.
 								$this->_view->dojo()->addDijit($form->getName(), array('rascunho'=>'true'));
+								
+								$permiteRascunho = true;
 							}
 						}
+						
+						if ($permiteRascunho) {
+							
+							// recuperando a url do metodo de salvar rascunho
+							$urlSalvarRascunho = $this->_view->url(array('module' => 'basico', 'controller' => 'rascunho', 'action' => 'salvar'));
+							
+							// adicionando script para inicializacao do rascunho
+							$scriptInicializacaoRascunho = "<script type='text/javascript'>initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)')</script>";
+							
+							$this->_view->scripts = array($scriptInicializacaoRascunho);
+						}
+						
 					}					
 				}
 			}

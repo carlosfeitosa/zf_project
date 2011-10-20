@@ -205,25 +205,43 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	 * @param Object $request
 	 * @param boolean $forceSave
 	 */
-	public function salvarRascunho($arrayPost, $request, $forceSave = false)
+	public function salvarRascunho($request, $forceSave = false)
 	{
 		try {
 			
 			$sucesso = false;
 			
+			// recuperando o array de post
+			$arrayPost = $request->getPost();
+			
 			// recuperando o formName
 			$nomeForm = $arrayPost["formName"];
 			
 			// recuperando o nome do modulo
-			$nomeModuloForm = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
+			$nomeModuloForm = ucfirst(strtolower($request->getModuleName()));
 			
 			// recuperando o nome do form sem o modulo
 			$nomeForm = str_replace($nomeModuloForm, "", $nomeForm);
 
 			// recuperando o hash do formulario
 	    	foreach ($arrayPost as $key => $value) {
-	    		if (strpos($key, "Csrf") !== false)
-	    			$formHash = $value;
+	    		
+	    		if (is_array($value)) {
+	    			
+	    			foreach ($value as $postKey => $postValue) {
+		    			if (strpos($postKey, "Csrf") !== false) {
+		    				$formHash = $postValue;
+		    				break 2;	    		
+						}	
+	    			}
+	    			
+	    		}else{
+					if (strpos($key, "Csrf") !== false) {
+	    				$formHash = $value;
+	    				break;	    		
+					}	
+	    		}
+	    		
 	    	}
 	    	
 	    	// iniciando array pool
@@ -363,40 +381,70 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	 * Funçao para exclusao de rascunho
 	 * 
 	 */
-	public function excluirRascunho($arrayPost, $request)
+	public function excluirRascunho($request)
 	{
+		// recuperando o array do post
+		$arrayPost = $request->getPost();
+		
 		// verificando o id passado
 		if (count($arrayPost) > 0) {
 
 			// recuperando o hash do formulario
 	    	foreach ($arrayPost as $key => $value) {
-	    		if (strpos($key, "Csrf") !== false)
-	    			$formHash = $value;
+	    		
+	    		if (is_array($value)) {
+	    			
+	    			foreach ($value as $postKey => $postValue) {
+		    			if (strpos($postKey, "Csrf") !== false) {
+		    				$formHash = $postValue;
+		    				break 2;	    		
+						}	
+	    			}
+	    			
+	    		}else{
+					if (strpos($key, "Csrf") !== false) {
+	    				$formHash = $value;
+	    				break;	    		
+					}	
+	    		}
+	    		
 	    	}
 	    	
 	    	// iniciando array pool
 	    	$arrayPool = Basico_OPController_SessionOPController::getInstance()->recuperaTodosElementosPoolElementosOcultos();
-			
-			$idRascunho = $arrayPool[$formHash]['idRascunho'];
-			// recuperando objeto do modelo rascunho
-			$objModeloRascunho = $this->retornaNovoObjetoModeloPorNomeOPController(get_class($this));
-			
-			// recuperando objeto rascunho
-			$objetoRascunho = $this->retornaObjetoPorId($objModeloRascunho, $idRascunho);
+	    	
+	    	if (isset($arrayPool[$formHash]['idRascunho'])) {
+	    		$idRascunho = $arrayPool[$formHash]['idRascunho'];
+	    	}elseif (isset($arrayPost['idRascunho'])){
+	    		$idRascunho = $arrayPost['idRascunho'];
+	    	}
 
-			// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
-		    $objPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
-			
-		    // excluindo rascunho em cascata
-			if ($this->apagarObjeto($objetoRascunho, true, $objPessoaPerfil->id)) {
+	    	// verificando se o id do rascunho esta setado no arrayPool na sessao
+	    	if (isset($idRascunho)) {
+	    		
+		    	// recuperando o id do rascunho do Pool na sessao
+				$idRascunho = $arrayPool[$formHash]['idRascunho'];
+	
+				// recuperando objeto do modelo rascunho
+				$objModeloRascunho = $this->retornaNovoObjetoModeloPorNomeOPController(get_class($this));
 				
-				// removendo rascunho da lista de rascunhos pais da sessao
-				Basico_OPController_SessionOPController::getInstance()->removeRascunhoPaiSessao($idRascunho);
-				// inserindo id do rascunho no pool de elementos ocultos
-		    	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('idRascunho' => null));
+				// recuperando objeto rascunho
+				$objetoRascunho = $this->retornaObjetoPorId($objModeloRascunho, $idRascunho);
+	
+				// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
+			    $objPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
 				
-				return true;
-			}
+			    // excluindo rascunho em cascata
+				if ($this->apagarObjeto($objetoRascunho, true, $objPessoaPerfil->id)) {
+					
+					// removendo rascunho da lista de rascunhos pais da sessao
+					Basico_OPController_SessionOPController::getInstance()->removeRascunhoPaiSessao($idRascunho);
+					// removendo id do rascunho no pool de elementos ocultos
+			    	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('idRascunho' => null));
+					
+					return true;
+				}
+	    	}
 		}
 		
 		return false;
