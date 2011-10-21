@@ -574,6 +574,9 @@ function processaResponseDojoFormRequest(data)
 			}
 		}
 		
+		// Parser dojo.
+		dojo.parser.parse();
+		
 		// Percorrendo os dijits.
 		dojo.forEach(jsonResponse.view.dijits, function(info, i) {
 			
@@ -581,13 +584,8 @@ function processaResponseDojoFormRequest(data)
         	if (null != n) {
         		// Setando os atributos do dijit
             	dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
-		console.warn('criando atributos do dijit: ' + n.id, info.params);
         	}
         });
-		
-		
-		// Parser dojo.
-		dojo.parser.parse();
 		
 		// Percorrendo os scripts
 		scripts = jsonResponse.view.scripts;
