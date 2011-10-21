@@ -392,14 +392,21 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 			// recuperando o hash do formulario
 	    	foreach ($arrayPost as $key => $value) {
 	    		
+	    		// verificando se o valor do primeiro elemento e um array
 	    		if (is_array($value)) {
 	    			
+	    			// recuperando o nome do subform
+	    			$nomeSubForm = $key;
+	    			
+	    			// percorrendo o array do post para recuperar o hash do form
 	    			foreach ($value as $postKey => $postValue) {
 		    			if (strpos($postKey, "Csrf") !== false) {
 		    				$formHash = $postValue;
 		    				break 2;	    		
 						}	
 	    			}
+	    			
+	    			
 	    			
 	    		}else{
 					if (strpos($key, "Csrf") !== false) {
@@ -413,17 +420,17 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	    	// iniciando array pool
 	    	$arrayPool = Basico_OPController_SessionOPController::getInstance()->recuperaTodosElementosPoolElementosOcultos();
 	    	
+	    	// recuperando o id do rascunho
 	    	if (isset($arrayPool[$formHash]['idRascunho'])) {
 	    		$idRascunho = $arrayPool[$formHash]['idRascunho'];
 	    	}elseif (isset($arrayPost['idRascunho'])){
 	    		$idRascunho = $arrayPost['idRascunho'];
+	    	}elseif(isset($nomeSubForm)) {
+	    		$idRascunho = $arrayPost[$nomeSubForm]['idRascunho'];
 	    	}
 
 	    	// verificando se o id do rascunho esta setado no arrayPool na sessao
 	    	if (isset($idRascunho)) {
-	    		
-		    	// recuperando o id do rascunho do Pool na sessao
-				$idRascunho = $arrayPool[$formHash]['idRascunho'];
 	
 				// recuperando objeto do modelo rascunho
 				$objModeloRascunho = $this->retornaNovoObjetoModeloPorNomeOPController(get_class($this));

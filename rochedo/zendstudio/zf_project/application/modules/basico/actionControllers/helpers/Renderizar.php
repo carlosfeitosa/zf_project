@@ -150,10 +150,12 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 								// Adicionando o formulário com o atributo rascunho, no dojo(). Isto permitindo que o parametro seja reconhecido pelo dojo.
 								$this->_view->dojo()->addDijit($form->getName(), array('rascunho'=>'true'));
 								
+								// setando variavel que determina a insercao, ou nao, do script de inicializacao do rascunho
 								$permiteRascunho = true;
 							}
 						}
 						
+						// verificando se eh pra inserir o script de inicializacao do rascunho
 						if ($permiteRascunho) {
 							
 							// recuperando a url do metodo de salvar rascunho
@@ -161,7 +163,6 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							
 							// adicionando script para inicializacao do rascunho
 							$scriptInicializacaoRascunho = "<script type='text/javascript'>initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)')</script>";
-							
 							$this->_view->scripts = array($scriptInicializacaoRascunho);
 						}
 						
