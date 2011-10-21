@@ -2561,32 +2561,39 @@ class Basico_OPController_UtilOPController
 				$arrayScripts[] = $elementoForm->getValue();
 				$return['arrayScripts'] = $arrayScripts; 
 			}
-			
+									
 			// verifica se o elemento e do tipo hash
 			if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {
-				// renderizando elemento hash para ser gerado o novo valor do hash.
+				// renderizando elemento hash para ser gerado o novo valor do hash e id do elemento.
 				$elementoForm->render();
-			}
-			
-			if ($existeFormNoRequest) {
 				
-				if (is_subclass_of($form, 'Zend_Form_SubForm')) {
-					$request = $_REQUEST[$form->getName()];
-					$prefixElementName = $form->getName().'-';
-				} else {
-					$request = $_REQUEST;
-					$prefixElementName = '';
-				}
-	
-				// percorrendo o request em busca de elementos modificados.
-				foreach ($request as $keyRequest => $valueRequest) {
+				$idDijit = $elementoForm->getId();
+				$dijitParametros['value'] = $elementoForm->getValue();
+																						
+				$dojo->addDijit($idDijit, $dijitParametros);
+				
+			} else {
+			
+				if ($existeFormNoRequest) {
+		
+					if (is_subclass_of($form, 'Zend_Form_SubForm')) {
+						$request = $_REQUEST[$form->getName()];
+						$prefixElementName = $form->getName().'-';
+					} else {
+						$request = $_REQUEST;
+						$prefixElementName = '';
+					}
 					
-					// verificando se o valor do elemento enviado do request é diferente do valor existente no controller.
-					if ( ($elementoForm->getName() === $keyRequest) and ($elementoForm->getValue() !== $valueRequest) ) {
-						$idDijit = $prefixElementName . $elementoForm->getName();
-						$dijitParametros['value'] = $elementoForm->getValue();
-																								
-						$dojo->addDijit($idDijit, $dijitParametros);
+					// percorrendo o request em busca de elementos modificados.
+					foreach ($request as $keyRequest => $valueRequest) {
+						
+						// verificando se o valor do elemento enviado do request é diferente do valor existente no controller.
+						if ( ($elementoForm->getName() === $keyRequest) and ($elementoForm->getValue() !== $valueRequest) ) {
+							$idDijit = $prefixElementName . $elementoForm->getName();
+							$dijitParametros['value'] = $elementoForm->getValue();
+																									
+							$dojo->addDijit($idDijit, $dijitParametros);
+						}
 					}
 				}
 			}
