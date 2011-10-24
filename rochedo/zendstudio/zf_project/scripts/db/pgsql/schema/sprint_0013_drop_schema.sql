@@ -9,6 +9,6 @@
 * 
 */
 
-drop table if exists sequencia_formulario;
-drop table if exists grupo_rascunho;
 drop table if exists rascunho;
+drop table if exists grupo_rascunho;
+drop table if exists sequencia_formulario;
