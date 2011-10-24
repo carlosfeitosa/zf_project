@@ -4,6 +4,11 @@
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 * criacao: 06/09/2011
+* 
+* 24/10/2011 - criacao do drop das entidades grupo_rascunho e sequencia_formulario (João Vasconcelos - Bione);
+* 
 */
 
+drop table if exists sequencia_formulario;
+drop table if exists grupo_rascunho;
 drop table if exists rascunho;
