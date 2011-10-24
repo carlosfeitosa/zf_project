@@ -1,44 +1,42 @@
 <?php
 /**
- * Rascunho model
+ * GrupoRascunho model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_RascunhoMapper
+ * @uses       Basico_Model_GrupoRascunhoMapper
  * @subpackage Model
  */
-class Basico_Model_Rascunho
+class Basico_Model_GrupoRascunho
 {
 	/**
 	* @var int
 	*/
 	protected $_id;
-
 	/**
-	 * @var Basico_Model_RascunhoMapper
+	 * @var Basico_Model_GrupoRascunhoMapper
 	 */
 	protected $_mapper;
-
 	/**
 	 * @var String
 	 */
-	protected $_request;
+	protected $_nome;
 	/**
 	 * @var String
 	 */
-	protected $_post;
+	protected $_forms;
 	/**
-	 * @var String
-	 */
-	protected $_formAction;
+     * @var Integer
+     */
+    protected $_pessoa;
 	/**
-	 * @var String
-	 */
-	protected $_formName;
+     * @var Integer
+     */
+    protected $_perfil;
 	/**
-	 * @var Date
-	 */
-	protected $_dataHoraExpiracao;
+     * @var Integer
+     */
+    protected $_sequenciaFormulario;
 	/**
 	 * @var Date
 	 */
@@ -47,28 +45,6 @@ class Basico_Model_Rascunho
 	 * @var Date
 	 */
 	protected $_dataHoraUltimaAtualizacao;
-    /**
-     * @var Integer
-     */
-    protected $_rascunhoPai;
-
-    /**
-     * @var Integer
-     */
-    protected $_categoria;
-
-    /**
-     * @var Integer
-     */
-    protected $_pessoa;
-    /**
-     * @var Integer
-     */
-    protected $_perfil;
-    /**
-     * @var Integer
-     */
-    protected $_grupoRascunho;
     /**
 	 * @var String
 	 */
@@ -125,7 +101,7 @@ class Basico_Model_Rascunho
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Rascunho
+	 * @return Basico_Model_GrupoRascunho
 	 */
 	public function setOptions(array $options)
 	{
@@ -142,118 +118,52 @@ class Basico_Model_Rascunho
 	}
     
 	/**
-	* Set request
+	* Set nome
 	* 
-	* @param String $request 
-	* @return Basico_Model_Request
+	* @param String $nome 
+	* @return Basico_Model_nome
 	*/
-	public function setRequest($request)
+	public function setNome($nome)
 	{
-		if (is_object($request)) {
-			$this->_request = Basico_OPController_UtilOPController::codificar($request);
+		if (is_object($nome)) {
+			$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome,TIPO_STRING,true);
 		}
 		else
-			$this->_request = $request;
+			$this->_nome = $nome;
 		
 		return $this;
 	}
 
 	/**
-	* Get request
+	* Get nome
 	* 
 	* @return null|String
 	*/
-	public function getRequest()
+	public function getNome()
 	{
-		return $this->_request;
+		return $this->_nome;
 	}
      
 	/**
-	* Set post
+	* Set forms
 	* 
-	* @param String $post 
-	* @return Basico_Model_Post
+	* @param String $forms 
+	* @return Basico_Model_forms
 	*/
-	public function setPost($post)
+	public function setForms($forms)
 	{
-		$this->_post = Basico_OPController_UtilOPController::retornaValorTipado($post,TIPO_STRING,true);
+		$this->_forms = Basico_OPController_UtilOPController::retornaValorTipado($forms,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get post
+	* Get forms
 	* 
 	* @return null|String
 	*/
-	public function getPost()
+	public function getForms()
 	{
-		return $this->_post;
-	}
-     
-	/**
-	* Set formAction
-	* 
-	* @param String $formAction 
-	* @return Basico_Model_FormAction
-	*/
-	public function setFormAction($formAction)
-	{
-		$this->_formAction = Basico_OPController_UtilOPController::retornaValorTipado($formAction,TIPO_STRING,true);
-		return $this;
-	}
-
-	/**
-	* Get formAction
-	* 
-	* @return null|String
-	*/
-	public function getFormAction()
-	{
-		return $this->_formAction;
-	}
-     
-	/**
-	* Set formName
-	* 
-	* @param String $formName 
-	* @return Basico_Model_FormName
-	*/
-	public function setFormName($formName)
-	{
-		$this->_formName = Basico_OPController_UtilOPController::retornaValorTipado($formName,TIPO_STRING,true);
-		return $this;
-	}
-
-	/**
-	* Get formName
-	* 
-	* @return null|String
-	*/
-	public function getFormName()
-	{
-		return $this->_formName;
-	}
-     
-	/**
-	* Set dataHoraExpiracao
-	* 
-	* @param String $dataHoraExpiracao 
-	* @return Basico_Model_DataHoraExpiracao
-	*/
-	public function setDataHoraExpiracao($dataHoraExpiracao)
-	{
-		$this->_dataHoraExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraExpiracao,TIPO_DATE,true);
-		return $this;
-	}
-
-	/**
-	* Get dataHoraExpiracao
-	* 
-	* @return null|String
-	*/
-	public function getDataHoraExpiracao()
-	{
-		return $this->_dataHoraExpiracao;
+		return $this->_forms;
 	}
      
 	/**
@@ -301,90 +211,35 @@ class Basico_Model_Rascunho
 	}
      
 	/**
-	* Set rascunhoPai
+	* Set sequenciaFormulario
 	* 
-	* @param int $rascunhoPai 
-	* @return Basico_Model_Rascunho
+	* @param int $sequenciaFormulario 
+	* @return Basico_Model_GrupoRascunho
 	*/
-	public function setRascunhoPai($rascunhoPai)
+	public function setSequenciaFormulario($sequenciaFormulario)
 	{
-		$this->_rascunhoPai = Basico_OPController_UtilOPController::retornaValorTipado($rascunhoPai,TIPO_INTEIRO,true);
+		$this->_sequenciaFormulario = Basico_OPController_UtilOPController::retornaValorTipado($sequenciaFormulario,TIPO_INTEIRO,true);
 		return $this;
 	}
 
 	/**
-	* Get rascunhoPai
+	* Get sequenciaFormulario
 	* 
 	* @return null|int
 	*/
-	public function getRascunhoPai()
+	public function getSequenciaFormulario()
 	{
-		return $this->_rascunhoPai;
-	}
-	
-	/**
-	* Set grupoRascunho
-	* 
-	* @param int $grupoRascunho 
-	* @return Basico_Model_Rascunho
-	*/
-	public function setGrupoRascunho($grupoRascunho)
-	{
-		$this->_grupoRascunho = Basico_OPController_UtilOPController::retornaValorTipado($grupoRascunho,TIPO_INTEIRO,true);
-		return $this;
-	}
-
-	/**
-	* Get grupoRascunho
-	* 
-	* @return null|int
-	*/
-	public function getGrupoRascunho()
-	{
-		return $this->_grupoRascunho;
+		return $this->_sequenciaFormulario;
 	}
  
     /**
-     * Get rascunhoPai object
-     * @return null|Rascunho
+     * Get sequenciaFormulario object
+     * @return null|GrupoRascunho
      */
-    public function getRascunhoPaiObject()
+    public function getSequenciaFormularioObject()
     {
-        $model = new Basico_Model_Rascunho();
-        $object = $model->find($this->_rascunhoPai);
-        return $object;
-    }
-    
-	/**
-	* Set categoria
-	* 
-	* @param int $categoria 
-	* @return Basico_Model_Categoria
-	*/
-	public function setCategoria($categoria)
-	{
-		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria,TIPO_INTEIRO,true);
-		return $this;
-	}
-
-	/**
-	* Get categoria
-	* 
-	* @return null|int
-	*/
-	public function getCategoria()
-	{
-		return $this->_categoria;
-	}
- 
-    /**
-     * Get categoria object
-     * @return null|Categoria
-     */
-    public function getCategoriaObject()
-    {
-        $model = new Basico_Model_Categoria();
-        $object = $model->find($this->_categoria);
+        $model = new Basico_Model_SequenciaFormulario();
+        $object = $model->find($this->_sequenciaFormulario);
         return $object;
     }
     
@@ -458,7 +313,7 @@ class Basico_Model_Rascunho
 	* Set entry rowinfo
 	* 
 	* @param  string $rowinfo 
-	* @return Basico_Model_Rascunho
+	* @return Basico_Model_GrupoRascunho
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -480,7 +335,7 @@ class Basico_Model_Rascunho
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Rascunho
+	* @return Basico_Model_GrupoRascunho
 	*/
 	public function setId($id)
 	{
@@ -502,7 +357,7 @@ class Basico_Model_Rascunho
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Rascunho
+	* @return Basico_Model_GrupoRascunho
 	*/
 	public function setMapper($mapper)
 	{
@@ -513,14 +368,14 @@ class Basico_Model_Rascunho
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_RascunhoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_GrupoRascunhoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_RascunhoMapper
+	* @return Basico_Model_GrupoRascunhoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_RascunhoMapper());
+			$this->setMapper(new Basico_Model_GrupoRascunhoMapper());
 		}
 		return $this->_mapper;
 	}

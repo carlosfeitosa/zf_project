@@ -143,12 +143,20 @@ define("LOG_MSG_EMAIL", "Operação de envio de e-mail.");
 define("LOG_MSG_EMAIL_SUCESSO", "Operação de envio de e-mail SUCESSO.");
 define("LOG_MSG_EMAIL_FALHA", "Operação de envio de e-mail FALHA: ");
 
+define("LOG_MSG_NOVA_SEQUENCIA_FORMULARIO", "Nova sequencia formulario inserida no banco de dados.");
+define("LOG_MSG_UPDATE_SEQUENCIA_FORMULARIO", "Atualização de sequencia formulario no banco de dados.");
+define("LOG_MSG_DELETE_SEQUENCIA_FORMULARIO", "Exclusão de sequencia formulario no banco de dados.");
+
 /**
  * RASCUNHO
  */
 define("LOG_MSG_NOVO_RASCUNHO", "Novo rascunho inserido no banco de dados.");
 define("LOG_MSG_UPDATE_RASCUNHO", "Atualização de rascunho no banco de dados.");
 define("LOG_MSG_DELETE_RASCUNHO", "Exclusão de rascunho no banco de dados.");
+
+define("LOG_MSG_NOVO_GRUPO_RASCUNHO", "Novo grupo rascunho inserido no banco de dados.");
+define("LOG_MSG_UPDATE_GRUPO_RASCUNHO", "Atualização de grupo rascunho no banco de dados.");
+define("LOG_MSG_DELETE_GRUPO_RASCUNHO", "Exclusão de grupo rascunho no banco de dados.");
 
 /*
  * OUTPUT

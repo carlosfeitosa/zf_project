@@ -1,14 +1,14 @@
 <?php
 /**
- * Rascunho data mapper
+ * GrupoRascunho data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Rascunho
+ * @uses       Basico_Model_DbTable_GrupoRascunho
  * @subpackage Model
  */
-class Basico_Model_RascunhoMapper
+class Basico_Model_GrupoRascunhoMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_RascunhoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_RascunhoMapper
+     * @return Basico_Model_GrupoRascunhoMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,39 +36,34 @@ class Basico_Model_RascunhoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Rascunho if no instance registered
+     * Lazy loads Basico_Model_DbTable_GrupoRascunho if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Rascunho');
+            $this->setDbTable('Basico_Model_DbTable_GrupoRascunho');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a Rascunho entry
+     * Save a GrupoRascunho entry
      * 
-     * @param  Basico_Model_Rascunho $object
+     * @param  Basico_Model_GrupoRascunho $object
      * @return void
      */
-    public function save(Basico_Model_Rascunho $object)
+    public function save(Basico_Model_GrupoRascunho $object)
     {
         $data = array(
-				'request'                     => $object->getRequest(),
-				'post'                        => $object->getPost(),
-				'form_action'                 => $object->getFormAction(),
-				'form_name'                   => $object->getFormName(),
-				'datahora_expiracao'          => $object->getDataHoraExpiracao(),
+				'nome'                        => $object->getNome(),
+        		'forms'                       => $object->getForms(),
 				'datahora_criacao'            => $object->getDataHoraCriacao(),
 				'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
-              	'id_rascunho_pai'             => $object->getRascunhoPai(),
-              	'id_categoria'                => $object->getCategoria(),
+              	'id_sequencia_formulario'     => $object->getSequenciaFormulario(),
               	'id_pessoa'                   => $object->getPessoa(),
               	'id_perfil'                   => $object->getPerfil(),
-        		'id_grupo_rascunho'           => $object->getGrupoRascunho(),
         		'rowinfo'					  => $object->getRowinfo(),
 
         );
@@ -82,23 +77,23 @@ class Basico_Model_RascunhoMapper
     }
     
 	/**
-	* Delete a Rascunho entry
-	* @param Basico_Model_Rascunho $object
+	* Delete a GrupoRascunho entry
+	* @param Basico_Model_GrupoRascunho $object
 	* @return void
 	*/
-	public function delete(Basico_Model_Rascunho $object)
+	public function delete(Basico_Model_GrupoRascunho $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a Rascunho entry by id
+     * Find a GrupoRascunho entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Rascunho $object 
+     * @param  Basico_Model_GrupoRascunho $object 
      * @return void
      */
-    public function find($id, Basico_Model_Rascunho $object)
+    public function find($id, Basico_Model_GrupoRascunho $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -107,23 +102,18 @@ class Basico_Model_RascunhoMapper
         $row = $result->current();
         $object->setId($row->id)
 
-				->setRequest($row->request)
-				->setPost($row->post)
-				->setFormAction($row->form_action)
-				->setFormName($row->form_name)
-				->setDataHoraExpiracao($row->datahora_expiracao)
-				->setDataHoraCriacao($row->datahora_criacao)
+				->setNome($row->nome)
+				->setForms($row->forms)
 				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRascunhoPai($row->id_rascunho_pai)
-                ->setCategoria($row->id_categoria)
+				->setDataHoraCriacao($row->datahora_criacao)
                 ->setPessoa($row->id_pessoa)
                 ->setPerfil($row->id_perfil)
-                ->setGrupoRascunho($row->id_grupo_rascunho)
+                ->setSequenciaFormulario($row->id_sequencia_formulario)
                 ->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all rascunho entries
+	 * Fetch all GrupoRascunho entries
 	 * 
 	 * @return array
 	 */
@@ -133,21 +123,16 @@ class Basico_Model_RascunhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Rascunho();
+			$entry = new Basico_Model_GrupoRascunho();
 			$entry->setId($row->id)
 
-				->setRequest($row->request)
-				->setPost($row->post)
-				->setFormAction($row->form_action)
-				->setFormName($row->form_name)
-				->setDataHoraExpiracao($row->datahora_expiracao)
-				->setDataHoraCriacao($row->datahora_criacao)
+				->setNome($row->nome)
+				->setForms($row->forms)
 				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRascunhoPai($row->id_rascunho_pai)
-                ->setCategoria($row->id_categoria)
+				->setDataHoraCriacao($row->datahora_criacao)
                 ->setPessoa($row->id_pessoa)
                 ->setPerfil($row->id_perfil)
-                ->setGrupoRascunho($row->id_grupo_rascunho)
+                ->setSequenciaFormulario($row->id_sequencia_formulario)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -156,7 +141,7 @@ class Basico_Model_RascunhoMapper
 	}
 	
 	/**
-	 * Fetch all rascunho entries
+	 * Fetch all GrupoRascunho entries
 	 * 
 	 * @return array
 	 */
@@ -166,21 +151,16 @@ class Basico_Model_RascunhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Rascunho();
+			$entry = new Basico_Model_GrupoRascunho();
 			$entry->setId($row->id)
-
-				->setRequest($row->request)
-				->setPost($row->post)
-				->setFormAction($row->form_action)
-				->setFormName($row->form_name)
-				->setDataHoraExpiracao($row->datahora_expiracao)
-				->setDataHoraCriacao($row->datahora_criacao)
+				
+				->setNome($row->nome)
+				->setForms($row->forms)
 				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRascunhoPai($row->id_rascunho_pai)
-                ->setCategoria($row->id_categoria)
+				->setDataHoraCriacao($row->datahora_criacao)
                 ->setPessoa($row->id_pessoa)
                 ->setPerfil($row->id_perfil)
-                ->setGrupoRascunho($row->id_grupo_rascunho)
+                ->setSequenciaFormulario($row->id_sequencia_formulario)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
