@@ -292,12 +292,20 @@ class Basico_OPController_LogOPController
 		// recuperando a categoria do log LOG_TENTATIVA_AUTENTICACAO_USUARIO
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO);
 
+		// verificando se ja houve um logon para este usuario
+		if ($dataHoraUltimoLogon) {
+			// setando condicao da query para retornar apenas os eventos posteriores ao ultimo logon
+			$condicaoDataHoraEvento = "AND datahora_evento > '{$dataHoraUltimoLogon}'";
+		} else {
+			$condicaoDataHoraEvento = '';
+		}
+
 		// montando query para recuperar os logs das tentativas de autenticacao deste usuario
 		$queryLogTentativasAutenticacaoLoginPorIp = "SELECT id
 													 FROM log
 													 WHERE id_categoria = {$idCategoriaLog}
 													 AND id_perfil_pessoa = {$idPessoaPerfilLogin}
-													 AND datahora_evento > '{$dataHoraUltimoLogon}'
+													 {$condicaoDataHoraEvento}
 													 AND xml like '%<ip>{$ip}%'";
 
 		// recuperando array contendo os ids dos logs
