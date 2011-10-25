@@ -447,7 +447,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// setando os scripts na view
 			$this->view->scripts = $scripts;
 			
-    		$this->_helper->Renderizar->renderizar();
+    		return false;
     	}
 
     	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
