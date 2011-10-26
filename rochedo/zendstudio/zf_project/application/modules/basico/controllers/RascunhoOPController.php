@@ -425,7 +425,7 @@ class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPe
 	    		$idRascunho = $arrayPool[$formHash]['idRascunho'];
 	    	}elseif (isset($arrayPost['idRascunho'])){
 	    		$idRascunho = $arrayPost['idRascunho'];
-	    	}elseif(isset($nomeSubForm)) {
+	    	}elseif(isset($nomeSubForm) && isset($arrayPost[$nomeSubForm]['idRascunho'])) {
 	    		$idRascunho = $arrayPost[$nomeSubForm]['idRascunho'];
 	    	}
 
