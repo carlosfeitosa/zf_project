@@ -24,6 +24,16 @@ $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index')
                                                          array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Minha Conta" ?></a> |
+        <?php 
+        // recuperando o titulo do dialog
+	    $tituloDialogAdminRascunhos = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_DIALOG_ADMIN_RASCUNHOS_TITLE');
+	    		
+	    // recuperando url do metodo para exibicao do form AdminRascunhos
+	    $urlExibirFormAdminRascunhos = $this->urlEncrypt($this->url(array('module'=>'basico', 'controller'=>'rascunho', 'action'=>'exibirformadminrascunhos'), null, true));
+	    
+	    // escrevendo mensagem de login nao disponivel	
+		echo "<a onclick=\"exibirDialogUrl('Basico_Form_AdminRascunhos', '{$urlExibirFormAdminRascunhos}', '{$tituloDialogAdminRascunhos}');\">{$tituloDialogAdminRascunhos}</a>";
+		?> |
 		<a onClick="dojoRequestAjaxAbstract('get', {url: '<?php echo $this->urlEncrypt($this->url(
             array('module'=>'basico', 'controller'=>'geradorformulario', 'action'=>'gerarformulario'), 
             null, 

@@ -20,6 +20,10 @@ class Basico_RascunhoController extends Zend_Controller_Action
     	
     }
     
+    /**
+     * Ação responsavel por salvar o rascunho
+     * @return void
+     */
     public function salvarAction()
     {
     	// recuperando array do post
@@ -46,6 +50,10 @@ class Basico_RascunhoController extends Zend_Controller_Action
         $this->_helper->Renderizar->renderizar();
     }
     
+    /**
+     * Ação responsavel por excluir o rascunho
+     * @return void
+     */
     public function excluirAction()
     {
     	// removendo rascunho
@@ -62,5 +70,25 @@ class Basico_RascunhoController extends Zend_Controller_Action
     	
     	// renderizando resultado
     	$this->_helper->Renderizar->renderizar();
+    }
+    
+    /**
+     * Ação responsavel por exibir o formulario de administracao dos rascunhos
+     * @return void
+     */
+    public function exibirformadminrascunhosAction()
+    {
+	    // recuperando os parametros da requisicao
+	    $arrayPost = $this->getRequest()->getParams();
+	    
+    	// recuperando o formulario AdminRascunhos
+    	$form = new Basico_Form_AdminRascunhos();
+    	
+    	// escrevendo form
+    	$this->view->content = array($form);
+    	
+    	// rederizando a view
+    	$this->_helper->Renderizar->renderizar('default.html.phtml');
+    	
     }
 }

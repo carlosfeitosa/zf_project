@@ -18,8 +18,26 @@
 * 								28/06/2011 - vinculacao do modulo basico ao formulario FORM_DIALOG_SUGESTAO_LOGIN;
 *								05/08/2011 - correcao da categoria do formulario SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 * 								22/08/2011 - vinculacao do modulo basico ao formulario FORM_TROCA_DE_SENHA;
+* 								26/10/2011 - vinculacao do modulo basico ao formulario FORM_DIALOG_ADMIN_RASCUNHOS;
 *  
 */
+
+INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
+SELECT (SELECT m.id
+		FROM modulo m
+		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'SISTEMA'
+		AND c.nome = 'SISTEMA_MODULO'
+		AND m.nome = 'BASICO') AS id_modulo,
+	   (SELECT f.id
+		FROM formulario f
+		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_ADMIN_RASCUNHOS'
+		AND f.nome = 'FORM_DIALOG_ADMIN_RASCUNHOS') AS id_formulario,
+		'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id

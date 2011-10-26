@@ -20,9 +20,28 @@
 * 							28/06/2011 - criacao do formulario FORM_DIALOG_SUGESTAO_LOGIN;
 * 							05/08/2011 - correcao da categoria no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 * 							22/08/2011 - criacao do formulario FORM_TROCA_DE_SENHA;
-* 							09/09/2011 - inclusao do form_action e form_attribs no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS 
+* 							09/09/2011 - inclusao do form_action e form_attribs no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
+* 							05/10/2011 - inclusao do permite_rascunho nos forms que nao possui rascunhos 
+* 							25/10/2011 - criacao do formulario FORM_DIALOG_ADMIN_RASCUNHOS
 *  
 */
+
+INSERT INTO formulario (id_categoria, nome, descricao, 
+                        constante_textual_titulo, constante_textual_subtitulo, 
+                        form_name, form_method, form_action, 
+                        form_attribs, permite_rascunho, rowinfo)
+		SELECT c.id AS id_categoria, 
+		'FORM_DIALOG_ADMIN_RASCUNHOS' AS nome, 
+		'Dialog para gerenciar os rascunhos.' AS descricao, 
+        'FORM_TITLE_RASCUNHOS' AS constante_textual_titulo, 
+        'FORM_SUBTITLE_RASCUNHOS' AS constante_textual_subtitulo,
+        'AdminRascunhos' AS form_name, 
+        'post' AS form_method, NULL AS form_action, 
+        NULL AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ADMIN_RASCUNHOS';
 
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, 
                         constante_textual_titulo, constante_textual_subtitulo,

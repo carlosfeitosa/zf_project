@@ -22,8 +22,26 @@
 * 								09/09/2011 - vinculacao do template AJAX para o formulario FORM_ACEITE_TERMOS_USO;
 * 								09/09/2011 - vinculacao do template AJAX para o formulario FORM_CADASTRAR_USUARIO_NAO_VALIDADO;
 * 								09/09/2011 - vinculacao do template AJAX para o formulario SUBFORM_DADOS_USUARIO_CONTA;
+* 								26/10/2011 - vinculacao do template DOJO para o formulario FORM_DIALOG_ADMIN_RASCUNHOS;
 *  
 */
+
+INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+SELECT (SELECT f.id
+        FROM formulario f
+        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        WHERE t.nome = 'FORMULARIO'
+        AND c.nome = 'FORMULARIO_ADMIN_RASCUNHOS'
+        AND f.nome = 'FORM_DIALOG_ADMIN_RASCUNHOS') AS id_formulario,
+       (SELECT p.id
+		FROM template p
+		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+		WHERE t.nome = 'FORMULARIO'
+		AND c.nome = 'FORMULARIO_TEMPLATE'
+		AND p.nome = 'TEMPLATE_DOJO') AS id_template,
+        'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id

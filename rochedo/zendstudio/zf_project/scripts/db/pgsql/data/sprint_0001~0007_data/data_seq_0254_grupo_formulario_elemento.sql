@@ -5,11 +5,27 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 21/10/2010
 * ultimas modificacoes:
-* 									11/05/2011 - criacao do grupo de perfil padrao, no subformulario conta do formulario dados do usuario;
+* 						11/05/2011 - criacao do grupo de perfil padrao, no subformulario conta do formulario dados do usuario;
+* 						25/10/2011 - criacao do grupo filtros;
 *  
 */
 
 /* GRUPO FORMULARIO ELEMENTO */
+
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('FILTROS', 
+        'Grupo para filtros de consultas.',
+		'FORM_DISPLAY_GROUP_LABEL_FILTROS', 'SYSTEM_STARTUP');
+		
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('LEGENDA', 
+        'Grupo para legenda.',
+		'FORM_DISPLAY_GROUP_LABEL_LEGENDA', 'SYSTEM_STARTUP');
+		
+INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
+VALUES ('ACOES', 
+        'Grupo para ações.',
+		'FORM_DISPLAY_GROUP_LABEL_ACOES', 'SYSTEM_STARTUP');
 
 INSERT INTO grupo_formulario_elemento (nome, descricao, constante_textual_label, rowinfo)
 VALUES ('ACEITE', 

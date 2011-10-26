@@ -43,7 +43,7 @@ class Basico_Form_GeradorFormulario extends Zend_Dojo_Form
         $elements[0]->setAttribs(array('size' => 100, 'onChange' => "loading(); document.getElementById('GeradorFormulario').submit();"));
         $elements[0]->addValidator('NotEmpty');
         $elements[0]->addDecorator('Label', array('escape' => false));
-        $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_SELECT_FORMULARIO') . '&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA') . "<br><br>URL: <a href=\'http://www.google.com\' target=\'_blank\'>http://www.google.com</a>" . '\', 1)">(?)</a>');
+        $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_SELECT_FORMULARIO'));
         $elements[0]->setRequired(true);
         $elements[0]->addMultiOptions(array('null' => ''));
         
@@ -51,7 +51,7 @@ class Basico_Form_GeradorFormulario extends Zend_Dojo_Form
         $elements[1] = $this->createElement('multiCheckbox', 'modulosFormulario');
         $elements[1]->setAttribs(array('size' => 100));
         $elements[1]->AddDecorator('Label', array('escape' => false));
-        $elements[1]->setLabel($this->getView()->tradutor('FORM_FIELD_CHECKBOX_MODULOS_FORMULARIO') . '&nbsp;<a href="javascript:showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor(DIALOG_HELP_TITLE) . '\', \'' . $this->getView()->tradutor('FORM_FIELD_NOME_AJUDA') . "<br><br>URL: <a href=\'http://www.google.com\' target=\'_blank\'>http://www.google.com</a>" . '\', 1)">(?)</a>');
+        $elements[1]->setLabel($this->getView()->tradutor('FORM_FIELD_CHECKBOX_MODULOS_FORMULARIO'));
         $elements[1]->setRegisterInArrayValidator(false);
         
         $elements[2] = $this->createElement('submit', 'enviar');

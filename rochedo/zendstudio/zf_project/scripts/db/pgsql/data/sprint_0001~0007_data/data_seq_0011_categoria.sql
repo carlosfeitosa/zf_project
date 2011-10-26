@@ -93,6 +93,8 @@
 *							26/07/2011 - criacao da categoria FORMULARIO_OUTPUT_AJAX;
 *							05/08/2011 - criacao da categoria FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS
 *							19/08/2011 - criacao da categoria FORMULARIO_INPUT_TROCA_DE_SENHA;
+*							25/10/2011 - criacao da categoria FORMULARIO_ADMIN;
+*									   - criacao da categoria FORMULARIO_ADMIN_RASCUNHOS
 */
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
@@ -986,6 +988,11 @@ SELECT id AS id_tipo_categoria, 'FORMULARIO_INPUT' AS nome, 'Formulários de man
 FROM tipo_categoria
 WHERE nome = 'FORMULARIO';
 
+INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_ADMIN' AS nome, 'Formulários de administração de dados.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria
+WHERE nome = 'FORMULARIO';
+
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_INPUT_LOGIN' AS nome, 'Formulários de autenticacao de login.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
@@ -1020,6 +1027,13 @@ FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT';
+
+INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_ADMIN_RASCUNHOS' AS nome, 'Formulários de gerenciamento dos rascunhos do usuario.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ADMIN';
 
 INSERT INTO categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, descricao, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO' AS nome, 'Formulários de manipulação de dados cadastrais do usuário.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo

@@ -10,8 +10,46 @@
 * 								25/04/2011 - criacao das ajudas para o formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 							    10/05/2011 - criacao das ajudas para os campos "Senha atual" e "Nova senha" o formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 								11/05/2011 - criacao da ajuda para o campo "Repita sua nova senha" no formulario SUBFORM_DADOS_USUARIO_PERFIL;
+* 								25/10/2011 - inicio criacao das ajudas para o formulario adminRascunhos;
 * 
 */
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_DATA_TERMINO_PERIODO_DATE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo DataTerminoPeriodo do form adminRascunhos.' AS descricao,
+       'FORM_FIELD_DATA_TERMINO_PERIODO_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_DATA_INICIO_PERIODO_DATE_TEXT_BOX' AS nome, 'Texto de ajuda para o campo DataInicioPeriodo do form adminRascunhos.' AS descricao,
+       'FORM_FIELD_DATA_INICIO_PERIODO_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_SELECT_TIPO_DATA_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo Data do formulario adminRascunhos.' AS descricao,
+       'FORM_FIELD_ADMIN_RASCUNHOS_SELECT_TIPO_DATA_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
+INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_FORMULARIO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo formulario do form AdminRascunhos.' AS descricao,
+       'FORM_FIELD_ADMIN_RASCUNHOS_FORMULARIO_AJUDA' AS constante_textual_ajuda,
+       'SYSTEM_STARTUP' AS rowinfo
+FROM tipo_categoria t
+LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'AJUDA'
+AND c.nome = 'AJUDA_FORMULARIO_FIELD';
+
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
 SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ACEITE_TERMOS_USO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo aceite dos termos de uso.' AS descricao,
        'FORM_FIELD_ACEITE_TERMOS_USO_AJUDA' AS constante_textual_ajuda,
