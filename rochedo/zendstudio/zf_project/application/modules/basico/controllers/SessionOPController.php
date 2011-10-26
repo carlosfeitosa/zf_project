@@ -196,21 +196,24 @@ class Basico_OPController_SessionOPController
 	 */
 	public function removeRascunhoPaiSessao($idRascunhoPai)
 	{
-		$sessaoRascunho = self::registraSessaoRascunho();
-		$filaSessaoRascunhoPai	 = SESSION_FILA_RASCUNHO_PAI;
-		
-		// se existe, recupera e manipula
-		$arraySessaoRascunho = $sessaoRascunho->$filaSessaoRascunhoPai;
-
-		// verificando se o pai ja esta registrado
-		$chaveRascunhoPai = array_search($idRascunhoPai, $arraySessaoRascunho);
-		
-		if ($chaveRascunhoPai !== false) {
-			unset($arraySessaoRascunho[$chaveRascunhoPai]);
-			$sessaoRascunho->$filaSessaoRascunhoPai = $arraySessaoRascunho;
-			return true;
-		}
+		if ($idRascunhoPai > 0) {
+			
+			$sessaoRascunho = self::registraSessaoRascunho();
+			$filaSessaoRascunhoPai	 = SESSION_FILA_RASCUNHO_PAI;
+			
+			// se existe, recupera e manipula
+			$arraySessaoRascunho = $sessaoRascunho->$filaSessaoRascunhoPai;
 	
+			// verificando se o pai ja esta registrado
+			$chaveRascunhoPai = array_search($idRascunhoPai, $arraySessaoRascunho);
+			
+			if ($chaveRascunhoPai !== false) {
+				unset($arraySessaoRascunho[$chaveRascunhoPai]);
+				$sessaoRascunho->$filaSessaoRascunhoPai = $arraySessaoRascunho;
+				return true;
+			}
+		}
+			
 		return false;
 	}
 
