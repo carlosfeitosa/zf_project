@@ -204,13 +204,15 @@ class Basico_OPController_SessionOPController
 			// se existe, recupera e manipula
 			$arraySessaoRascunho = $sessaoRascunho->$filaSessaoRascunhoPai;
 	
-			// verificando se o pai ja esta registrado
-			$chaveRascunhoPai = array_search($idRascunhoPai, $arraySessaoRascunho);
-			
-			if ($chaveRascunhoPai !== false) {
-				unset($arraySessaoRascunho[$chaveRascunhoPai]);
-				$sessaoRascunho->$filaSessaoRascunhoPai = $arraySessaoRascunho;
-				return true;
+			if (is_array($arraySessaoRascunho)) {
+				// verificando se o pai ja esta registrado
+				$chaveRascunhoPai = array_search($idRascunhoPai, $arraySessaoRascunho);
+				
+				if ($chaveRascunhoPai !== false) {
+					unset($arraySessaoRascunho[$chaveRascunhoPai]);
+					$sessaoRascunho->$filaSessaoRascunhoPai = $arraySessaoRascunho;
+					return true;
+				}
 			}
 		}
 			
