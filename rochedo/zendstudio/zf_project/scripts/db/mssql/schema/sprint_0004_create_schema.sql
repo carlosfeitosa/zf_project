@@ -32,6 +32,7 @@
 * 						07/04/2011 - remocao da criacao da tabela "formulario_perfil" - descontinuado;
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
 * 						12/05/2011 - criacao do campo "options" na tabela formulario_elemento_formulario_elemento_validator;
+* 						01/11/2011 - criacao do campo "element_name" na tabela formulario_formulario_elemento;
 */
 
 
@@ -161,6 +162,7 @@ create table dbo.formulario (
 
 create table dbo.formulario_formulario_elemento (
 	id int identity (1, 1) not null ,
+	element_name varchar (100) collate latin1_general_ci_ai not null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
 	id_decorator int null ,

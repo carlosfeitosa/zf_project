@@ -57,6 +57,7 @@ class Basico_Model_FormularioFormularioElementoMapper
     public function save(Basico_Model_FormularioFormularioElemento $object)
     {
         $data = array(
+                'element_name'   			   => $object->getElementName(),
                 'id_formulario'          	   => $object->getFormulario(),
                 'id_formulario_elemento'       => $object->getFormularioElemento(),
         		'id_decorator'                 => $object->getDecorator(),
@@ -99,6 +100,7 @@ class Basico_Model_FormularioFormularioElementoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
+        	   ->setElementName($row->element_name)
                ->setFormulario($row->id_formulario)
                ->setFormularioElemento($row->id_formulario_elemento)
                ->setDecorator($row->id_decorator)
@@ -121,6 +123,7 @@ class Basico_Model_FormularioFormularioElementoMapper
         {
             $entry = new Basico_Model_FormularioFormularioElemento();
             $entry->setId($row->id)
+        	    ->setElementName($row->element_name)            
                 ->setFormulario($row->id_formulario)
                 ->setFormularioElemento($row->id_formulario_elemento)
                 ->setDecorator($row->id_decorator)
@@ -147,6 +150,7 @@ class Basico_Model_FormularioFormularioElementoMapper
         {
             $entry = new Basico_Model_FormularioFormularioElemento();
             $entry->setId($row->id)
+        	   	  ->setElementName($row->element_name)            
                   ->setFormulario($row->id_formulario)
                   ->setFormularioElemento($row->id_formulario_elemento)
                   ->setDecorator($row->id_decorator)

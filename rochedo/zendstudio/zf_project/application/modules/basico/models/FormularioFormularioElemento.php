@@ -18,7 +18,12 @@ class Basico_Model_FormularioFormularioElemento
      * @var Basico_Model_FormularioFormularioElementoMapper
      */
     protected $_mapper;
-
+	
+	/**
+	 * @var String
+	 */
+	protected $_nome;
+    
     /**
      * @var Formulario
      */
@@ -172,7 +177,29 @@ class Basico_Model_FormularioFormularioElemento
     {
         return $this->_formularioElemento;
     }
-    
+
+    /**
+	* Set elementName
+	* 
+	* @param String $elementName 
+	* @return String
+	*/
+	public function setElementName($elementName)
+	{
+		$this->_elementName = Basico_OPController_UtilOPController::retornaValorTipado($elementName, TIPO_STRING,true); 
+		return $this;
+	}
+
+	/**
+	* Get elementName
+	* 
+	* @return null|String
+	*/
+	public function getElementName()
+	{
+		return $this->_elementName;
+	}
+	
     /**
     * Set decorator
     * 

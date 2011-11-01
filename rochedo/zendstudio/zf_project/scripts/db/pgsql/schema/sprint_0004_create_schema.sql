@@ -32,6 +32,7 @@
 * 						07/04/2011 - remocao da criacao da tabela "pessoa_perfil" - descontinuado;
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
 * 						12/05/2011 - criacao do campo "validator_options" na tabela formulario_elemento_formulario_elemento_validator;
+* 
 */
 
 /* CRIACAO DAS TABELAS */
@@ -201,6 +202,7 @@ alter table formulario owner to rochedo_user;
 
 create table formulario_formulario_elemento (
 	id serial not null ,
+	element_name character varying (100) null ,	
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
 	id_decorator int null ,
