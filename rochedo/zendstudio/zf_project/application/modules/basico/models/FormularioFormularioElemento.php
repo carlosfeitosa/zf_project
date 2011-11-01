@@ -22,7 +22,7 @@ class Basico_Model_FormularioFormularioElemento
 	/**
 	 * @var String
 	 */
-	protected $_nome;
+	protected $_elementName;
     
     /**
      * @var Formulario
