@@ -190,6 +190,35 @@ class Basico_OPController_FormularioFormularioElementoOPController extends Basic
 	}
 
 	/**
+	 * Retorna o elementName de um objeto FormularioFormularioElemento, via SQL
+	 * 
+	 * @param Integer $idFormulario
+	 * @param Integer $idFormularioElemento
+	 * @param Integer $ordem
+	 * 
+	 * @return String|null
+	 */
+	public static function retornaElementNamePorIdFormularioIdFormularioElementoOrdemViaSQL($idFormulario, $idFormularioElemento, $ordem)
+	{
+		// verificando se foi passado o parametro do id do formulario elemento e o id do formulario
+		if ((!$idFormulario) or (!$idFormularioElemento) or (!$ordem)) {
+			return null;
+		}
+
+		// recuperando array de resultado
+		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, array('element_name'), "id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and ordem = {$ordem}");
+
+		// verificando se houve retorno
+		if (count($arrayResultado) > 0) {
+			// retornando o elementName
+			return $arrayResultado['element_name'];
+		} else {
+			// retornando nulo
+			return null;
+		}
+	}
+
+	/**
 	 * Retorna um array de objetos Basico_Model_FormularioFormularioElemento, que possuem GrupoFormularioElemento, relacionados 
 	 * ao formulario passado como parametro
 	 * 

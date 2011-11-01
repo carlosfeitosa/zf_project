@@ -1136,6 +1136,15 @@ class Basico_OPController_GeradorFormularioOPController
 			// substituindo string
 			$tempFormElement = str_replace($stringToReplace, $stringConcatenadaSubstituicao, $tempFormElement);
 
+			// recuperando o elementName de formularioFormularioElemento
+			$elementNameFormularioFormularioElemento = Basico_OPController_FormularioFormularioElementoOPController::retornaElementNamePorIdFormularioIdFormularioElementoOrdemViaSQL($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
+
+			// verificando a recuperacao do elementName do formularioFormularioElemento
+			if ($elementNameFormularioFormularioElemento) {
+				// setando o nome do elemento
+				$tempFormElement = str_replace($stringToReplace, $stringConcatenadaSubstituicao, $elementNameFormularioFormularioElemento);
+			}
+
 			// recuperando componente
 			$objComponenteFormularioElemento = $formularioElementoObject->getComponenteObject();
 
