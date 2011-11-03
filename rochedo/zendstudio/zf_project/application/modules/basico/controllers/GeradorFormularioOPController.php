@@ -1130,20 +1130,20 @@ class Basico_OPController_GeradorFormularioOPController
 			// recuperando string para concatenacao do nome do modulo e formulario
 			$stringToReplace = substr($tempFormElement, 1, strpos($tempFormElement, "'", 1)-1);
 
-			// montando string concatenada para substituicao
-			$stringConcatenadaSubstituicao = ucfirst(strtolower($objModulo->nome)) . $objFormulario->formName . ucfirst($stringToReplace);
-
-			// substituindo string
-			$tempFormElement = str_replace($stringToReplace, $stringConcatenadaSubstituicao, $tempFormElement);
-
 			// recuperando o elementName de formularioFormularioElemento
 			$elementNameFormularioFormularioElemento = Basico_OPController_FormularioFormularioElementoOPController::retornaElementNamePorIdFormularioIdFormularioElementoOrdemViaSQL($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
 
-			// verificando a recuperacao do elementName do formularioFormularioElemento
+        	// verificando a recuperacao do elementName do formularioFormularioElemento
 			if ($elementNameFormularioFormularioElemento) {
-				// setando o nome do elemento
-				$tempFormElement = str_replace($stringToReplace, $stringConcatenadaSubstituicao, $elementNameFormularioFormularioElemento);
+				// montando string concatenada para substituicao
+				$stringConcatenadaSubstituicao = ucfirst(strtolower($objModulo->nome)) . $objFormulario->formName . ucfirst($elementNameFormularioFormularioElemento);
+			} else {
+				// montando string concatenada para substituicao
+				$stringConcatenadaSubstituicao = ucfirst(strtolower($objModulo->nome)) . $objFormulario->formName . ucfirst($stringToReplace);
 			}
+
+			// substituindo string
+			$tempFormElement = str_replace($stringToReplace, $stringConcatenadaSubstituicao, $tempFormElement);
 
 			// recuperando componente
 			$objComponenteFormularioElemento = $formularioElementoObject->getComponenteObject();
