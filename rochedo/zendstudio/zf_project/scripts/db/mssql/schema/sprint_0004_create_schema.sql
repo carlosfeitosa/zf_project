@@ -162,7 +162,7 @@ create table dbo.formulario (
 
 create table dbo.formulario_formulario_elemento (
 	id int identity (1, 1) not null ,
-	element_name varchar (100) collate latin1_general_ci_ai not null ,
+	element_name varchar (100) collate latin1_general_ci_ai null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
 	id_decorator int null ,

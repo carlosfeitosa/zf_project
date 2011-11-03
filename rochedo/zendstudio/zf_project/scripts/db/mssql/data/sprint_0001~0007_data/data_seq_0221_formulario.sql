@@ -27,12 +27,13 @@
 */
 
 INSERT INTO formulario (id_categoria, nome, descricao, 
-                        constante_textual_titulo,form_name, form_method, form_action, 
+                        constante_textual_titulo, constante_textual_subtitulo, 
+                        form_name, form_method, form_action, 
                         form_attribs, permite_rascunho, rowinfo)
 		SELECT c.id AS id_categoria, 
 		'FORM_DIALOG_ADMIN_RASCUNHOS' AS nome, 
 		'Dialog para gerenciar os rascunhos.' AS descricao, 
-        'FORM_TITLE_RASCUNHOS' AS constante_textual_titulo,
+        'FORM_TITLE_RASCUNHOS' AS constante_textual_titulo, 
         'FORM_SUBTITLE_RASCUNHOS' AS constante_textual_subtitulo,
         'AdminRascunhos' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
