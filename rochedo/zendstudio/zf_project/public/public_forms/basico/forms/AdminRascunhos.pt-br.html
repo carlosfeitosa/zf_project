@@ -1,0 +1,37 @@
+<form id="BasicoAdminRascunhos" method="post" dojoType="dijit.form.Form"><dl class="zend_form_dojo">
+<div id="float-left"><fieldset id="fieldset-filtros"><legend>Filtros:</legend>
+<dl>
+<div id="float-left"><label class="optional">Formulário:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AdminRascunhos', 'Ajuda', 'Utilize este campo para filtrar os rascunhos por formulario.', 1)</script></button></label>
+<dd>
+<select name="BasicoAdminRascunhosFormulario" id="BasicoAdminRascunhosFormulario" required="false" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left"><label class="optional">Campo data:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AdminRascunhos', 'Ajuda', 'Utilize este campo para selecionar o tipo da data a ser consultada.', 1)</script></button></label>
+<dd>
+<select name="BasicoAdminRascunhosSelectTipoData" id="BasicoAdminRascunhosSelectTipoData" required="false" dojoType="dijit.form.FilteringSelect">
+    
+</select></dd></div>
+<div id="float-left"><label class="optional">Entre:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AdminRascunhos', 'Ajuda', 'Digite ou selecione a data de início do período.', 1)</script></button></label>
+<dd>
+<input style="width: 70px;" id="BasicoAdminRascunhosDataInicioPeriodo" name="BasicoAdminRascunhosDataInicioPeriodo" value="" type="text" required="false" dojoType="dijit.form.DateTextBox"></dd></div>
+<div id="float-left"><label class="optional">e:&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert('AdminRascunhos', 'Ajuda', 'Digite ou selecione a data de término do período.', 1)</script></button></label>
+<dd>
+<input style="width: 70px;" id="BasicoAdminRascunhosDataTerminoPeriodo" name="BasicoAdminRascunhosDataTerminoPeriodo" value="" type="text" required="false" dojoType="dijit.form.DateTextBox"></dd></div></dl></fieldset></div>
+<div id="float-left-clear-both"><dt id="divTreeResultado-label">&#160;</dt>
+<dd id="divTreeResultado-element">
+</dd></div>
+<div id="float-left-clear-both"><fieldset id="fieldset-legenda"><legend>Legenda:</legend>
+<dl>
+<div id="float-left-clear-both"><dt id="divLegenda-label">&#160;</dt>
+<dd id="divLegenda-element">
+</dd></div></dl></fieldset></div>
+<div id="float-left"><fieldset id="fieldset-acoes"><legend>Ações:</legend>
+<dl>
+<div id="float-left">
+<button name="htmlButtonAbrir" id="htmlButtonAbrir" type="button" required="false" dojoType="dijit.form.Button">Enviar</button></div>
+<div id="float-left">
+<button name="htmlButtonFinalizar" id="htmlButtonFinalizar" type="button" required="false" dojoType="dijit.form.Button">Enviar</button></div>
+<div id="float-left">
+<button name="htmlButtonDescartar" id="htmlButtonDescartar" type="button" required="false" dojoType="dijit.form.Button">Enviar</button></div></dl></fieldset></div>
+<div id="float-right-clear-both">
+<button name="htmlButtonFechar" id="htmlButtonFechar" type="button" required="false" dojoType="dijit.form.Button">Enviar</button></div></dl></form>

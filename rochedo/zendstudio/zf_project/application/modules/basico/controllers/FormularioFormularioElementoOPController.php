@@ -211,7 +211,7 @@ class Basico_OPController_FormularioFormularioElementoOPController extends Basic
 		// verificando se houve retorno
 		if (count($arrayResultado) > 0) {
 			// retornando o elementName
-			return $arrayResultado['element_name'];
+			return $arrayResultado[0]['element_name'];
 		} else {
 			// retornando nulo
 			return null;
