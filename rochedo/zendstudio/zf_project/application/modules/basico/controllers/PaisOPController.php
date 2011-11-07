@@ -157,7 +157,9 @@ class Basico_OPController_PaisOPController extends Basico_Abstract_RochedoPersis
 	public static function retornaPaisOptions()
 	{
 		// recuperando todos os países
-		$objPais = $this->retornaTodosObjetos($this->_model);
+		$objPais = self::retornaNovoObjPais();
+		// recuperando todos os tipos sanguineos
+		$objPais = Basico_OPController_PersistenceOPController::bdObjectFetchAll($objPais);
 		
 		// adicionando opção em branco
 		$arrayResult = array('' => '');

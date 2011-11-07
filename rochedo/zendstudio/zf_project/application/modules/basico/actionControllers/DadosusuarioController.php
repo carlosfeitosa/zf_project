@@ -76,6 +76,18 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
 			// descobrindo qual subformulario esta sendo carregado
 			switch ($nomeSubFormSetarAba) {
+				// caso do subformulario dados pessoais
+				case 'CadastrarDadosUsuarioDadosPessoais':
+					// verificando se trata-se de uma atualizacao forcada
+					if ($sobrescreverAtualizacao) {
+						// adicionando o elemento hidden contendo a versao do objeto atual
+						$this->adicionaElementoHiddenVersaoObjetoDadosPessoais($formDadosUsuario, Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($objetoEmConflito));
+					} else {
+						// adicionando o elemento hidden contendo a versao do objeto do ultimo request
+						$this->adicionaElementoHiddenVersaoObjetoDadosPessoais($formDadosUsuario, $ultimoPost['versaoObjetoDadosPessoais']);
+					}
+				break;
+				
 				// caso do subformulario dados biometricos
 				case 'CadastrarDadosUsuarioDadosBiometricos':
 					// verificando se trata-se de uma atualizacao forcada
@@ -150,11 +162,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     private function initFormDadosUsuario($idPessoa, Basico_Form_CadastrarDadosUsuario $formDadosUsuario, $subFormNaoCarregarDados = null)
     {
     	// recuperando informacao sobre qual formulario nao recuperar os dados do banco de dados
+    	$carregarDadosPessoais     = ($subFormNaoCarregarDados !== 'CadastrarDadosUsuarioDadosPessoais');
 		$carregarDadosBiometricos  = ($subFormNaoCarregarDados !== 'CadastrarDadosUsuarioDadosBiometricos');
 		$carregarDadosConta        = ($subFormNaoCarregarDados !== 'CadastrarDadosUsuarioConta');
 
     	// carregando informacoes do usuario
-    	$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario, $carregarDadosBiometricos);
+    	$this->carregarDadosPessoais($idPessoa, $formDadosUsuario, $carregarDadosPessoais);
+		$this->carregarDadosBiometricos($idPessoa, $formDadosUsuario, $carregarDadosBiometricos);
 
     	// carregando informacoes sobre o perfil padrao
     	$this->carregarDadosConta($idPessoa, $formDadosUsuario, $carregarDadosConta);
@@ -596,6 +610,29 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     }
 
     /**
+     * Carrega os elementos do tipo select, radio e checkbox do subform DadosPessoais
+     * 
+     * @param $subFormCadastrarDadosUsuarioDadosPessoais
+     * @return void
+     */
+    private function carregarOptionsSubFormCadastrarDadosUsuarioDadosPessoais(&$subFormCadastrarDadosUsuarioDadosPessoais)
+    {
+    	
+    	
+    	// setando options do elemento PaisNascimento
+	    $subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento
+	                            ->addMultiOptions(Basico_OPController_PaisOPController::retornaPaisOptions());
+	                            
+		// setando options do elemento UfNascimento
+	    $subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento
+	                            ->addMultiOptions(Basico_OPController_EstadoOPController::retornaEstadoOptions());
+	                            
+		// setando options do elemento UfNascimento
+	    $subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento
+	                            ->addMultiOptions(Basico_OPController_MunicipioOPController::retornaMunicipioOptions());
+    }
+    
+    /**
      * Carrega os elementos do tipo select, radio e checkbox do subform DadosBiometricos
      * 
      * @param $subFormCadastrarDadosUsuarioDadosBiometricos
@@ -622,6 +659,42 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	                                                    1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
 	                                                    
 	    //return $subFormCadastrarDadosUsuarioDadosBiometricos;
+    }
+
+    /**
+     * Carrega os dados pessoais da pessoa passada no subform dadosPessoais
+     * 
+     * @param Int $idPessoa
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
+     * @param Boolean $carregarDados
+     * 
+     * @return void
+     */
+    private function carregarDadosPessoais($idPessoa, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $carregarDados = true)
+    {
+	    // recuperando os dados pessoais da pessoa logada;
+	    $dadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa);
+	    
+	    // recuperando o subForm DadosPessoais
+	    $subFormDadosPessoais = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais');
+	    
+	    // carregando os options do subform
+	    $this->carregarOptionsSubFormCadastrarDadosUsuarioDadosPessoais($subFormDadosPessoais);
+	    
+	    // verificando se deve carregar os dados no formulario
+	    if ($carregarDados) {
+		    // recuperando elementos do formulario DadosPessoais
+		    $formDadosPessoaisElementos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais')->getElements();
+
+		    // setando valores nos campos do subform dadosPessoais
+		    $formDadosPessoaisElementos['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomePai']->setValue($dadosPessoais->nomePai);    
+		    $formDadosPessoaisElementos['BasicoCadastrarDadosUsuarioDadosPessoaisTextboxNomeMae']->setValue($dadosPessoais->nomeMae);
+		    
+		    // recuperando ultima versao do obj dadosPessais da pessoa
+		    $versaoObjetoDadosPessoais = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosPessoais);
+		    
+		    $this->adicionaElementoHiddenVersaoObjetoDadosPessoais($formDadosUsuario, $versaoObjetoDadosPessoais);	    
+	    }
     }
     
     /**
@@ -670,6 +743,22 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		    
 		    $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 	    }
+    }
+
+     /**
+     * Adiciona um elemento hidden contendo o numero da versao do objeto dadosPessoais existente no banco de dados
+     * 
+     * @param Basico_Form_CadastrarDadosUsuario $formDadosUsuario
+     * @param Integer $versaoObjetoDadosPessoais
+     * 
+     * @return Boolean
+     */
+    private function adicionaElementoHiddenVersaoObjetoDadosPessoais(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoDadosPessoais)
+    {
+    	// recuperando o subformulario "CadastrarDadosUsuarioDadosPessoais"
+    	$subFormCadastrarDadosUsuarioDadosPessoais = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais');
+    	// adicionando elemento hidden contendo a versao do objeto pessoa
+		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosPessoais, FORM_ELEMENT_OCULTO, 'versaoObjetoDadosPessoais', array('value' => $versaoObjetoDadosPessoais));
     }
     
      /**
