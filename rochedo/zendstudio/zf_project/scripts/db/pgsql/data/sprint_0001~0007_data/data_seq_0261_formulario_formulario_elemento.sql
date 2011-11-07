@@ -13,7 +13,7 @@
 *	 							05/08/2011 - correcao da categoria no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 * 								22/08/2011 - criacao das associacoes dos elementos aos formulario FORM_TROCA_DE_SENHA;
 *								25/10/2011 - inicio da vinculacao dos elementos do form FORM_DIALOG_ADMIN_RASCUNHOS
-* 								
+* 								07/11/2011 - Modificacao dos nomes das UF(Unidade da federacao) para Estado.
 */
 
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, id_grupo_formulario_elemento, element_required, ordem, rowinfo)
@@ -3364,7 +3364,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT') AS id_formulario_elemento, 
+        AND fe.nome = 'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -3391,7 +3391,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_UF_NASCIMENTO_VALIDATION_TEXT_BOX') AS id_formulario_elemento, 
+        AND fe.nome = 'FORM_FIELD_ESTADO_NASCIMENTO_VALIDATION_TEXT_BOX') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -4093,7 +4093,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT') AS id_formulario_elemento,
        (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
@@ -4117,7 +4117,7 @@ SELECT (SELECT f.id
         LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_ENDERECO_UF_VALIDATION_TEXT_BOX') AS id_formulario_elemento,
+        AND fe.nome = 'FORM_FIELD_ENDERECO_ESTADO_VALIDATION_TEXT_BOX') AS id_formulario_elemento,
        (SELECT d.id
         FROM decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)

@@ -33,6 +33,7 @@
 * 								05/09/2011 - criacao da mensagem de erro ao tentar troca senha pela senha antiga;
 * 								06/10/2011 - criacao das mensagens (erro e sucesso) para exclusao de rascunho;
 * 								25/10/2011 - criacao das expressoes para o formulario de administracao de rascunhos;
+* 								07/11/2011 - Modificacao dos nomes das UF(Unidade da federacao) para Estado.
 */
 
 /*
@@ -2470,35 +2471,35 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_LABEL' AS constante_textual, 'UF de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_LABEL' AS constante_textual, 'UF de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione a sua UF de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual, 'Digite a sua UF de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual, 'Digite a sua UF de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual, 'Digite aqui a sua UF de nascimento.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual, 'Digite aqui a sua UF de nascimento.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -2771,35 +2772,35 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_LABEL' AS constante_textual, 'Uf:' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_LABEL' AS constante_textual, 'Uf:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT_HINT' AS constante_textual, 'Selecione a uf do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA' AS constante_textual, 'Digite a uf do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_TEXT_BOX_AJUDA' AS constante_textual, 'Digite a uf do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_TEXT_BOX_HINT' AS constante_textual, 'Digite a uf do endereço.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_TEXT_BOX_HINT' AS constante_textual, 'Digite a uf do endereço.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -7225,35 +7226,35 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_LABEL' AS constante_textual, 'State / Province of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_LABEL' AS constante_textual, 'State / Province of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select your State / Province of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select your State / Province of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Select your State / Province of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT_HINT' AS constante_textual, 'Select your State / Province of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual, 'Type your State / Province of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual, 'Type your State / Province of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual, 'Type in this field your State / Province of birth.' AS traducao
+SELECT c.id, 'FORM_FIELD_ESTADO_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual, 'Type in this field your State / Province of birth.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -7484,35 +7485,35 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_LABEL' AS constante_textual, 'Uf:' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_LABEL' AS constante_textual, 'Uf:' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select the State / Province of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT_AJUDA' AS constante_textual, 'Select the State / Province of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_HINT' AS constante_textual, 'Select the State / Province of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT_HINT' AS constante_textual, 'Select the State / Province of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA' AS constante_textual, 'Type the State / Province of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_TEXT_BOX_AJUDA' AS constante_textual, 'Type the State / Province of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO dicionario_expressao (id_categoria, constante_textual, traducao)
-SELECT c.id, 'FORM_FIELD_ENDERECO_UF_TEXT_BOX_HINT' AS constante_textual, 'Type the State / Province of the address.' AS traducao
+SELECT c.id, 'FORM_FIELD_ENDERECO_ESTADO_TEXT_BOX_HINT' AS constante_textual, 'Type the State / Province of the address.' AS traducao
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

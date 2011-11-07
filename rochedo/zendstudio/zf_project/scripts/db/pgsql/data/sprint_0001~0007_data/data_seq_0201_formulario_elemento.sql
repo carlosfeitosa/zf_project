@@ -14,6 +14,7 @@
 * 									12/05/2011 - criacao dos elementos "Repita sua nova senha" e html explicativo sobre a troca de senha;
 * 									05/09/2011 - criacao do elemento FORM_FIELD_HTML_JAVASCRIPT para inclusao de javascripts em formularios;
 * 									25/10/2011 - inicio criacao dos elementos para o formulario AdminRascunhos;
+* 									07/11/2011 - Modificacao dos nomes das UF(Unidade da federacao) para Estado.
 * 
 */
 
@@ -2906,7 +2907,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
-                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_UF_NASCIMENTO_FILTERING_SELECT') AS id_ajuda,
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -2928,10 +2929,10 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT' AS nome, 'Elemento campo combobox UF de nascimento, com filtro.' AS descricao,
-                              'FORM_FIELD_UF_NASCIMENTO_LABEL' AS constante_textual_label,
-                              'comboboxUfNascimento' AS element_name, NULL AS element_attribs,
-                              '''comboboxUfNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT' AS nome, 'Elemento campo combobox ESTADO de nascimento, com filtro.' AS descricao,
+                              'FORM_FIELD_ESTADO_NASCIMENTO_LABEL' AS constante_textual_label,
+                              'comboboxEstadoNascimento' AS element_name, NULL AS element_attribs,
+                              '''comboboxEstadoNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -2948,7 +2949,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
-                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_UF_NASCIMENTO_TEXT_BOX') AS id_ajuda,
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -2970,10 +2971,10 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_UF_NASCIMENTO_VALIDATION_TEXT_BOX' AS nome, 'Elemento campo textbox UF de nascimento' AS descricao,
-                              'FORM_FIELD_UF_NASCIMENTO_LABEL' AS constante_textual_label,
-                              'textboxUfNascimento' AS element_name, NULL AS element_attribs,
-                              '''textboxUfNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'FORM_FIELD_ESTADO_NASCIMENTO_VALIDATION_TEXT_BOX' AS nome, 'Elemento campo textbox ESTADO de nascimento' AS descricao,
+                              'FORM_FIELD_ESTADO_NASCIMENTO_LABEL' AS constante_textual_label,
+                              'textboxEstadoNascimento' AS element_name, NULL AS element_attribs,
+                              '''textboxEstadoNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -3239,7 +3240,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
-                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_UF_FILTERING_SELECT') AS id_ajuda,
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -3261,10 +3262,10 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT' AS nome, 'Elemento campo combobox uf do endereço' AS descricao,
-                              'FORM_FIELD_ENDERECO_UF_LABEL' AS constante_textual_label,
-                              'enderecoUf' AS element_name, NULL AS element_attribs,
-                              '''enderecoUf''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT' AS nome, 'Elemento campo combobox estado do endereço' AS descricao,
+                              'FORM_FIELD_ENDERECO_ESTADO_LABEL' AS constante_textual_label,
+                              'enderecoEstado' AS element_name, NULL AS element_attribs,
+                              '''enderecoEstado''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -3280,7 +3281,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
-                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_UF_TEXT_BOX') AS id_ajuda,
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
@@ -3302,10 +3303,10 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ENDERECO_UF_VALIDATION_TEXT_BOX' AS nome, 'Elemento campo textbox uf endereço' AS descricao,
-                              'FORM_FIELD_ENDERECO_UF_LABEL' AS constante_textual_label,
-                              'enderecoUfTextBox' AS element_name, NULL AS element_attribs,
-                              '''enderecoUfTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
+                              'FORM_FIELD_ENDERECO_ESTADO_VALIDATION_TEXT_BOX' AS nome, 'Elemento campo textbox estado endereço' AS descricao,
+                              'FORM_FIELD_ENDERECO_ESTADO_LABEL' AS constante_textual_label,
+                              'enderecoEstadoTextBox' AS element_name, NULL AS element_attribs,
+                              '''enderecoEstadoTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -3343,7 +3344,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT' AS nome, 'Elemento campo combobox uf do endereço' AS descricao,
+                              'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT' AS nome, 'Elemento campo combobox estado do endereço' AS descricao,
                               'FORM_FIELD_ENDERECO_MUNICIPIO_LABEL' AS constante_textual_label,
                               'enderecoMunicipio' AS element_name, NULL AS element_attribs,
                               '''enderecoMunicipio''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo

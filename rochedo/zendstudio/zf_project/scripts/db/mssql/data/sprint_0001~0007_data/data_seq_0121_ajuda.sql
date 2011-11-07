@@ -11,6 +11,7 @@
 * 							    10/05/2011 - criacao das ajudas para os campos "Senha atual" e "Nova senha" o formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 								11/05/2011 - criacao da ajuda para o campo "Repita sua nova senha" no formulario SUBFORM_DADOS_USUARIO_PERFIL;
 * 								25/10/2011 - inicio criacao das ajudas para o formulario adminRascunhos;
+* 								07/11/2011 - Modificacao dos nomes das UF(Unidade da federacao) para Estado.
 * 
 */
 
@@ -575,10 +576,10 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 ---------
 
 -- ajuda - formulario - cadastro - usuario
--- dados pessoais - uf nascimento - combobox.
+-- dados pessoais - ESTADO nascimento - combobox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox UF de nascimento.' AS descricao,
-       'FORM_FIELD_UF_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox ESTADO de nascimento.' AS descricao,
+       'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -587,10 +588,10 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 ----------
 
 -- ajuda - formulario - cadastro - usuario
--- dados pessoais uf nascimento - texbox.
+-- dados pessoais ESTADO nascimento - texbox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox UF de nascimento.' AS descricao,
-       'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_UF_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual_hint,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox ESTADO de nascimento.' AS descricao,
+       'FORM_FIELD_ESTADO_NASCIMENTO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ESTADO_NASCIMENTO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -680,10 +681,10 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -----------------
 
 -- ajuda - formulario - cadastro
--- endereco - uf - combobox.
+-- endereco - ESTADO - combobox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox uf do endereço.' AS descricao,
-       'FORM_FIELD_ENDERECO_UF_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ESTADO_FILTERING_SELECT' AS nome, 'Texto de ajuda para o campo combobox ESTADO do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
@@ -692,10 +693,10 @@ AND c.nome = 'AJUDA_FORMULARIO_FIELD';
 -----------------
 
 -- ajuda - formulario - cadastro
--- endereco - uf - texbox.
+-- endereco - ESTADO - texbox.
 INSERT INTO ajuda (id_categoria, nome, descricao, constante_textual_ajuda, constante_textual_hint, rowinfo)
-SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_UF_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox uf do endereço.' AS descricao,
-       'FORM_FIELD_ENDERECO_UF_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_UF_TEXT_BOX_HINT' AS constante_textual_hint,
+SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_FIELD_ESTADO_TEXT_BOX' AS nome, 'Texto de ajuda para o campo textbox ESTADO do endereço.' AS descricao,
+       'FORM_FIELD_ENDERECO_ESTADO_TEXT_BOX_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_ENDERECO_ESTADO_TEXT_BOX_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
