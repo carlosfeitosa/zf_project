@@ -1,19 +1,14 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * FormularioElementoFilterFormularioElemento data mapper
+ * FormulariosElementosFormulariosElementosFilters data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_FormularioElementoFilterFormularioElemento
+ * @uses       Basico_Model_DbTable_FormulariosElementosFormulariosElementosFilters
  * @subpackage Model
  */
-class Default_Model_FormularioElementoFilterFormularioElementoMapper
+class Basico_Model_FormulariosElementosFormulariosElementosFiltersMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +19,7 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_FormularioElementoFilterFormularioElementoMapper
+     * @return Basico_Model_FormulariosElementosFormulariosElementosFiltersMapper
      */
     public function setDbTable($dbTable)
     {
@@ -32,7 +27,7 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -41,14 +36,14 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_FormularioElementoFilterFormularioElemento if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormulariosElementosFormulariosElementosFilters if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_FormularioElementoFilterFormularioElemento');
+            $this->setDbTable('Basico_Model_DbTable_FormulariosElementosFormulariosElementosFilters');
         }
         return $this->_dbTable;
     }
@@ -56,14 +51,17 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Default_Model_FormularioElementoFilterFormularioElemento $object
+     * @param  Basico_Model_FormulariosElementosFormulariosElementosFilters $object
      * @return void
      */
-    public function save(Default_Model_FormularioElementoFilterFormularioElemento $object)
+    public function save(Basico_Model_FormulariosElementosFormulariosElementosFilters $object)
     {
         $data = array(
-                'formularioelementofilter' => $object->getFormularioElementoFilter(),
-                'formularioelemento' => $object->getFormularioElemento(),
+                'id_formulario_elemento_filter' => $object->getFormularioElementoFilter(),
+                'id_formulario_elemento'        => $object->getFormularioElemento(),
+        		'datahora_criacao'              => $object->getDataHoraCriacao(),
+        		'datahora_ultima_atualizacao'   => $object->getDataHoraUltimaAtualizacao(),
+        		'rowinfo'                       => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -75,11 +73,11 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
     }
     
     /**
-    * Delete a FormularioElementoFilterFormularioElemento entry
-    * @param Default_Model_FormularioElementoFilterFormularioElemento $object
+    * Delete a FormulariosElementosFormulariosElementosFilters entry
+    * @param Basico_Model_FormulariosElementosFormulariosElementosFilters $object
     * @return void
     */
-    public function delete(Default_Model_FormularioElementoFilterFormularioElemento $object)
+    public function delete(Basico_Model_FormulariosElementosFormulariosElementosFilters $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -88,10 +86,10 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_FormularioElementoFilterFormularioElemento $object 
+     * @param  Basico_Model_FormulariosElementosFormulariosElementosFilters $object 
      * @return void
      */
-    public function find($id, Default_Model_FormularioElementoFilterFormularioElemento $object)
+    public function find($id, Basico_Model_FormulariosElementosFormulariosElementosFilters $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -99,12 +97,15 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setFormularioElementoFilter($row->formularioelementofilter)
-               ->setFormularioElemento($row->formularioelemento);
+               ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
+               ->setFormularioElemento($row->id_formulario_elemento)
+               ->setDataHoraCriacao($row->datahora_criacao)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all FormularioElementoFilterFormularioElemento entries
+     * Fetch all FormulariosElementosFormulariosElementosFilters entries
      * 
      * @return array
      */
@@ -114,10 +115,13 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_FormularioElementoFilterFormularioElemento();
+            $entry = new Basico_Model_FormulariosElementosFormulariosElementosFilters();
             $entry->setId($row->id)
-                ->setFormularioElementoFilter($row->formularioelementofilter)
-                ->setFormularioElemento($row->formularioelemento)
+                ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
+                ->setFormularioElemento($row->id_formulario_elemento)
+                ->setDataHoraCriacao($row->datahora_criacao)
+                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
         }
@@ -135,168 +139,16 @@ class Default_Model_FormularioElementoFilterFormularioElementoMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_FormularioElementoFilterFormularioElemento();
+            $entry = new Basico_Model_FormulariosElementosFormulariosElementosFilters();
             $entry->setId($row->id)
-                  ->setFormularioElementoFilter($row->formularioelementofilter)
-                  ->setFormularioElemento($row->formularioelemento)
+                  ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
+               	  ->setFormularioElemento($row->id_formulario_elemento)
+                  ->setDataHoraCriacao($row->datahora_criacao)
+                  ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                  ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
     }
 }
-      
-//start block for manually written code
-        
-//end block for manually written code
-<?php
-/**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * FormularioElementoFilterFormularioElemento data mapper
- *
- * Implements the Data Mapper design pattern:
- * http://www.martinfowler.com/eaaCatalog/dataMapper.html
- * 
- * @uses       Default_Model_DbTable_FormularioElementoFilterFormularioElemento
- * @subpackage Model
- */
-class Default_Model_FormularioElementoFilterFormularioElementoMapper
-{
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_FormularioElementoFilterFormularioElementoMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
-    /**
-     * Get registered Zend_Db_Table instance
-     *
-     * Lazy loads Default_Model_DbTable_FormularioElementoFilterFormularioElemento if no instance registered
-     * 
-     * @return Zend_Db_Table_Abstract
-     */
-    public function getDbTable()
-    {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_FormularioElementoFilterFormularioElemento');
-        }
-        return $this->_dbTable;
-    }
-    
-    /**
-     * Save a LearningBasket entry
-     * 
-     * @param  Default_Model_FormularioElementoFilterFormularioElemento $object
-     * @return void
-     */
-    public function save(Default_Model_FormularioElementoFilterFormularioElemento $object)
-    {
-        $data = array(
-                'formularioelementofilter' => $object->getFormularioElementoFilter(),
-                'formularioelemento' => $object->getFormularioElemento(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-    * Delete a FormularioElementoFilterFormularioElemento entry
-    * @param Default_Model_FormularioElementoFilterFormularioElemento $object
-    * @return void
-    */
-    public function delete(Default_Model_FormularioElementoFilterFormularioElemento $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
-
-    /**
-     * Find a LearningBasket entry by id
-     * 
-     * @param  int $id 
-     * @param  Default_Model_FormularioElementoFilterFormularioElemento $object 
-     * @return void
-     */
-    public function find($id, Default_Model_FormularioElementoFilterFormularioElemento $object)
-    {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-               ->setFormularioElementoFilter($row->formularioelementofilter)
-               ->setFormularioElemento($row->formularioelemento);
-    }
-
-    /**
-     * Fetch all FormularioElementoFilterFormularioElemento entries
-     * 
-     * @return array
-     */
-    public function fetchAll()
-    {
-        $resultSet = $this->getDbTable()->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Default_Model_FormularioElementoFilterFormularioElemento();
-            $entry->setId($row->id)
-                ->setFormularioElementoFilter($row->formularioelementofilter)
-                ->setFormularioElemento($row->formularioelemento)
-                ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
-    
-    /**
-     * Fetch all learningbasket entries
-     * 
-     * @return array
-     */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Default_Model_FormularioElementoFilterFormularioElemento();
-            $entry->setId($row->id)
-                  ->setFormularioElementoFilter($row->formularioelementofilter)
-                  ->setFormularioElemento($row->formularioelemento)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
-}
-      
-//start block for manually written code
-        
-//end block for manually written code

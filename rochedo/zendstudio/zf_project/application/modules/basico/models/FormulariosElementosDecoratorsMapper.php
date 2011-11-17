@@ -1,19 +1,14 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * DecoratorFormularioElemento data mapper
+ * FormulariosElementosDecorators data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_DecoratorFormularioElemento
+ * @uses       Basico_Model_DbTable_FormulariosElementosDecorators
  * @subpackage Model
  */
-class Default_Model_DecoratorFormularioElementoMapper
+class Basico_Model_FormulariosElementosDecoratorsMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +19,7 @@ class Default_Model_DecoratorFormularioElementoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_DecoratorFormularioElementoMapper
+     * @return Basico_Model_FormulariosElementosDecoratorsMapper
      */
     public function setDbTable($dbTable)
     {
@@ -32,7 +27,7 @@ class Default_Model_DecoratorFormularioElementoMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -41,29 +36,32 @@ class Default_Model_DecoratorFormularioElementoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_DecoratorFormularioElemento if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormulariosElementosDecorators if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_DecoratorFormularioElemento');
+            $this->setDbTable('Basico_Model_DbTable_FormulariosElementosDecorators');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a LearningBasket entry
+     * Save a FormulariosElementosDecorators entry
      * 
-     * @param  Default_Model_DecoratorFormularioElemento $object
+     * @param  Basico_Model_FormulariosElementosDecorators $object
      * @return void
      */
-    public function save(Default_Model_DecoratorFormularioElemento $object)
+    public function save(Basico_Model_FormulariosElementosDecorators $object)
     {
         $data = array(
-                'decorator' => $object->getDecorator(),
-                'formularioelemento' => $object->getFormularioElemento(),
+                'id_decorator'                => $object->getDecorator(),
+                'id_formulario_elemento'      => $object->getFormularioElemento(),
+        		'datahora_criacao'            => $object->getDataHoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
+        		'rowinfo'                     => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -75,23 +73,23 @@ class Default_Model_DecoratorFormularioElementoMapper
     }
     
     /**
-    * Delete a DecoratorFormularioElemento entry
-    * @param Default_Model_DecoratorFormularioElemento $object
+    * Delete a FormulariosElementosDecorators entry
+    * @param Basico_Model_FormulariosElementosDecorators $object
     * @return void
     */
-    public function delete(Default_Model_DecoratorFormularioElemento $object)
+    public function delete(Basico_Model_FormulariosElementosDecorators $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
 
     /**
-     * Find a LearningBasket entry by id
+     * Find a FormulariosElementosDecorators entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_DecoratorFormularioElemento $object 
+     * @param  Basico_Model_FormulariosElementosDecorators $object 
      * @return void
      */
-    public function find($id, Default_Model_DecoratorFormularioElemento $object)
+    public function find($id, Basico_Model_FormulariosElementosDecorators $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -99,12 +97,15 @@ class Default_Model_DecoratorFormularioElementoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setDecorator($row->decorator)
-               ->setFormularioElemento($row->formularioelemento);
+               ->setDecorator($row->id_decorator)
+               ->setFormularioElemento($row->id_formulario_elemento)
+               ->setDataHoraCriacao($row->datahora_criacao)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all DecoratorFormularioElemento entries
+     * Fetch all FormulariosElementosDecorators entries
      * 
      * @return array
      */
@@ -114,10 +115,13 @@ class Default_Model_DecoratorFormularioElementoMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_DecoratorFormularioElemento();
+            $entry = new Basico_Model_FormulariosElementosDecorators();
             $entry->setId($row->id)
-                ->setDecorator($row->decorator)
-                ->setFormularioElemento($row->formularioelemento)
+                ->setDecorator($row->id_decorator)
+                ->setFormularioElemento($row->id_formulario_elemento)
+                ->setDataHoraCriacao($row->datahora_criacao)
+               	->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               	->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
         }
@@ -125,7 +129,7 @@ class Default_Model_DecoratorFormularioElementoMapper
     }
     
     /**
-     * Fetch all learningbasket entries
+     * Fetch all FormulariosElementosDecorators entries
      * 
      * @return array
      */
@@ -135,17 +139,16 @@ class Default_Model_DecoratorFormularioElementoMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_DecoratorFormularioElemento();
+            $entry = new Basico_Model_FormulariosElementosDecorators();
             $entry->setId($row->id)
-                  ->setDecorator($row->decorator)
-                  ->setFormularioElemento($row->formularioelemento)
+                  ->setDecorator($row->id_decorator)
+                  ->setFormularioElemento($row->id_formulario_elemento)
+                  ->setDataHoraCriacao($row->datahora_criacao)
+               	  ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                  ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
     }
 }
-      
-//start block for manually written code
-        
-//end block for manually written code

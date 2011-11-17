@@ -50,7 +50,7 @@ create table sequencia_formulario (
 	id_formulario int not null,
 	ordem int not null ,
 	descricao character varying (2000) null,
-	datahora_criacao timestamp with time zone null ,
+	datahora_criacao timestamp with time zone not null ,
 	datahora_ultima_atualizacao timestamp with time zone not null ,
     rowinfo character varying (2000) not null
 ) with (

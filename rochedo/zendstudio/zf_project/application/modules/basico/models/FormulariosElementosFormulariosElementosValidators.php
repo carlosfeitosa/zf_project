@@ -1,18 +1,13 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * FormularioElementoValidadorFormularioElemento model
+ * FormulariosElementosFormulariosElementosValidators model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Default_Model_FormularioElementoValidadorFormularioElementoMapper
+ * @uses       Basico_Model_FormulariosElementosFormulariosElementosValidatorsMapper
  * @subpackage Model
  */
-class Default_Model_FormularioElementoValidadorFormularioElemento
+class Basico_Model_FormulariosElementosFormulariosElementosValidators
 {
     /**
     * @var int
@@ -20,19 +15,31 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
     protected $_id;
 
     /**
-     * @var Default_Model_FormularioElementoValidadorFormularioElementoMapper
+     * @var Basico_Model_FormulariosElementosFormulariosElementosValidatorsMapper
      */
     protected $_mapper;
 
     /**
      * @var FormularioElementoValidador
      */
-    protected $_formularioelementovalidador;
+    protected $_formularioElementoValidador;
     
     /**
      * @var FormularioElemento
      */
-    protected $_formularioelemento;
+    protected $_formularioElemento;
+    /**
+     * @var Date
+     */
+    protected $_dataHoraCriacao;
+    /**
+     * @var Date
+     */
+    protected $_dataHoraUltimaAtualizacao;
+    /**
+     * @var String
+     */
+    protected $_rowinfo;
 
     /**
      * Constructor
@@ -60,7 +67,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
         $method = 'set' . $name;
         if ('mapper' == $name || !method_exists($this, $method)) 
         {
-            throw new Exception('Invalid property specified');
+            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
         }
         $this->$method($value);
     }
@@ -76,7 +83,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
         $method = 'get' . $name;
         if ('mapper' == $name || !method_exists($this, $method)) 
         {
-            throw new Exception('Invalid property specified');
+            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
         }
         return $this->$method();
     }
@@ -85,7 +92,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
      * Set object state
      * 
      * @param  array $options 
-     * @return Default_Model_FormularioElementoValidadorFormularioElemento
+     * @return Basico_Model_FormulariosElementosFormulariosElementosValidators
      */
     public function setOptions(array $options)
     {
@@ -105,7 +112,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
     * Set formularioelementovalidador
     * 
     * @param int $ 
-    * @return Default_Model_FormularioElementoValidador
+    * @return Basico_Model_FormularioElementoValidador
     */
     public function setFormularioElementoValidador($formularioelementovalidador)
     {
@@ -129,7 +136,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
      */
     public function getFormularioElementoValidadorObject()
     {
-        $model = new Default_Model_FormularioElementoValidator();
+        $model = new Basico_Model_FormularioElementoValidator();
         $object = $model->find($this->_formularioelementovalidador);
         return $object;
     }
@@ -138,7 +145,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
     * Set formularioelemento
     * 
     * @param int $ 
-    * @return Default_Model_FormularioElemento
+    * @return Basico_Model_FormularioElemento
     */
     public function setFormularioElemento($formularioelemento)
     {
@@ -162,17 +169,82 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
      */
     public function getFormularioElementoObject()
     {
-        $model = new Default_Model_FormularioElemento();
+        $model = new Basico_Model_FormularioElemento();
         $object = $model->find($this->_formularioelemento);
         return $object;
     }
     
+	/**
+	* Set dataHoraCriacao
+	* 
+	* @param String $dataHoraCriacao 
+	* @return DateTime
+	*/
+	public function setDataHoraCriacao($dataHoraCriacao)
+	{
+		$this->_dataHoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCriacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCriacao()
+	{
+		return $this->_dataHoraCriacao;
+	}
+	
+	/**
+	* Set dataHoraUltimaAtualizacao
+	* 
+	* @param String $dataHoraUltimaAtualizacao 
+	* @return DateTime
+	*/
+	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+	{
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaAtualizacao()
+	{
+		return $this->_dataHoraUltimaAtualizacao;
+	}
+
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_FormulariosElementosFormulariosElementosValidators
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
     /**
     * Set entry id
     * 
     * @param  int $id 
-    * @return Default_Model_FormularioElementoValidadorFormularioElemento
+    * @return Basico_Model_FormulariosElementosFormulariosElementosValidators
     */
     public function setId($id)
     {
@@ -194,7 +266,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Default_Model_FormularioElementoValidadorFormularioElemento
+    * @return Basico_Model_FormulariosElementosFormulariosElementosValidators
     */
     public function setMapper($mapper)
     {
@@ -205,14 +277,14 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
     /**
     * Get data mapper
     *
-    * Lazy loads Default_Model_FormularioElementoValidadorFormularioElementoMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_FormulariosElementosFormulariosElementosValidatorsMapper instance if no mapper registered.
     * 
-    * @return Default_Model_FormularioElementoValidadorFormularioElementoMapper
+    * @return Basico_Model_FormulariosElementosFormulariosElementosValidatorsMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Default_Model_FormularioElementoValidadorFormularioElementoMapper());
+            $this->setMapper(new Basico_Model_FormulariosElementosFormulariosElementosValidatorsMapper());
         }
         return $this->_mapper;
     }
@@ -242,7 +314,7 @@ class Default_Model_FormularioElementoValidadorFormularioElemento
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Default_Model_FormularioElementoValidadorFormularioElemento
+    * @return Basico_Model_FormulariosElementosFormulariosElementosValidators
       
     */
     public function find($id)

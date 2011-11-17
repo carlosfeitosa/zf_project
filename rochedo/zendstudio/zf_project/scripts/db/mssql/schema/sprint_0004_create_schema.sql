@@ -17,7 +17,7 @@
 * 								   - modificacao nos campos form_method e form_action da tabela
 * 									 formulario, permitindo que os mesmos sejam nulos;
 * 								   - criacao do campo "versao" na tabela "formulario";
-* 						16/08/2010 - criacao da tabela formulario_formulario_elemento_formulario;
+* 						16/08/2010 - criacao da tabela formularios_formularios_elementos_formulario;
 * 						10/09/2010 - remocao do campo "versao" da tabela "formulario";
 * 						14/09/2010 - criacao da tabela "componente";
 * 						14/09/2010 - criacao do campo (e associacoes) "id_componente" na tabela
@@ -25,14 +25,14 @@
 * 						14/10/2010 - criacao do campo ordem no formulario;
 * 						14/10/2010 - desobrigatoriedade de escolha de hint para ajuda;
 * 						18/10/2010 - criacao da tabela grupo_formulario_elemento;
-* 								   - associacao de formulario_formulario_elemento com grupo_formulario_elemento
+* 								   - associacao de formularios_formularios_elementos com grupo_formulario_elemento
 * 									 e decorator;
 * 						29/10/2010 - remocao do script de criacao da tabela "modulo" para inclusao no sprint 0001;
-* 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
+* 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formularios_formularios_elementos";
 * 						07/04/2011 - remocao da criacao da tabela "formulario_perfil" - descontinuado;
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
 * 						12/05/2011 - criacao do campo "options" na tabela formulario_elemento_formulario_elemento_validator;
-* 						01/11/2011 - criacao do campo "element_name" na tabela formulario_formulario_elemento;
+* 						01/11/2011 - criacao do campo "element_name" na tabela formularios_formularios_elementos;
 */
 
 
@@ -103,8 +103,6 @@ create table dbo.formulario_elemento (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_ajuda int null ,
-    id_formulario_elemento_filter int null ,
-    id_decorator int null ,
     id_componente int not null,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	descricao varchar (2000) collate latin1_general_ci_ai null ,
@@ -160,13 +158,16 @@ create table dbo.formulario (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.formulario_formulario_elemento (
+create table dbo.formularios_formularios_elementos (
 	id int identity (1, 1) not null ,
-	element_name varchar (100) collate latin1_general_ci_ai null ,
+	id_ajuda int null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
-	id_decorator int null ,
 	id_grupo_formulario_elemento int null ,
+	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
+	element_name varchar (100) collate latin1_general_ci_ai null ,
+	element_attribs varchar (1000) collate latin1_general_ci_ai null ,
+	element_reloadable bit not null ,
 	element_required bit not null ,
 	ordem int not null ,	
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
@@ -178,14 +179,6 @@ create table dbo.formulario_elemento_formulario_elemento_validator (
 	id_formulario_elemento_validator int not null ,
 	validator_options varchar (2000) collate latin1_general_ci_ai null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
-) on [primary];
-
-create table dbo.formulario_formulario_elemento_formulario (
-	id int identity (1, 1) not null ,
-	id_formulario_formulario_elemento int not null ,
-	id_formulario int not null ,
-	constante_textual_label varchar (200) collate latin1_general_ci_ai null ,
-	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
 create table dbo.componente (
@@ -243,11 +236,9 @@ alter table dbo.formulario_elemento_filter with nocheck add constraint pk_formul
 
 alter table dbo.formulario with nocheck add constraint pk_formulario primary key clustered (id) on [primary];
 
-alter table dbo.formulario_formulario_elemento with nocheck add constraint pk_formulario_formulario_elemento primary key clustered (id) on [primary];
+alter table dbo.formularios_formularios_elementos with nocheck add constraint pk_formularios_formularios_elementos primary key clustered (id) on [primary];
 
 alter table dbo.formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
-
-alter table dbo.formulario_formulario_elemento_formulario with nocheck add constraint pk_formulario_formulario_elemento_formulario primary key (id) on [primary];
 
 alter table dbo.componente with nocheck add constraint pk_componente primary key (id) on [primary];
 
@@ -261,11 +252,23 @@ alter table dbo.formularios_elementos_mascaras with nocheck add constraint pk_fo
 alter table dbo.formulario add 
 	constraint df_formulario_validade_inicio default (getdate()) for validade_inicio;
 	
+alter table dbo.formulario add
+	constraint df_formulario_datahora_criacao default (getdate()) for datahora_criacao;
+	
 alter table dbo.formulario add 
 	constraint df_formulario_permite_rascunho default 1 for permite_rascunho;
 
 alter table dbo.formulario_elemento add
 	constraint df_formulario_elemento_element_realoadable default 0 for element_reloadable;
+	
+alter table dbo.formulario_elemento add
+	constraint df_formulario_elemento_datahora_criacao default (getdate()) for datahora_criacao;
+	
+alter table dbo.formularios_formularios_elementos add
+	constraint df_formularios_formularios_elementos_element_realoadable default 0 for element_reloadable;
+	
+alter table dbo.formularios_formularios_elementos add
+	constraint df_formularios_formularios_elementos_datahora_criacao default (getdate()) for datahora_criacao;
 
 alter table dbo.componente add
 	constraint df_componente_validade_inicio default (getdate()) for validade_inicio;
@@ -282,6 +285,8 @@ create index ix_output_nome on dbo.output (nome) on [primary];
 create index ix_template_nome on dbo.template (nome) on [primary];
 
 create index ix_formulario_elemento_nome on dbo.formulario_elemento (nome) on [primary];
+
+create index ix_formularios_formularios_elementos_element_name on dbo.formularios_formularios_elementos (element_name) on [primary];
 
 create index ix_formulario_elemento_validator_nome on dbo.formulario_elemento_validator (nome) on [primary];
 
@@ -375,8 +380,8 @@ alter table dbo.formulario add
         nome
     ) on [primary];
 
-alter table dbo.formulario_formulario_elemento add
-    constraint ix_formulario_formulario_elemento_formulario_formulario_elemento_ordem unique nonclustered
+alter table dbo.formularios_formularios_elementos add
+    constraint ix_formularios_formularios_elementos_formularios_formularios_elementos_ordem unique nonclustered
     (
         id_formulario,
         id_formulario_elemento,
@@ -389,12 +394,6 @@ alter table dbo.formulario_elemento_formulario_elemento_validator add
         id_formulario_elemento,
         id_formulario_elemento_validator
     ) on [primary];
-
-alter table dbo.formulario_formulario_elemento_formulario add
-	constraint ix_formulario_formulario_elemento_formulario_formulario_formulario_elemento_formulario unique nonclustered
-	(
-		id_formulario_formulario_elemento
-	) on [primary];
 
 alter table dbo.componente add
 	constraint ix_componente_categoria_componente unique nonclustered
@@ -506,18 +505,6 @@ alter table dbo.formulario_elemento add
 	) references dbo.ajuda (
 		id
 	),
-    constraint fk_formulario_elemento_formulario_elemento_filter foreign key
-	(
-		id_formulario_elemento_filter
-	) references dbo.formulario_elemento_filter (
-		id
-	),
-	constraint fk_formulario_elemento_decorator foreign key
-	(
-		id_decorator
-	) references dbo.decorator (
-		id
-	),
 	constraint fk_formulario_elemento_componente foreign key
 	(
 		id_componente
@@ -567,26 +554,20 @@ alter table dbo.formulario add
 		id
 	);
 
-alter table dbo.formulario_formulario_elemento add 
-	constraint fk_formulario_formulario_elemento_formulario foreign key 
+alter table dbo.formularios_formularios_elementos add 
+	constraint fk_formularios_formularios_elementos_formulario foreign key 
 	(
 		id_formulario
 	) references dbo.formulario (
 		id
 	),
-	constraint fk_formulario_formulario_elemento_formulario_elemento foreign key 
+	constraint fk_formularios_formularios_elementos_formulario_elemento foreign key 
 	(
 		id_formulario_elemento
 	) references dbo.formulario_elemento (
 		id
 	),
-	constraint fk_formulario_formulario_elemento_decorator foreign key
-	(
-		id_decorator
-	) references decorator (
-		id
-	),
-	constraint fk_formulario_formulario_elemento_grupo_formulario_elemento foreign key
+	constraint fk_formularios_formularios_elementos_grupo_formulario_elemento foreign key
 	(
 		id_grupo_formulario_elemento
 	) references grupo_formulario_elemento (
@@ -604,20 +585,6 @@ alter table dbo.formulario_elemento_formulario_elemento_validator add
 	(
 		id_formulario_elemento_validator
 	) references dbo.formulario_elemento_validator (
-		id
-	);
-
-alter table dbo.formulario_formulario_elemento_formulario add
-	constraint fk_formulario_formulario_elemento_formulario_formulario_elemento foreign key
-	(
-		id_formulario_formulario_elemento
-	) references dbo.formulario_formulario_elemento (
-		id
-	),
-	constraint fk_formulario_formulario_elemento_formulario_formulario foreign key
-	(
-		id_formulario
-	) references dbo.formulario (
 		id
 	);
 	
@@ -684,6 +651,6 @@ alter table dbo.formulario_elemento add
 	constraint ck_formulario_elemento_constante_textual_label check
 	((constante_textual_label is null) or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
 
-alter table dbo.formulario_formulario_elemento_formulario add
-	constraint ck_formulario_formulario_elemento_formulario_constante_textual_label check
-	(constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
+alter table dbo.formularios_formularios_elementos add
+	constraint ck_formularios_formularios_elementos_constante_textual_label check
+	((constante_textual_label is null) or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));

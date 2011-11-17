@@ -57,19 +57,19 @@ class Basico_Model_FormularioElementoMapper
     public function save(Basico_Model_FormularioElemento $object)
     {
         $data = array(
-                'nome'   => $object->getNome(),
-                'descricao'   => $object->getDescricao(),
-                'constante_textual_label'   => $object->getConstanteTextualLabel(),
-                'element_name'   => $object->getElementName(),
-                'element_attribs' => $object->getElementAttribs(),
-                'element'   => $object->getElement(),
-                'element_reloadable' => $object->getElementReloadable(),
-                'id_categoria' => $object->getCategoria(),
-                'id_ajuda'     => $object->getAjuda(),
-                'id_formulario_elemento_filter' => $object->getFormularioElementoFilter(),
-                'id_decorator'                  => $object->getDecorator(),
-        		'id_componente'					=> $object->getComponente(),
-                'rowinfo'   => $object->getRowinfo(),
+                'nome'                        => $object->getNome(),
+                'descricao'                   => $object->getDescricao(),
+                'constante_textual_label'     => $object->getConstanteTextualLabel(),
+                'element_name'                => $object->getElementName(),
+                'element_attribs'             => $object->getElementAttribs(),
+                'element'                     => $object->getElement(),
+                'element_reloadable'          => $object->getElementReloadable(),
+                'id_categoria'                => $object->getCategoria(),
+                'id_ajuda'                    => $object->getAjuda(),
+        		'id_componente'			      => $object->getComponente(),
+        		'datahora_criacao'            => $object->getDataHoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
+                'rowinfo'                     => $object->getRowinfo(),
 
         );
 
@@ -116,9 +116,9 @@ class Basico_Model_FormularioElementoMapper
 				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
 				->setAjuda($row->id_ajuda)
-				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
-				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
+				->setDataHoraCriacao($row->datahora_criacao)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -145,9 +145,9 @@ class Basico_Model_FormularioElementoMapper
 				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
 				->setAjuda($row->id_ajuda)
-				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
-				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
+				->setDataHoraCriacao($row->datahora_criacao)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -178,9 +178,9 @@ class Basico_Model_FormularioElementoMapper
 				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
 				->setAjuda($row->id_ajuda)
-				->setFormularioElementoFilter($row->id_formulario_elemento_filter)
-				->setDecorator($row->id_decorator)
 				->setComponente($row->id_componente)
+				->setDataHoraCriacao($row->datahora_criacao)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

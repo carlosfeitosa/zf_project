@@ -1,19 +1,14 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * FormularioElementoValidadorFormularioElemento data mapper
+ * FormulariosElementosFormulariosElementosValidators data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_FormularioElementoValidadorFormularioElemento
+ * @uses       Basico_Model_DbTable_FormulariosElementosFormulariosElementosValidators
  * @subpackage Model
  */
-class Default_Model_FormularioElementoValidadorFormularioElementoMapper
+class Basico_Model_FormulariosElementosFormulariosElementosValidatorsMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +19,7 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_FormularioElementoValidadorFormularioElementoMapper
+     * @return Basico_Model_FormulariosElementosFormulariosElementosValidatorsMapper
      */
     public function setDbTable($dbTable)
     {
@@ -32,7 +27,7 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -41,29 +36,32 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_FormularioElementoValidadorFormularioElemento if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormulariosElementosFormulariosElementosValidators if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_FormularioElementoValidadorFormularioElemento');
+            $this->setDbTable('Basico_Model_DbTable_FormulariosElementosFormulariosElementosValidators');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a LearningBasket entry
+     * Save a FormulariosElementosFormulariosElementosValidators entry
      * 
-     * @param  Default_Model_FormularioElementoValidadorFormularioElemento $object
+     * @param  Basico_Model_FormulariosElementosFormulariosElementosValidators $object
      * @return void
      */
-    public function save(Default_Model_FormularioElementoValidadorFormularioElemento $object)
+    public function save(Basico_Model_FormulariosElementosFormulariosElementosValidators $object)
     {
         $data = array(
-                'formularioelementovalidador' => $object->getFormularioElementoValidador(),
-                'formularioelemento' => $object->getFormularioElemento(),
+                'id_formulario_elemento_validador' => $object->getFormularioElementoValidador(),
+                'id_formulario_elemento'           => $object->getFormularioElemento(),
+        		'datahora_criacao'                 => $object->getDataHoraCriacao(),
+        		'datahora_ultima_atualizacao'      => $object->getDataHoraUltimaAtualizacao(),
+        		'rowinfo'                          => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -75,11 +73,11 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
     }
     
     /**
-    * Delete a FormularioElementoValidadorFormularioElemento entry
-    * @param Default_Model_FormularioElementoValidadorFormularioElemento $object
+    * Delete a FormulariosElementosFormulariosElementosValidators entry
+    * @param Basico_Model_FormulariosElementosFormulariosElementosValidators $object
     * @return void
     */
-    public function delete(Default_Model_FormularioElementoValidadorFormularioElemento $object)
+    public function delete(Basico_Model_FormulariosElementosFormulariosElementosValidators $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -88,10 +86,10 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_FormularioElementoValidadorFormularioElemento $object 
+     * @param  Basico_Model_FormulariosElementosFormulariosElementosValidators $object 
      * @return void
      */
-    public function find($id, Default_Model_FormularioElementoValidadorFormularioElemento $object)
+    public function find($id, Basico_Model_FormulariosElementosFormulariosElementosValidators $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -99,12 +97,15 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setFormularioElementoValidador($row->formularioelementovalidador)
-               ->setFormularioElemento($row->formularioelemento);
+               ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+               ->setFormularioElemento($row->id_formulario_elemento)
+               ->setDataHoraCriacao($row->datahora_criacao)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all FormularioElementoValidadorFormularioElemento entries
+     * Fetch all FormulariosElementosFormulariosElementosValidators entries
      * 
      * @return array
      */
@@ -114,10 +115,13 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_FormularioElementoValidadorFormularioElemento();
+            $entry = new Basico_Model_FormulariosElementosFormulariosElementosValidators();
             $entry->setId($row->id)
-                ->setFormularioElementoValidador($row->formularioelementovalidador)
-                ->setFormularioElemento($row->formularioelemento)
+                ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+                ->setFormularioElemento($row->id_formulario_elemento)
+                ->setDataHoraCriacao($row->datahora_criacao)
+                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
         }
@@ -125,7 +129,7 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
     }
     
     /**
-     * Fetch all learningbasket entries
+     * Fetch all FormulariosElementosFormulariosElementosValidators entries
      * 
      * @return array
      */
@@ -135,17 +139,16 @@ class Default_Model_FormularioElementoValidadorFormularioElementoMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_FormularioElementoValidadorFormularioElemento();
+            $entry = new Basico_Model_FormulariosElementosFormulariosElementosValidators();
             $entry->setId($row->id)
-                  ->setFormularioElementoValidador($row->formularioelementovalidador)
-                  ->setFormularioElemento($row->formularioelemento)
+                  ->setFormularioElementoValidador($row->id_formulario_elemento_validador)
+                  ->setFormularioElemento($row->id_formulario_elemento)
+                  ->setDataHoraCriacao($row->datahora_criacao)
+                  ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                  ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
     }
 }
-      
-//start block for manually written code
-        
-//end block for manually written code

@@ -1,19 +1,14 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * FormulariosFormulariosElementosFormularioElementoFilter data mapper
+ * FormulariosFormulariosElementosFormulariosElementosValidators data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Default_Model_DbTable_FormulariosFormulariosElementosFormularioElementoFilter
+ * @uses       Basico_Model_DbTable_FormulariosFormulariosElementosFormulariosElementosValidators
  * @subpackage Model
  */
-class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMapper
+class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidatorsMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +19,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMapper
+     * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidatorsMapper
      */
     public function setDbTable($dbTable)
     {
@@ -32,7 +27,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -41,14 +36,14 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Default_Model_DbTable_FormulariosFormulariosElementosFormularioElementoFilter if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormulariosFormulariosElementosFormulariosElementosValidators if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_FormulariosFormulariosElementosFormularioElementoFilter');
+            $this->setDbTable('Basico_Model_DbTable_FormulariosFormulariosElementosFormulariosElementosValidators');
         }
         return $this->_dbTable;
     }
@@ -56,14 +51,17 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Default_Model_FormulariosFormulariosElementosFormularioElementoFilter $object
+     * @param  Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators $object
      * @return void
      */
-    public function save(Default_Model_FormulariosFormulariosElementosFormularioElementoFilter $object)
+    public function save(Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators $object)
     {
         $data = array(
-                'formulariosformularioselementos' => $object->getFormulariosFormulariosElementos(),
-                'formularioelementofilter' => $object->getFormularioElementoFilter(),
+                'id_formularios_formularios_elementos' => $object->getFormulariosFormulariosElementos(),
+                'id_formulario_elemento_filter'        => $object->getFormularioElementoFilter(),
+        		'datahora_criacao'                     => $object->getDataHoraCriacao(),
+        		'datahora_ultima_atualizacao'          => $object->getDataHoraUltimaAtualizacao(),
+        		'rowinfo'                              => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -75,11 +73,11 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
     }
     
     /**
-    * Delete a FormulariosFormulariosElementosFormularioElementoFilter entry
-    * @param Default_Model_FormulariosFormulariosElementosFormularioElementoFilter $object
+    * Delete a FormulariosFormulariosElementosFormulariosElementosValidators entry
+    * @param Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators $object
     * @return void
     */
-    public function delete(Default_Model_FormulariosFormulariosElementosFormularioElementoFilter $object)
+    public function delete(Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -88,10 +86,10 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Default_Model_FormulariosFormulariosElementosFormularioElementoFilter $object 
+     * @param  Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators $object 
      * @return void
      */
-    public function find($id, Default_Model_FormulariosFormulariosElementosFormularioElementoFilter $object)
+    public function find($id, Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -99,12 +97,15 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setFormulariosFormulariosElementos($row->formulariosformularioselementos)
-               ->setFormularioElementoFilter($row->formularioelementofilter);
+               ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
+               ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
+               ->setDataHoraCriacao($row->datahora_criacao)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all FormulariosFormulariosElementosFormularioElementoFilter entries
+     * Fetch all FormulariosFormulariosElementosFormulariosElementosValidators entries
      * 
      * @return array
      */
@@ -114,10 +115,13 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_FormulariosFormulariosElementosFormularioElementoFilter();
+            $entry = new Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators();
             $entry->setId($row->id)
-                ->setFormulariosFormulariosElementos($row->formulariosformularioselementos)
-                ->setFormularioElementoFilter($row->formularioelementofilter)
+                ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
+                ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
+                ->setDataHoraCriacao($row->datahora_criacao)
+                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
         }
@@ -135,17 +139,16 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMappe
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Default_Model_FormulariosFormulariosElementosFormularioElementoFilter();
+            $entry = new Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators();
             $entry->setId($row->id)
-                  ->setFormulariosFormulariosElementos($row->formulariosformularioselementos)
-                  ->setFormularioElementoFilter($row->formularioelementofilter)
+                  ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
+                  ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
+                  ->setDataHoraCriacao($row->datahora_criacao)
+                  ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                  ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
     }
 }
-      
-//start block for manually written code
-        
-//end block for manually written code

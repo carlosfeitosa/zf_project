@@ -93,6 +93,14 @@ class Basico_Model_Formulario
 	 */
 	protected $_dataAutoReativar;
 	/**
+	 * @var Date
+	 */
+	protected $_dataHoraCriacao;
+	/**
+	 * @var Date
+	 */
+	protected $_dataHoraUltimaAtualizacao;
+	/**
 	 * @var String
 	 */
 	protected $_motivoDesativacao;
@@ -572,6 +580,50 @@ class Basico_Model_Formulario
 	public function getDataAutoReativar()
 	{
 		return $this->_dataAutoReativar;
+	}
+	
+	/**
+	* Set dataHoraCriacao
+	* 
+	* @param String $dataHoraCriacao 
+	* @return DateTime
+	*/
+	public function setDataHoraCriacao($dataHoraCriacao)
+	{
+		$this->_dataHoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCriacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCriacao()
+	{
+		return $this->_dataHoraCriacao;
+	}
+	
+	/**
+	* Set dataHoraUltimaAtualizacao
+	* 
+	* @param String $dataHoraUltimaAtualizacao 
+	* @return DateTime
+	*/
+	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+	{
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaAtualizacao()
+	{
+		return $this->_dataHoraUltimaAtualizacao;
 	}
      
 	/**

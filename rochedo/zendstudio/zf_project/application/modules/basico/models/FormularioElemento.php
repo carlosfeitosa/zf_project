@@ -51,27 +51,22 @@ class Basico_Model_FormularioElemento
 	 * @var Integer
 	 */
 	protected $_categoria;
-	
-	/**
-	 * @var Integer
-	 */
-	protected $_formularioElementoFilter;
-	
 	/**
 	 * @var Integer
 	 */
 	protected $_ajuda;
-	
 	/**
-	 * @var Integer
-	 */
-	protected $_decorator;
-	
-    /**
      * @var Integer
      */
     protected $_componente;
-	
+    /**
+	 * @var Date
+	 */
+	protected $_dataHoraCriacao;
+	/**
+	 * @var Date
+	 */
+	protected $_dataHoraUltimaAtualizacao;
 	/**
 	 * @var String
 	 */
@@ -341,6 +336,50 @@ class Basico_Model_FormularioElemento
         $objects = Basico_OPController_PersistenceOPController::bdObjectFetchList($model, "id_formulario_elemento = {$this->_id}");
         return $objects;
     }
+    
+	/**
+	* Set dataHoraCriacao
+	* 
+	* @param String $dataHoraCriacao 
+	* @return DateTime
+	*/
+	public function setDataHoraCriacao($dataHoraCriacao)
+	{
+		$this->_dataHoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCriacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCriacao()
+	{
+		return $this->_dataHoraCriacao;
+	}
+	
+	/**
+	* Set dataHoraUltimaAtualizacao
+	* 
+	* @param String $dataHoraUltimaAtualizacao 
+	* @return DateTime
+	*/
+	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+	{
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaAtualizacao()
+	{
+		return $this->_dataHoraUltimaAtualizacao;
+	}
 
     /**
 	* Set rowinfo
@@ -387,39 +426,6 @@ class Basico_Model_FormularioElemento
 	}
 	
     /**
-	* Set entry decorator
-	* 
-	* @param  int $decorator
-	* @return Basico_Model_FormularioElemento
-	*/
-	public function setDecorator($decorator)
-	{
-		$this->_decorator = Basico_OPController_UtilOPController::retornaValorTipado($decorator, TIPO_INTEIRO,true);
-		return $this;
-	}
-
-	/**
-	* Retrieve entry decorator
-	* 
-	* @return null|int
-	*/
-	public function getDecorator()
-	{
-		return $this->_decorator;
-	}
-	
-    /**
-     * Get formularioElementoDecorator object
-     * @return null|formularioElementoDecorator
-     */
-    public function getDecoratorObject()
-    {
-        $model = new Basico_Model_Decorator();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_decorator);
-        return $object;
-    }
-	
-    /**
 	* Set entry id
 	* 
 	* @param  int $id
@@ -441,28 +447,6 @@ class Basico_Model_FormularioElemento
 		return $this->_id;
 	}
  
-	/**
-	* Set entry formularioElementoFilter
-	* 
-	* @param  int $formularioElementoFilter 
-	* @return Basico_Model_FormularioElemento
-	*/
-	public function setFormularioElementoFilter($formularioElementoFilter)
-	{
-		$this->_formularioElementoFilter = Basico_OPController_UtilOPController::retornaValorTipado($formularioElementoFilter, TIPO_INTEIRO,true);
-		return $this;
-	}
-
-	/**
-	* Retrieve entry formularioElementoFilter
-	* 
-	* @return null|int
-	*/
-	public function getFormularioElementoFilter()
-	{
-		return $this->_formularioElementoFilter;
-	}
-	
     /**
 	* Set entry ajuda
 	* 
@@ -496,17 +480,6 @@ class Basico_Model_FormularioElemento
         return $object;
     }
 	
-    /**
-     * Get formularioElementoFilter object
-     * @return null|formularioElementoFilter
-     */
-    public function getFormularioElementoFilterObject()
-    {
-        $model = new Basico_Model_FormularioElementoFilter();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_formularioElementoFilter);
-        return $object;
-    }
-    
     /**
      * Get ajuda object
      * @return null|ajuda

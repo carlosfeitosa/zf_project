@@ -1,18 +1,13 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * FormulariosFormulariosElementosFormularioElementoFilter model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMapper
+ * @uses       Basico_Model_FormulariosFormulariosElementosFormulariosElementosFiltersMapper
  * @subpackage Model
  */
-class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
+class Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
 {
     /**
     * @var int
@@ -20,20 +15,32 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
     protected $_id;
 
     /**
-     * @var Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMapper
+     * @var Basico_Model_FormulariosFormulariosElementosFormulariosElementosFiltersMapper
      */
     protected $_mapper;
 
     /**
      * @var FormulariosFormulariosElementos
      */
-    protected $_formulariosformularioselementos;
+    protected $_formulariosFormulariosElementos;
     
     /**
      * @var FormularioElementoFilter
      */
-    protected $_formularioelementofilter;
-
+    protected $_formularioElementoFilter;
+	/**
+     * @var Date
+     */
+    protected $_dataHoraCriacao;
+    /**
+     * @var Date
+     */
+    protected $_dataHoraUltimaAtualizacao;
+    /**
+     * @var String
+     */
+    protected $_rowinfo;
+    
     /**
      * Constructor
      * 
@@ -60,7 +67,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
         $method = 'set' . $name;
         if ('mapper' == $name || !method_exists($this, $method)) 
         {
-            throw new Exception('Invalid property specified');
+            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
         }
         $this->$method($value);
     }
@@ -76,7 +83,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
         $method = 'get' . $name;
         if ('mapper' == $name || !method_exists($this, $method)) 
         {
-            throw new Exception('Invalid property specified');
+            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
         }
         return $this->$method();
     }
@@ -85,7 +92,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
      * Set object state
      * 
      * @param  array $options 
-     * @return Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
+     * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
      */
     public function setOptions(array $options)
     {
@@ -105,22 +112,22 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
     * Set formulariosformularioselementos
     * 
     * @param int $ 
-    * @return Default_Model_FormulariosFormulariosElementos
+    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
     */
     public function setFormulariosFormulariosElementos($formulariosformularioselementos)
     {
-        $this->_formulariosformularioselementos = (int) $formulariosformularioselementos;
+        $this->_formulariosFormulariosElementos = (int) $formulariosformularioselementos;
         return $this;
     }
 
     /**
     * Get formulariosformularioselementos
     * 
-    * @return null|int
+    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
     */
     public function getFormulariosFormulariosElementos()
     {
-        return $this->_formulariosformularioselementos;
+        return $this->_formulariosFormulariosElementos;
     }
  
     /**
@@ -129,8 +136,8 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
      */
     public function getFormulariosFormulariosElementosObject()
     {
-        $model = new Default_Model_a_formularioElemento_possui_formulario();
-        $object = $model->find($this->_formulariosformularioselementos);
+        $model = new Basico_Model_FormulariosFormulariosElementos();
+        $object = $model->find($this->_formulariosFormulariosElementos);
         return $object;
     }
     
@@ -138,11 +145,11 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
     * Set formularioelementofilter
     * 
     * @param int $ 
-    * @return Default_Model_FormularioElementoFilter
+    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
     */
-    public function setFormularioElementoFilter($formularioelementofilter)
+    public function setFormularioElementoFilter($formularioElementoFilter)
     {
-        $this->_formularioelementofilter = (int) $formularioelementofilter;
+        $this->_formularioElementoFilter = (int) $formularioElementoFilter;
         return $this;
     }
 
@@ -153,7 +160,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
     */
     public function getFormularioElementoFilter()
     {
-        return $this->_formularioelementofilter;
+        return $this->_formularioElementoFilter;
     }
  
     /**
@@ -162,17 +169,82 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
      */
     public function getFormularioElementoFilterObject()
     {
-        $model = new Default_Model_FormularioElementoValidator();
-        $object = $model->find($this->_formularioelementofilter);
+        $model = new Basico_Model_FormularioElementoFilter();
+        $object = $model->find($this->_formularioElementoFilter);
         return $object;
     }
     
+	/**
+	* Set dataHoraCriacao
+	* 
+	* @param String $dataHoraCriacao 
+	* @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
+	*/
+	public function setDataHoraCriacao($dataHoraCriacao)
+	{
+		$this->_dataHoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCriacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCriacao()
+	{
+		return $this->_dataHoraCriacao;
+	}
+	
+	/**
+	* Set dataHoraUltimaAtualizacao
+	* 
+	* @param String $dataHoraUltimaAtualizacao 
+	* @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
+	*/
+	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+	{
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaAtualizacao()
+	{
+		return $this->_dataHoraUltimaAtualizacao;
+	}
+
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
 
     /**
     * Set entry id
     * 
     * @param  int $id 
-    * @return Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
+    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
     */
     public function setId($id)
     {
@@ -194,7 +266,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
+    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
     */
     public function setMapper($mapper)
     {
@@ -205,14 +277,14 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
     /**
     * Get data mapper
     *
-    * Lazy loads Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_FormulariosFormulariosElementosFormulariosElementosFiltersMapper instance if no mapper registered.
     * 
-    * @return Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMapper
+    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFiltersMapper
     */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Default_Model_FormulariosFormulariosElementosFormularioElementoFilterMapper());
+            $this->setMapper(new Basico_Model_FormulariosFormulariosElementosFormulariosElementosFiltersMapper());
         }
         return $this->_mapper;
     }
@@ -242,7 +314,7 @@ class Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
     * Resets entry state if matching id found.
     * 
     * @param  int $id 
-    * @return Default_Model_FormulariosFormulariosElementosFormularioElementoFilter
+    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosFilters
       
     */
     public function find($id)
