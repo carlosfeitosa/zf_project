@@ -22,7 +22,7 @@ class Basico_Model_FormulariosElementosFormulariosElementosValidators
     /**
      * @var FormularioElementoValidador
      */
-    protected $_formularioElementoValidador;
+    protected $_formularioElementoValidator;
     
     /**
      * @var FormularioElemento
@@ -114,30 +114,30 @@ class Basico_Model_FormulariosElementosFormulariosElementosValidators
     * @param int $ 
     * @return Basico_Model_FormularioElementoValidador
     */
-    public function setFormularioElementoValidador($formularioelementovalidador)
+    public function setFormularioElementoValidador($formularioElementoValidator)
     {
-        $this->_formularioelementovalidador = (int) $formularioelementovalidador;
+        $this->_formularioElementoValidator = Basico_OPController_UtilOPController::retornaValorTipado($formularioElementoValidator, TIPO_INTEIRO, true);
         return $this;
     }
 
     /**
-    * Get formularioelementovalidador
+    * Get formularioElementoValidator
     * 
     * @return null|int
     */
-    public function getFormularioElementoValidador()
+    public function getFormularioElementoValidator()
     {
-        return $this->_formularioelementovalidador;
+        return $this->_formularioElementoValidator;
     }
  
     /**
      * Get formularioelementovalidador object
      * @return null|FormularioElementoValidador
      */
-    public function getFormularioElementoValidadorObject()
+    public function getFormularioElementoValidatorObject()
     {
         $model = new Basico_Model_FormularioElementoValidator();
-        $object = $model->find($this->_formularioelementovalidador);
+        $object = $model->find($this->_formularioElementoValidator);
         return $object;
     }
     
@@ -149,7 +149,7 @@ class Basico_Model_FormulariosElementosFormulariosElementosValidators
     */
     public function setFormularioElemento($formularioelemento)
     {
-        $this->_formularioelemento = (int) $formularioelemento;
+        $this->_formularioelemento = Basico_OPController_UtilOPController::retornaValorTipado($formularioElemento, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -160,7 +160,7 @@ class Basico_Model_FormulariosElementosFormulariosElementosValidators
     */
     public function getFormularioElemento()
     {
-        return $this->_formularioelemento;
+        return $this->_formularioElemento;
     }
  
     /**
@@ -170,7 +170,7 @@ class Basico_Model_FormulariosElementosFormulariosElementosValidators
     public function getFormularioElementoObject()
     {
         $model = new Basico_Model_FormularioElemento();
-        $object = $model->find($this->_formularioelemento);
+        $object = $model->find($this->_formularioElemento);
         return $object;
     }
     
@@ -288,83 +288,5 @@ class Basico_Model_FormulariosElementosFormulariosElementosValidators
         }
         return $this->_mapper;
     }
-
-    /**
-    * Save the current entry
-    * 
-    * @return void
-    */
-    public function save()
-    {
-        $this->getMapper()->save($this);
-    }
-    
-    /**
-     * Delete the current entry
-     * @return void
-     */
-    public function delete()
-    {
-        $this->getMapper()->delete($this);
-    }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_FormulariosElementosFormulariosElementosValidators
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find($id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
-    }
-        
-    /**
-    * fetch list of entries that satisfy the parameters but allowing a join
-    *
-    * @return array
-    */
-    public function fetchJoinList($joins=null, $where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchJoinList($joins, $where, $order, $count, $offset);
-    }
-    
-    /**
-    * fetch joined list of entries that satisfy the parameters
-    *
-    * @return array
-    */
-    public function fetchJoin($jointable=null, $joinby=null, $where=null, $order=null)
-    {
-        return $this->getMapper()->fetchJoin($jointable, $joinby, $where, $order);
-    }
-      
-    //start block for manually written code
-        
-    //end block for manually written code
 
 }

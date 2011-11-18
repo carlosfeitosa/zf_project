@@ -54,6 +54,10 @@ class Basico_Model_FormulariosFormulariosElementos
      */
     protected $_ordem;
     /**
+     * @var Integer
+     */
+    protected $_mascara;
+    /**
 	 * @var Date
 	 */
 	protected $_dataHoraCriacao;
@@ -319,7 +323,29 @@ class Basico_Model_FormulariosFormulariosElementos
     {
         return $this->_decorator;
     }
-    
+
+    /**
+	* Set entry mascara
+	* 
+	* @param  int $mascara 
+	* @return Basico_Model_FormularioElemento
+	*/
+	public function setMascara($mascara)
+	{
+		$this->_mascara = Basico_OPController_UtilOPController::retornaValorTipado($mascara, TIPO_INTEIRO,true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry mascara
+	* 
+	* @return null|int
+	*/
+	public function getMascara()
+	{
+		return $this->_mascara;
+	}
+	    
     /**
     * Set grupoFormularioElemento
     * 

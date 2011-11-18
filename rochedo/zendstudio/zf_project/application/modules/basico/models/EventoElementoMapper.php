@@ -27,7 +27,7 @@ class Basico_Model_EventoElementoMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -98,7 +98,6 @@ class Basico_Model_EventoElementoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
 				->setEvevnto($row->evevnto)
@@ -106,4 +105,51 @@ class Basico_Model_EventoElementoMapper
 				->setDataHoraUltimaAtualizacao($row->dataHoraUltimaAtualizacao);
     }
 
+    
+    
+    /**
+     * Fetch all Conteudo entries
+     * 
+     * @return array
+     */
+    public function fetchAll()
+    {
+        $resultSet = $this->getDbTable()->fetchAll();
+        $entries   = array();
+        foreach ($resultSet as $row) 
+        {
+            $entry = new Basico_Model_ConteudosModulos();
+	        $entry->setId($row->id)
+				->setNome($row->nome)
+				->setDescricao($row->descricao)
+				->setEvevnto($row->evevnto)
+				->setDataHoraCriacao($row->dataHoraCriacao)
+				->setDataHoraUltimaAtualizacao($row->dataHoraUltimaAtualizacao);
+	        $entries[] = $entry;
+        }
+        return $entries;
+    }
+    
+    /**
+     * Fetch all Conteudo entries
+     * 
+     * @return array
+     */
+    public function fetchList($where=null, $order=null, $count=null, $offset=null)
+    {
+        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
+        $entries   = array();
+        foreach ($resultSet as $row) 
+        {
+            $entry = new Basico_Model_ConteudosModulos();
+	        $entry->setId($row->id)
+				->setNome($row->nome)
+				->setDescricao($row->descricao)
+				->setEvevnto($row->evevnto)
+				->setDataHoraCriacao($row->dataHoraCriacao)
+				->setDataHoraUltimaAtualizacao($row->dataHoraUltimaAtualizacao);
+	        $entries[] = $entry;
+        }
+        return $entries;
+    }
 }

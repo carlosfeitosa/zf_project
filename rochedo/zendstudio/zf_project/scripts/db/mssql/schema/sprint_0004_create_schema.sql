@@ -102,6 +102,7 @@ create table dbo.template_formulario (
 create table dbo.formulario_elemento (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
+	id_mascara int null ,
 	id_ajuda int null ,
     id_componente int not null,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
@@ -161,6 +162,7 @@ create table dbo.formulario (
 create table dbo.formularios_formularios_elementos (
 	id int identity (1, 1) not null ,
 	id_ajuda int null ,
+	id_mascara int null ,
 	id_formulario int not null ,
 	id_formulario_elemento int not null ,
 	id_grupo_formulario_elemento int null ,
@@ -499,19 +501,29 @@ alter table dbo.formulario_elemento add
 	) references dbo.categoria (
 		id
 	),
+	
 	constraint fk_formulario_elemento_ajuda foreign key
 	(
 		id_ajuda
 	) references dbo.ajuda (
 		id
 	),
+	
 	constraint fk_formulario_elemento_componente foreign key
 	(
 		id_componente
 	) references dbo.componente (
 		id
+	),
+	
+	constraint fk_formulario_elemento_mascara foreign key
+	(
+		id_mascara
+	) references dbo.mascara (
+		id
 	);
 
+	
 alter table dbo.formulario_elemento_validator add
 	constraint fk_formulario_elemento_validator_categoria foreign key
 	(
@@ -572,8 +584,14 @@ alter table dbo.formularios_formularios_elementos add
 		id_grupo_formulario_elemento
 	) references grupo_formulario_elemento (
 		id
+	),
+	constraint fk_formularios_formularios_elementos_mascara foreign key
+	(
+		id_mascara
+	) references dbo.mascara (
+		id
 	);
-
+	
 alter table dbo.formulario_elemento_formulario_elemento_validator add 
 	constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key 
 	(

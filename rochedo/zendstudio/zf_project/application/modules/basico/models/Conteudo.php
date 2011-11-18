@@ -1,13 +1,13 @@
 <?php
 /**
- * conteudo model
+ * Conteudo model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_conteudoMapper
+ * @uses       Basico_Model_ConteudoMapper
  * @subpackage Model
  */
-class Basico_Model_conteudo
+class Basico_Model_Conteudo
 {
 	/**
 	* @var int
@@ -15,7 +15,7 @@ class Basico_Model_conteudo
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_conteudoMapper
+	 * @var Basico_Model_ConteudoMapper
 	 */
 	protected $_mapper;
 
@@ -98,7 +98,7 @@ class Basico_Model_conteudo
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_conteudo
+	 * @return Basico_Model_Conteudo
 	 */
 	public function setOptions(array $options)
 	{
@@ -272,7 +272,7 @@ class Basico_Model_conteudo
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_conteudo
+	* @return Basico_Model_Conteudo
 	*/
 	public function setId($id)
 	{
@@ -294,7 +294,7 @@ class Basico_Model_conteudo
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_conteudo
+	* @return Basico_Model_Conteudo
 	*/
 	public function setMapper($mapper)
 	{
@@ -305,14 +305,14 @@ class Basico_Model_conteudo
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_conteudoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_ConteudoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_conteudoMapper
+	* @return Basico_Model_ConteudoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_conteudoMapper());
+			$this->setMapper(new Basico_Model_ConteudoMapper());
 		}
 		return $this->_mapper;
 	}

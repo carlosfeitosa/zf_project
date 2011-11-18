@@ -64,6 +64,7 @@ class Basico_Model_FormularioElementoMapper
                 'element_attribs'             => $object->getElementAttribs(),
                 'element'                     => $object->getElement(),
                 'element_reloadable'          => $object->getElementReloadable(),
+                'id_mascara'                  => $object->getMascara(),
                 'id_categoria'                => $object->getCategoria(),
                 'id_ajuda'                    => $object->getAjuda(),
         		'id_componente'			      => $object->getComponente(),
@@ -115,6 +116,7 @@ class Basico_Model_FormularioElementoMapper
 				->setElement($row->element)
 				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
+				->setMascara($row->id_mascara)
 				->setAjuda($row->id_ajuda)
 				->setComponente($row->id_componente)
 				->setDataHoraCriacao($row->datahora_criacao)
@@ -144,6 +146,7 @@ class Basico_Model_FormularioElementoMapper
 				->setElement($row->element)
 				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
+				->setMascara($row->id_mascara)
 				->setAjuda($row->id_ajuda)
 				->setComponente($row->id_componente)
 				->setDataHoraCriacao($row->datahora_criacao)
@@ -177,6 +180,7 @@ class Basico_Model_FormularioElementoMapper
 				->setElement($row->element)
 				->setElementReloadable($row->element_reloadable)
 				->setCategoria($row->id_categoria)
+				->setMascara($row->id_mascara)
 				->setAjuda($row->id_ajuda)
 				->setComponente($row->id_componente)
 				->setDataHoraCriacao($row->datahora_criacao)

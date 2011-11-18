@@ -59,6 +59,7 @@ class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
         $data = array(
                 'id_formularios_formularios_elementos' => $object->getFormulariosFormulariosElementos(),
                 'id_formulario_elemento_filter'        => $object->getFormularioElementoFilter(),
+                'option'        => $object->getOption(), 
         		'datahora_criacao'                     => $object->getDataHoraCriacao(),
         		'datahora_ultima_atualizacao'          => $object->getDataHoraUltimaAtualizacao(),
         		'rowinfo'                              => $object->getRowinfo(),
@@ -100,6 +101,7 @@ class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
                ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
                ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
                ->setDataHoraCriacao($row->datahora_criacao)
+               ->setOption($row->option)
                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setRowinfo($row->rowinfo);
     }
@@ -120,6 +122,7 @@ class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
                 ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
                 ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
                 ->setDataHoraCriacao($row->datahora_criacao)
+                ->setOption($row->option)
                 ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
@@ -144,6 +147,7 @@ class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
                   ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
                   ->setFormularioElementoFilter($row->id_formulario_elemento_filter)
                   ->setDataHoraCriacao($row->datahora_criacao)
+                  ->setOption($row->option)
                   ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);

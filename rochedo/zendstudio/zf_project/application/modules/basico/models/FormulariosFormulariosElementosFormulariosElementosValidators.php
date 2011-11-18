@@ -37,6 +37,12 @@ class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
      * @var Date
      */
     protected $_dataHoraUltimaAtualizacao;
+
+    /**
+     * @var String
+     */
+    protected $_option;
+    
     /**
      * @var String
      */
@@ -236,12 +242,35 @@ class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
 	* 
 	* @return null|String
 	*/
+	public function getOption()
+	{
+		return $this->_option;
+	}
+    
+
+   /**
+	* Set option
+	* 
+	* @param String $option 
+	* @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
+	*/
+	public function setRowinfo($option)
+	{
+		$this->_option = Basico_OPController_UtilOPController::retornaValorTipado($option, TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
 	public function getRowinfo()
 	{
 		return $this->_rowinfo;
 	}
-    
-    /**
+	
+	/**
     * Set entry id
     * 
     * @param  int $id 
@@ -288,59 +317,5 @@ class Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
             $this->setMapper(new Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidatorsMapper());
         }
         return $this->_mapper;
-    }
-
-    /**
-    * Save the current entry
-    * 
-    * @return void
-    */
-    public function save()
-    {
-        $this->getMapper()->save($this);
-    }
-    
-    /**
-     * Delete the current entry
-     * @return void
-     */
-    public function delete()
-    {
-        $this->getMapper()->delete($this);
-    }
-
-    /**
-    * Find an entry
-    *
-    * Resets entry state if matching id found.
-    * 
-    * @param  int $id 
-    * @return Basico_Model_FormulariosFormulariosElementosFormulariosElementosValidators
-      
-    */
-    public function find($id)
-    {
-        $this->getMapper()->find($id, $this);
-        return $this;
-    }
-
-    /**
-    * Fetch all entries
-    * 
-    * @return array
-    */
-    public function fetchAll()
-    {
-        return $this->getMapper()->fetchAll();
-    }
-    
-    /**
-    * Fetch a list of entries that satisfy the parameters <params>
-    * 
-    * @return array
-    */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        return $this->getMapper()->fetchList($where, $order, $count, $offset);
     }
 }

@@ -27,7 +27,7 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementosMapper
             $dbTable = new $dbTable();
         }
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
+            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
         }
         $this->_dbTable = $dbTable;
         return $this;
@@ -57,8 +57,13 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementosMapper
     public function save(Basico_Model_FormulariosFormulariosElementosEventosElementos $object)
     {
         $data = array(
-                'formulariosformularioselementos' => $object->getFormulariosFormulariosElementos(),
-                'eventoelemento' => $object->getEventoElemento(),
+                'id_formularios_formularios_elementos' => $object->getFormulariosFormulariosElementos(),
+                'id_evento_elemento' 				   => $object->getEventoElemento(),
+                'action' 				   			   => $object->getAction(),
+           		'datahora_criacao'                     => $object->getDataHoraCriacao(),
+        		'datahora_ultima_atualizacao'          => $object->getDataHoraUltimaAtualizacao(),
+        		'rowinfo'                              => $object->getRowinfo(),
+        
         );
 
         if (null === ($id = $object->getId())) {
@@ -94,9 +99,61 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementosMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setFormulariosFormulariosElementos($row->formulariosformularioselementos)
-               ->setEventoElemento($row->eventoelemento);
+               ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
+               ->setEventoElemento($row->id_evento_elemento)
+               ->setAction($row->action)
+               ->setDataHoraCriacao($row->datahora_criacao)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               ->setRowinfo($row->rowinfo);
+    }
+    
+    /**
+     * Fetch all FormulariosFormulariosElementosFormulariosElementosValidators entries
+     * 
+     * @return array
+     */
+    public function fetchAll()
+    {
+        $resultSet = $this->getDbTable()->fetchAll();
+        $entries   = array();
+        foreach ($resultSet as $row) 
+        {
+            $entry = new Basico_Model_FormulariosFormulariosElementosEventosElementos();
+            $entry->setId($row->id)
+               ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
+               ->setEventoElemento($row->id_evento_elemento)
+               ->setAction($row->action)
+               ->setDataHoraCriacao($row->datahora_criacao)
+               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+               ->setRowinfo($row->rowinfo)
+               ->setMapper($this);
+            $entries[] = $entry;
+        }
+        return $entries;
+    }
+    
+    /**
+     * Fetch all learningbasket entries
+     * 
+     * @return array
+     */
+    public function fetchList($where=null, $order=null, $count=null, $offset=null)
+    {
+        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
+        $entries   = array();
+        foreach ($resultSet as $row) 
+        {
+            $entry = new Basico_Model_FormulariosFormulariosElementosEventosElementos();
+            $entry->setId($row->id)
+	               ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
+	               ->setEventoElemento($row->id_evento_elemento)
+	               ->setAction($row->action)
+	               ->setDataHoraCriacao($row->datahora_criacao)
+	               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+	               ->setRowinfo($row->rowinfo)
+	               ->setMapper($this);
+            $entries[] = $entry;
+        }
+        return $entries;
     }
 }
-      
-

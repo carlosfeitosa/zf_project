@@ -22,13 +22,30 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     /**
      * @var FormulariosFormulariosElementos
      */
-    protected $_formulariosformularioselementos;
+    protected $_formulariosFormulariosElementos;
     
     /**
      * @var EventoElemento
      */
-    protected $_eventoelemento;
+    protected $_eventoElemento;
 
+    /**
+     * @var Action
+     */
+    protected $_action;
+    /**
+     * @var Date
+     */
+    protected $_dataHoraCriacao;
+    /**
+     * @var Date
+     */
+    protected $_dataHoraUltimaAtualizacao;
+    /**
+     * @var String
+     */
+    protected $_rowinfo;
+    
     /**
      * Constructor
      * 
@@ -55,7 +72,7 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
         $method = 'set' . $name;
         if ('mapper' == $name || !method_exists($this, $method)) 
         {
-            throw new Exception('Invalid property specified');
+            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
         }
         $this->$method($value);
     }
@@ -71,7 +88,7 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
         $method = 'get' . $name;
         if ('mapper' == $name || !method_exists($this, $method)) 
         {
-            throw new Exception('Invalid property specified');
+            throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
         }
         return $this->$method();
     }
@@ -102,9 +119,9 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     * @param int $ 
     * @return Basico_Model_FormulariosFormulariosElementos
     */
-    public function setFormulariosFormulariosElementos($formulariosformularioselementos)
+    public function setFormulariosFormulariosElementos($formulariosFormulariosElementos)
     {
-        $this->_formulariosformularioselementos = (int) $formulariosformularioselementos;
+        $this->_formulariosFormulariosElementos = (int) $formulariosFormulariosElementos;
         return $this;
     }
 
@@ -115,7 +132,7 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     */
     public function getFormulariosFormulariosElementos()
     {
-        return $this->_formulariosformularioselementos;
+        return $this->_formulariosFormulariosElementos;
     }
  
     /**
@@ -125,7 +142,7 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     public function getFormulariosFormulariosElementosObject()
     {
         $model = new Basico_Model_a_formularioElemento_possui_formulario();
-        $object = $model->find($this->_formulariosformularioselementos);
+        $object = $model->find($this->_formulariosFormulariosElementos);
         return $object;
     }
     
@@ -135,9 +152,9 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     * @param int $ 
     * @return Basico_Model_EventoElemento
     */
-    public function setEventoElemento($eventoelemento)
+    public function setEventoElemento($eventoElemento)
     {
-        $this->_eventoelemento = (int) $eventoelemento;
+        $this->_eventoElemento = (int) $eventoElemento;
         return $this;
     }
 
@@ -148,7 +165,7 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     */
     public function getEventoElemento()
     {
-        return $this->_eventoelemento;
+        return $this->_eventoElemento;
     }
  
     /**
@@ -158,11 +175,98 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     public function getEventoElementoObject()
     {
         $model = new Basico_Model_EventoElemento();
-        $object = $model->find($this->_eventoelemento);
+        $object = $model->find($this->_eventoElemento);
         return $object;
     }
-    
 
+   /**
+	* Set action
+	* 
+	* @param String $action 
+	* @return Basico_Model_FormulariosFormulariosElementosEventosElementos
+	*/
+	public function setAction($action)
+	{
+		$this->_action = Basico_OPController_UtilOPController::retornaValorTipado($action, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get action
+	* 
+	* @return null|String
+	*/
+	public function getAction()
+	{
+		return $this->_action;
+	}
+    
+    
+	/**
+	* Set dataHoraCriacao
+	* 
+	* @param String $dataHoraCriacao 
+	* @return Basico_Model_FormulariosFormulariosElementosEventosElementos
+	*/
+	public function setDataHoraCriacao($dataHoraCriacao)
+	{
+		$this->_dataHoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCriacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCriacao()
+	{
+		return $this->_dataHoraCriacao;
+	}
+	
+	/**
+	* Set dataHoraUltimaAtualizacao
+	* 
+	* @param String $dataHoraUltimaAtualizacao 
+	* @return Basico_Model_FormulariosFormulariosElementosEventosElementos
+	*/
+	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
+	{
+		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get dataHoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraUltimaAtualizacao()
+	{
+		return $this->_dataHoraUltimaAtualizacao;
+	}
+
+    /**
+	* Set rowinfo
+	* 
+	* @param String $rowinfo 
+	* @return Basico_Model_FormulariosFormulariosElementosEventosElementos
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
+	}
     /**
     * Set entry id
     * 
