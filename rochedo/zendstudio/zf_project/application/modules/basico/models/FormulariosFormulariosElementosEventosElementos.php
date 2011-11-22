@@ -30,9 +30,13 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     protected $_eventoElemento;
 
     /**
-     * @var Action
+     * @var String
      */
-    protected $_action;
+    protected $_uri;
+   	/**
+	 * @var int
+	 */
+	protected $_categoria;
     /**
      * @var Date
      */
@@ -180,28 +184,54 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementos
     }
 
    /**
-	* Set action
+	* Set uri
 	* 
-	* @param String $action 
+	* @param String $uri 
 	* @return Basico_Model_FormulariosFormulariosElementosEventosElementos
 	*/
-	public function setAction($action)
+	public function setUri($uri)
 	{
-		$this->_action = Basico_OPController_UtilOPController::retornaValorTipado($action, TIPO_STRING, true);
+		$this->_uri = Basico_OPController_UtilOPController::retornaValorTipado($uri, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get action
+	* Get uri
 	* 
 	* @return null|String
 	*/
-	public function getAction()
+	public function getUri()
 	{
-		return $this->_action;
+		return $this->_uri;
 	}
     
-    
+  	/**
+	 * Set categoria
+	 * 
+	 * @param int $categoria
+	 * @return Basico_Model_FormulariosFormulariosElementosEventosElementos
+	 */
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+	
+	/**
+	 * Get categoria
+	 * 
+	 * @return null|int
+	 */
+	public function getCategoria()
+	{
+		return $this->_categoria;
+	}
+	
+	/**
+	* Set dataHoraCriacao
+	* 
+	* @param String $dataHoraCriacao 
+	* @return Basico_Model_DataHoraCriacao  
 	/**
 	* Set dataHoraCriacao
 	* 

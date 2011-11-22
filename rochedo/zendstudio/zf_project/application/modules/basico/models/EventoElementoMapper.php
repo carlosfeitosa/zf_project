@@ -58,8 +58,9 @@ class Basico_Model_EventoElementoMapper
     {
         $data = array(
 				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-				'evevnto'   => $object->getEvevnto(),
+				'descricao'   	 => $object->getDescricao(),
+				'evento'  		 => $object->getEvento(),
+        		'id_categoria'	 => $object->getCategoria(),
 				'dataHoraCriacao'   => $object->getDataHoraCriacao(),
 				'dataHoraUltimaAtualizacao'   => $object->getDataHoraUltimaAtualizacao(),
 
@@ -100,7 +101,8 @@ class Basico_Model_EventoElementoMapper
         $object->setId($row->id)
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setEvevnto($row->evevnto)
+				->setEvento($row->evento)
+				->setCategoria($row->id_categoria)
 				->setDataHoraCriacao($row->dataHoraCriacao)
 				->setDataHoraUltimaAtualizacao($row->dataHoraUltimaAtualizacao);
     }
@@ -122,7 +124,8 @@ class Basico_Model_EventoElementoMapper
 	        $entry->setId($row->id)
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setEvevnto($row->evevnto)
+				->setEvento($row->evento)
+				->setCategoria($row->id_categoria)
 				->setDataHoraCriacao($row->dataHoraCriacao)
 				->setDataHoraUltimaAtualizacao($row->dataHoraUltimaAtualizacao);
 	        $entries[] = $entry;
@@ -145,7 +148,8 @@ class Basico_Model_EventoElementoMapper
 	        $entry->setId($row->id)
 				->setNome($row->nome)
 				->setDescricao($row->descricao)
-				->setEvevnto($row->evevnto)
+				->setEvento($row->evento)
+				->setCategoria($row->id_categoria)
 				->setDataHoraCriacao($row->dataHoraCriacao)
 				->setDataHoraUltimaAtualizacao($row->dataHoraUltimaAtualizacao);
 	        $entries[] = $entry;

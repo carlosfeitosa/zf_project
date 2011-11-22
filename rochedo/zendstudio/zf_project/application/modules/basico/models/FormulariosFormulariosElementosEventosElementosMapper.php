@@ -59,7 +59,8 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementosMapper
         $data = array(
                 'id_formularios_formularios_elementos' => $object->getFormulariosFormulariosElementos(),
                 'id_evento_elemento' 				   => $object->getEventoElemento(),
-                'action' 				   			   => $object->getAction(),
+                'uri' 				   			  	   => $object->getUri(),
+        		'id_categoria'	 					   => $object->getCategoria(),
            		'datahora_criacao'                     => $object->getDataHoraCriacao(),
         		'datahora_ultima_atualizacao'          => $object->getDataHoraUltimaAtualizacao(),
         		'rowinfo'                              => $object->getRowinfo(),
@@ -101,7 +102,8 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementosMapper
         $object->setId($row->id)
                ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
                ->setEventoElemento($row->id_evento_elemento)
-               ->setAction($row->action)
+               ->setUri($row->uri)
+               ->setCategoria($row->id_categoria)
                ->setDataHoraCriacao($row->datahora_criacao)
                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setRowinfo($row->rowinfo);
@@ -122,7 +124,8 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementosMapper
             $entry->setId($row->id)
                ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
                ->setEventoElemento($row->id_evento_elemento)
-               ->setAction($row->action)
+               ->setUri($row->uri)
+               ->setCategoria($row->id_categoria)
                ->setDataHoraCriacao($row->datahora_criacao)
                ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setRowinfo($row->rowinfo)
@@ -147,7 +150,8 @@ class Basico_Model_FormulariosFormulariosElementosEventosElementosMapper
             $entry->setId($row->id)
 	               ->setFormulariosFormulariosElementos($row->id_formularios_formularios_elementos)
 	               ->setEventoElemento($row->id_evento_elemento)
-	               ->setAction($row->action)
+	               ->setUri($row->uri)
+	               ->setCategoria($row->id_categoria)
 	               ->setDataHoraCriacao($row->datahora_criacao)
 	               ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 	               ->setRowinfo($row->rowinfo)

@@ -28,9 +28,13 @@ class Basico_Model_EventoElemento
 	 */
 	protected $_descricao;
 	/**
+	 * @var int
+	 */
+	protected $_categoria;
+	/**
 	 * @var String
 	 */
-	protected $_evevnto;
+	protected $_evento;
 	/**
 	 * @var Date
 	 */
@@ -153,25 +157,47 @@ class Basico_Model_EventoElemento
 	/**
 	* Set evevnto
 	* 
-	* @param String $evevnto 
-	* @return Basico_Model_Evevnto
+	* @param String $evento 
+	* @return Basico_Model_EventoElemento
 	*/
-	public function setEvevnto($evevnto)
+	public function setEvento($evento)
 	{
-		$this->_evevnto = (String) $evevnto;
+		$this->_evento = (String) $evento;
 		return $this;
 	}
 
 	/**
-	* Get evevnto
+	* Get evento
 	* 
 	* @return null|String
 	*/
-	public function getEvevnto()
+	public function getEvento()
 	{
-		return $this->_evevnto;
+		return $this->_evento;
 	}
-     
+
+	/**
+	 * Set categoria
+	 * 
+	 * @param int $categoria
+	 * @return Basico_Model_EventoElemento
+	 */
+	public function setCategoria($categoria)
+	{
+		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+	
+	/**
+	 * Get categoria
+	 * 
+	 * @return null|int
+	 */
+	public function getCategoria()
+	{
+		return $this->_categoria;
+	}
+	
 	/**
 	* Set dataHoraCriacao
 	* 
