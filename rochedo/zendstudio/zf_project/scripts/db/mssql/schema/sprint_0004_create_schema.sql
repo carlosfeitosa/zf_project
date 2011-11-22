@@ -33,6 +33,7 @@
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
 * 						12/05/2011 - criacao do campo "options" na tabela formularios_elementos_formularios_elementos_validators;
 * 						01/11/2011 - criacao do campo "element_name" na tabela formularios_formularios_elementos;
+* 						18/11/2011 - criacao das tabelas(chaves, valores defautl, unique, indices etc) de relacionamento de filter, decorator, validator e evento_elemento com  formulario_elemento e formularios_formularios_elementos;
 */
 
 

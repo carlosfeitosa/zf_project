@@ -14,12 +14,20 @@
 * 						14/10/2010 - modificacao da ordem de drop da tabela template
 * 						19/10/2010 - remocao do drop da tabela "modulo" para o sprint 0001;
 * 						07/04/2011 - remocao do drop da tabela "formulario_perfil" - descontinuado;
+* 						18/11/2011 - criacao dos drops das tabelasde relacionamento de filter, decorator, validator e evento_elemento com  formulario_elemento e formularios_formularios_elementos;
 */
-drop table if exists formularios_elementos_mascaras;
-drop table if exists formulario_formulario_elemento_formulario;
+
+
+drop table if exists formularios_formularios_elementos_formularios_elementos_validators;
+drop table if exists formularios_formularios_elementos_formularios_elementos_filters;
+drop table if exists formularios_formularios_elementos_decorators;
+drop table if exists formularios_formularios_elementos_eventos_elementos;
+drop table if exists evento_elemento;
 drop table if exists template_formulario;
-drop table if exists formulario_formulario_elemento;
-drop table if exists formulario_elemento_formulario_elemento_validator;
+drop table if exists formularios_formularios_elementos;
+drop table if exists formularios_elementos_formularios_elementos_validators;
+drop table if exists formularios_elementos_formularios_elementos_filters;
+drop table if exists formularios_elementos_decorators;
 drop table if exists formulario_elemento;
 drop table if exists formulario_elemento_validator;
 drop table if exists formulario_elemento_filter;

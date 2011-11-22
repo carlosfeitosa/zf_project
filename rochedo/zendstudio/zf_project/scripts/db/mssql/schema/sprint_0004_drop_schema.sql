@@ -14,19 +14,40 @@
 * 						14/10/2010 - modificacao da ordem de drop da tabela template;
 * 						19/10/2010 - remocao do drop da tabela "modulo" para o sprint 0001;
 * 						07/04/2011 - remocao do drop da tabela "formulario_perfil" - descontinuado;
+* 						18/11/2011 - criacao dos drops das tabelasde relacionamento de filter, decorator, validator e evento_elemento com  formulario_elemento e formularios_formularios_elementos;
 */
 
-if object_id('formularios_elementos_mascaras') is not null
+
+if object_id('formularios_formularios_elementos_formularios_elementos_validators') is not null
 begin
-drop table formularios_elementos_mascaras;
+drop table formularios_formularios_elementos_formularios_elementos_validators;
 end
 ;
 
-if object_id('formulario_formulario_elemento_formulario') is not null
+if object_id('formularios_formularios_elementos_formularios_elementos_filters') is not null
 begin
-drop table formulario_formulario_elemento_formulario;
+drop table formularios_formularios_elementos_formularios_elementos_filters;
 end
 ;
+
+if object_id('formularios_formularios_elementos_decorators') is not null
+begin
+drop table formularios_formularios_elementos_decorators;
+end
+;
+
+if object_id('formularios_formularios_elementos_eventos_elementos') is not null
+begin
+drop table formularios_formularios_elementos_eventos_elementos;
+end
+;
+
+if object_id('evento_elemento ') is not null
+begin
+drop table evento_elemento;
+end
+;
+
 
 if object_id('template_formulario') is not null
 begin
@@ -34,15 +55,27 @@ drop table template_formulario;
 end
 ;
 
-if object_id('formulario_formulario_elemento') is not null
+if object_id('formularios_formularios_elementos') is not null
 begin
-drop table formulario_formulario_elemento;
+drop table formularios_formularios_elementos;
 end
 ;
 
-if object_id('formulario_elemento_formulario_elemento_validator') is not null
+if object_id('formularios_elementos_formularios_elementos_validators') is not null
 begin
-drop table formulario_elemento_formulario_elemento_validator;
+drop table formularios_elementos_formularios_elementos_validators;
+end
+;
+
+if object_id('formularios_elementos_formularios_elementos_filters') is not null
+begin
+drop table formularios_elementos_formularios_elementos_filters;
+end
+;
+
+if object_id('formularios_elementos_decorators') is not null
+begin
+drop table formularios_elementos_formularios_elementos_validators;
 end
 ;
 
