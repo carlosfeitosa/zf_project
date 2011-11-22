@@ -31,7 +31,7 @@
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formulario_formulario_elemento";
 * 						07/04/2011 - remocao da criacao da tabela "pessoa_perfil" - descontinuado;
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
-* 						12/05/2011 - criacao do campo "validator_options" na tabela formulario_elemento_formulario_elemento_validator;
+* 						12/05/2011 - criacao do campo "validator_options" na tabela formularios_elementos_formularios_elementos_validators;
 * 
 */
 
@@ -225,18 +225,6 @@ with (
 );
 alter table formularios_formularios_elementos owner to rochedo_user;
 
-create table formulario_elemento_formulario_elemento_validator (
-	id serial not null ,
-	id_formulario_elemento int not null ,
-	id_formulario_elemento_validator int not null ,
-	validator_options character varying (2000) null ,
-	rowinfo character varying (2000) not null 
-)
-with (
-  oids = false
-);
-alter table formulario_elemento_formulario_elemento_validator owner to rochedo_user;
-
 create table componente (
 	id serial not null ,
 	id_categoria int not null ,
@@ -267,15 +255,115 @@ create table grupo_formulario_elemento (
 );
 alter table grupo_formulario_elemento owner to rochedo_user;
 
-create table formularios_elementos_mascaras (
+create table formularios_elementos_formularios_elementos_validators (
 	id serial not null ,
-	id_mascara int null ,
-	id_formulario_elemento int null ,
-	rowinfo character varying (2000) not null
-) with (
+	id_formulario_elemento int not null ,
+	id_formulario_elemento_validator int not null ,
+	validator_options character varying (2000) null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
   oids = false
 );
-alter table grupo_formulario_elemento owner to rochedo_user;
+alter table formularios_elementos_formularios_elementos_validators owner to rochedo_user;
+
+create table formularios_elementos_formularios_elementos_filters (
+	id serial not null ,
+	id_formulario_elemento int not null ,
+	id_formulario_elemento_filter int not null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table formularios_elementos_formularios_elementos_filters owner to rochedo_user;
+
+create table formularios_elementos_decorators (
+	id serial not null ,
+	id_formulario_elemento int not null ,
+	id_decorator int not null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table formularios_elementos_decorators owner to rochedo_user;
+
+create table formularios_formularios_elementos_formularios_elementos_validators (
+	id serial not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_formulario_elemento_validator int not null ,
+	validator_options character varying (2000) null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table formularios_formularios_elementos_formularios_elementos_validators owner to rochedo_user;
+
+create table formularios_formularios_elementos_formularios_elementos_filters (
+	id serial not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_formulario_elemento_filter int not null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table formularios_formularios_elementos_formularios_elementos_filters owner to rochedo_user;
+
+create table formularios_formularios_elementos_decorators (
+	id serial not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_decorator int not null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table formularios_formularios_elementos_decorators owner to rochedo_user;
+
+create table evento_elemento (
+	id serial not null ,
+	nome character varying (100) not null ,
+	evento character varying (100) not null ,
+	id_categoria int not null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table evento_elemento owner to rochedo_user;
+
+
+create table formularios_formularios_elementos_eventos_elementos (
+	id serial not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_evento_elemento int not null ,
+	id_categoria int not null ,
+	uri character varying (1000) not null ,
+	datahora_criacao timestamp with time zone not null ,
+	datahora_ultima_atualizacao timestamp with time zone not null ,
+	rowinfo character varying (2000) not null 
+)
+with (
+  oids = false
+);
+alter table formularios_formularios_elementos_eventos_elementos owner to rochedo_user;
 
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
@@ -304,13 +392,27 @@ alter table formulario add constraint pk_formulario primary key (id);
 
 alter table formularios_formularios_elementos add constraint pk_formulario_formulario_elemento primary key (id);
 
-alter table formulario_elemento_formulario_elemento_validator add constraint pk_formulario_elemento_formulario_elemento_validator primary key (id);
+alter table formularios_elementos_formularios_elementos_validators add constraint pk_formularios_elementos_formularios_elementos_validators primary key (id);
 
 alter table componente add constraint pk_componente primary key (id);
 
 alter table grupo_formulario_elemento add constraint pk_grupo_formulario_elemento primary key (id);
 
-alter table formularios_elementos_mascaras add constraint pk_formularios_elementos_mascaras primary key (id);
+alter table formularios_elementos_formularios_elementos_filters add constraint pk_formularios_elementos_formularios_elementos_filters primary key (id);
+
+alter table formularios_elementos_formularios_elementos_validators add constraint pk_formularios_elementos_formularios_elementos_validators primary key (id);
+
+alter table formularios_elementos_decorators add constraint pk_formularios_elementos_decorators primary key (id);
+
+alter table formularios_formularios_elementos_formularios_elementos_filters add constraint pk_formularios_formularios_elementos_formularios_elementos_filters primary key (id);
+
+alter table formularios_formularios_elementos_formularios_elementos_validators add constraint pk_formularios_formularios_elementos_formularios_elementos_validators primary key (id);
+
+alter table formularios_formularios_elementos_decorators add constraint pk_formularios_formularios_elementos_decorators primary key (id);
+
+alter table evento_elemento add constraint pk_evento_elemento primary key (id);
+
+alter table formularios_formularios_elementos_eventos_elementos add constraint pk_formularios_formularios_elementos_eventos_elementos primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -339,7 +441,31 @@ alter table formularios_formularios_elementos
 alter table componente
 	alter column validade_inicio set default (current_timestamp);
 
+alter table formularios_elementos_fomularios_elementos_validators
+    alter column datahora_criacao set default (current_timestamp);
+    
+alter table formularios_elementos_fomularios_elementos_filters
+    alter column datahora_criacao set default (current_timestamp);
 
+alter table formularios_elementos_decorators
+    alter column datahora_criacao set default (current_timestamp);
+
+alter table formularios_formularios_elementos_fomularios_elementos_validators
+    alter column datahora_criacao set default (current_timestamp);
+    
+alter table formularios_formularios_elementos_fomularios_elementos_filters
+    alter column datahora_criacao set default (current_timestamp);
+
+alter table formularios_formularios_elementos_decorators
+    alter column datahora_criacao set default (current_timestamp);
+
+alter table evento_elemento
+    alter column datahora_criacao set default (current_timestamp);
+
+alter table formularios_formularios_elementos_eventos_elementos
+    alter column datahora_criacao set default (current_timestamp);
+    
+    
 /* CRIACAO DOS INDICES */
 
 create index ix_decorator_nome
@@ -378,7 +504,15 @@ create unique index ix_componente_nome
 create unique index ix_grupo_formulario_elemento_nome
   on grupo_formulario_elemento using btree (nome);
 
+create unique index ix_evento_elemento_nome
+  on evento_elemento using btree (nome);
 
+create unique index ix_evento_elemento_evento
+  on evento_elemento using btree (evento);
+
+create unique index ix_formularios_formularios_elementos_eventos_elementos_uri
+  on formularios_formularios_elementos_eventos_elementos using btree (uri);
+  
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
 alter table decorator 
@@ -417,16 +551,35 @@ alter table formulario
 alter table formularios_formularios_elementos
   add constraint ix_formularios_formularios_elementos_formularios_formularios_elementos_ordem unique (id_formulario, id_formulario_elemento, ordem);
 
-alter table formulario_elemento_formulario_elemento_validator
-  add constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique (id_formulario_elemento, id_formulario_elemento_validator);
-
 alter table componente
   add constraint ix_componente_categoria_componente unique (id_categoria, componente);
+
+alter table formularios_elementos_formularios_elementos_validators
+  add constraint ix_formularios_elementos_formularios_elementos_validators_formulario_elemento_formulario_elemento_validator unique (id_formulario_elemento, id_formulario_elemento_validator);
+
+alter table formularios_elementos_formularios_elementos_filters
+  add constraint ix_formularios_elementos_formularios_elementos_filters_formulario_elemento_formulario_elemento_filter unique (id_formulario_elemento, id_formulario_elemento_filter);
+
+alter table formularios_elementos_decorators
+  add constraint ix_formularios_elementos_decorators_formulario_elemento_decorator unique (id_formulario_elemento, id_decorator);
+
+alter table formularios_formularios_elementos_formularios_elementos_validators
+  add constraint ix_formularios_formularios_elementos_formularios_elementos_validators_formularios_formularios_elementos_formulario_elemento_validator unique (id_formularios_formularios_elementos, id_formulario_elemento_validator);
+
+alter table formularios_formularios_elementos_formularios_elementos_filters
+  add constraint ix_formularios_formularios_elementos_formularios_elementos_filters_formularios_formularios_elementos_formulario_elemento_filter unique (id_formularios_formularios_elementos, id_formulario_elemento_filter);
+
+alter table formularios_formularios_elementos_decorators
+  add constraint ix_formularios_formularios_elementos_decorators_formularios_formularios_elementos_decorator unique (id_formularios_formularios_elementos, id_decorator);
+
+alter table evento_elemento
+  add constraint ix_evento_elemento_nome unique (nome);
+
+alter table formularios_formularios_elementos_eventos_elementos
+  add constraint ix_formularios_formularios_elementos_eventos_elementos_formularios_formularios_elementos_evento_elemento unique (id_formularios_formularios_elementos, id_evento_elemento, id_categoria, uri);
   
-alter table formularios_elementos_mascaras
-  add constraint ix_formularios_elementos_mascaras unique (id_mascara, id_formulario_elemento);
-
-
+  
+  
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table decorator
@@ -457,8 +610,6 @@ alter table template_formulario
 alter table formulario_elemento
   add constraint fk_formulario_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_formulario_elemento_filter foreign key (id_formulario_elemento_filter) references formulario_elemento_filter (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_componente foreign key (id_componente) references componente (id) on update no action on delete no action;
   add constraint fk_formulario_elemento_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
 
@@ -480,10 +631,6 @@ alter table formularios_formularios_elementos
   add constraint fk_formularios_formularios_elementos_grupo_formulario_elemento foreign key (id_grupo_formulario_elemento) references grupo_formulario_elemento (id) on update no action on delete no action;
   add constraint fk_formularios_formularios_elementos_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
   
-alter table formulario_elemento_formulario_elemento_validator 
-  add constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
-  add constraint fk2_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
-
 alter table componente
   add constraint fk_componente_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
   add constraint fk_componente_template foreign key (id_template) references template (id) on update no action on delete no action;
@@ -491,11 +638,41 @@ alter table componente
 alter table grupo_formulario_elemento
   add constraint fk_grupo_formulario_elemento_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action;
 
-alter table formularios_elementos_mascaras
-  add constraint fk_formularios_elementos_mascaras_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
-  add constraint fk_formularios_elementos_mascaras_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
-  
-/* CRIACAO DOS CHECK CONSTRAINTS */
+alter table formularios_elementos_formularios_elementos_validators
+  add constraint fk_formularios_elementos_formularios_elementos_validators_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
+  add constraint fk_formularios_elementos_formularios_elementos_validators_formulario_elemento_validator foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
+
+alter table formularios_elementos_formularios_elementos_filters
+  add constraint fk_formularios_elementos_formularios_elementos_filters_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
+  add constraint fk_formularios_elementos_formularios_elementos_filters_formulario_elemento_filter foreign key (id_formulario_elemento_filter) references formulario_elemento_validator (id) on update no action on delete no action;
+
+alter table formularios_elementos_decorators
+  add constraint fk_formularios_elementos_decorators_formulario_elemento foreign key (id_formulario_elemento) references formulario_elemento (id) on update no action on delete no action,
+  add constraint fk_formularios_elementos_decorators_formulario_elemento_filter foreign key (id_decorator) references decorator (id) on update no action on delete no action;
+
+alter table formularios_formularios_elementos_formularios_elementos_validators
+  add constraint fk_formularios_formularios_elementos_formularios_elementos_validators_formularios_formularios_elementos foreign key (id_formularios_formularios_elementos) references formularios_formularios_elementos (id) on update no action on delete no action,
+  add constraint fk_formularios_formularios_elementos_formularios_elementos_validators_formulario_elemento_validator foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
+
+alter table formularios_formularios_elementos_formularios_elementos_filters
+  add constraint fk_formularios_formularios_elementos_formularios_elementos_filters_formularios_formularios_elementos foreign key (id_formularios_formularios_elementos) references formularios_formularios_elementos (id) on update no action on delete no action,
+  add constraint fk_formularios_formularios_elementos_formularios_elementos_filters_formulario_elemento_filter foreign key (id_formulario_elemento_filter) references formulario_elemento_filter (id) on update no action on delete no action;
+
+alter table formularios_formularios_elementos_decorators
+  add constraint fk_formularios_formularios_elementos_decorators_formularios_formularios_elementos foreign key (id_formularios_formularios_elementos) references formularios_formularios_elementos (id) on update no action on delete no action,
+  add constraint fk_formularios_formularios_elementos_decorators_decorator foreign key (id_decorator) references decorator (id) on update no action on delete no action;
+
+alter table evento_elemento
+  add constraint fk_evento_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+
+
+alter table formularios_formularios_elementos_eventos_elementos
+  add constraint fk_formularios_formularios_elementos_eventos_elementos_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+  add constraint fk_formularios_formularios_elementos_eventos_elementos_formularios_formularios_elementos foreign key (id_formularios_formularios_elementos) references formularios_formularios_elementos (id) on update no action on delete no action,
+  add constraint fk_formularios_formularios_elementos_eventos_elementos_evento_elemento foreign key (id_evento_elemento) references evento_elemento (id) on update no action on delete no action;
+
+
+ /* CRIACAO DOS CHECK CONSTRAINTS */
   
 alter table grupo_formulario_elemento add
     constraint ck_grupo_formulario_elemento_constante_textual_label check

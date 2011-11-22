@@ -31,7 +31,7 @@
 * 						03/11/2010 - adicao do campo "ordem" no contraint unique da tabela "formularios_formularios_elementos";
 * 						07/04/2011 - remocao da criacao da tabela "formulario_perfil" - descontinuado;
 * 						18/04/2011 - aumento do tamano do campo validador da tabela formulario_elemento_validator para 2000 caracteres;
-* 						12/05/2011 - criacao do campo "options" na tabela formulario_elemento_formulario_elemento_validator;
+* 						12/05/2011 - criacao do campo "options" na tabela formularios_elementos_formularios_elementos_validators;
 * 						01/11/2011 - criacao do campo "element_name" na tabela formularios_formularios_elementos;
 */
 
@@ -175,14 +175,6 @@ create table dbo.formularios_formularios_elementos (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.formulario_elemento_formulario_elemento_validator (
-	id int identity (1, 1) not null ,
-	id_formulario_elemento int not null ,
-	id_formulario_elemento_validator int not null ,
-	validator_options varchar (2000) collate latin1_general_ci_ai null ,
-	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
-) on [primary];
-
 create table dbo.componente (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
@@ -207,11 +199,82 @@ create table dbo.grupo_formulario_elemento (
 	rowinfo varchar (2000) not null
 ) on [primary];
 
-create table dbo.formularios_elementos_mascaras (
+create table dbo.formularios_elementos_formularios_elementos_validators (
 	id int identity (1, 1) not null ,
 	id_formulario_elemento int not null ,
-	id_mascara int not null ,
-	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+	id_formulario_elemento_validator int not null ,
+	validator_options varchar (2000) collate latin1_general_ci_ai null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
+) on [primary];
+
+create table dbo.formularios_elementos_formularios_elementos_filters (
+	id int identity (1, 1) not null ,
+	id_formulario_elemento int not null ,
+	id_formulario_elemento_filter int not null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+ 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
+create table dbo.formularios_elementos_decorators (
+	id int identity (1, 1) not null ,
+	id_formulario_elemento int not null ,
+	id_decorator int not null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+ 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
+create table dbo.formularios_formularios_elementos_formularios_elementos_validators (
+	id int identity (1, 1) not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_formulario_elemento_validator int not null ,
+	validator_options varchar (2000) collate latin1_general_ci_ai null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
+) on [primary];
+
+create table dbo.formularios_formularios_elementos_formularios_elementos_filters (
+	id int identity (1, 1) not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_formulario_elemento_filter int not null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+ 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
+create table dbo.formularios_formularios_elementos_decorators (
+	id int identity (1, 1) not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_decorator int not null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+ 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
+) on [primary];
+
+create table dbo.evento_elemento (
+	id int identity (1, 1) not null ,
+	nome varchar (100) collate latin1_general_ci_ai not null ,
+	evento varchar (100) collate latin1_general_ci_ai not null ,
+	id_categoria int not null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
+) on [primary];
+
+
+create table dbo.formularios_formularios_elementos_eventos_elementos (
+	id int identity (1, 1) not null ,
+	id_formularios_formularios_elementos int not null ,
+	id_evento_elemento int not null ,
+	id_categoria int not null ,
+	uri varchar (2000) collate latin1_general_ci_ai not null ,
+	datahora_criacao datetime not null ,
+	datahora_ultima_atualizacao datetime not null ,
+	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
@@ -240,13 +303,25 @@ alter table dbo.formulario with nocheck add constraint pk_formulario primary key
 
 alter table dbo.formularios_formularios_elementos with nocheck add constraint pk_formularios_formularios_elementos primary key clustered (id) on [primary];
 
-alter table dbo.formulario_elemento_formulario_elemento_validator with nocheck add constraint pk_formulario_elemento_formulario_elemento_validator primary key clustered (id) on [primary];
-
 alter table dbo.componente with nocheck add constraint pk_componente primary key (id) on [primary];
 
 alter table dbo.grupo_formulario_elemento with nocheck add constraint pk_grupo_formulario_elemento primary key (id) on [primary];
 
-alter table dbo.formularios_elementos_mascaras with nocheck add constraint pk_formularios_elementos_mascaras primary key (id) on [primary];
+alter table dbo.formularios_elementos_formularios_elementos_validators with nocheck add constraint pk_formularios_elementos_formularios_elementos_validators primary key clustered (id) on [primary];
+
+alter table dbo.formularios_elementos_formularios_elementos_filters with nocheck add constraint pk_formularios_elementos_formularios_elementos_filters primary key clustered (id) on [primary];
+
+alter table dbo.formularios_elementos_decorators with nocheck add constraint pk_formularios_elementos_decorators primary key clustered (id) on [primary];
+
+alter table dbo.formularios_formularios_elementos_formularios_elementos_validators with nocheck add constraint pk_formularios_formularios_elementos_formularios_elementos_validators primary key clustered (id) on [primary];
+
+alter table dbo.formularios_formularios_elementos_formularios_elementos_filters with nocheck add constraint pk_formularios_formularios_elementos_formularios_elementos_filters primary key clustered (id) on [primary];
+
+alter table dbo.formularios_formularios_elementos_decorators with nocheck add constraint pk_formularios_formularios_elementos_decorators primary key clustered (id) on [primary];
+
+alter table dbo.evento_elemento with nocheck add constraint pk_evento_elemento primary key clustered (id) on [primary];
+
+alter table dbo.formularios_formularios_elementos_eventos_elementos with nocheck add constraint pk_formularios_formularios_elementos_eventos_elementos primary key clustered (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -275,6 +350,29 @@ alter table dbo.formularios_formularios_elementos add
 alter table dbo.componente add
 	constraint df_componente_validade_inicio default (getdate()) for validade_inicio;
 
+alter table dbo.formularios_elementos_formularios_elementos_validators add
+	constraint df_formularios_elementos_formularios_elementos_validators_datahora_criacao default (getdate()) for datahora_criacao;
+
+alter table dbo.formularios_elementos_formularios_elementos_filters add
+	constraint df_formularios_elementos_formularios_elementos_filters_datahora_criacao default (getdate()) for datahora_criacao;
+
+alter table dbo.formularios_elementos_decorators add
+	constraint df_formularios_elementos_decorators_datahora_criacao default (getdate()) for datahora_criacao;
+
+alter table dbo.formularios_formularios_elementos_formularios_elementos_validators add
+	constraint df_formularios_formularios_elementos_formularios_elementos_validators_datahora_criacao default (getdate()) for datahora_criacao;
+
+alter table dbo.formularios_formularios_elementos_formularios_elementos_filters add
+	constraint df_formularios_formularios_elementos_formularios_elementos_filters_datahora_criacao default (getdate()) for datahora_criacao;
+
+alter table dbo.formularios_formularios_elementos_decorators add
+	constraint df_formularios_formularios_elementos_decorators_datahora_criacao default (getdate()) for datahora_criacao;
+
+alter table dbo.evento_elemento add
+	constraint df_evento_elemento_datahora_criacao default (getdate()) for datahora_criacao;
+	
+alter table dbo.formularios_formularios_elementos_eventos_elementos add
+	constraint df_formularios_formularios_elementos_eventos_elementos_datahora_criacao default (getdate()) for datahora_criacao;	
 
 /* CRIACAO DOS INDICES */
 
@@ -301,6 +399,12 @@ create unique index ix_formulario_form_name on dbo.formulario (form_name) on [pr
 create unique index ix_componente_nome on dbo.componente (nome) on [primary];
 
 create unique index ix_grupo_formulario_elemento_nome on dbo.grupo_formulario_elemento (nome) on [primary];
+
+create unique index ix_evento_elemento_nome on dbo.evento_elemento (nome) on [primary];
+
+create unique index ix_evento_elemento_evento on dbo.evento_elemento (evento) on [primary];
+
+create unique index ix_formularios_formularios_elementos_eventos_elementos_uri on dbo.formularios_formularios_elementos_eventos_elementos (uri) on [primary];
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
@@ -390,13 +494,6 @@ alter table dbo.formularios_formularios_elementos add
         ordem
     ) on [primary];
 
-alter table dbo.formulario_elemento_formulario_elemento_validator add
-    constraint ix_formulario_elemento_formulario_elemento_validator_formulario_elemento_formulario_elemento_validator unique nonclustered
-    (
-        id_formulario_elemento,
-        id_formulario_elemento_validator
-    ) on [primary];
-
 alter table dbo.componente add
 	constraint ix_componente_categoria_componente unique nonclustered
 	(
@@ -404,14 +501,66 @@ alter table dbo.componente add
 		nome
 	) on [primary];
 	
-alter table dbo.formularios_elementos_mascaras add
-	constraint ix_formularios_elementos_mascaras unique nonclustered
+alter table dbo.formularios_elementos_formularios_elementos_validators add
+    constraint ix_formularios_elementos_formularios_elementos_validators_formulario_elemento_formulario_elemento_validator unique nonclustered
+    (
+        id_formulario_elemento,
+        id_formulario_elemento_validator
+    ) on [primary];
+
+alter table dbo.formularios_elementos_formularios_elementos_filters add
+    constraint ix_formularios_elementos_formularios_elementos_filters_formulario_elemento_formulario_elemento_filter unique nonclustered
+    (
+        id_formulario_elemento,
+        id_formulario_elemento_filter
+    ) on [primary];
+
+alter table dbo.formularios_elementos_decorators add
+    constraint ix_formularios_elementos_decorators_formulario_elemento_decorator unique nonclustered
+    (
+        id_formulario_elemento,
+        id_decorator
+    ) on [primary];
+
+alter table dbo.formularios_formularios_elementos_formularios_elementos_validators add
+    constraint ix_formularios_formularios_elementos_formularios_elementos_validators_formularios_formularios_elementos_formulario_elemento_validator unique nonclustered
+    (
+        id_formularios_formularios_elementos,
+        id_formulario_elemento_validator
+    ) on [primary];
+
+alter table dbo.formularios_formularios_elementos_formularios_elementos_filters add
+    constraint ix_formularios_formularios_elementos_formularios_elementos_filters_formularios_formularios_elementos_formulario_elemento_filter unique nonclustered
+    (
+        id_formularios_formularios_elementos,
+        id_formulario_elemento_filter
+    ) on [primary];
+    
+alter table dbo.formularios_formularios_elementos_decorator add
+    constraint ix_formularios_formularios_elementos_decorators_formularios_formularios_elementos_decorator unique nonclustered
+    (
+        id_formularios_formularios_elementos,
+        id_decorator
+    ) on [primary];
+    
+alter table dbo.evento_elemento add
+	constraint ix_evento_elemento_nome unique nonclustered
 	(
-		id_formulario_elemento,
-		id_mascara
+		nome
 	) on [primary];
+	
 
-
+	
+alter table dbo.formularios_formularios_elementos_eventos_elementos add
+    constraint ix_formularios_formularios_elementos_eventos_elementos_formularios_formularios_elementos_evento_elemento unique nonclustered
+    (
+	   id_formularios_formularios_elementos, 
+	   id_evento_elemento,
+	   id_categoria,
+	   uri
+    ) on [primary];
+    
+    
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table dbo.decorator add
@@ -592,20 +741,6 @@ alter table dbo.formularios_formularios_elementos add
 		id
 	);
 	
-alter table dbo.formulario_elemento_formulario_elemento_validator add 
-	constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento foreign key 
-	(
-		id_formulario_elemento
-	) references dbo.formulario_elemento (
-		id
-	),
-	constraint fk_formulario_elemento_formulario_elemento_validator_formulario_elemento_validator foreign key 
-	(
-		id_formulario_elemento_validator
-	) references dbo.formulario_elemento_validator (
-		id
-	);
-	
 alter table dbo.componente add
 	constraint fk_componente_categoria foreign key
 	(
@@ -628,21 +763,121 @@ alter table grupo_formulario_elemento add
 		id
 	);
 	
-alter table dbo.formularios_elementos_mascaras add
-	constraint fk_formularios_elementos_mascaras_formulario_elemento foreign key
+alter table dbo.formularios_elementos_formularios_elementos_validators add 
+	constraint fk_formularios_elementos_formularios_elementos_validators_formulario_elemento foreign key 
 	(
 		id_formulario_elemento
 	) references dbo.formulario_elemento (
 		id
 	),
-	constraint fk_formularios_elementos_mascaras_mascara foreign key
+	constraint fk_formularios_elementos_formularios_elementos_validators_formulario_elemento_validator foreign key 
 	(
-		id_mascara
-	) references dbo.mascara (
+		id_formulario_elemento_validator
+	) references dbo.formulario_elemento_validator (
+		id
+	);
+	
+alter table dbo.formularios_elementos_formularios_elementos_filters add 
+	constraint fk_formularios_elementos_formularios_elementos_filters_formulario_elemento foreign key 
+	(
+		id_formulario_elemento
+	) references dbo.formulario_elemento (
+		id
+	),
+	constraint fk_formularios_elementos_formularios_elementos_filters_formulario_elemento_filter foreign key 
+	(
+		id_formulario_elemento_filter
+	) references dbo.formulario_elemento_filter (
+		id
+	);
+	
+alter table dbo.formularios_elementos_decorators add 
+	constraint fk_formularios_elementos_decorators_formulario_elemento foreign key 
+	(
+		id_formulario_elemento
+	) references dbo.formulario_elemento (
+		id
+	),
+	constraint fk_formularios_elementos_decorators_decorator foreign key 
+	(
+		id_decorator
+	) references dbo.decorator (
 		id
 	);
 
+alter table dbo.formularios_formularios_elementos_formularios_elementos_validators add 
+	constraint fk_formularios_formularios_elementos_formularios_elementos_validators_formularios_formularios_elementos foreign key 
+	(
+		id_formularios_formularios_elementos
+	) references dbo.formularios_formularios_elementos (
+		id
+	),
+	constraint fk_formularios_formularios_elementos_formularios_elementos_validators_formulario_elemento_validator foreign key 
+	(
+		id_formulario_elemento_validator
+	) references dbo.formulario_elemento_validator (
+		id
+	);
+	
+alter table dbo.formularios_formularios_elementos_formularios_elementos_filters add 
+	constraint fk_formularios_formularios_elementos_formularios_elementos_filters_formularios_formularios_elementos foreign key 
+	(
+		id_formularios_formularios_elementos
+	) references dbo.formularios_formularios_elementos (
+		id
+	),
+	constraint fk_formularios_formularios_elementos_formularios_elementos_filters_formulario_elemento_filter foreign key 
+	(
+		id_formulario_elemento_filter
+	) references dbo.formulario_elemento_filter (
+		id
+	);
+	
+alter table dbo.formularios_formularios_elementos_decorators add 
+	constraint fk_formularios_formularios_elementos_decorators_formulario_elemento foreign key 
+	(
+		id_formularios_formularios_elementos
+	) references dbo.formularios_formularios_elementos (
+		id
+	),
+	constraint fk_formularios_formularios_elementos_decorators_decorator foreign key 
+	(
+		id_decorator
+	) references dbo.decorator (
+		id
+	);
 
+alter table dbo.evento_elemento add 
+	constraint fk_evento_elemento_categoria foreign key 
+	(
+		id_categoria
+	) references dbo.categoria (
+		id
+	);
+	
+
+alter table dbo.formularios_formularios_elementos_eventos_elementos add 
+	constraint fk_formularios_formularios_elementos_eventos_elementos_categoria foreign key 
+	(
+		id_categoria
+	) references dbo.categoria (
+		id
+	),
+
+	constraint fk_formularios_formularios_elementos_eventos_elementos_formularios_formularios_elementos foreign key 
+	(
+		id_formularios_formularios_elementos
+	) references dbo.formularios_formularios_elementos (
+		id
+	),
+	
+	constraint fk_formularios_formularios_elementos_eventos_elementos_evento_elemento foreign key 
+	(
+		id_evento_elemento
+	) references dbo.evento_elemento (
+		id
+	);
+	
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
 alter table dbo.grupo_formulario_elemento add
