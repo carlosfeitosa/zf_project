@@ -17,7 +17,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'formulario';
+	const nomeTabelaModelo  = 'basico.formulario';
 
 	/**
 	 * Instância do Controlador Formulario
@@ -310,10 +310,10 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 
 		// montando query que recupera informacoes sobre o template do formulario
 		$queryRecuperaStylesheetFullFilenameEJavascriptFullFilename = "SELECT t.stylesheet_full_filename AS stylesheetfullfilename, t.javascript_full_filename AS javascriptfullfilename, o.nome AS output
-																	   FROM template t
-																	   LEFT JOIN output o ON (t.id_output = o.id)
-																	   LEFT JOIN template_formulario tf ON (t.id = tf.id_template)
-																	   LEFT JOIN formulario f ON (tf.id_formulario = f.id)
+																	   FROM basico.template t
+																	   LEFT JOIN basico.output o ON (t.id_output = o.id)
+																	   LEFT JOIN basico_formulario.template_formulario tf ON (t.id = tf.id_template)
+																	   LEFT JOIN basico.formulario f ON (tf.id_formulario = f.id)
 																	   WHERE (t.stylesheet_full_filename IS NOT NULL OR t.javascript_full_filename IS NOT NULL)
 																	   OR (t.id = tf.id_template)
 																	   AND f.form_name = '{$nomeForm}'";

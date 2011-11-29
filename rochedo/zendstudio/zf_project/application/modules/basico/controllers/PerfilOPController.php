@@ -15,7 +15,7 @@ class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPers
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'perfil';
+	const nomeTabelaModelo  = 'basico.perfil';
 
 	/**
 	 * Nome do campo id da tabela perfil

@@ -24,7 +24,7 @@ class Basico_OPController_LogOPController
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'log';
+	const nomeTabelaModelo  = 'basico.log';
 
 	/**
 	 * Nome do campo id da tabela log
@@ -302,7 +302,7 @@ class Basico_OPController_LogOPController
 
 		// montando query para recuperar os logs das tentativas de autenticacao deste usuario
 		$queryLogTentativasAutenticacaoLoginPorIp = "SELECT id
-													 FROM log
+													 FROM basico.log
 													 WHERE id_categoria = {$idCategoriaLog}
 													 AND id_perfil_pessoa = {$idPessoaPerfilLogin}
 													 {$condicaoDataHoraEvento}

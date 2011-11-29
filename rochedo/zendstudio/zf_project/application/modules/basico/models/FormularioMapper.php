@@ -76,8 +76,8 @@ class Basico_Model_FormularioMapper
 				'validade_termino'              => $object->getValidadeTermino(),
 				'data_desativacao'              => $object->getDataDesativacao(),
 				'data_auto_reativar'            => $object->getDataAutoReativar(),
-        		'datahora_criacao'              => $object->getDataHoraCriacao(),
-        		'datahora_ultima_atualizacao'   => $object->getDataHoraUltimaAtualizacao(),
+        		//'datahora_criacao'              => $object->getDataHoraCriacao(),
+        		//'datahora_ultima_atualizacao'   => $object->getDataHoraUltimaAtualizacao(),
 				'motivo_desativacao'            => $object->getMotivoDesativacao(),
         		'ordem'							=> $object->getOrdem(),
        			'permite_rascunho'				=> $object->getPermiteRascunho(),
@@ -136,8 +136,8 @@ class Basico_Model_FormularioMapper
 				->setValidadeTermino($row->validade_termino)
 				->setDataDesativacao($row->data_desativacao)
 				->setDataAutoReativar($row->data_auto_reativar)
-				->setDataHoraCriacao($row->datahora_criacao)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				//->setDataHoraCriacao($row->datahora_criacao)
+				//->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
 				->setPermiteRascunho($row->permite_rascunho)
@@ -175,8 +175,8 @@ class Basico_Model_FormularioMapper
 				->setValidadeTermino($row->validade_termino)
 				->setDataDesativacao($row->data_desativacao)
 				->setDataAutoReativar($row->data_auto_reativar)
-				->setDataHoraCriacao($row->datahora_criacao)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				//->setDataHoraCriacao($row->datahora_criacao)
+				//->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
 				->setPermiteRascunho($row->permite_rascunho)
@@ -218,8 +218,8 @@ class Basico_Model_FormularioMapper
 				->setValidadeTermino($row->validade_termino)
 				->setDataDesativacao($row->data_desativacao)
 				->setDataAutoReativar($row->data_auto_reativar)
-				->setDataHoraCriacao($row->datahora_criacao)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				//->setDataHoraCriacao($row->datahora_criacao)
+				//->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
 				->setRowinfo($row->rowinfo)

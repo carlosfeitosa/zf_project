@@ -10,6 +10,6 @@ class Basico_Model_DbTable_Tradutor extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'dicionario_expressao';
+    protected $_name = 'basico.dicionario_expressao';
 }
 ?>

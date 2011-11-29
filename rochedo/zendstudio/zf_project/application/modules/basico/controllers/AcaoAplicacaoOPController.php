@@ -100,8 +100,8 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_Abstract_Roch
 
 		// montando query para retornar um array contendo todos as acoes aplicacao (nome do modulo, controlador e acao)
 		$querySQL = "SELECT m.nome AS module, ap.controller, ap.action
-					 FROM acao_aplicacao ap
-					 LEFT JOIN modulo m ON (ap.id_modulo = m.id)
+					 FROM basico.acao_aplicacao ap
+					 LEFT JOIN basico.modulo m ON (ap.id_modulo = m.id)
 					 WHERE ap.ativo = {$ativo}";
 
 		// retornando array

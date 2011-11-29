@@ -10,7 +10,7 @@ class Basico_Model_DbTable_Modulo extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'modulo';
+    protected $_name = 'basico.modulo';
 
 }
 ?>

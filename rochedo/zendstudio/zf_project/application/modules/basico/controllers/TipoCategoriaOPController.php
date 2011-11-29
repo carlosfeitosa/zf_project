@@ -19,7 +19,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_Roch
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'tipo_categoria';
+	const nomeTabelaModelo  = 'basico.tipo_categoria';
 
 	/**
 	 * Nome do campo id da tabela tipo categoria

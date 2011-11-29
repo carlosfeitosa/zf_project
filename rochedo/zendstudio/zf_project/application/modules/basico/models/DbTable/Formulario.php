@@ -11,7 +11,7 @@ class Basico_Model_DbTable_Formulario extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formulario';
+    protected $_name = 'basico.formulario';
 
 }
 ?>

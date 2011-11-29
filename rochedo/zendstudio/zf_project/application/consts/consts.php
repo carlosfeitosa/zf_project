@@ -65,7 +65,7 @@ define("TIPO_STRING", 12);
 define("TIPO_BOOLEAN", 13);
 define("TIPO_FLOAT", 14);
 define("TIPO_DATE", 15);
-define("AUTH_TABLE", "login");
+define("AUTH_TABLE", "basico.login");
 define("AUTH_IDENTITY_COLUMN", "login");
 define("AUTH_CREDENTIAL_COLUMN", "senha");
 define("AUTH_IDENTITY_ARRAY_KEY", "BasicoAutenticacaoUsuarioLogin");

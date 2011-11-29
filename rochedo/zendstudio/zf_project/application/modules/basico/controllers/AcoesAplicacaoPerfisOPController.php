@@ -78,10 +78,10 @@ class Basico_OPController_AcoesAplicacaoPerfisOPController extends Basico_Abstra
 	{
 		// montando a consulta que vai retornar todas as acoes da aplicacao e seus vinculos com perfil
 		$querySQL = "SELECT p.nome AS perfil, m.nome AS module, aa.controller, aa.action, aa.ativo
-					 FROM acoes_aplicacao_perfis aap
-					 LEFT JOIN perfil p ON (aap.id_perfil = p.id)
-					 LEFT JOIN acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
-					 LEFT JOIN modulo m ON (aa.id_modulo = m.id)";
+					 FROM basico_acao_aplicacao.acoes_aplicacao_perfis aap
+					 LEFT JOIN basico.perfil p ON (aap.id_perfil = p.id)
+					 LEFT JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
+					 LEFT JOIN basico.modulo m ON (aa.id_modulo = m.id)";
 
 		// retornando array com os resultados
 		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQL);

@@ -11,6 +11,6 @@ class Basico_Model_DbTable_MetodoValidacao extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'metodo_validacao';
+    protected $_name = 'basico.metodo_validacao';
 }
 ?>

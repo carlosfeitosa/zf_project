@@ -18,7 +18,7 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'categoria';
+	const nomeTabelaModelo  = 'basico.categoria';
 
 	/**
 	 * Nome do campo id da tabela categoria
@@ -572,11 +572,11 @@ class Basico_OPController_CategoriaOPController extends Basico_Abstract_RochedoP
 		// query para retornar os nomes das categorias dos componentes nao ZF
 		$queryNomesCategoriasComponentesNaoZFFormulario = "SELECT DISTINCT ccomp.nome
 
-														   FROM formulario_formulario_elemento ffe
-														   LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-														   LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
-														   LEFT JOIN componente comp ON (fe.id_componente = comp.id)
-														   LEFT JOIN categoria ccomp ON (comp.id_categoria = ccomp.id)
+														   FROM basico_formulario.formulario_formulario_elemento ffe
+														   LEFT JOIN basico.formulario f ON (ffe.id_formulario = f.id)
+														   LEFT JOIN basico_formulario.formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+														   LEFT JOIN basico.componente comp ON (fe.id_componente = comp.id)
+														   LEFT JOIN basico.categoria ccomp ON (comp.id_categoria = ccomp.id)
 															
 														   WHERE ccomp.nome NOT IN ('COMPONENTE_DOJO', 'COMPONENTE_ZF')
 														   AND f.id = {$idFormulario}";

@@ -784,14 +784,15 @@ class Basico_OPController_DBUtilOPController
      * Retorna se a tabela existe ou nao
      * 
      * @param String $nomeTabela
+     * @param String $schema
      * @return Boolean
      */
-    public static function tabelaExiste($nomeTabela)
+    public static function tabelaExiste($nomeTabela, $schema = null)
     {
     	// recuperando resource do bando de dados.
 		$auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
 		// verificando se a tabela existe
-    	if (count($auxDb->describeTable($nomeTabela)) > 0) {
+    	if (count($auxDb->describeTable($nomeTabela, $schema)) > 0) {
     		return true;
     	}
     	

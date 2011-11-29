@@ -58,7 +58,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Basico_OPController_SessionOPController::registraInicioProcessamentoMicrosegundosPHPSessaoUsuario();
 		
 		// verifica se existe a tabela  dicionario_expressao 
-		if (Basico_OPController_DBUtilOPController::tabelaExiste('dicionario_expressao')) {
+		if (Basico_OPController_DBUtilOPController::tabelaExiste('dicionario_expressao', 'basico')) {
         	// traduzindo mensagens de erro dos validators
         	Basico_OPController_UtilOPController::traduzMensagensErrosZendFormElements();
 		}

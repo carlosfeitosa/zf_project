@@ -10,5 +10,5 @@ class Basico_Model_DbTable_Perfil extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'perfil';
+    protected $_name = 'basico.perfil';
 }

@@ -10,7 +10,7 @@ class Basico_Model_DbTable_CategoriaChaveEstrangeira extends Zend_Db_Table_Abstr
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'categoria_chave_estrangeira';
+    protected $_name = 'basico_categoria.categoria_chave_estrangeira';
     
 }
 

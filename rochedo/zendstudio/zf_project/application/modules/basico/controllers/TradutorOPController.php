@@ -129,8 +129,8 @@ class Basico_OPController_TradutorOPController
 	{
 		// montando query para recuperacao da traducao na lingua passada pelo usuario
 		$consultaSQL = "SELECT d.traducao
-						FROM dicionario_expressao d
-						INNER JOIN categoria c ON (d.id_categoria = c.id)
+						FROM basico.dicionario_expressao d
+						INNER JOIN basico.categoria c ON (d.id_categoria = c.id)
 						WHERE c.nome = '{$linguaDestino}'
 						AND d.constante_textual = '{$constanteTextual}'";
 
@@ -146,8 +146,8 @@ class Basico_OPController_TradutorOPController
 			$linguaDestinoPadraoSistema = DEFAULT_SYSTEM_LANGUAGE;
 			// montando query para recuperacao da traducao na lingua passada pelo usuario
 			$consultaSQL = "SELECT d.traducao
-							FROM dicionario_expressao d
-							INNER JOIN categoria c ON (d.id_categoria = c.id)
+							FROM basico.dicionario_expressao d
+							INNER JOIN basico.categoria c ON (d.id_categoria = c.id)
 							WHERE c.nome = '{$linguaDestinoPadraoSistema}'
 							AND d.constante_textual = '{$constanteTextual}'";
 

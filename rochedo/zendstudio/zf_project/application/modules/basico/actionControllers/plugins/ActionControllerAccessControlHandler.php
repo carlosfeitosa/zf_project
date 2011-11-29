@@ -14,7 +14,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	 * 
 	 * @var Boolean
 	 */
-	protected $_pluginAtivo = true;
+	protected $_pluginAtivo = false;
 
 	/**
 	 * Metodo de pre-despacho

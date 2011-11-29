@@ -10,6 +10,6 @@ class Basico_Model_DbTable_Login extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'login';
+    protected $_name = 'basico.login';
 }
 ?>

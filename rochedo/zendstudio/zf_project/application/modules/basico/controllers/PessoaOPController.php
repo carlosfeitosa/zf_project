@@ -18,7 +18,7 @@ class Basico_OPController_PessoaOPController extends Basico_Abstract_RochedoPers
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'pessoa';
+	const nomeTabelaModelo  = 'basico.pessoa';
 
 	/**
 	 * Nome do campo id da tabela pessoa
