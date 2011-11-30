@@ -11,6 +11,6 @@ class Basico_Model_DbTable_RelacaoCategoriaChaveEstrangeira extends Zend_Db_Tabl
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'relacao_categoria_chave_estrangeira';
+    protected $_name = 'basico_categoria_chave_estrang.assoc_relacao';
 }
 ?>

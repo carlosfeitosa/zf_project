@@ -23,6 +23,7 @@
 * 							09/09/2011 - inclusao do form_action e form_attribs no SUBFORM_DADOS_USUARIO_DADOS_PESSOAIS
 * 							05/10/2011 - inclusao do permite_rascunho nos forms que nao possui rascunhos
 * 							25/10/2011 - criacao do formulario FORM_DIALOG_ADMIN_RASCUNHOS
+*							30/11/2011 - adaptação para novo modelo de banco de dados (Modularizado atraves de schemas) - João Vasconcelos;
 *  
 */
 
@@ -38,7 +39,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'AdminRascunhos' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ADMIN_RASCUNHOS';
@@ -49,7 +50,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -61,7 +62,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
@@ -72,7 +73,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -84,7 +85,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
@@ -101,7 +102,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         NULL AS form_attribs,
         0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_SUGESTAO_LOGIN';
@@ -110,7 +111,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, 
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
@@ -119,7 +120,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'CadastrarDadosUsuario' AS form_name, 
         0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
@@ -140,7 +141,7 @@ INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao,
        NULL AS form_attribs, 
        2 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_ACADEMICOS';
@@ -156,7 +157,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_COORDENACAO_POS_GRADUACAO';
@@ -172,7 +173,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs,0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES';
@@ -195,7 +196,7 @@ SELECT c.id AS id_categoria,
        0 AS permite_rascunho,
        3 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PROFISSIONAIS';
@@ -216,7 +217,7 @@ SELECT c.id AS id_categoria,
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        4 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_BIOMETRICOS';
@@ -238,7 +239,7 @@ SELECT c.id AS id_categoria,
        7 AS ordem,
        0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_CONTA';
@@ -253,7 +254,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarDadosUsuarioDadosProfissionaisVinculoProfissional' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL';
@@ -269,7 +270,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho, 
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_PROFISSIONAIS';
@@ -285,7 +286,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_PROFISSIONAIS';
@@ -301,7 +302,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_PROFISSIONAIS';
@@ -317,7 +318,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECOS_PROFISSIONAIS';
@@ -332,7 +333,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarTelefone' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE';
@@ -347,7 +348,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarEmail' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_EMAIL';
@@ -365,7 +366,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         '/basico/website/salvarwebsite' AS form_action, 
         '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"'  AS form_attribs,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_WEBSITE';
@@ -380,7 +381,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarEndereco' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_ENDERECO';
@@ -391,7 +392,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -402,7 +403,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, '/basico/login/verificaNovoLogin' AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
@@ -413,7 +414,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -424,7 +425,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'CadastrarUsuarioValidado' AS form_name, 'post' AS form_method, '/basico/login/salvarUsuarioValidado' AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
@@ -439,7 +440,7 @@ SELECT c.id AS id_categoria,
        'DocumentosIdentificacao' AS form_name, 'post' AS form_method, NULL AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO';
@@ -453,7 +454,7 @@ SELECT c.id AS id_categoria,
        'FORM_DOCUMENTO_TITULO' AS constante_textual_titulo,
        'CadastrarDocumento' AS form_name, 'post' AS form_method, NULL AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO';
@@ -464,7 +465,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -475,7 +476,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/autenticador/verificaAutenticacaoUsuario' AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        0 AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_LOGIN';
@@ -487,7 +488,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
 		(SELECT d.id
 	          FROM decorator d
 	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
-	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 	          WHERE t.nome = 'FORMULARIO'
 	          AND c.nome = 'FORMULARIO_DECORATOR'
 	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -503,7 +504,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs, 
        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS';
@@ -519,7 +520,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS';
@@ -534,7 +535,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarDadosUsuarioDadosPessoaisTelefonesPessoais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS';
@@ -549,7 +550,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarDadosUsuarioDadosPessoaisEmailsPessoais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS';
@@ -564,7 +565,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarDadosUsuarioDadosPessoaisWebsitesPessoais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS';
@@ -579,7 +580,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarDadosUsuarioDadosPessoaisEnderecosPessoais' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS';
@@ -591,7 +592,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
 		(SELECT d.id
 	          FROM decorator d
 	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
-	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 	          WHERE t.nome = 'FORMULARIO'
 	          AND c.nome = 'FORMULARIO_DECORATOR'
 	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -605,7 +606,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        NULL AS form_attribs,0 AS permite_rascunho, 
        5 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
@@ -617,7 +618,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
 		(SELECT d.id
 	          FROM decorator d
 	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
-	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 	          WHERE t.nome = 'FORMULARIO'
 	          AND c.nome = 'FORMULARIO_DECORATOR'
 	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -633,7 +634,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        NULL AS form_attribs, 
        1,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
@@ -649,7 +650,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 0 AS permite_rascunho,
         'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS';
@@ -661,7 +662,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
 		(SELECT d.id
 	          FROM decorator d
 	          LEFT JOIN categoria c ON (d.id_categoria = c.id)
-	          LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+	          LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 	          WHERE t.nome = 'FORMULARIO'
 	          AND c.nome = 'FORMULARIO_DECORATOR'
 	          AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -678,7 +679,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        2 AS ordem,
        0 AS permite_rascunho,
        'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
@@ -693,7 +694,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'CadastrarContaBancaria' AS form_name, 
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA';
@@ -704,7 +705,7 @@ INSERT INTO formulario (id_categoria, id_decorator, nome, descricao,
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
                               LEFT JOIN categoria c ON (d.id_categoria= c.id)
-                              LEFT JOIN tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
@@ -714,7 +715,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'ResolvedorConflitoVersaoObjeto' AS form_name, 'post' AS form_method, '/basico/cvc/resolveConflitoVersaoObjeto' AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeForm'', ''@title'', ''@message''))"' AS form_attribs,
        0 AS permite_rascunho,'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CVC';

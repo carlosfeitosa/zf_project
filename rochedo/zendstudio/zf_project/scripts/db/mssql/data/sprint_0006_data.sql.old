@@ -8,7 +8,7 @@
 
 /* TIPO CATEGORIA */
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('CVC', 'Control Version Class (classe de controle de versao).', 'SYSTEM_STARTUP');
 
 
@@ -16,5 +16,5 @@ VALUES ('CVC', 'Control Version Class (classe de controle de versao).', 'SYSTEM_
 
 INSERT INTO categoria (id_tipo_categoria, nome, descricao, rowinfo)
 SELECT id AS id_tipo_categoria, 'CVC' AS nome, 'Control Version Class (classe de controle de versao).' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria
+FROM basico.tipo_categoria
 WHERE nome = 'CVC';

@@ -312,7 +312,7 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 		$queryRecuperaStylesheetFullFilenameEJavascriptFullFilename = "SELECT t.stylesheet_full_filename AS stylesheetfullfilename, t.javascript_full_filename AS javascriptfullfilename, o.nome AS output
 																	   FROM basico.template t
 																	   LEFT JOIN basico.output o ON (t.id_output = o.id)
-																	   LEFT JOIN basico_formulario.template_formulario tf ON (t.id = tf.id_template)
+																	   LEFT JOIN basico_formulario.assoccl_template tf ON (t.id = tf.id_template)
 																	   LEFT JOIN basico.formulario f ON (tf.id_formulario = f.id)
 																	   WHERE (t.stylesheet_full_filename IS NOT NULL OR t.javascript_full_filename IS NOT NULL)
 																	   OR (t.id = tf.id_template)

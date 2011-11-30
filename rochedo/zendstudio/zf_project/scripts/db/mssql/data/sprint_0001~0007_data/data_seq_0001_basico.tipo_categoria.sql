@@ -10,38 +10,38 @@
 * 								27/04/2011 - criacao do tipo LOCALIDADE
 */
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('SISTEMA', 'Tipo de categorias de sistema (imutáveis).', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('PERFIL', 'Perfis.', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES('MENSAGEM', 'Mensagens.', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('EMAIL', 'Endereços de e-mail.', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria(nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria(nome, descricao, rowinfo)
 VALUES('WEBSITE', 'Endereços de website.', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('LINGUAGEM', 'Linguagens utilizadas pelo sistema.', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('FORMULARIO', 'Formulários do sistema.', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('AJUDA', 'Ajuda do sistema', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('COMPONENTE', 'Componentes do sistema', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('MASCARA', 'Mascaras do sistema', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('CVC', 'Control Version Class (classe de controle de versão).', 'SYSTEM_STARTUP');
 
-INSERT INTO tipo_categoria (nome, descricao, rowinfo)
+INSERT INTO basico.tipo_categoria (nome, descricao, rowinfo)
 VALUES ('LOCALIDADE', 'Município, Estado, Condado, Distrito, Província, ...', 'SYSTEM_STARTUP');

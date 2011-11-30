@@ -23,7 +23,7 @@ language 'sql';
 
 create function fn_CheckCategoriaCVC(int)
 returns int as 
-'select c.id from categoria c left join tipo_categoria t on (c.id_tipo_categoria = t.id) where c.id = $1 and t.nome = $$CVC$$ and c.nome = $$CVC$$limit 1'
+'select c.id from categoria c left JOIN basico.tipo_categoria t on (c.id_tipo_categoria = t.id) where c.id = $1 and t.nome = $$CVC$$ and c.nome = $$CVC$$limit 1'
 language 'sql';
 
 

@@ -18,7 +18,7 @@ begin
   declare @retval int
   set @retval = (select top 1 c.id
                  from categoria c
-                 left join tipo_categoria t on (c.id_tipo_categoria = t.id)
+                 left JOIN basico.tipo_categoria t on (c.id_tipo_categoria = t.id)
                  where c.id = @id_categoria
                  and t.nome = 'CVC'
                  and c.nome = 'CVC')

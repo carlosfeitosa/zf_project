@@ -17,7 +17,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'basico_pessoa.pessoas_perfis';
+	const nomeTabelaModelo  = 'basico_pessoa.assoccl_perfil';
 
 	/**
 	 * Nome do campo id da tabela pessoas perfis
@@ -299,7 +299,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 		// montando consulta SQL
 		$consultaSQL = "SELECT p.id, p.constante_textual
 						FROM basico.perfil p
-						LEFT JOIN basico_pessoa.pessoas_perfis pp ON (p.id = pp.id_perfil)
+						LEFT JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
 						WHERE pp.id_pessoa = {$idPessoa}
 						AND p.id_categoria = {$idCategoriaPerfilUsuario}";
 
@@ -419,7 +419,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_Abstract_Roch
 
 		// montando a query SQL que retorna o id da pessoa perfil, do perfil USUARIO_VALIDADO vinculado ao id da pessoa passado por parametro
 		$queryRetornaIdPessoaPerfilUsuarioValidado = "SELECT pp.id
-													  FROM basico_pessoa.pessoas_perfis pp
+													  FROM basico_pessoa.assoccl_perfil pp
 													  LEFT JOIN basico.pessoa pa ON (pp.id_pessoa = pa.id)
 													  LEFT JOIN basico.perfil pl ON (pp.id_perfil = pl.id)
 													  WHERE pl.NOME = '{$nomePerfilUsuarioValidado}'

@@ -478,7 +478,7 @@ class Basico_OPController_ControleAcessoOPController
 		// montando a query que vai retornar o maior perfil do usuario vinculado ao request
 		$querySQLRetornaMaiorPerfilAcaoAplicacao = "SELECT p.nome
 													FROM basico.perfil p
-													INNER JOIN basico_pessoa.pessoas_perfis pp ON (p.id = pp.id_perfil)
+													INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
 													INNER JOIN basico_acao_aplicacao.acoes_aplicacao_perfis aap ON (p.id = aap.id_perfil)
 													INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
 													INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)
@@ -519,7 +519,7 @@ class Basico_OPController_ControleAcessoOPController
 		// montando a query que vai retornar o id de pessoa perfil do usuario vinculado ao request
 		$querySQLRetornaIdMaiorPerfilAcaoAplicacao = "SELECT pp.id
 													  FROM basico.perfil p
-													  INNER JOIN basico_pessoa.pessoas_perfis pp ON (p.id = pp.id_perfil)
+													  INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
 													  INNER JOIN basico_acao_aplicacao.acoes_aplicacao_perfis aap ON (p.id = aap.id_perfil)
 													  INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
 													  INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)

@@ -10,7 +10,7 @@ class Basico_Model_DbTable_PessoasPerfisMensagensCategorias extends Zend_Db_Tabl
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'pessoas_perfis_mensagens_categorias';
+    protected $_name = 'basico_mensagem.assoccl_assoccl_pessoa_perfil';
 
 }
 

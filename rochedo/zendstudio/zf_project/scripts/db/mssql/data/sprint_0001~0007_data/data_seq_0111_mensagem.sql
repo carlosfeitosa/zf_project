@@ -5,7 +5,8 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 21/10/2010
 * ultimas modificacoes:
-* 							20/06/2011 - criacao de templeta de mensagem de alerta sobre problemas com login; 
+* 							20/06/2011 - criacao de templeta de mensagem de alerta sobre problemas com login;
+*							30/11/2011 - adaptação para novo modelo de banco de dados (Modularizado atraves de schemas) - João Vasconcelos; 
 * 
 */
 
@@ -29,7 +30,7 @@ If you wish, please send us this message by e-mail @linkEmailSuporte so we can a
 Sincerely,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria,
 current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_en-us';
@@ -54,7 +55,7 @@ Se desejar, por favor nos encaminhe esta mensagem, através do e-mail @linkEmail
 Atenciosamente,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria,
 current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_pt-br';
@@ -74,7 +75,7 @@ Caso você não tenha solicitado este registro, por favor ignore esta mensagem.
 
 Atenciosamente,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_pt-br';
@@ -94,7 +95,7 @@ If you have not requested this registry, please ignore this message.
 
 Sincerely,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_en-us';
@@ -114,7 +115,7 @@ Caso você não tenha solicitado este registro, por favor ignore esta mensagem.
 
 Atenciosamente,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_pt-br';
@@ -134,7 +135,7 @@ If you have not requested this registry, please ignore this message.
 
 Sincerely,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_en-us';
@@ -159,7 +160,7 @@ Desejamos boas vindas e nos colocamos a disposição para resolução de qualque
 
 Atenciosamente,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_pt-br';
@@ -184,7 +185,7 @@ Welcome to our system, we are available to solve any dificulties that you may ha
 
 Sincerely,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_en-us';
@@ -211,7 +212,7 @@ Para solucionar este inconveniente, por favor:
 
 Atenciosamente,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br';
@@ -238,7 +239,7 @@ To solve this inconvenience, please:
 
 Sincerely,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
-FROM tipo_categoria t
+FROM basico.tipo_categoria t
 LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us';

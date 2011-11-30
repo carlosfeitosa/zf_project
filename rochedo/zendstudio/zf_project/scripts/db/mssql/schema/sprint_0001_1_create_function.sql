@@ -13,7 +13,7 @@ as
 begin
   declare @retval int
   set @retval = (select top 1 id
-                 from dicionario_expressao
+                 FROM basico.dicionario_expressao
                  where constante_textual = @constante_textual)
   return @retval
 end

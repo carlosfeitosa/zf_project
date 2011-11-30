@@ -10,6 +10,6 @@ class Basico_Model_DbTable_Rascunho extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'rascunho';
+    protected $_name = 'basico_formulario.rascunho';
 
 }
