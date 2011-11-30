@@ -1,19 +1,14 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * Tradutor data mapper
+ * DicionarioExpressao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Tradutor
+ * @uses       Basico_Model_DbTable_DicionarioExpressao
  * @subpackage Model
  */
-class Basico_Model_TradutorMapper
+class Basico_Model_DicionarioExpressaoMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +19,7 @@ class Basico_Model_TradutorMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_TradutorMapper
+     * @return Basico_Model_DicionarioExpressaoMapper
      */
     public function setDbTable($dbTable)
     {
@@ -41,25 +36,25 @@ class Basico_Model_TradutorMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Tradutor if no instance registered
+     * Lazy loads Basico_Model_DbTable_DicionarioExpressao if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Tradutor');
+            $this->setDbTable('Basico_Model_DbTable_DicionarioExpressao');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a Tradutor entry
+     * Save a DicionarioExpressao entry
      * 
-     * @param  Basico_Model_Tradutor $object
+     * @param  Basico_Model_DicionarioExpressao $object
      * @return void
      */
-    public function save(Basico_Model_Tradutor $object)
+    public function save(Basico_Model_DicionarioExpressao $object)
     {
         $data = array(
 				'constante_textual' => $object->getConstanteTextual(),
@@ -76,23 +71,23 @@ class Basico_Model_TradutorMapper
     }
     
 	/**
-	* Delete a Tradutor entry
-	* @param Basico_Model_Tradutor $object
+	* Delete a DicionarioExpressao entry
+	* @param Basico_Model_DicionarioExpressao $object
 	* @return void
 	*/
-	public function delete(Basico_Model_Tradutor $object)
+	public function delete(Basico_Model_DicionarioExpressao $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a Tradutor entry by id
+     * Find a DicionarioExpressao entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Tradutor $object 
+     * @param  Basico_Model_DicionarioExpressao $object 
      * @return void
      */
-    public function find($id, Basico_Model_Tradutor $object)
+    public function find($id, Basico_Model_DicionarioExpressao $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -106,7 +101,7 @@ class Basico_Model_TradutorMapper
     }
 
 	/**
-	 * Fetch all tradutor entries
+	 * Fetch all DicionarioExpressao entries
 	 * 
 	 * @return array
 	 */
@@ -116,7 +111,7 @@ class Basico_Model_TradutorMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Tradutor();
+			$entry = new Basico_Model_DicionarioExpressao();
 			$entry->setId($row->id)
 				  ->setConstanteTextual($row->constante_textual)
 				  ->setTraducao($row->traducao)
@@ -128,7 +123,7 @@ class Basico_Model_TradutorMapper
 	}
 	
 	/**
-	 * Fetch all tradutor entries
+	 * Fetch all DicionarioExpressao entries
 	 * 
 	 * @return array
 	 */
@@ -138,7 +133,7 @@ class Basico_Model_TradutorMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Tradutor();
+			$entry = new Basico_Model_DicionarioExpressao();
 			$entry->setId($row->id)
 				  ->setConstanteTextual($row->constante_textual)
 				  ->setTraducao($row->traducao)

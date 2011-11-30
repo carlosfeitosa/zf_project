@@ -13,7 +13,7 @@ class Basico_OPController_TradutorOPController
 	private static $_singleton;
 	
 	/**
-	 * @var Basico_Model_Tradutor
+	 * @var Basico_Model_DicionarioExpressao
 	 */
 	private $_tradutor;
 	
@@ -60,12 +60,12 @@ class Basico_OPController_TradutorOPController
 	/**
 	 * Retorna um modelo de tradutor vazio
 	 * 
-	 * @return Basico_Model_Tradutor
+	 * @return Basico_Model_DicionarioExpressao
 	 */
 	public function retornaNovoObjetoTradutor()
 	{
 		// retornando um modelo vazio
-		return new Basico_Model_Tradutor();
+		return new Basico_Model_DicionarioExpressao();
 	}
 	
 	/**

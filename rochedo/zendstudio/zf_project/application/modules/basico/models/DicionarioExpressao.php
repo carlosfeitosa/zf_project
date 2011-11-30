@@ -1,18 +1,13 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * Tradutor model
+ * DicionarioExpressao model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_TradutorMapper
+ * @uses       Basico_Model_DicionarioExpressaoMapper
  * @subpackage Model
  */
-class Basico_Model_Tradutor
+class Basico_Model_DicionarioExpressao
 {
 	/**
 	* @var int
@@ -20,7 +15,7 @@ class Basico_Model_Tradutor
 	protected $_id;
 
 	/**
-	 * @var Basico_Model_TradutorMapper
+	 * @var Basico_Model_DicionarioExpressaoMapper
 	 */
 	protected $_mapper;
 
@@ -88,7 +83,7 @@ class Basico_Model_Tradutor
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Tradutor
+	 * @return Basico_Model_DicionarioExpressao
 	 */
 	public function setOptions(array $options)
 	{
@@ -130,7 +125,7 @@ class Basico_Model_Tradutor
 	* Set traducao
 	* 
 	* @param String $traducao 
-	* @return Basico_Model_Traducao
+	* @return Basico_Model_DicionarioExpressao
 	*/
 	public function setTraducao($traducao)
 	{
@@ -185,7 +180,7 @@ class Basico_Model_Tradutor
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Tradutor
+	* @return Basico_Model_DicionarioExpressao
 	*/
 	public function setId($id)
 	{
@@ -207,7 +202,7 @@ class Basico_Model_Tradutor
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Tradutor
+	* @return Basico_Model_DicionarioExpressao
 	*/
 	public function setMapper($mapper)
 	{
@@ -218,14 +213,14 @@ class Basico_Model_Tradutor
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_TradutorMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_DicionarioExpressaoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_TradutorMapper
+	* @return Basico_Model_DicionarioExpressaoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_TradutorMapper());
+			$this->setMapper(new Basico_Model_DicionarioExpressaoMapper());
 		}
 		return $this->_mapper;
 	}
