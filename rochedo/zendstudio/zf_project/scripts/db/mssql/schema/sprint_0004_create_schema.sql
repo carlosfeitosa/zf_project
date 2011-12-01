@@ -401,9 +401,9 @@ create unique index ix_componente_nome on dbo.componente (nome) on [primary];
 
 create unique index ix_grupo_formulario_elemento_nome on dbo.grupo_formulario_elemento (nome) on [primary];
 
-create unique index ix_evento_elemento_nome on dbo.evento_elemento (nome) on [primary];
+create unique index ix_evento_elemento_nome_evento on dbo.evento_elemento (nome) on [primary];
 
-create unique index ix_evento_elemento_evento on dbo.evento_elemento (evento) on [primary];
+create unique index ix_evento_elemento_evento_2 on dbo.evento_elemento (evento) on [primary];
 
 create unique index ix_formularios_formularios_elementos_eventos_elementos_uri on dbo.formularios_formularios_elementos_eventos_elementos (uri) on [primary];
 
@@ -548,8 +548,12 @@ alter table dbo.evento_elemento add
 	constraint ix_evento_elemento_nome unique nonclustered
 	(
 		nome
-	) on [primary];
+	) on [primary],
 	
+	constraint ix_evento_elemento_evento unique nonclustered
+	(
+		evento
+	) on [primary];
 
 	
 alter table dbo.formularios_formularios_elementos_eventos_elementos add
