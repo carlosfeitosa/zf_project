@@ -31,9 +31,9 @@ begin
 end
 ;
 
-if object_id('email') is not null
+if object_id('basico_localizacao.email') is not null
 begin
-  drop table email
+  drop table basico_localizacao.email
 end
 ;
 

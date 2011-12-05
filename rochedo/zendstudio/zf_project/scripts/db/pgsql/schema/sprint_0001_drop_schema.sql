@@ -16,7 +16,7 @@
 drop table if exists dicionario_expressao;
 drop table if exists token;
 drop table if exists categoria_chave_estrangeira;
-drop table if exists email;
+drop table if exists basico_localizacao.email;
 drop table if exists log;
 drop table if exists login;
 drop table if exists dados_pessoais;

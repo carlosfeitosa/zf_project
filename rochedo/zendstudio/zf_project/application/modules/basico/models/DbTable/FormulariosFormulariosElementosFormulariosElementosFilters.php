@@ -11,6 +11,6 @@ class Basico_Model_DbTable_FormulariosFormulariosElementosFormulariosElementosFi
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formularios_formularios_elementos_formularios_elementos_filters';
+    protected $_name = 'basico_form_form_elemento.assoccl_filter';
 }
 ?>

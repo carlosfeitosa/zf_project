@@ -54,7 +54,7 @@ create table dbo.dados_pessoais (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.email (
+create table basico_localizacao.email (
 	id int identity (1, 1) not null ,
 	id_generico_proprietario int not null ,
 	id_categoria int not null ,
@@ -215,7 +215,7 @@ alter table dbo.modulo with nocheck add constraint pk_modulo primary key cluster
 
 alter table dbo.dados_pessoais with nocheck add constraint pk_dados_pessoais primary key clustered (id) on [primary];
 
-alter table dbo.email with nocheck add constraint pk_email primary key clustered (id)  on [primary];
+alter table basico_localizacao.email with nocheck add constraint pk_email primary key clustered (id)  on [primary];
 
 alter table dbo.log with nocheck add constraint pk_log primary key clustered (id) on [primary];
 
@@ -256,7 +256,7 @@ alter table dbo.modulo add
 	constraint df_modulo_instalado default 0 for instalado,
 	constraint df_modulo_ativo default 0 for ativo;
 
-alter table dbo.email add 
+alter table basico_localizacao.email add 
 	constraint df_email_validado default (0) for validado,
 	constraint df_email_ativo default (0) for ativo,
 	constraint df_email_datahora_cadastro default (getDate()) for datahora_cadastro,
@@ -286,9 +286,9 @@ alter table dbo.token add
 
 
 /* CRIACAO DOS INDICES */
-create unique index ix_email_unique_id on dbo.email (unique_id) on [primary];
+create unique index ix_email_unique_id on basico_localizacao.email (unique_id) on [primary];
 
-create unique index ix_email_email on dbo.email (email) on [primary];
+create unique index ix_email_email on basico_localizacao.email (email) on [primary];
 
 create index ix_categoria_nome on dbo.categoria (nome) on [primary];
 
@@ -313,7 +313,7 @@ create index ix_dicionario_expressao_constante_textual on dbo.dicionario_express
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table dbo.email add 
+alter table basico_localizacao.email add 
 	constraint ix_email_proprietario_categoria_email unique
 	(
 		id_generico_proprietario, 
@@ -407,7 +407,7 @@ alter table dbo.dados_pessoais add
 		id
 	);
 
-alter table dbo.email add 
+alter table basico_localizacao.email add 
 	constraint fk_email_categoria foreign key 
 	(
 		id_categoria

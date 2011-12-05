@@ -11,7 +11,7 @@ class Basico_Model_DbTable_FormulariosElementosDecorators extends Zend_Db_Table_
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formularios_elementos_decorators';
+    protected $_name = 'basico_form_form_elemento.assoccl_decorator';
     
  
 }

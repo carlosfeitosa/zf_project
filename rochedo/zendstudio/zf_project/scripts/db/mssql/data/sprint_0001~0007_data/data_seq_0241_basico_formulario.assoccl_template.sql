@@ -29,7 +29,7 @@
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -46,7 +46,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -63,7 +63,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -80,7 +80,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -97,7 +97,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -114,7 +114,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -131,7 +131,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -148,7 +148,7 @@ SELECT (SELECT f.id
         
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -165,7 +165,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -182,7 +182,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -199,7 +199,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -216,7 +216,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -233,7 +233,7 @@ SELECT (SELECT f.id
 		
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -250,7 +250,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -267,7 +267,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -284,7 +284,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -301,7 +301,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -318,7 +318,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -336,7 +336,7 @@ SELECT (SELECT f.id
 		
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -353,7 +353,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -370,7 +370,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -387,7 +387,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -404,7 +404,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -421,7 +421,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -438,7 +438,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -455,7 +455,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -472,7 +472,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -489,7 +489,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -506,7 +506,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -523,7 +523,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -540,7 +540,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -557,7 +557,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -574,7 +574,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -591,7 +591,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -608,7 +608,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -625,7 +625,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -642,7 +642,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -659,7 +659,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -676,7 +676,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -693,7 +693,7 @@ SELECT (SELECT f.id
 
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -710,7 +710,7 @@ SELECT (SELECT f.id
         
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -727,7 +727,7 @@ SELECT (SELECT f.id
         
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -744,7 +744,7 @@ SELECT (SELECT f.id
         
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -761,7 +761,7 @@ SELECT (SELECT f.id
         
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -778,7 +778,7 @@ SELECT (SELECT f.id
         
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -795,7 +795,7 @@ SELECT (SELECT f.id
         
 INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
-        FROM formulario f
+        FROM basico.formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'

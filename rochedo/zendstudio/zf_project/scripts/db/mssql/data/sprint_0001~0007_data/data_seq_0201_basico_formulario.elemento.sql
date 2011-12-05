@@ -19,7 +19,7 @@
 *
 */
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -31,14 +31,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_FORMULARIO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -60,7 +60,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -72,14 +72,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_SELECT_TIPO_DATA_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -101,7 +101,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -114,14 +114,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DATA_INICIO_PERIODO_DATE_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -143,7 +143,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -156,14 +156,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DATA_TERMINO_PERIODO_DATE_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -185,7 +185,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -205,7 +205,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -218,14 +218,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ACEITE_TERMOS_USO_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -247,7 +247,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -265,7 +265,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -278,14 +278,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TERMOS_USO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -307,7 +307,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON' AS nome, 'Botão para executar funçoes javascript.' AS descricao,
 	   (SELECT cp.id
@@ -324,7 +324,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -336,14 +336,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_HISTORICO_MEDICO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -365,7 +365,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -377,14 +377,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TIPO_SANGUINEO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -406,7 +406,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -418,14 +418,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ALTURA_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -447,7 +447,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -459,14 +459,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PESO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -488,7 +488,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -500,14 +500,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_RACA_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -529,7 +529,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -547,7 +547,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -565,7 +565,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, id_decorator, nome, descricao, constante_textual_label, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, id_decorator, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -577,7 +577,7 @@ SELECT c.id AS id_categoria,(SELECT cp.id
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_RadioButton') AS id_componente,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -592,7 +592,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -610,7 +610,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -628,7 +628,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -641,14 +641,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_VALIDADO_RG') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -670,7 +670,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -683,7 +683,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_SEXO_RADIO_BUTTON') AS id_ajuda,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -705,7 +705,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -718,14 +718,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DATA_NASCIMENTO_DATE_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -747,7 +747,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -760,14 +760,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_LOGIN_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -789,7 +789,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -802,7 +802,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_SENHA_TEXT_BOX') AS id_ajuda,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -824,7 +824,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element, element_reloadable, 
 								 rowinfo)
@@ -837,7 +837,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_SENHA_TEXT_BOX') AS id_ajuda,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -859,7 +859,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -872,7 +872,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_SENHA_CONFIRMACAO_TEXT_BOX') AS id_ajuda,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -894,7 +894,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -907,7 +907,7 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_LOGIN_MANTER_LOGADO_CHECKBOX') AS id_ajuda,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -929,12 +929,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -955,12 +955,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -981,7 +981,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -1000,7 +1000,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HIDDEN';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1013,14 +1013,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1042,7 +1042,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1055,14 +1055,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_MAIOR_TITULACAO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1084,7 +1084,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1097,14 +1097,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_INSTITUICAO_QUE_CONCEDEU_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1126,7 +1126,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1139,14 +1139,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_AREA_DE_CONHECIMENTO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1168,7 +1168,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 	                             id_decorator, id_componente, nome, descricao, constante_textual_label,
 	                             element_name, element_attribs, element, element_reloadable,
 	                             rowinfo)
@@ -1181,14 +1181,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
 	                          AND c.nome = 'AJUDA_FORMULARIO_FIELD'
 	                          AND a.nome = 'AJUDA_FORMULARIO_FIELD_NOME_CURSO_TEXT_BOX') AS id_ajuda,
 	                         (SELECT ff.id
-	                          FROM formulario_elemento_filter ff
+	                          FROM basico.filter ff
 	                          LEFT JOIN categoria c ON (ff.id_categoria = c.id)
 	                          LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 	                          WHERE t.nome = 'FORMULARIO'
 	                          AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
 	                          AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
 	                         (SELECT d.id
-	                          FROM decorator d
+	                          FROM basico_formulario.decorator d
 	                          LEFT JOIN categoria c ON (d.id_categoria = c.id)
 	                          LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 	                          WHERE t.nome = 'FORMULARIO'
@@ -1210,7 +1210,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1222,14 +1222,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DATA_OBTENCAO_DATE_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1251,7 +1251,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1263,14 +1263,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TITULACAO_ESPERADA_FILTERING_SELECT') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1292,7 +1292,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1304,14 +1304,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_INSTITUICAO_CURSO_ATUAL_FILTERING_SELECT') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1333,7 +1333,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1345,14 +1345,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_FILTERING_SELECT') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1374,7 +1374,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1386,14 +1386,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_NOME_CURSO_ATUAL_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1415,7 +1415,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1428,14 +1428,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PERIODO_FILTERING_SELECT') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1457,7 +1457,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1469,14 +1469,14 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TURNO_FILTERING_SELECT') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1498,7 +1498,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, 'Botão para submissão de formulários.' AS descricao,
 	   (SELECT cp.id
@@ -1515,7 +1515,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_RESET' AS nome, 'Botão para reset de formulários.' AS descricao,
 	   (SELECT cp.id
@@ -1532,7 +1532,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, nome, descricao, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome, 'Botão para fechar caixas de diálogo.' AS descricao,
 	   (SELECT cp.id
@@ -1549,7 +1549,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
+INSERT INTO basico_formulario.elemento (id_categoria, nome, descricao, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
 
 SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para chamar caixa de dialogo DOJO.' AS descricao,
 	   (SELECT cp.id
@@ -1567,7 +1567,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda,  
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda,  
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1579,7 +1579,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PROFISSAO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1601,7 +1601,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda,  
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda,  
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1613,7 +1613,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_VINCULO_PROFISSIONAL_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1635,7 +1635,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda,  
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda,  
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1647,7 +1647,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PJ_VINCULO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1669,7 +1669,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda,  
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda,  
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1681,7 +1681,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_REGIME_TRABALHO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1703,7 +1703,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1715,14 +1715,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_CARGO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1744,7 +1744,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1756,14 +1756,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_FUNCAO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1785,7 +1785,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1797,14 +1797,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ATIVIDADES_DESENVOLVIDAS_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1826,7 +1826,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1838,7 +1838,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DATA_ADMISSAO_DATE_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1860,7 +1860,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1872,7 +1872,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DATA_DESVINCULACAO_DATE_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1894,7 +1894,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1906,7 +1906,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_CARGA_HORARIA_SEMANAL_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1928,7 +1928,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1940,7 +1940,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_SALARIO_BRUTO_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1962,7 +1962,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -1974,7 +1974,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DEDICACAO_EXCLUSIVA_CHECK_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -1996,7 +1996,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2008,14 +2008,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_OUTRAS_INFORMACOES_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2037,7 +2037,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -2055,7 +2055,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2067,7 +2067,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2089,7 +2089,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2101,7 +2101,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_SENHA_ATUAL_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2123,7 +2123,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2135,7 +2135,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_NOVA_SENHA_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2157,7 +2157,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2169,7 +2169,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_CONFIRMACAO_NOVA_SENHA_TEXT_BOX') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2191,12 +2191,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria,  
+INSERT INTO basico_formulario.elemento (id_categoria,  
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2218,7 +2218,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2230,7 +2230,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PERFIS_VINCULADOS_DISPONIVEIS_FILTERING_SELECT') AS id_ajuda,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2252,7 +2252,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2264,14 +2264,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TELEFONE_TIPO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2293,7 +2293,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2305,14 +2305,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TELEFONE_CODIGO_PAIS_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2334,7 +2334,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2346,14 +2346,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TELEFONE_CODIGO_AREA_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2375,7 +2375,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2387,14 +2387,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TELEFONE_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2416,7 +2416,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2428,14 +2428,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TELEFONE_RAMAL_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2457,7 +2457,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2469,14 +2469,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TELEFONE_DESCRICAO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2498,7 +2498,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2510,14 +2510,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_EMAIL_TIPO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2539,7 +2539,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2551,14 +2551,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_EMAIL_DESCRICAO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2580,7 +2580,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2592,14 +2592,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_WEBSITE_TIPO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2621,7 +2621,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2634,14 +2634,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_WEBSITE_ENDERECO_TEXT_BOX') AS id_ajuda,
                               (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                               (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2663,7 +2663,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2675,14 +2675,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_WEBSITE_DESCRICAO_TEXT_AREA') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2705,7 +2705,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2717,14 +2717,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_NOME_USUARIO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2746,7 +2746,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -2758,14 +2758,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_EMAIL_USUARIO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2787,11 +2787,11 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_decorator, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, nome, descricao, id_decorator, id_componente, constante_textual_label,
                                  element_name, element, element_attribs, rowinfo)
 SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'Captcha para validação humana de 6 caracteres (anti-robô).' AS descricao,
 	   (SELECT d.id
-	    FROM decorator d
+	    FROM basico_formulario.decorator d
         LEFT JOIN categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -2824,7 +2824,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA';
 
-INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, element_name, element, rowinfo)
+INSERT INTO basico_formulario.elemento (id_categoria, nome, descricao, id_componente, element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, 'Hash para submissão de formulários.' AS descricao,
 	   (SELECT cp.id
         FROM componente cp
@@ -2840,7 +2840,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HASH';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
@@ -2853,14 +2853,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2882,7 +2882,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
@@ -2895,14 +2895,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2924,7 +2924,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
@@ -2937,14 +2937,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -2966,7 +2966,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
@@ -2979,14 +2979,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3008,7 +3008,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
@@ -3021,14 +3021,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3050,7 +3050,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
@@ -3063,14 +3063,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_NOME_PAI_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3092,7 +3092,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter,
                                  id_decorator, id_componente, nome, descricao, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
@@ -3105,14 +3105,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_NOME_MAE_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3134,7 +3134,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3146,14 +3146,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ENDERECO_TIPO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3175,7 +3175,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3187,14 +3187,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_PAIS_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3216,7 +3216,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3228,14 +3228,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3257,7 +3257,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3269,14 +3269,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ESTADO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3298,7 +3298,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3310,14 +3310,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3339,7 +3339,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3351,14 +3351,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3380,7 +3380,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3392,14 +3392,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_CEP_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3421,7 +3421,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3433,14 +3433,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_LOGRADOURO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3462,7 +3462,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3474,14 +3474,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ENDERECO_NUMERO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3503,7 +3503,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3515,14 +3515,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3544,7 +3544,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3556,14 +3556,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_NUMERO_BANCO_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3585,7 +3585,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3597,14 +3597,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_BANCO_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3626,7 +3626,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3638,14 +3638,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_AGENCIA_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3667,7 +3667,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3679,14 +3679,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_TIPO_CONTA_FILTERING_SELECT') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3708,7 +3708,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3720,14 +3720,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_NUMERO_CONTA_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3749,7 +3749,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_ajuda, id_formulario_elemento_filter, 
 								 id_decorator, id_componente, nome, descricao, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
@@ -3761,14 +3761,14 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX') AS id_ajuda,
                              (SELECT ff.id
-                              FROM formulario_elemento_filter ff
+                              FROM basico.filter ff
                               LEFT JOIN categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3790,12 +3790,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3816,7 +3816,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -3836,12 +3836,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3862,7 +3862,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -3882,12 +3882,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3908,7 +3908,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -3928,12 +3928,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
@@ -3954,7 +3954,7 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO formulario_elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
+INSERT INTO basico_formulario.elemento (id_categoria, id_componente, nome, descricao, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -3974,12 +3974,12 @@ LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO formulario_elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
+INSERT INTO basico_formulario.elemento (id_categoria, id_decorator, id_componente, nome, descricao, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT d.id
-                              FROM decorator d
+                              FROM basico_formulario.decorator d
                               LEFT JOIN categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'

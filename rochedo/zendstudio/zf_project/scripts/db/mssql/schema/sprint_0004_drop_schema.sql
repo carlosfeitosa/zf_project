@@ -24,27 +24,27 @@ drop table formularios_formularios_elementos_formularios_elementos_validators;
 end
 ;
 
-if object_id('formularios_formularios_elementos_formularios_elementos_filters') is not null
+if object_id('basico_form_form_elemento.assoccl_filter') is not null
 begin
-drop table formularios_formularios_elementos_formularios_elementos_filters;
+drop table basico_form_form_elemento.assoccl_filter;
 end
 ;
 
-if object_id('formularios_formularios_elementos_decorators') is not null
+if object_id('basico_form_form_elemento.assoccl_decorator') is not null
 begin
-drop table formularios_formularios_elementos_decorators;
+drop table basico_form_form_elemento.assoccl_decorator;
 end
 ;
 
-if object_id('formularios_formularios_elementos_eventos_elementos') is not null
+if object_id('basico_form_form_elemento.assoccl_evento') is not null
 begin
-drop table formularios_formularios_elementos_eventos_elementos;
+drop table basico_form_form_elemento.assoccl_evento;
 end
 ;
 
-if object_id('evento_elemento ') is not null
+if object_id('basico.evento ') is not null
 begin
-drop table evento_elemento;
+drop table basico.evento;
 end
 ;
 
@@ -55,9 +55,9 @@ drop table template_formulario;
 end
 ;
 
-if object_id('formularios_formularios_elementos') is not null
+if object_id('basico_formulario.assoccl_elemento') is not null
 begin
-drop table formularios_formularios_elementos;
+drop table basico_formulario.assoccl_elemento;
 end
 ;
 
@@ -73,27 +73,27 @@ drop table formularios_elementos_formularios_elementos_filters;
 end
 ;
 
-if object_id('formularios_elementos_decorators') is not null
+if object_id('basico_formulario_elemento.assoccl_decorator') is not null
 begin
-drop table formularios_elementos_formularios_elementos_validators;
+drop table basico_formulario_elemento.assoccl_decorator;
 end
 ;
 
-if object_id('formulario_elemento') is not null
+if object_id('basico_formulario.elemento') is not null
 begin
-drop table formulario_elemento;
+drop table basico_formulario.elemento;
 end
 ;
 
-if object_id('formulario_elemento_validator') is not null
+if object_id('basico.validator') is not null
 begin
-drop table formulario_elemento_validator;
+drop table basico.validator;
 end
 ;
 
-if object_id('formulario_elemento_filter') is not null
+if object_id('basico.filter') is not null
 begin
-drop table formulario_elemento_filter;
+drop table basico.filter;
 end
 ;
 
@@ -121,9 +121,9 @@ drop table modulo_perfil;
 end
 ;
 
-if object_id('formulario') is not null
+if object_id('basico.formulario') is not null
 begin
-drop table formulario;
+drop table basico.formulario;
 end
 ;
 
@@ -133,9 +133,9 @@ drop table grupo_formulario_elemento;
 end
 ;
 
-if object_id('decorator') is not null
+if object_id('basico_formulario.decorator') is not null
 begin
-drop table decorator;
+drop table basico_formulario.decorator;
 end
 ;
 

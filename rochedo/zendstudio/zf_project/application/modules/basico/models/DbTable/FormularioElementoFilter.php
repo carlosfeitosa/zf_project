@@ -10,7 +10,7 @@ class Basico_Model_DbTable_FormularioElementoFilter extends Zend_Db_Table_Abstra
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formulario_elemento_filter';
+    protected $_name = 'basico.filter';
     
 }
 ?>

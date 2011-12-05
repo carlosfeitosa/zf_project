@@ -10,6 +10,6 @@ class Basico_Model_DbTable_Email extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'email';
+    protected $_name = 'basico_localizacao.email';
 }
 ?>

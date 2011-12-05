@@ -20,9 +20,9 @@ begin
 end
 ;
 
-if object_id('endereco') is not null
+if object_id('basico_localizacao.endereco') is not null
 begin
-  drop table endereco
+  drop table basico_localizacao.endereco
 end
 ;
 
@@ -38,9 +38,9 @@ begin
 end
 ;
 
-if object_id('estado') is not null
+if object_id('basico_localizacao.estado') is not null
 begin
-  drop table estado
+  drop table basico_localizacao.estado
 end
 ;
 

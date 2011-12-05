@@ -254,9 +254,9 @@ class Basico_OPController_FormularioOPController extends Basico_Abstract_Rochedo
 	{
 		// montando a query que verifica se o formulario eh persistente
 		$queryVerificaPersistenciaFormulario = "SELECT DISTINCT fe.element_reloadable
-												FROM formulario f
+												FROM basico.formulario f
 												LEFT JOIN formulario_formulario_elemento ffe ON (ffe.id_formulario = f.id)
-												LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+												LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
 												WHERE f.id = {$idFormulario}
 												AND fe.element_reloadable = " . Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 

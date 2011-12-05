@@ -19,24 +19,24 @@
 
 
 drop table if exists formularios_formularios_elementos_formularios_elementos_validators;
-drop table if exists formularios_formularios_elementos_formularios_elementos_filters;
-drop table if exists formularios_formularios_elementos_decorators;
-drop table if exists formularios_formularios_elementos_eventos_elementos;
-drop table if exists evento_elemento;
+drop table if exists basico_form_form_elemento.assoccl_filter;
+drop table if exists basico_form_form_elemento.assoccl_decorator;
+drop table if exists basico_form_form_elemento.assoccl_evento;
+drop table if exists basico.evento;
 drop table if exists template_formulario;
-drop table if exists formularios_formularios_elementos;
+drop table if exists basico_formulario.assoccl_elemento;
 drop table if exists formularios_elementos_formularios_elementos_validators;
 drop table if exists formularios_elementos_formularios_elementos_filters;
-drop table if exists formularios_elementos_decorators;
-drop table if exists formulario_elemento;
+drop table if exists basico_formulario_elemento.assoccl_decorator;
+drop table if exists basico_formulario.elemento;
 drop table if exists formulario_elemento_validator;
-drop table if exists formulario_elemento_filter;
+drop table if exists basico.filter;
 drop table if exists componente;
 drop table if exists template;
 drop table if exists modulo_formulario;
 drop table if exists modulo_perfil;
 drop table if exists formulario;
 drop table if exists grupo_formulario_elemento;
-drop table if exists decorator;
+drop table if exists basico_formulario.decorator;
 drop table if exists ajuda;
 drop table if exists output;

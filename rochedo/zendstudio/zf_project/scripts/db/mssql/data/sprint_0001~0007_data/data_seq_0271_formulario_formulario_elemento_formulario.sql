@@ -13,7 +13,7 @@
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo )
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -34,7 +34,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo )
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -55,7 +55,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo )
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -75,7 +75,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -95,7 +95,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -116,7 +116,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -137,7 +137,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -158,7 +158,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -179,7 +179,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -199,7 +199,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -219,7 +219,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -239,7 +239,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -270,7 +270,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -293,7 +293,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -316,7 +316,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -339,7 +339,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -362,7 +362,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -385,7 +385,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -408,7 +408,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -431,7 +431,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -454,7 +454,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -477,7 +477,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -511,7 +511,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
@@ -535,7 +535,7 @@ SELECT (SELECT ffe.id
 INSERT INTO formulario_formulario_elemento_formulario (id_formulario_formulario_elemento, id_formulario, constante_textual_label, rowinfo)
 SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
-        LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
+        LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
         LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)

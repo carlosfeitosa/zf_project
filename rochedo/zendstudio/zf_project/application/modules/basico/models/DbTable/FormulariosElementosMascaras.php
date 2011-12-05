@@ -10,7 +10,7 @@ class Basico_Model_DbTable_FormulariosElementosMascaras extends Zend_Db_Table_Ab
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formularios_elementos_mascaras';
+    protected $_name = 'basico_formulario_elemento.assoccl_mascara';
     
 }
 ?>

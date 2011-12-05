@@ -11,6 +11,6 @@ class Basico_Model_DbTable_Endereco extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'endereco';
+    protected $_name = 'basico_localizacao.endereco';
 }
 ?>

@@ -69,7 +69,7 @@ with (
 );
 alter table pessoa_juridica owner to rochedo_user;
 
-create table estado (
+create table basico_localizacao.estado (
 	id serial not null ,
 	id_pais integer not null ,
 	id_categoria integer not null ,
@@ -81,7 +81,7 @@ create table estado (
 with (
   oids = false
 );
-alter table estado owner to rochedo_user;
+alter table basico_localizacao.estado owner to rochedo_user;
 
 create table pais (
 	id serial not null ,
@@ -96,7 +96,7 @@ with (
 );
 alter table pais owner to rochedo_user;
 
-create table endereco (
+create table basico_localizacao.endereco (
 	id serial not null ,
 	id_generico_proprietario integer not null ,
 	id_pessoa_perfil_validador integer null ,
@@ -128,7 +128,7 @@ alter table dados_biometricos add constraint pk_dados_biometricos primary key (i
 
 alter table pessoa_juridica add constraint pk_pessoa_juridica primary key (id);
 
-alter table estado add constraint pk_estado primary key (id);
+alter table basico_localizacao.estado add constraint pk_estado primary key (id);
 
 alter table pais add constraint pk_pais primary key (id);
 
@@ -147,10 +147,10 @@ create index ix_pessoa_juridica_sigla
   on pessoa_juridica using btree (sigla asc nulls last);
   
 create index ix_estado_nome
-  on estado using btree (nome asc nulls last);
+  on basico_localizacao.estado using btree (nome asc nulls last);
   
 create index ix_estado_sigla
-  on estado using btree (sigla asc nulls last);
+  on basico_localizacao.estado using btree (sigla asc nulls last);
   
 create index ix_pais_constante_textual_nome
   on pais using btree (constante_textual_nome asc nulls last);
@@ -169,7 +169,7 @@ alter table mascara
 alter table pessoa_juridica
   add constraint un_pessoa_juridica_nome unique (nome);
   
-alter table estado
+alter table basico_localizacao.estado
   add constraint un_estado_nome_pais unique (nome, id_pais);
   
 alter table pais
@@ -190,16 +190,16 @@ alter table mascara
 alter table dados_biometricos
   add constraint fk_dados_biometricos_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
   
-alter table estado
+alter table basico_localizacao.estado
   add constraint fk_estado_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
 
-alter table estado
+alter table basico_localizacao.estado
   add constraint fk_estado_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
   
-alter table endereco
+alter table basico_localizacao.endereco
   add constraint fk_endereco_pessoa_perfil foreign key (id_pessoa_perfil_validador) references pessoas_perfis (id) on update no action on delete no action ,
   add constraint fk_endereco_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
-  add constraint fk_endereco_estado foreign key (id_estado) references estado (id) on update no action on delete no action ,
+  add constraint fk_endereco_estado foreign key (id_estado) references basico_localizacao.estado (id) on update no action on delete no action ,
   add constraint fk_endereco_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
   
 /* CRIACAO DOS CHECK CONSTRAINTS */

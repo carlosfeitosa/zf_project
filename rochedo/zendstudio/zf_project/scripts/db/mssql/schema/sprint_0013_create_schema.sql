@@ -180,6 +180,6 @@ alter table dbo.sequencia_formulario add
   constraint fk_sequencia_formulario_formulario foreign key 
   (
   		id_formulario
-  ) references dbo.formulario (
+  ) references basico.formulario  (
   		id
   );

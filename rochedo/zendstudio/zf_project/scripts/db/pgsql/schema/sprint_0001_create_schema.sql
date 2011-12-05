@@ -65,7 +65,7 @@ with (
 );
 alter table dados_pessoais owner to rochedo_user;
 
-create table email (
+create table basico_localizacao.email (
 	id serial not null ,
 	id_generico_proprietario integer not null ,
 	id_categoria integer not null ,
@@ -81,7 +81,7 @@ create table email (
 with (
   oids = false
 );
-alter table email owner to rochedo_user;
+alter table basico_localizacao.email owner to rochedo_user;
 
 create table log (
 	id serial not null ,
@@ -286,7 +286,7 @@ alter table modulo add constraint pk_modulo primary key (id);
 
 alter table dados_pessoais add constraint pk_dados_pessoais primary key (id);
 
-alter table email add constraint pk_email primary key (id);
+alter table basico_localizacao.email add constraint pk_email primary key (id);
 
 alter table log add constraint pk_log primary key (id);
 
@@ -327,7 +327,7 @@ alter table modulo
 	alter column instalado set default false,
 	alter column ativo set default false;
 
-alter table email 
+alter table basico_localizacao.email 
 	alter column validado set default false ,
     alter column ativo set default false,
     alter column datahora_cadastro set default (current_timestamp),
@@ -359,10 +359,10 @@ alter table token
 /* CRIACAO DOS INDICES */
 
 create index ix_email_unique_id
-  on email using btree (unique_id asc nulls last);
+  on basico_localizacao.email using btree (unique_id asc nulls last);
 
 create index ix_email_email
-  on email using btree (email asc nulls last);
+  on basico_localizacao.email using btree (email asc nulls last);
 
 create index ix_categoria_nome
   on categoria using btree (nome asc nulls last);
@@ -397,7 +397,7 @@ create index ix_dicionario_expressao_constante_textual
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table email
+alter table basico_localizacao.email
   add constraint ix_email_proprietario_categoria_email unique (id_generico_proprietario, id_categoria, email);
 
 alter table categoria
@@ -442,7 +442,7 @@ alter table categoria_chave_estrangeira
 alter table dados_pessoais
   add constraint fk_dados_pessoais_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
 
-alter table email
+alter table basico_localizacao.email
   add constraint fk_email_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
 alter table log

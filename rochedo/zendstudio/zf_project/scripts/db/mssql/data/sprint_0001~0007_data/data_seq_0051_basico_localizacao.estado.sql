@@ -1,17 +1,16 @@
 /**
 * SCRIPT DE POPULACAO DA TABELA ESTADO
 * 
-* versao: 1.0 (POSTGRESQL 8.4.1)
+* versao: 1.0 (MSSQL 2000)
 * por: IGOR PINHO (igor.pinho.souza@rochedoframework.com)
 * criacao: 26/04/2011
 * ultimas modificacoes:
-* 
 *							30/11/2011 - adaptação para novo modelo de banco de dados (Modularizado atraves de schemas) - João Vasconcelos;
 * 
 */
 
 -- estados brasileiros
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -19,7 +18,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Acre' AS nome, 'AC' AS sigla, '68' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -27,7 +26,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Alagoas' AS nome, 'AL' AS sigla, '82' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -35,7 +34,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Amapá' AS nome, 'AP' AS sigla, '96' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -43,7 +42,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Amazonas' AS nome, 'AM' AS sigla, '92' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -51,7 +50,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Bahia' AS nome, 'BA' AS sigla, '71' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -59,7 +58,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Ceará' AS nome, 'CE' AS sigla, '85' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -67,7 +66,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Distrito Federal' AS nome, 'DF' AS sigla, '61' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -75,7 +74,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Espírito Santo' AS nome, 'ES' AS sigla, '27' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -83,7 +82,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Goiás' AS nome, 'GO' AS sigla, '62' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -91,7 +90,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Maranhão' AS nome, 'MA' AS sigla, '98' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -99,7 +98,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Mato Grosso' AS nome, 'MT' AS sigla, '65' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -107,7 +106,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Mato Grosso do Sul' AS nome, 'MS' AS sigla, '67' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -115,7 +114,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Minas Gerais' AS nome, 'MG' AS sigla, '31' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -123,7 +122,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Pará' AS nome, 'PA' AS sigla, '91' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -131,7 +130,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Paraíba' AS nome, 'PB' AS sigla, '83' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -139,7 +138,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Paraná' AS nome, 'PR' AS sigla, '41' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -147,7 +146,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Pernambuco' AS nome, 'PE' AS sigla, '81' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -155,7 +154,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Piauí' AS nome, 'PI' AS sigla, '86' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -163,7 +162,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Rio de Janeiro' AS nome, 'RJ' AS sigla, '21' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -171,7 +170,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Rio Grande do Norte' AS nome, 'RN' AS sigla, '84' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -179,7 +178,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Rio Grande do Sul' AS nome, 'RS' AS sigla, '51' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -187,7 +186,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Rondônia' AS nome, 'RO' AS sigla, '69' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -195,7 +194,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Roraima' AS nome, 'RR' AS sigla, '95' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -203,7 +202,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Santa Catarina' AS nome, 'SC' AS sigla, '47' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -211,7 +210,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'São Paulo' AS nome, 'SP' AS sigla, '11' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'
@@ -219,7 +218,7 @@ SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
 'Sergipe' AS nome, 'SE' AS sigla, '79' AS cogido_ddd, 'SYSTEM_STARTUP' AS rowinfo
 FROM pais p WHERE p.constante_textual_nome = 'NOME_PAIS_BRASIL';
 
-INSERT INTO estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
+INSERT INTO basico_localizacao.estado (id_pais, id_categoria, nome, sigla, codigo_ddd, rowinfo)
 SELECT p.id, (SELECT c.id AS id_categoria FROM basico.tipo_categoria t
                     LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
                 WHERE t.nome = 'LOCALIDADE'

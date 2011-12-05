@@ -155,12 +155,12 @@ class Basico_OPController_MascaraOPController extends Basico_Abstract_RochedoPer
 	{
 		// montando query para recuperacao de elementos com mascara por nomeForm
 		$sql = "SELECT f.form_name,  fe.element_name, m.mascara
-				FROM formulario f
+				FROM basico.formulario f
 				LEFT JOIN modulo_formulario mf ON (f.id = mf.id_formulario)
 				LEFT JOIN modulo mod ON (mf.id_modulo = mod.id)
 				LEFT JOIN formulario_formulario_elemento ffe ON (f.id = ffe.id_formulario)
-				LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
-				LEFT JOIN formularios_elementos_mascaras fem ON (fem.id_formulario_elemento = fe.id)
+				LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
+				LEFT JOIN basico_formulario_elemento.assoccl_mascara fem ON (fem.id_formulario_elemento = fe.id)
 				LEFT JOIN mascara m ON (m.id = fem.id_mascara)
 				WHERE f.nome = '{$nomeForm}'
 				AND mod.nome = '{$nomeModulo}'

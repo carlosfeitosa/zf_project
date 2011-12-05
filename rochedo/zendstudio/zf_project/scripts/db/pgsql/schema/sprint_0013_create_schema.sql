@@ -165,4 +165,4 @@ alter table grupo_rascunho
   add constraint fk_grupo_rascunho_sequencia_formulario foreign key (id_sequencia_formulario) references sequencia_formulario (id) on update no action on delete no action;
   
 alter table sequencia_formulario
-  add constraint fk_sequencia_formulario_formulario foreign key (id_formulario) references formulario (id) on update no action on delete no action;
+  add constraint fk_sequencia_formulario_formulario foreign key (id_formulario) references basico.formulario(id) on update no action on delete no action;

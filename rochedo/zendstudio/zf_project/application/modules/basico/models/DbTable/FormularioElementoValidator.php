@@ -11,7 +11,7 @@ class Basico_Model_DbTable_FormularioElementoValidator extends Zend_Db_Table_Abs
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formulario_elemento_validator';
+    protected $_name = 'basico.validator';
 
 }
 ?>

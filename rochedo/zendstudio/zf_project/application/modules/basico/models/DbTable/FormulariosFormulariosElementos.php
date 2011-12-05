@@ -11,7 +11,7 @@ class Basico_Model_DbTable_FormulariosFormulariosElementos extends Zend_Db_Table
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formularios_formularios_elementos';
+    protected $_name = 'basico_formulario.assoccl_elemento';
     
 }
 ?>

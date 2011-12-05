@@ -63,7 +63,7 @@ alter table dbo.municipio add
     constraint fk_municipio_estado foreign key 
     (
         id_estado
-    ) references dbo.estado (
+    ) references basico_localizacao.estado (
         id
     );
 

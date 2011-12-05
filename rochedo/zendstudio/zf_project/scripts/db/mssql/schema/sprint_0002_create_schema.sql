@@ -52,7 +52,7 @@ create table dbo.pessoa_juridica (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.estado (
+create table basico_localizacao.estado (
 	id int identity (1, 1) not null ,
 	id_pais int not null ,
 	id_categoria int not null ,
@@ -71,7 +71,7 @@ create table dbo.pais (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.endereco (
+create table basico_localizacao.endereco (
 	id int identity (1, 1) not null ,
 	id_generico_proprietario int not null ,
 	id_pessoa_perfil_validador int null ,
@@ -99,7 +99,7 @@ alter table dbo.dados_biometricos with nocheck add constraint pk_dados_biometric
 
 alter table dbo.pessoa_juridica with nocheck add constraint pk_pessoa_juridica primary key clustered (id) on [primary];
 
-alter table dbo.estado with nocheck add constraint pk_estado primary key clustered (id) on [primary];
+alter table basico_localizacao.estado with nocheck add constraint pk_estado primary key clustered (id) on [primary];
 
 alter table dbo.pais with nocheck add constraint pk_pais primary key clustered (id) on [primary];
 
@@ -113,9 +113,9 @@ create unique index ix_pessoa_juridica_nome on dbo.pessoa_juridica (nome) on [pr
   
 create unique index ix_pessoa_juridica_sigla on dbo.pessoa_juridica (sigla) on [primary];
   
-create unique index ix_estado_nome on dbo.estado (nome) on [primary];
+create unique index ix_estado_nome on basico_localizacao.estado (nome) on [primary];
   
-create unique index ix_estado_sigla on dbo.estado (sigla) on [primary];
+create unique index ix_estado_sigla on basico_localizacao.estado (sigla) on [primary];
   
 create unique index ix_pais_constante_textual_nome on dbo.pais (constante_textual_nome) on [primary];
   
@@ -145,7 +145,7 @@ alter table dbo.pessoa_juridica add
         nome
     ) on [primary];
   
-alter table dbo.estado add
+alter table basico_localizacao.estado add
     constraint un_estado_nome_pais unique nonclustered
     (
         nome, 
@@ -196,7 +196,7 @@ alter table dbo.dados_biometricos add
         id
     );
   
-alter table dbo.estado add 
+alter table basico_localizacao.estado add 
     constraint fk_estado_pais foreign key 
     (
         id_pais
@@ -204,7 +204,7 @@ alter table dbo.estado add
         id
     );
 
-alter table dbo.estado add 
+alter table basico_localizacao.estado add 
     constraint fk_estado_categoria foreign key 
     (
         id_categoria
@@ -212,7 +212,7 @@ alter table dbo.estado add
         id
     );
   
-alter table dbo.endereco add 
+alter table basico_localizacao.endereco add 
     constraint fk_endereco_pessoa_perfil foreign key 
     (
         id_pessoa_perfil_validador
@@ -228,7 +228,7 @@ alter table dbo.endereco add
     constraint fk_endereco_estado foreign key 
     (
         id_estado
-    ) references dbo.estado (
+    ) references basico_localizacao.estado (
         id
     ),
     constraint fk_endereco_pais foreign key 
