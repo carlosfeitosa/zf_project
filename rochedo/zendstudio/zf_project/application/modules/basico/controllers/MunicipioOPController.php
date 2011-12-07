@@ -168,9 +168,20 @@ class Basico_OPController_MunicipioOPController extends Basico_Abstract_RochedoP
 			foreach ($objMunicipio as $municipio) {
 				$arrayResult[$municipio->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,$municipio->nome);				
 			}
-			
 			return $arrayResult;
 		}
-		   
+	}
+	
+	/**
+	 * Retorna id_estado do municipio
+	 */
+	public static function retornaEstadoMunicipio($idMunicipio)
+	{
+		// recuperando todos os países
+		$objMunicipio = self::retornaNovoObjMunicipio();
+		// recuperando todos os tipos sanguineos
+		$objMunicipio = Basico_OPController_PersistenceOPController::bdObjectFetchList($objMunicipio, "id={$idMunicipio}");
+		
+		return $objMunicipio->id_estado;
 	}
 }
