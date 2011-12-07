@@ -20,7 +20,7 @@ $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index')
 		<a onClick="dojoRequestAjaxAbstract('get', {url: '<?php echo $this->urlEncrypt($this->url(
             array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
             null, 
-            true)) ?>', loadFunctionData:'processaResponseDojoFormRequest'}); return false;" href="<?php echo $this->urlEncrypt($this->url(
+            true)) ?>', loadFunctionData:'processaResponseDojoFormRequest', errorFunctionData:'processaResponseDojoFormRequest'}); return false;" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
                                                          null, 
                                                          true)) ?>"><?php echo "Minha Conta" ?></a> |
