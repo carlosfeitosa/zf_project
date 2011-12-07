@@ -57,10 +57,13 @@ class Basico_Model_DadosPessoaisMapper
     public function save(Basico_Model_DadosPessoais $object)
     {       
         $data = array(
-                      'id_pessoa'       => $object->getPessoa(),
-    				  'nome'            => $object->getNome(),
-                      'data_nascimento' => $object->getDataNascimento(),
-                      'rowinfo'         => $object->getRowinfo(),
+                      'id_pessoa'       		=> $object->getPessoa(),
+        			  'id_municipio_nascimento' => $object->getMunicioNascimento(),
+    				  'nome'            		=> $object->getNome(),
+        			  'nome_pai'        		=> $object->getNomePai(),
+        			  'nome_mae'        		=> $object->getNomeMae(),
+                      'data_nascimento' 		=> $object->getDataNascimento(),
+                      'rowinfo'         		=> $object->getRowinfo(),
                      );
 
         if (null === ($id = $object->getId())) {

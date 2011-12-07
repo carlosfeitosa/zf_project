@@ -50,6 +50,8 @@ create table dbo.dados_pessoais (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
+	nome_pai varchar (100) collate latin1_general_ci_ai null ,
+	nome_mae varchar (100) collate latin1_general_ci_ai null ,
 	data_nascimento datetime null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];

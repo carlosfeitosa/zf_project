@@ -56,8 +56,11 @@ alter table modulo owner to rochedo_user;
 create table dados_pessoais (
 	id serial not null ,
 	id_pessoa integer not null ,
+	id_municipio_nascimento integer not null,
 	nome character varying (100) not null ,
 	data_nascimento timestamp with time zone ,
+	nome_pai character varying (100) null ,
+	nome_mae character varying (100) null ,
 	rowinfo character varying (2000) not null 
 )
 with (

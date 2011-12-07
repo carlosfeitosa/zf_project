@@ -25,9 +25,24 @@ class Basico_Model_DadosPessoais
 	protected $_nome;
 	
 	/**
+	 * @var String
+	 */
+	protected $_nomePai;
+	
+	/**
+	 * @var String
+	 */
+	protected $_nomeMae;
+	
+	/**
 	* @var int
 	*/
 	protected $_pessoa;
+	
+	/**
+	* @var int
+	*/
+	protected $_municipioNascimento;
 	
 	/**
 	 * @var String
@@ -127,6 +142,26 @@ class Basico_Model_DadosPessoais
 	{
 		return $this->_nome;
 	}
+	
+    /**
+	* Get nomePai
+	* 
+	* @return null|String
+	*/
+	public function getNomePai()
+	{
+		return $this->_nomePai;
+	}
+	
+    /**
+	* Get nomeMae
+	* 
+	* @return null|String
+	*/
+	public function getNomeMae()
+	{
+		return $this->_nomeMae;
+	}
 
 	/**
 	* Get dataNascimento
@@ -170,6 +205,28 @@ class Basico_Model_DadosPessoais
 	public function getPessoa()
 	{
 		return $this->_pessoa;
+	}
+	
+	/**
+	* Set entry idMunicipioNascimento
+	* 
+	* @param  int $idMunicipioNascimento
+	* @return Basico_Model_DadosPessoais
+	*/
+	public function setMunicipioNascimento($idMunicipioNascimento)
+	{
+		$this->_municipioNascimento = Basico_OPController_UtilOPController::retornaValorTipado($idMunicipioNascimento,TIPO_INTEIRO,true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry idMunicipioNascimento
+	* 
+	* @return null|int
+	*/
+	public function getMunicipioNascimento()
+	{
+		return $this->_municipioNascimento;
 	}
  
 	/**
