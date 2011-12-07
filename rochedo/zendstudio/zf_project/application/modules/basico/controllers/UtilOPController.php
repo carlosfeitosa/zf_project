@@ -1490,7 +1490,7 @@ class Basico_OPController_UtilOPController
     public static function adicionaElementoForm(&$form, $tipoElemento, $nomeElemento, $arrayOptions)
     {
     	// verificando se foi passado um form e se ele eh da instancia Zend_Form ou Zend_Dojo_Form
-    	if ((!isset($form)) or !(($form instanceof Zend_Form) or ($form instanceof Zend_Dojo_Form)))
+    	if ((!isset($form)) or !(is_subclass_of($form, 'Zend_Form')))
     		return false;
 
     	try {
