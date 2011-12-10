@@ -11,7 +11,7 @@ class Basico_Model_DbTable_GrupoFormularioElemento extends Zend_Db_Table_Abstrac
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'grupo_formulario_elemento';
+    protected $_name = 'basico_form_form_elemento.assoc_grupo';
 
 }
 ?>

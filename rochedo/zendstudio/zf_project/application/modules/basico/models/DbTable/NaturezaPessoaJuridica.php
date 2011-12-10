@@ -11,6 +11,6 @@ class Basico_Model_DbTable_NaturezaPessoaJuridica extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'natureza_pessoa_juridica';
+    protected $_name = 'basico_pessoa_juridica.assoc_natureza';
 }
 ?>

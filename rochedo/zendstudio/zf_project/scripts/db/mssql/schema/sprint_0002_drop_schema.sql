@@ -44,15 +44,15 @@ begin
 end
 ;
 
-if object_id('pais') is not null
+if object_id('basico_localizacao.pais') is not null
 begin
-  drop table pais
+  drop table basico_localizacao.pais
 end
 ;
 
-if object_id('mascara') is not null
+if object_id('basico.mascara') is not null
 begin
-  drop table mascara
+  drop table basico.mascara
 end
 ;
 

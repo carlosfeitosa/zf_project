@@ -8,5 +8,5 @@
 * 
 */
 
-INSERT INTO pessoa (rowinfo)
+INSERT INTO basico.pessoa (rowinfo)
 VALUES ('SYSTEM_STARTUP_MASTER');

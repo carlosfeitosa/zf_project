@@ -28,7 +28,7 @@ create table dbo.rascunho (
     rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table grupo_rascunho (
+create table basico_formulario_rascunho.assocag_grupo (
 	id int identity (1, 1) not null,
 	nome varchar (300) collate latin1_general_ci_ai not null,
 	forms varchar (4000) collate latin1_general_ci_ai not null,
@@ -56,7 +56,7 @@ create table sequencia_formulario (
 
 alter table dbo.rascunho with nocheck add constraint pk_rascunho primary key clustered (id) on [primary];
 
-alter table dbo.grupo_rascunho with nocheck add constraint pk_grupo_rascunho primary key clustered (id) on [primary];
+alter table basico_formulario_rascunho.assocag_grupo with nocheck add constraint pk_grupo_rascunho primary key clustered (id) on [primary];
 
 alter table dbo.sequencia_formulario with nocheck add constraint pk_sequencia_formulario primary key clustered (id) on [primary];
 
@@ -68,7 +68,7 @@ alter table dbo.rascunho add
 alter table dbo.rascunho add
 	constraint df_rascunho_datahora_expiracao default (dateadd(month, 18, getdate())) for datahora_expiracao;
 	
-alter table dbo.grupo_rascunho add
+alter table basico_formulario_rascunho.assocag_grupo add
     constraint df_grupo_rascunho_datahora_criacao default (getdate()) for datahora_criacao;
     
 alter table dbo.sequencia_formulario add
@@ -90,17 +90,17 @@ create index ix_rascunho_datahora_expiracao on dbo.rascunho (datahora_expiracao)
 
 create index ix_rascunho_datahora_ultima_atualizacao on dbo.rascunho (datahora_ultima_atualizacao) on [primary];
 
-create index ix_grupo_rascunho_pessoa on dbo.grupo_rascunho (id_pessoa) on [primary];
+create index ix_grupo_rascunho_pessoa on basico_formulario_rascunho.assocag_grupo (id_pessoa) on [primary];
 
-create index ix_grupo_rascunho_perfil on dbo.grupo_rascunho (id_perfil) on [primary];
+create index ix_grupo_rascunho_perfil on basico_formulario_rascunho.assocag_grupo (id_perfil) on [primary];
   
-create index ix_grupo_rascunho_sequencia on dbo.grupo_rascunho (id_sequencia_formulario) on [primary];
+create index ix_grupo_rascunho_sequencia on basico_formulario_rascunho.assocag_grupo (id_sequencia_formulario) on [primary];
   
-create index ix_grupo_rascunho_nome on dbo.grupo_rascunho (nome) on [primary];
+create index ix_grupo_rascunho_nome on basico_formulario_rascunho.assocag_grupo (nome) on [primary];
   
-create index ix_grupo_rascunho_datahora_criacao on dbo.grupo_rascunho (datahora_criacao) on [primary];
+create index ix_grupo_rascunho_datahora_criacao on basico_formulario_rascunho.assocag_grupo (datahora_criacao) on [primary];
 
-create index ix_grupo_rascunho_datahora_ultima_atualizacao on dbo.grupo_rascunho (datahora_ultima_atualizacao) on [primary];
+create index ix_grupo_rascunho_datahora_ultima_atualizacao on basico_formulario_rascunho.assocag_grupo (datahora_ultima_atualizacao) on [primary];
   
 create index ix_sequencia_formulario_nome on dbo.sequencia_formulario (nome) on [primary];
   
@@ -132,7 +132,7 @@ alter table dbo.rascunho add
 	constraint fk_rascunho_pessoa foreign key 
 	(
 		id_pessoa
-	) references dbo.pessoa (
+	) references basico.pessoa (
 		id
 	);
 	
@@ -148,11 +148,11 @@ alter table dbo.rascunho add
   constraint fk_rascunho_grupo_rascunho foreign key 
   (
   		id_grupo_rascunho
-  ) references dbo.grupo_rascunho (
+  ) references basico_formulario_rascunho.assocag_grupo (
   		id
   );
   
-alter table dbo.grupo_rascunho add
+alter table basico_formulario_rascunho.assocag_grupo add
   constraint fk_grupo_rascunho_perfil foreign key 
   (
   		id_perfil
@@ -160,15 +160,15 @@ alter table dbo.grupo_rascunho add
   		id
   );
   
-alter table dbo.grupo_rascunho add
+alter table basico_formulario_rascunho.assocag_grupo add
   constraint fk_grupo_rascunho_pessoa foreign key 
   (
   		id_pessoa
-  ) references dbo.pessoa (
+  ) references basico.pessoa (
   		id
   );
   
-alter table dbo.grupo_rascunho add
+alter table basico_formulario_rascunho.assocag_grupo add
   constraint fk_grupo_rascunho_sequencia_formulario foreign key 
   (
   		id_sequencia_formulario

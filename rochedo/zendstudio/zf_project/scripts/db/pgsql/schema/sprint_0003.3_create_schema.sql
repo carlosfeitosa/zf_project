@@ -25,7 +25,7 @@ with (
 );
 alter table website owner to rochedo_user;
 
-create table municipio (
+create table basico_localizacao.municipio (
 	id serial not null ,
 	id_estado integer not null ,
 	id_categoria integer not null ,
@@ -37,13 +37,13 @@ create table municipio (
 with (
   oids = false
 );
-alter table municipio owner to rochedo_user;
+alter table basico_localizacao.municipio owner to rochedo_user;
 
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 alter table website add constraint pk_website primary key (id);
 
-alter table municipio add constraint pk_municipio primary key (id);
+alter table basico_localizacao.municipio add constraint pk_municipio primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -63,10 +63,10 @@ alter table municipio add constraint pk_municipio primary key (id);
 alter table website
   add constraint fk_website_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
-alter table municipio
+alter table basico_localizacao.municipio
   add constraint fk_municipio_estado foreign key (id_estado) references basico_localizacao.estado (id) on update no action on delete no action;
 
-alter table municipio
+alter table basico_localizacao.municipio
   add constraint fk_municipio_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
   
 /* CRIACAO DOS CHECK CONSTRAINTS */

@@ -30,7 +30,7 @@ create table rascunho (
   oids = false
 );
 
-create table grupo_rascunho (
+create table basico_formulario_rascunho.assocag_grupo (
 	id serial not null,
 	nome character varying (300) not null,
 	forms character varying (4000) not null,
@@ -62,7 +62,7 @@ create table sequencia_formulario (
 
 alter table rascunho add constraint pk_rascunho primary key (id);
 
-alter table grupo_rascunho add constraint pk_grupo_rascunho primary key (id);
+alter table basico_formulario_rascunho.assocag_grupo add constraint pk_grupo_rascunho primary key (id);
 
 alter table sequencia_formulario add constraint pk_sequencia_formulario primary key (id);
 
@@ -74,7 +74,7 @@ alter table rascunho
 alter table rascunho
     alter column datahora_expiracao set default (current_timestamp + interval '18 months');
     
-alter table grupo_rascunho
+alter table basico_formulario_rascunho.assocag_grupo
     alter column datahora_criacao set default (current_timestamp);
     
 alter table sequencia_formulario
@@ -108,22 +108,22 @@ create index ix_rascunho_datahora_ultima_atualizacao
   on rascunho using btree (datahora_ultima_atualizacao asc nulls last);
   
 create index ix_grupo_rascunho_pessoa
-  on grupo_rascunho using btree (id_pessoa asc nulls last);
+  on basico_formulario_rascunho.assocag_grupo using btree (id_pessoa asc nulls last);
 
 create index ix_grupo_rascunho_perfil
-  on grupo_rascunho using btree (id_perfil asc nulls last);
+  on basico_formulario_rascunho.assocag_grupo using btree (id_perfil asc nulls last);
   
 create index ix_grupo_rascunho_sequencia
-  on grupo_rascunho using btree (id_sequencia_formulario asc nulls last);
+  on basico_formulario_rascunho.assocag_grupo using btree (id_sequencia_formulario asc nulls last);
   
 create index ix_grupo_rascunho_nome
-  on grupo_rascunho using btree (nome asc nulls last);
+  on basico_formulario_rascunho.assocag_grupo using btree (nome asc nulls last);
   
 create index ix_grupo_rascunho_datahora_criacao
-  on grupo_rascunho using btree (datahora_criacao asc nulls last);
+  on basico_formulario_rascunho.assocag_grupo using btree (datahora_criacao asc nulls last);
 
 create index ix_grupo_rascunho_datahora_ultima_atualizacao
-  on grupo_rascunho using btree (datahora_ultima_atualizacao asc nulls last);
+  on basico_formulario_rascunho.assocag_grupo using btree (datahora_ultima_atualizacao asc nulls last);
   
 create index ix_sequencia_formulario_nome
   on sequencia_formulario using btree (nome asc nulls last);
@@ -147,21 +147,21 @@ alter table rascunho
   add constraint fk_rascunho_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
   
 alter table rascunho
-  add constraint fk_rascunho_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+  add constraint fk_rascunho_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
   
 alter table rascunho
-  add constraint fk_rascunho_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
+  add constraint fk_rascunho_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action;
   
 alter table rascunho
-  add constraint fk_rascunho_grupo_rascunho foreign key (id_grupo_rascunho) references grupo_rascunho (id) on update no action on delete no action;
+  add constraint fk_rascunho_grupo_rascunho foreign key (id_grupo_rascunho) references basico_formulario_rascunho.assocag_grupo (id) on update no action on delete no action;
   
-alter table grupo_rascunho
-  add constraint fk_grupo_rascunho_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
+alter table basico_formulario_rascunho.assocag_grupo
+  add constraint fk_grupo_rascunho_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action;
   
-alter table grupo_rascunho
-  add constraint fk_grupo_rascunho_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+alter table basico_formulario_rascunho.assocag_grupo
+  add constraint fk_grupo_rascunho_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
   
-alter table grupo_rascunho
+alter table basico_formulario_rascunho.assocag_grupo
   add constraint fk_grupo_rascunho_sequencia_formulario foreign key (id_sequencia_formulario) references sequencia_formulario (id) on update no action on delete no action;
   
 alter table sequencia_formulario

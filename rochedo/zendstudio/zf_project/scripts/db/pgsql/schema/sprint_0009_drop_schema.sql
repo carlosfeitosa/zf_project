@@ -12,4 +12,4 @@ drop table if exists acoes_aplicacao_perfis;
 
 drop table if exists acao_aplicacao;
 
-drop table if exists metodo_validacao;
+drop table if exists basico.metodo_validacao;

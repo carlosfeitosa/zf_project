@@ -61,8 +61,8 @@ END
 
 SET @password = @RandomID
 
-INSERT INTO login (id_pessoa, login, senha, pode_expirar, datahora_proxima_expiracao, rowinfo)
+INSERT INTO basico.login (id_pessoa, login, senha, pode_expirar, datahora_proxima_expiracao, rowinfo)
 SELECT p.id, @login AS login, 
        @password AS senha, 0, NULL, 'SYSTEM_STARTUP'
-FROM pessoa p
+FROM basico.pessoa p
 WHERE p.rowinfo = 'SYSTEM_STARTUP_MASTER';

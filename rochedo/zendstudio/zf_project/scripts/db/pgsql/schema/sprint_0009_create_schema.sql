@@ -34,7 +34,7 @@ create table acoes_aplicacao_perfis (
 );
 alter table acoes_aplicacao_perfis owner to rochedo_user;
 
-create table metodo_validacao (
+create table basico.metodo_validacao (
 	id serial not null ,
 	id_categoria int not null ,
 	nome character varying (100) not null ,
@@ -49,7 +49,7 @@ create table metodo_validacao (
 ) with (
   oids = false
 );
-alter table metodo_validacao owner to rochedo_user;
+alter table basico.metodo_validacao owner to rochedo_user;
 
 create table acoes_aplicacao_metodos_validacao (
 	id serial not null ,
@@ -69,7 +69,7 @@ alter table acao_aplicacao add constraint pk_acao_aplicacao primary key (id);
 
 alter table acoes_aplicacao_perfis add constraint pk_acoes_aplicacao_perfis primary key (id);
 
-alter table metodo_validacao add constraint pk_metodo_validacao primary key (id);
+alter table basico.metodo_validacao add constraint pk_metodo_validacao primary key (id);
 
 alter table acoes_aplicacao_metodos_validacao add constraint pk_acoes_aplicacao_metodos_validacao primary key (id);
 
@@ -82,10 +82,10 @@ alter table acao_aplicacao
 alter table acao_aplicacao
     alter column ativo set default (true);
 
-alter table metodo_validacao
+alter table basico.metodo_validacao
     alter column datahora_cadastro set default (current_timestamp);
 
-alter table metodo_validacao
+alter table basico.metodo_validacao
     alter column ativo set default (true);
 
 
@@ -107,7 +107,7 @@ create index ix_acoes_aplicacao_perfis_acao_aplicacao
   on acoes_aplicacao_perfis using btree (id_acao_aplicacao asc nulls last);
 
 create index ix_metodo_validacao_nome
-  on metodo_validacao using btree (nome asc nulls last);
+  on basico.metodo_validacao using btree (nome asc nulls last);
 
 create index ix_acoes_aplicacao_metodos_validacao_acao_aplicacao
   on acoes_aplicacao_metodos_validacao using btree (id_acao_aplicacao asc nulls last);
@@ -127,7 +127,7 @@ alter table acao_aplicacao
 alter table acoes_aplicacao_perfis 
   add constraint ix_acoes_aplicacao_perfis_acao_aplicacao_perfil unique (id_perfil, id_acao_aplicacao);
 
-alter table metodo_validacao
+alter table basico.metodo_validacao
   add constraint ix_metodo_validacao_nome_categoria unique (nome, id_categoria);
 
 alter table acoes_aplicacao_metodos_validacao
@@ -137,29 +137,29 @@ alter table acoes_aplicacao_metodos_validacao
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table acao_aplicacao
-  add constraint fk_acao_aplicacao_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action;
+  add constraint fk_acao_aplicacao_modulo foreign key (id_modulo) references basico.modulo (id) on update no action on delete no action;
 
 alter table acoes_aplicacao_perfis
   add constraint fk_acoes_aplicacao_perfis_acao_aplicacao foreign key (id_acao_aplicacao) references acao_aplicacao (id) on update no action on delete no action;
 
 alter table acoes_aplicacao_perfis
-  add constraint fk_acoes_aplicacao_perfis_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
+  add constraint fk_acoes_aplicacao_perfis_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action;
 
-alter table metodo_validacao
+alter table basico.metodo_validacao
   add constraint fk_metodo_validacao_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
 alter table acoes_aplicacao_metodos_validacao
   add constraint fk_acoes_aplicacao_metodos_validacao_acao_aplicacao foreign key (id_acao_aplicacao) references acao_aplicacao (id) on update no action on delete no action;
 
 alter table acoes_aplicacao_metodos_validacao
-  add constraint fk_acoes_aplicacao_metodos_validacao_metodo_validacao foreign key (id_metodo_validacao) references metodo_validacao (id) on update no action on delete no action;
+  add constraint fk_acoes_aplicacao_metodos_validacao_metodo_validacao foreign key (id_metodo_validacao) references basico.metodo_validacao (id) on update no action on delete no action;
 
 alter table acoes_aplicacao_metodos_validacao
-  add constraint fk_acoes_aplicacao_metodos_validacao_metodo_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
+  add constraint fk_acoes_aplicacao_metodos_validacao_metodo_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action;
 
 
 
 /* MODIFICACAO DO BANCO DE DADOS JA EXISTENTE */
 
-alter table perfil
+alter table basico.perfil
   add column nivel integer default 0 not null;

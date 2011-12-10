@@ -59,7 +59,7 @@ create table dbo.ajuda (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.output (
+create table basico.output (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -79,14 +79,14 @@ create table dbo.template (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.modulo_formulario (
+create table basico_formulario.assoccl_modulo (
 	id int identity (1, 1) not null ,
 	id_modulo int not null ,
 	id_formulario int not null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.modulo_perfil (
+create table basico_perfil.assoccl_modulo (
 	id int identity (1, 1) not null ,
 	id_modulo int not null ,
 	id_perfil int not null ,
@@ -191,7 +191,7 @@ create table dbo.componente (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.grupo_formulario_elemento (
+create table basico_form_form_elemento.assoc_grupo (
 	id int identity (1, 1) not null ,
 	id_decorator int null ,
 	nome varchar (100) not null ,
@@ -228,7 +228,7 @@ create table basico_formulario_elemento.assoccl_decorator (
  	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.formularios_formularios_elementos_formularios_elementos_validators (
+create table basico_form_form_elemento.assoccl_validator (
 	id int identity (1, 1) not null ,
 	id_formularios_formularios_elementos int not null ,
 	id_formulario_elemento_validator int not null ,
@@ -284,13 +284,13 @@ alter table basico_formulario.decorator with nocheck add constraint pk_decorator
 
 alter table dbo.ajuda with nocheck add constraint pk_ajuda primary key clustered (id) on [primary];
 
-alter table dbo.output with nocheck add constraint pk_output primary key clustered (id) on [primary];
+alter table basico.output with nocheck add constraint pk_output primary key clustered (id) on [primary];
 
 alter table dbo.template with nocheck add constraint pk_template primary key clustered (id) on [primary];
 
-alter table dbo.modulo_formulario with nocheck add constraint pk_modulo_formulario primary key clustered (id) on [primary];
+alter table basico_formulario.assoccl_modulo with nocheck add constraint pk_modulo_formulario primary key clustered (id) on [primary];
 
-alter table dbo.modulo_perfil with nocheck add constraint pk_modulo_perfil primary key clustered (id) on [primary];
+alter table basico_perfil.assoccl_modulo with nocheck add constraint pk_modulo_perfil primary key clustered (id) on [primary];
 
 alter table dbo.template_formulario with nocheck add constraint pk_template_formulario primary key clustered (id) on [primary];
 
@@ -306,7 +306,7 @@ alter table basico_formulario.assoccl_elemento with nocheck add constraint pk_fo
 
 alter table dbo.componente with nocheck add constraint pk_componente primary key (id) on [primary];
 
-alter table dbo.grupo_formulario_elemento with nocheck add constraint pk_grupo_formulario_elemento primary key (id) on [primary];
+alter table basico_form_form_elemento.assoc_grupo with nocheck add constraint pk_grupo_formulario_elemento primary key (id) on [primary];
 
 alter table dbo.formularios_elementos_formularios_elementos_validators with nocheck add constraint pk_formularios_elementos_formularios_elementos_validators primary key clustered (id) on [primary];
 
@@ -314,7 +314,7 @@ alter table dbo.formularios_elementos_formularios_elementos_filters with nocheck
 
 alter table basico_formulario_elemento.assoccl_decorator with nocheck add constraint pk_formularios_elementos_decorators primary key clustered (id) on [primary];
 
-alter table dbo.formularios_formularios_elementos_formularios_elementos_validators with nocheck add constraint pk_formularios_formularios_elementos_formularios_elementos_validators primary key clustered (id) on [primary];
+alter table basico_form_form_elemento.assoccl_validator with nocheck add constraint pk_formularios_formularios_elementos_formularios_elementos_validators primary key clustered (id) on [primary];
 
 alter table basico_form_form_elemento.assoccl_filter with nocheck add constraint pk_formularios_formularios_elementos_formularios_elementos_filters primary key clustered (id) on [primary];
 
@@ -360,7 +360,7 @@ alter table dbo.formularios_elementos_formularios_elementos_filters add
 alter table basico_formulario_elemento.assoccl_decorator add
 	constraint df_formularios_elementos_decorators_datahora_criacao default (getdate()) for datahora_criacao;
 
-alter table dbo.formularios_formularios_elementos_formularios_elementos_validators add
+alter table basico_form_form_elemento.assoccl_validator add
 	constraint df_formularios_formularios_elementos_formularios_elementos_validators_datahora_criacao default (getdate()) for datahora_criacao;
 
 alter table basico_form_form_elemento.assoccl_filter add
@@ -381,7 +381,7 @@ create index ix_decorator_nome on basico_formulario.decorator (nome) on [primary
 
 create index ix_ajuda_nome on dbo.ajuda (nome) on [primary];
 
-create index ix_output_nome on dbo.output (nome) on [primary];
+create index ix_output_nome on basico.output (nome) on [primary];
 
 create index ix_template_nome on dbo.template (nome) on [primary];
 
@@ -399,7 +399,7 @@ create unique index ix_formulario_form_name on basico.formulario (form_name) on 
 
 create unique index ix_componente_nome on dbo.componente (nome) on [primary];
 
-create unique index ix_grupo_formulario_elemento_nome on dbo.grupo_formulario_elemento (nome) on [primary];
+create unique index ix_grupo_formulario_elemento_nome on basico_form_form_elemento.assoc_grupo (nome) on [primary];
 
 create unique index ix_evento_elemento_nome_evento on basico.evento (nome) on [primary];
 
@@ -424,7 +424,7 @@ alter table dbo.ajuda add
 		nome
 	) on [primary];
 	
-alter table dbo.output add
+alter table basico.output add
 	constraint ix_output_categoria_nome unique nonclustered
 	(
 		id_categoria,
@@ -438,14 +438,14 @@ alter table dbo.template add
 		nome
 	) on [primary];
 
-alter table dbo.modulo_formulario add
+alter table basico_formulario.assoccl_modulo add
 	constraint ix_modulo_formulario_modulo_formulario unique nonclustered
 	(
 		id_modulo,
 		id_formulario
 	) on [primary];
 
-alter table dbo.modulo_perfil add
+alter table basico_perfil.assoccl_modulo add
 	constraint ix_modulo_perfil_modulo_perfil unique nonclustered
 	(
 		id_modulo,
@@ -523,7 +523,7 @@ alter table basico_formulario_elemento.assoccl_decorator add
         id_decorator
     ) on [primary];
 
-alter table dbo.formularios_formularios_elementos_formularios_elementos_validators add
+alter table basico_form_form_elemento.assoccl_validator add
     constraint ix_formularios_formularios_elementos_formularios_elementos_validators_formularios_formularios_elementos_formulario_elemento_validator unique nonclustered
     (
         id_formularios_formularios_elementos,
@@ -584,7 +584,7 @@ alter table dbo.ajuda add
 		id
 	);
 
-alter table dbo.output add
+alter table basico.output add
 	constraint fk_output_categoria foreign key
 	(
 		id_categoria
@@ -602,15 +602,15 @@ alter table dbo.template add
 	constraint fk_template_output foreign key
 	(
 		id_output
-	) references dbo.output (
+	) references basico.output (
 		id
 	);
 
-alter table dbo.modulo_formulario add
+alter table basico_formulario.assoccl_modulo add
 	constraint fk_modulo_formulario_modulo foreign key
 	(
 		id_modulo
-	) references dbo.modulo (
+	) references basico.modulo (
 		id
 	),
 	constraint fk_modulo_formulario_formulario foreign key
@@ -620,17 +620,17 @@ alter table dbo.modulo_formulario add
 		id
 	);
 
-alter table dbo.modulo_perfil add
+alter table basico_perfil.assoccl_modulo add
 	constraint fk_modulo_perfil_modulo foreign key
 	(
 		id_modulo
-	) references dbo.modulo (
+	) references basico.modulo (
 		id
 	),
 	constraint fk_modulo_perfil_perfil foreign key
 	(
 		id_perfil
-	) references dbo.perfil (
+	) references basico.perfil (
 		id
 	);
 
@@ -673,7 +673,7 @@ alter table basico_formulario.elemento add
 	constraint fk_formulario_elemento_mascara foreign key
 	(
 		id_mascara
-	) references dbo.mascara (
+	) references basico.mascara (
 		id
 	);
 
@@ -736,13 +736,13 @@ alter table basico_formulario.assoccl_elemento add
 	constraint fk_formularios_formularios_elementos_grupo_formulario_elemento foreign key
 	(
 		id_grupo_formulario_elemento
-	) references grupo_formulario_elemento (
+	) references basico_form_form_elemento.assoc_grupo (
 		id
 	),
 	constraint fk_formularios_formularios_elementos_mascara foreign key
 	(
 		id_mascara
-	) references dbo.mascara (
+	) references basico.mascara (
 		id
 	);
 	
@@ -760,7 +760,7 @@ alter table dbo.componente add
 		id
 	);
 
-alter table grupo_formulario_elemento add
+alter table basico_form_form_elemento.assoc_grupo add
 	constraint fk_grupo_formulario_elemento_decorator foreign key
 	(
 		id_decorator
@@ -810,7 +810,7 @@ alter table basico_formulario_elemento.assoccl_decorator add
 		id
 	);
 
-alter table dbo.formularios_formularios_elementos_formularios_elementos_validators add 
+alter table basico_form_form_elemento.assoccl_validator add 
 	constraint fk_formularios_formularios_elementos_formularios_elementos_validators_formularios_formularios_elementos foreign key 
 	(
 		id_formularios_formularios_elementos
@@ -885,7 +885,7 @@ alter table basico_form_form_elemento.assoccl_evento add
 	
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
-alter table dbo.grupo_formulario_elemento add
+alter table basico_form_form_elemento.assoc_grupo add
     constraint ck_grupo_formulario_elemento_constante_textual_label check
     (constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
 

@@ -66,7 +66,7 @@ with (
 );
 alter table ajuda owner to rochedo_user;
 
-create table output (
+create table basico.output (
 	id serial not null ,
 	id_categoria int not null ,
 	nome character varying (100) not null ,
@@ -76,7 +76,7 @@ create table output (
 with (
   oids = false
 );
-alter table output owner to rochedo_user;
+alter table basico.output owner to rochedo_user;
 
 create table template (
 	id serial not null ,
@@ -94,7 +94,7 @@ with (
 );
 alter table template owner to rochedo_user;
 
-create table modulo_formulario (
+create table basico_formulario.assoccl_modulo (
 	id serial not null ,
 	id_modulo int not null ,
 	id_formulario int not null ,
@@ -102,9 +102,9 @@ create table modulo_formulario (
 ) with (
   oids = false
 );
-alter table modulo_formulario owner to rochedo_user;
+alter table basico_formulario.assoccl_modulo owner to rochedo_user;
 
-create table modulo_perfil (
+create table basico_perfil.assoccl_modulo (
 	id serial not null ,
 	id_modulo int not null ,
 	id_perfil int not null ,
@@ -112,7 +112,7 @@ create table modulo_perfil (
 ) with (
   oids = false
 );
-alter table modulo_perfil owner to rochedo_user;
+alter table basico_perfil.assoccl_modulo owner to rochedo_user;
 
 create table template_formulario (
 	id serial not null ,
@@ -244,7 +244,7 @@ create table componente (
 );
 alter table componente owner to rochedo_user;
 
-create table grupo_formulario_elemento (
+create table basico_form_form_elemento.assoc_grupo (
 	id serial not null ,
 	id_decorator int null ,
 	nome character varying (100) not null ,
@@ -254,7 +254,7 @@ create table grupo_formulario_elemento (
 ) with (
   oids = false
 );
-alter table grupo_formulario_elemento owner to rochedo_user;
+alter table basico_form_form_elemento.assoc_grupo owner to rochedo_user;
 
 create table formularios_elementos_formularios_elementos_validators (
 	id serial not null ,
@@ -296,7 +296,7 @@ with (
 );
 alter table basico_formulario_elemento.assoccl_decorator owner to rochedo_user;
 
-create table formularios_formularios_elementos_formularios_elementos_validators (
+create table basico_form_form_elemento.assoccl_validator (
 	id serial not null ,
 	id_formularios_formularios_elementos int not null ,
 	id_formulario_elemento_validator int not null ,
@@ -308,7 +308,7 @@ create table formularios_formularios_elementos_formularios_elementos_validators 
 with (
   oids = false
 );
-alter table formularios_formularios_elementos_formularios_elementos_validators owner to rochedo_user;
+alter table basico_form_form_elemento.assoccl_validator owner to rochedo_user;
 
 create table basico_form_form_elemento.assoccl_filter (
 	id serial not null ,
@@ -373,13 +373,13 @@ alter table basico_formulario.decorator add constraint pk_decorator primary key 
 
 alter table ajuda add constraint pk_ajuda primary key (id);
 
-alter table output add constraint pk_output primary key (id);
+alter table basico.output add constraint pk_output primary key (id);
 
 alter table template add constraint pk_template primary key (id);
 
-alter table modulo_formulario add constraint pk_modulo_formulario primary key (id);
+alter table basico_formulario.assoccl_modulo add constraint pk_modulo_formulario primary key (id);
 
-alter table modulo_perfil add constraint pk_modulo_perfil primary key (id);
+alter table basico_perfil.assoccl_modulo add constraint pk_modulo_perfil primary key (id);
 
 alter table template_formulario add constraint pk_template_formulario primary key (id);
 
@@ -395,7 +395,7 @@ alter table basico_formulario.assoccl_elemento add constraint pk_formulario_form
 
 alter table componente add constraint pk_componente primary key (id);
 
-alter table grupo_formulario_elemento add constraint pk_grupo_formulario_elemento primary key (id);
+alter table basico_form_form_elemento.assoc_grupo add constraint pk_grupo_formulario_elemento primary key (id);
 
 alter table formularios_elementos_formularios_elementos_filters add constraint pk_formularios_elementos_formularios_elementos_filters primary key (id);
 
@@ -405,7 +405,7 @@ alter table basico_formulario_elemento.assoccl_decorator add constraint pk_formu
 
 alter table basico_form_form_elemento.assoccl_filter add constraint pk_formularios_formularios_elementos_formularios_elementos_filters primary key (id);
 
-alter table formularios_formularios_elementos_formularios_elementos_validators add constraint pk_formularios_formularios_elementos_formularios_elementos_validators primary key (id);
+alter table basico_form_form_elemento.assoccl_validator add constraint pk_formularios_formularios_elementos_formularios_elementos_validators primary key (id);
 
 alter table basico_form_form_elemento.assoccl_decorator add constraint pk_formularios_formularios_elementos_decorators primary key (id);
 
@@ -449,7 +449,7 @@ alter table formularios_elementos_formularios_elementos_filters
 alter table formularios_elementos_decorators
     alter column datahora_criacao set default (current_timestamp);
 
-alter table formularios_formularios_elementos_formularios_elementos_validators
+alter table basico_form_form_elemento.assoccl_validator
     alter column datahora_criacao set default (current_timestamp);
     
 alter table formularios_formularios_elementos_formularios_elementos_filters
@@ -474,7 +474,7 @@ create index ix_ajuda_nome
   on ajuda using btree (nome asc nulls last);
 
 create index ix_output_nome
-  on output using btree (nome asc nulls last);
+  on basico.output using btree (nome asc nulls last);
 
 create index ix_template_nome
   on template using btree (nome asc nulls last);
@@ -501,7 +501,7 @@ create unique index ix_componente_nome
   on componente using btree (nome);
 
 create unique index ix_grupo_formulario_elemento_nome
-  on grupo_formulario_elemento using btree (nome);
+  on basico_form_form_elemento.assoc_grupo using btree (nome);
 
 create unique index ix_evento_elemento_nome_evento
   on basico.evento using btree (nome);
@@ -520,16 +520,16 @@ alter table basico_formulario.decorator
 alter table ajuda 
   add constraint ix_ajuda_categoria_nome unique (id_categoria, nome);
 	
-alter table output
+alter table basico.output
   add constraint ix_output_categoria_nome unique (id_categoria, nome);
 
 alter table template
   add constraint ix_template_categoria_nome unique (id_categoria, nome);
 
-alter table modulo_formulario
+alter table basico_formulario.assoccl_modulo
   add constraint ix_modulo_formulario_modulo_formulario unique (id_modulo, id_formulario);
 
-alter table modulo_perfil
+alter table basico_perfil.assoccl_modulo
   add constraint ix_modulo_perfil_modulo_perfil unique (id_modulo, id_perfil);
 
 alter table template_formulario
@@ -562,7 +562,7 @@ alter table formularios_elementos_formularios_elementos_filters
 alter table formularios_elementos_decorators
   add constraint ix_formularios_elementos_decorators_formulario_elemento_decorator unique (id_formulario_elemento, id_decorator);
 
-alter table formularios_formularios_elementos_formularios_elementos_validators
+alter table basico_form_form_elemento.assoccl_validator
   add constraint ix_formularios_formularios_elementos_formularios_elementos_validators_formularios_formularios_elementos_formulario_elemento_validator unique (id_formularios_formularios_elementos, id_formulario_elemento_validator);
 
 alter table formularios_formularios_elementos_formularios_elementos_filters
@@ -588,20 +588,20 @@ alter table basico_formulario.decorator
 alter table ajuda
   add constraint fk_ajuda_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
-alter table output
+alter table basico.output
   add constraint fk_output_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
 alter table template
   add constraint fk_template_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
   add constraint fk_template_output foreign key (id_output) references output (id) on update no action on delete no action;
 
-alter table modulo_formulario
+alter table basico_formulario.assoccl_modulo
   add constraint fk_modulo_formulario_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action,
   add constraint fk_modulo_formulario_formulario foreign key (id_formulario) references basico.formulario (id) on update no action on delete no action;
 
-alter table modulo_perfil 
+alter table basico_perfil.assoccl_modulo 
   add constraint fk_modulo_perfil_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action, 
-  add constraint fk_modulo_perfil_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action;
+  add constraint fk_modulo_perfil_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action;
 
 alter table template_formulario
   add constraint fk_template_formulario_formulario foreign key (id_formulario) references basico.formulario (id) on update no action on delete no action,
@@ -611,7 +611,7 @@ alter table formulario_elemento
   add constraint fk_formulario_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_componente foreign key (id_componente) references componente (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
+  add constraint fk_formulario_elemento_mascara foreign key (id_mascara) references basico.mascara (id) on update no action on delete no action;
 
 alter table formulario_elemento_validator
   add constraint fk_formulario_elemento_validator_categoria foreign key	(id_categoria) references categoria (id) on update no action on delete no action;
@@ -628,14 +628,14 @@ alter table formulario
 alter table formularios_formularios_elementos
   add constraint fk_formularios_formularios_elementos_formulario foreign key (id_formulario) references basico.formulario (id) on update no action on delete no action,
   add constraint fk_formularios_formularios_elementos_formulario_elemento foreign key (id_formulario_elemento) references basico_formulario.elemento (id) on update no action on delete no action,
-  add constraint fk_formularios_formularios_elementos_grupo_formulario_elemento foreign key (id_grupo_formulario_elemento) references grupo_formulario_elemento (id) on update no action on delete no action,
-  add constraint fk_formularios_formularios_elementos_mascara foreign key (id_mascara) references mascara (id) on update no action on delete no action;
+  add constraint fk_formularios_formularios_elementos_grupo_formulario_elemento foreign key (id_grupo_formulario_elemento) references basico_form_form_elemento.assoc_grupo (id) on update no action on delete no action,
+  add constraint fk_formularios_formularios_elementos_mascara foreign key (id_mascara) references basico.mascara (id) on update no action on delete no action;
   
 alter table componente
   add constraint fk_componente_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
   add constraint fk_componente_template foreign key (id_template) references template (id) on update no action on delete no action;
 
-alter table grupo_formulario_elemento
+alter table basico_form_form_elemento.assoc_grupo
   add constraint fk_grupo_formulario_elemento_decorator foreign key (id_decorator) references basico_formulario.decorator (id) on update no action on delete no action;
 
 alter table formularios_elementos_formularios_elementos_validators
@@ -650,7 +650,7 @@ alter table formularios_elementos_decorators
   add constraint fk_forms_elems_decorats_form_elem foreign key (id_formulario_elemento) references basico_formulario.elemento (id) on update no action on delete no action,
   add constraint fk_forms_elems_decorats_form_elem_filt foreign key (id_decorator) references basico_formulario.decorator (id) on update no action on delete no action;
 
-alter table formularios_formularios_elementos_formularios_elementos_validators
+alter table basico_form_form_elemento.assoccl_validator
   add constraint fk_forms_forms_elems_forms_elems_valids_forms_forms_elems foreign key (id_formularios_formularios_elementos) references basico_formulario.assoccl_elemento (id) on update no action on delete no action,
   add constraint fk_forms_forms_elems_forms_elems_valids_form_elem_valid foreign key (id_formulario_elemento_validator) references formulario_elemento_validator (id) on update no action on delete no action;
 
@@ -674,7 +674,7 @@ alter table formularios_formularios_elementos_eventos_elementos
 
  /* CRIACAO DOS CHECK CONSTRAINTS */
   
-alter table grupo_formulario_elemento add
+alter table basico_form_form_elemento.assoc_grupo add
     constraint ck_grupo_formulario_elemento_constante_textual_label check
     (constante_textual_label is null or (fn_CheckConstanteTextualExists(constante_textual_label) is not null));
 

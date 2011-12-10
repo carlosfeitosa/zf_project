@@ -10,5 +10,5 @@
 */
 
 drop table if exists rascunho;
-drop table if exists grupo_rascunho;
+drop table if exists basico_formulario_rascunho.assocag_grupo;
 drop table if exists sequencia_formulario;

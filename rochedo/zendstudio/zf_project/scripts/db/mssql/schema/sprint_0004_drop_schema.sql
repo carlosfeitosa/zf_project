@@ -18,9 +18,9 @@
 */
 
 
-if object_id('formularios_formularios_elementos_formularios_elementos_validators') is not null
+if object_id('basico_form_form_elemento.assoccl_validator') is not null
 begin
-drop table formularios_formularios_elementos_formularios_elementos_validators;
+drop table basico_form_form_elemento.assoccl_validator;
 end
 ;
 
@@ -109,15 +109,15 @@ drop table template;
 end
 ;
 
-if object_id('modulo_formulario') is not null
+if object_id('basico_formulario.assoccl_modulo') is not null
 begin
-drop table modulo_formulario;
+drop table basico_formulario.assoccl_modulo;
 end
 ;
 
-if object_id('modulo_perfil') is not null
+if object_id('basico_perfil.assoccl_modulo') is not null
 begin
-drop table modulo_perfil;
+drop table basico_perfil.assoccl_modulo;
 end
 ;
 
@@ -127,9 +127,9 @@ drop table basico.formulario;
 end
 ;
 
-if object_id('grupo_formulario_elemento') is not null
+if object_id('basico_form_form_elemento.assoc_grupo') is not null
 begin
-drop table grupo_formulario_elemento;
+drop table basico_form_form_elemento.assoc_grupo;
 end
 ;
 
@@ -145,8 +145,8 @@ drop table ajuda;
 end
 ;
 
-if object_id('output') is not null
+if object_id('basico.output') is not null
 begin
-drop table output;
+drop table basico.output;
 end
 ;

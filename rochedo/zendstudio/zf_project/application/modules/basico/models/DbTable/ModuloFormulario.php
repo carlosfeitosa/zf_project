@@ -10,7 +10,7 @@ class Basico_Model_DbTable_ModuloFormulario extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'modulo_formulario';
+    protected $_name = 'basico_formulario.assoccl_modulo';
     protected $_referenceMap    = array(
         'Modulo' => array(
             'columns'           => array('modulo'),

@@ -17,7 +17,7 @@ SELECT c.id AS id_categoria, 'TEMPLATE_PASSWORD_STRENGTH_CHECKER' AS nome, 'Temp
        '/templates/3rd_party/password_strength_checker/passwordStrengthChecker.css' AS stylesheet_full_filename,
        '/templates/3rd_party/password_strength_checker/passwordStrengthChecker.js' AS javascript_full_filename,
        (SELECT o.id
-        FROM output o
+        FROM basico.output o
         LEFT JOIN categoria c ON (o.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -31,7 +31,7 @@ AND c.nome = 'FORMULARIO_TEMPLATE';
 INSERT INTO basico.template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome, 'Template DOJO.' AS descricao,
        (SELECT o.id
-        FROM output o
+        FROM basico.output o
         LEFT JOIN categoria c ON (o.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -45,7 +45,7 @@ AND c.nome = 'FORMULARIO_TEMPLATE';
 INSERT INTO basico.template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_HTML' AS nome, 'Template HTML.' AS descricao,
        (SELECT o.id
-        FROM output o
+        FROM basico.output o
         LEFT JOIN categoria c ON (o.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
@@ -59,7 +59,7 @@ AND c.nome = 'FORMULARIO_TEMPLATE';
 INSERT INTO basico.template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_AJAX' AS nome, 'Template AJAX.' AS descricao,
        (SELECT o.id
-        FROM output o
+        FROM basico.output o
         LEFT JOIN categoria c ON (o.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'

@@ -15,9 +15,9 @@ begin
 end
 ;
 
-if object_id('grupo_rascunho') is not null
+if object_id('basico_formulario_rascunho.assocag_grupo') is not null
 begin
-  drop table grupo_rascunho
+  drop table basico_formulario_rascunho.assocag_grupo
 end
 ;
 

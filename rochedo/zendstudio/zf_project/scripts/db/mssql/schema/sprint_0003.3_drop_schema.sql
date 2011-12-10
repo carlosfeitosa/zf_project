@@ -15,8 +15,8 @@ begin
 end
 ;
 
-if object_id('municipio') is not null
+if object_id('basico_localizacao.municipio') is not null
 begin
-  drop table municipio
+  drop table basico_localizacao.municipio
 end
 ;

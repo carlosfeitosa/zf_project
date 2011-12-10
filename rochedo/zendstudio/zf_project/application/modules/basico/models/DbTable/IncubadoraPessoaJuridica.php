@@ -11,6 +11,6 @@ class Basico_Model_DbTable_IncubadoraPessoaJuridica extends Zend_Db_Table_Abstra
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'incubadora_pessoa_juridica';
+    protected $_name = 'basico_pessoa_juridica.assoccl_incubadora';
 }
 ?>

@@ -22,7 +22,7 @@ create table dbo.documento_identificacao (
 
 ) on [primary];
 
-create table dbo.mascara (
+create table basico.mascara (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
@@ -62,7 +62,7 @@ create table basico_localizacao.estado (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.pais (
+create table basico_localizacao.pais (
 	id int identity (1, 1) not null ,
 	constante_textual_nome varchar (200) collate latin1_general_ci_ai not null ,
 	sigla varchar (50) collate latin1_general_ci_ai not null ,
@@ -93,7 +93,7 @@ create table basico_localizacao.endereco (
 
 alter table dbo.documento_identificacao with nocheck add constraint pk_documento_identificacao primary key clustered (id) on [primary];
 
-alter table dbo.mascara with nocheck add constraint pk_mascara primary key clustered (id) on [primary];
+alter table basico.mascara with nocheck add constraint pk_mascara primary key clustered (id) on [primary];
 
 alter table dbo.dados_biometricos with nocheck add constraint pk_dados_biometricos primary key clustered (id) on [primary];
 
@@ -101,13 +101,13 @@ alter table dbo.pessoa_juridica with nocheck add constraint pk_pessoa_juridica p
 
 alter table basico_localizacao.estado with nocheck add constraint pk_estado primary key clustered (id) on [primary];
 
-alter table dbo.pais with nocheck add constraint pk_pais primary key clustered (id) on [primary];
+alter table basico_localizacao.pais with nocheck add constraint pk_pais primary key clustered (id) on [primary];
 
 /* CRIACAO DOS INDICES */
 
 create unique index ix_documento_identificacao_identificador on dbo.documento_identificacao (identificador) on [primary];
   
-create unique index ix_mascara_nome on dbo.mascara (nome) on [primary];
+create unique index ix_mascara_nome on basico.mascara (nome) on [primary];
   
 create unique index ix_pessoa_juridica_nome on dbo.pessoa_juridica (nome) on [primary];
   
@@ -117,9 +117,9 @@ create unique index ix_estado_nome on basico_localizacao.estado (nome) on [prima
   
 create unique index ix_estado_sigla on basico_localizacao.estado (sigla) on [primary];
   
-create unique index ix_pais_constante_textual_nome on dbo.pais (constante_textual_nome) on [primary];
+create unique index ix_pais_constante_textual_nome on basico_localizacao.pais (constante_textual_nome) on [primary];
   
-create unique index ix_pais_sigla on dbo.pais (sigla) on [primary];
+create unique index ix_pais_sigla on basico_localizacao.pais (sigla) on [primary];
   
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
@@ -132,7 +132,7 @@ alter table dbo.documento_identificacao add
         id_pessoa_juridica_orgao_expedidor
     ) on [primary];
   
-alter table dbo.mascara add 
+alter table basico.mascara add 
     constraint un_mascara_nome_mascara unique nonclustered
     (
         nome, 
@@ -152,13 +152,13 @@ alter table basico_localizacao.estado add
         id_pais
     ) on [primary];
   
-alter table dbo.pais add 
+alter table basico_localizacao.pais add 
     constraint un_pais_constante_textual_nome unique nonclustered 
     (
         constante_textual_nome
     ) on [primary];
   
-alter table dbo.pais add
+alter table basico_localizacao.pais add
     constraint un_pais_sigla unique nonclustered 
     (
         sigla
@@ -180,7 +180,7 @@ alter table dbo.documento_identificacao add
         id
     );
 
-alter table dbo.mascara add 
+alter table basico.mascara add 
     constraint fk_mascara_categoria foreign key 
     (
         id_categoria
@@ -192,7 +192,7 @@ alter table dbo.dados_biometricos add
     constraint fk_dados_biometricos_pessoa foreign key 
     (
         id_pessoa
-    ) references dbo.pessoa (
+    ) references basico.pessoa (
         id
     );
   
@@ -200,7 +200,7 @@ alter table basico_localizacao.estado add
     constraint fk_estado_pais foreign key 
     (
         id_pais
-    ) references dbo.pais (
+    ) references basico_localizacao.pais (
         id
     );
 
@@ -234,7 +234,7 @@ alter table basico_localizacao.endereco add
     constraint fk_endereco_pais foreign key 
     (
         id_pais
-    ) references dbo.pais (
+    ) references basico_localizacao.pais (
         id
     );
   
@@ -244,6 +244,6 @@ alter table dbo.dados_biometricos add
     constraint ck_dados_biometricos_sexo check
     ((sexo = 'M') or (sexo = 'F'));
 
-alter table dbo.pais add
+alter table basico_localizacao.pais add
     constraint ck_pais_constante_textual_nome check
     ((constante_textual_nome is null) or (dbo.fn_CheckConstanteTextualExists(constante_textual_nome) is not null));

@@ -21,7 +21,7 @@ create table dbo.website (
 
 ) on [primary];
 
-create table dbo.municipio (
+create table basico_localizacao.municipio (
 	id int identity (1, 1) not null ,
 	id_estado int not null ,
 	id_categoria int not null ,
@@ -35,7 +35,7 @@ create table dbo.municipio (
 
 alter table dbo.website with nocheck add constraint pk_website primary key clustered (id) on [primary];
 
-alter table dbo.municipio with nocheck add constraint pk_municipio primary key clustered (id) on [primary];
+alter table basico_localizacao.municipio with nocheck add constraint pk_municipio primary key clustered (id) on [primary];
 
 /* CRIACAO DOS VALORES DEFAULT */
 
@@ -59,7 +59,7 @@ alter table dbo.website add
         id
     );
 
-alter table dbo.municipio add 
+alter table basico_localizacao.municipio add 
     constraint fk_municipio_estado foreign key 
     (
         id_estado
@@ -67,7 +67,7 @@ alter table dbo.municipio add
         id
     );
 
-alter table dbo.municipio add 
+alter table basico_localizacao.municipio add 
     constraint fk_municipio_categoria foreign key 
     (
         id_categoria

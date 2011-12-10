@@ -31,7 +31,7 @@ create table dbo.categoria (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.modulo (
+create table basico.modulo (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_modulo_pai int null ,
@@ -70,7 +70,7 @@ create table basico_localizacao.email (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.log (
+create table basico.log (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_perfil_pessoa int not null ,
@@ -78,7 +78,7 @@ create table dbo.log (
 	xml varchar (7000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.login (
+create table basico.login (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	login varchar (100) collate latin1_general_ci_ai not null ,
@@ -102,7 +102,7 @@ create table dbo.login (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.perfil (
+create table basico.perfil (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -114,7 +114,7 @@ create table dbo.perfil (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.pessoa (
+create table basico.pessoa (
 	id int identity (1, 1) not null ,
 	id_perfil_padrao int null ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
@@ -136,7 +136,7 @@ create table dbo.tipo_categoria (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.mensagem ( 
+create table basico.mensagem ( 
 	id int identity not null,
 	remetente varchar (200) collate latin1_general_ci_ai not null , 
 	destinatarios varchar (3000) collate latin1_general_ci_ai not null ,
@@ -148,7 +148,7 @@ create table dbo.mensagem (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.mensagem_email ( 
+create table basico_mensagem.assoc_email ( 
 	id int identity not null,
 	destinatarios_copia_carbonada varchar (2000) collate latin1_general_ci_ai not null ,
 	destinatarios_copia_carbonada_cega varchar (2000) collate latin1_general_ci_ai not null ,
@@ -213,27 +213,27 @@ create table dbo.dicionario_expressao (
 
 alter table dbo.categoria with nocheck add constraint pk_categoria primary key clustered (id) on [primary];
 
-alter table dbo.modulo with nocheck add constraint pk_modulo primary key clustered (id) on [primary];
+alter table basico.modulo with nocheck add constraint pk_modulo primary key clustered (id) on [primary];
 
 alter table dbo.dados_pessoais with nocheck add constraint pk_dados_pessoais primary key clustered (id) on [primary];
 
 alter table basico_localizacao.email with nocheck add constraint pk_email primary key clustered (id)  on [primary];
 
-alter table dbo.log with nocheck add constraint pk_log primary key clustered (id) on [primary];
+alter table basico.log with nocheck add constraint pk_log primary key clustered (id) on [primary];
 
-alter table dbo.login with nocheck add constraint pk_login primary key clustered (id) on [primary]; 
+alter table basico.login with nocheck add constraint pk_login primary key clustered (id) on [primary]; 
 
-alter table dbo.perfil with nocheck add constraint pk_perfil primary key clustered (id) on [primary];
+alter table basico.perfil with nocheck add constraint pk_perfil primary key clustered (id) on [primary];
 
-alter table dbo.pessoa with nocheck add constraint pk_pessoa primary key clustered (id) on [primary];
+alter table basico.pessoa with nocheck add constraint pk_pessoa primary key clustered (id) on [primary];
 
 alter table dbo.pessoas_perfis with nocheck add constraint pk_pessoas_perfis primary key clustered (id) on [primary];
 
 alter table dbo.tipo_categoria with nocheck add constraint pk_tipo_categoria primary key clustered (id) on [primary];
 
-alter table dbo.mensagem with nocheck add constraint pk_mensagem primary key clustered (id)  on [primary];
+alter table basico.mensagem with nocheck add constraint pk_mensagem primary key clustered (id)  on [primary];
 
-alter table dbo.mensagem_email with nocheck add constraint pk_mensagem_email primary key clustered (id) on [primary];
+alter table basico_mensagem.assoc_email with nocheck add constraint pk_mensagem_email primary key clustered (id) on [primary];
 
 alter table dbo.anexo_mensagem with nocheck add constraint pk_anexo_mensagem primary key clustered (id) on [primary];
 
@@ -254,7 +254,7 @@ alter table dbo.categoria add
 	constraint df_categoria_nivel default (1) for nivel,
 	constraint df_categoria_ativo default (1) for ativo;
 
-alter table dbo.modulo add
+alter table basico.modulo add
 	constraint df_modulo_instalado default 0 for instalado,
 	constraint df_modulo_ativo default 0 for ativo;
 
@@ -264,7 +264,7 @@ alter table basico_localizacao.email add
 	constraint df_email_datahora_cadastro default (getDate()) for datahora_cadastro,
 	constraint df_email_datahora_ultima_atualizacao default (getDate()) for datahora_ultima_atualizacao;
 
-alter table dbo.perfil add 
+alter table basico.perfil add 
 	constraint df_perfil_ativo default (1) for ativo ,
 	constraint df_perfil_datahora_cadastro default (getDate()) for datahora_cadastro ,
 	constraint df_perfil_datahora_ultima_atualizacao default (getDate()) for datahora_ultima_atualizacao;
@@ -273,7 +273,7 @@ alter table dbo.pessoas_perfis add
     constraint df_pessoas_perfis_datahora_cadastro default (getDate()) for datahora_cadastro ,
     constraint df_pessoas_perfis_datahora_ultima_atualizacao default (getDate()) for datahora_ultima_atualizacao;
 
-alter table dbo.login add 
+alter table basico.login add 
 	constraint df_login_ativo default (0) for ativo,
 	constraint df_login_tentativas_falhas default (0) for tentativas_falhas,
 	constraint df_login_travado default (0) for travado,
@@ -294,17 +294,17 @@ create unique index ix_email_email on basico_localizacao.email (email) on [prima
 
 create index ix_categoria_nome on dbo.categoria (nome) on [primary];
 
-create index ix_modulo_nome on dbo.modulo (nome) on [primary];
+create index ix_modulo_nome on basico.modulo (nome) on [primary];
 
 create index ix_dados_pessoais_nome on dbo.dados_pessoais (nome) on [primary];
 
-create index ix_mensagem_assunto on dbo.mensagem (assunto) on [primary];
+create index ix_mensagem_assunto on basico.mensagem (assunto) on [primary];
 
-create unique index ix_login_login on dbo.login (login) on [primary];
+create unique index ix_login_login on basico.login (login) on [primary];
 
 create unique index ix_tipo_categoria_nome on dbo.tipo_categoria (nome) on [primary];
 
-create index ix_mensagem_email_responder_para on dbo.mensagem_email (responder_para) on [primary];
+create index ix_mensagem_email_responder_para on basico_mensagem.assoc_email (responder_para) on [primary];
 
 create unique index ix_categoria_chave_estrangeira_id_categoria on dbo.categoria_chave_estrangeira (id_categoria) on [primary];
 
@@ -322,14 +322,14 @@ alter table basico_localizacao.email add
 		id_categoria, 
 		email) on [primary];
 
-alter table dbo.modulo add
+alter table basico.modulo add
 	constraint ix_modulo_categoria_nome unique nonclustered
 	(
 		id_categoria,
 		nome
 	) on [primary];
 
-alter table dbo.perfil add
+alter table basico.perfil add
     constraint ix_perfil_categoria_nome unique nonclustered
     (
         id_categoria,
@@ -351,11 +351,11 @@ alter table dbo.dicionario_expressao add constraint ix_dicionario_expressao uniq
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table dbo.pessoa add
+alter table basico.pessoa add
 	constraint fk_pessoa_id_perfil_padrao foreign key 
 	(
 		id_perfil_padrao
-	) references dbo.perfil (
+	) references basico.perfil (
 		id
 	);
 
@@ -373,7 +373,7 @@ alter table dbo.categoria add
 		id
 	);
 
-alter table dbo.modulo add
+alter table basico.modulo add
 	constraint fk_modulo_categoria foreign key
 	(
 		id_categoria
@@ -383,7 +383,7 @@ alter table dbo.modulo add
 	constraint fk_modulo_id_modulo_pai foreign key
 	(
 		id_modulo_pai
-	) references dbo.modulo (
+	) references basico.modulo (
 		id
 	);
 	
@@ -397,7 +397,7 @@ alter table dbo.categoria_chave_estrangeira add
     constraint fk_categoria_chave_estrangeira_modulo foreign key 
     (
     	id_modulo
-    ) references dbo.modulo (
+    ) references basico.modulo (
     	id
     );
 
@@ -405,7 +405,7 @@ alter table dbo.dados_pessoais add
 	constraint fk_dados_pessoais_pessoa foreign key 
 	(
 		id_pessoa
-	) references dbo.pessoa (
+	) references basico.pessoa (
 		id
 	);
 
@@ -417,7 +417,7 @@ alter table basico_localizacao.email add
 		id
 	);
 
-alter table dbo.log add 
+alter table basico.log add 
 	constraint fk_log_categoria foreign key 
 	(
 		id_categoria
@@ -431,15 +431,15 @@ alter table dbo.log add
 		id
 	);
 
-alter table dbo.login add 
+alter table basico.login add 
 	constraint fk_login_pessoa foreign key 
 	(
 		id_pessoa
-	) references dbo.pessoa (
+	) references basico.pessoa (
 		id
 	);
 
-alter table dbo.perfil add 
+alter table basico.perfil add 
 	constraint fk_perfil_categoria foreign key 
 	(
 		id_categoria
@@ -451,17 +451,17 @@ alter table dbo.pessoas_perfis add
 	constraint fk_pessoas_perfis_perfil foreign key 
 	(
 		id_perfil
-	) references dbo.perfil (
+	) references basico.perfil (
 		id
 	),
 	constraint fk_pessoas_perfis_pessoa foreign key 
 	(
 		id_pessoa
-	) references dbo.pessoa (
+	) references basico.pessoa (
 		id
 	);
 
-alter table dbo.mensagem with nocheck add 
+alter table basico.mensagem with nocheck add 
     constraint fk_mensagens_categorias foreign key
     (
         id_categoria
@@ -469,7 +469,7 @@ alter table dbo.mensagem with nocheck add
         id
 	);
 
-alter table dbo.mensagem_email with nocheck add 
+alter table basico_mensagem.assoc_email with nocheck add 
     constraint fk_mensagem_email_mensagem foreign key
     (
         id_mensagem
@@ -480,7 +480,7 @@ alter table dbo.mensagem_email with nocheck add
 alter table dbo.anexo_mensagem add 
     constraint fk_anexo_mensagem_mensagem foreign key (
         id_mensagem
-    ) references dbo.mensagem (
+    ) references basico.mensagem (
         id
 	);
 
@@ -494,7 +494,7 @@ alter table dbo.pessoas_perfis_mensagens_categorias add
 alter table dbo.pessoas_perfis_mensagens_categorias add
     constraint fk_pessoas_perfis_mensagens_categorias_mensagem foreign key (
         id_mensagem
-    ) references dbo.mensagem (
+    ) references basico.mensagem (
         id
     );
 
@@ -529,6 +529,6 @@ alter table dbo.dicionario_expressao add
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
-alter table dbo.perfil add
+alter table basico.perfil add
     constraint ck_perfil_constante_textual_nome check
     ((constante_textual is null) or (dbo.fn_CheckConstanteTextualExists(constante_textual) is not null));

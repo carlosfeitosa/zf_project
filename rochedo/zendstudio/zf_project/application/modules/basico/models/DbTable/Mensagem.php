@@ -10,7 +10,7 @@ class Basico_Model_DbTable_Mensagem extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'mensagem';
+    protected $_name = 'basico.mensagem';
     
 }
 ?>

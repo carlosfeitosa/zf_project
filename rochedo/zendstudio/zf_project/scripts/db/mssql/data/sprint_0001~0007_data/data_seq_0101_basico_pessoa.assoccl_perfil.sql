@@ -10,9 +10,9 @@
 
 INSERT INTO basico_pessoa.assoccl_perfil (id_pessoa, id_perfil, rowinfo)
 SELECT (SELECT id
-		FROM pessoa
+		FROM basico.pessoa
 		WHERE rowinfo = 'SYSTEM_STARTUP_MASTER') id_pessoa, perf.id AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
-FROM perfil perf
+FROM basico.perfil perf
 LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
 LEFT JOIN basico.tipo_categoria tipo_cat ON (cat.id_tipo_categoria = tipo_cat.id)
 WHERE tipo_cat.nome = 'SISTEMA'

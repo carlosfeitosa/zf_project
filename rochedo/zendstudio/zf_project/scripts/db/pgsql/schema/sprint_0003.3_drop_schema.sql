@@ -11,4 +11,4 @@
 
 drop table if exists website;
 
-drop table if exists municipio;
+drop table if exists basico_localizacao.municipio;

@@ -13,5 +13,5 @@
 INSERT INTO dados_pessoas_perfis (id_pessoa_perfil, assinatura_mensagem_email, rowinfo)
 SELECT pp.id, 'Equipe ROCHEDO project' AS assinatura_mensagem_email, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico_pessoa.assoccl_perfil pp
-LEFT JOIN pessoa p ON (p.id = pp.id_pessoa)
+LEFT JOIN basico.pessoa p ON (p.id = pp.id_pessoa)
 WHERE p.rowinfo = 'SYSTEM_STARTUP_MASTER';

@@ -24,8 +24,8 @@ begin
 end
 ;
 
-if object_id('metodo_validacao') is not null
+if object_id('basico.metodo_validacao') is not null
 begin
-  drop table metodo_validacao
+  drop table basico.metodo_validacao
 end
 ;

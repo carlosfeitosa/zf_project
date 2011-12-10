@@ -27,7 +27,7 @@ with (
 );
 alter table documento_identificacao owner to rochedo_user;
 
-create table mascara (
+create table basico.mascara (
 	id serial not null ,
 	id_categoria integer not null ,
 	nome character varying (200) not null ,
@@ -38,7 +38,7 @@ create table mascara (
 with (
   oids = false
 );
-alter table mascara owner to rochedo_user;
+alter table basico.mascara owner to rochedo_user;
 
 create table dados_biometricos (
 	id serial not null ,
@@ -83,7 +83,7 @@ with (
 );
 alter table basico_localizacao.estado owner to rochedo_user;
 
-create table pais (
+create table basico_localizacao.pais (
 	id serial not null ,
 	constante_textual_nome character varying (200) not null ,
 	sigla character varying (50) not null ,
@@ -94,7 +94,7 @@ create table pais (
 with (
   oids = false
 );
-alter table pais owner to rochedo_user;
+alter table basico_localizacao.pais owner to rochedo_user;
 
 create table basico_localizacao.endereco (
 	id serial not null ,
@@ -116,13 +116,13 @@ create table basico_localizacao.endereco (
 with (
   oids = false
 );
-alter table pais owner to rochedo_user;
+alter table basico_localizacao.pais owner to rochedo_user;
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
 alter table documento_identificacao add constraint pk_documento_identificacao primary key (id);
 
-alter table mascara add constraint pk_mascara primary key (id);
+alter table basico.mascara add constraint pk_mascara primary key (id);
 
 alter table dados_biometricos add constraint pk_dados_biometricos primary key (id);
 
@@ -130,7 +130,7 @@ alter table pessoa_juridica add constraint pk_pessoa_juridica primary key (id);
 
 alter table basico_localizacao.estado add constraint pk_estado primary key (id);
 
-alter table pais add constraint pk_pais primary key (id);
+alter table basico_localizacao.pais add constraint pk_pais primary key (id);
 
 /* CRIACAO DOS INDICES */
 
@@ -138,7 +138,7 @@ create index ix_documento_identificacao_identificador
   on documento_identificacao using btree (identificador asc nulls last);
   
 create index ix_mascara_nome
-  on mascara using btree (nome asc nulls last);
+  on basico.mascara using btree (nome asc nulls last);
   
 create index ix_pessoa_juridica_nome
   on pessoa_juridica using btree (nome asc nulls last);
@@ -153,17 +153,17 @@ create index ix_estado_sigla
   on basico_localizacao.estado using btree (sigla asc nulls last);
   
 create index ix_pais_constante_textual_nome
-  on pais using btree (constante_textual_nome asc nulls last);
+  on basico_localizacao.pais using btree (constante_textual_nome asc nulls last);
   
 create index ix_pais_sigla
-  on pais using btree (sigla asc nulls last);
+  on basico_localizacao.pais using btree (sigla asc nulls last);
   
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
 alter table documento_identificacao
   add constraint un_documento_identificao_identificador_categoria_proprietario_expedidor unique (identificador, id_categoria, id_generico_proprietario, id_pessoa_juridica_orgao_expedidor);
   
-alter table mascara
+alter table basico.mascara
   add constraint un_mascara_nome_mascara unique (nome, mascara);
   
 alter table pessoa_juridica
@@ -172,10 +172,10 @@ alter table pessoa_juridica
 alter table basico_localizacao.estado
   add constraint un_estado_nome_pais unique (nome, id_pais);
   
-alter table pais
+alter table basico_localizacao.pais
   add constraint un_pais_constante_textual_nome unique (constante_textual_nome);
   
-alter table pais
+alter table basico_localizacao.pais
   add constraint un_pais_sigla unique (sigla);
   
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
@@ -184,14 +184,14 @@ alter table documento_identificacao
   add constraint fk_documento_identificacao_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
   add constraint fk_documento_identificacao_pessoa_juridica foreign key (id_pessoa_juridica_orgao_expedidor) references pessoa_juridica (id) on update no action on delete no action;
 
-alter table mascara
+alter table basico.mascara
   add constraint fk_mascara_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
   
 alter table dados_biometricos
-  add constraint fk_dados_biometricos_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+  add constraint fk_dados_biometricos_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
   
 alter table basico_localizacao.estado
-  add constraint fk_estado_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
+  add constraint fk_estado_pais foreign key (id_pais) references basico_localizacao.pais (id) on update no action on delete no action;
 
 alter table basico_localizacao.estado
   add constraint fk_estado_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
@@ -200,7 +200,7 @@ alter table basico_localizacao.endereco
   add constraint fk_endereco_pessoa_perfil foreign key (id_pessoa_perfil_validador) references pessoas_perfis (id) on update no action on delete no action ,
   add constraint fk_endereco_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
   add constraint fk_endereco_estado foreign key (id_estado) references basico_localizacao.estado (id) on update no action on delete no action ,
-  add constraint fk_endereco_pais foreign key (id_pais) references pais (id) on update no action on delete no action;
+  add constraint fk_endereco_pais foreign key (id_pais) references basico_localizacao.pais (id) on update no action on delete no action;
   
 /* CRIACAO DOS CHECK CONSTRAINTS */
   
@@ -208,6 +208,6 @@ alter table dados_biometricos add
     constraint ck_dados_biometricos_sexo check
     ((sexo = 'M') or (sexo = 'F'));
 
-alter table pais add
+alter table basico_localizacao.pais add
     constraint ck_pais_constante_textual_nome check
     ((constante_textual_nome is null) or (fn_CheckConstanteTextualExists(constante_textual_nome) is not null));

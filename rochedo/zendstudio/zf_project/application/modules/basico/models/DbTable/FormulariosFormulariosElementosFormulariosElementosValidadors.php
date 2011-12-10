@@ -11,6 +11,6 @@ class Basico_Model_DbTable_FormulariosFormulariosElementosFormulariosElementosVa
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'formularios_formularios_elementos_formularios_elementos_validators';
+    protected $_name = 'basico_form_form_elemento.assoccl_validator';
 }
 ?>

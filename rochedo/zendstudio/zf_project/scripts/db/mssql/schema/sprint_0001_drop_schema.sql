@@ -37,15 +37,15 @@ begin
 end
 ;
 
-if object_id('log') is not null
+if object_id('basico.log') is not null
 begin
-  drop table log
+  drop table basico.log
 end
 ;
 
-if object_id('login') is not null
+if object_id('basico.login') is not null
 begin
-  drop table login
+  drop table basico.login
 end
 ;
 
@@ -73,21 +73,21 @@ begin
 end
 ;
 
-if object_id('pessoa') is not null
+if object_id('basico.pessoa') is not null
 begin
-  drop table pessoa
+  drop table basico.pessoa
 end
 ;
 
-if object_id('perfil') is not null
+if object_id('basico.perfil') is not null
 begin
-  drop table perfil
+  drop table basico.perfil
 end
 ;
 
-if object_id('mensagem_email') is not null
+if object_id('basico_mensagem.assoc_email') is not null
 begin
-  drop table mensagem_email
+  drop table basico_mensagem.assoc_email
 end
 ;
 
@@ -97,15 +97,15 @@ begin
 end
 ;
 
-if object_id('mensagem') is not null
+if object_id('basico.mensagem') is not null
 begin
-  drop table mensagem
+  drop table basico.mensagem
 end
 ;
 
-if object_id('modulo') is not null
+if object_id('basico.modulo') is not null
 begin
-drop table modulo;
+drop table basico.modulo;
 end
 ;
 

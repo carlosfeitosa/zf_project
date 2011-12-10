@@ -35,7 +35,7 @@ with (
 );
 alter table categoria owner to rochedo_user;
 
-create table modulo (
+create table basico.modulo (
 	id serial not null ,
 	id_categoria int not null ,
 	id_modulo_pai int null ,
@@ -51,7 +51,7 @@ create table modulo (
 ) with (
   oids = false
 );
-alter table modulo owner to rochedo_user;
+alter table basico.modulo owner to rochedo_user;
 
 create table dados_pessoais (
 	id serial not null ,
@@ -86,7 +86,7 @@ with (
 );
 alter table basico_localizacao.email owner to rochedo_user;
 
-create table log (
+create table basico.log (
 	id serial not null ,
 	id_categoria integer not null ,
 	id_perfil_pessoa integer not null ,
@@ -96,9 +96,9 @@ create table log (
 with (
   oids = false
 );
-alter table log owner to rochedo_user;
+alter table basico.log owner to rochedo_user;
 
-create table login (
+create table basico.login (
 	id serial not null ,
 	id_pessoa integer not null ,
 	login character varying (100) not null ,
@@ -124,9 +124,9 @@ create table login (
 with (
   oids = false
 );
-alter table login owner to rochedo_user;
+alter table basico.login owner to rochedo_user;
 
-create table perfil (
+create table basico.perfil (
 	id serial not null ,
 	id_categoria integer not null ,
 	nome character varying (100) not null ,
@@ -140,7 +140,7 @@ create table perfil (
 with (
   oids = false
 );
-alter table perfil owner to rochedo_user;
+alter table basico.perfil owner to rochedo_user;
 
 create table pessoa (
 	id serial not null ,
@@ -176,7 +176,7 @@ with (
 );
 alter table tipo_categoria owner to rochedo_user;
 
-create table mensagem ( 
+create table basico.mensagem ( 
 	id serial not null ,
 	remetente character varying (200) not null ,
 	destinatarios character varying (3000) not null ,
@@ -190,9 +190,9 @@ create table mensagem (
 with (
   oids = false
 );
-alter table mensagem owner to rochedo_user;
+alter table basico.mensagem owner to rochedo_user;
 
-create table mensagem_email ( 
+create table basico_mensagem.assoc_email ( 
 	id serial not null ,
 	destinatarios_copia_carbonada character varying (2000) ,
 	destinatarios_copia_carbonada_cega character varying (2000) ,
@@ -203,7 +203,7 @@ create table mensagem_email (
 with (
   oids = false
 );
-alter table mensagem_email owner to rochedo_user;
+alter table basico_mensagem.assoc_email owner to rochedo_user;
 
 create table anexo_mensagem ( 
 	id serial not null ,
@@ -285,27 +285,27 @@ alter table dicionario_expressao owner to rochedo_user;
 
 alter table categoria add constraint pk_categoria primary key (id);
 
-alter table modulo add constraint pk_modulo primary key (id);
+alter table basico.modulo add constraint pk_modulo primary key (id);
 
 alter table dados_pessoais add constraint pk_dados_pessoais primary key (id);
 
 alter table basico_localizacao.email add constraint pk_email primary key (id);
 
-alter table log add constraint pk_log primary key (id);
+alter table basico.log add constraint pk_log primary key (id);
 
-alter table login add constraint pk_login primary key (id);
+alter table basico.login add constraint pk_login primary key (id);
 
-alter table perfil add constraint pk_perfil primary key (id);
+alter table basico.perfil add constraint pk_perfil primary key (id);
 
-alter table pessoa add constraint pk_pessoa primary key (id);
+alter table basico.pessoa add constraint pk_pessoa primary key (id);
 
 alter table pessoas_perfis add constraint pk_pessoas_perfis primary key (id);
 
 alter table tipo_categoria add constraint pk_tipo_categoria primary key (id);
 
-alter table mensagem add constraint pk_mensagem primary key (id);
+alter table basico.mensagem add constraint pk_mensagem primary key (id);
 
-alter table mensagem_email add constraint pk_mensagem_email primary key (id);
+alter table basico_mensagem.assoc_email add constraint pk_mensagem_email primary key (id);
 
 alter table anexo_mensagem add constraint pk_anexo_mensagem primary key (id);
 
@@ -326,7 +326,7 @@ alter table categoria
 	alter column nivel set default 1 ,
 	alter column ativo set default true;
 
-alter table modulo
+alter table basico.modulo
 	alter column instalado set default false,
 	alter column ativo set default false;
 
@@ -336,7 +336,7 @@ alter table basico_localizacao.email
     alter column datahora_cadastro set default (current_timestamp),
 	alter column datahora_ultima_atualizacao set default (current_timestamp);
 
-alter table perfil
+alter table basico.perfil
     alter column ativo set default true ,
     alter column datahora_cadastro set default (current_timestamp) ,
     alter column datahora_ultima_atualizacao set default (current_timestamp);
@@ -345,7 +345,7 @@ alter table pessoas_perfis
     alter column datahora_cadastro set default (current_timestamp) ,
     alter column datahora_ultima_atualizacao set default (current_timestamp);
     
-alter table login 
+alter table basico.login 
 	alter column ativo set default false ,
 	alter column tentativas_falhas set default 0 ,
 	alter column travado set default false ,
@@ -371,22 +371,22 @@ create index ix_categoria_nome
   on categoria using btree (nome asc nulls last);
 
 create index ix_modulo_nome
-  on modulo using btree (nome asc nulls last);
+  on basico.modulo using btree (nome asc nulls last);
 
 create index ix_dados_pessoais_nome
   on dados_pessoais using btree (nome asc nulls last);
 
 create index ix_mensagem_assunto
-  on mensagem using btree (assunto asc nulls last);
+  on basico.mensagem using btree (assunto asc nulls last);
 
 create unique index ix_login_login
-  on login using btree (login asc nulls last);
+  on basico.login using btree (login asc nulls last);
 
 create index ix_tipo_categoria_nome
   on tipo_categoria using btree (nome asc nulls last);
   
 create index ix_mensagem_email_responder_para 
-  on mensagem_email using btree (responder_para asc nulls last);
+  on basico_mensagem.assoc_email using btree (responder_para asc nulls last);
   
 create index ix_categoria_chave_estrangeira_id_categoria
   on categoria_chave_estrangeira using btree (id_categoria asc nulls last);
@@ -406,10 +406,10 @@ alter table basico_localizacao.email
 alter table categoria
   add constraint ix_categoria_tipo_categoria_nome unique (id_tipo_categoria, nome);
 
-alter table modulo
+alter table basico.modulo
   add constraint ix_modulo_categoria_nome unique (id_categoria, nome);
 
-alter table perfil
+alter table basico.perfil
   add constraint ix_perfil_categoria_nome unique (id_categoria, nome);
 
 alter table pessoas_perfis
@@ -427,55 +427,55 @@ alter table dicionario_expressao
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table pessoa
-  add constraint fk_pessoa_id_perfil_padrao foreign key (id_perfil_padrao) references perfil (id) on update no action on delete no action;
+alter table basico.pessoa
+  add constraint fk_pessoa_id_perfil_padrao foreign key (id_perfil_padrao) references basico.perfil (id) on update no action on delete no action;
 
 alter table categoria
   add constraint fk_categoria_categoria foreign key (id_categoria_pai) references categoria (id) on update no action on delete no action ,
   add constraint fk_categoria_tipo_categoria foreign key (id_tipo_categoria) references tipo_categoria (id) on update no action on delete no action;
 
-alter table modulo
+alter table basico.modulo
   add constraint fk_modulo_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
-  add constraint fk_modulo_id_modulo_pai foreign key (id_modulo_pai) references modulo (id) on update no action on delete no action;
+  add constraint fk_modulo_id_modulo_pai foreign key (id_modulo_pai) references basico.modulo (id) on update no action on delete no action;
   
 alter table categoria_chave_estrangeira
   add constraint fk_categoria_chave_estrangeira_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
-  add constraint fk_categoria_chave_estrangeira_modulo foreign key (id_modulo) references modulo (id) on update no action on delete no action;
+  add constraint fk_categoria_chave_estrangeira_modulo foreign key (id_modulo) references basico.modulo (id) on update no action on delete no action;
 
 alter table dados_pessoais
-  add constraint fk_dados_pessoais_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+  add constraint fk_dados_pessoais_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
 
 alter table basico_localizacao.email
   add constraint fk_email_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
-alter table log
+alter table basico.log
   add constraint fk_log_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
   add constraint fk_log_pessoas_perfis foreign key (id_perfil_pessoa) references pessoas_perfis (id) on update no action on delete no action;
 
-alter table login
-  add constraint fk_login_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+alter table basico.login
+  add constraint fk_login_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
 
-alter table perfil
+alter table basico.perfil
   add constraint fk_perfil_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
 alter table pessoas_perfis
-  add constraint fk_pessoas_perfis_perfil foreign key (id_perfil) references perfil (id) on update no action on delete no action ,
-  add constraint fk_pessoas_perfis_pessoa foreign key (id_pessoa) references pessoa (id) on update no action on delete no action;
+  add constraint fk_pessoas_perfis_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action ,
+  add constraint fk_pessoas_perfis_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
 
-alter table mensagem
+alter table basico.mensagem
   add constraint fk_id_mensagens_categorias foreign key (id_categoria) references categoria (id) on update no action on delete no action;
 
-alter table mensagem_email
-  add constraint fk_id_mensagem	foreign key (id_mensagem) references mensagem (id) on update no action on delete no action;
+alter table basico_mensagem.assoc_email
+  add constraint fk_id_mensagem	foreign key (id_mensagem) references basico.mensagem (id) on update no action on delete no action;
 
 alter table anexo_mensagem
-  add constraint fk_id_mensagem_anexo foreign key (id_mensagem) references mensagem (id) on update no action on delete no action;
+  add constraint fk_id_mensagem_anexo foreign key (id_mensagem) references basico.mensagem (id) on update no action on delete no action;
 
 alter table pessoas_perfis_mensagens_categorias
   add constraint fk_pessoa_perfil foreign key (id_pessoa_perfil) references pessoas_perfis (id) on update no action on delete no action;
 
 alter table pessoas_perfis_mensagens_categorias
-  add constraint fk_mensagem foreign key (id_mensagem) references mensagem (id) on update no action on delete no action;
+  add constraint fk_mensagem foreign key (id_mensagem) references basico.mensagem (id) on update no action on delete no action;
 
 alter table pessoas_perfis_mensagens_categorias
   add constraint fk_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
@@ -500,6 +500,6 @@ language 'sql';
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
-alter table perfil add
+alter table basico.perfil add
     constraint ck_perfil_constante_textual check
     ((constante_textual is null) or (fn_CheckConstanteTextualExists(constante_textual) is not null));

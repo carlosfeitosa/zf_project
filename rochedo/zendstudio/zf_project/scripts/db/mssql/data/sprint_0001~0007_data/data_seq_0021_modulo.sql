@@ -8,7 +8,7 @@
 * 
 */
 
-INSERT INTO modulo (id_categoria, nome, descricao, versao, path, instalado, ativo, xml_autoria, rowinfo)
+INSERT INTO basico.modulo (id_categoria, nome, descricao, versao, path, instalado, ativo, xml_autoria, rowinfo)
 SELECT c.id AS id_categoria, 'BASICO' AS nome,
 	   'Modulo basico. Necessario para funcionamento minimo do sistema.' AS descricao,
 	   '0.3' AS versao, 'basico/' AS path, 1 AS instalado, 1 AS ativo,

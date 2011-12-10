@@ -14,6 +14,6 @@ drop table if exists basico_localizacao.endereco;
 drop table if exists dados_biometricos;
 drop table if exists raca;
 drop table if exists basico_localizacao.estado;
-drop table if exists pais;
-drop table if exists mascara;
+drop table if exists basico_localizacao.pais;
+drop table if exists basico.mascara;
 
