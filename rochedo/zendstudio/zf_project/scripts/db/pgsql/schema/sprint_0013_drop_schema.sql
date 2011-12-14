@@ -9,6 +9,6 @@
 * 
 */
 
-drop table if exists rascunho;
+drop table if exists basico_formulario.rascunho;
 drop table if exists basico_formulario_rascunho.assocag_grupo;
-drop table if exists sequencia_formulario;
+drop table if exists basico_formulario.assocag_sequencia;
