@@ -144,7 +144,7 @@ alter table rascunho
   add constraint fk_rascunho_pai foreign key (id_rascunho_pai) references rascunho (id) on update no action on delete no action;
   
 alter table rascunho
-  add constraint fk_rascunho_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_rascunho_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
   
 alter table rascunho
   add constraint fk_rascunho_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;

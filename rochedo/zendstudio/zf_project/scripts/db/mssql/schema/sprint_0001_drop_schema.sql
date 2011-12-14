@@ -6,8 +6,8 @@
 * criacao: 13/12/2009
 * ultimas modificacoes: 
 * 						- 23/12/2009
-* 						- 29/12/2009 - drop table dados_pessoas_perfis;
-* 						- 29/01/2010 - drop table categoria_chave_estrangeira e token;
+* 						- 29/12/2009 - drop table basico_assoccl_pessoa_perfil.assoc_dados;
+* 						- 29/01/2010 - drop table basico_categoria.assoc_chave_estrangeira e token;
 * 						- 22/02/2010 - drop table dicionario_expressao;
 * 						- 24/09/2010 - drop das funcoes do CVC;
 * 						- 29/10/2010 - drop da tabela "modulo", proviniente do sprint 0004;
@@ -25,9 +25,9 @@ begin
 end
 ;
 
-if object_id('categoria_chave_estrangeira') is not null
+if object_id('basico_categoria.assoc_chave_estrangeira') is not null
 begin
-  drop table categoria_chave_estrangeira
+  drop table basico_categoria.assoc_chave_estrangeira
 end
 ;
 
@@ -49,15 +49,15 @@ begin
 end
 ;
 
-if object_id('dados_pessoais') is not null
+if object_id('basico_pessoa.assoc_dados') is not null
 begin
-  drop table dados_pessoais
+  drop table basico_pessoa.assoc_dados
 end
 ;
 
-if object_id('dados_pessoas_perfis') is not null
+if object_id('basico_assoccl_pessoa_perfil.assoc_dados') is not null
 begin
-  drop table dados_pessoas_perfis
+  drop table basico_assoccl_pessoa_perfil.assoc_dados
 end
 ;
 
@@ -109,7 +109,7 @@ drop table basico.modulo;
 end
 ;
 
-if object_id('categoria') is not null
+if object_id('basico.categoria') is not null
 begin
   drop table categoria
 end

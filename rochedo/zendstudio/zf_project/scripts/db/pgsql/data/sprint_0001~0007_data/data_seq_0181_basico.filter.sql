@@ -15,6 +15,6 @@ SELECT c.id AS id_categoria, 'STRINGTRIM_STRIPTAGS' AS nome,
        'Filtro que limpa espaços antes e depois do texto e remove todas as marcações de linguagens de programação.' AS descricao,
        '''StringTrim'', ''StripTags''' AS filter, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_FILTER';

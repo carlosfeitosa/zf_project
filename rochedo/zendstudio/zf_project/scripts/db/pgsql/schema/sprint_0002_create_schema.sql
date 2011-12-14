@@ -40,7 +40,7 @@ with (
 );
 alter table basico.mascara owner to rochedo_user;
 
-create table dados_biometricos (
+create table basico.dados_biometricos (
 	id serial not null ,
 	id_pessoa integer not null ,
 	sexo char (1) not null ,
@@ -54,7 +54,7 @@ create table dados_biometricos (
 with (
   oids = false
 );
-alter table dados_biometricos owner to rochedo_user;
+alter table basico.dados_biometricos owner to rochedo_user;
 
 create table pessoa_juridica (
 	id serial not null ,
@@ -124,7 +124,7 @@ alter table documento_identificacao add constraint pk_documento_identificacao pr
 
 alter table basico.mascara add constraint pk_mascara primary key (id);
 
-alter table dados_biometricos add constraint pk_dados_biometricos primary key (id);
+alter table basico.dados_biometricos add constraint pk_dados_biometricos primary key (id);
 
 alter table pessoa_juridica add constraint pk_pessoa_juridica primary key (id);
 
@@ -181,30 +181,30 @@ alter table basico_localizacao.pais
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table documento_identificacao
-  add constraint fk_documento_identificacao_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
+  add constraint fk_documento_identificacao_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action ,
   add constraint fk_documento_identificacao_pessoa_juridica foreign key (id_pessoa_juridica_orgao_expedidor) references pessoa_juridica (id) on update no action on delete no action;
 
 alter table basico.mascara
-  add constraint fk_mascara_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_mascara_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
   
-alter table dados_biometricos
+alter table basico.dados_biometricos
   add constraint fk_dados_biometricos_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
   
 alter table basico_localizacao.estado
   add constraint fk_estado_pais foreign key (id_pais) references basico_localizacao.pais (id) on update no action on delete no action;
 
 alter table basico_localizacao.estado
-  add constraint fk_estado_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_estado_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
   
 alter table basico_localizacao.endereco
   add constraint fk_endereco_pessoa_perfil foreign key (id_pessoa_perfil_validador) references pessoas_perfis (id) on update no action on delete no action ,
-  add constraint fk_endereco_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action ,
+  add constraint fk_endereco_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action ,
   add constraint fk_endereco_estado foreign key (id_estado) references basico_localizacao.estado (id) on update no action on delete no action ,
   add constraint fk_endereco_pais foreign key (id_pais) references basico_localizacao.pais (id) on update no action on delete no action;
   
 /* CRIACAO DOS CHECK CONSTRAINTS */
   
-alter table dados_biometricos add
+alter table basico.dados_biometricos add
     constraint ck_dados_biometricos_sexo check
     ((sexo = 'M') or (sexo = 'F'));
 

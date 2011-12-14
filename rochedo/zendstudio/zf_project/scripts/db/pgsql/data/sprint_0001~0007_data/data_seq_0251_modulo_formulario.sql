@@ -25,14 +25,14 @@
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_ADMIN_RASCUNHOS'
@@ -42,14 +42,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
@@ -59,14 +59,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
@@ -76,14 +76,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_SUGESTAO_LOGIN'
@@ -93,14 +93,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO'
@@ -110,14 +110,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO'
@@ -127,14 +127,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
@@ -144,14 +144,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_ACADEMICOS'
@@ -161,14 +161,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_BIOMETRICOS'
@@ -178,14 +178,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PROFISSIONAIS'
@@ -195,14 +195,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_CONTA'
@@ -212,14 +212,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
@@ -229,14 +229,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_COORDENACAO_POS_GRADUACAO'
@@ -246,14 +246,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES'
@@ -264,14 +264,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_PROFISSIONAIS'
@@ -281,14 +281,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_PROFISSIONAIS'
@@ -298,14 +298,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_PROFISSIONAIS'
@@ -315,14 +315,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECOS_PROFISSIONAIS'
@@ -332,14 +332,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
@@ -349,14 +349,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_EMAIL'
@@ -366,14 +366,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_WEBSITE'
@@ -383,14 +383,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_ENDERECO'
@@ -400,14 +400,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
@@ -417,14 +417,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
@@ -434,14 +434,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_LOGIN'
@@ -451,14 +451,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM basico.modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM basico.formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CVC'
@@ -468,14 +468,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS'
@@ -485,14 +485,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS'
@@ -502,14 +502,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS'
@@ -519,14 +519,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS'
@@ -536,14 +536,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS'
@@ -553,14 +553,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS'
@@ -570,14 +570,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
@@ -587,14 +587,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
@@ -604,14 +604,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS'
@@ -621,14 +621,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
@@ -638,14 +638,14 @@ SELECT (SELECT m.id
 INSERT INTO basico_formulario.assoccl_modulo (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
         FROM basico.modulo m
-        LEFT JOIN categoria c ON (m.id_categoria = c.id)
+        LEFT join basico.categoria c ON (m.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'SISTEMA'
         AND c.nome = 'SISTEMA_MODULO'
         AND m.nome = 'BASICO') AS id_modulo,
        (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA'

@@ -16,7 +16,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table dbo.cvc (
+create table basico.cvc (
 	id int identity (1, 1) not null ,
 	id_generico int not null ,
 	id_categoria_chave_estrangeira int not null ,
@@ -32,26 +32,26 @@ create table dbo.cvc (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table dbo.cvc with nocheck add constraint pk_cvc primary key clustered (id) on [primary];
+alter table basico.cvc with nocheck add constraint pk_cvc primary key clustered (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table dbo.cvc add
+alter table basico.cvc add
 	constraint df_cvc_validade_inicio default getdate() for validade_inicio,
 	constraint df_cvc_versao default 0.1 for versao;
 
 
 /* CRIACAO DOS INDICES */
 
-create index ix_cvc_id_generico on dbo.cvc (id_generico) on [primary];
-create index ix_cvc_id_categoria_chave_estrangeira on dbo.cvc (id_categoria_chave_estrangeira) on [primary];
-create unique index ix_cvc_checksum on dbo.cvc (checksum) on [primary];
+create index ix_cvc_id_generico on basico.cvc (id_generico) on [primary];
+create index ix_cvc_id_categoria_chave_estrangeira on basico.cvc (id_categoria_chave_estrangeira) on [primary];
+create unique index ix_cvc_checksum on basico.cvc (checksum) on [primary];
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table dbo.cvc add
+alter table basico.cvc add
 	constraint ix_cvc_id_generico_id_categoria_chave_estrangeira_versao unique nonclustered
 	(
 		id_generico,
@@ -62,18 +62,18 @@ alter table dbo.cvc add
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table dbo.cvc add
+alter table basico.cvc add
 	constraint fk_cvc_id_categoria_chave_estrangeira foreign key
 	(
 		id_categoria_chave_estrangeira
-	) references dbo.categoria_chave_estrangeira (
+	) references basico_categoria.assoc_chave_estrangeira (
 		id
 	);
 
 	
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
-alter table dbo.categoria_chave_estrangeira add
+alter table basico_categoria.assoc_chave_estrangeira add
     constraint ck_categoria_chave_estrangeira_categoria check
     ((dbo.fn_CheckCategoriaCVC(id_categoria) > 0) or (dbo.fn_CheckCategoriaChaveEstrangeiraCategoriaExists(id_categoria) is null));
 
@@ -81,4 +81,4 @@ alter table dbo.categoria_chave_estrangeira add
 /* MODIFICACOES DOS SCRIPTS ANTERIORES */
 	
 /* dropando indice unico relacionado a categoria da tabela categoria_chave_estrangeira */
-drop index dbo.categoria_chave_estrangeira.ix_categoria_chave_estrangeira_id_categoria;
+drop index basico_categoria.assoc_chave_estrangeira.ix_categoria_chave_estrangeira_id_categoria;

@@ -10,4 +10,4 @@
 * 									   do script 0001
 */
 
-drop table if exists cvc;
+drop table if exists basico.cvc;

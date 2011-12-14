@@ -31,7 +31,7 @@ create table basico.mascara (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.dados_biometricos (
+create table basico.dados_biometricos (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	sexo char (1) not null ,
@@ -95,7 +95,7 @@ alter table dbo.documento_identificacao with nocheck add constraint pk_documento
 
 alter table basico.mascara with nocheck add constraint pk_mascara primary key clustered (id) on [primary];
 
-alter table dbo.dados_biometricos with nocheck add constraint pk_dados_biometricos primary key clustered (id) on [primary];
+alter table basico.dados_biometricos with nocheck add constraint pk_dados_biometricos primary key clustered (id) on [primary];
 
 alter table dbo.pessoa_juridica with nocheck add constraint pk_pessoa_juridica primary key clustered (id) on [primary];
 
@@ -170,7 +170,7 @@ alter table dbo.documento_identificacao add
     constraint fk_documento_identificacao_categoria foreign key 
     (    
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
     ),
     constraint fk_documento_identificacao_pessoa_juridica foreign key 
@@ -184,11 +184,11 @@ alter table basico.mascara add
     constraint fk_mascara_categoria foreign key 
     (
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
     );
   
-alter table dbo.dados_biometricos add
+alter table basico.dados_biometricos add
     constraint fk_dados_biometricos_pessoa foreign key 
     (
         id_pessoa
@@ -208,7 +208,7 @@ alter table basico_localizacao.estado add
     constraint fk_estado_categoria foreign key 
     (
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
     );
   
@@ -222,7 +222,7 @@ alter table basico_localizacao.endereco add
     constraint fk_endereco_categoria foreign key 
     (
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
     ),
     constraint fk_endereco_estado foreign key 
@@ -240,7 +240,7 @@ alter table basico_localizacao.endereco add
   
 /* CRIACAO DOS CHECK CONSTRAINTS */
     
-alter table dbo.dados_biometricos add
+alter table basico.dados_biometricos add
     constraint ck_dados_biometricos_sexo check
     ((sexo = 'M') or (sexo = 'F'));
 

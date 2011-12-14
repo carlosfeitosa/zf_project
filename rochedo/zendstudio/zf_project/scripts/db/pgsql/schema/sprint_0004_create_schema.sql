@@ -51,7 +51,7 @@ with (
 );
 alter table basico_formulario.decorator owner to rochedo_user;
 
-create table ajuda (
+create table basico.ajuda (
 	id serial not null ,
 	id_categoria int not null ,
 	nome character varying (100) not null ,
@@ -64,7 +64,7 @@ create table ajuda (
 with (
   oids = false
 );
-alter table ajuda owner to rochedo_user;
+alter table basico.ajuda owner to rochedo_user;
 
 create table basico.output (
 	id serial not null ,
@@ -226,7 +226,7 @@ with (
 );
 alter table basico_formulario.assoccl_elemento owner to rochedo_user;
 
-create table componente (
+create table basico.componente (
 	id serial not null ,
 	id_categoria int not null ,
 	id_template int null ,
@@ -242,7 +242,7 @@ create table componente (
 ) with (
   oids = false
 );
-alter table componente owner to rochedo_user;
+alter table basico.componente owner to rochedo_user;
 
 create table basico_form_form_elemento.assoc_grupo (
 	id serial not null ,
@@ -371,7 +371,7 @@ alter table basico_form_form_elemento.assoccl_evento owner to rochedo_user;
 
 alter table basico_formulario.decorator add constraint pk_decorator primary key (id);
 
-alter table ajuda add constraint pk_ajuda primary key (id);
+alter table basico.ajuda add constraint pk_ajuda primary key (id);
 
 alter table basico.output add constraint pk_output primary key (id);
 
@@ -393,7 +393,7 @@ alter table basico.formulario add constraint pk_formulario primary key (id);
 
 alter table basico_formulario.assoccl_elemento add constraint pk_formulario_formulario_elemento primary key (id);
 
-alter table componente add constraint pk_componente primary key (id);
+alter table basico.componente add constraint pk_componente primary key (id);
 
 alter table basico_form_form_elemento.assoc_grupo add constraint pk_grupo_formulario_elemento primary key (id);
 
@@ -437,7 +437,7 @@ alter table formularios_formularios_elementos
 alter table formularios_formularios_elementos
     alter column datahora_criacao set default (current_timestamp);
 	
-alter table componente
+alter table basico.componente
 	alter column validade_inicio set default (current_timestamp);
 
 alter table formularios_elementos_formularios_elementos_validators
@@ -517,7 +517,7 @@ create unique index ix_formularios_formularios_elementos_eventos_elementos_uri
 alter table basico_formulario.decorator 
   add constraint ix_decorator_categoria_nome unique (id_categoria, nome);
 
-alter table ajuda 
+alter table basico.ajuda 
   add constraint ix_ajuda_categoria_nome unique (id_categoria, nome);
 	
 alter table basico.output
@@ -550,7 +550,7 @@ alter table formulario
 alter table formularios_formularios_elementos
   add constraint ix_formularios_formularios_elementos_formularios_formularios_elementos_ordem unique (id_formulario, id_formulario_elemento, ordem);
 
-alter table componente
+alter table basico.componente
   add constraint ix_componente_categoria_componente unique (id_categoria, componente);
 
 alter table formularios_elementos_formularios_elementos_validators
@@ -583,16 +583,16 @@ alter table formularios_formularios_elementos_eventos_elementos
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table basico_formulario.decorator
-  add constraint fk_decorator_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_decorator_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
 
-alter table ajuda
-  add constraint fk_ajuda_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+alter table basico.ajuda
+  add constraint fk_ajuda_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
 
 alter table basico.output
-  add constraint fk_output_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_output_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
 
 alter table template
-  add constraint fk_template_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+  add constraint fk_template_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action,
   add constraint fk_template_output foreign key (id_output) references output (id) on update no action on delete no action;
 
 alter table basico_formulario.assoccl_modulo
@@ -608,21 +608,21 @@ alter table template_formulario
   add constraint fk_template_formulario_template foreign key (id_template) references template (id) on update no action on delete no action;
 
 alter table formulario_elemento
-  add constraint fk_formulario_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action,
-  add constraint fk_formulario_elemento_componente foreign key (id_componente) references componente (id) on update no action on delete no action,
+  add constraint fk_formulario_elemento_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action,
+  add constraint fk_formulario_elemento_ajuda foreign key (id_ajuda) references basico.ajuda (id) on update no action on delete no action,
+  add constraint fk_formulario_elemento_componente foreign key (id_componente) references basico.componente (id) on update no action on delete no action,
   add constraint fk_formulario_elemento_mascara foreign key (id_mascara) references basico.mascara (id) on update no action on delete no action;
 
 alter table formulario_elemento_validator
-  add constraint fk_formulario_elemento_validator_categoria foreign key	(id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_formulario_elemento_validator_categoria foreign key	(id_categoria) references basico.categoria(id) on update no action on delete no action;
 
 alter table formulario_elemento_filter
-  add constraint fk_formulario_elemento_filter_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_formulario_elemento_filter_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
 	
 alter table formulario
-  add constraint fk_formulario_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+  add constraint fk_formulario_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action,
   add constraint fk_categoria_decorator foreign key (id_decorator) references basico_formulario.decorator (id) on update no action on delete no action,
-  add constraint fk_categoria_ajuda foreign key (id_ajuda) references ajuda (id) on update no action on delete no action,
+  add constraint fk_categoria_ajuda foreign key (id_ajuda) references basico.ajuda (id) on update no action on delete no action,
   add constraint fk_formulario_formulario foreign key (id_formulario_pai) references basico.formulario (id) on update no action on delete no action;
 
 alter table formularios_formularios_elementos
@@ -631,8 +631,8 @@ alter table formularios_formularios_elementos
   add constraint fk_formularios_formularios_elementos_grupo_formulario_elemento foreign key (id_grupo_formulario_elemento) references basico_form_form_elemento.assoc_grupo (id) on update no action on delete no action,
   add constraint fk_formularios_formularios_elementos_mascara foreign key (id_mascara) references basico.mascara (id) on update no action on delete no action;
   
-alter table componente
-  add constraint fk_componente_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+alter table basico.componente
+  add constraint fk_componente_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action,
   add constraint fk_componente_template foreign key (id_template) references template (id) on update no action on delete no action;
 
 alter table basico_form_form_elemento.assoc_grupo
@@ -663,11 +663,11 @@ alter table formularios_formularios_elementos_decorators
   add constraint fk_forms_forms_elems_decorats_decorat foreign key (id_decorator) references basico_formulario.decorator (id) on update no action on delete no action;
 
 alter table evento_elemento
-  add constraint fk_evento_elemento_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_evento_elemento_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
 
 
 alter table formularios_formularios_elementos_eventos_elementos
-  add constraint fk_forms_forms_elems_events_elems_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action,
+  add constraint fk_forms_forms_elems_events_elems_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action,
   add constraint fk_forms_forms_elems_events_elems_forms_forms_elems foreign key (id_formularios_formularios_elementos) references basico_formulario.assoccl_elemento (id) on update no action on delete no action,
   add constraint fk_forms_forms_elems_events_elems_event_elem foreign key (id_evento_elemento) references basico.evento (id) on update no action on delete no action;
 
@@ -678,11 +678,11 @@ alter table basico_form_form_elemento.assoc_grupo add
     constraint ck_grupo_formulario_elemento_constante_textual_label check
     (constante_textual_label is null or (fn_CheckConstanteTextualExists(constante_textual_label) is not null));
 
-alter table ajuda add
+alter table basico.ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
     ((constante_textual_ajuda is null) or (fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null));
 
-alter table ajuda add
+alter table basico.ajuda add
     constraint ck_ajuda_constante_textual_hint check
     ((constante_textual_hint is null) or (fn_CheckConstanteTextualExists(constante_textual_hint) is not null));
 

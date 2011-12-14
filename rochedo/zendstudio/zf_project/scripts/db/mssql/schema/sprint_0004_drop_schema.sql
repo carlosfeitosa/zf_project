@@ -97,9 +97,9 @@ drop table basico.filter;
 end
 ;
 
-if object_id('componente') is not null
+if object_id('basico.componente') is not null
 begin
-drop table componente;
+drop table basico.componente;
 end
 ;
 
@@ -141,7 +141,7 @@ end
 
 if object_id('ajuda') is not null
 begin
-drop table ajuda;
+drop table basico.ajuda;
 end
 ;
 

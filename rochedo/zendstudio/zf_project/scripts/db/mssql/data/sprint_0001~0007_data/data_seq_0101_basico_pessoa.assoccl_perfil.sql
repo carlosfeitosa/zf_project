@@ -13,7 +13,7 @@ SELECT (SELECT id
 		FROM basico.pessoa
 		WHERE rowinfo = 'SYSTEM_STARTUP_MASTER') id_pessoa, perf.id AS id_perfil, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.perfil perf
-LEFT JOIN categoria cat ON (perf.id_categoria = cat.id)
+LEFT join basico.categoria cat ON (perf.id_categoria = cat.id)
 LEFT JOIN basico.tipo_categoria tipo_cat ON (cat.id_tipo_categoria = tipo_cat.id)
 WHERE tipo_cat.nome = 'SISTEMA'
 AND cat.nome = 'SISTEMA_USUARIO'

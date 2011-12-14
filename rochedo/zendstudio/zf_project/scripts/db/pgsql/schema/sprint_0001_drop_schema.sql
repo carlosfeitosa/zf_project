@@ -6,8 +6,8 @@
 * criacao: 13/12/2009
 * ultimas modificacoes: 
 * 				      	- 13/12/2009
-* 						- 29/12/2009 - drop table dados_pessoas_perfis;
-* 						- 29/01/2010 - drop table categoria_chave_estrangeira e token;
+* 						- 29/12/2009 - drop table basico_assoccl_pessoa_perfil.assoc_dados;
+* 						- 29/01/2010 - drop table basico_categoria.assoc_chave_estrangeira e token;
 * 						- 22/02/2010 - drop table dicionario_expressao;
 * 						- 28/09/2010 - drop das funcoes do CVC;
 * 						- 29/10/2010 - drop da tabela "modulo", proviniente do sprint 0004;
@@ -15,12 +15,12 @@
 
 drop table if exists dicionario_expressao;
 drop table if exists token;
-drop table if exists categoria_chave_estrangeira;
+drop table if exists basico_categoria.assoc_chave_estrangeira;
 drop table if exists basico_localizacao.email;
 drop table if exists basico.log;
 drop table if exists basico.login;
-drop table if exists dados_pessoais;
-drop table if exists dados_pessoas_perfis;
+drop table if exists basico_pessoa.assoc_dados;
+drop table if exists basico_assoccl_pessoa_perfil.assoc_dados;
 drop table if exists pessoas_perfis_mensagens_categorias;
 drop table if exists pessoas_perfis;
 drop table if exists basico.pessoa;

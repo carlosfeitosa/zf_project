@@ -55,7 +55,7 @@ alter table dbo.website add
     constraint fk_website_categoria foreign key 
     (
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
     );
 
@@ -71,7 +71,7 @@ alter table basico_localizacao.municipio add
     constraint fk_municipio_categoria foreign key 
     (
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
     );
 /* CRIACAO DOS CHECK CONSTRAINTS */

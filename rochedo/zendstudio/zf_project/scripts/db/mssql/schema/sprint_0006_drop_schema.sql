@@ -9,8 +9,8 @@
 * 									   create schema do sprint 0006 para o drop
 * 									   do script 0001
 */
-if object_id('cvc') is not null
+if object_id('basico.cvc') is not null
 begin
-  drop table cvc
+  drop table basico.cvc
 end
 ;

@@ -11,7 +11,7 @@
 drop table if exists documento_identificacao;
 drop table if exists pessoa_juridica;
 drop table if exists basico_localizacao.endereco;
-drop table if exists dados_biometricos;
+drop table if exists basico.dados_biometricos;
 drop table if exists raca;
 drop table if exists basico_localizacao.estado;
 drop table if exists basico_localizacao.pais;

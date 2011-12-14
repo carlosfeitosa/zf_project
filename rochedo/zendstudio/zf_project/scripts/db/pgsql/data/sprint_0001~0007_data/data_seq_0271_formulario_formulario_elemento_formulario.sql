@@ -15,7 +15,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -24,7 +24,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 13) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_COORDENACAO_POS_GRADUACAO'
@@ -36,7 +36,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -45,7 +45,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 14) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_ORIENTACOES'
@@ -57,7 +57,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -65,7 +65,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'FORM_DIALOG_DOCUMENTOS_IDENTIFICACAO') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO'
@@ -77,7 +77,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -85,7 +85,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
@@ -97,7 +97,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -106,7 +106,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 14) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_TELEFONES_PROFISSIONAIS'
@@ -118,7 +118,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -127,7 +127,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 15) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_EMAILS_PROFISSIONAIS'
@@ -139,7 +139,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -148,7 +148,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 16) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_WEBSITES_PROFISSIONAIS'
@@ -160,7 +160,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -169,7 +169,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 17) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL_ENDERECOS_PROFISSIONAIS'
@@ -181,7 +181,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -189,7 +189,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'FORM_DIALOG_TELEFONES_PROFISSIONAIS') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
@@ -201,7 +201,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -209,7 +209,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'FORM_DIALOG_EMAILS_PROFISSIONAIS') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_EMAIL'
@@ -221,7 +221,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -229,7 +229,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'FORM_DIALOG_WEBSITES_PROFISSIONAIS') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_WEBSITE'
@@ -241,7 +241,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -249,7 +249,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'FORM_DIALOG_ENDERECOS_PROFISSIONAIS') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_ENDERECO'
@@ -272,7 +272,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -281,7 +281,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 8) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_DOCUMENTOS_PESSOAIS'
@@ -295,7 +295,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -304,7 +304,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 2) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_DOCUMENTOS_IDENTIFICACAO'
@@ -318,7 +318,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -327,7 +327,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 9) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_TELEFONES_PESSOAIS'
@@ -341,7 +341,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -350,7 +350,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 2) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_TELEFONE'
@@ -364,7 +364,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -373,7 +373,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 10) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_EMAILS_PESSOAIS'
@@ -387,7 +387,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -396,7 +396,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 2) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_EMAIL'
@@ -410,7 +410,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -419,7 +419,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 11) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_WEBSITES_PESSOAIS'
@@ -433,7 +433,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -442,7 +442,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 2) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_WEBSITE'
@@ -456,7 +456,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -465,7 +465,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 12) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_PESSOAIS_ENDERECOS_PESSOAIS'
@@ -479,7 +479,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -488,7 +488,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 2) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_ENDERECO'
@@ -513,7 +513,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -522,7 +522,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 1) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS'
@@ -537,7 +537,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -546,7 +546,7 @@ SELECT (SELECT ffe.id
         AND ffe.ordem = 2) AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_CONTA_BANCARIA'

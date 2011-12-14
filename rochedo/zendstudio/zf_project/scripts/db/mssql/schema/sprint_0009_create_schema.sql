@@ -8,7 +8,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table dbo.acao_aplicacao (
+create table basico.acao_aplicacao (
 	id int identity (1, 1) not null ,
 	id_modulo int not null ,
 	controller varchar (400) collate latin1_general_ci_ai not null ,
@@ -21,7 +21,7 @@ create table dbo.acao_aplicacao (
     rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.acoes_aplicacao_perfis (
+create table basico_acao_aplicacao.assoccl_perfil (
 	id int identity (1, 1) not null ,
 	id_perfil int not null ,
 	id_acao_aplicacao int not null ,
@@ -42,7 +42,7 @@ create table basico.metodo_validacao (
     rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.acoes_aplicacao_metodos_validacao (
+create table basico_acao_aplicacao.assoccl_metodo_validacao (
 	id int identity (1, 1) not null ,
 	id_acao_aplicacao int not null ,
 	id_metodo_validacao int not null ,
@@ -53,21 +53,21 @@ create table dbo.acoes_aplicacao_metodos_validacao (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table dbo.acao_aplicacao with nocheck add constraint pk_acao_aplicacao primary key clustered (id) on [primary];
+alter table basico.acao_aplicacao with nocheck add constraint pk_acao_aplicacao primary key clustered (id) on [primary];
 
-alter table dbo.acoes_aplicacao_perfis with nocheck add constraint pk_acoes_aplicacao_perfis primary key clustered (id) on [primary];
+alter table basico_acao_aplicacao.assoccl_perfil with nocheck add constraint pk_acoes_aplicacao_perfis primary key clustered (id) on [primary];
 
 alter table basico.metodo_validacao with nocheck add constraint pk_metodo_validacao primary key clustered (id) on [primary];
 
-alter table dbo.acoes_aplicacao_metodos_validacao with nocheck add constraint pk_acoes_aplicacao_metodos_validacao primary key clustered (id) on [primary];
+alter table basico_acao_aplicacao.assoccl_metodo_validacao with nocheck add constraint pk_acoes_aplicacao_metodos_validacao primary key clustered (id) on [primary];
 
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table dbo.acao_aplicacao add
+alter table basico.acao_aplicacao add
 	constraint df_acao_aplicacao_datahora_cadastro default (getdate()) for datahora_cadastro;
 
-alter table dbo.acao_aplicacao add
+alter table basico.acao_aplicacao add
 	constraint df_acao_aplicacao_ativo default 1 for ativo;
 
 alter table basico.metodo_validacao add
@@ -100,7 +100,7 @@ create index ix_acoes_aplicacao_metodos_validacao_perfil on dbo.acoes_aplicacao_
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table dbo.acao_aplicacao add
+alter table basico.acao_aplicacao add
   	constraint ix_acao_aplicacao_modulo_controller_action unique nonclustered
  	(
   		id_modulo, 
@@ -108,7 +108,7 @@ alter table dbo.acao_aplicacao add
   		action
   	) on [primary];
 
-alter table dbo.acoes_aplicacao_perfis add 
+alter table basico_acao_aplicacao.assoccl_perfil add 
   	constraint ix_acoes_aplicacao_perfis_acao_aplicacao_perfil unique nonclustered
   	(
   		id_perfil, 
@@ -122,7 +122,7 @@ alter table basico.metodo_validacao add
   		id_categoria
   	) on [primary];
 
-alter table dbo.acoes_aplicacao_metodos_validacao add
+alter table basico_acao_aplicacao.assoccl_metodo_validacao add
   	constraint ix_acoes_aplicacao_metodos_validacao unique nonclustered
   	(
   		id_acao_aplicacao, 
@@ -133,7 +133,7 @@ alter table dbo.acoes_aplicacao_metodos_validacao add
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table dbo.acao_aplicacao add
+alter table basico.acao_aplicacao add
 	constraint fk_acao_aplicacao_modulo foreign key 
 	(
 		id_modulo
@@ -141,15 +141,15 @@ alter table dbo.acao_aplicacao add
 		id
 	);
 
-alter table dbo.acoes_aplicacao_perfis add
+alter table basico_acao_aplicacao.assoccl_perfil add
   	constraint fk_acoes_aplicacao_perfis_acao_aplicacao foreign key 
   	(
   		id_acao_aplicacao
-  	) references dbo.acao_aplicacao (
+  	) references basico.acao_aplicacao (
   		id
   	);
 
-alter table dbo.acoes_aplicacao_perfis add
+alter table basico_acao_aplicacao.assoccl_perfil add
   	constraint fk_acoes_aplicacao_perfis_perfil foreign key 
   	(
   		id_perfil
@@ -161,19 +161,19 @@ alter table basico.metodo_validacao add
   	constraint fk_metodo_validacao_categoria foreign key 
   	(
   		id_categoria
-  	) references dbo.categoria (
+  	) references basico.categoria(
   		id
   	);
 
-alter table dbo.acoes_aplicacao_metodos_validacao add
+alter table basico_acao_aplicacao.assoccl_metodo_validacao add
   	constraint fk_acoes_aplicacao_metodos_validacao_acao_aplicacao foreign key 
   	(
   		id_acao_aplicacao
-  	) references dbo.acao_aplicacao (
+  	) references basico.acao_aplicacao (
   		id
   	);
 
-alter table dbo.acoes_aplicacao_metodos_validacao add
+alter table basico_acao_aplicacao.assoccl_metodo_validacao add
   	constraint fk_acoes_aplicacao_metodos_validacao_metodo_validacao foreign key 
   	(
   		id_metodo_validacao
@@ -181,7 +181,7 @@ alter table dbo.acoes_aplicacao_metodos_validacao add
   		id
   	);
 
-alter table dbo.acoes_aplicacao_metodos_validacao add
+alter table basico_acao_aplicacao.assoccl_metodo_validacao add
   	constraint fk_acoes_aplicacao_metodos_validacao_metodo_perfil foreign key 
   	(
   		id_perfil

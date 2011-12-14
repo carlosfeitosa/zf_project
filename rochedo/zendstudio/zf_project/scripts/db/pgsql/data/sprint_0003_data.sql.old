@@ -46,343 +46,343 @@
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_SUBMIT' AS constante_textual, 'Enviar' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_VALIDATION_TITLE' AS constante_textual, 'Atenção' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_VALIDATION_MESSAGE' AS constante_textual, 'Por favor, preencha todos os campos requeridos antes de continuar.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual, 'Categoria de bolsa no CNPQ' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_AJUDA' AS constante_textual, 'O preenchimento deste campo consiste em selecionar a opção de categoria de bolsa que você possui no CNPQ.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual, 'Maior Titulação' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO_AJUDA' AS constante_textual, 'O preenchimento deste campo consiste em selecionar a sua maior titulação acadêmica.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_EDITAR' AS constante_textual, 'Editar' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU' AS constante_textual, 'Instituição que lhe concedeu sua maior titulação' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_AJUDA' AS constante_textual, 'O preenchimento deste campo consiste em selecionar a Instituição que lhe concedeu a sua maior titulação.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO' AS constante_textual, 'Área de Conhecimento' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO_AJUDA' AS constante_textual, 'O preenchimento deste campo consiste em selecionar a área de conhecimento de sua maior titulação.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME_CURSO' AS constante_textual, 'Nome do Curso' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME_CURSO_AJUDA' AS constante_textual, 'O preenchimento deste campo consiste em digitar o nome do curso de sua maior titulação.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME_CURSO_HINT' AS constante_textual, 'Digite o nome do curso de sua maior titulação.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_TITLE_VINCULO_PROFISSIONAL' AS constante_textual, 'Vinculo Profissional' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_NOVO_VINCULO_PROFISSIONAL' AS constante_textual, 'Novo vinculo profissional' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PROFISSAO_AJUDA' AS constante_textual, 'Escolha neste campo a profissão mais adequada ao vinculo selecionado' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PROFISSAO' AS constante_textual, 'Profissão:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_VINCULO_PROFISSIONAL_AJUDA' AS constante_textual, 'Escolha neste campo o seu vinculo profissional' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_VINCULO_PROFISSIONAL' AS constante_textual, 'Vinculo profissional:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PJ_VINCULO_AJUDA' AS constante_textual, 'Escolha neste campo a empresa/instituição do vinculo (quando aplicavel)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PJ_VINCULO' AS constante_textual, 'Empresa/Instituição do vinculo:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_REGIME_TRABALHO_AJUDA' AS constante_textual, 'Escolha neste campo o regime de trabalho do vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_REGIME_TRABALHO' AS constante_textual, 'Regime de trabalho:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGO_AJUDA' AS constante_textual, 'Digite neste campo o cargo relacionado ao vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGO_HINT' AS constante_textual, 'Digite o cargo relacionado ao vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGO' AS constante_textual, 'Cargo:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_FUNCAO_AJUDA' AS constante_textual, 'Digite neste campo a função relacionada ao vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_FUNCAO_HINT' AS constante_textual, 'Digite a função relacionada ao vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_FUNCAO' AS constante_textual, 'Função:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS_AJUDA' AS constante_textual, 'Digite neste campo uma descrição das atividades desenvolvidas' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS' AS constante_textual, 'Atividades desenvolvidas:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_ADMISSAO_AJUDA' AS constante_textual, 'Digite neste campo a data de admissão relacionada ao vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_ADMISSAO_HINT' AS constante_textual, 'Digite uma data valida de admissão relacionada ao vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_ADMISSAO' AS constante_textual, 'Data de admissão:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_DESVINCULACAO_AJUDA' AS constante_textual, 'Digite neste campo a data de desvinculação do vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_DESVINCULACAO_HINT' AS constante_textual, 'Digite uma data valida de desvinculação do vinculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_DESVINCULACAO' AS constante_textual, 'Data de desvinculação:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA' AS constante_textual, 'Digite neste campo a quantidade de horas trabalhadas semanalmente (numero inteiro)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT' AS constante_textual, 'Digite a quantidade de horas trabalhadas semanalmente (numero inteiro)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL' AS constante_textual, 'Carga horária semanal:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_AJUDA' AS constante_textual, 'Digite neste campo o valor do seu salário bruto - total recebido antes das deduções (valor numérico)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_HINT' AS constante_textual, 'Digite o valor do seu salário bruto (valor numérico)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Salário bruto:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA_AJUDA' AS constante_textual, 'Marque este campo se seu vínculo é de dedicação exlusiva' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA' AS constante_textual, 'Dedicação exlusiva:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual, 'Digite neste campo outras informações sobre seu vínculo' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual, 'Outras informações:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
@@ -393,343 +393,343 @@ AND c.nome = 'pt-br';
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_SUBMIT' AS constante_textual, 'Send' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_VALIDATION_TITLE' AS constante_textual, 'Attention' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_VALIDATION_MESSAGE' AS constante_textual, 'Please fill all required fields before continue.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CATEGORIA_BOLSA_CNPQ' AS constante_textual, 'CNPQ Scholarship degree:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_AJUDA' AS constante_textual, 'The filling of this field consists in choosing your CNPQ schorlarship degree.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO' AS constante_textual, 'Highest academic degree' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_MAIOR_TITULACAO_AJUDA' AS constante_textual, 'The filling of this field consists in choosing your highest academic degree.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_EDITAR' AS constante_textual, 'Edit' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU' AS constante_textual, 'Institution which provided your highest academic degree.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_AJUDA' AS constante_textual, 'The filling of this field consists in choosing the institution which provided your Highest Academic Degree.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO' AS constante_textual, 'Area of knowledge' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_AREA_DE_CONHECIMENTO_AJUDA' AS constante_textual, 'The filling of this field consists in choosing the area of knowledge of your Highest Academic Degree.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME_CURSO' AS constante_textual, 'Name of course' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME_CURSO_AJUDA' AS constante_textual, 'The filling of this field consists in typing the name of the course of your highest academic degree.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_NOME_CURSO_HINT' AS constante_textual, 'Type the name of course of your highest academic degree.' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_TITLE_VINCULO_PROFISSIONAL' AS constante_textual, 'Professional Bond' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_BUTTON_ABRIR_DIALOG_NOVO_VINCULO_PROFISSIONAL' AS constante_textual, 'New professional bond' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PROFISSAO_AJUDA' AS constante_textual, 'Choose in this field the profession most appropriated to the selected bond' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PROFISSAO' AS constante_textual, 'Profession:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_VINCULO_PROFISSIONAL_AJUDA' AS constante_textual, 'Choose in this field your professional bond' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_VINCULO_PROFISSIONAL' AS constante_textual, 'Professional bond:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PJ_VINCULO_AJUDA' AS constante_textual, 'Choose in this field the bond''s Company/Instituition (when applicable)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_PJ_VINCULO' AS constante_textual, 'Company/Instituition of the bond:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_REGIME_TRABALHO_AJUDA' AS constante_textual, 'Choose in this field the bond''s work scheme' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_REGIME_TRABALHO' AS constante_textual, 'Work scheme:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGO_AJUDA' AS constante_textual, 'Type in this field the bond''s role' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGO_HINT' AS constante_textual, 'Type the role of the bond' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGO' AS constante_textual, 'Role:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_FUNCAO_AJUDA' AS constante_textual, 'Type in this field the bond''s job function' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_FUNCAO_HINT' AS constante_textual, 'Type the job function' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_FUNCAO' AS constante_textual, 'Job function:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS_AJUDA' AS constante_textual, 'Type in this field an description of the developed activities' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS' AS constante_textual, 'Developed activities:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_ADMISSAO_AJUDA' AS constante_textual, 'Type in this field the bond''s admission date' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_ADMISSAO_HINT' AS constante_textual, 'Type the bond''s admission date (valid date)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_ADMISSAO' AS constante_textual, 'Admission''s date:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_DESVINCULACAO_AJUDA' AS constante_textual, 'Type in this field the bond''s untying date' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_DESVINCULACAO_HINT' AS constante_textual, 'Type the bond''s untying date (valid date)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DATA_DESVINCULACAO' AS constante_textual, 'Date of untying:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA' AS constante_textual, 'Type in this field the number of hours worked per week (whole number)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT' AS constante_textual, 'Type the number of hours worked per week (whole number)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_CARGA_HORARIA_SEMANAL' AS constante_textual, 'Weekly worked hours:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_AJUDA' AS constante_textual, 'Type in this field your gross income - individual''s total personal income before taking taxes or deductions (numeric value)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO_HINT' AS constante_textual, 'Type in this field your gross income (numeric value)' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_SALARIO_BRUTO' AS constante_textual, 'Gross income:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA_AJUDA' AS constante_textual, 'Check this field if your bound is exclusive dedication' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_DEDICACAO_EXCLUSIVA' AS constante_textual, 'Exclusive dedication:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual, 'Type in this field other informations about yout bond' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao)
 SELECT c.id, 'FORM_FIELD_OUTRAS_INFORMACOES' AS constante_textual, 'Other informations:' AS traducao
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
@@ -739,14 +739,14 @@ AND c.nome = 'en-us';
 INSERT INTO output (id_categoria, nome, descricao, rowinfo)
 SELECT c.id AS id_categoria, 'OUTPUT_DOJO' AS nome, 'Formato de saida DOJO.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_OUTPUT_DOJO';
 
 INSERT INTO output (id_categoria, nome, descricao, rowinfo)
 SELECT c.id AS id_categoria, 'OUTPUT_HTML' AS nome, 'Formato de saida HTML.' AS descricao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_OUTPUT_HTML';
 
@@ -757,13 +757,13 @@ INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome, 'Template DOJO.' AS descricao,
        (SELECT o.id
         FROM output o
-        LEFT JOIN categoria c ON (o.id_categoria = c.id)
+        LEFT join basico.categoria c ON (o.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_OUTPUT_DOJO'
         AND o.nome = 'OUTPUT_DOJO') AS id_output, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE';
 
@@ -771,13 +771,13 @@ INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_HTML' AS nome, 'Template HTML.' AS descricao,
        (SELECT o.id
         FROM output o
-        LEFT JOIN categoria c ON (o.id_categoria = c.id)
+        LEFT join basico.categoria c ON (o.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_OUTPUT_HTML'
         AND o.nome = 'OUTPUT_HTML') AS id_output, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE';
 
@@ -789,7 +789,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
        'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';        
                 
@@ -798,7 +798,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
        'FORM_FIELD_MAIOR_TITULACAO_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
 
@@ -807,7 +807,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
        'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
 
@@ -816,7 +816,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
        'FORM_FIELD_AREA_DE_CONHECIMENTO_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
 
@@ -825,7 +825,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS
        'FORM_FIELD_NOME_CURSO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_NOME_CURSO_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS';
 
@@ -834,7 +834,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_PROFISSAO_AJUDA' AS constante_textual_ajuda,
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -843,7 +843,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_VINCULO_PROFISSIONAL_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -852,7 +852,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_PJ_VINCULO_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -861,7 +861,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_REGIME_TRABALHO_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -870,7 +870,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_CARGO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_CARGO_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -879,7 +879,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_FUNCAO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_FUNCAO_HINT' AS constante_textual_hint,
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -888,7 +888,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS_AJUDA' AS constante_textual_ajuda, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -897,7 +897,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_DATA_ADMISSAO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_DATA_ADMISSAO_HINT' AS constante_textual_hint, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -906,7 +906,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_DATA_DESVINCULACAO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_DATA_DESVINCULACAO_HINT' AS constante_textual_hint, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -915,7 +915,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_CARGA_HORARIA_SEMANAL_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_CARGA_HORARIA_SEMANAL_HINT' AS constante_textual_hint, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -924,7 +924,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_SALARIO_BRUTO_AJUDA' AS constante_textual_ajuda, 'FORM_FIELD_SALARIO_BRUTO_HINT' AS constante_textual_hint, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -933,7 +933,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_DEDICACAO_EXCLUSIVA_AJUDA' AS constante_textual_ajuda,  
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -942,7 +942,7 @@ SELECT c.id AS id_categoria, 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSION
        'FORM_FIELD_OUTRAS_INFORMACOES_AJUDA' AS constante_textual_ajuda,  
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'AJUDA'
 AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS';
 
@@ -955,7 +955,7 @@ SELECT c.id AS id_categoria, 'DECORATOR_FORM_SUBMIT' AS nome, 'Decorator para su
                 array(''HtmlTag'', array(''tag'' => ''dl'', ''class'' => ''zend_form_dojo'')),
                 array(''DijitForm'', array("postOnBackground"=> false, "postOnBackgroundOptions"=> array(''successHandler''=>"dojo.eval(data);"))),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR';
 
@@ -963,7 +963,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_LABEL_ESCAPE' AS nome, 'Decorator que permite escapar tags html dentro de um label de um campo no formulários.' AS descricao,
        '''Label'', array(''escape'' => false)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR';
 
@@ -973,7 +973,7 @@ SELECT c.id AS id_categoria, 'DECORATOR_FORM_TAB_CONTAINER1' AS nome, 'Decorator
                 array(''TabContainer'', array(''id'' => ''TabContainer'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',
                       ''dijitParams'' => array(''tabPosition'' => ''top''),)),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR';
 
@@ -983,7 +983,7 @@ SELECT c.id AS id_categoria, 'DECORATOR_FORM_ACCORDION_CONTAINER1' AS nome, 'Dec
                 array(''AccordionContainer'', array(''id'' => ''AccordionContainer'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',
                       )),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ACCORDEON_CONTAINER1_DECORATOR';
 
@@ -993,7 +993,7 @@ SELECT c.id AS id_categoria, 'DECORATOR_FORM_CONTENT_PANE1' AS nome, 'Decorator 
                 array(''ContentPane'', array(''id'' => ''ContentPane'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',
                       )),' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_CONTENT_PANE1_DECORATOR';
 
@@ -1001,7 +1001,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV' AS nome, 'Decorator para posicionar o elemento dentro de um div.' AS descricao,
        'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_DECORATOR';
 
@@ -1009,7 +1009,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS nome, 'Decorator para posicionar o elemento dentro de um div.' AS descricao,
        'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''margin-right10px'')' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_DECORATOR';
 
@@ -1017,7 +1017,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
        'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left-margin-right10px'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR';
 
@@ -1025,7 +1025,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
        'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR';
 
@@ -1033,7 +1033,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
        'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left-clear-both-margin-right10px'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR';
 
@@ -1041,7 +1041,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
        'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''float-left-clear-both'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR';
 
@@ -1049,7 +1049,7 @@ INSERT INTO decorator (id_categoria, nome, descricao, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 'Decorator para posicionar o elemento dentro de um div float left.' AS descricao,
        'array(''row'' => ''HtmlTag''), array(''tag'' => ''div'', ''id'' => ''margin-right10px'',)' AS decorator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_CLEAR_BOTH_DECORATOR';
 
@@ -1062,7 +1062,7 @@ SELECT c.id AS id_categoria, 'BASICO' AS nome,
 	   '0.3' AS versao, 'basico/' AS path, true AS instalado, true AS ativo,
 	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MODULO';
 
@@ -1073,7 +1073,7 @@ AND c.nome = 'SISTEMA_MODULO';
 INSERT INTO formulario (id_categoria, id_decorator, nome, descricao, form_name, rowinfo)
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
@@ -1082,7 +1082,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
        'Formulário de cadastro do usuário validado.' AS descricao,
        'CadastrarDadosUsuario' AS form_name, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
@@ -1103,7 +1103,7 @@ INSERT INTO formulario (id_categoria, id_formulario_pai, nome, descricao,
        NULL AS form_attribs, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
@@ -1115,7 +1115,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
 		SELECT c.id AS id_categoria, 
 		(SELECT d.id
 		 FROM decorator d
-         LEFT JOIN categoria c ON (d.id_categoria = c.id)
+         LEFT join basico.categoria c ON (d.id_categoria = c.id)
          LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
          WHERE t.nome = 'FORMULARIO'
          AND c.nome = 'FORMULARIO_ACCORDEON_CONTAINER1_DECORATOR'
@@ -1133,7 +1133,7 @@ INSERT INTO formulario (id_categoria, id_decorator, id_formulario_pai, nome, des
        3 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
 
@@ -1150,7 +1150,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL';
 
@@ -1167,7 +1167,7 @@ INSERT INTO formulario (id_categoria, nome, descricao,
         'post' AS form_method, NULL AS form_action, 
         NULL AS form_attribs, 'SYSTEM_STARTUP' AS rowinfo       
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
@@ -1178,14 +1178,14 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DADOS_USUARIO') AS id_formulario,
        (SELECT p.id
 		FROM template p
-		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
@@ -1196,14 +1196,14 @@ SELECT (SELECT f.id
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario,
        (SELECT p.id
 		FROM template p
-		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
@@ -1214,14 +1214,14 @@ SELECT (SELECT f.id
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS') AS id_formulario,
        (SELECT p.id
 		FROM template p
-		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
@@ -1232,14 +1232,14 @@ SELECT (SELECT f.id
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
        (SELECT p.id
 		FROM template p
-		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
@@ -1250,14 +1250,14 @@ SELECT (SELECT f.id
 INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT p.id
 		FROM template p
-		LEFT JOIN categoria c ON (p.id_categoria = c.id)
+		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_TEMPLATE'
@@ -1272,7 +1272,7 @@ SELECT c.id AS id_categoria, 'STRINGTRIM_STRIPTAGS' AS nome,
        'Filtro que limpa espaços antes e depois do texto e remove todas as marcações de linguagens de programação.' AS descricao,
        '''StringTrim'', ''StripTags''' AS filter, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_FILTER';
 
@@ -1284,7 +1284,7 @@ SELECT c.id AS id_categoria, 'NOT_EMPTY' AS nome,
        'Validador que não permite que o campo seja vazio.' AS descricao,
        '''NotEmpty''' AS validator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 
@@ -1293,7 +1293,7 @@ SELECT c.id AS id_categoria, 'INT' AS nome,
        'Validador que não permite valores não inteiros.' AS descricao,
        '''Int''' AS validator, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 
@@ -1304,14 +1304,14 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
@@ -1322,14 +1322,14 @@ SELECT (SELECT m.id
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
@@ -1340,14 +1340,14 @@ SELECT (SELECT m.id
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
@@ -1358,14 +1358,14 @@ SELECT (SELECT m.id
 INSERT INTO modulo_formulario (id_modulo, id_formulario, rowinfo)
 SELECT (SELECT m.id
 		FROM modulo m
-		LEFT JOIN categoria c ON (m.id_categoria = c.id)
+		LEFT join basico.categoria c ON (m.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'SISTEMA'
 		AND c.nome = 'SISTEMA_MODULO'
 		AND m.nome = 'BASICO') AS id_modulo,
 	   (SELECT f.id
 		FROM formulario f
-		LEFT JOIN categoria c ON (f.id_categoria = c.id)
+		LEFT join basico.categoria c ON (f.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
 		AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
@@ -1380,7 +1380,7 @@ INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_Hidden' AS nome, 'Componente ZF para campos ocultos.' AS descricao,
 	   '''hidden''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_ZF';
 
@@ -1389,7 +1389,7 @@ INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_ValidationTextBox' AS nome, 'Componente DOJO para caixas de texto com validação.' AS descricao,
 	   '''ValidationTextBox''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1398,7 +1398,7 @@ INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_submitButton' AS nome, 'Componente DOJO para botões de submissão.' AS descricao,
 	   '''submitButton''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1407,7 +1407,7 @@ INSERT INTO componente (id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_button' AS nome, 'Componente ZendFramework de botões.' AS descricao,
 	   '''button''' AS componente, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_ZF';
 
@@ -1416,7 +1416,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'DOJO_FilteringSelect' AS nome, 'Componente DOJO para ComboBox com filtragem' AS descricao, 
 		'''FilteringSelect''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 		
@@ -1425,7 +1425,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'ZF_MultiCheckbox' AS nome, 'Componente ZF para multiplos CheckBoxs' AS descricao, 
 		'''MultiCheckbox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_ZF';
 
@@ -1434,7 +1434,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'DOJO_CheckBox' AS nome, 'Componente DOJO para CheckBox' AS descricao, 
 		'''CheckBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1443,7 +1443,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'DOJO_Textarea' AS nome, 'Componente DOJO para campos do tipo texto (auto ajustavel)' AS descricao, 
 		'''Textarea''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1452,7 +1452,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'DOJO_SimpleTextarea' AS nome, 'Componente DOJO para campos do tipo texto (dimensoes fixas)' AS descricao, 
 		'''SimpleTextarea''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1461,7 +1461,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'DOJO_DateTextBox' AS nome, 'Componente DOJO para campos do tipo data' AS descricao, 
 		'''DateTextBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1470,7 +1470,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'DOJO_NumberTextBox' AS nome, 'Componente DOJO para digitação de números' AS descricao, 
 		'''NumberTextBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1479,7 +1479,7 @@ INSERT INTO componente(id_categoria, nome, descricao, componente, rowinfo)
 SELECT c.id, 'DOJO_CurrencyTextBox' AS nome, 'Componente DOJO para digitação de valores numéricos (moeda)' AS descricao, 
 		'''CurrencyTextBox''' AS componente, 'SYSTEM_STARTUP' as rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_DOJO';
 
@@ -1494,14 +1494,14 @@ INSERT INTO formulario_elemento (id_categoria,
 
 SELECT c.id AS id_categoria, (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ZF'
@@ -1511,7 +1511,7 @@ SELECT c.id AS id_categoria, (SELECT d.id
                               'dummyHidden' AS element_name, NULL AS element_attribs,
                               '''dummyHidden''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR';
 
@@ -1523,28 +1523,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_CATEGORIA_BOLSA_CNPQ') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1554,7 +1554,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'categoriaBolsaCnpq' AS element_name, NULL AS element_attribs,
                               '''categoriaBolsaCnpq''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1565,28 +1565,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1596,7 +1596,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'maiorTitulacao' AS element_name, NULL AS element_attribs,
                               '''maiorTitulacao''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1608,28 +1608,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_INSTITUICAO_QUE_CONCEDEU') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1639,7 +1639,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'instituicaoQueConcedeu' AS element_name, NULL AS element_attribs,
                               '''instituicaoQueConcedeu''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1651,28 +1651,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_AREA_DE_CONHECIMENTO') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1682,7 +1682,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'areaDeConhecimento' AS element_name, NULL AS element_attribs,
                               '''areaDeConhecimento''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1694,28 +1694,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_ACADEMICOS_NOME_CURSO') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1725,7 +1725,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'nomeCurso' AS element_name, NULL AS element_attribs,
                               '''nomeCurso''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1735,7 +1735,7 @@ INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, c
 SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, 'Botão para submissão de formulários.' AS descricao,
 	   (SELECT cp.id
         FROM componente cp
-        LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+        LEFT join basico.categoria c ON (cp.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_DOJO'
@@ -1743,7 +1743,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, 'Botão para submiss�
        'FORM_BUTTON_SUBMIT' AS constante_textual_label, 'enviar' AS element_name, 
        '''enviar''' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
@@ -1752,7 +1752,7 @@ INSERT INTO formulario_elemento (id_categoria, nome, descricao, id_componente, e
 SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para chamar caixa de dialogo DOJO.' AS descricao,
 	   (SELECT cp.id
         FROM componente cp
-        LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+        LEFT join basico.categoria c ON (cp.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_ZF'
@@ -1761,7 +1761,7 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, 'Botão para cha
        '''label'' => "{@tituloForm}", ''onClick'' => "exibirForm(\\"@nomeForm\\", \\"{@variableInstaceForm}\\", \\"{@tituloForm}\\")"' AS element_attribs,
        '''buttonDialogDojo@offset''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO';
 
@@ -1773,21 +1773,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_PROFISSAO') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1797,7 +1797,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'profissao' AS element_name, NULL AS element_attribs,
                               '''profissao''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1809,21 +1809,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_VINCULO_PROFISSIONAL') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1833,7 +1833,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'vinculoProfissional' AS element_name, NULL AS element_attribs,
                               '''vinculoProfissional''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1845,21 +1845,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_PJ_VINCULO') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1869,7 +1869,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'pjVinculo' AS element_name, NULL AS element_attribs,
                               '''pjVinculo''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1881,21 +1881,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_REGIME_TRABALHO') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1905,7 +1905,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'regimeTrabalho' AS element_name, NULL AS element_attribs,
                               '''regimeTrabalho''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1917,28 +1917,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGO') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1948,7 +1948,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'cargo' AS element_name, NULL AS element_attribs,
                               '''cargo''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -1960,28 +1960,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_FUNCAO') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -1991,7 +1991,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'funcao' AS element_name, NULL AS element_attribs,
                               '''funcao''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2003,28 +2003,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_ATIVIDADES_DESENVOLVIDAS') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -2034,7 +2034,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'atividadesDesenvolvidas' AS element_name, NULL AS element_attribs,
                               '''atividadesDesenvolvidas'', array(''style'' => ''width: 535px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2046,21 +2046,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DATA_ADMISSAO') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -2070,7 +2070,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'dataAdmissao' AS element_name, NULL AS element_attribs,
                               '''dataAdmissao'', array(''style'' => ''width: 100px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2082,21 +2082,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DATA_DESVINCULACAO') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -2106,7 +2106,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'dataDesvinculacao' AS element_name, NULL AS element_attribs,
                               '''dataDesvinculacao'', array(''style'' => ''width: 100px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2118,21 +2118,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_CARGA_HORARIA_SEMANAL') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -2142,7 +2142,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'cargaHorariaSemanal' AS element_name, NULL AS element_attribs,
                               '''cargaHorariaSemanal'', array(''style'' => ''width: 40px;'', ''places'' => 0)' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2154,21 +2154,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_SALARIO_BRUTO') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -2178,7 +2178,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'salarioBruto' AS element_name, NULL AS element_attribs,
                               '''salarioBruto'', array(''style'' => ''width: 90px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2190,21 +2190,21 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda,
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_DEDICACAO_EXCLUSIVA') AS id_ajuda,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -2214,7 +2214,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'dedicacaoExclusiva' AS element_name, NULL AS element_attribs,
                               '''dedicacaoExclusiva''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2226,28 +2226,28 @@ INSERT INTO formulario_elemento (id_categoria, id_ajuda, id_formulario_elemento_
 
 SELECT c.id AS id_categoria, (SELECT a.id
                               FROM ajuda a
-                              LEFT JOIN categoria c ON (a.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS'
                               AND a.nome = 'AJUDA_FORMULARIO_CADASTRO_USUARIO_DADOS_PROFISSIONAIS_OUTRAS_INFORMACOES') AS id_ajuda,
                              (SELECT ff.id
                               FROM formulario_elemento_filter ff
-                              LEFT JOIN categoria c ON (ff.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (ff.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_FILTER'
                               AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_formulario_elemento_filter,
                              (SELECT d.id
                               FROM decorator d
-                              LEFT JOIN categoria c ON (d.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (d.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'FORMULARIO'
                               AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
                               AND d.nome = 'DECORATOR_FORM_LABEL_ESCAPE') AS id_decorator,
 							 (SELECT cp.id
                               FROM componente cp
-                              LEFT JOIN categoria c ON (cp.id_categoria = c.id)
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
@@ -2257,7 +2257,7 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               'outrasInformacoes' AS element_name, NULL AS element_attribs,
                               '''outrasInformacoes'', array(''style'' => ''width: 535px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT JOIN categoria c ON (t.id = c.id_tipo_categoria)
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
@@ -2267,14 +2267,14 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 INSERT INTO formulario_elemento_formulario_elemento_validator (id_formulario_elemento, id_formulario_elemento_validator, rowinfo)
 SELECT (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CARGA_HORARIA_SEMANAL') AS id_formulario_elemento,
        (SELECT fev.id
         FROM formulario_elemento_validator fev
-        LEFT JOIN categoria c ON (fev.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
@@ -2287,14 +2287,14 @@ SELECT (SELECT fe.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
@@ -2303,14 +2303,14 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
@@ -2319,14 +2319,14 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
@@ -2335,14 +2335,14 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
@@ -2351,14 +2351,14 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
@@ -2367,14 +2367,14 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
@@ -2383,14 +2383,14 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO'
@@ -2399,21 +2399,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VINCULO_PROFISSIONAL') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
@@ -2423,21 +2423,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_PROFISSAO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
@@ -2447,21 +2447,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_PJ_VINCULO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
@@ -2471,21 +2471,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_REGIME_TRABALHO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
@@ -2495,21 +2495,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CARGO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
@@ -2519,21 +2519,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_FUNCAO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
@@ -2543,21 +2543,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ATIVIDADES_DESENVOLVIDAS') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
@@ -2567,21 +2567,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_DATA_ADMISSAO') AS id_formulario_elemento,
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
@@ -2591,21 +2591,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_DATA_DESVINCULACAO') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
@@ -2615,21 +2615,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CARGA_HORARIA_SEMANAL') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
@@ -2639,21 +2639,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_SALARIO_BRUTO') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
@@ -2663,21 +2663,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_DEDICACAO_EXCLUSIVA') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
@@ -2687,21 +2687,21 @@ SELECT (SELECT f.id
 INSERT INTO formulario_formulario_elemento (id_formulario, id_formulario_elemento, id_decorator, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT fe.id
         FROM formulario_elemento fe
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_OUTRAS_INFORMACOES') AS id_formulario_elemento, 
         (SELECT d.id
         FROM decorator d
-        LEFT JOIN categoria c ON (d.id_categoria = c.id)
+        LEFT join basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
@@ -2716,7 +2716,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -2724,7 +2724,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
@@ -2736,7 +2736,7 @@ SELECT (SELECT ffe.id
         FROM formulario_formulario_elemento ffe
         LEFT JOIN formulario_elemento fe ON (ffe.id_formulario_elemento = fe.id)
         LEFT JOIN formulario f ON (ffe.id_formulario = f.id)
-        LEFT JOIN categoria c ON (fe.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (fe.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE fe.nome = 'FORM_BUTTON_DIALOG_DOJO'
         AND t.nome = 'FORMULARIO'
@@ -2744,7 +2744,7 @@ SELECT (SELECT ffe.id
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS') AS id_formulario_formulario_elemento,
        (SELECT f.id
         FROM formulario f
-        LEFT JOIN categoria c ON (f.id_categoria = c.id)    
+        LEFT join basico.categoria c ON (f.id_categoria = c.id)    
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO' 
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'

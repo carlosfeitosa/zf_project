@@ -26,9 +26,9 @@ begin
 end
 ;
 
-if object_id('dados_biometricos') is not null
+if object_id('basico.dados_biometricos') is not null
 begin
-  drop table dados_biometricos
+  drop table basico.dados_biometricos
 end
 ;
 

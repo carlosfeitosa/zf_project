@@ -10,7 +10,7 @@ class Basico_Model_DbTable_DadosPessoasPerfis extends Zend_Db_Table_Abstract
     /**
      * @var string Nome da Tabela do Banco de Dados.
      */
-    protected $_name = 'dados_pessoas_perfis';
+    protected $_name = 'basico_assoccl_pessoa_perfil.assoc_dados';
     
 }
 ?>

@@ -18,18 +18,18 @@
 
 create function fn_CheckCategoriaChaveEstrangeiraCategoriaExists(int)
 returns int as 
-'select id from categoria_chave_estrangeira where id_categoria = $1 limit 1'
+'select id from basico_categoria.assoc_chave_estrangeira where id_categoria = $1 limit 1'
 language 'sql';
 
 create function fn_CheckCategoriaCVC(int)
 returns int as 
-'select c.id from categoria c left JOIN basico.tipo_categoria t on (c.id_tipo_categoria = t.id) where c.id = $1 and t.nome = $$CVC$$ and c.nome = $$CVC$$limit 1'
+'select c.id from basico.categoria c left JOIN basico.tipo_categoria t on (c.id_tipo_categoria = t.id) where c.id = $1 and t.nome = $$CVC$$ and c.nome = $$CVC$$limit 1'
 language 'sql';
 
 
 /* CRIACAO DAS TABELAS */
 
-create table cvc (
+create table basico.cvc (
 	id serial not null ,
 	id_generico int not null ,
 	id_categoria_chave_estrangeira int not null ,
@@ -44,17 +44,17 @@ create table cvc (
 with (
   oids = false
 );
-alter table cvc owner to rochedo_user;
+alter table basico.cvc owner to rochedo_user;
 
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table cvc add constraint pk_cvc primary key (id);
+alter table basico.cvc add constraint pk_cvc primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table cvc
+alter table basico.cvc
 	alter column validade_inicio set default (current_timestamp),
 	alter column versao set default (0.1);
 
@@ -69,7 +69,7 @@ create index ix_cvc_id_categoria_chave_estrangeira
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table cvc
+alter table basico.cvc
   add constraint ix_cvc_id_generico_id_categoria_chave_estrangeira_versao unique (id_generico, id_categoria_chave_estrangeira, versao);
 
 create unique index ix_cvc_checksum
@@ -78,12 +78,12 @@ create unique index ix_cvc_checksum
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table cvc
-  add constraint fk_cvc_id_categoria_chave_estrangeira foreign key (id_categoria_chave_estrangeira) references categoria_chave_estrangeira (id) on update no action on delete no action;
+alter table basico.cvc
+  add constraint fk_cvc_id_categoria_chave_estrangeira foreign key (id_categoria_chave_estrangeira) references basico_categoria.assoc_chave_estrangeira (id) on update no action on delete no action;
 
 /* CRIACAO DOS CHECK CONSTRAINTS */
 
-alter table categoria_chave_estrangeira add
+alter table basico_categoria.assoc_chave_estrangeira add
     constraint ck_categoria_chave_estrangeira_categoria check
     ((fn_CheckCategoriaCVC(id_categoria) > 0) or (fn_CheckCategoriaChaveEstrangeiraCategoriaExists(id_categoria) is null));
 
@@ -91,5 +91,5 @@ alter table categoria_chave_estrangeira add
 /* MODIFICACOES DOS SCRIPTS ANTERIORES */
 	
 /* dropando indice unico relacionado a categoria da tabela categoria_chave_estrangeira */
-ALTER TABLE categoria_chave_estrangeira
+ALTER table basico_categoria.assoc_chave_estrangeira
 	DROP CONSTRAINT ix_categoria_chave_estrangeira CASCADE 

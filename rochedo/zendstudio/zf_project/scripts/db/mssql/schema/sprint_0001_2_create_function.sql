@@ -13,7 +13,7 @@ as
 begin
   declare @retval int
   set @retval = (select top 1 id
-                 from categoria_chave_estrangeira
+                 from basico_categoria.assoc_chave_estrangeira
                  where id_categoria = @id_categoria)
   return @retval
 end

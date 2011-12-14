@@ -347,7 +347,7 @@ class Basico_OPController_ControleAcessoOPController
 		// montando a query que vai retornar o metodo de validacao
 		$querySQLRetornaMetodoValidacao = "SELECT mv.metodo
 										   FROM basico.metodo_validacao mv
-										   LEFT JOIN basico_acao_aplicacao.acoes_aplicacao_metodos_validacao apmv ON (mv.id = apmv.id_metodo_validacao)
+										   LEFT JOIN basico_acao_aplicacao.assoccl_metodo_validacao apmv ON (mv.id = apmv.id_metodo_validacao)
 										   LEFT JOIN basico.acao_aplicacao ap ON (apmv.id_acao_aplicacao = ap.id)
 										   LEFT JOIN basico.modulo m ON (ap.id_modulo = m.id)
 										   WHERE m.nome = '{$nomeModuloRequest}'
@@ -390,7 +390,7 @@ class Basico_OPController_ControleAcessoOPController
 
 		// montando a query que vai retornar se a acao esta cadastrada
 		$querySQLRetornaIdAcao = "SELECT a.id
-								  FROM acao_aplicacao a
+								  from basico.acao_aplicacao a
 								  LEFT JOIN modulo m ON (a.id_modulo = m.id)
 								  WHERE m.nome = '{$nomeModuloRequest}'
 								  AND a.controller = '{$nomeControllerRequest}'
@@ -479,7 +479,7 @@ class Basico_OPController_ControleAcessoOPController
 		$querySQLRetornaMaiorPerfilAcaoAplicacao = "SELECT p.nome
 													FROM basico.perfil p
 													INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
-													INNER JOIN basico_acao_aplicacao.acoes_aplicacao_perfis aap ON (p.id = aap.id_perfil)
+													INNER JOIN basico_acao_aplicacao.assoccl_perfil aap ON (p.id = aap.id_perfil)
 													INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
 													INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)
 													WHERE pp.id_pessoa = {$idPessoa}
@@ -520,7 +520,7 @@ class Basico_OPController_ControleAcessoOPController
 		$querySQLRetornaIdMaiorPerfilAcaoAplicacao = "SELECT pp.id
 													  FROM basico.perfil p
 													  INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
-													  INNER JOIN basico_acao_aplicacao.acoes_aplicacao_perfis aap ON (p.id = aap.id_perfil)
+													  INNER JOIN basico_acao_aplicacao.assoccl_perfil aap ON (p.id = aap.id_perfil)
 													  INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
 													  INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)
 													  WHERE pp.id_pessoa = {$idPessoa}

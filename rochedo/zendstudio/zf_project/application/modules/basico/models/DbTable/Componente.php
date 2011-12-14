@@ -11,6 +11,6 @@ class Basico_Model_DbTable_Componente extends Zend_Db_Table_Abstract
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'componente';    
+    protected $_name = 'basico.componente';    
 }
 ?>

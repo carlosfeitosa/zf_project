@@ -124,7 +124,7 @@ alter table dbo.rascunho add
 	constraint fk_rascunho_categoria foreign key 
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 	

@@ -6,10 +6,10 @@
 * criacao: 16/03/2011
 */
 
-drop table if exists acoes_aplicacao_metodos_validacao;
+drop table if exists basico_acao_aplicacao.assoccl_metodo_validacao;
 
-drop table if exists acoes_aplicacao_perfis;
+drop table if exists basico_acao_aplicacao.assoccl_perfil;
 
-drop table if exists acao_aplicacao;
+drop table if exists basico.acao_aplicacao;
 
 drop table if exists basico.metodo_validacao;

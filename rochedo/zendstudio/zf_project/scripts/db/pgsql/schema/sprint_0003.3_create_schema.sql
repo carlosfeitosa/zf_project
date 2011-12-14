@@ -61,13 +61,13 @@ alter table basico_localizacao.municipio add constraint pk_municipio primary key
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
 alter table website
-  add constraint fk_website_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_website_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
 
 alter table basico_localizacao.municipio
   add constraint fk_municipio_estado foreign key (id_estado) references basico_localizacao.estado (id) on update no action on delete no action;
 
 alter table basico_localizacao.municipio
-  add constraint fk_municipio_categoria foreign key (id_categoria) references categoria (id) on update no action on delete no action;
+  add constraint fk_municipio_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
   
 /* CRIACAO DOS CHECK CONSTRAINTS */
   

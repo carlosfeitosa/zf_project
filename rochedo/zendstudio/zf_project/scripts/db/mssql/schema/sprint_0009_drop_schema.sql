@@ -6,21 +6,21 @@
 * criacao: 16/03/2011
 */
 
-if object_id('acoes_aplicacao_metodos_validacao') is not null
+if object_id('basico_acao_aplicacao.assoccl_metodo_validacao') is not null
 begin
-  drop table acoes_aplicacao_metodos_validacao
+  drop table basico_acao_aplicacao.assoccl_metodo_validacao
 end
 ;
 
-if object_id('acoes_aplicacao_perfis') is not null
+if object_id('basico_acao_aplicacao.assoccl_perfil') is not null
 begin
-  drop table acoes_aplicacao_perfis
+  drop table basico_acao_aplicacao.assoccl_perfil
 end
 ;
 
-if object_id('acao_aplicacao') is not null
+if object_id('basico.acao_aplicacao') is not null
 begin
-  drop table acao_aplicacao
+  drop table basico.acao_aplicacao
 end
 ;
 

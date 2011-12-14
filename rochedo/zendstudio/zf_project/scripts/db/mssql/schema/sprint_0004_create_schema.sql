@@ -48,7 +48,7 @@ create table basico_formulario.decorator (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.ajuda (
+create table basico.ajuda (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -176,7 +176,7 @@ create table basico_formulario.assoccl_elemento (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null 
 ) on [primary];
 
-create table dbo.componente (
+create table basico.componente (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	id_template int null ,
@@ -282,7 +282,7 @@ create table basico_form_form_elemento.assoccl_evento (
 
 alter table basico_formulario.decorator with nocheck add constraint pk_decorator primary key clustered (id) on [primary];
 
-alter table dbo.ajuda with nocheck add constraint pk_ajuda primary key clustered (id) on [primary];
+alter table basico.ajuda with nocheck add constraint pk_ajuda primary key clustered (id) on [primary];
 
 alter table basico.output with nocheck add constraint pk_output primary key clustered (id) on [primary];
 
@@ -304,7 +304,7 @@ alter table basico.formulario with nocheck add constraint pk_formulario primary 
 
 alter table basico_formulario.assoccl_elemento with nocheck add constraint pk_formularios_formularios_elementos primary key clustered (id) on [primary];
 
-alter table dbo.componente with nocheck add constraint pk_componente primary key (id) on [primary];
+alter table basico.componente with nocheck add constraint pk_componente primary key (id) on [primary];
 
 alter table basico_form_form_elemento.assoc_grupo with nocheck add constraint pk_grupo_formulario_elemento primary key (id) on [primary];
 
@@ -348,7 +348,7 @@ alter table basico_formulario.assoccl_elemento add
 alter table basico_formulario.assoccl_elemento add
 	constraint df_formularios_formularios_elementos_datahora_criacao default (getdate()) for datahora_criacao;
 
-alter table dbo.componente add
+alter table basico.componente add
 	constraint df_componente_validade_inicio default (getdate()) for validade_inicio;
 
 alter table dbo.formularios_elementos_formularios_elementos_validators add
@@ -397,7 +397,7 @@ create index ix_formulario_nome on basico.formulario (nome) on [primary];
 
 create unique index ix_formulario_form_name on basico.formulario (form_name) on [primary];
 
-create unique index ix_componente_nome on dbo.componente (nome) on [primary];
+create unique index ix_componente_nome on basico.componente (nome) on [primary];
 
 create unique index ix_grupo_formulario_elemento_nome on basico_form_form_elemento.assoc_grupo (nome) on [primary];
 
@@ -417,7 +417,7 @@ alter table basico_formulario.decorator add
 		nome
 	) on [primary];
 
-alter table dbo.ajuda add
+alter table basico.ajuda add
 	constraint ix_ajuda_categoria_nome unique nonclustered
 	(
 		id_categoria,
@@ -495,7 +495,7 @@ alter table basico_formulario.assoccl_elemento add
         ordem
     ) on [primary];
 
-alter table dbo.componente add
+alter table basico.componente add
 	constraint ix_componente_categoria_componente unique nonclustered
 	(
 		id_categoria,
@@ -572,15 +572,15 @@ alter table basico_formulario.decorator add
 	constraint fk_decorator_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 
-alter table dbo.ajuda add
+alter table basico.ajuda add
 	constraint fk_ajuda_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 
@@ -588,7 +588,7 @@ alter table basico.output add
 	constraint fk_output_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 
@@ -596,7 +596,7 @@ alter table dbo.template add
 	constraint fk_template_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 	constraint fk_template_output foreign key
@@ -652,21 +652,21 @@ alter table basico_formulario.elemento add
 	constraint fk_formulario_elemento_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 	
 	constraint fk_formulario_elemento_ajuda foreign key
 	(
 		id_ajuda
-	) references dbo.ajuda (
+	) references basico.ajuda (
 		id
 	),
 	
 	constraint fk_formulario_elemento_componente foreign key
 	(
 		id_componente
-	) references dbo.componente (
+	) references basico.componente (
 		id
 	),
 	
@@ -682,7 +682,7 @@ alter table basico.validator add
 	constraint fk_formulario_elemento_validator_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 
@@ -690,7 +690,7 @@ alter table basico.filter add
 	constraint fk_formulario_elemento_filter_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 	
@@ -698,7 +698,7 @@ alter table basico.formulario add
 	constraint fk_formulario_categoria foreign key 
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 	constraint fk_categoria_decorator foreign key 
@@ -710,7 +710,7 @@ alter table basico.formulario add
 	constraint fk_categoria_ajuda foreign key 
 	(
 		id_ajuda
-	) references dbo.ajuda (
+	) references basico.ajuda (
 		id
 	),
 	constraint fk_formulario_formulario foreign key 
@@ -746,11 +746,11 @@ alter table basico_formulario.assoccl_elemento add
 		id
 	);
 	
-alter table dbo.componente add
+alter table basico.componente add
 	constraint fk_componente_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 	constraint fk_componente_template foreign key
@@ -856,7 +856,7 @@ alter table basico.evento add
 	constraint fk_evento_elemento_categoria foreign key 
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 	
@@ -865,7 +865,7 @@ alter table basico_form_form_elemento.assoccl_evento add
 	constraint fk_formularios_formularios_elementos_eventos_elementos_categoria foreign key 
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 
@@ -889,11 +889,11 @@ alter table basico_form_form_elemento.assoc_grupo add
     constraint ck_grupo_formulario_elemento_constante_textual_label check
     (constante_textual_label is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_label) is not null));
 
-alter table dbo.ajuda add
+alter table basico.ajuda add
     constraint ck_ajuda_constante_textual_ajuda check
     (constante_textual_ajuda is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_ajuda) is not null));
 
-alter table dbo.ajuda add
+alter table basico.ajuda add
     constraint ck_ajuda_constante_textual_hint check
     (constante_textual_hint is null or (dbo.fn_CheckConstanteTextualExists(constante_textual_hint) is not null));
 

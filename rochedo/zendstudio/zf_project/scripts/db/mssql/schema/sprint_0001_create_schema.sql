@@ -20,7 +20,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table dbo.categoria (
+create table basico.categoria(
 	id int identity (1, 1) not null ,
 	id_tipo_categoria int not null ,
 	id_categoria_pai int null ,
@@ -46,7 +46,7 @@ create table basico.modulo (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.dados_pessoais (
+create table basico_pessoa.assoc_dados (
 	id int identity (1, 1) not null ,
 	id_pessoa int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -176,14 +176,14 @@ create table dbo.pessoas_perfis_mensagens_categorias (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.dados_pessoas_perfis (
+create table basico_assoccl_pessoa_perfil.assoc_dados (
 	id int identity not null ,
 	id_pessoa_perfil int not null ,
 	assinatura_mensagem_email varchar (2000) collate latin1_general_ci_ai ,
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.categoria_chave_estrangeira (
+create table basico_categoria.assoc_chave_estrangeira (
 	id int identity not null ,
 	id_categoria int not null ,
 	id_modulo    int not null,
@@ -211,11 +211,11 @@ create table dbo.dicionario_expressao (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table dbo.categoria with nocheck add constraint pk_categoria primary key clustered (id) on [primary];
+alter table basico.categoriawith nocheck add constraint pk_categoria primary key clustered (id) on [primary];
 
 alter table basico.modulo with nocheck add constraint pk_modulo primary key clustered (id) on [primary];
 
-alter table dbo.dados_pessoais with nocheck add constraint pk_dados_pessoais primary key clustered (id) on [primary];
+alter table basico_pessoa.assoc_dados with nocheck add constraint pk_dados_pessoais primary key clustered (id) on [primary];
 
 alter table basico_localizacao.email with nocheck add constraint pk_email primary key clustered (id)  on [primary];
 
@@ -239,9 +239,9 @@ alter table dbo.anexo_mensagem with nocheck add constraint pk_anexo_mensagem pri
 
 alter table dbo.pessoas_perfis_mensagens_categorias with nocheck add constraint pk_pessoas_perfis_mensagens_categorias primary key clustered (id) on [primary];
 
-alter table dbo.dados_pessoas_perfis with nocheck add constraint pk_dados_pessoas_perfis primary key clustered (id) on [primary];
+alter table basico_assoccl_pessoa_perfil.assoc_dados with nocheck add constraint pk_dados_pessoas_perfis primary key clustered (id) on [primary];
 
-alter table dbo.categoria_chave_estrangeira with nocheck add constraint pk_categoria_chave_estrangeira primary key clustered (id) on [primary];
+alter table basico_categoria.assoc_chave_estrangeira with nocheck add constraint pk_categoria_chave_estrangeira primary key clustered (id) on [primary];
 
 alter table dbo.token with nocheck add constraint pk_token primary key clustered (id) on [primary];
 
@@ -250,7 +250,7 @@ alter table dbo.dicionario_expressao with nocheck add constraint pk_dicionario_e
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table dbo.categoria add 
+alter table basico.categoriaadd 
 	constraint df_categoria_nivel default (1) for nivel,
 	constraint df_categoria_ativo default (1) for ativo;
 
@@ -292,11 +292,11 @@ create unique index ix_email_unique_id on basico_localizacao.email (unique_id) o
 
 create unique index ix_email_email on basico_localizacao.email (email) on [primary];
 
-create index ix_categoria_nome on dbo.categoria (nome) on [primary];
+create index ix_categoria_nome on basico.categoria(nome) on [primary];
 
 create index ix_modulo_nome on basico.modulo (nome) on [primary];
 
-create index ix_dados_pessoais_nome on dbo.dados_pessoais (nome) on [primary];
+create index ix_dados_pessoais_nome on basico_pessoa.assoc_dados (nome) on [primary];
 
 create index ix_mensagem_assunto on basico.mensagem (assunto) on [primary];
 
@@ -306,7 +306,7 @@ create unique index ix_tipo_categoria_nome on dbo.tipo_categoria (nome) on [prim
 
 create index ix_mensagem_email_responder_para on basico_mensagem.assoc_email (responder_para) on [primary];
 
-create unique index ix_categoria_chave_estrangeira_id_categoria on dbo.categoria_chave_estrangeira (id_categoria) on [primary];
+create unique index ix_categoria_chave_estrangeira_id_categoria on basico_categoria.assoc_chave_estrangeira (id_categoria) on [primary];
 
 create unique index ix_token_token on dbo.token (token) on [primary];
 
@@ -359,11 +359,11 @@ alter table basico.pessoa add
 		id
 	);
 
-alter table dbo.categoria add 
+alter table basico.categoriaadd 
 	constraint fk_categoria_categoria foreign key 
 	(
 		id_categoria_pai
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 	constraint fk_categoria_tipo_categoria foreign key 
@@ -377,7 +377,7 @@ alter table basico.modulo add
 	constraint fk_modulo_categoria foreign key
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 	constraint fk_modulo_id_modulo_pai foreign key
@@ -387,11 +387,11 @@ alter table basico.modulo add
 		id
 	);
 	
-alter table dbo.categoria_chave_estrangeira add 
+alter table basico_categoria.assoc_chave_estrangeira add 
     constraint fk_categoria_chave_estrangeira_categoria foreign key 
     (
     	id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
     	id
     ),
     constraint fk_categoria_chave_estrangeira_modulo foreign key 
@@ -401,7 +401,7 @@ alter table dbo.categoria_chave_estrangeira add
     	id
     );
 
-alter table dbo.dados_pessoais add 
+alter table basico_pessoa.assoc_dados add 
 	constraint fk_dados_pessoais_pessoa foreign key 
 	(
 		id_pessoa
@@ -413,7 +413,7 @@ alter table basico_localizacao.email add
 	constraint fk_email_categoria foreign key 
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 
@@ -421,7 +421,7 @@ alter table basico.log add
 	constraint fk_log_categoria foreign key 
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	),
 	constraint fk_log_pessoas_perfis foreign key 
@@ -443,7 +443,7 @@ alter table basico.perfil add
 	constraint fk_perfil_categoria foreign key 
 	(
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 
@@ -465,7 +465,7 @@ alter table basico.mensagem with nocheck add
     constraint fk_mensagens_categorias foreign key
     (
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
 	);
 
@@ -501,11 +501,11 @@ alter table dbo.pessoas_perfis_mensagens_categorias add
 alter table dbo.pessoas_perfis_mensagens_categorias add
     constraint fk_pessoas_perfis_mensagens_categorias_categoria foreign key (
         id_categoria
-    ) references dbo.categoria (
+    ) references basico.categoria(
         id
     );
     
-alter table dbo.dados_pessoas_perfis add
+alter table basico_assoccl_pessoa_perfil.assoc_dados add
 	constraint fk_dados_pessoas_perfis_pessoas_perfis foreign key (
 		id_pessoa_perfil
 	) references dbo.pessoas_perfis (
@@ -515,14 +515,14 @@ alter table dbo.dados_pessoas_perfis add
 alter table dbo.token add
 	constraint fk_token_categoria foreign key (
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 	
 alter table dbo.dicionario_expressao add
 	constraint fk_dicionario_expressao_categoria foreign key (
 		id_categoria
-	) references dbo.categoria (
+	) references basico.categoria(
 		id
 	);
 

@@ -11,6 +11,6 @@ class Basico_Model_DbTable_AcoesAplicacaoMetodosValidacao extends Zend_Db_Table_
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'basico_acao_aplicacao.acoes_aplicacao_metodos_validacao';
+    protected $_name = 'basico_acao_aplicacao.basico_acao_aplicacao.assoccl_metodo_validacao';
 }
 ?>
