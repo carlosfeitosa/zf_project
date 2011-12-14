@@ -5,8 +5,8 @@
 * por: CARLOS FEITOSA (carlos.feitosa@rochedoproject.com)
 * criacao: 05/10/2010
 */
-if object_id('relacao_categoria_chave_estrangeira') is not null
+if object_id('basico_categoria_chave_estrangeira.assoc_relacao') is not null
 begin
-  drop table relacao_categoria_chave_estrangeira
+  drop table basico_categoria_chave_estrangeira.assoc_relacao
 end
 ;

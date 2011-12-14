@@ -152,7 +152,7 @@ with (
 );
 alter table pessoa owner to rochedo_user;
 
-create table pessoas_perfis (
+create table basico_pessoa.assoccl_perfil (
 	id serial not null ,
 	id_pessoa integer not null ,
 	id_perfil integer not null ,
@@ -163,7 +163,7 @@ create table pessoas_perfis (
 with (
   oids = false
 );
-alter table pessoas_perfis owner to rochedo_user;
+alter basico_pessoa.assoccl_perfil owner to rochedo_user;
 
 create table tipo_categoria (
 	id serial not null ,
@@ -220,7 +220,7 @@ with (
 );
 alter table anexo_mensagem owner to rochedo_user;
 
-create table pessoas_perfis_mensagens_categorias ( 
+create table basico_mensagem.assoccl_assoccl_pessoa_perfil ( 
 	id serial not null ,
 	id_mensagem integer not null ,
 	id_categoria integer not null ,
@@ -269,7 +269,7 @@ with (
 );
 alter table token owner to rochedo_user;
 
-create table dicionario_expressao (
+create table basico.dicionario_expressao (
 	id serial not null ,
 	id_categoria int not null ,
 	constante_textual character varying (200) not null,
@@ -278,7 +278,7 @@ create table dicionario_expressao (
 with (
 	oids = false
 );
-alter table dicionario_expressao owner to rochedo_user;
+alter table basico.dicionario_expressao owner to rochedo_user;
 
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
@@ -299,7 +299,7 @@ alter table basico.perfil add constraint pk_perfil primary key (id);
 
 alter table basico.pessoa add constraint pk_pessoa primary key (id);
 
-alter table pessoas_perfis add constraint pk_pessoas_perfis primary key (id);
+alter table basico_pessoa.assoccl_perfil add constraint pk_pessoas_perfis primary key (id);
 
 alter table tipo_categoria add constraint pk_tipo_categoria primary key (id);
 
@@ -309,7 +309,7 @@ alter table basico_mensagem.assoc_email add constraint pk_mensagem_email primary
 
 alter table anexo_mensagem add constraint pk_anexo_mensagem primary key (id);
 
-alter table pessoas_perfis_mensagens_categorias add constraint pk_pessoas_perfis_mensagens_categorias primary key (id);
+alter table basico_mensagem.assoccl_assoccl_pessoa_perfil add constraint pk_pessoas_perfis_mensagens_categorias primary key (id);
 
 alter table basico_assoccl_pessoa_perfil.assoc_dados add constraint pk_dados_pessoas_perfis primary key (id);
 
@@ -317,7 +317,7 @@ alter table basico.categoria_chave_estrangeira add constraint pk_categoria_chave
 
 alter table token add constraint pk_token primary key (id);
 
-alter table dicionario_expressao add constraint pk_dicionario_expressao primary key (id);
+alter table basico.dicionario_expressao add constraint pk_dicionario_expressao primary key (id);
 
 
 /* CRIACAO DOS VALORES DEFAULT */
@@ -341,7 +341,7 @@ alter table basico.perfil
     alter column datahora_cadastro set default (current_timestamp) ,
     alter column datahora_ultima_atualizacao set default (current_timestamp);
 
-alter table pessoas_perfis
+alter table basico_pessoa.assoccl_perfil
     alter column datahora_cadastro set default (current_timestamp) ,
     alter column datahora_ultima_atualizacao set default (current_timestamp);
     
@@ -395,7 +395,7 @@ create index ix_token_token
   on token using btree (token asc nulls last);
   
 create index ix_dicionario_expressao_constante_textual
-  on dicionario_expressao using btree (constante_textual asc nulls last);
+  on basico.dicionario_expressao using btree (constante_textual asc nulls last);
 
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
@@ -412,7 +412,7 @@ alter table basico.modulo
 alter table basico.perfil
   add constraint ix_perfil_categoria_nome unique (id_categoria, nome);
 
-alter table pessoas_perfis
+alter table basico_pessoa.assoccl_perfil
   add constraint ix_pessoas_perfis unique (id_pessoa, id_perfil);
   
 alter table basico.categoria_chave_estrangeira
@@ -421,7 +421,7 @@ alter table basico.categoria_chave_estrangeira
 alter table token
   add constraint ix_token unique (token);
   
-alter table dicionario_expressao 
+alter table basico.dicionario_expressao 
   add constraint ix_dicionario_expressao unique (id_categoria, constante_textual);
 
 
@@ -432,7 +432,7 @@ alter table basico.pessoa
 
 alter table basico.categoria
   add constraint fk_categoria_categoria foreign key (id_categoria_pai) references basico.categoria(id) on update no action on delete no action ,
-  add constraint fk_categoria_tipo_categoria foreign key (id_tipo_categoria) references tipo_categoria (id) on update no action on delete no action;
+  add constraint fk_categoria_tipo_categoria foreign key (id_tipo_categoria) references basico.tipo_categoria (id) on update no action on delete no action;
 
 alter table basico.modulo
   add constraint fk_modulo_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action,
@@ -458,7 +458,7 @@ alter table basico.login
 alter table basico.perfil
   add constraint fk_perfil_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
 
-alter table pessoas_perfis
+alter table basico_pessoa.assoccl_perfil
   add constraint fk_pessoas_perfis_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action ,
   add constraint fk_pessoas_perfis_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
 
@@ -471,13 +471,13 @@ alter table basico_mensagem.assoc_email
 alter table anexo_mensagem
   add constraint fk_id_mensagem_anexo foreign key (id_mensagem) references basico.mensagem (id) on update no action on delete no action;
 
-alter table pessoas_perfis_mensagens_categorias
+alter table basico_mensagem.assoccl_assoccl_pessoa_perfil
   add constraint fk_pessoa_perfil foreign key (id_pessoa_perfil) references pessoas_perfis (id) on update no action on delete no action;
 
-alter table pessoas_perfis_mensagens_categorias
+alter table basico_mensagem.assoccl_assoccl_pessoa_perfil
   add constraint fk_mensagem foreign key (id_mensagem) references basico.mensagem (id) on update no action on delete no action;
 
-alter table pessoas_perfis_mensagens_categorias
+alter table basico_mensagem.assoccl_assoccl_pessoa_perfil
   add constraint fk_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
   
 alter table basico_assoccl_pessoa_perfil.assoc_dados

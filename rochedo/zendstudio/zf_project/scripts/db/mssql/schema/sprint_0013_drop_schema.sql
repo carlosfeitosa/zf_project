@@ -9,9 +9,9 @@
 * 
 */
 
-if object_id('rascunho') is not null
+if object_id('basico_formulario.rascunho') is not null
 begin
-  drop table rascunho
+  drop table basico_formulario.rascunho
 end
 ;
 
@@ -21,8 +21,8 @@ begin
 end
 ;
 
-if object_id('sequencia_formulario') is not null
+if object_id('basico_formulario.assocag_sequencia') is not null
 begin
-  drop table sequencia_formulario
+  drop table basico_formulario.assocag_sequencia
 end
 ;

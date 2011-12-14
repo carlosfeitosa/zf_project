@@ -17,7 +17,7 @@ create table dbo.raca (
 
 ) on [primary];
 
-create table dbo.tipo_sanguineo (
+create table basico_dados_biometricos.tipo_sanguineo (
 	id int identity (1, 1) not null ,
 	nome varchar (200) collate latin1_general_ci_ai not null ,
 	descricao varchar (200) collate latin1_general_ci_ai not null ,
@@ -30,7 +30,7 @@ create table dbo.tipo_sanguineo (
 
 alter table dbo.raca with nocheck add constraint pk_raca primary key clustered (id) on [primary];
 
-alter table dbo.tipo_sanguineo with nocheck add constraint pk_tipo_sanguineo primary key clustered (id) on [primary];
+alter table basico_dados_biometricos.tipo_sanguineo with nocheck add constraint pk_tipo_sanguineo primary key clustered (id) on [primary];
 
 /* CRIACAO DOS VALORES DEFAULT */
 
@@ -42,13 +42,13 @@ alter table dbo.tipo_sanguineo with nocheck add constraint pk_tipo_sanguineo pri
 
 /* CRIACAO DAS CONSTRAINTS UNIQUE */
 
-alter table dbo.tipo_sanguineo add
+alter table basico_dados_biometricos.tipo_sanguineo add
 	constraint ix_tipo_sanguineo_nome unique nonclustered
 	(
 		nome
 	) on [primary];
 	
-alter table dbo.tipo_sanguineo add
+alter table basico_dados_biometricos.tipo_sanguineo add
 	constraint ix_tipo_sanguineo_rotulo unique nonclustered
 	(
 		rotulo

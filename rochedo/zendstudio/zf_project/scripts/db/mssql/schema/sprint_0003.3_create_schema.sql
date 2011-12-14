@@ -11,7 +11,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table dbo.website (
+create table  basico.website (
 	id int identity (1, 1) not null ,
 	id_generico_proprietario int not null ,
 	id_categoria int not null ,
@@ -33,7 +33,7 @@ create table basico_localizacao.municipio (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table dbo.website with nocheck add constraint pk_website primary key clustered (id) on [primary];
+alter table  basico.website with nocheck add constraint pk_website primary key clustered (id) on [primary];
 
 alter table basico_localizacao.municipio with nocheck add constraint pk_municipio primary key clustered (id) on [primary];
 
@@ -51,7 +51,7 @@ alter table basico_localizacao.municipio with nocheck add constraint pk_municipi
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table dbo.website add 
+alter table  basico.website add 
     constraint fk_website_categoria foreign key 
     (
         id_categoria

@@ -216,7 +216,7 @@ alter table basico_localizacao.endereco add
     constraint fk_endereco_pessoa_perfil foreign key 
     (
         id_pessoa_perfil_validador
-    ) references dbo.pessoas_perfis (
+    ) references basico_pessoa.assoccl_perfil (
         id
     ),
     constraint fk_endereco_categoria foreign key 

@@ -49,7 +49,7 @@ end
 ;
 
 
-if object_id('template_formulario') is not null
+if object_id('basico_formulario.assoccl_template') is not null
 begin
 drop table template_formulario;
 end

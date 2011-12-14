@@ -11,7 +11,7 @@
 
 /* CRIACAO DAS TABELAS */
 
-create table rascunho (
+create table basico_formulario.rascunho (
 	id serial not null ,
 	id_rascunho_pai int null ,
 	id_categoria int not null ,
@@ -44,7 +44,7 @@ create table basico_formulario_rascunho.assocag_grupo (
   oids = false
 );
 
-create table sequencia_formulario (
+create table basico_formulario.assocag_sequencia (
 	id serial not null,
 	nome character varying (300) not null,
 	id_formulario int not null,
@@ -60,24 +60,24 @@ create table sequencia_formulario (
 
 /* CRIACAO DAS CHAVES PRIMARIAS */
 
-alter table rascunho add constraint pk_rascunho primary key (id);
+alter table basico_formulario.rascunho add constraint pk_rascunho primary key (id);
 
 alter table basico_formulario_rascunho.assocag_grupo add constraint pk_grupo_rascunho primary key (id);
 
-alter table sequencia_formulario add constraint pk_sequencia_formulario primary key (id);
+alter table basico_formulario.assocag_sequencia add constraint pk_sequencia_formulario primary key (id);
 
 /* CRIACAO DOS VALORES DEFAULT */
 
-alter table rascunho
+alter table basico_formulario.rascunho
     alter column datahora_criacao set default (current_timestamp);
 
-alter table rascunho
+alter table basico_formulario.rascunho
     alter column datahora_expiracao set default (current_timestamp + interval '18 months');
     
 alter table basico_formulario_rascunho.assocag_grupo
     alter column datahora_criacao set default (current_timestamp);
     
-alter table sequencia_formulario
+alter table basico_formulario.assocag_sequencia
     alter column datahora_criacao set default (current_timestamp);
 
 	
@@ -140,19 +140,19 @@ create index ix_sequencia_formulario_datahora_ultima_atualizacao
 
 /* CRIACAO DAS CHAVES ESTRANGEIRAS */
 
-alter table rascunho
+alter table basico_formulario.rascunho
   add constraint fk_rascunho_pai foreign key (id_rascunho_pai) references rascunho (id) on update no action on delete no action;
   
-alter table rascunho
+alter table basico_formulario.rascunho
   add constraint fk_rascunho_categoria foreign key (id_categoria) references basico.categoria(id) on update no action on delete no action;
   
-alter table rascunho
+alter table basico_formulario.rascunho
   add constraint fk_rascunho_pessoa foreign key (id_pessoa) references basico.pessoa (id) on update no action on delete no action;
   
-alter table rascunho
+alter table basico_formulario.rascunho
   add constraint fk_rascunho_perfil foreign key (id_perfil) references basico.perfil (id) on update no action on delete no action;
   
-alter table rascunho
+alter table basico_formulario.rascunho
   add constraint fk_rascunho_grupo_rascunho foreign key (id_grupo_rascunho) references basico_formulario_rascunho.assocag_grupo (id) on update no action on delete no action;
   
 alter table basico_formulario_rascunho.assocag_grupo
@@ -164,5 +164,5 @@ alter table basico_formulario_rascunho.assocag_grupo
 alter table basico_formulario_rascunho.assocag_grupo
   add constraint fk_grupo_rascunho_sequencia_formulario foreign key (id_sequencia_formulario) references sequencia_formulario (id) on update no action on delete no action;
   
-alter table sequencia_formulario
+alter table basico_formulario.assocag_sequencia
   add constraint fk_sequencia_formulario_formulario foreign key (id_formulario) references basico.formulario(id) on update no action on delete no action;

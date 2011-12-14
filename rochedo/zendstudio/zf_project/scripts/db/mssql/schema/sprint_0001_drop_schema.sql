@@ -13,13 +13,13 @@
 * 						- 29/10/2010 - drop da tabela "modulo", proviniente do sprint 0004;
 */
 
-if object_id('dicionario_expressao') is not null
+if object_id('basico.dicionario_expressao') is not null
 begin
   drop table dicionario_expressao
 end
 ;
 
-if object_id('token') is not null
+if object_id('basico.token') is not null
 begin
   drop table token
 end
@@ -61,15 +61,15 @@ begin
 end
 ;
 
-if object_id('pessoas_perfis_mensagens_categorias') is not null
+if object_id('basico_mensagem.assoccl_assoccl_pessoa_perfil') is not null
 begin
-  drop table pessoas_perfis_mensagens_categorias
+  drop table basico_mensagem.assoccl_assoccl_pessoa_perfil
 end
 ;
 
 if object_id('pessoas_perfis') is not null
 begin
-  drop table pessoas_perfis
+  drop table basico_pessoa.assoccl_perfil
 end
 ;
 
@@ -115,7 +115,7 @@ begin
 end
 ;
 
-if object_id('tipo_categoria') is not null
+if object_id('basico.tipo_categoria') is not null
 begin
   drop table tipo_categoria
 end

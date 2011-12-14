@@ -9,9 +9,9 @@
 * 						
 */
 
-if object_id('website') is not null
+if object_id( 'basico.website') is not null
 begin
-  drop table website
+  drop  table basico.website
 end
 ;
 

@@ -67,7 +67,7 @@ create table basico.output (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.template (
+create table basico.template (
 	id int identity (1, 1) not null ,
 	id_categoria int not null ,
 	nome varchar (100) collate latin1_general_ci_ai not null ,
@@ -93,7 +93,7 @@ create table basico_perfil.assoccl_modulo (
 	rowinfo varchar (2000) collate latin1_general_ci_ai not null
 ) on [primary];
 
-create table dbo.template_formulario (
+create table basico_formulario.assoccl_template  (
 	id int identity (1, 1) not null ,
 	id_formulario int not null ,
 	id_template int not null ,
@@ -286,13 +286,13 @@ alter table basico.ajuda with nocheck add constraint pk_ajuda primary key cluste
 
 alter table basico.output with nocheck add constraint pk_output primary key clustered (id) on [primary];
 
-alter table dbo.template with nocheck add constraint pk_template primary key clustered (id) on [primary];
+alter table basico.template with nocheck add constraint pk_template primary key clustered (id) on [primary];
 
 alter table basico_formulario.assoccl_modulo with nocheck add constraint pk_modulo_formulario primary key clustered (id) on [primary];
 
 alter table basico_perfil.assoccl_modulo with nocheck add constraint pk_modulo_perfil primary key clustered (id) on [primary];
 
-alter table dbo.template_formulario with nocheck add constraint pk_template_formulario primary key clustered (id) on [primary];
+alter table basico_formulario.assoccl_template  with nocheck add constraint pk_template_formulario primary key clustered (id) on [primary];
 
 alter table basico_formulario.elemento with nocheck add constraint pk_formulario_elemento primary key clustered (id) on [primary];
 
@@ -383,7 +383,7 @@ create index ix_ajuda_nome on dbo.ajuda (nome) on [primary];
 
 create index ix_output_nome on basico.output (nome) on [primary];
 
-create index ix_template_nome on dbo.template (nome) on [primary];
+create index ix_template_nome on basico.template (nome) on [primary];
 
 create index ix_formulario_elemento_nome on basico_formulario.elemento (nome) on [primary];
 
@@ -431,7 +431,7 @@ alter table basico.output add
 		nome
 	) on [primary];
 
-alter table dbo.template add
+alter table basico.template add
 	constraint ix_template_categoria_nome unique nonclustered
 	(
 		id_categoria,
@@ -452,7 +452,7 @@ alter table basico_perfil.assoccl_modulo add
 		id_perfil
 	) on [primary];
 
-alter table dbo.template_formulario add
+alter table basico_formulario.assoccl_template  add
 	constraint ix_template_formulario_template_formulario unique nonclustered
 	(
 		id_formulario,
@@ -592,7 +592,7 @@ alter table basico.output add
 		id
 	);
 
-alter table dbo.template add
+alter table basico.template add
 	constraint fk_template_categoria foreign key
 	(
 		id_categoria
@@ -634,7 +634,7 @@ alter table basico_perfil.assoccl_modulo add
 		id
 	);
 
-alter table dbo.template_formulario add
+alter table basico_formulario.assoccl_template  add
 	constraint fk_template_formulario_formulario foreign key
 	(
 		id_formulario
@@ -644,7 +644,7 @@ alter table dbo.template_formulario add
 	constraint fk_template_formulario_template foreign key
 	(
 		id_template
-	) references dbo.template (
+	) references basico.template (
 		id
 	);
 
@@ -756,7 +756,7 @@ alter table basico.componente add
 	constraint fk_componente_template foreign key
 	(
 		id_template
-	) references dbo.template (
+	) references basico.template (
 		id
 	);
 

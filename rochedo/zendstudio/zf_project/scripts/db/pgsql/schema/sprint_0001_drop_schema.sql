@@ -21,7 +21,7 @@ drop table if exists basico.log;
 drop table if exists basico.login;
 drop table if exists basico_pessoa.assoc_dados;
 drop table if exists basico_assoccl_pessoa_perfil.assoc_dados;
-drop table if exists pessoas_perfis_mensagens_categorias;
+drop table if exists basico_mensagem.assoccl_assoccl_pessoa_perfil;
 drop table if exists pessoas_perfis;
 drop table if exists basico.pessoa;
 drop table if exists basico.perfil;

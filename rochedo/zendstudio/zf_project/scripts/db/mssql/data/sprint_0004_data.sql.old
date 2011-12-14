@@ -297,7 +297,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 
 /* FORMULARIO TEMPLATE */
 
-INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT JOIN categoria c ON (f.id_categoria = c.id)
@@ -306,7 +306,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_CADASTRAR_USUARIO_NAO_VALIDADO') AS id_formulario,
        (SELECT p.id
-		FROM template p
+		FROM basico.template p
 		LEFT JOIN categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'

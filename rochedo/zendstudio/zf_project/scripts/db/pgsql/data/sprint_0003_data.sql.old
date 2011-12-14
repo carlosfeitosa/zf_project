@@ -753,7 +753,7 @@ AND c.nome = 'FORMULARIO_OUTPUT_HTML';
 
 /* TEMPLATE */
 
-INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
+INSERT INTO basico.template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome, 'Template DOJO.' AS descricao,
        (SELECT o.id
         FROM output o
@@ -767,7 +767,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE';
 
-INSERT INTO template (id_categoria, nome, descricao, id_output, rowinfo)
+INSERT INTO basico.template (id_categoria, nome, descricao, id_output, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_HTML' AS nome, 'Template HTML.' AS descricao,
        (SELECT o.id
         FROM output o
@@ -1175,7 +1175,7 @@ AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO';
 /* FORMULARIO TEMPLATE */
 
 /* formulário de dados do usuário */
-INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT join basico.categoria c ON (f.id_categoria = c.id)
@@ -1184,7 +1184,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DADOS_USUARIO') AS id_formulario,
        (SELECT p.id
-		FROM template p
+		FROM basico.template p
 		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
@@ -1193,7 +1193,7 @@ SELECT (SELECT f.id
 	   'SYSTEM_STARTUP' AS rowinfo;
 
 /* sub formulario de dados academicos */
-INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT join basico.categoria c ON (f.id_categoria = c.id)
@@ -1202,7 +1202,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_ACADEMICOS') AS id_formulario,
        (SELECT p.id
-		FROM template p
+		FROM basico.template p
 		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
@@ -1211,7 +1211,7 @@ SELECT (SELECT f.id
 'SYSTEM_STARTUP' AS rowinfo;
 
 /* sub formulario de dados profissionais */
-INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT join basico.categoria c ON (f.id_categoria = c.id)
@@ -1220,7 +1220,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_SUB_FORMULARIO'
         AND f.nome = 'SUBFORM_DADOS_USUARIO_DADOS_PROFISSIONAIS') AS id_formulario,
        (SELECT p.id
-		FROM template p
+		FROM basico.template p
 		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
@@ -1229,7 +1229,7 @@ SELECT (SELECT f.id
 'SYSTEM_STARTUP' AS rowinfo;
 
 /* dialog de maior titulacao */
-INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT join basico.categoria c ON (f.id_categoria = c.id)
@@ -1238,7 +1238,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO'
         AND f.nome = 'FORM_DIALOG_MAIOR_TITULACAO') AS id_formulario,
        (SELECT p.id
-		FROM template p
+		FROM basico.template p
 		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'
@@ -1247,7 +1247,7 @@ SELECT (SELECT f.id
 'SYSTEM_STARTUP' AS rowinfo;
 
 /* dialog de vinculo profissional */
-INSERT INTO template_formulario (id_formulario, id_template, rowinfo)
+INSERT INTO basico_formulario.assoccl_template (id_formulario, id_template, rowinfo)
 SELECT (SELECT f.id
         FROM formulario f
         LEFT join basico.categoria c ON (f.id_categoria = c.id)
@@ -1256,7 +1256,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_INPUT_CADASTRO_USUARIO_VINCULO_PROFISSIONAL'
         AND f.nome = 'FORM_DIALOG_VINCULO_PROFISSIONAL') AS id_formulario,
        (SELECT p.id
-		FROM template p
+		FROM basico.template p
 		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'FORMULARIO'

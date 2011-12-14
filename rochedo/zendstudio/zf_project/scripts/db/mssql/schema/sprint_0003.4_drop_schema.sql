@@ -7,7 +7,7 @@
 * ultimas modificacoes:
 * 						
 */
-if object_id('tipo_sanguineo') is not null
+if object_id('basico_dados_biometricos.tipo_sanguineo') is not null
 begin
 drop table tipo_sanguineo
 end
