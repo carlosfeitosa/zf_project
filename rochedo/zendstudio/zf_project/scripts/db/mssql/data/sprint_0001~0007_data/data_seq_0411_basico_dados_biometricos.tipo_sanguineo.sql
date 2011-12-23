@@ -8,29 +8,29 @@
 * 
 */
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('A_POSITIVO', 'Tipo sanguineo A+', 'A+', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('A_POSITIVO', 'Tipo sanguineo A+', 'A+', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('A_NEGATIVO', 'Tipo sanguineo A-', 'A-', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('A_NEGativo,', 'Tipo sanguineo A-', 'A-', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('B_POSITIVO', 'Tipo sanguineo B+', 'B+', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('B_POSITIVO', 'Tipo sanguineo B+', 'B+', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('B_NEGATIVO', 'Tipo sanguineo B-', 'B-', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('B_NEGativo,', 'Tipo sanguineo B-', 'B-', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('AB_POSITIVO', 'Tipo sanguineo AB+', 'AB+', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('AB_POSITIVO', 'Tipo sanguineo AB+', 'AB+', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('AB_NEGATIVO', 'Tipo sanguineo AB-', 'AB-', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('AB_NEGativo,', 'Tipo sanguineo AB-', 'AB-', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('O_POSITIVO', 'Tipo sanguineo O+', 'O+', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('O_POSITIVO', 'Tipo sanguineo O+', 'O+', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('O_NEGATIVO', 'Tipo sanguineo O-', 'O-', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('O_NEGativo,', 'Tipo sanguineo O-', 'O-', 1, 'SYSTEM_STARTUP');
 
-INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, rotulo,rowinfo)
-VALUES ('NAO_DESEJO_INFORMAR', 'Opção Não desejo informar', '@NAO_DESEJO_INFORMAR', 'SYSTEM_STARTUP');
+INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, descricao, constante_textual, ativo, rowinfo)
+VALUES ('NAO_DESEJO_INFORMAR', 'Opção Não desejo informar', '@NAO_DESEJO_INFORMAR', 1, 'SYSTEM_STARTUP');

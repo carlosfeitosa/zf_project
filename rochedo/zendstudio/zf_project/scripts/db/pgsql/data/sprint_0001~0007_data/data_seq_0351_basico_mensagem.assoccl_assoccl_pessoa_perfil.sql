@@ -8,8 +8,8 @@
 * 						- 30/11/2011 - adaptação para novo modelo de banco de dados (Modularizado atraves de schemas) - João Vasconcelos;
 */
 
-INSERT INTO basico_mensagem.assoccl_assoccl_pessoa_perfil (id_pessoa_perfil, id_categoria, id_mensagem, rowinfo)
-SELECT pp.id AS id_pessoa_perfil, 
+INSERT INTO basico_mensagem.assoccl_assoccl_pessoa_perfil (id_assoccl_perfil, id_categoria, id_mensagem, rowinfo)
+SELECT pp.id AS id_assoccl_perfil, 
        (SELECT id AS id_categoria 
         FROM basico.categoria 
         WHERE nome = 'MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE') AS id_categoria,
@@ -26,8 +26,8 @@ WHERE perf.nome = 'SISTEMA'
 AND cat.nome = 'SISTEMA_USUARIO'
 AND perf.nome = 'SISTEMA';
 
-INSERT INTO basico_mensagem.assoccl_assoccl_pessoa_perfil (id_pessoa_perfil, id_categoria, id_mensagem, rowinfo)
-SELECT pp.id AS id_pessoa_perfil, 
+INSERT INTO basico_mensagem.assoccl_assoccl_pessoa_perfil (id_assoccl_perfil, id_categoria, id_mensagem, rowinfo)
+SELECT pp.id AS id_assoccl_perfil, 
        (SELECT id AS id_categoria 
         FROM basico.categoria 
         WHERE nome = 'MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE') AS id_categoria,

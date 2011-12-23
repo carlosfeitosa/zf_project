@@ -19,7 +19,7 @@ create schema basico_assoccl_pessoa_perfil   authorization rochedo_user;
 create schema basico_formulario 			 authorization rochedo_user;
 create schema basico_formulario_elemento 	 authorization rochedo_user;
 create schema basico_form_form_elemento 	 authorization rochedo_user;
-create schema basico_rascunho 				 authorization rochedo_user;
+create schema basico_formulario_rascunho 	 authorization rochedo_user;
 create schema basico_mensagem 				 authorization rochedo_user;
 create schema basico_perfil 				 authorization rochedo_user;
 create schema basico_categoria_chave_estrang authorization rochedo_user;

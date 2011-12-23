@@ -10,10 +10,10 @@
 * 
 */
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios,
 'Trying to register using your primary email' AS assunto,
-'Dear @nomeUsuario,
+'@tratamento @nomeUsuario,
  
  
 We recently received a request for registration in our system,
@@ -29,16 +29,16 @@ If you wish, please send us this message by e-mail @linkEmailSuporte so we can a
 
 Sincerely,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria,
-current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_en-us';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios,
 'Tentativa de registro utilizando seu email primário' AS assunto,
-'Prezado(a) sr.(a) @nomeUsuario,
+'@tratamento @nomeUsuario,
  
  
 Recentemente recebemos uma solicitação de registro em nosso sistema,
@@ -54,14 +54,14 @@ Se desejar, por favor nos encaminhe esta mensagem, através do e-mail @linkEmail
 
 Atenciosamente,
 @assinaturaMensagem' as mensagem, c.id AS id_categoria,
-current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_pt-br';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Confirmação de Registro' AS assunto,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Confirmação de Registro' AS assunto,
 'Prezado(a) sr.(a) @nomeUsuario,
 
 
@@ -74,14 +74,14 @@ Caso você tenha feito esta solicitação, continue o seu registro clicando no l
 Caso você não tenha solicitado este registro, por favor ignore esta mensagem.
 
 Atenciosamente,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_pt-br';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Registration Confirmation' AS assunto,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Registration Confirmation' AS assunto,
 'Dear @nomeUsuario,
 
 
@@ -94,14 +94,14 @@ If you''ve made this request, continue your registration by clicking the link be
 If you have not requested this registry, please ignore this message.
 
 Sincerely,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_en-us';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Reenvio de confirmação de Registro' AS assunto,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_pt-br' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Reenvio de confirmação de Registro' AS assunto,
 'Prezado(a) sr.(a) @nomeUsuario,
 
 
@@ -114,14 +114,14 @@ Caso você tenha feito esta solicitação, continue o seu registro clicando no l
 Caso você não tenha solicitado este registro, por favor ignore esta mensagem.
 
 Atenciosamente,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_pt-br';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Forwarding confirmation of registration' AS assunto,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_en-us' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Forwarding confirmation of registration' AS assunto,
 'Dear @nomeUsuario,
 
 
@@ -134,14 +134,14 @@ If you''ve made this request, continue your registration by clicking the link be
 If you have not requested this registry, please ignore this message.
 
 Sincerely,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_en-us';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Registro Concluído' AS assunto,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Registro Concluído' AS assunto,
 '@tratamento @nomeUsuario,
 
 
@@ -159,14 +159,14 @@ Desejamos boas vindas e nos colocamos a disposição para resolução de qualque
 
 
 Atenciosamente,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_pt-br';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Registration Completed' AS assunto,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Registration Completed' AS assunto,
 '@tratamento @nomeUsuario,
 
 
@@ -180,18 +180,19 @@ LOGIN: @login
 For security reasons, our system can''t retrieve the password informed by you. 
 If you forget your password, a new password must be created.
 
-Welcome to our system, we are available to solve any dificulties that you may have in this or in any other access to our services.
+Welcome to our system, we are available to solve any dificulties that you may have in this or in any other access to our services. 
 
 
 Sincerely,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_en-us';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Problema(s) com seu login' AS assunto,
+
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Problema(s) com seu login' AS assunto,
 '@tratamento @nomeUsuario,
 
 
@@ -211,14 +212,14 @@ Para solucionar este inconveniente, por favor:
 
 
 Atenciosamente,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br';
 
-INSERT INTO basico.mensagem (remetente, destinatarios, assunto, mensagem, id_categoria, datahora_mensagem, rowinfo)
-SELECT 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Problem(s) with your login' AS assunto,
+INSERT INTO basico.mensagem (nome, remetente, destinatarios, assunto, mensagem, id_categoria, datahora_criacao, rowinfo)
+SELECT 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 'Problem(s) with your login' AS assunto,
 '@tratamento @nomeUsuario,
 
 
@@ -238,7 +239,7 @@ To solve this inconvenience, please:
 
 
 Sincerely,
-@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_mensagem, 'SYSTEM_STARTUP' AS rowinfo
+@assinaturaMensagem' as mensagem, c.id AS id_categoria, current_timestamp AS datahora_criacao, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
