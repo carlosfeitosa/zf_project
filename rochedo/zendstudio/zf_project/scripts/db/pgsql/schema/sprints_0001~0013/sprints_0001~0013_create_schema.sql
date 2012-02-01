@@ -1979,7 +1979,7 @@ CREATE TABLE token (
     id_categoria integer NOT NULL,
     id_generico_proprietario integer NOT NULL,
     token character varying(100) NOT NULL,
-    data_hora_expiracao timestamp without time zone DEFAULT (now() + '36:00:00'::interval) NOT NULL,
+    datahora_expiracao timestamp without time zone DEFAULT (now() + '36:00:00'::interval) NOT NULL,
     datahora_criacao timestamp without time zone DEFAULT now() NOT NULL,
     rowinfo character varying(2000) NOT NULL
 );
