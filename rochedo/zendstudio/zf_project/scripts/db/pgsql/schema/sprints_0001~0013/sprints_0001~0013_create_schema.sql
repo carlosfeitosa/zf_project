@@ -285,22 +285,6 @@ CREATE SCHEMA basico_sequencia;
 CREATE SCHEMA basico_template;
 
 
---
--- TOC entry 1206 (class 2612 OID 6402577)
--- Name: plperl; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: -
---
-
-CREATE OR REPLACE PROCEDURAL LANGUAGE plperl;
-
-
---
--- TOC entry 1205 (class 2612 OID 6402574)
--- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: -
---
-
-CREATE OR REPLACE PROCEDURAL LANGUAGE plpgsql;
-
-
 SET search_path = basico, pg_catalog;
 
 --
@@ -14060,4 +14044,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
