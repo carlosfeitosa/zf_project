@@ -4,7 +4,8 @@
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 31/01/2012
-* ultimas modificacoes:
+* ultimas modificacoes: 02/02/2012 - inclusão das constantes textuais para os nomes das ajudas. (Igor Pinho). 
+* 
 * 								
 */
 
@@ -4822,6 +4823,587 @@ ação mal intencionada.
 
 Caso você tenha duvidas sobre este problema, por favor acesse a documentação 
 online(@linkDocumentacaoOnline) ou entre com contato com o nosso suporte(@emailSuporte).' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DATA_TERMINO_PERIODO_DATE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox data termino período.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DATA_INICIO_PERIODO_DATE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox data início período.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_SELECT_TIPO_DATA_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect tipo data.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_FORMULARIO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect formulario.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ACEITE_TERMOS_USO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox aceite termos uso.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TERMOS_USO_TEXT_AREA_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textarea termos termos uso.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_HISTORICO_MEDICO_TEXT_AREA_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textarea historico medico.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TIPO_SANGUINEO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect tipo sanguineo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PESO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox peso.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ALTURA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox altura.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_RACA_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect raca.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_SEXO_RADIO_BUTTON_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo radiobutton sexo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_SENHA_CONFIRMACAO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox senha confirmacao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DATA_NASCIMENTO_DATE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox data nascimento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_LOGIN_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox login.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_SENHA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox senha.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_LOGIN_MANTER_LOGADO_CHECKBOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo checkbox manter logado.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_CATEGORIA_BOLSA_CNPQ_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect categoria bolsa cnpq.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_MAIOR_TITULACAO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect maior titulacao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_INSTITUICAO_QUE_CONCEDEU_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect instituicao que concedeu.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_AREA_DE_CONHECIMENTO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect area conhecimento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NOME_CURSO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox nome curso.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DATA_OBTENCAO_DATE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox data obtencao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TITULACAO_ESPERADA_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect titulacao esperada.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_INSTITUICAO_CURSO_ATUAL_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect instituicao curso atual.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect area conhecimento curso atual.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NOME_CURSO_ATUAL_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox nome curso atual.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PERIODO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect periodo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TURNO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect turno.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PROFISSAO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect profissao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_VINCULO_PROFISSIONAL_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect vinculo profissional.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PJ_VINCULO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect pj vinculo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_REGIME_TRABALHO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect regime trabalho.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_CARGO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox cargo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_FUNCAO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox funcao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ATIVIDADES_DESENVOLVIDAS_TEXT_AREA_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textarea atividades desenvolvidas.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DATA_ADMISSAO_DATE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox data admissao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DATA_DESVINCULACAO_DATE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox data desvinculacao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_CARGA_HORARIA_SEMANAL_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox carga horaria semanal.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_SALARIO_BRUTO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox salario bruto.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DEDICACAO_EXCLUSIVA_CHECK_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo checkbox dedicacao exclusiva.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_OUTRAS_INFORMACOES_TEXT_AREA_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textarea outras informacoes.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PERFIS_DISPONIVEIS_MULTI_CHECK_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo checkbox perfis disponiveis.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PERFIS_VINCULADOS_DISPONIVEIS_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect perfis vinculados disponiveis.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_SENHA_ATUAL_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox senha atual.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NOVA_SENHA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox nova senha.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_CONFIRMACAO_NOVA_SENHA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox confirmacao nova senha.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TELEFONE_TIPO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect telefone tipo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TELEFONE_CODIGO_PAIS_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox telefone codigo pais.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TELEFONE_CODIGO_AREA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox telefone codigo area.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TELEFONE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox telefone.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TELEFONE_RAMAL_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox telefone ramal.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TELEFONE_DESCRICAO_TEXT_AREA_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textarea telefone descricao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_EMAIL_TIPO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect email tipo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_EMAIL_DESCRICAO_TEXT_AREA_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textarea email descricao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_WEBSITE_TIPO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect website tipo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_WEBSITE_ENDERECO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox website endereco.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_WEBSITE_DESCRICAO_TEXT_AREA_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textarea website descricao.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NOME_USUARIO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox nome usuario.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_EMAIL_USUARIO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox email usuario.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect pais nascimento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect estado nascimento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ESTADO_NASCIMENTO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox estado nascimento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect municipio nascimento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_NASCIMENTO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox municipio nascimento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NOME_PAI_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox nome pai.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NOME_MAE_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox nome mae.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ENDERECO_TIPO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect endereco tipo.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_PAIS_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect pais.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ESTADO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect estado.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ESTADO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox estado.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect estado.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_MUNICIPIO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox municipio.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_CEP_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox cep.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_LOGRADOURO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox logradouro.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ENDERECO_NUMERO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox endereco numero.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_ENDERECO_COMPLEMENTO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox endereco complemento.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NUMERO_BANCO_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox numero banco.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_BANCO_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect banco.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_AGENCIA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox agencia.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_TIPO_CONTA_FILTERING_SELECT_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo filteringSelect tipo conta.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_NUMERO_CONTA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox numero conta.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'AJUDA_FORMULARIO_FIELD_DESCRICAO_IDENTIFICACAO_CONTA_TEXT_BOX_CONSTANTE_TEXTUAL' AS constante_textual, 'Ajuda para o campo textbox descricao identificacao conta.' AS traducao, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
