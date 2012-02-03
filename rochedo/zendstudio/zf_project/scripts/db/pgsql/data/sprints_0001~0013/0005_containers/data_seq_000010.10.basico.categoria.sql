@@ -38,69 +38,6 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL';
 
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_pt-br' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO_en-us' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT' AS nome, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -108,39 +45,11 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
 
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT' AS nome, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT' AS nome, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_pt-br' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 4 AS nivel, 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT_en-us' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'SISTEMA'
-AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'LOG' AS nome, 'SYSTEM_STARTUP' AS rowinfo

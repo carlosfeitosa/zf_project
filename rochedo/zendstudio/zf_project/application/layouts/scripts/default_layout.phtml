@@ -38,10 +38,10 @@
 <div id="header">
 <?php 
 	// recupera o conteudo do placeholder headerMenu
-	$headerMenu = $this->placeholder('headerMenu')->getValue();
+	$headerMenu = $this->placeholder("headerMenu")->getValue();
 	// verifica se algo foi escrito
 	if(!empty($headerMenu)) {
-		echo $this->placeholder('headerMenu');
+		echo $this->placeholder("headerMenu");
 	}
 
 
@@ -60,10 +60,10 @@
 <div id="content">
 <?php
 	// recupera o conteudo do placeholder headerMenu
-	$content = $this->placeholder('content')->getValue();
+	$content = $this->placeholder("content")->getValue();
 	// verifica se algo foi escrito
 	if(!empty($content)) {
-		echo $this->placeholder('content');
+		echo $this->placeholder("content");
 	}
 
 
@@ -93,10 +93,10 @@
 		echo $scriptsContent;
 	}
 	// recupera o conteudo do placeholder footer
-	$footer = $this->placeholder('footer')->getValue();
+	$footer = $this->placeholder("footer")->getValue();
 	// verifica se algo foi escrito
 	if(!empty($footer)) {
-		echo $this->placeholder('footer');
+		echo $this->placeholder("footer");
 	}
 ?>   
 </div>
