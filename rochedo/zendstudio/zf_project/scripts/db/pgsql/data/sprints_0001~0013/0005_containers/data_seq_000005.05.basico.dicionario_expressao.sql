@@ -10420,3 +10420,368 @@ FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO' AS constante_textual, 'Ação desativada!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO' AS constante_textual, 'Esta ação foi desativada pelo administrador do sistema.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM' AS constante_textual, 'Caso deseje, clique @link para voltar a página que estava antes de tentar executar esta operação.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO' AS constante_textual, 'Problemas de permissão!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO' AS constante_textual, 'Esta ação requer um perfil não vinculado a seu usuário.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM' AS constante_textual, 'Caso deseje, clique @link para voltar a página que estava antes de tentar executar esta operação.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_TITULO' AS constante_textual, 'Problemas de permissão!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_SUBTITULO' AS constante_textual, 'Esta ação não pode ser executada pois existe uma regra que impede sua execução.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM' AS constante_textual, 'Caso deseje, clique @link para voltar a página que estava antes de tentar executar esta operação.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO' AS constante_textual, 'Problemas com seu endereço IP!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO' AS constante_textual, 'Seu atual endereço IP difere do endereço IP registrado durante seu processo de logon.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM' AS constante_textual, 'Este problema ocorre quando o usuário troca de rede/endereço IP após estar autenticado no sistema.<br>Efetue logout e login para resolver esta situação.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO' AS constante_textual, 'Host banido!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO' AS constante_textual, 'Seu atual endereço IP esta banido em nosso sistema.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM' AS constante_textual, 'Entre em contato com o suporte para tentar desbanir seu host.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'DIALOG_DIV_CONTAINER_ERROR_TITLE_SESSAO_EXPIRADA' AS constante_textual, 'Sessão expirada.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'DIALOG_DIV_CONTAINER_ERROR_MSG_SESSAO_EXPIRADA' AS constante_textual, 'Por motivos de seguranca,<br>sua sessão foi encerrada.<br><br>Por favor,<br>logue novamente.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_PUBLICO' AS constante_textual, 'Público' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_ADMINISTRADOR' AS constante_textual, 'Administrador do sistema' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_DESENVOLVEDOR' AS constante_textual, 'Desenvolvedor do sistema' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_PUBLICO_DESCRICAO' AS constante_textual, 'Perfil público.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_ADMINISTRADOR_DESCRICAO' AS constante_textual, 'Perfil de administrador do sistema.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_DESENVOLVEDOR_DESCRICAO' AS constante_textual, 'Perfil de desenvolvedor do sistema.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_SISTEMA_DESCRICAO' AS constante_textual, 'Perfil do sistema .' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_NAO_VALIDADO_DESCRICAO' AS constante_textual, 'Perfil de usuário não validado no sistema.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_VALIDADO_DESCRICAO' AS constante_textual, 'Perfil de usuário validado no sistema.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_TITULO' AS constante_textual, 'Action desabled!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_SUBTITULO' AS constante_textual, 'This action has been disabled by system administrator.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_DESATIVADA_MENSAGEM' AS constante_textual, 'If desired, click @link to go back to the page that you was before trying to run this operation.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_TITULO' AS constante_textual, 'Permission problems!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_SUBTITULO' AS constante_textual, 'This action requires a profile not linked to your user.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_ACAO_NAO_PERMITIDA_MENSAGEM' AS constante_textual, 'If desired, click @link to go back to the page that you was before trying to run this operation.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_TITULO' AS constante_textual, 'Permission problems!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_SUBTITULO' AS constante_textual, 'This action cannot be performed because there''s a rule that prevents it''s execution.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_METODO_VALIDACAO_FALHOU_MENSAGEM' AS constante_textual, 'If desired, click @link to go back to the page that you was before trying to run this operation.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_TITULO' AS constante_textual, 'Problems with your IP address!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO' AS constante_textual, 'Your current IP address differs from the registered IP address for your login process.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM' AS constante_textual, 'This problem occurs when the user change the network / IP address after being authenticated to the the system.<br>Logout and login to resolve this situation.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_TITULO' AS constante_textual, 'Host banned!' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO' AS constante_textual, 'Your current IP address is banned in our system.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM' AS constante_textual, 'Please contact our support to try to unban your host.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'DIALOG_DIV_CONTAINER_ERROR_TITLE_SESSAO_EXPIRADA' AS constante_textual, 'Session expired.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'DIALOG_DIV_CONTAINER_ERROR_MSG_SESSAO_EXPIRADA' AS constante_textual, 'For security reasons,<br>your session has been<br>terminated.<br><br>Please, log again.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_PUBLICO' AS constante_textual, 'Public' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_ADMINISTRADOR' AS constante_textual, 'System administrator' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_DESENVOLVEDOR' AS constante_textual, 'System developer' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_PUBLICO_DESCRICAO' AS constante_textual, 'Public profile.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_ADMINISTRADOR_DESCRICAO' AS constante_textual, 'Profile of the system administrator.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_DESENVOLVEDOR_DESCRICAO' AS constante_textual, 'Profile of the system developer.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_SISTEMA_DESCRICAO' AS constante_textual, 'System profile.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_NAO_VALIDADO_DESCRICAO' AS constante_textual, 'User profile not validated in the system.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, rowinfo)
+SELECT c.id, 'PERFIL_USUARIO_VALIDADO_DESCRICAO' AS constante_textual, 'User profile validated in the system.' AS traducao,  'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
