@@ -6092,6 +6092,35 @@ LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'NOME_MASCARA_MOEDA_BRL_SEM_SEPARADOR_MILHAR_2_DECIMAIS' AS constante_textual, 'Mascara para campos do tipo moeda no formato BRL, sem separador de milhar e com duas casas decimais.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_MASCARA_MOEDA_BRL_SEM_SEPARADOR_MILHAR_2_DECIMAIS' AS constante_textual, 'Mascara para campos do tipo moeda no formato BRL, sem separador de milhar e com duas casas decimais.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'NOME_MASCARA_MOEDA_BRL_SEM_SEPARADOR_MILHAR_3_DECIMAIS' AS constante_textual, 'Mascara para campos do tipo moeda no formato BRL, sem separador de milhar e com duas casas decimais.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_MASCARA_MOEDA_BRL_SEM_SEPARADOR_MILHAR_3_DECIMAIS' AS constante_textual, 'Mascara para campos do tipo moeda no formato BRL, sem separador de milhar e com tres casas decimais' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+
 /* 
 * (Inglês dos E.U.A. - EN_US)
 * 
