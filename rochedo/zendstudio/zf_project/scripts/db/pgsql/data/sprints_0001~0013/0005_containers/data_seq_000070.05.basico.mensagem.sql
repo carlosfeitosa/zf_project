@@ -1,6 +1,9 @@
 /**
 * SCRIPT DE POPULACAO DA TABELA basico.mensagem
 * 
+* Esta tabela funciona como um banco de dados de templates de mensagens e 
+* tambem contem todas as mensagens enviadas pelos usuarios e pelo sistema.
+* 
 * versao: 1.0 (POSTGRESQL 9.1.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 02/02/2012

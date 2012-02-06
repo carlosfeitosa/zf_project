@@ -1,10 +1,12 @@
 /**
 * SCRIPT DE POPULACAO DA TABELA basico_form_assoccl_elemento.grupo
 * 
+* Esta tabela funciona como um banco de dados de grupos para elementos de formularios.
+* 
 * versao: 1.0 (POSTGRESQL 9.1.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 02/02/2012
-* ultimas modificacoes:
+* ultimas modificacoes: 06/02/2012
 * 								
 */
 

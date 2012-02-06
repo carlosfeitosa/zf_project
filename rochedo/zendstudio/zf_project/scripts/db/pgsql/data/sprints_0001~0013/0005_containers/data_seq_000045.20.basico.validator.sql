@@ -1,6 +1,8 @@
 /**
 * SCRIPT DE POPULACAO DA TABELA basico.validator
 * 
+* Esta tabela funciona como um banco de dados de validators.
+* 
 * versao: 1.0 (POSTGRESQL 9.1.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 31/01/2012
