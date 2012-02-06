@@ -1422,8 +1422,7 @@ CREATE TABLE mensagem (
     CONSTRAINT ck_mensagem_mensagem CHECK (((mensagem IS NOT NULL) OR (constante_textual_mensagem IS NOT NULL))),
     CONSTRAINT mensagem_constante_textual_check CHECK (((constante_textual IS NULL) OR (fn_checkconstantetextualexists(constante_textual) IS NOT NULL))),
     CONSTRAINT mensagem_constante_textual_descricao_check CHECK (((constante_textual_descricao IS NULL) OR (fn_checkconstantetextualexists(constante_textual_descricao) IS NOT NULL))),
-    CONSTRAINT mensagem_constante_textual_descricao_check1 CHECK (((constante_textual_descricao IS NULL) OR (fn_checkconstantetextualexists(constante_textual_descricao) IS NOT NULL))),
-    CONSTRAINT mensagem_nome_check CHECK (((nome IS NULL) OR (fn_checknomemensagemexists(nome) IS NULL)))
+    CONSTRAINT mensagem_constante_textual_descricao_check1 CHECK (((constante_textual_descricao IS NULL) OR (fn_checkconstantetextualexists(constante_textual_descricao) IS NOT NULL)))
 );
 
 
