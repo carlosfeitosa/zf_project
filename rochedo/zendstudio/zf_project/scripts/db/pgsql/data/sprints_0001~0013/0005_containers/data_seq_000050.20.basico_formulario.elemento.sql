@@ -405,7 +405,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, id_decorator, nome, ativo, constante_textual_label, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
