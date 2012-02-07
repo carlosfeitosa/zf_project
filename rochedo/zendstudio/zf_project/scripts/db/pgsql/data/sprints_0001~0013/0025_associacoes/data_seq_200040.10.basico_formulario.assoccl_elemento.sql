@@ -270,7 +270,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'ACEITE') AS id_grupo,
-        1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -321,7 +321,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_ATUAL') AS id_elemento, 
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -338,7 +338,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_NOVA_SENHA') AS id_elemento,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -375,7 +375,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_CONFIRMACAO_NOVA_SENHA') AS id_elemento,
-        1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -699,7 +699,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS') AS id_grupo,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -719,7 +719,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS') AS id_grupo,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -739,7 +739,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_PESSOAIS') AS id_grupo,
-        1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -759,7 +759,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_USUARIO') AS id_grupo,
-        1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -799,7 +799,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_USUARIO') AS id_grupo,
-        1 AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -839,7 +839,7 @@ SELECT (SELECT f.id
         (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_USUARIO') AS id_grupo,
-        1 AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
                      
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1234,7 +1234,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_VINCULO_PROFISSIONAL') AS id_elemento,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1251,7 +1251,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_PROFISSAO') AS id_elemento,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1285,7 +1285,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_REGIME_TRABALHO') AS id_elemento,
-        1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1302,7 +1302,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_CARGO') AS id_elemento,
-        1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1319,7 +1319,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_FUNCAO') AS id_elemento,
-        1 AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1790,7 +1790,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_TELEFONE_TIPO') AS id_elemento,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1807,7 +1807,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_NUMBER_TEXT_BOX_TELEFONE_CODIGO_PAIS') AS id_elemento,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1824,7 +1824,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_NUMBER_TEXT_BOX_TELEFONE_CODIGO_AREA') AS id_elemento,
-        1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1841,7 +1841,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_NUMBER_TEXT_BOX_TELEFONE') AS id_elemento,
-        1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1943,7 +1943,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_EMAIL_TIPO') AS id_elemento,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -1960,7 +1960,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO') AS id_elemento,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2045,7 +2045,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_FILTERING_SELECT_WEBSITE_TIPO') AS id_elemento,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2062,7 +2062,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_WEBSITE_ENDERECO') AS id_elemento,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2280,7 +2280,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_USUARIO') AS id_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_USUARIO') AS id_elemento, true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2296,7 +2296,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO') AS id_elemento, 1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO') AS id_elemento, true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2312,7 +2312,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA'
-        AND fe.nome = 'CAPTCHA_6') AS id_elemento, 1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'CAPTCHA_6') AS id_elemento, true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2344,7 +2344,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_LOGIN') AS id_elemento, 1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_LOGIN') AS id_elemento, true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2360,7 +2360,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
-        AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA') AS id_elemento, 1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA') AS id_elemento, true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -2988,7 +2988,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT') AS id_elemento,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3005,7 +3005,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT') AS id_elemento,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3022,7 +3022,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT') AS id_elemento,
-        1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3039,7 +3039,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_ESTADO_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3056,7 +3056,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT') AS id_elemento,
-        1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3073,7 +3073,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_MUNICIPIO_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3090,7 +3090,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_CEP_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3107,7 +3107,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_LOGRADOURO_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3124,7 +3124,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_NUMERO_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3141,7 +3141,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_ENDERECO_COMPLEMENTO_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 10 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3277,7 +3277,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3294,7 +3294,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CONTA_BANCARIA_BANCO_FILTERING_SELECT') AS id_elemento,
-        1 AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3311,7 +3311,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CONTA_BANCARIA_AGENCIA_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3328,7 +3328,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_FILTERING_SELECT') AS id_elemento,
-        1 AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3345,7 +3345,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3362,7 +3362,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_VALIDATION_TEXT_BOX') AS id_elemento,
-        1 AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3379,7 +3379,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
         AND fe.nome = 'FORM_LINHA_HORIZONTAL') AS id_elemento,
-        1 AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 11 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3396,7 +3396,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
         AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_elemento,
-        1 AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -3413,7 +3413,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
         AND fe.nome = 'FORM_BUTTON_RESET') AS id_elemento,
-        1 AS element_required, 13 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        true AS element_required, 13 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
