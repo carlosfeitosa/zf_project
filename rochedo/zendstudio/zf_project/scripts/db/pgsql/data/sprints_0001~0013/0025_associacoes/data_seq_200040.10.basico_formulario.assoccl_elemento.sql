@@ -632,7 +632,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_CLOSE_DIALOG') AS id_elemento,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -648,7 +648,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_NUMERO_DOCUMENTO') AS id_elemento, false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -858,7 +858,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_elemento,
         false AS element_required, 9 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -1094,7 +1094,7 @@ SELECT (SELECT f.id
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo,	    
 	    false AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;  
     
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, id_grupo, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -1114,7 +1114,7 @@ SELECT (SELECT f.id
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_COORDENACAO_POS_GRADUACAO') AS id_grupo,
         false AS element_required, 13 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, id_grupo, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
 SELECT (SELECT f.id 
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -1151,7 +1151,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_LINHA_HORIZONTAL') AS id_elemento,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;        
         
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id 
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -1202,7 +1202,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_CLOSE_DIALOG') AS id_elemento,      
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;               
                  
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
 	    FROM basico.formulario f
 	    LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2266,7 +2266,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_elemento,
         false AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2282,7 +2282,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_USUARIO') AS id_elemento, true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2298,7 +2298,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO') AS id_elemento, true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2314,7 +2314,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA'
         AND fe.nome = 'CAPTCHA_6') AS id_elemento, true AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2330,7 +2330,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
         AND fe.nome = 'FORM_BUTTON_SUBMIT') AS id_elemento, false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2346,7 +2346,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_VALIDATION_TEXT_BOX_LOGIN') AS id_elemento, true AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2362,7 +2362,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA') AS id_elemento, true AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2378,7 +2378,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO') AS id_elemento, false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2394,7 +2394,7 @@ SELECT (SELECT f.id
         AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
         AND fe.nome = 'FORM_LINK_PROBLEMAS_LOGON') AS id_elemento, false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -2461,7 +2461,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_RESET') AS id_elemento,
         false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3415,7 +3415,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_RESET') AS id_elemento,
         true AS element_required, 13 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3432,7 +3432,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3449,7 +3449,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3466,7 +3466,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3483,7 +3483,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3500,7 +3500,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3517,7 +3517,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 6 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3534,7 +3534,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 7 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -3551,7 +3551,7 @@ SELECT (SELECT f.id
         AND fe.nome = 'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO') AS id_elemento,
         false AS element_required, 8 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_formulario_elemento, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
