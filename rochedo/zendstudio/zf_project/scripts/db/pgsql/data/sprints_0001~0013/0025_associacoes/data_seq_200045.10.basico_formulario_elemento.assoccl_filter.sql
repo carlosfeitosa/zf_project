@@ -10,7 +10,7 @@
 * 						
 */
 
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -27,7 +27,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -44,7 +44,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -61,7 +61,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -78,7 +78,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -95,7 +95,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -112,7 +112,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -129,7 +129,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -146,7 +146,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -163,7 +163,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -180,7 +180,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -197,7 +197,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -214,7 +214,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -231,7 +231,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -248,7 +248,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -265,7 +265,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -282,7 +282,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -299,7 +299,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -316,7 +316,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -333,7 +333,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -350,7 +350,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -367,7 +367,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -384,7 +384,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -401,7 +401,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -418,7 +418,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -435,7 +435,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -452,7 +452,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -469,7 +469,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -486,7 +486,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -503,7 +503,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -520,7 +520,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -537,7 +537,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -554,7 +554,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -571,7 +571,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -588,7 +588,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -605,7 +605,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -622,7 +622,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -639,7 +639,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -656,7 +656,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -673,7 +673,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -690,7 +690,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -707,7 +707,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -724,7 +724,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -741,7 +741,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -758,7 +758,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -775,7 +775,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -792,7 +792,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -809,7 +809,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -826,7 +826,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -843,7 +843,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -860,7 +860,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -877,7 +877,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -894,7 +894,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -911,7 +911,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -928,7 +928,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -945,7 +945,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -962,7 +962,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -979,7 +979,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -996,7 +996,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -1013,7 +1013,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -1030,7 +1030,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -1047,7 +1047,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -1064,7 +1064,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -1081,7 +1081,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -1098,7 +1098,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)
@@ -1115,7 +1115,7 @@ SELECT (SELECT fe.id
           AND ff.nome = 'STRINGTRIM_STRIPTAGS') AS id_filter,
 	   'SYSTEM_STARTUP' AS rowinfo;
 	   
-INSERT INTO basico_fomulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_filter (id_elemento, id_filter, rowinfo)
 SELECT (SELECT fe.id 
 		  FROM basico_formulario.elemento fe
 		  LEFT join basico.categoria c ON (fe.id_categoria = c.id)

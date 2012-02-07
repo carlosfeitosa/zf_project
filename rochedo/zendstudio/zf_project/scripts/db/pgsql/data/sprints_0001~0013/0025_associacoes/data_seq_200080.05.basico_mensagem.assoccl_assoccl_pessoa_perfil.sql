@@ -18,7 +18,7 @@ SELECT pp.id AS id_assoccl_perfil,
        (SELECT m.id AS id_mensagem
         FROM basico.mensagem m
         LEFT JOIN basico.categoria c ON (m.id_categoria = c.id)
-        WHERE c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT') AS id_mensagem,
+        WHERE m.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT') AS id_mensagem,
         'SYSTEM_STARTUP' AS rowinfo
 FROM basico_pessoa.assoccl_perfil pp
 LEFT JOIN basico.perfil perf ON (pp.id_perfil = perf.id)
