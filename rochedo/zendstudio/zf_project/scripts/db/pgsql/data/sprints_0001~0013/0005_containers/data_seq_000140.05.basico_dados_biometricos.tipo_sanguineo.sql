@@ -12,28 +12,28 @@
 */
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('A_POSITIVO', 'A_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('A_POSITIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('A_NEGATIVO', 'A_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('A_NEGATIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('B_POSITIVO', 'B_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('B_POSITIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_B_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('B_NEGATIVO', 'B_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('B_NEGATIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_B_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('AB_POSITIVO', 'AB_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('AB_POSITIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_AB_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('AB_NEGATIVO', 'AB_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('AB_NEGATIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_AB_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('O_POSITIVO', 'O_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('O_POSITIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_O_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('O_NEGATIVO', 'O_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('O_NEGATIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_O_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('NAO_DESEJO_INFORMAR', 'NAO_DESEJO_INFORMAR', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('NAO_DESEJO_INFORMAR', 'SELECT_OPTION_NAO_DESEJO_INFORMAR', NULL, true, 'SYSTEM_STARTUP');
