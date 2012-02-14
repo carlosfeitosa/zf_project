@@ -387,13 +387,6 @@ FROM basico.tipo_categoria
 WHERE nome = 'AJUDA';
 
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'AJUDA_FORMULARIO_CADASTRO' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'AJUDA_FORMULARIO_FIELD' AS nome, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -606,13 +599,6 @@ FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_INPUT_CADASTRO';
-
-INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'AJUDA_FORMULARIO_CADASTRO_ENDERECO' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'AJUDA'
-AND c.nome = 'AJUDA_FORMULARIO_CADASTRO';
 
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_INPUT_CADASTRO_USUARIO_INFORMACOES_BANCARIAS_DADOS_BANCARIOS_CONTAS_BANCARIAS' AS nome, 'SYSTEM_STARTUP' AS rowinfo

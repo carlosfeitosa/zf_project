@@ -12,9 +12,10 @@
 */
 
 INSERT INTO basico.mensagem (id_generico_proprietario, nome, ativo, remetente, destinatarios, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
-SELECT (SELECT id
-		FROM basico.pessoa
-		WHERE rowinfo = 'SYSTEM_STARTUP_MASTER') AS id_generico_proprietario,
+SELECT (SELECT p.id
+		FROM basico.pessoa p
+		LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+		WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
 		'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT' AS nome,
 		true AS ativo,
 		'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios,
@@ -28,9 +29,10 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 
 INSERT INTO basico.mensagem (id_generico_proprietario, nome, ativo, remetente, destinatarios, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
-SELECT (SELECT id
-		FROM basico.pessoa
-		WHERE rowinfo = 'SYSTEM_STARTUP_MASTER') AS id_generico_proprietario,
+SELECT (SELECT p.id
+		FROM basico.pessoa p
+		LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+		WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
 		'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT' AS nome, 
 		true AS ativo,
 		'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 
@@ -43,9 +45,10 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 
 INSERT INTO basico.mensagem (id_generico_proprietario, nome, ativo, remetente, destinatarios, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
-SELECT (SELECT id
-		FROM basico.pessoa
-		WHERE rowinfo = 'SYSTEM_STARTUP_MASTER') AS id_generico_proprietario,
+SELECT (SELECT p.id
+		FROM basico.pessoa p
+		LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+		WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
 		'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO' AS nome, 
 		true AS ativo,
 		'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 
@@ -57,9 +60,10 @@ WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 
 INSERT INTO basico.mensagem (id_generico_proprietario, nome, ativo, remetente, destinatarios, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
-SELECT (SELECT id
-		FROM basico.pessoa
-		WHERE rowinfo = 'SYSTEM_STARTUP_MASTER') AS id_generico_proprietario,
+SELECT (SELECT p.id
+		FROM basico.pessoa p
+		LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+		WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
 		'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT' AS nome, 
 		true AS ativo,
 		'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 
@@ -73,9 +77,10 @@ AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 
 
 INSERT INTO basico.mensagem (id_generico_proprietario, nome, ativo, remetente, destinatarios, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
-SELECT (SELECT id
-		FROM basico.pessoa
-		WHERE rowinfo = 'SYSTEM_STARTUP_MASTER') AS id_generico_proprietario,
+SELECT (SELECT p.id
+		FROM basico.pessoa p
+		LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+		WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
 		'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT' AS nome, 
 		true AS ativo,
 		'SYSTEM_STARTUP' AS remetente, 'SYSTEM_STARTUP' AS destinatarios, 

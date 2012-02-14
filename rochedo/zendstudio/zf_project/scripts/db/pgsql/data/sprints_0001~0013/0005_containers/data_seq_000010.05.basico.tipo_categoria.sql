@@ -8,32 +8,32 @@
 * 
 */
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('SISTEMA', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('SISTEMA', 'NOME_TIPO_CATEGORIA_SISTEMA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('PERFIL', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('PERFIL', 'NOME_TIPO_CATEGORIA_PERFIL' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES('MENSAGEM', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES('MENSAGEM', 'NOME_TIPO_CATEGORIA_MENSAGEM' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('EMAIL', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('EMAIL', 'NOME_TIPO_CATEGORIA_EMAIL' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria(nome, ativo, rowinfo)
-VALUES('WEBSITE', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria(nome, constante_textual, ativo, rowinfo)
+VALUES('WEBSITE', 'NOME_TIPO_CATEGORIA_WEBSITE' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('FORMULARIO', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('FORMULARIO', 'NOME_TIPO_CATEGORIA_FORMULARIO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('AJUDA', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('AJUDA', 'NOME_TIPO_CATEGORIA_AJUDA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('COMPONENTE', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('COMPONENTE', 'NOME_TIPO_CATEGORIA_COMPONENTE' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('CVC', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('CVC', 'NOME_TIPO_CATEGORIA_CVC' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
-VALUES ('LOCALIDADE', true AS ativo, 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('LOCALIDADE', 'NOME_TIPO_CATEGORIA_LOCALIDADE' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
