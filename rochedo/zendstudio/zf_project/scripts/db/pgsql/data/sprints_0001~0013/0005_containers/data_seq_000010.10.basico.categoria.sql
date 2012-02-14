@@ -9,11 +9,6 @@
 */
 
 INSERT into basico.categoria (id_tipo_categoria, nome, rowinfo)
-SELECT id, 'SISTEMA_USUARIO' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria
-WHERE nome = 'SISTEMA';
-
-INSERT into basico.categoria (id_tipo_categoria, nome, rowinfo)
 SELECT id, 'SISTEMA_EMAIL' AS nome, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria
 WHERE nome = 'SISTEMA';
@@ -564,11 +559,6 @@ INSERT into basico.categoria (id_tipo_categoria, nome, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'COMPONENTE_ROCHEDO' AS nome, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'COMPONENTE';
-
-INSERT into basico.categoria (id_tipo_categoria, nome, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'MASCARA_NUMERICA' AS nome, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-WHERE t.nome = 'MASCARA';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, rowinfo)
 SELECT id AS id_tipo_categoria, 'CVC' AS nome, 'SYSTEM_STARTUP' AS rowinfo

@@ -25,5 +25,4 @@ LEFT JOIN basico.perfil perf ON (pp.id_perfil = perf.id)
 LEFT JOIN basico.categoria cat ON (perf.id_categoria = cat.id)
 LEFT JOIN basico.tipo_categoria tipo_cat ON (cat.id_tipo_categoria = tipo_cat.id)
 WHERE perf.nome = 'SISTEMA'
-AND cat.nome = 'SISTEMA_USUARIO'
-AND perf.nome = 'SISTEMA';
+AND cat.nome = 'PERFIL_USUARIO_SISTEMA';

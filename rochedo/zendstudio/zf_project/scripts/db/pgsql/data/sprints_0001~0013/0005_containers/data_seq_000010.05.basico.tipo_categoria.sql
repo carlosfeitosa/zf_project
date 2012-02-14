@@ -8,35 +8,32 @@
 * 
 */
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('SISTEMA', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('SISTEMA', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('PERFIL', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('PERFIL', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES('MENSAGEM', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES('MENSAGEM', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('EMAIL', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('EMAIL', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria(nome, rowinfo)
-VALUES('WEBSITE', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria(nome, ativo, rowinfo)
+VALUES('WEBSITE', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('FORMULARIO', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('FORMULARIO', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('AJUDA', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('AJUDA', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('COMPONENTE', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('COMPONENTE', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('MASCARA', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('CVC', true AS ativo, 'SYSTEM_STARTUP');
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('CVC', 'SYSTEM_STARTUP');
-
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('LOCALIDADE', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('LOCALIDADE', true AS ativo, 'SYSTEM_STARTUP');
