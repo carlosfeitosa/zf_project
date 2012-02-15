@@ -79,6 +79,13 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'NOME_TIPO_CATEGORIA_DADOS_BIOMETRICOS' AS constante_textual,'Dados Biométricos' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'ASSUNTO_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN' AS constante_textual, 'Problema(s) com seu login' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -749,70 +756,70 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO' AS constante_textual, 'Masculino' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'GENERO_MASCULINO' AS constante_textual, 'Masculino' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO' AS constante_textual, 'Feminino' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'GENERO_FEMININO' AS constante_textual, 'Feminino' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_POSITIVO' AS constante_textual, 'A+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_A_POSITIVO' AS constante_textual, 'A+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_NEGATIVO' AS constante_textual, 'A-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_A_NEGATIVO' AS constante_textual, 'A-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_B_POSITIVO' AS constante_textual, 'B+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_B_POSITIVO' AS constante_textual, 'B+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_B_NEGATIVO' AS constante_textual, 'B-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_B_NEGATIVO' AS constante_textual, 'B-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_AB_POSITIVO' AS constante_textual, 'AB+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_AB_POSITIVO' AS constante_textual, 'AB+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_AB_NEGATIVO' AS constante_textual, 'AB-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_AB_NEGATIVO' AS constante_textual, 'AB-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_O_POSITIVO' AS constante_textual, 'O+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_O_POSITIVO' AS constante_textual, 'O+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_O_NEGATIVO' AS constante_textual, 'O-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_O_NEGATIVO' AS constante_textual, 'O-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -6323,6 +6330,13 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'NOME_TIPO_CATEGORIA_DADOS_BIOMETRICOS' AS constante_textual,'Biometric data' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'en-us';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'ASSUNTO_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN' AS constante_textual, 'Problem(s) with your login' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -6930,70 +6944,70 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO' AS constante_textual, 'Male' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'GENERO_MASCULINO' AS constante_textual, 'Male' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO' AS constante_textual, 'Female' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'GENERO_FEMININO' AS constante_textual, 'Female' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_POSITIVO' AS constante_textual, 'A+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_A_POSITIVO' AS constante_textual, 'A+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_NEGATIVO' AS constante_textual, 'A-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_A_NEGATIVO' AS constante_textual, 'A-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_B_POSITIVO' AS constante_textual, 'B+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_B_POSITIVO' AS constante_textual, 'B+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_B_NEGATIVO' AS constante_textual, 'B-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_B_NEGATIVO' AS constante_textual, 'B-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_AB_POSITIVO' AS constante_textual, 'AB+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_AB_POSITIVO' AS constante_textual, 'AB+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_AB_NEGATIVO' AS constante_textual, 'AB-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_AB_NEGATIVO' AS constante_textual, 'AB-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_O_POSITIVO' AS constante_textual, 'O+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_O_POSITIVO' AS constante_textual, 'O+' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'en-us';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_O_NEGATIVO' AS constante_textual, 'O-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'TIPO_SANGUINEO_O_NEGATIVO' AS constante_textual, 'O-' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

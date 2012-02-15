@@ -631,3 +631,95 @@ FROM basico.tipo_categoria t
     LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LOCALIDADE'
 AND c.nome = 'LOCALIDADE_ESTADO';
+
+INSERT into basico.categoria (id_tipo_categoria, nivel, nome, rowinfo)
+SELECT t.id AS id_tipo_categoria, 2 AS nivel, 
+    'GENERO' AS nome, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'DADOS_BIOMETRICOS';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'GENERO_MASCULINO' AS nome, 'GENERO_MASCULINO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'GENERO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'GENERO_FEMININO' AS nome, 'GENERO_FEMININO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'GENERO';
+
+INSERT into basico.categoria (id_tipo_categoria, nivel, nome, rowinfo)
+SELECT t.id AS id_tipo_categoria, 2 AS nivel, 
+    'TIPO_SANGUINEO' AS nome, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'DADOS_BIOMETRICOS';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_A_POSITIVO' AS nome, 'TIPO_SANGUINEO_A_POSITIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_A_NEGATIVO' AS nome, 'TIPO_SANGUINEO_A_NEGATIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_B_POSITIVO' AS nome, 'TIPO_SANGUINEO_B_POSITIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_B_NEGATIVO' AS nome, 'TIPO_SANGUINEO_B_NEGATIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_AB_POSITIVO' AS nome, 'TIPO_SANGUINEO_AB_POSITIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_AB_NEGATIVO' AS nome, 'TIPO_SANGUINEO_AB_NEGATIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_O_POSITIVO' AS nome, 'TIPO_SANGUINEO_O_POSITIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'TIPO_SANGUINEO_O_NEGATIVO' AS nome, 'TIPO_SANGUINEO_O_NEGATIVO' AS constante_textual, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'TIPO_SANGUINEO';

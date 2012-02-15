@@ -37,3 +37,6 @@ VALUES ('CVC', 'NOME_TIPO_CATEGORIA_CVC' AS constante_textual, true AS ativo, 'S
 
 INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
 VALUES ('LOCALIDADE', 'NOME_TIPO_CATEGORIA_LOCALIDADE' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');
+
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('DADOS_BIOMETRICOS', 'NOME_TIPO_CATEGORIA_DADOS_BIOMETRICOS' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP');

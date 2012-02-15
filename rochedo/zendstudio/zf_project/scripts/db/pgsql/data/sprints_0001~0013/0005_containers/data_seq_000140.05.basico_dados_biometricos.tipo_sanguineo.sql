@@ -12,7 +12,7 @@
 */
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
-VALUES ('A_POSITIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
+VALUES ('A_POSITIVO', 'TIPO_SANGUINEO_A_POSITIVO', NULL, true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico_dados_biometricos.tipo_sanguineo (nome, constante_textual, constante_textual_descricao, ativo,rowinfo)
 VALUES ('A_NEGATIVO', 'FORM_ELEMENT_FILTERING_SELECT_TIPO_SANGUINEO_LABEL_A_NEGATIVO', NULL, true, 'SYSTEM_STARTUP');

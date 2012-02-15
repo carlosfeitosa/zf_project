@@ -646,8 +646,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    
 	    // setando options do elemento sexo 
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo
-	                            ->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 
-	                                                    1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+	                            ->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 
+	                                                    1 => $this->view->tradutor('GENERO_FEMININO')));
 	    
 	    // setando options do elemento raca
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
@@ -655,8 +655,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    
 	    // setando options do elemento sexo 
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo
-	                            ->addMultiOptions(array(0 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_MASCULINO'), 
-	                                                    1 => $this->view->tradutor('FORM_ELEMENT_RADIO_BUTTON_SEXO_LABEL_FEMININO')));
+	                            ->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 
+	                                                    1 => $this->view->tradutor('GENERO_FEMININO')));
 	                                                    
 	    //return $subFormCadastrarDadosUsuarioDadosBiometricos;
     }
