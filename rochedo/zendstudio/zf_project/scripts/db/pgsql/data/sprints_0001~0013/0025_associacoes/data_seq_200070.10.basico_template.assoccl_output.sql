@@ -69,7 +69,7 @@ SELECT (SELECT templ.id
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_TEMPLATE'
+AND c.nome = 'FORMULARIO_TEMPLATE';
 
 INSERT INTO basico_template.assoccl_output (id_template, id_output, rowinfo)
 SELECT (SELECT templ.id

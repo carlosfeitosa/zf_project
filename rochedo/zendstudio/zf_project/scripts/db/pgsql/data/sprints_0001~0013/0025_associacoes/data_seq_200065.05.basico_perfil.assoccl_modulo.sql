@@ -24,6 +24,6 @@ SELECT (SELECT m.id
 		LEFT join basico.categoria c ON (p.id_categoria = c.id)
 		LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
 		WHERE t.nome = 'PERFIL'
-		AND c.nome = 'PERFIL_USUARIO_SISTEMA'
+		AND c.nome = 'PERFIL_USUARIO'
 		AND p.nome = 'USUARIO_NAO_VALIDADO') AS id_perfil,
 		'SYSTEM_STARTUP' AS rowinfo;

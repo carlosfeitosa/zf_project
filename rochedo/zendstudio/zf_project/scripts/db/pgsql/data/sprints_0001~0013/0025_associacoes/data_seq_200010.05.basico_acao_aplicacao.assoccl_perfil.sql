@@ -27,7 +27,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -40,7 +40,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -53,7 +53,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -248,7 +248,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -326,7 +326,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -365,7 +365,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -378,7 +378,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -573,7 +573,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a
@@ -586,7 +586,7 @@ INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, 
 SELECT (SELECT p.id
         FROM basico.perfil p
         LEFT join basico.categoria c ON (p.id_categoria = c.id)
-        WHERE c.nome = 'PERFIL_USUARIO_SISTEMA'
+        WHERE c.nome = 'PERFIL_USUARIO'
         AND p.nome   = 'USUARIO_VALIDADO') AS id_perfil,
        (SELECT a.id
         from basico.acao_aplicacao a

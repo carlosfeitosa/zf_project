@@ -8,5 +8,9 @@
 * 
 */
 
-INSERT INTO basico.pessoa (rowinfo)
-VALUES ('SYSTEM_STARTUP_MASTER');
+INSERT INTO basico.pessoa (id_perfil_padrao, rowinfo)
+SELECT 
+	(SELECT id 
+	 FROM basico.perfil
+	 WHERE nome = 'SISTEMA') AS id_perfil_padrao,
+	'SYSTEM_STARTUP_MASTER' AS rowinfo;
