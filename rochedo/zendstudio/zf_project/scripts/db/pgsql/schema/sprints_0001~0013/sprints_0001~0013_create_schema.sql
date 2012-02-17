@@ -4,7 +4,7 @@
 
 -- Dumped from database version 8.3.17
 -- Dumped by pg_dump version 9.1.2
--- Started on 2012-02-16 14:39:58 BRT
+-- Started on 2012-02-17 15:21:13 BRT
 
 SET statement_timeout = 0;
 SET client_encoding = 'LATIN1';
@@ -296,7 +296,7 @@ CREATE OR REPLACE PROCEDURAL LANGUAGE plpgsql;
 SET search_path = basico, pg_catalog;
 
 --
--- TOC entry 398 (class 1255 OID 57165130)
+-- TOC entry 397 (class 1255 OID 57165130)
 -- Dependencies: 12
 -- Name: fn_checkcodigoareaeconomiaexists(character varying); Type: FUNCTION; Schema: basico; Owner: -
 --
@@ -373,7 +373,7 @@ CREATE FUNCTION fn_checknomemensagemexists(character varying) RETURNS integer
 
 
 --
--- TOC entry 397 (class 1255 OID 57155142)
+-- TOC entry 396 (class 1255 OID 57155142)
 -- Dependencies: 12
 -- Name: fn_checknomeprodutoexists(character varying); Type: FUNCTION; Schema: basico; Owner: -
 --
@@ -399,14 +399,14 @@ CREATE FUNCTION fn_checkcategoriachaveestrangeiracategoriaexists(integer) RETURN
 SET search_path = basico_contato, pg_catalog;
 
 --
--- TOC entry 396 (class 1255 OID 57147957)
+-- TOC entry 398 (class 1255 OID 57147957)
 -- Dependencies: 10
 -- Name: fn_checknomeemailexists(character varying); Type: FUNCTION; Schema: basico_contato; Owner: -
 --
 
 CREATE FUNCTION fn_checknomeemailexists(character varying) RETURNS integer
     LANGUAGE sql
-    AS $_$select id from basico_contato.email where nome = $1 limit 1$_$;
+    AS $_$select id from basico_contato.cpg_email where nome = $1 limit 1$_$;
 
 
 --
@@ -417,7 +417,7 @@ CREATE FUNCTION fn_checknomeemailexists(character varying) RETURNS integer
 
 CREATE FUNCTION fn_checknometelefoneexists(character varying) RETURNS integer
     LANGUAGE sql
-    AS $_$select id from basico_contato.telefone where nome = $1 limit 1$_$;
+    AS $_$select id from basico_contato.cpg_telefone where nome = $1 limit 1$_$;
 
 
 SET search_path = basico_cvc, pg_catalog;
@@ -481,12 +481,11 @@ CREATE TABLE acao_aplicacao (
 
 --
 -- TOC entry 372 (class 1259 OID 57627729)
--- Dependencies: 12 373
+-- Dependencies: 373 12
 -- Name: acao_aplicacao_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE acao_aplicacao_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -526,7 +525,7 @@ CREATE TABLE acao_evento (
 
 --
 -- TOC entry 370 (class 1259 OID 57627713)
--- Dependencies: 12 371
+-- Dependencies: 371 12
 -- Name: acao_evento_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -580,7 +579,6 @@ CREATE TABLE ajuda (
 --
 
 CREATE SEQUENCE ajuda_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -670,7 +668,7 @@ CREATE TABLE area_economia (
 
 --
 -- TOC entry 364 (class 1259 OID 57627659)
--- Dependencies: 365 12
+-- Dependencies: 12 365
 -- Name: area_economia_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -728,12 +726,11 @@ COMMENT ON TABLE categoria IS 'containner de categorias';
 
 --
 -- TOC entry 362 (class 1259 OID 57627638)
--- Dependencies: 363 12
+-- Dependencies: 12 363
 -- Name: categoria_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE categoria_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -774,12 +771,11 @@ CREATE TABLE componente (
 
 --
 -- TOC entry 360 (class 1259 OID 57627622)
--- Dependencies: 361 12
+-- Dependencies: 12 361
 -- Name: componente_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE componente_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1094,7 +1090,7 @@ CREATE TABLE cpg_token (
 
 --
 -- TOC entry 346 (class 1259 OID 57627508)
--- Dependencies: 347 12
+-- Dependencies: 12 347
 -- Name: cpg_token_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1133,7 +1129,7 @@ CREATE TABLE dados_biometricos (
 
 --
 -- TOC entry 344 (class 1259 OID 57627495)
--- Dependencies: 12 345
+-- Dependencies: 345 12
 -- Name: dados_biometricos_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1180,7 +1176,6 @@ CREATE TABLE dicionario_expressao (
 --
 
 CREATE SEQUENCE dicionario_expressao_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1220,7 +1215,7 @@ CREATE TABLE evento (
 
 --
 -- TOC entry 340 (class 1259 OID 57627462)
--- Dependencies: 12 341
+-- Dependencies: 341 12
 -- Name: evento_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1265,12 +1260,11 @@ CREATE TABLE filter (
 
 --
 -- TOC entry 338 (class 1259 OID 57627446)
--- Dependencies: 339 12
+-- Dependencies: 12 339
 -- Name: filter_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE filter_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1319,12 +1313,11 @@ CREATE TABLE formulario (
 
 --
 -- TOC entry 336 (class 1259 OID 57627428)
--- Dependencies: 12 337
+-- Dependencies: 337 12
 -- Name: formulario_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE formulario_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1457,12 +1450,11 @@ CREATE TABLE mensagem (
 
 --
 -- TOC entry 330 (class 1259 OID 57627382)
--- Dependencies: 12 331
+-- Dependencies: 331 12
 -- Name: mensagem_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE mensagem_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1552,12 +1544,11 @@ CREATE TABLE modulo (
 
 --
 -- TOC entry 326 (class 1259 OID 57627349)
--- Dependencies: 327 12
+-- Dependencies: 12 327
 -- Name: modulo_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE modulo_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1596,12 +1587,11 @@ CREATE TABLE output (
 
 --
 -- TOC entry 324 (class 1259 OID 57627333)
--- Dependencies: 325 12
+-- Dependencies: 12 325
 -- Name: output_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE output_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1646,7 +1636,6 @@ CREATE TABLE perfil (
 --
 
 CREATE SEQUENCE perfil_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1684,12 +1673,11 @@ CREATE TABLE pessoa (
 
 --
 -- TOC entry 320 (class 1259 OID 57627303)
--- Dependencies: 12 321
+-- Dependencies: 321 12
 -- Name: pessoa_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE pessoa_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1822,7 +1810,7 @@ CREATE TABLE sequencia (
 
 --
 -- TOC entry 314 (class 1259 OID 57627256)
--- Dependencies: 12 315
+-- Dependencies: 315 12
 -- Name: sequencia_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1872,7 +1860,6 @@ CREATE TABLE template (
 --
 
 CREATE SEQUENCE template_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1929,7 +1916,6 @@ COMMENT ON TABLE tipo_categoria IS 'containner de tipos de categoria';
 --
 
 CREATE SEQUENCE tipo_categoria_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1969,12 +1955,11 @@ CREATE TABLE validator (
 
 --
 -- TOC entry 308 (class 1259 OID 57627203)
--- Dependencies: 12 309
+-- Dependencies: 309 12
 -- Name: validator_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
 CREATE SEQUENCE validator_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2181,12 +2166,11 @@ CREATE TABLE assoccl_perfil (
 
 --
 -- TOC entry 298 (class 1259 OID 57627128)
--- Dependencies: 299 35
+-- Dependencies: 35 299
 -- Name: assoccl_perfil_id_seq; Type: SEQUENCE; Schema: basico_acao_aplicacao; Owner: -
 --
 
 CREATE SEQUENCE assoccl_perfil_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2222,7 +2206,7 @@ CREATE TABLE assoccl_include (
 
 --
 -- TOC entry 296 (class 1259 OID 57627116)
--- Dependencies: 36 297
+-- Dependencies: 297 36
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_acao_evento; Owner: -
 --
 
@@ -2349,7 +2333,7 @@ CREATE TABLE relacao (
 
 --
 -- TOC entry 290 (class 1259 OID 57627073)
--- Dependencies: 26 291
+-- Dependencies: 291 26
 -- Name: relacao_id_seq; Type: SEQUENCE; Schema: basico_assoc_chave_estrangeira; Owner: -
 --
 
@@ -2389,7 +2373,7 @@ CREATE TABLE assoccl_area_conhecimento (
 
 --
 -- TOC entry 288 (class 1259 OID 57627059)
--- Dependencies: 15 289
+-- Dependencies: 289 15
 -- Name: assoccl_area_conhecimento_id_seq; Type: SEQUENCE; Schema: basico_assoc_dados_profis; Owner: -
 --
 
@@ -2430,12 +2414,11 @@ CREATE TABLE assoc_dados (
 
 --
 -- TOC entry 286 (class 1259 OID 57627046)
--- Dependencies: 287 7
+-- Dependencies: 7 287
 -- Name: assoc_dados_id_seq; Type: SEQUENCE; Schema: basico_assoccl_pessoa_perfil; Owner: -
 --
 
 CREATE SEQUENCE assoc_dados_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2482,12 +2465,11 @@ COMMENT ON TABLE assoc_chave_estrangeira IS 'conteinner de relacao de uma catego
 
 --
 -- TOC entry 284 (class 1259 OID 57627031)
--- Dependencies: 11 285
+-- Dependencies: 285 11
 -- Name: assoc_chave_estrangeira_id_seq; Type: SEQUENCE; Schema: basico_categoria; Owner: -
 --
 
 CREATE SEQUENCE assoc_chave_estrangeira_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2563,7 +2545,7 @@ CREATE TABLE assoccl_include (
 
 --
 -- TOC entry 280 (class 1259 OID 57627003)
--- Dependencies: 281 27
+-- Dependencies: 27 281
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_componente; Owner: -
 --
 
@@ -2621,7 +2603,6 @@ CREATE TABLE cpg_email (
 --
 
 CREATE SEQUENCE cpg_email_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2666,7 +2647,7 @@ CREATE TABLE cpg_telefone (
 
 --
 -- TOC entry 276 (class 1259 OID 57626964)
--- Dependencies: 10 277
+-- Dependencies: 277 10
 -- Name: cpg_telefone_id_seq; Type: SEQUENCE; Schema: basico_contato; Owner: -
 --
 
@@ -2712,7 +2693,7 @@ CREATE TABLE cvc (
 
 --
 -- TOC entry 274 (class 1259 OID 57626947)
--- Dependencies: 275 18
+-- Dependencies: 18 275
 -- Name: cvc_id_seq; Type: SEQUENCE; Schema: basico_cvc; Owner: -
 --
 
@@ -2758,7 +2739,7 @@ CREATE TABLE titulacao (
 
 --
 -- TOC entry 272 (class 1259 OID 57626931)
--- Dependencies: 273 17
+-- Dependencies: 17 273
 -- Name: titulacao_id_seq; Type: SEQUENCE; Schema: basico_dados_academicos; Owner: -
 --
 
@@ -2801,7 +2782,7 @@ CREATE TABLE assoc_pessoa (
 
 --
 -- TOC entry 270 (class 1259 OID 57626920)
--- Dependencies: 271 19
+-- Dependencies: 19 271
 -- Name: assoc_pessoa_id_seq; Type: SEQUENCE; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -2897,7 +2878,7 @@ CREATE TABLE tipo_vinculo (
 
 --
 -- TOC entry 266 (class 1259 OID 57626885)
--- Dependencies: 267 14
+-- Dependencies: 14 267
 -- Name: tipo_vinculo_id_seq; Type: SEQUENCE; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -3065,12 +3046,11 @@ CREATE TABLE assoccl_decorator (
 
 --
 -- TOC entry 258 (class 1259 OID 57626824)
--- Dependencies: 259 23
+-- Dependencies: 23 259
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
 CREATE SEQUENCE assoccl_decorator_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3106,7 +3086,7 @@ CREATE TABLE assoccl_evento (
 
 --
 -- TOC entry 256 (class 1259 OID 57626811)
--- Dependencies: 23 257
+-- Dependencies: 257 23
 -- Name: assoccl_evento_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3185,7 +3165,7 @@ CREATE TABLE assoccl_include (
 
 --
 -- TOC entry 252 (class 1259 OID 57626779)
--- Dependencies: 253 23
+-- Dependencies: 23 253
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3224,7 +3204,7 @@ CREATE TABLE assoccl_validator (
 
 --
 -- TOC entry 250 (class 1259 OID 57626764)
--- Dependencies: 251 23
+-- Dependencies: 23 251
 -- Name: assoccl_validator_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3273,7 +3253,6 @@ CREATE TABLE grupo (
 --
 
 CREATE SEQUENCE grupo_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3313,7 +3292,6 @@ CREATE TABLE assoccl_decorator (
 --
 
 CREATE SEQUENCE assoccl_decorator_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3357,12 +3335,11 @@ CREATE TABLE assoccl_elemento (
 
 --
 -- TOC entry 244 (class 1259 OID 57626716)
--- Dependencies: 22 245
+-- Dependencies: 245 22
 -- Name: assoccl_elemento_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
 
 CREATE SEQUENCE assoccl_elemento_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3477,7 +3454,6 @@ CREATE TABLE assoccl_modulo (
 --
 
 CREATE SEQUENCE assoccl_modulo_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3515,7 +3491,6 @@ CREATE TABLE assoccl_template (
 --
 
 CREATE SEQUENCE assoccl_template_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3560,7 +3535,6 @@ CREATE TABLE decorator (
 --
 
 CREATE SEQUENCE decorator_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3613,7 +3587,6 @@ CREATE TABLE elemento (
 --
 
 CREATE SEQUENCE elemento_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3703,7 +3676,6 @@ CREATE TABLE assoccl_decorator (
 --
 
 CREATE SEQUENCE assoccl_decorator_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3782,7 +3754,6 @@ CREATE TABLE assoccl_filter (
 --
 
 CREATE SEQUENCE assoccl_filter_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3820,7 +3791,6 @@ CREATE TABLE assoccl_validator (
 --
 
 CREATE SEQUENCE assoccl_validator_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -3948,7 +3918,6 @@ CREATE TABLE assoc_estado (
 --
 
 CREATE SEQUENCE assoc_estado_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -4033,7 +4002,6 @@ CREATE TABLE assoc_municipio (
 --
 
 CREATE SEQUENCE assoc_municipio_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -4175,7 +4143,6 @@ CREATE TABLE pais (
 --
 
 CREATE SEQUENCE pais_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -4254,7 +4221,6 @@ CREATE TABLE assoccl_assoccl_pessoa_perfil (
 --
 
 CREATE SEQUENCE assoccl_assoccl_pessoa_perfil_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -4421,7 +4387,6 @@ CREATE TABLE assoccl_modulo (
 --
 
 CREATE SEQUENCE assoccl_modulo_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -4509,7 +4474,6 @@ CREATE TABLE assoccl_perfil (
 --
 
 CREATE SEQUENCE assoccl_perfil_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -4601,7 +4565,6 @@ CREATE TABLE login (
 --
 
 CREATE SEQUENCE login_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -5156,7 +5119,6 @@ CREATE TABLE assoccl_output (
 --
 
 CREATE SEQUENCE assoccl_output_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -5176,7 +5138,7 @@ SET search_path = basico, pg_catalog;
 
 --
 -- TOC entry 2989 (class 2604 OID 57627734)
--- Dependencies: 372 373 373
+-- Dependencies: 373 372 373
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5212,7 +5174,7 @@ ALTER TABLE area_conhecimento ALTER COLUMN id SET DEFAULT nextval('area_conhecim
 
 --
 -- TOC entry 2959 (class 2604 OID 57627664)
--- Dependencies: 364 365 365
+-- Dependencies: 365 364 365
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5230,7 +5192,7 @@ ALTER TABLE categoria ALTER COLUMN id SET DEFAULT nextval('categoria_id_seq'::re
 
 --
 -- TOC entry 2944 (class 2604 OID 57627627)
--- Dependencies: 360 361 361
+-- Dependencies: 361 360 361
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5239,7 +5201,7 @@ ALTER TABLE componente ALTER COLUMN id SET DEFAULT nextval('componente_id_seq'::
 
 --
 -- TOC entry 2936 (class 2604 OID 57627609)
--- Dependencies: 359 358 359
+-- Dependencies: 358 359 359
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5248,7 +5210,7 @@ ALTER TABLE cpg_arquivo ALTER COLUMN id SET DEFAULT nextval('cpg_arquivo_id_seq'
 
 --
 -- TOC entry 2931 (class 2604 OID 57627592)
--- Dependencies: 356 357 357
+-- Dependencies: 357 356 357
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5257,7 +5219,7 @@ ALTER TABLE cpg_codigo_acesso ALTER COLUMN id SET DEFAULT nextval('cpg_codigo_ac
 
 --
 -- TOC entry 2928 (class 2604 OID 57627577)
--- Dependencies: 354 355 355
+-- Dependencies: 355 354 355
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5266,7 +5228,7 @@ ALTER TABLE cpg_dados_bancarios ALTER COLUMN id SET DEFAULT nextval('cpg_dados_b
 
 --
 -- TOC entry 2924 (class 2604 OID 57627561)
--- Dependencies: 353 352 353
+-- Dependencies: 352 353 353
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5275,7 +5237,7 @@ ALTER TABLE cpg_documento_identificacao ALTER COLUMN id SET DEFAULT nextval('cpg
 
 --
 -- TOC entry 2917 (class 2604 OID 57627542)
--- Dependencies: 351 350 351
+-- Dependencies: 350 351 351
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5284,7 +5246,7 @@ ALTER TABLE cpg_link ALTER COLUMN id SET DEFAULT nextval('cpg_link_id_seq'::regc
 
 --
 -- TOC entry 2911 (class 2604 OID 57627526)
--- Dependencies: 348 349 349
+-- Dependencies: 349 348 349
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5293,7 +5255,7 @@ ALTER TABLE cpg_produto ALTER COLUMN id SET DEFAULT nextval('cpg_produto_id_seq'
 
 --
 -- TOC entry 2908 (class 2604 OID 57627513)
--- Dependencies: 347 346 347
+-- Dependencies: 346 347 347
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5302,7 +5264,7 @@ ALTER TABLE cpg_token ALTER COLUMN id SET DEFAULT nextval('cpg_token_id_seq'::re
 
 --
 -- TOC entry 2905 (class 2604 OID 57627500)
--- Dependencies: 344 345 345
+-- Dependencies: 345 344 345
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5329,7 +5291,7 @@ ALTER TABLE evento ALTER COLUMN id SET DEFAULT nextval('evento_id_seq'::regclass
 
 --
 -- TOC entry 2888 (class 2604 OID 57627451)
--- Dependencies: 338 339 339
+-- Dependencies: 339 338 339
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5338,7 +5300,7 @@ ALTER TABLE filter ALTER COLUMN id SET DEFAULT nextval('filter_id_seq'::regclass
 
 --
 -- TOC entry 2880 (class 2604 OID 57627433)
--- Dependencies: 336 337 337
+-- Dependencies: 337 336 337
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5365,7 +5327,7 @@ ALTER TABLE log ALTER COLUMN id SET DEFAULT nextval('log_id_seq'::regclass);
 
 --
 -- TOC entry 2864 (class 2604 OID 57627387)
--- Dependencies: 331 330 331
+-- Dependencies: 330 331 331
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5383,7 +5345,7 @@ ALTER TABLE metodo_validacao ALTER COLUMN id SET DEFAULT nextval('metodo_validac
 
 --
 -- TOC entry 2851 (class 2604 OID 57627354)
--- Dependencies: 326 327 327
+-- Dependencies: 327 326 327
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5392,7 +5354,7 @@ ALTER TABLE modulo ALTER COLUMN id SET DEFAULT nextval('modulo_id_seq'::regclass
 
 --
 -- TOC entry 2845 (class 2604 OID 57627338)
--- Dependencies: 324 325 325
+-- Dependencies: 325 324 325
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5401,7 +5363,7 @@ ALTER TABLE output ALTER COLUMN id SET DEFAULT nextval('output_id_seq'::regclass
 
 --
 -- TOC entry 2838 (class 2604 OID 57627321)
--- Dependencies: 322 323 323
+-- Dependencies: 323 322 323
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5419,7 +5381,7 @@ ALTER TABLE pessoa ALTER COLUMN id SET DEFAULT nextval('pessoa_id_seq'::regclass
 
 --
 -- TOC entry 2830 (class 2604 OID 57627293)
--- Dependencies: 319 318 319
+-- Dependencies: 318 319 319
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5428,7 +5390,7 @@ ALTER TABLE pessoa_juridica ALTER COLUMN id SET DEFAULT nextval('pessoa_juridica
 
 --
 -- TOC entry 2824 (class 2604 OID 57627277)
--- Dependencies: 317 316 317
+-- Dependencies: 316 317 317
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5437,7 +5399,7 @@ ALTER TABLE profissao ALTER COLUMN id SET DEFAULT nextval('profissao_id_seq'::re
 
 --
 -- TOC entry 2818 (class 2604 OID 57627261)
--- Dependencies: 314 315 315
+-- Dependencies: 315 314 315
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5464,7 +5426,7 @@ ALTER TABLE tipo_categoria ALTER COLUMN id SET DEFAULT nextval('tipo_categoria_i
 
 --
 -- TOC entry 2797 (class 2604 OID 57627208)
--- Dependencies: 308 309 309
+-- Dependencies: 309 308 309
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -5475,7 +5437,7 @@ SET search_path = basico_acao_aplic_assoc_visao, pg_catalog;
 
 --
 -- TOC entry 2795 (class 2604 OID 57627196)
--- Dependencies: 306 307 307
+-- Dependencies: 307 306 307
 -- Name: id; Type: DEFAULT; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -5535,7 +5497,7 @@ SET search_path = basico_ajuda, pg_catalog;
 
 --
 -- TOC entry 2774 (class 2604 OID 57627107)
--- Dependencies: 294 295 295
+-- Dependencies: 295 294 295
 -- Name: id; Type: DEFAULT; Schema: basico_ajuda; Owner: -
 --
 
@@ -5557,7 +5519,7 @@ SET search_path = basico_assoc_chave_estrangeira, pg_catalog;
 
 --
 -- TOC entry 2767 (class 2604 OID 57627078)
--- Dependencies: 291 290 291
+-- Dependencies: 290 291 291
 -- Name: id; Type: DEFAULT; Schema: basico_assoc_chave_estrangeira; Owner: -
 --
 
@@ -5568,7 +5530,7 @@ SET search_path = basico_assoc_dados_profis, pg_catalog;
 
 --
 -- TOC entry 2765 (class 2604 OID 57627064)
--- Dependencies: 289 288 289
+-- Dependencies: 288 289 289
 -- Name: id; Type: DEFAULT; Schema: basico_assoc_dados_profis; Owner: -
 --
 
@@ -5621,7 +5583,7 @@ SET search_path = basico_contato, pg_catalog;
 
 --
 -- TOC entry 2747 (class 2604 OID 57626988)
--- Dependencies: 278 279 279
+-- Dependencies: 279 278 279
 -- Name: id; Type: DEFAULT; Schema: basico_contato; Owner: -
 --
 
@@ -5630,7 +5592,7 @@ ALTER TABLE cpg_email ALTER COLUMN id SET DEFAULT nextval('cpg_email_id_seq'::re
 
 --
 -- TOC entry 2740 (class 2604 OID 57626969)
--- Dependencies: 277 276 277
+-- Dependencies: 276 277 277
 -- Name: id; Type: DEFAULT; Schema: basico_contato; Owner: -
 --
 
@@ -5652,7 +5614,7 @@ SET search_path = basico_dados_academicos, pg_catalog;
 
 --
 -- TOC entry 2729 (class 2604 OID 57626936)
--- Dependencies: 273 272 273
+-- Dependencies: 272 273 273
 -- Name: id; Type: DEFAULT; Schema: basico_dados_academicos; Owner: -
 --
 
@@ -5683,7 +5645,7 @@ ALTER TABLE regime_trabalho ALTER COLUMN id SET DEFAULT nextval('regime_trabalho
 
 --
 -- TOC entry 2713 (class 2604 OID 57626890)
--- Dependencies: 267 266 267
+-- Dependencies: 266 267 267
 -- Name: id; Type: DEFAULT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -5703,7 +5665,7 @@ SET search_path = basico_decorator, pg_catalog;
 
 --
 -- TOC entry 2705 (class 2604 OID 57626858)
--- Dependencies: 262 263 263
+-- Dependencies: 263 262 263
 -- Name: id; Type: DEFAULT; Schema: basico_decorator; Owner: -
 --
 
@@ -5743,7 +5705,7 @@ ALTER TABLE assoccl_evento ALTER COLUMN id SET DEFAULT nextval('assoccl_evento_i
 
 --
 -- TOC entry 2694 (class 2604 OID 57626801)
--- Dependencies: 254 255 255
+-- Dependencies: 255 254 255
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -5761,7 +5723,7 @@ ALTER TABLE assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_include
 
 --
 -- TOC entry 2688 (class 2604 OID 57626769)
--- Dependencies: 251 250 251
+-- Dependencies: 250 251 251
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -5770,7 +5732,7 @@ ALTER TABLE assoccl_validator ALTER COLUMN id SET DEFAULT nextval('assoccl_valid
 
 --
 -- TOC entry 2682 (class 2604 OID 57626753)
--- Dependencies: 249 248 249
+-- Dependencies: 248 249 249
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -5781,7 +5743,7 @@ SET search_path = basico_formulario, pg_catalog;
 
 --
 -- TOC entry 2680 (class 2604 OID 57626739)
--- Dependencies: 247 246 247
+-- Dependencies: 246 247 247
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -5790,7 +5752,7 @@ ALTER TABLE assoccl_decorator ALTER COLUMN id SET DEFAULT nextval('assoccl_decor
 
 --
 -- TOC entry 2674 (class 2604 OID 57626721)
--- Dependencies: 245 244 245
+-- Dependencies: 244 245 245
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -5799,7 +5761,7 @@ ALTER TABLE assoccl_elemento ALTER COLUMN id SET DEFAULT nextval('assoccl_elemen
 
 --
 -- TOC entry 2672 (class 2604 OID 57626707)
--- Dependencies: 242 243 243
+-- Dependencies: 243 242 243
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -5808,7 +5770,7 @@ ALTER TABLE assoccl_evento ALTER COLUMN id SET DEFAULT nextval('assoccl_evento_i
 
 --
 -- TOC entry 2670 (class 2604 OID 57626691)
--- Dependencies: 241 240 241
+-- Dependencies: 240 241 241
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -5853,7 +5815,7 @@ ALTER TABLE elemento ALTER COLUMN id SET DEFAULT nextval('elemento_id_seq'::regc
 
 --
 -- TOC entry 2648 (class 2604 OID 57626617)
--- Dependencies: 230 231 231
+-- Dependencies: 231 230 231
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -5864,7 +5826,7 @@ SET search_path = basico_formulario_elemento, pg_catalog;
 
 --
 -- TOC entry 2646 (class 2604 OID 57626601)
--- Dependencies: 228 229 229
+-- Dependencies: 229 228 229
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -5873,7 +5835,7 @@ ALTER TABLE assoccl_decorator ALTER COLUMN id SET DEFAULT nextval('assoccl_decor
 
 --
 -- TOC entry 2643 (class 2604 OID 57626588)
--- Dependencies: 226 227 227
+-- Dependencies: 227 226 227
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -5902,7 +5864,7 @@ SET search_path = basico_formulario_rascunho, pg_catalog;
 
 --
 -- TOC entry 2636 (class 2604 OID 57626547)
--- Dependencies: 221 220 221
+-- Dependencies: 220 221 221
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_rascunho; Owner: -
 --
 
@@ -5913,7 +5875,7 @@ SET search_path = basico_localizacao, pg_catalog;
 
 --
 -- TOC entry 2632 (class 2604 OID 57626533)
--- Dependencies: 219 218 219
+-- Dependencies: 218 219 219
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
 
@@ -5922,7 +5884,7 @@ ALTER TABLE assoc_bairro ALTER COLUMN id SET DEFAULT nextval('assoc_bairro_id_se
 
 --
 -- TOC entry 2627 (class 2604 OID 57626516)
--- Dependencies: 216 217 217
+-- Dependencies: 217 216 217
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
 
@@ -5940,7 +5902,7 @@ ALTER TABLE assoc_logradouro ALTER COLUMN id SET DEFAULT nextval('assoc_logradou
 
 --
 -- TOC entry 2618 (class 2604 OID 57626485)
--- Dependencies: 212 213 213
+-- Dependencies: 213 212 213
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
 
@@ -5958,7 +5920,7 @@ ALTER TABLE codigo_postal ALTER COLUMN id SET DEFAULT nextval('codigo_postal_id_
 
 --
 -- TOC entry 2609 (class 2604 OID 57626454)
--- Dependencies: 208 209 209
+-- Dependencies: 209 208 209
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
 
@@ -5987,7 +5949,7 @@ ALTER TABLE assoc_email ALTER COLUMN id SET DEFAULT nextval('assoc_email_id_seq'
 
 --
 -- TOC entry 2599 (class 2604 OID 57626412)
--- Dependencies: 203 202 203
+-- Dependencies: 202 203 203
 -- Name: id; Type: DEFAULT; Schema: basico_mensagem; Owner: -
 --
 
@@ -5998,7 +5960,7 @@ SET search_path = basico_mensagem_assoc_email, pg_catalog;
 
 --
 -- TOC entry 2596 (class 2604 OID 57626399)
--- Dependencies: 201 200 201
+-- Dependencies: 200 201 201
 -- Name: id; Type: DEFAULT; Schema: basico_mensagem_assoc_email; Owner: -
 --
 
@@ -6009,7 +5971,7 @@ SET search_path = basico_metodo_validacao, pg_catalog;
 
 --
 -- TOC entry 2594 (class 2604 OID 57626385)
--- Dependencies: 198 199 199
+-- Dependencies: 199 198 199
 -- Name: id; Type: DEFAULT; Schema: basico_metodo_validacao; Owner: -
 --
 
@@ -6020,7 +5982,7 @@ SET search_path = basico_output, pg_catalog;
 
 --
 -- TOC entry 2592 (class 2604 OID 57626369)
--- Dependencies: 197 196 197
+-- Dependencies: 196 197 197
 -- Name: id; Type: DEFAULT; Schema: basico_output; Owner: -
 --
 
@@ -6042,7 +6004,7 @@ SET search_path = basico_pessoa, pg_catalog;
 
 --
 -- TOC entry 2586 (class 2604 OID 57626341)
--- Dependencies: 193 192 193
+-- Dependencies: 192 193 193
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa; Owner: -
 --
 
@@ -6051,7 +6013,7 @@ ALTER TABLE assoc_dados ALTER COLUMN id SET DEFAULT nextval('assoc_dados_id_seq'
 
 --
 -- TOC entry 2582 (class 2604 OID 57626325)
--- Dependencies: 191 190 191
+-- Dependencies: 190 191 191
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa; Owner: -
 --
 
@@ -6069,7 +6031,7 @@ ALTER TABLE assoccl_tipo_vinculo ALTER COLUMN id SET DEFAULT nextval('assoccl_ti
 
 --
 -- TOC entry 2570 (class 2604 OID 57626291)
--- Dependencies: 186 187 187
+-- Dependencies: 187 186 187
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa; Owner: -
 --
 
@@ -6089,7 +6051,7 @@ ALTER TABLE assoc_banco ALTER COLUMN id SET DEFAULT nextval('assoc_banco_id_seq'
 
 --
 -- TOC entry 2563 (class 2604 OID 57626264)
--- Dependencies: 183 182 183
+-- Dependencies: 182 183 183
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -6098,7 +6060,7 @@ ALTER TABLE assoc_dados ALTER COLUMN id SET DEFAULT nextval('assoc_dados_id_seq'
 
 --
 -- TOC entry 2561 (class 2604 OID 57626250)
--- Dependencies: 181 180 181
+-- Dependencies: 180 181 181
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -6107,7 +6069,7 @@ ALTER TABLE assocag_incubadora ALTER COLUMN id SET DEFAULT nextval('assocag_incu
 
 --
 -- TOC entry 2556 (class 2604 OID 57626233)
--- Dependencies: 179 178 179
+-- Dependencies: 178 179 179
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -6125,7 +6087,7 @@ ALTER TABLE assoccl_area_economia ALTER COLUMN id SET DEFAULT nextval('assoccl_a
 
 --
 -- TOC entry 2551 (class 2604 OID 57626204)
--- Dependencies: 174 175 175
+-- Dependencies: 175 174 175
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -6152,7 +6114,7 @@ ALTER TABLE assoccl_quadro_funcionario ALTER COLUMN id SET DEFAULT nextval('asso
 
 --
 -- TOC entry 2539 (class 2604 OID 57626158)
--- Dependencies: 168 169 169
+-- Dependencies: 169 168 169
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -6172,7 +6134,7 @@ SET search_path = basico_sequencia, pg_catalog;
 
 --
 -- TOC entry 2527 (class 2604 OID 57626124)
--- Dependencies: 165 164 165
+-- Dependencies: 164 165 165
 -- Name: id; Type: DEFAULT; Schema: basico_sequencia; Owner: -
 --
 
@@ -6183,7 +6145,7 @@ SET search_path = basico_template, pg_catalog;
 
 --
 -- TOC entry 2525 (class 2604 OID 57626108)
--- Dependencies: 162 163 163
+-- Dependencies: 163 162 163
 -- Name: id; Type: DEFAULT; Schema: basico_template; Owner: -
 --
 
@@ -6192,7 +6154,7 @@ ALTER TABLE assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_include
 
 --
 -- TOC entry 2523 (class 2604 OID 57626094)
--- Dependencies: 160 161 161
+-- Dependencies: 161 160 161
 -- Name: id; Type: DEFAULT; Schema: basico_template; Owner: -
 --
 
@@ -11950,7 +11912,7 @@ SET search_path = basico, pg_catalog;
 
 --
 -- TOC entry 3971 (class 2606 OID 57627922)
--- Dependencies: 3587 373 327
+-- Dependencies: 327 373 3587
 -- Name: fk_acao_aplicacao_modulo; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -11970,7 +11932,7 @@ ALTER TABLE ONLY acao_evento
 
 --
 -- TOC entry 3969 (class 2606 OID 57628303)
--- Dependencies: 369 363 3721
+-- Dependencies: 3721 363 369
 -- Name: fk_ajuda_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -11980,7 +11942,7 @@ ALTER TABLE ONLY ajuda
 
 --
 -- TOC entry 3967 (class 2606 OID 57627847)
--- Dependencies: 363 367 3721
+-- Dependencies: 367 363 3721
 -- Name: fk_area_conhecimento_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12000,7 +11962,7 @@ ALTER TABLE ONLY area_conhecimento
 
 --
 -- TOC entry 3965 (class 2606 OID 57627852)
--- Dependencies: 363 365 3721
+-- Dependencies: 365 363 3721
 -- Name: fk_area_economia_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12010,7 +11972,7 @@ ALTER TABLE ONLY area_economia
 
 --
 -- TOC entry 3966 (class 2606 OID 57628468)
--- Dependencies: 365 365 3731
+-- Dependencies: 3731 365 365
 -- Name: fk_area_economia_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12020,7 +11982,7 @@ ALTER TABLE ONLY area_economia
 
 --
 -- TOC entry 3960 (class 2606 OID 57627957)
--- Dependencies: 359 3721 363
+-- Dependencies: 363 359 3721
 -- Name: fk_arquivo_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12050,7 +12012,7 @@ ALTER TABLE ONLY categoria
 
 --
 -- TOC entry 3958 (class 2606 OID 57627782)
--- Dependencies: 363 3721 357
+-- Dependencies: 357 363 3721
 -- Name: fk_codigo_acesso_categoria_acesso; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12070,7 +12032,7 @@ ALTER TABLE ONLY cpg_codigo_acesso
 
 --
 -- TOC entry 3961 (class 2606 OID 57627777)
--- Dependencies: 3721 363 361
+-- Dependencies: 361 363 3721
 -- Name: fk_componente_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12080,7 +12042,7 @@ ALTER TABLE ONLY componente
 
 --
 -- TOC entry 3962 (class 2606 OID 57628057)
--- Dependencies: 361 3543 313
+-- Dependencies: 3543 361 313
 -- Name: fk_componente_template; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12090,7 +12052,7 @@ ALTER TABLE ONLY componente
 
 --
 -- TOC entry 3957 (class 2606 OID 57627752)
--- Dependencies: 363 355 3721
+-- Dependencies: 3721 355 363
 -- Name: fk_dados_bancarios_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12100,7 +12062,7 @@ ALTER TABLE ONLY cpg_dados_bancarios
 
 --
 -- TOC entry 3950 (class 2606 OID 57628197)
--- Dependencies: 345 3721 363
+-- Dependencies: 345 363 3721
 -- Name: fk_dados_biometricos_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12120,7 +12082,7 @@ ALTER TABLE ONLY dicionario_expressao
 
 --
 -- TOC entry 3956 (class 2606 OID 57627992)
--- Dependencies: 353 3721 363
+-- Dependencies: 3721 353 363
 -- Name: fk_doc_identificacao_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12130,7 +12092,7 @@ ALTER TABLE ONLY cpg_documento_identificacao
 
 --
 -- TOC entry 3955 (class 2606 OID 57627977)
--- Dependencies: 353 319 3566
+-- Dependencies: 319 353 3566
 -- Name: fk_doc_identificacao_pj_emissor; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12140,7 +12102,7 @@ ALTER TABLE ONLY cpg_documento_identificacao
 
 --
 -- TOC entry 3948 (class 2606 OID 57628338)
--- Dependencies: 341 3721 363
+-- Dependencies: 363 3721 341
 -- Name: fk_evento_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12150,7 +12112,7 @@ ALTER TABLE ONLY evento
 
 --
 -- TOC entry 3947 (class 2606 OID 57628478)
--- Dependencies: 339 363 3721
+-- Dependencies: 363 339 3721
 -- Name: fk_filter_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12160,7 +12122,7 @@ ALTER TABLE ONLY filter
 
 --
 -- TOC entry 3944 (class 2606 OID 57628072)
--- Dependencies: 337 3748 369
+-- Dependencies: 3748 337 369
 -- Name: fk_formulario_ajuda; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12180,7 +12142,7 @@ ALTER TABLE ONLY formulario
 
 --
 -- TOC entry 3945 (class 2606 OID 57628528)
--- Dependencies: 3619 337 337
+-- Dependencies: 337 337 3619
 -- Name: fk_formulario_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12190,7 +12152,7 @@ ALTER TABLE ONLY formulario
 
 --
 -- TOC entry 3943 (class 2606 OID 57628253)
--- Dependencies: 3721 363 335
+-- Dependencies: 363 3721 335
 -- Name: fk_include_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12200,7 +12162,7 @@ ALTER TABLE ONLY include
 
 --
 -- TOC entry 3941 (class 2606 OID 57628238)
--- Dependencies: 333 191 3109
+-- Dependencies: 333 3109 191
 -- Name: fk_log_assoccl_perfil; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12220,7 +12182,7 @@ ALTER TABLE ONLY log
 
 --
 -- TOC entry 3940 (class 2606 OID 57628328)
--- Dependencies: 331 3721 363
+-- Dependencies: 3721 331 363
 -- Name: fk_mensagem_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12240,7 +12202,7 @@ ALTER TABLE ONLY metodo_validacao
 
 --
 -- TOC entry 3937 (class 2606 OID 57628137)
--- Dependencies: 327 3721 363
+-- Dependencies: 3721 327 363
 -- Name: fk_modulo_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12250,7 +12212,7 @@ ALTER TABLE ONLY modulo
 
 --
 -- TOC entry 3938 (class 2606 OID 57628172)
--- Dependencies: 327 3587 327
+-- Dependencies: 3587 327 327
 -- Name: fk_modulo_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12260,7 +12222,7 @@ ALTER TABLE ONLY modulo
 
 --
 -- TOC entry 3936 (class 2606 OID 57628323)
--- Dependencies: 325 363 3721
+-- Dependencies: 325 3721 363
 -- Name: fk_output_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12270,7 +12232,7 @@ ALTER TABLE ONLY output
 
 --
 -- TOC entry 3935 (class 2606 OID 57628558)
--- Dependencies: 323 3721 363
+-- Dependencies: 363 323 3721
 -- Name: fk_perfil_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12280,7 +12242,7 @@ ALTER TABLE ONLY perfil
 
 --
 -- TOC entry 3931 (class 2606 OID 57628127)
--- Dependencies: 321 279 3425
+-- Dependencies: 279 321 3425
 -- Name: fk_pessoa_email_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12290,7 +12252,7 @@ ALTER TABLE ONLY pessoa
 
 --
 -- TOC entry 3934 (class 2606 OID 57628728)
--- Dependencies: 321 3167 209
+-- Dependencies: 3167 209 321
 -- Name: fk_pessoa_endereco_corresp; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12300,7 +12262,7 @@ ALTER TABLE ONLY pessoa
 
 --
 -- TOC entry 3933 (class 2606 OID 57628593)
--- Dependencies: 3167 209 321
+-- Dependencies: 321 209 3167
 -- Name: fk_pessoa_endereco_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12310,7 +12272,7 @@ ALTER TABLE ONLY pessoa
 
 --
 -- TOC entry 3921 (class 2606 OID 57627927)
--- Dependencies: 319 167 3027
+-- Dependencies: 167 319 3027
 -- Name: fk_pessoa_juridica_natureza; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12320,7 +12282,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3925 (class 2606 OID 57628308)
--- Dependencies: 319 319 3566
+-- Dependencies: 3566 319 319
 -- Name: fk_pessoa_juridica_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12330,7 +12292,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3932 (class 2606 OID 57628258)
--- Dependencies: 351 321 3666
+-- Dependencies: 321 3666 351
 -- Name: fk_pessoa_link_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12340,7 +12302,7 @@ ALTER TABLE ONLY pessoa
 
 --
 -- TOC entry 3929 (class 2606 OID 57627767)
--- Dependencies: 321 323 3575
+-- Dependencies: 323 321 3575
 -- Name: fk_pessoa_perfil_padrao; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12350,7 +12312,7 @@ ALTER TABLE ONLY pessoa
 
 --
 -- TOC entry 3930 (class 2606 OID 57628032)
--- Dependencies: 277 321 3415
+-- Dependencies: 3415 277 321
 -- Name: fk_pessoa_telefone_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12360,7 +12322,7 @@ ALTER TABLE ONLY pessoa
 
 --
 -- TOC entry 3926 (class 2606 OID 57628333)
--- Dependencies: 319 3060 177
+-- Dependencies: 319 177 3060
 -- Name: fk_pj_area_economia_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12370,7 +12332,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3919 (class 2606 OID 57627827)
--- Dependencies: 3721 363 319
+-- Dependencies: 319 363 3721
 -- Name: fk_pj_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12380,7 +12342,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3924 (class 2606 OID 57628298)
--- Dependencies: 319 279 3425
+-- Dependencies: 3425 319 279
 -- Name: fk_pj_email_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12390,7 +12352,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3927 (class 2606 OID 57628618)
--- Dependencies: 319 209 3167
+-- Dependencies: 209 319 3167
 -- Name: fk_pj_endereco_correspond; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12400,7 +12362,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3928 (class 2606 OID 57628753)
--- Dependencies: 3167 319 209
+-- Dependencies: 319 209 3167
 -- Name: fk_pj_endereco_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12410,7 +12372,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3922 (class 2606 OID 57628067)
--- Dependencies: 3666 351 319
+-- Dependencies: 3666 319 351
 -- Name: fk_pj_link_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12420,7 +12382,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3923 (class 2606 OID 57628223)
--- Dependencies: 321 3569 319
+-- Dependencies: 319 321 3569
 -- Name: fk_pj_pessoa_resp_cadastro; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12430,7 +12392,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3920 (class 2606 OID 57627862)
--- Dependencies: 277 3415 319
+-- Dependencies: 319 277 3415
 -- Name: fk_pj_telefone_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12440,7 +12402,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 --
 -- TOC entry 3953 (class 2606 OID 57627887)
--- Dependencies: 3721 363 349
+-- Dependencies: 349 363 3721
 -- Name: fk_produto_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12450,7 +12412,7 @@ ALTER TABLE ONLY cpg_produto
 
 --
 -- TOC entry 3952 (class 2606 OID 57627762)
--- Dependencies: 3721 363 349
+-- Dependencies: 349 3721 363
 -- Name: fk_produto_categoria_moeda; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12460,7 +12422,7 @@ ALTER TABLE ONLY cpg_produto
 
 --
 -- TOC entry 3918 (class 2606 OID 57628758)
--- Dependencies: 363 317 3721
+-- Dependencies: 363 3721 317
 -- Name: fk_profissao_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12480,7 +12442,7 @@ ALTER TABLE ONLY sequencia
 
 --
 -- TOC entry 3916 (class 2606 OID 57628418)
--- Dependencies: 313 3721 363
+-- Dependencies: 363 3721 313
 -- Name: fk_template_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12500,7 +12462,7 @@ ALTER TABLE ONLY tipo_categoria
 
 --
 -- TOC entry 3951 (class 2606 OID 57628368)
--- Dependencies: 347 3721 363
+-- Dependencies: 3721 363 347
 -- Name: fk_token_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12510,7 +12472,7 @@ ALTER TABLE ONLY cpg_token
 
 --
 -- TOC entry 3914 (class 2606 OID 57628628)
--- Dependencies: 309 3721 363
+-- Dependencies: 363 309 3721
 -- Name: fk_validator_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12520,7 +12482,7 @@ ALTER TABLE ONLY validator
 
 --
 -- TOC entry 3954 (class 2606 OID 57628503)
--- Dependencies: 363 3721 351
+-- Dependencies: 3721 351 363
 -- Name: fk_website_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -12532,7 +12494,7 @@ SET search_path = basico_acao_aplic_assoc_visao, pg_catalog;
 
 --
 -- TOC entry 3912 (class 2606 OID 57628022)
--- Dependencies: 305 3517 307
+-- Dependencies: 307 305 3517
 -- Name: fk_atr_met_rec_ref_atr_met_rec_post; Type: FK CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -12564,7 +12526,7 @@ SET search_path = basico_acao_aplicacao, pg_catalog;
 
 --
 -- TOC entry 3909 (class 2606 OID 57628458)
--- Dependencies: 303 3762 373
+-- Dependencies: 373 3762 303
 -- Name: fk_assoc_visao_acao_aplicacao; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -12574,7 +12536,7 @@ ALTER TABLE ONLY assoc_visao
 
 --
 -- TOC entry 3910 (class 2606 OID 57628718)
--- Dependencies: 363 3721 303
+-- Dependencies: 303 363 3721
 -- Name: fk_assoc_visao_categoria; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -12584,7 +12546,7 @@ ALTER TABLE ONLY assoc_visao
 
 --
 -- TOC entry 3905 (class 2606 OID 57628548)
--- Dependencies: 323 3575 299
+-- Dependencies: 3575 299 323
 -- Name: fk_assoccl_acao_aplic_perfil_perfil; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -12604,7 +12566,7 @@ ALTER TABLE ONLY assoccl_metodo_validacao
 
 --
 -- TOC entry 3906 (class 2606 OID 57627757)
--- Dependencies: 3593 301 329
+-- Dependencies: 329 301 3593
 -- Name: fk_assoccl_met_valid_met_valid; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -12624,7 +12586,7 @@ ALTER TABLE ONLY assoccl_metodo_validacao
 
 --
 -- TOC entry 3904 (class 2606 OID 57628343)
--- Dependencies: 3762 373 299
+-- Dependencies: 3762 299 373
 -- Name: fk_assoccl_perfil_acao_aplicacao; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -12636,7 +12598,7 @@ SET search_path = basico_acao_evento, pg_catalog;
 
 --
 -- TOC entry 3902 (class 2606 OID 57627972)
--- Dependencies: 297 3755 371
+-- Dependencies: 3755 297 371
 -- Name: fk_assoccl_include_evento; Type: FK CONSTRAINT; Schema: basico_acao_evento; Owner: -
 --
 
@@ -12646,7 +12608,7 @@ ALTER TABLE ONLY assoccl_include
 
 --
 -- TOC entry 3903 (class 2606 OID 57628613)
--- Dependencies: 297 335 3611
+-- Dependencies: 335 297 3611
 -- Name: fk_assoccl_include_include; Type: FK CONSTRAINT; Schema: basico_acao_evento; Owner: -
 --
 
@@ -12668,7 +12630,7 @@ ALTER TABLE ONLY assoccl_link
 
 --
 -- TOC entry 3900 (class 2606 OID 57628553)
--- Dependencies: 295 3666 351
+-- Dependencies: 351 295 3666
 -- Name: fk_assoccl_link_link; Type: FK CONSTRAINT; Schema: basico_ajuda; Owner: -
 --
 
@@ -12680,7 +12642,7 @@ SET search_path = basico_assoc_banco, pg_catalog;
 
 --
 -- TOC entry 3898 (class 2606 OID 57627892)
--- Dependencies: 3093 293 185
+-- Dependencies: 293 185 3093
 -- Name: fk_assoc_tipo_conta_banco; Type: FK CONSTRAINT; Schema: basico_assoc_banco; Owner: -
 --
 
@@ -12690,7 +12652,7 @@ ALTER TABLE ONLY assoc_tipo_conta
 
 --
 -- TOC entry 3899 (class 2606 OID 57628588)
--- Dependencies: 3721 363 293
+-- Dependencies: 3721 293 363
 -- Name: fk_assoc_tipo_conta_categoria; Type: FK CONSTRAINT; Schema: basico_assoc_banco; Owner: -
 --
 
@@ -12702,7 +12664,7 @@ SET search_path = basico_assoc_dados_profis, pg_catalog;
 
 --
 -- TOC entry 3897 (class 2606 OID 57627882)
--- Dependencies: 289 3739 367
+-- Dependencies: 289 367 3739
 -- Name: fk_assoccl_dados_profis_area_c; Type: FK CONSTRAINT; Schema: basico_assoc_dados_profis; Owner: -
 --
 
@@ -12714,7 +12676,7 @@ SET search_path = basico_assoccl_pessoa_perfil, pg_catalog;
 
 --
 -- TOC entry 3896 (class 2606 OID 57628743)
--- Dependencies: 3109 191 287
+-- Dependencies: 3109 287 191
 -- Name: fk_assoccl_pessoa_perfil; Type: FK CONSTRAINT; Schema: basico_assoccl_pessoa_perfil; Owner: -
 --
 
@@ -12726,7 +12688,7 @@ SET search_path = basico_categoria, pg_catalog;
 
 --
 -- TOC entry 3895 (class 2606 OID 57628633)
--- Dependencies: 3721 285 363
+-- Dependencies: 363 285 3721
 -- Name: fk_assoc_chave_estran_categ; Type: FK CONSTRAINT; Schema: basico_categoria; Owner: -
 --
 
@@ -12736,7 +12698,7 @@ ALTER TABLE ONLY assoc_chave_estrangeira
 
 --
 -- TOC entry 3894 (class 2606 OID 57628433)
--- Dependencies: 285 3587 327
+-- Dependencies: 327 285 3587
 -- Name: fk_assoc_chave_estran_mod; Type: FK CONSTRAINT; Schema: basico_categoria; Owner: -
 --
 
@@ -12746,7 +12708,7 @@ ALTER TABLE ONLY assoc_chave_estrangeira
 
 --
 -- TOC entry 3893 (class 2606 OID 57627812)
--- Dependencies: 3721 363 283
+-- Dependencies: 3721 283 363
 -- Name: fk_assoc_evento_acao_categoria; Type: FK CONSTRAINT; Schema: basico_categoria; Owner: -
 --
 
@@ -12768,7 +12730,7 @@ ALTER TABLE ONLY assoccl_include
 
 --
 -- TOC entry 3891 (class 2606 OID 57628157)
--- Dependencies: 361 3713 281
+-- Dependencies: 361 281 3713
 -- Name: fk_assoccl_include_componente; Type: FK CONSTRAINT; Schema: basico_componente; Owner: -
 --
 
@@ -12780,7 +12742,7 @@ SET search_path = basico_contato, pg_catalog;
 
 --
 -- TOC entry 3890 (class 2606 OID 57628187)
--- Dependencies: 363 279 3721
+-- Dependencies: 363 3721 279
 -- Name: fk_email_categoria; Type: FK CONSTRAINT; Schema: basico_contato; Owner: -
 --
 
@@ -12790,7 +12752,7 @@ ALTER TABLE ONLY cpg_email
 
 --
 -- TOC entry 3889 (class 2606 OID 57628708)
--- Dependencies: 277 363 3721
+-- Dependencies: 363 3721 277
 -- Name: fk_telefone_categoria; Type: FK CONSTRAINT; Schema: basico_contato; Owner: -
 --
 
@@ -12802,7 +12764,7 @@ SET search_path = basico_cvc, pg_catalog;
 
 --
 -- TOC entry 3888 (class 2606 OID 57628638)
--- Dependencies: 3447 275 285
+-- Dependencies: 275 285 3447
 -- Name: fk_cvc_assoc_chave_estrangeira; Type: FK CONSTRAINT; Schema: basico_cvc; Owner: -
 --
 
@@ -12814,7 +12776,7 @@ SET search_path = basico_dados_academicos, pg_catalog;
 
 --
 -- TOC entry 3887 (class 2606 OID 57628318)
--- Dependencies: 273 363 3721
+-- Dependencies: 363 3721 273
 -- Name: fk_titulacao_categoria; Type: FK CONSTRAINT; Schema: basico_dados_academicos; Owner: -
 --
 
@@ -12826,7 +12788,7 @@ SET search_path = basico_dados_biometricos, pg_catalog;
 
 --
 -- TOC entry 3884 (class 2606 OID 57628062)
--- Dependencies: 363 271 3721
+-- Dependencies: 3721 363 271
 -- Name: fk_assoc_pessoa_cat_raca; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -12836,7 +12798,7 @@ ALTER TABLE ONLY assoc_pessoa
 
 --
 -- TOC entry 3886 (class 2606 OID 57628278)
--- Dependencies: 271 363 3721
+-- Dependencies: 271 3721 363
 -- Name: fk_assoc_pessoa_cat_sexo; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -12846,7 +12808,7 @@ ALTER TABLE ONLY assoc_pessoa
 
 --
 -- TOC entry 3883 (class 2606 OID 57627997)
--- Dependencies: 271 3721 363
+-- Dependencies: 363 271 3721
 -- Name: fk_assoc_pessoa_cat_tipo_sang; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -12856,7 +12818,7 @@ ALTER TABLE ONLY assoc_pessoa
 
 --
 -- TOC entry 3885 (class 2606 OID 57628142)
--- Dependencies: 271 345 3644
+-- Dependencies: 345 3644 271
 -- Name: fk_assoc_pessoa_dados_bio; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -12878,7 +12840,7 @@ ALTER TABLE ONLY regime_trabalho
 
 --
 -- TOC entry 3882 (class 2606 OID 57628678)
--- Dependencies: 3385 269 269
+-- Dependencies: 269 3385 269
 -- Name: fk_regime_trabalho_pai; Type: FK CONSTRAINT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -12888,7 +12850,7 @@ ALTER TABLE ONLY regime_trabalho
 
 --
 -- TOC entry 3879 (class 2606 OID 57628243)
--- Dependencies: 265 363 3721
+-- Dependencies: 265 3721 363
 -- Name: fk_vinc_empreg_categoria; Type: FK CONSTRAINT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -12898,7 +12860,7 @@ ALTER TABLE ONLY vinculo_empregaticio
 
 --
 -- TOC entry 3880 (class 2606 OID 57628283)
--- Dependencies: 267 363 3721
+-- Dependencies: 3721 363 267
 -- Name: fk_vinculo_categoria; Type: FK CONSTRAINT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -12910,7 +12872,7 @@ SET search_path = basico_decorator, pg_catalog;
 
 --
 -- TOC entry 3877 (class 2606 OID 57628107)
--- Dependencies: 335 3611 263
+-- Dependencies: 263 3611 335
 -- Name: fk_assoccl_decorator_inc_inc; Type: FK CONSTRAINT; Schema: basico_decorator; Owner: -
 --
 
@@ -12920,7 +12882,7 @@ ALTER TABLE ONLY assoccl_include
 
 --
 -- TOC entry 3878 (class 2606 OID 57628543)
--- Dependencies: 263 3268 235
+-- Dependencies: 263 235 3268
 -- Name: fk_assoccl_include_decorator; Type: FK CONSTRAINT; Schema: basico_decorator; Owner: -
 --
 
@@ -12942,7 +12904,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 --
 -- TOC entry 3875 (class 2606 OID 57628413)
--- Dependencies: 261 249 3317
+-- Dependencies: 261 3317 249
 -- Name: fk_assoccl_decorator_grupo; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elem_grupo; Owner: -
 --
 
@@ -12954,7 +12916,7 @@ SET search_path = basico_form_assoccl_elemento, pg_catalog;
 
 --
 -- TOC entry 3871 (class 2606 OID 57628473)
--- Dependencies: 257 341 3632
+-- Dependencies: 341 3632 257
 -- Name: fk_assoccl_assoccl_elem_even_even; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -12964,7 +12926,7 @@ ALTER TABLE ONLY assoccl_evento
 
 --
 -- TOC entry 3874 (class 2606 OID 57628488)
--- Dependencies: 259 245 3302
+-- Dependencies: 245 259 3302
 -- Name: fk_assoccl_dec_assoccl_elem; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -12984,7 +12946,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 --
 -- TOC entry 3867 (class 2606 OID 57627877)
--- Dependencies: 245 3302 255
+-- Dependencies: 255 245 3302
 -- Name: fk_assoccl_elem_assoccl_filter_elemento; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -12994,7 +12956,7 @@ ALTER TABLE ONLY assoccl_filter
 
 --
 -- TOC entry 3868 (class 2606 OID 57628513)
--- Dependencies: 255 3626 339
+-- Dependencies: 339 255 3626
 -- Name: fk_assoccl_elem_assoccl_filter_filter; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -13004,7 +12966,7 @@ ALTER TABLE ONLY assoccl_filter
 
 --
 -- TOC entry 3870 (class 2606 OID 57628453)
--- Dependencies: 257 3755 371
+-- Dependencies: 3755 257 371
 -- Name: fk_assoccl_evento_acao_evento; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -13014,7 +12976,7 @@ ALTER TABLE ONLY assoccl_evento
 
 --
 -- TOC entry 3869 (class 2606 OID 57628438)
--- Dependencies: 3302 257 245
+-- Dependencies: 3302 245 257
 -- Name: fk_assoccl_evento_assoccl_elem; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -13044,7 +13006,7 @@ ALTER TABLE ONLY assoccl_include
 
 --
 -- TOC entry 3863 (class 2606 OID 57627872)
--- Dependencies: 245 251 3302
+-- Dependencies: 251 245 3302
 -- Name: fk_assoccl_valid_assoc_elem; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -13054,7 +13016,7 @@ ALTER TABLE ONLY assoccl_validator
 
 --
 -- TOC entry 3864 (class 2606 OID 57628027)
--- Dependencies: 309 251 3532
+-- Dependencies: 309 3532 251
 -- Name: fk_assoccl_valid_validator; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -13064,7 +13026,7 @@ ALTER TABLE ONLY assoccl_validator
 
 --
 -- TOC entry 3865 (class 2606 OID 57627832)
--- Dependencies: 335 3611 253
+-- Dependencies: 253 335 3611
 -- Name: fk_asssoccl_include_include; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -13076,7 +13038,7 @@ SET search_path = basico_formulario, pg_catalog;
 
 --
 -- TOC entry 3840 (class 2606 OID 57627962)
--- Dependencies: 221 231 3214
+-- Dependencies: 3214 231 221
 -- Name: fk_assocag_grupo_rascunho; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13086,7 +13048,7 @@ ALTER TABLE ONLY rascunho
 
 --
 -- TOC entry 3862 (class 2606 OID 57628738)
--- Dependencies: 3619 247 337
+-- Dependencies: 337 247 3619
 -- Name: fk_assoccl_decorator_form; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13096,7 +13058,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 --
 -- TOC entry 3858 (class 2606 OID 57628182)
--- Dependencies: 245 3748 369
+-- Dependencies: 3748 245 369
 -- Name: fk_assoccl_elemento_ajuda; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13106,7 +13068,7 @@ ALTER TABLE ONLY assoccl_elemento
 
 --
 -- TOC entry 3857 (class 2606 OID 57628112)
--- Dependencies: 245 233 3262
+-- Dependencies: 245 3262 233
 -- Name: fk_assoccl_elemento_elemento; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13126,7 +13088,7 @@ ALTER TABLE ONLY assoccl_elemento
 
 --
 -- TOC entry 3860 (class 2606 OID 57628773)
--- Dependencies: 245 3317 249
+-- Dependencies: 3317 249 245
 -- Name: fk_assoccl_elemento_grupo; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13136,7 +13098,7 @@ ALTER TABLE ONLY assoccl_elemento
 
 --
 -- TOC entry 3856 (class 2606 OID 57628378)
--- Dependencies: 3619 243 337
+-- Dependencies: 243 3619 337
 -- Name: fk_assoccl_evento_formulario; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13146,7 +13108,7 @@ ALTER TABLE ONLY assoccl_evento
 
 --
 -- TOC entry 3855 (class 2606 OID 57628288)
--- Dependencies: 243 341 3632
+-- Dependencies: 3632 341 243
 -- Name: fk_assoccl_form_evento_evento; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13156,7 +13118,7 @@ ALTER TABLE ONLY assoccl_evento
 
 --
 -- TOC entry 3853 (class 2606 OID 57628398)
--- Dependencies: 3611 241 335
+-- Dependencies: 335 241 3611
 -- Name: fk_assoccl_formulario_inc_inc; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13176,7 +13138,7 @@ ALTER TABLE ONLY assoccl_include
 
 --
 -- TOC entry 3851 (class 2606 OID 57628353)
--- Dependencies: 3619 337 239
+-- Dependencies: 337 239 3619
 -- Name: fk_assoccl_modulo_formulario; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13186,7 +13148,7 @@ ALTER TABLE ONLY assoccl_modulo
 
 --
 -- TOC entry 3850 (class 2606 OID 57628263)
--- Dependencies: 237 337 3619
+-- Dependencies: 3619 237 337
 -- Name: fk_assoccl_template_formulario; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13196,7 +13158,7 @@ ALTER TABLE ONLY assoccl_template
 
 --
 -- TOC entry 3849 (class 2606 OID 57628012)
--- Dependencies: 313 237 3543
+-- Dependencies: 237 313 3543
 -- Name: fk_assoccl_template_template; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13236,7 +13198,7 @@ ALTER TABLE ONLY decorator
 
 --
 -- TOC entry 3847 (class 2606 OID 57628483)
--- Dependencies: 369 233 3748
+-- Dependencies: 3748 369 233
 -- Name: fk_elemento_ajuda; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13246,7 +13208,7 @@ ALTER TABLE ONLY elemento
 
 --
 -- TOC entry 3846 (class 2606 OID 57627947)
--- Dependencies: 363 3721 233
+-- Dependencies: 3721 233 363
 -- Name: fk_elemento_categoria; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13256,7 +13218,7 @@ ALTER TABLE ONLY elemento
 
 --
 -- TOC entry 3845 (class 2606 OID 57627902)
--- Dependencies: 361 233 3713
+-- Dependencies: 233 361 3713
 -- Name: fk_elemento_componente; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13266,7 +13228,7 @@ ALTER TABLE ONLY elemento
 
 --
 -- TOC entry 3852 (class 2606 OID 57628373)
--- Dependencies: 3587 239 327
+-- Dependencies: 239 327 3587
 -- Name: fk_form_assoccl_modulo_modulo; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13276,7 +13238,7 @@ ALTER TABLE ONLY assoccl_modulo
 
 --
 -- TOC entry 3841 (class 2606 OID 57628017)
--- Dependencies: 3511 231 303
+-- Dependencies: 303 3511 231
 -- Name: fk_rascunho_assoc_visao; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13306,7 +13268,7 @@ ALTER TABLE ONLY rascunho
 
 --
 -- TOC entry 3839 (class 2606 OID 57627747)
--- Dependencies: 3245 231 231
+-- Dependencies: 231 231 3245
 -- Name: fk_rascunho_pai; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -13318,7 +13280,7 @@ SET search_path = basico_formulario_elemento, pg_catalog;
 
 --
 -- TOC entry 3836 (class 2606 OID 57628293)
--- Dependencies: 363 227 3721
+-- Dependencies: 227 3721 363
 -- Name: fk_assoccl_evento_categoria; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13328,7 +13290,7 @@ ALTER TABLE ONLY assoccl_evento
 
 --
 -- TOC entry 3835 (class 2606 OID 57627932)
--- Dependencies: 3262 233 227
+-- Dependencies: 233 3262 227
 -- Name: fk_assoccl_evento_elemento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13338,7 +13300,7 @@ ALTER TABLE ONLY assoccl_evento
 
 --
 -- TOC entry 3834 (class 2606 OID 57627792)
--- Dependencies: 341 227 3632
+-- Dependencies: 341 3632 227
 -- Name: fk_assoccl_evento_evento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13348,7 +13310,7 @@ ALTER TABLE ONLY assoccl_evento
 
 --
 -- TOC entry 3831 (class 2606 OID 57628443)
--- Dependencies: 3262 233 225
+-- Dependencies: 233 3262 225
 -- Name: fk_assoccl_filter_elemento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13368,7 +13330,7 @@ ALTER TABLE ONLY assoccl_filter
 
 --
 -- TOC entry 3830 (class 2606 OID 57628733)
--- Dependencies: 223 3262 233
+-- Dependencies: 233 223 3262
 -- Name: fk_assoccl_validator_elem; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13378,7 +13340,7 @@ ALTER TABLE ONLY assoccl_validator
 
 --
 -- TOC entry 3829 (class 2606 OID 57628408)
--- Dependencies: 3532 223 309
+-- Dependencies: 3532 309 223
 -- Name: fk_assoccl_validator_validator; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13398,7 +13360,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 --
 -- TOC entry 3837 (class 2606 OID 57628403)
--- Dependencies: 229 3268 235
+-- Dependencies: 3268 229 235
 -- Name: fk_form_assoccl_decorator_decorator; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13408,7 +13370,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 --
 -- TOC entry 3833 (class 2606 OID 57627787)
--- Dependencies: 3755 371 227
+-- Dependencies: 3755 227 371
 -- Name: fkassoccl_ev591436; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -13420,7 +13382,7 @@ SET search_path = basico_formulario_rascunho, pg_catalog;
 
 --
 -- TOC entry 3828 (class 2606 OID 57628092)
--- Dependencies: 3109 221 191
+-- Dependencies: 221 3109 191
 -- Name: fk_assocag_grupo_assoccl_perfil; Type: FK CONSTRAINT; Schema: basico_formulario_rascunho; Owner: -
 --
 
@@ -13432,7 +13394,7 @@ SET search_path = basico_localizacao, pg_catalog;
 
 --
 -- TOC entry 3826 (class 2606 OID 57628248)
--- Dependencies: 217 363 3721
+-- Dependencies: 217 3721 363
 -- Name: fk_assoc_estado_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13442,7 +13404,7 @@ ALTER TABLE ONLY assoc_estado
 
 --
 -- TOC entry 3825 (class 2606 OID 57628087)
--- Dependencies: 217 3160 207
+-- Dependencies: 207 217 3160
 -- Name: fk_assoc_estado_pais; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13462,7 +13424,7 @@ ALTER TABLE ONLY assoc_logradouro
 
 --
 -- TOC entry 3822 (class 2606 OID 57627867)
--- Dependencies: 363 215 3721
+-- Dependencies: 215 363 3721
 -- Name: fk_assoc_logradouro_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13472,7 +13434,7 @@ ALTER TABLE ONLY assoc_logradouro
 
 --
 -- TOC entry 3827 (class 2606 OID 57628218)
--- Dependencies: 3187 219 213
+-- Dependencies: 219 213 3187
 -- Name: fk_assoc_municipio_assoc_bairro; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13482,7 +13444,7 @@ ALTER TABLE ONLY assoc_bairro
 
 --
 -- TOC entry 3820 (class 2606 OID 57627917)
--- Dependencies: 217 3205 213
+-- Dependencies: 213 217 3205
 -- Name: fk_assoc_municipio_assoc_estado; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13502,7 +13464,7 @@ ALTER TABLE ONLY assoc_municipio
 
 --
 -- TOC entry 3813 (class 2606 OID 57627937)
--- Dependencies: 3210 219 211
+-- Dependencies: 219 211 3210
 -- Name: fk_cep_assoc_bairro; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13512,7 +13474,7 @@ ALTER TABLE ONLY codigo_postal
 
 --
 -- TOC entry 3816 (class 2606 OID 57628177)
--- Dependencies: 211 3205 217
+-- Dependencies: 3205 211 217
 -- Name: fk_cep_assoc_estado; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13522,7 +13484,7 @@ ALTER TABLE ONLY codigo_postal
 
 --
 -- TOC entry 3814 (class 2606 OID 57627982)
--- Dependencies: 211 3195 215
+-- Dependencies: 3195 211 215
 -- Name: fk_cep_assoc_logradouro; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13532,7 +13494,7 @@ ALTER TABLE ONLY codigo_postal
 
 --
 -- TOC entry 3815 (class 2606 OID 57628102)
--- Dependencies: 213 3187 211
+-- Dependencies: 3187 213 211
 -- Name: fk_cep_assoc_municipio; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13552,7 +13514,7 @@ ALTER TABLE ONLY codigo_postal
 
 --
 -- TOC entry 3817 (class 2606 OID 57628208)
--- Dependencies: 3160 211 207
+-- Dependencies: 207 3160 211
 -- Name: fk_cep_pais; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13562,7 +13524,7 @@ ALTER TABLE ONLY codigo_postal
 
 --
 -- TOC entry 3811 (class 2606 OID 57628213)
--- Dependencies: 191 209 3109
+-- Dependencies: 3109 191 209
 -- Name: fk_endereco_assoc_perfil; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13572,7 +13534,7 @@ ALTER TABLE ONLY cpg_endereco
 
 --
 -- TOC entry 3812 (class 2606 OID 57628748)
--- Dependencies: 3721 209 363
+-- Dependencies: 209 363 3721
 -- Name: fk_endereco_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13582,7 +13544,7 @@ ALTER TABLE ONLY cpg_endereco
 
 --
 -- TOC entry 3824 (class 2606 OID 57627842)
--- Dependencies: 217 3205 217
+-- Dependencies: 217 217 3205
 -- Name: fk_estado_pai; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13592,7 +13554,7 @@ ALTER TABLE ONLY assoc_estado
 
 --
 -- TOC entry 3821 (class 2606 OID 57628583)
--- Dependencies: 3187 213 213
+-- Dependencies: 213 213 3187
 -- Name: fk_municipio_pai; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -13614,7 +13576,7 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil
 
 --
 -- TOC entry 3807 (class 2606 OID 57628393)
--- Dependencies: 3721 363 203
+-- Dependencies: 3721 203 363
 -- Name: fk_assoccl_assoccl_pes_per_cat; Type: FK CONSTRAINT; Schema: basico_mensagem; Owner: -
 --
 
@@ -13634,7 +13596,7 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil
 
 --
 -- TOC entry 3810 (class 2606 OID 57628538)
--- Dependencies: 331 205 3599
+-- Dependencies: 3599 205 331
 -- Name: fk_mensagem_email; Type: FK CONSTRAINT; Schema: basico_mensagem; Owner: -
 --
 
@@ -13646,7 +13608,7 @@ SET search_path = basico_mensagem_assoc_email, pg_catalog;
 
 --
 -- TOC entry 3806 (class 2606 OID 57628047)
--- Dependencies: 205 201 3153
+-- Dependencies: 201 3153 205
 -- Name: fk_assoc_dados_assoc_email; Type: FK CONSTRAINT; Schema: basico_mensagem_assoc_email; Owner: -
 --
 
@@ -13658,7 +13620,7 @@ SET search_path = basico_metodo_validacao, pg_catalog;
 
 --
 -- TOC entry 3805 (class 2606 OID 57628508)
--- Dependencies: 329 3593 199
+-- Dependencies: 329 199 3593
 -- Name: fk_assoccl_include_met_validacao; Type: FK CONSTRAINT; Schema: basico_metodo_validacao; Owner: -
 --
 
@@ -13668,7 +13630,7 @@ ALTER TABLE ONLY assoccl_include
 
 --
 -- TOC entry 3804 (class 2606 OID 57628077)
--- Dependencies: 3611 199 335
+-- Dependencies: 3611 335 199
 -- Name: fk_assoccl_met_valid_inc_inc; Type: FK CONSTRAINT; Schema: basico_metodo_validacao; Owner: -
 --
 
@@ -13712,7 +13674,7 @@ ALTER TABLE ONLY assoccl_modulo
 
 --
 -- TOC entry 3800 (class 2606 OID 57628268)
--- Dependencies: 195 327 3587
+-- Dependencies: 3587 327 195
 -- Name: fk_assoccl_modulo_perfil; Type: FK CONSTRAINT; Schema: basico_perfil; Owner: -
 --
 
@@ -13724,7 +13686,7 @@ SET search_path = basico_pessoa, pg_catalog;
 
 --
 -- TOC entry 3799 (class 2606 OID 57627857)
--- Dependencies: 321 3569 193
+-- Dependencies: 321 193 3569
 -- Name: fk_assoc_dados_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -13734,7 +13696,7 @@ ALTER TABLE ONLY assoc_dados
 
 --
 -- TOC entry 3798 (class 2606 OID 57628578)
--- Dependencies: 191 321 3569
+-- Dependencies: 321 191 3569
 -- Name: fk_assoccl_perfil_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -13744,7 +13706,7 @@ ALTER TABLE ONLY assoccl_perfil
 
 --
 -- TOC entry 3797 (class 2606 OID 57628273)
--- Dependencies: 191 323 3575
+-- Dependencies: 323 191 3575
 -- Name: fk_assoccl_pessoa_perfil_perfil; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -13754,7 +13716,7 @@ ALTER TABLE ONLY assoccl_perfil
 
 --
 -- TOC entry 3796 (class 2606 OID 57628037)
--- Dependencies: 3569 189 321
+-- Dependencies: 3569 321 189
 -- Name: fk_assoccl_vinc_profi_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -13764,7 +13726,7 @@ ALTER TABLE ONLY assoccl_tipo_vinculo
 
 --
 -- TOC entry 3795 (class 2606 OID 57627942)
--- Dependencies: 189 3378 267
+-- Dependencies: 3378 189 267
 -- Name: fk_assoccl_vinc_profi_tipo_vinc; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -13774,7 +13736,7 @@ ALTER TABLE ONLY assoccl_tipo_vinculo
 
 --
 -- TOC entry 3794 (class 2606 OID 57628563)
--- Dependencies: 321 3569 187
+-- Dependencies: 321 187 3569
 -- Name: fk_login_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -13806,7 +13768,7 @@ ALTER TABLE ONLY assoc_banco
 
 --
 -- TOC entry 3791 (class 2606 OID 57627817)
--- Dependencies: 3566 319 183
+-- Dependencies: 183 319 3566
 -- Name: fk_assoc_dados_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13836,7 +13798,7 @@ ALTER TABLE ONLY assoccl_faturamento
 
 --
 -- TOC entry 3774 (class 2606 OID 57627797)
--- Dependencies: 171 363 3721
+-- Dependencies: 3721 363 171
 -- Name: fk_assoc_quadro_func_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13846,7 +13808,7 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 
 --
 -- TOC entry 3789 (class 2606 OID 57627967)
--- Dependencies: 319 3566 181
+-- Dependencies: 319 181 3566
 -- Name: fk_assocag_incub_pj_incubada; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13856,7 +13818,7 @@ ALTER TABLE ONLY assocag_incubadora
 
 --
 -- TOC entry 3788 (class 2606 OID 57627837)
--- Dependencies: 181 3721 363
+-- Dependencies: 181 363 3721
 -- Name: fk_assocag_incubadora_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13866,7 +13828,7 @@ ALTER TABLE ONLY assocag_incubadora
 
 --
 -- TOC entry 3790 (class 2606 OID 57628097)
--- Dependencies: 3566 319 181
+-- Dependencies: 3566 181 319
 -- Name: fk_assocag_incubadora_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13886,7 +13848,7 @@ ALTER TABLE ONLY assocag_parceria
 
 --
 -- TOC entry 3787 (class 2606 OID 57628683)
--- Dependencies: 179 3721 363
+-- Dependencies: 3721 363 179
 -- Name: fk_assocag_parceria_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13896,7 +13858,7 @@ ALTER TABLE ONLY assocag_parceria
 
 --
 -- TOC entry 3785 (class 2606 OID 57628202)
--- Dependencies: 319 3566 179
+-- Dependencies: 179 319 3566
 -- Name: fk_assocag_parceria_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13906,7 +13868,7 @@ ALTER TABLE ONLY assocag_parceria
 
 --
 -- TOC entry 3784 (class 2606 OID 57628147)
--- Dependencies: 3566 319 179
+-- Dependencies: 319 3566 179
 -- Name: fk_assocag_parceria_pj_parc; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13926,7 +13888,7 @@ ALTER TABLE ONLY assoccl_area_economia
 
 --
 -- TOC entry 3782 (class 2606 OID 57628082)
--- Dependencies: 319 3566 177
+-- Dependencies: 177 319 3566
 -- Name: fk_assoccl_area_econ_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13936,7 +13898,7 @@ ALTER TABLE ONLY assoccl_area_economia
 
 --
 -- TOC entry 3780 (class 2606 OID 57628233)
--- Dependencies: 3033 175 169
+-- Dependencies: 175 3033 169
 -- Name: fk_assoccl_cap_social_cap; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13946,7 +13908,7 @@ ALTER TABLE ONLY assoccl_capital_social
 
 --
 -- TOC entry 3781 (class 2606 OID 57628493)
--- Dependencies: 175 319 3566
+-- Dependencies: 319 3566 175
 -- Name: fk_assoccl_cap_social_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13956,7 +13918,7 @@ ALTER TABLE ONLY assoccl_capital_social
 
 --
 -- TOC entry 3776 (class 2606 OID 57628132)
--- Dependencies: 171 367 3739
+-- Dependencies: 367 3739 171
 -- Name: fk_assoccl_quadro_func_area_conh; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -13986,7 +13948,7 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 
 --
 -- TOC entry 3775 (class 2606 OID 57628002)
--- Dependencies: 273 3398 171
+-- Dependencies: 3398 273 171
 -- Name: fk_quadro_func_titulacao; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -14008,7 +13970,7 @@ ALTER TABLE ONLY assocsq_acao_aplicacao
 
 --
 -- TOC entry 3770 (class 2606 OID 57627772)
--- Dependencies: 373 3762 165
+-- Dependencies: 165 373 3762
 -- Name: fk_assocsq_acao_aplic_acao_apl; Type: FK CONSTRAINT; Schema: basico_sequencia; Owner: -
 --
 
@@ -14018,7 +13980,7 @@ ALTER TABLE ONLY assocsq_acao_aplicacao
 
 --
 -- TOC entry 3771 (class 2606 OID 57627802)
--- Dependencies: 315 3549 165
+-- Dependencies: 3549 315 165
 -- Name: fk_assocsq_acao_aplic_seq; Type: FK CONSTRAINT; Schema: basico_sequencia; Owner: -
 --
 
@@ -14030,7 +13992,7 @@ SET search_path = basico_template, pg_catalog;
 
 --
 -- TOC entry 3769 (class 2606 OID 57628383)
--- Dependencies: 163 3543 313
+-- Dependencies: 313 163 3543
 -- Name: fk_assoccl_include_template; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -14040,7 +14002,7 @@ ALTER TABLE ONLY assoccl_include
 
 --
 -- TOC entry 3766 (class 2606 OID 57628363)
--- Dependencies: 325 3581 161
+-- Dependencies: 3581 325 161
 -- Name: fk_assoccl_output_output; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -14050,7 +14012,7 @@ ALTER TABLE ONLY assoccl_output
 
 --
 -- TOC entry 3767 (class 2606 OID 57628703)
--- Dependencies: 161 3543 313
+-- Dependencies: 3543 313 161
 -- Name: fk_assoccl_output_template; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -14060,7 +14022,7 @@ ALTER TABLE ONLY assoccl_output
 
 --
 -- TOC entry 3768 (class 2606 OID 57627907)
--- Dependencies: 335 163 3611
+-- Dependencies: 163 3611 335
 -- Name: fk_assoccl_template_inc_inc; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -14080,7 +14042,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2012-02-16 14:41:36 BRT
+-- Completed on 2012-02-17 15:23:23 BRT
 
 --
 -- PostgreSQL database dump complete
