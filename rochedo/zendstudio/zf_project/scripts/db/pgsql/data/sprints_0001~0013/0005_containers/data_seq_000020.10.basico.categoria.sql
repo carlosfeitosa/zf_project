@@ -163,7 +163,7 @@ WHERE t.nome = 'MENSAGEM'
 AND c.nome = 'MENSAGEM_PESSOAS_ENVOLVIDAS';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'EMAIL_PRIMARIO' AS nome, 'SYSTEM_STARTUP'
+SELECT t.id AS id_tipo_categoria, 'EMAIL_PRIMARIO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'EMAIL';
 
