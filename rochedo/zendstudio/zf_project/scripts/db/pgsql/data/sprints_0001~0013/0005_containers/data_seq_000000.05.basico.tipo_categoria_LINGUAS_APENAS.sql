@@ -8,5 +8,5 @@
 * 								
 */
 
-INSERT INTO basico.tipo_categoria (nome, rowinfo)
-VALUES ('LINGUAGEM', 'SYSTEM_STARTUP');
+INSERT INTO basico.tipo_categoria (nome, ativo, rowinfo)
+VALUES ('LINGUAGEM', true, 'SYSTEM_STARTUP');

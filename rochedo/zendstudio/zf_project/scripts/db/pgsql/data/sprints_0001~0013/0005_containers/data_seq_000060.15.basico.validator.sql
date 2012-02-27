@@ -33,7 +33,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 INSERT INTO basico.validator (id_categoria, nome, constante_textual, validator, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'IDENTICAL' AS nome,
 'NOME_VALIDATOR_IDENTICAL' AS constante_textual,
-       '\'identical\', false, array(\'token\' => \'@identicalElementName\', \'invalidMessage\' => \'@identicalInvalidMessage\')' AS validator, true AS ativo, 
+       '\'Identical\', false, array(\'token\' => \'@identicalElementName\', \'invalidMessage\' => \'@identicalInvalidMessage\')' AS validator, true AS ativo, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -43,7 +43,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 INSERT INTO basico.validator (id_categoria, nome, constante_textual, validator, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'STRING_LENGTH_6_TO_100' AS nome,
 'NOME_VALIDATOR_STRING_LENGTH_6_TO_100' AS constante_textual,
-       '\'stringLength\', false, array(6, 100)' AS validator, true AS ativo, 
+       '\'StringLength\', false, array(6, 100)' AS validator, true AS ativo, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -53,7 +53,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
 INSERT INTO basico.validator (id_categoria, nome, constante_textual, validator, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'STRING_LENGTH_3_TO_100' AS nome,
 'NOME_VALIDATOR_STRING_LENGTH_3_TO_100' AS constante_textual,
-       '\'stringLength\', false, array(3, 100)' AS validator, true AS ativo, 
+       '\'StringLength\', false, array(3, 100)' AS validator, true AS ativo, 
        'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
