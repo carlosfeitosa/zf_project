@@ -21,7 +21,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ALBANIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'AQ' AS sigla, '' AS codigo_ddi, '010' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'AQ' AS sigla, NULL AS codigo_ddi, '010' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ANTARTIDA';
 
@@ -126,7 +126,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_BOTSUANA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'BV' AS sigla, '' AS codigo_ddi, '074' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'BV' AS sigla, NULL AS codigo_ddi, '074' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHA_BOUVET';
 
@@ -236,7 +236,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_TAIWAN';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'CX' AS sigla, '' AS codigo_ddi, '162' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'CX' AS sigla, NULL AS codigo_ddi, '162' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHA_CHRISTMAS';
 
@@ -261,12 +261,12 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_MAYOTTE';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'CG' AS sigla, '' AS codigo_ddi, '178' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'CG' AS sigla, NULL AS codigo_ddi, '178' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_REPUBLICA_DO_CONGO';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'CD' AS sigla, '' AS codigo_ddi, '180' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'CD' AS sigla, NULL AS codigo_ddi, '180' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_REPUBLICA_DEMOCRATICA_DO_CONGO';
 
@@ -351,7 +351,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ESTONIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'FO' AS sigla, '' AS codigo_ddi, '234' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'FO' AS sigla, NULL AS codigo_ddi, '234' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHAS_FAROE';
 
@@ -361,7 +361,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHAS_MALVINAS';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'GS' AS sigla, '' AS codigo_ddi, '239' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'GS' AS sigla, NULL AS codigo_ddi, '239' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHAS_GEORGIA_DO_SUL_E_SANDWICH_DO_SUL';
 
@@ -376,7 +376,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_FINLANDIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'AX' AS sigla, '' AS codigo_ddi, '248' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'AX' AS sigla, NULL AS codigo_ddi, '248' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ALAND';
 
@@ -476,7 +476,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_GUATEMALA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'GN' AS sigla, '' AS codigo_ddi, '324' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'GN' AS sigla, NULL AS codigo_ddi, '324' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_GUINE-CONACRI';
 
@@ -491,7 +491,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_HAITI';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'HM' AS sigla, '' AS codigo_ddi, '334' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'HM' AS sigla, NULL AS codigo_ddi, '334' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHA_HEARD_E_ILHAS_MCDONALD';
 
@@ -671,7 +671,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_MALASIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'MV' AS sigla, '' AS codigo_ddi, '462' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'MV' AS sigla, NULL AS codigo_ddi, '462' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_MALDIVAS';
 
@@ -721,7 +721,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_MOLDAVIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'ME' AS sigla, '' AS codigo_ddi, '499' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'ME' AS sigla, NULL AS codigo_ddi, '499' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_MONTENEGRO';
 
@@ -761,12 +761,12 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_NEPAL';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'NL' AS sigla, '' AS codigo_ddi, '528' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'NL' AS sigla, NULL AS codigo_ddi, '528' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_PAISES_BAIXOS_HOLANDA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'AN' AS sigla, '' AS codigo_ddi, '530' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'AN' AS sigla, NULL AS codigo_ddi, '530' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ANTILHAS_HOLANDESAS';
 
@@ -806,12 +806,12 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_NIGERIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'NU' AS sigla, '' AS codigo_ddi, '570' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'NU' AS sigla, NULL AS codigo_ddi, '570' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_NIUE';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'NF' AS sigla, '' AS codigo_ddi, '574' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'NF' AS sigla, NULL AS codigo_ddi, '574' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHA_NORFOLK';
 
@@ -821,17 +821,17 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_NORUEGA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'MP' AS sigla, '' AS codigo_ddi, '580' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'MP' AS sigla, NULL AS codigo_ddi, '580' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_MARIANAS_SETENTRIONAIS';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'UM' AS sigla, '' AS codigo_ddi, '581' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'UM' AS sigla, NULL AS codigo_ddi, '581' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHAS_MENORES_DISTANTES_DOS_ESTADOS_UNIDOS';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'FM' AS sigla, '' AS codigo_ddi, '583' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'FM' AS sigla, NULL AS codigo_ddi, '583' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ESTADOS_FEDERADOS_DA_MICRONESIA';
 
@@ -876,7 +876,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_FILIPINAS';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'PN' AS sigla, '' AS codigo_ddi, '612' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'PN' AS sigla, NULL AS codigo_ddi, '612' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_PITCAIRN';
 
@@ -981,7 +981,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_SERVIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'SC' AS sigla, '' AS codigo_ddi, '690' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'SC' AS sigla, NULL AS codigo_ddi, '690' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_SEYCHELLES';
 
@@ -991,7 +991,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_SERRA_LEOA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'SG' AS sigla, '' AS codigo_ddi, '702' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'SG' AS sigla, NULL AS codigo_ddi, '702' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_SINGAPURA';
 
@@ -1046,7 +1046,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_SURINAME';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'SJ' AS sigla, '' AS codigo_ddi, '744' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'SJ' AS sigla, NULL AS codigo_ddi, '744' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_SVALBARD_E_JAN_MAYEN';
 
@@ -1141,7 +1141,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_UCRANIA';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'MK' AS sigla, '' AS codigo_ddi, '807' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'MK' AS sigla, NULL AS codigo_ddi, '807' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_REPUBLICA_DA_MACEDONIA';
 
@@ -1156,17 +1156,17 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_REINO_UNIDO';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'GG' AS sigla, '' AS codigo_ddi, '831' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'GG' AS sigla, NULL AS codigo_ddi, '831' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_GUERNSEY';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'JE' AS sigla, '' AS codigo_ddi, '832' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'JE' AS sigla, NULL AS codigo_ddi, '832' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_JERSEY';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'IM' AS sigla, '' AS codigo_ddi, '833' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'IM' AS sigla, NULL AS codigo_ddi, '833' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_ILHA_DO_HOMEM';
 
@@ -1221,7 +1221,7 @@ FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_IEMEN';
 
 INSERT INTO basico_localizacao.pais (constante_textual, sigla, codigo_ddi, codigo_iso3166, ativo, rowinfo)
-SELECT distinct(d.constante_textual), 'CS' AS sigla, '' AS codigo_ddi, '891' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT distinct(d.constante_textual), 'CS' AS sigla, NULL AS codigo_ddi, '891' AS codigo_iso3166, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.dicionario_expressao d
 WHERE d.constante_textual = 'NOME_PAIS_SERVIA_E_MONTENEGRO';
 
