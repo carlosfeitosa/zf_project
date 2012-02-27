@@ -7,7 +7,7 @@
 * ultimas modificacoes 
 */
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -22,9 +22,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -39,9 +40,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -56,9 +58,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_TAB_CONTAINER1_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_TAB_CONTAINER1') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -73,9 +76,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -90,9 +94,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -107,9 +112,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -124,9 +130,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -141,9 +148,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -158,9 +166,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -175,9 +184,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -192,9 +202,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -209,9 +220,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -226,9 +238,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -243,9 +256,10 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
 
-INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, rowinfo)
+INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -260,4 +274,5 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_DECORATOR'
         AND d.nome = 'DECORATOR_FORM_SUBMIT') AS id_decorator,
+        1 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
