@@ -13,4 +13,4 @@ SELECT
 	(SELECT id 
 	 FROM basico.perfil
 	 WHERE nome = 'SISTEMA') AS id_perfil_padrao,
-	'SYSTEM_STARTUP_MASTER' AS rowinfo;
+	'SYSTEM_STARTUP' AS rowinfo;
