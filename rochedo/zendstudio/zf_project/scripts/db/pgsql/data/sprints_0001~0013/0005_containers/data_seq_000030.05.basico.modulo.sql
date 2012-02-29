@@ -17,10 +17,10 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MODULO';
 
-INSERT INTO basico.modulo (id_categoria, nome, constante_textual_descricao, versao, path, instalado, ativo, xml_autoria, rowinfo)
+INSERT INTO basico.modulo (id_categoria, nome, constante_textual_descricao, versao, instalado, ativo, xml_autoria, rowinfo)
 SELECT c.id AS id_categoria, 'DEFAULT' AS nome,
 	   'DESCRICAO_MODULO_DEFAULT' AS constante_textual_descricao,
-	   '0.1' AS versao, '' AS path, true AS instalado, true AS ativo,
+	   '0.1' AS versao, true AS instalado, true AS ativo,
 	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
