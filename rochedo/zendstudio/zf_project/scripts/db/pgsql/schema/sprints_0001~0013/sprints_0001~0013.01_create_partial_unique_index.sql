@@ -28,3 +28,18 @@ WHERE id_area_conhecimento_pai IS NULL;
 
 CREATE UNIQUE INDEX unp_area_economia ON basico.area_economia (id_categoria, nome)
 WHERE id_area_economia_pai IS NULL;
+
+CREATE UNIQUE INDEX unp_cpg_arquivo ON basico.cpg_arquivo (id_categoria, uri)
+WHERE nome IS NULL;
+
+CREATE UNIQUE INDEX unp_cpg_dados_bancarios ON basico.cpg_dados_bancarios (id_categoria, id_generico_proprietario, numero_banco, numero_agencia, numero_conta)
+WHERE numero_tipo_conta IS NULL;
+
+CREATE UNIQUE INDEX unp_cpg_link ON basico.cpg_link (id_categoria, id_generico_proprietario, url)
+WHERE nome IS NULL;
+
+CREATE UNIQUE INDEX unp_cpg_produto ON basico.cpg_produto (id_categoria, id_generico_proprietario)
+WHERE nome IS NULL;
+
+CREATE UNIQUE INDEX unp_formulario ON basico.formulario (id_categoria, nome)
+WHERE id_formulario_pai IS NULL;
