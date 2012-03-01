@@ -22,3 +22,9 @@ WHERE id_estado_pai IS NULL;
 
 CREATE UNIQUE INDEX unp_assoc_municipio ON basico_localizacao.assoc_municipio (id_estado, nome, codigo_ddd, id_categoria)
 WHERE id_municipio_pai IS NULL;
+
+CREATE UNIQUE INDEX unp_area_conhecimento ON basico.area_conhecimento (id_categoria, nome)
+WHERE id_area_conhecimento_pai IS NULL;
+
+CREATE UNIQUE INDEX unp_area_economia ON basico.area_economia (id_categoria, nome)
+WHERE id_area_economia_pai IS NULL;
