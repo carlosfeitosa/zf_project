@@ -43,3 +43,6 @@ WHERE nome IS NULL;
 
 CREATE UNIQUE INDEX unp_formulario ON basico.formulario (id_categoria, nome)
 WHERE id_formulario_pai IS NULL;
+
+CREATE UNIQUE INDEX unp_assocag_parceria ON basico_pessoa_juridica.assocag_parceria (id_categoria, id_pessoa_juridica, id_pessoa_juridica_parceira)
+WHERE id_assocag_parceria IS NULL;
