@@ -10,8 +10,9 @@
 * 								
 */
 
-INSERT INTO basico.template (id_categoria, nome, template, ativo, rowinfo)
+INSERT INTO basico.template (id_categoria, nome, constante_textual, template, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_PASSWORD_STRENGTH_CHECKER' AS nome,
+	'PASSWORD_STRENGHT_CHECKER' AS constante_textual,
 	'<div id=''scorebarBorder''><div id=''score''>0%</div><div id=''scorebar''>&nbsp;</div></div><div id=''complexity''></div>' AS template,
 	true AS ativo,
     'SYSTEM_STARTUP' AS rowinfo
@@ -20,9 +21,10 @@ LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE';
 
-INSERT INTO basico.template (id_categoria, nome, template, ativo, rowinfo)
-SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome, 
-		'<?php 
+INSERT INTO basico.template (id_categoria, nome, constante_textual, template, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'TEMPLATE_DOJO' AS nome,
+	'DOJO'  AS constante_textual,
+	'<?php 
 	/**
 	 * Layout padrão do sistema.
 	 */
@@ -135,9 +137,10 @@ LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE';
 
-INSERT INTO basico.template (id_categoria, nome, template, ativo, rowinfo)
+INSERT INTO basico.template (id_categoria, nome, constante_textual, template, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_HTML' AS nome,
-			'<?php 
+	'HTML' AS constante_textual,
+	'<?php 
 	/**
 	 * Layout padrão do sistema.
 	 */
@@ -250,9 +253,10 @@ LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_TEMPLATE';
 
-INSERT INTO basico.template (id_categoria, nome, template, ativo, rowinfo)
+INSERT INTO basico.template (id_categoria, nome, constante_textual, template, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'TEMPLATE_AJAX' AS nome,
-			'<?php 
+	'AJAX' AS constante_textual,
+	'<?php 
 	/**
 	 * Layout padrão do sistema.
 	 */
