@@ -8,8 +8,9 @@
 * 								
 */
 
-INSERT INTO basico.modulo (id_categoria, nome, versao, path, instalado, ativo, xml_autoria, rowinfo)
+INSERT INTO basico.modulo (id_categoria, nome, constante_textual, versao, path, instalado, ativo, xml_autoria, rowinfo)
 SELECT c.id AS id_categoria, 'BASICO' AS nome,
+	   'NOME_MODULO_BASICO' AS constante_textual,
 	   '0.3' AS versao, 'basico/' AS path, true AS instalado, true AS ativo,
 	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -17,8 +18,9 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'SISTEMA'
 AND c.nome = 'SISTEMA_MODULO';
 
-INSERT INTO basico.modulo (id_categoria, nome, constante_textual_descricao, versao, instalado, ativo, xml_autoria, rowinfo)
+INSERT INTO basico.modulo (id_categoria, nome, constante_textual, constante_textual_descricao, versao, instalado, ativo, xml_autoria, rowinfo)
 SELECT c.id AS id_categoria, 'DEFAULT' AS nome,
+	   'NOME_MODULO_DEFAULT' AS constante_textual,
 	   'DESCRICAO_MODULO_DEFAULT' AS constante_textual_descricao,
 	   '0.1' AS versao, true AS instalado, true AS ativo,
 	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
