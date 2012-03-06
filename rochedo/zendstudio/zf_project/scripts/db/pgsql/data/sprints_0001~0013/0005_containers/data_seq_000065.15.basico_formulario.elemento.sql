@@ -2063,7 +2063,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_VALIDATION_TEXT_BOX_WEBSITE_ENDERECO' AS nome, true AS ativo,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_WEBSITE_ENDERECO' AS nome,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_WEBSITE_ENDERECO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_WEBSITE_ENDERECO' AS constante_textual_label,
                               'webSitelEndereco' AS element_name, '''size'' => 100, ''style'' => ''width: 300px;''' AS element_attribs,
                               '''webSitelEndereco''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2090,7 +2091,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_SimpleTextarea') AS id_componente,
-                              'FORM_FIELD_SIMPLE_TEXT_AREA_WEBSITE_DESCRICAO' AS nome, true AS ativo,
+                              'FORM_FIELD_SIMPLE_TEXT_AREA_WEBSITE_DESCRICAO' AS nome,
+                              'FORM_FIELD_SIMPLE_TEXT_AREA_WEBSITE_DESCRICAO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_WEBSITE_DESCRICAO' AS constante_textual_label,
                               'webSiteDescricao' AS element_name, NULL AS element_attribs,
                               '''webSiteDescricao'', array(''style'' => ''width: 300px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2118,7 +2120,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_USUARIO' AS nome, true AS ativo,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_USUARIO' AS nome,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_USUARIO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_NOME' AS constante_textual_label,
                               'nome' AS element_name, '''size'' => 100, ''style'' => ''width: 300px;''' AS element_attribs,
                               '''nome''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2145,7 +2148,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO' AS nome, true AS ativo,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO' AS nome,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_EMAIL_USUARIO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_EMAIL' AS constante_textual_label,
                               'email' AS element_name, '''size'' => 100, ''style'' => ''width: 300px;''' AS element_attribs,
                               '''email''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2156,7 +2160,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, constante_textual_label,
                                  element_name, element, element_attribs, rowinfo)
-SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, true AS ativo,
+SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, 'CAPTCHA_6' AS constante_textual, true AS ativo,
 	   (SELECT cp.id
         from basico.componente cp
         LEFT join basico.categoria c ON (cp.id_categoria = c.id)
@@ -2185,7 +2189,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA';
 
 INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, element_name, element, rowinfo)
-SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, true AS ativo,
+SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, 'FORM_HASH' AS constante_textual, true AS ativo,
 	   (SELECT cp.id
         from basico.componente cp
         LEFT join basico.categoria c ON (cp.id_categoria = c.id)
@@ -2219,7 +2223,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_PAIS_NASCIMENTO_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_PAIS_NASCIMENTO_LABEL' AS constante_textual_label,
                               'comboBoxPaisNascimento' AS element_name, NULL AS element_attribs,
                               '''comboboxPaisNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2247,7 +2252,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_ESTADO_NASCIMENTO_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ESTADO_NASCIMENTO_LABEL' AS constante_textual_label,
                               'comboboxEstadoNascimento' AS element_name, NULL AS element_attribs,
                               '''comboboxEstadoNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2275,7 +2281,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ESTADO_NASCIMENTO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_ESTADO_NASCIMENTO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_ESTADO_NASCIMENTO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ESTADO_NASCIMENTO_LABEL' AS constante_textual_label,
                               'textboxEstadoNascimento' AS element_name, NULL AS element_attribs,
                               '''textboxEstadoNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2303,7 +2310,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_MUNICIPIO_NASCIMENTO_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_MUNICIPIO_NASCIMENTO_LABEL' AS constante_textual_label,
                               'comboboxMunicipioNascimento' AS element_name, NULL AS element_attribs,
                               '''comboboxMunicipioNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2331,7 +2339,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_MUNICIPIO_NASCIMENTO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_MUNICIPIO_NASCIMENTO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_MUNICIPIO_NASCIMENTO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_MUNICIPIO_NASCIMENTO_LABEL' AS constante_textual_label,
                               'textboxMunicipioNascimento' AS element_name, NULL AS element_attribs,
                               '''textboxMunicipioNascimento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2359,7 +2368,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_NOME_PAI_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_NOME_PAI_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_NOME_PAI_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_NOME_PAI_LABEL' AS constante_textual_label,
                               'textboxNomePai' AS element_name, NULL AS element_attribs,
                               '''textboxNomePai''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2387,7 +2397,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_NOME_MAE_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_NOME_MAE_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_NOME_MAE_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_NOME_MAE_LABEL' AS constante_textual_label,
                               'textboxNomeMae' AS element_name, NULL AS element_attribs,
                               '''textboxNomeMae''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2414,7 +2425,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_ENDERECO_TIPO_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_TIPO_LABEL' AS constante_textual_label,
                               'enderecoTipo' AS element_name, NULL AS element_attribs,
                               '''enderecoTipo''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2441,7 +2453,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_ENDERECO_PAIS_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_PAIS_LABEL' AS constante_textual_label,
                               'enderecoPais' AS element_name, NULL AS element_attribs,
                               '''enderecoPais''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2468,7 +2481,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_ENDERECO_ESTADO_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_ESTADO_LABEL' AS constante_textual_label,
                               'enderecoEstado' AS element_name, NULL AS element_attribs,
                               '''enderecoEstado''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2495,7 +2509,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ENDERECO_ESTADO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_ESTADO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_ENDERECO_ESTADO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_ESTADO_LABEL' AS constante_textual_label,
                               'enderecoEstadoTextBox' AS element_name, NULL AS element_attribs,
                               '''enderecoEstadoTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2522,7 +2537,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_ENDERECO_MUNICIPIO_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_MUNICIPIO_LABEL' AS constante_textual_label,
                               'enderecoMunicipio' AS element_name, NULL AS element_attribs,
                               '''enderecoMunicipio''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2549,7 +2565,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ENDERECO_MUNICIPIO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_MUNICIPIO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_ENDERECO_MUNICIPIO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_MUNICIPIO_LABEL' AS constante_textual_label,
                               'enderecoMunicipioTextBox' AS element_name, NULL AS element_attribs,
                               '''enderecoMunicipioTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2576,7 +2593,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ENDERECO_CEP_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_CEP_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_ENDERECO_CEP_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_CEP_LABEL' AS constante_textual_label,
                               'enderecoCep' AS element_name, NULL AS element_attribs,
                               '''enderecoCep''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2603,7 +2621,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ENDERECO_LOGRADOURO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_LOGRADOURO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_ENDERECO_LOGRADOURO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_LOGRADOURO_LABEL' AS constante_textual_label,
                               'enderecoLogradouro' AS element_name, NULL AS element_attribs,
                               '''enderecoLogradouro''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2630,7 +2649,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ENDERECO_NUMERO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_NUMERO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_ENDERECO_NUMERO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_NUMERO_LABEL' AS constante_textual_label,
                               'enderecoNumero' AS element_name, NULL AS element_attribs,
                               '''enderecoNumero''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2657,7 +2677,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_ENDERECO_COMPLEMENTO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_ENDERECO_COMPLEMENTO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_ENDERECO_COMPLEMENTO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ENDERECO_COMPLEMENTO_LABEL' AS constante_textual_label,
                               'enderecoComplemento' AS element_name, NULL AS element_attribs,
                               '''enderecoComplemento''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2684,7 +2705,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CONTA_BANCARIA_NUMERO_BANCO_LABEL' AS constante_textual_label,
                               'contaBancariaNumeroBancoTextBox' AS element_name, NULL AS element_attribs,
                               '''contaBancariaNumeroBancoTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2711,7 +2733,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_CONTA_BANCARIA_BANCO_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_CONTA_BANCARIA_BANCO_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_CONTA_BANCARIA_BANCO_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CONTA_BANCARIA_BANCO_LABEL' AS constante_textual_label,
                               'contaBancariaBancoComboBox' AS element_name, NULL AS element_attribs,
                               '''contaBancariaBancoComboBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2738,7 +2761,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_CONTA_BANCARIA_AGENCIA_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_CONTA_BANCARIA_AGENCIA_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_CONTA_BANCARIA_AGENCIA_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CONTA_BANCARIA_AGENCIA_LABEL' AS constante_textual_label,
                               'contaBancariaAgenciaTextBox' AS element_name, NULL AS element_attribs,
                               '''contaBancariaAgenciaTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2765,7 +2789,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_FILTERING_SELECT' AS nome, true AS ativo,
+                              'FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_FILTERING_SELECT' AS nome,
+                              'FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_FILTERING_SELECT' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CONTA_BANCARIA_TIPO_CONTA_LABEL' AS constante_textual_label,
                               'contaBancariaTipoContaComboBox' AS element_name, NULL AS element_attribs,
                               '''contaBancariaTipoContaComboBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2792,7 +2817,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CONTA_BANCARIA_NUMERO_CONTA_LABEL' AS constante_textual_label,
                               'contaBancariaNumeroContaTextBox' AS element_name, NULL AS element_attribs,
                               '''contaBancariaNumeroContaTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2819,7 +2845,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_VALIDATION_TEXT_BOX' AS nome, true AS ativo,
+                              'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_VALIDATION_TEXT_BOX' AS nome,
+                              'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_VALIDATION_TEXT_BOX' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CONTA_BANCARIA_DESCRICAO_IDENTIFICACAO_CONTA_LABEL' AS constante_textual_label,
                               'contaBancariaDescricaoIdentificacaoContaTextBox' AS element_name, NULL AS element_attribs,
                               '''contaBancariaDescricaoIdentificacaoContaTextBox''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2839,7 +2866,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'htmlTextDescricaoFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlTextDescricaoFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -2858,7 +2886,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ZF'
                               AND cp.nome = 'ZF_button') AS id_componente,
-                              'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'FORM_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
                               'htmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2878,7 +2907,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'htmlTextDescricaoButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlTextDescricaoButtonVisualizarDadosAtuaisFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_VISUALIZAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -2897,7 +2927,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ZF'
                               AND cp.nome = 'ZF_button') AS id_componente,
-                              'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'FORM_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
                               'htmlButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2917,7 +2948,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'htmlTextDescricaoButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlTextDescricaoButtonRevisarDadosAtuaisFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_REVISAR_DADOS_ATUAIS_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -2936,7 +2968,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ZF'
                               AND cp.nome = 'ZF_button') AS id_componente,
-                              'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'FORM_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
                               'htmlButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2956,7 +2989,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'htmlTextDescricaoButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlTextDescricaoButtonSobrescreverAtualizacaoFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_SOBRESCREVER_ATUALIZACAO_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -2975,7 +3009,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ZF'
                               AND cp.nome = 'ZF_button') AS id_componente,
-                              'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'FORM_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual_label,
                               'htmlButtonCancelarFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlButtonCancelarFormResolvedorConflitoVersaoObjeto''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -2995,7 +3030,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome, true AS ativo,
+                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
+                              'FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual, true AS ativo,
                               'htmlTextDescricaoButtonCancelarFormResolvedorConflitoVersaoObjeto' AS element_name, NULL AS element_attribs,
                               '''htmlTextDescricaoButtonCancelarFormResolvedorConflitoVersaoObjeto'',  array(''value'' => $this->getView()->tradutor(''FORM_ELEMENT_HTML_TEXT_DESCRICAO_BUTTON_CANCELAR_FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
