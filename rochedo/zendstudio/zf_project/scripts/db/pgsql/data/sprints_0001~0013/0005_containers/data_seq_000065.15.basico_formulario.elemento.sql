@@ -11,7 +11,7 @@
 */
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -28,7 +28,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_FORMULARIO' AS nome, 
+                              'FORM_FIELD_FILTERING_SELECT_FORMULARIO' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_FORMULARIO' AS constante_textual,
                               true AS ativo,
                               'FORM_FIELD_FORMULARIO' AS constante_textual_label,
                               'formulario' AS element_name, NULL AS element_attribs,
@@ -39,7 +40,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -56,7 +57,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_TIPO_DATA' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_TIPO_DATA' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_TIPO_DATA' AS constante_textual, true AS ativo,
                               'FORM_FIELD_SELECT_TIPO_DATA' AS constante_textual_label,
                               'selectTipoData' AS element_name, NULL AS element_attribs,
                               '''selectTipoData''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -66,7 +68,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -84,7 +86,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_DateTextBox') AS id_componente,
-                              'FORM_FIELD_DATE_TEXT_BOX_DATA_INICIO_PERIODO' AS nome, true AS ativo,
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_INICIO_PERIODO' AS nome, 
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_INICIO_PERIODO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_DATA_INICIO_PERIODO' AS constante_textual_label,
                               'dataInicioPeriodo' AS element_name, '''style'' => ''width: 70px;''' AS element_attribs,
                               '''dataInicioPeriodo''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -94,7 +97,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -112,7 +115,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_DateTextBox') AS id_componente,
-                              'FORM_FIELD_DATE_TEXT_BOX_DATA_TERMINO_PERIODO' AS nome, true AS ativo,
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_TERMINO_PERIODO' AS nome, 
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_TERMINO_PERIODO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_DATA_TERMINO_PERIODO' AS constante_textual_label,
                               'dataTerminoPeriodo' AS element_name, '''style'' => ''width: 70px;''' AS element_attribs,
                               '''dataTerminoPeriodo''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -121,7 +125,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -132,7 +136,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ZF'
                               AND cp.nome = 'ZF_button') AS id_componente,
-                              'FORM_BUTTON_CANCELAR' AS nome, true AS ativo,
+                              'FORM_BUTTON_CANCELAR' AS nome,
+                              'FORM_BUTTON_CANCELAR' AS constante_textual, true AS ativo,
                               'FORM_BUTTON_CANCELAR_LABEL' AS constante_textual_label,
                               'htmlButtonCancelar' AS element_name, NULL AS element_attribs,
                               '''htmlButtonCancelar''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -142,7 +147,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -160,7 +165,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_VALIDATION_TEXT_BOX_ACEITE_TERMOS_USO' AS nome, true AS ativo,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_ACEITE_TERMOS_USO' AS nome, 
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_ACEITE_TERMOS_USO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ACEITE_TERMOS_USO' AS constante_textual_label,
                               'aceiteTermosUso' AS element_name, NULL AS element_attribs,
                               '''aceiteTermosUso''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -169,7 +175,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -179,7 +185,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_FIELD_HTML_LINKS' AS nome, true AS ativo,
+                              'FORM_FIELD_HTML_LINKS' AS nome,
+                              'FORM_FIELD_HTML_LINKS' AS constante_textual, true AS ativo,
                               'links' AS element_name, NULL AS element_attribs,
                               '''links'', array(''value'' => "")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -188,7 +195,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -206,7 +213,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_SimpleTextarea') AS id_componente,
-                              'FORM_FIELD_SIMPLE_TEXT_AREA_TERMOS_USO' AS nome, true AS ativo,
+                              'FORM_FIELD_SIMPLE_TEXT_AREA_TERMOS_USO' AS nome,
+                              'FORM_FIELD_SIMPLE_TEXT_AREA_TERMOS_USO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_TERMOS_USO' AS constante_textual_label,
                               'termosUso' AS element_name, NULL AS element_attribs,
                               '''termosUso'', array(''style'' => ''width: 472px;'', ''readOnly'' => true)' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -215,9 +223,9 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
-SELECT c.id AS id_categoria, 'FORM_BUTTON' AS nome, true AS ativo,
+SELECT c.id AS id_categoria, 'FORM_BUTTON' AS nome, 'FORM_BUTTON' AS constante_textual, true AS ativo,
 	   (SELECT cp.id
         from basico.componente cp
         LEFT join basico.categoria c ON (cp.id_categoria = c.id)
@@ -233,7 +241,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -251,7 +259,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_SimpleTextarea') AS id_componente,
-                              'FORM_FIELD_SIMPLE_TEXT_AREA_HISTORICO_MEDICO' AS nome, true AS ativo,
+                              'FORM_FIELD_SIMPLE_TEXT_AREA_HISTORICO_MEDICO' AS nome, 
+                              'FORM_FIELD_SIMPLE_TEXT_AREA_HISTORICO_MEDICO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_HISTORICO_MEDICO' AS constante_textual_label,
                               'historicoMedico' AS element_name, NULL AS element_attribs,
                               '''historicoMedico'', array(''style'' => ''width: 472px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -261,7 +270,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -278,7 +287,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_TIPO_SANGUINEO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_TIPO_SANGUINEO' AS constante_textual_label,
                               'tipoSanguineo' AS element_name, NULL AS element_attribs,
                               '''tipoSanguineo''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -289,7 +299,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -306,7 +316,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
-                              'FORM_FIELD_NUMBER_TEXT_BOX_ALTURA' AS nome, true AS ativo,
+                              'FORM_FIELD_NUMBER_TEXT_BOX_ALTURA' AS nome, 
+                              'FORM_FIELD_NUMBER_TEXT_BOX_ALTURA' AS constante_textual, true AS ativo,
                               'FORM_FIELD_ALTURA' AS constante_textual_label,
                               'altura' AS element_name, '''maxlength'' => ''5''' AS element_attribs,
                               '''altura'', array(''style'' => ''width: 40px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -316,7 +327,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -333,7 +344,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_NumberTextBox') AS id_componente,
-                              'FORM_FIELD_NUMBER_TEXT_BOX_PESO' AS nome, true AS ativo,
+                              'FORM_FIELD_NUMBER_TEXT_BOX_PESO' AS nome, 
+                              'FORM_FIELD_NUMBER_TEXT_BOX_PESO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_PESO' AS constante_textual_label,
                               'peso' AS element_name, '''maxlength'' => ''7''' AS element_attribs,
                               '''peso'', array(''style'' => ''width: 50px;'')' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -343,7 +355,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -360,7 +372,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_RACA' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_RACA' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_RACA' AS constante_textual, true AS ativo,
                               'FORM_FIELD_RACA' AS constante_textual_label,
                               'raca' AS element_name, NULL AS element_attribs,
                               '''raca''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -369,7 +382,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -379,7 +392,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_FIELD_HTML_PASSWORD_STRENGTH_CHECKER' AS nome, true AS ativo,
+                              'FORM_FIELD_HTML_PASSWORD_STRENGTH_CHECKER' AS nome,
+                              'FORM_FIELD_HTML_PASSWORD_STRENGTH_CHECKER' AS constante_textual, true AS ativo,
                               'passwordStrengthChecker' AS element_name, NULL AS element_attribs,
                               '''passwordStrengthChecker'', array(''value'' => "<div id=''scorebarBorder''><div id=''score''>0%</div><div id=''scorebar''>&nbsp;</div></div><div id=''complexity''></div>")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -387,7 +401,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -397,7 +411,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_FIELD_HTML_LOGIN_DISPONIBILIDADE' AS nome, true AS ativo,
+                              'FORM_FIELD_HTML_LOGIN_DISPONIBILIDADE' AS nome, 
+                              'FORM_FIELD_HTML_LOGIN_DISPONIBILIDADE' AS constante_textual, true AS ativo,
                               'loginDisponivel' AS element_name, NULL AS element_attribs,
                               '''loginDisponivel'', array(''value'' => "")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -405,7 +420,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, constante_textual_label, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -416,7 +431,8 @@ SELECT c.id AS id_categoria,(SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_RadioButton') AS id_componente,
-                              'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN' AS nome, true AS ativo,
+                              'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN' AS nome,
+                              'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN' AS constante_textual, true AS ativo,
                               'FORM_FIELD_SUGESTAO_LOGIN' AS constante_textual_label,
                               'sugestaoLogin' AS element_name, NULL AS element_attribs,
                               '''sugestaoLogin'', array(''separator'' => "<br>")' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -425,7 +441,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -435,7 +451,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_FIELD_HTML_CONTENT_DINAMICO' AS nome, true AS ativo,
+                              'FORM_FIELD_HTML_CONTENT_DINAMICO' AS nome,
+                              'FORM_FIELD_HTML_CONTENT_DINAMICO' AS constante_textual, true AS ativo,
                               'contentDinamico' AS element_name, NULL AS element_attribs,
                               '''contentDinamico'', array(''value'' => "")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -448,7 +465,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -458,7 +475,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_javascript') AS id_componente,
-                              'FORM_FIELD_HTML_JAVASCRIPT' AS nome, true AS ativo,
+                              'FORM_FIELD_HTML_JAVASCRIPT' AS nome,
+                              'FORM_FIELD_HTML_JAVASCRIPT' AS constante_textual, true AS ativo,
                               'javaScript' AS element_name, NULL AS element_attribs,
                               '''javaScript'', array(''value'' => "")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -467,7 +485,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -485,7 +503,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_VALIDATION_TEXT_BOX_NUMERO_DOCUMENTO' AS nome, true AS ativo,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_NUMERO_DOCUMENTO' AS nome,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_NUMERO_DOCUMENTO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_NUMERO_DOCUMENTO' AS constante_textual_label,
                               'numeroDocumento' AS element_name, NULL AS element_attribs,
                               '''numeroDocumento''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -495,7 +514,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -513,7 +532,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_RadioButton') AS id_componente,
-                              'FORM_FIELD_RADIO_BUTTON_SEXO' AS nome, true AS ativo,
+                              'FORM_FIELD_RADIO_BUTTON_SEXO' AS nome,
+                              'FORM_FIELD_RADIO_BUTTON_SEXO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_SEXO' AS constante_textual_label,
                               'sexo' AS element_name, NULL AS element_attribs,
                               '''sexo'', array(''separator'' => " ")' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -523,7 +543,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -541,7 +561,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_DateTextBox') AS id_componente,
-                              'FORM_FIELD_DATE_TEXT_BOX_DATA_NASCIMENTO' AS nome, true AS ativo,
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_NASCIMENTO' AS nome, 
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_NASCIMENTO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_DATA_NASCIMENTO' AS constante_textual_label,
                               'dataNascimento' AS element_name, '''style'' => ''width: 70px;''' AS element_attribs,
                               '''dataNascimento''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -551,7 +572,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -569,7 +590,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-                              'FORM_FIELD_VALIDATION_TEXT_BOX_LOGIN' AS nome, true AS ativo,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_LOGIN' AS nome,
+                              'FORM_FIELD_VALIDATION_TEXT_BOX_LOGIN' AS constante_textual, true AS ativo,
                               'FORM_FIELD_LOGIN' AS constante_textual_label,
                               'login' AS element_name, NULL AS element_attribs,
                               '''login''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -579,7 +601,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -597,7 +619,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_AJAXTERCEIROS'
                               AND cp.nome = 'DOJO_PasswordTextBox_With_Checker') AS id_componente,
-                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_WITH_CHECKER' AS nome, true AS ativo,
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_WITH_CHECKER' AS nome,
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_WITH_CHECKER' AS constante_textual, true AS ativo,
                               'FORM_FIELD_SENHA' AS constante_textual_label,
                               'senha' AS element_name, NULL AS element_attribs,
                               '''senha''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -607,7 +630,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element, element_reloadable, 
 								 rowinfo)
 
@@ -625,7 +648,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_PasswordTextBox') AS id_componente,
-                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA' AS nome, true AS ativo,
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA' AS nome, 
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA' AS constante_textual,true AS ativo,
                               'FORM_FIELD_SENHA' AS constante_textual_label,
                               'senha' AS element_name,
                               '''senha''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -635,7 +659,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -653,7 +677,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_PasswordTextBox') AS id_componente,
-                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_CONFIRMACAO' AS nome, true AS ativo,
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_CONFIRMACAO' AS nome, 
+                              'FORM_FIELD_PASSWORD_TEXT_BOX_SENHA_CONFIRMACAO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_SENHA_CONFIRMACAO' AS constante_textual_label,
                               'senhaConfirmacao' AS element_name, NULL AS element_attribs,
                               '''senhaConfirmacao''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -663,7 +688,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -681,7 +706,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_CheckBox') AS id_componente,
-                              'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO' AS nome, true AS ativo,
+                              'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO' AS nome,
+                              'NOME_FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO' AS constante_textual_label,
                               'loginManterLogado' AS element_name, NULL AS element_attribs,
                               '''loginManterLogado'',  array(''disableLoadDefaultDecorators'' => true, ''decorators'' => array(''DijitElement'', ''Errors'', ''Description''))' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -690,7 +716,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -701,7 +727,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_LINK_PROBLEMAS_LOGON' AS nome, true AS ativo,
+                              'FORM_LINK_PROBLEMAS_LOGON' AS nome, 
+                              'NOME_FORM_LINK_PROBLEMAS_LOGON' AS constante_textual, true AS ativo,
                               'linkProblemasLogon' AS element_name, NULL AS element_attribs,
                               '''linkProblemasLogon'',  array(''value'' => "<br><a href=''{$this->getView()->url(array(''module'' => ''basico'', ''controller'' => ''login'', ''action'' => ''problemasLogin''), null, true)}''>{$this->getView()->tradutor(''FORM_LINK_PROBLEMAS_LOGON'')}</a>")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -709,7 +736,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -720,7 +747,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ROCHEDO'
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
-                              'FORM_LINK_NOVO_USUARIO' AS nome, true AS ativo,
+                              'FORM_LINK_NOVO_USUARIO' AS nome,
+                              'NOME_FORM_LINK_NOVO_USUARIO' AS constante_textual, true AS ativo,
                               'linkNovoUsuario' AS element_name, NULL AS element_attribs,
                               '''linkNovoUsuario'',  array(''value'' => "<a href=''{$this->getView()->url(array(''module'' => ''basico'', ''controller'' => ''login'', ''action'' => ''cadastrarUsuarioNaoValidado''), null, true)}''>{$this->getView()->tradutor(''FORM_LINK_NOVO_USUARIO'')}</a>")' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -728,7 +756,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -739,7 +767,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_ZF'
                               AND cp.nome = 'ZF_Hidden') AS id_componente,
-                              'FORM_FIELD_HIDDEN_URLREDIRECT' AS nome, true AS ativo,
+                              'FORM_FIELD_HIDDEN_URLREDIRECT' AS nome, 
+                              'FORM_FIELD_HIDDEN_URLREDIRECT' AS constante_textual, true AS ativo,
                               'urlRedirect' AS element_name, NULL AS element_attribs,
                               '''urlRedirect'', array(''decorators'' => array(''ViewHelper''))' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -748,7 +777,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HIDDEN';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -766,7 +795,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_CATEGORIA_BOLSA_CNPQ' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_CATEGORIA_BOLSA_CNPQ' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_CATEGORIA_BOLSA_CNPQ' AS constante_textual, true AS ativo,
                               'FORM_FIELD_CATEGORIA_BOLSA_CNPQ_LABEL' AS constante_textual_label,
                               'categoriaBolsaCnpq' AS element_name, NULL AS element_attribs,
                               '''categoriaBolsaCnpq''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -776,7 +806,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -794,7 +824,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_MAIOR_TITULACAO' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_MAIOR_TITULACAO' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_MAIOR_TITULACAO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_MAIOR_TITULACAO_LABEL' AS constante_textual_label,
                               'maiorTitulacao' AS element_name, NULL AS element_attribs,
                               '''maiorTitulacao''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -804,7 +835,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -822,7 +853,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_QUE_CONCEDEU' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_QUE_CONCEDEU' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_QUE_CONCEDEU' AS constante_textual, true AS ativo,
                               'FORM_FIELD_INSTITUICAO_QUE_CONCEDEU_LABEL' AS constante_textual_label,
                               'instituicaoQueConcedeu' AS element_name, NULL AS element_attribs,
                               '''instituicaoQueConcedeu''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -832,7 +864,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -850,7 +882,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_AREA_DE_CONHECIMENTO' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_AREA_DE_CONHECIMENTO' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_AREA_DE_CONHECIMENTO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_AREA_DE_CONHECIMENTO_LABEL' AS constante_textual_label,
                               'areaDeConhecimento' AS element_name, NULL AS element_attribs,
                               '''areaDeConhecimento''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -860,7 +893,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-	                             id_componente, nome, ativo, constante_textual_label,
+	                             id_componente, nome, constante_textual, ativo, constante_textual_label,
 	                             element_name, element_attribs, element, element_reloadable,
 	                             rowinfo)
 	
@@ -878,7 +911,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
 	                          WHERE t.nome = 'COMPONENTE'
 	                          AND c.nome = 'COMPONENTE_DOJO'
 	                          AND cp.nome = 'DOJO_ValidationTextBox') AS id_componente,
-	                          'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_CURSO' AS nome, true AS ativo,
+	                          'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_CURSO' AS nome, 
+	                          'FORM_FIELD_VALIDATION_TEXT_BOX_NOME_CURSO' AS constante_textual, true AS ativo,
 	                          'FORM_FIELD_NOME_CURSO_LABEL' AS constante_textual_label,
 	                          'nomeCurso' AS element_name, NULL AS element_attribs,
 	                          '''nomeCurso''' AS element, true AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -888,7 +922,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria,  (SELECT a.id
@@ -905,7 +939,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_DateTextBox') AS id_componente,
-                              'FORM_FIELD_DATE_TEXT_BOX_DATA_OBTENCAO' AS nome, true AS ativo,
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_OBTENCAO' AS nome, 
+                              'FORM_FIELD_DATE_TEXT_BOX_DATA_OBTENCAO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_DATA_OBTENCAO_LABEL' AS constante_textual_label,
                               'dataObtencao' AS element_name, NULL AS element_attribs,
                               '''dataObtencao''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo
@@ -915,7 +950,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria,  (SELECT a.id
@@ -932,7 +967,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_TITULACAO_ESPERADA' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_TITULACAO_ESPERADA' AS nome, 
+                              'FORM_FIELD_FILTERING_SELECT_TITULACAO_ESPERADA' AS constante_textual, true AS ativo,
                               'FORM_FIELD_TITULACAO_ESPERADA_LABEL' AS constante_textual_label,
                               'titulacaoEsperada' AS element_name, NULL AS element_attribs,
                               '''titulacaoEsperada''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo 
@@ -942,7 +978,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria,  (SELECT a.id
@@ -959,7 +995,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               WHERE t.nome = 'COMPONENTE'
                               AND c.nome = 'COMPONENTE_DOJO'
                               AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
-                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_CURSO_ATUAL' AS nome, true AS ativo,
+                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_CURSO_ATUAL' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_CURSO_ATUAL' AS constante_textual, true AS ativo,
                               'FORM_FIELD_INSTITUICAO_CURSO_ATUAL_LABEL' AS constante_textual_label,
                               'instituicaoCursoAtual' AS element_name, NULL AS element_attribs,
                               '''instituicaoCursoAtual''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo 
@@ -970,7 +1007,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
                               
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria,  (SELECT a.id
@@ -998,7 +1035,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
                               
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria,  (SELECT a.id
@@ -1026,7 +1063,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
                               
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -1054,7 +1091,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria,  (SELECT a.id
@@ -1080,7 +1117,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_SUBMIT' AS nome, true AS ativo,
 	   (SELECT cp.id
@@ -1097,7 +1134,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_RESET' AS nome, true AS ativo,
 	   (SELECT cp.id
@@ -1114,7 +1151,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, constante_textual_label,
                                  element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome, true AS ativo,
 	   (SELECT cp.id
@@ -1131,7 +1168,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome, true AS ativo,
 	   (SELECT cp.id
         from basico.componente cp
@@ -1149,7 +1186,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON_DIALOG_DOJO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,  
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1176,7 +1213,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,  
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1203,7 +1240,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,  
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1230,7 +1267,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,  
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1257,7 +1294,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1284,7 +1321,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1311,7 +1348,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1338,7 +1375,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1365,7 +1402,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1392,7 +1429,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1419,7 +1456,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1446,7 +1483,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1473,7 +1510,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1499,7 +1536,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -1518,7 +1555,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1545,7 +1582,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1572,7 +1609,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1599,7 +1636,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1626,7 +1663,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria,  
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT cp.id
@@ -1646,7 +1683,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1673,7 +1710,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1700,7 +1737,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1727,7 +1764,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1754,7 +1791,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1781,7 +1818,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1808,7 +1845,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1835,7 +1872,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1862,7 +1899,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1889,7 +1926,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1916,7 +1953,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -1944,7 +1981,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1972,7 +2009,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO';
 
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -1999,7 +2036,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2025,7 +2062,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, constante_textual_label,
                                  element_name, element, element_attribs, rowinfo)
 SELECT c.id AS id_categoria, 'CAPTCHA_6' AS nome, true AS ativo,
 	   (SELECT cp.id
@@ -2055,7 +2092,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_CAPTCHA';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, element_name, element, rowinfo)
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, element_name, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_HASH' AS nome, true AS ativo,
 	   (SELECT cp.id
         from basico.componente cp
@@ -2072,7 +2109,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HASH';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-                                 id_componente, nome, ativo, constante_textual_label, 
+                                 id_componente, nome, constante_textual, ativo, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
 
@@ -2100,7 +2137,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-                                 id_componente, nome, ativo, constante_textual_label, 
+                                 id_componente, nome, constante_textual, ativo, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
 
@@ -2128,7 +2165,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-                                 id_componente, nome, ativo, constante_textual_label, 
+                                 id_componente, nome, constante_textual, ativo, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
 
@@ -2156,7 +2193,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-                                 id_componente, nome, ativo, constante_textual_label, 
+                                 id_componente, nome, constante_textual, ativo, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
 
@@ -2184,7 +2221,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-                                 id_componente, nome, ativo, constante_textual_label, 
+                                 id_componente, nome, constante_textual, ativo, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
 
@@ -2212,7 +2249,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-                                 id_componente, nome, ativo, constante_textual_label, 
+                                 id_componente, nome, constante_textual, ativo, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
 
@@ -2240,7 +2277,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
-                                 id_componente, nome, ativo, constante_textual_label, 
+                                 id_componente, nome, constante_textual, ativo, constante_textual_label, 
                                  element_name, element_attribs, element, element_reloadable, 
                                  rowinfo)
 
@@ -2268,7 +2305,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2295,7 +2332,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2322,7 +2359,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2349,7 +2386,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2376,7 +2413,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2403,7 +2440,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2430,7 +2467,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2457,7 +2494,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2484,7 +2521,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2511,7 +2548,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2538,7 +2575,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2565,7 +2602,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2592,7 +2629,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2619,7 +2656,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2646,7 +2683,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2673,7 +2710,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda, 
-								 id_componente, nome, ativo, constante_textual_label, 
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 SELECT c.id AS id_categoria, (SELECT a.id
@@ -2699,7 +2736,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2718,7 +2755,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2738,7 +2775,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2757,7 +2794,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2777,7 +2814,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2796,7 +2833,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2816,7 +2853,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2835,7 +2872,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, constante_textual_label,
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, constante_textual_label,
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
@@ -2855,7 +2892,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, ativo, 
+INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
 								 element_name, element_attribs, element, element_reloadable, 
 								 rowinfo)
 
