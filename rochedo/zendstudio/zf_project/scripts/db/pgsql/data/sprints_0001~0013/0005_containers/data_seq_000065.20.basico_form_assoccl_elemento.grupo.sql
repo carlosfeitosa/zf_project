@@ -47,7 +47,7 @@ VALUES ('DADOS_USUARIO_DADOS_ACADEMICOS_MAIOR_TITULACAO', 'MAIOR_TITULACAO',
 		'FORM_FIELD_MAIOR_TITULACAO_DISPLAY_GROUP_LABEL', 'SYSTEM_STARTUP');
 		
 INSERT INTO basico_form_assoccl_elemento.grupo (nome, constante_textual, constante_textual_label, rowinfo)
-VALUES ('DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL', 'CURSO_ATUAL'
+VALUES ('DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL', 'CURSO_ATUAL',
 		'FORM_FIELD_CURSO_ATUAL_DISPLAY_GROUP_LABEL', 'SYSTEM_STARTUP');		
 
 INSERT INTO basico_form_assoccl_elemento.grupo (nome, constante_textual, constante_textual_label, rowinfo)

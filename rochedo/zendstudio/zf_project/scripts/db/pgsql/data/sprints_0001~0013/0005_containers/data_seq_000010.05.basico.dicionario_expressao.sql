@@ -268,20 +268,6 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_FIELD_VALIDATION_TEXT_BOX_WEBSITE_ENDERECO' AS constante_textual, 'Caixa de validação textual de endereços de website' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'FORM_FIELD_SIMPLE_TEXT_AREA_WEBSITE_DESCRICAO' AS constante_textual, 'Área de texto simples para descrição de websites' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'FORM_FIELD_FILTERING_SELECT_FORMULARIO' AS constante_textual, 'Caixa de seleção de formulários' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
