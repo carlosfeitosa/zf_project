@@ -987,6 +987,34 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'AJUDA'
                               AND c.nome = 'AJUDA_FORMULARIO_FIELD'
+                              AND a.nome = 'AJUDA_FORMULARIO_FIELD_INSTITUICAO_CURSO_ATUAL_FILTERING_SELECT') AS id_ajuda,
+                              (SELECT cp.id
+                              from basico.componente cp
+                              LEFT join basico.categoria c ON (cp.id_categoria = c.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'COMPONENTE'
+                              AND c.nome = 'COMPONENTE_DOJO'
+                              AND cp.nome = 'DOJO_FilteringSelect') AS id_componente,
+                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_CURSO_ATUAL' AS nome,
+                              'FORM_FIELD_FILTERING_SELECT_INSTITUICAO_CURSO_ATUAL' AS constante_textual, true AS ativo,
+                              'FORM_FIELD_INSTITUICAO_CURSO_ATUAL_LABEL' AS constante_textual_label,
+                              'instituicaoCursoAtual' AS element_name, NULL AS element_attribs,
+                              '''instituicaoCursoAtual''' AS element, false AS element_reloadable, 'SYSTEM_STARTUP' AS rowinfo 
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT INTO basico_formulario.elemento(id_categoria, id_ajuda,
+								 id_componente, nome, constante_textual, ativo, constante_textual_label, 
+								 element_name, element_attribs, element, element_reloadable, 
+								 rowinfo)
+SELECT c.id AS id_categoria,  (SELECT a.id
+                              from basico.ajuda a
+                              LEFT join basico.categoria c ON (a.id_categoria = c.id)
+                              LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+                              WHERE t.nome = 'AJUDA'
+                              AND c.nome = 'AJUDA_FORMULARIO_FIELD'
                               AND a.nome = 'AJUDA_FORMULARIO_FIELD_AREA_CONHECIMENTO_CURSO_ATUAL_FILTERING_SELECT') AS id_ajuda,
                               (SELECT cp.id
                               from basico.componente cp
