@@ -11,6 +11,7 @@
 INSERT INTO basico.modulo (id_categoria, nome, constante_textual, versao, path, instalado, ativo, xml_autoria, rowinfo)
 SELECT c.id AS id_categoria, 'BASICO' AS nome,
 	   'NOME_MODULO_BASICO' AS constante_textual,
+	   'DESCRICAO_MODULO_BASICO' AS constante_textual_descricao,
 	   '0.3' AS versao, 'basico/' AS path, true AS instalado, true AS ativo,
 	   'SYSTEM_XML_STARTUP' AS xml_autoria, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
