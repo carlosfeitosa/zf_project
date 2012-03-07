@@ -1146,7 +1146,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
-INSERT INTO basico_formulario.elemento(id_categoria, nome, ativo, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
+INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, element_name, element_attribs, element, element_reloadable, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_DIALOG_DOJO' AS nome,
 	   'NOME_FORM_BUTTON_DIALOG_DOJO' AS constante_textual, true AS ativo,
 	   (SELECT cp.id
