@@ -8,7 +8,7 @@
 * 								
 */
 
-INSERT INTO basico.modulo (id_categoria, nome, constante_textual, versao, path, instalado, ativo, xml_autoria, rowinfo)
+INSERT INTO basico.modulo (id_categoria, nome, constante_textual, constante_textual_descricao, versao, path, instalado, ativo, xml_autoria, rowinfo)
 SELECT c.id AS id_categoria, 'BASICO' AS nome,
 	   'NOME_MODULO_BASICO' AS constante_textual,
 	   'DESCRICAO_MODULO_BASICO' AS constante_textual_descricao,
