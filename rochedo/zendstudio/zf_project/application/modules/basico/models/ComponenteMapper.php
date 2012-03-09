@@ -62,16 +62,16 @@ class Basico_Model_ComponenteMapper
     public function save(Basico_Model_Componente $object)
     {
         $data = array(
-				'nome'               => $object->getNome(),
-				'descricao'          => $object->getDescricao(),
-				'componente'         => $object->getComponente(),
-				'validade_inicio'    => $object->getValidadeInicio(),
-				'validade_termino'   => $object->getValidadeTermino(),
-				'data_desativacao'   => $object->getDataDesativacao(),
-				'data_auto_reativar' => $object->getDataAutoReativar(),
-				'motivo_desativacao' => $object->getMotivoDesativacao(),
-                'id_categoria'       => $object->getCategoria(),
-        		'rowinfo'			 => $object->getRowinfo(),
+                'id_categoria'       			=> $object->getIdCategoria(),
+        		'id_template'        			=> $object->getIdTemplate(),
+				'nome'               			=> $object->getNome(),
+        		'constante_textual'  			=> $object->getConstanteTextual(),
+				'constante_textual_descricao'	=> $object->getConstanteTextualDescricao(),
+				'componente'         			=> $object->getComponente(),
+        		'ativo'							=> $object->getAtivo(),
+        		'datahora_criacao'				=> $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
+        		'rowinfo'			 			=> $object->getRowinfo(),
 
         );
 
@@ -108,16 +108,15 @@ class Basico_Model_ComponenteMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
+				->setIdCategoria($row->id_categoria)
+				->setIdTemplate($row->id_template)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
 				->setComponente($row->componente)
-				->setValidadeInicio($row->validade_inicio)
-				->setValidadeTermino($row->validade_termino)
-				->setDataDesativacao($row->data_desativacao)
-				->setDataAutoReativar($row->data_auto_reativar)
-				->setMotivoDesativacao($row->motivo_desativacao)
-                ->setCategoria($row->id_categoria)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                 ->setRowinfo($row->rowinfo);
     }
 
@@ -134,18 +133,17 @@ class Basico_Model_ComponenteMapper
 		{
 			$entry = new Basico_Model_Componente();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setComponente($row->componente)
-				->setValidadeInicio($row->validade_inicio)
-				->setValidadeTermino($row->validade_termino)
-				->setDataDesativacao($row->data_desativacao)
-				->setDataAutoReativar($row->data_auto_reativar)
-				->setMotivoDesativacao($row->motivo_desativacao)
-                ->setCategoria($row->id_categoria)
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
+					->setIdCategoria($row->id_categoria)
+					->setIdTemplate($row->id_template)
+					->setNome($row->nome)
+					->setConstanteTextual($row->constante_textual)
+					->setConstanteTextualDescricao($row->constante_textual_descricao)
+					->setComponente($row->componente)
+					->setAtivo($row->ativo)
+					->setDatahoraCriacao($row->datahora_criacao)
+					->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+	                ->setRowinfo($row->rowinfo)
+					->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -164,18 +162,17 @@ class Basico_Model_ComponenteMapper
 		{
 			$entry = new Basico_Model_Componente();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setComponente($row->componente)
-				->setValidadeInicio($row->validade_inicio)
-				->setValidadeTermino($row->validade_termino)
-				->setDataDesativacao($row->data_desativacao)
-				->setDataAutoReativar($row->data_auto_reativar)
-				->setMotivoDesativacao($row->motivo_desativacao)
-                ->setCategoria($row->id_categoria)
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
+					->setIdCategoria($row->id_categoria)
+					->setIdTemplate($row->id_template)
+					->setNome($row->nome)
+					->setConstanteTextual($row->constante_textual)
+					->setConstanteTextualDescricao($row->constante_textual_descricao)
+					->setComponente($row->componente)
+					->setAtivo($row->ativo)
+					->setDatahoraCriacao($row->datahora_criacao)
+					->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+	                ->setRowinfo($row->rowinfo)
+					->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
