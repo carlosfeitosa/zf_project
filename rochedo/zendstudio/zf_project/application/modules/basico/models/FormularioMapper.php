@@ -58,29 +58,23 @@ class Basico_Model_FormularioMapper
     public function save(Basico_Model_Formulario $object)
     {
         $data = array(
-        		'id_categoria'					=> $object->getCategoria(),
-                'id_decorator'                  => $object->getDecorator(),
-        		'id_ajuda'						=> $object->getAjuda(),
-				'id_formulario_pai'             => $object->getFormularioPai(),
+        		'id_formulario_pai'             => $object->getIdFormularioPai(),
+        		'nivel'                         => $object->getNivel(),
+        		'id_categoria'					=> $object->getIdCategoria(),
+        		'id_ajuda'						=> $object->getIdAjuda(),
 				'nome'                          => $object->getNome(),
-				'descricao'                     => $object->getDescricao(),
-				'constante_textual_titulo'      => $object->getConstanteTextualTitulo(),
-				'constante_textual_subtitulo'   => $object->getConstanteTextualSubTitulo(),
+				'constante_textual'      		=> $object->getConstanteTextual(),
+				'constante_textual_descricao'   => $object->getConstanteTextualDescricao(),
+        		'ativo'       					=> $object->getAtivo(),
 				'form_name'                     => $object->getFormName(),
 				'form_method'                   => $object->getFormMethod(),
 				'form_action'                   => $object->getFormAction(),
-				'form_target'                   => $object->getFormTarget(),
-				'form_enctype'                  => $object->getFormEncType(),
+				'form_enctype'                  => $object->getFormEnctype(),
                 'form_attribs'                  => $object->getFormAttribs(),
-				'validade_inicio'               => $object->getValidadeInicio(),
-				'validade_termino'              => $object->getValidadeTermino(),
-				'data_desativacao'              => $object->getDataDesativacao(),
-				'data_auto_reativar'            => $object->getDataAutoReativar(),
-        		//'datahora_criacao'              => $object->getDataHoraCriacao(),
-        		//'datahora_ultima_atualizacao'   => $object->getDataHoraUltimaAtualizacao(),
-				'motivo_desativacao'            => $object->getMotivoDesativacao(),
         		'ordem'							=> $object->getOrdem(),
-       			'permite_rascunho'				=> $object->getPermiteRascunho(),
+        		'permite_rascunho'				=> $object->getPermiteRascunho(),
+        		'datahora_criacao'              => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'   => $object->getDatahoraUltimaAtualizacao(),
                 'rowinfo'                       => $object->getRowinfo(),         
 
         );
@@ -118,29 +112,23 @@ class Basico_Model_FormularioMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
-        		->setCategoria($row->id_categoria)
+				->setIdFormularioPai($row->id_formulario_pai)
+				->setNivel($row->nivel)
+        		->setIdCategoria($row->id_categoria)
+        		->setIdAjuda($row->id_ajuda)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setAtivo($row->ativo)
 				->setFormName($row->form_name)
-				->setConstanteTextualTitulo($row->constante_textual_titulo)
-				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
 				->setFormMethod($row->form_method)
 				->setFormAction($row->form_action)
-				->setFormTarget($row->form_target)
-				->setFormEncType($row->form_enctype)
-				->setFormularioPai($row->id_formulario_pai)
+				->setFormEnctype($row->form_enctype)
 				->setFormAttribs($row->form_attribs)
-				->setDecorator($row->id_decorator)
-				->setValidadeInicio($row->validade_inicio)
-				->setValidadeTermino($row->validade_termino)
-				->setDataDesativacao($row->data_desativacao)
-				->setDataAutoReativar($row->data_auto_reativar)
-				//->setDataHoraCriacao($row->datahora_criacao)
-				//->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
 				->setPermiteRascunho($row->permite_rascunho)
+				//->setDatahoraCriacao($row->datahora_criacao)
+				//->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -157,29 +145,23 @@ class Basico_Model_FormularioMapper
 		{
 			$entry = new Basico_Model_Formulario();
 			$entry->setId($row->id)
-
-        		->setCategoria($row->id_categoria)
+				->setIdFormularioPai($row->id_formulario_pai)
+				->setNivel($row->nivel)
+        		->setIdCategoria($row->id_categoria)
+        		->setIdAjuda($row->id_ajuda)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setAtivo($row->ativo)
 				->setFormName($row->form_name)
-				->setConstanteTextualTitulo($row->constante_textual_titulo)
-				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
 				->setFormMethod($row->form_method)
 				->setFormAction($row->form_action)
-				->setFormTarget($row->form_target)
-				->setFormEncType($row->form_enctype)
-				->setFormularioPai($row->id_formulario_pai)
+				->setFormEnctype($row->form_enctype)
 				->setFormAttribs($row->form_attribs)
-                ->setDecorator($row->id_decorator)				
-				->setValidadeInicio($row->validade_inicio)
-				->setValidadeTermino($row->validade_termino)
-				->setDataDesativacao($row->data_desativacao)
-				->setDataAutoReativar($row->data_auto_reativar)
-				//->setDataHoraCriacao($row->datahora_criacao)
-				//->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
 				->setPermiteRascunho($row->permite_rascunho)
+				//->setDatahoraCriacao($row->datahora_criacao)
+				//->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -200,30 +182,24 @@ class Basico_Model_FormularioMapper
 		{
 			$entry = new Basico_Model_Formulario();
 			$entry->setId($row->id)
-			
-        		->setCategoria($row->id_categoria)
+				->setIdFormularioPai($row->id_formulario_pai)
+				->setNivel($row->nivel)
+        		->setIdCategoria($row->id_categoria)
+        		->setIdAjuda($row->id_ajuda)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setAtivo($row->ativo)
 				->setFormName($row->form_name)
-				->setConstanteTextualTitulo($row->constante_textual_titulo)
-				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
 				->setFormMethod($row->form_method)
 				->setFormAction($row->form_action)
-				->setFormTarget($row->form_target)
-				->setFormEncType($row->form_enctype)
-				->setFormularioPai($row->id_formulario_pai)
+				->setFormEnctype($row->form_enctype)
 				->setFormAttribs($row->form_attribs)
-                ->setDecorator($row->id_decorator)				
-				->setValidadeInicio($row->validade_inicio)
-				->setValidadeTermino($row->validade_termino)
-				->setDataDesativacao($row->data_desativacao)
-				->setDataAutoReativar($row->data_auto_reativar)
-				//->setDataHoraCriacao($row->datahora_criacao)
-				//->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setMotivoDesativacao($row->motivo_desativacao)
 				->setOrdem($row->ordem)
-				->setRowinfo($row->rowinfo)
-				->setPermiteRascunho($row->permite_rascunho)				
+				->setPermiteRascunho($row->permite_rascunho)
+				//->setDatahoraCriacao($row->datahora_criacao)
+				//->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo)				
 				->setMapper($this);
 			$entries[] = $entry;
 		}

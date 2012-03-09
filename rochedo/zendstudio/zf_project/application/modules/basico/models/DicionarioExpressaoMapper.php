@@ -57,9 +57,13 @@ class Basico_Model_DicionarioExpressaoMapper
     public function save(Basico_Model_DicionarioExpressao $object)
     {
         $data = array(
-				'constante_textual' => $object->getConstanteTextual(),
-				'traducao'          => $object->getTraducao(),
-                'id_categoria'      => $object->getCategoria(),
+        		'id_categoria'      		  => $object->getIdCategoria(),
+				'constante_textual' 		  => $object->getConstanteTextual(),
+				'traducao'         			  => $object->getTraducao(),
+                'revisao'          			  => $object->getRevisao(),
+        		'ativo'              		  => $object->getAtivo(),
+        		'datahora_criacao'  		  => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -95,9 +99,14 @@ class Basico_Model_DicionarioExpressaoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-			   ->setConstanteTextual($row->constante_textual)
-			   ->setTraducao($row->traducao)
-               ->setCategoria($row->id_categoria);
+			    ->setIdCategoria($row->id_categoria)
+        		->setConstanteTextual($row->constante_textual)
+			   	->setTraducao($row->traducao)
+			   	->setRevisao($row->revisao)
+			   	->setAtivo($row->ativo)
+			   	->setDatahoraCriacao($row->datahora_criacao)
+			   	->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			   	->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -113,10 +122,15 @@ class Basico_Model_DicionarioExpressaoMapper
 		{
 			$entry = new Basico_Model_DicionarioExpressao();
 			$entry->setId($row->id)
-				  ->setConstanteTextual($row->constante_textual)
-				  ->setTraducao($row->traducao)
-                  ->setCategoria($row->id_categoria)
-				  ->setMapper($this);
+				  	->setIdCategoria($row->id_categoria)
+        			->setConstanteTextual($row->constante_textual)
+		   			->setTraducao($row->traducao)
+			   		->setRevisao($row->revisao)
+			   		->setAtivo($row->ativo)
+			   		->setDatahoraCriacao($row->datahora_criacao)
+			   		->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			   		->setRowinfo($row->rowinfo)
+				  	->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -135,10 +149,15 @@ class Basico_Model_DicionarioExpressaoMapper
 		{
 			$entry = new Basico_Model_DicionarioExpressao();
 			$entry->setId($row->id)
-				  ->setConstanteTextual($row->constante_textual)
-				  ->setTraducao($row->traducao)
-                  ->setCategoria($row->id_categoria)
-				  ->setMapper($this);
+				  	->setIdCategoria($row->id_categoria)
+        			->setConstanteTextual($row->constante_textual)
+			   		->setTraducao($row->traducao)
+			   		->setRevisao($row->revisao)
+			   		->setAtivo($row->ativo)
+			   		->setDatahoraCriacao($row->datahora_criacao)
+			   		->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			   		->setRowinfo($row->rowinfo)
+				  	->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;

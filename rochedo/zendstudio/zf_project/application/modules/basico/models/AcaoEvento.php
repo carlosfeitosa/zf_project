@@ -1,16 +1,16 @@
 <?php
 /**
- * DicionarioExpressao model
+ * AcaoEvento model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_DicionarioExpressaoMapper
+ * @uses       Basico_Model_AcaoEventoMapper
  * @subpackage Model
  */
-class Basico_Model_DicionarioExpressao
+class Basico_Model_AcaoEvento
 {
 	/**
-	 * @var Basico_Model_DicionarioExpressaoMapper
+	 * @var Basico_Model_AcaoEventoMapper
 	 */
 	protected $_mapper;
 	
@@ -19,9 +19,13 @@ class Basico_Model_DicionarioExpressao
 	*/
 	protected $_id;
 	/**
-     * @var Integer
-     */
-    protected $_idCategoria;
+	* @var int
+	*/
+	protected $_idCategoria;
+	/**
+	 * @var String
+	 */
+	protected $_nome;
 	/**
 	 * @var String
 	 */
@@ -29,11 +33,11 @@ class Basico_Model_DicionarioExpressao
 	/**
 	 * @var String
 	 */
-	protected $_traducao;
+	protected $_constanteTextualDescricao;
 	/**
-	 * @var Boolean
+	 * @var String
 	 */
-	protected $_revisao;
+	protected $_acao;
 	/**
 	 * @var Boolean
 	 */
@@ -50,7 +54,6 @@ class Basico_Model_DicionarioExpressao
 	 * @var String
 	 */
 	protected $_rowinfo;
-    
 
 	/**
 	 * Constructor
@@ -103,7 +106,7 @@ class Basico_Model_DicionarioExpressao
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_DicionarioExpressao
+	 * @return Basico_Model_AcaoEvento
 	 */
 	public function setOptions(array $options)
 	{
@@ -123,7 +126,7 @@ class Basico_Model_DicionarioExpressao
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_DicionarioExpressao
+	* @return Basico_Model_AcaoEvento
 	*/
 	public function setId($id)
 	{
@@ -140,12 +143,12 @@ class Basico_Model_DicionarioExpressao
 	{
 		return $this->_id;
 	}
-	
+    
 	/**
-	* Set idCategoria
+	* Set entry idCategoria
 	* 
-	* @param int $idCategoria 
-	* @return Basico_Model_DicionarioExpressao
+	* @param  int $idCategoria 
+	* @return Basico_Model_AcaoEvento
 	*/
 	public function setIdCategoria($idCategoria)
 	{
@@ -154,7 +157,7 @@ class Basico_Model_DicionarioExpressao
 	}
 
 	/**
-	* Get idCategoria
+	* Retrieve entry idCategoria
 	* 
 	* @return null|int
 	*/
@@ -162,23 +165,34 @@ class Basico_Model_DicionarioExpressao
 	{
 		return $this->_idCategoria;
 	}
- 
-    /**
-     * Get categoria object
-     * @return null|Categoria
-     */
-    public function getCategoriaObject()
-    {
-        $model = new Basico_Model_Categoria();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
-        return $object;
-    }
-    
+	
+	/**
+	* Set nome
+	* 
+	* @param String $nome 
+	* @return Basico_Model_AcaoEvento
+	*/
+	public function setNome($nome)
+	{
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get nome
+	* 
+	* @return null|String
+	*/
+	public function getNome()
+	{
+		return $this->_nome;
+	}
+     
 	/**
 	* Set constanteTextual
 	* 
 	* @param String $constanteTextual 
-	* @return Basico_Model_ConstanteTextual
+	* @return Basico_Model_AcaoEvento
 	*/
 	public function setConstanteTextual($constanteTextual)
 	{
@@ -195,56 +209,56 @@ class Basico_Model_DicionarioExpressao
 	{
 		return $this->_constanteTextual;
 	}
-     
+	
 	/**
-	* Set traducao
+	* Set constanteTextualDescricao
 	* 
-	* @param String $traducao 
-	* @return Basico_Model_DicionarioExpressao
+	* @param String $constanteTextualDescricao 
+	* @return Basico_Model_AcaoEvento
 	*/
-	public function setTraducao($traducao)
+	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
-		$this->_traducao = Basico_OPController_UtilOPController::retornaValorTipado($traducao, TIPO_STRING, true);
+		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get traducao
+	* Get constanteTextualDescricao
 	* 
 	* @return null|String
 	*/
-	public function getTraducao()
+	public function getConstanteTextualDescricao()
 	{
-		return $this->_traducao;
+		return $this->_constanteTextualDescricao;
 	}
 	
 	/**
-	* Set revisao
+	* Set acao
 	* 
-	* @param Boolean $revisao 
-	* @return Basico_Model_DicionarioExpressao
+	* @param String $acao 
+	* @return Basico_Model_AcaoEvento
 	*/
-	public function setRevisao($revisao)
+	public function setAcao($acao)
 	{
-		$this->_revisao = Basico_OPController_UtilOPController::retornaValorTipado($revisao, TIPO_BOOLEAN, true);
+		$this->_acao = Basico_OPController_UtilOPController::retornaValorTipado($acao, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get revisao
+	* Get acao
 	* 
-	* @return null|Boolean
+	* @return null|String
 	*/
-	public function getRevisao()
+	public function getAcao()
 	{
-		return $this->_revisao;
+		return $this->_acao;
 	}
-
+     
 	/**
 	* Set ativo
 	* 
 	* @param Boolean $ativo 
-	* @return Basico_Model_DicionarioExpressao
+	* @return Basico_Model_AcaoEvento
 	*/
 	public function setAtivo($ativo)
 	{
@@ -261,12 +275,12 @@ class Basico_Model_DicionarioExpressao
 	{
 		return $this->_ativo;
 	}
-	
+    
 	/**
 	* Set datahoraCriacao
 	* 
 	* @param String $datahoraCriacao 
-	* @return Basico_Model_DicionarioExpressao
+	* @return Basico_Model_AcaoEvento
 	*/
 	public function setDatahoraCriacao($datahoraCriacao)
 	{
@@ -283,12 +297,12 @@ class Basico_Model_DicionarioExpressao
 	{
 		return $this->_datahoraCriacao;
 	}
-	
+     
 	/**
 	* Set datahoraUltimaAtualizacao
 	* 
 	* @param String $datahoraUltimaAtualizacao 
-	* @return Basico_Model_DicionarioExpressao
+	* @return Basico_Model_AcaoEvento
 	*/
 	public function setDatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
 	{
@@ -310,11 +324,11 @@ class Basico_Model_DicionarioExpressao
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_DicionarioExpressao
+	* @return Basico_Model_Categoria
 	*/
 	public function setRowinfo($rowinfo)
 	{
-		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo,TIPO_STRING,true);
 		return $this;
 	}
 
@@ -327,12 +341,12 @@ class Basico_Model_DicionarioExpressao
 	{
 		return $this->_rowinfo;
 	}
-	
+
 	/**
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_DicionarioExpressao
+	* @return Basico_Model_AcaoEvento
 	*/
 	public function setMapper($mapper)
 	{
@@ -343,14 +357,14 @@ class Basico_Model_DicionarioExpressao
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_DicionarioExpressaoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_AcaoEventoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_DicionarioExpressaoMapper
+	* @return Basico_Model_AcaoEventoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_DicionarioExpressaoMapper());
+			$this->setMapper(new Basico_Model_AcaoEventoMapper());
 		}
 		return $this->_mapper;
 	}
