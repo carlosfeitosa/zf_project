@@ -1,16 +1,16 @@
 <?php
 /**
- * Ajuda model
+ * AcaoAplicacaoAssocVisao model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AjudaMapper
+ * @uses       Basico_Model_AcaoAplicacaoAssocVisaoMapper
  * @subpackage Model
  */
-class Basico_Model_Ajuda
+class Basico_Model_AcaoAplicacaoAssocVisao
 {
 	/**
-	 * @var Basico_Model_AjudaMapper
+	 * @var Basico_Model_AcaoAplicacaoAssocVisaoMapper
 	 */
 	protected $_mapper;
 	
@@ -19,13 +19,13 @@ class Basico_Model_Ajuda
 	*/
 	protected $_id;
 	/**
-	 * @var int
-	 */
+	* @var int
+	*/
 	protected $_idCategoria;
 	/**
-	 * @var String
-	 */
-	protected $_nome;
+	* @var int
+	*/
+	protected $_idAcaoAplicacao;
 	/**
 	 * @var String
 	 */
@@ -34,30 +34,30 @@ class Basico_Model_Ajuda
 	 * @var String
 	 */
 	protected $_constanteTextualDescricao;
-    /**
-	 * @var String
-	 */
-	protected $_constanteTextualAjuda;
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextualHint;
+	protected $_constanteTextualTitulo;
 	/**
-	 * @var Boolean
+	 * @var String
 	 */
-	protected $_ativo;
+	protected $_constanteTextualSubTitulo;
+	/**
+	 * @var String
+	 */
+	protected $_constanteTextualMensagem;
 	/**
 	 * @var Date
 	 */
 	protected $_datahoraCriacao;
-    /**
+	/**
 	 * @var Date
 	 */
 	protected $_datahoraUltimaAtualizacao;
-    /**
-     * @var String
-     */
-    protected $_rowinfo;
+	/**
+	 * @var String
+	 */
+	protected $_rowinfo;
 
 	/**
 	 * Constructor
@@ -110,7 +110,7 @@ class Basico_Model_Ajuda
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Ajuda
+	 * @return Basico_Model_AcaoAplicacaoAssocVisao
 	 */
 	public function setOptions(array $options)
 	{
@@ -130,11 +130,11 @@ class Basico_Model_Ajuda
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -149,21 +149,21 @@ class Basico_Model_Ajuda
 	}
 	
 	/**
-	* Set idCategoria
+	* Set entry idCategoria
 	* 
-	* @param Integer $idCategoria
-	* @return Basico_Model_Ajuda
+	* @param  int $idCategoria 
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
 	public function setIdCategoria($idCategoria)
 	{
-		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria,TIPO_INTEIRO,true);
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get idCategoria
+	* Retrieve entry idCategoria
 	* 
-	* @return null|String
+	* @return null|int
 	*/
 	public function getIdCategoria()
 	{
@@ -171,36 +171,36 @@ class Basico_Model_Ajuda
 	}
 	
 	/**
-	* Set nome
+	* Set entry idAcaoAplicacao
 	* 
-	* @param String $nome
-	* @return Basico_Model_Ajuda
+	* @param  int $idAcaoAplicacao 
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
-	public function setNome($nome)
+	public function setIdAcaoAplicacao($idAcaoAplicacao)
 	{
-		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome,TIPO_STRING,true);
+		$this->_idAcaoAplicacao = Basico_OPController_UtilOPController::retornaValorTipado($idAcaoAplicacao, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get nome
+	* Retrieve entry idAcaoAplicacao
 	* 
-	* @return null|String
+	* @return null|int
 	*/
-	public function getNome()
+	public function getIdAcaoAplicacao()
 	{
-		return $this->_nome;
+		return $this->_idAcaoAplicacao;
 	}
-	
+    
 	/**
 	* Set constanteTextual
 	* 
 	* @param String $constanteTextual 
-	* @return Basico_Model_
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
 	public function setConstanteTextual($constanteTextual)
 	{
-		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual,TIPO_STRING,true);
+		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -218,11 +218,11 @@ class Basico_Model_Ajuda
 	* Set constanteTextualDescricao
 	* 
 	* @param String $constanteTextualDescricao 
-	* @return Basico_Model_
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
 	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
-		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao,TIPO_STRING,true);
+		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -235,122 +235,122 @@ class Basico_Model_Ajuda
 	{
 		return $this->_constanteTextualDescricao;
 	}
+	
+	/**
+	* Set constanteTextualTitulo
+	* 
+	* @param String $constanteTextualTitulo 
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
+	*/
+	public function setConstanteTextualTitulo($constanteTextualTitulo)
+	{
+		$this->_constanteTextualTitulo = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualTitulo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get constanteTextualTitulo
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextualTitulo()
+	{
+		return $this->_constanteTextualTitulo;
+	}
+	
+	/**
+	* Set constanteTextualSubTitulo
+	* 
+	* @param String $constanteTextualSubTitulo 
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
+	*/
+	public function setConstanteTextualSubTitulo($constanteTextualSubTitulo)
+	{
+		$this->_constanteTextualSubTitulo = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualSubTitulo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get constanteTextualSubTitulo
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextualSubTitulo()
+	{
+		return $this->_constanteTextualSubTitulo;
+	}
+	
+	/**
+	* Set constanteTextualMensagem
+	* 
+	* @param String $constanteTextualMensagem 
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
+	*/
+	public function setConstanteTextualMensagem($constanteTextualMensagem)
+	{
+		$this->_constanteTextualMensagem = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualMensagem, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get constanteTextualMensagem
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextualMensagem()
+	{
+		return $this->_constanteTextualMensagem;
+	}
     
-	/**
-	* Set constanteTextualAjuda
-	* 
-	* @param String $constanteTextualAjuda 
-	* @return Basico_Model_Ajuda
-	*/
-	public function setConstanteTextualAjuda($constanteTextualAjuda)
-	{
-		$this->_constanteTextualAjuda = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualAjuda,TIPO_STRING,true);
-		return $this;
-	}
-
-	/**
-	* Get constanteTextualAjuda
-	* 
-	* @return null|String
-	*/
-	public function getConstanteTextualAjuda()
-	{
-		return $this->_constanteTextualAjuda;
-	}
-	
-	/**
-	* Set constanteTextualHint
-	* 
-	* @param String $constanteTextualHint 
-	* @return Basico_Model_Ajuda
-	*/
-	public function setConstanteTextualHint($constanteTextualHint)
-	{
-		$this->_constanteTextualHint = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualHint,TIPO_STRING,true);
-		return $this;
-	}
-
-	/**
-	* Get constanteTextualHint
-	* 
-	* @return null|String
-	*/
-	public function getConstanteTextualHint()
-	{
-		return $this->_constanteTextualHint;
-	}
-	
-    /**
-	* Set ativo
-	* 
-	* @param Boolean $ativo
-	* @return Basico_Model_Ajuda
-	*/
-	public function setAtivo($ativo)
-	{
-		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo,TIPO_BOOLEAN,true);
-		return $this;
-	}
-
-	/**
-	* Get ativo
-	* 
-	* @return null|Boolean
-	*/
-	public function getAtivo()
-	{
-		return $this->_ativo;
-	}
-	
 	/**
 	* Set datahoraCriacao
 	* 
-	* @param Date $datahoraCriacao 
-	* @return Basico_Model_Ajuda
+	* @param String $datahoraCriacao 
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
 	public function setDatahoraCriacao($datahoraCriacao)
 	{
-		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao,TIPO_DATE,true);
+		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
 	* Get datahoraCriacao
 	* 
-	* @return null|Date
+	* @return null|String
 	*/
 	public function getDatahoraCriacao()
 	{
 		return $this->_datahoraCriacao;
 	}
-	
+     
 	/**
 	* Set datahoraUltimaAtualizacao
 	* 
-	* @param Date $datahoraUltimaAtualizacao 
-	* @return Basico_Model_Ajuda
+	* @param String $datahoraUltimaAtualizacao 
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
 	public function setDatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
 	{
-		$this->_datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaAtualizacao,TIPO_DATE,true);
+		$this->_datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaAtualizacao, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
 	* Get datahoraUltimaAtualizacao
 	* 
-	* @return null|Date
+	* @return null|String
 	*/
 	public function getDatahoraUltimaAtualizacao()
 	{
 		return $this->_datahoraUltimaAtualizacao;
 	}
-    
-    /**
+     
+	/**
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_Categoria
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -372,7 +372,7 @@ class Basico_Model_Ajuda
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_AcaoAplicacaoAssocVisao
 	*/
 	public function setMapper($mapper)
 	{
@@ -383,14 +383,14 @@ class Basico_Model_Ajuda
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AjudaMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_AcaoAplicacaoAssocVisaoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AjudaMapper
+	* @return Basico_Model_AcaoAplicacaoAssocVisaoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AjudaMapper());
+			$this->setMapper(new Basico_Model_AcaoAplicacaoAssocVisaoMapper());
 		}
 		return $this->_mapper;
 	}

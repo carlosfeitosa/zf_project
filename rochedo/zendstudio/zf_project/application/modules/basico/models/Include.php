@@ -1,16 +1,16 @@
 <?php
 /**
- * Ajuda model
+ * Include model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AjudaMapper
+ * @uses       Basico_Model_IncludeMapper
  * @subpackage Model
  */
-class Basico_Model_Ajuda
+class Basico_Model_Include
 {
 	/**
-	 * @var Basico_Model_AjudaMapper
+	 * @var Basico_Model_IncludeMapper
 	 */
 	protected $_mapper;
 	
@@ -34,26 +34,22 @@ class Basico_Model_Ajuda
 	 * @var String
 	 */
 	protected $_constanteTextualDescricao;
-    /**
-	 * @var String
-	 */
-	protected $_constanteTextualAjuda;
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextualHint;
-	/**
-	 * @var Boolean
-	 */
-	protected $_ativo;
-	/**
-	 * @var Date
-	 */
-	protected $_datahoraCriacao;
+	protected $_uri;
     /**
-	 * @var Date
-	 */
-	protected $_datahoraUltimaAtualizacao;
+     * @var Boolean
+     */
+    protected $_ativo;
+	/**
+     * @var Date
+     */
+    protected $_datahoraCriacao;
+    /**
+     * @var Date
+     */
+    protected $_datahoraUltimaAtualizacao;
     /**
      * @var String
      */
@@ -110,7 +106,7 @@ class Basico_Model_Ajuda
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Ajuda
+	 * @return Basico_Model_Include
 	 */
 	public function setOptions(array $options)
 	{
@@ -130,7 +126,7 @@ class Basico_Model_Ajuda
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_Include
 	*/
 	public function setId($id)
 	{
@@ -149,10 +145,10 @@ class Basico_Model_Ajuda
 	}
 	
 	/**
-	* Set idCategoria
+	* Set entry idCategoria
 	* 
-	* @param Integer $idCategoria
-	* @return Basico_Model_Ajuda
+	* @param  int $idCategoria 
+	* @return Basico_Model_Include
 	*/
 	public function setIdCategoria($idCategoria)
 	{
@@ -161,9 +157,9 @@ class Basico_Model_Ajuda
 	}
 
 	/**
-	* Get idCategoria
+	* Retrieve entry idCategoria
 	* 
-	* @return null|String
+	* @return null|int
 	*/
 	public function getIdCategoria()
 	{
@@ -174,7 +170,7 @@ class Basico_Model_Ajuda
 	* Set nome
 	* 
 	* @param String $nome
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_Include
 	*/
 	public function setNome($nome)
 	{
@@ -191,7 +187,7 @@ class Basico_Model_Ajuda
 	{
 		return $this->_nome;
 	}
-	
+    
 	/**
 	* Set constanteTextual
 	* 
@@ -214,11 +210,11 @@ class Basico_Model_Ajuda
 		return $this->_constanteTextual;
 	}
 	
-	/**
+    /**
 	* Set constanteTextualDescricao
 	* 
-	* @param String $constanteTextualDescricao 
-	* @return Basico_Model_
+	* @param String $constanteTextualDescricao
+	* @return Basico_Model_Include
 	*/
 	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
@@ -235,56 +231,34 @@ class Basico_Model_Ajuda
 	{
 		return $this->_constanteTextualDescricao;
 	}
-    
+
 	/**
-	* Set constanteTextualAjuda
+	* Set uri
 	* 
-	* @param String $constanteTextualAjuda 
-	* @return Basico_Model_Ajuda
+	* @param String $uri 
+	* @return Basico_Model_Include
 	*/
-	public function setConstanteTextualAjuda($constanteTextualAjuda)
+	public function setUri($uri)
 	{
-		$this->_constanteTextualAjuda = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualAjuda,TIPO_STRING,true);
+		$this->_uri = Basico_OPController_UtilOPController::retornaValorTipado($uri,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get constanteTextualAjuda
+	* Get uri
 	* 
 	* @return null|String
 	*/
-	public function getConstanteTextualAjuda()
+	public function getUri()
 	{
-		return $this->_constanteTextualAjuda;
+		return $this->_uri;
 	}
-	
+     
 	/**
-	* Set constanteTextualHint
-	* 
-	* @param String $constanteTextualHint 
-	* @return Basico_Model_Ajuda
-	*/
-	public function setConstanteTextualHint($constanteTextualHint)
-	{
-		$this->_constanteTextualHint = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualHint,TIPO_STRING,true);
-		return $this;
-	}
-
-	/**
-	* Get constanteTextualHint
-	* 
-	* @return null|String
-	*/
-	public function getConstanteTextualHint()
-	{
-		return $this->_constanteTextualHint;
-	}
-	
-    /**
 	* Set ativo
 	* 
-	* @param Boolean $ativo
-	* @return Basico_Model_Ajuda
+	* @param Boolean $ativo 
+	* @return Basico_Model_Include
 	*/
 	public function setAtivo($ativo)
 	{
@@ -306,7 +280,7 @@ class Basico_Model_Ajuda
 	* Set datahoraCriacao
 	* 
 	* @param Date $datahoraCriacao 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_Include
 	*/
 	public function setDatahoraCriacao($datahoraCriacao)
 	{
@@ -328,7 +302,7 @@ class Basico_Model_Ajuda
 	* Set datahoraUltimaAtualizacao
 	* 
 	* @param Date $datahoraUltimaAtualizacao 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_Include
 	*/
 	public function setDatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
 	{
@@ -350,7 +324,7 @@ class Basico_Model_Ajuda
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_Include
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -372,7 +346,7 @@ class Basico_Model_Ajuda
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Ajuda
+	* @return Basico_Model_Include
 	*/
 	public function setMapper($mapper)
 	{
@@ -383,14 +357,14 @@ class Basico_Model_Ajuda
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AjudaMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_IncludeMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AjudaMapper
+	* @return Basico_Model_IncludeMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AjudaMapper());
+			$this->setMapper(new Basico_Model_IncludeMapper());
 		}
 		return $this->_mapper;
 	}

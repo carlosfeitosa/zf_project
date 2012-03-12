@@ -1,14 +1,14 @@
 <?php
 /**
- * Ajuda data mapper
+ * Include data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Ajuda
+ * @uses       Basico_Model_DbTable_Include
  * @subpackage Model
  */
-class Basico_Model_AjudaMapper
+class Basico_Model_IncludeMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_AjudaMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_AjudaMapper
+     * @return Basico_Model_IncludeMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,34 +36,33 @@ class Basico_Model_AjudaMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Ajuda if no instance registered
+     * Lazy loads Basico_Model_DbTable_Include if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Ajuda');
+            $this->setDbTable('Basico_Model_DbTable_Include');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a Ajuda entry
+     * Save a Include entry
      * 
-     * @param  Basico_Model_Ajuda $object
+     * @param  Basico_Model_Include $object
      * @return void
      */
-    public function save(Basico_Model_Ajuda $object)
+    public function save(Basico_Model_Include $object)
     {
         $data = array(
-        		'id_categoria'                => $object->getIdCategoria(),
-                'nome'                        => $object->getNome(),
+                'id_categoria'                => $object->getIdCategoria(),
+        		'nome'                        => $object->getNome(),
         		'constante_textual'           => $object->getConstanteTextual(),
-                'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-                'constante_textual_ajuda'     => $object->getConstanteTextualAjuda(),
-				'constante_textual_hint'      => $object->getConstanteTextualHint(),
-				'ativo'                       => $object->getAtivo(),
+				'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+				'uri'                         => $object->getUri(),
+        		'ativo'						  => $object->getAtivo(),
         		'datahora_criacao'			  => $object->getDatahoraCriacao(),
         		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
                 'rowinfo'                     => $object->getRowinfo(),
@@ -79,23 +78,23 @@ class Basico_Model_AjudaMapper
     }
     
 	/**
-	* Delete a Ajuda entry
-	* @param Basico_Model_Ajuda $object
+	* Delete a Include entry
+	* @param Basico_Model_Include $object
 	* @return void
 	*/
-	public function delete(Basico_Model_Ajuda $object)
+	public function delete(Basico_Model_Include $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a Ajuda entry by id
+     * Find a Include entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Ajuda $object 
+     * @param  Basico_Model_Include $object 
      * @return void
      */
-    public function find($id, Basico_Model_Ajuda $object)
+    public function find($id, Basico_Model_Include $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -107,16 +106,15 @@ class Basico_Model_AjudaMapper
                 ->setNome($row->nome)
                 ->setConstanteTextual($row->constante_textual)
                 ->setConstanteTextualDescricao($row->constante_textual_descricao)
-                ->setConstanteTextualAjuda($row->constante_textual_ajuda)
-				->setConstanteTextualHint($row->constante_textual_hint)
-				->setAtivo($row->ativo)
+                ->setUri($row->uri)
+                ->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRowinfo($row->rowinfo);
+				->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all ajuda entries
+	 * Fetch all Include entries
 	 * 
 	 * @return array
 	 */
@@ -126,18 +124,17 @@ class Basico_Model_AjudaMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Ajuda();
+			$entry = new Basico_Model_Include();
 			$entry->setId($row->id)
                 ->setIdCategoria($row->id_categoria)
                 ->setNome($row->nome)
                 ->setConstanteTextual($row->constante_textual)
                 ->setConstanteTextualDescricao($row->constante_textual_descricao)
-                ->setConstanteTextualAjuda($row->constante_textual_ajuda)
-				->setConstanteTextualHint($row->constante_textual_hint)
-				->setAtivo($row->ativo)
+                ->setUri($row->uri)
+                ->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRowinfo($row->rowinfo)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -145,7 +142,7 @@ class Basico_Model_AjudaMapper
 	}
 	
 	/**
-	 * Fetch all ajuda entries
+	 * Fetch all Include entries
 	 * 
 	 * @return array
 	 */
@@ -155,18 +152,17 @@ class Basico_Model_AjudaMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Ajuda();
+			$entry = new Basico_Model_Include();
 			$entry->setId($row->id)
                 ->setIdCategoria($row->id_categoria)
                 ->setNome($row->nome)
                 ->setConstanteTextual($row->constante_textual)
                 ->setConstanteTextualDescricao($row->constante_textual_descricao)
-                ->setConstanteTextualAjuda($row->constante_textual_ajuda)
-				->setConstanteTextualHint($row->constante_textual_hint)
-				->setAtivo($row->ativo)
+                ->setUri($row->uri)
+                ->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRowinfo($row->rowinfo)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
