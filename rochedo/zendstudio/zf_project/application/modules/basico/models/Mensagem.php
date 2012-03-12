@@ -10,55 +10,51 @@
 class Basico_Model_Mensagem
 {
 	/**
-	* @var int
-	*/
-	protected $_id;
+	 * @var Basico_Model_MensagemMapper
+	 */
+	protected $_mapper;
 	
 	/**
 	* @var int
 	*/
-	protected $_categoria;
-
+	protected $_id;
 	/**
-	 * @var Basico_Model_MensagemMapper
-	 */
-	protected $_mapper;
-
+	* @var int
+	*/
+	protected $_idCategoria;
+	/**
+	* @var int
+	*/
+	protected $_idGenericoProprietario;
 	/**
 	 * @var String
 	 */
 	protected $_remetente;
-	
-	/**
-	 * @var String
-	 */
-	protected $_remetenteNome;
-	
 	/**
 	 * @var String
 	 */
 	protected $_destinatarios;
-	
 	/**
 	 * @var String
 	 */
 	protected $_assunto;
 	/**
-	 * @var Date
-	 */
-	protected $_dataHoraMensagem;
-	/**
-	 * 
-	 * @var Date
-	 */
-	protected $_dataHoraEnvio;
-	/**
 	 * @var String
 	 */
 	protected $_mensagem;
-	
 	/**
-	 * 
+	 * @var Date
+	 */
+	protected $_datahoraEnvio;
+	/**
+	 * @var Date
+	 */
+	protected $_datahoraCriacao;
+	/**
+	 * @var Date
+	 */
+	protected $_datahoraUltimaAtualizacao;
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -129,12 +125,92 @@ class Basico_Model_Mensagem
 		}
 		return $this;
 	}
+
+	/**
+	* Set entry id
+	* 
+	* @param  int $id 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setId($id)
+	{
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry id
+	* 
+	* @return null|int
+	*/
+	public function getId()
+	{
+		return $this->_id;
+	}
+	
+	/**
+	* Set entry idCategoria
+	* 
+	* @param  int $idCategoria 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setIdCategoria($idCategoria)
+	{
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+	
+    /**
+	* Retrieve entry idCategoria
+	* 
+	* @return null|int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+
+    /**
+     * Get categoria object
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+
     
+    
+    
+	/**
+	* Set entry idGenericoProprietario
+	* 
+	* @param  int $idGenericoProprietario
+	* @return Basico_Model_Mensagem
+	*/
+	public function setIdGenericoProprietario($idGenericoProprietario)
+	{
+		$this->_idGenericoProprietario = Basico_OPController_UtilOPController::retornaValorTipado($idGenericoProprietario, TIPO_INTEIRO, true);
+		return $this;
+	}
+	
+    /**
+	* Retrieve entry idGenericoProprietario
+	* 
+	* @return null|int
+	*/
+	public function getIdGenericoProprietario()
+	{
+		return $this->_idGenericoProprietario;
+	}
+ 
 	/**
 	* Set remetente
 	* 
 	* @param String $remetente 
-	* @return Basico_Model_Remetente
+	* @return Basico_Model_Mensagem
 	*/
 	public function setRemetente($remetente)
 	{
@@ -151,34 +227,12 @@ class Basico_Model_Mensagem
 	{
 		return $this->_remetente;
 	}
-	
-/**
-	* Set remetenteNome
-	* 
-	* @param String $remetenteNome 
-	* @return Basico_Model_Remetente
-	*/
-	public function setRemetenteNome($remetenteNome)
-	{
-		$this->_remetenteNome = Basico_OPController_UtilOPController::retornaValorTipado($remetenteNome, TIPO_STRING, true);
-		return $this;
-	}
 
 	/**
-	* Get remetenteNome
+	* Set destinatarios
 	* 
-	* @return null|String
-	*/
-	public function getRemetenteNome()
-	{
-		return $this->_remetenteNome;
-	}
-     
-	/**
-	* Set destinatario
-	* 
-	* @param String $destinatario 
-	* @return Basico_Model_Destinatario
+	* @param String $destinatarios 
+	* @return Basico_Model_Mensagem
 	*/
 	public function setDestinatarios($destinatarios)
 	{
@@ -190,7 +244,7 @@ class Basico_Model_Mensagem
 	}
 
 	/**
-	* Get destinatario string
+	* Get destinatarios string
 	* 
 	* @return null|String
 	*/
@@ -211,25 +265,10 @@ class Basico_Model_Mensagem
 	}
 
 	/**
-	 * Retorna um array contendo os objetos PessoasPerfisMensagensCategorias relacionado a mensagem
-	 * 
-	 * @return Array|null
-	 */
-	public function getPessoasPerfisMensagensCategoriasObjects()
-	{
-		// recuperando modelo
-		$model = new Basico_Model_PessoasPerfisMensagensCategorias();
-		// recuperando objetos
-		$objetosPessoasPerfisMensagensCategorias = Basico_OPController_PersistenceOPController::bdObjectFetchList($model, "id_mensagem = {$this->_id}");
-		// retornando objetos
-		return $objetosPessoasPerfisMensagensCategorias;
-	}
-
-	/**
 	* Set assunto
 	* 
 	* @param String $assunto 
-	* @return Basico_Model_Assunto
+	* @return Basico_Model_Mensagem
 	*/
 	public function setAssunto($assunto)
 	{
@@ -245,61 +284,6 @@ class Basico_Model_Mensagem
 	public function getAssunto()
 	{
 		return $this->_assunto;
-	}
-     
-	/**
-	* Set dataHoraMensagem
-	* 
-	* @param String $dataHoraMensagem 
-	* @return Basico_Model_Mensagem
-	*/
-	public function setDataHoraMensagem($dataHoraMensagem)
-	{
-		$this->_dataHoraMensagem = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraMensagem, TIPO_DATE, true);
-		return $this;
-	}
-
-	/**
-	* Get dataHoraMensagem
-	* 
-	* @return null|String
-	*/
-	public function getDataHoraMensagem()
-	{
-		return $this->_dataHoraMensagem;
-	}
-	
-    /**
-	* Set dataHoraEnvio
-	* 
-	* @param String $dataHoraEnvio 
-	* @return Basico_Model_Mensagem
-	*/
-	public function setDataHoraEnvio($dataHoraEnvio)
-	{
-		$this->_dataHoraEnvio = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraEnvio, TIPO_DATE, true);
-		return $this;
-	}
-
-	/**
-	* Get dataHoraEnvio
-	* 
-	* @return null|String
-	*/
-	public function getDataHoraEnvio()
-	{
-		return $this->_dataHoraEnvio;
-	}
-
-	/**
-	 * Retorna se a mensagem foi enviada ou nao
-	 * 
-	 * @return Boolean
-	 */
-	public function getEnviada()
-	{
-		// retornando se a mensagem possui data-hora de envio e possui 2 ou mais pessoas associadas em PessoasPerfisMensagensCategorias
-		return (($this->_dataHoraEnvio) and (count($this->getPessoasPerfisMensagensCategoriasObjects())) >= 2);
 	}
 
 	/**
@@ -323,52 +307,73 @@ class Basico_Model_Mensagem
 	{
 		return $this->_mensagem;
 	}
- 
-	/**
-	* Set entry id
+
+    /**
+	* Set datahoraEnvio
 	* 
-	* @param  int $id 
+	* @param String $datahoraEnvio 
 	* @return Basico_Model_Mensagem
 	*/
-	public function setId($id)
+	public function setDatahoraEnvio($datahoraEnvio)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_datahoraEnvio = Basico_OPController_UtilOPController::retornaValorTipado($datahoraEnvio, TIPO_DATE, true);
 		return $this;
 	}
-	
 
 	/**
-	* Retrieve entry id
+	* Get datahoraEnvio
 	* 
-	* @return null|int
+	* @return null|String
 	*/
-	public function getId()
+	public function getDatahoraEnvio()
 	{
-		return $this->_id;
+		return $this->_datahoraEnvio;
 	}
-	
+
 	/**
-	* Set entry idCategoria
+	* Set datahoraCriacao
 	* 
-	* @param  int $idCategoria 
+	* @param String $datahoraCriacao 
 	* @return Basico_Model_Mensagem
 	*/
-	public function setCategoria($categoria)
+	public function setDatahoraCriacao($datahoraCriacao)
 	{
-		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_DATE, true);
 		return $this;
 	}
-	
-    /**
-	* Retrieve entry idCategoria
+
+	/**
+	* Get datahoraCriacao
 	* 
-	* @return null|int
+	* @return null|String
 	*/
-	public function getCategoria()
+	public function getDatahoraCriacao()
 	{
-		return $this->_categoria;
+		return $this->_datahoraCriacao;
 	}
-	
+
+	/**
+	* Set datahoraUltimaAtualizacao
+	* 
+	* @param String $datahoraUltimaAtualizacao 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setDatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
+	{
+		$this->_datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaAtualizacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get datahoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDatahoraUltimaAtualizacao()
+	{
+		return $this->_datahoraUltimaAtualizacao;
+	}
+
 	/**
 	* Set entry idCategoria
 	* 
@@ -390,7 +395,18 @@ class Basico_Model_Mensagem
 	{
 		return $this->_rowinfo;
 	}
-	
+
+	/**
+	 * Retorna se a mensagem foi enviada ou nao
+	 * 
+	 * @return Boolean
+	 */
+	public function getEnviada()
+	{
+		// retornando se a mensagem possui data-hora de envio e possui 2 ou mais pessoas associadas em PessoasPerfisMensagensCategorias
+		return (($this->_datahoraEnvio) and (count($this->getPessoasPerfisMensagensCategoriasObjects())) >= 2);
+	}
+
 	/**
 	* Set data mapper
 	* 
@@ -416,5 +432,20 @@ class Basico_Model_Mensagem
 			$this->setMapper(new Basico_Model_MensagemMapper());
 		}
 		return $this->_mapper;
+	}
+	
+	/**
+	 * Retorna um array contendo os objetos PessoasPerfisMensagensCategorias relacionado a mensagem
+	 * 
+	 * @return Array|null
+	 */
+	public function getPessoasPerfisMensagensCategoriasObjects()
+	{
+		// recuperando modelo
+		$model = new Basico_Model_PessoasPerfisMensagensCategorias();
+		// recuperando objetos
+		$objetosPessoasPerfisMensagensCategorias = Basico_OPController_PersistenceOPController::bdObjectFetchList($model, "id_mensagem = {$this->_id}");
+		// retornando objetos
+		return $objetosPessoasPerfisMensagensCategorias;
 	}
 }

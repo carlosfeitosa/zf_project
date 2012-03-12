@@ -19,7 +19,7 @@ class Basico_Model_DbTable_LoginTest extends PHPUnit_Framework_TestCase {
 		// TODO Auto-generated Basico_Model_DbTable_LoginTest::setUp()
 		
 
-		$this->Basico_Model_DbTable_Login = new Basico_Model_DbTable_Login(/* parameters */);
+		$this->Basico_Model_DbTable_Login = new Basico_Model_DbTable_PessoaLogin(/* parameters */);
 	
 	}
 	

@@ -1,14 +1,14 @@
 <?php
 /**
- * TemplateFormulario data mapper
+ * FormularioAssocclTemplate data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_TemplateFormulario
+ * @uses       Basico_Model_DbTable_FormularioAssocclTemplate
  * @subpackage Model
  */
-class Basico_Model_TemplateFormularioMapper
+class Basico_Model_FormularioAssocclTemplateMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_TemplateFormularioMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_TemplateFormularioMapper
+     * @return Basico_Model_FormularioAssocclTemplateMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_TemplateFormularioMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_TemplateFormulario if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormularioAssocclTemplate if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_TemplateFormulario');
+            $this->setDbTable('Basico_Model_DbTable_FormularioAssocclTemplate');
         }
         return $this->_dbTable;
     }
@@ -51,14 +51,15 @@ class Basico_Model_TemplateFormularioMapper
     /**
      * Save a LearningBasket entry
      * 
-     * @param  Basico_Model_TemplateFormulario $object
+     * @param  Basico_Model_FormularioAssocclTemplate $object
      * @return void
      */
-    public function save(Basico_Model_TemplateFormulario $object)
+    public function save(Basico_Model_FormularioAssocclTemplate $object)
     {
         $data = array(
-                'id_template' => $object->getTemplate(),
-                'id_formulario' => $object->getFormulario(),
+                'id_template' => $object->getIdTemplate(),
+                'id_formulario' => $object->getIdFormulario(),
+        		'datahora_criacao' => $object->getDataHoraCriacao(),
                 'rowinfo'    => $object->getRowinfo(),
         );
 
@@ -75,7 +76,7 @@ class Basico_Model_TemplateFormularioMapper
     * @param Basico_Model_TemplateFormulario $object
     * @return void
     */
-    public function delete(Basico_Model_TemplateFormulario $object)
+    public function delete(Basico_Model_FormularioAssocclTemplate $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
@@ -84,10 +85,10 @@ class Basico_Model_TemplateFormularioMapper
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_TemplateFormulario $object 
+     * @param  Basico_Model_FormularioAssocclTemplate $object 
      * @return void
      */
-    public function find($id, Basico_Model_TemplateFormulario $object)
+    public function find($id, Basico_Model_FormularioAssocclTemplate $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -95,13 +96,14 @@ class Basico_Model_TemplateFormularioMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setTemplate($row->id_template)
-               ->setFormulario($row->id_formulario)
+               ->setIdTemplate($row->id_template)
+               ->setIdFormulario($row->id_formulario)
+               ->setDatahoraCriacao($row->datahora_criacao)
                ->setRowinfo($row->rowinfo);
     }
 
     /**
-     * Fetch all TemplateFormulario entries
+     * Fetch all FormularioAssocclTemplate entries
      * 
      * @return array
      */
@@ -111,10 +113,11 @@ class Basico_Model_TemplateFormularioMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_TemplateFormulario();
+            $entry = new Basico_Model_FormularioAssocclTemplate();
             $entry->setId($row->id)
-                ->setTemplate($row->id_template)
-                ->setFormulario($row->id_formulario)
+                ->setIdTemplate($row->id_template)
+                ->setIdFormulario($row->id_formulario)
+                ->setDatahoraCriacao($row->datahora_criacao)
                 ->setRowinfo($row->rowinfo)
                 ->setMapper($this);
             $entries[] = $entry;
@@ -133,10 +136,11 @@ class Basico_Model_TemplateFormularioMapper
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_TemplateFormulario();
+            $entry = new Basico_Model_FormularioAssocclTemplate();
             $entry->setId($row->id)
-                  ->setTemplate($row->id_template)
-                  ->setFormulario($row->id_formulario)
+                  ->setIdTemplate($row->id_template)
+                  ->setIdFormulario($row->id_formulario)
+                  ->setDatahoraCriacao($row->datahora_criacao)
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
             $entries[] = $entry;

@@ -1,16 +1,16 @@
 <?php
 /**
- * AcaoEvento model
+ * CategoriaAssocEventoAcao model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AcaoEventoMapper
+ * @uses       Basico_Model_CategoriaAssocEventoAcao
  * @subpackage Model
  */
-class Basico_Model_AcaoEvento
+class Basico_Model_CategoriaAssocEventoAcao
 {
 	/**
-	 * @var Basico_Model_AcaoEventoMapper
+	 * @var Basico_Model_CategoriaAssocEventoAcaoMapper
 	 */
 	protected $_mapper;
 	
@@ -25,31 +25,19 @@ class Basico_Model_AcaoEvento
 	/**
 	 * @var String
 	 */
-	protected $_nome;
+	protected $_tagAbertura;
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextual;
+	protected $_tagFechamento;
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextualDescricao;
-	/**
-	 * @var String
-	 */
-	protected $_acao;
-	/**
-	 * @var Boolean
-	 */
-	protected $_ativo;
+	protected $_delimitador;
 	/**
 	 * @var Date
 	 */
 	protected $_datahoraCriacao;
-	/**
-	 * @var Date
-	 */
-	protected $_datahoraUltimaAtualizacao;
 	/**
 	 * @var String
 	 */
@@ -106,7 +94,7 @@ class Basico_Model_AcaoEvento
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_AcaoEvento
+	 * @return Basico_Model_CategoriaAssocEventoAcao
 	 */
 	public function setOptions(array $options)
 	{
@@ -126,7 +114,7 @@ class Basico_Model_AcaoEvento
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AcaoEvento
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
 	public function setId($id)
 	{
@@ -148,7 +136,7 @@ class Basico_Model_AcaoEvento
 	* Set entry idCategoria
 	* 
 	* @param  int $idCategoria 
-	* @return Basico_Model_AcaoEvento
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
 	public function setIdCategoria($idCategoria)
 	{
@@ -167,120 +155,76 @@ class Basico_Model_AcaoEvento
 	}
 	
 	/**
-	* Set nome
+	* Set tag abertura
 	* 
-	* @param String $nome 
-	* @return Basico_Model_AcaoEvento
+	* @param String $tagAbertura 
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
-	public function setNome($nome)
+	public function setTagAbertura($tagAbertura)
 	{
-		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome, TIPO_STRING, true);
+		$this->_tagAbertura = Basico_OPController_UtilOPController::retornaValorTipado($tagAbertura, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get nome
+	* Get tag abertura
 	* 
 	* @return null|String
 	*/
-	public function getNome()
+	public function getTagAbertura()
 	{
-		return $this->_nome;
+		return $this->_tagAbertura;
 	}
      
 	/**
-	* Set constanteTextual
+	* Set tag fechamento
 	* 
-	* @param String $constanteTextual 
-	* @return Basico_Model_AcaoEvento
+	* @param String $tagFechamento 
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
-	public function setConstanteTextual($constanteTextual)
+	public function setTagFechamento($tagFechamento)
 	{
-		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
+		$this->_tagFechamento = Basico_OPController_UtilOPController::retornaValorTipado($tagFechamento, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get constanteTextual
+	* Get tag fechamento
 	* 
 	* @return null|String
 	*/
-	public function getConstanteTextual()
+	public function getTagFechamento()
 	{
-		return $this->_constanteTextual;
+		return $this->_tagFechamento;
 	}
 	
 	/**
-	* Set constanteTextualDescricao
+	* Set delimitador
 	* 
-	* @param String $constanteTextualDescricao 
-	* @return Basico_Model_AcaoEvento
+	* @param String $delimitador 
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
-	public function setConstanteTextualDescricao($constanteTextualDescricao)
+	public function setDelimitador($delimitador)
 	{
-		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
+		$this->_delimitador = Basico_OPController_UtilOPController::retornaValorTipado($delimitador, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get constanteTextualDescricao
+	* Get delimitador
 	* 
 	* @return null|String
 	*/
-	public function getConstanteTextualDescricao()
+	public function getDelimitador()
 	{
-		return $this->_constanteTextualDescricao;
-	}
-	
-	/**
-	* Set acao
-	* 
-	* @param String $acao 
-	* @return Basico_Model_AcaoEvento
-	*/
-	public function setAcao($acao)
-	{
-		$this->_acao = Basico_OPController_UtilOPController::retornaValorTipado($acao, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get acao
-	* 
-	* @return null|String
-	*/
-	public function getAcao()
-	{
-		return $this->_acao;
-	}
-     
-	/**
-	* Set ativo
-	* 
-	* @param Boolean $ativo 
-	* @return Basico_Model_AcaoEvento
-	*/
-	public function setAtivo($ativo)
-	{
-		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
-		return $this;
-	}
-
-	/**
-	* Get ativo
-	* 
-	* @return null|Boolean
-	*/
-	public function getAtivo()
-	{
-		return $this->_ativo;
+		return $this->_delimitador;
 	}
     
 	/**
 	* Set datahoraCriacao
 	* 
 	* @param String $datahoraCriacao 
-	* @return Basico_Model_AcaoEvento
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
 	public function setDatahoraCriacao($datahoraCriacao)
 	{
@@ -297,34 +241,12 @@ class Basico_Model_AcaoEvento
 	{
 		return $this->_datahoraCriacao;
 	}
-     
-	/**
-	* Set datahoraUltimaAtualizacao
-	* 
-	* @param String $datahoraUltimaAtualizacao 
-	* @return Basico_Model_AcaoEvento
-	*/
-	public function setDatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
-	{
-		$this->_datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaAtualizacao, TIPO_DATE, true);
-		return $this;
-	}
-
-	/**
-	* Get datahoraUltimaAtualizacao
-	* 
-	* @return null|String
-	*/
-	public function getDatahoraUltimaAtualizacao()
-	{
-		return $this->_datahoraUltimaAtualizacao;
-	}
 	
 	/**
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Categoria
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -346,7 +268,7 @@ class Basico_Model_AcaoEvento
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_AcaoEvento
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
 	public function setMapper($mapper)
 	{
@@ -357,14 +279,14 @@ class Basico_Model_AcaoEvento
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AcaoEventoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_CategoriaAssocEventoAcao instance if no mapper registered.
 	* 
-	* @return Basico_Model_AcaoEventoMapper
+	* @return Basico_Model_CategoriaAssocEventoAcao
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_CategoriaAssocEventoAcaoMapper());
+			$this->setMapper(new Basico_Model_CategoriaAssocEventoAcao());
 		}
 		return $this->_mapper;
 	}

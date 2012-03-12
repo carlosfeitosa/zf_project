@@ -57,16 +57,20 @@ class Basico_Model_ModuloMapper
     public function save(Basico_Model_Modulo $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-				'versao'   => $object->getVersao(),
-				'path'   => $object->getPath(),
-				'instalado'   => $object->getInstalado(),
-				'ativo'   => $object->getAtivo(),
-				'data_depreciacao'   => $object->getDataDepreciacao(),
-				'xml_autoria'   => $object->getXmlAutoria(),
-                'id_modulo_pai'   => $object->getModuloPai(),
-                'rowinfo'     => $object->getRowinfo(),
+        		'id_modulo_pai' => $object->getIdModuloPai(),
+        		'id_categoria' => $object->getIdCategoria(),
+				'nome' => $object->getNome(),
+				'constante_textual' => $object->getConstanteTextual(),
+				'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+				'versao' => $object->getVersao(),
+				'path' => $object->getPath(),
+				'instalado' => $object->getInstalado(),
+				'ativo' => $object->getAtivo(),
+				'data_depreciacao' => $object->getDataDepreciacao(),
+				'xml_autoria' => $object->getXmlAutoria(),
+        		'datahora_criacao' => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),        		
+                'rowinfo' => $object->getRowinfo(),
 
         );
 
@@ -103,16 +107,19 @@ class Basico_Model_ModuloMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
+				->setIdModuloPai($row->id_modulo_pai)
+				->setIdCategoria($row->id_categoria)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextual($row->constate_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
 				->setVersao($row->versao)
 				->setPath($row->path)
 				->setInstalado($row->instalado)
 				->setAtivo($row->ativo)
 				->setDataDepreciacao($row->data_depreciacao)
 				->setXmlAutoria($row->xml_autoria)
-                ->setModuloPai($row->id_modulo_pai)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                 ->setRowinfo($row->rowinfo);
     }
 
@@ -129,18 +136,22 @@ class Basico_Model_ModuloMapper
 		{
 			$entry = new Basico_Model_Modulo();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setVersao($row->versao)
-				->setPath($row->path)
-				->setInstalado($row->instalado)
-				->setAtivo($row->ativo)
-				->setDataDepreciacao($row->data_depreciacao)
-				->setXmlAutoria($row->xml_autoria)
-                ->setModuloPai($row->id_modulo_pai)
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
+					->setIdModuloPai($row->id_modulo_pai)
+					->setIdModuloPai($row->id_modulo_pai)
+					->setIdCategoria($row->id_categoria)
+					->setNome($row->nome)
+					->setConstanteTextual($row->constate_textual)
+					->setConstanteTextualDescricao($row->constante_textual_descricao)
+					->setVersao($row->versao)
+					->setPath($row->path)
+					->setInstalado($row->instalado)
+					->setAtivo($row->ativo)
+					->setDataDepreciacao($row->data_depreciacao)
+					->setXmlAutoria($row->xml_autoria)
+					->setDatahoraCriacao($row->datahora_criacao)
+					->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                	->setRowinfo($row->rowinfo)
+                	->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -159,18 +170,21 @@ class Basico_Model_ModuloMapper
 		{
 			$entry = new Basico_Model_Modulo();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setVersao($row->versao)
-				->setPath($row->path)
-				->setInstalado($row->instalado)
-				->setAtivo($row->ativo)
-				->setDataDepreciacao($row->data_depreciacao)
-				->setXmlAutoria($row->xml_autoria)
-                ->setModuloPai($row->id_modulo_pai)
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
+					->setIdModuloPai($row->id_modulo_pai)
+					->setIdCategoria($row->id_categoria)
+					->setNome($row->nome)
+					->setConstanteTextual($row->constate_textual)
+					->setConstanteTextualDescricao($row->constante_textual_descricao)
+					->setVersao($row->versao)
+					->setPath($row->path)
+					->setInstalado($row->instalado)
+					->setAtivo($row->ativo)
+					->setDataDepreciacao($row->data_depreciacao)
+					->setXmlAutoria($row->xml_autoria)
+					->setDatahoraCriacao($row->datahora_criacao)
+					->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                	->setRowinfo($row->rowinfo)
+					->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;

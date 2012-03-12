@@ -1,11 +1,11 @@
 <?php
 /**
- * AcaoEvento data mapper
+ * CategoriaAssocEventoAcao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_AcaoEvento
+ * @uses       Basico_Model_DbTable_CategoriaAssocEventoAcao
  * @subpackage Model
  */
 class Basico_Model_CategoriaAssocEventoAcaoMapper
@@ -19,7 +19,7 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_AcaoEventoMapper
+     * @return Basico_Model_CategoriaAssocEventoAcaoMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,14 +36,14 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_AcaoEvento if no instance registered
+     * Lazy loads Basico_Model_DbTable_CategoriaAssocEventoAcao if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_AcaoEvento');
+            $this->setDbTable('Basico_Model_DbTable_CategoriaAssocEventoAcao');
         }
         return $this->_dbTable;
     }
@@ -51,21 +51,18 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
     /**
      * Save a AcaoEvento entry
      * 
-     * @param  Basico_Model_AcaoEvento $object
+     * @param  Basico_Model_CategoriaAssocEventoAcao $object
      * @return void
      */
     public function save(Basico_Model_CategoriaAssocEventoAcao $object)
     {
         $data = array(
-        		'id_categoria'         		  => $object->getIdCategoria(),
-				'nome'           			  => $object->getNome(),
-				'constante_textual'           => $object->getConstanteTextual(),
-        		'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-				'acao'                		  => $object->getAcao(),
-        		'ativo'                		  => $object->getAtivo(),
-				'datahora_criacao' 			  => $object->getDatahoraCriacao(),
-				'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                'rowinfo'              		  => $object->getRowinfo(),
+        		'id_categoria'		=> $object->getIdCategoria(),
+				'tag_abertura'		=> $object->getTagAbertura(),
+				'tag_fechamento'	=> $object->getTagFechamento(),
+        		'delimitador'		=> $object->getDelimitador(),
+				'datahora_criacao'	=> $object->getDatahoraCriacao(),
+                'rowinfo'			=> $object->getRowinfo(),
 
         );
 
@@ -78,8 +75,8 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
     }
     
 	/**
-	* Delete a AcaoEvento entry
-	* @param Basico_Model_AcaoEvento $object
+	* Delete a CategoriaAssocEventoAcao entry
+	* @param Basico_Model_CategoriaAssocEventoAcao $object
 	* @return void
 	*/
 	public function delete(Basico_Model_CategoriaAssocEventoAcao $object)
@@ -88,10 +85,10 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
 	}
 
     /**
-     * Find a AcaoEvento entry by id
+     * Find a CategoriaAssocEventoAcao entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_AcaoEvento $object 
+     * @param  Basico_Model_CategoriaAssocEventoAcao $object 
      * @return void
      */
     public function find($id, Basico_Model_CategoriaAssocEventoAcao $object)
@@ -103,18 +100,15 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
         $row = $result->current();
         $object->setId($row->id)
 				->setIdCategoria($row->id_categoria)
-				->setNome($row->nome)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setAcao($row->acao)
-				->setAtivo($row->ativo)
+				->setTagAbertura($row->tag_abertura)
+				->setTagFechamento($row->tag_fechamento)
+				->setDelimitador($row->delimitador)
 				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all AcaoEvento entries
+	 * Fetch all CategoriaAssocEventoAcao entries
 	 * 
 	 * @return array
 	 */
@@ -127,13 +121,10 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
 			$entry = new Basico_Model_CategoriaAssocEventoAcao();
 			$entry->setId($row->id)
 				->setIdCategoria($row->id_categoria)
-				->setNome($row->nome)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setAcao($row->acao)
-				->setAtivo($row->ativo)
+				->setTagAbertura($row->tag_abertura)
+				->setTagFechamento($row->tag_fechamento)
+				->setDelimitador($row->delimitador)
 				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -142,7 +133,7 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
 	}
 	
 	/**
-	 * Fetch all AcaoEvento entries
+	 * Fetch all CategoriaAssocEventoAcao entries
 	 * 
 	 * @return array
 	 */
@@ -155,13 +146,10 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper
 			$entry = new Basico_Model_CategoriaAssocEventoAcao();
 			$entry->setId($row->id)
 				->setIdCategoria($row->id_categoria)
-				->setNome($row->nome)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setAcao($row->acao)
-				->setAtivo($row->ativo)
+				->setTagAbertura($row->tag_abertura)
+				->setTagFechamento($row->tag_fechamento)
+				->setDelimitador($row->delimitador)
 				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

@@ -1,35 +1,36 @@
 <?php
 /**
- * TemplateFormulario model
+ * FormularioAssocclTemplate model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_TemplateFormularioMapper
+ * @uses       Basico_Model_FormularioAssocclTemplateMapper
  * @subpackage Model
  */
-class Basico_Model_TemplateFormulario
+class Basico_Model_FormularioAssocclTemplate
 {
-    /**
-    * @var int
-    */
-    protected $_id;
-
     /**
      * @var Basico_Model_TemplateFormularioMapper
      */
     protected $_mapper;
-
+	
+	/**
+    * @var int
+    */
+    protected $_id;
     /**
-     * @var Template
+     * @var idTemplate
      */
-    protected $_template;
-    
+    protected $_idTemplate;
     /**
-     * @var Formulario
+     * @var idFormulario
      */
-    protected $_formulario;
-    
+    protected $_idFormulario;
     /**
+	 * @var String
+	 */
+	protected $_dataHoraCriacao;
+	/**
 	 * @var String
 	 */
 	protected $_rowinfo;
@@ -85,7 +86,7 @@ class Basico_Model_TemplateFormulario
      * Set object state
      * 
      * @param  array $options 
-     * @return Basico_Model_TemplateFormulario
+     * @return Basico_Model_FormularioAssocclTemplate
      */
     public function setOptions(array $options)
     {
@@ -102,77 +103,10 @@ class Basico_Model_TemplateFormulario
     }
     
     /**
-    * Set template
-    * 
-    * @param int $ 
-    * @return Basico_Model_Template
-    */
-    public function setTemplate($template)
-    {
-        $this->_template = Basico_OPController_UtilOPController::retornaValorTipado($template, TIPO_INTEIRO, true);
-        return $this;
-    }
-
-    /**
-    * Get template
-    * 
-    * @return null|int
-    */
-    public function getTemplate()
-    {
-        return $this->_template;
-    }
- 
-    /**
-     * Get template object
-     * @return null|Template
-     */
-    public function getTemplateObject()
-    {
-        $model = new Basico_Model_Template();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_template);
-        return $object;
-    }
-    
-    /**
-    * Set formulario
-    * 
-    * @param int $ 
-    * @return Basico_Model_Formulario
-    */
-    public function setFormulario($formulario)
-    {
-        $this->_formulario = Basico_OPController_UtilOPController::retornaValorTipado($formulario, TIPO_INTEIRO, true);
-        return $this;
-    }
-
-    /**
-    * Get formulario
-    * 
-    * @return null|int
-    */
-    public function getFormulario()
-    {
-        return $this->_formulario;
-    }
- 
-    /**
-     * Get formulario object
-     * @return null|Formulario
-     */
-    public function getFormularioObject()
-    {
-        $model = new Basico_Model_Formulario();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_formulario);
-        return $object;
-    }
-    
-
-    /**
     * Set entry id
     * 
     * @param  int $id 
-    * @return Basico_Model_TemplateFormulario
+    * @return Basico_Model_FormularioAssocclTemplate
     */
     public function setId($id)
     {
@@ -191,10 +125,98 @@ class Basico_Model_TemplateFormulario
     }
     
     /**
+    * Set id template
+    * 
+    * @param int $idTemplate 
+    * @return Basico_Model_FormularioAssocclTemplate
+    */
+    public function setIdTemplate($idTemplate)
+    {
+        $this->_idTemplate = Basico_OPController_UtilOPController::retornaValorTipado($idTemplate, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get id template
+    * 
+    * @return null|int
+    */
+    public function getIdTemplate()
+    {
+        return $this->_idTemplate;
+    }
+ 
+    /**
+     * Get template object
+     * @return null|Basico_Model_Template
+     */
+    public function getTemplateObject()
+    {
+        $model = new Basico_Model_Template();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idTemplate);
+        return $object;
+    }
+    
+    /**
+    * Set id formulario
+    * 
+    * @param int $idFormulario 
+    * @return Basico_Model_FormularioAssocclTemplate
+    */
+    public function setIdFormulario($idFormulario)
+    {
+        $this->_idFormulario = Basico_OPController_UtilOPController::retornaValorTipado($idFormulario, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get id formulario
+    * 
+    * @return null|int
+    */
+    public function getIdFormulario()
+    {
+        return $this->_idFormulario;
+    }
+ 
+    /**
+     * Get formulario object
+     * @return null|Basico_Model_Formulario
+     */
+    public function getFormularioObject()
+    {
+        $model = new Basico_Model_Formulario();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idFormulario);
+        return $object;
+    }
+    
+    /**
+    * Set datahora criacao
+    * 
+    * @param String $datahoraCriacao 
+    * @return Basico_Model_FormularioAssocclTemplate
+    */
+    public function setDataHoraCriacao($datahoraCriacao)
+    {
+        $this->_dataHoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_DATE, true);
+        return $this;
+    }
+
+    /**
+    * Get datahora criacao
+    * 
+    * @return null|String
+    */
+    public function getDataHoraCriacao()
+    {
+        return $this->_dataHoraCriacao;
+    }
+    
+    /**
 	* Set rowinfo
 	* 
 	* @param String $xml 
-	* @return Basico_Model_TemplateFormulario
+	* @return Basico_Model_FormularioAssocclTemplate
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -216,7 +238,7 @@ class Basico_Model_TemplateFormulario
     * Set data mapper
     * 
     * @param  mixed $mapper 
-    * @return Basico_Model_TemplateFormulario
+    * @return Basico_Model_FormularioAssocclTemplate
     */
     public function setMapper($mapper)
     {
@@ -227,9 +249,9 @@ class Basico_Model_TemplateFormulario
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_TemplateFormularioMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_FormularioAssocclTemplate instance if no mapper registered.
     * 
-    * @return Basico_Model_TemplateFormularioMapper
+    * @return Basico_Model_FormularioAssocclTemplate
     */
     public function getMapper()
     {

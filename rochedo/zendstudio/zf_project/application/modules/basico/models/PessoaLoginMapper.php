@@ -1,14 +1,14 @@
 <?php
 /**
- * Login data mapper
+ * PessoaLogin data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Login
+ * @uses       Basico_Model_DbTable_PessoaLogin
  * @subpackage Model
  */
-class Basico_Model_LoginMapper
+class Basico_Model_PessoaLoginMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_LoginMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_LoginMapper
+     * @return Basico_Model_PessoaLoginMapper
      */
     public function setDbTable($dbTable)
     {
@@ -51,13 +51,13 @@ class Basico_Model_LoginMapper
     /**
      * Save a Login entry
      * 
-     * @param  Basico_Model_Login $object
+     * @param  Basico_Model_PessoaLogin $object
      * @return void
      */
     public function save(Basico_Model_Login $object)
     {
         $data = array(
-                      'id_pessoa'                       => $object->getPessoa(),
+                      'id_pessoa'                       => $object->getIdPessoa(),
     				  'login'                           => $object->getLogin(),
     				  'senha'                           => $object->getSenha(),
     				  'ativo'                           => $object->getAtivo(),
@@ -65,7 +65,6 @@ class Basico_Model_LoginMapper
     				  'travado'                         => $object->getTravado(),
     				  'resetado'  				        => $object->getResetado(),
     				  'datahora_ultimo_logon'           => $object->getDataHoraUltimoLogon(),
-    				  'observacoes'   			        => $object->getObservacoes(),
     				  'pode_expirar'  			        => $object->getPodeExpirar(),
     				  'datahora_proxima_expiracao'      => $object->getDataHoraProximaExpiracao(),
     				  'datahora_ultima_expiracao'       => $object->getDataHoraUltimaExpiracao(),
@@ -73,8 +72,8 @@ class Basico_Model_LoginMapper
                       'datahora_ultima_tentativa_falha' => $object->getDataHoraUltimaTentativaFalha(),
                       'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
                       'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
-        			  'datahora_cadastro'				=> $object->getDataHoraCadastro(),
         			  'datahora_aceite_termo_uso'      => $object->getDataHoraAceiteTermoUso(),
+        			  'datahora_criacao'				=> $object->getDataHoraCriacao(),
         			  'datahora_ultima_atualizacao'     => $object->getDataHoraUltimaAtualizacao(),
                       'rowinfo'                    => $object->getRowinfo(),
                     );
@@ -89,7 +88,7 @@ class Basico_Model_LoginMapper
     
 	/**
 	* Delete a Login entry
-	* @param Basico_Model_Login $object
+	* @param Basico_Model_PessoaLogin $object
 	* @return void
 	*/
 	public function delete(Basico_Model_Login $object)
@@ -101,7 +100,7 @@ class Basico_Model_LoginMapper
      * Find a Login entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Login $object 
+     * @param  Basico_Model_PessoaLogin $object 
      * @return void
      */
     public function find($id, Basico_Model_Login $object)
@@ -112,7 +111,7 @@ class Basico_Model_LoginMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setPessoa($row->id_pessoa)
+               ->setIdPessoa($row->id_pessoa)
 			   ->setLogin($row->login)
 			   ->setSenha($row->senha)
 			   ->setAtivo($row->ativo)
@@ -120,7 +119,6 @@ class Basico_Model_LoginMapper
 			   ->setTravado($row->travado)
 			   ->setResetado($row->resetado)
 			   ->setDataHoraUltimoLogon($row->datahora_ultimo_logon)
-			   ->setObservacoes($row->observacoes)
 			   ->setPodeExpirar($row->pode_expirar)
 			   ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 			   ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
@@ -128,8 +126,8 @@ class Basico_Model_LoginMapper
 			   ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
 			   ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
 			   ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
-			   ->setDataHoraCadastro($row->datahora_cadastro)
 			   ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
+			   ->setDataHoraCriacao($row->datahora_criacao)
 			   ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 			   ->setRowinfo($row->rowinfo);
     }
@@ -147,7 +145,7 @@ class Basico_Model_LoginMapper
 		{
 			$entry = new Basico_Model_Login();
 			$entry->setId($row->id)
-			      ->setPessoa($row->id_pessoa)
+			      ->setIdPessoa($row->id_pessoa)
 				  ->setLogin($row->login)
 				  ->setSenha($row->senha)
 				  ->setAtivo($row->ativo)
@@ -155,7 +153,6 @@ class Basico_Model_LoginMapper
 				  ->setTravado($row->travado)
 				  ->setResetado($row->resetado)
 				  ->setDataHoraUltimoLogon($row->datahora_ultimo_logon)
-				  ->setObservacoes($row->observacoes)
 				  ->setPodeExpirar($row->pode_expirar)
 				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
@@ -163,8 +160,8 @@ class Basico_Model_LoginMapper
 				  ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
 			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
 			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
-			      ->setDataHoraCadastro($row->datahora_cadastro)
 			      ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
+			      ->setDataHoraCriacao($row->datahora_criacao)
 			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
@@ -186,7 +183,7 @@ class Basico_Model_LoginMapper
 		{
 			$entry = new Basico_Model_Login();
 			$entry->setId($row->id)
-			      ->setPessoa($row->id_pessoa)
+			      ->setIdPessoa($row->id_pessoa)
 				  ->setLogin($row->login)
 				  ->setSenha($row->senha)
 				  ->setAtivo($row->ativo)
@@ -194,7 +191,6 @@ class Basico_Model_LoginMapper
 				  ->setTravado($row->travado)
 				  ->setResetado($row->resetado)
 				  ->setDataHoraUltimoLogon($row->datahora_ultimo_logon)
-				  ->setObservacoes($row->observacoes)
 				  ->setPodeExpirar($row->pode_expirar)
 				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
 				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
@@ -202,8 +198,8 @@ class Basico_Model_LoginMapper
 				  ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
 			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
 			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
-			      ->setDataHoraCadastro($row->datahora_cadastro)
 			      ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
+			      ->setDataHoraCriacao($row->datahora_criacao)
 			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				  ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);

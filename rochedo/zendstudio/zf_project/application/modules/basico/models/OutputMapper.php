@@ -57,9 +57,15 @@ class Basico_Model_OutputMapper
     public function save(Basico_Model_Output $object)
     {
         $data = array(
-				'nome'        => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-                'rowinfo'     => $object->getRowinfo(),
+				'id_categoria'					=> $object->getIdCategoria(),
+        		'nome'        					=> $object->getNome(),
+        		'constante_textual'   			=> $object->getConstanteTextual(),
+				'constante_textual_descricao'	=> $object->getConstanteTextualDescricao(),
+        		'contexto'     					=> $object->getContexto(),
+        		'Ativo'        					=> $object->getAtivo(),
+        		'datahora_criacao'				=> $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'    					=> $object->getRowinfo(),
 
         );
 
@@ -96,12 +102,17 @@ class Basico_Model_OutputMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
+				->setIdCategoria($row->id_categoria)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextua($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setContexto($row->contexto)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo);
     }
-
+    
 	/**
 	 * Fetch all output entries
 	 * 
@@ -115,9 +126,14 @@ class Basico_Model_OutputMapper
 		{
 			$entry = new Basico_Model_Output();
 			$entry->setId($row->id)
-
+				->setIdCategoria($row->id_categoria)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextua($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setContexto($row->contexto)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -138,9 +154,14 @@ class Basico_Model_OutputMapper
 		{
 			$entry = new Basico_Model_Output();
 			$entry->setId($row->id)
-
+				->setIdCategoria($row->id_categoria)
 				->setNome($row->nome)
-				->setDescricao($row->descricao)
+				->setConstanteTextua($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setContexto($row->contexto)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;

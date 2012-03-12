@@ -258,7 +258,7 @@ class Basico_Model_MensagemTest extends PHPUnit_Framework_TestCase {
 		// TODO Auto-generated Basico_Model_MensagemTest->testSetCategoria()
 		$this->markTestIncomplete ( "setCategoria test not implemented" );
 		
-		$this->Basico_Model_Mensagem->setCategoria(/* parameters */);
+		$this->Basico_Model_Mensagem->setIdCategoria(/* parameters */);
 	
 	}
 	
@@ -269,7 +269,7 @@ class Basico_Model_MensagemTest extends PHPUnit_Framework_TestCase {
 		// TODO Auto-generated Basico_Model_MensagemTest->testGetCategoria()
 		$this->markTestIncomplete ( "getCategoria test not implemented" );
 		
-		$this->Basico_Model_Mensagem->getCategoria(/* parameters */);
+		$this->Basico_Model_Mensagem->getIdGenericoProprietario(/* parameters */);
 	
 	}
 	

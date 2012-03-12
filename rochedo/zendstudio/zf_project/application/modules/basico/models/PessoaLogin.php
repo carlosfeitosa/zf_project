@@ -1,29 +1,27 @@
 <?php
 /**
- * Login model
+ * PessoaLogin model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_LoginMapper
+ * @uses       Basico_Model_PessoaLoginMapper
  * @subpackage Model
  */
-class Basico_Model_Login
+class Basico_Model_PessoaLogin
 {
 	/**
-	* @var int
-	*/
-	protected $_id;
-
-	/**
-	 * @var Basico_Model_LoginMapper
+	 * @var Basico_Model_PessoaLoginMapper
 	 */
-	protected $_mapper;
+	protected $_mapper;	
 	
 	/**
 	* @var int
 	*/
-	protected $_pessoa;
-
+	protected $_id;
+	/**
+	* @var int
+	*/
+	protected $_idPessoa;
 	/**
 	 * @var String
 	 */
@@ -52,10 +50,6 @@ class Basico_Model_Login
 	 * @var Date
 	 */
 	protected $_dataHoraUltimoLogon;
-	/**
-	 * @var String
-	 */
-	protected $_observacoes;
 	/**
 	 * @var Boolean
 	 */
@@ -91,12 +85,12 @@ class Basico_Model_Login
 	 * 
 	 * @var Date
 	 */
-	protected $_dataHoraCadastro;
+	protected $_dataHoraAceiteTermoUso;
 	/**
 	 * 
 	 * @var Date
 	 */
-	protected $_dataHoraAceiteTermoUso;
+	protected $_dataHoraCriacao;
 	/**
 	 * 
 	 * @var Date
@@ -111,7 +105,7 @@ class Basico_Model_Login
 	 * Constructor
 	 * 
 	 * @param  array|null $options 
-	 * @return Basico_Model_Login
+	 * @return Basico_Model_PessoaLogin
 	 */
 	
 	public function __construct(array $options = null)
@@ -159,7 +153,7 @@ class Basico_Model_Login
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_Login
+	 * @return Basico_Model_PessoaLogin
 	 */
 	public function setOptions(array $options)
 	{
@@ -176,35 +170,35 @@ class Basico_Model_Login
 	}
 	
 	/**
-	* Set pessoa
+	* Set id pessoa
 	* 
-	* @param int $pessoa 
-	* @return Basico_Model_Pessoa
+	* @param int $idPessoa 
+	* @return Basico_Model_PessoaLogin
 	*/
-	public function setPessoa($pessoa)
+	public function setIdPessoa($idPessoa)
 	{
-		$this->_pessoa = Basico_OPController_UtilOPController::retornaValorTipado($pessoa, TIPO_INTEIRO, true);
+		$this->_idPessoa = Basico_OPController_UtilOPController::retornaValorTipado($idPessoa, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get idPessoa
+	* Get id pessoa
 	* 
 	* @return null|int
 	*/
-	public function getPessoa()
+	public function getIdPessoa()
 	{
-		return $this->_pessoa;
+		return $this->_idPessoa;
 	}
 	
     /**
      * Get pessoa object
-     * @return null|Pessoa
+     * @return null|Basico_Model_PessoaLogin
      */
     public function getPessoaObject()
     {
         $model = new Basico_Model_Pessoa();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoa);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idPessoa);
         return $object;
     }
     
@@ -212,7 +206,7 @@ class Basico_Model_Login
 	* Set login
 	* 
 	* @param String $login 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setLogin($login)
 	{
@@ -234,7 +228,7 @@ class Basico_Model_Login
 	* Set senha
 	* 
 	* @param String $senha 
-	* @return Basico_Model_Senha
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setSenha($senha)
 	{
@@ -256,7 +250,7 @@ class Basico_Model_Login
 	* Set ativo
 	* 
 	* @param Boolean $ativo 
-	* @return Basico_Model_Ativo
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setAtivo($ativo)
 	{
@@ -278,7 +272,7 @@ class Basico_Model_Login
 	* Set tentativasFalhas
 	* 
 	* @param Integer $tentativasFalhas 
-	* @return Basico_Model_TentativasFalhas
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setTentativasFalhas($tentativasFalhas)
 	{
@@ -300,7 +294,7 @@ class Basico_Model_Login
 	* Set travado
 	* 
 	* @param Boolean $travado 
-	* @return Basico_Model_Travado
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setTravado($travado)
 	{
@@ -322,7 +316,7 @@ class Basico_Model_Login
 	* Set resetado
 	* 
 	* @param Boolean $resetado 
-	* @return Basico_Model_Resetado
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setResetado($resetado)
 	{
@@ -344,7 +338,7 @@ class Basico_Model_Login
 	* Set dataHoraUltimoLogon
 	* 
 	* @param String $dataHoraUltimoLogon 
-	* @return Basico_Model_DataHoraUltimoLogon
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraUltimoLogon($dataHoraUltimoLogon)
 	{
@@ -363,32 +357,10 @@ class Basico_Model_Login
 	}
      
 	/**
-	* Set observacoes
-	* 
-	* @param String $observacoes 
-	* @return Basico_Model_Observacoes
-	*/
-	public function setObservacoes($observacoes)
-	{
-		$this->_observacoes = Basico_OPController_UtilOPController::retornaValorTipado($observacoes, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get observacoes
-	* 
-	* @return null|String
-	*/
-	public function getObservacoes()
-	{
-		return $this->_observacoes;
-	}
-     
-	/**
 	* Set podeExpirar
 	* 
 	* @param Boolean $podeExpirar 
-	* @return Basico_Model_PodeExpirar
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setPodeExpirar($podeExpirar)
 	{
@@ -410,7 +382,7 @@ class Basico_Model_Login
 	* Set dataHoraProximaExpiracao
 	* 
 	* @param String $dataHoraProximaExpiracao 
-	* @return Basico_Model_DataHoraProximaExpiracao
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraProximaExpiracao($dataHoraProximaExpiracao)
 	{
@@ -432,7 +404,7 @@ class Basico_Model_Login
 	* Set dataHoraUltimaExpiracao
 	* 
 	* @param String $dataHoraUltimaExpiracao 
-	* @return Basico_Model_DataHoraUltimaExpiracao
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraUltimaExpiracao($dataHoraUltimaExpiracao)
 	{
@@ -454,7 +426,7 @@ class Basico_Model_Login
 	* Set dataHoraExpiracaoSenha
 	* 
 	* @param String $dataHoraExpiracaoSenha 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraExpiracaoSenha($dataHoraExpiracaoSenha)
 	{
@@ -476,7 +448,7 @@ class Basico_Model_Login
 	* Set dataHoraUltimaTentativaFalha
 	* 
 	* @param String $dataHoraUltimaTentativaFalha 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraUltimaTentativaFalha($dataHoraUltimaTentativaFalha)
 	{
@@ -498,7 +470,7 @@ class Basico_Model_Login
 	* Set dataHoraUltimoReset
 	* 
 	* @param String $dataHoraUltimoReset 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraUltimoReset($dataHoraUltimoReset)
 	{
@@ -520,7 +492,7 @@ class Basico_Model_Login
 	* Set dataHoraUltimaTrocaSenha
 	* 
 	* @param String $dataHoraUltimaTrocaSenha 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraUltimaTrocaSenha($dataHoraUltimaTrocaSenha)
 	{
@@ -539,32 +511,22 @@ class Basico_Model_Login
 	}
 	
     /**
-	* Set dataHoraCadastro
+	* Set dataHoraCriacao
 	* 
-	* @param String $dataHoraCadastro 
-	* @return Basico_Model_Login
+	* @param String $dataHoraCriacao
+	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraCadastro($dataHoraCadastro)
+	public function setDataHoraCriacao($dataHoraCriacao)
 	{
-		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_DATE, true);
+		$this->_dataHoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCriacao, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraCadastro
-	* 
-	* @return null|String
-	*/
-	public function getDataHoraCadastro()
-	{
-		return $this->_dataHoraCadastro;
-	}
-	
-	/**
 	* Set dataHoraAceiteTermoUso
 	* 
 	* @param String $dataHoraAceiteTermoUso 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraAceiteTermoUso($dataHoraAceiteTermoUso)
 	{
@@ -582,11 +544,21 @@ class Basico_Model_Login
 		return $this->_dataHoraAceiteTermoUso;
 	}
 	
+	/**
+	* Get dataHoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDataHoraCriacao()
+	{
+		return $this->_dataHoraCriacao;
+	}
+		
     /**
 	* Set dataHoraUltimaAtualizacao
 	* 
 	* @param String $dataHoraUltimaAtualizacao 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
 	{
@@ -608,7 +580,7 @@ class Basico_Model_Login
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Rowinfo
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -630,7 +602,7 @@ class Basico_Model_Login
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setId($id)
 	{
@@ -652,7 +624,7 @@ class Basico_Model_Login
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_Login
+	* @return Basico_Model_PessoaLogin
 	*/
 	public function setMapper($mapper)
 	{
@@ -663,14 +635,14 @@ class Basico_Model_Login
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_LoginMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_PessoaLoginMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_LoginMapper
+	* @return Basico_Model_PessoaLoginMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_LoginMapper());
+			$this->setMapper(new Basico_Model_PessoaLoginMapper());
 		}
 		return $this->_mapper;
 	}

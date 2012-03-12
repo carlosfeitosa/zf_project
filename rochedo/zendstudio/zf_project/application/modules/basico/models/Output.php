@@ -10,15 +10,18 @@
 class Basico_Model_Output
 {
 	/**
-	* @var int
-	*/
-	protected $_id;
-
-	/**
 	 * @var Basico_Model_OutputMapper
 	 */
 	protected $_mapper;
 
+	/**
+	* @var int
+	*/
+	protected $_id;
+	/**
+	* @var int
+	*/
+	protected $_idCategoria;
 	/**
 	 * @var String
 	 */
@@ -26,8 +29,27 @@ class Basico_Model_Output
 	/**
 	 * @var String
 	 */
-	protected $_descricao;
-	
+	protected $_constante_textual;
+	/**
+	 * @var String
+	 */
+	protected $_constante_textual_descricao;
+	/**
+	 * @var String
+	 */
+	protected $_contexto;
+	/**
+	 * @var Boolean
+	 */
+	protected $_ativo;
+	/**
+	 * @var String
+	 */
+	protected $_datahora_criacao;
+	/**
+	 * @var String
+	 */
+	protected $_datahora_ultima_atualizacao;
 	/**
 	 * @var String
 	 */
@@ -99,7 +121,51 @@ class Basico_Model_Output
 		}
 		return $this;
 	}
-    
+
+	/**
+	* Set entry id
+	* 
+	* @param  int $id 
+	* @return Basico_Model_Output
+	*/
+	public function setId($id)
+	{
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry id
+	* 
+	* @return null|int
+	*/
+	public function getId()
+	{
+		return $this->_id;
+	}
+
+	/**
+	* Set entry idCategoria
+	* 
+	* @param  int $idCategoria
+	* @return Basico_Model_Output
+	*/
+	public function setIdCategoria($idCategoria)
+	{
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry idCategoria
+	* 
+	* @return null|int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+
 	/**
 	* Set nome
 	* 
@@ -121,29 +187,139 @@ class Basico_Model_Output
 	{
 		return $this->_nome;
 	}
-     
+
 	/**
-	* Set descricao
+	* Set constanteTextual
 	* 
-	* @param String $descricao 
-	* @return Basico_Model_Descricao
+	* @param String $constanteTextual
+	* @return Basico_Model_Output
 	*/
-	public function setDescricao($descricao)
+	public function setConstanteTextual($constanteTextual)
 	{
-		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_constante_textual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get descricao
+	* Get constanteTextual
 	* 
 	* @return null|String
 	*/
-	public function getDescricao()
+	public function getConstanteTextual()
 	{
-		return $this->_descricao;
+		return $this->_constante_textual;
 	}
-	
+
+	/**
+	* Set constanteTextualDescricao
+	* 
+	* @param String $constanteTextualDescricao 
+	* @return Basico_Model_Output
+	*/
+	public function setConstanteTextualDescricao($constanteTextualDescricao)
+	{
+		$this->_constante_textual_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get constanteTextualDescricao
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextualDescricao()
+	{
+		return $this->_constante_textual_descricao;
+	}
+
+	/**
+	* Set contexto
+	* 
+	* @param String $contexto
+	* @return Basico_Model_Output
+	*/
+	public function setContexto($contexto)
+	{
+		$this->_contexto = Basico_OPController_UtilOPController::retornaValorTipado($contexto, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get contexto
+	* 
+	* @return null|String
+	*/
+	public function getContexto()
+	{
+		return $this->_contexto;
+	}
+
+	/**
+	* Set ativo
+	* 
+	* @param Boolean $ativo
+	* @return Basico_Model_Output
+	*/
+	public function setAtivo($ativo)
+	{
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
+		return $this;
+	}
+
+	/**
+	* Get ativo
+	* 
+	* @return null|Boolean
+	*/
+	public function getAtivo()
+	{
+		return $this->_ativo;
+	}
+
+	/**
+	* Set datahoraCriacao
+	* 
+	* @param String $datahoraCriacao 
+	* @return Basico_Model_Output
+	*/
+	public function setDatahoraCriacao($datahoraCriacao)
+	{
+		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get datahoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDatahoraCriacao()
+	{
+		return $this->_datahoraCriacao;
+	}
+
+	/**
+	* Set datahoraUltimaAtualizacao
+	* 
+	* @param String $datahoraUltimaAtualizacao 
+	* @return Basico_Model_Output
+	*/
+	public function setDatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
+	{
+		$this->_datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaAtualizacao, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get datahoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getDatahoraUltimaAtualizacao()
+	{
+		return $this->_datahoraUltimaAtualizacao;
+	}
+
     /**
 	* Set rowinfo
 	* 
@@ -164,28 +340,6 @@ class Basico_Model_Output
 	public function getRowinfo()
 	{
 		return $this->_rowinfo;
-	}
- 
-	/**
-	* Set entry id
-	* 
-	* @param  int $id 
-	* @return Basico_Model_Output
-	*/
-	public function setId($id)
-	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Retrieve entry id
-	* 
-	* @return null|int
-	*/
-	public function getId()
-	{
-		return $this->_id;
 	}
 
 	/**

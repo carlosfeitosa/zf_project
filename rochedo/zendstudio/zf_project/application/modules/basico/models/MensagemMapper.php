@@ -57,14 +57,16 @@ class Basico_Model_MensagemMapper
     public function save(Basico_Model_Mensagem $object)
     {
         $data = array(
-				'remetente'         => $object->getRemetente(),
-				'destinatarios'     => $object->getDestinatariosString(),
-				'assunto'           => $object->getAssunto(),
-                'datahora_mensagem' => $object->getDataHoraMensagem(),
-                'datahora_envio'    => $object->getDataHoraEnvio(),
-                'mensagem'          => $object->getMensagem(),
-				'id_categoria'      => $object->getCategoria(),
-                'rowinfo'           => $object->getRowinfo(),
+        		'id_categoria'      			=> $object->getIdCategoria(),
+        		'id_generico_proprietario'		=> $object->getIdGenericoProprietario(),
+				'remetente'        				=> $object->getRemetente(),
+				'destinatarios'     			=> $object->getDestinatariosString(),
+				'assunto'           			=> $object->getAssunto(),
+        		'mensagem'          			=> $object->getMensagem(),
+                'datahora_envio'    			=> $object->getDatahoraEnvio(),
+        		'datahora_criacao'	 			=> $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'           			=> $object->getRowinfo(),
          
         );
         
@@ -101,14 +103,16 @@ class Basico_Model_MensagemMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setRemetente($row->remetente)
-			   ->setDestinatarios($row->destinatarios)
-			   ->setAssunto($row->assunto)
-			   ->setDataHoraMensagem($row->datahora_mensagem)
-			   ->setDataHoraEnvio($row->datahora_envio)
-			   ->setMensagem($row->mensagem)
-			   ->setCategoria($row->id_categoria)
-			   ->setRowinfo($row->rowinfo);
+        		->setIdCategoria($row->id_categoria)
+        		->setIdGenericoProprietario($row->id_generico_proprietario)
+        		->setRemetente($row->remetente)
+				->setDestinatarios($row->destinatarios)
+				->setAssunto($row->assunto)
+				->setMensagem($row->mensagem)
+				->setDatahoraEnvio($row->datahora_envio)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)	   
+				->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -124,15 +128,17 @@ class Basico_Model_MensagemMapper
 		{
 			$entry = new Basico_Model_Mensagem();
 			$entry->setId($row->id)
-                  ->setRemetente($row->remetente)
-				  ->setDestinatarios($row->destinatarios)
-				  ->setAssunto($row->assunto)
-				  ->setDataHoraMensagem($row->datahora_mensagem)
-				  ->setDataHoraEnvio($row->datahora_envio)
-				  ->setMensagem($row->mensagem)
-				  ->setCategoria($row->id_categoria)
-				  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
+        		->setIdCategoria($row->id_categoria)
+        		->setIdGenericoProprietario($row->id_generico_proprietario)
+        		->setRemetente($row->remetente)
+				->setDestinatarios($row->destinatarios)
+				->setAssunto($row->assunto)
+				->setMensagem($row->mensagem)
+				->setDatahoraEnvio($row->datahora_envio)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)	   
+				->setRowinfo($row->rowinfo)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -151,15 +157,17 @@ class Basico_Model_MensagemMapper
 		{
 			$entry = new Basico_Model_Mensagem();
 			$entry->setId($row->id)
-                  ->setRemetente($row->remetente)
-				  ->setDestinatarios($row->destinatarios)
-				  ->setAssunto($row->assunto)
-				  ->setDataHoraMensagem($row->datahora_mensagem)
-				  ->setDataHoraEnvio($row->datahora_envio)
-				  ->setMensagem($row->mensagem)
-				  ->setCategoria($row->id_categoria)
-				  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
+        		->setIdCategoria($row->id_categoria)
+        		->setIdGenericoProprietario($row->id_generico_proprietario)
+        		->setRemetente($row->remetente)
+				->setDestinatarios($row->destinatarios)
+				->setAssunto($row->assunto)
+				->setMensagem($row->mensagem)
+				->setDatahoraEnvio($row->datahora_envio)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)	   
+				->setRowinfo($row->rowinfo)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
