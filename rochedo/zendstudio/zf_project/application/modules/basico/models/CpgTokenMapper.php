@@ -1,14 +1,14 @@
 <?php
 /**
- * Token data mapper
+ * CpgToken data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Token
+ * @uses       Basico_Model_DbTable_CpgToken
  * @subpackage Model
  */
-class Basico_Model_TokenMapper
+class Basico_Model_CpgTokenMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_TokenMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_TokenMapper
+     * @return Basico_Model_CpgTokenMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,32 +36,33 @@ class Basico_Model_TokenMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Token if no instance registered
+     * Lazy loads Basico_Model_DbTable_CpgToken if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Token');
+            $this->setDbTable('Basico_Model_DbTable_CpgToken');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a Token entry
+     * Save a CpgToken entry
      * 
-     * @param  Basico_Model_Token $object
+     * @param  Basico_Model_CpgToken $object
      * @return void
      */
-    public function save(Basico_Model_Token $object)
+    public function save(Basico_Model_CpgToken $object)
     {
         $data = array(
-				'token'              => $object->getToken(),
-				'id_generico'        => $object->getIdGenerico(),
-                'id_categoria'       => $object->getCategoria(),
-        		'datahora_expiracao' => $object->getDatahoraExpiracao(),
-                'rowinfo'            => $object->getRowinfo(),
+        		'id_categoria'       		=> $object->getIdCategoria(),
+        		'id_generico_proprietario'  => $object->getIdGenericoProprietario(),
+				'token'              		=> $object->getToken(),
+                'datahora_expiracao' 		=> $object->getDatahoraExpiracao(),
+        		'datahora_criacao'   		=> $object->getDatahoraCriacao(),
+                'rowinfo'            		=> $object->getRowinfo(),
 
         );
 
@@ -74,23 +75,23 @@ class Basico_Model_TokenMapper
     }
     
 	/**
-	* Delete a Token entry
-	* @param Basico_Model_Token $object
+	* Delete a CpgToken entry
+	* @param Basico_Model_CpgToken $object
 	* @return void
 	*/
-	public function delete(Basico_Model_Token $object)
+	public function delete(Basico_Model_CpgToken $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a Token entry by id
+     * Find a CpgToken entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Token $object 
+     * @param  Basico_Model_CpgToken $object 
      * @return void
      */
-    public function find($id, Basico_Model_Token $object)
+    public function find($id, Basico_Model_CpgToken $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -98,15 +99,16 @@ class Basico_Model_TokenMapper
         }
         $row = $result->current();
         $object->setId($row->id)
+        		->setIdCategoria($row->id_categoria)
+        		->setIdGenericoProprietario($row->id_generico_proprietario)
     			->setToken($row->token)
+    			->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraExpiracao($row->datahora_expiracao)
-				->setIdGenerico($row->id_generico)
-                ->setCategoria($row->id_categoria)
-                ->setRowinfo($row->rowinfo);
+				->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all token entries
+	 * Fetch all CpgToken entries
 	 * 
 	 * @return array
 	 */
@@ -116,13 +118,14 @@ class Basico_Model_TokenMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Token();
+			$entry = new Basico_Model_CpgToken();
 			$entry->setId($row->id)
-				->setToken($row->token)
+				->setIdCategoria($row->id_categoria)
+        		->setIdGenericoProprietario($row->id_generico_proprietario)
+    			->setToken($row->token)
+    			->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraExpiracao($row->datahora_expiracao)
-				->setIdGenerico($row->id_generico)
-                ->setCategoria($row->id_categoria)
-                ->setRowinfo($row->rowinfo)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -130,7 +133,7 @@ class Basico_Model_TokenMapper
 	}
 	
 	/**
-	 * Fetch all token entries
+	 * Fetch all CpgToken entries
 	 * 
 	 * @return array
 	 */
@@ -140,13 +143,14 @@ class Basico_Model_TokenMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Token();
+			$entry = new Basico_Model_CpgToken();
 			$entry->setId($row->id)
-				->setToken($row->token)
+				->setIdCategoria($row->id_categoria)
+        		->setIdGenericoProprietario($row->id_generico_proprietario)
+    			->setToken($row->token)
+    			->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraExpiracao($row->datahora_expiracao)
-				->setIdGenerico($row->id_generico)
-                ->setCategoria($row->id_categoria)
-                ->setRowinfo($row->rowinfo)
+				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
