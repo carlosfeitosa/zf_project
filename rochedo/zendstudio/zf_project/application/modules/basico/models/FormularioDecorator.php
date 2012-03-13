@@ -1,16 +1,16 @@
 <?php
 /**
- * AcaoAplicacao model
+ * FormularioDecorator model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_AcaoAplicacaoMapper
+ * @uses       Basico_Model_FormularioDecoratorMapper
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacao
-{	
+class Basico_Model_FormularioDecorator
+{
 	/**
-	 * @var Basico_Model_AcaoAplicacaoMapper
+	 * @var Basico_Model_FormularioDecoratorMapper
 	 */
 	protected $_mapper;
 
@@ -18,18 +18,14 @@ class Basico_Model_AcaoAplicacao
 	* @var int
 	*/
 	protected $_id;
-	/**
-     * @var int
+    /**
+     * @var Integer
      */
-    protected $_idModulo;
-	/**
+    protected $_idCategoria;
+    /**
 	 * @var String
 	 */
-	protected $_controller;
-	/**
-	 * @var String
-	 */
-	protected $_action;
+	protected $_nome;
 	/**
 	 * @var String
 	 */
@@ -39,15 +35,19 @@ class Basico_Model_AcaoAplicacao
 	 */
 	protected $_constanteTextualDescricao;
 	/**
+	 * @var String
+	 */
+	protected $_decorator;
+	/**
 	 * @var Boolean
 	 */
 	protected $_ativo;
 	/**
-	 * @var Date
+	 * @var String
 	 */
 	protected $_datahoraCriacao;
 	/**
-	 * @var Date
+	 * @var String
 	 */
 	protected $_datahoraUltimaAtualizacao;
 	/**
@@ -106,7 +106,7 @@ class Basico_Model_AcaoAplicacao
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_AcaoAplicacao
+	 * @return Basico_Model_FormularioDecorator
 	 */
 	public function setOptions(array $options)
 	{
@@ -121,16 +121,16 @@ class Basico_Model_AcaoAplicacao
 		}
 		return $this;
 	}
-	
+
 	/**
 	* Set entry id
 	* 
 	* @param  int $id 
-	* @return Basico_Model_AcaoAplicacao
+	* @return Basico_Model_FormularioDecorator
 	*/
 	public function setId($id)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id,TIPO_INTEIRO,true);
 		return $this;
 	}
 
@@ -143,89 +143,133 @@ class Basico_Model_AcaoAplicacao
 	{
 		return $this->_id;
 	}
-	
+
 	/**
-	* Set idModulo
+	* Set id categoria
 	* 
-	* @param int $idModulo 
-	* @return Basico_Model_AcaoAplicacao
+	* @param int $idCategoria 
+	* @return Basico_Model_FormularioDecorator
 	*/
-	public function setIdModulo($idModulo)
+	public function setIdCategoria($idCategoria)
 	{
-		$this->_idModulo = Basico_OPController_UtilOPController::retornaValorTipado($idModulo, TIPO_INTEIRO, true);
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get idModulo
+	* Get id categoria
 	* 
 	* @return null|int
 	*/
-	public function getIdModulo()
+	public function getIdCategoria()
 	{
-		return $this->_idModulo;
+		return $this->_idCategoria;
 	}
  
     /**
-     * Get modulo object
-     * @return null|Modulo
+     * Get categoria object
+     * @return null|Basico_Model_Categoria
      */
-    public function getModuloObject()
+    public function getCategoriaObject()
     {
-        $model = new Basico_Model_Modulo();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idModulo);
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
         return $object;
     }
-    
+	
 	/**
-	* Set controller
+	* Set nome
 	* 
-	* @param String $controller 
-	* @return Basico_Model_AcaoAplicacao
+	* @param String $nome 
+	* @return Basico_Model_FormularioDecorator
 	*/
-	public function setController($controller)
+	public function setNome($nome)
 	{
-		$this->_controller = Basico_OPController_UtilOPController::retornaValorTipado($controller, TIPO_STRING, true);
+		$this->_nome = Basico_OPController_UtilOPController::retornaValorTipado($nome,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get controller
+	* Get nome
 	* 
 	* @return null|String
 	*/
-	public function getController()
+	public function getNome()
 	{
-		return $this->_controller;
+		return $this->_nome;
 	}
-     
+
 	/**
-	* Set action
+	* Set constante textual
 	* 
-	* @param String $action 
-	* @return Basico_Model_AcaoAplicacao
+	* @param String $constanteTextual
+	* @return Basico_Model_FormularioDecorator
 	*/
-	public function setAction($action)
+	public function setConstanteTextual($constanteTextual)
 	{
-		$this->_action = Basico_OPController_UtilOPController::retornaValorTipado($action, TIPO_STRING, true);
+		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get action
+	* Get constante textual
 	* 
 	* @return null|String
 	*/
-	public function getAction()
+	public function getConstanteTextual()
 	{
-		return $this->_action;
+		return $this->_constanteTextual;
 	}
      
+	/**
+	* Set constante textual descricao
+	* 
+	* @param String $constanteTextualDescricao 
+	* @return Basico_Model_FormularioDecorator
+	*/
+	public function setConstanteTextualDescricao($constanteTextualDescricao)
+	{
+		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao,TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get constante textual descricao
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextualDescricao()
+	{
+		return $this->_constanteTextualDescricao;
+	}
+
+	/**
+	* Set decorator
+	* 
+	* @param String $decorator 
+	* @return Basico_Model_FormularioDecorator
+	*/
+	public function setDecorator($decorator)
+	{
+		$this->_decorator = Basico_OPController_UtilOPController::retornaValorTipado($decorator,TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get decorator
+	* 
+	* @return null|String
+	*/
+	public function getDecorator()
+	{
+		return $this->_decorator;
+	}
+
 	/**
 	* Set ativo
 	* 
-	* @param Boolean $ativo 
-	* @return Basico_Model_AcaoAplicacao
+	* @param Boolean $ativo
+	* @return Basico_Model_FormularioDecorator
 	*/
 	public function setAtivo($ativo)
 	{
@@ -236,62 +280,18 @@ class Basico_Model_AcaoAplicacao
 	/**
 	* Get ativo
 	* 
-	* @return null|Boolean
+	* @return null|String
 	*/
 	public function getAtivo()
 	{
 		return $this->_ativo;
 	}
-     
-	/**
-	* Set constanteTextual
-	* 
-	* @param String $constanteTextual 
-	* @return Basico_Model_AcaoAplicacao
-	*/
-	public function setConstanteTextual($constanteTextual)
-	{
-		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
-		return $this;
-	}
 
 	/**
-	* Get constanteTextual
+	* Set datahora criacao
 	* 
-	* @return null|String
-	*/
-	public function getConstanteTextual()
-	{
-		return $this->_constanteTextual;
-	}
-	
-	/**
-	* Set constanteTextualDescricao
-	* 
-	* @param String $constanteTextualDescricao 
-	* @return Basico_Model_AcaoAplicacao
-	*/
-	public function setConstanteTextualDescricao($constanteTextualDescricao)
-	{
-		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get constanteTextualDescricao
-	* 
-	* @return null|String
-	*/
-	public function getConstanteTextualDescricao()
-	{
-		return $this->_constanteTextualDescricao;
-	}
-     
-	/**
-	* Set datahoraCriacao
-	* 
-	* @param String $datahoraCriacao 
-	* @return Basico_Model_AcaoAplicacao
+	* @param String $datahoraCriacao
+	* @return Basico_Model_FormularioDecorator
 	*/
 	public function setDatahoraCriacao($datahoraCriacao)
 	{
@@ -300,7 +300,7 @@ class Basico_Model_AcaoAplicacao
 	}
 
 	/**
-	* Get datahoraCriacao
+	* Get datahora criacao
 	* 
 	* @return null|String
 	*/
@@ -310,10 +310,10 @@ class Basico_Model_AcaoAplicacao
 	}
      
 	/**
-	* Set datahoraUltimaAtualizacao
+	* Set datahora ultima atualizacao
 	* 
 	* @param String $datahoraUltimaAtualizacao 
-	* @return Basico_Model_AcaoAplicacao
+	* @return Basico_Model_FormularioDecorator
 	*/
 	public function setDatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
 	{
@@ -322,7 +322,7 @@ class Basico_Model_AcaoAplicacao
 	}
 
 	/**
-	* Get datahoraUltimaAtualizacao
+	* Get datahora ultima atualizacao
 	* 
 	* @return null|String
 	*/
@@ -335,7 +335,7 @@ class Basico_Model_AcaoAplicacao
 	* Set rowinfo
 	* 
 	* @param String $rowinfo 
-	* @return Basico_Model_Categoria
+	* @return Basico_Model_FormularioDecorator
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -357,7 +357,7 @@ class Basico_Model_AcaoAplicacao
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_AcaoAplicacao
+	* @return Basico_Model_FormularioDecorator
 	*/
 	public function setMapper($mapper)
 	{
@@ -368,14 +368,14 @@ class Basico_Model_AcaoAplicacao
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_AcaoAplicacaoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_FormularioDecoratorMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_AcaoAplicacaoMapper
+	* @return Basico_Model_FormularioDecoratorMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_AcaoAplicacaoMapper());
+			$this->setMapper(new Basico_Model_FormularioDecoratorMapper());
 		}
 		return $this->_mapper;
 	}

@@ -1,14 +1,14 @@
 <?php
 /**
- * CategoriaChaveEstrangeira data mapper
+ * CategoriaAssocChaveEstrangeira data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_CategoriaChaveEstrangeira
+ * @uses       Basico_Model_DbTable_CategoriaAssocChaveEstrangeira
  * @subpackage Model
  */
-class Basico_Model_CategoriaChaveEstrangeiraMapper
+class Basico_Model_CategoriaAssocChaveEstrangeiraMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_CategoriaChaveEstrangeiraMapper
+     * @return Basico_Model_CategoriaAssocChaveEstrangeiraMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,31 +36,32 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_CategoriaChaveEstrangeira if no instance registered
+     * Lazy loads Basico_Model_DbTable_CategoriaAssocChaveEstrangeira if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_CategoriaChaveEstrangeira');
+            $this->setDbTable('Basico_Model_DbTable_CategoriaAssocChaveEstrangeira');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a CategoriaChaveEstrangeira entry
+     * Save a CategoriaAssocChaveEstrangeira entry
      * 
-     * @param  Basico_Model_CategoriaChaveEstrangeira $object
+     * @param  Basico_Model_CategoriaAssocChaveEstrangeira $object
      * @return void
      */
-    public function save(Basico_Model_CategoriaChaveEstrangeira $object)
+    public function save(Basico_Model_CategoriaAssocChaveEstrangeira $object)
     {
         $data = array(
-                'id_categoria'         => $object->getCategoria(),
-                'id_modulo'            => $object->getModulo(),
+                'id_categoria'         => $object->getIdCategoria(),
+                'id_modulo'            => $object->getIdModulo(),
  				'tabela_estrangeira'   => $object->getTabelaEstrangeira(),
 				'campo_estrangeiro'    => $object->getCampoEstrangeiro(),
+        		'datahora_criacao'     => $object->getDatahoraCriacao(),
                 'rowinfo'              => $object->getRowinfo(),
         
         );
@@ -74,23 +75,23 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
     }
     
 	/**
-	* Delete a CategoriaChaveEstrangeira entry
-	* @param Basico_Model_CategoriaChaveEstrangeira $object
+	* Delete a CategoriaAssocChaveEstrangeira entry
+	* @param Basico_Model_CategoriaAssocChaveEstrangeira $object
 	* @return void
 	*/
-	public function delete(Basico_Model_CategoriaChaveEstrangeira $object)
+	public function delete(Basico_Model_CategoriaAssocChaveEstrangeira $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a CategoriaChaveEstrangeira entry by id
+     * Find a CategoriaAssocChaveEstrangeira entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_CategoriaChaveEstrangeira $object 
+     * @param  Basico_Model_CategoriaAssocChaveEstrangeira $object 
      * @return void
      */
-    public function find($id, Basico_Model_CategoriaChaveEstrangeira $object)
+    public function find($id, Basico_Model_CategoriaAssocChaveEstrangeira $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -98,15 +99,16 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-                ->setCategoria($row->id_categoria)
-                ->setModulo($row->id_modulo)
+                ->setIdCategoria($row->id_categoria)
+                ->setIdModulo($row->id_modulo)
 				->setTabelaEstrangeira($row->tabela_estrangeira)
 				->setCampoEstrangeiro($row->campo_estrangeiro)
+				->setDatahoraCriacao($row->datahora_criacao)
 				->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all categoriachaveestrangeira entries
+	 * Fetch all CategoriaAssocChaveEstrangeira entries
 	 * 
 	 * @return array
 	 */
@@ -116,13 +118,14 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_CategoriaChaveEstrangeira();
+			$entry = new Basico_Model_CategoriaAssocChaveEstrangeira();
 			$entry->setId($row->id)
-                  ->setCategoria($row->id_categoria)
-                  ->setModulo($row->id_modulo)
-				  ->setTabelaEstrangeira($row->tabela_estrangeira)
-				  ->setCampoEstrangeiro($row->campo_estrangeiro)
-				  ->setRowinfo($row->rowinfo)
+                  	->setIdCategoria($row->id_categoria)
+	                ->setIdModulo($row->id_modulo)
+					->setTabelaEstrangeira($row->tabela_estrangeira)
+					->setCampoEstrangeiro($row->campo_estrangeiro)
+					->setDatahoraCriacao($row->datahora_criacao)
+					->setRowinfo($row->rowinfo)
     			  ->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -130,7 +133,7 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
 	}
 	
 	/**
-	 * Fetch all categoriachaveestrangeira entries
+	 * Fetch all CategoriaAssocChaveEstrangeira entries
 	 * 
 	 * @return array
 	 */
@@ -140,13 +143,14 @@ class Basico_Model_CategoriaChaveEstrangeiraMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_CategoriaChaveEstrangeira();
+			$entry = new Basico_Model_CategoriaAssocChaveEstrangeira();
 			$entry->setId($row->id)
-                  ->setCategoria($row->id_categoria)
-                  ->setModulo($row->id_modulo)
-				  ->setTabelaEstrangeira($row->tabela_estrangeira)
-				  ->setCampoEstrangeiro($row->campo_estrangeiro)
-				  ->setRowinfo($row->rowinfo)
+                  	->setIdCategoria($row->id_categoria)
+	                ->setIdModulo($row->id_modulo)
+					->setTabelaEstrangeira($row->tabela_estrangeira)
+					->setCampoEstrangeiro($row->campo_estrangeiro)
+					->setDatahoraCriacao($row->datahora_criacao)
+					->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
 		}

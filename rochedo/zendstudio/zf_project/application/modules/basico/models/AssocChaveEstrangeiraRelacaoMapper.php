@@ -1,19 +1,14 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * RelacaoCategoriaChaveEstrangeira data mapper
+ * AssocChaveEstrangeiraRelacao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_RelacaoCategoriaChaveEstrangeira
+ * @uses       Basico_Model_DbTable_AssocChaveEstrangeiraRelacao
  * @subpackage Model
  */
-class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
+class Basico_Model_AssocChaveEstrangeiraRelacaoMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -24,7 +19,7 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
+     * @return Basico_Model_AssocChaveEstrangeiraRelacaoMapper
      */
     public function setDbTable($dbTable)
     {
@@ -41,30 +36,31 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_RelacaoCategoriaChaveEstrangeira if no instance registered
+     * Lazy loads Basico_Model_DbTable_AssocChaveEstrangeiraRelacao if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_RelacaoCategoriaChaveEstrangeira');
+            $this->setDbTable('Basico_Model_DbTable_AssocChaveEstrangeiraRelacao');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a RelacaoCategoriaChaveEstrangeira entry
+     * Save a AssocChaveEstrangeiraRelacao entry
      * 
-     * @param  Basico_Model_RelacaoCategoriaChaveEstrangeira $object
+     * @param  Basico_Model_AssocChaveEstrangeiraRelacao $object
      * @return void
      */
-    public function save(Basico_Model_RelacaoCategoriaChaveEstrangeira $object)
+    public function save(Basico_Model_AssocChaveEstrangeiraRelacao $object)
     {
         $data = array(
-				'tabela_origem'  => $object->getTabelaOrigem(),
-				'campo_origem'   => $object->getCampoOrigem(),
-        		'rowinfo'        => $object->getRowinfo(),
+				'tabela_origem'    => $object->getTabelaOrigem(),
+				'campo_origem'     => $object->getCampoOrigem(),
+        		'datahora_criacao' => $object->getDatahoraCriacao(),
+        		'rowinfo'          => $object->getRowinfo(),
 
         );
 
@@ -77,23 +73,23 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
     }
     
 	/**
-	* Delete a RelacaoCategoriaChaveEstrangeira entry
-	* @param Basico_Model_RelacaoCategoriaChaveEstrangeira $object
+	* Delete a AssocChaveEstrangeiraRelacao entry
+	* @param Basico_Model_AssocChaveEstrangeiraRelacao $object
 	* @return void
 	*/
-	public function delete(Basico_Model_RelacaoCategoriaChaveEstrangeira $object)
+	public function delete(Basico_Model_AssocChaveEstrangeiraRelacao $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a RelacaoCategoriaChaveEstrangeira entry by id
+     * Find a AssocChaveEstrangeiraRelacao entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_RelacaoCategoriaChaveEstrangeira $object 
+     * @param  Basico_Model_AssocChaveEstrangeiraRelacao $object 
      * @return void
      */
-    public function find($id, Basico_Model_RelacaoCategoriaChaveEstrangeira $object)
+    public function find($id, Basico_Model_AssocChaveEstrangeiraRelacao $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -104,11 +100,12 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
 
 				->setTabelaOrigem($row->tabela_origem)
 				->setCampoOrigem($row->campo_origem)
+				->setDatahoraCriacao($row->datahora_criacao)
 				->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all relacaocategoriachaveestrangeira entries
+	 * Fetch all AssocChaveEstrangeiraRelacao entries
 	 * 
 	 * @return array
 	 */
@@ -118,11 +115,12 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_RelacaoCategoriaChaveEstrangeira();
+			$entry = new Basico_Model_AssocChaveEstrangeiraRelacao();
 			$entry->setId($row->id)
 
 				->setTabelaOrigem($row->tabela_origem)
 				->setCampoOrigem($row->campo_origem)
+				->setDatahoraCriacao($row->datahora_criacao)
 				->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -131,7 +129,7 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
 	}
 	
 	/**
-	 * Fetch all relacaocategoriachaveestrangeira entries
+	 * Fetch all AssocChaveEstrangeiraRelacao entries
 	 * 
 	 * @return array
 	 */
@@ -141,12 +139,13 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_RelacaoCategoriaChaveEstrangeira();
+			$entry = new Basico_Model_AssocChaveEstrangeiraRelacao();
 			$entry->setId($row->id)
 
 				->setTabelaOrigem($row->tabela_origem)
 				->setCampoOrigem($row->campo_origem)
-				->setRowinfo($row->rowinfo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setRowinfo($row->rowinfo) 
 				->setMapper($this);
 			$entries[] = $entry;
 		}

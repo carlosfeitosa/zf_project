@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * AcaoAplicacao data mapper
  *
  * Implements the Data Mapper design pattern:
@@ -62,14 +57,15 @@ class Basico_Model_AcaoAplicacaoMapper
     public function save(Basico_Model_AcaoAplicacao $object)
     {
         $data = array(
-        		'id_modulo'            => $object->getModulo(),
-				'controller'           => $object->getController(),
-				'action'               => $object->getAction(),
-				'ativo'                => $object->getAtivo(),
-				'motivo_desativacao'   => $object->getMotivoDesativacao(),
-				'datahora_desativacao' => $object->getDataHoraDesativacao(),
-				'datahora_reativacao'  => $object->getDataHoraReativacao(),
-                'rowinfo'              => $object->getRowinfo(),
+        		'id_modulo'            		  => $object->getIdModulo(),
+				'controller'           		  => $object->getController(),
+				'action'               		  => $object->getAction(),
+				'constante_textual'    		  => $object->getConstanteTextual(),
+        		'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+        		'ativo'                	 	  => $object->getAtivo(),
+				'datahora_criacao' 		  	  => $object->getDatahoraCriacao(),
+				'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'              		  => $object->getRowinfo(),
 
         );
 
@@ -106,16 +102,15 @@ class Basico_Model_AcaoAplicacaoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
+				->setIdModulo($row->id_modulo)
 				->setController($row->controller)
 				->setAction($row->action)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
 				->setAtivo($row->ativo)
-				->setMotivoDesativacao($row->motivo_desativacao)
-				->setDataHoraDesativacao($row->datahora_desativacao)
-				->setDataHoraReativacao($row->datahora_reativacao)
-				->setDataHoraCadastro($row->datahora_cadastro)
-				->setRowinfo($row->rowinfo)
-                ->setModulo($row->id_modulo);
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -132,15 +127,15 @@ class Basico_Model_AcaoAplicacaoMapper
 			$entry = new Basico_Model_AcaoAplicacao();
 			$entry->setId($row->id)
 
+				->setIdModulo($row->id_modulo)
 				->setController($row->controller)
 				->setAction($row->action)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
 				->setAtivo($row->ativo)
-				->setMotivoDesativacao($row->motivo_desativacao)
-				->setDataHoraDesativacao($row->datahora_desativacao)
-				->setDataHoraReativacao($row->datahora_reativacao)
-				->setDataHoraCadastro($row->datahora_cadastro)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
-                ->setModulo($row->id_modulo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -161,15 +156,15 @@ class Basico_Model_AcaoAplicacaoMapper
 			$entry = new Basico_Model_AcaoAplicacao();
 			$entry->setId($row->id)
 
+				->setIdModulo($row->id_modulo)
 				->setController($row->controller)
 				->setAction($row->action)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
 				->setAtivo($row->ativo)
-				->setMotivoDesativacao($row->motivo_desativacao)
-				->setDataHoraDesativacao($row->datahora_desativacao)
-				->setDataHoraReativacao($row->datahora_reativacao)
-				->setDataHoraCadastro($row->datahora_cadastro)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo)
-                ->setModulo($row->id_modulo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}

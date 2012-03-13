@@ -1,29 +1,23 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * RelacaoCategoriaChaveEstrangeira model
+ * AssocChaveEstrangeiraRelacao model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
+ * @uses       Basico_Model_AssocChaveEstrangeiraRelacaoMapper
  * @subpackage Model
  */
-class Basico_Model_RelacaoCategoriaChaveEstrangeira
+class Basico_Model_AssocChaveEstrangeiraRelacao
 {
+	/**
+	 * @var Basico_Model_AssocChaveEstrangeiraRelacaoMapper
+	 */
+	protected $_mapper;
+	
 	/**
 	* @var int
 	*/
 	protected $_id;
-
-	/**
-	 * @var Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
-	 */
-	protected $_mapper;
-
 	/**
 	 * @var String
 	 */
@@ -32,6 +26,10 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 	 * @var String
 	 */
 	protected $_campoOrigem;
+	/**
+	 * @var Date
+	 */
+	protected $_datahoraCriacao;
 	/**
 	 * @var String
 	 */
@@ -88,7 +86,7 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 	 * Set object state
 	 * 
 	 * @param  array $options 
-	 * @return Basico_Model_RelacaoCategoriaChaveEstrangeira
+	 * @return Basico_Model_AssocChaveEstrangeiraRelacao
 	 */
 	public function setOptions(array $options)
 	{
@@ -103,16 +101,38 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 		}
 		return $this;
 	}
+	
+	/**
+	* Set entry id
+	* 
+	* @param  int $id 
+	* @return Basico_Model_AssocChaveEstrangeiraRelacao
+	*/
+	public function setId($id)
+	{
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry id
+	* 
+	* @return null|int
+	*/
+	public function getId()
+	{
+		return $this->_id;
+	}
     
 	/**
 	* Set tabelaOrigem
 	* 
 	* @param String $tabelaOrigem 
-	* @return Basico_Model_TabelaOrigem
+	* @return Basico_Model_AssocChaveEstrangeiraRelacao
 	*/
 	public function setTabelaOrigem($tabelaOrigem)
 	{
-		$this->_tabelaOrigem = (String) $tabelaOrigem;
+		$this->_tabelaOrigem = Basico_OPController_UtilOPController::retornaValorTipado($tabelaOrigem, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -130,11 +150,11 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 	* Set campoOrigem
 	* 
 	* @param String $campoOrigem 
-	* @return Basico_Model_CampoOrigem
+	* @return Basico_Model_AssocChaveEstrangeiraRelacao
 	*/
 	public function setCampoOrigem($campoOrigem)
 	{
-		$this->_campoOrigem = (String) $campoOrigem;
+		$this->_campoOrigem = Basico_OPController_UtilOPController::retornaValorTipado($campoOrigem, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -147,12 +167,34 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 	{
 		return $this->_campoOrigem;
 	}
+	
+	/**
+	* Set datahoraCriacao
+	* 
+	* @param String $datahoraCriacao 
+	* @return Basico_Model_AssocChaveEstrangeiraRelacao
+	*/
+	public function setDatahoraCriacao($datahoraCriacao)
+	{
+		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get datahoraCriacao
+	* 
+	* @return null|String
+	*/
+	public function getDatahoraCriacao()
+	{
+		return $this->_datahoraCriacao;
+	}
 
 	/**
 	* Set rowinfo
 	* 
 	* @param String $xml 
-	* @return Basico_Model_Template
+	* @return Basico_Model_AssocChaveEstrangeiraRelacao
 	*/
 	public function setRowinfo($rowinfo)
 	{
@@ -171,32 +213,10 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 	}
 
 	/**
-	* Set entry id
-	* 
-	* @param  int $id 
-	* @return Basico_Model_RelacaoCategoriaChaveEstrangeira
-	*/
-	public function setId($id)
-	{
-		$this->_id = (int) $id;
-		return $this;
-	}
-
-	/**
-	* Retrieve entry id
-	* 
-	* @return null|int
-	*/
-	public function getId()
-	{
-		return $this->_id;
-	}
-
-	/**
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
-	* @return Basico_Model_RelacaoCategoriaChaveEstrangeira
+	* @return Basico_Model_AssocChaveEstrangeiraRelacao
 	*/
 	public function setMapper($mapper)
 	{
@@ -207,14 +227,14 @@ class Basico_Model_RelacaoCategoriaChaveEstrangeira
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_AssocChaveEstrangeiraRelacaoMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper
+	* @return Basico_Model_AssocChaveEstrangeiraRelacaoMapper
 	*/
 	public function getMapper()
 	{
 		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_RelacaoCategoriaChaveEstrangeiraMapper());
+			$this->setMapper(new Basico_Model_AssocChaveEstrangeiraRelacaoMapper());
 		}
 		return $this->_mapper;
 	}

@@ -1,14 +1,14 @@
 <?php
 /**
- * GrupoRascunho data mapper
+ * FormularioRascunhoAssocagGrupo data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_GrupoRascunho
+ * @uses       Basico_Model_DbTable_FormularioRascunhoAssocagGrupo
  * @subpackage Model
  */
-class Basico_Model_GrupoRascunhoMapper
+class Basico_Model_FormularioRascunhoAssocagGrupoMapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -19,7 +19,7 @@ class Basico_Model_GrupoRascunhoMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_GrupoRascunhoMapper
+     * @return Basico_Model_FormularioRascunhoAssocagGrupoMapper
      */
     public function setDbTable($dbTable)
     {
@@ -36,35 +36,32 @@ class Basico_Model_GrupoRascunhoMapper
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_GrupoRascunho if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormularioRascunhoAssocagGrupo if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_GrupoRascunho');
+            $this->setDbTable('Basico_Model_DbTable_FormularioRascunhoAssocagGrupo');
         }
         return $this->_dbTable;
     }
     
     /**
-     * Save a GrupoRascunho entry
+     * Save a FormularioRascunhoAssocagGrupo entry
      * 
-     * @param  Basico_Model_GrupoRascunho $object
+     * @param  Basico_Model_FormularioRascunhoAssocagGrupo $object
      * @return void
      */
-    public function save(Basico_Model_GrupoRascunho $object)
+    public function save(Basico_Model_FormularioRascunhoAssocagGrupo $object)
     {
         $data = array(
-				'nome'                        => $object->getNome(),
+				'id_assoccl_perfil'			  => $object->getIdAssocclPerfil(),
         		'forms'                       => $object->getForms(),
 				'datahora_criacao'            => $object->getDataHoraCriacao(),
 				'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
-              	'id_sequencia_formulario'     => $object->getSequenciaFormulario(),
-              	'id_pessoa'                   => $object->getPessoa(),
-              	'id_perfil'                   => $object->getPerfil(),
-        		'rowinfo'					  => $object->getRowinfo(),
+              	'rowinfo'					  => $object->getRowinfo(),
 
         );
 
@@ -77,23 +74,23 @@ class Basico_Model_GrupoRascunhoMapper
     }
     
 	/**
-	* Delete a GrupoRascunho entry
-	* @param Basico_Model_GrupoRascunho $object
+	* Delete a FormularioRascunhoAssocagGrupo entry
+	* @param Basico_Model_FormularioRascunhoAssocagGrupo $object
 	* @return void
 	*/
-	public function delete(Basico_Model_GrupoRascunho $object)
+	public function delete(Basico_Model_FormularioRascunhoAssocagGrupo $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a GrupoRascunho entry by id
+     * Find a FormularioRascunhoAssocagGrupo entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_GrupoRascunho $object 
+     * @param  Basico_Model_FormularioRascunhoAssocagGrupo $object 
      * @return void
      */
-    public function find($id, Basico_Model_GrupoRascunho $object)
+    public function find($id, Basico_Model_FormularioRascunhoAssocagGrupo $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -102,18 +99,15 @@ class Basico_Model_GrupoRascunhoMapper
         $row = $result->current();
         $object->setId($row->id)
 
-				->setNome($row->nome)
+				->setIdAssocclPerfil($row->id_assoccl_perfil)
 				->setForms($row->forms)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setDataHoraCriacao($row->datahora_criacao)
-                ->setPessoa($row->id_pessoa)
-                ->setPerfil($row->id_perfil)
-                ->setSequenciaFormulario($row->id_sequencia_formulario)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                 ->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all GrupoRascunho entries
+	 * Fetch all FormularioRascunhoAssocagGrupo entries
 	 * 
 	 * @return array
 	 */
@@ -123,16 +117,13 @@ class Basico_Model_GrupoRascunhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_GrupoRascunho();
+			$entry = new Basico_Model_FormularioRascunhoAssocagGrupo();
 			$entry->setId($row->id)
 
-				->setNome($row->nome)
+				->setIdAssocclPerfil($row->id_assoccl_perfil)
 				->setForms($row->forms)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setDataHoraCriacao($row->datahora_criacao)
-                ->setPessoa($row->id_pessoa)
-                ->setPerfil($row->id_perfil)
-                ->setSequenciaFormulario($row->id_sequencia_formulario)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
@@ -141,7 +132,7 @@ class Basico_Model_GrupoRascunhoMapper
 	}
 	
 	/**
-	 * Fetch all GrupoRascunho entries
+	 * Fetch all FormularioRascunhoAssocagGrupo entries
 	 * 
 	 * @return array
 	 */
@@ -151,16 +142,13 @@ class Basico_Model_GrupoRascunhoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_GrupoRascunho();
+			$entry = new Basico_Model_FormularioRascunhoAssocagGrupo();
 			$entry->setId($row->id)
 				
-				->setNome($row->nome)
+				->setIdAssocclPerfil($row->id_assoccl_perfil)
 				->setForms($row->forms)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setDataHoraCriacao($row->datahora_criacao)
-                ->setPessoa($row->id_pessoa)
-                ->setPerfil($row->id_perfil)
-                ->setSequenciaFormulario($row->id_sequencia_formulario)
+				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                 ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
