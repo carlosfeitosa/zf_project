@@ -2,7 +2,8 @@
 /**
  * 
  * Classe abstrata para os métodos genéricos setDbTable e getDbTable
- * @author Igor Pinho Costa Souza
+ * 
+ * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
 abstract class Abstract_RochedoMapper {
@@ -16,7 +17,7 @@ abstract class Abstract_RochedoMapper {
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable
-     * @return Basico_Model_PessoaMapper
+     * @return ModelMapper
      */
     public function setDbTable($dbTable)
     {
