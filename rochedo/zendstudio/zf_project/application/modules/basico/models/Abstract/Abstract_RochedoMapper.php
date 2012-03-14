@@ -1,11 +1,11 @@
 <?php
 /**
  * 
- * Enter description here ...
+ * Classe abstrata para os métodos genéricos setDbTable e getDbTable
  * @author Igor Pinho Costa Souza
  *
  */
-abstract class Abstract_RochedoMapper implements Interface_DbTable {
+abstract class Abstract_RochedoMapper {
 
     /**
      * @var Zend_Db_Table_Abstract
