@@ -1,6 +1,6 @@
 <?php
 
-interface Interface_RochedoDbTableMapperPersistencia extends Interface_DbTable
+interface Interface_RochedoMapperPersistencia extends Interface_DbTable
 {
 
     public function save($object);

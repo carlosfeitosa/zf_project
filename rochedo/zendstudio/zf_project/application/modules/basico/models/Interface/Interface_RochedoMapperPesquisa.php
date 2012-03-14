@@ -1,6 +1,6 @@
 <?php
 
-interface Interface_RochedoDbTableMapperPesquisa extends Interface_DbTable 
+interface Interface_RochedoMapperPesquisa extends Interface_DbTable 
 {
 
 	public function find($id, Basico_Model_Pessoa $object);

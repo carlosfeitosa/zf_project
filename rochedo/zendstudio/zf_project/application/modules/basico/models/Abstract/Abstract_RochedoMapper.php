@@ -5,7 +5,7 @@
  * @author Igor Pinho Costa Souza
  *
  */
-abstract class Abstract_RochedoDbTable implements Interface_DbTable {
+abstract class Abstract_RochedoMapper implements Interface_DbTable {
 
     /**
      * @var Zend_Db_Table_Abstract

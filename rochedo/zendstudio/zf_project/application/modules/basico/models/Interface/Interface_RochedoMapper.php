@@ -1,6 +1,6 @@
 <?php
 
-interface Interface_RochedoDbTable {
+interface Interface_RochedoMapper {
 	
 	public function setDbTable($dbTable);
 	
