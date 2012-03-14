@@ -57,15 +57,16 @@ class Basico_Model_PerfilMapper
     public function save(Basico_Model_Perfil $object)
     {
         $data = array(
+        		'id_categoria'                => $object->getIdCategoria(),
+        		'id_modulo'	 	              => $object->getIdModulo(),
 				'nome'                        => $object->getNome(),
-				'descricao'                   => $object->getDescricao(),
         		'constante_textual'           => $object->getConstanteTextual(),
-        		'nivel'						  => $object->getNivel(),
-				'ativo'                       => $object->getAtivo(),
-        		'data_cadastro'				  => $object->getDataHoraCadastro(),
-        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
-                'id_categoria'                => $object->getCategoria(),
-
+				'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+        		'ativo'                       => $object->getAtivo(),
+        		'prioridade'				  => $object->getPrioridade(),
+        		'data_criacao'				  => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+				'rowinfo'					  => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -101,14 +102,16 @@ class Basico_Model_PerfilMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-			   ->setNome($row->nome)
-			   ->setDescricao($row->descricao)
-			   ->setConstanteTextual($row->constante_textual)
-			   ->setNivel($row->nivel)
-			   ->setAtivo($row->ativo)
-			   ->setDataHoraCadastro($row->datahora_cadastro)
-			   ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-               ->setCategoria($row->id_categoria);
+				->setIdCategoria($row->id_categoria)
+				->setIdModulo($row->id_modulo)
+				->setNome($row->nome)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setPrioridade($row->prioridade)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -124,15 +127,17 @@ class Basico_Model_PerfilMapper
 		{
 			$entry = new Basico_Model_Perfil();
 			$entry->setId($row->id)
-				  ->setNome($row->nome)
-				  ->setDescricao($row->descricao)
-				  ->setConstanteTextual($row->constante_textual)
-				  ->setNivel($row->nivel)
-				  ->setAtivo($row->ativo)
-				  ->setDataHoraCadastro($row->datahora_cadastro)
-			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                  ->setCategoria($row->id_categoria)
-				  ->setMapper($this);
+				->setIdCategoria($row->id_categoria)
+				->setIdModulo($row->id_modulo)
+				->setNome($row->nome)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setPrioridade($row->prioridade)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -151,15 +156,17 @@ class Basico_Model_PerfilMapper
 		{
 			$entry = new Basico_Model_Perfil();
 			$entry->setId($row->id)
-				  ->setNome($row->nome)
-				  ->setDescricao($row->descricao)
-				  ->setConstanteTextual($row->constante_textual)
-				  ->setAtivo($row->ativo)
-				  ->setNivel($row->nivel)
-				  ->setDataHoraCadastro($row->datahora_cadastro)
-			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                  ->setCategoria($row->id_categoria)
-				  ->setMapper($this);
+				->setIdCategoria($row->id_categoria)
+				->setIdModulo($row->id_modulo)
+				->setNome($row->nome)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setPrioridade($row->prioridade)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;

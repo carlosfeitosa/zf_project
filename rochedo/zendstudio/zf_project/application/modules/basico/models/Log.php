@@ -10,36 +10,30 @@
 class Basico_Model_Log
 {
 	/**
-	* @var int
-	*/
-	protected $_id;
-
-	/**
 	 * @var Basico_Model_LogMapper
 	 */
 	protected $_mapper;
-
+	
+	/**
+	* @var int
+	*/
+	protected $_id;
+    /**
+     * @var Integer
+     */
+    protected $_idCategoria;
+    /**
+     * @var Integer
+     */
+    protected $_idAssocclPerfil;
 	/**
 	 * @var Date
 	 */
-	protected $_dataHoraEvento;
+	protected $_datahoraEvento;
 	/**
 	 * @var String
 	 */
 	protected $_xml;
-	/**
-	 * @var String
-	 */
-	protected $_descricao;
-    /**
-     * @var Integer
-     */
-    protected $_pessoaperfil;
-
-    /**
-     * @var Integer
-     */
-    protected $_categoria;
 
 	/**
 	 * Constructor
@@ -107,138 +101,6 @@ class Basico_Model_Log
 		}
 		return $this;
 	}
-    
-	/**
-	* Set dataHoraEvento
-	* 
-	* @param String $dataHoraEvento 
-	* @return Basico_Model_DataHoraEvento
-	*/
-	public function setDataHoraEvento($dataHoraEvento)
-	{
-		$this->_dataHoraEvento = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraEvento, TIPO_DATE, true);
-		return $this;
-	}
-
-	/**
-	* Get dataHoraEvento
-	* 
-	* @return null|String
-	*/
-	public function getDataHoraEvento()
-	{
-		return $this->_dataHoraEvento;
-	}
-     
-	/**
-	* Set xml
-	* 
-	* @param String $xml 
-	* @return Basico_Model_Xml
-	*/
-	public function setXml($xml)
-	{
-		$this->_xml = Basico_OPController_UtilOPController::retornaValorTipado($xml, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get xml
-	* 
-	* @return null|String
-	*/
-	public function getXml()
-	{
-		return $this->_xml;
-	}
-	
-	/**
-	* Set descricao
-	* 
-	* @param String $xml 
-	* @return Basico_Model_Xml
-	*/
-	public function setDescricao($descricao)
-	{
-		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get descricao
-	* 
-	* @return null|String
-	*/
-	public function getDescricao()
-	{
-		return $this->_descricao;
-	}
-     
-	/**
-	* Set pessoasperfis
-	* 
-	* @param int $pessoasperfis 
-	* @return Basico_Model_Pessoasperfis
-	*/
-	public function setPessoaPerfil($pessoaperfil)
-	{
-		$this->_pessoaperfil = Basico_OPController_UtilOPController::retornaValorTipado($pessoaperfil, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Get pessoaperfil
-	* 
-	* @return null|int
-	*/
-	public function getPessoaPerfil()
-	{
-		return $this->_pessoaperfil;
-	}
- 
-    /**
-     * Get pessoaperfil object
-     * @return null|PessoasPerfis
-     */
-    public function getPessoaPerfilObject()
-    {
-        $model = new Basico_Model_PessoasPerfis();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaperfil);
-        return $object;
-    }
-    
-	/**
-	* Set categoria
-	* 
-	* @param int $categoria 
-	* @return Basico_Model_Categoria
-	*/
-	public function setCategoria($categoria)
-	{
-		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Get categoria
-	* 
-	* @return null|int
-	*/
-	public function getCategoria()
-	{
-		return $this->_categoria;
-	}
- 
-    /**
-     * Get categoria object
-     * @return null|Categoria
-     */
-    public function getCategoriaObject()
-    {
-        $model = new Basico_Model_Categoria();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
-        return $object;
-    }
 
 	/**
 	* Set entry id
@@ -260,6 +122,116 @@ class Basico_Model_Log
 	public function getId()
 	{
 		return $this->_id;
+	}
+
+	/**
+	* Set idCategoria
+	* 
+	* @param int $idCategoria
+	* @return Basico_Model_Log
+	*/
+	public function setIdCategoria($idCategoria)
+	{
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idCategoria
+	* 
+	* @return null|int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+ 
+    /**
+     * Get categoria object
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+
+	/**
+	* Set datahoraEvento
+	* 
+	* @param String $datahoraEvento 
+	* @return Basico_Model_Log
+	*/
+	public function setDatahoraEvento($datahoraEvento)
+	{
+		$this->_datahoraEvento = Basico_OPController_UtilOPController::retornaValorTipado($datahoraEvento, TIPO_DATE, true);
+		return $this;
+	}
+
+	/**
+	* Get datahoraEvento
+	* 
+	* @return null|String
+	*/
+	public function getDatahoraEvento()
+	{
+		return $this->_datahoraEvento;
+	}
+
+	/**
+	* Set idAssocclPerfil
+	* 
+	* @param int $idAssocclPerfil 
+	* @return Basico_Model_Log
+	*/
+	public function setIdAssocclPerfil($idAssocclPerfil)
+	{
+		$this->_idAssocclPerfil = Basico_OPController_UtilOPController::retornaValorTipado($idAssocclPerfil, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idAssocclPerfil
+	* 
+	* @return null|int
+	*/
+	public function getIdAssocclPerfil()
+	{
+		return $this->_idAssocclPerfil;
+	}
+ 
+    /**
+     * Get assocclPerfil object
+     * @return null|PessoasPerfis
+     */
+    public function getAssocclPerfilObject()
+    {
+        $model = new Basico_Model_PessoasPerfis();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idAssocclPerfil);
+        return $object;
+    }
+
+	/**
+	* Set xml
+	* 
+	* @param String $xml 
+	* @return Basico_Model_Xml
+	*/
+	public function setXml($xml)
+	{
+		$this->_xml = Basico_OPController_UtilOPController::retornaValorTipado($xml, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get xml
+	* 
+	* @return null|String
+	*/
+	public function getXml()
+	{
+		return $this->_xml;
 	}
 
 	/**

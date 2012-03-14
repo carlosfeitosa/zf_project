@@ -8,12 +8,8 @@
  * @uses       Basico_Model_DbTable_Pessoa
  * @subpackage Model
  */
-class Basico_Model_PessoaMapper
+class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
 
     /**
      * Specify Zend_Db_Table instance to use for data operations
@@ -23,14 +19,7 @@ class Basico_Model_PessoaMapper
      */
     public function setDbTable($dbTable)
     {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
+        return parent::setDbTable($dbTable);
     }
 
     /**
@@ -42,12 +31,9 @@ class Basico_Model_PessoaMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Pessoa');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_Pessoa');
     }
-    
+
     /**
      * Save a Pessoa entry
      * 
@@ -57,7 +43,7 @@ class Basico_Model_PessoaMapper
     public function save(Basico_Model_Pessoa $object)
     {
         $data = array(
-        			  'id_perfil_padrao' => $object->getPerfilPadrao(),
+        			  'id_perfil_padrao' => $object->getIdPerfilPadrao(),
                       'rowinfo'          => $object->getRowinfo(),
                      );
 
@@ -68,7 +54,7 @@ class Basico_Model_PessoaMapper
             $this->getDbTable()->update($data, array('id = ?' => $id));
         }
     }
-    
+
 	/**
 	* Delete a Pessoa entry
 	* @param Basico_Model_Pessoa $object
@@ -94,7 +80,7 @@ class Basico_Model_PessoaMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-        	   ->setPerfilPadrao($row->id_perfil_padrao)
+        	   ->setIdPerfilPadrao($row->id_perfil_padrao)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -111,14 +97,14 @@ class Basico_Model_PessoaMapper
 		{
 			$entry = new Basico_Model_Pessoa();
 			$entry->setId($row->id)
-				  ->setPerfilPadrao($row->id_perfil_padrao)
+				  ->setIdPerfilPadrao($row->id_perfil_padrao)
                   ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
 	}
-	
+
 	/**
 	 * Fetch all pessoa entries
 	 * 
@@ -132,7 +118,7 @@ class Basico_Model_PessoaMapper
 		{
 			$entry = new Basico_Model_Pessoa();
 			$entry->setId($row->id)
-				  ->setPerfilPadrao($row->id_perfil_padrao)
+				  ->setIdPerfilPadrao($row->id_perfil_padrao)
 			      ->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;

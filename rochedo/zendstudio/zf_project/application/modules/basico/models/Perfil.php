@@ -10,15 +10,21 @@
 class Basico_Model_Perfil
 {
 	/**
-	* @var int
-	*/
-	protected $_id;
-
-	/**
 	 * @var Basico_Model_PerfilMapper
 	 */
 	protected $_mapper;
-
+	/**
+	* @var int
+	*/
+	protected $_id;
+    /**
+     * @var Integer
+     */
+    protected $_idCategoria;
+    /**
+     * @var Integer
+     */
+    protected $_idModulo;
 	/**
 	 * @var String
 	 */
@@ -26,34 +32,32 @@ class Basico_Model_Perfil
 	/**
 	 * @var String
 	 */
-	protected $_descricao;
+	protected $_constanteTextual;
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextual;
-	/**
-     * @var Integer
-     */
-    protected $_nivel;
+	protected $_constanteTextualDescricao;
 	/**
 	 * @var Boolean
 	 */
 	protected $_ativo;
 	/**
-	 * 
-	 * @var Date
-	 */
-	protected $_dataHoraCadastro;
-	/**
-	 * 
-	 * @var Date
-	 */
-	protected $_dataHoraUltimaAtualizacao;
-    /**
      * @var Integer
      */
-    protected $_categoria;
-
+    protected $_prioridade;
+	/**
+	 * @var Date
+	 */
+	protected $_datahoraCriacao;
+	/**
+	 * @var Date
+	 */
+	protected $_datahoraUltimaAtualizacao;
+    /**
+     * @var String
+     */
+    protected $_rowinfo;
+    
 	/**
 	 * Constructor
 	 * 
@@ -124,7 +128,100 @@ class Basico_Model_Perfil
 		}
 		return $this;
 	}
-    
+
+	/**
+	* Set entry id
+	* 
+	* @param  int $id 
+	* 
+	* @return Basico_Model_Perfil
+	*/
+	public function setId($id)
+	{
+		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry id
+	* 
+	* @return null|int
+	*/
+	public function getId()
+	{
+		return $this->_id;
+	}
+	
+	/**
+	* Set idCategoria
+	* 
+	* @param int $idCategoria 
+	* 
+	* @return Basico_Model_Perfil
+	*/
+	public function setIdCategoria($idCategoria)
+	{
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+	
+	/**
+	* Get idCategoria
+	* 
+	* @return null|int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+ 
+    /**
+     * Get categoria object
+     * 
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+
+	/**
+	* Set idModulo
+	* 
+	* @param int $idModulo 
+	* 
+	* @return Basico_Model_Perfil
+	*/
+	public function setIdModulo($idModulo)
+	{
+		$this->_idModulo = Basico_OPController_UtilOPController::retornaValorTipado($idModulo, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idModulo
+	* 
+	* @return null|int
+	*/
+	public function getIdModulo()
+	{
+		return $this->_idModulo;
+	}
+
+    /**
+     * Get modulo object
+     * 
+     * @return null|Basico_Model_Modulo
+     */
+    public function getModuloObject()
+    {
+        $model = new Basico_Model_Modulo();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idModulo);
+        return $object;
+    }
+
 	/**
 	* Set nome
 	* 
@@ -146,29 +243,6 @@ class Basico_Model_Perfil
 	public function getNome()
 	{
 		return $this->_nome;
-	}
-     
-	/**
-	* Set descricao
-	* 
-	* @param String $descricao 
-	* 
-	* @return Basico_Model_Perfil
-	*/
-	public function setDescricao($descricao)
-	{
-		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get descricao
-	* 
-	* @return null|String
-	*/
-	public function getDescricao()
-	{
-		return $this->_descricao;
 	}
 
 	/**
@@ -195,28 +269,28 @@ class Basico_Model_Perfil
 	}
 
 	/**
-	* Set nivel
+	* Set constanteTextualDescricao
 	* 
-	* @param int $nivel
+	* @param String $constanteTextualDescricao 
 	* 
 	* @return Basico_Model_Perfil
 	*/
-	public function setNivel($nivel)
+	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
-		$this->_nivel = Basico_OPController_UtilOPController::retornaValorTipado($nivel, TIPO_INTEIRO, true);
+		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get nivel
+	* Get constanteTextualDescricao
 	* 
-	* @return null|int
+	* @return null|String
 	*/
-	public function getNivel()
+	public function getconstanteTextualDescricao()
 	{
-		return $this->_nivel;
+		return $this->_constanteTextualDescricao;
 	}
- 
+
 	/**
 	* Set ativo
 	* 
@@ -239,109 +313,96 @@ class Basico_Model_Perfil
 	{
 		return $this->_ativo;
 	}
-	
-    /**
-	* Set dataHoraCadastro
+
+	/**
+	* Set prioridade
 	* 
-	* @param String $dataHoraCadastro 
+	* @param int $prioridade
 	* 
 	* @return Basico_Model_Perfil
 	*/
-	public function setDataHoraCadastro($dataHoraCadastro)
+	public function setPrioridade($prioridade)
 	{
-		$this->_dataHoraCadastro = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraCadastro, TIPO_DATE);
+		$this->_prioridade = Basico_OPController_UtilOPController::retornaValorTipado($prioridade, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraCadastro
-	* 
-	* @return null|String
-	*/
-	public function getDataHoraCadastro()
-	{
-		return $this->_dataHoraCadastro;
-	}
-	
-    /**
-	* Set dataHoraUltimaAtualizacao
-	* 
-	* @param String $dataHoraUltimaAtualizacao
-	* 
-	* @return Basico_Model_Perfil
-	*/
-	public function setDataHoraUltimaAtualizacao($dataHoraUltimaAtualizacao)
-	{
-		$this->_dataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaAtualizacao, TIPO_DATE);
-		return $this;
-	}
-
-	/**
-	* Get dataHoraUltimaAtualizacao
-	* 
-	* @return null|String
-	*/
-	public function getDataHoraUltimaAtualizacao()
-	{
-		return $this->_dataHoraUltimaAtualizacao;
-	}
-     
-	/**
-	* Set categoria
-	* 
-	* @param int $categoria 
-	* 
-	* @return Basico_Model_Perfil
-	*/
-	public function setCategoria($categoria)
-	{
-		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Get categoria
+	* Get prioridade
 	* 
 	* @return null|int
 	*/
-	public function getCategoria()
+	public function getPrioridade()
 	{
-		return $this->_categoria;
+		return $this->_prioridade;
 	}
- 
-    /**
-     * Get categoria object
-     * 
-     * @return null|Basico_Model_Categoria
-     */
-    public function getCategoriaObject()
-    {
-        $model = new Basico_Model_Categoria();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_categoria);
-        return $object;
-    }
 
-	/**
-	* Set entry id
+    /**
+	* Set datahoraCriacao
 	* 
-	* @param  int $id 
+	* @param String $datahoraCriacao 
 	* 
 	* @return Basico_Model_Perfil
 	*/
-	public function setId($id)
+	public function setDatahoraCriacao($datahoraCriacao)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_DATE);
 		return $this;
 	}
 
 	/**
-	* Retrieve entry id
+	* Get datahoraCriacao
 	* 
-	* @return null|int
+	* @return null|String
 	*/
-	public function getId()
+	public function getDatahoraCriacao()
 	{
-		return $this->_id;
+		return $this->_datahoraCriacao;
+	}
+	
+    /**
+	* Set datahoraUltimaAtualizacao
+	* 
+	* @param String $datahoraUltimaAtualizacao
+	* 
+	* @return Basico_Model_Perfil
+	*/
+	public function setdatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
+	{
+		$this->_datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaAtualizacao, TIPO_DATE);
+		return $this;
+	}
+
+	/**
+	* Get datahoraUltimaAtualizacao
+	* 
+	* @return null|String
+	*/
+	public function getdatahoraUltimaAtualizacao()
+	{
+		return $this->_datahoraUltimaAtualizacao;
+	}
+
+    /**
+	* Set entry rowinfo
+	* 
+	* @param  String $rowinfo 
+	* @return Basico_Model_Perfil
+	*/
+	public function setRowinfo($rowinfo)
+	{
+		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry rowinfo
+	* 
+	* @return null|String
+	*/
+	public function getRowinfo()
+	{
+		return $this->_rowinfo;
 	}
 
 	/**

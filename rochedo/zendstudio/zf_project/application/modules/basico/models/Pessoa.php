@@ -7,197 +7,253 @@
  * @uses       Basico_Model_PessoaMapper
  * @subpackage Model
  */
-class Basico_Model_Pessoa
+class Basico_Model_Pessoa extends Abstract_RochedoModeloDados
 {
-	/**
-	* @var int
-	*/
-	protected $_id;
 
 	/**
 	 * @var Integer
 	 */
-	protected $_perfilPadrao;
-
+	protected $_idPerfilPadrao;
 	/**
-	 * @var Basico_Model_PessoaMapper
+	 * @var Integer
 	 */
-	protected $_mapper;
+	protected $_idTelefoneDefault;
+	/**
+	 * @var Integer
+	 */
+	protected $_idEmailDefault;
+	/**
+	 * @var Integer
+	 */
+	protected $_idEnderecoDefault;
+	/**
+	 * @var Integer
+	 */
+	protected $_idEnderecoCorrespondencia;
+	/**
+	 * @var Integer
+	 */
+	protected $_idLinkDefault;
 	
 	/**
-	 * @var String
-	 */
-	protected $_rowinfo;
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param  array|null $options 
-	 * @return void
-	 */
-	public function __construct(array $options = null)
-	{
-		if (is_array($options)) 
-		{
-			$this->setOptions($options);
-		}
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @param  mixed $value 
-	 * @return void
-	 */
-	public function __set($name, $value)
-	{
-		$method = 'set' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		$this->$method($value);
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @return mixed
-	 */
-	public function __get($name)
-	{
-		$method = 'get' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		return $this->$method();
-	}
-
-	/**
-	 * Set object state
-	 * 
-	 * @param  array $options 
-	 * @return Basico_Model_Pessoa
-	 */
-	public function setOptions(array $options)
-	{
-		$methods = get_class_methods($this);
-		foreach ($options as $key => $value) 
-		{
-			$method = 'set' . ucfirst($key);
-			if (in_array($method, $methods)) 
-			{
-			    $this->$method($value);
-			}
-		}
-		return $this;
-	}
-
-	/**
-	* Set entry id
+	* Set entry idPerfilPadrao
 	* 
-	* @param  int $id 
+	* @param  int $idPerfilPadrao 
 	* @return Basico_Model_Pessoa
 	*/
-	public function setId($id)
+	public function setIdPerfilPadrao($idPerfilPadrao)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_idPerfilPadrao = Basico_OPController_UtilOPController::retornaValorTipado($idPerfilPadrao, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Retrieve entry id
+	* Retrieve entry idPerfilPadrao
 	* 
 	* @return null|int
 	*/
-	public function getId()
+	public function getIdPerfilPadrao()
 	{
-		return $this->_id;
+		return $this->_idPerfilPadrao;
 	}
 
-	/**
-	* Set entry perfilPadrao
-	* 
-	* @param  int $perfilPadrao 
-	* @return Basico_Model_Pessoa
-	*/
-	public function setPerfilPadrao($perfilPadrao)
-	{
-		$this->_perfilPadrao = Basico_OPController_UtilOPController::retornaValorTipado($perfilPadrao, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Retrieve entry perfilPadrao
-	* 
-	* @return null|int
-	*/
-	public function getPerfilPadrao()
-	{
-		return $this->_perfilPadrao;
-	}
-
+	 /**
+     * Get pessoaPerfil object
+     * 
+     * @return null|Basico_Model_Perfil
+     */
 	public function getPerfilPadraoObject()
 	{
 		// instanciando o modelo perfil
 		$model = new Basico_Model_Perfil();
-
 		// recuperando objeto
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_perfilPadrao);
-
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idPerfilPadrao);
         // retornando o objeto
         return $object;
 	}
 
 	/**
-	* Set rowinfo
+	* Set entry idTelefoneDefault
 	* 
-	* @param String $xml 
+	* @param  int $idTelefoneDefault 
 	* @return Basico_Model_Pessoa
 	*/
-	public function setRowinfo($rowinfo)
+	public function setIdTelefoneDefault($idTelefoneDefault)
 	{
-		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_idTelefoneDefault = Basico_OPController_UtilOPController::retornaValorTipado($idTelefoneDefault, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get rowinfo
+	* Retrieve entry idTelefoneDefault
 	* 
-	* @return null|String
+	* @return null|int
 	*/
-	public function getRowinfo()
+	public function getIdTelefoneDefault()
 	{
-		return $this->_rowinfo;
+		return $this->_idTelefoneDefault;
+	}
+
+	 /**
+     * Get telefone object
+     * 
+     * @return null|Basico_Model_Telefone
+     */
+	public function getTelefoneDefaultObject()
+	{
+		// instanciando o modelo perfil
+		$model = new Basico_Model_Telefone();
+		// recuperando objeto
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idTelefoneDefault);
+        // retornando o objeto
+        return $object;
+	}	
+
+	/**
+	* Set entry idEmailDefault
+	* 
+	* @param  int $idEmailDefault 
+	* @return Basico_Model_Pessoa
+	*/
+	public function setIdEmailDefault($idEmailDefault)
+	{
+		$this->_idEmailDefault = Basico_OPController_UtilOPController::retornaValorTipado($idEmailDefault, TIPO_INTEIRO, true);
+		return $this;
 	}
 
 	/**
-	* Set data mapper
+	* Retrieve entry idEmailDefault
 	* 
-	* @param  mixed $mapper 
+	* @return null|int
+	*/
+	public function getIdEmailDefault()
+	{
+		return $this->_idEmailDefault;
+	}
+
+	 /**
+     * Get Email object
+     * 
+     * @return null|Basico_Model_ContatoCpgEmail
+     */
+	public function getEmailDefaultObject()
+	{
+		// instanciando o modelo perfil
+		$model = new Basico_Model_ContatoCpgEmail();
+		// recuperando objeto
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idEmailDefault);
+        // retornando o objeto
+        return $object;
+	}	
+
+	/**
+	* Set entry idEnderecoDefault
+	* 
+	* @param  int $idEnderecoDefault 
 	* @return Basico_Model_Pessoa
 	*/
-	public function setMapper($mapper)
+	public function setIdEnderecoDefault($idEnderecoDefault)
 	{
-		$this->_mapper = $mapper;
+		$this->_idEnderecoDefault = Basico_OPController_UtilOPController::retornaValorTipado($idEnderecoDefault, TIPO_INTEIRO, true);
 		return $this;
 	}
-	
+
 	/**
-	* Get data mapper
-	*
-	* Lazy loads Basico_Model_PessoaMapper instance if no mapper registered.
+	* Retrieve entry idEnderecoDefault
 	* 
-	* @return Basico_Model_PessoaMapper
+	* @return null|int
 	*/
-	public function getMapper()
+	public function getIdEnderecoDefault()
 	{
-		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_PessoaMapper());
-		}
-		return $this->_mapper;
+		return $this->_idEnderecoDefault;
+	}
+
+	 /**
+     * Get Endereco object
+     * 
+     * @return null|Basico_Model_Endereco
+     */
+	public function getEnderecoDefaultObject()
+	{
+		// instanciando o modelo perfil
+		$model = new Basico_Model_Endereco();
+		// recuperando objeto
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idEnderecoDefault);
+        // retornando o objeto
+        return $object;
+	}	
+
+	/**
+	* Set entry idEnderecoCorrespondencia
+	* 
+	* @param  int $idEnderecoCorrespondencia 
+	* @return Basico_Model_Pessoa
+	*/
+	public function setIdEnderecoCorrespondencia($idEnderecoCorrespondencia)
+	{
+		$this->_idEnderecoCorrespondencia = Basico_OPController_UtilOPController::retornaValorTipado($idEnderecoCorrespondencia, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry idEnderecoCorrespondencia
+	* 
+	* @return null|int
+	*/
+	public function getIdEnderecoCorrespondencia()
+	{
+		return $this->_idEnderecoCorrespondencia;
+	}
+
+	 /**
+     * Get Endereco object
+     * 
+     * @return null|Basico_Model_Endereco
+     */
+	public function getEnderecoCorrespondenciaObject()
+	{
+		// instanciando o modelo perfil
+		$model = new Basico_Model_Endereco();
+		// recuperando objeto
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idEnderecoCorrespondencia);
+        // retornando o objeto
+        return $object;
+	}	
+
+	/**
+	* Set entry idLinkDefault
+	* 
+	* @param  int $idLinkDefault 
+	* @return Basico_Model_Pessoa
+	*/
+	public function setIdLinkDefault($idLinkDefault)
+	{
+		$this->_idLinkDefault = Basico_OPController_UtilOPController::retornaValorTipado($idLinkDefault, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Retrieve entry idLinkDefault
+	* 
+	* @return null|int
+	*/
+	public function getIdLinkDefault()
+	{
+		return $this->_idLinkDefault;
+	}
+
+	 /**
+     * Get Link object
+     * 
+     * @return null|Basico_Model_Link
+     */
+	public function getLinkDefaultObject()
+	{
+		// instanciando o modelo perfil
+		$model = new Basico_Model_Link();
+		// recuperando objeto
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idLinkDefault);
+        // retornando o objeto
+        return $object;
 	}
 }

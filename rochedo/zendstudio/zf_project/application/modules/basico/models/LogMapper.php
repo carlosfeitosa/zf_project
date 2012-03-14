@@ -57,10 +57,10 @@ class Basico_Model_LogMapper
     public function save(Basico_Model_Log $object)
     {
         $data = array(
-				'datahora_evento'   => $object->getDataHoraEvento(),
+        		'id_categoria'      => $object->getIdCategoria(),
+        		'id_assoccl_perfil' => $object->getIdAssocclPerfil(),
+				'datahora_evento'   => $object->getDatahoraEvento(),
 				'xml'               => $object->getXml(),
-                'id_perfil_pessoa'  => $object->getPessoaPerfil(),
-                'id_categoria'      => $object->getCategoria(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -96,10 +96,10 @@ class Basico_Model_LogMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-				->setDataHoraEvento($row->dataHoraEvento)
-				->setXml($row->xml)
-                ->setPessoaPerfil($row->pessoasperfis)
-                ->setCategoria($row->categoria);
+        		->setIdCategoria($row->id_categoria)
+                ->setIdAssocclPerfil($row->id_assoccl_perfil)
+                ->setDatahoraEvento($row->datahora_evento)
+                ->setXml($row->xml);
     }
 
 	/**
@@ -115,16 +115,16 @@ class Basico_Model_LogMapper
 		{
 			$entry = new Basico_Model_Log();
 			$entry->setId($row->id)
-   				  ->setDataHoraEvento($row->datahora_evento)
-    			  ->setXml($row->xml)
-                  ->setPessoaPerfil($row->id_perfil_pessoa)
-                  ->setCategoria($row->id_categoria)
-    	  	      ->setMapper($this);
+        		->setIdCategoria($row->id_categoria)
+                ->setIdAssocclPerfil($row->id_assoccl_perfil)
+                ->setDatahoraEvento($row->datahora_evento)
+                ->setXml($row->xml)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
 	}
-	
+
 	/**
 	 * Fetch all log entries
 	 * 
@@ -138,11 +138,11 @@ class Basico_Model_LogMapper
 		{
 			$entry = new Basico_Model_Log();
 			$entry->setId($row->id)
-				  ->setDataHoraEvento($row->datahora_evento)
-				  ->setXml($row->xml)
-                  ->setPessoaPerfil($row->id_perfil_pessoa)
-                  ->setCategoria($row->id_categoria)
-				  ->setMapper($this);
+        		->setIdCategoria($row->id_categoria)
+                ->setIdAssocclPerfil($row->id_assoccl_perfil)
+                ->setDatahoraEvento($row->datahora_evento)
+                ->setXml($row->xml)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
