@@ -10,24 +10,12 @@
  */
 class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa
 {
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_PessoaMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        return parent::setDbTable($dbTable);
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_Pessoa if no instance registered
      * 
-     * @return Zend_Db_Table_Abstract
+     * @return Basico_Model_DbTable_Pessoa
      */
     public function getDbTable()
     {
@@ -36,7 +24,7 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interf
 
     /**
      * Save a Pessoa entry
-     * 
+     *
      * @param  Basico_Model_Pessoa $object
      * @return void
      */

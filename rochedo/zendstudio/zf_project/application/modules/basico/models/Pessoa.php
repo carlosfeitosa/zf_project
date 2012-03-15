@@ -9,7 +9,6 @@
  */
 class Basico_Model_Pessoa extends Abstract_RochedoModeloDados
 {
-
 	/**
 	 * @var Integer
 	 */
@@ -255,5 +254,17 @@ class Basico_Model_Pessoa extends Abstract_RochedoModeloDados
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idLinkDefault);
         // retornando o objeto
         return $object;
+	}
+
+	/**
+	* Get data mapper
+	*
+	* Lazy loads Basico_Model_PessoaMapper instance if no mapper registered.
+	* 
+	* @return Basico_Model_PessoaMapper
+	*/
+	public function getMapper()
+	{
+		return parent::getMapper(Basico_Model_PessoaMapper);
 	}
 }
