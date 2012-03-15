@@ -36,6 +36,7 @@ abstract class Abstract_RochedoMapper {
      *
      * Lazy loads Basico_Model_DbTable
      * 
+     * @param String $nomeModelo
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable($nomeModelo)

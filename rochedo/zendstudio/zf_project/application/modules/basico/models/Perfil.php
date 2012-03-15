@@ -7,16 +7,8 @@
  * @uses       Basico_Model_PerfilMapper
  * @subpackage Model
  */
-class Basico_Model_Perfil
+class Basico_Model_Perfil extends Abstract_RochedoModeloDados
 {
-	/**
-	 * @var Basico_Model_PerfilMapper
-	 */
-	protected $_mapper;
-	/**
-	* @var int
-	*/
-	protected $_id;
     /**
      * @var Integer
      */
@@ -45,113 +37,7 @@ class Basico_Model_Perfil
      * @var Integer
      */
     protected $_prioridade;
-	/**
-	 * @var Date
-	 */
-	protected $_datahoraCriacao;
-	/**
-	 * @var Date
-	 */
-	protected $_datahoraUltimaAtualizacao;
-    /**
-     * @var String
-     */
-    protected $_rowinfo;
-    
-	/**
-	 * Constructor
-	 * 
-	 * @param  array|null $options 
-	 * 
-	 * @return void
-	 */
-	public function __construct(array $options = null)
-	{
-		if (is_array($options)) 
-		{
-			$this->setOptions($options);
-		}
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @param  mixed $value 
-	 * 
-	 * @return void
-	 */
-	public function __set($name, $value)
-	{
-		$method = 'set' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		$this->$method($value);
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * 
-	 * @return mixed
-	 */
-	public function __get($name)
-	{
-		$method = 'get' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		return $this->$method();
-	}
-
-	/**
-	 * Set object state
-	 * 
-	 * @param  array $options 
-	 * 
-	 * @return Basico_Model_Perfil
-	 */
-	public function setOptions(array $options)
-	{
-		$methods = get_class_methods($this);
-		foreach ($options as $key => $value) 
-		{
-			$method = 'set' . ucfirst($key);
-			if (in_array($method, $methods)) 
-			{
-			    $this->$method($value);
-			}
-		}
-		return $this;
-	}
-
-	/**
-	* Set entry id
-	* 
-	* @param  int $id 
-	* 
-	* @return Basico_Model_Perfil
-	*/
-	public function setId($id)
-	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Retrieve entry id
-	* 
-	* @return null|int
-	*/
-	public function getId()
-	{
-		return $this->_id;
-	}
-	
+    	
 	/**
 	* Set idCategoria
 	* 
@@ -336,87 +222,6 @@ class Basico_Model_Perfil
 	{
 		return $this->_prioridade;
 	}
-
-    /**
-	* Set datahoraCriacao
-	* 
-	* @param String $datahoraCriacao 
-	* 
-	* @return Basico_Model_Perfil
-	*/
-	public function setDatahoraCriacao($datahoraCriacao)
-	{
-		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_DATE);
-		return $this;
-	}
-
-	/**
-	* Get datahoraCriacao
-	* 
-	* @return null|String
-	*/
-	public function getDatahoraCriacao()
-	{
-		return $this->_datahoraCriacao;
-	}
-	
-    /**
-	* Set datahoraUltimaAtualizacao
-	* 
-	* @param String $datahoraUltimaAtualizacao
-	* 
-	* @return Basico_Model_Perfil
-	*/
-	public function setdatahoraUltimaAtualizacao($datahoraUltimaAtualizacao)
-	{
-		$this->_datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaAtualizacao, TIPO_DATE);
-		return $this;
-	}
-
-	/**
-	* Get datahoraUltimaAtualizacao
-	* 
-	* @return null|String
-	*/
-	public function getdatahoraUltimaAtualizacao()
-	{
-		return $this->_datahoraUltimaAtualizacao;
-	}
-
-    /**
-	* Set entry rowinfo
-	* 
-	* @param  String $rowinfo 
-	* @return Basico_Model_Perfil
-	*/
-	public function setRowinfo($rowinfo)
-	{
-		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Retrieve entry rowinfo
-	* 
-	* @return null|String
-	*/
-	public function getRowinfo()
-	{
-		return $this->_rowinfo;
-	}
-
-	/**
-	* Set data mapper
-	* 
-	* @param  mixed $mapper 
-	* 
-	* @return Basico_Model_Perfil
-	*/
-	public function setMapper($mapper)
-	{
-		$this->_mapper = $mapper;
-		return $this;
-	}
 	
 	/**
 	* Get data mapper
@@ -427,9 +232,6 @@ class Basico_Model_Perfil
 	*/
 	public function getMapper()
 	{
-		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_PerfilMapper());
-		}
-		return $this->_mapper;
+		return parent::getMapper(Basico_Model_PerfilMapper);
 	}
 }

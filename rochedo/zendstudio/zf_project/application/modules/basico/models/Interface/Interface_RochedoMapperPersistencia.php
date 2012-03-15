@@ -8,7 +8,6 @@
  */
 interface Interface_RochedoMapperPersistencia extends Interface_RochedoMapperGeneric
 {
-
     /**
      * Save a Model entry
      * 

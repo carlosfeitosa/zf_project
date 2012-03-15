@@ -8,44 +8,18 @@
  * @uses       Basico_Model_DbTable_PessoaLogin
  * @subpackage Model
  */
-class Basico_Model_PessoaLoginMapper
+class Basico_Model_PessoaLoginMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_PessoaLoginMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Login if no instance registered
+     * Lazy loads Basico_Model_DbTable_PessoaLogin if no instance registered
      * 
-     * @return Zend_Db_Table_Abstract
+     * @return Basico_Model_DbTable_PessoaLogin
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Login');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_PessoaLogin');
     }
     
     /**
@@ -54,7 +28,7 @@ class Basico_Model_PessoaLoginMapper
      * @param  Basico_Model_PessoaLogin $object
      * @return void
      */
-    public function save(Basico_Model_Login $object)
+    public function save(Basico_Model_PessoaLogin $object)
     {
         $data = array(
                       'id_pessoa'                       => $object->getIdPessoa(),

@@ -7,7 +7,7 @@
  * @uses       Basico_Model_PessoaMapper
  * @subpackage Model
  */
-class Basico_Model_Pessoa extends Abstract_RochedoModeloDados
+class Basico_Model_Pessoa extends Abstract_RochedoModeloAssociacao
 {
 	/**
 	 * @var Integer

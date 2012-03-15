@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_Perfil
  * @subpackage Model
  */
-class Basico_Model_PerfilMapper
+class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa 
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_PerfilMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,10 +19,7 @@ class Basico_Model_PerfilMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Perfil');
-        }
-        return $this->_dbTable;
+    	return parent::getDbTable('Basico_Model_DbTable_Perfil');
     }
     
     /**

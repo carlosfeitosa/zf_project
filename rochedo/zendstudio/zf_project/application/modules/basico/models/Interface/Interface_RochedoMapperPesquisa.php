@@ -8,7 +8,6 @@
  */
 interface Interface_RochedoMapperPesquisa extends Interface_RochedoMapperGeneric
 {
-
     /**
      * Find a Model entry by id
      * 
