@@ -56,6 +56,18 @@ class Basico_Model_Output extends Abstract_RochedoModeloDados
 		return $this->_idCategoria;
 	}
 
+    /**
+     * Get categoria object
+     * 
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+	
 	/**
 	* Set nome
 	* 

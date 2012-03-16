@@ -32,6 +32,13 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interf
     {
         $data = array(
         			  'id_perfil_padrao' => $object->getIdPerfilPadrao(),
+        			  'id_telefone_default' => $object->getIdTelefoneDefault(),
+        			  'id_email_default' => $object->getIdEmailDefault(),
+        			  'id_endereco_default' => $object->getIdEnderecoDefault(),
+        			  'id_endereco_correpondencia' => $object->getIdEnderecoCorrespondencia(),
+        			  'id_link_default' => $object->getIdLinkDefault(),
+        			  'datahora_criacao' => $object->getDatahoraCriacao(),
+        			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
                       'rowinfo'          => $object->getRowinfo(),
                      );
 
@@ -69,9 +76,16 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interf
         $row = $result->current();
         $object->setId($row->id)
         	   ->setIdPerfilPadrao($row->id_perfil_padrao)
+        	   ->setIdTelefoneDefault($row->id_telefone_default)
+        	   ->setIdEmailDefault($row->id_email_default)
+        	   ->setIdEnderecoDefault($row->id_endereco_default)
+        	   ->setIdEnderecoCorrespondencia($row->id_endereco_correpondencia)
+        	   ->setIdLinkDefault($row->id_link_default)
+        	   ->setDatahoraCriacao($row->datahora_criacao)
+        	   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setRowinfo($row->rowinfo);
     }
-
+    
 	/**
 	 * Fetch all pessoa entries
 	 * 
@@ -85,9 +99,16 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interf
 		{
 			$entry = new Basico_Model_Pessoa();
 			$entry->setId($row->id)
-				  ->setIdPerfilPadrao($row->id_perfil_padrao)
-                  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
+				->setIdPerfilPadrao($row->id_perfil_padrao)
+				->setIdTelefoneDefault($row->id_telefone_default)
+				->setIdEmailDefault($row->id_email_default)
+				->setIdEnderecoDefault($row->id_endereco_default)
+				->setIdEnderecoCorrespondencia($row->id_endereco_correpondencia)
+				->setIdLinkDefault($row->id_link_default)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -106,9 +127,16 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interf
 		{
 			$entry = new Basico_Model_Pessoa();
 			$entry->setId($row->id)
-				  ->setIdPerfilPadrao($row->id_perfil_padrao)
-			      ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
+				->setIdPerfilPadrao($row->id_perfil_padrao)
+				->setIdTelefoneDefault($row->id_telefone_default)
+				->setIdEmailDefault($row->id_email_default)
+				->setIdEnderecoDefault($row->id_endereco_default)
+				->setIdEnderecoCorrespondencia($row->id_endereco_correpondencia)
+				->setIdLinkDefault($row->id_link_default)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo)
+				->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
