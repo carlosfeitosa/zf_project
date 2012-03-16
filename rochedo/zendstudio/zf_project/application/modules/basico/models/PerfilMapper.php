@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Perfil
  * @subpackage Model
  */
-class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa 
+class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia 
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -26,6 +26,7 @@ class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Interf
      * Save a Perfil entry
      * 
      * @param  Basico_Model_Perfil $object
+     * 
      * @return void
      */
     public function save(Basico_Model_Perfil $object)
@@ -53,7 +54,9 @@ class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Interf
     
 	/**
 	* Delete a Perfil entry
+	* 
 	* @param Basico_Model_Perfil $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_Model_Perfil $object)
@@ -64,8 +67,9 @@ class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Interf
     /**
      * Find a Perfil entry by id
      * 
-     * @param  int $id 
-     * @param  Basico_Model_Perfil $object 
+     * @param  int $id
+     * @param  Basico_Model_Perfil $object
+     * 
      * @return void
      */
     public function find($id, Basico_Model_Perfil $object)

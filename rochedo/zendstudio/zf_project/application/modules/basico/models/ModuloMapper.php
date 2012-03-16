@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Modulo
  * @subpackage Model
  */
-class Basico_Model_ModuloMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa
+class Basico_Model_ModuloMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -26,6 +26,7 @@ class Basico_Model_ModuloMapper extends Abstract_RochedoMapper implements Interf
      * Save a Modulo entry
      * 
      * @param  Basico_Model_Modulo $object
+     * 
      * @return void
      */
     public function save(Basico_Model_Modulo $object)
@@ -58,7 +59,9 @@ class Basico_Model_ModuloMapper extends Abstract_RochedoMapper implements Interf
     
 	/**
 	* Delete a Modulo entry
+	* 
 	* @param Basico_Model_Modulo $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_Model_Modulo $object)
@@ -70,7 +73,8 @@ class Basico_Model_ModuloMapper extends Abstract_RochedoMapper implements Interf
      * Find a Modulo entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Modulo $object 
+     * @param  Basico_Model_Modulo $object
+     * 
      * @return void
      */
     public function find($id, Basico_Model_Modulo $object)

@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioElementoAssocclFilterMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModeloAssociacao
+class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
      * @var idAssocclElemento
@@ -29,7 +29,8 @@ class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModel
     /**
     * Set formularioElemento
     * 
-    * @param int $ 
+    * @param int $idAssocclElemento
+    * 
     * @return Basico_Model_FormularioElementoAssocclFilter
     */
     public function setIdAssocclElemento($idAssocclElemento)
@@ -50,6 +51,7 @@ class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModel
  
     /**
      * Get formularioelemento object
+     * 
      * @return null|Basico_Model_FormularioElemento
      */
     public function getAssocclElementoObject()
@@ -62,7 +64,7 @@ class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModel
     /**
     * Set idFilter
     * 
-    * @param int $ 
+    * @param int $idFilter
     * @return Basico_Model_FormularioElementoAssocclFilter
     */
     public function setIdFilter($idFilter)
@@ -95,7 +97,7 @@ class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModel
     /**
     * Set ordem
     * 
-    * @param int $ 
+    * @param int $ordem
     * @return Basico_Model_FormularioElementoAssocclFilter
     */
     public function setOrdem($ordem)

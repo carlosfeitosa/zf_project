@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Mensagem
  * @subpackage Model
  */
-class Basico_Model_MensagemMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa 
+class Basico_Model_MensagemMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia 
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -26,6 +26,7 @@ class Basico_Model_MensagemMapper extends Abstract_RochedoMapper implements Inte
      * Save a Mensagem entry
      * 
      * @param  Basico_Model_Mensagem $object
+     * 
      * @return void
      */
     public function save(Basico_Model_Mensagem $object)
@@ -54,7 +55,9 @@ class Basico_Model_MensagemMapper extends Abstract_RochedoMapper implements Inte
     
 	/**
 	* Delete a Mensagem entry
+	* 
 	* @param Basico_Model_Mensagem $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_Model_Mensagem $object)
@@ -66,7 +69,8 @@ class Basico_Model_MensagemMapper extends Abstract_RochedoMapper implements Inte
      * Find a Mensagem entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Mensagem $object 
+     * @param  Basico_Model_Mensagem $object
+     * 
      * @return void
      */
     public function find($id, Basico_Model_Mensagem $object)

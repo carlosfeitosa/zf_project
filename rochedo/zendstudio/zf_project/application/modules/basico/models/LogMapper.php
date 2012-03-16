@@ -19,6 +19,7 @@ class Basico_Model_LogMapper
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable 
+     * 
      * @return Basico_Model_LogMapper
      */
     public function setDbTable($dbTable)
@@ -52,6 +53,7 @@ class Basico_Model_LogMapper
      * Save a Log entry
      * 
      * @param  Basico_Model_Log $object
+     * 
      * @return void
      */
     public function save(Basico_Model_Log $object)
@@ -73,7 +75,9 @@ class Basico_Model_LogMapper
     
 	/**
 	* Delete a Log entry
+	* 
 	* @param Basico_Model_Log $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_Model_Log $object)
@@ -85,7 +89,8 @@ class Basico_Model_LogMapper
      * Find a Log entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Log $object 
+     * @param  Basico_Model_Log $object
+     * 
      * @return void
      */
     public function find($id, Basico_Model_Log $object)

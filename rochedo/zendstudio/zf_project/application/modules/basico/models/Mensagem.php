@@ -7,7 +7,7 @@
  * @uses Basico_Model_MensagemMapper
  * @subpackage Model
  */
-class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
+class Basico_Model_Mensagem extends Abstract_RochedoModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
 	* @var int
@@ -41,7 +41,8 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
 	/**
 	* Set entry idCategoria
 	* 
-	* @param  int $idCategoria 
+	* @param  int $idCategoria
+	* 
 	* @return Basico_Model_Mensagem
 	*/
 	public function setIdCategoria($idCategoria)
@@ -62,6 +63,7 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
 
     /**
      * Get categoria object
+     * 
      * @return null|Basico_Model_Categoria
      */
     public function getCategoriaObject()
@@ -75,6 +77,7 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
 	* Set entry idGenericoProprietario
 	* 
 	* @param  int $idGenericoProprietario
+	* 
 	* @return Basico_Model_Mensagem
 	*/
 	public function setIdGenericoProprietario($idGenericoProprietario)
@@ -96,7 +99,8 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
 	/**
 	* Set remetente
 	* 
-	* @param String $remetente 
+	* @param String $remetente
+	* 
 	* @return Basico_Model_Mensagem
 	*/
 	public function setRemetente($remetente)
@@ -118,7 +122,8 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
 	/**
 	* Set destinatarios
 	* 
-	* @param String $destinatarios 
+	* @param String $destinatarios
+	* 
 	* @return Basico_Model_Mensagem
 	*/
 	public function setDestinatarios($destinatarios)
@@ -154,7 +159,8 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
 	/**
 	* Set assunto
 	* 
-	* @param String $assunto 
+	* @param String $assunto
+	* 
 	* @return Basico_Model_Mensagem
 	*/
 	public function setAssunto($assunto)
@@ -176,7 +182,8 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
 	/**
 	* Set mensagem
 	* 
-	* @param String $mensagem 
+	* @param String $mensagem
+	* 
 	* @return Basico_Model_Mensagem
 	*/
 	public function setMensagem($mensagem)
@@ -198,7 +205,8 @@ class Basico_Model_Mensagem extends Abstract_RochedoModeloDados
     /**
 	* Set datahoraEnvio
 	* 
-	* @param String $datahoraEnvio 
+	* @param String $datahoraEnvio
+	* 
 	* @return Basico_Model_Mensagem
 	*/
 	public function setDatahoraEnvio($datahoraEnvio)

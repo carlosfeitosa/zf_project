@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioAssocclTemplateMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclTemplate extends Abstract_RochedoModeloAssociacao
+class Basico_Model_FormularioAssocclTemplate extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
 {
     /**
      * @var idTemplate
@@ -21,7 +21,8 @@ class Basico_Model_FormularioAssocclTemplate extends Abstract_RochedoModeloAssoc
     /**
     * Set id template
     * 
-    * @param int $idTemplate 
+    * @param int $idTemplate
+    * 
     * @return Basico_Model_FormularioAssocclTemplate
     */
     public function setIdTemplate($idTemplate)
@@ -42,6 +43,7 @@ class Basico_Model_FormularioAssocclTemplate extends Abstract_RochedoModeloAssoc
  
     /**
      * Get template object
+     * 
      * @return null|Basico_Model_Template
      */
     public function getTemplateObject()
@@ -54,7 +56,8 @@ class Basico_Model_FormularioAssocclTemplate extends Abstract_RochedoModeloAssoc
     /**
     * Set id formulario
     * 
-    * @param int $idFormulario 
+    * @param int $idFormulario
+    * 
     * @return Basico_Model_FormularioAssocclTemplate
     */
     public function setIdFormulario($idFormulario)
@@ -75,6 +78,7 @@ class Basico_Model_FormularioAssocclTemplate extends Abstract_RochedoModeloAssoc
  
     /**
      * Get formulario object
+     * 
      * @return null|Basico_Model_Formulario
      */
     public function getFormularioObject()

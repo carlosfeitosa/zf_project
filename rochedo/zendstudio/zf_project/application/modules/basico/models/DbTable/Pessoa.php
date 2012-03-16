@@ -12,4 +12,3 @@ class Basico_Model_DbTable_Pessoa extends Zend_Db_Table_Abstract
      */
     protected $_name = 'basico.pessoa';
 }
-

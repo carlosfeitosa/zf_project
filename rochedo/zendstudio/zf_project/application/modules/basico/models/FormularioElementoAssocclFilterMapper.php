@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_FormularioElementoAssocclFilter
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoAssocclFilterMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa
+class Basico_Model_FormularioElementoAssocclFilterMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -26,6 +26,7 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Abstract_Roched
      * Save a LearningBasket entry
      * 
      * @param  Basico_Model_DbTable_FormularioElementoAssocclFilter $object
+     * 
      * @return void
      */
     public function save(Basico_Model_FormularioElementoAssocclFilter $object)
@@ -48,7 +49,9 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Abstract_Roched
     
     /**
     * Delete a Basico_Model_DbTable_FormularioElementoAssocclFilter entry
+    * 
     * @param Basico_Model_DbTable_FormularioElementoAssocclFilter $object
+    * 
     * @return void
     */
     public function delete(Basico_Model_DbTable_FormularioElementoAssocclFilter $object)
@@ -59,8 +62,9 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Abstract_Roched
     /**
      * Find a LearningBasket entry by id
      * 
-     * @param  int $id 
-     * @param  Basico_Model_DbTable_FormularioElementoAssocclFilter $object 
+     * @param  int $id
+     * @param  Basico_Model_DbTable_FormularioElementoAssocclFilter $object
+     *  
      * @return void
      */
     public function find($id, Basico_Model_DbTable_FormularioElementoAssocclFilter $object)

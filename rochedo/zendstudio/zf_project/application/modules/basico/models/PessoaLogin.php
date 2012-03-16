@@ -7,7 +7,7 @@
  * @uses       Basico_Model_PessoaLoginMapper
  * @subpackage Model
  */
-class Basico_Model_PessoaLogin extends Abstract_RochedoModeloDados
+class Basico_Model_PessoaLogin extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
 	* @var int
