@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_AssocChaveEstrangeiraRelacao
  * @subpackage Model
  */
-class Basico_Model_AssocChaveEstrangeiraRelacaoMapper
-{
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_AssocChaveEstrangeiraRelacaoMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
+class Basico_Model_AssocChaveEstrangeiraRelacaoMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+{   
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,47 +19,10 @@ class Basico_Model_AssocChaveEstrangeiraRelacaoMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_AssocChaveEstrangeiraRelacao');
-        }
-        return $this->_dbTable;
-    }
-    
-    /**
-     * Save a AssocChaveEstrangeiraRelacao entry
-     * 
-     * @param  Basico_Model_AssocChaveEstrangeiraRelacao $object
-     * @return void
-     */
-    public function save(Basico_Model_AssocChaveEstrangeiraRelacao $object)
-    {
-        $data = array(
-				'tabela_origem'    => $object->getTabelaOrigem(),
-				'campo_origem'     => $object->getCampoOrigem(),
-        		'datahora_criacao' => $object->getDatahoraCriacao(),
-        		'rowinfo'          => $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+        return parent::getDbTable('Basico_Model_DbTable_AssocChaveEstrangeiraRelacao');
     }
     
 	/**
-	* Delete a AssocChaveEstrangeiraRelacao entry
-	* @param Basico_Model_AssocChaveEstrangeiraRelacao $object
-	* @return void
-	*/
-	public function delete(Basico_Model_AssocChaveEstrangeiraRelacao $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a AssocChaveEstrangeiraRelacao entry by id
      * 
      * @param  int $id 
@@ -150,5 +90,39 @@ class Basico_Model_AssocChaveEstrangeiraRelacaoMapper
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+    
+    /**
+     * Save a AssocChaveEstrangeiraRelacao entry
+     * 
+     * @param  Basico_Model_AssocChaveEstrangeiraRelacao $object
+     * @return void
+     */
+    public function save(Basico_Model_AssocChaveEstrangeiraRelacao $object)
+    {
+        $data = array(
+				'tabela_origem'    => $object->getTabelaOrigem(),
+				'campo_origem'     => $object->getCampoOrigem(),
+        		'datahora_criacao' => $object->getDatahoraCriacao(),
+        		'rowinfo'          => $object->getRowinfo(),
+
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a AssocChaveEstrangeiraRelacao entry
+	* @param Basico_Model_AssocChaveEstrangeiraRelacao $object
+	* @return void
+	*/
+	public function delete(Basico_Model_AssocChaveEstrangeiraRelacao $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

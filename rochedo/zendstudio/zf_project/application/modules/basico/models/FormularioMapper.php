@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_Formulario
  * @subpackage Model
  */
-class Basico_Model_FormularioMapper
+class Basico_Model_FormularioMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_FormularioMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,11 +19,117 @@ class Basico_Model_FormularioMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Formulario');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_Formulario');
     }
+    
+	/**
+     * Find a Formulario entry by id
+     * 
+     * @param  int $id 
+     * @param  Basico_Model_Formulario $object 
+     * @return void
+     */
+    public function find($id, Basico_Model_Formulario $object)
+    {
+        $result = $this->getDbTable()->find($id);
+        if (0 == count($result)) {
+            return;
+        }
+        $row = $result->current();
+        $object->setId($row->id)
+				->setIdFormularioPai($row->id_formulario_pai)
+				->setNivel($row->nivel)
+        		->setIdCategoria($row->id_categoria)
+        		->setIdAjuda($row->id_ajuda)
+				->setNome($row->nome)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setAtivo($row->ativo)
+				->setFormName($row->form_name)
+				->setFormMethod($row->form_method)
+				->setFormAction($row->form_action)
+				->setFormEnctype($row->form_enctype)
+				->setFormAttribs($row->form_attribs)
+				->setOrdem($row->ordem)
+				->setPermiteRascunho($row->permite_rascunho)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo);
+    }
+
+	/**
+	 * Fetch all formulario entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		$resultSet = $this->getDbTable()->fetchAll();
+		$entries   = array();
+		foreach ($resultSet as $row) 
+		{
+			$entry = new Basico_Model_Formulario();
+			$entry->setId($row->id)
+				->setIdFormularioPai($row->id_formulario_pai)
+				->setNivel($row->nivel)
+        		->setIdCategoria($row->id_categoria)
+        		->setIdAjuda($row->id_ajuda)
+				->setNome($row->nome)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setAtivo($row->ativo)
+				->setFormName($row->form_name)
+				->setFormMethod($row->form_method)
+				->setFormAction($row->form_action)
+				->setFormEnctype($row->form_enctype)
+				->setFormAttribs($row->form_attribs)
+				->setOrdem($row->ordem)
+				->setPermiteRascunho($row->permite_rascunho)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo)
+				->setMapper($this);
+			$entries[] = $entry;
+		}
+		return $entries;
+	}
+	
+	/**
+	 * Fetch all formulario entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
+		$entries   = array();
+		foreach ($resultSet as $row) 
+		{
+			$entry = new Basico_Model_Formulario();
+			$entry->setId($row->id)
+				->setIdFormularioPai($row->id_formulario_pai)
+				->setNivel($row->nivel)
+        		->setIdCategoria($row->id_categoria)
+        		->setIdAjuda($row->id_ajuda)
+				->setNome($row->nome)
+				->setConstanteTextual($row->constante_textual)
+				->setConstanteTextualDescricao($row->constante_textual_descricao)
+				->setAtivo($row->ativo)
+				->setFormName($row->form_name)
+				->setFormMethod($row->form_method)
+				->setFormAction($row->form_action)
+				->setFormEnctype($row->form_enctype)
+				->setFormAttribs($row->form_attribs)
+				->setOrdem($row->ordem)
+				->setPermiteRascunho($row->permite_rascunho)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo)				
+				->setMapper($this);
+			$entries[] = $entry;
+		}
+		return $entries;
+	}
     
     /**
      * Save a Formulario entry
@@ -96,114 +179,4 @@ class Basico_Model_FormularioMapper
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
-
-    /**
-     * Find a Formulario entry by id
-     * 
-     * @param  int $id 
-     * @param  Basico_Model_Formulario $object 
-     * @return void
-     */
-    public function find($id, Basico_Model_Formulario $object)
-    {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-				->setIdFormularioPai($row->id_formulario_pai)
-				->setNivel($row->nivel)
-        		->setIdCategoria($row->id_categoria)
-        		->setIdAjuda($row->id_ajuda)
-				->setNome($row->nome)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setAtivo($row->ativo)
-				->setFormName($row->form_name)
-				->setFormMethod($row->form_method)
-				->setFormAction($row->form_action)
-				->setFormEnctype($row->form_enctype)
-				->setFormAttribs($row->form_attribs)
-				->setOrdem($row->ordem)
-				->setPermiteRascunho($row->permite_rascunho)
-				//->setDatahoraCriacao($row->datahora_criacao)
-				//->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo);
-    }
-
-	/**
-	 * Fetch all formulario entries
-	 * 
-	 * @return array
-	 */
-	public function fetchAll()
-	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Formulario();
-			$entry->setId($row->id)
-				->setIdFormularioPai($row->id_formulario_pai)
-				->setNivel($row->nivel)
-        		->setIdCategoria($row->id_categoria)
-        		->setIdAjuda($row->id_ajuda)
-				->setNome($row->nome)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setAtivo($row->ativo)
-				->setFormName($row->form_name)
-				->setFormMethod($row->form_method)
-				->setFormAction($row->form_action)
-				->setFormEnctype($row->form_enctype)
-				->setFormAttribs($row->form_attribs)
-				->setOrdem($row->ordem)
-				->setPermiteRascunho($row->permite_rascunho)
-				//->setDatahoraCriacao($row->datahora_criacao)
-				//->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
-	}
-	
-	/**
-	 * Fetch all formulario entries
-	 * 
-	 * @return array
-	 */
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Formulario();
-			$entry->setId($row->id)
-				->setIdFormularioPai($row->id_formulario_pai)
-				->setNivel($row->nivel)
-        		->setIdCategoria($row->id_categoria)
-        		->setIdAjuda($row->id_ajuda)
-				->setNome($row->nome)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setAtivo($row->ativo)
-				->setFormName($row->form_name)
-				->setFormMethod($row->form_method)
-				->setFormAction($row->form_action)
-				->setFormEnctype($row->form_enctype)
-				->setFormAttribs($row->form_attribs)
-				->setOrdem($row->ordem)
-				->setPermiteRascunho($row->permite_rascunho)
-				//->setDatahoraCriacao($row->datahora_criacao)
-				//->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)				
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
-	}
-
 }

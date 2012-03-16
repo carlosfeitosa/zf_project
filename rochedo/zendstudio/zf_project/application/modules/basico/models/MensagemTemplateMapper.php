@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_MensagemTemplate
  * @subpackage Model
  */
-class Basico_Model_MensagemTemplateMapper
+class Basico_Model_MensagemTemplateMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_MensagemTemplateMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,54 +19,10 @@ class Basico_Model_MensagemTemplateMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_MensagemTemplate');
-        }
-        return $this->_dbTable;
-    }
-    
-    /**
-     * Save a MensagemTemplate entry
-     * 
-     * @param  Basico_Model_MensagemTemplate $object
-     * @return void
-     */
-    public function save(Basico_Model_MensagemTemplate $object)
-    {
-        $data = array(
-				'id_categoria'                => $object->getIdCategoria(),
-				'id_generico_proprietario'    => $object->getIdGenericoProprietario(),
-				'nome'                   	  => $object->getNome(),
-                'constante_textual' 		  => $object->getConstanteTextual(),
-                'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-                'ativo'          			  => $object->getAtivo(),
-				'constante_textual_assunto'   => $object->getConstanteTextualAssunto(),
-        		'constante_textual_mensagem'  => $object->getConstanteTextualMensagem(),
-                'datahora_criacao'			  => $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
-        		'rowinfo'           		  => $object->getRowinfo(),
-         
-        );
-        
-        if (null === ($id = $object->getId())) {
-        	unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-        	$this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+        return parent::getDbTable('Basico_Model_DbTable_MensagemTemplate');
     }
     
 	/**
-	* Delete a MensagemTemplate entry
-	* @param Basico_Model_MensagemTemplate $object
-	* @return void
-	*/
-	public function delete(Basico_Model_MensagemTemplate $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a MensagemTemplate entry by id
      * 
      * @param  int $id 
@@ -175,5 +108,46 @@ class Basico_Model_MensagemTemplateMapper
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+    
+    /**
+     * Save a MensagemTemplate entry
+     * 
+     * @param  Basico_Model_MensagemTemplate $object
+     * @return void
+     */
+    public function save(Basico_Model_MensagemTemplate $object)
+    {
+        $data = array(
+				'id_categoria'                => $object->getIdCategoria(),
+				'id_generico_proprietario'    => $object->getIdGenericoProprietario(),
+				'nome'                   	  => $object->getNome(),
+                'constante_textual' 		  => $object->getConstanteTextual(),
+                'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+                'ativo'          			  => $object->getAtivo(),
+				'constante_textual_assunto'   => $object->getConstanteTextualAssunto(),
+        		'constante_textual_mensagem'  => $object->getConstanteTextualMensagem(),
+                'datahora_criacao'			  => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
+        		'rowinfo'           		  => $object->getRowinfo(),
+         
+        );
+        
+        if (null === ($id = $object->getId())) {
+        	unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+        	$this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a MensagemTemplate entry
+	* @param Basico_Model_MensagemTemplate $object
+	* @return void
+	*/
+	public function delete(Basico_Model_MensagemTemplate $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

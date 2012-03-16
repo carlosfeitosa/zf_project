@@ -8,32 +8,9 @@
  * @uses       Basico_Model_DbTable_Include
  * @subpackage Model
  */
-class Basico_Model_IncludeMapper
+class Basico_Model_IncludeMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_IncludeMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
-    /**
+	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_Include if no instance registered
@@ -42,52 +19,10 @@ class Basico_Model_IncludeMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Include');
-        }
-        return $this->_dbTable;
-    }
-    
-    /**
-     * Save a Include entry
-     * 
-     * @param  Basico_Model_Include $object
-     * @return void
-     */
-    public function save(Basico_Model_Include $object)
-    {
-        $data = array(
-                'id_categoria'                => $object->getIdCategoria(),
-        		'nome'                        => $object->getNome(),
-        		'constante_textual'           => $object->getConstanteTextual(),
-				'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-				'uri'                         => $object->getUri(),
-        		'ativo'						  => $object->getAtivo(),
-        		'datahora_criacao'			  => $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                'rowinfo'                     => $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+        return parent::getDbTable('Basico_Model_DbTable_Include');        
     }
     
 	/**
-	* Delete a Include entry
-	* @param Basico_Model_Include $object
-	* @return void
-	*/
-	public function delete(Basico_Model_Include $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a Include entry by id
      * 
      * @param  int $id 
@@ -168,5 +103,43 @@ class Basico_Model_IncludeMapper
 		}
 		return $entries;
 	}
+    
+    /**
+     * Save a Include entry
+     * 
+     * @param  Basico_Model_Include $object
+     * @return void
+     */
+    public function save(Basico_Model_Include $object)
+    {
+        $data = array(
+                'id_categoria'                => $object->getIdCategoria(),
+        		'nome'                        => $object->getNome(),
+        		'constante_textual'           => $object->getConstanteTextual(),
+				'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+				'uri'                         => $object->getUri(),
+        		'ativo'						  => $object->getAtivo(),
+        		'datahora_criacao'			  => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'                     => $object->getRowinfo(),
 
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a Include entry
+	* @param Basico_Model_Include $object
+	* @return void
+	*/
+	public function delete(Basico_Model_Include $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+	}
 }

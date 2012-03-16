@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_FormularioAssocclElementoAssocclDecorator
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper
+class Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,49 +19,11 @@ class Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_FormularioAssocclElementoAssocclDecorator');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_FormularioAssocclElementoAssocclDecorator');
     }
     
-    /**
-     * Save a LearningBasket entry
-     * 
-     * @param  Basico_Model_FormularioAssocclElementoAssocclDecorator $object
-     * @return void
-     */
-    public function save(Basico_Model_FormularioAssocclElementoAssocclDecorator $object)
-    {
-        $data = array(
-                'id_assoccl_elemento' => $object->getIdAssocclElemento(),
-                'id_decorator'        => $object->getIdDecorator(),
-        		'remove_flag'		  => $object->getRemoveFlag(),
-        		'ordem'				  => $object->getOrdem(),
-        		'datahora_criacao'    => $object->getDatahoraCriacao(),
-        		'rowinfo'             => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-    * Delete a FormularioAssocclElementoAssocclDecorator entry
-    * @param Basico_Model_FormularioAssocclElementoAssocclDecorator $object
-    * @return void
-    */
-    public function delete(Basico_Model_FormularioAssocclElementoAssocclDecorator $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
-
-    /**
-     * Find a LearningBasket entry by id
+	/**
+     * Find a FormularioAssocclElementoAssocclDecorator entry by id
      * 
      * @param  int $id 
      * @param  Basico_Model_FormularioAssocclElementoAssocclDecorator $object 
@@ -132,7 +71,7 @@ class Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper
     }
     
     /**
-     * Fetch all learningbasket entries
+     * Fetch all FormularioAssocclElementoAssocclDecorator entries
      * 
      * @return array
      */
@@ -154,5 +93,40 @@ class Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper
             $entries[] = $entry;
         }
         return $entries;
+    }
+    
+    /**
+     * Save a FormularioAssocclElementoAssocclDecorator entry
+     * 
+     * @param  Basico_Model_FormularioAssocclElementoAssocclDecorator $object
+     * @return void
+     */
+    public function save(Basico_Model_FormularioAssocclElementoAssocclDecorator $object)
+    {
+        $data = array(
+                'id_assoccl_elemento' => $object->getIdAssocclElemento(),
+                'id_decorator'        => $object->getIdDecorator(),
+        		'remove_flag'		  => $object->getRemoveFlag(),
+        		'ordem'				  => $object->getOrdem(),
+        		'datahora_criacao'    => $object->getDatahoraCriacao(),
+        		'rowinfo'             => $object->getRowinfo(),
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+    /**
+    * Delete a FormularioAssocclElementoAssocclDecorator entry
+    * @param Basico_Model_FormularioAssocclElementoAssocclDecorator $object
+    * @return void
+    */
+    public function delete(Basico_Model_FormularioAssocclElementoAssocclDecorator $object)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
 }

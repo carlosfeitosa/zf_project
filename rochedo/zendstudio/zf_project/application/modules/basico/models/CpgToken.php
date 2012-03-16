@@ -7,7 +7,7 @@
  * @uses       Basico_Model_CpgTokenMapper
  * @subpackage Model
  */
-class Basico_Model_CpgToken
+class Basico_Model_CpgToken implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Basico_Model_CpgTokenMapper

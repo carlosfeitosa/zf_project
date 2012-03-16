@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_Ajuda
  * @subpackage Model
  */
-class Basico_Model_AjudaMapper
+class Basico_Model_AjudaMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_AjudaMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,52 +19,9 @@ class Basico_Model_AjudaMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Ajuda');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_Ajuda');
     }
     
-    /**
-     * Save a Ajuda entry
-     * 
-     * @param  Basico_Model_Ajuda $object
-     * @return void
-     */
-    public function save(Basico_Model_Ajuda $object)
-    {
-        $data = array(
-        		'id_categoria'                => $object->getIdCategoria(),
-                'nome'                        => $object->getNome(),
-        		'constante_textual'           => $object->getConstanteTextual(),
-                'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-                'constante_textual_ajuda'     => $object->getConstanteTextualAjuda(),
-				'constante_textual_hint'      => $object->getConstanteTextualHint(),
-				'ativo'                       => $object->getAtivo(),
-        		'datahora_criacao'			  => $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                'rowinfo'                     => $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a Ajuda entry
-	* @param Basico_Model_Ajuda $object
-	* @return void
-	*/
-	public function delete(Basico_Model_Ajuda $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
     /**
      * Find a Ajuda entry by id
      * 
@@ -172,5 +106,44 @@ class Basico_Model_AjudaMapper
 		}
 		return $entries;
 	}
+        
+    /**
+     * Save a Ajuda entry
+     * 
+     * @param  Basico_Model_Ajuda $object
+     * @return void
+     */
+    public function save(Basico_Model_Ajuda $object)
+    {
+        $data = array(
+        		'id_categoria'                => $object->getIdCategoria(),
+                'nome'                        => $object->getNome(),
+        		'constante_textual'           => $object->getConstanteTextual(),
+                'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+                'constante_textual_ajuda'     => $object->getConstanteTextualAjuda(),
+				'constante_textual_hint'      => $object->getConstanteTextualHint(),
+				'ativo'                       => $object->getAtivo(),
+        		'datahora_criacao'			  => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'                     => $object->getRowinfo(),
 
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a Ajuda entry
+	* @param Basico_Model_Ajuda $object
+	* @return void
+	*/
+	public function delete(Basico_Model_Ajuda $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+	}
 }

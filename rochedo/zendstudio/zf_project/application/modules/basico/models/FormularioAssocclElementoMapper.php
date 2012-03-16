@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_FormularioAssocclElemento
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclElementoMapper
+class Basico_Model_FormularioAssocclElementoMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_FormularioAssocclElementoMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,56 +19,10 @@ class Basico_Model_FormularioAssocclElementoMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_FormularioAssocclElemento');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_FormularioAssocclElemento');
     }
     
-    /**
-     * Save a Basico_Model_FormularioAssocclElemento entry
-     * 
-     * @param  Basico_Model_FormularioAssocclElemento $object
-     * @return void
-     */
-    public function save(Basico_Model_FormularioAssocclElemento $object)
-    {
-        $data = array(
-        		'id_formulario'          	   => $object->getIdFormulario(),
-                'id_elemento'       		   => $object->getIdElemento(),
-        		'id_ajuda'					   => $object->getIdAjuda(),
-        		'id_grupo' 					   => $object->getIdGrupo(),
-        		'constante_textual_label'      => $object->getConstanteTextualLabel(),
-                'element_name'   			   => $object->getElementName(),
-        		'element_attribs'              => $object->getElementAttribs(),
-        		'element_value_default'		   => $object->getElementValueDefault(),
-        		'element_reloadable'           => $object->getElementReloadable(),
-                'element_required'             => $object->getElementRequired(),
-                'ordem'                        => $object->getOrdem(),
-        		'datahora_criacao'             => $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao'  => $object->getDatahoraUltimaAtualizacao(),
-                'rowinfo'                      => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-    * Delete a FormularioAssocclElemento entry
-    * @param Basico_Model_FormularioAssocclElemento $object
-    * @return void
-    */
-    public function delete(Basico_Model_FormularioAssocclElemento $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
-
-    /**
+	/**
      * Find a Basico_Model_FormularioAssocclElemento entry by id
      * 
      * @param  int $id 
@@ -186,5 +117,48 @@ class Basico_Model_FormularioAssocclElementoMapper
             $entries[] = $entry;
         }
         return $entries;
+    }	
+    
+    /**
+     * Save a Basico_Model_FormularioAssocclElemento entry
+     * 
+     * @param  Basico_Model_FormularioAssocclElemento $object
+     * @return void
+     */
+    public function save(Basico_Model_FormularioAssocclElemento $object)
+    {
+        $data = array(
+        		'id_formulario'          	   => $object->getIdFormulario(),
+                'id_elemento'       		   => $object->getIdElemento(),
+        		'id_ajuda'					   => $object->getIdAjuda(),
+        		'id_grupo' 					   => $object->getIdGrupo(),
+        		'constante_textual_label'      => $object->getConstanteTextualLabel(),
+                'element_name'   			   => $object->getElementName(),
+        		'element_attribs'              => $object->getElementAttribs(),
+        		'element_value_default'		   => $object->getElementValueDefault(),
+        		'element_reloadable'           => $object->getElementReloadable(),
+                'element_required'             => $object->getElementRequired(),
+                'ordem'                        => $object->getOrdem(),
+        		'datahora_criacao'             => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'  => $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'                      => $object->getRowinfo(),
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+    /**
+    * Delete a FormularioAssocclElemento entry
+    * @param Basico_Model_FormularioAssocclElemento $object
+    * @return void
+    */
+    public function delete(Basico_Model_FormularioAssocclElemento $object)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
 }

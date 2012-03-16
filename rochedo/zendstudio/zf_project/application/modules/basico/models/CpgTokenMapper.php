@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_CpgToken
  * @subpackage Model
  */
-class Basico_Model_CpgTokenMapper
+class Basico_Model_CpgTokenMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_CpgTokenMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,49 +19,10 @@ class Basico_Model_CpgTokenMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_CpgToken');
-        }
-        return $this->_dbTable;
-    }
-    
-    /**
-     * Save a CpgToken entry
-     * 
-     * @param  Basico_Model_CpgToken $object
-     * @return void
-     */
-    public function save(Basico_Model_CpgToken $object)
-    {
-        $data = array(
-        		'id_categoria'       		=> $object->getIdCategoria(),
-        		'id_generico_proprietario'  => $object->getIdGenericoProprietario(),
-				'token'              		=> $object->getToken(),
-                'datahora_expiracao' 		=> $object->getDatahoraExpiracao(),
-        		'datahora_criacao'   		=> $object->getDatahoraCriacao(),
-                'rowinfo'            		=> $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+        return parent::getDbTable('Basico_Model_DbTable_CpgToken');
     }
     
 	/**
-	* Delete a CpgToken entry
-	* @param Basico_Model_CpgToken $object
-	* @return void
-	*/
-	public function delete(Basico_Model_CpgToken $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a CpgToken entry by id
      * 
      * @param  int $id 
@@ -156,5 +94,40 @@ class Basico_Model_CpgTokenMapper
 		}
 		return $entries;
 	}
+    
+    /**
+     * Save a CpgToken entry
+     * 
+     * @param  Basico_Model_CpgToken $object
+     * @return void
+     */
+    public function save(Basico_Model_CpgToken $object)
+    {
+        $data = array(
+        		'id_categoria'       		=> $object->getIdCategoria(),
+        		'id_generico_proprietario'  => $object->getIdGenericoProprietario(),
+				'token'              		=> $object->getToken(),
+                'datahora_expiracao' 		=> $object->getDatahoraExpiracao(),
+        		'datahora_criacao'   		=> $object->getDatahoraCriacao(),
+                'rowinfo'            		=> $object->getRowinfo(),
 
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a CpgToken entry
+	* @param Basico_Model_CpgToken $object
+	* @return void
+	*/
+	public function delete(Basico_Model_CpgToken $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+	}
 }

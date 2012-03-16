@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_FormularioAssocclInclude
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclIncludeMapper
+class Basico_Model_FormularioAssocclIncludeMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_FormularioAssocclIncludeMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,47 +19,10 @@ class Basico_Model_FormularioAssocclIncludeMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_FormularioAssocclInclude');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_FormularioAssocclInclude');
     }
     
-    /**
-     * Save a Basico_Model_FormularioAssocclInclude entry
-     * 
-     * @param  Basico_Model_FormularioAssocclInclude $object
-     * @return void
-     */
-    public function save(Basico_Model_FormularioAssocclInclude $object)
-    {
-        $data = array(
-                'id_formulario'    => $object->getIdFormulario(),
-                'id_include'       => $object->getIdInclude(),
-        		'ordem'            => $object->getOrdem(),
-        		'datahora_criacao' => $object->getDatahoraCriacao(),
-                'rowinfo'          => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-    * Delete a Basico_Model_FormularioAssocclInclude entry
-    * @param Basico_Model_FormularioAssocclInclude $object
-    * @return void
-    */
-    public function delete(Basico_Model_FormularioAssocclInclude $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
-
-    /**
+	/**
      * Find a Basico_Model_FormularioAssocclInclude entry by id
      * 
      * @param  int $id 
@@ -150,5 +90,39 @@ class Basico_Model_FormularioAssocclIncludeMapper
             $entries[] = $entry;
         }
         return $entries;
+    }
+    
+    /**
+     * Save a Basico_Model_FormularioAssocclInclude entry
+     * 
+     * @param  Basico_Model_FormularioAssocclInclude $object
+     * @return void
+     */
+    public function save(Basico_Model_FormularioAssocclInclude $object)
+    {
+        $data = array(
+                'id_formulario'    => $object->getIdFormulario(),
+                'id_include'       => $object->getIdInclude(),
+        		'ordem'            => $object->getOrdem(),
+        		'datahora_criacao' => $object->getDatahoraCriacao(),
+                'rowinfo'          => $object->getRowinfo(),
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+    /**
+    * Delete a Basico_Model_FormularioAssocclInclude entry
+    * @param Basico_Model_FormularioAssocclInclude $object
+    * @return void
+    */
+    public function delete(Basico_Model_FormularioAssocclInclude $object)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
 }
