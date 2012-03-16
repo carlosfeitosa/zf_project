@@ -6,5 +6,6 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-abstract class Abstract_RochedoModeloAssociacao extends Abstract_RochedoModeloGeneric {
+abstract class Abstract_RochedoPersistentModeloAssociacao extends Abstract_RochedoPersistentModeloGenerico
+{
 }

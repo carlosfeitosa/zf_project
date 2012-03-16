@@ -6,7 +6,7 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-interface Interface_RochedoMapperPersistencia extends Interface_RochedoMapperGeneric
+interface Interface_RochedoMapperPersistencia extends Interface_RochedoMapperGenerico
 {
     /**
      * Save a Model entry

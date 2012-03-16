@@ -6,8 +6,8 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-abstract class Abstract_RochedoMapper {
-
+abstract class Abstract_RochedoMapper
+{
     /**
      * @var Zend_Db_Table_Abstract
      */
@@ -17,6 +17,7 @@ abstract class Abstract_RochedoMapper {
      * Specify Zend_Db_Table instance to use for data operations
      * 
      * @param  Zend_Db_Table_Abstract $dbTable
+     * 
      * @return ModelMapper
      */
     public function setDbTable($dbTable)
@@ -37,6 +38,7 @@ abstract class Abstract_RochedoMapper {
      * Lazy loads Basico_Model_DbTable
      * 
      * @param String $nomeModelo
+     * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable($nomeModelo)

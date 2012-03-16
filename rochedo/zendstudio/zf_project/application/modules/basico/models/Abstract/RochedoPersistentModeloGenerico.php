@@ -6,8 +6,8 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-abstract class Abstract_RochedoModeloGeneric {
-
+abstract class Abstract_RochedoPersistentModeloGenerico
+{
 	/**
 	 * @var Basico_Model
 	 */
@@ -29,6 +29,7 @@ abstract class Abstract_RochedoModeloGeneric {
 	 * Constructor
 	 * 
 	 * @param  array|null $options 
+	 * 
 	 * @return void
 	 */
 	public function __construct(array $options = null)
@@ -44,6 +45,7 @@ abstract class Abstract_RochedoModeloGeneric {
 	 * 
 	 * @param  string $name 
 	 * @param  mixed $value 
+	 * 
 	 * @return void
 	 */
 	public function __set($name, $value)
@@ -60,6 +62,7 @@ abstract class Abstract_RochedoModeloGeneric {
 	 * Overloading: allow property access
 	 * 
 	 * @param  string $name 
+	 * 
 	 * @return mixed
 	 */
 	public function __get($name)
@@ -75,7 +78,8 @@ abstract class Abstract_RochedoModeloGeneric {
 	/**
 	 * Set object state
 	 * 
-	 * @param  array $options 
+	 * @param  array $options
+	 * 
 	 * @return Model
 	 */
 	public function setOptions(array $options)
@@ -96,6 +100,7 @@ abstract class Abstract_RochedoModeloGeneric {
 	* Set data mapper
 	* 
 	* @param  mixed $mapper 
+	* 
 	* @return Model
 	*/
 	public function setMapper($object)
@@ -107,7 +112,7 @@ abstract class Abstract_RochedoModeloGeneric {
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_... instance if no mapper registered.
+	* Lazy loads Model instance if no mapper registered.
 	* 
 	* @return Model
 	*/
@@ -123,6 +128,7 @@ abstract class Abstract_RochedoModeloGeneric {
 	* Set entry id
 	* 
 	* @param  int $id 
+	* 
 	* @return Model
 	*/
 	public function setId($id)
@@ -144,7 +150,8 @@ abstract class Abstract_RochedoModeloGeneric {
 	/**
 	* Set datahoraCriacao
 	* 
-	* @param String $datahoraCriacao 
+	* @param String $datahoraCriacao
+	* 
 	* @return Model
 	*/
 	public function setDatahoraCriacao($datahoraCriacao)
@@ -166,7 +173,8 @@ abstract class Abstract_RochedoModeloGeneric {
 	/**
 	* Set rowinfo
 	* 
-	* @param String $xml 
+	* @param String $xml
+	* 
 	* @return Model
 	*/
 	public function setRowinfo($rowinfo)

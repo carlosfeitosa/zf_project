@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Pessoa
  * @subpackage Model
  */
-class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa
+class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -23,48 +23,11 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interf
     }
 
     /**
-     * Save a Pessoa entry
-     *
-     * @param  Basico_Model_Pessoa $object
-     * @return void
-     */
-    public function save(Basico_Model_Pessoa $object)
-    {
-        $data = array(
-        			  'id_perfil_padrao' => $object->getIdPerfilPadrao(),
-        			  'id_telefone_default' => $object->getIdTelefoneDefault(),
-        			  'id_email_default' => $object->getIdEmailDefault(),
-        			  'id_endereco_default' => $object->getIdEnderecoDefault(),
-        			  'id_endereco_correpondencia' => $object->getIdEnderecoCorrespondencia(),
-        			  'id_link_default' => $object->getIdLinkDefault(),
-        			  'datahora_criacao' => $object->getDatahoraCriacao(),
-        			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                      'rowinfo'          => $object->getRowinfo(),
-                     );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-
-	/**
-	* Delete a Pessoa entry
-	* @param Basico_Model_Pessoa $object
-	* @return void
-	*/
-	public function delete(Basico_Model_Pessoa $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a Pessoa entry by id
      * 
      * @param  int $id 
      * @param  Basico_Model_Pessoa $object 
+     * 
      * @return void
      */
     public function find($id, Basico_Model_Pessoa $object)
@@ -140,5 +103,46 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Interf
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+
+    /**
+     * Save a Pessoa entry
+     *
+     * @param  Basico_Model_Pessoa $object
+     * 
+     * @return void
+     */
+    public function save(Basico_Model_Pessoa $object)
+    {
+        $data = array(
+        			  'id_perfil_padrao' => $object->getIdPerfilPadrao(),
+        			  'id_telefone_default' => $object->getIdTelefoneDefault(),
+        			  'id_email_default' => $object->getIdEmailDefault(),
+        			  'id_endereco_default' => $object->getIdEnderecoDefault(),
+        			  'id_endereco_correpondencia' => $object->getIdEnderecoCorrespondencia(),
+        			  'id_link_default' => $object->getIdLinkDefault(),
+        			  'datahora_criacao' => $object->getDatahoraCriacao(),
+        			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+                      'rowinfo'          => $object->getRowinfo(),
+                     );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+
+	/**
+	* Delete a Pessoa entry
+	* 
+	* @param Basico_Model_Pessoa $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_Model_Pessoa $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }
