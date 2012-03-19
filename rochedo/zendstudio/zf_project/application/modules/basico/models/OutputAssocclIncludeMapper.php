@@ -8,85 +8,25 @@
  * @uses       Basico_Model_DbTable_OutputAssocclInclude
  * @subpackage Model
  */
-class Basico_Model_OutputAssocclIncludeMapper
+class Basico_Model_OutputAssocclIncludeMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_DadosPessoaisMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
-    /**
+	/**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_DadosPessoais if no instance registered
+     * Lazy loads Basico_Model_DbTable_OutputAssocclInclude if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_OutputAssocclInclude');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_OutputAssocclInclude');
     }
     
-    /**
-     * Save a DadosPessoais entry
-     * 
-     * @param  Basico_Model_DadosPessoais $object
-     * @return void
-     */
-    public function save(Basico_Model_OutputAssocclInclude $object)
-    {       
-        $data = array(
-                      'id_output'       	=> $object->getIdOutput(),
-        			  'id_include'       	=> $object->getIdInclude(),
-                      'ordem'            	=> $object->getOrdem(),
-        			  'datahora_criacao'	=> $object->getDatahoraCriacao(),
-                      'rowinfo'   	  		=> $object->getRowinfo(),
-                     );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-
-	/**
-	* Delete a DadosPessoais entry
-	* @param Basico_Model_DadosPessoais $object
-	* @return void
-	*/
-	public function delete(Basico_Model_PessoaAssocDados $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
-     * Find a DadosPessoais entry by id
+ 	/**
+     * Find a OutputAssocclInclude entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_DadosPessoais $object 
+     * @param  Basico_Model_OutputAssocclInclude $object 
      * @return void
      */
     public function find($id, Basico_Model_OutputAssocclInclude $object)
@@ -105,7 +45,7 @@ class Basico_Model_OutputAssocclIncludeMapper
     }
 
 	/**
-	 * Fetch all dadospessoais entries
+	 * Fetch all OutputAssocclInclude entries
 	 * 
 	 * @return array
 	 */
@@ -129,7 +69,7 @@ class Basico_Model_OutputAssocclIncludeMapper
 	}
 	
 	/**
-	 * Fetch all dadospessoais entries
+	 * Fetch all OutputAssocclInclude entries
 	 * 
 	 * @return array
 	 */
@@ -150,5 +90,39 @@ class Basico_Model_OutputAssocclIncludeMapper
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+    
+    /**
+     * Save a OutputAssocclInclude entry
+     * 
+     * @param  Basico_Model_OutputAssocclInclude $object
+     * @return void
+     */
+    public function save(Basico_Model_OutputAssocclInclude $object)
+    {       
+        $data = array(
+                      'id_output'       	=> $object->getIdOutput(),
+        			  'id_include'       	=> $object->getIdInclude(),
+                      'ordem'            	=> $object->getOrdem(),
+        			  'datahora_criacao'	=> $object->getDatahoraCriacao(),
+                      'rowinfo'   	  		=> $object->getRowinfo(),
+                     );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+
+	/**
+	* Delete a OutputAssocclInclude entry
+	* @param Basico_Model_OutputAssocclInclude $object
+	* @return void
+	*/
+	public function delete(Basico_Model_PessoaAssocDados $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

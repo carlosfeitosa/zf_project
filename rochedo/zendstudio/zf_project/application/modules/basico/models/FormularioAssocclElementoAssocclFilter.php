@@ -10,10 +10,12 @@
 class Basico_Model_FormularioAssocclElementoAssocclFilter extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
     /**
+     * Referencia a classe Basico_Model_FormularioAssocclElemento
      * @var int
      */
     protected $_idAssocclElemento;
     /**
+     * Referencia a classe Basico_Model_Filter
      * @var int
      */
     protected $_idFilter;

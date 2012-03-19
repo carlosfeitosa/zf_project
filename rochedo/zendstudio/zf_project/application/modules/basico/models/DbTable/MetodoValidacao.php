@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MetodoValidacao table data gateway
  *

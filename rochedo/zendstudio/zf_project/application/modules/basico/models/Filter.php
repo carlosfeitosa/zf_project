@@ -1,18 +1,19 @@
 <?php
 /**
- * MetodoValidacao model
+ * Filter model
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_MetodoValidacaoMapper
+ * @uses       Basico_Model_FilterMapper
  * @subpackage Model
  */
-class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_Filter extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
-	* @var int
-	*/
-	protected $_idCategoria;
+	 * Referência a classe Basico_Model_Categoria
+     * @var Int
+     */
+    protected $_idCategoria;
 	/**
 	 * @var String
 	 */
@@ -28,17 +29,17 @@ class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados
 	/**
 	 * @var String
 	 */
-	protected $_metodo;
+	protected $_filter;
+    /**
+     * @var Boolean
+     */
+    protected $_ativo;
+
 	/**
-	 * @var Boolean
-	 */
-	protected $_ativo;
-	
-	/**
-	* Set idCategoria
+	* Set entry idCategoria
 	* 
-	* @param Integer $idCategoria
-	* @return Basico_Model_MetodoValidacao
+	* @param  int $idCategoria 
+	* @return Basico_Model_Filter
 	*/
 	public function setIdCategoria($idCategoria)
 	{
@@ -47,18 +48,18 @@ class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados
 	}
 
 	/**
-	* Get idCategoria
+	* Retrieve entry idCategoria
 	* 
-	* @return null|Integer
+	* @return null|int
 	*/
 	public function getIdCategoria()
 	{
 		return $this->_idCategoria;
 	}
-
-    /**
+	
+	/**
      * Get categoria object
-     * @return null|categoria
+     * @return null|Basico_Model_Categoria
      */
     public function getCategoriaObject()
     {
@@ -66,12 +67,12 @@ class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
         return $object;
     }
-
+    
 	/**
 	* Set nome
 	* 
 	* @param String $nome 
-	* @return Basico_Model_MetodoValidacao
+	* @return Basico_Model_Filter
 	*/
 	public function setNome($nome)
 	{
@@ -88,12 +89,12 @@ class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados
 	{
 		return $this->_nome;
 	}
-     
+	
 	/**
 	* Set constanteTextual
 	* 
 	* @param String $constanteTextual 
-	* @return Basico_Model_MetodoValidacao
+	* @return Basico_Model_Filter
 	*/
 	public function setConstanteTextual($constanteTextual)
 	{
@@ -110,12 +111,12 @@ class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados
 	{
 		return $this->_constanteTextual;
 	}
-	
+     
 	/**
 	* Set constanteTextualDescricao
 	* 
 	* @param String $constanteTextualDescricao 
-	* @return Basico_Model_MetodoValidacao
+	* @return Basico_Model_Filter
 	*/
 	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
@@ -134,32 +135,32 @@ class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados
 	}
      
 	/**
-	* Set metodo
+	* Set filter
 	* 
-	* @param String $metodo 
-	* @return Basico_Model_MetodoValidacao
+	* @param String $filter 
+	* @return Basico_Model_Filter
 	*/
-	public function setMetodo($metodo)
+	public function setFilter($filter)
 	{
-		$this->_metodo = Basico_OPController_UtilOPController::retornaValorTipado($metodo, TIPO_STRING, true);
+		$this->_filter = Basico_OPController_UtilOPController::retornaValorTipado($filter, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get metodo
+	* Get filter
 	* 
 	* @return null|String
 	*/
-	public function getMetodo()
+	public function getFilter()
 	{
-		return $this->_metodo;
+		return $this->_filter;
 	}
      
 	/**
 	* Set ativo
 	* 
 	* @param Boolean $ativo 
-	* @return Basico_Model_MetodoValidacao
+	* @return Basico_Model_Filter
 	*/
 	public function setAtivo($ativo)
 	{
@@ -170,22 +171,22 @@ class Basico_Model_MetodoValidacao extends Abstract_RochedoPersistentModeloDados
 	/**
 	* Get ativo
 	* 
-	* @return null|Boolean
+	* @return null|int
 	*/
 	public function getAtivo()
 	{
 		return $this->_ativo;
 	}
-    
+	
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_MetodoValidacaoMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_FilterMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_MetodoValidacaoMapper
+	* @return Basico_Model_FilterMapper
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_MetodoValidacaoMapper);
+		return parent::getMapper(Basico_Model_FilterMapper);
 	}
 }

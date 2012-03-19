@@ -10,6 +10,7 @@
 class Basico_Model_MensagemAssocEmailAssocDados extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
+	 * Referencia a classe Basico_Model_MensagemAssocEmail
      * @var Int
      */
     protected $_idAssocEmail;

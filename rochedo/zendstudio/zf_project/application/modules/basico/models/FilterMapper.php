@@ -1,35 +1,35 @@
 <?php
 /**
- * MetodoValidacao data mapper
+ * Filter data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_MetodoValidacao
+ * @uses       Basico_Model_DbTable_Filter
  * @subpackage Model
  */
-class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_FilterMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_MetodoValidacao if no instance registered
+     * Lazy loads Basico_Model_DbTable_Filter if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable()
     {
-        return parent::getDbTable('Basico_Model_DbTable_MetodoValidacao');
+        return parent::getDbTable('Basico_Model_DbTable_Filter');
     }
     
 	/**
-     * Find a MetodoValidacao entry by id
+     * Find a Filter entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_MetodoValidacao $object 
+     * @param  Basico_Model_Filter $object 
      * @return void
      */
-    public function find($id, Basico_Model_MetodoValidacao $object)
+    public function find($id, Basico_Model_Filter $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -37,12 +37,11 @@ class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implemen
         }
         $row = $result->current();
         $object->setId($row->id)
-
-        		->setIdCategoria($row->id_categoria)
+				->setIdCategoria($row->id_categoria)
 				->setNome($row->nome)
 				->setConstanteTextual($row->constante_textual)
 				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setMetodo($row->metodo)
+				->setFilter($row->filter)
 				->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -50,7 +49,7 @@ class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implemen
     }
 
 	/**
-	 * Fetch all metodovalidacao entries
+	 * Fetch all Filter entries
 	 * 
 	 * @return array
 	 */
@@ -60,14 +59,13 @@ class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implemen
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_MetodoValidacao();
+			$entry = new Basico_Model_Filter();
 			$entry->setId($row->id)
-
 				->setIdCategoria($row->id_categoria)
 				->setNome($row->nome)
 				->setConstanteTextual($row->constante_textual)
 				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setMetodo($row->metodo)
+				->setFilter($row->filter)
 				->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -79,7 +77,7 @@ class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implemen
 	}
 	
 	/**
-	 * Fetch all metodovalidacao entries
+	 * Fetch all Filter entries
 	 * 
 	 * @return array
 	 */
@@ -89,14 +87,13 @@ class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implemen
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_MetodoValidacao();
+			$entry = new Basico_Model_Filter();
 			$entry->setId($row->id)
-
 				->setIdCategoria($row->id_categoria)
 				->setNome($row->nome)
 				->setConstanteTextual($row->constante_textual)
 				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setMetodo($row->metodo)
+				->setFilter($row->filter)
 				->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -108,23 +105,23 @@ class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implemen
 	}
     
     /**
-     * Save a MetodoValidacao entry
+     * Save a Filter entry
      * 
-     * @param  Basico_Model_MetodoValidacao $object
+     * @param  Basico_Model_Filter $object
      * @return void
      */
-    public function save(Basico_Model_MetodoValidacao $object)
+    public function save(Basico_Model_Filter $object)
     {
         $data = array(
-        		'id_categoria'                => $object->getIdCategoria(),
-				'nome'   			          => $object->getNome(),
-				'constante_textual'   		  => $object->getConstanteTextual(),
+				'id_categoria' 				  => $object->getIdCategoria(),
+        		'nome'         			   	  => $object->getNome(),
+        		'constante_textual' 		  => $object->getConstanteTextual(),
         		'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-				'metodo'   			          => $object->getMetodo(),
-				'ativo'   			          => $object->getAtivo(),
-				'datahora_criacao'		      => $object->getDatahoraCriacao(),
+				'filter'       				  => $object->getFilter(),
+                'ativo'						  => $object->getAtivo(),
+        		'datahora_criacao'			  => $object->getDatahoraCriacao(),
         		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-        		'rowinfo'                     => $object->getRowinfo(),
+                'rowinfo'        			  => $object->getRowinfo(),
 
         );
 
@@ -137,11 +134,11 @@ class Basico_Model_MetodoValidacaoMapper extends Abstract_RochedoMapper implemen
     }
     
 	/**
-	* Delete a MetodoValidacao entry
-	* @param Basico_Model_MetodoValidacao $object
+	* Delete a Filter entry
+	* @param Basico_Model_Filter $object
 	* @return void
 	*/
-	public function delete(Basico_Model_MetodoValidacao $object)
+	public function delete(Basico_Model_Filter $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

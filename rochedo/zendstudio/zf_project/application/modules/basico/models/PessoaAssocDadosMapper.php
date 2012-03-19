@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_PessoaAssocDados
  * @subpackage Model
  */
-class Basico_Model_PessoaAssocDadosMapper
+class Basico_Model_PessoaAssocDadosMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_DadosPessoaisMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -42,53 +19,10 @@ class Basico_Model_PessoaAssocDadosMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_PessoaAssocDados');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_PessoaAssocDados');
     }
     
-    /**
-     * Save a DadosPessoais entry
-     * 
-     * @param  Basico_Model_DadosPessoais $object
-     * @return void
-     */
-    public function save(Basico_Model_PessoaAssocDados $object)
-    {       
-        $data = array(
-                      'id_pessoa'       			=> $object->getIdPessoa(),
-                      'nome'            			=> $object->getNome(),
-        			  'data_nascimento' 			=> $object->getDataNascimento(),
-        			  'constante_textual_pais'  	=> $object->getConstanteTextualPais(),
-        			  'nome_uf_nascimento'			=> $object->getNomeUfNascimento(),
-        			  'nome_municipio_nascimento'	=> $object->getNomeMunicipioNascimento(),
-        			  'nome_pai'        			=> $object->getNomePai(),
-        			  'nome_mae'        			=> $object->getNomeMae(),
-        			  'datahora_criacao'			=> $object->getDatahoraCriacao(),
-        			  'datahora_ultima_modificacao'	=> $object->getDatahoraUltimaAtualizacao(),
-                      'rowinfo'   	  	    		=> $object->getRowinfo(),
-                     );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-
 	/**
-	* Delete a DadosPessoais entry
-	* @param Basico_Model_DadosPessoais $object
-	* @return void
-	*/
-	public function delete(Basico_Model_PessoaAssocDados $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a DadosPessoais entry by id
      * 
      * @param  int $id 
@@ -174,5 +108,45 @@ class Basico_Model_PessoaAssocDadosMapper
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+    
+    /**
+     * Save a DadosPessoais entry
+     * 
+     * @param  Basico_Model_DadosPessoais $object
+     * @return void
+     */
+    public function save(Basico_Model_PessoaAssocDados $object)
+    {       
+        $data = array(
+                      'id_pessoa'       			=> $object->getIdPessoa(),
+                      'nome'            			=> $object->getNome(),
+        			  'data_nascimento' 			=> $object->getDataNascimento(),
+        			  'constante_textual_pais'  	=> $object->getConstanteTextualPais(),
+        			  'nome_uf_nascimento'			=> $object->getNomeUfNascimento(),
+        			  'nome_municipio_nascimento'	=> $object->getNomeMunicipioNascimento(),
+        			  'nome_pai'        			=> $object->getNomePai(),
+        			  'nome_mae'        			=> $object->getNomeMae(),
+        			  'datahora_criacao'			=> $object->getDatahoraCriacao(),
+        			  'datahora_ultima_modificacao'	=> $object->getDatahoraUltimaAtualizacao(),
+                      'rowinfo'   	  	    		=> $object->getRowinfo(),
+                     );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+
+	/**
+	* Delete a DadosPessoais entry
+	* @param Basico_Model_DadosPessoais $object
+	* @return void
+	*/
+	public function delete(Basico_Model_PessoaAssocDados $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

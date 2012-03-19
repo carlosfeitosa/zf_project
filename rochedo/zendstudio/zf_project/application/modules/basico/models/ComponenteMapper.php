@@ -1,10 +1,5 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
  * Componente data mapper
  *
  * Implements the Data Mapper design pattern:
@@ -13,31 +8,8 @@
  * @uses       Basico_Model_DbTable_Componente
  * @subpackage Model
  */
-class Basico_Model_ComponenteMapper
+class Basico_Model_ComponenteMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_ComponenteMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -47,51 +19,9 @@ class Basico_Model_ComponenteMapper
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Componente');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_DbTable_Componente');
     }
     
-    /**
-     * Save a Componente entry
-     * 
-     * @param  Basico_Model_Componente $object
-     * @return void
-     */
-    public function save(Basico_Model_Componente $object)
-    {
-        $data = array(
-                'id_categoria'       			=> $object->getIdCategoria(),
-        		'id_template'        			=> $object->getIdTemplate(),
-				'nome'               			=> $object->getNome(),
-        		'constante_textual'  			=> $object->getConstanteTextual(),
-				'constante_textual_descricao'	=> $object->getConstanteTextualDescricao(),
-				'componente'         			=> $object->getComponente(),
-        		'ativo'							=> $object->getAtivo(),
-        		'datahora_criacao'				=> $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
-        		'rowinfo'			 			=> $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a Componente entry
-	* @param Basico_Model_Componente $object
-	* @return void
-	*/
-	public function delete(Basico_Model_Componente $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
 
     /**
      * Find a Componente entry by id
@@ -176,5 +106,45 @@ class Basico_Model_ComponenteMapper
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+    
+    /**
+     * Save a Componente entry
+     * 
+     * @param  Basico_Model_Componente $object
+     * @return void
+     */
+    public function save(Basico_Model_Componente $object)
+    {
+        $data = array(
+                'id_categoria'       			=> $object->getIdCategoria(),
+        		'id_template'        			=> $object->getIdTemplate(),
+				'nome'               			=> $object->getNome(),
+        		'constante_textual'  			=> $object->getConstanteTextual(),
+				'constante_textual_descricao'	=> $object->getConstanteTextualDescricao(),
+				'componente'         			=> $object->getComponente(),
+        		'ativo'							=> $object->getAtivo(),
+        		'datahora_criacao'				=> $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
+        		'rowinfo'			 			=> $object->getRowinfo(),
+
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a Componente entry
+	* @param Basico_Model_Componente $object
+	* @return void
+	*/
+	public function delete(Basico_Model_Componente $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }
