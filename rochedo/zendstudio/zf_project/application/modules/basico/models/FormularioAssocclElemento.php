@@ -10,18 +10,22 @@
 class Basico_Model_FormularioAssocclElemento extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
+	 * Referencia a classe Basico_Model_Formulario
      * @var int
      */
     protected $_idFormulario;
     /**
+     * Referencia a classe Basico_Model_FormularioElemento
      * @var int
      */
     protected $_idElemento;
     /**
+     * Referencia a classe Basico_Model_Ajuda
      * @var int
      */
     protected $_idAjuda;
     /**
+     * Referencia a classe Basico_Model_FormularioAssocclElementoGrupo
      * @var int
      */
     protected $_idGrupo;
@@ -176,12 +180,12 @@ class Basico_Model_FormularioAssocclElemento extends Abstract_RochedoPersistentM
     }
     
 	/**
-     * Get Basico_Model_FormAssocclElementoGrupo object
-     * @return null|Basico_Model_FormAssocclElementoGrupo
+     * Get Basico_Model_FormularioAssocclElementoGrupo object
+     * @return null|Basico_Model_FormularioAssocclElementoGrupo
      */
     public function getGrupoObject()
     {
-        $model = new Basico_Model_FormAssocclElementoGrupo();
+        $model = new Basico_Model_FormularioAssocclElementoGrupo();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idGrupo);
         return $object;
     }

@@ -10,6 +10,7 @@
 class Basico_Model_ContatoCpgEmail extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
+	 * Referencia a classe Basico_Model_Categoria
      * @var Int
      */
     protected $_idCategoria;
@@ -78,7 +79,7 @@ class Basico_Model_ContatoCpgEmail extends Abstract_RochedoPersistentModeloDados
 	
 	/**
      * Get categoria object
-     * @return null|Categoria
+     * @return null|Basico_Model_Categoria
      */
     public function getCategoriaObject()
     {

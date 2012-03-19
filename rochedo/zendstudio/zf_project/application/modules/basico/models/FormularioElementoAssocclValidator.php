@@ -41,6 +41,17 @@ class Basico_Model_FormularioElementoAssocclValidator extends Abstract_RochedoPe
     }
     
 	/**
+     * Get elemento object
+     * @return null|Basico_Model_FormularioElemento
+     */
+    public function getElementoObject()
+    {
+        $model = new Basico_Model_FormularioElemento();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idElemento);
+        return $object;
+    }
+    
+	/**
     * Set entry idValidator
     * 
     * @param  int $idValidator 
@@ -60,6 +71,17 @@ class Basico_Model_FormularioElementoAssocclValidator extends Abstract_RochedoPe
     public function getIdValidator()
     {
         return $this->_idValidator;
+    }
+    
+	/**
+     * Get validator object
+     * @return null|Basico_Model_Validator
+     */
+    public function getValidatorObject()
+    {
+        $model = new Basico_Model_Validator();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idValidator);
+        return $object;
     }
 
     /**

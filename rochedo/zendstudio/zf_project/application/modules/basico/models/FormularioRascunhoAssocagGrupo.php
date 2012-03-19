@@ -10,6 +10,7 @@
 class Basico_Model_FormularioRascunhoAssocagGrupo extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
+	 * Referencia a classe Basico_Model_PessoaAssocclPerfil
      * @var Integer
      */
     protected $_idAssocclPerfil;
@@ -39,6 +40,17 @@ class Basico_Model_FormularioRascunhoAssocagGrupo extends Abstract_RochedoPersis
 	{
 		return $this->_idAssocclPerfil;
 	}
+	
+	/**
+     * Get assocclPerfil object
+     * @return null|Basico_Model_PessoaAssocclPerfil
+     */
+    public function getAssocclPerfilObject()
+    {
+        $model = new Basico_Model_PessoaAssocclPerfil();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idAssocclPerfil);
+        return $object;
+    }
      
 	/**
 	* Set forms

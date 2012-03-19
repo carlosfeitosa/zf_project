@@ -10,10 +10,12 @@
 class Basico_Model_AcaoAplicacaoAssocVisao extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
+	* Referencia a classe Basico_Model_Categoria
 	* @var int
 	*/
 	protected $_idCategoria;
 	/**
+	* Referencia a classe Basico_Model_AcaoAplicacao
 	* @var int
 	*/
 	protected $_idAcaoAplicacao;
@@ -61,6 +63,17 @@ class Basico_Model_AcaoAplicacaoAssocVisao extends Abstract_RochedoPersistentMod
 	}
 	
 	/**
+     * Get categoria object
+     * @return null|Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+	
+	/**
 	* Set entry idAcaoAplicacao
 	* 
 	* @param  int $idAcaoAplicacao 
@@ -81,6 +94,17 @@ class Basico_Model_AcaoAplicacaoAssocVisao extends Abstract_RochedoPersistentMod
 	{
 		return $this->_idAcaoAplicacao;
 	}
+	
+	/**
+     * Get acaoAplicacao object
+     * @return null|Basico_Model_AcaoAplicacao
+     */
+    public function getAcaoAplicacaoObject()
+    {
+        $model = new Basico_Model_AcaoAplicacao();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idAcaoAplicacao);
+        return $object;
+    }
     
 	/**
 	* Set constanteTextual

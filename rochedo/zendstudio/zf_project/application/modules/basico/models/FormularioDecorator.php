@@ -10,6 +10,7 @@
 class Basico_Model_FormularioDecorator extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
+	 * Referencia a classe Basico_Model_Categoria
      * @var Integer
      */
     protected $_idCategoria;

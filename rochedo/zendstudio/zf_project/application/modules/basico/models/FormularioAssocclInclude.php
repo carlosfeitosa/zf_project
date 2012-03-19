@@ -10,10 +10,12 @@
 class Basico_Model_FormularioAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
 {
     /**
+     * Referencia a classe Basico_Model_Formulario
      * @var int
      */
     protected $_idFormulario;
     /**
+     * Referencia a classe Basico_Model_Include
      * @var Int
      */
     protected $_idInclude;
@@ -45,6 +47,17 @@ class Basico_Model_FormularioAssocclInclude extends Abstract_RochedoPersistentMo
     }
     
 	/**
+     * Get Formulario object
+     * @return null|Basico_Model_Formulario
+     */
+    public function getFormularioObject()
+    {
+        $model = new Basico_Model_Formulario();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idFormulario);
+        return $object;
+    }
+    
+	/**
     * Set entry idInclude
     * 
     * @param  int $idInclude 
@@ -64,6 +77,17 @@ class Basico_Model_FormularioAssocclInclude extends Abstract_RochedoPersistentMo
     public function getIdInclude()
     {
         return $this->_idInclude;
+    }
+    
+	/**
+     * Get Include object
+     * @return null|Basico_Model_Include
+     */
+    public function getIncludeObject()
+    {
+        $model = new Basico_Model_Include();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idInclude);
+        return $object;
     }
     
 	/**

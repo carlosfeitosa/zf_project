@@ -10,10 +10,12 @@
 class Basico_Model_FormularioAssocclElementoAssocclDecorator extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
 {
     /**
+     * Referencia a classe Basico_Model_FormularioAssocclElemento
      * @var int
      */
     protected $_idAssocclElemento;
     /**
+     * Referencia a classe Basico_Model_FormularioDecorator
      * @var int
      */
     protected $_idDecorator;

@@ -10,6 +10,7 @@
 class Basico_Model_Include extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
+	 * Referencia a classe Basico_Model_Categoria
 	 * @var int
 	 */
 	protected $_idCategoria;
@@ -55,6 +56,17 @@ class Basico_Model_Include extends Abstract_RochedoPersistentModeloDados impleme
 	{
 		return $this->_idCategoria;
 	}
+
+	 /**
+     * Get categoria object
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
 	
 	/**
 	* Set nome

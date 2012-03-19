@@ -10,6 +10,7 @@
 class Basico_Model_AcaoAplicacao extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {	
 	/**
+	 * Referencia a classe Basico_Model_Modulo
      * @var int
      */
     protected $_idModulo;

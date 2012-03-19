@@ -10,10 +10,12 @@
 class Basico_Model_TemplateAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
 {
     /**
+     * Referencia a classe Basico_Model_Template
      * @var int
      */
     protected $_idTemplate;
     /**
+     * Referencia a classe Basico_Model_Include
      * @var Int
      */
     protected $_idInclude;
@@ -45,6 +47,17 @@ class Basico_Model_TemplateAssocclInclude extends Abstract_RochedoPersistentMode
     }
     
 	/**
+     * Get Template object
+     * @return null|Basico_Model_Template
+     */
+    public function getTemplateObject()
+    {
+        $model = new Basico_Model_Template();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idTemplate);
+        return $object;
+    }
+    
+	/**
     * Set entry idInclude
     * 
     * @param  int $idInclude 
@@ -64,6 +77,17 @@ class Basico_Model_TemplateAssocclInclude extends Abstract_RochedoPersistentMode
     public function getIdInclude()
     {
         return $this->_idInclude;
+    }
+    
+	/**
+     * Get Include object
+     * @return null|Basico_Model_Include
+     */
+    public function getIncludeObject()
+    {
+        $model = new Basico_Model_Include();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idInclude);
+        return $object;
     }
     
 	/**

@@ -57,6 +57,17 @@ class Basico_Model_AcaoEvento extends Abstract_RochedoPersistentModeloDados impl
 	}
 	
 	/**
+     * Get categoria object
+     * @return null|Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+	
+	/**
 	* Set nome
 	* 
 	* @param String $nome 

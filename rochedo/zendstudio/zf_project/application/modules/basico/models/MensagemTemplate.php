@@ -63,6 +63,17 @@ class Basico_Model_MensagemTemplate extends Abstract_RochedoPersistentModeloDado
 	{
 		return $this->_idCategoria;
 	}
+	
+	/**
+     * Get categoria object
+     * @return null|Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
     
 	/**
 	* Set idGenericoProprietario
