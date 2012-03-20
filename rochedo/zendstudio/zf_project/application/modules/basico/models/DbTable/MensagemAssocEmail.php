@@ -1,11 +1,11 @@
 <?php
 /**
- * MensagemEmail table data gateway
+ * MensagemAssocEmail table data gateway
  *
  * @uses       Zend_Db_Table_Abstract
  * @subpackage Model
  */
-class Basico_Model_DbTable_MensagemEmail extends Zend_Db_Table_Abstract
+class Basico_Model_DbTable_MensagemAssocEmail extends Zend_Db_Table_Abstract
 {
     /**
      * @var string Name of the database table
@@ -13,4 +13,3 @@ class Basico_Model_DbTable_MensagemEmail extends Zend_Db_Table_Abstract
     protected $_name = 'basico_mensagem.assoc_email';
  
 }
-?>

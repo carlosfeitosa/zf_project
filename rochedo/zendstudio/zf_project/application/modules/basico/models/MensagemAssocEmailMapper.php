@@ -1,14 +1,14 @@
 <?php
 /**
- * MensagemEmail data mapper
+ * MensagemAssocEmail data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_MensagemEmail
+ * @uses       Basico_Model_DbTable_MensagemAssocEmail
  * @subpackage Model
  */
-class Basico_Model_MensagemEmailMapper
+class Basico_Model_MensagemAssocEmailMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * @var Zend_Db_Table_Abstract
