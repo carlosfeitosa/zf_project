@@ -48,7 +48,7 @@ class Basico_Model_PessoaAssocclPerfil extends Abstract_RochedoPersistentModeloD
     /**
      * Get pessoa object
      * 
-     * @return null|Pessoa
+     * @return null|Basico_Model_Pessoa
      */
     public function getPessoaObject()
     {
@@ -62,7 +62,7 @@ class Basico_Model_PessoaAssocclPerfil extends Abstract_RochedoPersistentModeloD
     * 
     * @param int $idPerfil 
     * 
-    * @return Basico_Model_Perfil
+    * @return Basico_Model_PessoaAssocclPerfil
     */
     public function setIdPerfil($idPerfil)
     {
@@ -83,7 +83,7 @@ class Basico_Model_PessoaAssocclPerfil extends Abstract_RochedoPersistentModeloD
     /**
      * Get perfil object
      * 
-     * @return null|Perfil
+     * @return null|Basico_Model_Perfil
      */
     public function getPerfilObject()
     {
