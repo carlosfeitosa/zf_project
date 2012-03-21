@@ -7,104 +7,95 @@
  * @uses       Basico_Model_TipoCategoriaMapper
  * @subpackage Model
  */
-class Basico_Model_TipoCategoria
+class Basico_Model_TipoCategoria extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
-	* @var int
+	 * @var Integer
+	 */
+	protected $_idTipoCategoriaPai;
+	/**
+	 * @var Integer
+	 */
+	protected $_nivel;	
+	/**
+	 * @var String
+	 */
+	protected $_nome;	
+	/**
+	 * @var String
+	 */
+	protected $_constanteTextual;
+	/**
+	 * @var String
+	 */
+	protected $_constanteTextualDescricao;	
+	/**
+	 * @var String
+	 */
+	protected $_codigo;
+	/**
+	 * @var Boolean
+	 */
+	protected $_ativo;
+
+	/**
+	* Set idTipoCategoriaPai
+	* 
+	* @param Integer $idTipoCategoriaPai
+	*  
+	* @return Basico_Model_TipoCategoria
 	*/
-	protected $_id;
-
-	/**
-	 * @var Basico_Model_TipoCategoriaMapper
-	 */
-	protected $_mapper;
-
-	/**
-	 * @var String
-	 */
-	protected $_nome;
-	/**
-	 * @var String
-	 */
-	protected $_descricao;
-	
-	/**
-	 * @var String
-	 */
-	protected $_rowinfo;
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param  array|null $options 
-	 * @return void
-	 */
-	public function __construct(array $options = null)
+	public function setIdTipoCategoriaPai($idTipoCategoriaPai)
 	{
-		if (is_array($options)) 
-		{
-			$this->setOptions($options);
-		}
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @param  mixed $value 
-	 * @return void
-	 */
-	public function __set($name, $value)
-	{
-		$method = 'set' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		$this->$method($value);
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @return mixed
-	 */
-	public function __get($name)
-	{
-		$method = 'get' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		return $this->$method();
-	}
-
-	/**
-	 * Set object state
-	 * 
-	 * @param  array $options 
-	 * @return Basico_Model_TipoCategoria
-	 */
-	public function setOptions(array $options)
-	{
-		$methods = get_class_methods($this);
-		foreach ($options as $key => $value) 
-		{
-			$method = 'set' . ucfirst($key);
-			if (in_array($method, $methods)) 
-			{
-			    $this->$method($value);
-			}
-		}
+		$this->_idTipoCategoriaPai = Basico_OPController_UtilOPController::retornaValorTipado($idTipoCategoriaPai, TIPO_INTEIRO, true);
 		return $this;
 	}
-    
+
+	/**
+	* Get idTipoCategoriaPai
+	* 
+	* @return null|int
+	*/
+	public function getIdTipoCategoriaPai()
+	{
+		if ($this->_idTipoCategoriaPai)
+			return $this->_idTipoCategoriaPai;
+		else
+			return null;
+	}
+
+	/**
+	* Set nivel
+	* 
+	* @param Integer $nivel
+	*  
+	* @return Basico_Model_TipoCategoria
+	*/
+	public function setNivel($nivel)
+	{
+		$this->_nivel = Basico_OPController_UtilOPController::retornaValorTipado($nivel, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idTipoCategoriaPai
+	* 
+	* @return null|int
+	*/
+	public function getNivel()
+	{
+		if ($this->_nivel)
+			return $this->_nivel;
+		else
+			return null;
+	}
+	
 	/**
 	* Set nome
 	* 
 	* @param String $nome 
-	* @return Basico_Model_Nome
+	* 
+	* @return Basico_Model_TipoCategoria
 	*/
 	public function setNome($nome)
 	{
@@ -123,81 +114,98 @@ class Basico_Model_TipoCategoria
 	}
      
 	/**
-	* Set descricao
+	* Set constanteTextual
 	* 
-	* @param String $descricao 
-	* @return Basico_Model_Descricao
-	*/
-	public function setDescricao($descricao)
-	{
-		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get descricao
+	* @param String $constanteTextual
 	* 
-	* @return null|String
-	*/
-	public function getDescricao()
-	{
-		return $this->_descricao;
-	}
-	
-	/**
-	* Set rowinfo
-	* 
-	* @param String rowinfo 
-	* @return Basico_Model_Rowinfo
-	*/
-	public function setRowinfo($rowinfo)
-	{
-		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get descricao
-	* 
-	* @return null|String
-	*/
-	public function getRowinfo()
-	{
-		return $this->_rowinfo;
-	}
- 
-	/**
-	* Set entry id
-	* 
-	* @param  int $id 
 	* @return Basico_Model_TipoCategoria
 	*/
-	public function setId($id)
+	public function setConstanteTextual($constanteTextual)
 	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
+		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Retrieve entry id
+	* Get constanteTextual
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextual()
+	{
+		return $this->_constanteTextual;
+	}
+
+	/**
+	* Set constanteTextualDescricao
+	* 
+	* @param String $constanteTextualDescricao
+	* 
+	* @return Basico_Model_TipoCategoria
+	*/
+	public function setConstanteTextualDescricao($constanteTextualDescricao)
+	{
+		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get constanteTextualDescricao
+	* 
+	* @return null|String
+	*/
+	public function getConstanteTextualDescricao()
+	{
+		return $this->_constanteTextualDescricao;
+	}	
+
+	/**
+	* Set codigo
+	* 
+	* @param String $codigo
+	* 
+	* @return Basico_Model_TipoCategoria
+	*/
+	public function setCodigo($codigo)
+	{
+		$this->_codigo = Basico_OPController_UtilOPController::retornaValorTipado($codigo, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get codigo
+	* 
+	* @return null|String
+	*/
+	public function getCodigo()
+	{
+		return $this->_codigo;
+	}
+
+	/**
+	* Set ativo
+	* 
+	* @param Integer $ativo
+	*  
+	* @return Basico_Model_TipoCategoria
+	*/
+	public function setAtivo($ativo)
+	{
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
+		return $this;
+	}
+
+	/**
+	* Get ativo
 	* 
 	* @return null|int
 	*/
-	public function getId()
+	public function getAtivo()
 	{
-		return $this->_id;
-	}
-
-	/**
-	* Set data mapper
-	* 
-	* @param  mixed $mapper 
-	* @return Basico_Model_TipoCategoria
-	*/
-	public function setMapper($mapper)
-	{
-		$this->_mapper = $mapper;
-		return $this;
+		if ($this->_ativo)
+			return $this->_ativo;
+		else
+			return null;
 	}
 	
 	/**
@@ -209,9 +217,6 @@ class Basico_Model_TipoCategoria
 	*/
 	public function getMapper()
 	{
-		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_TipoCategoriaMapper());
-		}
-		return $this->_mapper;
+		return parent::getMapper(Basico_Model_TipoCategoriaMapper);
 	}
 }

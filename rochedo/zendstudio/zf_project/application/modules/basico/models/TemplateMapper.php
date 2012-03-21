@@ -8,45 +8,104 @@
  * @uses        Basico_Model_DbTable_Template
  * @subpackage Model
  */
-class Basico_Model_TemplateMapper
+class Basico_Model_TemplateMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_TemplateMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Template if no instance registered
+     * Lazy loads Basico_Model_Template if no instance registered
      * 
-     * @return Zend_Db_Table_Abstract
+     * @return Basico_Model_Template
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Template');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable('Basico_Model_Template');
     }
+	
+    /**
+     * Find a Template entry by id
+     * 
+     * @param  int $id 
+     * @param  Basico_Model_Template $object 
+     * @return void
+     */
+    public function find($id, Basico_Model_Template $object)
+    {
+        $result = $this->getDbTable()->find($id);
+        if (0 == count($result)) {
+            return;
+        }
+        $row = $result->current();
+        $object->setId($row->id)
+			   ->setIdCategoria($row->id_categoria)
+			   ->setNome($row->nome)
+			   ->setConstanteTextual($row->constante_textual)
+			   ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			   ->setTemplate($row->template)
+			   ->setAtivo($row->ativo)
+			   ->setDatahoraCriacao($row->datahora_criacao)
+			   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			   ->setFullFileName($row->full_file_name)
+			   ->setRowinfo($row->rowinfo);
+    }
+
+	/**
+	 * Fetch all template entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		$resultSet = $this->getDbTable()->fetchAll();
+		$entries   = array();
+		foreach ($resultSet as $row) 
+		{
+			$entry = new Basico_Model_Template();
+			$entry->setId($row->id)
+			      ->setIdCategoria($row->id_categoria)
+			      ->setNome($row->nome)
+			      ->setConstanteTextual($row->constante_textual)
+			      ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			      ->setTemplate($row->template)
+			      ->setAtivo($row->ativo)
+			      ->setDatahoraCriacao($row->datahora_criacao)
+			      ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			      ->setFullFileName($row->full_file_name)
+			      ->setRowinfo($row->rowinfo)
+			      ->setMapper($this);
+			$entries[] = $entry;
+		}
+		return $entries;
+	}
+	
+	/**
+	 * Fetch all template entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
+		$entries   = array();
+		foreach ($resultSet as $row) 
+		{
+			$entry = new Basico_Model_Template();
+			$entry->setId($row->id)
+			   ->setIdCategoria($row->id_categoria)
+			   ->setNome($row->nome)
+			   ->setConstanteTextual($row->constante_textual)
+			   ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			   ->setTemplate($row->template)
+			   ->setAtivo($row->ativo)
+			   ->setDatahoraCriacao($row->datahora_criacao)
+			   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			   ->setFullFileName($row->full_file_name)
+			   ->setRowinfo($row->rowinfo)
+               ->setMapper($this);
+			$entries[] = $entry;
+		}
+		return $entries;
+	}
     
     /**
      * Save a Template entry
@@ -57,14 +116,16 @@ class Basico_Model_TemplateMapper
     public function save(Basico_Model_Template $object)
     {
         $data = array(
-				'nome'                     => $object->getNome(),
-				'descricao'                => $object->getDescricao(),
-                'id_categoria'             => $object->getCategoria(),
-				'stylesheet_full_filename' => $object->getStyleSheetFullFilename(),
-				'javascript_full_filename' => $object->getJavaScriptFullFilename(),
-				'template'                 => $object->getTemplate(),
-        		'id_output'				   => $object->getOutput(),
-                'rowinfo'                  => $object->getRowinfo(),
+                'id_categoria'                 => $object->getCategoria(),
+				'nome'                         => $object->getNome(),
+				'constante_textual'            => $object->getConstanteTextual(),
+				'constante_textual_descricao'  => $object->getDescricao(),
+				'template'                     => $object->getTemplate(),
+        		'ativo'                        => $object->getAtivo(),
+        		'datahora_criacao'             => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'  => $object->getDatahoraUltimaAtualizacao(),
+        		'full_file_name'               => $object->getFullFileName(),
+                'rowinfo'                      => $object->getRowinfo(),
 
         );
 
@@ -84,87 +145,5 @@ class Basico_Model_TemplateMapper
 	public function delete(Basico_Model_Template $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
-     * Find a Template entry by id
-     * 
-     * @param  int $id 
-     * @param  Basico_Model_Template $object 
-     * @return void
-     */
-    public function find($id, Basico_Model_Template $object)
-    {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setCategoria($row->id_categoria)
-				->setStyleSheetFullFilename($row->stylesheet_full_filename)
-				->setJavaScriptFullFilename($row->javascript_full_filename)
-				->setTemplate($row->template)
-				->setOutput($row->id_output)
-				->setRowinfo($row->rowinfo);
-    }
-
-	/**
-	 * Fetch all template entries
-	 * 
-	 * @return array
-	 */
-	public function fetchAll()
-	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Template();
-			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setCategoria($row->id_categoria)
-				->setStyleSheetFullFilename($row->stylesheet_full_filename)
-				->setJavaScriptFullFilename($row->javascript_full_filename)
-				->setTemplate($row->template)
-				->setOutput($row->id_output)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
-	}
-	
-	/**
-	 * Fetch all template entries
-	 * 
-	 * @return array
-	 */
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Template();
-			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setCategoria($row->id_categoria)
-				->setStyleSheetFullFilename($row->stylesheet_full_filename)
-				->setJavaScriptFullFilename($row->javascript_full_filename)
-				->setTemplate($row->template)
-				->setOutput($row->id_output)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
 	}
 }

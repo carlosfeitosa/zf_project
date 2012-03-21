@@ -8,95 +8,26 @@
  * @uses       Basico_Model_DbTable_FormularioElemento
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoMapper
+class Basico_Model_FormularioElementoMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_FormularioElementoMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
-    /**
      * Get registered Zend_Db_Table instance
-    *
+     *
      * Lazy loads Basico_Model_DbTable_FormularioElemento if no instance registered
      * 
-     * @return Zend_Db_Table_Abstract
+     * @return Basico_Model_DbTable_FormularioElemento
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_FormularioElemento');
-        }
-        return $this->_dbTable;
-    }
+        return parent::getDbTable('Basico_Model_DbTable_FormularioElemento');
+    }	
     
-    /**
-     * Save a FormularioElemento entry
-     * 
-     * @param  Basico_Model_FormularioElemento $object
-     * @return void
-     */
-    public function save(Basico_Model_FormularioElemento $object)
-    {
-        $data = array(
-                'nome'                        => $object->getNome(),
-                'descricao'                   => $object->getDescricao(),
-                'constante_textual_label'     => $object->getConstanteTextualLabel(),
-                'element_name'                => $object->getElementName(),
-                'element_attribs'             => $object->getElementAttribs(),
-                'element'                     => $object->getElement(),
-                'element_reloadable'          => $object->getElementReloadable(),
-                'id_mascara'                  => $object->getMascara(),
-                'id_categoria'                => $object->getCategoria(),
-                'id_ajuda'                    => $object->getAjuda(),
-        		'id_componente'			      => $object->getComponente(),
-        		'datahora_criacao'            => $object->getDataHoraCriacao(),
-        		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),
-                'rowinfo'                     => $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-     * Delete a FormularioElemento entry
-     * @param Basico_Model_FormularioElemento $object
-     * @return void
-     */
-    public function delete(Basico_Model_FormularioElemento $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
-
     /**
      * Find a FormularioElemento entry by id
      * 
      * @param  int $id 
      * @param  Basico_Model_FormularioElemento $object 
+     * 
      * @return void
      */
     public function find($id, Basico_Model_FormularioElemento $object)
@@ -107,25 +38,26 @@ class Basico_Model_FormularioElementoMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setConstanteTextualLabel($row->constante_textual_label)
-				->setElementName($row->element_name)
-				->setElementAttribs($row->element_attribs)
-				->setElement($row->element)
-				->setElementReloadable($row->element_reloadable)
-				->setCategoria($row->id_categoria)
-				->setMascara($row->id_mascara)
-				->setAjuda($row->id_ajuda)
-				->setComponente($row->id_componente)
-				->setDataHoraCriacao($row->datahora_criacao)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo);
+			   ->setIdCategoria($row->id_categoria)
+			   ->setIdComponente($row->id_componente)
+			   ->setIdAjuda($row->id_ajuda)
+			   ->setNome($row->nome)
+			   ->setConstanteTextual($row->constante_textual)
+			   ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			   ->setConstanteTextualLabel($row->constante_textual_label)
+			   ->setElement($row->element)
+			   ->setElementName($row->element_name)
+			   ->setElementAttribs($row->element_attribs)
+			   ->setElementValueDefault($row->element_value_default)
+			   ->setElementReloadable($row->element_reloadable)
+			   ->setAtivo($row->ativo)
+			   ->setDatahoraCriacao($row->datahora_criacao)
+			   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			   ->setRowinfo($row->rowinfo);
     }
 
 	/**
-	 * Fetch all formularioelemento entries
+	 * Fetch all FormularioElemento entries
 	 * 
 	 * @return array
 	 */
@@ -137,22 +69,23 @@ class Basico_Model_FormularioElementoMapper
 		{
 			$entry = new Basico_Model_FormularioElemento();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setConstanteTextualLabel($row->constante_textual_label)
-				->setElementName($row->element_name)
-				->setElementAttribs($row->element_attribs)
-				->setElement($row->element)
-				->setElementReloadable($row->element_reloadable)
-				->setCategoria($row->id_categoria)
-				->setMascara($row->id_mascara)
-				->setAjuda($row->id_ajuda)
-				->setComponente($row->id_componente)
-				->setDataHoraCriacao($row->datahora_criacao)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
+			      ->setIdCategoria($row->id_categoria)
+			      ->setIdComponente($row->id_componente)
+			      ->setIdAjuda($row->id_ajuda)
+			      ->setNome($row->nome)
+			      ->setConstanteTextual($row->constante_textual)
+			      ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			      ->setConstanteTextualLabel($row->constante_textual_label)
+			      ->setElement($row->element)
+			      ->setElementName($row->element_name)
+			      ->setElementAttribs($row->element_attribs)
+			      ->setElementValueDefault($row->element_value_default)
+			      ->setElementReloadable($row->element_reloadable)
+			      ->setAtivo($row->ativo)
+			      ->setDatahoraCriacao($row->datahora_criacao)
+			      ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			      ->setRowinfo($row->rowinfo)
+  			      ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -171,24 +104,73 @@ class Basico_Model_FormularioElementoMapper
 		{
 			$entry = new Basico_Model_FormularioElemento();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-				->setDescricao($row->descricao)
-				->setConstanteTextualLabel($row->constante_textual_label)
-				->setElementName($row->element_name)
-				->setElementAttribs($row->element_attribs)
-				->setElement($row->element)
-				->setElementReloadable($row->element_reloadable)
-				->setCategoria($row->id_categoria)
-				->setMascara($row->id_mascara)
-				->setAjuda($row->id_ajuda)
-				->setComponente($row->id_componente)
-				->setDataHoraCriacao($row->datahora_criacao)
-				->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
+			      ->setIdCategoria($row->id_categoria)
+			      ->setIdComponente($row->id_componente)
+			      ->setIdAjuda($row->id_ajuda)
+			      ->setNome($row->nome)
+			      ->setConstanteTextual($row->constante_textual)
+			      ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			      ->setConstanteTextualLabel($row->constante_textual_label)
+			      ->setElement($row->element)
+			      ->setElementName($row->element_name)
+			      ->setElementAttribs($row->element_attribs)
+			      ->setElementValueDefault($row->element_value_default)
+			      ->setElementReloadable($row->element_reloadable)
+			      ->setAtivo($row->ativo)
+			      ->setDatahoraCriacao($row->datahora_criacao)
+			      ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+			      ->setRowinfo($row->rowinfo)
+  			      ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
 	}
+
+    /**
+     * Save a FormularioElemento entry
+     * 
+     * @param  Basico_Model_FormularioElemento $object
+     * 
+     * @return void
+     */
+    public function save(Basico_Model_FormularioElemento $object)
+    {
+        $data = array(
+                'id_categoria'                => $object->getIdCategoria(),
+                'id_componente'               => $object->getIdComponente(),
+                'id_ajuda'                    => $object->getIdAjuda(),
+                'nome'                        => $object->getNome(),
+                'constante_textual'           => $object->getConstanteTextual(),
+                'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+                'constante_textual_label'     => $object->getConstanteTextualLabel(),
+                'element'                     => $object->getElement(),
+                'element_name'                => $object->getElementName(),
+                'element_attribs'             => $object->getElementAttribs(),
+        		'element_value_default'	      => $object->getElementValueDefault(),
+        		'element_reloadable'          => $object->getElementReloadable(),
+        		'ativo'                       => $object->getAtivo(),
+        		'datahora_criacao'            => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'                     => $object->getRowinfo(),
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+    /**
+     * Delete a FormularioElemento entry
+     * 
+     * @param Basico_Model_FormularioElemento $object
+     * 
+     * @return void
+     */
+    public function delete(Basico_Model_FormularioElemento $object)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $object->id));
+    }	
 }

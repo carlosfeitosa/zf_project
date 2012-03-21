@@ -8,45 +8,89 @@
  * @uses       Basico_Model_DbTable_DadosBiometricos
  * @subpackage Model
  */
-class Basico_Model_DadosBiometricosMapper
+class Basico_Model_DadosBiometricosMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_DadosBiometricosMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_DadosBiometricos if no instance registered
      * 
-     * @return Zend_Db_Table_Abstract
+     * @return Basico_Model_DbTable_DadosBiometricos
      */
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_DadosBiometricos');
+        return parent::getDbTable('Basico_Model_DbTable_DadosBiometricos');
+    }	  
+
+    /**
+     * Find a DadosBiometricos entry by id
+     * 
+     * @param  int $id 
+     * @param  Basico_Model_DadosBiometricos $object 
+     * @return void
+     */
+    public function find($id, Basico_Model_DadosBiometricos $object)
+    {
+        $result = $this->getDbTable()->find($id);
+        if (0 == count($result)) {
+            return;
         }
-        return $this->_dbTable;
+        $row = $result->current();
+        $object ->setId($row->id)
+                ->setIdCategoria($row->id_categoria)
+				->setIdGenericoProprietario($row->id_generico_proprietario)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				->setRowinfo($row->rowinfo);				
     }
+
+	/**
+	 * Fetch all DadosBiometricos entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		$resultSet = $this->getDbTable()->fetchAll();
+		$entries   = array();
+		foreach ($resultSet as $row) 
+		{
+			$entry = new Basico_Model_DadosBiometricos();
+			$entry ->setId($row->id)
+				   ->setIdCategoria($row->id_categoria)
+				   ->setIdGenericoProprietario($row->id_generico_proprietario)
+				   ->setDatahoraCriacao($row->datahora_criacao)
+				   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+				   ->setRowinfo($row->rowinfo)
+				   ->setMapper($this);
+			$entries[] = $entry;
+		}
+		return $entries;
+	}
+	
+	/**
+	 * Fetch all DadosBiometricos entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
+		$entries   = array();
+		foreach ($resultSet as $row) 
+		{
+			$entry = new Basico_Model_DadosBiometricos();
+			$entry ->setId($row->id)
+				   ->setIdCategoria($row->id_categoria)
+				   ->setIdGenericoProprietario($row->id_generico_proprietario)
+				   ->setDatahoraCriacao($row->datahora_criacao)
+				   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)				   
+				   ->setRowinfo($row->rowinfo)
+				   ->setMapper($this);
+			$entries[] = $entry;
+		}
+		return $entries;
+	}
     
     /**
      * Save a DadosBiometricos entry
@@ -57,15 +101,11 @@ class Basico_Model_DadosBiometricosMapper
     public function save(Basico_Model_DadosBiometricos $object)
     {
         $data = array(
-                'id_pessoa'              => $object->getPessoa(),
-				'sexo'                   => $object->getSexo(),
-                'constante_textual_raca' => $object->getConstanteTextualRaca(),
-                'altura'                 => $object->getAltura(),
-                'peso'                   => $object->getPeso(),
-                'id_tipo_sanguineo'         => $object->getTipoSanguineo(),
-                'historico_medico'       => $object->getHistoricoMedico(),
-                'rowinfo'                => $object->getRowinfo(),
-
+                'id_categoria'                => $object->getIdCategoria(),
+				'id_generico_proprietario'    => $object->getIdGenericoProprietario(),
+        		'datahora_criacao'			  => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+        		'rowinfo'					  => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -84,85 +124,5 @@ class Basico_Model_DadosBiometricosMapper
 	public function delete(Basico_Model_DadosBiometricos $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
-     * Find a DadosBiometricos entry by id
-     * 
-     * @param  int $id 
-     * @param  Basico_Model_DadosBiometricos $object 
-     * @return void
-     */
-    public function find($id, Basico_Model_DadosBiometricos $object)
-    {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-                ->setPessoa($row->id_pessoa)
-				->setSexo($row->sexo)
-				->setConstanteTextualRaca($row->constante_textual_raca)
-				->setAltura($row->altura)
-				->setPeso($row->peso)
-				->setTipoSanguineo($row->id_tipo_sanguineo)
-				->setHistoricoMedico($row->historico_medico)
-				->setRowinfo($row->rowinfo);
-    }
-
-	/**
-	 * Fetch all dadosbiometricos entries
-	 * 
-	 * @return array
-	 */
-	public function fetchAll()
-	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_DadosBiometricos();
-			$entry->setId($row->id)
-                ->setPessoa($row->id_pessoa)
-				->setSexo($row->sexo)
-				->setConstanteTextualRaca($row->constante_textual_raca)
-				->setAltura($row->altura)
-				->setPeso($row->peso)
-				->setTipoSanguineo($row->id_tipo_sanguineo)
-				->setHistoricoMedico($row->historico_medico)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
-	}
-	
-	/**
-	 * Fetch all dadosbiometricos entries
-	 * 
-	 * @return array
-	 */
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_DadosBiometricos();
-			$entry->setId($row->id)
-                ->setPessoa($row->id_pessoa)
-				->setSexo($row->sexo)
-				->setConstanteTextualRaca($row->constante_textual_raca)
-				->setAltura($row->altura)
-				->setPeso($row->peso)
-				->setTipoSanguineo($row->id_tipo_sanguineo)
-				->setHistoricoMedico($row->historico_medico)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
-	}
-
+	}	
 }

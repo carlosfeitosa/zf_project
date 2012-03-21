@@ -72,7 +72,7 @@ class Basico_Model_PessoaAssocDados extends Abstract_RochedoPersistentModeloDado
      */
     public function getPessoaObject()
     {
-        $model = new Basico_Model_Pessoa();
+        $model = new Basico_Model_ComponenteAssocclInclude();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idPessoa);
         return $object;
     }

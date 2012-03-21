@@ -8,82 +8,8 @@
  * @uses       Basico_Model_DbTable_Categoria
  * @subpackage Model
  */
-class Basico_Model_CategoriaMapper
+class Basico_Model_CategoriaMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_CategoriaMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
-    /**
-     * Get registered Zend_Db_Table instance
-     *
-     * Lazy loads Basico_Model_DbTable_Categoria if no instance registered
-     * 
-     * @return Zend_Db_Table_Abstract
-     */
-    public function getDbTable()
-    {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Categoria');
-        }
-        return $this->_dbTable;
-    }
-    
-    /**
-     * Save a Categoria entry
-     * 
-     * @param  Basico_Model_Categoria $object
-     * @return void
-     */
-    public function save(Basico_Model_Categoria $object)
-    {
-        $data = array(
-                      'id_tipo_categoria'   => $object->getTipoCategoria(),
-                      'id_categoria_pai'    => $object->getCategoria(),
-					  'nivel'  			    => $object->getNivel(),
-					  'nome'                => $object->getNome(),
-					  'descricao'           => $object->getDescricao(),
-					  'ativo'               => $object->getAtivo(),
-              		  'rowinfo'             => $object->getRowinfo(),
-                     );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a Categoria entry
-	* @param Basico_Model_Categoria $object
-	* @return void
-	*/
-	public function delete(Basico_Model_Categoria $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
     /**
      * Find a Categoria entry by id
      * 
@@ -99,12 +25,16 @@ class Basico_Model_CategoriaMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setTipoCategoria($row->id_tipo_categoria)
-               ->setCategoria($row->id_categoria_pai)
+               ->setIdTipoCategoria($row->id_tipo_categoria)
+               ->setIdCategoriaPai($row->id_categoria_pai)
 			   ->setNivel($row->nivel)
 			   ->setNome($row->nome)
-			   ->setDescricao($row->descricao)
+			   ->setConstanteTextual($row->constante_textual)
+			   ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			   ->setCodigo($row->codigo)
 			   ->setAtivo($row->ativo)
+			   ->setDatahoraCriacao($row->datahora_criacao)
+			   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
                ->setRowinfo($row->rowinfo);
     }
 
@@ -121,14 +51,18 @@ class Basico_Model_CategoriaMapper
 		{
 			$entry = new Basico_Model_Categoria();
 			$entry->setId($row->id)
-                   ->setTipoCategoria($row->id_tipo_categoria)
-                   ->setCategoria($row->id_categoria_pai)
-				   ->setNivel($row->nivel)
-				   ->setNome($row->nome)
-				   ->setDescricao($row->descricao)
-				   ->setAtivo($row->ativo)
-				   ->setRowinfo($row->rowinfo)
-				   ->setMapper($this);
+                  ->setIdTipoCategoria($row->id_tipo_categoria)
+                  ->setIdCategoriaPai($row->id_categoria_pai)
+		   	      ->setNivel($row->nivel)
+			      ->setNome($row->nome)
+			      ->setConstanteTextual($row->constante_textual)
+			      ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			      ->setCodigo($row->codigo)
+			      ->setAtivo($row->ativo)
+			      ->setDatahoraCriacao($row->datahora_criacao)
+			      ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                  ->setRowinfo($row->rowinfo)
+			      ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
@@ -147,16 +81,60 @@ class Basico_Model_CategoriaMapper
 		{
 			$entry = new Basico_Model_Categoria();
 			$entry->setId($row->id)
-                  ->setTipoCategoria($row->id_tipo_categoria)
-                  ->setCategoria($row->id_categoria_pai)
-				  ->setNivel($row->nivel)
-				  ->setNome($row->nome)
-				  ->setDescricao($row->descricao)
-				  ->setAtivo($row->ativo)
-				  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
+                  ->setIdTipoCategoria($row->id_tipo_categoria)
+                  ->setIdCategoriaPai($row->id_categoria_pai)
+		   	      ->setNivel($row->nivel)
+			      ->setNome($row->nome)
+			      ->setConstanteTextual($row->constante_textual)
+			      ->setConstanteTextualDescricao($row->constante_textual_descricao)
+			      ->setCodigo($row->codigo)
+			      ->setAtivo($row->ativo)
+			      ->setDatahoraCriacao($row->datahora_criacao)
+			      ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                  ->setRowinfo($row->rowinfo)
+			      ->setMapper($this);
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+
+    /**
+     * Save a Categoria entry
+     * 
+     * @param  Basico_Model_Categoria $object
+     * @return void
+     */
+    public function save(Basico_Model_Categoria $object)
+    {
+        $data = array(
+                      'id_tipo_categoria'           => $object->getIdTipoCategoria(),
+                      'id_categoria_pai'            => $object->getIdCategoria(),
+					  'nivel'  			            => $object->getNivel(),
+					  'nome'                        => $object->getNome(),
+        			  'constante_textual'           => $object->getConstanteTextual(),
+                      'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+        			  'codigo'                      => $object->getCodigo(),
+					  'ativo'                       => $object->getAtivo(),
+        			  'datahora_criacao'            => $object->getDatahoraCriacao(),
+        			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+              		  'rowinfo'                     => $object->getRowinfo(),
+                     );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a Categoria entry
+	* @param Basico_Model_Categoria $object
+	* @return void
+	*/
+	public function delete(Basico_Model_Categoria $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

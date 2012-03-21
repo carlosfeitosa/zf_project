@@ -7,18 +7,12 @@
  * @uses       Basico_Model_TemplateMapper
  * @subpackage Model
  */
-class Basico_Model_Template
+class Basico_Model_Template extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
 {
 	/**
-	* @var int
-	*/
-	protected $_id;
-
-	/**
-	 * @var Basico_Model_TemplateMapper
+	 * @var Integer
 	 */
-	protected $_mapper;
-
+	protected $_idCategoria;
 	/**
 	 * @var String
 	 */
@@ -26,104 +20,65 @@ class Basico_Model_Template
 	/**
 	 * @var String
 	 */
-	protected $_descricao;
-	/**
-	 * @var Integer
-	 */
-	protected $_categoria;
+	protected $_constanteTextual;
 	/**
 	 * @var String
 	 */
-	protected $_styleSheetFullFilename;
-	/**
-	 * @var String
-	 */
-	protected $_javaScriptFullFilename;
+	protected $_constanteTextualDescricao;
 	/**
 	 * @var String
 	 */
 	protected $_template;
 	/**
-	 * @var Integer
+	 * @var Boolean
 	 */
-	protected $_output;
+	protected $_ativo;
 	/**
 	 * @var String
 	 */
-	protected $_rowinfo;
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param  array|null $options 
-	 * @return void
-	 */
-	public function __construct(array $options = null)
-	{
-		if (is_array($options)) 
-		{
-			$this->setOptions($options);
-		}
-	}
+	protected $_fullFileName;
 
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @param  mixed $value 
-	 * @return void
-	 */
-	public function __set($name, $value)
+    /**
+	* Set idCategoria
+	* 
+	* @param Integer $idCategoria 
+	* 
+	* @return Basico_Model_Categoria
+	*/
+	public function setIdCategoria($idCategoria)
 	{
-		$method = 'set' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		$this->$method($value);
-	}
-
-	/**
-	 * Overloading: allow property access
-	 * 
-	 * @param  string $name 
-	 * @return mixed
-	 */
-	public function __get($name)
-	{
-		$method = 'get' . $name;
-		if ('mapper' == $name || !method_exists($this, $method)) 
-		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
-		}
-		return $this->$method();
-	}
-
-	/**
-	 * Set object state
-	 * 
-	 * @param  array $options 
-	 * @return Default_Model_Template
-	 */
-	public function setOptions(array $options)
-	{
-		$methods = get_class_methods($this);
-		foreach ($options as $key => $value) 
-		{
-			$method = 'set' . ucfirst($key);
-			if (in_array($method, $methods)) 
-			{
-			    $this->$method($value);
-			}
-		}
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
 		return $this;
 	}
-    
+
+	/**
+	* Get idCategoria
+	* 
+	* @return null|Int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+	
+    /**
+     * Get Categoria object
+     * 
+     * @return null|Basico_Model_Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }	
+	
 	/**
 	* Set nome
 	* 
-	* @param String $nome 
-	* @return Default_Model_Nome
+	* @param String $nome
+	*  
+	* @return Basico_Model_Template
 	*/
 	public function setNome($nome)
 	{
@@ -140,99 +95,58 @@ class Basico_Model_Template
 	{
 		return $this->_nome;
 	}
-     
+	
 	/**
-	* Set descricao
+	* Set constanteTextual
 	* 
-	* @param String $descricao 
-	* @return Default_Model_Descricao
+	* @param String $constanteTextual
+	* 
+	* @return Basico_Model_Template
 	*/
-	public function setDescricao($descricao)
+	public function setConstanteTextual($constanteTextual)
 	{
-		$this->_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get descricao
+	* Get constanteTextual
 	* 
 	* @return null|String
 	*/
-	public function getDescricao()
+	public function getConstanteTextual()
 	{
-		return $this->_descricao;
+		return $this->_constanteTextual;
 	}
 	
-    /**
-	* Set categoria
+	/**
+	* Set constanteTextualDescricao
 	* 
-	* @param Integer $categoria 
-	* @return Basico_Model_categoria
+	* @param String $constanteTextualDescricao
+	*  
+	* @return Basico_Model_Template
 	*/
-	public function setCategoria($categoria)
+	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
-		$this->_categoria = Basico_OPController_UtilOPController::retornaValorTipado($categoria, TIPO_INTEIRO, true);
+		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
 		return $this;
 	}
 
 	/**
-	* Get categoria
+	* Get constanteTextualDescricao
 	* 
 	* @return null|String
 	*/
-	public function getCategoria()
+	public function getConstanteTextualDescricao()
 	{
-		return $this->_categoria;
-	}
-     
-	/**
-	* Set styleSheetFullFilename
-	* 
-	* @param String $styleSheetFullFilename 
-	* @return Default_Model_StyleSheetFullFilename
-	*/
-	public function setStyleSheetFullFilename($styleSheetFullFilename)
-	{
-		$this->_styleSheetFullFilename = Basico_OPController_UtilOPController::retornaValorTipado($styleSheetFullFilename, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get styleSheetFullFilename
-	* 
-	* @return null|String
-	*/
-	public function getStyleSheetFullFilename()
-	{
-		return $this->_styleSheetFullFilename;
-	}
-     
-	/**
-	* Set javaScriptFullFilename
-	* 
-	* @param String $javaScriptFullFilename 
-	* @return Default_Model_JavaScriptFullFilename
-	*/
-	public function setJavaScriptFullFilename($javaScriptFullFilename)
-	{
-		$this->_javaScriptFullFilename = Basico_OPController_UtilOPController::retornaValorTipado($javaScriptFullFilename, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get javaScriptFullFilename
-	* 
-	* @return null|String
-	*/
-	public function getJavaScriptFullFilename()
-	{
-		return $this->_javaScriptFullFilename;
+		return $this->_constanteTextualDescricao;
 	}
      
 	/**
 	* Set template
 	* 
-	* @param String $template 
+	* @param String $template
+	*  
 	* @return Default_Model_Template
 	*/
 	public function setTemplate($template)
@@ -250,108 +164,63 @@ class Basico_Model_Template
 	{
 		return $this->_template;
 	}
- 
-	/**
-	* Set entry id
-	* 
-	* @param  int $id 
-	* @return Default_Model_Template
-	*/
-	public function setId($id)
-	{
-		$this->_id = Basico_OPController_UtilOPController::retornaValorTipado($id, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Retrieve entry id
-	* 
-	* @return null|int
-	*/
-	public function getId()
-	{
-		return $this->_id;
-	}
-	
-    /**
-	* Set output
-	* 
-	* @param Integer $output
-	* @return Basico_Model_Output
-	*/
-	public function setOutput($output)
-	{
-		$this->_output = Basico_OPController_UtilOPController::retornaValorTipado($output, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Get output
-	* 
-	* @return null|String
-	*/
-	public function getOutput()
-	{
-		return $this->_output;
-	}
 	
 	/**
-	* Set rowinfo
+	* Set ativo
 	* 
-	* @param String $xml 
+	* @param Bool $ativo
+	*  
 	* @return Basico_Model_Template
 	*/
-	public function setRowinfo($rowinfo)
+	
+	public function setAtivo($ativo)
 	{
-		$this->_rowinfo = Basico_OPController_UtilOPController::retornaValorTipado($rowinfo, TIPO_STRING, true);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
 		return $this;
 	}
 
 	/**
-	* Get rowinfo
+	* Get ativo
+	* 
+	* @return null|Bool
+	*/
+	public function getAtivo()
+	{
+		return $this->_ativo;
+	}
+    
+	/**
+	* Set fullFileName
+	* 
+	* @param String $fullFileName
+	*  
+	* @return Basico_Model_Template
+	*/
+    public function setFullFileName($fullFileName)
+	{
+		$this->_fullFileName = Basico_OPController_UtilOPController::retornaValorTipado($fullFileName, TIPO_STRING, true);
+		return $this;
+	}
+	
+	/**
+	* Get fullFileName
 	* 
 	* @return null|String
 	*/
-	public function getRowinfo()
+	public function getFullFileName()
 	{
-		return $this->_rowinfo;
-	}
-	
-    /**
-     * Get output object
-     * @return null|decorator
-     */
-    public function getOutputObject()
-    {
-        $model = new Basico_Model_Output();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_output);
-        return $object;
-    }
-
-	/**
-	* Set data mapper
-	* 
-	* @param  mixed $mapper 
-	* @return Default_Model_Template
-	*/
-	public function setMapper($mapper)
-	{
-		$this->_mapper = $mapper;
-		return $this;
+		return $this->_fullFileName;
 	}
 	
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Default_Model_TemplateMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_TemplateMapper instance if no mapper registered.
 	* 
-	* @return Default_Model_TemplateMapper
+	* @return Basico_Model_TemplateMapper
 	*/
 	public function getMapper()
 	{
-		if (null === $this->_mapper) {
-			$this->setMapper(new Basico_Model_TemplateMapper());
-		}
-		return $this->_mapper;
+		return parent::getMapper(Basico_Model_TemplateMapper);
 	}
 }

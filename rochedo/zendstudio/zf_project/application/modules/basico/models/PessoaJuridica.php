@@ -271,7 +271,7 @@ class Basico_Model_PessoaJuridica
     public function getPessoaResponsavelCadastroObject()
     {
     	// recuperando modelo
-        $model = new Basico_Model_Pessoa();
+        $model = new Basico_Model_ComponenteAssocclInclude();
         // recuperando objeto
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_pessoaResponsavelCadastro);
         // retornando objeto
