@@ -6,7 +6,7 @@
  */
 
 // includes
-require_once(APPLICATION_PATH . "/modules/basico/models/Token.php");
+require_once(APPLICATION_PATH . "/modules/basico/models/CpgToken.php");
 
 /**
  * Basico_OPController_TokenOPController

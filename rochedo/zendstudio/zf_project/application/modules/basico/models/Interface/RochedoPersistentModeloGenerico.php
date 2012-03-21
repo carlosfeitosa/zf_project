@@ -1,13 +1,23 @@
 <?php
 
-interface Interface_RochedoPersistentModeloGenerico
+/**
+ * Interface que deve ser implementada por modelos ou por outras interfaces
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ * 
+ * @package Basico
+ *
+ * @since 21/03/2012
+ * 
+ */
+Interface Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_PessoaMapper instance if no mapper registered.
+	* Declaração do metodo que deve ser implementado nos modelos genericos
 	* 
-	* @return Basico_Model_PessoaMapper
+	* @return void
 	*/
 	public function getMapper();
 }

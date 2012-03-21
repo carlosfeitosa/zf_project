@@ -19,12 +19,22 @@ require_once("dictionary_consts.php");
 define("RESOURCE_TYPE_BASICO_PLUGINS", "plugins");
 define("RESOURCE_PATH_BASICO_PLUGINS", "actionControllers/plugins");
 define("RESOURCE_NAMESPACE_BASICO_PLUGINS", "Controller_Plugin");
-define("RESOURCE_TYPE_BASICO_ABSTRACTS", "abstracts");
-define("RESOURCE_PATH_BASICO_ABSTRACTS", "controllers/abstracts");
-define("RESOURCE_NAMESPACE_BASICO_ABSTRACTS", "Abstract_");
+
+define("RESOURCE_TYPE_BASICO_CONTROLLERS_ABSTRACTS", "abstractsControllers");
+define("RESOURCE_PATH_BASICO_CONTROLLERS_ABSTRACTS", "controllers/abstracts");
+define("RESOURCE_NAMESPACE_BASICO_CONTROLLERS_ABSTRACTS", "AbstractController_");
+
 define("RESOURCE_TYPE_BASICO_OPCONTROLLERS", "OPControllers");
 define("RESOURCE_PATH_BASICO_OPCONTROLLERS", "controllers");
 define("RESOURCE_NAMESPACE_BASICO_OPCONTROLLERS", "OPController_");
+
+define("RESOURCE_TYPE_BASICO_MODELS_ABSTRACTS", "abstractsModels");
+define("RESOURCE_PATH_BASICO_MODELS_ABSTRACTS", "models/Abstract");
+define("RESOURCE_NAMESPACE_BASICO_MODELS_ABSTRACTS", "AbstractModel_");
+
+define("RESOURCE_TYPE_BASICO_MODELS_INTERFACES", "interfacesModels");
+define("RESOURCE_PATH_BASICO_MODELS_INTERFACES", "models/Interface");
+define("RESOURCE_NAMESPACE_BASICO_MODELS_INTERFACES", "InterfaceModel_");
 
 define("TAG_LINK", "@link");
 define("JAVASCRIPT_HISTORY_GO_BACK", "javascript: history.go(-2);");
