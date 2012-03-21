@@ -281,28 +281,6 @@ class Basico_Model_CpgArquivo extends Abstract_RochedoPersistentModeloDados impl
 	* @param String $uri
 	* @return Basico_Model_CpgArquivo
 	*/
-	public function setMimeType($uri)
-	{
-		$this->_uri = Basico_OPController_UtilOPController::retornaValorTipado($uri, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get mimeType
-	* 
-	* @return null|String
-	*/
-	public function getMimeType()
-	{
-		return $this->_mimeType;
-	}
-
-	/**
-	* Set uri
-	* 
-	* @param String $uri
-	* @return Basico_Model_CpgArquivo
-	*/
 	public function setUri($uri)
 	{
 		$this->_uri = Basico_OPController_UtilOPController::retornaValorTipado($uri, TIPO_STRING, true);
