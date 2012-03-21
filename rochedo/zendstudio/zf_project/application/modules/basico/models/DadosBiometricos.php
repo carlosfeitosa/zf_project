@@ -45,7 +45,7 @@ class Basico_Model_DadosBiometricos extends Abstract_RochedoPersistentModeloAsso
     /**
      * Get categoria object
      * 
-     * @return null|Categoria
+     * @return null|Basico_Model_Categoria
      */
     public function getCategoriaObject()
     {
