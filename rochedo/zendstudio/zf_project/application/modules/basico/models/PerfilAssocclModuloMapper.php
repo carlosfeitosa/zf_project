@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_PerfilAssocclModulo
  * @subpackage Model
  */
-class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPersistencia, Interface_RochedoMapperPesquisa
+class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -20,40 +20,6 @@ class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper impl
     public function getDbTable()
     {
         return parent::getDbTable('Basico_Model_DbTable_PerfilAssocclModulo');
-    }
-    
-    /**
-     * Save a PerfilAssocclModulo entry
-     * 
-     * @param  Basico_Model_PerfilAssocclModulo $object
-     * @return void
-     */
-    public function save(Basico_Model_PerfilAssocclModulo $object)
-    {
-        $data = array(
-                      'id_modulo' => $object->getModulo(),
-                      'id_perfil' => $object->getPerfil(),
-        		      'datahora_criacao' => $object->getDatahoraCriacao(),
-                      'rowinfo'=> $object->getRowinfo(),
-                     );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-    * Delete a PerfilAssocclModulo entry
-    * 
-    * @param Basico_Model_PerfilAssocclModulo $object
-    * @return void
-    */
-    public function delete(Basico_Model_PerfilAssocclModulo $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
 
     /**
@@ -121,5 +87,39 @@ class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper impl
             $entries[] = $entry;
         }
         return $entries;
+    }
+    
+    /**
+     * Save a PerfilAssocclModulo entry
+     * 
+     * @param  Basico_Model_PerfilAssocclModulo $object
+     * @return void
+     */
+    public function save(Basico_Model_PerfilAssocclModulo $object)
+    {
+        $data = array(
+                      'id_modulo' => $object->getModulo(),
+                      'id_perfil' => $object->getPerfil(),
+        		      'datahora_criacao' => $object->getDatahoraCriacao(),
+                      'rowinfo'=> $object->getRowinfo(),
+                     );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+    /**
+    * Delete a PerfilAssocclModulo entry
+    * 
+    * @param Basico_Model_PerfilAssocclModulo $object
+    * @return void
+    */
+    public function delete(Basico_Model_PerfilAssocclModulo $object)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
 }

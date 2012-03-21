@@ -7,7 +7,7 @@
  * @uses       Basico_Model_PerfilAssocclModuloMapper
  * @subpackage Model
  */
-class Basico_Model_PerfilAssocclModulo extends Abstract_RochedoModeloAssociacao
+class Basico_Model_PerfilAssocclModulo extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
 {
     /**
      * @var Integer
@@ -41,7 +41,7 @@ class Basico_Model_PerfilAssocclModulo extends Abstract_RochedoModeloAssociacao
     }
  
     /**
-     * Get idModulo object
+     * Get Modulo object
      * 
      * @return null|Modulo
      */
@@ -75,7 +75,7 @@ class Basico_Model_PerfilAssocclModulo extends Abstract_RochedoModeloAssociacao
     }
  
     /**
-     * Get idPerfil object
+     * Get Perfil object
      * @return null|Perfil
      */
     public function getPerfilObject()
