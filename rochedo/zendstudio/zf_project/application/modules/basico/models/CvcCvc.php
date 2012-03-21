@@ -48,6 +48,7 @@ class Basico_Model_CvcCvc extends Abstract_RochedoPersistentModeloDados implemen
 	* Set idAssocChaveEstrangeira
 	* 
 	* @param int $idAssocChaveEstrangeira
+	* 
 	* @return Basico_Model_CvcCvc
 	*/
 	public function setIdAssocChaveEstrangeira($idAssocChaveEstrangeira)
@@ -70,11 +71,11 @@ class Basico_Model_CvcCvc extends Abstract_RochedoPersistentModeloDados implemen
 	}
  
     /**
-     * Get idAssocChaveEstrangeira object
+     * Get AssocChaveEstrangeira object
      * 
      * @return null|Basico_Model_CategoriaAssocChaveEstrangeira
      */
-    public function getIdAssocChaveEstrangeiraObject()
+    public function getAssocChaveEstrangeiraObject()
     {
         $model = new Basico_Model_CategoriaAssocChaveEstrangeira();
         $object = $model->getMapper()->find($this->_idAssocChaveEstrangeira);

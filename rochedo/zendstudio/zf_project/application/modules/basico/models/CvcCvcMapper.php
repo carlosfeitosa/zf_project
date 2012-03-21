@@ -114,7 +114,7 @@ class Basico_Model_CvcCvcMapper extends Abstract_RochedoMapper implements Interf
 	}
     
     /**
-     * Save a CVC entry
+     * Save a CvcCvc entry
      * 
      * @param  Basico_Model_CvcCvc $object
      * 
@@ -144,7 +144,7 @@ class Basico_Model_CvcCvcMapper extends Abstract_RochedoMapper implements Interf
     }
     
 	/**
-	* Delete a CVC entry
+	* Delete a CvcCvc entry
 	* 
 	* @param Basico_Model_CvcCvc $object
 	* 
