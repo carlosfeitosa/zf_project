@@ -54,6 +54,18 @@ class Basico_Model_FormularioAssocclEvento extends Abstract_RochedoPersistentMod
 	}
 	
 	/**
+     * Get Formulario object
+     * 
+     * @return null|Basico_Model_Formulario
+     */
+    public function getFormularioObject()
+    {
+        $model = new Basico_Model_Formulario();
+        $object = $model->getMapper()->find($this->_idFormulario);
+        return $object;
+    }	
+	
+	/**
 	* Set idEvento
 	* 
 	* @param Integer $idEvento 
@@ -78,7 +90,19 @@ class Basico_Model_FormularioAssocclEvento extends Abstract_RochedoPersistentMod
 		else
 			return null;
 	}
-     
+
+	/**
+     * Get Evento object
+     * 
+     * @return null|Basico_Model_Evento
+     */
+    public function getEventoObject()
+    {
+        $model = new Basico_Model_Evento();
+        $object = $model->getMapper()->find($this->_idEvento);
+        return $object;
+    }	
+	 
 	/**
 	* Set idAcaoEvento
 	* 
@@ -104,7 +128,19 @@ class Basico_Model_FormularioAssocclEvento extends Abstract_RochedoPersistentMod
 		else
 			return null;
 	}
-         
+	
+	/**
+     * Get AcaoEvento object
+     * 
+     * @return null|Basico_Model_AcaoEvento
+     */
+    public function getAcaoEventoObject()
+    {
+        $model = new Basico_Model_AcaoEvento();
+        $object = $model->getMapper()->find($this->_idAcaoEventoEvento);
+        return $object;
+    }	
+	     
 	/**
 	* Set ordem
 	* 
