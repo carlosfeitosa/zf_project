@@ -27,6 +27,7 @@ class Basico_Model_ComponenteAssocclIncludeMapper extends Abstract_RochedoMapper
      * 
      * @param  int $id 
      * @param  Basico_Model_ComponenteAssocclInclude $object 
+     * 
      * @return void
      */
     public function find($id, Basico_Model_ComponenteAssocclInclude $object)
@@ -93,6 +94,7 @@ class Basico_Model_ComponenteAssocclIncludeMapper extends Abstract_RochedoMapper
      * Save a ComponenteAssocclInclude entry
      *
      * @param  Basico_Model_ComponenteAssocclInclude $object
+     * 
      * @return void
      */
     public function save(Basico_Model_ComponenteAssocclInclude $object)
@@ -115,7 +117,9 @@ class Basico_Model_ComponenteAssocclIncludeMapper extends Abstract_RochedoMapper
 
 	/**
 	* Delete a ComponenteAssocclInclude entry
+	* 
 	* @param Basico_Model_ComponenteAssocclInclude $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_Model_ComponenteAssocclInclude $object)

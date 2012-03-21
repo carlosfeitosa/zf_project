@@ -47,6 +47,18 @@ class Basico_Model_ComponenteAssocclInclude extends Abstract_RochedoPersistentMo
 		else
 			return null;
 	}
+	
+    /**
+     * Get Componente object
+     * 
+     * @return null|Basico_Model_Componente
+     */
+    public function getComponenteObject()
+    {
+        $model = new Basico_Model_Componente();
+        $object = $model->getMapper()->find($this->_idComponente);
+        return $object;
+    }
  	
 	/**
 	* Set idInclude
@@ -73,7 +85,19 @@ class Basico_Model_ComponenteAssocclInclude extends Abstract_RochedoPersistentMo
 		else
 			return null;
 	}
-     
+
+    /**
+     * Get include object
+     * 
+     * @return null|Basico_Model_Include
+     */
+    public function getIncludeObject()
+    {
+        $model = new Basico_Model_Include();
+        $object = $model->getMapper()->find($this->_idInclude);
+        return $object;
+    }
+	
 	/**
 	* Set ordem
 	* 
