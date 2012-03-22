@@ -4,7 +4,14 @@
 
 -- Dumped from database version 8.3.17
 -- Dumped by pg_dump version 9.1.3
--- Started on 2012-03-21 14:28:38 BRT
+-- Started on 2012-03-22 13:29:23 BRT
+
+SET statement_timeout = 0;
+SET client_encoding = 'LATIN1';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
 
 --
 -- TOC entry 12 (class 2615 OID 56992218)
@@ -268,6 +275,9 @@ CREATE SCHEMA basico_sequencia;
 --
 
 CREATE SCHEMA basico_template;
+
+
+SET search_path = basico, pg_catalog;
 
 --
 -- TOC entry 402 (class 1255 OID 57720472)
@@ -14597,8 +14607,9 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2012-03-21 14:29:32 BRT
+-- Completed on 2012-03-22 13:30:18 BRT
 
 --
 -- PostgreSQL database dump complete
 --
+

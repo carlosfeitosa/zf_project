@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_pessoa_juridica.assoc_banco
 * 
 * Esta tabela funciona como especialização de uma pessoa juridica se transformando em um banco.

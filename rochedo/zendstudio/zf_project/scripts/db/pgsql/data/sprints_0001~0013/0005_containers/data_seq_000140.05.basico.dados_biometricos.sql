@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico.dados_biometricos
 * 
 * Esta tabela contêm os dados biometricos cadastrados 

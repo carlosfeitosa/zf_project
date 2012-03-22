@@ -6,7 +6,7 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-interface Interface_RochedoMapperGenerico
+interface Basico_InterfaceMapper_RochedoMapperGenerico
 {
     /**
      * Get registered Zend_Db_Table instance

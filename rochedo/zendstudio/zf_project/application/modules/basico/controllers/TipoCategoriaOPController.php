@@ -12,7 +12,7 @@
  * 
  */
 
-class Basico_OPController_TipoCategoriaOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Nome da tabela tipo categoria

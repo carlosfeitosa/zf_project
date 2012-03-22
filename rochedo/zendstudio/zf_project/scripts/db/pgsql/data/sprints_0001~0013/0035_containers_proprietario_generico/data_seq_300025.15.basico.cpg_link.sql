@@ -1,4 +1,5 @@
 /**
+* @exclude	
 * SCRIPT DE POPULACAO DA TABELA basico.link
 * 
 * Esta tabela contêm os links cadastrados 

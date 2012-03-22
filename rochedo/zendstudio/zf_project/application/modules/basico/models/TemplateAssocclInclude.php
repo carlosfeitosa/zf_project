@@ -7,7 +7,7 @@
  * @uses       Basico_Model_TemplateAssocclIncludeMapper
  * @subpackage Model
  */
-class Basico_Model_TemplateAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_TemplateAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * Referencia a classe Basico_Model_Template

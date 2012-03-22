@@ -11,7 +11,7 @@
  * @since 21/03/2011
  */
 
-class Basico_OPController_ComponenteOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_ComponenteOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * @var Basico_OPController_ComponenteOPController

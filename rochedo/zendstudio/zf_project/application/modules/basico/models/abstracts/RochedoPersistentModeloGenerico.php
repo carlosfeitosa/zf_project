@@ -6,7 +6,7 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-abstract class Abstract_RochedoPersistentModeloGenerico
+abstract class Basico_AbstractModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Basico_Model

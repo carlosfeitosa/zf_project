@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_pessoa_juridica.assoccl_quadro_funcionario
 * 
 * Esta tabela contêm os dados de associacao das tabelas

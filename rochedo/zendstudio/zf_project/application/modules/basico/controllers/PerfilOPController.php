@@ -8,7 +8,7 @@
  * 
  * @since 22/03/2011
  */
-class Basico_OPController_PerfilOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_PerfilOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Nome da tabela perfil

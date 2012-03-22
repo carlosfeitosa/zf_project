@@ -10,7 +10,7 @@
  * 
  * @since 21/03/2011
  */
-class Basico_OPController_MascaraOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_MascaraOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 

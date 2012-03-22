@@ -9,7 +9,7 @@
  * @since 22/03/2011
  * 
  */
-class Basico_OPController_PessoasPerfisMensagensCategoriasOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_PessoasPerfisMensagensCategoriasOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador PessoasPerfisMensagensCategorias.

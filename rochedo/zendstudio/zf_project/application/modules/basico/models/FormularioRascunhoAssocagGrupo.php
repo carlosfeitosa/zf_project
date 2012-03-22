@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioRascunhoAssocagGrupoMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioRascunhoAssocagGrupo extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioRascunhoAssocagGrupo extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * Referencia a classe Basico_Model_PessoaAssocclPerfil

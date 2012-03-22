@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_acao_aplic_assoc_visao.assoccl_atrib_met_rec_post
 * 
 * versao: 1.0 (POSTGRESQL 9.1.1)

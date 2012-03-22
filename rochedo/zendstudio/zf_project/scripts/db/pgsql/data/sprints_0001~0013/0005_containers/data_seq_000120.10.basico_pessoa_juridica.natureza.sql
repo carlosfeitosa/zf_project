@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_pessoa_juridica.natureza
 * 
 * Esta tabela funciona como um banco de dados de naturezas para pessoas juridicas.

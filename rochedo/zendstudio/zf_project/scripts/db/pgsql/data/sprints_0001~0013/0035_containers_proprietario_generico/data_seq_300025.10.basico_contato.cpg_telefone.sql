@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_contato.telefone
 * 
 * Esta tabela contêm os telefones cadastrados 

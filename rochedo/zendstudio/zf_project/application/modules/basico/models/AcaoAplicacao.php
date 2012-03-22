@@ -7,7 +7,7 @@
  * @uses       Basico_Model_AcaoAplicacaoMapper
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacao extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_AcaoAplicacao extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {	
 	/**
 	 * Referencia a classe Basico_Model_Modulo

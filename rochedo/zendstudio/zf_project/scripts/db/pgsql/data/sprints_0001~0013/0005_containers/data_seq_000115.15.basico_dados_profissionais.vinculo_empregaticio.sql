@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_dados_profissionais.vinculo_empregaticio
 * 
 * Esta tabela funciona como um banco de dados de vinculos empregaticios.

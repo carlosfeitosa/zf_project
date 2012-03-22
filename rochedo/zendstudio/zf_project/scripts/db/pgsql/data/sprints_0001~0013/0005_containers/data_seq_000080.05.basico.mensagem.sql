@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico.mensagem
 * 
 * Esta tabela contem todas as mensagens dos usuarios e do sistema.

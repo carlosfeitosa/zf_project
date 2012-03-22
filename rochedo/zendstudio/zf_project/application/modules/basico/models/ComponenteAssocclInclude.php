@@ -7,7 +7,7 @@
  * @uses       Basico_Model_ComponenteAssocclIncludeMapper
  * @subpackage Model
  */
-class Basico_Model_ComponenteAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_ComponenteAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

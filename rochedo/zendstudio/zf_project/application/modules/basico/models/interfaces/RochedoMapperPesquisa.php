@@ -6,7 +6,7 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-interface Interface_RochedoMapperPesquisa extends Interface_RochedoMapperGenerico
+interface Basico_InterfaceMapper_RochedoMapperPesquisa extends Basico_InterfaceMapper_RochedoMapperGenerico
 {
     /**
      * Find a Model entry by id

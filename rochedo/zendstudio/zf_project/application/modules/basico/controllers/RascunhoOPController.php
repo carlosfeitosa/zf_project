@@ -10,7 +10,7 @@
  * 
  * @since 05/09/2011
  */
-class Basico_OPController_RascunhoOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_RascunhoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 

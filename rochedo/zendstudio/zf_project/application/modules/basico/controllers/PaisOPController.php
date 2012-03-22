@@ -8,7 +8,7 @@
  * 
  * @since 19/04/2011
  */
-class Basico_OPController_PaisOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_PaisOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Pais.

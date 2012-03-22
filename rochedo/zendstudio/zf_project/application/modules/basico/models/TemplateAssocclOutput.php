@@ -7,7 +7,7 @@
  * @uses       Basico_Model_TemplateAssocclOutputMapper
  * @subpackage Model
  */
-class Basico_Model_TemplateAssocclOutput extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_TemplateAssocclOutput extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

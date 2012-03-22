@@ -3,7 +3,7 @@
  * Controlador FormularioElementoFilter.
  *
  */
-class Basico_OPController_FormularioElementoFilterOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_FormularioElementoFilterOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Basico_OPController_FormularioElementoFilterOPController

@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico.pessoa_juridica
 * 
 * Esta tabela funciona como um banco de dados de pessoas juridicas.

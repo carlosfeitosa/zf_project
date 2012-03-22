@@ -7,7 +7,7 @@
  * @uses       Basico_Model_OutputAssocclIncludeMapper
  * @subpackage Model
  */
-class Basico_Model_OutputAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_OutputAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	* Referência a classe Basico_Model_Output

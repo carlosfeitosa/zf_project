@@ -7,7 +7,7 @@
  * @uses       Basico_Model_CategoriaAssocChaveEstrangeiraMapper
  * @subpackage Model
  */
-class Basico_Model_CategoriaAssocChaveEstrangeira extends Abstract_RochedoPersistentModeloGenerico implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_CategoriaAssocChaveEstrangeira extends Abstract_RochedoPersistentModeloGenerico implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var int

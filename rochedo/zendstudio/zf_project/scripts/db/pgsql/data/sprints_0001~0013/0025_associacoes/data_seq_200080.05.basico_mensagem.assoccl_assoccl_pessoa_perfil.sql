@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_mensagem.assoccl_assoccl_pessoa_perfil
 * 
 * Esta tabela relaciona as pessoas envolvidas com uma mensagem (EX: remetente e destinatario).

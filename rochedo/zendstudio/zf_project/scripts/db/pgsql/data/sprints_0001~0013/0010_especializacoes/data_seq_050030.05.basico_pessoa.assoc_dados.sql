@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_localizacao.assoc_dados
 * 
 * Esta tabela contêm os dados da especializacao de pessoas 

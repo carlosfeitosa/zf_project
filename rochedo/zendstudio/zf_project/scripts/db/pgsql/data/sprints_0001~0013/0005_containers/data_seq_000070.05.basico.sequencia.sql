@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico.sequencia
 * 
 * versao: 1.0 (POSTGRESQL 9.1.1)

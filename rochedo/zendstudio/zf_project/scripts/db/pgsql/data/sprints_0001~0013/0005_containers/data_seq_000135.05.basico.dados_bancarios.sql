@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico.dados_bancarios
 * 
 * Esta tabela contêm os dados dados bancários cadastrados 

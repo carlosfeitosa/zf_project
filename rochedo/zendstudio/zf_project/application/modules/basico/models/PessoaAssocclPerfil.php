@@ -7,7 +7,7 @@
  * @uses       Basico_Model_PessoaAssocclPerfilMapper
  * @subpackage Model
  */
-class Basico_Model_PessoaAssocclPerfil extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_PessoaAssocclPerfil extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * @var Int

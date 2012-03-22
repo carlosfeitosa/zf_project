@@ -7,7 +7,7 @@
  * @uses       Basico_Model_EventoMapper
  * @subpackage Model
  */
-class Basico_Model_Evento extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_Evento extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * Referência a classe Basico_Model_Categoria

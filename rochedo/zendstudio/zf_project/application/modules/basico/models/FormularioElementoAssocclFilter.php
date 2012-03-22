@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioElementoAssocclFilterMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
      * @var idAssocclElemento

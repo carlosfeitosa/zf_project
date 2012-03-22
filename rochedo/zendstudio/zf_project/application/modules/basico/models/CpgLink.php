@@ -7,7 +7,7 @@
  * @uses       Basico_Model_CpgLinkMapper
  * @subpackage Model
  */
-class Basico_Model_CpgLink extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_CpgLink extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_localizacao.assoc_logradouro
 * 
 * Esta tabela funciona como um banco de dados de logradouros.

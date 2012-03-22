@@ -1,4 +1,5 @@
-<?php 
+<?php
+require_once(APPLICATION_MODULES_PATH . "/basico/models/interfaces/RochedoPersistentModeloGenerico.php");  
 /**
  * CpgToken model
  *

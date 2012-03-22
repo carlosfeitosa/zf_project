@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_localizacao.assoc_codigo_postal
 * 
 * Esta tabela contêm os dados dos códigos postais cadastrados 

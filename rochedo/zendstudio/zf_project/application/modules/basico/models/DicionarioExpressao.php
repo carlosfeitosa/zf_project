@@ -7,7 +7,7 @@
  * @uses       Basico_Model_DicionarioExpressaoMapper
  * @subpackage Model
  */
-class Basico_Model_DicionarioExpressao extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_DicionarioExpressao extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
      * @var Integer

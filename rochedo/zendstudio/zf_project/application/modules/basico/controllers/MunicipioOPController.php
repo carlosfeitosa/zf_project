@@ -8,7 +8,7 @@
  * 
  * @since 26/10/2011
  */
-class Basico_OPController_MunicipioOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_MunicipioOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Municipio.

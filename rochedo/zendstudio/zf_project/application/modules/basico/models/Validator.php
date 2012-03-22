@@ -7,7 +7,7 @@
  * @uses       Basico_Model_ValidatorMapper
  * @subpackage Model
  */
-class Basico_Model_Validator extends Abstract_RochedoPersistentModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_Validator extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

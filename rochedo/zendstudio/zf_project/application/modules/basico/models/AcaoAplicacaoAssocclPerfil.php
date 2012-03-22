@@ -12,7 +12,7 @@
  * @uses       Basico_Model_AcaoAplicacaoAssocclPerfilMapper
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocclPerfil extends Abstract_RochedoPersistentModeloAssociacao implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_AcaoAplicacaoAssocclPerfil extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * @var AcaoAplicacao

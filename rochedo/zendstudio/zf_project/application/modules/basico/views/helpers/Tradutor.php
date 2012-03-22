@@ -17,6 +17,6 @@ class Basico_View_Helper_Tradutor extends Zend_View_Helper_Abstract
     		$linguaDestino = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
         // retornando a traducao
-        return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($constanteTextual, $linguaDestino);
+        return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($constanteTextual, $linguaDestino,  false);
     }  
 }  

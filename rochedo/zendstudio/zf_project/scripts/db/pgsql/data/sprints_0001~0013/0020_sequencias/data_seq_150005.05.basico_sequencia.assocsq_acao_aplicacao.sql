@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_sequencia.assocsq_acao_aplicacao
 * 
 * Esta tabela possibilita a criação de sequencias de ações_aplicações.

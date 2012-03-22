@@ -7,7 +7,7 @@
  * @uses Basico_Model_MensagemMapper
  * @subpackage Model
  */
-class Basico_Model_Mensagem extends Abstract_RochedoModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_Mensagem extends Abstract_RochedoModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	* @var int

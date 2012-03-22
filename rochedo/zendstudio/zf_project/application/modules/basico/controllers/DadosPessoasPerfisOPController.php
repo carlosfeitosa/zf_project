@@ -10,7 +10,7 @@
  * 
  * @since 17/03/2011
  */
-class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_DadosPessoasPerfisOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
     /**
      * 

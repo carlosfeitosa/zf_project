@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_localizacao.endereco
 * 
 * Esta tabela contêm os enderecos cadastrados 

@@ -1,4 +1,5 @@
 /*
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA ANEXO_MENSAGEM
 * 
 * versao: 1.0 (POSTGRESQL 8.4.1)

@@ -32,9 +32,17 @@ define("RESOURCE_TYPE_BASICO_MODELS_ABSTRACTS", "abstractsModels");
 define("RESOURCE_PATH_BASICO_MODELS_ABSTRACTS", "models/abstracts");
 define("RESOURCE_NAMESPACE_BASICO_MODELS_ABSTRACTS", "AbstractModel_");
 
+define("RESOURCE_TYPE_BASICO_MAPPERS_ABSTRACTS", "abstractsMappers");
+define("RESOURCE_PATH_BASICO_MAPPERS_ABSTRACTS", "models/abstracts");
+define("RESOURCE_NAMESPACE_BASICO_MAPPERS_ABSTRACTS", "AbstractMapper_");
+
 define("RESOURCE_TYPE_BASICO_MODELS_INTERFACES", "interfacesModels");
 define("RESOURCE_PATH_BASICO_MODELS_INTERFACES", "models/interfaces");
 define("RESOURCE_NAMESPACE_BASICO_MODELS_INTERFACES", "InterfaceModel_");
+
+define("RESOURCE_TYPE_BASICO_MAPPERS_INTERFACES", "interfacesModels");
+define("RESOURCE_PATH_BASICO_MAPPERS_INTERFACES", "models/interfaces");
+define("RESOURCE_NAMESPACE_BASICO_MAPPERS_INTERFACES", "InterfaceMapper_");
 
 define("TAG_LINK", "@link");
 define("JAVASCRIPT_HISTORY_GO_BACK", "javascript: history.go(-2);");

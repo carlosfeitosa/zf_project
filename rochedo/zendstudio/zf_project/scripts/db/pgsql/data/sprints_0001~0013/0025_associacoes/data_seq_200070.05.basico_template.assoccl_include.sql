@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_template.assoccl_include
 * 
 * Esta tabela contêm os dados de associacao das tabelas

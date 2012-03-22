@@ -19,7 +19,7 @@ class Basico_Model_TokenTest extends PHPUnit_Framework_TestCase {
 		// TODO Auto-generated Basico_Model_TokenTest::setUp()
 		
 
-		$this->Basico_Model_Token = new Basico_Model_Token(/* parameters */);
+		$this->Basico_Model_Token = new Basico_Model_CpgToken(/* parameters */);
 	
 	}
 	

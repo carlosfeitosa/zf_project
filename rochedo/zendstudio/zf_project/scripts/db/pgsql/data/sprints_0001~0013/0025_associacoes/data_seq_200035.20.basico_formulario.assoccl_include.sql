@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_formulario.assoccl_include
 * 
 * Esta tabela associa includes a um ou mais formularios.

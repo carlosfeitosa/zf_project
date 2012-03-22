@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_form_assoccl_elemento.assoccl_filter
 * 
 * Esta tabela contêm os dados de associacao dos filtros

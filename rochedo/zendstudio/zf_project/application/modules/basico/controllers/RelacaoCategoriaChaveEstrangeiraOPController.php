@@ -10,7 +10,7 @@
  * 
  */
 
-class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends Basico_Abstract_RochedoPersistentOPController
+class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 

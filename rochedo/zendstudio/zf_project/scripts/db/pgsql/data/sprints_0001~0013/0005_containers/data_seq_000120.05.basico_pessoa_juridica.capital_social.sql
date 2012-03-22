@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_pessoa_juridica.capital_social
 * 
 * Esta tabela funciona como um banco de dados de capitais sociais para pessoas juridicas.

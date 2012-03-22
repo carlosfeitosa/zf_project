@@ -6,7 +6,7 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-abstract class Abstract_RochedoMapper
+abstract class Basico_AbstractMapper_RochedoMapper
 {
     /**
      * @var Zend_Db_Table_Abstract

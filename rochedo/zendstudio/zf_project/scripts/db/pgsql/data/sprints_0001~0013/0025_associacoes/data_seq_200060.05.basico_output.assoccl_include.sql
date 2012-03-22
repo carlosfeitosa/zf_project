@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_output.assoccl_include
 * 
 * Esta tabela associa includes aos outputs.

@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_metodo_validacao.assoccl_include
 * 
 * Esta tabela associa includes aos metodos validação.

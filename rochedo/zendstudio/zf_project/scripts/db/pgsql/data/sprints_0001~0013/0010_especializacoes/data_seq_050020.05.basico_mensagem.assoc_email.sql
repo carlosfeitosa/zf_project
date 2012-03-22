@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_mensagem.assoc_email
 * 
 * Esta tabela é uma especialização de uma mensagem se transformando em um email.

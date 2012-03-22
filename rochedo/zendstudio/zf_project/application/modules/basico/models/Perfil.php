@@ -7,7 +7,7 @@
  * @uses       Basico_Model_PerfilMapper
  * @subpackage Model
  */
-class Basico_Model_Perfil extends Abstract_RochedoModeloDados implements Interface_RochedoPersistentModeloGenerico
+class Basico_Model_Perfil extends Abstract_RochedoModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * @var Integer

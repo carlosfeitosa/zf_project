@@ -39,7 +39,7 @@ class Basico_OPController_TokenOPController
 	private function __construct()
 	{
 		// instanciando o modelo
-		$this->_token = $this->retornaNovoObjetoToken();
+		$this->_token = $this->retornaNovoObjetoCpgToken();
 		
 		// inicializando o controlador
 		$this->init();
@@ -79,10 +79,10 @@ class Basico_OPController_TokenOPController
 	 * 
 	 * @return Basico_Model_Token
 	 */
-	public function retornaNovoObjetoToken()
+	public function retornaNovoObjetoCpgToken()
 	{
 		// retornando um modelo vazio
-		return new Basico_Model_Token();
+		return new Basico_Model_CpgToken();
 	}
 	
     /**
@@ -185,7 +185,7 @@ class Basico_OPController_TokenOPController
 	 * 
 	 * @return void
 	 */
-    public function salvarToken(Basico_Model_Token $objToken, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+    public function salvarToken(Basico_Model_CpgToken $objToken, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se existe a relacao de categoria
 		if (!Basico_OPController_PersistenceOPController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($objToken->categoria))
@@ -272,7 +272,7 @@ class Basico_OPController_TokenOPController
 	public function retornaIdNovoObjetoToken($idGenerico, $idCategoriaToken)
 	{
 		// criando o novo objeto token
-		$novoToken = $this->retornaNovoObjetoToken();
+		$novoToken = $this->retornaNovoObjetoCpgToken();
 		// gerando e setando o token
         $novoToken->token = $this->gerarTokenPorModelo($novoToken, 'token');
         // setando o id generico

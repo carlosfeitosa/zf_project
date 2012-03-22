@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico_pessoa_juridica.assoc_dados
 * 
 * Esta tabela contêm os dados de especializacao de pessoa jurídica 

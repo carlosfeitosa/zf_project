@@ -1,4 +1,5 @@
 /**
+* @exclude
 * SCRIPT DE POPULACAO DA TABELA basico.documento_identificacao
 * 
 * Esta tabela contêm os documentos de indentificacao cadastrados
