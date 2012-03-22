@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_MensagemAssocEmail
  * @subpackage Model
  */
-class Basico_Model_MensagemAssocEmailMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_MensagemAssocEmailMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * @var Zend_Db_Table_Abstract

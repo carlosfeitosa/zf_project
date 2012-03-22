@@ -7,7 +7,7 @@
  * @uses       Basico_Model_AcaoAplicacaoAssocVisaoMapper
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocVisao extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_AcaoAplicacaoAssocVisao extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	* Referencia a classe Basico_Model_Categoria

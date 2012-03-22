@@ -15,7 +15,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'basico.login';
+	const nomeTabelaModelo  = 'basico_pessoa.login';
 
 	/**
 	 * Nome do campo id da tabela login

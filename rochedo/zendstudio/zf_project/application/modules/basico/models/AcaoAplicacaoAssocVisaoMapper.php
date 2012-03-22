@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocVisao
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocVisaoMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_AcaoAplicacaoAssocVisaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance

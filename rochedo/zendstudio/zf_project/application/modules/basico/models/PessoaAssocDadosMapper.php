@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_PessoaAssocDados
  * @subpackage Model
  */
-class Basico_Model_PessoaAssocDadosMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_PessoaAssocDadosMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance

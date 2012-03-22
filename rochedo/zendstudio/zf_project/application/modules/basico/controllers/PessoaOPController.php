@@ -210,12 +210,12 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	 */
 	public static function retornaIdPessoaSistemaViaSQL()
 	{
-		// recuperando informacoes sobre o rowinfo master
-		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
+		// recuperando informacoes sobre o perfil do sistema	
+		$idPerfilSistema = Basico_OPController_PerfilOPController::retornaIdPerfilPorNomeViaSQL('SISTEMA');
 
 		// recuperando informacoes sobre a tabela pessoa
 		$arrayNomeCampoNome = array(self::nomeCampoIdModelo);
-		$condicaoSQL        = "rowinfo = '{$rowinfoMaster}'";
+		$condicaoSQL        = "id_perfil_padrao = '{$idPerfilSistema}'";
 
 		// recuperando um array contendo os nomes dos perfis relacionados a uma categoria
 		$arrayPessoa = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoNome, $condicaoSQL);

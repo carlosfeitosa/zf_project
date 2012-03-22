@@ -13,7 +13,7 @@
  * @uses       Basico_Model_DbTable_CvcCvc
  * @subpackage Model
  */
-class Basico_Model_CvcCvcMapper extends Abstract_RochedoMapper implements Interface_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_CvcCvcMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
