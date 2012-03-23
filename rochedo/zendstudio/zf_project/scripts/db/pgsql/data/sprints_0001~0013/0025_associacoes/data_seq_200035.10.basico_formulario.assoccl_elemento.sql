@@ -1094,7 +1094,7 @@ SELECT (SELECT f.id
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_CURSO_ATUAL') AS id_grupo,	    
 	    false AS element_required, 12 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;  
     
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_name, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -1112,9 +1112,10 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_COORDENACAO_POS_GRADUACAO') AS id_grupo,
+       	'FormButtonDialogDojoCoordenacaoPosGraduacao' AS element_name,
         false AS element_required, 13 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
-INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_required, ordem, rowinfo)
+INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, id_grupo, element_name, element_required, ordem, rowinfo)
 SELECT (SELECT f.id 
         FROM basico.formulario f
         LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
@@ -1132,6 +1133,7 @@ SELECT (SELECT f.id
        (SELECT g.id
        	FROM basico_form_assoccl_elemento.grupo g
        	WHERE g.nome = 'DADOS_USUARIO_DADOS_ACADEMICOS_ORIENTACOES') AS id_grupo,
+       	'FormButtonDialogDojoOrientacoes' AS element_name, 
         false AS element_required, 14 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;       
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
