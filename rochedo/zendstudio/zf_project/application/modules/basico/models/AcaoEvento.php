@@ -7,7 +7,7 @@
  * @uses       Basico_Model_AcaoEventoMapper
  * @subpackage Model
  */
-class Basico_Model_AcaoEvento extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_AcaoEvento extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	* @var int

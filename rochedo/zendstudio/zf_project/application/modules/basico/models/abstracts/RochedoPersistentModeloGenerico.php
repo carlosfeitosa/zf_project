@@ -156,7 +156,7 @@ abstract class Basico_AbstractModel_RochedoPersistentModeloGenerico
 	*/
 	public function setDatahoraCriacao($datahoraCriacao)
 	{
-		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacaoDepreciacao, TIPO_DATE, true);
+		$this->_datahoraCriacao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraCriacao, TIPO_DATE, true);
 		return $this;
 	}
 

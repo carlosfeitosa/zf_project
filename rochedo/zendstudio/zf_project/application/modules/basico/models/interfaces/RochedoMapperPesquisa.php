@@ -6,7 +6,7 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-interface Basico_InterfaceMapper_RochedoMapperPesquisa extends Basico_InterfaceMapper_RochedoMapperGenerico
+interface Basico_InterfaceMapper_RochedoMapperPesquisa
 {
     /**
      * Find a Model entry by id
@@ -16,7 +16,7 @@ interface Basico_InterfaceMapper_RochedoMapperPesquisa extends Basico_InterfaceM
      * 
      * @return void
      */
-	public function find($id, $object);
+	public function find($id, Object $object);
 	
 	/**
 	 * Fetch all Model entries

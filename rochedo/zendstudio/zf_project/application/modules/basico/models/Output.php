@@ -7,7 +7,7 @@
  * @uses       Basico_Model_OutputMapper
  * @subpackage Model
  */
-class Basico_Model_Output extends Abstract_RochedoModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_Output extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	* @var int

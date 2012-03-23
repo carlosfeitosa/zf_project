@@ -7,7 +7,7 @@
  * @uses       Basico_Model_MensagemAssocEmailAssocDadosMapper
  * @subpackage Model
  */
-class Basico_Model_MensagemAssocEmailAssocDados extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_MensagemAssocEmailAssocDados extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * Referencia a classe Basico_Model_MensagemAssocEmail

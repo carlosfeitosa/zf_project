@@ -8,7 +8,7 @@
  * @subpackage Model
  */
 
-class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * @var Integer

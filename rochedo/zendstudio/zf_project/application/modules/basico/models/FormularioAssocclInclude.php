@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioAssocclIncludeMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclInclude extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioAssocclInclude extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * Referencia a classe Basico_Model_Formulario

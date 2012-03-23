@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioAssocclDecoratorMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclDecorator extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

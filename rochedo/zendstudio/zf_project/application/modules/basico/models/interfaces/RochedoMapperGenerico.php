@@ -17,5 +17,5 @@ interface Basico_InterfaceMapper_RochedoMapperGenerico
      * 
      * @return Zend_Db_Table_Abstract
      */
-	public function getDbTable($nomeDbTable);
+	public function getDbTable($dbTable);
 }

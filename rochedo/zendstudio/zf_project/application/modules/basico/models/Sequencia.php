@@ -7,7 +7,7 @@
  * @uses       Basico_Model_SequenciaMapper
  * @subpackage Model
  */
-class Basico_Model_Sequencia extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_Sequencia extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

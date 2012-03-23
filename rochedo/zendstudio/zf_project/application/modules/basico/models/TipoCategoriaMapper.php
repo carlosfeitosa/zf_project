@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_TipoCategoria
  * @subpackage Model
  */
-class Basico_Model_TipoCategoriaMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_TipoCategoriaMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,9 +17,9 @@ class Basico_Model_TipoCategoriaMapper extends Abstract_RochedoMapper implements
      * 
      * @return Basico_Model_TipoCategoria
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_TipoCategoria')
     {
-        return parent::getDbTable('Basico_Model_TipoCategoria');
+        return parent::getDbTable($dbTable);
     }
     
     /**
@@ -30,7 +30,7 @@ class Basico_Model_TipoCategoriaMapper extends Abstract_RochedoMapper implements
      * 
      * @return void
      */
-    public function find($id, Basico_Model_TipoCategoria $object)
+    public function find($id, Object $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -115,7 +115,7 @@ class Basico_Model_TipoCategoriaMapper extends Abstract_RochedoMapper implements
      * 
      * @return void
      */
-    public function save(Basico_Model_TipoCategoria $object)
+    public function save(Object $object)
     {
         $data = array(
         			  'id_tipo_categoria_pai'       => $object->getNome(),
@@ -145,7 +145,7 @@ class Basico_Model_TipoCategoriaMapper extends Abstract_RochedoMapper implements
 	* 
 	* @return void
 	*/
-	public function delete(Basico_Model_TipoCategoria $object)
+	public function delete(Object $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}	

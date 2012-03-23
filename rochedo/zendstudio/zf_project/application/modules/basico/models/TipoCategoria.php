@@ -7,7 +7,7 @@
  * @uses       Basico_Model_TipoCategoriaMapper
  * @subpackage Model
  */
-class Basico_Model_TipoCategoria extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_TipoCategoria extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer
@@ -217,6 +217,6 @@ class Basico_Model_TipoCategoria extends Abstract_RochedoPersistentModeloDados i
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_TipoCategoriaMapper);
+		return parent::getMapper('Basico_Model_TipoCategoriaMapper');
 	}
 }

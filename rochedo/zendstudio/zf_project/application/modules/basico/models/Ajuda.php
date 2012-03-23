@@ -7,7 +7,7 @@
  * @uses       Basico_Model_AjudaMapper
  * @subpackage Model
  */
-class Basico_Model_Ajuda extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_Ajuda extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * Referencia a classe Basico_Model_Categoria

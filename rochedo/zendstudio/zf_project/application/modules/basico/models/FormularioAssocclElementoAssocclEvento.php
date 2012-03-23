@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioAssocclElementoAssocclEventoMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclElementoAssocclEvento extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioAssocclElementoAssocclEvento extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
      * Referência a classe Basico_Model_FormularioAssocclElemento

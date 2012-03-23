@@ -7,7 +7,7 @@
  * @uses       Basico_Model_ComponenteMapper
  * @subpackage Model
  */
-class Basico_Model_Componente extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_Componente extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * Referencia a classe Basico_Model_Categoria

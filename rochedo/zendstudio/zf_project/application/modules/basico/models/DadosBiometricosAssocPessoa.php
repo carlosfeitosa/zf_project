@@ -7,7 +7,7 @@
  * @uses       Basico_Model_DadosBiometricosAssocPessoaMapper
  * @subpackage Model
  */
-class Basico_Model_DadosBiometricosAssocPessoa extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_DadosBiometricosAssocPessoa extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * @var Integer

@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioElementoMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioElemento extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 
 	/**

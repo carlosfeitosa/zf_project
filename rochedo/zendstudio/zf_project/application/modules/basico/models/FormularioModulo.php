@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioModuloMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioModulo extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioModulo extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

@@ -7,7 +7,7 @@
  * @uses       Basico_Model_TemplateMapper
  * @subpackage Model
  */
-class Basico_Model_Template extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_Template extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

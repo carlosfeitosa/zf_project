@@ -7,7 +7,7 @@
  * @uses       Basico_Model_MensagemAssocclAssocclPessoaPerfilMapper
  * @subpackage Model
  */
-class Basico_Model_MensagemAssocclAssocclPessoaPerfil extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_MensagemAssocclAssocclPessoaPerfil extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * Referência a classe Basico_Model_Categoria

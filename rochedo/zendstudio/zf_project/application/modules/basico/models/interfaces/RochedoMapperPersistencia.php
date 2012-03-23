@@ -6,19 +6,19 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-interface Basico_InterfaceMapper_RochedoMapperPersistencia extends Basico_InterfaceMapper_RochedoMapperGenerico
+interface Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Save a Model entry
      * 
      * @param Model $object
      */
-    public function save($object);
+    public function save(Object $object);
 
 	/**
 	* Delete a Model entry
 	* 
 	* @param Model $object
 	*/
-    public function delete($object);
+    public function delete(Object $object);
 }

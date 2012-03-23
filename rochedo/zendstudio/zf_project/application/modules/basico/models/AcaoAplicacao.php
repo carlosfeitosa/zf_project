@@ -187,6 +187,6 @@ class Basico_Model_AcaoAplicacao extends Basico_AbstractModel_RochedoPersistentM
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AcaoAplicacaoMapper);
+		return parent::getMapper('Basico_Model_AcaoAplicacaoMapper');
 	}
 }

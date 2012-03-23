@@ -7,7 +7,7 @@
  * @uses       Basico_Model_CpgArquivoMapper
  * @subpackage Model
  */
-class Basico_Model_CpgArquivo extends Abstract_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_CpgArquivo extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer

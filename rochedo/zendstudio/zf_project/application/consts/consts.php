@@ -40,7 +40,7 @@ define("RESOURCE_TYPE_BASICO_MODELS_INTERFACES", "interfacesModels");
 define("RESOURCE_PATH_BASICO_MODELS_INTERFACES", "models/interfaces");
 define("RESOURCE_NAMESPACE_BASICO_MODELS_INTERFACES", "InterfaceModel_");
 
-define("RESOURCE_TYPE_BASICO_MAPPERS_INTERFACES", "interfacesModels");
+define("RESOURCE_TYPE_BASICO_MAPPERS_INTERFACES", "interfacesMappers");
 define("RESOURCE_PATH_BASICO_MAPPERS_INTERFACES", "models/interfaces");
 define("RESOURCE_NAMESPACE_BASICO_MAPPERS_INTERFACES", "InterfaceMapper_");
 

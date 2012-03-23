@@ -7,7 +7,7 @@
  * @uses       Basico_Model_FormularioElementoAssocclFilterMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
      * @var idAssocclElemento
@@ -125,6 +125,6 @@ class Basico_Model_FormularioElementoAssocclFilter extends Abstract_RochedoModel
     */
     public function getMapper()
     {
-    	return parent::getMapper(Basico_Model_FormularioElementoFilterMapper);
+    	return parent::getMapper('Basico_Model_FormularioElementoFilterMapper');
     }
 }

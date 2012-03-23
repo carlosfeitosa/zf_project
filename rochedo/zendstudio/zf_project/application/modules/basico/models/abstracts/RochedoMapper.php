@@ -6,7 +6,7 @@
  * @author Igor Pinho Costa Souza (igor.pinho.souza@rochedoframework.com)
  *
  */
-abstract class Basico_AbstractMapper_RochedoMapper
+abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperGenerico
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -41,10 +41,10 @@ abstract class Basico_AbstractMapper_RochedoMapper
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable($nomeModelo)
+    public function getDbTable($dbTable)
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable($nomeModelo);
+            $this->setDbTable($dbTable);
         }
         return $this->_dbTable;
     }

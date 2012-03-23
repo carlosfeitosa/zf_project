@@ -7,7 +7,7 @@
  * @uses       Basico_Model_MensagemAssocEmailMapper
  * @subpackage Model
  */
-class Basico_Model_MensagemAssocEmail extends Abstract_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_MensagemAssocEmail extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * @var Integer
