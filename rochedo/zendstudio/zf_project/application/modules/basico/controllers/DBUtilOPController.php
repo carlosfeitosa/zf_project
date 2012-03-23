@@ -215,7 +215,10 @@ class Basico_OPController_DBUtilOPController
 
 	    	//executando scripts de drop
 	    	foreach ($dropScriptsFiles as $file) {
-	    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath() . "/" . $file));
+	    		$fullFilename = self::retornaDBCreateScriptsPath() . "/" . $file; 
+	    		if (is_file($fullFilename)) { 
+	    		  self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath() . "/" . $file));
+	    		}
 	    	}
 	    	//salvando log de sucesso da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_DROP_DB_SUCESSO);
@@ -250,7 +253,10 @@ class Basico_OPController_DBUtilOPController
 
 	    	//executando scripts de create
 	    	foreach ($createScriptsFiles as $file) {
-	    		self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath() . "/" . $file));
+	    		$fullFilename = self::retornaDBCreateScriptsPath() . "/" . $file; 
+	    		if (is_file($fullFilename)) {
+	    			self::executaScriptSQL(file_get_contents(self::retornaDBCreateScriptsPath() . "/" . $file));
+	    		}
 	    	}
 	    	//salvando log de sucesso da operação
 	    	Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_CREATE_DB_SUCESSO);
@@ -284,8 +290,10 @@ class Basico_OPController_DBUtilOPController
 	    	$files = self::retornaArrayFileNamesDbDataScriptsFiles($caminhoArquivos);
 
 	    	//executando scripts dos arquivos sql do diretorio passado
-	    	foreach ($files as $file) {
-	    		self::executaScriptSQL(Basico_OPController_UtilOPController::retornaConteudoArquivo($caminhoArquivos . "/" .  $file));
+	    	foreach ($files as $file) { 
+	    		//if (is_file($file)) {
+	    			self::executaScriptSQL(Basico_OPController_UtilOPController::retornaConteudoArquivo($caminhoArquivos . "/" .  $file));
+	    		//}
 	    	}
 
 	    	//recuperando pastas do diretorio passado

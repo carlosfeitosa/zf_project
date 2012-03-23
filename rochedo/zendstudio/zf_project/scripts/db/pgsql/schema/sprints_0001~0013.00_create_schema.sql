@@ -7,7 +7,6 @@
 -- Started on 2012-03-22 13:29:23 BRT
 
 SET statement_timeout = 0;
-SET client_encoding = 'LATIN1';
 SET standard_conforming_strings = off;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
