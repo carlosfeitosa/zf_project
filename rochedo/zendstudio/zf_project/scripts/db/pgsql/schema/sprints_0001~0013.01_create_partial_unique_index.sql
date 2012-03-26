@@ -76,3 +76,9 @@ WHERE codigo IS NULL;
 
 CREATE UNIQUE INDEX unp_vinculo_empregaticio_codigo ON basico_dados_profissionais.vinculo_empregaticio (id_categoria , codigo)
 WHERE codigo IS NOT NULL;
+
+CREATE UNIQUE INDEX unp_assoc_chave_estrangeira_nao_cvc ON basico_categoria.assoc_chave_estrangeira (id_modulo, id_categoria)
+WHERE basico_categoria.fn_retornaidcategoriacvc() <> id_categoria
+
+CREATE UNIQUE INDEX unp_assoc_chave_estrangeira_cvc ON basico_categoria.assoc_chave_estrangeira (id_modulo, id_categoria, tabela_estrangeira)
+WHERE basico_categoria.fn_retornaidcategoriacvc() = id_categoria
