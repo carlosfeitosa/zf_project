@@ -136,7 +136,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
 	        }
 
     		// retirando o usuario da sessao
-    		Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
+    		Basico_OPController_PessoaLoginOPController::getInstance()->efetuaLogoff();
 
     		// montando link para redirecionamento
     		$urlLink = $this->view->url(array('module'=>'basico', 'controller'=>'administrador', 'action'=>'sucessoresetadb'), null, true);
@@ -156,7 +156,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     {
 
         // criando o usuario admin
-        Basico_OPController_LoginOPController::getInstance()->criaLoginAdmin();
+        Basico_OPController_PessoaLoginOPController::getInstance()->criaLoginAdmin();
 
     	// carregando o titulo
 	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO'));

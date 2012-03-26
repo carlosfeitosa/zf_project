@@ -19,10 +19,10 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     public function acaoaplicacaodesativadaAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+    	$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
     	// recuperando informacoes para log
-    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
+    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
     	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ACAO_DESATIVADA, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_DESATIVADA;
 
@@ -61,10 +61,10 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     public function acaoaplicacaonaopermitidaAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+    	$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
     	// recuperando informacoes para log
-    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
+    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
     	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ACAO_NAO_PERMITIDA, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_NAO_PERMITIDA;
 
@@ -103,7 +103,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     public function acaoaplicacaochamadasemtokenAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+    	$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
     	// recuperando informacoes para log
     	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL, true);
@@ -112,10 +112,10 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     	// verificando se existe usuario logado
     	if ($idPessoaUsuarioLogado) {
     		// recuperando o id do maior perfil do usuario logado
-    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
+    		$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
     	} else {
     		// recuperando o id de pessoa perfil sistema
-    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+    		$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
     	}
 
 		// salvando log
@@ -153,10 +153,10 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     public function metodovalidacaoacaofalhouAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+    	$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
     	// recuperando informacoes para log
-    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
+    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $this->_request);
     	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL, true);
     	$mensagemLog = LOG_MSG_TENTATIVA_ACESSO_ACAO_INDISPONIVEL_ATRAVES_DE_URL;
 
@@ -195,10 +195,10 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     public function ipusuariodiferentedoipdousuarioautenticadonasessaoAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+    	$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
     	// recuperando informacoes para log
-    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaUsuarioLogado);
+    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaUsuarioLogado);
     	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO, true);
     	$mensagemLog = LOG_MSG_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO;
 
@@ -219,7 +219,7 @@ class Basico_ControleacessoController extends Zend_Controller_Action
 		$this->view->content = $content;
 
 		// efetuando logoff
-		Basico_OPController_LoginOPController::removeRegistroIdLoginUsuarioSessao();
+		Basico_OPController_PessoaLoginOPController::removeRegistroIdLoginUsuarioSessao();
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -228,18 +228,18 @@ class Basico_ControleacessoController extends Zend_Controller_Action
     public function hostbanidoAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+    	$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
     	// verificando se existe usuario logado
     	if ($idPessoaUsuarioLogado) {
     		// recuperando o id da pessoa perfil logada
-    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaUsuarioLogado);
+    		$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaUsuarioLogado);
 
 			// efetuando logoff
-			Basico_OPController_LoginOPController::removeRegistroIdLoginUsuarioSessao();
+			Basico_OPController_PessoaLoginOPController::removeRegistroIdLoginUsuarioSessao();
     	} else {
     		// recuperando o id da pessoa perfil do sistema
-    		$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+    		$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
     	}
 
     	// recuperando informacoes para log

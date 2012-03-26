@@ -48,7 +48,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     public function indexAction()
     {
     	// recuperando o id da pessoa logada
-    	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
+    	$idPessoa = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_PessoaLoginOPController::retornaLoginUsuarioSessao());
 
 		// recuperando parametros
 		$nomeSubFormSetarAba     = $this->_request->getParam(CVC_PARAM_CHAVE_POST_ULTIMO_REQUEST);
@@ -182,7 +182,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     public function salvarAction()
     {
 	    // recuperando o id da pessoa logada
-    	$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao());
+    	$idPessoa = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_PessoaLoginOPController::retornaLoginUsuarioSessao());
 
     	// recuperando o post
     	$arrayPost = $this->getRequest()->getPost();
@@ -251,7 +251,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($senhaAtual);
 
 			// instanciando o controlador de login
-			$loginOpController = Basico_OPController_LoginOPController::getInstance();
+			$loginOpController = Basico_OPController_PessoaLoginOPController::getInstance();
 
 			// verificando se a senha informada corresponde a senha do usuario
 			if (!$loginOpController->verificaSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $senhaAtual)) {
@@ -385,10 +385,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		// recuperando a nova senha
 	    		$novaSenha         = $arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaNovaSenha'];
 	    		$versaoObjetoLogin = (int) $arrayPost['CadastrarDadosUsuarioConta']['versaoObjetoLogin'];
-	    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+	    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
 	    		// verificando o resultado do metodo de trocar senha
-	    		if (!Basico_OPController_LoginOPController::getInstance()->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
+	    		if (!Basico_OPController_PessoaLoginOPController::getInstance()->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
 	    			// invocando excessao
 	    			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA);
 	    		}
@@ -504,7 +504,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	$subFormConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
 
     	// recuperando array de objetos dos perfis vinculados disponiveis para selecao de perfil padrao
-    	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa);
+    	$arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaArrayIdConstanteTextualPerfilPessoasPerfisUsuarioPorIdPessoa($idPessoa);
 
     	// loop para traduzir as constantes textuais dos perfis
     	foreach ($arrayIdsDescricoesPerfisVinculadosDisponiveisPessoa as $chave => $arrayIdConstanteTextualPerfilVinculadoDisponivelPessoa) {
@@ -516,7 +516,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	}
 
     	// recuperando array de mensagens json sobre a forca da senha
-    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_PessoaLoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
 
     	// setando atributo do elemento nova senha
     	$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker});"));
@@ -536,7 +536,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	
 	    	// recuperando a versao do objeto pessoa e login
 	    	$versaoObjetoPessoa = Basico_OPController_PessoaOPController::getInstance()->retornaVersaoObjetoPessoaPorIdPessoa($idPessoa);
-	    	$versaoObjetoLogin  = Basico_OPController_LoginOPController::getInstance()->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
+	    	$versaoObjetoLogin  = Basico_OPController_PessoaLoginOPController::getInstance()->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
 	
 			// adicionando elemento hidden contendo a versao do objeto pessoa e login
 			$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
@@ -673,7 +673,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     private function carregarDadosPessoais($idPessoa, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $carregarDados = true)
     {
 	    // recuperando os dados pessoais da pessoa logada;
-	    $dadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa);
+	    $dadosPessoais = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa);
 	    
 	    // recuperando o subForm DadosPessoais
 	    $subFormDadosPessoais = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais');
@@ -835,13 +835,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// verificando se o formulario eh valido
 			if ($formTrocaDeSenha->isValid($post)) {
 				// recuperando o id da pessoa logada
-				$idPessoa = Basico_OPController_LoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+				$idPessoa = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
 
 				// recuperando a senha atual informada no formulario e encriptando-a
 				$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($post['BasicoTrocaDeSenhaSenhaAtual']);
 
 				// instanciando o controlador de login
-				$loginOpController = Basico_OPController_LoginOPController::getInstance();
+				$loginOpController = Basico_OPController_PessoaLoginOPController::getInstance();
 	
 				// verificando se a senha informada nao corresponde a senha do usuario
 				if (!$loginOpController->verificaSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $senhaAtual)) {
@@ -914,7 +914,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			    		$versaoObjetoLogin = $loginOpController->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
 	
 			    		// recuperando o id da pessoa perfil vinculado ao usuario (perfil de usuario validado)
-			    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+			    		$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 		
 			    		// verificando o resultado do metodo de trocar senha
 			    		if (!$loginOpController->alterarSenhaUsuario($loginOpController->retornaIdLoginPorIdPessoa($idPessoa), $novaSenha, $versaoObjetoLogin, $idPessoaPerfilUsuarioValidado)) {
@@ -989,7 +989,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     private function carregaFormularioTrocaDeSenha(Basico_Form_TrocaDeSenha &$formTrocaDeSenha)
     {
     	// recuperando array de mensagens json sobre a forca da senha
-    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_PessoaLoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
 
     	// setando atributo do elemento nova senha
     	$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('BasicoTrocaDeSenhaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker})"));

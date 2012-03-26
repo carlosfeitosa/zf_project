@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_CategoriaAssocChaveEstrangeira
  * @subpackage Model
  */
-class Basico_Model_CategoriaAssocChaveEstrangeiraMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_CategoriaAssocChaveEstrangeiraMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,9 +17,9 @@ class Basico_Model_CategoriaAssocChaveEstrangeiraMapper extends Abstract_Rochedo
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_CategoriaAssocChaveEstrangeira')
     {
-        return parent::getDbTable('Basico_Model_DbTable_CategoriaAssocChaveEstrangeira');
+        return parent::getDbTable($dbTable);
     }
     
 	/**
@@ -29,7 +29,7 @@ class Basico_Model_CategoriaAssocChaveEstrangeiraMapper extends Abstract_Rochedo
      * @param  Basico_Model_CategoriaAssocChaveEstrangeira $object 
      * @return void
      */
-    public function find($id, Basico_Model_CategoriaAssocChaveEstrangeira $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -101,7 +101,7 @@ class Basico_Model_CategoriaAssocChaveEstrangeiraMapper extends Abstract_Rochedo
      * @param  Basico_Model_CategoriaAssocChaveEstrangeira $object
      * @return void
      */
-    public function save(Basico_Model_CategoriaAssocChaveEstrangeira $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
                 'id_categoria'         => $object->getIdCategoria(),
@@ -126,7 +126,7 @@ class Basico_Model_CategoriaAssocChaveEstrangeiraMapper extends Abstract_Rochedo
 	* @param Basico_Model_CategoriaAssocChaveEstrangeira $object
 	* @return void
 	*/
-	public function delete(Basico_Model_CategoriaAssocChaveEstrangeira $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

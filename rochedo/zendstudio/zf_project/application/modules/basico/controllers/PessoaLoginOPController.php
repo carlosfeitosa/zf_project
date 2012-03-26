@@ -8,7 +8,7 @@
  * 
  * @since 23/03/2011
  */
-class Basico_OPController_LoginOPController extends Basico_AbstractController_RochedoPersistentOPController 
+class Basico_OPController_PessoaLoginOPController extends Basico_AbstractController_RochedoPersistentOPController 
 {
 	/**
 	 * Nome da tabela login
@@ -68,7 +68,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_LoginOPController();
+			self::$_singleton = new Basico_OPController_PessoaLoginOPController();
 		}
 		// retornando a instancia
 		return self::$_singleton;
@@ -94,7 +94,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao de registro
 			if ($objeto->id != NULL) {
@@ -139,7 +139,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_LOGIN, true);
@@ -325,19 +325,19 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 
 		// verificando se existe problema de login nao ativo
 		if (!$arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_ATIVO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_NAO_ATIVO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login travado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_TRAVADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_TRAVADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login resetado
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_RESETADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_LOGIN_RESETADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		// verificando se existe problema de login expirada
 		if ($arrayProblemasLogon[ARRAY_KEY_LOGIN_PODE_LOGAR_LOGIN_EXPIRADO])
-			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_EXPIRADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
+			$tempReturn .= TAG_ABRE_ITEM_LISTA_NAO_ORDENADA . Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_EXPIRADO_MSG') . TAG_FECHA_ITEM_LISTA_NAO_ORDENADA;
 
 		return $tempReturn;
 	}
@@ -423,7 +423,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 			// verificando se passou-se uma hora apos a ultima tentativa de logon
 			if ($dataHoraUltimaTentativaFalhaLogin->getTimestamp() < Basico_OPController_UtilOPController::retornaTimestamp()) {
 				// instanciando controladores
-				$loginOPController = Basico_OPController_LoginOPController::getInstance();
+				$loginOPController = Basico_OPController_PessoaLoginOPController::getInstance();
 
 				// limpando as tentativas falhas
 				$loginOPController->limpaTentativasInvalidasLogon($objLogin->login);
@@ -499,7 +499,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 			$objLogin->dataHoraUltimaExpiracao = $objLogin->dataHoraProximaExpiracao;
 
 			// salvando o objeto
-			Basico_OPController_LoginOPController::getInstance()->salvarObjeto($objLogin, $versaoObjeto);
+			Basico_OPController_PessoaLoginOPController::getInstance()->salvarObjeto($objLogin, $versaoObjeto);
 		}
 
 		// retornando se o login esta expirado
@@ -533,9 +533,9 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 			// verificando a quantidade de tentativas falhas para envio de mensagem de alerta
 			if($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_FALHAS_MINIMA_ENVIO_MENSAGEM_ALERTA){
 				// carregando mensagem de problema com login
-				$mesagemProblemaLogin = "{$objLogin->tentativasFalhas} ". Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_ALERTA_PROBLEMAS_LOGIN_SENHA_INCORRETA');
+				$mesagemProblemaLogin = "{$objLogin->tentativasFalhas} ". Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_ALERTA_PROBLEMAS_LOGIN_SENHA_INCORRETA');
 				// enviando mensagem de alerta de problemas com login
-				Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($login, $mesagemProblemaLogin); 
+				Basico_OPController_PessoaLoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($login, $mesagemProblemaLogin); 
 			}
 
 			// verificando se o limite de tentativas invalidas foi atingido (para travar)
@@ -664,8 +664,8 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 	private function inicializaLogon($login)
 	{
 		// recuperando informacoes sobre o usuario
-		$idPessoaLogin                      = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
-		$idPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaLogin)->id;
+		$idPessoaLogin                      = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
+		$idPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaLogin)->id;
 		$idPerfilPadraoUsuarioLogin         = Basico_OPController_PessoaOPController::getInstance()->retornaIdPerfilPadraoPorIdPessoa($idPessoaLogin);
 		
 		// recuperando informacoes de log
@@ -727,13 +727,13 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 	public function retornaJsonMensagensPasswordStrengthChecker()
 	{
 		// carregando array com as mensagens utilizadas
-		$arrayMensagens = array('muito_fraca' => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
-		                        'fraca'       => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
-		                        'boa'         => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
-		                        'forte'       => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
-		                        'muito_forte' => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
-		                        'digite_senha'=> Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
-		                        'abaixo'      => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
+		$arrayMensagens = array('muito_fraca' => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
+		                        'fraca'       => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
+		                        'boa'         => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
+		                        'forte'       => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
+		                        'muito_forte' => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
+		                        'digite_senha'=> Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
+		                        'abaixo'      => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
 	                           );
 	                           
 	    // codificando o array e retornando-o.
@@ -863,7 +863,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
     public function retornaLoginUsuarioMasterDB() 
     {   	
     	//recuperando o objeto pessoaPerfil do sistema
-    	$objetoPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilSistema();
+    	$objetoPessoaPerfilSistema = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilSistema();
 
     	//recuperando o login do usuario master do sistema
     	$objsLogin = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
@@ -1044,7 +1044,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
     	
     	
     	// inicializando variaveis
-    	$objEmailUsuario     = Basico_OPController_EmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoa);
+    	$objEmailUsuario     = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoa);
     	$arraySugestoes      = array();
     	$arraySugestoesLogin = array();
     	$arraySugestoesNome  = array();
@@ -1142,24 +1142,24 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 		try{
 			
 			// recuperando o id da pessoa(destinatario) a partir do login
-			$idPessoaDestinatario = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
+			$idPessoaDestinatario = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin($login);
 			
 			// recuperando nome do destinatario
-			$nomePessoaDestinatario = $nomeDestinatario = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaDestinatario);
+			$nomePessoaDestinatario = $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaDestinatario);
 			
 			$sexoUsuario = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaSexoPorIdPessoa($idPessoaDestinatario);
 			
 		    // substituindo a tag de tratamento de acordo com o sexo do usuario
 			if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
-			    $tratamentoPessoaDestinatario = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO');
+			    $tratamentoPessoaDestinatario = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO');
 			else
-			    $tratamentoPessoaDestinatario = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO');
+			    $tratamentoPessoaDestinatario = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO');
 
 			// verificando se mensagem de problema foi passada 
 			if($mensagemProblemaLogin === null){
 
 			   // carregando mensagem de erro de login
-			   $mensagemProblemaLogin = Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login);
+			   $mensagemProblemaLogin = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login);
 				
 			   // substituindo quebra de linha HTML(<br>) pro quebra e linha plain/text(\n)
 			   $mensagemProblemaLogin = str_replace("<br>", "\\n", $mensagemProblemaLogin);
@@ -1173,7 +1173,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 			$arrayTagsMensagemProblemasLogin["@nomeUsuario"] 		= $nomePessoaDestinatario;
 			$arrayTagsMensagemProblemasLogin["@problemas"]	 		= $mensagemProblemaLogin;
 			$arrayTagsMensagemProblemasLogin["@login"]	     		= $login;
-			$arrayTagsMensagemProblemasLogin["@assinaturaMensagem"] = Basico_OPController_DadosPessoasPerfisOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
+			$arrayTagsMensagemProblemasLogin["@assinaturaMensagem"] = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
 			
 			// recuperando mensagem template de alerta sobre falhas no login
 			$modeloMensagemProblemaLogin = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT, array($idPessoaDestinatario), null, $arrayTagsMensagemProblemasLogin);
@@ -1185,13 +1185,13 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 			$modeloMensagemProblemaLogin->categoria = $objCategoriaMensagem->id;
 			
 			// recuperando o id da pessoa perfil o destinatario
-			$idPessoaPerfilUsuarioValidadoDestinatario = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaDestinatario);
+			$idPessoaPerfilUsuarioValidadoDestinatario = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaDestinatario);
 			
 			// salvano objeto da mensagem
 			Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($modeloMensagemProblemaLogin);
 			
 			// enviando a mensagem
-            Basico_OPController_MensageiroOPController::getInstance()->enviar($modeloMensagemProblemaLogin, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfilUsuarioValidadoDestinatario));
+            Basico_OPController_MensageiroOPController::getInstance()->enviar($modeloMensagemProblemaLogin, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfilUsuarioValidadoDestinatario));
             
     	} catch (Exception $e) {
 
@@ -1274,7 +1274,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 		$novaMensagemConfirmacao = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa);
 		    	
         // recuperando o nome do destinatario
-        $nomeDestinatario = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
+        $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
 	    // setando atributos da mensagem                     
         $novaMensagemConfirmacao->destinatarios       = array($emailPrimario);
         $novaMensagemConfirmacao->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
@@ -1298,7 +1298,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 		$novaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa);
 		    	
         // recuperando o nome do destinatario
-        $nomeDestinatario = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
+        $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
 	    // setando atributos da mensagem                     
         $novaMensagem->destinatarios       = array($emailPrimario);
         $novaMensagem->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
@@ -1344,7 +1344,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 		$form->getElement('BasicoAceiteTermosUsoLinks')->setValue("<a href='$urlArquivoTermos'><img src='{$baseUrl}/images/icons/pdf.png'></a>");
 			    
 		// recuperando a string de confirmação do aceite
-    	$stringConfirmacao = Basico_OPController_TradutorOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO");
+    	$stringConfirmacao = Basico_OPController_DicionarioExpressaoOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO");
 			    
     	// substituindo string de confirmacao no label do campo de confirmacao do aceite
 		$elementoAceiteLabel = str_replace(FORM_ACEITE_TERMOS_USO_TAG_STRING_CONFIRMACAO, $stringConfirmacao, $form->getElement('BasicoAceiteTermosUsoAceiteTermosUso')->getLabel());
@@ -1409,7 +1409,7 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
     public function criaLoginAdmin()
     {
     	// verificando se o login "admin" ja foi criado
-		if (Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(ADMIN_LOGIN_NAME_DATABASE_RESET)) {
+		if (Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin(ADMIN_LOGIN_NAME_DATABASE_RESET)) {
 			// retornando true
 			return true;
 		}
@@ -1425,17 +1425,17 @@ class Basico_OPController_LoginOPController extends Basico_AbstractController_Ro
 			$idPessoaAdmin = Basico_OPController_PessoaOPController::getInstance()->retornaIdNovoObjetoPessoa();
 	
 			// criando os dados pessoais
-			$idDadosPessoaisAdmin = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaIdNovoObjetoDadosPessoais($idPessoaAdmin, ADMIN_LOGIN_NAME_DATABASE_RESET);
+			$idDadosPessoaisAdmin = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaIdNovoObjetoDadosPessoais($idPessoaAdmin, ADMIN_LOGIN_NAME_DATABASE_RESET);
 
 			// criando o email
-            $idEmailAdmin = Basico_OPController_EmailOPController::getInstance()->retornaIdNovoObjetoEmail(SUPPORT_EMAIL, $idPessoaAdmin, Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO));
+            $idEmailAdmin = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaIdNovoObjetoEmail(SUPPORT_EMAIL, $idPessoaAdmin, Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO));
 
             // recuperando os perfis desejados para o administrador
             $idPerfilUsuarioValidado      = Basico_OPController_PerfilOPController::retornaIdPerfilPorNomeViaSQL(PERFIL_USUARIO_VALIDADO);
             $idPerfilUsuarioAdministrador = Basico_OPController_PerfilOPController::retornaIdPerfilPorNomeViaSQL(PERFIL_USUARIO_ADMINISTRADOR);
             // associando a pessoa "admin" aos perfis necessarios
-            $idPessoaPerfilAdminUsuarioValidado      = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idPessoaAdmin, $idPerfilUsuarioValidado);
-            $idPessoaPerfilAdminUsuarioAdministrador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idPessoaAdmin, $idPerfilUsuarioAdministrador);
+            $idPessoaPerfilAdminUsuarioValidado      = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idPessoaAdmin, $idPerfilUsuarioValidado);
+            $idPessoaPerfilAdminUsuarioAdministrador = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idPessoaAdmin, $idPerfilUsuarioAdministrador);
 	    	
 	    	// recuperando o modelo de login
 	    	$objLoginAdmin = $this->_model;

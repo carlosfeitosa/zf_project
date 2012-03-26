@@ -84,7 +84,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -129,7 +129,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_RASCUNHO, true);
@@ -259,7 +259,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		    	
 		    	
 				// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
-		    	$objPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
+		    	$objPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
 		    	 				
 		    	// setando idPessoaPerfilCriador
 		    	$idPessoaPerfilCriador = $objPessoaPerfil->id;
@@ -439,7 +439,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 				$objetoRascunho = $this->retornaObjetoPorId($objModeloRascunho, $idRascunho);
 	
 				// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
-			    $objPessoaPerfil = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
+			    $objPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
 				
 			    // excluindo rascunho em cascata
 				if ($this->apagarObjeto($objetoRascunho, true, $objPessoaPerfil->id)) {

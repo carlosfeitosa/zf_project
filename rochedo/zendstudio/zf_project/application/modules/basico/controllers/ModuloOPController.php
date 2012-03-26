@@ -83,7 +83,7 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -128,7 +128,7 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_MODULO, true);
@@ -174,7 +174,7 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 		$condicaoSQL           = "nome = '{$nomeModulo}'";
 
     	// recuperando login do usuario master
-		$arrayModulo = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL('modulo', $arrayNomeCampoIdModulo, $condicaoSQL);
+		$arrayModulo = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL('basico.modulo', $arrayNomeCampoIdModulo, $condicaoSQL);
 		
 		// verificando se a consulta obteve resultados
 		if ((isset($arrayModulo)) and (is_array($arrayModulo)) and (count($arrayModulo) > 0)) {

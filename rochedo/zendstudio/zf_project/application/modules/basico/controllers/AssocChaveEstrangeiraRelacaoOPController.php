@@ -84,7 +84,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id == NULL) {
@@ -177,7 +177,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 			$this->_model->rowinfo = $rowinfoOPController->getXml();
 
 			// salvando o objeto
-			$this->salvarObjeto($this->_model, null, Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL());
+			$this->salvarObjeto($this->_model, null, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL());
 		}
 		return true;
 	}

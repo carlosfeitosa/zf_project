@@ -5,7 +5,7 @@
  *
  */
 
-class Basico_OPController_TradutorOPController
+class Basico_OPController_DicionarioExpressaoOPController
 {
 	/**
 	 * @var Basico_OPController_TradutorOPController
@@ -51,7 +51,7 @@ class Basico_OPController_TradutorOPController
 		// checando singleton
 		if (self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_TradutorOPController();
+			self::$_singleton = new Basico_OPController_DicionarioExpressaoOPController();
 		}
 		// retornando a instancia
 		return self::$_singleton;

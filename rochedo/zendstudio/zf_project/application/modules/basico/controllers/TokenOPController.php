@@ -199,7 +199,7 @@ class Basico_OPController_TokenOPController
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
 	    		// setando o id do perfil criador para o sistema
-    			$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+    			$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
 			if ($objToken->id != NULL) {

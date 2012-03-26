@@ -17,7 +17,7 @@ class Basico_Model_TipoCategoriaMapper extends Basico_AbstractMapper_RochedoMapp
      * 
      * @return Basico_Model_TipoCategoria
      */
-    public function getDbTable($dbTable = 'Basico_Model_TipoCategoria')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_TipoCategoria')
     {
         return parent::getDbTable($dbTable);
     }
@@ -30,7 +30,7 @@ class Basico_Model_TipoCategoriaMapper extends Basico_AbstractMapper_RochedoMapp
      * 
      * @return void
      */
-    public function find($id, Object $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -115,7 +115,7 @@ class Basico_Model_TipoCategoriaMapper extends Basico_AbstractMapper_RochedoMapp
      * 
      * @return void
      */
-    public function save(Object $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
         			  'id_tipo_categoria_pai'       => $object->getNome(),
@@ -145,7 +145,7 @@ class Basico_Model_TipoCategoriaMapper extends Basico_AbstractMapper_RochedoMapp
 	* 
 	* @return void
 	*/
-	public function delete(Object $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}	

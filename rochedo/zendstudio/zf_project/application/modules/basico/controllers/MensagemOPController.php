@@ -78,11 +78,11 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 
 	    try{
 	    	// instanciando controladores
-	    	$categoriaControllerController = Basico_OPController_EmailOPController::getInstance();
+	    	$categoriaControllerController = Basico_OPController_ContatoCpgEmailOPController::getInstance();
 
 	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -114,7 +114,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_MENSAGEM, true);
@@ -178,20 +178,20 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		$modelMensagem->mensagem  = $objMensagemTemplate[0]->mensagem;
 		
         // carregando a assinatura da mensagem
-        $assinatura             = Basico_OPController_DadosPessoasPerfisOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
+        $assinatura             = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
         
         // verificano se o remetente foi informado
         if(!isset($idPessoaRemetente)){
         	// recuperando informacoes sobre o sistema
-        	$modelMensagem->remetente = Basico_OPController_EmailOPController::getInstance()->retornaEmailSistema();
+        	$modelMensagem->remetente = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaEmailSistema();
         	$modelMensagem->remetenteNome = APPLICATION_NAME;
         }else{
         	// recuperando o objeto Pessoa
         	$objPessoaDestinatario = Basico_OPController_PessoaOPController::getInstance()->retornaObjetoPorId(Basico_Model_Pessoa, $idPessoaRemetente);
 
         	// recuperano informacoes sobre o remetente
-        	$modelMensagem->remetente = Basico_OPController_EmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoaRemetente);        	
-        	$modelMensagem->remetenteNome = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaRemetente);
+        	$modelMensagem->remetente = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoaRemetente);        	
+        	$modelMensagem->remetenteNome = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaRemetente);
         }
 
         // loop para carregar os nomes dos destinatarios
@@ -199,8 +199,8 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         	// recuperando o objeto Pessoa
         	$objPessoaDestinatario = Basico_OPController_PessoaOPController::getInstance()->retornaObjetoPorId(Basico_OPController_PessoaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaOPController'), $idPessoaDestinatario);
         	
-        	$nomeDestinatario = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaDestinatario);
-        	$emailPirmarioDestinatario = Basico_OPController_EmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoaDestinatario);
+        	$nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaDestinatario);
+        	$emailPirmarioDestinatario = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoaDestinatario);
         	
         	// recuperando informacoes do destinatario
         	$arrayDestinatarios[] = $emailPirmarioDestinatario->email;  
@@ -237,9 +237,9 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link)
 	{
 		// instanciando controladores
-		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$emailControllerController              = Basico_OPController_ContatoCpgEmailOPController::getInstance();
 		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance();
 
 		// recuperando o objeto categoria email validacao plain text template
 		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
@@ -291,10 +291,10 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
     public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) 
     {
 		// instanciando os controladores
-		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$emailControllerController              = Basico_OPController_ContatoCpgEmailOPController::getInstance();
 		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
-		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+		$dadosPessoaisControllerController      = Basico_OPController_PessoaAssocDadosOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
 		$objcategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
@@ -347,12 +347,12 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
     public function retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa) 
     {
 		// instanciando os controladores
-		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$emailControllerController              = Basico_OPController_ContatoCpgEmailOPController::getInstance();
 		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
-		$loginControllerController              = Basico_OPController_LoginOPController::getInstance();
-		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
+		$loginControllerController              = Basico_OPController_PessoaLoginOPController::getInstance();
+		$dadosPessoaisControllerController      = Basico_OPController_PessoaAssocDadosOPController::getInstance();
 		$dadosBiometricosControllerController   = Basico_OPController_DadosBiometricosOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
 		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT);
@@ -378,9 +378,9 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		
         // substituindo a tag de tratamento de acordo com o sexo do usuario
 		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
 		else
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
 		
 		// substituindo a tag do nome do usuario    
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
@@ -414,12 +414,12 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
     public function retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa) 
     {
 		// instanciando os controladores
-		$emailControllerController              = Basico_OPController_EmailOPController::getInstance();
+		$emailControllerController              = Basico_OPController_ContatoCpgEmailOPController::getInstance();
 		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
-		$loginControllerController              = Basico_OPController_LoginOPController::getInstance();
-		$dadosPessoaisControllerController      = Basico_OPController_DadosPessoaisOPController::getInstance();
+		$loginControllerController              = Basico_OPController_PessoaLoginOPController::getInstance();
+		$dadosPessoaisControllerController      = Basico_OPController_PessoaAssocDadosOPController::getInstance();
 		$dadosBiometricosControllerController   = Basico_OPController_DadosBiometricosOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_DadosPessoasPerfisOPController::getInstance();
+		$dadosPessoasPerfisControllerController = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance();
 
 		// recuperando o objeto categoria email template validacao plain text reenvio
 		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
@@ -445,9 +445,9 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		
         // substituindo a tag de tratamento de acordo com o sexo do usuario
 		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO'), $corpoMensagemTemplate);
 		else
-		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
+		    $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_TRATAMENTO, Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO'), $corpoMensagemTemplate);
 		
 		// substituindo a tag do nome do usuario    
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
@@ -489,7 +489,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		}
 
 		// instanciando controladores
-		$pessoasPerfisMensagensCategoriaOPController = Basico_OPController_PessoasPerfisMensagensCategoriasOPController::getInstance();
+		$pessoasPerfisMensagensCategoriaOPController = Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController::getInstance();
 
 		// recuperando modelos vazios 
 		$modeloPessoasPerfisMensagensCategoriasRemetente     = $pessoasPerfisMensagensCategoriaOPController->retornaNovoObjetoModeloPorNomeOPController($pessoasPerfisMensagensCategoriaOPController->retornaNomeClassePorObjeto($pessoasPerfisMensagensCategoriaOPController));

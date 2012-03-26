@@ -16,7 +16,7 @@ interface Basico_InterfaceMapper_RochedoMapperPesquisa
      * 
      * @return void
      */
-	public function find($id, Object $object);
+	public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object);
 	
 	/**
 	 * Fetch all Model entries

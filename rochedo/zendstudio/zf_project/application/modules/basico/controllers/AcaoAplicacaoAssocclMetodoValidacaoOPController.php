@@ -11,7 +11,7 @@
  * @since 17/03/2011
  */
 
-class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * @var Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
@@ -83,7 +83,7 @@ class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Bas
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -128,7 +128,7 @@ class Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController extends Bas
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO, true);

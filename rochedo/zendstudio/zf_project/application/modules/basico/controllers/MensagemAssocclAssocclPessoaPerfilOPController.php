@@ -9,7 +9,7 @@
  * @since 22/03/2011
  * 
  */
-class Basico_OPController_PessoasPerfisMensagensCategoriasOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador PessoasPerfisMensagensCategorias.
@@ -57,7 +57,7 @@ class Basico_OPController_PessoasPerfisMensagensCategoriasOPController extends B
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_PessoasPerfisMensagensCategoriasOPController();
+			self::$_singleton = new Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -83,7 +83,7 @@ class Basico_OPController_PessoasPerfisMensagensCategoriasOPController extends B
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -128,7 +128,7 @@ class Basico_OPController_PessoasPerfisMensagensCategoriasOPController extends B
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS, true);

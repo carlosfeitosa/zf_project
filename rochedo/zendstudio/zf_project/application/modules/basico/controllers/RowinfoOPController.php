@@ -72,7 +72,7 @@ class Basico_OPController_RowinfoOPController
 	public function retornaNovoObjetoRowinfo()
 	{
 		// retornando um modelo vazio
-		return new Basico_Model_RowInfo();
+		return new Basico_Model_Rowinfo();
 	}
 
 	/**
@@ -100,7 +100,7 @@ class Basico_OPController_RowinfoOPController
 			// verificando se a solicitacao foi feita pelo sistema
 		    if (!$idPessoaPerfil)
 		    	// recuperando o id do usuario do sistema
-		        $idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+		        $idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 		    // verificando se existe id no objeto
 	        if (!isset($modelo->id))

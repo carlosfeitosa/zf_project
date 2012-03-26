@@ -73,18 +73,18 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		// verificando se a acao da aplicacao esta associada a um perfil publico
 		if (!$controleAcessoOPController->verificaRequestPublicoPorRequest($request)) {
 			// verificando se existe usuario logado
-			if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+			if (!Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) {
 				// recuperando informacoes do request
 				$moduleRequest     = $request->getModuleName();
 				$controllerRequest = $request->getControllerName();
 				$actionRequest     = $request->getActionName();
 				$paramsRequest     = $request->getParams();
-				$sessaoExpirada    = (Basico_OPController_LoginOPController::retornaLoginUsuarioSessao() !== null);
+				$sessaoExpirada    = (Basico_OPController_PessoaLoginOPController::retornaLoginUsuarioSessao() !== null);
 
 				// verificando se a sessao expirou, para redirecionar o usuario para index da aplicacao no caso de sucesso
 				if ($sessaoExpirada) {
 					// removendo registro do usuario logado na sessao
-					Basico_OPController_LoginOPController::getInstance()->limpaLoginUsuarioSessaoAuth();
+					Basico_OPController_PessoaLoginOPController::getInstance()->limpaLoginUsuarioSessaoAuth();
 
 					// montando a url para redirecionar o usuario para o index da aplicacao
 					$requestUrlRedirect = Basico_OPController_UtilOPController::retornaBaseUrl();
@@ -116,10 +116,10 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 					$request->setActionName('ipusuariodiferentedoipdousuarioautenticadonasessao');
 			
 					// recurperando login do usuario a sessao 
-					$loginUsuarioSessao = Basico_OPController_LoginOPController::retornaLoginUsuarioSessao(); 
+					$loginUsuarioSessao = Basico_OPController_PessoaLoginOPController::retornaLoginUsuarioSessao(); 
 					
 					// carregando tradução da mensagem e problema com ip do login diferente do ip atual 
-					$mensagemProblemaLogin = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('MENSAGEM_ALERTA_PROBLEMAS_LOGIN_IP_DIFERENETE_IP_ATUAL');
+					$mensagemProblemaLogin = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_ALERTA_PROBLEMAS_LOGIN_IP_DIFERENETE_IP_ATUAL');
 					
 					// recuperando ip atual do usuario 
 					$ipAtualUsuario = Basico_OPController_UtilOPController::retornaUserIp();
@@ -134,13 +134,13 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 					$mensagemProblemaLogin = str_replace("@emailSuporte",SUPPORT_EMAIL , $mensagemProblemaLogin);
 
 					// enviando mensagem de alerta de problemas com login
-					Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($loginUsuarioSessao, $mensagemProblemaLogin); 
+					Basico_OPController_PessoaLoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($loginUsuarioSessao, $mensagemProblemaLogin); 
 
 					// parando a execucao do plugin
 					return;
-				} else if (!Basico_OPController_LoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao())) { // verificando se o usuario pode estar logado 
+				} else if (!Basico_OPController_PessoaLoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao())) { // verificando se o usuario pode estar logado 
 					// recurperando login do usuario a sessao 
-					$loginUsuarioSessao = Basico_OPController_LoginOPController::retornaLoginUsuarioSessao(); 
+					$loginUsuarioSessao = Basico_OPController_PessoaLoginOPController::retornaLoginUsuarioSessao(); 
 
 					// modificando o request para uma acao que mostrara uma mensagem avisando que o metodo esta desativado
 					$request->setModuleName('basico');
@@ -149,14 +149,14 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 					$request->setParam('login', $loginUsuarioSessao);
 
 					// removendo autenticacao do usuario
-					Basico_OPController_LoginOPController::getInstance()->removeRegistroIdLoginUsuarioSessao();
+					Basico_OPController_PessoaLoginOPController::getInstance()->removeRegistroIdLoginUsuarioSessao();
 
 					// enviando mensagem de alerta de problemas com login
-					Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($loginUsuarioSessao); 
+					Basico_OPController_PessoaLoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($loginUsuarioSessao); 
 										
 		            // parando a execucao do plugin
 					return;
-				} else if ((!self::verificaRequestTrocaDeSenhaExpirada($request)) and (Basico_OPController_LoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))) { // verificando se a senha do usuario esta expirada
+				} else if ((!self::verificaRequestTrocaDeSenhaExpirada($request)) and (Basico_OPController_PessoaLoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))) { // verificando se a senha do usuario esta expirada
 					// montando a url atual para caso a troca de senha seja efetuado com sucesso
 					$requestUrlRedirect = Zend_Controller_Action_HelperBroker::getStaticHelper('url')->url($request->getParams(), null, true);
 					// removendo base url da url de redirect
@@ -192,7 +192,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		}
 
 		// verificando se trata-se da acao de registro de novo usuario, validacao de usuario nao validado ou metodo administrativo
-		if ((Basico_OPController_LoginOPController::existeUsuarioLogado()) and ((self::verificaRequestRegistroNovoUsuario($request)) or (self::verificaRequestRegistroValidacaoUsuario($request)) or (self::verificaRequestAcoesAdministrativas($request)) or ((self::verificaRequestProblemasLogin($request)) and (Basico_OPController_LoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))))) {
+		if ((Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) and ((self::verificaRequestRegistroNovoUsuario($request)) or (self::verificaRequestRegistroValidacaoUsuario($request)) or (self::verificaRequestAcoesAdministrativas($request)) or ((self::verificaRequestProblemasLogin($request)) and (Basico_OPController_PessoaLoginOPController::retornaLoginPodeLogarViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))))) {
 			// modificando o request para o index da aplicacao
 			$request->setModuleName('default');
 			$request->setControllerName('index');

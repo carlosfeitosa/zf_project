@@ -11,7 +11,7 @@
  * @since 21/03/2011
  * 
  */
-class Basico_OPController_GrupoFormularioElementoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormAssocclElementoGrupoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador GrupoFormularioElemento
@@ -59,7 +59,7 @@ class Basico_OPController_GrupoFormularioElementoOPController extends Basico_Abs
 		// checando singleton
 		if (self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_GrupoFormularioElementoOPController();
+			self::$_singleton = new Basico_OPController_FormAssocclElementoGrupoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -85,7 +85,7 @@ class Basico_OPController_GrupoFormularioElementoOPController extends Basico_Abs
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -130,7 +130,7 @@ class Basico_OPController_GrupoFormularioElementoOPController extends Basico_Abs
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO, true);

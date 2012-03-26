@@ -1048,7 +1048,7 @@ class Basico_OPController_GeradorFormularioOPController
         $totalFormularioElementoFormulariosVinculados = 0;
 
         // recuperando ordem dos elementos
-        $arrayOrdemElementos = Basico_OPController_FormularioFormularioElementoOPController::retornaArrayOrdemPorIdFormularioViaSQL($objFormulario->id);
+        $arrayOrdemElementos = Basico_OPController_FormularioAssocclElementoOPController::retornaArrayOrdemPorIdFormularioViaSQL($objFormulario->id);
 
         // recuperando mascaras do formulario
         $scriptMascarasFormulario = Basico_OPController_UtilOPController::retornaScriptAplicacaoMascarasPorNomeModuloNomeFormulario($objModulo->nome, $objFormulario->nome);
@@ -1131,7 +1131,7 @@ class Basico_OPController_GeradorFormularioOPController
 			$stringToReplace = substr($tempFormElement, 1, strpos($tempFormElement, "'", 1)-1);
 
 			// recuperando o elementName de formularioFormularioElemento
-			$elementNameFormularioFormularioElemento = Basico_OPController_FormularioFormularioElementoOPController::retornaElementNamePorIdFormularioIdFormularioElementoOrdemViaSQL($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
+			$elementNameFormularioFormularioElemento = Basico_OPController_FormularioAssocclElementoOPController::retornaElementNamePorIdFormularioIdFormularioElementoOrdemViaSQL($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
 
         	// verificando a recuperacao do elementName do formularioFormularioElemento
 			if ($elementNameFormularioFormularioElemento) {
@@ -1180,7 +1180,7 @@ class Basico_OPController_GeradorFormularioOPController
 			}
 
 			// descobrindo se o campo é requerido
-			if (Basico_OPController_FormularioFormularioElementoOPController::retornaElementRequiredPorIdFormularioIdFormularioElementoViaSQL($objFormulario->id, $formularioElementoObject->id)) {
+			if (Basico_OPController_FormularioAssocclElementoOPController::retornaElementRequiredPorIdFormularioIdFormularioElementoViaSQL($objFormulario->id, $formularioElementoObject->id)) {
 				// setando campo como requerido
             	$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_SETREQUIRED_TRUE . ";" . QUEBRA_DE_LINHA;
             	
@@ -1235,7 +1235,7 @@ class Basico_OPController_GeradorFormularioOPController
 				$tempReturn .= $identacao . $formElementLoop . FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR . "({$objFormDecorator->decorator});" . QUEBRA_DE_LINHA;
 
 			// recuperando decorator de formularioFormularioElemento
-			$objDecoratorFormularioFormularioElemento = Basico_OPController_FormularioFormularioElementoOPController::getInstance()->retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
+			$objDecoratorFormularioFormularioElemento = Basico_OPController_FormularioAssocclElementoOPController::getInstance()->retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($objFormulario->id, $formularioElementoObject->id, $arrayOrdemElementos[$contador]);
 
 			// verificando o resultado da recuperacao do decorator
 			if (isset($objDecoratorFormularioFormularioElemento))
@@ -1455,7 +1455,7 @@ class Basico_OPController_GeradorFormularioOPController
     	$tempReturn = true;
 
 		// recuperando objetos Basico_Model_Categoria das linguas ativas no sistema
-		$objsCategoriasLinguasAtivas = Basico_OPController_TradutorOPController::getInstance()->retornaCategoriasLinguasAtivas();
+		$objsCategoriasLinguasAtivas = Basico_OPController_DicionarioExpressaoOPController::getInstance()->retornaCategoriasLinguasAtivas();
 
 		// loop para cada lingua ativa no sistema
 		foreach ($objsCategoriasLinguasAtivas as $objCategoriaLinguaAtiva)
@@ -1552,7 +1552,7 @@ class Basico_OPController_GeradorFormularioOPController
     	$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
 
     	// recuperando elementos que possuem display group
-    	$arrayObjsFormularioFormularioElemento = Basico_OPController_FormularioFormularioElementoOPController::getInstance()->retornaObjetosFormularioFormularioElementoGrupoFormularioElemento($objFormulario);
+    	$arrayObjsFormularioFormularioElemento = Basico_OPController_FormularioAssocclElementoOPController::getInstance()->retornaObjetosFormularioFormularioElementoGrupoFormularioElemento($objFormulario);
 
     	// verificando o resultado da recuperacao
     	if (count($arrayObjsFormularioFormularioElemento) <= 0)
@@ -1577,7 +1577,7 @@ class Basico_OPController_GeradorFormularioOPController
 		}
 
 		// inicializando o modelo GrupoFormularioElemento
-		$objGrupoFormularioElemento = Basico_OPController_GrupoFormularioElementoOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_GrupoFormularioElementoOPController');
+		$objGrupoFormularioElemento = Basico_OPController_FormAssocclElementoGrupoOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_GrupoFormularioElementoOPController');
 
 		// loop para escrever os display groups
 		foreach ($arrayDisplaysGroups as $idDisplayGroup => $arrayOrdemElementosDisplayGroup) {

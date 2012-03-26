@@ -179,7 +179,7 @@ class Basico_OPController_AutenticadorOPController
 	public static function retornaLinkAutenticacaoUsuario(Zend_View $view, $urlRedirect = null)
 	{
 		// verificando se existe usuario logado
-		if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+		if (!Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) {
 			// retornando o link para a tela de autenticacao do usuario
 			return $view->urlEncrypt($view->url(array('module'=>'basico', 'controller'=>'autenticador', 'action'=>'autenticarusuario', 'urlRedirect' => Basico_OPController_UtilOPController::codificaBarrasUrl($urlRedirect)), null, true));
 		} else {
@@ -207,14 +207,14 @@ class Basico_OPController_AutenticadorOPController
 		// verificando se eh preciso enviar valores para o formulario
 		if ($onLoadValues) {
 			// carregando informacoes sobre o problema na autenticacao
-			$mensagemErro       = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_MSG_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
-			$tituloMensagemErro = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_TITLE_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
+			$mensagemErro       = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_MSG_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
+			$tituloMensagemErro = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_TITLE_AUTENTICAR_USUARIO_CREDENCIAIS_INVALIDAS');
 
 			$onLoadValuesCallAndErrorMessage = ", '{$formAction}', {$onLoadValues}, '{$mensagemErro}', '{$tituloMensagemErro}', {$errorElements}";
 		} else if (Basico_OPController_UtilOPController::retornaUserRequest()->getParam('sessaoExpirada')) {
 			// carregando informacoes sobre a sessao expirada
-			$mensagemErro       = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_MSG_SESSAO_EXPIRADA');
-			$tituloMensagemErro = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_TITLE_SESSAO_EXPIRADA');
+			$mensagemErro       = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_MSG_SESSAO_EXPIRADA');
+			$tituloMensagemErro = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('DIALOG_DIV_CONTAINER_ERROR_TITLE_SESSAO_EXPIRADA');
 			$onLoadValues       = Basico_OPController_UtilOPController::codificaArrayJson(array('nada' => 'nada'));
 
 			$onLoadValuesCallAndErrorMessage = ", '{$formAction}', {$onLoadValues}, '{$mensagemErro}', '{$tituloMensagemErro}', null";

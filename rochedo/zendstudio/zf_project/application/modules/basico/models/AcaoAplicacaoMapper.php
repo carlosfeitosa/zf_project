@@ -29,7 +29,7 @@ class Basico_Model_AcaoAplicacaoMapper extends Basico_AbstractMapper_RochedoMapp
      * @param  Basico_Model_AcaoAplicacao $object 
      * @return void
      */
-    public function find($id, Object $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -112,7 +112,7 @@ class Basico_Model_AcaoAplicacaoMapper extends Basico_AbstractMapper_RochedoMapp
      * @param  Basico_Model_AcaoAplicacao $object
      * @return void
      */
-    public function save(Object $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
         		'id_modulo'            		  => $object->getIdModulo(),
@@ -140,7 +140,7 @@ class Basico_Model_AcaoAplicacaoMapper extends Basico_AbstractMapper_RochedoMapp
 	* @param Basico_Model_AcaoAplicacao $object
 	* @return void
 	*/
-	public function delete(Object $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

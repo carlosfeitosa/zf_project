@@ -10,15 +10,15 @@
  * 
  * @since 17/03/2011
  */
-class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
-	 * @var Basico_OPController_CategoriaChaveEstrangeiraOPController
+	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 	 */
 	private static $_singleton;
 	
 	/**
-	 * @var Basico_Model_CategoriaChaveEstrangeira
+	 * @var Basico_Model_CategoriaAssocChaveEstrangeira
 	 */
 	private $_model;
 	
@@ -32,12 +32,12 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
-		// inicializando o controlador Basico_OPController_CategoriaChaveEstrangeiraOPController
+		// inicializando o controlador Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 		$this->init();
 	}
 	
 	/**
-	 * Inicializa o controlador Basico_CategoriaChaveEstrangeira
+	 * Inicializa o controlador Basico_CategoriaAssocChaveEstrangeira
 	 * 
 	 * @return void
 	 */
@@ -47,16 +47,16 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	}
 
 	/**
-	 * Recupera a instancia do controlador Basico_CategoriaChaveEstrangeira
+	 * Recupera a instancia do controlador Basico_CategoriaAssocChaveEstrangeira
 	 * 
-	 * @return Basico_OPController_CategoriaChaveEstrangeiraOPController
+	 * @return Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 	 */
 	public static function getInstance()
 	{
 		// verificando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_CategoriaChaveEstrangeiraOPController();
+			self::$_singleton = new Basico_OPController_CategoriaAssocChaveEstrangeiraOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -95,7 +95,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_CategoriaChaveEstrangeira $objeto
+	 * @param Basico_Model_CategoriaAssocChaveEstrangeira $objeto
 	 * @param Integer $versaoUpdate
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -104,12 +104,12 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_CategoriaChaveEstrangeira', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_CategoriaAssocChaveEstrangeira', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    		// verificando se trata-se de uma nova tupla
 		    	if ($objeto->id == NULL) {
@@ -136,7 +136,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
 	 * 
-	 * @param Basico_Model_CategoriaChaveEstrangeira $objeto
+	 * @param Basico_Model_CategoriaAssocChaveEstrangeira $objeto
 	 * @param Boolean $forceCascade
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -153,7 +153,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
      * @param Object $objeto
      * @param Boolean $forceCreateRelationship
      * 
-     * @return Basico_Model_CategoriaChaveEstrangeira|null
+     * @return Basico_Model_CategoriaAssocChaveEstrangeira|null
      */
     public function retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship = false)
     {
@@ -165,9 +165,12 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 
 		// recuperando o id da categoria CVC
 		$idCategoriaCVC = $categoriaOPController->retornaIdCategoriaCVC();
+
+		// recuperando objeto modulo do objeto
+		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
 	
 		// recuperando a categoria chave estrangeira relacionada ao objeto
-		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
+		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_modulo = {$idModulo} and id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
 		
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($arrayCategoriasChaveEstrangeira[0])) {
@@ -177,12 +180,9 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 			// recuperando modelo vazio de categoria chave estrangeira
 			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 			
-			// recuperando objeto modulo do objeto
-			$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
-
 			// cria relacao caso o haja o parametro para criacao de relacao
-			$modelCategoriaChaveEstrangeira->categoria = $idCategoriaCVC;
-			$modelCategoriaChaveEstrangeira->modulo = $idModulo;
+			$modelCategoriaChaveEstrangeira->idCategoria = $idCategoriaCVC;
+			$modelCategoriaChaveEstrangeira->idModulo = $idModulo;
 			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
 			
@@ -201,7 +201,7 @@ class Basico_OPController_CategoriaChaveEstrangeiraOPController extends Basico_A
 	 * 
 	 * @param $idCategoria
 	 * 
-	 * @return Basico_Model_CategoriaChaveEstrangeira|null
+	 * @return Basico_Model_CategoriaAssocChaveEstrangeira|null
 	 */
 	public function retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
 	{

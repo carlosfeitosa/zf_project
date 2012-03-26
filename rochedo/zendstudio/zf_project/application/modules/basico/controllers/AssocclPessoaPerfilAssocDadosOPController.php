@@ -10,7 +10,7 @@
  * 
  * @since 17/03/2011
  */
-class Basico_OPController_DadosPessoasPerfisOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
     /**
      * 
@@ -56,7 +56,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_DadosPessoasPerfisOPController();
+			self::$_singleton = new Basico_OPController_AssocclPessoaPerfilAssocDadosOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -70,7 +70,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 	public function retornaAssinaturaMensagemEmailSistema()
 	{
 		// recuperando o id pessoa perfil do sistema
-		$idPessoaPerfilSistema = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+		$idPessoaPerfilSistema = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 		
 		// recuperando o objeto dados pessoas perfis
 	    $objDadosPessoasPerfis = $this->retornaObjetosPorParametros($this->_model, "id_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
@@ -103,7 +103,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -148,7 +148,7 @@ class Basico_OPController_DadosPessoasPerfisOPController extends Basico_Abstract
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DADOS_PESSOAS_PERFIS, true);

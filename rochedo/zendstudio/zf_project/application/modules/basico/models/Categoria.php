@@ -291,6 +291,6 @@ class Basico_Model_Categoria extends Basico_AbstractModel_RochedoPersistentModel
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_CategoriaMapper);
+		return parent::getMapper('Basico_Model_CategoriaMapper');
 	} 
 }

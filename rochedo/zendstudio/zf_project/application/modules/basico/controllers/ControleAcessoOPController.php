@@ -315,7 +315,7 @@ class Basico_OPController_ControleAcessoOPController
 		$nomeAcaoAplicacaoCompleta = $this->retornaNomeAcaoAplicacaoCompleta($request->getModuleName(), $request->getControllerName(), $request->getActionName());
 
 		// recuperando o id da pessoa atraves do id do login
-		$idPessoa = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+		$idPessoa = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
 		// recuperando perfil vinculado ao usuario que possui maior nivel de acesso para acessar a acao
 		$nomeMaiorPerfilPessoaRequest = $this->retornaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
@@ -672,7 +672,7 @@ class Basico_OPController_ControleAcessoOPController
 		$arrayINI[$ip] = array('motivo' => $motivo, 'inicio' => $dataHoraInicioBanimento, 'termino' => $dataHoraTerminoBanimento, 'ativo' => true);
 
 		// recuperando informacoes para log
-    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
     	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ADICIONA_IP_HOSTS_DENY, true);
     	$mensagemLog = LOG_MSG_ADICIONA_IP_HOSTS_DENY . $ip . ")";
 		
@@ -701,7 +701,7 @@ class Basico_OPController_ControleAcessoOPController
 			unset($arrayINI[$ip]);
 
 			// recuperando informacoes para log
-	    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_REMOVE_IP_HOSTS_DENY, true);
 	    	$mensagemLog = LOG_MSG_REMOVE_IP_HOSTS_DENY . $ip . ")";
 			
@@ -736,7 +736,7 @@ class Basico_OPController_ControleAcessoOPController
 			}
 
 			// recuperando informacoes para log
-	    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DESATIVA_IP_HOSTS_DENY, true);
 	    	$mensagemLog = LOG_MSG_DESATIVA_IP_HOSTS_DENY . $ip . ")";
 			
@@ -771,7 +771,7 @@ class Basico_OPController_ControleAcessoOPController
 			}
 
 			// recuperando informacoes para log
-	    	$idPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	$idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_ATIVA_IP_HOSTS_DENY, true);
 	    	$mensagemLog = LOG_MSG_ATIVA_IP_HOSTS_DENY . $ip . ")";
 			

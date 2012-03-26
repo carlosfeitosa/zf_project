@@ -84,7 +84,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -129,7 +129,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DADOS_BIOMETRICOS, true);
@@ -241,7 +241,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
    	    $dadosBiometricos->historicoMedico      = $historicoMedico;    	
    	    
     	// recuperando o objeto PessoaPerfil UsuarioValidado do usuario logado
-    	$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa);
+    	$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoa);
 
     	// salvando o objeto dadosBiometricos
     	Basico_OPController_DadosBiometricosOPController::getInstance()->salvarObjeto($dadosBiometricos, (int) $ultimaVersaoDadosBiometricos, $idPessoaPerfilCriador->id);

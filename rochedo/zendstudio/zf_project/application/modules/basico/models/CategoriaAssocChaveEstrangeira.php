@@ -142,6 +142,6 @@ class Basico_Model_CategoriaAssocChaveEstrangeira extends Basico_AbstractModel_R
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_CategoriaAssocChaveEstrangeiraMapper);
+		return parent::getMapper('Basico_Model_CategoriaAssocChaveEstrangeiraMapper');
 	}
 }

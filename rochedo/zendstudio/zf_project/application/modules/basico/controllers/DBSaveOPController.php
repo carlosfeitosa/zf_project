@@ -38,16 +38,16 @@ class Basico_OPController_DBSaveOPController
 		$transacaoInicializada = Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
 		// instanciando variaveis para sobrecarga de atributos
-		$nomeAtributoDataHoraCadastro          = PROPRIEDADE_DATAHORA_CADASTRO;
-		$nomeAtributoDataHoraUltimaAtualizacao = PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO;
+		$nomeAtributoDatahoraCriacao           = PROPRIEDADE_DATAHORA_CRIACAO;
+		$nomeAtributoDatahoraUltimaAtualizacao = PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO;
 
 		// verificando se o objeto possui atributos de sobrecarga de valores (data cadastro)
-		if ((property_exists($mixed, CARACTER_PREFIXO_ATRIBUTO_PRIVADO_OBJETO . $nomeAtributoDataHoraCadastro)) and (!$mixed->$nomeAtributoDataHoraCadastro))
-			$mixed->$nomeAtributoDataHoraCadastro = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+		if ((property_exists($mixed, CARACTER_PREFIXO_ATRIBUTO_PRIVADO_OBJETO . $nomeAtributoDatahoraCriacao)) and (!$mixed->$nomeAtributoDatahoraCriacao))
+			$mixed->$nomeAtributoDatahoraCriacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 		// verificando se o objeto possui atributos de sobrecarga de valores (data ultima atualizacao)
-		if (property_exists($mixed, CARACTER_PREFIXO_ATRIBUTO_PRIVADO_OBJETO . $nomeAtributoDataHoraUltimaAtualizacao))
-			$mixed->$nomeAtributoDataHoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+		if (property_exists($mixed, CARACTER_PREFIXO_ATRIBUTO_PRIVADO_OBJETO . $nomeAtributoDatahoraUltimaAtualizacao))
+			$mixed->$nomeAtributoDatahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 		// preparando o rowinfo xml do objeto
 		Basico_OPController_UtilOPController::prepareSetRowinfoXML($mixed, $idPessoaPerfil);

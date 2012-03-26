@@ -71,8 +71,8 @@ class Rochedo_Form_Decorator_AjaxForm extends Zend_Form_Decorator_Abstract
         $xhrArgs = Zend_Json::encode($args,false,array('enableJsonExprFinder' => true));
 
         // carrega título e mensagem da validação
-        $titulo = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_VALIDATION_TITLE');    
-        $mensagem = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_VALIDATION_MESSAGE');
+        $titulo = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_VALIDATION_TITLE');    
+        $mensagem = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_VALIDATION_MESSAGE');
         
         $content = <<<EOQ
 <script type="dojo/method">

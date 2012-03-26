@@ -201,10 +201,10 @@ class Basico_OPController_LogOPController
 		$this->_log = $this->retornaNovoObjetoLog();
 
 		// preenchendo o modelo de log
-	    $this->_log->pessoaperfil   = $idPessoaPerfil;
-	    $this->_log->categoria      = $idCategoriaLog;
-	    $this->_log->dataHoraEvento = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-	    $this->_log->descricao      = $mensagemLog;
+	    $this->_log->idAssocclPerfil = $idPessoaPerfil;
+	    $this->_log->idCategoria     = $idCategoriaLog;
+	    $this->_log->datahoraEvento  = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+	    $this->_log->xml  		     = $mensagemLog;
 
 	    // preparando o xml do log
 	    $this->_log->xml = self::prepareXml($this->_log);
@@ -237,17 +237,17 @@ class Basico_OPController_LogOPController
 		$dataHoraEvento = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 		// preenchendo o modelo de log
-	    $modeloLog->pessoaperfil   = $idPessoaPerfil;
-	    $modeloLog->categoria      = $idCategoriaLog;
-	    $modeloLog->dataHoraEvento = $dataHoraEvento;
-	    $modeloLog->descricao      = $mensagemLog;
+	    $modeloLog->idAssocclPerfil = $idPessoaPerfil;
+	    $modeloLog->idCategoria     = $idCategoriaLog;
+	    $modeloLog->datahoraEvento  = $dataHoraEvento;
+	    $modeloLog->xml             = $mensagemLog;
 
 	    // montando array de nomes de campos e valores
 	    $arrayNomesCamposValoresLog = array();
-	    $arrayNomesCamposValoresLog['id_perfil_pessoa'] = $idPessoaPerfil;
-	    $arrayNomesCamposValoresLog['id_categoria']     = $idCategoriaLog;
-	    $arrayNomesCamposValoresLog['datahora_evento']  = Basico_OPController_UtilOPController::retornaStringEntreCaracter($dataHoraEvento, "'");
-	    $arrayNomesCamposValoresLog['xml']              = Basico_OPController_UtilOPController::retornaStringEntreCaracter(self::prepareXml($modeloLog), "'");
+	    $arrayNomesCamposValoresLog['id_assoccl_perfil'] = $idPessoaPerfil;
+	    $arrayNomesCamposValoresLog['id_categoria']      = $idCategoriaLog;
+	    $arrayNomesCamposValoresLog['datahora_evento']   = Basico_OPController_UtilOPController::retornaStringEntreCaracter($dataHoraEvento, "'");
+	    $arrayNomesCamposValoresLog['xml']               = Basico_OPController_UtilOPController::retornaStringEntreCaracter(self::prepareXml($modeloLog), "'");
 
 	    // retornando o resultado de inserir o log no banco de dados
 	    return Basico_OPController_PersistenceOPController::bdInsereDadosViaSQL(self::nomeTabelaModelo, $arrayNomesCamposValoresLog);
@@ -264,8 +264,8 @@ class Basico_OPController_LogOPController
 	{
 		try {
 			// setando data/hora e descricao do evento
-			$logXml = new Basico_Model_LogXml(array("eventDateTime"    => $modelo->dataHoraEvento,
-													"eventDescription" => $modelo->descricao,));
+			$logXml = new Basico_Model_LogXml(array("eventDateTime"    => $modelo->datahoraEvento,
+													"eventDescription" => $modelo->xml,));
 
 			// retornando XML
 			return Basico_OPController_GeradorOPController::geradorXmlGerarXml($logXml, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');	
@@ -287,7 +287,7 @@ class Basico_OPController_LogOPController
 	public static function retornaQuantidadeTentativasLoginPorIpViaSQL($login, $ip, $dataHoraUltimoLogon) 
 	{
 		// recuperando o id da pessoa perfil de usuario validado da pessoa relacionada ao login
-		$idPessoaPerfilLogin = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
+		$idPessoaPerfilLogin = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
 
 		// recuperando a categoria do log LOG_TENTATIVA_AUTENTICACAO_USUARIO
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO);
@@ -304,7 +304,7 @@ class Basico_OPController_LogOPController
 		$queryLogTentativasAutenticacaoLoginPorIp = "SELECT id
 													 FROM basico.log
 													 WHERE id_categoria = {$idCategoriaLog}
-													 AND id_perfil_pessoa = {$idPessoaPerfilLogin}
+													 AND id_assoccl_perfil = {$idPessoaPerfilLogin}
 													 {$condicaoDataHoraEvento}
 													 AND xml like '%<ip>{$ip}%'";
 

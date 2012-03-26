@@ -729,7 +729,7 @@ class Basico_OPController_UtilOPController
 					$valorObjetoRelacionado = $objetoRelacionado->rotulo;
 				} else if (property_exists(get_class($objetoRelacionado), '_constanteTextual')) {
 					// recuperando traducao da constante textual
-					$valorObjetoRelacionado = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($objetoRelacionado->constanteTextual);
+					$valorObjetoRelacionado = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objetoRelacionado->constanteTextual);
 				} else {
 					// zerando o valor
 					$valorObjetoRelacionado = null;
@@ -741,7 +741,7 @@ class Basico_OPController_UtilOPController
 				// verificando se o atributo precisa ser traduzido
 				if (strpos($atributoObjetoCopia, 'constanteTextual') !== false) {
 					// recuperando traducao e setando no array de resultados
-					$returnArray[$atributoObjetoCopia] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($objetoCopia->$atributoObjetoCopia);
+					$returnArray[$atributoObjetoCopia] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objetoCopia->$atributoObjetoCopia);
 				} else {
 					// recuperando informacao e setando no array de resultados
 					$returnArray[$atributoObjetoCopia] = $objetoCopia->$atributoObjetoCopia;
@@ -2462,26 +2462,26 @@ class Basico_OPController_UtilOPController
 	{
 		// montando array com mensagens
 		$translateValidators = array(
-                                        Zend_Validate_NotEmpty::IS_EMPTY                => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE', null, false),
-                                        Zend_Validate_StringLength::TOO_SHORT           => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_ERROR_MESSAGE_TOO_SHORT', null, false),
-                                        Zend_Validate_StringLength::TOO_LONG            => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_ERROR_MESSAGE_TOO_LONG', null, false),
-                                        Zend_Validate_EmailAddress::INVALID_FORMAT      => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT', null, false), 
-										Zend_Validate_EmailAddress::INVALID_HOSTNAME    => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME', null, false),
-										Zend_Validate_EmailAddress::INVALID_MX_RECORD   => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD', null, false),
-										Zend_Validate_EmailAddress::INVALID_SEGMENT     => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT', null, false),
-										Zend_Validate_EmailAddress::DOT_ATOM            => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_DOT_ATOM', null, false),
-										Zend_Validate_EmailAddress::QUOTED_STRING       => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_QUOTED_STRING', null, false),
-										Zend_Validate_EmailAddress::INVALID_LOCAL_PART  => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART', null, false),
-										Zend_Validate_Hostname::INVALID                 => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID', null, false),
-										Zend_Validate_Hostname::IP_ADDRESS_NOT_ALLOWED  => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_IP_ADDRESS_NOT_ALLOWED', null, false),
-										Zend_Validate_Hostname::UNKNOWN_TLD             => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_UNKNOWN_TLD', null, false),
-										Zend_Validate_Hostname::INVALID_DASH            => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_DASH', null, false),
-										Zend_Validate_Hostname::INVALID_HOSTNAME_SCHEMA => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME_SCHEMA', null, false),
-										Zend_Validate_Hostname::UNDECIPHERABLE_TLD      => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_UNDECIPHERABLE_TLD', null, false),
-										Zend_Validate_Hostname::INVALID_HOSTNAME        => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME', null, false),
-										Zend_Validate_Hostname::INVALID_LOCAL_NAME      => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_LOCAL_NAME', null, false),
-										Zend_Validate_Hostname::LOCAL_NAME_NOT_ALLOWED  => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_LOCAL_NAME_NOT_ALLOWED', null, false),
-										Zend_Validate_Hostname::CANNOT_DECODE_PUNYCODE  => Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_CANNOT_DECODE_PUNYCODE', null, false)
+                                        Zend_Validate_NotEmpty::IS_EMPTY                => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_NOT_EMPTY_ERROR_MESSAGE', null, false),
+                                        Zend_Validate_StringLength::TOO_SHORT           => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_ERROR_MESSAGE_TOO_SHORT', null, false),
+                                        Zend_Validate_StringLength::TOO_LONG            => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_STRING_LENGTH_ERROR_MESSAGE_TOO_LONG', null, false),
+                                        Zend_Validate_EmailAddress::INVALID_FORMAT      => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_FORMAT', null, false), 
+										Zend_Validate_EmailAddress::INVALID_HOSTNAME    => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_HOSTNAME', null, false),
+										Zend_Validate_EmailAddress::INVALID_MX_RECORD   => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_MX_RECORD', null, false),
+										Zend_Validate_EmailAddress::INVALID_SEGMENT     => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_SEGMENT', null, false),
+										Zend_Validate_EmailAddress::DOT_ATOM            => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_DOT_ATOM', null, false),
+										Zend_Validate_EmailAddress::QUOTED_STRING       => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_QUOTED_STRING', null, false),
+										Zend_Validate_EmailAddress::INVALID_LOCAL_PART  => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_EMAILADDRESS_INVALID_LOCAL_PART', null, false),
+										Zend_Validate_Hostname::INVALID                 => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID', null, false),
+										Zend_Validate_Hostname::IP_ADDRESS_NOT_ALLOWED  => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_IP_ADDRESS_NOT_ALLOWED', null, false),
+										Zend_Validate_Hostname::UNKNOWN_TLD             => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_UNKNOWN_TLD', null, false),
+										Zend_Validate_Hostname::INVALID_DASH            => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_DASH', null, false),
+										Zend_Validate_Hostname::INVALID_HOSTNAME_SCHEMA => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME_SCHEMA', null, false),
+										Zend_Validate_Hostname::UNDECIPHERABLE_TLD      => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_UNDECIPHERABLE_TLD', null, false),
+										Zend_Validate_Hostname::INVALID_HOSTNAME        => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME', null, false),
+										Zend_Validate_Hostname::INVALID_LOCAL_NAME      => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_LOCAL_NAME', null, false),
+										Zend_Validate_Hostname::LOCAL_NAME_NOT_ALLOWED  => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_LOCAL_NAME_NOT_ALLOWED', null, false),
+										Zend_Validate_Hostname::CANNOT_DECODE_PUNYCODE  => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_CANNOT_DECODE_PUNYCODE', null, false)
                                     );
                                 
         // recuperando objeto Zend_Translate

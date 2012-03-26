@@ -10,7 +10,7 @@
  * 
  * @since 24/10/2011
  */
-class Basico_OPController_GrupoRascunhoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormularioRascunhoAssocagGrupoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -58,7 +58,7 @@ class Basico_OPController_GrupoRascunhoOPController extends Basico_AbstractContr
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_GrupoRascunhoOPController();
+			self::$_singleton = new Basico_OPController_FormularioRascunhoAssocagGrupoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -84,7 +84,7 @@ class Basico_OPController_GrupoRascunhoOPController extends Basico_AbstractContr
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -129,7 +129,7 @@ class Basico_OPController_GrupoRascunhoOPController extends Basico_AbstractContr
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_GRUPO_RASCUNHO, true);

@@ -48,13 +48,13 @@ class Basico_EmailController extends Zend_Controller_Action
     	}
     	
     	// recuperando o e-mail
-    	$email   = Basico_OPController_EmailOPController::getInstance()->retornaObjetoEmailPorId($tokenObj->idGenerico);
+    	$email   = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPorId($tokenObj->idGenerico);
     	
     	// verificando se o email eh primario
-    	if (!Basico_OPController_EmailOPController::getInstance()->verificaEmailPrimario($email)) {
+    	if (!Basico_OPController_ContatoCpgEmailOPController::getInstance()->verificaEmailPrimario($email)) {
     		
     		// validando o email
-    		Basico_OPController_EmailOPController::getInstance()->validarEmail($email);
+    		Basico_OPController_ContatoCpgEmailOPController::getInstance()->validarEmail($email);
     		
     		// carregando mensagem na view
     		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor("VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO"));
@@ -66,7 +66,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	}
 
     	//verificando se o usuario possui o perfil de UsuarioValidado
-    	if (Basico_OPController_PessoasPerfisOPController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
+    	if (Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
     		// encaminhado para a ação erroemailvalidadoexistentenosistema do loginController
             return $this->_forward('erroemailvalidadoexistentenosistema');
     	}
@@ -85,7 +85,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	}
 	    	
 	    	// recuperando o objeto pessoa do dono do email
-	    	$proprietarioEmail = Basico_OPController_EmailOPController::getInstance()->retornaObjetoProprietarioEmail($email);
+	    	$proprietarioEmail = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoProprietarioEmail($email);
 	    	
 	    	// se a submissao nao foi feita do form de aceite dos termos de uso, carrega o form de aceite dos termos
 	    	if (!isset($_POST['BasicoAceiteTermosUsoAceiteTermosUso'])) {
@@ -94,7 +94,7 @@ class Basico_EmailController extends Zend_Controller_Action
 				$content[] = '<h3>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO').'</h3>'; 
 				$content[] = '<h4>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO').'</h4>';
 					    
-				$form = Basico_OPController_LoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
+				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
 					    
 			    // carregando form na view
 			    $content[] = $form;
@@ -117,7 +117,7 @@ class Basico_EmailController extends Zend_Controller_Action
 		    	$session->dataAceite = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 		    	
 		    	// recuperando dadosPessoais da pessoa
-		    	$dadosPessoais = Basico_OPController_DadosPessoaisOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($proprietarioEmail->id);
+		    	$dadosPessoais = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($proprietarioEmail->id);
 		    	
 		    	// recuperando a versao da tupla de dadosPessoais
 		    	$versaoDadosPessoais = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
@@ -139,7 +139,7 @@ class Basico_EmailController extends Zend_Controller_Action
 				$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
 				
 				// recuperando mensagem do componente password strenght checker
-				$mensagensPasswordStrenghtChecker = Basico_OPController_LoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+				$mensagensPasswordStrenghtChecker = Basico_OPController_PessoaLoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
 				
 	            //adicionando chamada a função do password strength checker para o campo senha
 			    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, {$mensagensPasswordStrenghtChecker})"));
@@ -172,7 +172,7 @@ class Basico_EmailController extends Zend_Controller_Action
 				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
 	
 				// recuperando form inicializado
-				$form = Basico_OPController_LoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
+				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
 	
 		    	// carregando form na view
 		    	$content[] = $form;

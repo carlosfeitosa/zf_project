@@ -13,12 +13,12 @@ interface Basico_InterfaceMapper_RochedoMapperPersistencia
      * 
      * @param Model $object
      */
-    public function save(Object $object);
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object);
 
 	/**
 	* Delete a Model entry
 	* 
 	* @param Model $object
 	*/
-    public function delete(Object $object);
+    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object);
 }

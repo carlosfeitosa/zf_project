@@ -15,24 +15,24 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 	public function desautenticausuarioAction()
 	{
 		// verificando se existe usuario logado
-		if (Basico_OPController_LoginOPController::existeUsuarioLogado()) {
+		if (Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) {
 			// recuperando o id do usuario logado na sessao
-			$idLogin = Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao();
+			$idLogin = Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao();
 
 			// recuperando id da pessoa logada
-			$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorIdLogin($idLogin);
+			$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorIdLogin($idLogin);
 
 			// recuperando informacoes de log
 			$idCategoriaLogLogoff   = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_SUCESSO_DESAUTENTICACAO_USUARIO, true);
 			$mensagemLogLogoff      = LOG_MSG_SUCESSO_DESAUTENTICACAO_USUARIO;
 
-			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaUsuarioLogado)->id;
+			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaUsuarioLogado)->id;
 
 			// salvando o log de operacoes
 			Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfilUsuarioValidado, $idCategoriaLogLogoff, $mensagemLogLogoff);
 
 			// efetuando logoff
-			Basico_OPController_LoginOPController::getInstance()->efetuaLogoff();
+			Basico_OPController_PessoaLoginOPController::getInstance()->efetuaLogoff();
 		}
 
 		// redireciona para a pagina inicial do sistema
@@ -101,7 +101,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $form->getValue(AUTH_IDENTITY_ARRAY_KEY);
 
 		// recuperando objeto pessoa perfil usuario validado do login
-		$objPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoasPerfisOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
+		$objPessoaPerfilUsuarioValidadoLogin = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa(Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
 
 		// verificando se o login existe e possui perfil de usuario validado
 		if ((is_object($objPessoaPerfilUsuarioValidadoLogin)) and ($objPessoaPerfilUsuarioValidadoLogin->id)) {
@@ -115,9 +115,9 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		// verificando se as credenciais de acesso funcionaram
 		if (Basico_OPController_AutenticadorOPController::getInstance()->retornaAutenticacaoUsuarioPorArrayParametros($form->getValues())) {
 			// verificando se o login pode realizar logon
-			if (!Basico_OPController_LoginOPController::getInstance()->retornaLoginPodeLogar($login)) {
+			if (!Basico_OPController_PessoaLoginOPController::getInstance()->retornaLoginPodeLogar($login)) {
 				// enviando mensagem de alerta de problemas com login
-				Basico_OPController_LoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($login); 
+				Basico_OPController_PessoaLoginOPController::getInstance()->enviaMensagemAlertaProblemasLogin($login); 
 				
 				// redirecionando para a pagina de problemas com login
 				$this->_redirect(str_replace(Basico_OPController_UtilOPController::retornaBaseUrl(), '', $this->view->urlEncrypt($this->_helper->url('problemaslogin', 'autenticador', 'basico', array('login' => $login)))));
@@ -141,10 +141,10 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			}
 
 			// efetuando o logon
-			Basico_OPController_LoginOPController::getInstance()->efetuaLogon($login);
+			Basico_OPController_PessoaLoginOPController::getInstance()->efetuaLogon($login);
 
 			// verificando se a senha do usuario esta expirada
-			if (Basico_OPController_LoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))
+			if (Basico_OPController_PessoaLoginOPController::retornaLoginSenhaExpiradaViaSQL(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()))
 			{
 				// montando url para redirecionamento
 				$urlTrocaDeSenhaExpirada = $this->view->urlEncryptModuleControllerAction('basico', 'dadosusuario', 'trocarsenhaexpirada', null, true);
@@ -157,7 +157,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			}
 		} else {
 			// incrementando tentativas invalidas
-			Basico_OPController_LoginOPController::getInstance()->checaTentativaInvalidaLogon($login);
+			Basico_OPController_PessoaLoginOPController::getInstance()->checaTentativaInvalidaLogon($login);
 
 			// montando array de parametros
 			$arrayParametrosUrl                = array();
@@ -232,7 +232,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		$login = $this->getRequest()->getParam('login');
 
 		// montando a mensagem de erro
-		$errorMessage = Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login);
+		$errorMessage = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login);
 
 		// recuperando o link para documentacao online
 		$linkDocumentacaoOnLine     = $this->_helper->url('problemasLogin', 'login', 'basico');

@@ -10,7 +10,7 @@
  * 
  * @since 17/03/2011
  */
-class Basico_OPController_PessoasPerfisOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Nome da tabela pessoas perfis
@@ -71,7 +71,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_AbstractContr
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_PessoasPerfisOPController();
+			self::$_singleton = new Basico_OPController_PessoaAssocclPerfilOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -258,7 +258,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_AbstractContr
 		// verificando o resultado da recuperacao
 		if (!$idMaiorPessoaPerfil)
 			// recuperando o perfil de usuario validado
-			$idMaiorPessoaPerfil = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+			$idMaiorPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
 		// retornando o id pessoa perfil maior perfil
 		return $idMaiorPessoaPerfil;
@@ -513,7 +513,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_AbstractContr
 	public function possuiPerfilUsuarioValidadoPorEmail(Basico_Model_Email $email)
 	{
     	// recuperando o id do proprietario do email
-		$idProprietarioEmail = Basico_OPController_EmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($email->id);
+		$idProprietarioEmail = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($email->id);
 	
 		// recuperando o perfil de usuario validado
 		$perfilUsuarioValidado = $this->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idProprietarioEmail);
@@ -553,7 +553,7 @@ class Basico_OPController_PessoasPerfisOPController extends Basico_AbstractContr
 	public function retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request)
 	{
 		// recuperando o id da pessoa logada
-		$idPessoa = Basico_OPController_LoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+		$idPessoa = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
 		// recuperando o id do perfil padrao da pessoa logada
 		$idPessoaPerfil = Basico_OPController_ControleAcessoOPController::retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
 		// recuperando o objeto pessoaPerfil do perfil padrao da pessoa logada

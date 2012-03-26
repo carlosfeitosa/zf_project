@@ -154,7 +154,7 @@ class Basico_OPController_CVCOPController
     public function retornaUltimaVersao($objeto, $forceVersioning = false)
     {
     	// instanciando controladores
-    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
 
     	// recuperando o valor do id generico vindo do objeto
 		$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
@@ -296,7 +296,7 @@ class Basico_OPController_CVCOPController
     public function atualizaVersao($objeto)
     {
     	// instanciando controladores
-		$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+		$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
 
     	// recuperando id da relacao de categoria chave estrangeira
     	$categoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
@@ -395,7 +395,7 @@ class Basico_OPController_CVCOPController
 	public static function retornaHTMLJavaScriptExibirDialogUrlResolvedorConflitoVersaoObjeto($linguaUsuario, $urlRedirect, $formAction = null)
 	{
 		// traduzindo o titulo do dialog
-		$tituloDialog = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO', $linguaUsuario);
+		$tituloDialog = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO', $linguaUsuario);
 
 		// inicializando variaveis
 		$baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();
@@ -526,7 +526,7 @@ class Basico_OPController_CVCOPController
 		// adicionando objetos
 		$arrayResultado[] = 'Basico_Model_CVC';
 		$arrayResultado[] = 'Basico_Model_Log';
-		$arrayResultado[] = 'Basico_Model_Token';
+		$arrayResultado[] = 'Basico_Model_CpgToken';
 
 		// retornando resultado
 		return $arrayResultado;
@@ -543,7 +543,7 @@ class Basico_OPController_CVCOPController
 	public function regerarChecksumModelo($nomeModelo, $id = null)
 	{
 		// recuperando elementos para log
-		$idPessoaPerfilUsuario = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
+		$idPessoaPerfilUsuario = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_REGERAR_CHECKSUM, true);
 
 		// salvando log de tentativa de regerar checksum
@@ -595,7 +595,7 @@ class Basico_OPController_CVCOPController
 		}
 
 		// recuperando login do usuario que esta realizando a operacao
-		$loginUsuarioLogado = Basico_OPController_LoginOPController::retornaLoginUsuarioSessao();
+		$loginUsuarioLogado = Basico_OPController_PessoaLoginOPController::retornaLoginUsuarioSessao();
 
 		// recuperando id da categoria de log de sucesso ao regerar checksum
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_SUCESSO_REGERAR_CHECKSUM, true);

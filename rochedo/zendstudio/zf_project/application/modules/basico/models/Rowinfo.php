@@ -7,7 +7,7 @@
  * @uses       Basico_Model_RowInfoMapper
  * @subpackage Model
  */
-class Basico_Model_RowInfo
+class Basico_Model_Rowinfo
 {
 	/**
 	 * @var String

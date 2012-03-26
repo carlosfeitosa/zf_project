@@ -96,7 +96,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -141,7 +141,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_PERFIL, true);
@@ -471,7 +471,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 		}
 
 		// retornando "nenhuma opcao informada"
-		return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+		return Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
 	}
 
 	/**
@@ -501,7 +501,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 		}
 
 		// retornando "nenhuma opcao informada"
-		return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+		return Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
 	}
 
 	/**
@@ -526,11 +526,11 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 			// verificando se os dados foram recuperados
 			if (count($arrayDescricaoPerfilPadrao) > 0) {
 				// retornando a descricao do perfil
-				return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($arrayDescricaoPerfilPadrao[0]['constante_textual']);
+				return Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayDescricaoPerfilPadrao[0]['constante_textual']);
 			}
 		}
 
 		// retornando "nenhuma opcao informada"
-		return Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
+		return Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('SELECT_OPTION_NAO_DESEJO_INFORMAR');
 	}
 }

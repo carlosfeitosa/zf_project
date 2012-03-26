@@ -77,7 +77,7 @@ class Basico_OPController_DBUtilOPController
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
 
 		// recuperando nome da tabela vinculada ao objeto
-		$tableName = $tableInfo['name'];
+		$tableName = $tableInfo['schema'] . "." . $tableInfo['name'];
 
 		// retornando o nome da tabela
 		return $tableName;
@@ -189,7 +189,7 @@ class Basico_OPController_DBUtilOPController
 	   	//setando a mascara
     	$pattern = "@(". QUEBRA_DE_LINHA ."SetEnv APPLICATION_SYSTEM_LOGIN .*?\\" . QUEBRA_DE_LINHA . ")@";
     	//setando string de substituicao
-    	$replacement = QUEBRA_DE_LINHA . 'SetEnv APPLICATION_SYSTEM_LOGIN ' . Basico_OPController_LoginOPController::getInstance()->retornaLoginUsuarioMasterDBViaSQL() . QUEBRA_DE_LINHA;
+    	$replacement = QUEBRA_DE_LINHA . 'SetEnv APPLICATION_SYSTEM_LOGIN ' . Basico_OPController_PessoaLoginOPController::getInstance()->retornaLoginUsuarioMasterDBViaSQL() . QUEBRA_DE_LINHA;
     	//recuperando conteudo do arquivo htaccess
     	$conteudoHtaccess = Basico_OPController_UtilOPController::retornaConteudoArquivo(HTACCESS_FULLFILENAME);
         //recuperando o novo conteudo do arquivo htaccess

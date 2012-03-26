@@ -95,7 +95,7 @@ class Basico_OPController_RacaOPController extends Basico_AbstractController_Roc
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -140,7 +140,7 @@ class Basico_OPController_RacaOPController extends Basico_AbstractController_Roc
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_RACA, true);
@@ -166,7 +166,7 @@ class Basico_OPController_RacaOPController extends Basico_AbstractController_Roc
 		if (count($racas) > 0) {
 			
 			foreach ($racas as $raca) {
-				$arrayResultado[$raca->constanteTextual] = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL($raca->constanteTextual);
+				$arrayResultado[$raca->constanteTextual] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($raca->constanteTextual);
 			}
 			
 		}

@@ -44,7 +44,7 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 	public static function processaLogRequest(Zend_Controller_Request_Abstract $request)
 	{
 		// recuperando o id do usuario logado na sessao
-		$idLogin = Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao();
+		$idLogin = Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao();
 
 		// verificando se existe usuario logado para fazer o log das acoes dos controladores
 		if ($idLogin) {
@@ -58,9 +58,9 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 			$idCategoriaLogAcaoInvocada = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogAcaoControladorPorNomeCategoriaViaSQL($nomeCategoriaLogAcaoInvocada, true);
 
 			// recuperando id da pessoa logada
-			$idPessoaUsuarioLogado = Basico_OPController_LoginOPController::retornaIdPessoaPorIdLoginViaSQL($idLogin);
+			$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL($idLogin);
 			// recuperando o maior perfil vinculado ao usuario logado contra a acao do request
-			$idPessoaMaiorPerfilUsuarioLogado = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $request);
+			$idPessoaMaiorPerfilUsuarioLogado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $request);
 
 			// invocando metodo de log
 			Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaMaiorPerfilUsuarioLogado, $idCategoriaLogAcaoInvocada, DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR);
@@ -80,6 +80,6 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 		return (($this->_pluginAtivo) and 
 			    (!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoErrorErrorControllerPorRequest($request))  and 
 			    (Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaExisteAcaoControladorPorRequest($request)) and 
-			    (Basico_OPController_LoginOPController::existeUsuarioLogado()));
+			    (Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()));
 	}
 }

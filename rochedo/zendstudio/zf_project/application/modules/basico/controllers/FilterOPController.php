@@ -3,7 +3,7 @@
  * Controlador FormularioElementoFilter.
  *
  */
-class Basico_OPController_FormularioElementoFilterOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FilterOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Basico_OPController_FormularioElementoFilterOPController
@@ -50,7 +50,7 @@ class Basico_OPController_FormularioElementoFilterOPController extends Basico_Ab
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_FormularioElementoFilterOPController();
+			self::$_singleton = new Basico_OPController_FilterOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -76,7 +76,7 @@ class Basico_OPController_FormularioElementoFilterOPController extends Basico_Ab
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -121,7 +121,7 @@ class Basico_OPController_FormularioElementoFilterOPController extends Basico_Ab
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_FORMULARIO_ELEMENTO_FILTER, true);

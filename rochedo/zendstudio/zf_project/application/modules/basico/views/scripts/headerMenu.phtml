@@ -10,13 +10,13 @@ $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index')
            <?php echo "<a onClick='loading()' href=" . "'" . $applicationHttpHome . "'" . ">" . APPLICATION_NAME_AND_VERSION . "</a>" ?>
     </div>
 	<div id="header-navigation">
-		<?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
+		<?php if (!Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) { ?>
         <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
                                                          array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
                                                          null, 
                                                          true)) ?>"><?php echo $this->tradutor('MENU_ITEM_REGISTRE_SE', null, false) ?></a> |
 		<?php }?>
-		<?php if (Basico_OPController_LoginOPController::existeUsuarioLogado()) { ?>
+		<?php if (Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) { ?>
 		<a onClick="dojoRequestAjaxAbstract('get', {url: '<?php echo $this->urlEncrypt($this->url(
             array('module'=>'basico', 'controller'=>'dadosusuario', 'action'=>'index'), 
             null, 
@@ -26,7 +26,7 @@ $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index')
                                                          true)) ?>"><?php echo "Minha Conta" ?></a> |
         <?php 
         // recuperando o titulo do dialog
-	    $tituloDialogAdminRascunhos = Basico_OPController_TradutorOPController::retornaTraducaoViaSQL('FORM_DIALOG_ADMIN_RASCUNHOS_TITLE');
+	    $tituloDialogAdminRascunhos = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_DIALOG_ADMIN_RASCUNHOS_TITLE');
 	    		
 	    // recuperando url do metodo para exibicao do form AdminRascunhos
 	    $urlExibirFormAdminRascunhos = $this->urlEncrypt($this->url(array('module'=>'basico', 'controller'=>'rascunho', 'action'=>'exibirformadminrascunhos'), null, true));
@@ -49,5 +49,5 @@ $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index')
                                                          null, 
                                                          true)) ?>"><?php echo "Administração" ?></a> |
         <?php }?>
-        <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php if (!Basico_OPController_LoginOPController::existeUsuarioLogado()) echo "Login"; else echo "Logout";?></a>
+        <a onClick="loading()" href="<?php echo Basico_OPController_AutenticadorOPController::retornaLinkAutenticacaoUsuario($this, $this->url()) ?>"><?php if (!Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) echo "Login"; else echo "Logout";?></a>
     </div>
