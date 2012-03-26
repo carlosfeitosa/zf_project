@@ -276,6 +276,8 @@ CREATE SCHEMA basico_sequencia;
 
 CREATE SCHEMA basico_template;
 
+SET search_path = basico, pg_catalog;
+
 --
 -- TOC entry 392 (class 1255 OID 58318317)
 -- Dependencies: 3
