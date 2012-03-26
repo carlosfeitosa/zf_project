@@ -10,7 +10,7 @@ require_once("modules/basico/controllers/TokenOPController.php");
 require_once("modules/basico/controllers/UtilOPController.php");
 require_once("modules/basico/controllers/PersistenceOPController.php");
 require_once("modules/basico/controllers/SessionOPController.php");
-require_once("modules/basico/controllers/TradutorOPController.php");
+require_once("modules/basico/controllers/DicionarioExpressaoOPController.php");
 
 /**
  * Bootstrap primário do sistema.
