@@ -4,10 +4,10 @@
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_FormularioModuloMapper
+ * @uses       Basico_Model_FormularioAssocclModuloMapper
  * @subpackage Model
  */
-class Basico_Model_FormularioModulo extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioAssocclModulo extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Integer
@@ -23,7 +23,7 @@ class Basico_Model_FormularioModulo extends Basico_AbstractModel_RochedoPersiste
 	* 
 	* @param int $idModulo
 	* 
-	* @return Basico_Model_FormularioModulo
+	* @return Basico_Model_FormularioAssocclModulo
 	*/
 	public function setIdModulo($idModulo)
 	{
@@ -58,7 +58,7 @@ class Basico_Model_FormularioModulo extends Basico_AbstractModel_RochedoPersiste
 	* 
 	* @param int $idFormulario
 	* 
-	* @return Basico_Model_FormularioModulo
+	* @return Basico_Model_FormularioAssocclModulo
 	*/
 	public function setIdFormulario($idFormulario)
 	{
@@ -91,12 +91,12 @@ class Basico_Model_FormularioModulo extends Basico_AbstractModel_RochedoPersiste
 	/**
 	* Get data mapper
 	*
-	* Lazy loads Basico_Model_FormularioModuloMapper instance if no mapper registered.
+	* Lazy loads Basico_Model_FormularioAssocclModuloMapper instance if no mapper registered.
 	* 
-	* @return Basico_Model_FormularioModuloMapper
+	* @return Basico_Model_FormularioAssocclModuloMapper
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioModuloMapper);
+		return parent::getMapper('Basico_Model_FormularioAssocclModuloMapper');
 	} 
 }
