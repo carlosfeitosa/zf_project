@@ -17,7 +17,7 @@ class Basico_Model_AcaoAplicacaoAssocclPerfilMapper extends Basico_AbstractMappe
      * 
      * @return Basico_Model_TipoCategoria
      */
-    public function getDbTable($dbTable = 'Basico_Model_AcaoAplicacaoAssocclPerfil')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_AcaoAplicacaoAssocclPerfil')
     {
         return parent::getDbTable($dbTable);
     }

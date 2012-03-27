@@ -31,7 +31,7 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
     */
     public function setIdElemento($idElemento)
     {
-        $this->_idElemento = Basico_OPCo_idElementoilOPController::retornaValorTipado($idElemento, TIPO_INTEIRO, true);
+        $this->_idElemento = Basico_OPController_UtilOPController::retornaValorTipado($idElemento, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -69,7 +69,7 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
     */
     public function setIdDecorator($idDecorator)
     {
-    	$this->_idDecorator = Basico_OPC_idDecoratorilOPController::retornaValorTipado($idDecorator, TIPO_INTEIRO, FormularioElementoAssocclDecorator); 
+    	$this->_idDecorator = Basico_OPController_UtilOPController::retornaValorTipado($idDecorator, TIPO_INTEIRO, true); 
 		return $this;
     }
 
@@ -104,7 +104,7 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
     */
     public function setOrdem($ordem)
     {
-        $this->_ordem = Basico_OPCo_idElementoilOPController::retornaValorTipado($ordem, TIPO_INTEIRO, true);
+        $this->_ordem = Basico_OPController_UtilOPController::retornaValorTipado($ordem, TIPO_INTEIRO, true);
         return $this;
     }
 

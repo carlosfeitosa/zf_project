@@ -54,7 +54,7 @@ class Basico_Model_FormularioElementoAssocclValidatorMapper extends Basico_Abstr
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_DbTable_FormularioElementoAssocclValidator();
+            $entry = new Basico_Model_FormularioElementoAssocclValidator();
             $entry->setId($row->id)
             	->setIdElemento($row->id_elemento)
 				->setIdValidator($row->id_validator)
@@ -77,7 +77,7 @@ class Basico_Model_FormularioElementoAssocclValidatorMapper extends Basico_Abstr
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_DbTable_FormularioElementoAssocclValidator();
+            $entry = new Basico_Model_FormularioElementoAssocclValidator();
             $entry->setId($row->id)
             	->setIdElemento($row->id_elemento)
 				->setIdValidator($row->id_validator)

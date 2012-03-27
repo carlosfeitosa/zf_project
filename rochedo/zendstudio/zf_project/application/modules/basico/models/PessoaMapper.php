@@ -115,15 +115,15 @@ class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper impl
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-        			  'id_perfil_padrao' => $object->getIdPerfilPadrao(),
-        			  'id_telefone_default' => $object->getIdTelefoneDefault(),
-        			  'id_email_default' => $object->getIdEmailDefault(),
-        			  'id_endereco_default' => $object->getIdEnderecoDefault(),
-        			  'id_endereco_correpondencia' => $object->getIdEnderecoCorrespondencia(),
-        			  'id_link_default' => $object->getIdLinkDefault(),
-        			  'datahora_criacao' => $object->getDatahoraCriacao(),
+        			  'id_perfil_padrao' 		    => $object->getIdPerfilPadrao(),
+        			  'id_telefone_default' 	    => $object->getIdTelefoneDefault(),
+        			  'id_email_default' 		    => $object->getIdEmailDefault(),
+        			  'id_endereco_default' 	    => $object->getIdEnderecoDefault(),
+        			  'id_endereco_correpondencia'  => $object->getIdEnderecoCorrespondencia(),
+        			  'id_link_default' 		    => $object->getIdLinkDefault(),
+        			  'datahora_criacao' 		    => $object->getDatahoraCriacao(),
         			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                      'rowinfo'          => $object->getRowinfo(),
+                      'rowinfo'          		    => $object->getRowinfo(),
                      );
 
         if (null === ($id = $object->getId())) {

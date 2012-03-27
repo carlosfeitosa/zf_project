@@ -17,7 +17,7 @@ class Basico_Model_FormularioAssocclDecoratorMapper extends Basico_AbstractMappe
      * 
      * @return Basico_Model_FormularioAssocclDecorator
      */
-    public function getDbTable($dbTable = 'Basico_Model_FormularioAssocclDecorator')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioAssocclDecorator')
     {
         return parent::getDbTable($dbTable);
     }

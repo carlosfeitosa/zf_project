@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_CpgArquivo
  * @subpackage Model
  */
-class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_CpgArquivoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -43,10 +43,10 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
 				->setNome($row->nome)
 				->setConstateTextual($row->constante_textual)
 				->setConstateTextualDescricao($row->constante_textual_descricao)
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
-				->setTamanhoKylobytes($row->tamanhoKylobytes)
-				->setMimeType($row->mimeType)
+				->setNomeOriginal($row->nome_original)
+				->setNomeSugestao($row->nome_sugestao)
+				->setTamanhoKylobytes($row->tamanho_kylobytes)
+				->setMimeType($row->mime_type)
 				->setUri($row->uri)
 				->setRemoto($row->remoto)
 				->setHits($row->hits)
@@ -67,17 +67,17 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Pessoa();
+			$entry = new Basico_Model_CpgArquivo();
 			$entry->setId($row->id)
 				->setIdCategoria($row->id_categoria)
 				->setIdGenericoProprietario($row->id_generico_proprietario)
 				->setNome($row->nome)
 				->setConstateTextual($row->constante_textual)
 				->setConstateTextualDescricao($row->constante_textual_descricao)
-				->setNomeOriginal($row->nomeOriginal)
-				->setNomeSugestao($row->nomeSugestao)
-				->setTamanhoKylobytes($row->tamanhoKylobytes)
-				->setMimeType($row->mimeType)
+				->setNomeOriginal($row->nome_original)
+				->setNomeSugestao($row->nome_sugestao)
+				->setTamanhoKylobytes($row->tamanho_kylobytes)
+				->setMimeType($row->mime_type)
 				->setUri($row->uri)
 				->setRemoto($row->remoto)
 				->setHits($row->hits)
@@ -102,7 +102,7 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Pessoa();
+			$entry = new Basico_Model_CpgArquivo();
 			$entry->setId($row->id)
 				->setIdCategoria($row->id_categoria)
 				->setIdGenericoProprietario($row->id_generico_proprietario)
@@ -136,22 +136,22 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-        			  'id_categoria' => $object->getIdCategoria(),
-        			  'id_generico_proprietario' => $object->getIdGenericoProprietario(),
-					  'Nome' => $object->getNome(),
-        			  'ConstanteTextual' => $object->getConstanteTextual(),
-        			  'ConstanteTextualDescricao' => $object->getConstanteTextualDescricao(),
-        			  'NomeOriginal' =>  $object->getNomeOriginal(),
-        			  'NomeSugestao' =>  $object->getNomeSugestao(),
-        			  'TamanhoKylobytes' =>  $object->getTamanhoKylobytes(),        			  
-        			  'MimeType' =>  $object->getMimeType(),
-        			  'Uri' =>  $object->getUri(),
-        			  'Remoto' =>  $object->getRemoto(),
-        			  'Hits' =>  $object->getHits(),
-        			  'Ativo' =>  $object->getAtivo(),
-        			  'datahora_criacao' => $object->getDatahoraCriacao(),
+        			  'id_categoria' 				=> $object->getIdCategoria(),
+        			  'id_generico_proprietario' 	=> $object->getIdGenericoProprietario(),
+					  'nome' 						=> $object->getNome(),
+        			  'constante_textual' 			=> $object->getConstanteTextual(),
+        			  'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+        			  'nome_original' 				=>  $object->getNomeOriginal(),
+        			  'nome_sugestao'			    =>  $object->getNomeSugestao(),
+        			  'tamanho_kylobytes'		    =>  $object->getTamanhoKylobytes(),        			  
+        			  'mime_type'					=>  $object->getMimeType(),
+        			  'uri' 						=>  $object->getUri(),
+        			  'remoto' 						=>  $object->getRemoto(),
+        			  'hits' 						=>  $object->getHits(),
+        			  'ativo'						=>  $object->getAtivo(),
+        			  'datahora_criacao' 			=> $object->getDatahoraCriacao(),
         			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                      'rowinfo'          => $object->getRowinfo(),
+                      'rowinfo'          			=> $object->getRowinfo(),
                      );
 
         if (null === ($id = $object->getId())) {

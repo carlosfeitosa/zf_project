@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_TemplateAssocclOutput
  * @subpackage Model
  */
-class Basico_Model_TemplateAssocclOutputMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_TemplateAssocclOutputMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance

@@ -42,10 +42,7 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	*/
 	public function getIdFormulario()
 	{
-		if ($this->_idFormulario)
-			return $this->_idFormulario;
-		else
-			return null;
+		return $this->_idFormulario;
 	}
 	
     /**
@@ -80,10 +77,7 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	*/
 	public function getIdDecorator()
 	{
-		if ($this->_idDecorator)
-			return $this->_idDecorator;
-		else
-			return null;
+		return $this->_idDecorator;
 	}
     
     /**
@@ -107,7 +101,7 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	*/
 	public function setOrdem($ordem)
 	{
-		$this->_idOrdem = Basico_OPController_UtilOPController::retornaValorTipado($ordem, TIPO_INTEIRO, true);
+		$this->_ordem = Basico_OPController_UtilOPController::retornaValorTipado($ordem, TIPO_INTEIRO, true);
 		return $this;
 	}
 
@@ -118,10 +112,7 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	*/
 	public function getOrdem()
 	{
-		if ($this->_idOrdem)
-			return $this->_idOrdem;
-		else
-			return null;
+		return $this->_ordem;
 	}
 
 	/**

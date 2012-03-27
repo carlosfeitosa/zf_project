@@ -372,6 +372,6 @@ class Basico_Model_CpgArquivo extends Basico_AbstractModel_RochedoPersistentMode
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper('Basico_Model_PessoaMapper');
+		return parent::getMapper('Basico_Model_CpgArquivoMapper');
 	}
 }

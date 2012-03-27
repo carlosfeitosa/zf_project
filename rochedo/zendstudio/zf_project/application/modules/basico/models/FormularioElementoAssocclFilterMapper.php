@@ -38,8 +38,8 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_Abstract
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setIdAssocclElemento($row->id_assoccl_elemento)
-               ->setIfFilter($row->id_filter)
+               ->setIdElemento($row->id_elemento)
+               ->setIdFilter($row->id_filter)
                ->setOrdem($row->ordem)
                ->setDatahoraCriacao($row->datahora_criacao)
                ->setRowinfo($row->rowinfo);
@@ -56,14 +56,14 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_Abstract
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_DbTable_FormularioElementoAssocclFilter();
+            $entry = new Basico_Model_FormularioElementoAssocclFilter();
             $entry->setId($row->id)
-            	->setIdAssocclElemento($row->id_assoccl_elemento)
-				->setIfFilter($row->id_filter)
-				->setOrdem($row->ordem)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
+            	   ->setIdElemento($row->id_elemento)
+				   ->setIdFilter($row->id_filter)
+				   ->setOrdem($row->ordem)
+				   ->setDatahoraCriacao($row->datahora_criacao)
+				   ->setRowinfo($row->rowinfo)
+				   ->setMapper($this);
             $entries[] = $entry;
         }
         return $entries;
@@ -80,10 +80,10 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_Abstract
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_DbTable_FormularioElementoAssocclFilter();
+            $entry = new Basico_Model_FormularioElementoAssocclFilter();
             $entry->setId($row->id)
-            	->setIdAssocclElemento($row->id_assoccl_elemento)
-				->setIfFilter($row->id_filter)
+            	->setIdElemento($row->id_elemento)
+				->setIdFilter($row->id_filter)
 				->setOrdem($row->ordem)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setRowinfo($row->rowinfo)
@@ -103,11 +103,11 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_Abstract
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-                'id_assoccl_elemento' => $object->getIdAssocclElemento(),
-                'id_filter'        => $object->getIdFilter(),
-        		'ordem'            => $object->getOrdem(),
-        		'datahora_criacao' => $object->getDatahoraCriacao(),
-        		'rowinfo'		   => $object->getRowinfo(),
+                'id_elemento' 		  => $object->getIdElemento(),
+                'id_filter'        	  => $object->getIdFilter(),
+        		'ordem'           	  => $object->getOrdem(),
+        		'datahora_criacao'	  => $object->getDatahoraCriacao(),
+        		'rowinfo'		   	  => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -125,7 +125,7 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_Abstract
     * 
     * @return void
     */
-    public function delete(Basico_Model_DbTable_FormularioElementoAssocclFilter $object)
+    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }

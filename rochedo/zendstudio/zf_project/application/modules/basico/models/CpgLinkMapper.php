@@ -61,7 +61,7 @@ class Basico_Model_CpgLinkMapper extends Basico_AbstractMapper_RochedoMapper imp
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Pessoa();
+			$entry = new Basico_Model_CpgLink();
 			$entry->setId($row->id)
 				->setIdCategoria($row->id_categoria)
 				->setIdGenericoProprietario($row->id_generico_proprietario)
@@ -90,7 +90,7 @@ class Basico_Model_CpgLinkMapper extends Basico_AbstractMapper_RochedoMapper imp
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Pessoa();
+			$entry = new Basico_Model_CpgLink();
 			$entry->setId($row->id)
 				->setIdCategoria($row->id_categoria)
 				->setIdGenericoProprietario($row->id_generico_proprietario)
@@ -118,16 +118,16 @@ class Basico_Model_CpgLinkMapper extends Basico_AbstractMapper_RochedoMapper imp
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-        			  'id_categoria' => $object->getIdCategoria(),
-        			  'id_generico_proprietario' => $object->getIdGenericoProprietario(),
-					  'Nome' => $object->getNome(),
-        			  'ConstanteTextual' => $object->getConstanteTextual(),
-        			  'ConstanteTextualDescricao' => $object->getConstanteTextualDescricao(),
-        			  'Url' =>  $object->getUrl(),
-        			  'Ativo' =>  $object->getAtivo(),
-        			  'datahora_criacao' => $object->getDatahoraCriacao(),
+        			  'id_categoria' 				=> $object->getIdCategoria(),
+        			  'id_generico_proprietario' 	=> $object->getIdGenericoProprietario(),
+					  'nome' 					    => $object->getNome(),
+        			  'constante_textual' 			=> $object->getConstanteTextual(),
+        			  'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+        			  'url' 						=> $object->getUrl(),
+        			  'ativo' 						=> $object->getAtivo(),
+        			  'datahora_criacao' 			=> $object->getDatahoraCriacao(),
         			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                      'rowinfo'          => $object->getRowinfo(),
+                      'rowinfo'          			=> $object->getRowinfo(),
                      );
 
         if (null === ($id = $object->getId())) {

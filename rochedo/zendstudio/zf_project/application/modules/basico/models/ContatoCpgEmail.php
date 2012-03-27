@@ -53,7 +53,7 @@ class Basico_Model_ContatoCpgEmail extends Basico_AbstractModel_RochedoPersisten
 	/**
 	 * @var Date
 	 */
-	protected $_DatahoraUltimaValidacao;
+	protected $_datahoraUltimaValidacao;
 	
 	/**
 	* Set idCategoria

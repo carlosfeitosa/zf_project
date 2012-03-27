@@ -12,7 +12,7 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
 	/**
      * @var idAssocclElemento
      */
-    protected $_idAssocclElemento;
+    protected $_idElemento;
     /**
      * @var idFilter
      */
@@ -21,21 +21,17 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
      * @var ordem
      */
     protected $_ordem;
-    /**
-     * @var removeFlag
-     */
-    protected $_removeFlag;
 
     /**
     * Set formularioElemento
     * 
-    * @param int $idAssocclElemento
+    * @param int $idElemento
     * 
     * @return Basico_Model_FormularioElementoAssocclFilter
     */
-    public function setIdAssocclElemento($idAssocclElemento)
+    public function setIdElemento($idElemento)
     {
-        $this->_idAssocclElemento = Basico_OPController_UtilOPController::retornaValorTipado($idAssocclElemento, TIPO_INTEIRO, true);
+        $this->_idElemento = Basico_OPController_UtilOPController::retornaValorTipado($idElemento, TIPO_INTEIRO, true);
         return $this;
     }
 
@@ -44,9 +40,9 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
     * 
     * @return null|int
     */
-    public function getIdAssocclElemento()
+    public function getIdElemento()
     {
-        return $this->_idAssocclElemento;
+        return $this->_idElemento;
     }
  
     /**
@@ -57,7 +53,7 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
     public function getAssocclElementoObject()
     {
         $model = new Basico_Model_FormularioElemento();
-        $object = $model->find($this->_idAssocclElemento);
+        $object = $model->find($this->_idElemento);
         return $object;
     }
     
@@ -125,6 +121,6 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
     */
     public function getMapper()
     {
-    	return parent::getMapper('Basico_Model_FormularioElementoFilterMapper');
+    	return parent::getMapper('Basico_Model_FormularioElementoAssocclFilterMapper');
     }
 }
