@@ -140,6 +140,6 @@ class Basico_Model_FormularioElementoAssocclEvento extends Basico_AbstractModel_
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioElementoAssocclEventoMapper);
+		return parent::getMapper('Basico_Model_FormularioElementoAssocclEventoMapper');
 	}	
 }

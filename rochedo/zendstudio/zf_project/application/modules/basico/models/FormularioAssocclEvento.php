@@ -176,6 +176,6 @@ class Basico_Model_FormularioAssocclEvento extends Basico_AbstractModel_RochedoP
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioAssocclEventoMapper);
+		return parent::getMapper('Basico_Model_FormularioAssocclEventoMapper');
 	}	
 }

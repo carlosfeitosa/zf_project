@@ -147,7 +147,7 @@ class Basico_Model_FormularioAssocclElementoAssocclDecorator extends Basico_Abst
     */
     public function getMapper()
     {
-        return parent::getMapper(Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper);
+        return parent::getMapper('Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper');
     }
 
 }

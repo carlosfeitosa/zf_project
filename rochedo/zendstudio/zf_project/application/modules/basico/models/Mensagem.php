@@ -260,6 +260,6 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_MensagemMapper);
+		return parent::getMapper('Basico_Model_MensagemMapper');
 	}
 }

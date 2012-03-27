@@ -133,6 +133,6 @@ class Basico_Model_MensagemAssocclAssocclPessoaPerfil extends Basico_AbstractMod
     */
     public function getMapper()
     {
-        return parent::getMapper(Basico_Model_MensagemAssocclAssocclPessoaPerfilMapper);
+        return parent::getMapper('Basico_Model_MensagemAssocclAssocclPessoaPerfilMapper');
     }
 }

@@ -187,6 +187,6 @@ class Basico_Model_Include extends Basico_AbstractModel_RochedoPersistentModeloD
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_IncludeMapper);
+		return parent::getMapper('Basico_Model_IncludeMapper');
 	}
 }

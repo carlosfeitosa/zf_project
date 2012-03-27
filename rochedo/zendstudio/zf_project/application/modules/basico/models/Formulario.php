@@ -564,6 +564,6 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioMapper);
+		return parent::getMapper('Basico_Model_FormularioMapper');
 	}
 }

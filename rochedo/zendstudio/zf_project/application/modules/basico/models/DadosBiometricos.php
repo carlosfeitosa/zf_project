@@ -85,6 +85,6 @@ class Basico_Model_DadosBiometricos extends Basico_AbstractModel_RochedoPersiste
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_DadosBiometricosMapper);
+		return parent::getMapper('Basico_Model_DadosBiometricosMapper');
 	}
 }

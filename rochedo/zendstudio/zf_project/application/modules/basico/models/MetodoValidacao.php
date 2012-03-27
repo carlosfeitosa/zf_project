@@ -186,6 +186,6 @@ class Basico_Model_MetodoValidacao extends Basico_AbstractModel_RochedoPersisten
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_MetodoValidacaoMapper);
+		return parent::getMapper('Basico_Model_MetodoValidacaoMapper');
 	}
 }

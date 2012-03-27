@@ -133,6 +133,6 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioAssocclDecoratorMapper);
+		return parent::getMapper('Basico_Model_FormularioAssocclDecoratorMapper');
 	}	
 }

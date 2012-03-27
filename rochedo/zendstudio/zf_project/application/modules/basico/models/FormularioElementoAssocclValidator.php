@@ -93,6 +93,6 @@ class Basico_Model_FormularioElementoAssocclValidator extends Basico_AbstractMod
     */
     public function getMapper()
     {
-        return parent::getMapper(Basico_Model_FormularioElementoAssocclValidatorMapper);
+        return parent::getMapper('Basico_Model_FormularioElementoAssocclValidatorMapper');
     }
 }

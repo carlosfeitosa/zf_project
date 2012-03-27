@@ -135,6 +135,6 @@ class Basico_Model_MetodoValidacaoAssocclInclude extends Basico_AbstractModel_Ro
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_MetodoValidacaoAssocclIncludeMapper);
+		return parent::getMapper('Basico_Model_MetodoValidacaoAssocclIncludeMapper');
 	}	
 }

@@ -8,80 +8,20 @@
  * @uses       Basico_Model_DbTable_MensagemAssocEmail
  * @subpackage Model
  */
-class Basico_Model_MensagemAssocEmailMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
-{
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_MensagemEmailMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
-    /**
+class Basico_Model_MensagemAssocEmailMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+{	
+	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_MensagemEmail if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_MensagemEmail')
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_MensagemEmail');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable($dbTable);
     }
     
-    /**
-     * Save a MensagemEmail entry
-     * 
-     * @param  Basico_Model_MensagemEmail $object
-     * @return void
-     */
-    public function save(Basico_Model_MensagemEmail $object)
-    {
-        $data = array(
-				'destinatariosCopiaCarbonada'   => $object->getDestinatariosCopiaCarbonada(),
-				'destinatariosCopiaCarbonadaCega'   => $object->getDestinatariosCopiaCarbonadaCega(),
-				'responderPara'   => $object->getResponderPara(),
-              'mensagem'   => $object->getMensagem(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a MensagemEmail entry
-	* @param Basico_Model_MensagemEmail $object
-	* @return void
-	*/
-	public function delete(Basico_Model_MensagemEmail $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
     /**
      * Find a MensagemEmail entry by id
      * 
@@ -89,7 +29,7 @@ class Basico_Model_MensagemAssocEmailMapper extends Abstract_RochedoMapper imple
      * @param  Basico_Model_MensagemEmail $object 
      * @return void
      */
-    public function find($id, Basico_Model_MensagemEmail $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -151,5 +91,39 @@ class Basico_Model_MensagemAssocEmailMapper extends Abstract_RochedoMapper imple
 		}
 		return $entries;
 	}
+    
+    
+    /**
+     * Save a MensagemEmail entry
+     * 
+     * @param  Basico_Model_MensagemEmail $object
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+				'destinatariosCopiaCarbonada'   => $object->getDestinatariosCopiaCarbonada(),
+				'destinatariosCopiaCarbonadaCega'   => $object->getDestinatariosCopiaCarbonadaCega(),
+				'responderPara'   => $object->getResponderPara(),
+              'mensagem'   => $object->getMensagem(),
 
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a MensagemEmail entry
+	* @param Basico_Model_MensagemEmail $object
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+	}
 }

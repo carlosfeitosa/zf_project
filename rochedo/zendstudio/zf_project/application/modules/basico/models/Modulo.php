@@ -327,6 +327,6 @@ class Basico_Model_Modulo extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_ModuloMapper);
+		return parent::getMapper('Basico_Model_ModuloMapper');
 	}
 }

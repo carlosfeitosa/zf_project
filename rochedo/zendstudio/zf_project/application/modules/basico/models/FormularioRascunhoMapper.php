@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Rascunho
  * @subpackage Model
  */
-class Basico_Model_FormularioRascunhoMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,7 +17,7 @@ class Basico_Model_FormularioRascunhoMapper extends Abstract_RochedoMapper imple
      * 
      * @return Basico_Model_FormularioRascunho
      */
-    public function getDbTable()
+    public function getDbTable($dbTable)
     {
         return parent::getDbTable('Basico_Model_FormularioRascunho');
     }
@@ -29,7 +29,7 @@ class Basico_Model_FormularioRascunhoMapper extends Abstract_RochedoMapper imple
      * @param  Basico_Model_FormularioRascunho $object 
      * @return void
      */
-    public function find($id, Basico_Model_Rascunho $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -125,7 +125,7 @@ class Basico_Model_FormularioRascunhoMapper extends Abstract_RochedoMapper imple
      * @param  Basico_Model_FormularioRascunho $object
      * @return void
      */
-    public function save(Basico_Model_FormularioRascunho $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
 				'id_rascunho_pai'             => $object->getIdRascunhoPai(),
@@ -158,7 +158,7 @@ class Basico_Model_FormularioRascunhoMapper extends Abstract_RochedoMapper imple
 	* @param Basico_Model_FormularioRascunho $object
 	* @return void
 	*/
-	public function delete(Basico_Model_FormularioRascunho $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

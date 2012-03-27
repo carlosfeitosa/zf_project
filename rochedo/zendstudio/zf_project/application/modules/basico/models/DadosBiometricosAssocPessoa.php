@@ -256,6 +256,6 @@ class Basico_Model_DadosBiometricosAssocPessoa extends Basico_AbstractModel_Roch
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_DadosBiometricosAssocPessoaMapper);
+		return parent::getMapper('Basico_Model_DadosBiometricosAssocPessoaMapper');
 	} 
 }

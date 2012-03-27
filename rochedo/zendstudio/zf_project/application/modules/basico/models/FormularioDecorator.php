@@ -187,6 +187,6 @@ class Basico_Model_FormularioDecorator extends Basico_AbstractModel_RochedoPersi
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioDecoratorMapper);
+		return parent::getMapper('Basico_Model_FormularioDecoratorMapper');
 	}
 }

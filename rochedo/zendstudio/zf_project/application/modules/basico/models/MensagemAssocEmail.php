@@ -56,6 +56,6 @@ class Basico_Model_MensagemAssocEmail extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getMapper()
 	{
-		return  parent::getMapper(Basico_Model_MensagemAssocEmailMapper);
+		return  parent::getMapper('Basico_Model_MensagemAssocEmailMapper');
 	}
 }

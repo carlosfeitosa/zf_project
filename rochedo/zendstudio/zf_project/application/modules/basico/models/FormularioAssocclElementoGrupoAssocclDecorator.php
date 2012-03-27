@@ -121,6 +121,6 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator extends Basico
     */
     public function getMapper()
     {
-        return parent::getMapper(Basico_Model_DecoratorAssocclIncludeMapper);
+        return parent::getMapper('Basico_Model_DecoratorAssocclIncludeMapper');
     }
  }

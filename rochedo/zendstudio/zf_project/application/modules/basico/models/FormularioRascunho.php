@@ -439,6 +439,6 @@ class Basico_Model_FormularioRascunho extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioRascunhoMapper);
+		return parent::getMapper('Basico_Model_FormularioRascunhoMapper');
 	}	
 }

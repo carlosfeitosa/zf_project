@@ -213,6 +213,6 @@ class Basico_Model_MensagemAssocEmailAssocDados extends Basico_AbstractModel_Roc
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_MensagemAssocEmailAssocDadosMapper);
+		return parent::getMapper('Basico_Model_MensagemAssocEmailAssocDadosMapper');
 	}
 }

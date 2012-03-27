@@ -83,7 +83,7 @@ class Basico_Model_FormularioRascunhoAssocagGrupo extends Basico_AbstractModel_R
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioRascunhoAssocagGrupoMapper);
+		return parent::getMapper('Basico_Model_FormularioRascunhoAssocagGrupoMapper');
 	}
 
 }

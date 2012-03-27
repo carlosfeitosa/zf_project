@@ -238,6 +238,6 @@ class Basico_Model_MensagemTemplate extends Basico_AbstractModel_RochedoPersiste
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_MensagemTemplateMapper);
+		return parent::getMapper('Basico_Model_MensagemTemplateMapper');
 	}
 }

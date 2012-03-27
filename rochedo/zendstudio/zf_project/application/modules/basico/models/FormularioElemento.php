@@ -500,6 +500,6 @@ class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioElementoMapper);
+		return parent::getMapper('Basico_Model_FormularioElementoMapper');
 	} 
 }

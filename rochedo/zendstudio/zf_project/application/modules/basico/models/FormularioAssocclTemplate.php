@@ -97,6 +97,6 @@ class Basico_Model_FormularioAssocclTemplate extends Basico_AbstractModel_Roched
     */
     public function getMapper()
     {
-        return parent::getMapper(Basico_Model_FormularioAssocclTemplateMapper);
+        return parent::getMapper('Basico_Model_FormularioAssocclTemplateMapper');
     }
 }

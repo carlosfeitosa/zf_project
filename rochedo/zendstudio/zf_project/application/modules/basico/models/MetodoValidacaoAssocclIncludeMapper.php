@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_MetodoValidacaoAssocclInclude
  * @subpackage Model
  */
-class Basico_Model_MetodoValidacaoAssocclIncludeMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_MetodoValidacaoAssocclIncludeMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,9 +17,9 @@ class Basico_Model_MetodoValidacaoAssocclIncludeMapper extends Abstract_RochedoM
      * 
      * @return Basico_Model_DbTable_MetodoValidacaoAssocclInclude
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_MetodoValidacaoAssocclInclude')
     {
-        return parent::getDbTable('Basico_Model_DbTable_MetodoValidacaoAssocclInclude');
+        return parent::getDbTable($dbTable);
     }
 
     /**
@@ -30,7 +30,7 @@ class Basico_Model_MetodoValidacaoAssocclIncludeMapper extends Abstract_RochedoM
      * 
      * @return void
      */
-    public function find($id, Basico_Model_MetodoValidacaoAssocclInclude $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -100,7 +100,7 @@ class Basico_Model_MetodoValidacaoAssocclIncludeMapper extends Abstract_RochedoM
      * 
      * @return void
      */
-    public function save(Basico_Model_MetodoValidacaoAssocclInclude $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
 			          'id_metodo_validacao'         => $object->getIdMetodoValidacao(),
@@ -125,7 +125,7 @@ class Basico_Model_MetodoValidacaoAssocclIncludeMapper extends Abstract_RochedoM
 	* 
 	* @return void
 	*/
-	public function delete(Basico_Model_MetodoValidacaoAssocclInclude $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}	

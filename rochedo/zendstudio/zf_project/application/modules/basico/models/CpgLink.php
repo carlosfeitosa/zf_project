@@ -216,6 +216,6 @@ class Basico_Model_CpgLink extends Basico_AbstractModel_RochedoPersistentModeloD
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_PessoaMapper);
+		return parent::getMapper('Basico_Model_PessoaMapper');
 	}
 }

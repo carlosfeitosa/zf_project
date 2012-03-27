@@ -30,7 +30,7 @@ class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Basico_
      * 
      * @return void
      */
-    public function find($id, Basico_Model_FormularioAssocclElementoAssocclInclude $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -100,7 +100,7 @@ class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Basico_
      * 
      * @return void
      */
-    public function save(Basico_Model_FormularioAssocclElementoAssocclInclude $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
         			  'id_assoccl_elemento' => $object->getIdAssocclElemento(),
@@ -125,7 +125,7 @@ class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Basico_
 	* 
 	* @return void
 	*/
-	public function delete(Basico_Model_FormularioAssocclElementoAssocclInclude $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

@@ -187,6 +187,6 @@ class Basico_Model_Filter extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FilterMapper);
+		return parent::getMapper('Basico_Model_FilterMapper');
 	}
 }

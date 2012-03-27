@@ -121,6 +121,6 @@ class Basico_Model_FormularioAssocclInclude extends Basico_AbstractModel_Rochedo
     */
     public function getMapper()
     {
-        return parent::getMapper(Basico_Model_FormularioAssocclIncludeMapper);
+        return parent::getMapper('Basico_Model_FormularioAssocclIncludeMapper');
     }
 }
