@@ -225,6 +225,6 @@ class Basico_Model_AcaoAplicacaoAssocVisao extends Basico_AbstractModel_RochedoP
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AcaoAplicacaoAssocVisaoMapper);
+		return parent::getMapper('Basico_Model_AcaoAplicacaoAssocVisaoMapper');
 	}
 }

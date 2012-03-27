@@ -13,31 +13,8 @@
  * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacao
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper
+class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -45,55 +22,19 @@ class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacao')
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacao');
-        }
-        return $this->_dbTable;
+       return parent::getDbTable($dbTable);
     }
     
-    /**
-     * Save a LearningBasket entry
-     * 
-     * @param  Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object
-     * @return void
-     */
-    public function save(Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object)
-    {
-        $data = array(
-                'id_acao_aplicacao'   => $object->getAcaoAplicacao(),
-                'id_metodo_validacao' => $object->getMetodoValidacao(),
-        		'id_perfil'           => $object->getPerfil(),
-        		'rowinfo'             => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-    * Delete a AcaoAplicacaoAssocclMetodoValidacao entry
-    * @param Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object
-    * @return void
-    */
-    public function delete(Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
-
-    /**
+	/**
      * Find a LearningBasket entry by id
      * 
      * @param  int $id 
      * @param  Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object 
      * @return void
      */
-    public function find($id, Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -151,5 +92,38 @@ class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper
             $entries[] = $entry;
         }
         return $entries;
+    }
+    
+    /**
+     * Save a LearningBasket entry
+     * 
+     * @param  Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+                'id_acao_aplicacao'   => $object->getAcaoAplicacao(),
+                'id_metodo_validacao' => $object->getMetodoValidacao(),
+        		'id_perfil'           => $object->getPerfil(),
+        		'rowinfo'             => $object->getRowinfo(),
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+    /**
+    * Delete a AcaoAplicacaoAssocclMetodoValidacao entry
+    * @param Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object
+    * @return void
+    */
+    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $object->id));
     }
 }

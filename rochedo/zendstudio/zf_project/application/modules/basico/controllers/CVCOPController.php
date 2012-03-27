@@ -78,7 +78,7 @@ class Basico_OPController_CVCOPController
 	private function retornaNovoObjetoCVC()
 	{
 		// retornando um modelo vazio
-		return new Basico_Model_CVC();
+		return new Basico_Model_CvcCvc();
 	}
 
     /**
@@ -108,7 +108,7 @@ class Basico_OPController_CVCOPController
     private function retornaObjUltimaVersao($idCategoriaChaveEstrangeira, $idGenerico)
     {
     	// recuperando a tupla
-    	$arrayObjsCVC = $this->_cvc->getMapper()->fetchList("id_categoria_chave_estrangeira = {$idCategoriaChaveEstrangeira} and id_generico = {$idGenerico} and validade_termino is null", null, 1, 0);
+    	$arrayObjsCVC = $this->_cvc->getMapper()->fetchList("id_assoc_chave_estrangeira = {$idCategoriaChaveEstrangeira} and id_generico = {$idGenerico} and validade_termino is null", null, 1, 0);
     	
     	// verificando se a tupla existe
     	if (isset($arrayObjsCVC[0]))
@@ -132,7 +132,7 @@ class Basico_OPController_CVCOPController
     	// codificando objeto para comparacao
     	$objetoCodificado = Basico_OPController_UtilOPController::codificar($objeto);
     	// recuperando id da relacao de categoria chave estrangeira
-    	$categoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
+    	$categoriaChaveEstrangeira = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
     	// recuperando id generico do objeto
     	$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
     	
@@ -235,7 +235,7 @@ class Basico_OPController_CVCOPController
     public function versionar($objeto)
     {
     	// instanciando controladores
-    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
     	// instanciando o modelo de CVC
     	$modelCVC = $this->retornaNovoObjetoCVC();
 
@@ -243,11 +243,13 @@ class Basico_OPController_CVCOPController
     	$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
 
     	// preenchendo informacoes sobre o versionamento
-    	$modelCVC->categoriaChaveEstrangeira = $objCategoriaChaveEstrangeira->id;
-    	$modelCVC->idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
-    	$modelCVC->objeto = $objeto;
-    	$modelCVC->checksum = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
-
+    	$modelCVC->idAssocChaveEstrangeira   = $objCategoriaChaveEstrangeira->id;
+    	$modelCVC->idGenerico 			     = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
+    	$modelCVC->objeto 				     = $objeto;
+    	$modelCVC->checksum 			     = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
+		$modelCVC->datahoraCriacao		     = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+		$modelCVC->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+		
     	// recuperando versao
     	$versao = $this->retornaUltimaVersao($objeto);
 
@@ -257,7 +259,7 @@ class Basico_OPController_CVCOPController
 	    		// incrementando a versao
 	    		$versao++;
 	    		// retornando objeto CVC da ultima versao
-	    		$objCVC = self::retornaObjUltimaVersao($modelCVC->categoriaChaveEstrangeira, $modelCVC->idGenerico);
+	    		$objCVC = self::retornaObjUltimaVersao($modelCVC->idAssocChaveEstrangeira, $modelCVC->idGenerico);
 	    		// fechando a ultima versao
 	    		self::fechaValidadeVersao($objCVC);
     		} else 
@@ -307,7 +309,7 @@ class Basico_OPController_CVCOPController
 
     	// atualizando a versao
     	$objUltimaVersao->versao++;
-    	$objUltimaVersao->ultimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+    	$objUltimaVersao->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
     	$objUltimaVersao->objeto = $objeto;
     	$objUltimaVersao->checksum = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
 
@@ -524,7 +526,7 @@ class Basico_OPController_CVCOPController
 		$arrayResultado = array();
 
 		// adicionando objetos
-		$arrayResultado[] = 'Basico_Model_CVC';
+		$arrayResultado[] = 'Basico_Model_CvcCvc';
 		$arrayResultado[] = 'Basico_Model_Log';
 		$arrayResultado[] = 'Basico_Model_CpgToken';
 

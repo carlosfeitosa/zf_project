@@ -186,6 +186,6 @@ class Basico_Model_AcaoEvento extends Basico_AbstractModel_RochedoPersistentMode
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AcaoEventoMapper);
+		return parent::getMapper('Basico_Model_AcaoEventoMapper');
 	}
 }

@@ -261,6 +261,6 @@ class Basico_Model_CvcCvc extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_CvcCvcMapper);
+		return parent::getMapper('Basico_Model_CvcCvcMapper');
 	}	
 }

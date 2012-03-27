@@ -160,6 +160,6 @@ class Basico_Model_DicionarioExpressao extends Basico_AbstractModel_RochedoPersi
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_DicionarioExpressaoMapper);
+		return parent::getMapper('Basico_Model_DicionarioExpressaoMapper');
 	}
 }

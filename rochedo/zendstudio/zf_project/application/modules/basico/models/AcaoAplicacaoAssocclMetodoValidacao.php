@@ -130,6 +130,6 @@ class Basico_Model_AcaoAplicacaoAssocclMetodoValidacao extends Basico_AbstractMo
     */
     public function getMapper()
     {
-    	return parent::getMapper(Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper);
+    	return parent::getMapper('Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper');
     }
 }
