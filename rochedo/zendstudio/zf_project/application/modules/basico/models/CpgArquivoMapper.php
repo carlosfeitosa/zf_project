@@ -17,9 +17,9 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
      * 
      * @return Basico_Model_DbTable_CpgArquivo
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_CpgArquivo')
     {
-        return parent::getDbTable('Basico_Model_DbTable_CpgArquivo');
+        return parent::getDbTable($dbTable);
     }
 
     /**
@@ -30,7 +30,7 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
      * 
      * @return void
      */
-    public function find($id, Basico_Model_CpgArquivo $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -133,7 +133,7 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
      * 
      * @return void
      */
-    public function save(Basico_Model_CpgArquivo $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
         			  'id_categoria' => $object->getIdCategoria(),
@@ -169,7 +169,7 @@ class Basico_Model_CpgArquivoMapper extends Abstract_RochedoMapper implements Ba
 	* 
 	* @return void
 	*/
-	public function delete(Basico_Model_CpgArquivo $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

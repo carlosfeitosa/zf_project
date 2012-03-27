@@ -72,6 +72,6 @@ class Basico_Model_AssocclPessoaPerfilAssocDados extends Basico_AbstractModel_Ro
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AssocclPessoaPerfilAssocDadosMapper);
+		return parent::getMapper('Basico_Model_AssocclPessoaPerfilAssocDadosMapper');
 	}
 }

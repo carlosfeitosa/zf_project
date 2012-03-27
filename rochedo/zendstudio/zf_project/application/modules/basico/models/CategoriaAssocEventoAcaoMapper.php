@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_CategoriaAssocEventoAcao
  * @subpackage Model
  */
-class Basico_Model_CategoriaAssocEventoAcaoMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_CategoriaAssocEventoAcaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,55 +17,19 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper extends Abstract_RochedoMapper
      * 
      * @return Basico_Model_DbTable_CategoriaAssocEventoAcao
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_CategoriaAssocEventoAcao')
     {
-        return parent::getDbTable('Basico_Model_DbTable_CategoriaAssocEventoAcao');
-    }
-    
-    /**
-     * Save a AcaoEvento entry
-     * 
-     * @param  Basico_Model_CategoriaAssocEventoAcao $object
-     * @return void
-     */
-    public function save(Basico_Model_CategoriaAssocEventoAcao $object)
-    {
-        $data = array(
-        		'id_categoria'		=> $object->getIdCategoria(),
-				'tag_abertura'		=> $object->getTagAbertura(),
-				'tag_fechamento'	=> $object->getTagFechamento(),
-        		'delimitador'		=> $object->getDelimitador(),
-				'datahora_criacao'	=> $object->getDatahoraCriacao(),
-                'rowinfo'			=> $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+        return parent::getDbTable($dbTable);
     }
     
 	/**
-	* Delete a CategoriaAssocEventoAcao entry
-	* @param Basico_Model_CategoriaAssocEventoAcao $object
-	* @return void
-	*/
-	public function delete(Basico_Model_CategoriaAssocEventoAcao $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a CategoriaAssocEventoAcao entry by id
      * 
      * @param  int $id 
      * @param  Basico_Model_CategoriaAssocEventoAcao $object 
      * @return void
      */
-    public function find($id, Basico_Model_CategoriaAssocEventoAcao $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -129,5 +93,41 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper extends Abstract_RochedoMapper
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+    
+    /**
+     * Save a AcaoEvento entry
+     * 
+     * @param  Basico_Model_CategoriaAssocEventoAcao $object
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+        		'id_categoria'		=> $object->getIdCategoria(),
+				'tag_abertura'		=> $object->getTagAbertura(),
+				'tag_fechamento'	=> $object->getTagFechamento(),
+        		'delimitador'		=> $object->getDelimitador(),
+				'datahora_criacao'	=> $object->getDatahoraCriacao(),
+                'rowinfo'			=> $object->getRowinfo(),
+
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a CategoriaAssocEventoAcao entry
+	* @param Basico_Model_CategoriaAssocEventoAcao $object
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

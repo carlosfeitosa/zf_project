@@ -134,6 +134,6 @@ class Basico_Model_AjudaAssocclLink extends Basico_AbstractModel_RochedoPersiste
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AjudaAssocclLinkMapper);
+		return parent::getMapper('Basico_Model_AjudaAssocclLinkMapper');
 	}	
 }

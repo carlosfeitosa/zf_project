@@ -133,6 +133,6 @@ class Basico_Model_ComponenteAssocclInclude extends Basico_AbstractModel_Rochedo
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_ComponenteAssocclIncludeMapper);
+		return parent::getMapper('Basico_Model_ComponenteAssocclIncludeMapper');
 	}
 }         

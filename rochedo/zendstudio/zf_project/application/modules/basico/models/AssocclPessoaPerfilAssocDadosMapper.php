@@ -5,31 +5,8 @@
  * @uses       Basico_Model_DbTable_AssocclPessoaPerfilAssocDados
  * @subpackage Model
  */
-class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_AssocclPessoaPerfilAssocDadosMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -37,53 +14,19 @@ class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Abstract_RochedoM
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_AssocclPessoaPerfilAssocDados')
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_AssocclPessoaPerfilAssocDados');
-        }
-        return $this->_dbTable;
-    }
-
-    /**
-     * Save a AssocclPessoaPerfilAssocDados entry
-     * 
-     * @param  Basico_Model_AssocclPessoaPerfilAssocDados $object
-     * @return void
-     */
-    public function save(Basico_Model_AssocclPessoaPerfilAssocDados $object)
-    {
-        $data = array(
-			'id_assoccl_pessoa_perfil'  => $object->getIdAssocclPessoaPerfil(),		
-        	'assinatura_mensagem_email' => $object->getAssinaturaMensagemEmail(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+        return parent::getDbTable($dbTable);
     }
 
 	/**
-	* Delete a AssocclPessoaPerfilAssocDados entry
-	* @param Basico_Model_AssocclPessoaPerfilAssocDados $object
-	* @return void
-	*/
-	public function delete(Basico_Model_DadosPessoasPerfis $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
      * Find a AssocclPessoaPerfilAssocDados entry by id
      * 
      * @param  int $id 
      * @param  Basico_Model_AssocclPessoaPerfilAssocDados $object 
      * @return void
      */
-    public function find($id, Basico_Model_AssocclPessoaPerfilAssocDados $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -135,5 +78,36 @@ class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Abstract_RochedoM
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+    
+    /**
+     * Save a AssocclPessoaPerfilAssocDados entry
+     * 
+     * @param  Basico_Model_AssocclPessoaPerfilAssocDados $object
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+			'id_assoccl_pessoa_perfil'  => $object->getIdAssocclPessoaPerfil(),		
+        	'assinatura_mensagem_email' => $object->getAssinaturaMensagemEmail(),
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+
+	/**
+	* Delete a AssocclPessoaPerfilAssocDados entry
+	* @param Basico_Model_AssocclPessoaPerfilAssocDados $object
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

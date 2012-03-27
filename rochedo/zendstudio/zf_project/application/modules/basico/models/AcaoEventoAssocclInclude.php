@@ -98,6 +98,6 @@ class Basico_Model_AcaoEventoAssocclInclude extends Basico_AbstractModel_Rochedo
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AcaoEventoAssocclInclude);
+		return parent::getMapper('Basico_Model_AcaoEventoAssocclInclude');
 	}
 }

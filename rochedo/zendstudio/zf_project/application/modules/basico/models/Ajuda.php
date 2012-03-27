@@ -213,6 +213,6 @@ class Basico_Model_Ajuda extends Basico_AbstractModel_RochedoPersistentModeloDad
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AjudaMapper);
+		return parent::getMapper('Basico_Model_AjudaMapper');
 	}
 }

@@ -123,6 +123,6 @@ class Basico_Model_CategoriaAssocEventoAcao extends Basico_AbstractModel_Rochedo
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_CategoriaAssocEventoAcao);
+		return parent::getMapper('Basico_Model_CategoriaAssocEventoAcao');
 	}
 }

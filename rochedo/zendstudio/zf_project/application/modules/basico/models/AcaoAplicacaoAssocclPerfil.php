@@ -99,6 +99,6 @@ class Basico_Model_AcaoAplicacaoAssocclPerfil extends Basico_AbstractModel_Roche
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AcaoAplicacaoAssocclPerfilMapper);
+		return parent::getMapper('Basico_Model_AcaoAplicacaoAssocclPerfilMapper');
 	}    
 }

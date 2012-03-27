@@ -317,6 +317,6 @@ class Basico_Model_ContatoCpgEmail extends Basico_AbstractModel_RochedoPersisten
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_ContatoCpgEmailMapper);
+		return parent::getMapper('Basico_Model_ContatoCpgEmailMapper');
 	}
 }

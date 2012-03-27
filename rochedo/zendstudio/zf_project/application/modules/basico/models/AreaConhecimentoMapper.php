@@ -8,31 +8,8 @@
  * @uses       Basico_Model_DbTable_AreaConhecimento
  * @subpackage Model
  */
-class Basico_Model_AreaConhecimentoMapper
-{
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_AreaConhecimentoMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
+class Basico_Model_AreaConhecimentoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+{   
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -40,52 +17,11 @@ class Basico_Model_AreaConhecimentoMapper
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_AreaConhecimento')
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_AreaConhecimento');
-        }
-        return $this->_dbTable;
+       return parent::getDbTable($dbTable);
     }
     
-    /**
-     * Save a AreaConhecimento entry
-     * 
-     * @param  Basico_Model_AreaConhecimento $object
-     * @return void
-     */
-    public function save(Basico_Model_AreaConhecimento $object)
-    {
-        $data = array(
-				'nome'   => $object->getNome(),
-				'descricao'   => $object->getDescricao(),
-				'codigo'   => $object->getCodigo(),
-				'data_criacao'   => $object->getDataCriacao(),
-				'data_ultima_modificacao'   => $object->getDataUltimaModificacao(),
-			        'categoria'           => $object->getCategoria(),
-			        'area_conhecimento'   => $object->getAreaConhecimento(),
-			        'rowinfo'   	      => $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a AreaConhecimento entry
-	* @param Basico_Model_AreaConhecimento $object
-	* @return void
-	*/
-	public function delete(Basico_Model_AreaConhecimento $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
     /**
      * Find a AreaConhecimento entry by id
      * 
@@ -93,7 +29,7 @@ class Basico_Model_AreaConhecimentoMapper
      * @param  Basico_Model_AreaConhecimento $object 
      * @return void
      */
-    public function find($id, Basico_Model_AreaConhecimento $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -164,5 +100,43 @@ class Basico_Model_AreaConhecimentoMapper
 		}
 		return $entries;
 	}
+    
+    
+    /**
+     * Save a AreaConhecimento entry
+     * 
+     * @param  Basico_Model_AreaConhecimento $object
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+				'nome'   				  => $object->getNome(),
+				'descricao'   			  => $object->getDescricao(),
+				'codigo'   				  => $object->getCodigo(),
+				'data_criacao'            => $object->getDataCriacao(),
+				'data_ultima_modificacao' => $object->getDataUltimaModificacao(),
+			    'id_categoria'            => $object->getCategoria(),
+			    'area_conhecimento'       => $object->getAreaConhecimento(),
+			    'rowinfo'   	          => $object->getRowinfo(),
 
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a AreaConhecimento entry
+	* @param Basico_Model_AreaConhecimento $object
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+	}
 }

@@ -226,6 +226,6 @@ class Basico_Model_Componente extends Basico_AbstractModel_RochedoPersistentMode
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_ComponenteMapper);
+		return parent::getMapper('Basico_Model_ComponenteMapper');
 	}
 }

@@ -71,6 +71,6 @@ class Basico_Model_AssocChaveEstrangeiraRelacao extends Basico_AbstractModel_Roc
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_AssocChaveEstrangeiraRelacaoMapper);
+		return parent::getMapper('Basico_Model_AssocChaveEstrangeiraRelacaoMapper');
 	}
 }
