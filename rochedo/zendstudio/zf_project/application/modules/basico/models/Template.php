@@ -221,6 +221,6 @@ class Basico_Model_Template extends Basico_AbstractModel_RochedoPersistentModelo
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_TemplateMapper);
+		return parent::getMapper('Basico_Model_TemplateMapper');
 	}
 }

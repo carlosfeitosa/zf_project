@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Sequencia
  * @subpackage Model
  */
-class Basico_Model_SequenciaMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_SequenciaMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,9 +17,9 @@ class Basico_Model_SequenciaMapper extends Abstract_RochedoMapper implements Bas
      * 
      * @return Basico_Model_DbTable_Sequencia
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_Sequencia')
     {
-        return parent::getDbTable('Basico_Model_DbTable_Sequencia');
+        return parent::getDbTable($dbTable);
     }
 
     /**
@@ -30,7 +30,7 @@ class Basico_Model_SequenciaMapper extends Abstract_RochedoMapper implements Bas
      * 
      * @return void
      */
-    public function find($id, Basico_Model_Sequencia $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -109,7 +109,7 @@ class Basico_Model_SequenciaMapper extends Abstract_RochedoMapper implements Bas
      * 
      * @return void
      */
-    public function save(Basico_Model_Sequencia $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
         			  'id_categoria' => $object->getIdCategoria(),
@@ -137,7 +137,7 @@ class Basico_Model_SequenciaMapper extends Abstract_RochedoMapper implements Bas
 	* 
 	* @return void
 	*/
-	public function delete(Basico_Model_Sequencia $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

@@ -164,6 +164,6 @@ class Basico_Model_Sequencia extends Basico_AbstractModel_RochedoPersistentModel
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_PessoaMapper);
+		return parent::getMapper('Basico_Model_PessoaMapper');
 	}
 }

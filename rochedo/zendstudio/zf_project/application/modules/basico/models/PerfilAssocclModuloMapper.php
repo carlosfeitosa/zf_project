@@ -17,9 +17,9 @@ class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper impl
      * 
      * @return Basico_Model_DbTable_PerfilAssocclModulo
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_PerfilAssocclModulo')
     {
-        return parent::getDbTable('Basico_Model_DbTable_PerfilAssocclModulo');
+        return parent::getDbTable($dbTable);
     }
 
     /**
@@ -29,7 +29,7 @@ class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper impl
      * @param  Basico_Model_PerfilAssocclModulo $object 
      * @return void
      */
-    public function find($id, Basico_Model_PerfilAssocclModulo $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -95,7 +95,7 @@ class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper impl
      * @param  Basico_Model_PerfilAssocclModulo $object
      * @return void
      */
-    public function save(Basico_Model_PerfilAssocclModulo $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
                       'id_modulo' => $object->getModulo(),
@@ -118,7 +118,7 @@ class Basico_Model_PerfilAssocclModuloMapper extends Abstract_RochedoMapper impl
     * @param Basico_Model_PerfilAssocclModulo $object
     * @return void
     */
-    public function delete(Basico_Model_PerfilAssocclModulo $object)
+    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }

@@ -450,6 +450,6 @@ class Basico_Model_PessoaLogin extends Basico_AbstractModel_RochedoPersistentMod
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_PessoaLoginMapper);
+		return parent::getMapper('Basico_Model_PessoaLoginMapper');
 	}
 }

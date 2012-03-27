@@ -191,6 +191,6 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_ValidatorMapper);
+		return parent::getMapper('Basico_Model_ValidatorMapper');
 	}
 }

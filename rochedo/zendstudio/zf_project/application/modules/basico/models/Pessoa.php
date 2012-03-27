@@ -265,6 +265,6 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_PessoaMapper);
+		return parent::getMapper('Basico_Model_PessoaMapper');
 	}
 }

@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_PessoaLogin
  * @subpackage Model
  */
-class Basico_Model_PessoaLoginMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,61 +17,10 @@ class Basico_Model_PessoaLoginMapper extends Abstract_RochedoMapper implements B
      * 
      * @return Basico_Model_DbTable_PessoaLogin
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_PessoaLogin')
     {
-        return parent::getDbTable('Basico_Model_DbTable_PessoaLogin');
+        return parent::getDbTable($dbTable);
     }
-    
-    /**
-     * Save a Login entry
-     * 
-     * @param  Basico_Model_PessoaLogin $object
-     * 
-     * @return void
-     */
-    public function save(Basico_Model_PessoaLogin $object)
-    {
-        $data = array(
-                      'id_pessoa'                       => $object->getIdPessoa(),
-    				  'login'                           => $object->getLogin(),
-    				  'senha'                           => $object->getSenha(),
-    				  'ativo'                           => $object->getAtivo(),
-    				  'tentativas_falhas'               => $object->getTentativasFalhas(),
-    				  'travado'                         => $object->getTravado(),
-    				  'resetado'  				        => $object->getResetado(),
-    				  'datahora_ultimo_logon'           => $object->getDataHoraUltimoLogon(),
-    				  'pode_expirar'  			        => $object->getPodeExpirar(),
-    				  'datahora_proxima_expiracao'      => $object->getDataHoraProximaExpiracao(),
-    				  'datahora_ultima_expiracao'       => $object->getDataHoraUltimaExpiracao(),
-        			  'datahora_expiracao_senha'        => $object->getDataHoraExpiracaoSenha(),
-                      'datahora_ultima_tentativa_falha' => $object->getDataHoraUltimaTentativaFalha(),
-                      'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
-                      'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
-        			  'datahora_aceite_termo_uso'      => $object->getDataHoraAceiteTermoUso(),
-        			  'datahora_criacao'				=> $object->getDataHoraCriacao(),
-        			  'datahora_ultima_atualizacao'     => $object->getDataHoraUltimaAtualizacao(),
-                      'rowinfo'                    => $object->getRowinfo(),
-                    );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a Login entry
-	* 
-	* @param Basico_Model_PessoaLogin $object
-	* 
-	* @return void
-	*/
-	public function delete(Basico_Model_Login $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
 
     /**
      * Find a Login entry by id
@@ -81,7 +30,7 @@ class Basico_Model_PessoaLoginMapper extends Abstract_RochedoMapper implements B
      * 
      * @return void
      */
-    public function find($id, Basico_Model_Login $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -184,5 +133,56 @@ class Basico_Model_PessoaLoginMapper extends Abstract_RochedoMapper implements B
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+
+    /**
+     * Save a Login entry
+     * 
+     * @param  Basico_Model_PessoaLogin $object
+     * 
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+                      'id_pessoa'                       => $object->getIdPessoa(),
+    				  'login'                           => $object->getLogin(),
+    				  'senha'                           => $object->getSenha(),
+    				  'ativo'                           => $object->getAtivo(),
+    				  'tentativas_falhas'               => $object->getTentativasFalhas(),
+    				  'travado'                         => $object->getTravado(),
+    				  'resetado'  				        => $object->getResetado(),
+    				  'datahora_ultimo_logon'           => $object->getDataHoraUltimoLogon(),
+    				  'pode_expirar'  			        => $object->getPodeExpirar(),
+    				  'datahora_proxima_expiracao'      => $object->getDataHoraProximaExpiracao(),
+    				  'datahora_ultima_expiracao'       => $object->getDataHoraUltimaExpiracao(),
+        			  'datahora_expiracao_senha'        => $object->getDataHoraExpiracaoSenha(),
+                      'datahora_ultima_tentativa_falha' => $object->getDataHoraUltimaTentativaFalha(),
+                      'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
+                      'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
+        			  'datahora_aceite_termo_uso'      => $object->getDataHoraAceiteTermoUso(),
+        			  'datahora_criacao'				=> $object->getDataHoraCriacao(),
+        			  'datahora_ultima_atualizacao'     => $object->getDataHoraUltimaAtualizacao(),
+                      'rowinfo'                    => $object->getRowinfo(),
+                    );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a Login entry
+	* 
+	* @param Basico_Model_PessoaLogin $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

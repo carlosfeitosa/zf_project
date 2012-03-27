@@ -187,6 +187,6 @@ class Basico_Model_Output extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_OutputMapper);
+		return parent::getMapper('Basico_Model_OutputMapper');
 	}
 }

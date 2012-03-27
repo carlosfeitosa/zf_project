@@ -232,6 +232,6 @@ class Basico_Model_Perfil extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_PerfilMapper);
+		return parent::getMapper('Basico_Model_PerfilMapper');
 	}
 }

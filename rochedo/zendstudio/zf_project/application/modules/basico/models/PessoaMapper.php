@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Pessoa
  * @subpackage Model
  */
-class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,9 +17,9 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Basico
      * 
      * @return Basico_Model_DbTable_Pessoa
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_Pessoa')
     {
-        return parent::getDbTable('Basico_Model_DbTable_Pessoa');
+        return parent::getDbTable($dbTable);
     }
 
     /**
@@ -30,7 +30,7 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Basico
      * 
      * @return void
      */
-    public function find($id, Basico_Model_Pessoa $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -112,7 +112,7 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Basico
      * 
      * @return void
      */
-    public function save(Basico_Model_Pessoa $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
         			  'id_perfil_padrao' => $object->getIdPerfilPadrao(),
@@ -141,7 +141,7 @@ class Basico_Model_PessoaMapper extends Abstract_RochedoMapper implements Basico
 	* 
 	* @return void
 	*/
-	public function delete(Basico_Model_Pessoa $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

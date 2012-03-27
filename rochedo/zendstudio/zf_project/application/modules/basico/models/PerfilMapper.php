@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Perfil
  * @subpackage Model
  */
-class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia 
+class Basico_Model_PerfilMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia 
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,52 +17,10 @@ class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Basico
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_Perfil')
     {
-    	return parent::getDbTable('Basico_Model_DbTable_Perfil');
+    	return parent::getDbTable($dbTable);
     }
-    
-    /**
-     * Save a Perfil entry
-     * 
-     * @param  Basico_Model_Perfil $object
-     * 
-     * @return void
-     */
-    public function save(Basico_Model_Perfil $object)
-    {
-        $data = array(
-        		'id_categoria'                => $object->getIdCategoria(),
-        		'id_modulo'	 	              => $object->getIdModulo(),
-				'nome'                        => $object->getNome(),
-        		'constante_textual'           => $object->getConstanteTextual(),
-				'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-        		'ativo'                       => $object->getAtivo(),
-        		'prioridade'				  => $object->getPrioridade(),
-        		'data_criacao'				  => $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-				'rowinfo'					  => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a Perfil entry
-	* 
-	* @param Basico_Model_Perfil $object
-	* 
-	* @return void
-	*/
-	public function delete(Basico_Model_Perfil $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
 
     /**
      * Find a Perfil entry by id
@@ -72,7 +30,7 @@ class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Basico
      * 
      * @return void
      */
-    public function find($id, Basico_Model_Perfil $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -148,5 +106,47 @@ class Basico_Model_PerfilMapper extends Abstract_RochedoMapper implements Basico
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+
+    /**
+     * Save a Perfil entry
+     * 
+     * @param  Basico_Model_Perfil $object
+     * 
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+        		'id_categoria'                => $object->getIdCategoria(),
+        		'id_modulo'	 	              => $object->getIdModulo(),
+				'nome'                        => $object->getNome(),
+        		'constante_textual'           => $object->getConstanteTextual(),
+				'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
+        		'ativo'                       => $object->getAtivo(),
+        		'prioridade'				  => $object->getPrioridade(),
+        		'data_criacao'				  => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+				'rowinfo'					  => $object->getRowinfo(),
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a Perfil entry
+	* 
+	* @param Basico_Model_Perfil $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

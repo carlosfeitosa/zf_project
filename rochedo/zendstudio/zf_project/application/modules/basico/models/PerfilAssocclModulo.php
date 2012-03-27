@@ -93,6 +93,6 @@ class Basico_Model_PerfilAssocclModulo extends Basico_AbstractModel_RochedoPersi
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_PerfilAssocclModuloMapper);
+		return parent::getMapper('Basico_Model_PerfilAssocclModuloMapper');
 	}	
 }

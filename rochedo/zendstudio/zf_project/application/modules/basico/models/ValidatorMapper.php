@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Validator
  * @subpackage Model
  */
-class Basico_Model_ValidatorMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_ValidatorMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,49 +17,10 @@ class Basico_Model_ValidatorMapper extends Abstract_RochedoMapper implements Bas
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_Validator')
     {
-    	return parent::getDbTable('Basico_Model_DbTable_Validator');
+    	return parent::getDbTable($dbTable);
     }
-    
-    /**
-     * Save a FormularioElementoValidator entry
-     * 
-     * @param  Basico_Model_Validator $object
-     * @return void
-     */
-    public function save(Basico_Model_Validator $object)
-    {
-        $data = array(
-				'id_categoria'   				=> $object->getIdCategoria(),
-        		'nome'							=> $object->getNome(),
-				'constante_textual'   			=> $object->getConstanteTextual(),
-        		'constante_textual_descricao'   => $object->getConstanteTextualDescricao(),
-				'validator'   					=> $object->getValidator(),
-        		'ativo'							=> $object->getAtivo(),
-        		'datahora_criacao'				=> $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
-                'rowinfo'     					=> $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-	/**
-	* Delete a Validator entry
-	* @param Basico_Model_Validator $object
-	* @return void
-	*/
-	public function delete(Basico_Model_Validator $object)
-	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
 
     /**
      * Find a Validator entry by id
@@ -69,7 +30,7 @@ class Basico_Model_ValidatorMapper extends Abstract_RochedoMapper implements Bas
      * 
      * @return void
      */
-    public function find($id, Basico_Model_Validator $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -142,5 +103,44 @@ class Basico_Model_ValidatorMapper extends Abstract_RochedoMapper implements Bas
 			$entries[] = $entry;
 		}
 		return $entries;
+	}
+
+    /**
+     * Save a FormularioElementoValidator entry
+     * 
+     * @param  Basico_Model_Validator $object
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+        $data = array(
+				'id_categoria'   				=> $object->getIdCategoria(),
+        		'nome'							=> $object->getNome(),
+				'constante_textual'   			=> $object->getConstanteTextual(),
+        		'constante_textual_descricao'   => $object->getConstanteTextualDescricao(),
+				'validator'   					=> $object->getValidator(),
+        		'ativo'							=> $object->getAtivo(),
+        		'datahora_criacao'				=> $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
+                'rowinfo'     					=> $object->getRowinfo(),
+
+        );
+
+        if (null === ($id = $object->getId())) {
+            unset($data['id']);
+            $object->setId($this->getDbTable()->insert($data));
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+    
+	/**
+	* Delete a Validator entry
+	* @param Basico_Model_Validator $object
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+    	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 }

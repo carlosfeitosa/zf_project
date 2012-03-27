@@ -246,6 +246,6 @@ class Basico_Model_PessoaAssocDados extends Basico_AbstractModel_RochedoPersiste
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_PessoaAssocDadosMapper);
+		return parent::getMapper('Basico_Model_PessoaAssocDadosMapper');
 	}
 }
