@@ -127,6 +127,6 @@ class Basico_Model_FormularioAssocclElementoAssocclInclude extends Basico_Abstra
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_FormularioAssocclElementoAssocclInclude);
+		return parent::getMapper('Basico_Model_FormularioAssocclElementoAssocclInclude');
 	}
 }

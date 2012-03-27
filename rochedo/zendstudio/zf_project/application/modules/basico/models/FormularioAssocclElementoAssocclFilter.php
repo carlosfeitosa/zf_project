@@ -147,7 +147,7 @@ class Basico_Model_FormularioAssocclElementoAssocclFilter extends Basico_Abstrac
     */
     public function getMapper()
     {
-        return parent::getMapper(Basico_Model_FormularioAssocclElementoAssocclFilterMapper);
+        return parent::getMapper('Basico_Model_FormularioAssocclElementoAssocclFilterMapper');
     }
 
 }

@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_FormularioAssocclElementoAssocclInclude
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Abstract_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Interface_RochedoMapperPersistencia
+class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPesquisa
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,9 +17,9 @@ class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Abstrac
      * 
      * @return Basico_Model_DbTable_FormularioAssocclElementoAssocclInclude
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioAssocclElementoAssocclInclude')
     {
-        return parent::getDbTable('Basico_Model_DbTable_FormularioAssocclElementoAssocclInclude');
+        return parent::getDbTable($dbTable);
     }
 
     /**
