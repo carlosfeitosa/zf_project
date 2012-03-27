@@ -56,7 +56,7 @@ class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Basico_
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new FormularioAssocclElementoAssocclInclude();
+			$entry = new Basico_Model_FormularioAssocclInclude();
 			$entry->setId($row->id)
 				->setIdAssocclElemento($row->id_assoccl_elemento)
 				->setIdInclude($row->id_include)
