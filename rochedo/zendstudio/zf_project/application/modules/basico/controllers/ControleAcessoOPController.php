@@ -163,7 +163,7 @@ class Basico_OPController_ControleAcessoOPController
 	private function carregaACLAssociacoesViaSQL(Zend_Acl &$acl)
 	{
 		// recuperando as vinculacoes entre acoes da aplicacao e perfis
-		$arrayAcoesAplicacaoPerfis = Basico_OPController_AcoesAplicacaoPerfisOPController::retornaArrayNomePerfilNomeModuloNomeControllerNomeActionTodasAcoesAplicacaoPerfisViaSQL();
+		$arrayAcoesAplicacaoPerfis = Basico_OPController_AcaoAplicacaoAssocclPerfilOPController::retornaArrayNomePerfilNomeModuloNomeControllerNomeActionTodasAcoesAplicacaoPerfisViaSQL();
 
 		// loop para carregar as associacoes
 		foreach ($arrayAcoesAplicacaoPerfis as $arrayAcaoAplicacaoPerfil) {
@@ -487,7 +487,7 @@ class Basico_OPController_ControleAcessoOPController
 													AND aa.controller = '{$nomeControllerRequest}'
 													AND aa.action = '{$nomeAcaoRequest}'
 													AND p.ativo = {$booleanTrueDB}
-													ORDER BY p.nivel DESC";
+													ORDER BY p.prioridade DESC";
 
 		// recuperando array com o resultado da query
 		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaMaiorPerfilAcaoAplicacao);
@@ -528,7 +528,7 @@ class Basico_OPController_ControleAcessoOPController
 													  AND aa.controller = '{$nomeControllerRequest}'
 													  AND aa.action = '{$nomeAcaoRequest}'
 													  AND p.ativo = {$booleanTrueDB}
-													  ORDER BY p.nivel DESC";
+													  ORDER BY p.prioridade DESC";
 
 		// recuperando array com o resultado da query
 		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaIdMaiorPerfilAcaoAplicacao);

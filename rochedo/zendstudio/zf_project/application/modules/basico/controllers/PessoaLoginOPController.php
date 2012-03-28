@@ -134,7 +134,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function apagarObjeto($objeto, $forceCascade = true, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Login', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaLogin', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -399,7 +399,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * 
 	 * @return Boolean
 	 */
-	public static function retornaLoginAtivo(Basico_Model_Login $objLogin) 
+	public static function retornaLoginAtivo(Basico_Model_PessoaLogin $objLogin) 
 	{
 		// retornando se o login esta ativo
 		return (Boolean) $objLogin->ativo;
@@ -412,10 +412,10 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * 
 	 * @return Boolean
 	 */
-	public static function retornaLoginTravado(Basico_Model_Login $objLogin)
+	public static function retornaLoginTravado(Basico_Model_PessoaLogin $objLogin)
 	{
 		// carregando a data hora da ultima tentativa de login, acrescida de uma hora
-		$dataHoraUltimaTentativaFalhaLogin = Basico_OPController_UtilOPController::retornaZend_Date($objLogin->dataHoraUltimaTentativaFalha);
+		$dataHoraUltimaTentativaFalhaLogin = Basico_OPController_UtilOPController::retornaZend_Date($objLogin->datahoraUltimaTentativaFalha);
 		$dataHoraUltimaTentativaFalhaLogin->addHour(1);
 
 		// verificando se o login esta travado
@@ -443,7 +443,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * 
 	 * @return Boolean
 	 */
-	public static function retornaLoginResetado(Basico_Model_Login $objLogin)
+	public static function retornaLoginResetado(Basico_Model_PessoaLogin $objLogin)
 	{
 		// retornando se o login esta resetado
 		return (Boolean) $objLogin->resetado;
@@ -456,10 +456,10 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * 
 	 * @return Boolean
 	 */
-	public static function retornaLoginSenhaExpirada(Basico_Model_Login $objLogin)
+	public static function retornaLoginSenhaExpirada(Basico_Model_PessoaLogin $objLogin)
 	{
 		// retornando se a senha esta expirada
-		return (($objLogin->dataHoraExpiracaoSenha) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraExpiracaoSenha) <= Basico_OPController_UtilOPController::retornaTimestamp()));
+		return (($objLogin->datahoraExpiracaoSenha) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->datahoraExpiracaoSenha) <= Basico_OPController_UtilOPController::retornaTimestamp()));
 	}
 
 	/**
@@ -485,18 +485,18 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * 
 	 * @return Boolean
 	 */
-	public static function retornaLoginExpirado(Basico_Model_Login $objLogin)
+	public static function retornaLoginExpirado(Basico_Model_PessoaLogin $objLogin)
 	{
 		// recuperando se o login pode expirar e esta expirado
-		$loginExpirado = (($objLogin->podeExpirar) and ($objLogin->dataHoraProximaExpiracao) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->dataHoraProximaExpiracao) <= Basico_OPController_UtilOPController::retornaTimestamp()));
+		$loginExpirado = (($objLogin->podeExpirar) and ($objLogin->datahoraProximaExpiracao) and (Basico_OPController_UtilOPController::retornaTimestamp($objLogin->datahoraProximaExpiracao) <= Basico_OPController_UtilOPController::retornaTimestamp()));
 
 		// verificando se o login esta expirado e se a data-hora da ultima expiracao eh igual a data-hora da proxima expiracao
-		if (($loginExpirado) and ($objLogin->dataHoraProximaExpiracao <> $objLogin->dataHoraUltimaExpiracao)) {
+		if (($loginExpirado) and ($objLogin->datahoraProximaExpiracao <> $objLogin->datahoraUltimaExpiracao)) {
 			// recuperando a versao do objeto
 			$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
 			
 			// setando a data-hora da ultima expiracao
-			$objLogin->dataHoraUltimaExpiracao = $objLogin->dataHoraProximaExpiracao;
+			$objLogin->datahoraUltimaExpiracao = $objLogin->datahoraProximaExpiracao;
 
 			// salvando o objeto
 			Basico_OPController_PessoaLoginOPController::getInstance()->salvarObjeto($objLogin, $versaoObjeto);
@@ -528,7 +528,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 
 			// incrementa a quantidade e data/hora da tentativa falha
 			$objLogin->tentativasFalhas++;
-			$objLogin->dataHoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+			$objLogin->datahoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 			
 			// verificando a quantidade de tentativas falhas para envio de mensagem de alerta
 			if($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_FALHAS_MINIMA_ENVIO_MENSAGEM_ALERTA){
@@ -550,7 +550,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 				$userIP = Basico_OPController_UtilOPController::retornaUserIp();
 
 				// recuperando quantidade de tentativas falhas do mesmo IP
-				$quantidadeTentativasFalhasPorIP = Basico_OPController_LogOPController::retornaQuantidadeTentativasLoginPorIpViaSQL($login, $userIP , $objLogin->dataHoraUltimoLogon);
+				$quantidadeTentativasFalhasPorIP = Basico_OPController_LogOPController::retornaQuantidadeTentativasLoginPorIpViaSQL($login, $userIP , $objLogin->datahoraUltimoLogon);
 
 				// verificando se a quantidade maxima de tentativas por IP foi atingida
 				if ($quantidadeTentativasFalhasPorIP >= QUANTIDADE_TENTATIVAS_LOGIN_IP_BAN_MAX) {
@@ -617,7 +617,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$versaoUpdate = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
 
 			// setando a data-hora do ultimo login
-			$objLogin->dataHoraUltimoLogon = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+			$objLogin->datahoraUltimoLogon = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 			// salvando o objeto
 			$this->salvarObjeto($objLogin, $versaoUpdate);
@@ -1217,12 +1217,10 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);
         // setando destinatario da mensagem          
         $objNovaMensagem->destinatarios       = array($emailDestinatario);
-        // setando a datahora da mensagem
-        $objNovaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
         // recuperando a categoria da mensagem
 		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
 		// setando a categoria da mensagem
-        $objNovaMensagem->categoria           = $idCategoriaMensagem;
+        $objNovaMensagem->idCategoria           = $idCategoriaMensagem;
         // salvando a mensagem
         Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
         
@@ -1247,13 +1245,11 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         
         // setando destinatario da mensagem          
         $objNovaMensagem->destinatarios       = array($emailDestinatario);
-        // setando a datahora da mensagem
-        $objNovaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
         // recuperando a categoria da mensagem
 		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
 		
 		// setando a categoria da mensagem
-        $objNovaMensagem->categoria           = $idCategoriaMensagem;
+        $objNovaMensagem->idCategoria           = $idCategoriaMensagem;
         
         // salvando a mensagem
         Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
@@ -1276,9 +1272,9 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         // recuperando o nome do destinatario
         $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
 	    // setando atributos da mensagem                     
-        $novaMensagemConfirmacao->destinatarios       = array($emailPrimario);
-        $novaMensagemConfirmacao->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
-        $novaMensagemConfirmacao->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+        $novaMensagemConfirmacao->destinatarios = array($emailPrimario);
+        $novaMensagemConfirmacao->idCategoria   = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
+
         // salvando objeto
         Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($novaMensagemConfirmacao);
 	
@@ -1301,8 +1297,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
 	    // setando atributos da mensagem                     
         $novaMensagem->destinatarios       = array($emailPrimario);
-        $novaMensagem->categoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
-        $novaMensagem->dataHoraMensagem    = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+        $novaMensagem->idCategoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
         // salvando objeto
         Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($novaMensagem);
 	
@@ -1338,7 +1333,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		$form->getElement('BasicoAceiteTermosUsoHtmlButtonCancelar')->setAttrib('onclick', "location.href='{$baseUrl}'");
 		
 		// recuperando a url do arquivo para montar link para download
-		$urlArquivoTermos = Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl("/basico/fs/download/tipo/termos/fileName/termos.txt");
+		$urlArquivoTermos = Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/fs/download/tipo/termos/fileName/termos.txt");
 		
 		// setando link para download do termo de uso
 		$form->getElement('BasicoAceiteTermosUsoLinks')->setValue("<a href='$urlArquivoTermos'><img src='{$baseUrl}/images/icons/pdf.png'></a>");
@@ -1363,9 +1358,9 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function salvarLoginViaFormCadastrarUsuarioValidado($arrayPost)
 	{
 		// criando o login do usuario
-    	$novoLogin = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_LoginOPController');
+    	$novoLogin = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaLoginOPController');
     	// setando atributos do login do usuario 
-    	$novoLogin->pessoa                 = $arrayPost['idPessoa'];
+    	$novoLogin->idPessoa                 = $arrayPost['idPessoa'];
     	$novoLogin->tentativasFalhas       = 0;
     	$novoLogin->travado                = false;
     	$novoLogin->resetado               = false;
@@ -1373,7 +1368,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
     	$novoLogin->login                  = trim(strtolower($arrayPost['BasicoCadastrarUsuarioValidadoLogin']));
     	$novoLogin->senha                  = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
     	$novoLogin->ativo                  = true;
-    	$novoLogin->dataHoraAceiteTermoUso = $arrayPost['dataAceite'];
+    	$novoLogin->datahoraAceiteTermoUso = $arrayPost['dataAceite'];
     	
     	// salvando o objeto login
     	$this->salvarObjeto($novoLogin);

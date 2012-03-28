@@ -16,6 +16,6 @@ class Basico_Controller_Action_Helper_Rascunho extends Zend_Controller_Action_He
    		$request = Basico_OPController_UtilOPController::retornaUserRequest();
 
    		// excluindo rascunho
-   		Basico_OPController_RascunhoOPController::getInstance()->excluirRascunho($request);
+   		Basico_OPController_FormularioRascunhoOPController::getInstance()->excluirRascunho($request);
     }
 }

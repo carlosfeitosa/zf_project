@@ -21,7 +21,7 @@
     // Inicializando o sub-formulário.
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setName('CadastrarDadosUsuarioDadosBiometricos');
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setMethod('post');
-    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
+    $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_BIOMETRICOS'),'onSubmit'=>"return(validateForm('CadastrarDadosUsuarioDadosBiometricos', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))",'rascunho' => true));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioDadosBiometricosSubForm->setOrder(4);

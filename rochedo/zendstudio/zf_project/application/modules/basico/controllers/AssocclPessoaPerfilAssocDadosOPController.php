@@ -98,7 +98,7 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosPessoasPerfis', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclPessoaPerfilAssocDados', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -143,7 +143,7 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosPessoasPerfis', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclPessoaPerfilAssocDados', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

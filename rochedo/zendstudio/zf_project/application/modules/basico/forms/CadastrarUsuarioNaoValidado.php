@@ -30,7 +30,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 
         $this->setName('BasicoCadastrarUsuarioNaoValidado');
         $this->setMethod('post');
-        $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/login/verificaNovoLogin'));
+        $this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/login/verificaNovoLogin'));
         $this->addAttribs(array('onSubmit'=>"return(validateForm('CadastrarUsuarioNaoValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
 

@@ -39,7 +39,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	$token = $this->request->getParam('t');
 
     	// recuperando o objeto token e-mail
-    	$tokenObj = Basico_OPController_TokenOPController::getInstance()->retornaObjetoTokenEmailPorToken($token);
+    	$tokenObj = Basico_OPController_CpgTokenOPController::getInstance()->retornaObjetoTokenEmailPorToken($token);
 
     	// verificando se o objeto existe
     	if ($tokenObj == NULL){

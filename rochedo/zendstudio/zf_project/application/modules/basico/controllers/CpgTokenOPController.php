@@ -13,7 +13,7 @@ require_once(APPLICATION_PATH . "/modules/basico/models/CpgToken.php");
  * @author joao
  *
  */
-class Basico_OPController_TokenOPController
+class Basico_OPController_CpgTokenOPController
 {
 	/**
 	 * 
@@ -68,7 +68,7 @@ class Basico_OPController_TokenOPController
 		// checando singleton
 		if (self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_TokenOPController();
+			self::$_singleton = new Basico_OPController_CpgTokenOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -188,11 +188,11 @@ class Basico_OPController_TokenOPController
     public function salvarToken(Basico_Model_CpgToken $objToken, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se existe a relacao de categoria
-		if (!Basico_OPController_PersistenceOPController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($objToken->categoria))
+		if (!Basico_OPController_PersistenceOPController::bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($objToken->idCategoria))
 			throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_TOKEN_SEM_RELACAO);
 
 		// verificando se existe o token existe na tabela de relacao
-		if (!Basico_OPController_PersistenceOPController::bdChecaExistenciaValorCategoriaChaveEstrangeira($objToken->categoria, $objToken->idGenerico, Basico_OPController_PersistenceOPController::bdRetornaTableNameObjeto($objToken), Basico_OPController_PersistenceOPController::bdRetornaNomeCampoIdGenericoObjeto($objToken), true))
+		if (!Basico_OPController_PersistenceOPController::bdChecaExistenciaValorCategoriaChaveEstrangeira($objToken->idCategoria, $objToken->idGenerico, Basico_OPController_PersistenceOPController::bdRetornaTableNameObjeto($objToken), Basico_OPController_PersistenceOPController::bdRetornaNomeCampoIdGenericoObjeto($objToken), true))
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
 
 		try {
@@ -278,7 +278,7 @@ class Basico_OPController_TokenOPController
         // setando o id generico
         $novoToken->idGenerico = $idGenerico;
         // setando a categoria do token
-        $novoToken->categoria = $idCategoriaToken;
+        $novoToken->idCategoria = $idCategoriaToken;
 		// setando data-hora da expiracao
 		$dataHoraExpiracao = Zend_Date::now(DEFAULT_SYSTEM_DATETIME_LOCALE);
 		$dataHoraExpiracao->addHour(36);

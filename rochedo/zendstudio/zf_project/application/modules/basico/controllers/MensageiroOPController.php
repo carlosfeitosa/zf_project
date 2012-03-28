@@ -138,7 +138,7 @@ class Basico_OPController_MensageiroOPController
             Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
 
     		// salvando log de sucesso no envio de mensagem
-    		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);
+    		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);
     		
     		// finalizando transacao
     		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
@@ -149,7 +149,7 @@ class Basico_OPController_MensageiroOPController
     		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 			
 			// salvando log de falha no envio de mensagem
-    		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_FALHA . $e->getMessage());
+    		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_FALHA . $e->getMessage());
     		
 			throw new Exception(MSG_ERRO_ENVIAR_EMAIL . $e->getMessage());
 	    }

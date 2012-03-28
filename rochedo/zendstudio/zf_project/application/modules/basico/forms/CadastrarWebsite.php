@@ -30,7 +30,7 @@ class Basico_Form_CadastrarWebsite extends Zend_Dojo_Form
 
         $this->setName('BasicoCadastrarWebsite');
         $this->setMethod('post');
-        $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/website/salvarwebsite'));
+        $this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/website/salvarwebsite'));
         $this->addAttribs(array('onSubmit'=>"return(validateForm('CadastrarWebsite', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->addAttribs(array('rascunho' => true));
 

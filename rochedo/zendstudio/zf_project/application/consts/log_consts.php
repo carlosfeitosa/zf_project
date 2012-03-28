@@ -38,9 +38,9 @@ define("LOG_MSG_DELETE_DADOS_PESSOAIS", "Exclusão de dados pessoais no banco de
 define("LOG_MSG_NOVO_DADOS_BIOMETRICOS", "Novos dados biometricos inseridos no banco de dados.");
 define("LOG_MSG_NOVO_DADOS_PESSOAS_PERFIS", "Novos dados pessoa perfil inseridos no banco de dados.");
 define("LOG_MSG_UPDATE_DADOS_BIOMETRICOS", "Atualizacao de dados biometricos no banco de dados.");
-define("LOG_MSG_NOVO_WEBSITE", "Novo website inserido no banco de dados.");
-define("LOG_MSG_UPDATE_WEBSITE", "Atualiacao de website no banco de dados.");
-define("LOG_MSG_DELETE_WEBSITE", "Exclusão de website no banco de dados.");
+define("LOG_MSG_NOVO_LINK", "Novo link inserido no banco de dados.");
+define("LOG_MSG_UPDATE_LINK", "Atualiacao de link no banco de dados.");
+define("LOG_MSG_DELETE_LINK", "Exclusão de link no banco de dados.");
 define("LOG_MSG_NOVO_EMAIL", "Novo e-mail inserido no banco de dados.");
 define("LOG_MSG_UPDATE_EMAIL", "Atualizacao de e-mail no banco de dados.");
 define("LOG_MSG_DELETE_EMAIL", "Exclusão de e-mail no banco de dados.");

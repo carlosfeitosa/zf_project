@@ -10,7 +10,7 @@ class Basico_View_Helper_UrlEncrypt extends Zend_View_Helper_Abstract
     public function urlEncrypt($url, $removeBaseUrl = false)  
     {
     	// recuperando url encriptada
-    	$urlEncriptada = Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl($url);
+    	$urlEncriptada = Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl($url);
 
     	// verificando se deve remover o base url da url encriptada
     	if ($removeBaseUrl) {

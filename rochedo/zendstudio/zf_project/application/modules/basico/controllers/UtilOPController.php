@@ -2081,7 +2081,7 @@ class Basico_OPController_UtilOPController
     public static function retornaScriptAplicacaoMascarasPorNomeModuloNomeFormulario($nomeModulo, $nomeForm)
     {
     	// recuperando array de elementos que possuem mascara
-    	$arrayElementosComMascara = Basico_OPController_MascaraOPController::retornaArrayMascarasElementosPorNomeFormularioViaSQL($nomeModulo, $nomeForm);
+    	$arrayElementosComMascara = Basico_OPController_EventoOPController::retornaArrayMascarasElementosPorNomeFormularioViaSQL($nomeModulo, $nomeForm);
 
     	// verificando resultado da recuperacao das mascaras por nome modulo e nome formulario
     	if (($arrayElementosComMascara) and (count($arrayElementosComMascara) > 0)) {

@@ -287,7 +287,7 @@ class Basico_OPController_LogOPController
 	public static function retornaQuantidadeTentativasLoginPorIpViaSQL($login, $ip, $dataHoraUltimoLogon) 
 	{
 		// recuperando o id da pessoa perfil de usuario validado da pessoa relacionada ao login
-		$idPessoaPerfilLogin = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
+		$idPessoaPerfilLogin = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL(Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin($login));
 
 		// recuperando a categoria do log LOG_TENTATIVA_AUTENTICACAO_USUARIO
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO);

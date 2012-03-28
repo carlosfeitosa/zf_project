@@ -26,7 +26,7 @@ class Basico_TokenController extends Zend_Controller_Action
         $token = $this->_request->getParam('t');
 
         // decodificando url
-        $url = Basico_OPController_TokenOPController::getInstance()->decodeTokenUrlPorToken($token);
+        $url = Basico_OPController_CpgTokenOPController::getInstance()->decodeTokenUrlPorToken($token);
 
         // redirecionando para a url decodificada
         $this->_redirect($url);

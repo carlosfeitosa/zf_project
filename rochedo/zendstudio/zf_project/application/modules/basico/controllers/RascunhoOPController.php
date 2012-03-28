@@ -10,7 +10,7 @@
  * 
  * @since 05/09/2011
  */
-class Basico_OPController_RascunhoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormularioRascunhoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -58,7 +58,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_RascunhoOPController();
+			self::$_singleton = new Basico_OPController_FormularioRascunhoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -79,7 +79,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Rascunho', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioRascunho', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -124,7 +124,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Rascunho', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioRascunho', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -173,7 +173,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		// verificando id passado
 		if ((Int) $idRascunhoPai > 0) {
 			// recuperando objetos rascunhos filhos
-			$objetosRascunhosFilhos = $this->retornaObjetosPorParametros('Basico_Model_Rascunho', "id_rascunho_pai = {$idRascunhoPai}");
+			$objetosRascunhosFilhos = $this->retornaObjetosPorParametros('Basico_Model_FormularioRascunho', "id_rascunho_pai = {$idRascunhoPai}");
 
 			// verificando se existem rascunhos filhos
 			if (count($objetosRascunhosFilhos) > 0)
@@ -274,10 +274,10 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		    	if(isset($idRascunho)){ 
 		    		
 		    		// recuperando o objeto rascunho 
-		    	   	$objRascunho = Basico_OPController_RascunhoOPController::getInstance()->retornaObjetoRascunhoPorId($idRascunho);
+		    	   	$objRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaObjetoRascunhoPorId($idRascunho);
 
 		    	   	// recuperando a ultima versão do rascunho 
-		    	   	$ultimaVersaoRasunho = Basico_OPController_RascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho); 
+		    	   	$ultimaVersaoRasunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho); 
 		    	
 		    	   	// decodificando JSON do post
 		    	   	$postRascunho = Zend_Json_Decoder::decode($objRascunho->post);
@@ -306,7 +306,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		    	 	$objRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 		    	 	
 		    	 	// recuperando a ultima versão do rascunho 
-		    		$versaoAtualRascunho = Basico_OPController_RascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho);
+		    		$versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho);
 		    		
 		    	 	// executando update
 		    	 	$this->salvarObjeto($objRascunho, $versaoAtualRascunho, $idPessoaPerfilCriador);
@@ -361,7 +361,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		    	}
 		
 		    	// recuperando a ultima versão do rascunho 
-		    	$versaoAtualRascunho = Basico_OPController_RascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho);
+		    	$versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho);
 		    	
 		    	// inserindo a versao atual do rascunho no pool de elementos ocultos
 		    	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('versaoObjetoRascunho' => $versaoAtualRascunho));
@@ -405,9 +405,7 @@ class Basico_OPController_RascunhoOPController extends Basico_AbstractController
 		    				break 2;	    		
 						}	
 	    			}
-	    			
-	    			
-	    			
+	    				
 	    		}else{
 					if (strpos($key, "Csrf") !== false) {
 	    				$formHash = $value;

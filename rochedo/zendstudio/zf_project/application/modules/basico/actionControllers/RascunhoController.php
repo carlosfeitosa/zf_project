@@ -36,7 +36,7 @@ class Basico_RascunhoController extends Zend_Controller_Action
 		unset($arrayPost["forceSave"]);
 
     	// chamando metodo que salva o rascunho
-    	if (Basico_OPController_RascunhoOPController::getInstance()->salvarRascunho($this->getRequest(),$forceSave)) {
+    	if (Basico_OPController_FormularioRascunhoOPController::getInstance()->salvarRascunho($this->getRequest(),$forceSave)) {
 			// inicializa o rascunho no cliente
     	    $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("initRascunho(); ");
        		// escreve mensagem de sucesso para o usuario
@@ -57,7 +57,7 @@ class Basico_RascunhoController extends Zend_Controller_Action
     public function excluirAction()
     {
     	// removendo rascunho
-    	if (Basico_OPController_RascunhoOPController::getInstance()->excluirRascunho($this->getRequest())) {
+    	if (Basico_OPController_FormularioRascunhoOPController::getInstance()->excluirRascunho($this->getRequest())) {
     		// setando script na view
     		$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_SUCESSO_EXCLUIR"));
     	}else{

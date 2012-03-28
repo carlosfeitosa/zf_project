@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_FormAssocclElementoGrupo
  * @subpackage Model
  */
-class Basico_Model_FormAssocclElementoGrupoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_FormularioAssocclElementoGrupoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -17,7 +17,7 @@ class Basico_Model_FormAssocclElementoGrupoMapper extends Basico_AbstractMapper_
      * 
      * @return Basico_Model_DbTable_FormAssocclElementoGrupo
      */
-    public function getDbTable($dbTable = 'Basico_Model_DbTable_FormAssocclElementoGrupo')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioAssocclElementoGrupo')
     {
         return parent::getDbTable($dbTable);
     }
@@ -57,7 +57,7 @@ class Basico_Model_FormAssocclElementoGrupoMapper extends Basico_AbstractMapper_
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_FormAssocclElementoGrupo();
+			$entry = new Basico_Model_FormularioAssocclElementoGrupo();
 			$entry->setId($row->id)
 				  ->setNome($row->nome)
 				  ->setConstanteTextual($row->constante_textual)
@@ -83,7 +83,7 @@ class Basico_Model_FormAssocclElementoGrupoMapper extends Basico_AbstractMapper_
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_FormAssocclElementoGrupo();
+			$entry = new Basico_Model_FormularioAssocclElementoGrupo();
 			$entry->setId($row->id)
 				  ->setNome($row->nome)
 				  ->setConstanteTextual($row->constante_textual)

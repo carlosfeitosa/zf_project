@@ -11,7 +11,7 @@
  * @since 21/03/2011
  * 
  */
-class Basico_OPController_FormAssocclElementoGrupoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormularioAssocclElementoGrupoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador GrupoFormularioElemento
@@ -59,7 +59,7 @@ class Basico_OPController_FormAssocclElementoGrupoOPController extends Basico_Ab
 		// checando singleton
 		if (self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_FormAssocclElementoGrupoOPController();
+			self::$_singleton = new Basico_OPController_FormularioAssocclElementoGrupoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -80,7 +80,7 @@ class Basico_OPController_FormAssocclElementoGrupoOPController extends Basico_Ab
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_GrupoFormularioElemento', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclElementoGrupo', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -125,7 +125,7 @@ class Basico_OPController_FormAssocclElementoGrupoOPController extends Basico_Ab
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_GrupoFormularioElemento', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclElementoGrupo', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

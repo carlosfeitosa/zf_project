@@ -101,7 +101,7 @@ class Basico_OPController_DBSaveOPController
 					$urlResolvedorConflitoVersaoObjeto = Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/cvc/resolveconflitoversaoobjeto/nomeObjetoEmConflito/{$nomeObjetoEmConflito}/idObjetoEmConflito/{$idObjetoEmConflito}/versaoObjetoEmConflito/{$versaoObjetoEmConflito}/urlUltimoRequest/{$urlUltimoRequest}";
 
 					// criando token da url para redirecionamento
-					$urlResolvedorConflitoVersaoObjetoTokenizado = Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl($urlResolvedorConflitoVersaoObjeto);
+					$urlResolvedorConflitoVersaoObjetoTokenizado = Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl($urlResolvedorConflitoVersaoObjeto);
 					// retirando o base url da url do token
 					$urlResolvedorConflitoVersaoObjetoTokenizado = Basico_OPController_UtilOPController::removeBaseUrl($urlResolvedorConflitoVersaoObjetoTokenizado);
 

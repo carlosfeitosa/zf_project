@@ -133,7 +133,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
    	public static function existeElementosPorIdFormularioViaSQL($idFormulario)
    	{
    		// recuperando elementos de um formulario
-   		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL('formulario_formulario_elemento', array('id'), "id_formulario = {$idFormulario}");
+   		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL('basico_formulario.assoccl_elemento', array('id'), "id_formulario = {$idFormulario}");
 
    		// retornando se foi recuperado elementos
    		return (count($arrayResultado) > 0);
@@ -299,6 +299,8 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	 * @param String $nomeForm
 	 * 
 	 * @return Array|null
+	 * 
+	 * @todo
 	 */
 	public static function retornaArraysTemplateStylesheetFullFilenameJavascriptFullFilenamePorNomeFormularioViaSQL($nomeForm)
 	{
@@ -307,7 +309,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 			// retornando nulo
 			return null;
 		}
-
+		/*
 		// montando query que recupera informacoes sobre o template do formulario
 		$queryRecuperaStylesheetFullFilenameEJavascriptFullFilename = "SELECT t.stylesheet_full_filename AS stylesheetfullfilename, t.javascript_full_filename AS javascriptfullfilename, o.nome AS output
 																	   FROM basico.template t
@@ -335,7 +337,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 			// retornando resultado
 			return $arrayRetorno;
 		}
-
+		*/
 		// retornando nulo
 		return null;
 	}

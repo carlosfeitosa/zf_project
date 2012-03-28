@@ -21,7 +21,7 @@
     // Inicializando o sub-formulário.
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setName('CadastrarDadosUsuarioDadosPessoais');
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setMethod('post');
-    $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
+    $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_PESSOAIS'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_DADOS_PESSOAIS'),'onSubmit'=>"return(validateForm('CadastrarDadosUsuarioDadosPessoais', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))",'rascunho' => true));
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioDadosPessoaisSubForm->setOrder(1);

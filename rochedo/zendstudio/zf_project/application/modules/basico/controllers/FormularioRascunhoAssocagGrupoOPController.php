@@ -79,7 +79,7 @@ class Basico_OPController_FormularioRascunhoAssocagGrupoOPController extends Bas
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_GrupoRascunho', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioRascunhoAssocagGrupo', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -124,7 +124,7 @@ class Basico_OPController_FormularioRascunhoAssocagGrupoOPController extends Bas
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_GrupoRascunho', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioRascunhoAssocagGrupo', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

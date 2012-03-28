@@ -10,7 +10,7 @@
  * 
  */
 
-class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -79,7 +79,7 @@ class Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController extends B
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_RelacaoCategoriaChaveEstrangeira', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocChaveEstrangeiraRelacao', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

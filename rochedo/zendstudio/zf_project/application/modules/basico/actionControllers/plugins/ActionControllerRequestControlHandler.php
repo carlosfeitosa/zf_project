@@ -53,7 +53,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	{
 		// recuperando informacoes a decodificacao do token
 		$token = $request->getParam('t');
-		$urlDestino = Basico_OPController_TokenOPController::getInstance()->decodeTokenUrlPorToken($token);
+		$urlDestino = Basico_OPController_CpgTokenOPController::getInstance()->decodeTokenUrlPorToken($token);
 
 		// registrando a url no pool de requests
 		Basico_OPController_SessionOPController::registraUrlPoolRequests($urlDestino);

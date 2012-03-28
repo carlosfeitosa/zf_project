@@ -124,7 +124,7 @@ class Basico_OPController_DBDeleteOPController
 		$tempReturn = false;
 
 		// recuperando tabelas dependentes atraves de categoria chave estrangeira
-		$arrayTabelasDepentendesCategoriaChaveEstrangeira = Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController::getInstance()->retornaArrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira();
+		$arrayTabelasDepentendesCategoriaChaveEstrangeira = Basico_OPController_AssocChaveEstrangeiraRelacaoOPController::getInstance()->retornaArrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira();
 
 		// recuperando ids categoria/valor categoria chave estrangeira
 		$arrayIdsCategoriaValorChaveEstrangeiraObjeto = Basico_OPController_PersistenceOPController::retornaArrayIdsCategoriaValorChaveEstrangeiraNomeTabelaId($nomeTabela, $valorId);

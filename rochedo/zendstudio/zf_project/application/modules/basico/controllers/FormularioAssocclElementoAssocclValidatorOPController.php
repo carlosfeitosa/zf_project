@@ -79,7 +79,7 @@ class Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController 
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioElementoFormularioElementoValidator', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioAssocclElementoAssocclValidator', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -124,7 +124,7 @@ class Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController 
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioElementoFormularioElementoValidator', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioAssocclElementoAssocclValidator', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

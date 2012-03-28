@@ -21,7 +21,7 @@
     // Inicializando o sub-formulário.
     $basicoCadastrarDadosUsuarioContaSubForm->setName('CadastrarDadosUsuarioConta');
     $basicoCadastrarDadosUsuarioContaSubForm->setMethod('post');
-    $basicoCadastrarDadosUsuarioContaSubForm->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
+    $basicoCadastrarDadosUsuarioContaSubForm->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/dadosusuario/salvar'));
     $basicoCadastrarDadosUsuarioContaSubForm->addAttribs(array('title' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'legend' => $this->getView()->tradutor('SUBFORM_TABTITLE_CONTA'),'onSubmit'=>"return(validateForm('CadastrarDadosUsuarioConta', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
     $basicoCadastrarDadosUsuarioContaSubForm->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
     $basicoCadastrarDadosUsuarioContaSubForm->setOrder(7);

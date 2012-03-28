@@ -18,7 +18,7 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	 * 
 	 * @var String
 	 */
-	const nomeTabelaModelo  = 'formulario_formulario_elemento';
+	const nomeTabelaModelo  = 'basico_formulario.assoccl_elemento';
 
 	/**
 	 * Instância do Controlador FormularioFormularioElemento
@@ -250,7 +250,7 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioFormularioElemento', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioAssocclElemento', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -295,7 +295,7 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioFormularioElemento', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioAssocclElemento', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

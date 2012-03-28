@@ -30,7 +30,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 
         $this->setName('BasicoAutenticacaoUsuario');
         $this->setMethod('post');
-        $this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/autenticador/verificaAutenticacaoUsuario'));
+        $this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/rochedo_project/public/basico/autenticador/verificaAutenticacaoUsuario'));
         $this->addAttribs(array('onSubmit'=>"return(validateForm('AutenticacaoUsuario', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         $this->setDecorators(array('FormElements', array('HtmlTag', array('tag' => 'dl')), array('DijitForm')));
 

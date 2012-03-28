@@ -259,7 +259,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Email', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_ContatoCpgEmail', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

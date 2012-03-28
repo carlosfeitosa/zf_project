@@ -10,7 +10,7 @@
  * 
  * @since 21/03/2011
  */
-class Basico_OPController_MascaraOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_EventoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -58,7 +58,7 @@ class Basico_OPController_MascaraOPController extends Basico_AbstractController_
 		// verificando singleton
 		if (self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_MascaraOPController();
+			self::$_singleton = new Basico_OPController_EventoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -79,7 +79,7 @@ class Basico_OPController_MascaraOPController extends Basico_AbstractController_
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mascara', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Evento', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -124,7 +124,7 @@ class Basico_OPController_MascaraOPController extends Basico_AbstractController_
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Mascara', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Evento', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -151,20 +151,20 @@ class Basico_OPController_MascaraOPController extends Basico_AbstractController_
 	 * 
 	 * @return Array|false
 	 */
-	public static function retornaArrayMascarasElementosPorNomeFormularioViaSQL($nomeModulo, $nomeForm)
+	public static function retornaArrayEventosElementosPorNomeFormularioViaSQL($nomeModulo, $nomeForm)
 	{
 		// montando query para recuperacao de elementos com mascara por nomeForm
 		$sql = "SELECT f.form_name,  fe.element_name, m.mascara
 				FROM basico.formulario f
-				LEFT JOIN modulo_formulario mf ON (f.id = mf.id_formulario)
-				LEFT JOIN modulo mod ON (mf.id_modulo = mod.id)
-				LEFT JOIN formulario_formulario_elemento ffe ON (f.id = ffe.id_formulario)
+				LEFT JOIN basico_formulario.assoccl_modulo mf ON (f.id = mf.id_formulario)
+				LEFT JOIN basico.modulo mod ON (mf.id_modulo = mod.id)
+				LEFT JOIN basico_formulario.assoccl_elemento ffe ON (f.id = ffe.id_formulario)
 				LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
-				LEFT JOIN basico_formulario_elemento.assoccl_mascara fem ON (fem.id_formulario_elemento = fe.id)
-				LEFT JOIN mascara m ON (m.id = fem.id_mascara)
+				LEFT JOIN basico_form_assoccl_elemento.assoccl_evento fem ON (fem.id_formulario_elemento = fe.id)
+				LEFT JOIN basico.evento m ON (m.id = fem.id_mascara)
 				WHERE f.nome = '{$nomeForm}'
 				AND mod.nome = '{$nomeModulo}'
-				AND mascara IS NOT NULL";
+				AND evento IS NOT NULL";
 		
 		// executando a query
 		$result = Basico_OPController_DBUtilOPController::retornaArraySQLQuery($sql);
@@ -174,7 +174,7 @@ class Basico_OPController_MascaraOPController extends Basico_AbstractController_
 		
 		// montando array de resultado
 		foreach ($result as $row) {
-			$arrayResultado[$row['form_name'] . "-" . ucfirst(strtolower($nomeModulo)) . $row['form_name'] . ucfirst($row['element_name'])] = $row['mascara']; 
+			$arrayResultado[$row['form_name'] . "-" . ucfirst(strtolower($nomeModulo)) . $row['form_name'] . ucfirst($row['element_name'])] = $row['evento']; 
 		}
 		
 		if (count($arrayResultado) > 0)

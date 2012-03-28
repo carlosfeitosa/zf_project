@@ -8,7 +8,7 @@
  * @subpackage Model
  */
 
-class Basico_Model_FormAssocclElementoGrupo extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_FormularioAssocclElementoGrupo extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
     /**
      * @var String
@@ -140,6 +140,6 @@ class Basico_Model_FormAssocclElementoGrupo extends Basico_AbstractModel_Rochedo
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper('Basico_Model_FormAssocclElementoGrupoMapper');
+		return parent::getMapper('Basico_Model_FormularioAssocclElementoGrupoMapper');
 	}	
 }

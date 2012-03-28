@@ -421,10 +421,10 @@ class Basico_LoginController extends Zend_Controller_Action
 		            	$idPessoaPerfil    = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioNaoValidadoPorIdPessoa($idPessoa)->id;
 
 			            // setando e salvando token
-			            $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);
+			            $idNovoToken = Basico_OPController_CpgTokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);
 			             
 			            // setando e salvando mensagem
-			            $novaMensagem = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $email, Basico_OPController_TokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));       
+			            $novaMensagem = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $email, Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));       
 			             
 			            // enviando a mensagem
 			            Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
@@ -495,7 +495,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $idCategoriaToken = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_EMAIL_VALIDACAO_USUARIO_PLAINTEXT);
 
             // setando e salvando o token
-            $idNovoToken = Basico_OPController_TokenOPController::getInstance()->retornaIdNovoObjetoToken($idNovoEmail, $idCategoriaToken);
+            $idNovoToken = Basico_OPController_CpgTokenOPController::getInstance()->retornaIdNovoObjetoToken($idNovoEmail, $idCategoriaToken);
 
             // recuperando a categoria de mensagem a ser enviada e template
             $idCategoriaTemplate = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
@@ -504,7 +504,7 @@ class Basico_LoginController extends Zend_Controller_Action
             $nomeDestinatario = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
 
             // salvando e recuperando a mensagem para envio
-            $objNovaMensagem = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidado($nomeDestinatario, $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'), Basico_OPController_TokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));
+            $objNovaMensagem = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidado($nomeDestinatario, $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'), Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));
             
 	        // enviando a mensagem
 	        Basico_OPController_MensageiroOPController::getInstance()->enviar($objNovaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idNovaPessoasPerfis));

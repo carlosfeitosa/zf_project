@@ -6,7 +6,7 @@
 require_once("consts/consts.php");
 require_once("configs/application.php");
 require_once("modules/basico/controllers/LogOPController.php");
-require_once("modules/basico/controllers/TokenOPController.php");
+require_once("modules/basico/controllers/CpgTokenOPController.php");
 require_once("modules/basico/controllers/UtilOPController.php");
 require_once("modules/basico/controllers/PersistenceOPController.php");
 require_once("modules/basico/controllers/SessionOPController.php");
@@ -45,7 +45,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         }
 
         // instancia a classe controladora de token
-        $this->tokenizer = Basico_OPController_TokenOPController::getInstance();
+        $this->tokenizer = Basico_OPController_CpgTokenOPController::getInstance();
 
         // Localiza os helpers dos controllers e adiciona os paths caso eles existam
         if (file_exists(BASICO_CONTROLLER_HELPERS_PATH))

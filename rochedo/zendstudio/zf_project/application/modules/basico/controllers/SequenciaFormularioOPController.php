@@ -10,7 +10,7 @@
  * 
  * @since 24/10/2011
  */
-class Basico_OPController_SequenciaFormularioOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_SequenciaOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -58,7 +58,7 @@ class Basico_OPController_SequenciaFormularioOPController extends Basico_Abstrac
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_SequenciaFormularioOPController();
+			self::$_singleton = new Basico_OPController_SequenciaOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -79,7 +79,7 @@ class Basico_OPController_SequenciaFormularioOPController extends Basico_Abstrac
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_SequenciaFormulario', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Sequencia', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -124,7 +124,7 @@ class Basico_OPController_SequenciaFormularioOPController extends Basico_Abstrac
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_SequenciaFormulario', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Sequencia', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema

@@ -679,7 +679,6 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$arrayCategoria['id_categoria_pai']  = self::retornaIdCategoriaLogViaSQL();
 			$arrayCategoria['nivel']             = 2;
 			$arrayCategoria['nome']              = Basico_OPController_UtilOPController::retornaStringEntreCaracter($nomeCategoriaLogAcaoControlador, "'");
-			$arrayCategoria['descricao']         = Basico_OPController_UtilOPController::retornaStringEntreCaracter(DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR, "'");
 			$arrayCategoria['rowinfo']           = Basico_OPController_UtilOPController::retornaStringEntreCaracter($rowinfoOPController->getXml(), "'");
 
 			// inserindo o valor no banco de dados
