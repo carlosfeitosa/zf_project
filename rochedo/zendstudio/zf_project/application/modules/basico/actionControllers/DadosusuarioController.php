@@ -835,7 +835,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// verificando se o formulario eh valido
 			if ($formTrocaDeSenha->isValid($post)) {
 				// recuperando o id da pessoa logada
-				$idPessoa = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+				$idPessoa = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 
 				// recuperando a senha atual informada no formulario e encriptando-a
 				$senhaAtual = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($post['BasicoTrocaDeSenhaSenhaAtual']);
