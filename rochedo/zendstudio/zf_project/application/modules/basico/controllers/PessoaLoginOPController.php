@@ -89,7 +89,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Login', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaLogin', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -781,7 +781,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		// verificando se o login existe
 		if ((is_object($objLogin)) and ($objLogin->id))
 			// retornando o id da pessoa
-			return $objLogin->pessoa;
+			return $objLogin->idPessoa;
 
 		return null;
 	}
@@ -801,7 +801,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		// verificando se o objeto login foi recuperado
 		if ($object->id)
 			// retornando o id da pessoa
-			return $object->pessoa;
+			return $object->idPessoa;
 
 		return null;
 	}
@@ -866,7 +866,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
     	$objetoPessoaPerfilSistema = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilSistema();
 
     	//recuperando o login do usuario master do sistema
-    	$objsLogin = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$objetoPessoaPerfilSistema->pessoa}", null, 1, 0);
+    	$objsLogin = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$objetoPessoaPerfilSistema->idPessoa}", null, 1, 0);
 
     	// verificando se o objeto foi recuperado com sucesso
     	if (isset($objsLogin[0]))    	
@@ -966,9 +966,9 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			// trocando a senha do usuario
 			$objLogin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($novaSenhaNaoEncriptada);
 			// limpando datahora expiracao
-			$objLogin->dataHoraExpiracaoSenha = null;
+			$objLogin->datahoraExpiracaoSenha = null;
 			// setando datahora da troca de senha
-			$objLogin->dataHoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+			$objLogin->datahoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 			// retornando o resultado do metodo de salvar o login
 			$this->salvarObjeto($objLogin, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);
@@ -1441,15 +1441,15 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	    	$objLoginAdmin = $this->_model;
 	
 	    	// populando objeto
-	    	$objLoginAdmin->pessoa = $idPessoaAdmin;
-	    	$objLoginAdmin->tentativasFalhas = 0;
-	    	$objLoginAdmin->travado = false;
-	    	$objLoginAdmin->resetado = false;
-	    	$objLoginAdmin->podeExpirar = true;
-	    	$objLoginAdmin->login = ADMIN_LOGIN_NAME_DATABASE_RESET;
-	    	$objLoginAdmin->senha = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(ADMIN_LOGIN_NAME_DATABASE_RESET);
-	    	$objLoginAdmin->ativo = true;
-	    	$objLoginAdmin->dataHoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+	    	$objLoginAdmin->idPessoa         	   = $idPessoaAdmin;
+	    	$objLoginAdmin->tentativasFalhas 	   = 0;
+	    	$objLoginAdmin->travado         	   = false;
+	    	$objLoginAdmin->resetado 		 	   = false;
+	    	$objLoginAdmin->podeExpirar 	 	   = true;
+	    	$objLoginAdmin->login 			 	   = ADMIN_LOGIN_NAME_DATABASE_RESET;
+	    	$objLoginAdmin->senha			 	   = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(ADMIN_LOGIN_NAME_DATABASE_RESET);
+	    	$objLoginAdmin->ativo 			 	   = true;
+	    	$objLoginAdmin->datahoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 	    	// salvando o objeto login
     		$this->salvarObjeto($objLoginAdmin);

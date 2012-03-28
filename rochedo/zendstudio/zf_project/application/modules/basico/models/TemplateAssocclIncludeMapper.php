@@ -17,9 +17,9 @@ class Basico_Model_TemplateAssocclIncludeMapper extends Basico_AbstractMapper_Ro
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_TemplateAssocclInclude')
     {
-        return parent::getDbTable('Basico_Model_DbTable_TemplateAssocclInclude');
+        return parent::getDbTable($dbTable);
     }
     
 	/**
@@ -29,7 +29,7 @@ class Basico_Model_TemplateAssocclIncludeMapper extends Basico_AbstractMapper_Ro
      * @param  Basico_Model_TemplateAssocclInclude $object 
      * @return void
      */
-    public function find($id, Basico_Model_TemplateAssocclInclude $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -98,7 +98,7 @@ class Basico_Model_TemplateAssocclIncludeMapper extends Basico_AbstractMapper_Ro
      * @param  Basico_Model_TemplateAssocclInclude $object
      * @return void
      */
-    public function save(Basico_Model_TemplateAssocclInclude $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
                 'id_template'      => $object->getIdTemplate(),
@@ -121,7 +121,7 @@ class Basico_Model_TemplateAssocclIncludeMapper extends Basico_AbstractMapper_Ro
     * @param Basico_Model_TemplateAssocclInclude $object
     * @return void
     */
-    public function delete(Basico_Model_TemplateAssocclInclude $object)
+    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $this->getDbTable()->delete(array('id = ?' => $object->id));
     }

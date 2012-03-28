@@ -123,6 +123,6 @@ class Basico_Model_OutputAssocclInclude extends Basico_AbstractModel_RochedoPers
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_OutputAssocclIncludeMapper);
+		return parent::getMapper('Basico_Model_OutputAssocclIncludeMapper');
 	}
 }

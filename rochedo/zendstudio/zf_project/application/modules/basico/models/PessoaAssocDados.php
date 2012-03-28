@@ -25,7 +25,7 @@ class Basico_Model_PessoaAssocDados extends Basico_AbstractModel_RochedoPersiste
 	/**
 	 * @var String
 	 */
-	protected $_constanteTextualPais;
+	protected $_constanteTextualPaisNascimento;
 	/**
 	 * @var String
 	 */
@@ -129,9 +129,9 @@ class Basico_Model_PessoaAssocDados extends Basico_AbstractModel_RochedoPersiste
 	* 
 	* @return Basico_Model_PessoaAssocDados
 	*/
-	public function setConstanteTextualPais($constanteTextualPais)
+	public function setConstanteTextualPaisNascimento($constanteTextualPaisNascimento)
 	{
-		$this->_constanteTextualPais = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualPais, TIPO_STRING, true);
+		$this->_constanteTextualPaisNascimento = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualPaisNascimento, TIPO_STRING, true);
 		return $this;
 	}
 	
@@ -140,9 +140,9 @@ class Basico_Model_PessoaAssocDados extends Basico_AbstractModel_RochedoPersiste
 	* 
 	* @return null|String
 	*/
-	public function getConstanteTextualPais()
+	public function getConstanteTextualPaisNascimento()
 	{
-		return $this->_constanteTextualPais;
+		return $this->_constanteTextualPaisNascimento;
 	}
 
 	/**

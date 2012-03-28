@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_PessoaAssocclPerfil
  * @subpackage Model
  */
-class Basico_Model_DbTable_PessoaAssocclPerfilMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_PessoaAssocclPerfilMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -60,8 +60,8 @@ class Basico_Model_DbTable_PessoaAssocclPerfilMapper extends Basico_AbstractMapp
         {
             $entry = new Basico_Model_PessoaAssocclPerfil();
             $entry->setId($row->id)
-                ->setPessoa($row->id_pessoa)
-                ->setPerfil($row->id_perfil)
+                ->setIdPessoa($row->id_pessoa)
+                ->setIdPerfil($row->id_perfil)
                 ->setAtivo($row->ativo)
                 ->setDatahoraCriacao($row->datahora_criacao)
                 ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -85,8 +85,8 @@ class Basico_Model_DbTable_PessoaAssocclPerfilMapper extends Basico_AbstractMapp
         {
             $entry = new Basico_Model_PessoaAssocclPerfil();
             $entry->setId($row->id)
-                  ->setPessoa($row->id_pessoa)
-                  ->setPerfil($row->id_perfil)
+                  ->setIdPessoa($row->id_pessoa)
+                  ->setIdPerfil($row->id_perfil)
                   ->setAtivo($row->ativo) 
                   ->setDatahoraCriacao($row->datahora_criacao)
                   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -107,8 +107,8 @@ class Basico_Model_DbTable_PessoaAssocclPerfilMapper extends Basico_AbstractMapp
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-                'id_pessoa'                   => $object->getPessoa(),
-                'id_perfil'                   => $object->getPerfil(),
+                'id_pessoa'                   => $object->getIdPessoa(),
+                'id_perfil'                   => $object->getIdPerfil(),
         		'ativo'						  => $object->getAtivo(),
         		'datahora_criacao'            => $object->getDatahoraCriacao(),
         		'datahora_ultima_atualizacao' => $object->getDataHoraUltimaAtualizacao(),

@@ -92,7 +92,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoasPerfis', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaAssocclPerfil', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -541,9 +541,12 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		// criando o novo objeto pessoasPerfis
 		$novaPessoasPerfisNovaPessoa = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 		// setando a pessoa
-		$novaPessoasPerfisNovaPessoa->pessoa = $idPessoa;
+		$novaPessoasPerfisNovaPessoa->idPessoa = $idPessoa;
 		// setando o perfil
-		$novaPessoasPerfisNovaPessoa->perfil = $idPerfil;
+		$novaPessoasPerfisNovaPessoa->idPerfil = $idPerfil;
+		// setando ativo
+		$novaPessoasPerfisNovaPessoa->ativo    = true;
+		
 		// salvando o objeto pessoasPefis
 		$this->salvarObjeto($novaPessoasPerfisNovaPessoa);
 		

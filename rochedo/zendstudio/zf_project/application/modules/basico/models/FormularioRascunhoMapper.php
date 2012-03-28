@@ -17,9 +17,9 @@ class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_Roched
      * 
      * @return Basico_Model_FormularioRascunho
      */
-    public function getDbTable($dbTable)
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioRascunho')
     {
-        return parent::getDbTable('Basico_Model_FormularioRascunho');
+        return parent::getDbTable($dbTable);
     }
 	
     /**

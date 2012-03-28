@@ -70,7 +70,7 @@ class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Login();
+			$entry = new Basico_Model_PessoaLogin();
 			$entry->setId($row->id)
 			      ->setIdPessoa($row->id_pessoa)
 				  ->setLogin($row->login)
@@ -108,7 +108,7 @@ class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Login();
+			$entry = new Basico_Model_PessoaLogin();
 			$entry->setId($row->id)
 			      ->setIdPessoa($row->id_pessoa)
 				  ->setLogin($row->login)
@@ -160,10 +160,10 @@ class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper
                       'datahora_ultima_tentativa_falha' => $object->getDataHoraUltimaTentativaFalha(),
                       'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
                       'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
-        			  'datahora_aceite_termo_uso'      => $object->getDataHoraAceiteTermoUso(),
+        			  'datahora_aceite_termo_uso'       => $object->getDataHoraAceiteTermoUso(),
         			  'datahora_criacao'				=> $object->getDataHoraCriacao(),
         			  'datahora_ultima_atualizacao'     => $object->getDataHoraUltimaAtualizacao(),
-                      'rowinfo'                    => $object->getRowinfo(),
+                      'rowinfo'                         => $object->getRowinfo(),
                     );
 
         if (null === ($id = $object->getId())) {

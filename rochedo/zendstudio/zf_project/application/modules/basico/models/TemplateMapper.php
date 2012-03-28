@@ -17,7 +17,7 @@ class Basico_Model_TemplateMapper extends Basico_AbstractMapper_RochedoMapper im
      * 
      * @return Basico_Model_Template
      */
-    public function getDbTable($dbTable = 'Basico_Model_Template')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_Template')
     {
         return parent::getDbTable($dbTable);
     }

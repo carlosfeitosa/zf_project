@@ -1,4 +1,4 @@
-<?php
+-<?php
 /**
  * Output model
  *
@@ -20,11 +20,11 @@ class Basico_Model_Output extends Basico_AbstractModel_RochedoPersistentModeloDa
 	/**
 	 * @var String
 	 */
-	protected $_constante_textual;
+	protected $_constanteTextual;
 	/**
 	 * @var String
 	 */
-	protected $_constante_textual_descricao;
+	protected $_constanteTextualDescricao;
 	/**
 	 * @var String
 	 */
@@ -98,7 +98,7 @@ class Basico_Model_Output extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function setConstanteTextual($constanteTextual)
 	{
-		$this->_constante_textual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
+		$this->_constanteTextual = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextual, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -109,7 +109,7 @@ class Basico_Model_Output extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getConstanteTextual()
 	{
-		return $this->_constante_textual;
+		return $this->_constanteTextual;
 	}
 
 	/**
@@ -120,7 +120,7 @@ class Basico_Model_Output extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
-		$this->_constante_textual_descricao = Basico_OPController_UtilOPController::retornaValorTipado($descricao, TIPO_STRING, true);
+		$this->_constanteTextualDescricao = Basico_OPController_UtilOPController::retornaValorTipado($constanteTextualDescricao, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -131,7 +131,7 @@ class Basico_Model_Output extends Basico_AbstractModel_RochedoPersistentModeloDa
 	*/
 	public function getConstanteTextualDescricao()
 	{
-		return $this->_constante_textual_descricao;
+		return $this->_constanteTextualDescricao;
 	}
 
 	/**

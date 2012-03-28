@@ -97,6 +97,6 @@ class Basico_Model_TemplateAssocclOutput extends Basico_AbstractModel_RochedoPer
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_TemplateAssocclOutputMapper);
+		return parent::getMapper('Basico_Model_TemplateAssocclOutputMapper');
 	} 
 }

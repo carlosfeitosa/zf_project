@@ -77,7 +77,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosPessoais', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaAssocDados', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -122,7 +122,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosPessoais', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_PessoaAssocDados', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -198,7 +198,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 		// criando um novo obj DadosPessoais
 		$novoDadosPessoais = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 		// setando a pessoa
-        $novoDadosPessoais->pessoa = $idPessoa;
+        $novoDadosPessoais->idPessoa = $idPessoa;
         // setando o nome
         $novoDadosPessoais->nome     = $nome;
         // salvando o objeto dadosPessoais

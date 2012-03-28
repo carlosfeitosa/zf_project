@@ -17,7 +17,7 @@ class Basico_Model_MensagemAssocEmailMapper extends Basico_AbstractMapper_Roched
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable($dbTable = 'Basico_Model_DbTable_MensagemEmail')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_MensagemAssocEmail')
     {
         return parent::getDbTable($dbTable);
     }

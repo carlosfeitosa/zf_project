@@ -37,8 +37,8 @@ class Basico_Model_PerfilAssocclModuloMapper extends Basico_AbstractMapper_Roche
         }
         $row = $result->current();
         $object->setId($row->id)
-               ->setModulo($row->id_modulo)
-               ->setPerfil($row->id_perfil)
+               ->setIdModulo($row->id_modulo)
+               ->setIdPerfil($row->id_perfil)
                ->setDatahoraCriacao($row->datahora_criacao)               
                ->setRowinfo($row->rowinfo);
     }
@@ -56,8 +56,8 @@ class Basico_Model_PerfilAssocclModuloMapper extends Basico_AbstractMapper_Roche
         {
             $entry = new Basico_Model_PerfilAssocclModulo();
             $entry->setId($row->id)
-                  ->setModulo($row->id_modulo)
-                  ->setPerfil($row->id_perfil)
+                  ->setIdModulo($row->id_modulo)
+                  ->setIdPerfil($row->id_perfil)
 				  ->setDatahoraCriacao($row->datahora_criacao)                
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
@@ -79,8 +79,8 @@ class Basico_Model_PerfilAssocclModuloMapper extends Basico_AbstractMapper_Roche
         {
             $entry = new Basico_Model_PerfilAssocclModulo();
             $entry->setId($row->id)
-                  ->setModulo($row->id_modulo)
-                  ->setPerfil($row->id_perfil)
+                  ->setIdModulo($row->id_modulo)
+                  ->setIdPerfil($row->id_perfil)
 				  ->setDatahoraCriacao($row->datahora_criacao)                   
                   ->setRowinfo($row->rowinfo)
                   ->setMapper($this);
@@ -98,8 +98,8 @@ class Basico_Model_PerfilAssocclModuloMapper extends Basico_AbstractMapper_Roche
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-                      'id_modulo' => $object->getModulo(),
-                      'id_perfil' => $object->getPerfil(),
+                      'id_modulo' => $object->getIdModulo(),
+                      'id_perfil' => $object->getIdPerfil(),
         		      'datahora_criacao' => $object->getDatahoraCriacao(),
                       'rowinfo'=> $object->getRowinfo(),
                      );

@@ -120,7 +120,7 @@ class Basico_Model_CategoriaMapper extends Basico_AbstractMapper_RochedoMapper i
     {
         $data = array(
                       'id_tipo_categoria'           => $object->getIdTipoCategoria(),
-                      'id_categoria_pai'            => $object->getIdCategoria(),
+                      'id_categoria_pai'            => $object->getIdCategoriaPai(),
 					  'nivel'  			            => $object->getNivel(),
 					  'nome'                        => $object->getNome(),
         			  'constante_textual'           => $object->getConstanteTextual(),

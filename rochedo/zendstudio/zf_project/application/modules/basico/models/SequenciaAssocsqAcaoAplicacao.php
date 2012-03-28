@@ -63,10 +63,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getIdCategoria()
 	{
-		if ($this->_idCategoria)
-			return $this->_idCategoria;
-		else
-			return null;
+		return $this->_idCategoria;
 	}
  
     /**
@@ -101,10 +98,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getIdSequencia()
 	{
-		if ($this->_idSequencia)
-			return $this->_idSequencia;
-		else
-			return null;
+		return $this->_idSequencia;
 	}
 	
     /**
@@ -139,10 +133,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getIdAcaoAplicacao()
 	{
-		if ($this->_idAcaoAplicacao)
-			return $this->_idAcaoAplicacao;
-		else
-			return null;
+		return $this->_idAcaoAplicacao;
 	}
 	
     /**
@@ -177,10 +168,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getNome()
 	{
-		if ($this->_nome)
-			return $this->_nome;
-		else
-			return null;
+		return $this->_nome;
 	}
 	
 	/**
@@ -203,10 +191,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getConstanteTextual()
 	{
-		if ($this->_constanteTextual)
-			return $this->_constanteTextual;
-		else
-			return null;
+		return $this->_constanteTextual;
 	}	
 	
 	/**
@@ -229,10 +214,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getConstanteTextualDescricao()
 	{
-		if ($this->_constanteTextualDescricao)
-			return $this->_constanteTextualDescricao;
-		else
-			return null;
+		return $this->_constanteTextualDescricao;
 	}
 
    /**
@@ -255,10 +237,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getPasso()
 	{
-		if ($this->_passo)
-			return $this->_passo;
-		else
-			return null;
+		return $this->_passo;
 	}	
 	
    /**
@@ -281,10 +260,7 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getAtivo()
 	{
-		if ($this->_ativo)
-			return $this->_ativo;
-		else
-			return null;
+		return $this->_ativo;
 	}	
 	
 	/**
@@ -296,6 +272,6 @@ class Basico_Model_SequenciaAssocsqAcaoAplicacao extends Basico_AbstractModel_Ro
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper(Basico_Model_SequenciaAssocsqAcaoAplicacaoMapper);
+		return parent::getMapper('Basico_Model_SequenciaAssocsqAcaoAplicacaoMapper');
 	}	
 }

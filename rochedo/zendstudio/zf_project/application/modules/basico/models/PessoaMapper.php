@@ -42,7 +42,7 @@ class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper impl
         	   ->setIdTelefoneDefault($row->id_telefone_default)
         	   ->setIdEmailDefault($row->id_email_default)
         	   ->setIdEnderecoDefault($row->id_endereco_default)
-        	   ->setIdEnderecoCorrespondencia($row->id_endereco_correpondencia)
+        	   ->setIdEnderecoCorrespondencia($row->id_endereco_correspondencia)
         	   ->setIdLinkDefault($row->id_link_default)
         	   ->setDatahoraCriacao($row->datahora_criacao)
         	   ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -66,7 +66,7 @@ class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper impl
 				->setIdTelefoneDefault($row->id_telefone_default)
 				->setIdEmailDefault($row->id_email_default)
 				->setIdEnderecoDefault($row->id_endereco_default)
-				->setIdEnderecoCorrespondencia($row->id_endereco_correpondencia)
+				->setIdEnderecoCorrespondencia($row->id_endereco_correspondencia)
 				->setIdLinkDefault($row->id_link_default)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -94,7 +94,7 @@ class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper impl
 				->setIdTelefoneDefault($row->id_telefone_default)
 				->setIdEmailDefault($row->id_email_default)
 				->setIdEnderecoDefault($row->id_endereco_default)
-				->setIdEnderecoCorrespondencia($row->id_endereco_correpondencia)
+				->setIdEnderecoCorrespondencia($row->id_endereco_correspondencia)
 				->setIdLinkDefault($row->id_link_default)
 				->setDatahoraCriacao($row->datahora_criacao)
 				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
@@ -115,15 +115,15 @@ class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper impl
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-        			  'id_perfil_padrao' 		    => $object->getIdPerfilPadrao(),
-        			  'id_telefone_default' 	    => $object->getIdTelefoneDefault(),
-        			  'id_email_default' 		    => $object->getIdEmailDefault(),
-        			  'id_endereco_default' 	    => $object->getIdEnderecoDefault(),
-        			  'id_endereco_correpondencia'  => $object->getIdEnderecoCorrespondencia(),
-        			  'id_link_default' 		    => $object->getIdLinkDefault(),
-        			  'datahora_criacao' 		    => $object->getDatahoraCriacao(),
-        			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                      'rowinfo'          		    => $object->getRowinfo(),
+        			  'id_perfil_padrao' 		     => $object->getIdPerfilPadrao(),
+        			  'id_telefone_default' 	     => $object->getIdTelefoneDefault(),
+        			  'id_email_default' 		     => $object->getIdEmailDefault(),
+        			  'id_endereco_default' 	     => $object->getIdEnderecoDefault(),
+        			  'id_endereco_correspondencia'  => $object->getIdEnderecoCorrespondencia(),
+        			  'id_link_default' 		     => $object->getIdLinkDefault(),
+        			  'datahora_criacao' 		     => $object->getDatahoraCriacao(),
+        			  'datahora_ultima_atualizacao'  => $object->getDatahoraUltimaAtualizacao(),
+                      'rowinfo'          		     => $object->getRowinfo(),
                      );
 
         if (null === ($id = $object->getId())) {

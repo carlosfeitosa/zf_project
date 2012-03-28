@@ -40,13 +40,13 @@ class Basico_Model_PessoaAssocDadosMapper extends Basico_AbstractMapper_RochedoM
                 ->setIdPessoa($row->id_pessoa)
 				->setNome($row->nome)
 				->setDataNascimento($row->data_nascimento)
-				->setConstanteTextualPais($row->constante_textual_pais)
+				->setConstanteTextualPaisNascimento($row->constante_textual_pais_nasc)
 				->setNomeUfNascimento($row->nome_uf_nascimento)
 				->setNomeMunicipioNascimento($row->nome_municipio_nascimento)
 				->setNomePai($row->nome_pai)
 				->setNomeMae($row->nome_mae)
 				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_modificacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 				->setRowinfo($row->rowinfo);
     }
 
@@ -66,13 +66,13 @@ class Basico_Model_PessoaAssocDadosMapper extends Basico_AbstractMapper_RochedoM
 	                ->setIdPessoa($row->id_pessoa)
 					->setNome($row->nome)
 					->setDataNascimento($row->data_nascimento)
-					->setConstanteTextualPais($row->constante_textual_pais)
+					->setConstanteTextualPaisNascimento($row->constante_textual_pais_nasc)
 					->setNomeUfNascimento($row->nome_uf_nascimento)
 					->setNomeMunicipioNascimento($row->nome_municipio_nascimento)
 					->setNomePai($row->nome_pai)
 					->setNomeMae($row->nome_mae)
 					->setDatahoraCriacao($row->datahora_criacao)
-					->setDatahoraUltimaAtualizacao($row->datahora_ultima_modificacao)
+					->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 					->setRowinfo($row->rowinfo)
 					->setMapper($this);
 			$entries[] = $entry;
@@ -96,13 +96,13 @@ class Basico_Model_PessoaAssocDadosMapper extends Basico_AbstractMapper_RochedoM
 	                ->setIdPessoa($row->id_pessoa)
 					->setNome($row->nome)
 					->setDataNascimento($row->data_nascimento)
-					->setConstanteTextualPais($row->constante_textual_pais)
+					->setConstanteTextualPaisNascimento($row->constante_textual_pais_nasc)
 					->setNomeUfNascimento($row->nome_uf_nascimento)
 					->setNomeMunicipioNascimento($row->nome_municipio_nascimento)
 					->setNomePai($row->nome_pai)
 					->setNomeMae($row->nome_mae)
 					->setDatahoraCriacao($row->datahora_criacao)
-					->setDatahoraUltimaAtualizacao($row->datahora_ultima_modificacao)
+					->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
 					->setRowinfo($row->rowinfo)
 				  ->setMapper($this);
 			$entries[] = $entry;
@@ -122,13 +122,13 @@ class Basico_Model_PessoaAssocDadosMapper extends Basico_AbstractMapper_RochedoM
                       'id_pessoa'       			=> $object->getIdPessoa(),
                       'nome'            			=> $object->getNome(),
         			  'data_nascimento' 			=> $object->getDataNascimento(),
-        			  'constante_textual_pais'  	=> $object->getConstanteTextualPais(),
+        			  'constante_textual_pais_nasc' => $object->getConstanteTextualPaisNascimento(),
         			  'nome_uf_nascimento'			=> $object->getNomeUfNascimento(),
         			  'nome_municipio_nascimento'	=> $object->getNomeMunicipioNascimento(),
         			  'nome_pai'        			=> $object->getNomePai(),
         			  'nome_mae'        			=> $object->getNomeMae(),
         			  'datahora_criacao'			=> $object->getDatahoraCriacao(),
-        			  'datahora_ultima_modificacao'	=> $object->getDatahoraUltimaAtualizacao(),
+        			  'datahora_ultima_atualizacao'	=> $object->getDatahoraUltimaAtualizacao(),
                       'rowinfo'   	  	    		=> $object->getRowinfo(),
                      );
 

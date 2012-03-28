@@ -413,7 +413,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			// verificando a categoria pai
 			if ($idCategoriaPai) {
 				// setando a categoria pai
-				$novaCategoria->categoria = $idCategoriaPai;
+				$novaCategoria->idCategoriaPai = $idCategoriaPai;
 
 				// recuperando o objeto categoria pai
 				$objetoCategoriaPai = $this->retornaObjetoPorId($this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this)), $idCategoriaPai);
@@ -422,10 +422,10 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 				$novaCategoria->nivel = $objetoCategoriaPai->nivel + 1;
 			}
 			// setando a categoria
-			$novaCategoria->tipoCategoria = $idTipoCategoria;
-			$novaCategoria->ativo         = true;
-			$novaCategoria->nome          = $nomeCategoria;
-			$novaCategoria->descricao     = DESCRICAO_CATEGORIA_CRIADA_POR_DEMANDA;
+			$novaCategoria->idTipoCategoria = $idTipoCategoria;
+			$novaCategoria->ativo           = true;
+			$novaCategoria->nome            = $nomeCategoria;
+			//$novaCategoria->descricao       = DESCRICAO_CATEGORIA_CRIADA_POR_DEMANDA;
 
 			// salvando o objeto
 			$this->salvarObjeto($novaCategoria);
