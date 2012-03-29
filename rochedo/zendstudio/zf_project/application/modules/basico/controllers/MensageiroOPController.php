@@ -98,7 +98,7 @@ class Basico_OPController_MensageiroOPController
     		}
     		  
     		// salvando log de tentativa de envio de mensagem
-    		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL);
+    		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL);
 
             // recuperando o transporte SMTP
 			$transport = $this->retornaTransportSmtp();
@@ -113,11 +113,14 @@ class Basico_OPController_MensageiroOPController
 	        
 	        // recuperando destinatarios
 	        $destinatarios = $mensagem->destinatariosArray;
+	        $destinatariosNomes = $mensagem->destinatariosNomesArray;
 	        
+	        $i = 0;
 	        // loop para adicionar destinatarios
 	        foreach($destinatarios as $destinatario) {
 	        	// adicionando destinatarios
-	            $this->_mail->addTo($destinatario);	
+	            $this->_mail->addTo($destinatario, $destinatariosNomes[$i]);	
+	            $i++;
 	        }
 	        
 	        // setando assunto
@@ -125,7 +128,7 @@ class Basico_OPController_MensageiroOPController
 	        // setando corpo da mensagem
 	        $this->_mail->setBodyText($mensagem->mensagem);
 	        // setando data da mensagem
-	        $this->_mail->setDate($mensagem->dataHoraMensagem);
+	        $this->_mail->setDate($mensagem->datahoraCriacao);
 	        
 	        // enviando a mensagem
             $this->_mail->send($transport);
@@ -135,7 +138,7 @@ class Basico_OPController_MensageiroOPController
             // recuperando a ultima versao do objeto
             $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($mensagem);
             // Atualizando a mensagem
-            Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
+            Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
 
     		// salvando log de sucesso no envio de mensagem
     		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);

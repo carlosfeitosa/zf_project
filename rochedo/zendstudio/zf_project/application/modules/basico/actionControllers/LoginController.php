@@ -422,12 +422,29 @@ class Basico_LoginController extends Zend_Controller_Action
 
 			            // setando e salvando token
 			            $idNovoToken = Basico_OPController_CpgTokenOPController::getInstance()->retornaIdNovoObjetoToken($idEmail, $idCategoriaToken);
-			             
-			            // setando e salvando mensagem
-			            $novaMensagem = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $email, Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));       
-			             
+
+			            // recuperando o nome do destinatario
+			            $nomeDestinatario = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
+			
+			            // carregando a assinatura da mensagem
+			        	$assinatura = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
+			            
+			            // substituindo tags
+			            $arrayTagsValoresMensagem = array(MENSAGEM_TAG_NOME                 => $nomeDestinatario, 
+			        									  MENSAGEM_TAG_LINK_VALIDACAO_EMAIL => "http://" . $_SERVER['HTTP_HOST'] . Zend_Controller_Front::getInstance()->getBaseUrl() . LINK_VALIDACAO_USUARIO . Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken), 
+			        									  MENSAGEM_TAG_ASSINATURA_MENSAGEM  => $assinatura);
+			
+						// recuperando o objeto categoria do tamplate a mensagem
+						$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT');
+						
+						// recuperando o id do template da mensagem
+			            $idMensagemTemplate = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaIdMensagemTemplatePorNomeTemplateIdCategoria('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO', $idCategoriaMensagem);
+					        									  
+			            // salvando e recuperando a mensagem para envio
+			            $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagem, $idMensagemTemplate , array($idPessoa), null, $arrayTagsValoresMensagem);
+			            
 			            // enviando a mensagem
-			            Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
+			            Basico_OPController_MensageiroOPController::getInstance()->enviar($objNovaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			             
 			            // salvando a transacao
 			            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
@@ -505,11 +522,17 @@ class Basico_LoginController extends Zend_Controller_Action
             
             // substituindo tags
         	$arrayTagsValoresMensagem = array(MENSAGEM_TAG_NOME                 => $nomeDestinatario, 
-        									  MENSAGEM_TAG_LINK_VALIDACAO_EMAIL => Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken), 
+        									  MENSAGEM_TAG_LINK_VALIDACAO_EMAIL => "http://" . $_SERVER['HTTP_HOST'] . Zend_Controller_Front::getInstance()->getBaseUrl() . LINK_VALIDACAO_USUARIO . Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken), 
         									  MENSAGEM_TAG_ASSINATURA_MENSAGEM  => $assinatura);
 
+			// recuperando o objeto categoria do tamplate a mensagem
+			$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT');
+			
+			// recuperando o id do template da mensagem
+            $idMensagemTemplate = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaIdMensagemTemplatePorNomeTemplateIdCategoria('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT', $idCategoriaMensagem);        									  
+        									  
             // salvando e recuperando a mensagem para envio
-            $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT', array($idNovaPessoa), null, $arrayTagsValoresMensagem);
+            $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagem, $idMensagemTemplate, array($idNovaPessoa), null, $arrayTagsValoresMensagem);
             
 	        // enviando a mensagem
 	        Basico_OPController_MensageiroOPController::getInstance()->enviar($objNovaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idNovaPessoasPerfis));

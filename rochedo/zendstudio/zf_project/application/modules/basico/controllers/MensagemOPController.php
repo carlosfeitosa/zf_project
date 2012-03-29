@@ -138,30 +138,21 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 * 
 	 * @return Basico_model_mensagem|null
 	 */
-	public function retornaModeloMensagemTemplateViaArrayIdsDestinatarios($nomeCategoriaMensagemTemplate, array $arrayIdsPessoasDestinatarios, $idPessoaRemetente = null, array $arrayTagsValores = array())
+	public function retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagemTemplate, $idMensagemTemplate, array $arrayIdsPessoasDestinatarios, $idPessoaRemetente = null, array $arrayTagsValores = array())
 	{
 		// verificando se os parametros foram obrigatorios foram informados
-		if((!isset($nomeCategoriaMensagemTemplate)) or (count($arrayIdsPessoasDestinatarios) === 0)){
+		if((!isset($idCategoriaMensagemTemplate)) or (!isset($idMensagemTemplate)) or (count($arrayIdsPessoasDestinatarios) === 0)){
 			//retornando nulo
 			return null;
 		}
 		
 		// recuperando a lingua do usuario
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
-
-		// recuperando o objeto categoria do tamplate a mensagem
-		$objCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoriaMensagemTemplate);
-
-		// verificando objeto de categoria da mensagem de problemas com login foi recuperado
-		if(!isset($objCategoriaMensagem)){
-		   // retornando nulo
-		   return null;	 
-		}
 		
 		$modeloMensagemTemplate = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_MensagemTemplateOPController');
 		
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->retornaObjetosPorParametros($modeloMensagemTemplate, "id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}')", null, 1, 0);
+		$objMensagemTemplate = $this->retornaObjetoPorId($modeloMensagemTemplate, $idMensagemTemplate);
 		
 		// verificando se a mensagem foi carregada
 		if (!isset($objMensagemTemplate)){
@@ -172,12 +163,17 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		// inicializando variaveis 
 		$modelMensagem = $this->retornaNovoObjetoModeloPorNomeOPController(get_class($this));
 		$arrayDestinatarios = array();
-				
+		
+		
+		
+		// setando a categoria da mensagem
+		$modelMensagem->idCategoria = $idCategoriaMensagemTemplate;
+		
 		// carregando assunto da mensagem
-		$modelMensagem->assunto = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objMensagemTemplate[0]->constanteTextualAssunto);
+		$modelMensagem->assunto = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objMensagemTemplate->constanteTextualAssunto);
 		
 		// carregando a mensagem
-		$modelMensagem->mensagem  = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objMensagemTemplate[0]->constanteTextualMensagem);
+		$modelMensagem->mensagem  = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objMensagemTemplate->constanteTextualMensagem);
 		
         // carregando a assinatura da mensagem
         $assinatura             = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
@@ -186,14 +182,15 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         if(!isset($idPessoaRemetente)){
         	// recuperando informacoes sobre o sistema
         	$modelMensagem->remetente = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaEmailSistema();
-        	//$modelMensagem->remetenteNome = APPLICATION_NAME;
+        	$modelMensagem->idGenericoProprietario = Basico_OPController_PessoaOPController::retornaIdPessoaSistemaViaSQL();
+        	$modelMensagem->remetenteNome = APPLICATION_NAME;
         }else{
         	// recuperando o objeto Pessoa
         	$objPessoaDestinatario = Basico_OPController_PessoaOPController::getInstance()->retornaObjetoPorId(Basico_Model_Pessoa, $idPessoaRemetente);
 
         	// recuperano informacoes sobre o remetente
         	$modelMensagem->remetente = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoaRemetente);        	
-        	//$modelMensagem->remetenteNome = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaRemetente);
+        	$modelMensagem->remetenteNome = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaRemetente);
         }
 
         // loop para carregar os nomes dos destinatarios
@@ -206,10 +203,14 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         	
         	// recuperando informacoes do destinatario
         	$arrayDestinatarios[] = $emailPirmarioDestinatario->email;  
+        	$arrayDestinatariosNomes[] = $nomeDestinatario;
+        	
         }
 
         // atribuindo destinatarios a mensagem
         $modelMensagem->destinatarios = $arrayDestinatarios;
+        // atribuindo destinatarios a mensagem
+        $modelMensagem->destinatariosNomes = $arrayDestinatariosNomes;
 
         // loop  para substituicao de TAGS
         foreach($arrayTagsValores as $tag => $valor){
@@ -222,6 +223,9 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         
         // setando data-hora da mensagem
         $modelMensagem->datahoraCriacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+        
+        // salvando a mensagem
+        $this->salvarObjeto($modelMensagem);
         
         // retornando a mensagem
 		return $modelMensagem;

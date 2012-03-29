@@ -1241,7 +1241,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		$link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $token;
 		
 		// recuperando o objeto mensagem já preenchido com os dados da template
-        $objNovaMensagem = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($nomeCategoriaMensagemTemplate, $arrayIdsPessoasDestinatarios);
+        $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($nomeCategoriaMensagemTemplate, $arrayIdsPessoasDestinatarios);
         
         // setando destinatario da mensagem          
         $objNovaMensagem->destinatarios       = array($emailDestinatario);
@@ -1252,7 +1252,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         $objNovaMensagem->idCategoria           = $idCategoriaMensagem;
         
         // salvando a mensagem
-        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($objNovaMensagem);
+        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
         
         // retornando o objeto mensagem
         return $objNovaMensagem;
