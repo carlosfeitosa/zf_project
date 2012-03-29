@@ -77,7 +77,7 @@ class Basico_OPController_EstadoOPController extends Basico_AbstractController_R
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado é da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_LocalizacaoEstado', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_LocalizacaoAssocEstado', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -122,7 +122,7 @@ class Basico_OPController_EstadoOPController extends Basico_AbstractController_R
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_LocalizacaoEstado', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_LocalizacaoAssocEstado', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -147,7 +147,7 @@ class Basico_OPController_EstadoOPController extends Basico_AbstractController_R
 	public function retornaNovoObjEstado()
 	{
 		// retornando novo obj tipo sanguinio
-		return new Basico_Model_Estado();
+		return new Basico_Model_LocalizacaoAssocEstado();
 	}
 	
 	/**

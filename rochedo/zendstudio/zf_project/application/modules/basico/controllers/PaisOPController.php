@@ -77,7 +77,7 @@ class Basico_OPController_PaisOPController extends Basico_AbstractController_Roc
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado é da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Pais', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_LocalizacaoPais', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -147,7 +147,7 @@ class Basico_OPController_PaisOPController extends Basico_AbstractController_Roc
 	public function retornaNovoObjPais()
 	{
 		// retornando novo obj tipo sanguinio
-		return new Basico_Model_Pais();
+		return new Basico_Model_LocalizacaoPais();
 	}
 	
 	/**
@@ -166,7 +166,7 @@ class Basico_OPController_PaisOPController extends Basico_AbstractController_Roc
 		
 		if (count($objPais) > 0) {
 			foreach ($objPais as $pais) {
-				$arrayResult[$pais->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,Basico_OPController_DicionarioExpressaoOPController::getInstance()->retornaTraducao($pais->constanteTextualNome));				
+				$arrayResult[$pais->id] = str_replace(TAG_SELECT_OPTION_NAO_DESEJO_INFORMAR, Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("SELECT_OPTION_NAO_DESEJO_INFORMAR") ,Basico_OPController_DicionarioExpressaoOPController::getInstance()->retornaTraducao($pais->constanteTextual));				
 			}
 			
 			return $arrayResult;

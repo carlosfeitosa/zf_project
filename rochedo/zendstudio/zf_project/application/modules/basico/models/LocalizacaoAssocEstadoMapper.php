@@ -1,38 +1,15 @@
 <?php
 /**
- * Estado data mapper
+ * LocalizacaoAssocEstado data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Estado
+ * @uses       Basico_Model_DbTable_LocalizacaoAssocEstado
  * @subpackage Model
  */
-class Basico_Model_EstadoMapper
+class Basico_Model_LocalizacaoAssocEstadoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_EstadoMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
@@ -40,10 +17,10 @@ class Basico_Model_EstadoMapper
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_LocalizacaoAssocEstado')
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Estado');
+            $this->setDbTable($dbTable);
         }
         return $this->_dbTable;
     }
@@ -51,17 +28,17 @@ class Basico_Model_EstadoMapper
     /**
      * Save a Estado entry
      * 
-     * @param  Basico_Model_Estado $object
+     * @param  Basico_Model_LocalizacaoAssocEstado $object
      * @return void
      */
-    public function save(Basico_Model_Estado $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-				'sigla'   => $object->getSigla(),
-				'codigo_ddd'   => $object->getCodigoDDD(),
-              	'id_pais'   => $object->getPais(),
-             	'id_categoria'   => $object->getCategoria(),
+				'nome'   	   => $object->getNome(),
+				'sigla'		   => $object->getSigla(),
+				'codigo_ddd'   => $object->getCodigoDddi(),
+              	'id_pais'	   => $object->getIdPais(),
+             	'id_categoria' => $object->getIdCategoria(),
 
         );
 
@@ -75,10 +52,10 @@ class Basico_Model_EstadoMapper
     
 	/**
 	* Delete a Estado entry
-	* @param Basico_Model_Estado $object
+	* @param Basico_Model_LocalizacaoAssocEstado $object
 	* @return void
 	*/
-	public function delete(Basico_Model_Estado $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
@@ -87,10 +64,10 @@ class Basico_Model_EstadoMapper
      * Find a Estado entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Estado $object 
+     * @param  Basico_Model_LocalizacaoAssocEstado $object 
      * @return void
      */
-    public function find($id, Basico_Model_Estado $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -100,13 +77,13 @@ class Basico_Model_EstadoMapper
         $object->setId($row->id)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigo_ddd)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria);
+				->setCodigoDdd($row->codigo_ddd)
+                ->setIdPais($row->id_pais)
+                ->setIdCategoria($row->id_categoria);
     }
 
 	/**
-	 * Fetch all estado entries
+	 * Fetch all LocalizacaoAssocEstado entries
 	 * 
 	 * @return array
 	 */
@@ -116,13 +93,13 @@ class Basico_Model_EstadoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Estado();
+			$entry = new Basico_Model_LocalizacaoAssocEstado();
 			$entry->setId($row->id)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigo_ddd)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria)
+				->setCodigoDdd($row->codigo_ddd)
+                ->setIdPais($row->id_pais)
+                ->setIdCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -130,7 +107,7 @@ class Basico_Model_EstadoMapper
 	}
 	
 	/**
-	 * Fetch all estado entries
+	 * Fetch all LocalizacaoAssocEstado entries
 	 * 
 	 * @return array
 	 */
@@ -140,13 +117,13 @@ class Basico_Model_EstadoMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Estado();
+			$entry = new Basico_Model_LocalizacaoAssocEstado();
 			$entry->setId($row->id)
 				->setNome($row->nome)
 				->setSigla($row->sigla)
-				->setCodigoDDD($row->codigo_ddd)
-                ->setPais($row->id_pais)
-                ->setCategoria($row->id_categoria)
+				->setCodigoDdd($row->codigo_ddd)
+                ->setIdPais($row->id_pais)
+                ->setIdCategoria($row->id_categoria)
 				->setMapper($this);
 			$entries[] = $entry;
 		}

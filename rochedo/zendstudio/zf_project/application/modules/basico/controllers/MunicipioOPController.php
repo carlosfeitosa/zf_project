@@ -147,7 +147,7 @@ class Basico_OPController_MunicipioOPController extends Basico_AbstractControlle
 	public function retornaNovoObjMunicipio()
 	{
 		// retornando novo obj tipo sanguinio
-		return new Basico_Model_Municipio();
+		return new Basico_Model_LocalizacaoAssocMunicipio();
 	}
 	
 	/**

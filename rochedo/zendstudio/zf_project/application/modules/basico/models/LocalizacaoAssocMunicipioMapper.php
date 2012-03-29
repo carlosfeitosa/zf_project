@@ -1,6 +1,6 @@
 <?php
 /**
- * Municipio data mapper
+ * LocalizacaoAssocMunicipio data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
@@ -8,58 +8,32 @@
  * @uses       Basico_Model_DbTable_Municipio
  * @subpackage Model
  */
-class Basico_Model_MunicipioMapper
+class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
-
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * @return Basico_Model_MunicipioMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Municipio if no instance registered
+     * Lazy loads Basico_Model_DbTable_LocalizacaoAssocMunicipio if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
-    public function getDbTable()
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_LocalizacaoAssocMunicipio')
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Municipio');
-        }
-        return $this->_dbTable;
+        return parent::getDbTable($dbTable);
     }
     
     /**
-     * Save a Municipio entry
+     * Save a LocalizacaoAssocMunicipio entry
      * 
-     * @param  Basico_Model_Municipio $object
+     * @param  Basico_Model_LocalizacaoAssocMunicipio $object
      * @return void
      */
-    public function save(Basico_Model_Municipio $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-				'nome'   => $object->getNome(),
-              'id_estado'   => $object->getEstado(),
-              'id_categoria'   => $object->getCategoria(),
+			'nome'   	   => $object->getNome(),
+            'id_estado'    => $object->getEstado(),
+            'id_categoria' => $object->getCategoria(),
 
         );
 
@@ -72,23 +46,23 @@ class Basico_Model_MunicipioMapper
     }
     
 	/**
-	* Delete a Municipio entry
-	* @param Basico_Model_Municipio $object
+	* Delete a LocalizacaoAssocMunicipio entry
+	* @param Basico_Model_LocalizacaoAssocMunicipio $object
 	* @return void
 	*/
-	public function delete(Basico_Model_Municipio $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}
 
     /**
-     * Find a Municipio entry by id
+     * Find a LocalizacaoAssocMunicipio entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_Municipio $object 
+     * @param  Basico_Model_LocalizacaoAssocMunicipio $object 
      * @return void
      */
-    public function find($id, Basico_Model_Municipio $object)
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -103,7 +77,7 @@ class Basico_Model_MunicipioMapper
     }
 
 	/**
-	 * Fetch all municipio entries
+	 * Fetch all LocalizacaoAssocMunicipio entries
 	 * 
 	 * @return array
 	 */
@@ -113,7 +87,7 @@ class Basico_Model_MunicipioMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Municipio();
+			$entry = new Basico_Model_LocalizacaoAssocMunicipio();
 			$entry->setId($row->id)
 
 				->setNome($row->nome)
@@ -126,7 +100,7 @@ class Basico_Model_MunicipioMapper
 	}
 	
 	/**
-	 * Fetch all municipio entries
+	 * Fetch all LocalizacaoAssocMunicipio entries
 	 * 
 	 * @return array
 	 */
@@ -136,7 +110,7 @@ class Basico_Model_MunicipioMapper
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_Municipio();
+			$entry = new Basico_Model_LocalizacaoAssocMunicipio();
 			$entry->setId($row->id)
 
 				->setNome($row->nome)
