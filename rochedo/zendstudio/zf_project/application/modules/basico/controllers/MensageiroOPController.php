@@ -131,11 +131,11 @@ class Basico_OPController_MensageiroOPController
             $this->_mail->send($transport);
 
             // atualizando a hora do envio da mensagem
-            $mensagem->dataHoraEnvio = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+            $mensagem->datahoraEnvio = Basico_OPController_UtilOPController::retornaDateTimeAtual();
             // recuperando a ultima versao do objeto
             $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($mensagem);
             // Atualizando a mensagem
-            Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
+            Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
 
     		// salvando log de sucesso no envio de mensagem
     		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);

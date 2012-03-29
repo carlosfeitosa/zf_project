@@ -58,7 +58,7 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 		// verificando singleton
 		if (self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController();
+			self::$_singleton = new Basico_OPController_AssocChaveEstrangeiraRelacaoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;

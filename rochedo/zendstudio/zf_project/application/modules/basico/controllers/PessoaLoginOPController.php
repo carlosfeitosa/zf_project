@@ -1176,7 +1176,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$arrayTagsMensagemProblemasLogin["@assinaturaMensagem"] = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
 			
 			// recuperando mensagem template de alerta sobre falhas no login
-			$modeloMensagemProblemaLogin = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT, array($idPessoaDestinatario), null, $arrayTagsMensagemProblemasLogin);
+			$modeloMensagemProblemaLogin = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT, array($idPessoaDestinatario), null, $arrayTagsMensagemProblemasLogin);
 			
 			// recuperando o objeto categoria da mensagem
 			$objCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT);
@@ -1188,7 +1188,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$idPessoaPerfilUsuarioValidadoDestinatario = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaDestinatario);
 			
 			// salvano objeto da mensagem
-			Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($modeloMensagemProblemaLogin);
+			Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($modeloMensagemProblemaLogin);
 			
 			// enviando a mensagem
             Basico_OPController_MensageiroOPController::getInstance()->enviar($modeloMensagemProblemaLogin, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfilUsuarioValidadoDestinatario));
@@ -1214,7 +1214,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		// recuperando o link para continuacao do cadastro
 		$link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $token;
 		// recuperando o objeto mensagem já preenchido com os dados da template
-        $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);
+        $objNovaMensagem = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);
         // setando destinatario da mensagem          
         $objNovaMensagem->destinatarios       = array($emailDestinatario);
         // recuperando a categoria da mensagem
@@ -1222,7 +1222,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		// setando a categoria da mensagem
         $objNovaMensagem->idCategoria           = $idCategoriaMensagem;
         // salvando a mensagem
-        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
+        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($objNovaMensagem);
         
         // retornando o objeto mensagem
         return $objNovaMensagem;
@@ -1241,7 +1241,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		$link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $token;
 		
 		// recuperando o objeto mensagem já preenchido com os dados da template
-        $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link);
+        $objNovaMensagem = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($nomeCategoriaMensagemTemplate, $arrayIdsPessoasDestinatarios);
         
         // setando destinatario da mensagem          
         $objNovaMensagem->destinatarios       = array($emailDestinatario);
@@ -1252,7 +1252,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         $objNovaMensagem->idCategoria           = $idCategoriaMensagem;
         
         // salvando a mensagem
-        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
+        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($objNovaMensagem);
         
         // retornando o objeto mensagem
         return $objNovaMensagem;
@@ -1267,7 +1267,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($idPessoa, $emailPrimario)
 	{
 		// recuperando a template da mensagem
-		$novaMensagemConfirmacao = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa);
+		$novaMensagemConfirmacao = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa);
 		    	
         // recuperando o nome do destinatario
         $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
@@ -1276,7 +1276,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         $novaMensagemConfirmacao->idCategoria   = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
 
         // salvando objeto
-        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($novaMensagemConfirmacao);
+        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($novaMensagemConfirmacao);
 	
         return $novaMensagemConfirmacao;
         
@@ -1291,7 +1291,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaMensagemTentativaRegistroEmailPrimario($idPessoa, $emailPrimario)
 	{
 		// recuperando a template da mensagem
-		$novaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa);
+		$novaMensagem = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa);
 		    	
         // recuperando o nome do destinatario
         $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
@@ -1299,7 +1299,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
         $novaMensagem->destinatarios       = array($emailPrimario);
         $novaMensagem->idCategoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
         // salvando objeto
-        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($novaMensagem);
+        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($novaMensagem);
 	
         return $novaMensagem;
         

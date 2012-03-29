@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_CpgToken
  * @subpackage Model
  */
-class Basico_Model_CpgTokenMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_CpgTokenMapper extends Basico_AbstractMapper_RochedoMapper
 {
     /**
      * Get registered Zend_Db_Table instance
@@ -29,7 +29,7 @@ class Basico_Model_CpgTokenMapper extends Basico_AbstractMapper_RochedoMapper im
      * @param  Basico_Model_CpgToken $object 
      * @return void
      */
-    public function find($id, Basico_AbstractController_RochedoPersistentOPController $object)
+    public function find($id, Basico_Model_CpgToken $object)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -101,7 +101,7 @@ class Basico_Model_CpgTokenMapper extends Basico_AbstractMapper_RochedoMapper im
      * @param  Basico_Model_CpgToken $object
      * @return void
      */
-    public function save(Basico_AbstractController_RochedoPersistentOPController $object)
+    public function save(Basico_Model_CpgToken $object)
     {
         $data = array(
         		'id_categoria'       		=> $object->getIdCategoria(),
@@ -126,7 +126,7 @@ class Basico_Model_CpgTokenMapper extends Basico_AbstractMapper_RochedoMapper im
 	* @param Basico_Model_CpgToken $object
 	* @return void
 	*/
-	public function delete(Basico_AbstractController_RochedoPersistentOPController $object)
+	public function delete(Basico_Model_CpgToken $object)
 	{
     	$this->getDbTable()->delete(array('id = ?' => $object->id));
 	}

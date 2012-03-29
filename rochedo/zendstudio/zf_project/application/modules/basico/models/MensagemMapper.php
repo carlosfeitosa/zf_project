@@ -35,7 +35,9 @@ class Basico_Model_MensagemMapper extends Basico_AbstractMapper_RochedoMapper im
         		'id_categoria'      			=> $object->getIdCategoria(),
         		'id_generico_proprietario'		=> $object->getIdGenericoProprietario(),
 				'remetente'        				=> $object->getRemetente(),
+        		'remetente_nome'        		=> $object->getRemetenteNome(),
 				'destinatarios'     			=> $object->getDestinatariosString(),
+        		'destinatarios_nomes'     	 	=> $object->getDestinatariosNomesString(),
 				'assunto'           			=> $object->getAssunto(),
         		'mensagem'          			=> $object->getMensagem(),
                 'datahora_envio'    			=> $object->getDatahoraEnvio(),
@@ -84,7 +86,9 @@ class Basico_Model_MensagemMapper extends Basico_AbstractMapper_RochedoMapper im
         		->setIdCategoria($row->id_categoria)
         		->setIdGenericoProprietario($row->id_generico_proprietario)
         		->setRemetente($row->remetente)
+        		->setRemetenteNome($row->remetente_nome)
 				->setDestinatarios($row->destinatarios)
+				->setDestinatariosNomes($row->destinatarios_nomes)
 				->setAssunto($row->assunto)
 				->setMensagem($row->mensagem)
 				->setDatahoraEnvio($row->datahora_envio)
@@ -109,7 +113,9 @@ class Basico_Model_MensagemMapper extends Basico_AbstractMapper_RochedoMapper im
         		->setIdCategoria($row->id_categoria)
         		->setIdGenericoProprietario($row->id_generico_proprietario)
         		->setRemetente($row->remetente)
+				->setRemetenteNome($row->remetente_nome)
 				->setDestinatarios($row->destinatarios)
+				->setDestinatariosNomes($row->destinatarios_nomes)
 				->setAssunto($row->assunto)
 				->setMensagem($row->mensagem)
 				->setDatahoraEnvio($row->datahora_envio)
@@ -138,7 +144,9 @@ class Basico_Model_MensagemMapper extends Basico_AbstractMapper_RochedoMapper im
         		->setIdCategoria($row->id_categoria)
         		->setIdGenericoProprietario($row->id_generico_proprietario)
         		->setRemetente($row->remetente)
+				->setRemetenteNome($row->remetente_nome)
 				->setDestinatarios($row->destinatarios)
+				->setDestinatariosNomes($row->destinatarios_nomes)
 				->setAssunto($row->assunto)
 				->setMensagem($row->mensagem)
 				->setDatahoraEnvio($row->datahora_envio)

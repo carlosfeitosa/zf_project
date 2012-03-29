@@ -192,7 +192,7 @@ class Basico_OPController_CpgTokenOPController
 			throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_TOKEN_SEM_RELACAO);
 
 		// verificando se existe o token existe na tabela de relacao
-		if (!Basico_OPController_PersistenceOPController::bdChecaExistenciaValorCategoriaChaveEstrangeira($objToken->idCategoria, $objToken->idGenerico, Basico_OPController_PersistenceOPController::bdRetornaTableNameObjeto($objToken), Basico_OPController_PersistenceOPController::bdRetornaNomeCampoIdGenericoObjeto($objToken), true))
+		if (!Basico_OPController_PersistenceOPController::bdChecaExistenciaValorCategoriaChaveEstrangeira($objToken->idCategoria, $objToken->idGenericoProprietario, Basico_OPController_PersistenceOPController::bdRetornaTableNameObjeto($objToken), Basico_OPController_PersistenceOPController::bdRetornaNomeCampoIdGenericoObjeto($objToken), true))
 			throw new Exception(MSG_ERRO_TOKEN_CHECK_CONSTRAINT);
 
 		try {
@@ -276,7 +276,7 @@ class Basico_OPController_CpgTokenOPController
 		// gerando e setando o token
         $novoToken->token = $this->gerarTokenPorModelo($novoToken, 'token');
         // setando o id generico
-        $novoToken->idGenerico = $idGenerico;
+        $novoToken->idGenericoProprietario = $idGenerico;
         // setando a categoria do token
         $novoToken->idCategoria = $idCategoriaToken;
 		// setando data-hora da expiracao

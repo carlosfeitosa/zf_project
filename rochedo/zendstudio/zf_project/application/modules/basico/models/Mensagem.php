@@ -24,7 +24,15 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 	/**
 	 * @var String
 	 */
+	protected $_remetenteNome;
+	/**
+	 * @var String
+	 */
 	protected $_destinatarios;
+	/**
+	 * @var String
+	 */
+	protected $_destinatariosNomes;
 	/**
 	 * @var String
 	 */
@@ -118,6 +126,29 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 	{
 		return $this->_remetente;
 	}
+	
+	/**
+	* Set remetenteNome
+	* 
+	* @param String $remetenteNome
+	* 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setRemetenteNome($remetenteNome)
+	{
+		$this->_remetenteNome = Basico_OPController_UtilOPController::retornaValorTipado($remetenteNome, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get remetenteNome
+	* 
+	* @return null|String
+	*/
+	public function getRemetenteNome()
+	{
+		return $this->_remetenteNome;
+	}
 
 	/**
 	* Set destinatarios
@@ -145,8 +176,8 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 		return $this->_destinatarios;
 	}
 	
-    /**
-	* Get destinatario array
+	/**
+	* Get destinatarios array
 	* 
 	* @return null|String
 	*/
@@ -154,6 +185,43 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 	{
 		$destinatarios = explode(';', $this->_destinatarios);
 		return $destinatarios;
+	}
+	
+	/**
+	* Set destinatariosNomes
+	* 
+	* @param String $destinatariosNomes
+	* 
+	* @return Basico_Model_Mensagem
+	*/
+	public function setDestinatariosNomes($destinatariosNomes)
+	{
+		if (is_array($destinatariosNomes))
+			$this->_destinatariosNomes = implode(';', $destinatariosNomes);
+		else
+			$this->_destinatariosNomes = Basico_OPController_UtilOPController::retornaValorTipado($destinatariosNomes, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get destinatariosNomes string
+	* 
+	* @return null|String
+	*/
+	public function getDestinatariosNomesString()
+	{
+		return $this->_destinatariosNomes;
+	}
+	
+	/**
+	* Get destinatariosNomes array
+	* 
+	* @return null|String
+	*/
+	public function getDestinatariosNomesArray()
+	{
+		$destinatariosNomes = explode(';', $this->_destinatariosNomes);
+		return $destinatariosNomes;
 	}
 
 	/**

@@ -497,14 +497,19 @@ class Basico_LoginController extends Zend_Controller_Action
             // setando e salvando o token
             $idNovoToken = Basico_OPController_CpgTokenOPController::getInstance()->retornaIdNovoObjetoToken($idNovoEmail, $idCategoriaToken);
 
-            // recuperando a categoria de mensagem a ser enviada e template
-            $idCategoriaTemplate = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
-
-            // setando e salvando a mensagem
+            // recuperando o nome do destinatario
             $nomeDestinatario = $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoNome');
 
+            // carregando a assinatura da mensagem
+        	$assinatura = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
+            
+            // substituindo tags
+        	$arrayTagsValoresMensagem = array(MENSAGEM_TAG_NOME                 => $nomeDestinatario, 
+        									  MENSAGEM_TAG_LINK_VALIDACAO_EMAIL => Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken), 
+        									  MENSAGEM_TAG_ASSINATURA_MENSAGEM  => $assinatura);
+
             // salvando e recuperando a mensagem para envio
-            $objNovaMensagem = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemCadastroUsuarioNaoValidado($nomeDestinatario, $this->getRequest()->getParam('BasicoCadastrarUsuarioNaoValidadoEmail'), Basico_OPController_CpgTokenOPController::getInstance()->retornaTokenEmailPorId($idNovoToken));
+            $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT', array($idNovaPessoa), null, $arrayTagsValoresMensagem);
             
 	        // enviando a mensagem
 	        Basico_OPController_MensageiroOPController::getInstance()->enviar($objNovaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idNovaPessoasPerfis));

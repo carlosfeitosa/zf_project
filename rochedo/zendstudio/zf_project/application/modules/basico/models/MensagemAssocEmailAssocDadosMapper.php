@@ -38,8 +38,10 @@ class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMap
         $row = $result->current();
         $object->setId($row->id)
 				->setIdAssocEmail($row->id_assoc_email)
-				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaOculta($row->destinatariosCopiaCarbonadaOculta)
+				->setDestinatariosCopiaCarbonada($row->destinatarios_copia_carbonada)
+				->setDestinatariosCopiaCarbonadaNomes($row->destinatarios_copia_carbonada_nomes)
+				->setDestinatariosCopiaCarbonadaOculta($row->destinatarios_copia_carbonada_oculta)
+				->setDestinatariosCopiaCarbonadaOcultaNomes($row->destinatarios_copia_carbonada_oculta_nomes)
 				->setResponderPara($row->responderPara)
                 ->setPrioridade($row->prioridade)
                 ->setSolicitacaoConfirmacaoLeitura($row->solicitacao_confirm_leitura)
@@ -65,7 +67,9 @@ class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMap
 
 				->setIdAssocEmail($row->id_assoc_email)
 				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaOculta($row->destinatariosCopiaCarbonadaOculta)
+				->setDestinatariosCopiaCarbonadaNomes($row->destinatarios_copia_carbonada_nomes)
+				->setDestinatariosCopiaCarbonadaOculta($row->destinatarios_copia_carbonada_oculta)
+				->setDestinatariosCopiaCarbonadaOcultaNomes($row->destinatarios_copia_carbonada_oculta_nomes)
 				->setResponderPara($row->responderPara)
                 ->setPrioridade($row->prioridade)
                 ->setSolicitacaoConfirmacaoLeitura($row->solicitacao_confirm_leitura)
@@ -95,7 +99,9 @@ class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMap
 
 				->setIdAssocEmail($row->id_assoc_email)
 				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaOculta($row->destinatariosCopiaCarbonadaOculta)
+				->setDestinatariosCopiaCarbonadaNomes($row->destinatarios_copia_carbonada_nomes)
+				->setDestinatariosCopiaCarbonadaOculta($row->destinatarios_copia_carbonada_oculta)
+				->setDestinatariosCopiaCarbonadaOcultaNomes($row->destinatarios_copia_carbonada_oculta_nomes)
 				->setResponderPara($row->responderPara)
                 ->setPrioridade($row->prioridade)
                 ->setSolicitacaoConfirmacaoLeitura($row->solicitacao_confirm_leitura)
@@ -118,16 +124,18 @@ class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMap
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-        		'id_assoc_email'                       => $object->getIdAssocEmail(),
-				'destinatarios_copia_carbonada'        => $object->getDestinatariosCopiaCarbonada(),
-				'destinatarios_copia_carbonada_oculta' => $object->getDestinatariosCopiaCarbonadaOculta(),
-				'responder_para'                       => $object->getResponderPara(),
-              	'prioridade'                           => $object->getPrioridade(),
-        		'solicitacao_confirm_leitura'          => $object->getSolicitacaoConfirmacaoLeitura(),
-        		'datahora_confirmacao_leitura'         => $object->getDatahoraConfirmacaoLeitura(),
-        		'datahora_criacao'                     => $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao'          => $object->getDatahoraUltimaAtualizacao(),
-        		'rowinfo'                              => $object->getRowinfo(),
+        		'id_assoc_email'                       		 => $object->getIdAssocEmail(),
+				'destinatarios_copia_carbonada'        		 => $object->getDestinatariosCopiaCarbonada(),
+        		'destinatarios_copia_carbonada_nomes'  		 => $object->getDestinatariosCopiaCarbonadaNomesString(),
+				'destinatarios_copia_carbonada_oculta' 		 => $object->getDestinatariosCopiaCarbonadaOculta(),
+        		'destinatarios_copia_carbonada_oculta_nomes' => $object->getDestinatariosCopiaCarbonadaOcultaNomesString(),
+				'responder_para'                       		 => $object->getResponderPara(),
+              	'prioridade'                           		 => $object->getPrioridade(),
+        		'solicitacao_confirm_leitura'          		 => $object->getSolicitacaoConfirmacaoLeitura(),
+        		'datahora_confirmacao_leitura'         		 => $object->getDatahoraConfirmacaoLeitura(),
+        		'datahora_criacao'                     		 => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao'          		 => $object->getDatahoraUltimaAtualizacao(),
+        		'rowinfo'                              		 => $object->getRowinfo(),
 
         );
 

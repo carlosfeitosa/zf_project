@@ -21,7 +21,15 @@ class Basico_Model_MensagemAssocEmailAssocDados extends Basico_AbstractModel_Roc
 	/**
 	 * @var String
 	 */
+	protected $_destinatariosCopiaCarbonadaNomes;
+	/**
+	 * @var String
+	 */
 	protected $_destinatariosCopiaCarbonadaOculta;
+	/**
+	 * @var String
+	 */
+	protected $_destinatariosCopiaCarbonadaOcultaNomes;
 	/**
 	 * @var String
 	 */
@@ -93,6 +101,39 @@ class Basico_Model_MensagemAssocEmailAssocDados extends Basico_AbstractModel_Roc
 	{
 		return $this->_destinatariosCopiaCarbonada;
 	}
+	
+	/**
+	* Set destinatariosCopiaCarbonadaNomes
+	* 
+	* @param String $destinatariosCopiaCarbonadaNomes 
+	* @return Basico_Model_MensagemAssocEmailAssocDados
+	*/
+	public function setDestinatariosCopiaCarbonadaNomes($destinatariosCopiaCarbonadaNomes)
+	{
+		$this->_destinatariosCopiaCarbonadaNomes = Basico_OPController_UtilOPController::retornaValorTipado($destinatariosCopiaCarbonadaNomes, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get destinatariosCopiaCarbonadaNomes
+	* 
+	* @return null|String
+	*/
+	public function getDestinatariosCopiaCarbonadaNomesString()
+	{
+		return $this->_destinatariosCopiaCarbonadaNomes;
+	}
+	
+	/**
+	* Get destinatariosCopiaCarbonadaNomes array
+	* 
+	* @return null|Array
+	*/
+	public function getDestinatariosCopiaCarbonadaNomesArray()
+	{
+		$destinatariosCopiaCarbonadaNomes = explode(';', $this->_destinatariosCopiaCarbonadaNomes);
+		return $destinatariosCopiaCarbonadaNomes;
+	}
      
 	/**
 	* Set destinatariosCopiaCarbonadaOculta
@@ -114,6 +155,39 @@ class Basico_Model_MensagemAssocEmailAssocDados extends Basico_AbstractModel_Roc
 	public function getDestinatariosCopiaCarbonadaOculta()
 	{
 		return $this->_destinatariosCopiaCarbonadaOculta;
+	}
+	
+	/**
+	* Set destinatariosCopiaCarbonadaOcultaNomes
+	* 
+	* @param String $destinatariosCopiaCarbonadaOcultaNomes 
+	* @return Basico_Model_MensagemAssocEmailAssocDados
+	*/
+	public function setDestinatariosCopiaCarbonadaOcultaNomes($destinatariosCopiaCarbonadaOcultaNomes)
+	{
+		$this->_destinatariosCopiaCarbonadaOcultaNomes = Basico_OPController_UtilOPController::retornaValorTipado($destinatariosCopiaCarbonadaOcultaNomes, TIPO_STRING, true);
+		return $this;
+	}
+
+	/**
+	* Get destinatariosCopiaCarbonadaOcultaNomes
+	* 
+	* @return null|String
+	*/
+	public function getDestinatariosCopiaCarbonadaOcultaNomesString()
+	{
+		return $this->_destinatariosCopiaCarbonadaOcultaNomes;
+	}
+	
+	/**
+	* Get destinatariosCopiaCarbonadaOcultaNomes array
+	* 
+	* @return null|Array
+	*/
+	public function getDestinatariosCopiaCarbonadaOcultaNomesArray()
+	{
+		$destinatariosCopiaCarbonadaOcultaNomes = explode(';', $this->_destinatariosCopiaCarbonadaOcultaNomes);
+		return $destinatariosCopiaCarbonadaOcultaNomes;
 	}
      
 	/**
