@@ -31,10 +31,17 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-			'nome'   	   => $object->getNome(),
-            'id_estado'    => $object->getEstado(),
-            'id_categoria' => $object->getCategoria(),
-
+			'id_categoria'  			  => $object->getIdCategoria(),
+        	'id_municipio_pai' 			  => $object->getIdMunicipioPai(),
+        	'id_estado'					  => $object->getIdEstado(),
+            'nivel'						  => $object->getNivel(),
+        	'nome'						  => $object->getNome(),
+			'sigla'						  => $object->getSigla(),
+			'codigo_ddd'				  => $object->getCodigoDddi(),
+        	'ativo'						  => $object->getAtvo(),
+        	'datahora_criacao'            => $object->getDatahoraCriacao(),
+        	'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+            'rowinfo'                     => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -70,10 +77,17 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
         }
         $row = $result->current();
         $object->setId($row->id)
-
-				->setNome($row->nome)
-                ->setEstado($row->id_estado)
-                ->setCategoria($row->id_categoria);
+				->setIdCategoria($row->id_categoria)
+				->setIdMunicipioPai($row->id_municipio_pai)
+				->setIdEstado($row->id_estado)
+				->setNivel($row->nivel)
+        		->setNome($row->nome)
+				->setSigla($row->sigla)
+				->setCodigoDdd($row->codigo_ddd)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -89,10 +103,17 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
 		{
 			$entry = new Basico_Model_LocalizacaoAssocMunicipio();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-                ->setEstado($row->id_estado)
-                ->setCategoria($row->id_categoria)
+				->setIdCategoria($row->id_categoria)
+				->setIdMunicipioPai($row->id_municipio_pai)
+				->setIdEstado($row->id_estado)
+				->setNivel($row->nivel)
+        		->setNome($row->nome)
+				->setSigla($row->sigla)
+				->setCodigoDdd($row->codigo_ddd)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -112,10 +133,17 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
 		{
 			$entry = new Basico_Model_LocalizacaoAssocMunicipio();
 			$entry->setId($row->id)
-
-				->setNome($row->nome)
-                ->setEstado($row->id_estado)
-                ->setCategoria($row->id_categoria)
+				->setIdCategoria($row->id_categoria)
+				->setIdMunicipioPai($row->id_municipio_pai)
+				->setIdEstado($row->id_estado)
+				->setNivel($row->nivel)
+        		->setNome($row->nome)
+				->setSigla($row->sigla)
+				->setCodigoDdd($row->codigo_ddd)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}

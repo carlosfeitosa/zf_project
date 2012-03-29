@@ -31,9 +31,13 @@ class Basico_Model_LocalizacaoPaisMapper extends Basico_AbstractMapper_RochedoMa
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-				'constante_textual' => $object->getConstanteTextual(),
-				'sigla'   			=> $object->getSigla(),
-				'codigo_ddi'		=> $object->getCodigoDDI(),
+				'constante_textual'			  => $object->getConstanteTextual(),
+				'sigla'						  => $object->getSigla(),
+				'codigo_ddi'				  => $object->getCodigoDDI(),
+        		'codigoIso3166'				  => $object->getCodogoIso3166(),
+        		'datahora_criacao'            => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+              	'rowinfo'                     => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -71,7 +75,12 @@ class Basico_Model_LocalizacaoPaisMapper extends Basico_AbstractMapper_RochedoMa
         $object->setId($row->id)
 				->setConstanteTextual($row->constante_textual)
 				->setSigla($row->sigla)
-				->setCodigoDDI($row->codigo_ddi);
+				->setCodigoDdi($row->codigo_ddi)
+				->setCodigoIso3166($row->codigo_iso3166)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+			    ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -90,6 +99,11 @@ class Basico_Model_LocalizacaoPaisMapper extends Basico_AbstractMapper_RochedoMa
 				->setConstanteTextual($row->constante_textual)
 				->setSigla($row->sigla)
 				->setCodigoDDI($row->codigo_ddi)
+				->setCodigoIso3166($row->codigo_iso3166)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+			    ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -112,6 +126,11 @@ class Basico_Model_LocalizacaoPaisMapper extends Basico_AbstractMapper_RochedoMa
 				->setConstanteTextual($row->constante_textual)
 				->setSigla($row->sigla)
 				->setCodigoDDI($row->codigo_ddi)
+				->setCodigoIso3166($row->codigo_iso3166)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+			    ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}

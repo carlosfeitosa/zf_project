@@ -10,6 +10,22 @@
 class Basico_Model_LocalizacaoAssocEstado extends Basico_AbstractModel_RochedoPersistentModeloDados implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
+     * @var Integer
+     */
+    protected $_idCategoria;
+    /**
+     * @var Integer
+     */
+    protected $_idEstadoPai;
+    /**
+     * @var Integer
+     */
+    protected $_idPais;
+    /**
+     * @var Integer
+     */
+    protected $_nivel;
+	/**
 	 * @var String
 	 */
 	protected $_nome;
@@ -22,18 +38,130 @@ class Basico_Model_LocalizacaoAssocEstado extends Basico_AbstractModel_RochedoPe
 	 */
 	protected $_codigoDdd;
     /**
-     * @var Integer
-     */
-    protected $_idPais;
-
-    /**
-     * @var Integer
-     */
-    protected $_idCategoria;
-    /**
      * @var Boolean
      */
     protected $_ativo;
+
+	/**
+	* Set idCategoria
+	* 
+	* @param int $idCategoria 
+	* @return Basico_Model_LocalizacaoAssocEstado
+	*/
+	public function setIdCategoria($idCategoria)
+	{
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idCategoria
+	* 
+	* @return null|int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+ 
+    /**
+     * Get categoria object
+     * @return null|Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+
+	/**
+	* Set idEstadoPai
+	* 
+	* @param int $idEstadoPai 
+	* @return Basico_Model_LocalizacaoAssocEstado
+	*/
+	public function setIdEstadoPai($idEstadoPai)
+	{
+		$this->_idEstadoPai = Basico_OPController_UtilOPController::retornaValorTipado($idEstadoPai, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idEstadoPai
+	* 
+	* @return null|int
+	*/
+	public function getIdEstadoPai()
+	{
+		return $this->_idEstadoPai;
+	}
+ 
+    /**
+     * Get EstadoPai object
+     * @return null|Categoria
+     */
+    public function getEstadoPaiObject()
+    {
+        $model = new Basico_Model_LocalizacaoAssocEstado();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idEstadoPai);
+        return $object;
+    }
+
+    /**
+	* Set idPais
+	* 
+	* @param int $idPais 
+	* @return Basico_Model_LocalizacaoAssocEstado
+	*/
+	public function setIdPais($idPais)
+	{
+		$this->_idPais = Basico_OPController_UtilOPController::retornaValorTipado($idPais, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idPais
+	* 
+	* @return null|int
+	*/
+	public function getIdPais()
+	{
+		return $this->_idPais;
+	}
+ 
+    /**
+     * Get Pais object
+     * @return null|Basico_Model_LocalizacaoPais
+     */
+    public function getPaisObject()
+    {
+        $model = new Basico_Model_LocalizacaoPais();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idPais);
+        return $object;
+    }
+
+    /**
+	* Set nivel
+	* 
+	* @param int $nivel 
+	* @return Basico_Model_LocalizacaoAssocEstado
+	*/
+	public function setNivel($nivel)
+	{
+		$this->_nivel = Basico_OPController_UtilOPController::retornaValorTipado($nivel, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get nivel
+	* 
+	* @return null|int
+	*/
+	public function getNivel()
+	{
+		return $this->_nivel;
+	}
 
 	/**
 	* Set nome
@@ -102,70 +230,26 @@ class Basico_Model_LocalizacaoAssocEstado extends Basico_AbstractModel_RochedoPe
 	}
 
 	/**
-	* Set idPais
+	* Set ativo
 	* 
-	* @param int $idPais 
+	* @param int $ativo 
 	* @return Basico_Model_LocalizacaoAssocEstado
 	*/
-	public function setIdPais($idPais)
+	public function setAtivo($ativo)
 	{
-		$this->_idPais = Basico_OPController_UtilOPController::retornaValorTipado($idPais, TIPO_INTEIRO, true);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get idPais
+	* Get ativo
 	* 
 	* @return null|int
 	*/
-	public function getIdPais()
+	public function getAtivo()
 	{
-		return $this->_idPais;
+		return $this->_ativo;
 	}
- 
-    /**
-     * Get pais object
-     * @return null|Pais
-     */
-    public function getPaisObject()
-    {
-        $model = new Basico_Model_LocalizacaoPais();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idPais);
-        return $object;
-    }
-    
-	/**
-	* Set idCategoria
-	* 
-	* @param int $idCategoria 
-	* @return Basico_Model_LocalizacaoAssocEstado
-	*/
-	public function setIdCategoria($idCategoria)
-	{
-		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
-		return $this;
-	}
-
-	/**
-	* Get idCategoria
-	* 
-	* @return null|int
-	*/
-	public function getIdCategoria()
-	{
-		return $this->_idCategoria;
-	}
- 
-    /**
-     * Get categoria object
-     * @return null|Categoria
-     */
-    public function getCategoriaObject()
-    {
-        $model = new Basico_Model_Categoria();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
-        return $object;
-    }
 
 	/**
 	* Get data mapper

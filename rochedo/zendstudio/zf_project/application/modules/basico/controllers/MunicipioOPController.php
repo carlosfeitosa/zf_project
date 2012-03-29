@@ -68,7 +68,7 @@ class Basico_OPController_MunicipioOPController extends Basico_AbstractControlle
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
 	 * 
-	 * @param Basico_Model_Municipio $objeto
+	 * @param Basico_Model_LocalizacaoAssocMunicipio $objeto
 	 * @param Integer $versaoUpdate
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -77,7 +77,7 @@ class Basico_OPController_MunicipioOPController extends Basico_AbstractControlle
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado é da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Municipio', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_LocalizacaoAssocMunicipio', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -113,7 +113,7 @@ class Basico_OPController_MunicipioOPController extends Basico_AbstractControlle
 	 * (non-PHPdoc)
 	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
 	 * 
-	 * @param Basico_Model_Municipio $objeto
+	 * @param Basico_Model_LocalizacaoAssocMunicipio $objeto
 	 * @param Boolean $forceCascade
 	 * @param Integer $idPessoaPerfilCriador
 	 * 
@@ -122,7 +122,7 @@ class Basico_OPController_MunicipioOPController extends Basico_AbstractControlle
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Municipio', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_LocalizacaoAssocMunicipio', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -156,9 +156,9 @@ class Basico_OPController_MunicipioOPController extends Basico_AbstractControlle
 	 */
 	public static function retornaMunicipioOptions($idEstado = null)
 	{
-		// recuperando todos os países
+		// recuperando todos os municipios
 		$objMunicipio = self::retornaNovoObjMunicipio();
-		// recuperando todos os tipos sanguineos
+		// recuperando todos os municipios
 		$objMunicipio = Basico_OPController_PersistenceOPController::bdObjectFetchList($objMunicipio, 'id_estado=17');
 		
 		// adicionando opção em branco

@@ -13,16 +13,13 @@ class Basico_Model_LocalizacaoAssocEstadoMapper extends Basico_AbstractMapper_Ro
     /**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Estado if no instance registered
+     * Lazy loads Basico_Model_DbTable_LocalizacaoAssocEstado if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
     public function getDbTable($dbTable = 'Basico_Model_DbTable_LocalizacaoAssocEstado')
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable($dbTable);
-        }
-        return $this->_dbTable;
+    	return parent::getDbTable($dbTable);
     }
     
     /**
@@ -34,12 +31,17 @@ class Basico_Model_LocalizacaoAssocEstadoMapper extends Basico_AbstractMapper_Ro
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-				'nome'   	   => $object->getNome(),
-				'sigla'		   => $object->getSigla(),
-				'codigo_ddd'   => $object->getCodigoDddi(),
-              	'id_pais'	   => $object->getIdPais(),
-             	'id_categoria' => $object->getIdCategoria(),
-
+				'id_categoria'  			  => $object->getIdCategoria(),
+        		'id_estado_pai' 			  => $object->getIdEstadoPai(),
+        		'id_pais'					  => $object->getIdPais(),
+             	'nivel'						  => $object->getNivel(),
+        		'nome'						  => $object->getNome(),
+				'sigla'						  => $object->getSigla(),
+				'codigo_ddd'				  => $object->getCodigoDddi(),
+        		'ativo'						  => $object->getAtvo(),
+        		'datahora_criacao'            => $object->getDatahoraCriacao(),
+        		'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
+              	'rowinfo'                     => $object->getRowinfo(),
         );
 
         if (null === ($id = $object->getId())) {
@@ -75,11 +77,17 @@ class Basico_Model_LocalizacaoAssocEstadoMapper extends Basico_AbstractMapper_Ro
         }
         $row = $result->current();
         $object->setId($row->id)
-				->setNome($row->nome)
+				->setIdCategoria($row->id_categoria)
+				->setIdEstadoPai($row->id_estado_pai)
+				->setIdPais($row->id_pais)
+				->setNivel($row->nivel)
+        		->setNome($row->nome)
 				->setSigla($row->sigla)
 				->setCodigoDdd($row->codigo_ddd)
-                ->setIdPais($row->id_pais)
-                ->setIdCategoria($row->id_categoria);
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo);
     }
 
 	/**
@@ -95,11 +103,17 @@ class Basico_Model_LocalizacaoAssocEstadoMapper extends Basico_AbstractMapper_Ro
 		{
 			$entry = new Basico_Model_LocalizacaoAssocEstado();
 			$entry->setId($row->id)
-				->setNome($row->nome)
+				->setIdCategoria($row->id_categoria)
+				->setIdEstadoPai($row->id_estado_pai)
+				->setIdPais($row->id_pais)
+				->setNivel($row->nivel)
+        		->setNome($row->nome)
 				->setSigla($row->sigla)
 				->setCodigoDdd($row->codigo_ddd)
-                ->setIdPais($row->id_pais)
-                ->setIdCategoria($row->id_categoria)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
@@ -119,11 +133,17 @@ class Basico_Model_LocalizacaoAssocEstadoMapper extends Basico_AbstractMapper_Ro
 		{
 			$entry = new Basico_Model_LocalizacaoAssocEstado();
 			$entry->setId($row->id)
-				->setNome($row->nome)
+				->setIdCategoria($row->id_categoria)
+				->setIdEstadoPai($row->id_estado_pai)
+				->setIdPais($row->id_pais)
+				->setNivel($row->nivel)
+        		->setNome($row->nome)
 				->setSigla($row->sigla)
 				->setCodigoDdd($row->codigo_ddd)
-                ->setIdPais($row->id_pais)
-                ->setIdCategoria($row->id_categoria)
+				->setAtivo($row->ativo)
+				->setDatahoraCriacao($row->datahora_criacao)
+				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
+                ->setRowinfo($row->rowinfo)
 				->setMapper($this);
 			$entries[] = $entry;
 		}
