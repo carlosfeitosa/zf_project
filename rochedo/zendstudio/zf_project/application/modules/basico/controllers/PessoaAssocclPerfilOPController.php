@@ -414,25 +414,27 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 */
 	public static function retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa)
 	{
-		// recuperando o nome do perfil USUARIO_VALIDADO
-		$nomePerfilUsuarioValidado = PERFIL_USUARIO_VALIDADO;
-
-		// montando a query SQL que retorna o id da pessoa perfil, do perfil USUARIO_VALIDADO vinculado ao id da pessoa passado por parametro
-		$queryRetornaIdPessoaPerfilUsuarioValidado = "SELECT pp.id
-													  FROM basico_pessoa.assoccl_perfil pp
-													  LEFT JOIN basico.pessoa pa ON (pp.id_pessoa = pa.id)
-													  LEFT JOIN basico.perfil pl ON (pp.id_perfil = pl.id)
-													  WHERE pl.NOME = '{$nomePerfilUsuarioValidado}'
-													  AND pa.id = {$idPessoa}";
-
-		// recuperando array contendo o id da pessoa perfil
-		$arrayIdPessoaPerfil = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRetornaIdPessoaPerfilUsuarioValidado);
-
-		// verificando se houve recuperacao do perfil
-		if ((isset($arrayIdPessoaPerfil)) and (is_array($arrayIdPessoaPerfil)) and (count($arrayIdPessoaPerfil) > 0))
-			// retornando o id pessoa perfil
-			return (int) $arrayIdPessoaPerfil[0][self::nomeCampoIdModelo];
-
+		if ($idPessoa) {
+			// recuperando o nome do perfil USUARIO_VALIDADO
+			$nomePerfilUsuarioValidado = PERFIL_USUARIO_VALIDADO;
+	
+			// montando a query SQL que retorna o id da pessoa perfil, do perfil USUARIO_VALIDADO vinculado ao id da pessoa passado por parametro
+			$queryRetornaIdPessoaPerfilUsuarioValidado = "SELECT pp.id
+														  FROM basico_pessoa.assoccl_perfil pp
+														  LEFT JOIN basico.pessoa pa ON (pp.id_pessoa = pa.id)
+														  LEFT JOIN basico.perfil pl ON (pp.id_perfil = pl.id)
+														  WHERE pl.NOME = '{$nomePerfilUsuarioValidado}'
+														  AND pa.id = {$idPessoa}";
+	
+			// recuperando array contendo o id da pessoa perfil
+			$arrayIdPessoaPerfil = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRetornaIdPessoaPerfilUsuarioValidado);
+	
+			// verificando se houve recuperacao do perfil
+			if ((isset($arrayIdPessoaPerfil)) and (is_array($arrayIdPessoaPerfil)) and (count($arrayIdPessoaPerfil) > 0))
+				// retornando o id pessoa perfil
+				return (int) $arrayIdPessoaPerfil[0][self::nomeCampoIdModelo];
+		}
+		
 		return null;
 	}
 
@@ -488,7 +490,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 			$versaoUpdate = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($objPessoaPerfil);
 
 		    // atualizando o perfil
-			$objPessoaPerfil->perfil = $idPerfilNovo;
+			$objPessoaPerfil->idPerfil = $idPerfilNovo;
 
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 			if (!isset($idPessoaPerfilCriador))
@@ -510,7 +512,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 * @param Basico_Model_Email $email
 	 * @return Boolean
 	 */
-	public function possuiPerfilUsuarioValidadoPorEmail(Basico_Model_Email $email)
+	public function possuiPerfilUsuarioValidadoPorEmail(Basico_Model_ContatoCpgEmail $email)
 	{
     	// recuperando o id do proprietario do email
 		$idProprietarioEmail = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaIdProprietarioEmailPorIdEmail($email->id);

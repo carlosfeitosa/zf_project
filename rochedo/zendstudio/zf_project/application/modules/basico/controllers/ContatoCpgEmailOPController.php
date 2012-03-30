@@ -334,16 +334,16 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
      * @param Basico_Model_Email $email
      * @return Object
      */
-    public function retornaObjetoProprietarioEmail(Basico_Model_Email $email)
+    public function retornaObjetoProprietarioEmail(Basico_Model_ContatoCpgEmail $email)
     {
     	//recuperando a categoria chave estrangeira do email passado 
-    	$categoriaChaveEstrangeira = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($email->categoria);
+    	$categoriaChaveEstrangeira = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($email->idCategoria);
     	   	
     	//setando o nome da classe a ser instanciada
     	$moduloName = strtolower($categoriaChaveEstrangeira->getModuloObject()->nome);
     	$moduloName = ucfirst($moduloName);
     	
-    	$nomeClasse = $moduloName . '_Model_' . ucfirst($categoriaChaveEstrangeira->tabelaEstrangeira);
+    	$nomeClasse = $moduloName . '_Model_' . ucfirst(str_replace("{$moduloName}.", '', ucfirst($categoriaChaveEstrangeira->tabelaEstrangeira)));
     	
     	//instanciando a classe
     	$model = new $nomeClasse();
@@ -406,7 +406,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
      * 
      * @param Basico_Model_Email $email
      */
-    public function validarEmail(Basico_Model_Email $email)
+    public function validarEmail(Basico_Model_ContatoCpgEmail $email)
     {
 		// recuperando a ultima versao do email
     	$versaoUpdateEmail = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($email);
@@ -427,13 +427,13 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
      * 
      * @param Int $objEmail
      */
-    public function verificaEmailPrimario(Basico_Model_Email $objEmail)
+    public function verificaEmailPrimario(Basico_Model_ContatoCpgEmail $objEmail)
     {
     	// recuperando o id da categoria EMAIL_PRIMARIO
 		$idCategoriaEmailPrimario = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO);
 		
 		// verificando se o email passado eh da categoria email primario
-		if ($objEmail->categoria === $idCategoriaEmailPrimario) {
+		if ($objEmail->idCategoria === $idCategoriaEmailPrimario) {
 			return true;
 		}else{
 			return false;

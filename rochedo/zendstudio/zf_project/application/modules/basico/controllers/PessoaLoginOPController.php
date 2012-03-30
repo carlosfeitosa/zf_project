@@ -1264,19 +1264,45 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * @param Int $idPessoa
 	 * @param String $emailPrimario
 	 */
-	public function retornaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($idPessoa, $emailPrimario)
+	public function enviaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($idPessoa)
 	{
-		// recuperando a template da mensagem
-		$novaMensagemConfirmacao = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaObjetoMensagemTemplateMensagemConfirmacaoCadastroPlainText($idPessoa);
-		    	
-        // recuperando o nome do destinatario
+		// recuperando id da categoria da template de mensagem
+		$idCategoriaMensagemTemplate = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT');
+		
+		// recuperando o id da template de mensagem
+		$idMensagemTemplate = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaIdMensagemTemplatePorNomeTemplateIdCategoria('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT', $idCategoriaMensagemTemplate);
+		
+		// recuperando o nome do destinatario
         $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
-	    // setando atributos da mensagem                     
-        $novaMensagemConfirmacao->destinatarios = array($emailPrimario);
-        $novaMensagemConfirmacao->idCategoria   = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
-
-        // salvando objeto
-        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($novaMensagemConfirmacao);
+		
+        // carregando a assinatura da mensagem
+		$assinatura = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
+        
+		// recuperando o login do usuario
+		$loginUsuario   = $this->retornaLoginPorIdPessoa($idPessoa);
+		// recuperando o sexo do usuario
+		$sexoUsuario    = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaSexoPorIdPessoa($idPessoa);
+		
+		// substituindo a tag de tratamento de acordo com o sexo do usuario
+		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
+		    $pronomeTratamento = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_MASCULINO');
+		else
+		    $pronomeTratamento = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO');
+		
+		// substituindo tags
+        $arrayTagsValoresMensagem = array(MENSAGEM_TAG_TRATAMENTO           => $pronomeTratamento,
+        								  MENSAGEM_TAG_NOME                 => $nomeDestinatario,
+        								  MENSAGEM_TAG_LOGIN                => $loginUsuario, 
+        								  MENSAGEM_TAG_ASSINATURA_MENSAGEM  => $assinatura);
+		
+		// preenchendo a template e salvando a mensagem
+		$novaMensagemConfirmacao = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagemTemplate, $idMensagemTemplate, array($idPessoa), null, $arrayTagsValoresMensagem);
+		
+		// recuperando o id pessoaAssocclPerfil do destinatario
+		$idPessoaPerfilDestinatario = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+		
+		// enviando mensagem de confirmação de cadastro
+		Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagemConfirmacao, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfilDestinatario));
 	
         return $novaMensagemConfirmacao;
         
@@ -1360,7 +1386,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		// criando o login do usuario
     	$novoLogin = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaLoginOPController');
     	// setando atributos do login do usuario 
-    	$novoLogin->idPessoa                 = $arrayPost['idPessoa'];
+    	$novoLogin->idPessoa               = $arrayPost['idPessoa'];
     	$novoLogin->tentativasFalhas       = 0;
     	$novoLogin->travado                = false;
     	$novoLogin->resetado               = false;

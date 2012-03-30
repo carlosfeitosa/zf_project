@@ -227,7 +227,7 @@ class Basico_OPController_LogOPController
 	public static function salvarLogViaSQL($idPessoaPerfil, $idCategoriaLog, $mensagemLog)
 	{
 		// verifica se existe pessoa perfil e categoria de log
-		if ((!isset($idPessoaPerfil)) or (!isset($idCategoriaLog)))
+		if ((!isset($idPessoaPerfil) || $idPessoaPerfil == null) or (!isset($idCategoriaLog) || $idCategoriaLog == null))
 			throw new Exception(MSG_ERRO_SAVE_SEM_PESSOAPERFIL_CATEGORIA);
 
 		// instanciando um novo modelo de log

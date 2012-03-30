@@ -138,6 +138,7 @@ define("MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO", "PessoaPerfil não encontrado pa
  */
 define("MSG_ERRO_NOME_PESSOA_NAO_ENCONTRADA_NO_SISTEMA", "Nome da Pessoa não encontrado.");
 define("MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA", "Dados pessoais não encontrados para esta pessoa.");
+define("MSG_ERRO_DADOS_BIOMETRICOS_PESSOA_NAO_ENCONTRADO_NO_SISTEMA", "Dados biometricos da pessoa não encontrado.");
 define("MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA", "'Nao foi possivel trocar a senha do usuario.'");
 define("MSG_ERRO_DADOS_PESSOAIS_DADOS_CONTA", "Erro ao tentar salvar os dados da conta: ");
 

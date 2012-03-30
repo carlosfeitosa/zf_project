@@ -117,7 +117,7 @@ class Basico_Model_DadosBiometricosAssocPessoaMapper extends Basico_AbstractMapp
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-                      'id_dados_biometricos'         => $object->getIdTipoCategoria(),
+                      'id_dados_biometricos'         => $object->getIdDadosBiometricos(),
                       'id_categoria_sexo'            => $object->getIdCategoriaSexo(),
 					  'id_categoria_raca'            => $object->getIdCategoriaRaca(),
         			  'id_categoria_tipo_sanguineo'  => $object->getIdCategoriaTipoSanguineo(),        				

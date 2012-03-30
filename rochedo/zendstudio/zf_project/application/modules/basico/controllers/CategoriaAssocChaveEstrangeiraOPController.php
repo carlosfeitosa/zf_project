@@ -195,6 +195,52 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			return null;
 		}
     }
+    
+	/**
+     * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto, podendo forçar a criacao da mesma se ela não existir
+     * 
+     * @param Object $objeto
+     * @param Boolean $forceCreateRelationship
+     * 
+     * @return Basico_Model_CategoriaAssocChaveEstrangeira|null
+     */
+    public function retornaObjetoCategoriaChaveEstrangeiraPorModeloIdCategoria($objeto, $idCategoria, $forceCreateRelationship = false)
+    {
+    	// instanciando controladores
+    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+    	
+    	// recuperando o nome da tabela vinculada ao objeto
+    	$tableName = Basico_OPController_DBUtilOPController::retornaTableNameObjeto($objeto);
+
+		// recuperando objeto modulo do objeto
+		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
+	
+		// recuperando a categoria chave estrangeira relacionada ao objeto
+		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_modulo = {$idModulo} and id_categoria = {$idCategoria} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
+		
+		// verificando se existe a relacao com categoria chave estrangeira
+		if (isset($arrayCategoriasChaveEstrangeira[0])) {
+			// retornando a relacao
+			return $arrayCategoriasChaveEstrangeira[0];
+		} else if ($forceCreateRelationship) {
+			// recuperando modelo vazio de categoria chave estrangeira
+			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+			
+			// cria relacao caso o haja o parametro para criacao de relacao
+			$modelCategoriaChaveEstrangeira->idCategoria = $idCategoria;
+			$modelCategoriaChaveEstrangeira->idModulo = $idModulo;
+			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
+			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
+			
+			// salvando objeto
+			$this->salvarObjeto($modelCategoriaChaveEstrangeira);
+			
+			// retornando o objeto salvo 	
+			return $modelCategoriaChaveEstrangeira;
+		} else {
+			return null;
+		}
+    }
 
 	/**
 	 * Retorna o objeto categoria chave estrangeira da categoria passada.

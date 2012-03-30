@@ -208,7 +208,7 @@ class Basico_Model_DadosBiometricosAssocPessoa extends Basico_AbstractModel_Roch
 	* 
 	* @return Basico_Model_DadosBiometricosAssocPessoa
 	*/
-	public function setNome($peso)
+	public function setPeso($peso)
 	{
 		$this->_peso = Basico_OPController_UtilOPController::retornaValorTipado($peso,TIPO_FLOAT,true);
 		return $this;

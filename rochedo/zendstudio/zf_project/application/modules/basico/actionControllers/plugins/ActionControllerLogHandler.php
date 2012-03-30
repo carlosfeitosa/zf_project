@@ -61,9 +61,10 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 			$idPessoaUsuarioLogado = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL($idLogin);
 			// recuperando o maior perfil vinculado ao usuario logado contra a acao do request
 			$idPessoaMaiorPerfilUsuarioLogado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest($idPessoaUsuarioLogado, $request);
-
-			// invocando metodo de log
-			Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaMaiorPerfilUsuarioLogado, $idCategoriaLogAcaoInvocada, DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR);
+			
+			if (isset($idPessoaUsuarioLogado))
+				// invocando metodo de log
+				Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaMaiorPerfilUsuarioLogado, $idCategoriaLogAcaoInvocada, DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR);
 		}		
 	}
 

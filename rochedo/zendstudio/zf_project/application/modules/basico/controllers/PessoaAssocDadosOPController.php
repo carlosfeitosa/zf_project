@@ -219,7 +219,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	    $dadosPessoaisObj = $this->retornaObjetoDadosPessoaisPorIdPessoa($arrayPost['idPessoa']);
 
 	    // checando se o obj dadosPessoais foi capturado com sucesso
-	    if ($dadosPessoaisObj instanceof Basico_Model_DadosPessoais === false)
+	    if ($dadosPessoaisObj instanceof Basico_Model_PessoaAssocDados === false)
 	        throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADOS);
 	    	    
 	    // setando valores do obj dadosPessoais    

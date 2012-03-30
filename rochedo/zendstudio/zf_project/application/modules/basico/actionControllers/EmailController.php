@@ -48,7 +48,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	}
     	
     	// recuperando o e-mail
-    	$email   = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPorId($tokenObj->idGenerico);
+    	$email   = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPorId($tokenObj->idGenericoProprietario);
     	
     	// verificando se o email eh primario
     	if (!Basico_OPController_ContatoCpgEmailOPController::getInstance()->verificaEmailPrimario($email)) {
@@ -107,7 +107,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	}
 	    	
 	    	// recuperando a string de confirmação do aceite
-	    	$stringConfirmacao = Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), Basico_OPController_TradutorOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO"));
+	    	$stringConfirmacao = Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), Basico_OPController_DicionarioExpressaoOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO"));
 	    	
 	    	// verificando a digitação do aceite
 	    	if (strtoupper(Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), $_POST['BasicoAceiteTermosUsoAceiteTermosUso'])) === strtoupper($stringConfirmacao)) {

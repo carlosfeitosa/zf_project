@@ -252,7 +252,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	public function retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai($nomeCategoria, $idTipoCategoria = null, $idCategoriaPai = null, $forceCreation = false)
 	{
 		// recuperando a categoria
-		$objCategoria = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $idTipoCategoria, $idCategoriaPai);
+		$objCategoria = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $idTipoCategoria, $idCategoriaPai);
 
 		// verificando o resultado da recuperacao
 		if (isset($objCategoria)) {
@@ -260,7 +260,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			return $objCategoria->id;
 		} else if ($forceCreation) {
 			// retornando o id da categoria que sera criada
-			return $this->criarCategoriaInexistente($nomeCategoria, $idTipoCategoria, $idCategoriaPai)->id;
+			return Basico_OPController_CategoriaOPController::getInstance()->criarCategoriaInexistente($nomeCategoria, $idTipoCategoria, $idCategoriaPai)->id;
 		}
 		// estourando excessao de categoria nao encontrada
 		throw new Exception(MSG_ERRO_CATEGORIA_NAO_ENCONTRADA . $nomeCategoria);

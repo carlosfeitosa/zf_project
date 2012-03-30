@@ -166,7 +166,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		    if ($formCadastrarUsuarioValidado->isValid($arrayPost)) {
 		    		
 		    	// verificando a disponibilidade do login
-		    	if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
+		    	if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
 		    		
 		    		// carregando array do cabecalho da view
 				    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'));
@@ -213,11 +213,8 @@ class Basico_LoginController extends Zend_Controller_Action
 				   	Basico_OPController_PessoaLoginOPController::getInstance()->efetuaLogon($novoLogin->login);
 				}
 				
-				// recuperando a mensagem de confirmacao da conclusao do cadastro
-			    $mensagemConclusaoCadastro = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($arrayPost['idPessoa'], $emailPrimario->email);
-			    	
-			    // enviando a mensagem
-		        Basico_OPController_MensageiroOPController::getInstance()->enviar($mensagemConclusaoCadastro, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($arrayPost['idPessoa'])));
+				// salvando e enviando a mensagem de confirmacao da conclusao do cadastro
+			    Basico_OPController_PessoaLoginOPController::getInstance()->enviaMensagemConfirmacaoConclusaoCadastroUsuarioValidado($arrayPost['idPessoa']);
 			    
 		    	// salvando a transacao
 				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
@@ -269,14 +266,11 @@ class Basico_LoginController extends Zend_Controller_Action
 	    	// recuperando data do aceite dos termos de uso do sistema
 	    	$session = Basico_OPController_SessionOPController::registraSessaoUsuario();
 	    	
-	    	if ($session->dataAceite != "") { 
+	    	if (isset($session->dataAceite)) { 
 	    		
 	    		// colocando a data do aceite no array do post
 	    		$post['dataAceite'] = $session->dataAceite;
-	    		
-		    	// inicializando controladores
-		    	$controladorLogin = Basico_OPController_PessoaLoginOPController::getInstance();
-		    	
+	    				    	
 		    	// recuperando formulario e setando propriedades
 		        $formCadastrarUsuarioValidado = $this->getFormCadastroUsuarioValidado();
 		        
@@ -295,7 +289,7 @@ class Basico_LoginController extends Zend_Controller_Action
 				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
 	
 				// recuperando form inicializado
-				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
+				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($idPessoa);
 	
 		    	// carregando form e conteudo na view
 		    	$content[] = $form;
@@ -344,7 +338,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	        $this->_helper->viewRenderer->setNoRender(true);
 	
 	        //checando a disponibilidade do login
-	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $post['stringPesquisa']);
+	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $post['stringPesquisa']);
 	    	
 	    	
 	    	

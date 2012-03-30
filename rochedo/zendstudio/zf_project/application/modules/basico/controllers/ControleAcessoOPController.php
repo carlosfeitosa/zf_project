@@ -469,34 +469,35 @@ class Basico_OPController_ControleAcessoOPController
 	 */
 	public function retornaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
 	{
-		// recuperando informacoes do request
-		$nomeModuloRequest     = strtoupper($request->getModuleName());
-		$nomeControllerRequest = $request->getControllerName();
-		$nomeAcaoRequest       = $request->getActionName();
-		$booleanTrueDB         = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
-
-		// montando a query que vai retornar o maior perfil do usuario vinculado ao request
-		$querySQLRetornaMaiorPerfilAcaoAplicacao = "SELECT p.nome
-													FROM basico.perfil p
-													INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
-													INNER JOIN basico_acao_aplicacao.assoccl_perfil aap ON (p.id = aap.id_perfil)
-													INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
-													INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)
-													WHERE pp.id_pessoa = {$idPessoa}
-													AND m.nome = '{$nomeModuloRequest}'
-													AND aa.controller = '{$nomeControllerRequest}'
-													AND aa.action = '{$nomeAcaoRequest}'
-													AND p.ativo = {$booleanTrueDB}
-													ORDER BY p.prioridade DESC";
-
-		// recuperando array com o resultado da query
-		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaMaiorPerfilAcaoAplicacao);
-
-		// verificando o resultado da recuperacao
-		if (count($arrayResultados) > 0)
-			// retornando o primeiro elemento do array
-			return $arrayResultados[0]['nome'];
-
+		if (isset($idPessoa)) {
+			// recuperando informacoes do request
+			$nomeModuloRequest     = strtoupper($request->getModuleName());
+			$nomeControllerRequest = $request->getControllerName();
+			$nomeAcaoRequest       = $request->getActionName();
+			$booleanTrueDB         = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
+	
+			// montando a query que vai retornar o maior perfil do usuario vinculado ao request
+			$querySQLRetornaMaiorPerfilAcaoAplicacao = "SELECT p.nome
+														FROM basico.perfil p
+														INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
+														INNER JOIN basico_acao_aplicacao.assoccl_perfil aap ON (p.id = aap.id_perfil)
+														INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
+														INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)
+														WHERE pp.id_pessoa = {$idPessoa}
+														AND m.nome = '{$nomeModuloRequest}'
+														AND aa.controller = '{$nomeControllerRequest}'
+														AND aa.action = '{$nomeAcaoRequest}'
+														AND p.ativo = {$booleanTrueDB}
+														ORDER BY p.prioridade DESC";
+	
+			// recuperando array com o resultado da query
+			$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaMaiorPerfilAcaoAplicacao);
+	
+			// verificando o resultado da recuperacao
+			if (count($arrayResultados) > 0)
+				// retornando o primeiro elemento do array
+				return $arrayResultados[0]['nome'];
+		}
 		return null;
 	}
 
@@ -510,34 +511,36 @@ class Basico_OPController_ControleAcessoOPController
 	 */
 	public static function retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, Zend_Controller_Request_Abstract $request)
 	{
-		// recuperando informacoes do request
-		$nomeModuloRequest     = strtoupper($request->getModuleName());
-		$nomeControllerRequest = $request->getControllerName();
-		$nomeAcaoRequest       = $request->getActionName();
-		$booleanTrueDB         = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
-
-		// montando a query que vai retornar o id de pessoa perfil do usuario vinculado ao request
-		$querySQLRetornaIdMaiorPerfilAcaoAplicacao = "SELECT pp.id
-													  FROM basico.perfil p
-													  INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
-													  INNER JOIN basico_acao_aplicacao.assoccl_perfil aap ON (p.id = aap.id_perfil)
-													  INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
-													  INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)
-													  WHERE pp.id_pessoa = {$idPessoa}
-													  AND m.nome = '{$nomeModuloRequest}'
-													  AND aa.controller = '{$nomeControllerRequest}'
-													  AND aa.action = '{$nomeAcaoRequest}'
-													  AND p.ativo = {$booleanTrueDB}
-													  ORDER BY p.prioridade DESC";
-
-		// recuperando array com o resultado da query
-		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaIdMaiorPerfilAcaoAplicacao);
-
-		// verificando o resultado da recuperacao
-		if (count($arrayResultados) > 0)
-			// retornando o primeiro elemento do array
-			return $arrayResultados[0]['id'];
-
+		if ($idPessoa) {
+			// recuperando informacoes do request
+			$nomeModuloRequest     = strtoupper($request->getModuleName());
+			$nomeControllerRequest = $request->getControllerName();
+			$nomeAcaoRequest       = $request->getActionName();
+			$booleanTrueDB         = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
+	
+			// montando a query que vai retornar o id de pessoa perfil do usuario vinculado ao request
+			$querySQLRetornaIdMaiorPerfilAcaoAplicacao = "SELECT pp.id
+														  FROM basico.perfil p
+														  INNER JOIN basico_pessoa.assoccl_perfil pp ON (p.id = pp.id_perfil)
+														  INNER JOIN basico_acao_aplicacao.assoccl_perfil aap ON (p.id = aap.id_perfil)
+														  INNER JOIN basico.acao_aplicacao aa ON (aap.id_acao_aplicacao = aa.id)
+														  INNER JOIN basico.modulo m ON (aa.id_modulo = m.id)
+														  WHERE pp.id_pessoa = {$idPessoa}
+														  AND m.nome = '{$nomeModuloRequest}'
+														  AND aa.controller = '{$nomeControllerRequest}'
+														  AND aa.action = '{$nomeAcaoRequest}'
+														  AND p.ativo = {$booleanTrueDB}
+														  ORDER BY p.prioridade DESC";
+	
+			// recuperando array com o resultado da query
+			$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaIdMaiorPerfilAcaoAplicacao);
+	
+			// verificando o resultado da recuperacao
+			if (count($arrayResultados) > 0)
+				// retornando o primeiro elemento do array
+				return $arrayResultados[0]['id'];
+		}
+		
 		return null;
 	}
 	

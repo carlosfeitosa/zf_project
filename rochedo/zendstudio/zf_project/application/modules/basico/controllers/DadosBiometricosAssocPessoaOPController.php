@@ -10,7 +10,7 @@
  * 
  * @since 17/03/2011
  */
-class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
 	 * 
@@ -58,7 +58,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 		// checando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_DadosBiometricosOPController();
+			self::$_singleton = new Basico_OPController_DadosBiometricosAssocPessoaOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;
@@ -79,7 +79,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricos', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricosAssocPessoa', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -89,12 +89,12 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_BIOMETRICOS, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_DADOS_BIOMETRICOS;
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_BIOMETRICOS_PESSOA, true);
+	    		$mensagemLog    = LOG_MSG_UPDATE_DADOS_BIOMETRICOS_PESSOA;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_BIOMETRICOS, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_DADOS_BIOMETRICOS;
+	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_BIOMETRICOS_PESSOA, true);
+	    		$mensagemLog    = LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA;
 	    	}
 
 			// salvando o objeto através do controlador Save
@@ -124,7 +124,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricos', true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricosAssocPessoa', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
@@ -132,8 +132,8 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DADOS_BIOMETRICOS, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_DADOS_BIOMETRICOS;
+	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DADOS_BIOMETRICOS_PESSOA, true);
+	    	$mensagemLog    = LOG_MSG_DELETE_DADOS_BIOMETRICOS_PESSOA;
 
 	    	// apagando o objeto do bando de dados
 	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
@@ -150,19 +150,19 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	 * 
 	 * @return Basico_Model_DadosBiometricos
 	 */
-	public function retornaObjetoDadosBiometricosPorIdPessoa($idPessoa)
+	public function retornaObjetoDadosBiometricosPessoaPorIdDadosBiometricos($idDadosBiometricos)
 	{
 	    // verificando se o id é valido
-		if ((Int) $idPessoa > 0) {
+		if ((Int) $idDadosBiometricos > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosBiometricosPessoa = $this->retornaObjetosPorParametros($this->_model, "id_dados_biometricos = {$idDadosBiometricos}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
-			if (isset($objDadosBiometricos[0]))
+			if (isset($objDadosBiometricosPessoa[0]))
 				// retorna o o objeto dados pessoais
-	    	    return $objDadosBiometricos[0];
+	    	    return $objDadosBiometricosPessoa[0];
 	    	    
-	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
+	    	throw new Exception(MSG_ERRO_DADOS_BIOMETRICOS_PESSOA_NAO_ENCONTRADO_NO_SISTEMA);
 	    	
 		}else{
 			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
@@ -180,24 +180,16 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	{
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
-			// recuperando o id da categoria DADOS_BIOMETRICOS PESSOA
-			$idCategoria = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('DADOS_BIOMETRICOS_PESSOA');
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->retornaObjetosPorParametros($this->_model, "id_generico_proprietario = {$idPessoa} AND id_categoria = {$idCategoria}", null, 1, 0);
+			$objDadosBiometricos = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
-			if (isset($objDadosBiometricos[0])) {
+			if (isset($objDadosBiometricos[0]))
 				// retorna o o objeto dados pessoais
-	    	    $sexoPessoa = Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->retornaObjetoDadosBiometricosPessoaPorIdDadosBiometricos($objDadosBiometricos[0]->id)->idCategoriaSexo;
+	    	    return $objDadosBiometricos[0]->sexo;
 	    	    
-	    	    if ($sexoPessoa == Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('GENERO_MASCULINO'))
-	    	    	return "M";
-	    	    elseif ($sexoPessoa == Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('GENERO_FEMININO'))
-	    	    	return "F";
-			}
-
-			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
-
+	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
+	    	
 		}else{
 			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
 		}
@@ -268,10 +260,10 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
   		$novoDadosBiometricos = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosBiometricosOPController');
    		
   		// recuperando o tipo_categoria da categoria DADOS_BIOMETRICOS_PESSOA
-  		$idTipoCategoriaDadosBiometricos = Basico_OPController_TipoCategoriaOPController::getInstance()->retornaIdTipoCategoriaPorNome('DADOS_BIOMETRICOS');
+  		$idTipoCategoriaDadosBiometricos = Basico_OPController_TipoCategoriaOPController::retornaIdTipoCategoriaPorNome('DADOS_BIOMETRICOS');
   		
   		// recuperando categoria dos dados biometricos
-  		$idCategoriaDadosBiometricos = Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('DADOS_BIOMETRICOS_PESSOA', $idTipoCategoriaDadosBiometricos, null, true);
+  		$idCategoriaDadosBiometricos = Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL('DADOS_BIOMETRICOS_PESSOA', $idTipoCategoriaDadosBiometricos);
   		
   		// recuperando o modelo de pessoa
   		$modeloPessoa = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaOPController');
@@ -284,23 +276,16 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
   		
    		// setando a pessoa dona dos dadosBiometricos
    		$novoDadosBiometricos->idGenericoProprietario = $arrayPost['idPessoa'];
-   		
-   		// salvando os dadosBiometricos
-    	$this->salvarObjeto($novoDadosBiometricos);
    		   	
-    	// recuperando novo modelo de dadosBiometricosAssocPessoa
-   		$novoDadosBiometricosPessoa = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosBiometricosAssocPessoaOPController');
-   		// setando o id do dadosBiometricos
-   		$novoDadosBiometricosPessoa->idDadosBiometricos = $novoDadosBiometricos->id;
    		
    		// setando o sexo
    		if ($arrayPost['BasicoCadastrarUsuarioValidadoSexo'] == 0)
-   		    $novoDadosBiometricosPessoa->idCategoriaSexo = Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('GENERO_MASCULINO');
+   		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;
    		else if ($arrayPost['BasicoCadastrarUsuarioValidadoSexo'] == 1)
-		    $novoDadosBiometricosPessoa->idCategoriaSexo = Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('GENERO_FEMININO');
+		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
    		
-		// salvando dadosBiometricosAssocPessoa
-		Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->salvarObjeto($novoDadosBiometricosPessoa);
+		// salvando os dadosBiometricos
+    	$this->salvarObjeto($novoDadosBiometricos);
     }
     
     /**

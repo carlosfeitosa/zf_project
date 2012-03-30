@@ -38,6 +38,9 @@ define("LOG_MSG_DELETE_DADOS_PESSOAIS", "Exclusão de dados pessoais no banco de
 define("LOG_MSG_NOVO_DADOS_BIOMETRICOS", "Novos dados biometricos inseridos no banco de dados.");
 define("LOG_MSG_NOVO_DADOS_PESSOAS_PERFIS", "Novos dados pessoa perfil inseridos no banco de dados.");
 define("LOG_MSG_UPDATE_DADOS_BIOMETRICOS", "Atualizacao de dados biometricos no banco de dados.");
+define("LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA", "Novos dados biometricos de pessoa inseridos no banco de dados.");
+define("LOG_MSG_NOVO_DADOS_PESSOAS_PERFIS_PESSOA", "Novos dados biometricos de pessoa perfil inseridos no banco de dados.");
+define("LOG_MSG_UPDATE_DADOS_BIOMETRICOS_PESSOA", "Atualizacao de dados biometricos de pessoa no banco de dados.");
 define("LOG_MSG_NOVO_LINK", "Novo link inserido no banco de dados.");
 define("LOG_MSG_UPDATE_LINK", "Atualiacao de link no banco de dados.");
 define("LOG_MSG_DELETE_LINK", "Exclusão de link no banco de dados.");
@@ -112,6 +115,7 @@ define("LOG_MSG_DELETE_METODO_VALIDACAO", "Exclusao de metodo validacao no banco
 define("LOG_MSG_DELETE_CATEGORIA_CHAVE_ESTRANGEIRA", "Não é possivel a exclusao de categoria chave estrangeira do banco de dados");
 define("DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR", "Chamada a ação de controlador.");
 define("LOG_MSG_DELETE_DADOS_BIOMETRICOS", "Exclusao de dados biometricos do banco de dados");
+define("LOG_MSG_DELETE_DADOS_BIOMETRICOS_PESSOA", "Exclusao de dados biometricos de pessoa do banco de dados");
 define("LOG_MSG_DELETE_DADOS_PESSOAS_PERFIS", "Exclusao de dados pesssoas perfis do banco de dados");
 define("LOG_MSG_DELETE_OUTPUT", "Exclusao de output do banco de dados");
 define("LOG_MSG_DELETE_PESSOA_PERFIL", "Exclusao de perfil da pessoa do banco de dados");
