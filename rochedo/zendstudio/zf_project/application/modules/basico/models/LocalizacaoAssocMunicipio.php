@@ -260,6 +260,6 @@ class Basico_Model_LocalizacaoAssocMunicipio extends Basico_AbstractModel_Roched
 	*/
 	public function getMapper()
 	{
-		return parent::getMapper('Basico_Model_LocalizacaoAssocEstadoMapper');
+		return parent::getMapper('Basico_Model_LocalizacaoAssocMunicipioMapper');
 	}
 }

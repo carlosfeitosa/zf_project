@@ -146,7 +146,7 @@ class Basico_OPController_EstadoOPController extends Basico_AbstractController_R
 	 */
 	public function retornaNovoObjEstado()
 	{
-		// retornando novo obj tipo sanguinio
+		// retornando novo obj LocalizacaoEstado
 		return new Basico_Model_LocalizacaoAssocEstado();
 	}
 	
@@ -156,9 +156,9 @@ class Basico_OPController_EstadoOPController extends Basico_AbstractController_R
 	 */
 	public static function retornaEstadoOptions()
 	{
-		// recuperando todos os países
+		// recuperando o objeto estado
 		$objEstado= self::retornaNovoObjEstado();
-		// recuperando todos os tipos sanguineos
+		// recuperando todos os estados
 		$objEstado = Basico_OPController_PersistenceOPController::bdObjectFetchAll($objEstado);
 		
 		// adicionando opção em branco

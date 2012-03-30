@@ -36,7 +36,6 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
         	'id_estado'					  => $object->getIdEstado(),
             'nivel'						  => $object->getNivel(),
         	'nome'						  => $object->getNome(),
-			'sigla'						  => $object->getSigla(),
 			'codigo_ddd'				  => $object->getCodigoDddi(),
         	'ativo'						  => $object->getAtvo(),
         	'datahora_criacao'            => $object->getDatahoraCriacao(),
@@ -82,7 +81,6 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
 				->setIdEstado($row->id_estado)
 				->setNivel($row->nivel)
         		->setNome($row->nome)
-				->setSigla($row->sigla)
 				->setCodigoDdd($row->codigo_ddd)
 				->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
@@ -108,7 +106,6 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
 				->setIdEstado($row->id_estado)
 				->setNivel($row->nivel)
         		->setNome($row->nome)
-				->setSigla($row->sigla)
 				->setCodigoDdd($row->codigo_ddd)
 				->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
@@ -138,7 +135,6 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
 				->setIdEstado($row->id_estado)
 				->setNivel($row->nivel)
         		->setNome($row->nome)
-				->setSigla($row->sigla)
 				->setCodigoDdd($row->codigo_ddd)
 				->setAtivo($row->ativo)
 				->setDatahoraCriacao($row->datahora_criacao)
