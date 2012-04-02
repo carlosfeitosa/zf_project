@@ -126,8 +126,8 @@ class Basico_Model_Categoria extends Basico_AbstractModel_RochedoPersistentModel
 		$rootCategoriaPaiObject = new Basico_Model_Categoria();
 
 		/* localiza o id da categoria pai ou utiliza o id da propria categoria */
-		if ($this->_categoria) {
-			$idCategoriaParaLocalizar = $this->_categoria;
+		if ($this->_idCategoriaPai) {
+			$idCategoriaParaLocalizar = $this->_idCategoriaPai;
 		} else {
 			$idCategoriaParaLocalizar = $this->_id;
 		}
@@ -136,8 +136,8 @@ class Basico_Model_Categoria extends Basico_AbstractModel_RochedoPersistentModel
 		$rootCategoriaPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootCategoriaPaiObject, $idCategoriaParaLocalizar);
 
 		/* loop para chegar na categoria raiz */
-		while ($rootCategoriaPaiObject->categoria) {
-			$rootCategoriaPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootCategoriaPaiObject, $rootCategoriaPaiObject->categoria);
+		while ($rootCategoriaPaiObject->_idCategoriaPai) {
+			$rootCategoriaPaiObject = Basico_OPController_PersistenceOPController::bdObjectFind($rootCategoriaPaiObject, $rootCategoriaPaiObject->_idCategoriaPai);
 		}
 
 		// retornando a categoria pai
