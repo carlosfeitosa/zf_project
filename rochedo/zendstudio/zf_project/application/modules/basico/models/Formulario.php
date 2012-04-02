@@ -461,13 +461,13 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
      */
     public function getModulosObjects(array $excludeModulesNames = null)
     {
-        $modelModuloFormulario = new Basico_Model_ModuloFormulario();
+        $modelModuloFormulario = new Basico_Model_FormularioAssocclModulo();
         $arrayModulosFormulariosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModuloFormulario, "id_formulario = {$this->_id}");
         $modelModulo = new Basico_Model_Modulo();
         
         $arrayIdsModulos = array();
         foreach ($arrayModulosFormulariosObjects as $moduloFormularioObject){
-            $arrayIdsModulos[] = $moduloFormularioObject->modulo;
+            $arrayIdsModulos[] = $moduloFormularioObject->idModulo;
         }
         
         $stringIdsModulos = implode(',', $arrayIdsModulos);
