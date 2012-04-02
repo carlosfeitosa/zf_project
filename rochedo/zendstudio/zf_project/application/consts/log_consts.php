@@ -120,6 +120,9 @@ define("LOG_MSG_DELETE_DADOS_PESSOAS_PERFIS", "Exclusao de dados pesssoas perfis
 define("LOG_MSG_DELETE_OUTPUT", "Exclusao de output do banco de dados");
 define("LOG_MSG_DELETE_PESSOA_PERFIL", "Exclusao de perfil da pessoa do banco de dados");
 define("LOG_MSG_DELETE_FORMULARIO", "Exclusao de formulario do banco de dados");
+define("LOG_MSG_UPDATE_INCLUDE", "Atualização de include no banco de dados.");
+define("LOG_MSG_NOVO_INCLUDE", "Novo include inserido no banco de dados.");
+define("LOG_MSG_DELETE_INCLUDE", "Exclusão de include do banco de dados");
 
 
 /*
