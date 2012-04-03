@@ -419,7 +419,7 @@ class Basico_OPController_ControleAcessoOPController
 				$modeloAcaoAplicacao = $acaoAplicacaoOpController->retornaNovoObjetoModeloPorNomeOPController($acaoAplicacaoOpController->retornaNomeClassePorObjeto($acaoAplicacaoOpController));
 	
 				// setando informacoes sobre a acao
-				$modeloAcaoAplicacao->IdModulo   = $idModulo;
+				$modeloAcaoAplicacao->idModulo   = $idModulo;
 				$modeloAcaoAplicacao->controller = $nomeControllerRequest;
 				$modeloAcaoAplicacao->action     = $nomeAcaoRequest;
 				$modeloAcaoAplicacao->ativo      = true;
