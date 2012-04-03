@@ -1597,11 +1597,17 @@ class Basico_OPController_UtilOPController
     /**
      * Retorna o host do servidor.
      * 
+     * @param Boolean $removeProtocolo
+     * 
      * @return String
      */
-    public static function retornaServerHost()
+    public static function retornaServerHost($removeProtocolo = false)
     {
-    	return "http://" . $_SERVER['HTTP_HOST'];
+    	if (!$removeProtocolo) {
+    		return "http://" . $_SERVER['HTTP_HOST'];
+    	} else {
+    		return $_SERVER['HTTP_HOST'];
+    	}
     }
 
     /**

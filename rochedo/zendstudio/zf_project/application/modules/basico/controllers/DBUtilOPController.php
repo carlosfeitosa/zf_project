@@ -690,6 +690,54 @@ class Basico_OPController_DBUtilOPController
     }
 
     /**
+     * Retorna a função do banco de dados que verifica por valores nulos do banco de dados
+     * 
+     * @return String
+     */
+    public static function retornaIsNullDB()
+    {
+        // recuperando o tipo de banco de dados ativo
+    	$pdoTypeBancoAtivo = self::retornaPdoTypeConexaoAtiva();
+
+    	// verificando o tipo de banco de dados
+    	switch ($pdoTypeBancoAtivo) {
+    		case 'MSSQL':
+    			return 'isnull';
+    		break;
+    		case 'PGSQL';
+    			return 'coalesce';
+    		break;
+    		default:
+    			return null;
+    		break;
+    	}
+    }
+
+    /**
+     * Retorna o operador de contatenação do banco de dados
+     * 
+     * @return String
+     */
+    public static function retornaConcatenadorDB()
+    {
+        // recuperando o tipo de banco de dados ativo
+    	$pdoTypeBancoAtivo = self::retornaPdoTypeConexaoAtiva();
+
+    	// verificando o tipo de banco de dados
+    	switch ($pdoTypeBancoAtivo) {
+    		case 'MSSQL':
+    			return '+';
+    		break;
+    		case 'PGSQL';
+    			return '||';
+    		break;
+    		default:
+    			return null;
+    		break;
+    	}
+    }
+
+    /**
      * Retorna a funcao que retorna a data-hora atual do servidor, relacionado ao banco de dados ativo
      * 
      * @return String
@@ -749,9 +797,10 @@ class Basico_OPController_DBUtilOPController
     public static function substituiTagsSQLScriptDB(&$sqlScript)
     {
     	// fazendo substituicoes de tags
-    	$sqlScript = str_replace('@false', self::retornaBooleanDB(false, true) , $sqlScript);
-    	$sqlScript = str_replace('@true',  self::retornaBooleanDB(true, true) , $sqlScript);
-    	$sqlScript = str_replace('@now',   self::retornaFuncaoDataHoraAtualDB() , $sqlScript);
+    	$sqlScript = str_replace('@false',  self::retornaBooleanDB(false, true) , $sqlScript);
+    	$sqlScript = str_replace('@true',   self::retornaBooleanDB(true, true) , $sqlScript);
+    	$sqlScript = str_replace('@now',    self::retornaFuncaoDataHoraAtualDB() , $sqlScript);
+    	$sqlScript = str_replace('@isnull', self::retornaFuncaoDataHoraAtualDB() , $sqlScript);
     }
 
     /**

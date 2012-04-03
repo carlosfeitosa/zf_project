@@ -141,5 +141,27 @@ class Basico_OPController_OutputOPController extends Basico_AbstractController_R
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
-	}	
+	}
+
+	/**
+	 * Retorna o nome do output conforme o contexto da view
+	 * 
+	 * @param String $contexto
+	 * 
+	 * @return String
+	 */
+	public static function retornaOutputViaContextoView($contexto)
+	{
+		// verificando o contexto
+		switch ($contexto) {
+			case 'ajax':
+				return OUTPUT_AJAX ;
+				break;
+			case 'null':
+				return OUTPUT_DOJO;
+				break;
+			default:
+				return OUTPUT_DOJO;
+		}
+	}
 }

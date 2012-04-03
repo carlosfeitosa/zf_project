@@ -294,6 +294,22 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	}
 
 	/**
+	 * Retorna um array contendo o nome da categoria de include e a uri para o include
+	 * 
+	 * @param String $nomeFormulario
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 03/04/2012
+	 */
+	public static function retornaArrayIncludesFormulario($nomeFormulario, $nomeOutput)
+	{
+		// chamando metodo de recuperação de includes de formulários
+		return Basico_OPController_IncludeOPController::retornaArrayIncludesFormulario($nomeFormulario, $nomeOutput);
+	}
+
+	/**
 	 * Retorna um array contendo os caminhos para os arquivos css e js de um formulario
 	 * 
 	 * @param String $nomeForm

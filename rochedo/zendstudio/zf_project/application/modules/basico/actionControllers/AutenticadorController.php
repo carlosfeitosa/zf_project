@@ -109,7 +109,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			Basico_OPController_LogOPController::salvarLogViaSQL($objPessoaPerfilUsuarioValidadoLogin->id, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO);			
 		} else {
 			// inserindo log de perfil de usuario validado nao encontrado para o usuario
-			Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoasPerfisOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
+			Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_AUTENTICACAO_USUARIO, true), LOG_MSG_TENTATIVA_AUTENTICACAO_USUARIO_LOGIN_NAO_EXISTENTE . Basico_OPController_UtilOPController::retornaStringEntreCaracter($login, '"'));
 		}
 
 		// verificando se as credenciais de acesso funcionaram

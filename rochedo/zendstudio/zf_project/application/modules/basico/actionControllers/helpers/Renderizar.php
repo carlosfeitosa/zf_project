@@ -9,7 +9,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
      * @var Zend_View_Interface
      */
     private $_view;
-    
+
     /**
     * Renderiza as views do sistema
     * 
@@ -20,165 +20,32 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     */
     public function renderizar($viewScript = null, $disableLayout = false)  
     {
+    	// recuperando o helper view
+    	$this->_view = $this->getActionController()->view;
+
     	// Instancia a controlador
     	$controller = $this->_actionController;
 
-    	// desabilitando o layout
-    	if($disableLayout) {
-    		$controller->getHelper('layout')->disableLayout(true);
+    	// verificando se deve desabilitar o layout
+    	if ($disableLayout) {
+	    	// desabilitando o layout
+	    	Basico_OPController_TemplateOPController::desabiltaLayoutView($controller);
     	}
 
-    	// recuperando o helper view
-    	$this->_view = $this->getActionController()->view;
-    	
-		// percorre as variáveis e objetos contidas na view
-		foreach ($this->_view->getVars() as $key0 => $value0){
-
-			// verifica se a variável é do tipo array.
-			if (is_array($value0)) {
-
-				// percorre o array enviado da view 
-				foreach ($value0 as $key => $value) {
-
-					// verifica se existe objetos do tipo formulário na view
-					if (is_object($value) and is_subclass_of($value, 'Zend_Form')) {
-						// carregando formulario
-						$form = $value;
-						
-						// carregando subformularios
-						$arraySubForms = $form->getSubForms();
-						// inicializando array que deve conter o form e seus subforms
-						$arrayFormsSubForms = array();
-						// adicionando o formualario ao array
-						$arrayFormsSubForms[$form->getName()] = $form;
-						// adicionando os subformularios ao array
-						$arrayFormsSubForms += $arraySubForms;
-						
-						// inicializando variaveis
-						$permiteRascunho = false;
-						
-						// recuperando o nome do modulo para remocação do nome do form
-						$nomeModuloForm = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
-						
-						Basico_OPController_SessionOPController::limpaTodasChavesPoolElementosOcultos();
-						// verificando informacoes sobre o formulario
-						foreach ($arrayFormsSubForms as $form) {
-							// recuperando o nome do modulo para remocação do nome do form
-							$nomeModulo = ucfirst(strtolower(Basico_OPController_UtilOPController::retornaUserRequest()->getModuleName()));
-
-							// recuperando o nome do form se o modulo
-							$nomeForm = str_replace($nomeModulo, "", $form->getName());
-
-							// recuperando templates do formulario
-							$arrayTemplatesFormulario = Basico_OPController_FormularioOPController::retornaArraysTemplateStylesheetFullFilenameJavascriptFullFilenamePorNomeFormularioViaSQL($nomeForm);
-
-							// verificando se houve recuperacao do(s) template(s)
-							if (count($arrayTemplatesFormulario) > 0) {
-								// recuperando caminho do url base
-								$applicationHttpBaseUrl = $this->getFrontController()->getInstance()->getBaseUrl();
-
-								// loop para colocar os includes necessarios na view, de acordo com o template
-								foreach($arrayTemplatesFormulario as $arrayTemplateFormulario) {
-
-									// verificando se o template possui arquivo css
-									if ($arrayTemplateFormulario['stylesheetfullfilename']) {
-										// verificando se o stylesheet eh local ou remoto
-										if (strpos($arrayTemplateFormulario['stylesheetfullfilename'], 'http://' === 0))
-											// adicionando stylesheet remoto
-											$this->_view->headLink()->appendStylesheet($arrayTemplateFormulario['stylesheetfullfilename']);
-										else
-											// adicionando stylesheet local
-											$this->_view->headLink()->appendStylesheet($applicationHttpBaseUrl . $arrayTemplateFormulario['stylesheetfullfilename']);
-									}
-
-									// verificando se o template possui arquivo javascript
-									if ($arrayTemplateFormulario['javascriptfullfilename']) {
-										// verificando se o javascript eh local ou remoto
-										if (strpos($arrayTemplateFormulario['javascriptfullfilename'], 'http://' === 0))
-											// adicionando javascript remoto
-											$this->_view->headScript()->appendFile($arrayTemplateFormulario['javascriptfullfilename']);
-										else
-											// adicionando javascript local
-											$this->_view->headScript()->appendFile($applicationHttpBaseUrl . $arrayTemplateFormulario['javascriptfullfilename']);
-									}
-
-									// verificando se o formulario possui saida AJAX para inclusao de prefixPath e decorator
-									if ($arrayTemplateFormulario['output'] === FORM_GERADOR_OUTPUT_AJAX) {
-										// adicionando prefixPath
-										$form->addPrefixPath('Rochedo_Form_Decorator', 'Rochedo/Form/Decorator', 'decorator');
-
-										// removendo o decorator DijitForm para posterior adicao
-										$form->removeDecorator('DijitForm');
-
-										// adicionando decorator AjaxForm
-										$form->addDecorators(array('AjaxForm', 'DijitForm'));
-									}
-								}
-							}
-							
-							$elementosOcultos = array();
-							// percorre todos os elementos do form
-							foreach ($form->getElements() as $elementoForm){
-																
-								// verifica se o elemento e do tipo hash
-								if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {									
-									
-									// renderizando elemento hash para ser gerado o value.
-									$elementoForm->render();
-									// recuperando chave do arrayPool
-									$chaveArrayPool = $elementoForm->getValue();
-									$arrayPool[] = $elementoForm->getValue();
-								}
-								
-								if ($elementoForm->getType() == 'Rochedo_Form_Element_Oculto') {
-
-									// montando array de elementos ocultos.
-									$elementosOcultos[$elementoForm->getName()] = $elementoForm->getValue();
-									// removendo elemento do formulário
-									$form->removeElement($elementoForm->getName());
-								}
-							}
-							// verificando se existe a $chaveArrayPool e  elementos no array de elementos ocultos.
-							if (isset($chaveArrayPool) and count($elementosOcultos)> 0) {
-								// registrando elementos na sessão
-								
-								Basico_OPController_SessionOPController::registraPostPoolElementosOcultos($chaveArrayPool, $elementosOcultos);
-							}
-							
-							// verificando se existe rascunho no form
-							if ($form->getAttrib('rascunho')) {
-								// Adicionando o formulário com o atributo rascunho, no dojo(). Isto permitindo que o parametro seja reconhecido pelo dojo.
-								$this->_view->dojo()->addDijit($form->getName(), array('rascunho'=>'true'));
-								
-								// setando variavel que determina a insercao, ou nao, do script de inicializacao do rascunho
-								$permiteRascunho = true;
-							}
-						}
-						
-						// verificando se eh pra inserir o script de inicializacao do rascunho
-						if ($permiteRascunho) {
-							
-							// recuperando a url do metodo de salvar rascunho
-							$urlSalvarRascunho = $this->_view->url(array('module' => 'basico', 'controller' => 'rascunho', 'action' => 'salvar'));
-							
-							// adicionando script para inicializacao do rascunho
-							$scriptInicializacaoRascunho = "<script type='text/javascript'>initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)')</script>";
-							$this->_view->scripts = array($scriptInicializacaoRascunho);
-						}
-						
-					}					
-				}
-			}
-		}
-
-    	// Seta o tipo de contexto da view  
+    	// recupera o tipo de contexto da view  
     	$contexto = $controller->getRequest()->getParam('format');
 
-    	// Verifica o tipo de requisição http
-    	if($controller->getRequest()->isXmlHttpRequest()){ 		
-    		// Desliga o layout do Zend para requisições do tipo AJAX(XmlHttpRequest)
-    		$controller->getHelper('layout')->disableLayout(true);
+		// processando os formulários
+		$this->processaFormularios($contexto);
 
+    	// Verifica o tipo de requisição http
+    	if($controller->getRequest()->isXmlHttpRequest()){ 	
+    		// AJAX REQUEST
+
+    		// Desliga o layout do Zend para requisições do tipo AJAX(XmlHttpRequest)
+    		Basico_OPController_TemplateOPController::desabiltaLayoutView($controller);
+
+    		// setando o contexto
     		$contexto = 'ajax';
     	}else{
     		// NORMAL REQUEST
@@ -227,7 +94,11 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		$controller->renderScript($viewScript);
     	}
     }
-    
+
+    /**
+     * Inicializa o contexto HTML
+     * 
+     */
     private function inicializaContextoHtml()
     {
 		// adicionando plugin Jquery maskMoney
@@ -260,20 +131,19 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH));
-		
+
 		// verificando se o formulario e o sistema permite salvar rascunho
         if ((Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) and (APPLICATION_FORM_DRAFT == true))
 			//inserindo arquivo JS do rascunho			        
 			$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO));
-		
-		
+
 		// verificando ambiente
 		if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 		    // verificando se existe usuario logado
 		    if (Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) {
 		    	// recuperando a descricao do perfil padrao do usuario logado na sessao
 				$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
-				
+
 				// setando o titulo da janela do navegador
 				$this->_view->headTitle("[ Perfil padrao: {$descricaoPerfilPadrao} ]");
 		    }
@@ -286,13 +156,73 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 
 		// setando parametros do dojo
 		$this->_view->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true))
-        			 ->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
-                     // registrando path local do dojo
-        			 ->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
-					
-                     // registrando o path do moludo messagePop
-                     ->registerModulePath('messagePop', $applicationHttpBaseUrl.'/js/plugins/dojo/messagePop')
-                     ->requireModule('messagePop.ui.Error')
-                     ;	
+		        			->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
+		                    // registrando path local do dojo
+		        			->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
+		                    // registrando o path do moludo messagePop
+		                    ->registerModulePath('messagePop', $applicationHttpBaseUrl.'/js/plugins/dojo/messagePop')
+		                    ->requireModule('messagePop.ui.Error');	
+    }
+
+    /**
+     * Processa os formulários da view
+     * 
+     * @param Zend_View $view
+     * @param String $contexto
+     * 
+     * @return Boolean
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 03/04/2012
+     */
+    private function processaFormularios($contexto)
+    {
+    	// recuperando o output da view
+    	$nomeOutput = Basico_OPController_OutputOPController::retornaOutputViaContextoView($contexto);
+
+    	// percorre as variáveis e objetos contidas na view
+		foreach ($this->_view->getVars() as $key0 => $value0){
+
+			// verifica se a variável é do tipo array.
+			if (is_array($value0)) {
+
+				// percorre o array enviado da view 
+				foreach ($value0 as $key => $value) {
+
+					// verifica se existe objetos do tipo formulário na view
+					if (is_object($value) and is_subclass_of($value, 'Zend_Form')) {
+						// carregando formulario
+						$form = $value;
+
+						// carregando subformularios
+						$arraySubForms = $form->getSubForms();
+						// inicializando array que deve conter o form e seus subforms
+						$arrayFormsSubForms = array();
+						// adicionando o formualario ao array
+						$arrayFormsSubForms[$form->getName()] = $form;
+						// adicionando os subformularios ao array
+						$arrayFormsSubForms += $arraySubForms;
+						
+						// inicializando variaveis
+						$permiteRascunho = false;
+
+						// processando formularios
+						Basico_OPController_TemplateOPController::processaFormularios($this->_view, $arrayFormsSubForms, $permiteRascunho, $nomeOutput);
+						
+						// verificando se eh pra inserir o script de inicializacao do rascunho
+						if ($permiteRascunho) {
+							
+							// recuperando a url do metodo de salvar rascunho
+							$urlSalvarRascunho = $this->_view->url(array('module' => 'basico', 'controller' => 'rascunho', 'action' => 'salvar'));
+							
+							// adicionando script para inicializacao do rascunho
+							$scriptInicializacaoRascunho = "<script type='text/javascript'>initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)')</script>";
+							$this->_view->scripts = array($scriptInicializacaoRascunho);
+						}
+						
+					}					
+				}
+			}
+		}
     }
 }
