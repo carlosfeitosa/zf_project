@@ -40,3 +40,6 @@ VALUES ('LOCALIDADE', 'NOME_TIPO_CATEGORIA_LOCALIDADE', true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
 VALUES ('DADOS_BIOMETRICOS', 'NOME_TIPO_CATEGORIA_DADOS_BIOMETRICOS', true, 'SYSTEM_STARTUP');
+
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('INCLUDE', 'NOME_TIPO_CATEGORIA_INCLUDE', true, 'SYSTEM_STARTUP');
