@@ -1057,12 +1057,12 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
     			
     		$loginAno = $login . $ano;
     		
-    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $loginAno) && !array_search($loginAno, $arraySugestoesLogin))
+    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $loginAno) && !array_search($loginAno, $arraySugestoesLogin))
     			$arraySugestoesLogin[] = $loginAno;
     				
     		$loginContador = $login . $i;
     				
-    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $loginContador) && !array_search($loginContador, $arraySugestoesLogin))
+    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $loginContador) && !array_search($loginContador, $arraySugestoesLogin))
     			$arraySugestoesLogin[] = $loginContador;
     				
     		$i++;
@@ -1085,12 +1085,12 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	    			
 	    		$nomeAno = $nome . $ano;
 	    			
-	    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $nomeAno) && !array_search($nomeAno, $arraySugestoesNome))
+	    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $nomeAno) && !array_search($nomeAno, $arraySugestoesNome))
 	    			$arraySugestoesNome[] = $nomeAno;
 	    				
 	    		$nomeContador = $nome . $i;
 	    				
-	    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $nomeContador) && !array_search($nomeContador, $arraySugestoesNome))
+	    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $nomeContador) && !array_search($nomeContador, $arraySugestoesNome))
 	    			$arraySugestoesNome[] = $nomeContador;
 	    				
 	    		$i++;
@@ -1109,13 +1109,13 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	    	
     	while (count($arraySugestoesEmail) < NUMERO_SUGESTOES_LOGIN_UTILIZANDO_EMAIL) {
 	    			
-    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $email))
+    		if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $email))
     			$arraySugestoesEmail[] = $email;
     			
    			$emailAno = $email . $ano;
 
     			
-   			if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('login', 'login', $emailAno))
+   			if (Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $emailAno))
    				$arraySugestoesEmail[] = $emailAno;
     				
    			$i++;
