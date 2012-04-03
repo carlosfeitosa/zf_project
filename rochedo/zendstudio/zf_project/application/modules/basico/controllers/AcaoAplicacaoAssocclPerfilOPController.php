@@ -57,7 +57,7 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 		// verificando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_AcoesAplicacaoPerfisOPController();
+			self::$_singleton = new Basico_OPController_AcaoAplicacaoAssocclPerfilOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;

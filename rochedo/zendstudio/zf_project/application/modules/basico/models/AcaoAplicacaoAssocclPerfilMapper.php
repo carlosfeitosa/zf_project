@@ -99,7 +99,7 @@ class Basico_Model_AcaoAplicacaoAssocclPerfilMapper extends Basico_AbstractMappe
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
         $data = array(
-                'id_acao_aplicacao' => $object->getAcaoIdAplicacao(),
+                'id_acao_aplicacao' => $object->getIdAcaoAplicacao(),
                 'id_perfil'         => $object->getIdPerfil(),        
         		'datahora_criacao'  => $object->getDatahoraCriacao(),
         		'rowinfo'           => $object->getRowinfo(),

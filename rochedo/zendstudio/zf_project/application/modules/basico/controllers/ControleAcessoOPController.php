@@ -410,7 +410,7 @@ class Basico_OPController_ControleAcessoOPController
 			try {
 				// instanciando controladores
 				$acaoAplicacaoOpController        = Basico_OPController_AcaoAplicacaoOPController::getInstance();
-				$acoesAplicacaoPerfisOpController = Basico_OPController_AcoesAplicacaoPerfisOPController::getInstance();
+				$acoesAplicacaoPerfisOpController = Basico_OPController_AcaoAplicacaoAssocclPerfilOPController::getInstance();
 	
 				// recuperando o id do modulo
 				$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModuloRequest)->id;
