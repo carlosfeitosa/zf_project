@@ -310,55 +310,6 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	}
 
 	/**
-	 * Retorna um array contendo os caminhos para os arquivos css e js de um formulario
-	 * 
-	 * @param String $nomeForm
-	 * 
-	 * @return Array|null
-	 * 
-	 * @todo
-	 */
-	public static function retornaArraysTemplateStylesheetFullFilenameJavascriptFullFilenamePorNomeFormularioViaSQL($nomeForm)
-	{
-		// verificando se foi passado o nome do form
-		if (!$nomeForm) {
-			// retornando nulo
-			return null;
-		}
-		/*
-		// montando query que recupera informacoes sobre o template do formulario
-		$queryRecuperaStylesheetFullFilenameEJavascriptFullFilename = "SELECT t.stylesheet_full_filename AS stylesheetfullfilename, t.javascript_full_filename AS javascriptfullfilename, o.nome AS output
-																	   FROM basico.template t
-																	   LEFT JOIN basico.output o ON (t.id_output = o.id)
-																	   LEFT JOIN basico_formulario.assoccl_template tf ON (t.id = tf.id_template)
-																	   LEFT JOIN basico.formulario f ON (tf.id_formulario = f.id)
-																	   WHERE (t.stylesheet_full_filename IS NOT NULL OR t.javascript_full_filename IS NOT NULL)
-																	   OR (t.id = tf.id_template)
-																	   AND f.form_name = '{$nomeForm}'";
-
-		// executando query e recuperando o resultados em um array
-		$arrayResultadoQuery = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRecuperaStylesheetFullFilenameEJavascriptFullFilename);
-
-		// verificando se houve resultado na recuperacao
-		if (count($arrayResultadoQuery)) {
-			// inicializando variaveis
-			$arrayRetorno = array();
-
-			// loop para montar o resultado em formato de array
-			foreach ($arrayResultadoQuery as $chave => $valor) {
-				// guardando as informacoes no array de resultados
-				$arrayRetorno[$chave] = $valor;
-			}
-
-			// retornando resultado
-			return $arrayRetorno;
-		}
-		*/
-		// retornando nulo
-		return null;
-	}
-	
-	/**
 	 * Retorna se o formulario permite salvar rascunho 
 	 * 
 	 * @param String $formName
@@ -399,5 +350,41 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 			return $objFormulario[0]->categoria;
 			
 		return false;
+	}
+
+	/**
+	 * Verifica se um determinado formulário possui algum template com output ajax
+	 * 
+	 * @param String $nomeFormulario
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 03/04/2012
+	 */
+	public static function verificaTemplateOutputAjaxViaSQL($nomeFormulario)
+	{
+		// retornando resultado da chamada ao método de verificação de output ajax do controlador de templates
+		return Basico_OPController_TemplateOPController::verificaFormularioOutputAjaxViaSQL($nomeFormulario);
+	}
+
+	/**
+	 * Manipula os decorators do formulário para permitir submissão AJAX
+	 * 
+	 * @param Zend_Form $formulario
+	 * 
+	 * @return void
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 03/04/2012
+	 */
+	public static function adicionaAjaxDecorator(Zend_Form $formulario)
+	{
+		// adicionando prefixPath
+		$formulario->addPrefixPath('Rochedo_Form_Decorator', 'Rochedo/Form/Decorator', 'decorator');
+		// removendo o decorator DijitForm para posterior adicao
+		$formulario->removeDecorator('DijitForm');
+		// adicionando decorator AjaxForm
+		$formulario->addDecorators(array('AjaxForm', 'DijitForm'));
 	}
 }

@@ -219,90 +219,129 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 				Basico_OPController_IncludeOPController::processaIncludes($view, $arrayIncludesFormulario);
 			}
 
-			// recuperando templates do formulario
-			$arrayTemplatesFormulario = Basico_OPController_FormularioOPController::retornaArraysTemplateStylesheetFullFilenameJavascriptFullFilenamePorNomeFormularioViaSQL($nomeForm);
-
-			// verificando se houve recuperacao do(s) template(s)
-			if (count($arrayTemplatesFormulario) > 0) {
-				// recuperando caminho do url base
-				$applicationHttpBaseUrl = $this->getFrontController()->getInstance()->getBaseUrl();
-
-				// loop para colocar os includes necessarios na view, de acordo com o template
-				foreach($arrayTemplatesFormulario as $arrayTemplateFormulario) {
-
-					// verificando se o template possui arquivo css
-					if ($arrayTemplateFormulario['stylesheetfullfilename']) {
-						// verificando se o stylesheet eh local ou remoto
-						if (strpos($arrayTemplateFormulario['stylesheetfullfilename'], 'http://' === 0))
-							// adicionando stylesheet remoto
-							$this->_view->headLink()->appendStylesheet($arrayTemplateFormulario['stylesheetfullfilename']);
-						else
-							// adicionando stylesheet local
-							$this->_view->headLink()->appendStylesheet($applicationHttpBaseUrl . $arrayTemplateFormulario['stylesheetfullfilename']);
-					}
-
-					// verificando se o template possui arquivo javascript
-					if ($arrayTemplateFormulario['javascriptfullfilename']) {
-						// verificando se o javascript eh local ou remoto
-						if (strpos($arrayTemplateFormulario['javascriptfullfilename'], 'http://' === 0))
-							// adicionando javascript remoto
-							$this->_view->headScript()->appendFile($arrayTemplateFormulario['javascriptfullfilename']);
-						else
-							// adicionando javascript local
-							$this->_view->headScript()->appendFile($applicationHttpBaseUrl . $arrayTemplateFormulario['javascriptfullfilename']);
-					}
-
-					// verificando se o formulario possui saida AJAX para inclusao de prefixPath e decorator
-					if ($arrayTemplateFormulario['output'] === FORM_GERADOR_OUTPUT_AJAX) {
-						// adicionando prefixPath
-						$form->addPrefixPath('Rochedo_Form_Decorator', 'Rochedo/Form/Decorator', 'decorator');
-
-						// removendo o decorator DijitForm para posterior adicao
-						$form->removeDecorator('DijitForm');
-
-						// adicionando decorator AjaxForm
-						$form->addDecorators(array('AjaxForm', 'DijitForm'));
-					}
-				}
+			// verificando se precisa adicionar decorators AJAX
+			if (Basico_OPController_FormularioOPController::verificaTemplateOutputAjaxViaSQL($nomeForm)) {
+				// adicionando decoratos do AJAX
+				Basico_OPController_FormularioOPController::adicionaAjaxDecorator($form);
 			}
-			
-			$elementosOcultos = array();
-			// percorre todos os elementos do form
-			foreach ($form->getElements() as $elementoForm){
-												
-				// verifica se o elemento e do tipo hash
-				if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {									
-					
-					// renderizando elemento hash para ser gerado o value.
-					$elementoForm->render();
-					// recuperando chave do arrayPool
-					$chaveArrayPool = $elementoForm->getValue();
-					$arrayPool[] = $elementoForm->getValue();
-				}
-				
-				if ($elementoForm->getType() == 'Rochedo_Form_Element_Oculto') {
 
-					// montando array de elementos ocultos.
-					$elementosOcultos[$elementoForm->getName()] = $elementoForm->getValue();
-					// removendo elemento do formulário
-					$form->removeElement($elementoForm->getName());
-				}
-			}
-			// verificando se existe a $chaveArrayPool e  elementos no array de elementos ocultos.
+			// processando o elemento hash do formulario, se houver
+			$chaveArrayPool = self::processaHash($form);
+			// localizando e processando os elementos ocultos
+			$elementosOcultos = self::processaElementosOcultos($form);
+
+			// verificando se existe a $chaveArrayPool e elementos no array de elementos ocultos.
 			if (isset($chaveArrayPool) and count($elementosOcultos)> 0) {
-				// registrando elementos na sessão
-				
+				// registrando elementos na sessão			
 				Basico_OPController_SessionOPController::registraPostPoolElementosOcultos($chaveArrayPool, $elementosOcultos);
 			}
-			
+
 			// verificando se existe rascunho no form
-			if ($form->getAttrib('rascunho')) {
-				// Adicionando o formulário com o atributo rascunho, no dojo(). Isto permitindo que o parametro seja reconhecido pelo dojo.
-				$this->_view->dojo()->addDijit($form->getName(), array('rascunho'=>'true'));
-				
-				// setando variavel que determina a insercao, ou nao, do script de inicializacao do rascunho
-				$permiteRascunho = true;
+			$permiteRascunho = self::processaRascunho($view, $form);
+		}
+	}
+
+	/**
+	 * Verifica se um determinado formulário possui algum template com output ajax
+	 * 
+	 * @param String $nomeFormulario
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 03/04/2012
+	 */
+	public static function verificaFormularioOutputAjaxViaSQL($nomeFormulario)
+	{
+		// retornando resultado da chamada ao método de verificação de output ajax do controlador de outputs
+		Basico_OPController_OutputOPController::verificaFormularioTemplateOutputAjaxViaSQL($nomeFormulario);
+	}
+
+	/**
+	 * Processa o elemento hash de um formulário
+	 * 
+	 * @param Zend_Form $formulario
+	 * 
+	 * @return String|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 03/04/2012
+	 */
+	private static function processaHash(Zend_Form $formulario)
+	{
+		// recuperando elementos do form
+		$arrayElementos = $formulario->getElements();
+		// invertendo os elementos do array
+		$arrayElementos = array_reverse($arrayElementos);
+
+		// loop para verificar os elementos do formulario
+		for ($i = 0; $i++; count($arrayElementos)-1) {
+			// verificando o tipo do elemento
+			if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {													
+				// renderizando elemento hash para ser gerado o value.
+				$elementoForm->render();
+				// recuperando chave do arrayPool
+				$chaveArrayPool = $elementoForm->getValue();
+				// retornando a chave do arrayPool
+				return $chaveArrayPool;
 			}
 		}
+
+		return null;
+	}
+
+	/**
+	 * Processa os elementos ocultos de um formulário
+	 * 
+	 * @param Zend_Form $formulario
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 03/04/2012
+	 */
+	private static function processaElementosOcultos(Zend_Form $formulario)
+	{
+		// inicializando variáveis
+		$arrayElementosOcultos = array();
+
+		// percorre todos os elementos do form
+		foreach ($formulario->getElements() as $elementoForm){
+			// verificando o tipo do elemento
+			if ($elementoForm->getType() == 'Rochedo_Form_Element_Oculto') {
+				// montando array de elementos ocultos.
+				$arrayElementosOcultos[$elementoForm->getName()] = $elementoForm->getValue();
+				// removendo elemento do formulário
+				$formulario->removeElement($elementoForm->getName());
+			}
+		}
+
+		// retornando array com os valores ocultos
+		return $arrayElementosOcultos;
+	}
+
+	/**
+	 * Processa atributos do rascunho
+	 * 
+	 * @param Zend_View $view
+	 * @param Zend_Form $formulario
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 03/04/2012
+	 */
+	private function processaRascunho(Zend_View $view, Zend_Form $formulario)
+	{
+		// verificando se existe rascunho no form
+		if ($formulario->getAttrib('rascunho')) {
+			// Adicionando o formulário com o atributo rascunho, no dojo(). Isto permitindo que o parametro seja reconhecido pelo dojo.
+			$view->dojo()->addDijit($form->getName(), array('rascunho'=>'true'));
+			
+			// setando variavel que determina a insercao, ou nao, do script de inicializacao do rascunho
+			return true;
+		}
+
+		return false;
 	}
 }
