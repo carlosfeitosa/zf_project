@@ -16,6 +16,6 @@ SELECT (SELECT c.id FROM basico.categoria c
 		AND tc.nome = 'INCLUDE') AS id_categoria,
 		'INCLUDE_JS_LINKHTML_PASSWORD_STRENGTH_CHECKER' AS nome,
 		'INCLUDE_JS_LINKHTML_PASSWORD_STRENGTH_CHECKER' AS constante_textual,
-		'http://@endereco_aplicacao_http@/templates/3rd_party/password_strength_checker/passwordStrengthChecker.js' AS uri,
+		'http://@enderecoAplicacaoHTTP@/templates/3rd_party/password_strength_checker/passwordStrengthChecker.js' AS uri,
 		true AS ativo,
 		'SYSTEM_STARTUP' AS rowinfo;
