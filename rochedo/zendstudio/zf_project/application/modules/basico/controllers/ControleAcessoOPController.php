@@ -391,7 +391,7 @@ class Basico_OPController_ControleAcessoOPController
 		// montando a query que vai retornar se a acao esta cadastrada
 		$querySQLRetornaIdAcao = "SELECT a.id
 								  from basico.acao_aplicacao a
-								  LEFT JOIN modulo m ON (a.id_modulo = m.id)
+								  LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
 								  WHERE m.nome = '{$nomeModuloRequest}'
 								  AND a.controller = '{$nomeControllerRequest}'
 								  AND a.action = '{$nomeAcaoRequest}'";
@@ -419,10 +419,10 @@ class Basico_OPController_ControleAcessoOPController
 				$modeloAcaoAplicacao = $acaoAplicacaoOpController->retornaNovoObjetoModeloPorNomeOPController($acaoAplicacaoOpController->retornaNomeClassePorObjeto($acaoAplicacaoOpController));
 	
 				// setando informacoes sobre a acao
-				$modeloAcaoAplicacao->modulo = $idModulo;
+				$modeloAcaoAplicacao->IdModulo   = $idModulo;
 				$modeloAcaoAplicacao->controller = $nomeControllerRequest;
-				$modeloAcaoAplicacao->action = $nomeAcaoRequest;
-				$modeloAcaoAplicacao->ativo = true;
+				$modeloAcaoAplicacao->action     = $nomeAcaoRequest;
+				$modeloAcaoAplicacao->ativo      = true;
 	
 				// salvando o acao aplicacao
 				$acaoAplicacaoOpController->salvarObjeto($modeloAcaoAplicacao);
@@ -434,8 +434,8 @@ class Basico_OPController_ControleAcessoOPController
 				$modeloAcoesAplicacaoPerfis = $acoesAplicacaoPerfisOpController->retornaNovoObjetoModeloPorNomeOPController($acoesAplicacaoPerfisOpController->retornaNomeClassePorObjeto($acoesAplicacaoPerfisOpController));
 	
 				// setando informacoes sobre a vinculacao da nova acao com o perfil de desenvolvedor
-				$modeloAcoesAplicacaoPerfis->perfil = $idPerfilUsuarioDesenvolvedor;
-				$modeloAcoesAplicacaoPerfis->acaoAplicacao = $modeloAcaoAplicacao->id;
+				$modeloAcoesAplicacaoPerfis->idPerfil        = $idPerfilUsuarioDesenvolvedor;
+				$modeloAcoesAplicacaoPerfis->idAcaoAplicacao = $modeloAcaoAplicacao->id;
 	
 				// salvando a vinculacao entre a nova acao e o perfil de desenvolvedor
 				$acoesAplicacaoPerfisOpController->salvarObjeto($modeloAcoesAplicacaoPerfis);
