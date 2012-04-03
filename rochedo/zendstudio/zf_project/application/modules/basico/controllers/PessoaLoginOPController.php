@@ -1175,20 +1175,23 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$arrayTagsMensagemProblemasLogin["@login"]	     		= $login;
 			$arrayTagsMensagemProblemasLogin["@assinaturaMensagem"] = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
 			
+			// recuperando a categoria da template da mensagem de falhas no login
+			$idCategoriaTemplateMensagem = Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT');
+			
+			// recuperando o id da template de mensagem de problemas no login
+			$idTemplateMensagem = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaIdMensagemTemplatePorNomeTemplateIdCategoria('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT', $idCategoriaTemplateMensagem);
+			
 			// recuperando mensagem template de alerta sobre falhas no login
-			$modeloMensagemProblemaLogin = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT, array($idPessoaDestinatario), null, $arrayTagsMensagemProblemasLogin);
+			$modeloMensagemProblemaLogin = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaTemplateMensagem, $idTemplateMensagem, array($idPessoaDestinatario), null, $arrayTagsMensagemProblemasLogin);
 			
 			// recuperando o objeto categoria da mensagem
 			$objCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT);
 
 			// setando categoria da mensagem de alerta  
-			$modeloMensagemProblemaLogin->categoria = $objCategoriaMensagem->id;
+			$modeloMensagemProblemaLogin->idCategoria = $objCategoriaMensagem->id;
 			
 			// recuperando o id da pessoa perfil o destinatario
 			$idPessoaPerfilUsuarioValidadoDestinatario = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaDestinatario);
-			
-			// salvano objeto da mensagem
-			Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($modeloMensagemProblemaLogin);
 			
 			// enviando a mensagem
             Basico_OPController_MensageiroOPController::getInstance()->enviar($modeloMensagemProblemaLogin, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfilUsuarioValidadoDestinatario));
