@@ -729,3 +729,9 @@ SELECT t.id AS id_tipo_categoria, 1 AS nivel,
     'INCLUDE_JS_LINKHTML' AS nome, 'INCLUDE_JS_LINKHTML' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'INCLUDE';
+
+INSERT into basico.categoria (id_tipo_categoria, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, 1 AS nivel, 
+    'INCLUDE_CSS_LINKHTML' AS nome, 'INCLUDE_CSS_LINKHTML' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'INCLUDE';

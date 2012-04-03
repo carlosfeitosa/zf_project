@@ -6,7 +6,7 @@
 * versao: 1.0 (POSTGRESQL 9.1.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 22/03/2012
-* ultimas modificacoes:
+* ultimas modificacoes: 03/04/2012 - Criação dos inserts dos includes do password strength checker
 */
 
 INSERT INTO basico.include (id_categoria, nome, constante_textual, uri, ativo, rowinfo)
@@ -19,3 +19,14 @@ SELECT (SELECT c.id FROM basico.categoria c
 		'http://@enderecoAplicacaoHTTP@/templates/3rd_party/password_strength_checker/passwordStrengthChecker.js' AS uri,
 		true AS ativo,
 		'SYSTEM_STARTUP' AS rowinfo;
+		
+INSERT INTO basico.include (id_categoria, nome, constante_textual, uri, ativo, rowinfo)
+SELECT (SELECT c.id FROM basico.categoria c 
+		LEFT JOIN basico.tipo_categoria tc ON (tc.id = c.id_tipo_categoria)
+		WHERE c.nome ='INCLUDE_CSS_LINKHTML'
+		AND tc.nome = 'INCLUDE') AS id_categoria,
+		'INCLUDE_CSS_LINKHTML_PASSWORD_STRENGTH_CHECKER' AS nome,
+		'INCLUDE_CSS_LINKHTML_PASSWORD_STRENGTH_CHECKER' AS constante_textual,
+		'http://@enderecoAplicacaoHTTP@/templates/3rd_party/password_strength_checker/passwordStrengthChecker.css' AS uri,
+		true AS ativo,
+		'SYSTEM_STARTUP' AS rowinfo;		

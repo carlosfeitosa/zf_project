@@ -18,8 +18,24 @@ SELECT (SELECT co.id FROM basico.componente co
 	   (SELECT i.id FROM basico.include i
 		LEFT JOIN basico.categoria c ON (c.id = i.id_categoria)
 		LEFT JOIN basico.tipo_categoria tc ON (tc.id = c.id_tipo_categoria)
+		WHERE c.nome = 'INCLUDE_CSS_LINKHTML'
+		AND tc.nome = 'INCLUDE'
+		AND i.nome = 'INCLUDE_CSS_LINKHTML_PASSWORD_STRENGTH_CHECKER') AS id_include,
+	   1 AS ordem,
+       'SYSTEM_STARTUP' AS rowinfo;
+
+INSERT INTO basico_componente.assoccl_include (id_componente, id_include, ordem, rowinfo)
+SELECT (SELECT co.id FROM basico.componente co
+		LEFT JOIN basico.categoria c ON (c.id = co.id_categoria)
+		LEFT JOIN basico.tipo_categoria tc ON (tc.id = c.id_tipo_categoria)
+		WHERE c.nome = 'COMPONENTE_AJAXTERCEIROS'
+		AND tc.nome = 'COMPONENTE'
+		AND co.nome = 'DOJO_PasswordTextBox_With_Checker') AS id_componente,
+	   (SELECT i.id FROM basico.include i
+		LEFT JOIN basico.categoria c ON (c.id = i.id_categoria)
+		LEFT JOIN basico.tipo_categoria tc ON (tc.id = c.id_tipo_categoria)
 		WHERE c.nome = 'INCLUDE_JS_LINKHTML'
 		AND tc.nome = 'INCLUDE'
 		AND i.nome = 'INCLUDE_JS_LINKHTML_PASSWORD_STRENGTH_CHECKER') AS id_include,
-	   1 AS ordem,
+	   2 AS ordem,
        'SYSTEM_STARTUP' AS rowinfo;
