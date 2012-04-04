@@ -735,3 +735,50 @@ SELECT t.id AS id_tipo_categoria, 1 AS nivel,
     'INCLUDE_CSS_LINKHTML' AS nome, 'INCLUDE_CSS_LINKHTML' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'INCLUDE';
+
+INSERT into basico.categoria (id_tipo_categoria, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, 1 AS nivel, 
+    'RACA' AS nome, 'RACA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'DADOS_BIOMETRICOS';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'RACA_HUMANA' AS nome, 'RACA_HUMANA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'RACA';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 3 AS nivel, 
+    'COR_OU_RACA_BRANCA' AS nome, 'COR_OU_RACA_BRANCA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'RACA_HUMANA';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 3 AS nivel, 
+    'COR_OU_RACA_PRETA' AS nome, 'COR_OU_RACA_PRETA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'RACA_HUMANA';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 3 AS nivel, 
+    'COR_OU_RACA_PARDA' AS nome, 'COR_OU_RACA_PARDA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'RACA_HUMANA';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 3 AS nivel, 
+    'COR_OU_RACA_AMARELA_OU_INDIGENA' AS nome, 'COR_OU_RACA_AMARELA_OU_INDIGENA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'DADOS_BIOMETRICOS'
+AND c.nome = 'RACA_HUMANA';
+

@@ -148,7 +148,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	 * 
 	 * @param Int $idPessoa
 	 * 
-	 * @return Basico_Model_DadosBiometricos
+	 * @return Basico_Model_DadosBiometricosAssocPessoa
 	 */
 	public function retornaObjetoDadosBiometricosPessoaPorIdDadosBiometricos($idDadosBiometricos)
 	{
@@ -212,7 +212,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
     	$sexo                 = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo'];
     	$altura               = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura'];
 	    $peso                 = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso'];  
-        $ConstanteTextualRaca = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'];
+        $constanteTextualRaca = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca'];
 	    $tipoSanguineo        = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo'];
 	    $historicoMedico      = $arrayPostDadosBiometricos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico'];
 	    
@@ -236,7 +236,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
         if ($peso != "")
         	$dadosBiometricos->peso                 = $peso;
 
-        $dadosBiometricos->constanteTextualRaca = $ConstanteTextualRaca;
+        $dadosBiometricos->constanteTextualRaca = $constanteTextualRaca;
    	    $dadosBiometricos->tipoSanguineo        = $tipoSanguineo;
    	    $dadosBiometricos->historicoMedico      = $historicoMedico;    	
    	    

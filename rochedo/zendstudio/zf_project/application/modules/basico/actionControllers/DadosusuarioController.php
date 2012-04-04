@@ -654,8 +654,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	                                                    1 => $this->view->tradutor('GENERO_FEMININO')));
 	    
 	    // setando options do elemento raca
-	    //$subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
-	                           // ->addMultiOptions(Basico_OPController_RacaOPController::getInstance()->retornaArrayRacasOptions());
+	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
+	                            ->addMultiOptions(Basico_OPController_CategoriaOPController::getInstance()->retornaArrayRacasOptions());
 	    
 	    // setando options do elemento sexo 
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo
@@ -715,6 +715,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    // recuperando os dados biometricos da pessoa logada;
 	    $dadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
 	    
+	    // recuperando a especializacao de dados biometricos para pessoa
+	    $dadosBiometricosPessoa = Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->retornaObjetoDadosBiometricosPessoaPorIdDadosBiometricos($dadosBiometricos->id);
+	    
 	    // recuperando o subForm DadosBiometricos
 	    $subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
 	    
@@ -727,25 +730,25 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		    $formDadosBiometricosElementos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos')->getElements();
 
 			// carregando o radio button do sexo
-		    if ($dadosBiometricos->sexo == FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO) {
+		    if ($dadosBiometricosPessoa->idCategoriaSexo == Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('GENERO_MASCULINO')) {
 		    	// carregando valor do radio button
 		        $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo']->setValue(0);
-		    } else if ($dadosBiometricos->sexo == FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO) {
+		    } else if ($dadosBiometricosPessoa->idCategoriaSexo == Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('GENERO_FEMININO')) {
 		    	// carregando valor do radio button 
 		        $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosSexo']->setValue(1);
 		    }
 	
 		    // setando valores nos campos do subform dadosBiometricos
-		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']->setValue($dadosBiometricos->constanteTextualRaca);    
-		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']->setValue($dadosBiometricos->peso);
-		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']->setValue($dadosBiometricos->altura);
-		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo']->setValue($dadosBiometricos->tipoSanguineo);
-		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']->setValue($dadosBiometricos->historicoMedico);
+		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosRaca']->setValue($dadosBiometricosPessoa->idCategoriaRaca);    
+		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosPeso']->setValue($dadosBiometricosPessoa->peso);
+		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosAltura']->setValue($dadosBiometricosPessoa->altura);
+		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo']->setValue($dadosBiometricosPessoa->idCategoriaTipoSanguineo);
+		    $formDadosBiometricosElementos['BasicoCadastrarDadosUsuarioDadosBiometricosHistoricoMedico']->setValue($dadosBiometricosPessoa->historicoMedico);
 		    
 		    // recuperando ultima versao do obj dadosBiometricos da pessoa
-		    $versaoObjetoDadosBiometricos = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosBiometricos);
+		    $versaoObjetoDadosBiometricosPessoa = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosBiometricosPessoa);
 		    
-		    $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
+		    $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricosPessoa);
 	    }
     }
 

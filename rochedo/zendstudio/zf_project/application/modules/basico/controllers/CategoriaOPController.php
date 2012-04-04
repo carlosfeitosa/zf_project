@@ -864,16 +864,21 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG);
 	}
 	
+	/**
+	 * Retorna um array para carregamento de multiOptions com os tipos sanguineos
+	 * 
+	 * @return Array
+	 */
 	public function retornaArrayTiposSanguineosOptions()
 	{
 		// inicializando variaveis
 		$arrayTiposSanguineosOptions = array();
 		
 		// recuperando id da categoria TIPO_SANGUINEO
-		$idCategoriaTipoSanguineo = $this->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('TIPO_SANGUINEO');
+		$idCategoriaTipoSanguineo = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('TIPO_SANGUINEO');
 		
 		// recuperando as categorias
-		$categoriasTiposSanguineos = $this->retornaObjetosPorParametros($this->retornaNovoObjetoModeloPorNomeOPController(get_class($this)), "id_categoria_pai = {$idCategoriaTipoSanguineo}");
+		$categoriasTiposSanguineos = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetosPorParametros(Basico_OPController_CategoriaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController(get_class(Basico_OPController_CategoriaOPController::getInstance())), "id_categoria_pai = {$idCategoriaTipoSanguineo}");
 		
 		// percorrendo categorias de tipo sanguineo para montar o array de options
 		foreach ($categoriasTiposSanguineos as $tipoSanguineo) {
@@ -881,5 +886,29 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		}
 		
 		return $arrayTiposSanguineosOptions;
+	}
+	
+	/**
+	 * Retorna um array para carregamento de multiOptions com as raças
+	 * 
+	 * @return Array
+	 */
+	public function retornaArrayRacasHumanasOptions()
+	{
+		// inicializando variaveis
+		$arrayRacasOptions = array();
+		
+		// recuperando id da categoria TIPO_SANGUINEO
+		$idCategoriaRaca = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('RACA_HUMANA');
+		
+		// recuperando as categorias
+		$categoriasRacas = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetosPorParametros(Basico_OPController_CategoriaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController(get_class(Basico_OPController_CategoriaOPController::getInstance())), "id_categoria_pai = {$idCategoriaRaca}");
+		
+		// percorrendo categorias de tipo sanguineo para montar o array de options
+		foreach ($categoriasRacas as $raca) {
+			$arrayRacasOptions[$raca->id] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($raca->constanteTextual);
+		}
+		
+		return $arrayRacasOptions;
 	}
 }

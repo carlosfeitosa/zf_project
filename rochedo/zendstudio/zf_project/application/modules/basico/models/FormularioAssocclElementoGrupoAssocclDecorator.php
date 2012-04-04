@@ -4,7 +4,7 @@
  *
  * Utilizes the Data Mapper pattern to persist data.
  * 
- * @uses       Basico_Model_DecoratorAssocclIncludeMapper
+ * @uses       Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper
  * @subpackage Model
  */
 class Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
@@ -115,12 +115,12 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator extends Basico
     /**
     * Get data mapper
     *
-    * Lazy loads Basico_Model_DecoratorAssocclIncludeMapper instance if no mapper registered.
+    * Lazy loads Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper instance if no mapper registered.
     * 
-    * @return Basico_Model_DecoratorAssocclIncludeMapper
+    * @return Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper
     */
     public function getMapper()
     {
-        return parent::getMapper('Basico_Model_DecoratorAssocclIncludeMapper');
+        return parent::getMapper('Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper');
     }
  }
