@@ -276,6 +276,9 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 
 		// loop para verificar os elementos do formulario
 		for ($i = 0; $i++; count($arrayElementos)-1) {
+			// recuperando o elemento
+			$elementoForm = $arrayElementos[$i];
+
 			// verificando o tipo do elemento
 			if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {													
 				// renderizando elemento hash para ser gerado o value.
@@ -336,7 +339,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 		// verificando se existe rascunho no form
 		if ($formulario->getAttrib('rascunho')) {
 			// Adicionando o formulário com o atributo rascunho, no dojo(). Isto permitindo que o parametro seja reconhecido pelo dojo.
-			$view->dojo()->addDijit($form->getName(), array('rascunho'=>'true'));
+			$view->dojo()->addDijit($formulario->getName(), array('rascunho'=>'true'));
 			
 			// setando variavel que determina a insercao, ou nao, do script de inicializacao do rascunho
 			return true;
