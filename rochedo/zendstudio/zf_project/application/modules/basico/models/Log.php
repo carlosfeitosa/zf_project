@@ -207,7 +207,7 @@ class Basico_Model_Log
      */
     public function getAssocclPerfilObject()
     {
-        $model = new Basico_Model_PessoasPerfis();
+        $model = new Basico_Model_PessoaAssocclPerfil();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idAssocclPerfil);
         return $object;
     }

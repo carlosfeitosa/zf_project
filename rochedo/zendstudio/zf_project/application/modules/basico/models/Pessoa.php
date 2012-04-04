@@ -101,7 +101,7 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
 	public function getTelefoneDefaultObject()
 	{
 		// instanciando o modelo perfil
-		$model = new Basico_Model_Telefone();
+		$model = new Basico_Model_ContatoCpgTelefone();
 		// recuperando objeto
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idTelefoneDefault);
         // retornando o objeto
@@ -175,7 +175,7 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
 	public function getEnderecoDefaultObject()
 	{
 		// instanciando o modelo perfil
-		$model = new Basico_Model_Endereco();
+		$model = new Basico_Model_LocalizacaoCpgEndereco();
 		// recuperando objeto
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idEnderecoDefault);
         // retornando o objeto
@@ -212,7 +212,7 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
 	public function getEnderecoCorrespondenciaObject()
 	{
 		// instanciando o modelo perfil
-		$model = new Basico_Model_Endereco();
+		$model = new Basico_Model_LocalizacaoCpgEndereco();
 		// recuperando objeto
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idEnderecoCorrespondencia);
         // retornando o objeto
@@ -249,7 +249,7 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
 	public function getLinkDefaultObject()
 	{
 		// instanciando o modelo perfil
-		$model = new Basico_Model_Link();
+		$model = new Basico_Model_CpgLink();
 		// recuperando objeto
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idLinkDefault);
         // retornando o objeto

@@ -1206,62 +1206,6 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	}
 
 	/**
-	 * Salva e retorna a mensagem do cadastro de usuario nao validado
-	 * 
-	 * @param Array $arrayDestinatarios
-	 * @param Int $idCategoria
-	 * @param String $token
-	 */
-	public function retornaMensagemCadastroUsuarioNaoValidado($nomeDestinatario, $emailDestinatario, $token)
-	{
-		// recuperando o link para continuacao do cadastro
-		$link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $token;
-		// recuperando o objeto mensagem já preenchido com os dados da template
-        $objNovaMensagem = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link);
-        // setando destinatario da mensagem          
-        $objNovaMensagem->destinatarios       = array($emailDestinatario);
-        // recuperando a categoria da mensagem
-		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
-		// setando a categoria da mensagem
-        $objNovaMensagem->idCategoria           = $idCategoriaMensagem;
-        // salvando a mensagem
-        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($objNovaMensagem);
-        
-        // retornando o objeto mensagem
-        return $objNovaMensagem;
-	}
-	
-	/**
-	 * Salva e retorna a mensagem do cadastro de usuario nao validado Reenvio
-	 * 
-	 * @param Array $arrayDestinatarios
-	 * @param Int $idCategoria
-	 * @param String $token
-	 */
-	public function retornaMensagemCadastroUsuarioNaoValidadoReenvio($idPessoa, $emailDestinatario, $token)
-	{
-		// recuperando o link para continuacao do cadastro
-		$link = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . LINK_VALIDACAO_USUARIO . $token;
-		
-		// recuperando o objeto mensagem já preenchido com os dados da template
-        $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($nomeCategoriaMensagemTemplate, $arrayIdsPessoasDestinatarios);
-        
-        // setando destinatario da mensagem          
-        $objNovaMensagem->destinatarios       = array($emailDestinatario);
-        // recuperando a categoria da mensagem
-		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
-		
-		// setando a categoria da mensagem
-        $objNovaMensagem->idCategoria           = $idCategoriaMensagem;
-        
-        // salvando a mensagem
-        Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($objNovaMensagem);
-        
-        // retornando o objeto mensagem
-        return $objNovaMensagem;
-	}
-	
-	/**
 	 * Retorna a mensagem de confirmação da conclusão do cadastro de usuario validado
 	 * 
 	 * @param Int $idPessoa

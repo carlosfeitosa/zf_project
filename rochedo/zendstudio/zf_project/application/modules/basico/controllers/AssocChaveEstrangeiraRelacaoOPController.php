@@ -87,12 +87,12 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id == NULL) {
+	    	if (NULL === $objeto->id) {
 	    		// carregando informacoes de log de novo registro
 	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA, true);
 	    		$mensagemLog    = LOG_MSG_NOVA_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA;
 	    	} else {
-	    		throw new Exception(MSG_ERRO_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA_EXISTE . " : " . $e->getMessage());
+	    		throw new Exception(MSG_ERRO_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA_EXISTE . " : " . "tabela origem: {$objeto->tabelaOrigem}/campo origem: {$objeto->campoOrigem}");
 	    	}
 
 			// salvando o objeto através do controlador Save
@@ -121,7 +121,7 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	 */
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
-		throw new Exception(LOG_MSG_DELETE_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA . " : " . $e->getMessage());
+		throw new Exception(LOG_MSG_DELETE_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA . " : " . "tabela origem: {$objeto->tabelaOrigem}/campo origem: {$objeto->campoOrigem}");
 	}
 
 	/**

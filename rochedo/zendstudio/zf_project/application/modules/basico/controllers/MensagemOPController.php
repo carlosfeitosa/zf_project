@@ -204,7 +204,6 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         	// recuperando informacoes do destinatario
         	$arrayDestinatarios[] = $emailPirmarioDestinatario->email;  
         	$arrayDestinatariosNomes[] = $nomeDestinatario;
-        	
         }
 
         // atribuindo destinatarios a mensagem
@@ -231,115 +230,6 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		return $modelMensagem;
 	}
 
-	/**
-	 * Retorna a Mensagem carregada com os dados da template de Email de Validação de Usuario PlainText,  
-	 * incluindo o texto da mensagem já com os nomes e links inseridos.
-	 *
-	 * @param String $nomeDestinatario
-	 * @param String $link
-	 * 
-	 * @return Basico_Model_Mensagem
-	 */
-	public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainText($nomeDestinatario, $link)
-	{
-		// instanciando controladores
-		$emailControllerController              = Basico_OPController_ContatoCpgEmailOPController::getInstance();
-		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance();
-
-		// recuperando o objeto categoria email validacao plain text template
-		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT);
-
-		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
-		
-		// carregando a mensagem template
-		$objMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
-
-		// verificando se a mensagem foi carregada
-		if (!isset($objMensagemTemplate))
-			return null;
-
-		// carregando assunto da mensagem
-		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());
-		// carregando a mensagem
-		$corpoMensagemTemplate  = $objMensagemTemplate[0]->getMensagem();
-         
-		// substituindo tags
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LINK_VALIDACAO_EMAIL, $link, $corpoMensagemTemplate);
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
-
-        // carregando a mensagem no modelo
-        $this->_model->setMensagem($corpoMensagemTemplate);
-		
-		// recuperando o endereco do e-mail do sistema
-		$emailSistema = $emailControllerController->retornaEmailSistema();
-		// setando o remetente
-		$this->_model->setRemetente($emailSistema);
-		$this->_model->setRemetenteNome(APPLICATION_NAME);
-		
-		// retornando a mensagem
-		return $this->_model;
-	}
-	
-	/**
-	 * Retorna a mensagem carregada com os dados da template de Mensagem de email validação usuario
-	 * plaintext reenvio.
-	 * 
-	 * @param Int $idPessoa
-	 * @param String $link
-	 * 
-	 * @return Basico_Model_Mensagem 
-	 */
-    public function retornaObjetoMensagemTemplateMensagemValidacaoUsuarioPlainTextReenvio($idPessoa, $link) 
-    {
-		// instanciando os controladores
-		$emailControllerController              = Basico_OPController_ContatoCpgEmailOPController::getInstance();
-		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
-		$dadosPessoaisControllerController      = Basico_OPController_PessoaAssocDadosOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance();
-
-		// recuperando o objeto categoria email template validacao plain text reenvio
-		$objcategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO);
-
-		// recuperando o nome do destinatario
-		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
-        
-		// recuperando a lingua do usuario
-		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
-		
-		// carregando a mensagem template
-		$objsMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objcategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
-
-		// verificando se a mensagem foi carregada
-		if (!isset($objsMensagemTemplate))
-			return null;
-		
-		// recuperando o assunto
-		$this->_model->setAssunto($objsMensagemTemplate[0]->getAssunto());
-		// recuperando assinatura da mensagem
-		$assinatura            = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
-		// recuperando a mensagem
-		$corpoMensagemTemplate = $objsMensagemTemplate[0]->getMensagem();
-		// substituindo as tags 
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_NOME, $nomeDestinatario, $corpoMensagemTemplate);
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_LINK_VALIDACAO_EMAIL, $link, $corpoMensagemTemplate);
-        $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_ASSINATURA_MENSAGEM, $assinatura, $corpoMensagemTemplate);
-        
-        // carregando a mensagem no modelo
-        $this->_model->setMensagem($corpoMensagemTemplate);
-		
-		// recuperando o endereco de e-mail do sistema
-		$emailSistema = $emailControllerController->retornaEmailSistema();
-		// setando remetente
-		$this->_model->setRemetente($emailSistema);
-		$this->_model->setRemetenteNome(APPLICATION_NAME);
-		
-		// retornando a mensagem
-		return $this->_model;
-	}
-	
     /**
 	 * Retorna a mensagem carregada com os dados da template de Mensagem de email de confirmação de cadastro
 	 * 
