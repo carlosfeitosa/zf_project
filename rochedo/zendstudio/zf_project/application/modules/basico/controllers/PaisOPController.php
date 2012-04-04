@@ -144,7 +144,7 @@ class Basico_OPController_PaisOPController extends Basico_AbstractController_Roc
 	/**
 	 * Retorna um novo objeto pais
 	 */
-	public function retornaNovoObjPais()
+	public static function retornaNovoObjPais()
 	{
 		// retornando novo obj tipo sanguinio
 		return new Basico_Model_LocalizacaoPais();

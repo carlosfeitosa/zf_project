@@ -144,7 +144,7 @@ class Basico_OPController_EstadoOPController extends Basico_AbstractController_R
 	/**
 	 * Retorna um novo objeto estado
 	 */
-	public function retornaNovoObjEstado()
+	public static function retornaNovoObjEstado()
 	{
 		// retornando novo obj LocalizacaoEstado
 		return new Basico_Model_LocalizacaoAssocEstado();

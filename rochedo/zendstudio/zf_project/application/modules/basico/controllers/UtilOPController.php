@@ -1494,6 +1494,13 @@ class Basico_OPController_UtilOPController
     		return false;
 
     	try {
+    		
+    		// verifica se o elemento é do tipo oculto
+    		if (FORM_ELEMENT_OCULTO === strtolower($tipoElemento)) {
+    			// adiciona o prefix path
+    			$form->addPrefixPath('Rochedo_Form_Element', 'Rochedo/Form/Element', 'ELEMENT');
+    		}
+    		
     		// adicionando elemento ao formulario
     		$form->addElement($tipoElemento, $nomeElemento, $arrayOptions);
 
