@@ -228,9 +228,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	    
 	    // recuperando a versao do objeto dados biometricos
     	$ultimaVersaoDadosBiometricos = $arrayPostDadosBiometricos['versaoObjetoDadosBiometricos'];
-	    
-    	var_dump($arrayPostDadosBiometricos); exit;
-    	
+	        	
     	// recuperando o objeto dados biometricos da pessoa
     	$dadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
     	

@@ -272,19 +272,17 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 		// recuperando elementos do form
 		$arrayElementos = $formulario->getElements();
 		// invertendo os elementos do array
-		$arrayElementos = array_reverse($arrayElementos);
-
+		$arrayElementos = array_reverse($arrayElementos, true);
+		
 		// loop para verificar os elementos do formulario
-		for ($i = 0; $i++; count($arrayElementos)-1) {
-			// recuperando o elemento
-			$elementoForm = $arrayElementos[$i];
-
+		foreach ($arrayElementos as $elemento) {
+	
 			// verificando o tipo do elemento
-			if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {													
+			if ($elemento instanceof Zend_Form_Element_Hash) {													
 				// renderizando elemento hash para ser gerado o value.
-				$elementoForm->render();
+				$elemento->render();
 				// recuperando chave do arrayPool
-				$chaveArrayPool = $elementoForm->getValue();
+				$chaveArrayPool = $elemento->getValue();
 				// retornando a chave do arrayPool
 				return $chaveArrayPool;
 			}
