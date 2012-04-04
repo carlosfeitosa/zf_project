@@ -55,7 +55,7 @@ class Basico_Model_MensagemAssocEmailMapper extends Basico_AbstractMapper_Roched
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_MensagemEmail();
+			$entry = new Basico_Model_MensagemAssocEmail();
 			$entry->setId($row->id)
 
 				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
@@ -79,7 +79,7 @@ class Basico_Model_MensagemAssocEmailMapper extends Basico_AbstractMapper_Roched
 		$entries   = array();
 		foreach ($resultSet as $row) 
 		{
-			$entry = new Basico_Model_MensagemEmail();
+			$entry = new Basico_Model_MensagemAssocEmail();
 			$entry->setId($row->id)
 
 				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)

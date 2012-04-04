@@ -154,8 +154,10 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	{
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
+			// recuperando categoria de dados biometricos de pessoa
+			$categoriaDadosBiometricosPessoa = Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL('DADOS_BIOMETRICOS_PESSOA');
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosBiometricos = $this->retornaObjetosPorParametros($this->_model, "id_generico_proprietario = {$idPessoa} AND id_categoria = {$categoriaDadosBiometricosPessoa}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosBiometricos[0]))

@@ -196,7 +196,7 @@ class Basico_OPController_CVCOPController
     public function retornaChecksumObjeto($objeto)
     {
     	// instanciando controladores
-    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaChaveEstrangeiraOPController::getInstance();
+    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
 
     	// recuperando o valor do id generico vindo do objeto
 		$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
@@ -545,7 +545,7 @@ class Basico_OPController_CVCOPController
 	public function regerarChecksumModelo($nomeModelo, $id = null)
 	{
 		// recuperando elementos para log
-		$idPessoaPerfilUsuario = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_LoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_LoginOPController::retornaLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
+		$idPessoaPerfilUsuario = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_PessoaLoginOPController::getInstance()->retornaIdPessoaPorLogin(Basico_OPController_PessoaLoginOPController::retornaLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
 		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_TENTATIVA_REGERAR_CHECKSUM, true);
 
 		// salvando log de tentativa de regerar checksum

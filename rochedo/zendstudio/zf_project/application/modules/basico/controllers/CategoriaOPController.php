@@ -863,4 +863,23 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 
 		throw new Exception(MSG_ERRO_CATEGORIA_LOG);
 	}
+	
+	public function retornaArrayTiposSanguineosOptions()
+	{
+		// inicializando variaveis
+		$arrayTiposSanguineosOptions = array();
+		
+		// recuperando id da categoria TIPO_SANGUINEO
+		$idCategoriaTipoSanguineo = $this->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('TIPO_SANGUINEO');
+		
+		// recuperando as categorias
+		$categoriasTiposSanguineos = $this->retornaObjetosPorParametros($this->retornaNovoObjetoModeloPorNomeOPController(get_class($this)), "id_categoria_pai = {$idCategoriaTipoSanguineo}");
+		
+		// percorrendo categorias de tipo sanguineo para montar o array de options
+		foreach ($categoriasTiposSanguineos as $tipoSanguineo) {
+			$arrayTiposSanguineosOptions[$tipoSanguineo->id] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($tipoSanguineo->constanteTextual);
+		}
+		
+		return $arrayTiposSanguineosOptions;
+	}
 }

@@ -1511,6 +1511,46 @@ class Basico_OPController_UtilOPController
     		}
 
     		return true;
+    		
+    	} catch (Exception $e) {
+    		// estourando excessao
+    		throw new Exception(MSG_ERRO_AO_TENTAR_ADICIONAR_ELEMENTO_AO_FORMULARIO . "{$form->name} -> {$tipoElemento} -> {$nomeElemento}");
+    	}
+
+    	return false;
+    }
+    
+	/**
+     * Adiciona um elemento do tipo Rochedo_Form_element a um formulario
+     * 
+     * @param Zend_Form|Zend_Dojo_Form $form
+     * @param String $tipoElemento
+     * @param String $nomeElemento
+     * @param Array $arrayOptions
+     * 
+     * @return Boolean
+     */
+    public static function adicionaElementoRochedoForm(&$form, $tipoElemento, $nomeElemento, $arrayOptions)
+    {
+    	// verificando se foi passado um form e se ele eh da instancia Zend_Form ou Zend_Dojo_Form
+    	if ((!isset($form)) or !(is_subclass_of($form, 'Zend_Form')))
+    		return false;
+
+    	try {
+    		
+    		// adiciona o prefix path
+    		$form->addPrefixPath('Rochedo_Form_Element', 'Rochedo/Form/Element', 'ELEMENT');
+    		
+    		// adicionando elemento ao formulario
+    		$form->addElement($tipoElemento, $nomeElemento, $arrayOptions);
+
+    		// verificando se deve remover o decorator Label
+    		if ($tipoElemento === FORM_ELEMENT_HIDDEN) {
+    			// removendo o decorator Label
+    			$form->getElement($nomeElemento)->removeDecorator('Label');
+    		}
+
+    		return true;
     	} catch (Exception $e) {
     		// estourando excessao
     		throw new Exception(MSG_ERRO_AO_TENTAR_ADICIONAR_ELEMENTO_AO_FORMULARIO . "{$form->name} -> {$tipoElemento} -> {$nomeElemento}");

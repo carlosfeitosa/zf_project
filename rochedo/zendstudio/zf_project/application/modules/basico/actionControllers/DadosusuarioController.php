@@ -81,10 +81,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 					// verificando se trata-se de uma atualizacao forcada
 					if ($sobrescreverAtualizacao) {
 						// adicionando o elemento hidden contendo a versao do objeto atual
-						$this->adicionaElementoHiddenVersaoObjetoDadosPessoais($formDadosUsuario, Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($objetoEmConflito));
+						$this->adicionaElementoOcultoVersaoObjetoDadosPessoais($formDadosUsuario, Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($objetoEmConflito));
 					} else {
 						// adicionando o elemento hidden contendo a versao do objeto do ultimo request
-						$this->adicionaElementoHiddenVersaoObjetoDadosPessoais($formDadosUsuario, $ultimoPost['versaoObjetoDadosPessoais']);
+						$this->adicionaElementoOcultoVersaoObjetoDadosPessoais($formDadosUsuario, $ultimoPost['versaoObjetoDadosPessoais']);
 					}
 				break;
 				
@@ -93,10 +93,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 					// verificando se trata-se de uma atualizacao forcada
 					if ($sobrescreverAtualizacao) {
 						// adicionando o elemento hidden contendo a versao do objeto atual
-						$this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($objetoEmConflito));
+						$this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($objetoEmConflito));
 					} else {
 						// adicionando o elemento hidden contendo a versao do objeto do ultimo request
-						$this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $ultimoPost['versaoObjetoDadosBiometricos']);
+						$this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $ultimoPost['versaoObjetoDadosBiometricos']);
 					}
 				break;
 				// caso do subformulario perfil padrao
@@ -409,7 +409,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 	
 		        // exibindo mensagem de sucesso
-		        $scripts[] =  Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO"));
+		        $scripts[] =  Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO"));
 
 				// setando scripts na view
 				$this->view->scripts = $scripts;
@@ -472,10 +472,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	        $versaoObjetoDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa);
 
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
-	        $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
+	        $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 
 	        // setando mensagem
-			$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_TradutorOPController::retornaTraducaoViaSQL("VIEW_MESSAGEM_SUCESSO_SALVAR_DADOS_BIOMETRICOS"));
+			$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("VIEW_MESSAGEM_SUCESSO_SALVAR_DADOS_BIOMETRICOS"));
 	        
 			// setando os scripts na view
 			$this->view->scripts = $scripts;
@@ -640,9 +640,13 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      */
     private function carregarOptionsSubFormCadastrarDadosUsuarioDadosBiometricos(&$subFormCadastrarDadosUsuarioDadosBiometricos)
     {
+    	
+    	// recuperando os tipos sanguineos
+    	$arrayTiposSanguineoOptions = Basico_OPController_CategoriaOPController::retornaArrayTiposSanguineosOptions();
+    	
     	// setando options do elemento TipoSanguineo
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo
-	                            ->addMultiOptions(Basico_OPController_TipoSanguineoOPController::retornaTipoSanguineoOptions());
+	                            ->addMultiOptions(Basico_OPController_CategoriaOPController::getInstance()->retornaArrayTiposSanguineosOptions());
 	    
 	    // setando options do elemento sexo 
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo
@@ -650,8 +654,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	                                                    1 => $this->view->tradutor('GENERO_FEMININO')));
 	    
 	    // setando options do elemento raca
-	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
-	                            ->addMultiOptions(Basico_OPController_RacaOPController::getInstance()->retornaArrayRacasOptions());
+	    //$subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
+	                           // ->addMultiOptions(Basico_OPController_RacaOPController::getInstance()->retornaArrayRacasOptions());
 	    
 	    // setando options do elemento sexo 
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo
@@ -693,7 +697,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		    // recuperando ultima versao do obj dadosPessais da pessoa
 		    $versaoObjetoDadosPessoais = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosPessoais);
 		    
-		    $this->adicionaElementoHiddenVersaoObjetoDadosPessoais($formDadosUsuario, $versaoObjetoDadosPessoais);	    
+		    $this->adicionaElementoOcultoVersaoObjetoDadosPessoais($formDadosUsuario, $versaoObjetoDadosPessoais);	    
 	    }
     }
     
@@ -741,7 +745,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		    // recuperando ultima versao do obj dadosBiometricos da pessoa
 		    $versaoObjetoDadosBiometricos = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosBiometricos);
 		    
-		    $this->adicionaElementoHiddenVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
+		    $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
 	    }
     }
 
@@ -753,12 +757,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * 
      * @return Boolean
      */
-    private function adicionaElementoHiddenVersaoObjetoDadosPessoais(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoDadosPessoais)
+    private function adicionaElementoOcultoVersaoObjetoDadosPessoais(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoDadosPessoais)
     {
     	// recuperando o subformulario "CadastrarDadosUsuarioDadosPessoais"
     	$subFormCadastrarDadosUsuarioDadosPessoais = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosPessoais');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
-		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosPessoais, FORM_ELEMENT_OCULTO, 'versaoObjetoDadosPessoais', array('value' => $versaoObjetoDadosPessoais));
+		return Basico_OPController_UtilOPController::adicionaElementoRochedoForm($subFormCadastrarDadosUsuarioDadosPessoais, FORM_ELEMENT_OCULTO, 'versaoObjetoDadosPessoais', array('value' => $versaoObjetoDadosPessoais));
     }
     
      /**
@@ -769,12 +773,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * 
      * @return Boolean
      */
-    private function adicionaElementoHiddenVersaoObjetoDadosBiometricos(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoDadosBiometricos)
+    private function adicionaElementoOcultoVersaoObjetoDadosBiometricos(Basico_Form_CadastrarDadosUsuario &$formDadosUsuario, $versaoObjetoDadosBiometricos)
     {
     	// recuperando o subformulario "CadastrarDadosUsuarioDadosBiometricos"
     	$subFormCadastrarDadosUsuarioDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
     	// adicionando elemento hidden contendo a versao do objeto pessoa
-		return Basico_OPController_UtilOPController::adicionaElementoForm($subFormCadastrarDadosUsuarioDadosBiometricos, FORM_ELEMENT_OCULTO, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
+		return Basico_OPController_UtilOPController::adicionaElementoRochedoForm($subFormCadastrarDadosUsuarioDadosBiometricos, FORM_ELEMENT_OCULTO, 'versaoObjetoDadosBiometricos', array('value' => $versaoObjetoDadosBiometricos));
     }
 
      /**
@@ -785,10 +789,10 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
      * 
      * @return Boolean
      */
-    private function adicionaElementoHiddenUrlRedirect(Basico_Form_TrocaDeSenha &$formDadosTrocaSenha, $urlRedirect)
+    private function adicionaElementoOcultoUrlRedirect(Basico_Form_TrocaDeSenha &$formDadosTrocaSenha, $urlRedirect)
     {
     	// adicionando elemento hidden contendo a url para redirecionamento
-		return Basico_OPController_UtilOPController::adicionaElementoForm($formDadosTrocaSenha, FORM_ELEMENT_OCULTO, 'urlRedirect', array('value' => $urlRedirect));
+		return Basico_OPController_UtilOPController::adicionaElementoRochedoForm($formDadosTrocaSenha, FORM_ELEMENT_OCULTO, 'urlRedirect', array('value' => $urlRedirect));
     }
 
     /**
@@ -823,7 +827,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// verificando se existe url para redirect
 			if ($urlRedirect) {
 				// adicionando hidden ao formulario contendo a url para redirecionamento
-				self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+				self::adicionaElementoOcultoUrlRedirect($formTrocaDeSenha, $urlRedirect);
 			}
 
 			// incluindo o formulario de troca de senha no conteudo que sera renderizado
@@ -868,7 +872,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 					// verificando se existe url para redirect
 					if ($urlRedirect) {
 						// adicionando hidden ao formulario contendo a url para redirecionamento
-						self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+						self::adicionaElementoOcultoUrlRedirect($formTrocaDeSenha, $urlRedirect);
 					}
 				
 					// incluindo o formulario de troca de senha no conteudo que sera renderizado
@@ -904,7 +908,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 						// verificando se existe url para redirect
 						if ($urlRedirect) {
 							// adicionando hidden ao formulario contendo a url para redirecionamento
-							self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+							self::adicionaElementoOcultoUrlRedirect($formTrocaDeSenha, $urlRedirect);
 						}
 					
 						// incluindo o formulario de troca de senha no conteudo que sera renderizado
@@ -957,7 +961,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				// verificando se existe url para redirect
 				if ($urlRedirect) {
 					// adicionando hidden ao formulario contendo a url para redirecionamento
-					self::adicionaElementoHiddenUrlRedirect($formTrocaDeSenha, $urlRedirect);
+					self::adicionaElementoOcultoUrlRedirect($formTrocaDeSenha, $urlRedirect);
 				}
 			
 				// incluindo o formulario de troca de senha no conteudo que sera renderizado

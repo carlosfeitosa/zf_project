@@ -1165,7 +1165,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			   $mensagemProblemaLogin = str_replace("<br>", "\\n", $mensagemProblemaLogin);
 			   
 			   // retornando mensagem de erro de login sem HTML Tags
-			   $mensagemProblemaLogin = Basico_OPController_UtilOPController::retornaTextoSemHTML(Basico_OPController_LoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login));
+			   $mensagemProblemaLogin = Basico_OPController_UtilOPController::retornaTextoSemHTML(Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagensErroLoginNaoPodeLogarHTMLLI($login));
 			}	
 			
 			// carregando array de TAGS
