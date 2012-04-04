@@ -293,7 +293,7 @@ class Basico_OPController_SessionOPController
 				}
 			}
 		}
-
+		
 		// setando de volta na sessao os elementos ocultos
 		$sessaoPoolPosts->$sessionChavePost = $arrayPoolElementosOcultos;
 

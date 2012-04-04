@@ -43,3 +43,6 @@ VALUES ('DADOS_BIOMETRICOS', 'NOME_TIPO_CATEGORIA_DADOS_BIOMETRICOS', true, 'SYS
 
 INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
 VALUES ('INCLUDE', 'NOME_TIPO_CATEGORIA_INCLUDE', true, 'SYSTEM_STARTUP');
+
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('DADOS_GENERICOS', 'NOME_TIPO_CATEGORIA_DADOS_GENERICOS', true, 'SYSTEM_STARTUP');

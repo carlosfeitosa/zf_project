@@ -782,3 +782,8 @@ FROM basico.tipo_categoria t
 WHERE t.nome = 'DADOS_BIOMETRICOS'
 AND c.nome = 'RACA_HUMANA';
 
+INSERT into basico.categoria (id_tipo_categoria, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, 1 AS nivel, 
+    'NAO_DESEJO_INFORMAR' AS nome, 'SELECT_OPTION_NAO_DESEJO_INFORMAR' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'DADOS_GENERICOS';

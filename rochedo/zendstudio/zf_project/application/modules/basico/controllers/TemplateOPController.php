@@ -231,13 +231,13 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 			$elementosOcultos = self::processaElementosOcultos($form);
 
 			// verificando se existe a $chaveArrayPool e elementos no array de elementos ocultos.
-			if (isset($chaveArrayPool) and count($elementosOcultos)> 0) {
+			if (isset($chaveArrayPool) and count($elementosOcultos) > 0) {
 				// registrando elementos na sessão			
 				Basico_OPController_SessionOPController::registraPostPoolElementosOcultos($chaveArrayPool, $elementosOcultos);
 			}
 
 			// verificando se existe rascunho no form
-			$permiteRascunho = self::processaRascunho($view, $form);
+			$permiteRascunho = Basico_OPController_TemplateOPController::getInstance()->processaRascunho($view, $form);
 		}
 	}
 

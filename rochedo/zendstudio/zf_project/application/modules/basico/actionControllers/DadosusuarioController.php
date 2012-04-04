@@ -642,7 +642,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     {
     	
     	// recuperando os tipos sanguineos
-    	$arrayTiposSanguineoOptions = Basico_OPController_CategoriaOPController::retornaArrayTiposSanguineosOptions();
+    	$arrayTiposSanguineoOptions = Basico_OPController_CategoriaOPController::getInstance()->retornaArrayTiposSanguineosOptions();
     	
     	// setando options do elemento TipoSanguineo
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosTipoSanguineo
@@ -655,7 +655,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    
 	    // setando options do elemento raca
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosRaca
-	                            ->addMultiOptions(Basico_OPController_CategoriaOPController::getInstance()->retornaArrayRacasOptions());
+	                            ->addMultiOptions(Basico_OPController_CategoriaOPController::getInstance()->retornaArrayRacasHumanasOptions());
 	    
 	    // setando options do elemento sexo 
 	    $subFormCadastrarDadosUsuarioDadosBiometricos->BasicoCadastrarDadosUsuarioDadosBiometricosSexo

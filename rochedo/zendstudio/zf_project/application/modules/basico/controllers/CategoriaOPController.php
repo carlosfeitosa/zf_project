@@ -880,6 +880,9 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		// recuperando as categorias
 		$categoriasTiposSanguineos = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetosPorParametros(Basico_OPController_CategoriaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController(get_class(Basico_OPController_CategoriaOPController::getInstance())), "id_categoria_pai = {$idCategoriaTipoSanguineo}");
 		
+		// adicionado opção Não Desejo Informar
+		self::adicionaOpcaoNaoDesejoInformar($arrayTiposSanguineosOptions);
+		
 		// percorrendo categorias de tipo sanguineo para montar o array de options
 		foreach ($categoriasTiposSanguineos as $tipoSanguineo) {
 			$arrayTiposSanguineosOptions[$tipoSanguineo->id] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($tipoSanguineo->constanteTextual);
@@ -904,11 +907,31 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		// recuperando as categorias
 		$categoriasRacas = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetosPorParametros(Basico_OPController_CategoriaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController(get_class(Basico_OPController_CategoriaOPController::getInstance())), "id_categoria_pai = {$idCategoriaRaca}");
 		
+		// adicionado opção Não Desejo Informar
+		self::adicionaOpcaoNaoDesejoInformar($arrayRacasOptions);
+		
 		// percorrendo categorias de tipo sanguineo para montar o array de options
 		foreach ($categoriasRacas as $raca) {
 			$arrayRacasOptions[$raca->id] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($raca->constanteTextual);
 		}
 		
 		return $arrayRacasOptions;
+	}
+	
+	/**
+	 * Adiciona a opção Não Desejo Informar no array de opções passado como parametro
+	 * 
+	 * @param Array $arrayOpcoes
+	 * 
+	 * @return Array
+	 */
+	public static function adicionaOpcaoNaoDesejoInformar(&$arrayOpcoes)
+	{
+		// recuperando categoria Não Desejo Informar
+		$categoriaNaoDesejoInformar = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai('NAO_DESEJO_INFORMAR');
+		
+		// adicionando opção Não Desejo Informar
+		$arrayOpcoes[$categoriaNaoDesejoInformar->id] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($categoriaNaoDesejoInformar->constanteTextual);
+		
 	}
 }

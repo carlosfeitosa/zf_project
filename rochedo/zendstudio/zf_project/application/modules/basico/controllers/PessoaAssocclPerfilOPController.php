@@ -333,7 +333,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 				$objPerfil = $objPerfilUsuario->getPerfilObject();
 
 				// verificando se o perfil eh da cateroria de perfil de usuario
-				if ($objPerfil->categoria === $idCategoriaPerfilUsuario) {
+				if ($objPerfil->idCategoria === $idCategoriaPerfilUsuario) {
 					// carregando array de resultados
 					$arrayResultado[] = array('id' => $objPerfil->id, 'constante_textual' => $objPerfil->constanteTextual);
 				}
