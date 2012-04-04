@@ -624,12 +624,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	                            ->addMultiOptions(Basico_OPController_PaisOPController::retornaPaisOptions());
 	                            
 		// setando options do elemento UfNascimento
-	    $subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento
-	                            ->addMultiOptions(Basico_OPController_EstadoOPController::retornaEstadoOptions());
+	    //$subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento
+	                            //->addMultiOptions(Basico_OPController_EstadoOPController::retornaEstadoOptions());
 	                            
 		// setando options do elemento UfNascimento
-	    $subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento
-	                            ->addMultiOptions(Basico_OPController_MunicipioOPController::retornaMunicipioOptions());
+	   // $subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxMunicipioNascimento
+	                           // ->addMultiOptions(Basico_OPController_MunicipioOPController::retornaMunicipioOptions());
     }
     
     /**
