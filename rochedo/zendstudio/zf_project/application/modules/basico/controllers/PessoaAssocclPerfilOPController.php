@@ -558,7 +558,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	public function retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request)
 	{
 		// recuperando o id da pessoa logada
-		$idPessoa = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_LoginOPController::retornaIdLoginUsuarioSessao());
+		$idPessoa = Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao());
 		// recuperando o id do perfil padrao da pessoa logada
 		$idPessoaPerfil = Basico_OPController_ControleAcessoOPController::retornaIdPessoaMaiorPerfilRequestPorIdPessoaRequest($idPessoa, $request);
 		// recuperando o objeto pessoaPerfil do perfil padrao da pessoa logada

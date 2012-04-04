@@ -491,14 +491,14 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
     }
 
     /**
-     * Get formularioElemento objects
+     * Get FormularioAssocclElemento objects
      * 
      * @return null|array
      */
     public function getFormularioElementosObjects()
     {
     	// recuperando modelos
-        $modelFormularioFormularioElemento = new Basico_Model_FormularioFormularioElemento();
+        $modelFormularioFormularioElemento = new Basico_Model_FormularioAssocclElemento();
 
         // recuperando objetos
         $arrayFormularioFormularioElementosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormularioFormularioElemento, "id_formulario = {$this->_id}", "ordem");      
@@ -536,7 +536,7 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
      */
     public function getTemplatesObjects()
     {
-        $modelTemplateFormulario = new Basico_Model_TemplateFormulario();
+        $modelTemplateFormulario = new Basico_Model_FormularioAssocclTemplate();
         $arrayTemplatesFormularios = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelTemplateFormulario, "id_formulario = {$this->_id}");
         $modelTemplate = new Basico_Model_Template();
 

@@ -135,7 +135,7 @@ class Basico_OPController_ControleAcessoOPController
 	private function carregaACLAssociacoes(Zend_Acl &$acl)
 	{
 		// recuperando as vinculacoes entre acoes da aplicacao e perfis
-		$objsAcoesAplicacaoPerfis = Basico_OPController_AcoesAplicacaoPerfisOPController::getInstance()->retornaTodosObjetosAcoesAplicacaoPerfis();
+		$objsAcoesAplicacaoPerfis = Basico_OPController_AcaoAplicacaoAssocclPerfilOPController::getInstance()->retornaTodosObjetosAcoesAplicacaoPerfis();
 
 		// verificando se as vinculacoes entre acao aplicacao e perfis foram carregadas
 		if (count($objsAcoesAplicacaoPerfis) > 0) {

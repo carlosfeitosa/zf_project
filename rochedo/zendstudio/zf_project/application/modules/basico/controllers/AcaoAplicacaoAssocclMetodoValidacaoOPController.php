@@ -57,7 +57,7 @@ class Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController extend
 		// verificando singleton
 		if(self::$_singleton == NULL){
 			// instanciando pela primeira vez
-			self::$_singleton = new Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController();
+			self::$_singleton = new Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController();
 		}
 		// retornando instancia
 		return self::$_singleton;

@@ -312,7 +312,7 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 	public function getPessoasPerfisMensagensCategoriasObjects()
 	{
 		// recuperando modelo
-		$model = new Basico_Model_PessoasPerfisMensagensCategorias();
+		$model = new Basico_Model_MensagemAssocclAssocclPessoaPerfil();
 		// recuperando objetos
 		$objetosPessoasPerfisMensagensCategorias = Basico_OPController_PersistenceOPController::bdObjectFetchList($model, "id_mensagem = {$this->_id}");
 		// retornando objetos
