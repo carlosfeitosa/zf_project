@@ -218,7 +218,6 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							$scriptInicializacaoRascunho = "<script type='text/javascript'>initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)')</script>";
 							$this->_view->scripts = array($scriptInicializacaoRascunho);
 						}
-						
 					}					
 				}
 			}
