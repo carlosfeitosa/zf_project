@@ -19,7 +19,8 @@ abstract class Basico_AbstractDbTable_RochedoDbTable extends Zend_Db_Table_Abstr
 	 */
 	protected function habilitaProfiler()
 	{
-		
+		// habilitando profiler
+		$this->_db->getProfiler()->setEnabled(true);
 	}
 
 	/**
@@ -32,7 +33,8 @@ abstract class Basico_AbstractDbTable_RochedoDbTable extends Zend_Db_Table_Abstr
 	 */
 	protected function desabilitaProfiler()
 	{
-		
+		// desabilitando profiler
+		$this->_db->getProfiler()->setEnabled(false);
 	}
 
 	/**
@@ -47,10 +49,19 @@ abstract class Basico_AbstractDbTable_RochedoDbTable extends Zend_Db_Table_Abstr
 	 */
 	protected function recuperaUltimaQueryExecutada($desabilitaProfiler = true)
 	{
+		// habilitando profiler
+		$this->habilitaProfiler();
+		
+		// recuperando ultima query executada
+		$ultimaQuery = $this->_db->getProfiler()->getLastQueryProfile()->getQuery();
+		
 		// verificando se é preciso desabilitar o profiler
 		if ($desabilitaProfiler) {
 			// desabilitando o profiler
 			$this->desabilitaProfiler();
 		}
+		
+		// retornando ultima query executada
+		return $ultimaQuery;
 	}
 }

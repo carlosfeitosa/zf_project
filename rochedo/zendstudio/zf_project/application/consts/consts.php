@@ -44,6 +44,10 @@ define("RESOURCE_TYPE_BASICO_MAPPERS_INTERFACES", "interfacesMappers");
 define("RESOURCE_PATH_BASICO_MAPPERS_INTERFACES", "models/interfaces");
 define("RESOURCE_NAMESPACE_BASICO_MAPPERS_INTERFACES", "InterfaceMapper_");
 
+define("RESOURCE_TYPE_BASICO_DBTABLES_ABSTRACTS", "abstractsDbTables");
+define("RESOURCE_PATH_BASICO_DBTABLES_ABSTRACTS", "models/DbTable/abstracts");
+define("RESOURCE_NAMESPACE_BASICO_DBTABLES_ABSTRACTS", "AbstractDbTable_");
+
 define("TAG_LINK", "@link");
 define("JAVASCRIPT_HISTORY_GO_BACK", "javascript: history.go(-2);");
 
