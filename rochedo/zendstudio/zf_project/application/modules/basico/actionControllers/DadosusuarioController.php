@@ -620,8 +620,8 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	
     	
     	// setando options do elemento PaisNascimento
-	    $subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento
-	                            ->addMultiOptions(Basico_OPController_PaisOPController::retornaPaisOptions());
+	    //$subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxPaisNascimento
+	                            //->addMultiOptions(Basico_OPController_PaisOPController::retornaPaisOptions());
 	                            
 		// setando options do elemento UfNascimento
 	    //$subFormCadastrarDadosUsuarioDadosPessoais->BasicoCadastrarDadosUsuarioDadosPessoaisComboboxUfNascimento

@@ -14,7 +14,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 {
 	/**
 	 * 
-	 * @var Basico_OPController_RascunhoOPController
+	 * @var Basico_OPController_FormularioRascunhoOPController
 	 */
 	private static $_singleton;
 	
@@ -39,7 +39,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_RascunhoOPController 
+	 * Inicializa o controlador Basico_OPController_FormularioRascunhoOPController 
 	 * 
 	 * @return void
 	 */
@@ -49,9 +49,9 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	}
 
 	/**
-	 * Recupera a instancia do controlador Basico_OPController_RascunhoOPController
+	 * Recupera a instancia do controlador Basico_OPController_FormularioRascunhoOPController
 	 * 
-	 * @return Basico_OPController_RascunhoOPController
+	 * @return Basico_OPController_FormularioRascunhoOPController
 	 */
 	static public function getInstance()
 	{
