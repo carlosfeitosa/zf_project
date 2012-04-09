@@ -254,7 +254,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 	public static function verificaFormularioOutputAjaxViaSQL($nomeFormulario)
 	{
 		// retornando resultado da chamada ao método de verificação de output ajax do controlador de outputs
-		Basico_OPController_OutputOPController::verificaFormularioTemplateOutputAjaxViaSQL($nomeFormulario);
+		return Basico_OPController_OutputOPController::verificaFormularioTemplateOutputAjaxViaSQL($nomeFormulario);
 	}
 
 	/**

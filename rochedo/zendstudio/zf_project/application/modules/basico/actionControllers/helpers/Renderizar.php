@@ -35,9 +35,6 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     	// recupera o tipo de contexto da view  
     	$contexto = $controller->getRequest()->getParam('format');
 
-		// processando os formulários
-		$this->processaFormularios($contexto);
-
     	// Verifica o tipo de requisição http
     	if($controller->getRequest()->isXmlHttpRequest()){ 	
     		// AJAX REQUEST
@@ -55,6 +52,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		// adicionando footer.
     		$this->_view->placeholder('footer')->set($this->_view->render('footer.phtml'));
     	}
+    	
+    	// processando os formulários
+		$this->processaFormularios($contexto);
 
    		if(!$viewScript){
     		/*

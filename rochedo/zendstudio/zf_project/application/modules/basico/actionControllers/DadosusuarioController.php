@@ -202,20 +202,14 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     		$podeContinuar = $this->salvarDadosConta($idPessoa, $arrayPost, $formDadosUsuario);
     	}
 
-    	// verificando se a acao deve redirecionar o usuario para o index
-    	if ($podeContinuar !== false) {
-    		// redirecionando para o index
-			$this->_forward('index');
-    	} else {
-			// carregando formulário para a view
-			$content[] = $formDadosUsuario;
+    	// carregando formulário para a view
+		$content[] = $formDadosUsuario;
 
-			// enviado conteúdo para a view
-			$this->view->content = $content;
+		// enviado conteúdo para a view
+		$this->view->content = $content;
 
-			// renderizando a view
-			$this->_helper->Renderizar->renderizar();
-    	}
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
     }
 
     /**
