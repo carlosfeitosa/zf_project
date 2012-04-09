@@ -287,24 +287,4 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 		// salvando os dadosBiometricos
     	$this->salvarObjeto($novoDadosBiometricos);
     }
-    
-    /**
-	 * Retorna a versao do objeto dadosBiometricos, a partir do id de uma pessoa
-	 * 
-	 * @param Integer $idPessoa
-	 * @param Boolean $forceVersioning
-	 * 
-	 * @return Integer
-	 */
-	public function retornaVersaoObjetoDadosBiometricosPorIdPessoa($idPessoa, $forceVersioning = false)
-	{
-		// recuperando objeto pessoa
-		$dadosBiometricos = $this->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
-		
-		if (count($dadosBiometricos) > 0)
-		    // retornando a versao do objeto
-		    return Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosBiometricos, $forceVersioning);
-
-		
-	}
 }
