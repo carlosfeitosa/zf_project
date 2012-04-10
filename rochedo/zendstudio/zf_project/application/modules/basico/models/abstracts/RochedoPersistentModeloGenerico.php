@@ -53,7 +53,7 @@ abstract class Basico_AbstractModel_RochedoPersistentModeloGenerico
 		$method = 'set' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA . $name);
 		}
 		$this->$method($value);
 	}
@@ -70,7 +70,7 @@ abstract class Basico_AbstractModel_RochedoPersistentModeloGenerico
 		$method = 'get' . $name;
 		if ('mapper' == $name || !method_exists($this, $method)) 
 		{
-			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA);
+			throw new Exception(MSG_ERRO_PROPRIEDADE_ESPECIFICADA_INVALIDA . $name);
 		}
 		return $this->$method();
 	}

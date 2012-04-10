@@ -3689,7 +3689,7 @@ ALTER SEQUENCE elemento_id_seq OWNED BY elemento.id;
 
 CREATE TABLE rascunho (
     id integer NOT NULL,
-    id_rascunho_pai integer NOT NULL,
+    id_rascunho_pai integer,
     id_categoria integer NOT NULL,
     id_assoccl_perfil integer NOT NULL,
     id_assocag_grupo integer,

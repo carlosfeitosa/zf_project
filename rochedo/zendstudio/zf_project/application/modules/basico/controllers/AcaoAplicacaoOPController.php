@@ -138,7 +138,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 	public function retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($nomeModule, $nomeController, $nomeAction)
 	{
 		// recuperando o id do modulo
-		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule);
+		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule)->id;
 
 		// recuperando objeto acao aplicacao
 		$objsAcaoAplicacao = $this->retornaObjetosPorParametros($this->_model, "id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);

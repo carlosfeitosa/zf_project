@@ -347,7 +347,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 		
 		// se retornou um objeto retorna o id da categoria
 		if (count($objFormulario) > 0)
-			return $objFormulario[0]->categoria;
+			return $objFormulario[0]->idCategoria;
 			
 		return false;
 	}

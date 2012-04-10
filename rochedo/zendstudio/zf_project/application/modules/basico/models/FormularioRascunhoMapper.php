@@ -42,6 +42,7 @@ class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_Roched
 				->setIdAssocclPerfil($row->id_assoccl_perfil)
 				->setIdAssocagGrupo($row->id_assocag_grupo)
 				->setIdAssocsqAcaoAplicacao($row->id_assocsq_acao_aplicacao)
+				->setIdAssocVisaoOrigem($row->id_assoc_visao_origem)
 				->setRequest($row->request)
 				->setPost($row->post)
                 ->setFormAction($row->form_action)
@@ -71,6 +72,7 @@ class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_Roched
 				->setIdAssocclPerfil($row->id_assoccl_perfil)
 				->setIdAssocagGrupo($row->id_assocag_grupo)
 				->setIdAssocsqAcaoAplicacao($row->id_assocsq_acao_aplicacao)
+				->setIdAssocVisaoOrigem($row->id_assoc_visao_origem)
 				->setRequest($row->request)
 				->setPost($row->post)
                 ->setFormAction($row->form_action)
@@ -104,6 +106,7 @@ class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_Roched
 				->setIdAssocclPerfil($row->id_assoccl_perfil)
 				->setIdAssocagGrupo($row->id_assocag_grupo)
 				->setIdAssocsqAcaoAplicacao($row->id_assocsq_acao_aplicacao)
+				->setIdAssocVisaoOrigem($row->id_assoc_visao_origem)
 				->setRequest($row->request)
 				->setPost($row->post)
                 ->setFormAction($row->form_action)
@@ -133,6 +136,7 @@ class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_Roched
 				'id_assoccl_perfil'           => $object->getIdAssocclPerfil(),
 				'id_assocag_grupo'            => $object->getIdAssocagGrupo(),
 				'id_assocsq_acao_aplicacao'   => $object->getIdAssocsqAcaoAplicacao(),
+        		'id_assoc_visao_origem'       => $object->getIdAssocVisaoOrigem(),
 				'request'                     => $object->getRequest(),
 				'post'                        => $object->getPost(),
               	'form_action'                 => $object->getFormAction(),

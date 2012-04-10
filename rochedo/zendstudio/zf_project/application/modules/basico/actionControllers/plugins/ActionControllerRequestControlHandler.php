@@ -85,6 +85,9 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 				$request->setParam($chaveParametroDestino, $valorParametroDestino);
 			}
 
+			// registrando um array de parametros do request no pool de array de requests
+			Basico_OPController_SessionOPController::registraArrayParametrosUrlPoolRequests($request);
+			
 			// chamando o plugin de log
 			Basico_Controller_Plugin_ActionControllerLogHandler::processaLogRequest($request);
 

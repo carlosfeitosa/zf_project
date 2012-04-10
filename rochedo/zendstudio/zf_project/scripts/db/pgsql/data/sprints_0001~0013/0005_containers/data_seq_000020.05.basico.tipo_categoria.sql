@@ -46,3 +46,6 @@ VALUES ('INCLUDE', 'NOME_TIPO_CATEGORIA_INCLUDE', true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
 VALUES ('DADOS_GENERICOS', 'NOME_TIPO_CATEGORIA_DADOS_GENERICOS', true, 'SYSTEM_STARTUP');
+
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('VISAO', 'NOME_TIPO_CATEGORIA_VISAO', true, 'SYSTEM_STARTUP');

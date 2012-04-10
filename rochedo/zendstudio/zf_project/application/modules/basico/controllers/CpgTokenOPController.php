@@ -96,7 +96,7 @@ class Basico_OPController_CpgTokenOPController
 	{
 		// registrando/recuperando o namespace do token na sessao
         $session = Basico_OPController_SessionOPController::registraSessaoToken();
-
+        
         // verificando se existem urls-token na sessao
 		if (isset($session->arrayTokensUrls))
 			// recuperando array de tokens-url encontrados na sessao
@@ -109,7 +109,7 @@ class Basico_OPController_CpgTokenOPController
 	    if ($token === false) {
 	    	// gerando token
 	        $token = Basico_OPController_GeradorOPController::geradorTokenGerarToken(array_keys(self::$_arrayTokensUrls));
-	        // colocando gerado token no array de tokens do controlador
+	        // colocando token gerado no array de tokens do controlador
 	        self::$_arrayTokensUrls[$token] = $url;
 	        // registrando array de tokens do controlador na sessao
 	        $session->arrayTokensUrls = self::$_arrayTokensUrls;

@@ -103,6 +103,11 @@ define("LOG_MSG_DELETE_RACA", "Exclusao de raça no banco de dados.");
 define("LOG_MSG_NOVA_ACAO_APLICACAO", "Nova acao aplicacao inserida no banco de dados");
 define("LOG_MSG_UPDATE_ACAO_APLICACAO", "Atualizacao de acao aplicacao no banco de dados");
 define("LOG_MSG_DELETE_ACAO_APLICACAO", "Exclusao de acao aplicacao do banco de dados");
+
+define("LOG_MSG_NOVA_ACAO_APLICACAO_ASSOC_VISAO", "Nova acao aplicacao assoc visao inserida no banco de dados");
+define("LOG_MSG_UPDATE_ACAO_APLICACAO_ASSOC_VISAO", "Atualizacao de acao aplicacao assoc visao no banco de dados");
+define("LOG_MSG_DELETE_ACAO_APLICACAO_ASSOC_VISAO", "Exclusao de acao aplicacao assoc visao do banco de dados");
+
 define("LOG_MSG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO", "Nova associacao entre acao aplicacao e metodo validacao inserida no banco de dados");
 define("LOG_MSG_UPDATE_ACOES_APLICACAO_METODOS_VALIDACAO", "Atualizacao de associacao entre acao aplicacao e metodo validacao no banco de dados");
 define("LOG_MSG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO", "Exclusao de associacao entre acao aplicacao e metodo validacao no banco de dados");

@@ -300,7 +300,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    	 	$objRascunho->request = $request;
 		    	 	
 		    	 	// setando a categoria do rascunho
-		    	 	$objRascunho->categoria = $idCategoriaRascunho;
+		    	 	$objRascunho->idCategoria = $idCategoriaRascunho;
 					
 		    	 	// setando datahora da ultima atualizacao
 		    	 	$objRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
@@ -330,18 +330,37 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    	 	$objRascunho->request = $request;
 		    	 	
 		    	 	// setando o id da pessoa logada
-		    	 	$objRascunho->pessoa = $objPessoaPerfil->pessoa;
-		    	 	
-		    	 	// setando o id do perfil padrao da pessoa logada
-		    	 	$objRascunho->perfil = $objPessoaPerfil->perfil;
+		    	 	$objRascunho->idAssocclPerfil = $objPessoaPerfil->id;
 		    	 	
 		    	 	// setando a categoria do rascunho
-		    	 	$objRascunho->categoria = $idCategoriaRascunho;
-	
+		    	 	$objRascunho->idCategoria = $idCategoriaRascunho;
+		    	 	
+		    	 	// setando o actionOrigem com a url responsavel pela exibicao do formulario
+		    	 	$objRascunho->actionOrigem = Basico_OPController_SessionOPController::getInstance()->retornaUltimaUrlPoolRequests();
+		    	 	
+		    	 	$objRascunho->ativo = true;
+		    	 	
+		    	 	// recuperando array de parametros da ultima url
+		    	 	$arrayParametrosUltimoRequest = Basico_OPController_SessionOPController::retornaUltimoArrayParametrosUrlPoolRequests();
+		    	 	
+		    	 	
+		    	 	
+		    	 	// recuperando id da acao_aplicacao responsavel por exibir o formulario
+		    	 	$idAcaoAplicacaoOrigem = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao'])->id;
+
+		    	 	// recuperando o id da visao de origem do rascunho
+		    	 	$idVisaoOrigem = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::getInstance()->retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacaoOrigem)->id;
+		    	 			    	 	
+		    	 	// se a visao nao foi encontrado lança uma exceção
+		    	 	if (!$idVisaoOrigem)
+		    	 		throw new Exception("Id assoc visao origem não encontrado.");
+		    	 		
+		    	 	$objRascunho->idAssocVisaoOrigem = $idVisaoOrigem;
+		    	 	
 		    	 	// verificando se há rascunho pai na sessao 
 		    	 	if($rascunhoPai)
 			    	   // setando o rascunho pai
-					   $objRascunho->rascunhoPai = $rascunhoPai;
+					   $objRascunho->idRascunhoPai = $rascunhoPai;
 		    	 	
 		    	 	// setando datahora da ultima atualizacao    	 	
 		    	 	$objRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();

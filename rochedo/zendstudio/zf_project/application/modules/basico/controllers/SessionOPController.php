@@ -581,7 +581,7 @@ class Basico_OPController_SessionOPController
 
 		return;
 	}
-
+	
 	/**
 	 * Retorna a ultima (anterior a atual) url utilizada no request do usuario, do pool de requests
 	 * 
@@ -603,6 +603,79 @@ class Basico_OPController_SessionOPController
 
 		// recupeerando o array do pool de requests
 		$arrayPoolRequests = $sessaoUsuario->$sessionPoolRequestsArray;
+
+		// retornando a ultima (anterior) url chamada
+		return $arrayPoolRequests[0];
+	}	
+	
+	/**
+	 * Registra um array de parametros da url em um pool de 2 elementos
+	 * 
+	 * @param String $url
+	 * 
+	 * @return void
+	 */
+	public static function registraArrayParametrosUrlPoolRequests(Zend_Controller_Request_Abstract $request)
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionPoolParametrosUrlArray = SESSION_POOL_PARAMETROS_URL_ARRAY;
+		
+		// montando array de parametros da url
+		$arrayParametrosUrl = array('modulo'      => $request->getModuleName(),
+									'controlador' => $request->getControllerName(),
+									'acao'        => $request->getActionName(),
+									'parametros'  => $request->getParams()
+									);
+		
+		// verificando se o array ja existe na sessao
+		if (!isset($sessaoUsuario->$sessionPoolParametrosUrlArray)) {
+			// registrando array contendo a url passado por parametro
+			$sessaoUsuario->$sessionPoolParametrosUrlArray = array($arrayParametrosUrl);
+		} else {
+			// recuperando array pool requests
+			$arrayPoolRequests = $sessaoUsuario->$sessionPoolParametrosUrlArray;
+
+			// verificando se existe apenas um elemento no array
+			if (count($arrayPoolRequests) === 1) {
+				// incluindo mais um elemento no array que soh possui 1 elemento
+				$arrayPoolRequests[1] = $arrayParametrosUrl;
+			} else {
+				// impurrando a pilha do array para incluir o novo elemento
+				$arrayPoolRequests[0] = $arrayPoolRequests[1];
+				$arrayPoolRequests[1] = $arrayParametrosUrl;
+			}
+
+			// salvando array na sessao
+			$sessaoUsuario->$sessionPoolParametrosUrlArray = $arrayPoolRequests;
+		}
+
+		return;
+	}
+	
+	/**
+	 * Retorna o ultimo (anterior ao atual) array de parametros da url utilizada no request do usuario, do pool de requests
+	 * 
+	 * @return String|null
+	 */
+	public static function retornaUltimoArrayParametrosUrlPoolRequests()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionPoolParametrosUrlArray = SESSION_POOL_PARAMETROS_URL_ARRAY;
+
+		// verificando se o array ja existe na sessao
+		if (!isset($sessaoUsuario->$sessionPoolParametrosUrlArray)) {
+			// retornando "ainda nao registrado"
+			return "ainda não registrado";
+		}
+
+		// recupeerando o array do pool de requests
+		$arrayPoolRequests = $sessaoUsuario->$sessionPoolParametrosUrlArray;
 
 		// retornando a ultima (anterior) url chamada
 		return $arrayPoolRequests[0];

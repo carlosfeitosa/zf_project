@@ -78,10 +78,7 @@ class Basico_Model_FormularioRascunho extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getIdRascunhoPai()
 	{
-		if ($this->_idRascunhoPai)
-			return $this->_idRascunhoPai;
-		else
-			return null;
+		return $this->_idRascunhoPai;
 	}
 	
     /**
@@ -116,10 +113,7 @@ class Basico_Model_FormularioRascunho extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getIdCategoria()
 	{
-		if ($this->_idCategoria)
-			return $this->_idCategoria;
-		else
-			return null;
+		return $this->_idCategoria;
 	}
     
     /**
@@ -153,10 +147,7 @@ class Basico_Model_FormularioRascunho extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getIdAssocclPerfil()
 	{
-		if ($this->_idAssocclPerfil)
-			return $this->_idAssocclPerfil;
-		else
-			return null;
+		return $this->_idAssocclPerfil;
 	}
 
     /**
@@ -191,10 +182,7 @@ class Basico_Model_FormularioRascunho extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getIdAssocagGrupo()
 	{
-		if ($this->_idAssocagGrupo)
-			return $this->_idAssocagGrupo;
-		else
-			return null;
+		return $this->_idAssocagGrupo;
 	}
 
     /**
@@ -230,10 +218,7 @@ class Basico_Model_FormularioRascunho extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getIdAssocsqAcaoAplicacao()
 	{
-		if ($this->_idAssocsqAcaoAplicacao)
-			return $this->_idAssocsqAcaoAplicacao;
-		else
-			return null;
+		return $this->_idAssocsqAcaoAplicacao;
 	}
 	
     /**
@@ -268,10 +253,7 @@ class Basico_Model_FormularioRascunho extends Basico_AbstractModel_RochedoPersis
 	*/
 	public function getIdAssocVisaoOrigem()
 	{
-		if ($this->_idAssocVisaoOrigem)
-			return $this->_idAssocVisaoOrigem; 
-		else
-			return null;
+		return $this->_idAssocVisaoOrigem;
 	}
 	
     /**
