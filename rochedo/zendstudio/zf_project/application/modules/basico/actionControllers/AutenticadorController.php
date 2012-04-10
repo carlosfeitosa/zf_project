@@ -181,7 +181,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		}
 
 		// redirecionando para o base url
-		$this->_redirect();
+		$this->_redirect(Basico_OPController_UtilOPController::retornaBaseUrl());
 	}
 
 	/**

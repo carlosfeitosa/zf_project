@@ -57,7 +57,7 @@ class Basico_OPController_DBSaveOPController
 			if (!Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($mixed)) {
 
 				// salvando o objeto
-				if (self::saveObjectDbTable($mixed)) {
+				if (self::saveObjectDbTable($mixed, true)) {
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
@@ -129,7 +129,7 @@ class Basico_OPController_DBSaveOPController
 			if ($ultimaVersao !== $versaoVersionamento) {
 
 				// salvando o objeto
-				if (self::saveObjectDbTable($mixed)) {
+				if (self::saveObjectDbTable($mixed, true)) {
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
@@ -184,10 +184,11 @@ class Basico_OPController_DBSaveOPController
 	 * Salva um objeto utilizando o save do mapper (DbTable)
 	 * 
 	 * @param Object $objeto
+	 * @param Boolean $utilizarProfiler
 	 * 
 	 * @return true
 	 */
-	private static function saveObjectDbTable(&$objeto)
+	private static function saveObjectDbTable(&$objeto, $utilizarProfiler = false)
 	{
 		// verificando se foi passado um objeto, por parametro
 		if (!is_object($objeto))
@@ -196,8 +197,20 @@ class Basico_OPController_DBSaveOPController
 		// verificando se objeto possui o metodo getMapper()->save()
 		if ((method_exists($objeto, 'getMapper')) and (method_exists($objeto->getMapper(), 'save'))) {
 
+			// verificando se é preciso ligar o profiler
+			if ($utilizarProfiler) {
+				// inicializando o profiler
+				$objeto->getMapper()->getDbTable()->habilitaProfiler();
+			}
+
 			// salvando o objeto
 			$objeto->getMapper()->save($objeto);
+
+			// verificando se é preciso desligar o profiler
+			if ($utilizarProfiler) {
+				// recupernado a ultima query e desligando o profiler
+				$queryExecutada = $objeto->getMapper()->getDbTable()->recuperaUltimaQueryExecutada(false);
+			}
 
 			return true;
 		} else

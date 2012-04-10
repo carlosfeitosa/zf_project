@@ -17,7 +17,7 @@ abstract class Basico_AbstractDbTable_RochedoDbTable extends Zend_Db_Table_Abstr
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
  	 * @since 09/04/2012
 	 */
-	protected function habilitaProfiler()
+	public function habilitaProfiler()
 	{
 		// habilitando profiler
 		$this->_db->getProfiler()->setEnabled(true);
@@ -31,7 +31,7 @@ abstract class Basico_AbstractDbTable_RochedoDbTable extends Zend_Db_Table_Abstr
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
  	 * @since 09/04/2012
 	 */
-	protected function desabilitaProfiler()
+	public function desabilitaProfiler()
 	{
 		// desabilitando profiler
 		$this->_db->getProfiler()->setEnabled(false);
@@ -42,25 +42,41 @@ abstract class Basico_AbstractDbTable_RochedoDbTable extends Zend_Db_Table_Abstr
 	 * 
 	 * @param Boolean $desabilitaProfiler
 	 * 
-	 * @return String
+	 * @return Array
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
  	 * @since 09/04/2012
 	 */
-	protected function recuperaUltimaQueryExecutada($desabilitaProfiler = true)
+	public function recuperaUltimaQueryExecutada($desabilitaProfiler = true)
 	{
-		// habilitando profiler
-		$this->habilitaProfiler();
-		
 		// recuperando ultima query executada
 		$ultimaQuery = $this->_db->getProfiler()->getLastQueryProfile()->getQuery();
-		
+		$arrayParams = $this->_db->getProfiler()->getLastQueryProfile()->getQueryParams();
+
+		// loop para setar os valores na query
+		foreach ($arrayParams as $param) {
+			// verificando se deve encapsular o parametro entre aspas
+			if ((is_numeric($param)) or (is_bool($param))) {
+				// setando o valor do parametro sem aspas
+				$valorParametro = $param;
+			} else if (is_null($param)) {
+				// setando o valor do parametro para null
+				$valorParametro = 'null';
+			} else {
+				// setando o valor do parametro entre aspas
+				$valorParametro = "'" . $param . "'";
+			}
+
+			// setando o valor do parametro na query
+			$ultimaQuery = substr_replace($ultimaQuery, $valorParametro, strpos($ultimaQuery, "?"), 1);
+		}
+
 		// verificando se é preciso desabilitar o profiler
 		if ($desabilitaProfiler) {
 			// desabilitando o profiler
 			$this->desabilitaProfiler();
 		}
-		
+
 		// retornando ultima query executada
 		return $ultimaQuery;
 	}
