@@ -2106,7 +2106,23 @@ class Basico_OPController_UtilOPController
     	// escrevendo resultado
     	return $result;
     }
-    
+
+    /**
+     * Retorna um "include" javascript
+     * 
+     * @param String $source
+     * 
+     * @return String
+     * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 11/04/2012
+     */
+    public static function retornaJavaScriptSourceEntreTagsScriptHtml($source)
+    {
+    	// retornando include javascript
+    	return "<script src='{$source}' type='text/javascript'></script>";
+    }
+
     /**
      * Retorna script para aplicacao de mascaras jquery
      * 

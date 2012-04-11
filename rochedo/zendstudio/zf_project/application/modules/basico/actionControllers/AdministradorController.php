@@ -49,10 +49,6 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function regerarchecksummodeloAction()
     {
-    	// inicializando variaveis
-    	$nomeModelo = null;
-    	$idModelo = null;
-
     	// recuperando parametros
     	$parametros = $this->getRequest()->getParams();
     	
@@ -154,7 +150,6 @@ class Basico_AdministradorController extends Zend_Controller_Action
      */
     public function sucessoresetadbAction()
     {
-
         // criando o usuario admin
         Basico_OPController_PessoaLoginOPController::getInstance()->criaLoginAdmin();
 
@@ -166,5 +161,98 @@ class Basico_AdministradorController extends Zend_Controller_Action
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
+    }
+
+    /**
+     * Ação para habilitar o crud visual para um modelo passado por parametro
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 11/04/2012
+     */
+    public function crudAction()
+    {
+    	// recuperando parametros
+    	$arrayParametros = $this->getRequest()->getParams();
+
+    	// verificando se foi passado os parametros para regeracao de checksum
+    	if (array_key_exists(Basico_OPController_CrudOPController::ATRIBUTO_MODELO_CRUD, $arrayParametros) === true) {
+    	    // recuperando o modelo
+    		$nomeModelo = $arrayParametros[Basico_OPController_CrudOPController::ATRIBUTO_MODELO_CRUD];
+
+    		// verificando se o modelo existe
+    		if (class_exists($nomeModelo, true)) {
+    			// processando o crud
+    			$retornoCrud = Basico_OPController_CrudOPController::processaCrudModelo($arrayParametros);
+
+    			// verificando o resultado do crud
+    			if (false === $retornoCrud) {
+			    	// setando o titulo da view
+			    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!');
+	
+			    	// setando subtitulo da view
+		    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Erro no retorno do método de processamento do crud.");
+	
+		    	    // setando o conteudo na view
+					$this->view->content = $content;
+	
+					// renderizando a view
+					$this->_helper->Renderizar->renderizar();
+	
+					return;
+    			} else {
+    				// verificando se foi retornando algum conteúdo
+    				if (isset($retornoCrud['content'])) {
+    					// setando conteúdo na view
+    					$this->view->content = $retornoCrud['content'];
+    				}
+    				// verificando se foi retornando algum script
+    				if (isset($retornoCrud['scripts'])) {
+    					// setando scripts na view
+    					$this->view->scripts = $retornoCrud['scripts'];
+    				}
+
+    				// verificando se a ação é do tipo "dados"
+    				if ($arrayParametros[Basico_OPController_CrudOPController::ATRIBUTO_TIPO_CRUD] === Basico_OPController_CrudOPController::TIPO_DADOS) {
+	    				// renderizando a view
+	    				$this->_helper->Renderizar->renderizar(null, true);
+    				} else {
+    					// adicionando css do grid do crud
+						$this->view->headLink()->appendStylesheet(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_CSS_FILE_PATH);
+
+	    				// renderizando a view
+	    				$this->_helper->Renderizar->renderizar();
+    				}
+    			}
+
+    		} else {
+		    	// setando o titulo da view
+		    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!');
+
+		    	// setando subtitulo da view
+	    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Modelo informado não existe.");
+
+	    	    // setando o conteudo na view
+				$this->view->content = $content;
+
+				// renderizando a view
+				$this->_helper->Renderizar->renderizar();
+
+				return;
+   			}
+    		
+    	} else {
+ 	    	// setando o titulo da view
+	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!');
+			// setando subtitulo da view
+    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Não foi informado o modelo para manipulação.");
+
+    	    // setando o conteudo na view
+			$this->view->content = $content;
+
+			// renderizando a view
+			$this->_helper->Renderizar->renderizar();
+
+			return;   		
+    	}
     }
 }

@@ -192,4 +192,38 @@ abstract class Basico_AbstractModel_RochedoPersistentModeloGenerico
 	{
 		return $this->_rowinfo;
 	}
+
+	/**
+	 * Retorna um array com os atributos da classe
+	 * 
+	 * @param Boolean $removerMapper
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 11/04/2012
+	 */
+	public function retornaAtributos($removerMapper = true)
+	{
+		// recuperando atributos da classe
+		$arrayResultado = array_keys(get_class_vars(get_class($this)));
+
+		// loop para remover os underlines
+		foreach ($arrayResultado as $chave => $atributo) {
+			// verificando se o valor é "_mapper" e se é preciso remove-lo
+			if (($atributo === "_mapper") and ($removerMapper)) {
+				// removendo mapper
+				unset($arrayResultado[$chave]);
+
+				// indo para o proximo passo do laço
+				continue;
+			}
+
+			// removendo o "underline" (_) do inicio do atributo
+			$arrayResultado[$chave] = substr_replace($atributo, '', 0, 1);
+		}
+
+		// retornando o array de atributos
+		return $arrayResultado;
+	}
 }
