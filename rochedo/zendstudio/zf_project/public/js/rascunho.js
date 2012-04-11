@@ -80,6 +80,7 @@ function salvarRascunho(urlPost,forceSave,nomeFormPai)
 {
 
 	console.debug('salvar rascunho chamado.'+forceSave+'-'+nomeFormPai);
+	
 	// recuperando os ids dos elementos modificados	
 	var arrayChangedElements = formChangesCheck();	
 	
@@ -271,13 +272,3 @@ function verificaElementosModificadosRascunho()
 	return false;										
 
 }
-
-/**
- * Chamando funcoes do rascunho quando o documento estiver carregado
- */
-$(document).ready(function() {
-
-	initRascunho();
-	timer(10000,"salvarRascunho('http://localhost/rochedo_project/public/basico/rascunho/salvar',false,null)");
-
-});

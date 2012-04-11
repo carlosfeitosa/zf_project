@@ -237,7 +237,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 			}
 
 			// verificando se existe rascunho no form
-			$permiteRascunho = Basico_OPController_TemplateOPController::getInstance()->processaRascunho($view, $form);
+			Basico_OPController_TemplateOPController::getInstance()->processaRascunho($view, $form, $permiteRascunho);
 		}
 	}
 
@@ -332,7 +332,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 03/04/2012
 	 */
-	private function processaRascunho(Zend_View $view, Zend_Form $formulario)
+	private function processaRascunho(Zend_View &$view, Zend_Form $formulario, &$permiteRascunho)
 	{
 		// verificando se existe rascunho no form
 		if ($formulario->getAttrib('rascunho')) {
@@ -340,9 +340,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 			$view->dojo()->addDijit($formulario->getName(), array('rascunho'=>'true'));
 			
 			// setando variavel que determina a insercao, ou nao, do script de inicializacao do rascunho
-			return true;
+			$permiteRascunho = true;
 		}
-
-		return false;
 	}
 }

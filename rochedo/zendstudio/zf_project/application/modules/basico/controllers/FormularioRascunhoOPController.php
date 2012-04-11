@@ -336,12 +336,12 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    	 	$objRascunho->idCategoria = $idCategoriaRascunho;
 		    	 	
 		    	 	// setando o actionOrigem com a url responsavel pela exibicao do formulario
-		    	 	$objRascunho->actionOrigem = Basico_OPController_SessionOPController::getInstance()->retornaUltimaUrlPoolRequests();
+		    	 	$objRascunho->actionOrigem = Basico_OPController_SessionOPController::retornaUrlAtualPoolRequests();
 		    	 	
 		    	 	$objRascunho->ativo = true;
 		    	 	
 		    	 	// recuperando array de parametros da ultima url
-		    	 	$arrayParametrosUltimoRequest = Basico_OPController_SessionOPController::retornaUltimoArrayParametrosUrlPoolRequests();
+		    	 	$arrayParametrosUltimoRequest = Basico_OPController_SessionOPController::retornaArrayParametrosUrlAtualPoolRequests();
 		    	 	
 		    	 	
 		    	 	
