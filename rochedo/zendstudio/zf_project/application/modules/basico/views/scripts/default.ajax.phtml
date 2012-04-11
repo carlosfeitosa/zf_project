@@ -95,7 +95,7 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 	}
 }
 
-// se não existir formulario(s) no reques, carrega os módulos dos pormularios
+// se não existir formulario(s) no reques, carrega os módulos dos formularios
 if (!$existeFormNoRequest) {
 	// carrega os módulos do dojo necessarios aos formulários.
 	$modules = $this->dojo()->getModules();
@@ -104,13 +104,19 @@ if (!$existeFormNoRequest) {
 	$arrayHtmlElements = null;
 }
 
-// carregando os dijits.
+// carregando os dijits. 
 $dijits = $this->dojo()->getDijits();
 
 // carregando title, script e link do header
 $header['title']  = $this->headTitle()->toString();
 $header['link']   = $this->headLink()->toString();
 $header['script'] = $this->headScript()->toString();
+
+// verificando se o ambiente é desenvolvimento.
+if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
+	// setando o footer com o debug info.
+	$arrayHtmlElements['footer'] = ($this->render('footer.phtml'));
+}
 
 // monta resposta para o cliente...
 $response = array('view' => array('header'            => $header,
