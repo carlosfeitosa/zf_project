@@ -848,9 +848,29 @@ class Basico_OPController_UtilOPController
     			// retornando a codificacao de um objeto em array, utilizando o blacklist de atributos do sistema
     			return self::objectToArray($valor, self::retornaArrayBlackListObjetoAtributosSistema());
     		break;
+    		case CODIFICAR_ARRAY_TO_XML:
+				// retornando a codificacao de objetos em xml
+				return self::arrayToXML($valor);
     		default:
     			throw new Exception(MSG_ERRO_CODIFICAR_SEM_OPERACAO);
     	}
+    }
+
+    /**
+     * Converte um array para xml
+     * 
+     * @param array $arrayDados
+     * @param String $rootNodeName
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 12/04/2012
+     */
+    public static function arrayToXML(array $arrayDados, $rootNodeName = 'root')
+    {
+    	// retornando array convertido em xml
+    	return Basico_OPController_XmlOPController::array_to_xml($arrayDados, $rootNodeName);
     }
 
     /**
@@ -910,6 +930,22 @@ class Basico_OPController_UtilOPController
 
     	// retornando o objeto encriptado
     	return self::retornaStringEncriptadaCVC($objetoCodificado);
+    }
+
+    /**
+     * Limpa o array json
+     * 
+     * @param String $arrayJson
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 12/04/2012
+     */
+    public static function limpaArrayJson($arrayJson)
+    {
+    	// retornando o array limpo
+    	return str_replace('"]', ']', str_replace('["', '[', str_replace(',"mapper":null', '', str_replace('\\', '', str_replace('\u0000_' , '', str_replace('\u0000*', '', $arrayJson))))));
     }
 
 	/**

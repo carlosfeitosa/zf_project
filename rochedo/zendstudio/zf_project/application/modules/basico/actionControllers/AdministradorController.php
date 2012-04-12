@@ -212,7 +212,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     				}
 
     				// verificando se a ação é do tipo "dados"
-    				if ($arrayParametros[Basico_OPController_CrudOPController::ATRIBUTO_TIPO_CRUD] === Basico_OPController_CrudOPController::TIPO_DADOS) {
+    				if ((isset($arrayParametros[Basico_OPController_CrudOPController::ATRIBUTO_TIPO_CRUD])) and ($arrayParametros[Basico_OPController_CrudOPController::ATRIBUTO_TIPO_CRUD] === Basico_OPController_CrudOPController::TIPO_DADOS)) {
 	    				// renderizando a view
 	    				$this->_helper->Renderizar->renderizar(null, true);
     				} else {
