@@ -103,11 +103,14 @@ define("DEFAULT_JAVASCRIPT_MASKS_FILE_PATH", "/js/default_masks_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH", "/js/plugins/maskMoney/jquery.maskMoney.js");
 define("DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO", "/js/rascunho.js");
 define("JQGRID_JAVASCRIPT_FILE_PATH", "/js/plugins/jquery/jqGrid/js/jquery.jqGrid.min.js");
+define("JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH", "/js/plugins/jquery/jqGrid/js/i18n/grid.locale-pt-br.js");
+define("JQGRID_JAVASCRIPT_DEBUG_FILE_PATH", "/js/plugins/jquery/jqGrid/js/grid.loader.js");
 
 /*
  * CSS FILES
  */
 define("JQGRID_CSS_FILE_PATH", "/js/plugins/jquery/jqGrid/css/ui.jqgrid.css");
+define("JQUERY_UI_CSS_FILE_PATH", "/js/jquery/ui/jquery-ui-1.8.18.custom.css");
 
 /*
  * MENU JAVASCRIPT/CSS FILES

@@ -162,7 +162,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 03/04/2012
 	 */
-	public static function desabiltaLayoutView($actionController)
+	public static function desabilitaLayoutView($actionController)
 	{
 		// desabilitando o layout
 		$actionController->getHelper('layout')->disableLayout(true);
@@ -182,6 +182,38 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractController
 	{
 		// desabilitando o layout
 		$actionController->getHelper('layout')->disableLayout(false);
+	}
+	
+	/**
+	 * Desabilita o view Renderer de um actionController
+	 * 
+	 * @param Zend_Controller_Action $actionController
+	 * 
+	 * @return void
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 13/04/2012
+	 */
+	public static function desabilitaViewRenderer($actionController)
+	{
+		// desabilitando o layout
+		$actionController->getHelper('viewRenderer')->setNoRender(true);
+	}
+	
+	/**
+	 * Habilita o view Renderer de um actionController
+	 * 
+	 * @param Zend_Controller_Action $actionController
+	 * 
+	 * @return void
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 13/04/2012
+	 */
+	public static function habilitaViewRenderer($actionController)
+	{
+		// desabilitando o layout
+		$actionController->getHelper('viewRenderer')->setNoRender(false);
 	}
 
 	/**

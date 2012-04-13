@@ -945,7 +945,7 @@ class Basico_OPController_UtilOPController
     public static function limpaArrayJson($arrayJson)
     {
     	// retornando o array limpo
-    	return str_replace('"]', ']', str_replace('["', '[', str_replace(',"mapper":null', '', str_replace('\\', '', str_replace('\u0000_' , '', str_replace('\u0000*', '', $arrayJson))))));
+    	return str_replace('}"', '}', str_replace('"{', '{', str_replace('"]', ']', str_replace('["', '[', str_replace(',"mapper":null', '', str_replace('\\', '', str_replace('\u0000_' , '', str_replace('\u0000*', '', $arrayJson))))))));
     }
 
 	/**
@@ -2690,4 +2690,60 @@ class Basico_OPController_UtilOPController
 		
 		return $return;
 	}
+	
+	/**
+	 * Move um elemento no array pela chave.  So funciona para arrays com chaves continuas começando com 0.
+	 * 
+	 * @param array $array
+	 * @param integer $posicaInicial Use NULL quando quiser mover para a ultima posicao
+	 * @param integer $posicaoFinal  Nova chave do elemento. Use NULL para colocar no final do array
+	 * 
+	 * @return array
+	 *
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 13/04/2012
+	 */
+	public static function moverElementoPorChave( array $array, $posicaoInicial=null, $posicaoFinal=null )
+	{
+		// verificando se a posicao inicial foi passada
+		if ( null === $posicaoInicial )
+	  	{
+	  		// se a posicao inicial nao foi passada, recupera a chave do ultimo elemento
+	    	$posicaoInicial = count( $array ) - 1;
+	  	}
+	
+	  	// se a chave da posicao inicial nao existe lança uma excessao
+	  	if ( !isset( $array[$posicaoInicial] ) )
+	  	{
+	    	throw new Exception( "Chave $posicaoInicial não existe" );
+	  	}
+	
+	  	// se as chaves nao estiverem no range de 0 a ate a ultima chave, elas sao consideradas invalidas
+	  	if ( array_keys( $array ) != range( 0, count( $array ) - 1 ) )
+	  	{
+	    	throw new Exception( "Chaves do array inválidas" );
+	  	}
+	
+	  	// recuperando o valor do elemento a ser movido
+	  	$value = $array[$posicaoInicial];
+	  	// excluindo elemento a ser movido
+	  	unset( $array[$posicaoInicial] );
+	
+	  	// se a posicao inicial for null adiciona o elemento no final do array
+	  	if ( null === $posicaoFinal )
+	  	{
+	  		// adicionando elemento no final do array
+	    	array_push( $array, $value );
+	  	}else {
+	  		// removendo porcao do array ate a chave que o elemento movido ira ocupar
+	    	$tail = array_splice( $array, $posicaoFinal );
+	    	// adicionando elemento movido ao novo array
+	    	array_push( $array, $value );
+	    	// unindo os dois arrays no array de retorno
+	    	$array = array_merge( $array, $tail );
+	  	}
+	
+	  	return $array;
+	}
+	
 }

@@ -214,11 +214,14 @@ class Basico_AdministradorController extends Zend_Controller_Action
     				// verificando se a ação é do tipo "dados"
     				if ((isset($arrayParametros[Basico_OPController_CrudOPController::ATRIBUTO_TIPO_CRUD])) and ($arrayParametros[Basico_OPController_CrudOPController::ATRIBUTO_TIPO_CRUD] === Basico_OPController_CrudOPController::TIPO_DADOS)) {
 	    				// renderizando a view
-	    				$this->_helper->Renderizar->renderizar(null, true);
+	    				$this->_helper->Renderizar->renderizar('default.json.phtml', true, true);
     				} else {
+    					// adicionando css do UI JQuery
+						$this->view->headLink()->appendStylesheet(Basico_OPController_UtilOPController::retornaBaseUrl() . JQUERY_UI_CSS_FILE_PATH);
+    					
     					// adicionando css do grid do crud
 						$this->view->headLink()->appendStylesheet(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_CSS_FILE_PATH);
-
+						
 	    				// renderizando a view
 	    				$this->_helper->Renderizar->renderizar();
     				}

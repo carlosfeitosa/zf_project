@@ -103,7 +103,7 @@ class Basico_OPController_CrudOPController
 	 * @since 11/04/2012
 	 */
 	public static function processaCrudModelo(array $arrayParametrosCrud)
-	{
+	{	
 		// inicializando variáveis
 		$nomeModeloCrud = null;
 
@@ -176,6 +176,11 @@ class Basico_OPController_CrudOPController
 		                                                                               $arrayParametrosCrud[self::ATRIBUTO_ORDENACAO_CRUD], 
 		                                                                               $arrayParametrosCrud[self::ATRIBUTO_LIMITE_CRUD], 
 		                                                                               $arrayParametrosCrud[self::ATRIBUTO_OFFSET_CRUD]);
+		                                                                               
+		// removendo aspas duplas dos atributos rowinfo dos objetos
+		foreach ($arrayObjetos as $chave => $objeto) {
+			$arrayObjetos[$chave]->rowinfo = str_replace('"', "'", $objeto->rowinfo);
+		}		                                                                              
 
 		// verificando o formato
 		switch ($formato) {
@@ -213,7 +218,7 @@ class Basico_OPController_CrudOPController
 
 		// recuperando resultado
 		$arrayResultado['content'] = array($resultado);
-
+		
 		// retornando resultado
 		return $arrayResultado;
 	}
@@ -288,7 +293,7 @@ class Basico_OPController_CrudOPController
 	private static function retornaUrlRecuperacaoDados(array $arrayParametrosCrud)
 	{
 		// montando a url
-		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}/condicaoSql/{$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD]}";
+		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}/limite/10/condicaoSql/{$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD]}";
 
 		// retornando a url
 		return $urlRetorno;
@@ -335,7 +340,7 @@ class Basico_OPController_CrudOPController
 	private static function retornaHTMLCrud($nomeModelo)
 	{
 		// retornando o HTML
-		return "<table id='listagem-{$nomeModelo}'></table><div id='paginacao-{$nomeModelo}'></div>";
+		return "<br><table id='listagem-{$nomeModelo}'></table><div id='paginacao-{$nomeModelo}'></div></br>";
 	}
 
 	/**
@@ -348,8 +353,16 @@ class Basico_OPController_CrudOPController
 	 */
 	private static function retornaJavaScriptCrud()
 	{
-		// retornando o javascript
-		return Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_FILE_PATH);
+		// adicionando arquivo de linguagem do jgGrid 
+		$scriptRetorno = Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH);
+		
+		// adicionando arquivo js do jqGrid
+		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_FILE_PATH);
+		
+		// adicionando arquivo js do debug do jqGrid
+		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_DEBUG_FILE_PATH);
+		
+		return $scriptRetorno;
 	}
 
 	/**
@@ -369,7 +382,7 @@ class Basico_OPController_CrudOPController
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 */
-	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 400, $larguraGrid = 600, $linhasPorPagina = 10, $arrayOpcoesLinhasPorPagina = array(10, 20, 30), $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
+	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 400, $larguraGrid = 1000, $linhasPorPagina = 10, $arrayOpcoesLinhasPorPagina = array(10, 20, 30), $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
 	{
 		// recuperando o nome da listagem e nome paginação
 		$nomeListagem  = "listagem-{$nomeModelo}";
@@ -382,49 +395,65 @@ class Basico_OPController_CrudOPController
 		$arrayAtributosModelo = $instanciaModelo->retornaAtributos();
 
 		// inicializando variáveis
-		$stringAtributosModelo = '';
+		$stringColNames = '';
+		$stringColModel = '';
+		$larguraGrid    = 0;
 
 		// montando string serializada
 		foreach ($arrayAtributosModelo as $chave => $atributoModelo) {
-			// setando string
-			$stringAtributosModelo .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
-
+			// setando string colNames
+			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
+			
+			// recuperando tamanho do nome do atributo
+			$tamanhoNomeAtributo = strlen($atributoModelo) * 8;
+			
+			// somando a largura do grid
+			$larguraGrid += $tamanhoNomeAtributo;
+			
+			// setando string colModel
+			$stringColModel .= "{name: '{$atributoModelo}', index: '{$atributoModelo}', width:{$tamanhoNomeAtributo}}";
+			
 			// verificando se não trata-se do último elemento
 			if (count($arrayAtributosModelo) !== $chave) {
-				$stringAtributosModelo .= ', ';
+				$stringColNames .= ', ';
+				$stringColModel .= ',';
 			}
 		}
 
 		// montando resposta
-		$retorno = "jQuery('#{$nomeListagem}').jqGrid({
-					   	url:'{$urlRecuperacaoDados}',
-						datatype: '{$tipoDados}',
-						height: {$alturaGrid},
-						width: {$larguraGrid},
-					   	colNames:[{$stringAtributosModelo}],
-					   	colModel:[
-					   		{name:'idPerfilPadrao',index:'idPerfilPadrao', width:55},
-					   		{name:'idTelefoneDefault',index:'idTelefoneDefault', width:55},
-					   		{name:'idEmailDefault',index:'idEmailDefault', width:55},
-					   		{name:'idEnderecoDefault',index:'idEnderecoDefault', width:55},
-					   		{name:'idEnderecoCorrespondenciaDefault',index:'idEnderecoCorrespondenciaDefault', width:55},
-					   		{name:'idLinkDefault',index:'idLinkDefault', width:55},
-					   		{name:'dataHoraUltimaAtualizacao',index:'dataHoraUltimaAtualizacao', width:55},
-					   		{name:'id',index:'id', width:55},
-					   		{name:'datahoraCriacao',index:'datahoraCriacao', width:55},
-					   		{name:'rowinfo',index:'rowinfo', width:55}		
-					   	],
-					   	rowNum:10,
-					   	rowList:[10,20,30],
-					   	pager: '#{$nomePaginacao}',
-					   	sortname: '{$campoOrdenadorInicial}',
-					    viewrecords: true,
-					    sortorder: 'asc',
-						multiselect: false,
-					    caption: 'CRUD {$nomeModelo}'
+		$retorno = "$(function(){
+					
+						$('#{$nomeListagem}').jqGrid({
+						   	url: '{$urlRecuperacaoDados}',
+							datatype: '{$tipoDados}',
+							height: {$alturaGrid},
+							width: {$larguraGrid},
+						   	colNames: [{$stringColNames}],
+						   	colModel: [
+						   		{$stringColModel}
+						   	],
+						   	rowNum: 10,
+						   	rowList: [10,20,30],
+						   	pager: '#{$nomePaginacao}',
+						   	sortname: '{$campoOrdenadorInicial}',
+						    viewrecords: true,
+						    sortorder: 'asc',
+							multiselect: false,
+						    caption: 'CRUD {$nomeModelo}',
+						    serializeGridData: function (dados) {
+												return JSON.stringify(dados)
+
+												},
+
+							jsonReader: { repeatitems: false, id: 'id' }
+						})
 						
-					});
-					jQuery('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{add:false,edit:false,del:false});";
+				});
+				
+				$(function(){
+				
+					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{add:false,edit:false,del:false})
+				});";
 		
 		// retornando script
 		return Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml($retorno);

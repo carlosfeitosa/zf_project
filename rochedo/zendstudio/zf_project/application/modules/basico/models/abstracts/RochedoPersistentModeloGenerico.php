@@ -222,7 +222,12 @@ abstract class Basico_AbstractModel_RochedoPersistentModeloGenerico
 			// removendo o "underline" (_) do inicio do atributo
 			$arrayResultado[$chave] = substr_replace($atributo, '', 0, 1);
 		}
-
+		
+		$arrayResultado = array_slice($arrayResultado, 1, count($arrayResultado) - 1);
+		
+		// movendo atributo "id" para o inicio do array
+		$arrayResultado = Basico_OPController_UtilOPController::moverElementoPorChave($arrayResultado, array_search('id', $arrayResultado), 0);
+		
 		// retornando o array de atributos
 		return $arrayResultado;
 	}

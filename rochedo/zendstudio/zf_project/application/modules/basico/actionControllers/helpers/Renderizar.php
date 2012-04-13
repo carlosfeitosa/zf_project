@@ -29,9 +29,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     	// verificando se deve desabilitar o layout
     	if ($disableLayout) {
 	    	// desabilitando o layout
-	    	Basico_OPController_TemplateOPController::desabiltaLayoutView($controller);
+	    	Basico_OPController_TemplateOPController::desabilitaLayoutView($controller);
     	}
-
+    	
     	// recupera o tipo de contexto da view  
     	$contexto = $controller->getRequest()->getParam('format');
 
@@ -40,8 +40,8 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		// AJAX REQUEST
 
     		// Desliga o layout do Zend para requisições do tipo AJAX(XmlHttpRequest)
-    		Basico_OPController_TemplateOPController::desabiltaLayoutView($controller);
-
+    		Basico_OPController_TemplateOPController::desabilitaLayoutView($controller);
+			
     		// setando o contexto
     		$contexto = 'ajax';
     	}else{
@@ -70,6 +70,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 	    			break;
 
 	    		case 'xml' : $controller->renderScript('default.xml.phtml');
+	    			break;
+	    			
+	    		case 'json' : $controller->renderScript('default.json.phtml');
 	    			break;
 
 	    		case 'ajax' : $controller->renderScript('default.ajax.phtml');
@@ -102,8 +105,8 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     private function inicializaContextoHtml()
     {
 		// adicionando plugin Jquery maskMoney
-		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/jquery/jquery-1.6.1.min.js"));
-		
+		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/jquery/jquery-1.7.2.min.js"));
+				
 		// setando variaveis
 		$applicationHttpHome = $this->_view->urlEncrypt($this->_view->url(array('controller'=>'index'), null, true));
 		$applicationHttpImagesHome = $this->_view->baseUrl('/images/');
