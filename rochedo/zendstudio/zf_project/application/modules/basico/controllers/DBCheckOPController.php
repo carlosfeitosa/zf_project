@@ -165,6 +165,9 @@ class Basico_OPController_DBCheckOPController
 		$pkColumnColumnName       = ARRAY_TABLE_DEPENDENCIES_PK_COLUMN;
 		$constraintNameColumnName = ARRAY_TABLE_DEPENDENCIES_CONSTRAINT_NAME;
 
+		// recuperando concatenador do banco de dados
+		$concatenadorDB = Basico_OPController_DBUtilOPController::retornaConcatenadorDB();
+
 		// query que verifica as dependencias de uma tabela
 		$queryDependenciasTabela = 
 		"
@@ -183,11 +186,43 @@ class Basico_OPController_DBCheckOPController
 			            INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE i2 ON (i1.CONSTRAINT_NAME = i2.CONSTRAINT_NAME)
 			            WHERE i1.CONSTRAINT_TYPE = 'PRIMARY KEY') pt ON (pt.TABLE_NAME = pk.TABLE_NAME)
 			
-			WHERE pk.TABLE_NAME = '{$nomeTabela}'
+			WHERE pk.TABLE_SCHEMA {$concatenadorDB}'.'{$concatenadorDB} pk.TABLE_NAME = '{$nomeTabela}'
 		";
 
 		// retornando array contendo as tabelas que possuem dependencia com o objeto
 		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryDependenciasTabela);
+	}
+
+	public static function retornaArrayChavesEstrangeirasPorNomeTabela($nomeTabela)
+	{
+		// recuperando concatenador do banco de dados
+		$concatenadorDB = Basico_OPController_DBUtilOPController::retornaConcatenadorDB();
+
+		// query para recuperar as fks
+		$queryFKsTabela = "SELECT k.column_name, k.constraint_name, c.unique_constraint_name,
+							      fk.table_schema as fk_schema, fk.table_name as fk_table_name, fk.column_name as fk_column_name
+							
+						   FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS c
+						   INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE k ON (k.constraint_name = c.constraint_name)
+						   INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE fk ON (c.unique_constraint_name = fk.constraint_name)
+							
+						   WHERE k.table_schema {$concatenadorDB} '.' {$concatenadorDB} k.table_name = '{$nomeTabela}'";
+
+
+		// recuperando FKs
+		$arrayResultadoFKs = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryFKsTabela);
+
+		// verificando o resultado da recuperação
+		if (count($arrayResultadoFKs)) {
+			// loop para correção das chaves
+			foreach ($arrayResultadoFKs as $chave => $arrayValores) {
+				// criando nova chave
+				$arrayResultado[$arrayValores['column_name']] = $arrayValores;
+			}
+		}
+
+		// retornando array contendo as fks da tabela
+		return $arrayResultado;
 	}
 
 	/**

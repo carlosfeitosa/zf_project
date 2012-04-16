@@ -352,11 +352,29 @@ class Basico_OPController_PersistenceOPController
 	 * Retorna um array contendo as relacoes de dependencia
 	 * 
 	 * @param String $nomeTabela
+	 * 
+	 * @return Array
 	 */
 	public static function bdRetornaArrayDependenciasTabelaFK($nomeTabela)
 	{
 		// retornando o resultado do metodo "retornaArrayDependenciasTabela" no controlador "Basico_OPController_DBCheckOPController"
 		return Basico_OPController_DBCheckOPController::retornaArrayDependenciasTabelaFKPorNomeTabela($nomeTabela);
+	}
+
+	/**
+	 * Retorna um array contendo as FKs
+	 * 
+	 * @param String $nomeTabela
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	public static function bdRetornaArrayChavesEstrangeirasPorNomeTabela($nomeTabela)
+	{
+		// retornando o resultado do metodo "retornaArrayDependenciasTabela" no controlador "Basico_OPController_DBCheckOPController"
+		return Basico_OPController_DBCheckOPController::retornaArrayChavesEstrangeirasPorNomeTabela($nomeTabela);
 	}
 
 	/**

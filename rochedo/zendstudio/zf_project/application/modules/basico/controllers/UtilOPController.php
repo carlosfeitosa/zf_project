@@ -823,17 +823,18 @@ class Basico_OPController_UtilOPController
      * 
      * @param Mixed $valor
      * @param Integer $operacao
+     * @param Array $arrayParametrosTransformacao
      * 
      * @return String
      */
-    public static function codificar($valor, $operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING)
+    public static function codificar($valor, $operacao = CODIFICAR_OBJETO_TO_ENCODED_STRING, $arrayParametrosTransformacao = array())
     {
     	// verificando o tipo de operacao
     	switch ($operacao) {
     		// verificando se a codificacao eh para codificar um objeto em string codificada
     		case CODIFICAR_OBJETO_TO_ENCODED_STRING:
     			// retornando a codificacao do objeto em string codificada
-    			return self::objectToEncodedString($valor);
+    			return self::objectToEncodedString($valor, $arrayParametrosTransformacao);
     		break;
     		// verificando se a codificacao eh para codificar uma string em array
     		case CODIFICAR_ENCODED_STRING_TO_ARRAY:
@@ -890,10 +891,11 @@ class Basico_OPController_UtilOPController
      * Converte um objeto em uma string codificada
      * 
      * @param Object $object
+     * @param Array $arrayParametrosTransformacao
      * 
      * @return String
      */
-    public static function objectToEncodedString($object)
+    public static function objectToEncodedString($object, $arrayParametrosTransformacao = array())
     {
 		// verificando se o parametro eh um objeto
     	self::verificaVariavelRepresentaObjeto($object, true);
@@ -903,8 +905,26 @@ class Basico_OPController_UtilOPController
    			// removendo mapper
    			$object->setMapper(null);
 
+   		// convertendo o objeto em array
+   		$arrayObjeto = (array) $object;
+
+   		// verificando a necessidade de transformação de dados
+   		if (count($arrayParametrosTransformacao)) {
+   			// loop para transformar os valores
+   			foreach ($arrayParametrosTransformacao as $atributo => $arrayTransformacao) {
+   				// transformando o nome do atributo
+   				$atributo = "\0*\0_" . $atributo;
+
+   				// verificando o atributo de transformação
+   				if ($arrayTransformacao['tipo_dado'] === 'timestamp') {
+   					// transformando o dado
+   					$arrayObjeto[$atributo] = self::retornaZend_Date($arrayObjeto[$atributo], DEFAULT_DATABASE_DATETIME_FORMAT)->toString($arrayTransformacao['formato_saida']);
+   				}
+   			}
+   		}
+
 		// retornando string codificada apartir de um objeto
-   		return json_encode((array) $object, JSON_FORCE_OBJECT);
+   		return json_encode($arrayObjeto, JSON_FORCE_OBJECT);
     }
 
     /**

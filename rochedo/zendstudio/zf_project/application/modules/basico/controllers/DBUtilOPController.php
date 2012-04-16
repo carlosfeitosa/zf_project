@@ -7,6 +7,11 @@
 
 class Basico_OPController_DBUtilOPController
 {
+	const ATRIBUTO_CAMPO_TABELA_DATATYPE = 'dataType';
+	const ATRIBUTO_CAMPO_TABELA_NULLABLE = 'nullable';
+	const ATRIBUTO_CAMPO_TABELA_LENGTH = 'length';
+	const ATRIBUTO_CAMPO_TABELA_FK = 'fk';
+	
 	/**
 	 * Checa a conexão com o banco de dados, lança um erro no caso de não conseguir conectar.
 	 * 
@@ -93,6 +98,42 @@ class Basico_OPController_DBUtilOPController
     }
 
     /**
+     * Retorna o nome de um atributo através do nome do campo
+     * 
+     * @param String $nomeCampo
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 16/04/2012
+     */
+    public static function retornaNomeAtributoCampo($nomeCampo)
+    {
+    	// inicializando variáveis
+    	$nomeAtributo = '';
+
+    	// loop para montar o nome do campo
+		for ($i = 0; $i < strlen($nomeCampo); $i++) {
+			// recuperando substring
+			$substring = substr($nomeCampo, $i, 1);
+
+			// verificando a substring é maiúscula
+			if ($substring === '_') {
+				// adicionando underline como separador e trocando a substring maiúscula por minúscula
+				$nomeAtributo .= strtoupper(substr($nomeCampo, $i+1, 1));
+				// incrementando o contador
+				$i++;
+			} else {
+				// adicionando substring
+				$nomeAtributo .= $substring;
+			}
+		}
+
+    	// retornando o nome do campo
+    	return $nomeAtributo;
+    }
+
+    /**
      * Retorna o nome da tabela vinculada a um objeto
      * 
      * @param Object $objeto
@@ -138,6 +179,51 @@ class Basico_OPController_DBUtilOPController
 
 		// retorna o nome do campo da chave primaria
 		return $tablePrimaryKey[1];
+    }
+
+    /**
+     * Retorna um array com os atributos dos campos da tabela do banco de dados relacionada ao objeto
+     * 
+     * @param Objeto $objeto
+     * 
+     * @return Array
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 16/04/2012
+     */
+    public static function retornaArrayAtributosTabelaBDObjeto($objeto)
+    {
+    	// inicializando variáveis
+    	$arrayResultado = array();
+
+    	//verificando se o parametro passado é um objeto
+    	if (!is_object($objeto)) {
+    		throw new Exception(MSG_ERRO_NAO_OBJETO);
+    	}
+
+    	// recuperando informacoes sobre a tabela vinculada ao objeto
+		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+
+		// recuperando metadados
+		$arrayMetaDados = $tableInfo['metadata'];
+
+		// recuperando array com as chaves estrangeiras da tabela
+		$arrayChavesEstrangeiras = Basico_OPController_PersistenceOPController::bdRetornaArrayChavesEstrangeirasPorNomeTabela(self::retornaTableNameObjeto($objeto));
+
+		// loop para recuperar informações sobre os campos
+		foreach ($arrayMetaDados as $chave => $arrayValores) {
+			// verificando se o campo é do tipo fk
+			if (array_key_exists($chave, $arrayChavesEstrangeiras)) {
+				// carregando array de resultados
+				$arrayResultado[$chave] = array(self::ATRIBUTO_CAMPO_TABELA_DATATYPE => $arrayValores['DATA_TYPE'], self::ATRIBUTO_CAMPO_TABELA_NULLABLE => $arrayValores['NULLABLE'], self::ATRIBUTO_CAMPO_TABELA_LENGTH => $arrayValores['LENGTH'], self::ATRIBUTO_CAMPO_TABELA_FK => $arrayChavesEstrangeiras[$chave]);
+			} else {
+				// carregando array de resultados
+				$arrayResultado[$chave] = array(self::ATRIBUTO_CAMPO_TABELA_DATATYPE => $arrayValores['DATA_TYPE'], self::ATRIBUTO_CAMPO_TABELA_NULLABLE => $arrayValores['NULLABLE'], self::ATRIBUTO_CAMPO_TABELA_LENGTH => $arrayValores['LENGTH']);				
+			}
+		}
+
+		// retornando resultado
+		return $arrayResultado;
     }
 
     /**
@@ -502,6 +588,8 @@ class Basico_OPController_DBUtilOPController
      * @param Object $objeto
      * 
      * @return Boolean
+     * 
+     * @deprecated
      */
 	public static function retornaNomeTabelaPorObjeto($objeto)
 	{

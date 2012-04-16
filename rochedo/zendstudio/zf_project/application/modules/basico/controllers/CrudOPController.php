@@ -57,6 +57,7 @@ class Basico_OPController_CrudOPController
 	const JQGRID_VALOR_SEARCH_OPERADOR_IS_NOT_IN = 'ni';
 	const JQGRID_DEFAULT_LIMITE_POR_PAGINA = 15;
 	const JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA = '[15, 30, 45, 0]';
+	const JQGRID_MAX_STRING = 500;
 
 	/**
 	 * Processa o array de parametros do crud
@@ -315,10 +316,20 @@ class Basico_OPController_CrudOPController
 		                                                                               $arrayParametrosCrud[self::ATRIBUTO_ORDENACAO_CRUD], 
 		                                                                               $arrayParametrosCrud[self::ATRIBUTO_LIMITE_CRUD], 
 		                                                                               $arrayParametrosCrud[self::ATRIBUTO_OFFSET_CRUD]);
-		                                                                               
-		// removendo aspas duplas dos atributos rowinfo dos objetos
-		foreach ($arrayObjetos as $chave => $objeto) {
-			$arrayObjetos[$chave]->rowinfo = str_replace('"', "'", $objeto->rowinfo);
+
+		// recuperando atributos dos campos da tabela relacionada ao objeto
+		$arrayAtributosCamposTabelaDBObjeto = Basico_OPController_DBUtilOPController::retornaArrayAtributosTabelaBDObjeto($instanciaModelo);
+
+		// processando dados para exibição
+		self::processaDadosParaJQGrid($arrayObjetos, $arrayAtributosCamposTabelaDBObjeto);
+
+		// recuperando atributos timestamp para transformação
+		$arrayAtributosTimestamp = self::retornaAtributosTimestamp($arrayAtributosCamposTabelaDBObjeto);
+
+		// loop para adicionar elementos ao array de atributos timestamp para transformação
+		foreach ($arrayAtributosTimestamp as $chave => $valor) {
+			// transformando valor
+			$arrayAtributosTimestamp[$chave] = array('tipo_dado' => $valor, 'formato_saida' => DEFAULT_DATETIME_FORMAT_PT_BR);
 		}
 
 		// recuperando a quantidade de registros retornados pela condição SQL, sem "limit"
@@ -330,7 +341,7 @@ class Basico_OPController_CrudOPController
 				// loop para transformar os objetos
 				foreach ($arrayObjetos as $objeto) {
 					// transformando objeto
-					$arrayObjetoJson[] = Basico_OPController_UtilOPController::codificar($objeto);
+					$arrayObjetoJson[] = Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_TO_ENCODED_STRING, $arrayAtributosTimestamp);
 				}
 
 				// verificando o retorno do array json
@@ -375,6 +386,103 @@ class Basico_OPController_CrudOPController
 		
 		// retornando resultado
 		return $arrayResultado;
+	}
+
+	/**
+	 * Processa os objetos para exibição do jqgrid
+	 * 
+	 * @param array $arrayObjetos
+	 * @param array $arrayAtributosCamposTabelaDBObjeto
+	 * 
+	 * @return void
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	private static function processaDadosParaJQGrid(array &$arrayObjetos, array $arrayAtributosCamposTabelaDBObjeto)
+	{
+		// recuperando atributos transformáveis
+		$arrayAtributosTransformaveis = self::retornaAtributosTransformaveis($arrayAtributosCamposTabelaDBObjeto);
+
+		// loop para processar os objetos
+		foreach ($arrayObjetos as $chave => $objeto) {
+			// loop nos atributos transformáveis
+			foreach ($arrayAtributosTransformaveis as $chaveAtributo => $tipoAtributo) {
+				// recuperando o nome do atributo
+				$nomeAtributo = Basico_OPController_DBUtilOPController::retornaNomeAtributoCampo($chaveAtributo);
+
+				// verificando o tipo de transformação
+				if ('varchar' === $tipoAtributo) {
+					// transformando o valor do varchar
+					$objeto->$nomeAtributo = '...';
+				}
+			}
+		}
+	}
+
+	/**
+	 * Retorna um array com as atributos transformáveis (varchar)
+	 * 
+	 * @param array $arrayAtributosCamposTabelaDBObjeto
+	 * 
+	 * @return array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	private static function retornaAtributosTransformaveis(array $arrayAtributosCamposTabelaDBObjeto)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// loop para verificar se o atributo é transformável
+		foreach ($arrayAtributosCamposTabelaDBObjeto as $chave => $arrayValores) {
+			// verificando o tipo do campo
+			switch ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
+				case 'varchar':
+					// verificando se o varchar é maior que o máximo permitido no grid
+					if ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH] > self::JQGRID_MAX_STRING) {
+						// adicionando atributo que deve ser modificado
+						$arrayRetorno[$chave] = $arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE];
+					}
+				break;
+			}
+		}
+
+		// retornando resultado
+		return $arrayRetorno;
+	}
+
+	/**
+	 * Retorna um array com as atributos transformáveis (varchar)
+	 * 
+	 * @param array $arrayAtributosCamposTabelaDBObjeto
+	 * 
+	 * @return array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	private static function retornaAtributosTimestamp(array $arrayAtributosCamposTabelaDBObjeto)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// loop para verificar se o atributo é transformável
+		foreach ($arrayAtributosCamposTabelaDBObjeto as $chave => $arrayValores) {
+			// transformando o nome do atributo do banco de dados para atributo do objeto
+			$chave = Basico_OPController_DBUtilOPController::retornaNomeAtributoCampo($chave);
+
+			// verificando o tipo do campo
+			switch ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
+				case 'timestamp':
+					$arrayRetorno[$chave] = $arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE];
+				break;
+			}
+		}
+
+		// retornando resultado
+		return $arrayRetorno;
 	}
 
 	/**
@@ -553,22 +661,28 @@ class Basico_OPController_CrudOPController
 		$stringColModel = '';
 		$larguraGrid    = 0;
 
+		// recuperando atributos dos campos da tabela relacionada ao objeto
+		$arrayAtributosCamposTabelaDBObjeto = Basico_OPController_DBUtilOPController::retornaArrayAtributosTabelaBDObjeto($instanciaModelo);
+
+		// recuperando as larguras das colunas
+		$arrayLarguraColunas = self::retornaArrayLarguraColunasJQGridViaArrayAtributosCamposTabela($arrayAtributosCamposTabelaDBObjeto);
+		
 		// montando string serializada
 		foreach ($arrayAtributosModelo as $chave => $atributoModelo) {
 			// setando string colNames
 			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
 
-			// recuperando tamanho do nome do atributo
-			$tamanhoNomeAtributo = strlen($atributoModelo) * 8;
-
-			// somando a largura do grid
-			$larguraGrid += $tamanhoNomeAtributo;
-
 			// recuperando o nome do atributo no banco de dados
 			$nomeAtributoBD = Basico_OPController_DBUtilOPController::retornaNomeCampoAtributo($atributoModelo);
 
+			// recuperando a largura da coluna
+			$larguraColuna = $arrayLarguraColunas[$nomeAtributoBD];
+
+			// somando a largura do grid
+			$larguraGrid += $larguraColuna;
+
 			// setando string colModel
-			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$tamanhoNomeAtributo}}";
+			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}}";
 
 			// verificando se não trata-se do último elemento
 			if (count($arrayAtributosModelo) !== $chave) {
@@ -614,5 +728,41 @@ class Basico_OPController_CrudOPController
 		
 		// retornando script
 		return Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml($retorno);
+	}
+
+	/**
+	 * Retorna um array contendo as larguras para as colunas do jqgrid através do array de atributos de campos de uma tabela
+	 * 
+	 * @param Array $arrayAtributosCamposTabela
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	private static function retornaArrayLarguraColunasJQGridViaArrayAtributosCamposTabela(array $arrayAtributosCamposTabela)
+	{
+		// loop para montar a resposta
+		foreach ($arrayAtributosCamposTabela as $chave => $arrayValores) {
+			// verificando o tipo do dado
+			switch ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
+				case 'varchar':
+					if ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH] >= self::JQGRID_MAX_STRING) {
+						$arrayResultado[$chave] = 25;
+					} else {
+						$arrayResultado[$chave] = 200;
+					}
+				break;
+				case 'timestamp':
+					$arrayResultado[$chave] = 120;
+				break;
+				default:
+					$arrayResultado[$chave] = 40;
+				break;
+			}
+		}
+
+		// retornando array de resultados
+		return $arrayResultado;
 	}
 }
