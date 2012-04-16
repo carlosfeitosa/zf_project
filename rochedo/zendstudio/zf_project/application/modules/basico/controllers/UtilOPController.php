@@ -2703,38 +2703,34 @@ class Basico_OPController_UtilOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 13/04/2012
 	 */
-	public static function moverElementoPorChave( array $array, $posicaoInicial=null, $posicaoFinal=null )
+	public static function moverElementoPorChave(array $array, $posicaoInicial=null, $posicaoFinal=null)
 	{
 		// verificando se a posicao inicial foi passada
-		if ( null === $posicaoInicial )
-	  	{
+		if (null === $posicaoInicial) {
 	  		// se a posicao inicial nao foi passada, recupera a chave do ultimo elemento
-	    	$posicaoInicial = count( $array ) - 1;
+	    	$posicaoInicial = count($array) - 1;
 	  	}
 	
 	  	// se a chave da posicao inicial nao existe lança uma excessao
-	  	if ( !isset( $array[$posicaoInicial] ) )
-	  	{
-	    	throw new Exception( "Chave $posicaoInicial não existe" );
+	  	if (!isset( $array[$posicaoInicial])) {
+	    	throw new Exception("Chave $posicaoInicial não existe");
 	  	}
 	
 	  	// se as chaves nao estiverem no range de 0 a ate a ultima chave, elas sao consideradas invalidas
-	  	if ( array_keys( $array ) != range( 0, count( $array ) - 1 ) )
-	  	{
-	    	throw new Exception( "Chaves do array inválidas" );
+	  	if (array_keys($array) != range(0, count($array)-1)) {
+	    	throw new Exception("Chaves do array inválidas");
 	  	}
-	
+
 	  	// recuperando o valor do elemento a ser movido
 	  	$value = $array[$posicaoInicial];
 	  	// excluindo elemento a ser movido
-	  	unset( $array[$posicaoInicial] );
+	  	unset($array[$posicaoInicial]);
 	
 	  	// se a posicao inicial for null adiciona o elemento no final do array
-	  	if ( null === $posicaoFinal )
-	  	{
+	  	if (null === $posicaoFinal) {
 	  		// adicionando elemento no final do array
 	    	array_push( $array, $value );
-	  	}else {
+	  	} else {
 	  		// removendo porcao do array ate a chave que o elemento movido ira ocupar
 	    	$tail = array_splice( $array, $posicaoFinal );
 	    	// adicionando elemento movido ao novo array
@@ -2743,7 +2739,25 @@ class Basico_OPController_UtilOPController
 	    	$array = array_merge( $array, $tail );
 	  	}
 	
+	  	// retornando array
 	  	return $array;
 	}
-	
+
+	/**
+	 * Recupera a chave do último elemento de um array
+	 * 
+	 * @param array $array
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	public static function retornaChaveUltimoElementoArray(array $array)
+	{
+		// setando ponteiro para o último elemento
+		end($array);
+		// retornando a chave do último elemento
+		return key($array);
+	}
 }

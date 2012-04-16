@@ -58,7 +58,40 @@ class Basico_OPController_DBUtilOPController
 		// retornando o valor do id generico vindo do objeto
 		return $objeto->$tablePrimaryKey;
     }
-    
+
+    /**
+     * Retorna o nome de um campo através do nome do atributo
+     * 
+     * @param String $nomeAtributo
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 16/04/2012
+     */
+    public static function retornaNomeCampoAtributo($nomeAtributo)
+    {
+    	// inicializando variáveis
+    	$nomeCampo = '';
+    	// loop para montar o nome do campo
+		for ($i = 0; $i < strlen($nomeAtributo); $i++) {
+			// recuperando substring
+			$substring = substr($nomeAtributo, $i, 1);
+
+			// verificando a substring é maiúscula
+			if ($substring !== strtolower($substring)) {
+				// adicionando underline como separador e trocando a substring maiúscula por minúscula
+				$nomeCampo .= '_' . strtolower($substring);
+			} else {
+				// adicionando substring
+				$nomeCampo .= $substring;
+			}
+		}
+
+    	// retornando o nome do campo
+    	return $nomeCampo;
+    }
+
     /**
      * Retorna o nome da tabela vinculada a um objeto
      * 
@@ -855,4 +888,41 @@ class Basico_OPController_DBUtilOPController
     	
     	return false;
     }
+
+	/**
+	 * Retorna a quantidade de linhas de um modelo (e sua condição SQL), via SQL
+	 * 
+	 * @param String $objetoModelo
+	 * @param String $condicaSQL
+	 * 
+	 * @return Integer
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	public static function retornaQuantidadeLinhasModeloCondicaoSQLViaSQL($objetoModelo, $condicaSQL)
+	{
+		// recuperando o nome da tabela
+		$nomeTabelaModelo = self::retornaTableNameObjeto($objetoModelo);
+
+		// montando a query para recuperar a quantidade de registros
+		$queryQuantidadeRegistros = "SELECT count(id) AS total_registros FROM {$nomeTabelaModelo}";
+
+		// verificando se existe condição SQL passada
+		if ($condicaSQL) {
+			// adicionando condição SQL
+			$queryQuantidadeRegistros .= " WHERE {$condicaSQL}";
+		}
+
+		// recuperando resultados
+		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryQuantidadeRegistros);
+
+		// verificando resultado
+		if (count($arrayResultados)) {
+			// retornando a quantidade de registros
+			return (int) $arrayResultados[0]['total_registros'];
+		}
+
+		return 0;
+	}
 }

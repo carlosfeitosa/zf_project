@@ -40,6 +40,23 @@ class Basico_OPController_CrudOPController
 	const JQGRID_VALOR_SORD = 'sord';
 	const JQGRID_VALOR_TOTAL_PAGES = 'total';
 	const JQGRID_VALOR_TOTAL_RECS = 'records';
+	const JQGRID_VALOR_SEARCH_FIELD = 'searchField';
+	const JQGRID_VALOR_SEARCH_STRING = 'searchString';
+	const JQGRID_VALOR_SEARCH_OPERATOR = 'searchOper';
+	const JQGRID_VALOR_SEARCH_OPERADOR_EQ = 'eq';
+	const JQGRID_VALOR_SEARCH_OPERADOR_NOT_EQ = 'ne';
+	const JQGRID_VALOR_SEARCH_OPERADOR_BEGIN_WITH = 'bw';
+	const JQGRID_VALOR_SEARCH_OPERADOR_NOT_BEGIN_WITH = 'bn';
+	const JQGRID_VALOR_SEARCH_OPERADOR_END_WITH = 'ew';
+	const JQGRID_VALOR_SEARCH_OPERADOR_NOT_END_WITH = 'en';
+	const JQGRID_VALOR_SEARCH_OPERADOR_CONTAINS = 'cn';
+	const JQGRID_VALOR_SEARCH_OPERADOR_NOT_CONTAINS = 'nc';
+	const JQGRID_VALOR_SEARCH_OPERADOR_IS_NULL = 'nu';
+	const JQGRID_VALOR_SEARCH_OPERADOR_IS_NOT_NULL = 'nn';
+	const JQGRID_VALOR_SEARCH_OPERADOR_IS_IN = 'in';
+	const JQGRID_VALOR_SEARCH_OPERADOR_IS_NOT_IN = 'ni';
+	const JQGRID_DEFAULT_LIMITE_POR_PAGINA = 15;
+	const JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA = '[15, 30, 45, 0]';
 
 	/**
 	 * Processa o array de parametros do crud
@@ -93,6 +110,124 @@ class Basico_OPController_CrudOPController
 	}
 
 	/**
+	 * Processa o array de parametros do jqgrid
+	 * 
+	 * @param Array $arrayParametrosCrud
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	private static function processaArrayParametrosJQGrid(array &$arrayParametrosCrud)
+	{
+		// recuperando parametro do jqgrid
+		$stringJsonParametrosJqGrid = Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayParametrosCrud);
+		
+		// transformando o array json em array php
+		$arrayParametrosJqGrid = Basico_OPController_UtilOPController::encodedStringToArray($stringJsonParametrosJqGrid);
+
+		// setando o valor do limite
+		$arrayParametrosCrud[self::ATRIBUTO_LIMITE_CRUD] = $arrayParametrosJqGrid[self::JQGRID_VALOR_ROWS];
+		// calculando e setando o offset
+		$arrayParametrosCrud[self::ATRIBUTO_OFFSET_CRUD] = ($arrayParametrosCrud[self::ATRIBUTO_LIMITE_CRUD] * ($arrayParametrosJqGrid[self::JQGRID_VALOR_PAGE]-1));
+		// setando o valor de ordenacao
+		$arrayParametrosCrud[self::ATRIBUTO_ORDENACAO_CRUD] = "{$arrayParametrosJqGrid[self::JQGRID_VALOR_SIDX]} {$arrayParametrosJqGrid[self::JQGRID_VALOR_SORD]}";
+		// setando a página
+		$arrayParametrosCrud[self::JQGRID_VALOR_PAGE] = $arrayParametrosJqGrid[self::JQGRID_VALOR_PAGE];
+
+		// verificando se foi passado parametros de filtros
+		if ((isset($arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_FIELD])) and ('' !== $arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_FIELD])) {
+			// recuperando parametros de filtragem
+			$campoBusca    = $arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_FIELD];
+			$stringBusca   = $arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_STRING];
+			$operadorBusca = self::retornaOperadorSQLViaOperadorJQGrid($arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_OPERATOR], $stringBusca);
+
+			// setando condição SQL
+			$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = "{$campoBusca} {$operadorBusca} {$stringBusca}";
+		}
+
+		// removendo parametros jqgrid do array de parametros do crud
+		unset($arrayParametrosCrud[$stringJsonParametrosJqGrid]);
+
+		return true;
+	}
+
+	/**
+	 * Retorna o operador SQL através do operador do JQGrid
+	 * 
+	 * @param String $operadorJQGrid
+	 * @param String $valor
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 16/04/2012
+	 */
+	private static function retornaOperadorSQLViaOperadorJQGrid($operadorJQGrid, &$valor)
+	{
+		// descobrindo o operador
+		switch ($operadorJQGrid) {
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_EQ:
+				return ' = ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_NOT_EQ:
+				return ' <> ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_BEGIN_WITH:
+				// adicionando wildcard ao valor
+				$valor = Basico_OPController_UtilOPController::retornaStringEntreCaracter($valor . '%', "'");
+				return ' LIKE ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_NOT_BEGIN_WITH:
+				// adicionando wildcard ao valor
+				$valor = Basico_OPController_UtilOPController::retornaStringEntreCaracter($valor . '%', "'");
+				return ' NOT LIKE ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_END_WITH:
+				// adicionando wildcard ao valor
+				$valor = Basico_OPController_UtilOPController::retornaStringEntreCaracter('%' . $valor, "'");
+				return ' LIKE ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_NOT_END_WITH:
+				// adicionando wildcard ao valor
+				$valor = Basico_OPController_UtilOPController::retornaStringEntreCaracter('%' . $valor, "'");
+				return ' NOT LIKE ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_CONTAINS:
+				// adicionando wildcard ao valor
+				$valor = Basico_OPController_UtilOPController::retornaStringEntreCaracter('%' . $valor . '%', "'");
+				return ' LIKE ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_NOT_CONTAINS:
+				// adicionando wildcard ao valor
+				$valor = Basico_OPController_UtilOPController::retornaStringEntreCaracter('%' . $valor . '%', "'");
+				return ' NOT LIKE ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_IS_NULL:
+				// limpando o valor
+				$valor = '';
+				return ' IS NULL';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_IS_NOT_NULL:
+				// limpando o valor
+				$valor = '';
+				return ' IS NOT NULL';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_IS_IN:
+				// modificando o valor
+				$valor = '(' . $valor . ')';
+				return ' IN ';
+				break;
+			case self::JQGRID_VALOR_SEARCH_OPERADOR_IS_NOT_IN:
+				// modificando o valor
+				$valor = '(' . $valor . ')';
+				return ' NOT IN ';
+				break;
+		}
+	}
+
+	/**
 	 * Processa o crud via parametros
 	 * 
 	 * @param Array $arrayParametrosCrud
@@ -117,7 +252,7 @@ class Basico_OPController_CrudOPController
 		}
 
 		// processando os parametros
-		if (!self::processaArrayParametrosCrud($arrayParametrosCrud)) {
+		if ((self::TIPO_DADOS !== $tipoOperacaoCrud) and (!self::processaArrayParametrosCrud($arrayParametrosCrud))) {
 			// retornando falso
 			return false;
 		}
@@ -142,6 +277,10 @@ class Basico_OPController_CrudOPController
 			break;
 			// recuperar dados de um objeto
 			case self::TIPO_DADOS:
+				// processando os parametros vindos do jqgrid
+				self::processaArrayParametrosJQGrid($arrayParametrosCrud);
+				self::processaArrayParametrosCrud($arrayParametrosCrud);
+
 				// retornando dados
 				return self::retornaDados($arrayParametrosCrud, $arrayParametrosCrud[self::ATRIBUTO_FORMATO_DADOS]);
 			break;
@@ -180,7 +319,10 @@ class Basico_OPController_CrudOPController
 		// removendo aspas duplas dos atributos rowinfo dos objetos
 		foreach ($arrayObjetos as $chave => $objeto) {
 			$arrayObjetos[$chave]->rowinfo = str_replace('"', "'", $objeto->rowinfo);
-		}		                                                                              
+		}
+
+		// recuperando a quantidade de registros retornados pela condição SQL, sem "limit"
+		$quantidadeRegistros = Basico_OPController_DBUtilOPController::retornaQuantidadeLinhasModeloCondicaoSQLViaSQL($instanciaModelo, $arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD]);
 
 		// verificando o formato
 		switch ($formato) {
@@ -191,8 +333,14 @@ class Basico_OPController_CrudOPController
 					$arrayObjetoJson[] = Basico_OPController_UtilOPController::codificar($objeto);
 				}
 
+				// verificando o retorno do array json
+				if (!isset($arrayObjetoJson)) {
+					// setando um array vazio
+					$arrayObjetoJson = array();
+				}
+
 				// processando array de resultados para retornar no formato esperado pelo JqGrid
-				$arrayObjetoJson = self::retornaArrayDadosJqGrid($arrayObjetoJson, $arrayParametrosCrud);
+				$arrayObjetoJson = self::retornaArrayDadosJqGrid($arrayObjetoJson, $arrayParametrosCrud, $quantidadeRegistros);
 
 				// transformando array em uma string json
 				$resultado = Basico_OPController_UtilOPController::limpaArrayJson(Basico_OPController_UtilOPController::codificaArrayJson($arrayObjetoJson));
@@ -204,8 +352,14 @@ class Basico_OPController_CrudOPController
 					$arrayObjetoArray[] = Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_TO_ARRAY);
 				}
 
+				// verificando o retorno do array de objetos
+				if (!isset($arrayObjetoArray)) {
+					// setando um array vazio
+					$arrayObjetoArray = array();
+				}
+
 				// processando array de resultados para retornar no formato esperado pelo JqGrid
-				$arrayObjetoArray = self::retornaArrayDadosJqGrid($arrayObjetoArray, $arrayParametrosCrud);
+				$arrayObjetoArray = self::retornaArrayDadosJqGrid($arrayObjetoArray, $arrayParametrosCrud, $quantidadeRegistros);
 
 				// transformando array em xml
 				$resultado = Basico_OPController_UtilOPController::codificar($arrayObjetoArray, CODIFICAR_ARRAY_TO_XML);
@@ -234,7 +388,7 @@ class Basico_OPController_CrudOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 12/04/2012
 	 */
-	private static function retornaArrayDadosJqGrid(array $arrayDados, array $arrayParametrosCrud)
+	private static function retornaArrayDadosJqGrid(array $arrayDados, array $arrayParametrosCrud, $totalRegistros)
 	{
 		// inicializando variáveis
 		$paginaAtual = 1;
@@ -253,7 +407,7 @@ class Basico_OPController_CrudOPController
 		}
 
 		// recuperando total de linhas
-		$totalLinhas = count($arrayDados);
+		$totalLinhas = $totalRegistros;
 
 		// verificando o total de linhas para calcular paginação
 		if ($totalLinhas) {
@@ -293,7 +447,7 @@ class Basico_OPController_CrudOPController
 	private static function retornaUrlRecuperacaoDados(array $arrayParametrosCrud)
 	{
 		// montando a url
-		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}/limite/10/condicaoSql/{$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD]}";
+		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}/condicaoSql/{$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD]}";
 
 		// retornando a url
 		return $urlRetorno;
@@ -375,14 +529,14 @@ class Basico_OPController_CrudOPController
 	 * @param Integer $alturaGrid
 	 * @param Integer $larguraGrid 
 	 * @param Integer $linhasPorPagina
-	 * @param Array $arrayOpcoesLinhasPorPagina
+	 * @param Array $opcoesLinhasPorPagina
 	 * @param Array $arrayOperacoesPermitidas
 	 * 
 	 * @return String
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 */
-	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 400, $larguraGrid = 1000, $linhasPorPagina = 10, $arrayOpcoesLinhasPorPagina = array(10, 20, 30), $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
+	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 400, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
 	{
 		// recuperando o nome da listagem e nome paginação
 		$nomeListagem  = "listagem-{$nomeModelo}";
@@ -403,16 +557,19 @@ class Basico_OPController_CrudOPController
 		foreach ($arrayAtributosModelo as $chave => $atributoModelo) {
 			// setando string colNames
 			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
-			
+
 			// recuperando tamanho do nome do atributo
 			$tamanhoNomeAtributo = strlen($atributoModelo) * 8;
-			
+
 			// somando a largura do grid
 			$larguraGrid += $tamanhoNomeAtributo;
-			
+
+			// recuperando o nome do atributo no banco de dados
+			$nomeAtributoBD = Basico_OPController_DBUtilOPController::retornaNomeCampoAtributo($atributoModelo);
+
 			// setando string colModel
-			$stringColModel .= "{name: '{$atributoModelo}', index: '{$atributoModelo}', width:{$tamanhoNomeAtributo}}";
-			
+			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$tamanhoNomeAtributo}}";
+
 			// verificando se não trata-se do último elemento
 			if (count($arrayAtributosModelo) !== $chave) {
 				$stringColNames .= ', ';
@@ -432,8 +589,8 @@ class Basico_OPController_CrudOPController
 						   	colModel: [
 						   		{$stringColModel}
 						   	],
-						   	rowNum: 10,
-						   	rowList: [10,20,30],
+						   	rowNum: {$linhasPorPagina},
+						   	rowList: {$opcoesLinhasPorPagina},
 						   	pager: '#{$nomePaginacao}',
 						   	sortname: '{$campoOrdenadorInicial}',
 						    viewrecords: true,
@@ -445,7 +602,7 @@ class Basico_OPController_CrudOPController
 
 												},
 
-							jsonReader: { repeatitems: false, id: 'id' }
+							jsonReader: {repeatitems: false, id: 'id'}
 						})
 						
 				});
