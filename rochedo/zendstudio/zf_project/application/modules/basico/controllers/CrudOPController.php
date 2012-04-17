@@ -176,7 +176,7 @@ class Basico_OPController_CrudOPController
 				$operadorBusca   = self::retornaOperadorSQLViaOperadorJQGrid($regra[self::JQGRID_VALOR_SEARCH_OPERATOR], $stringBusca);
 				
 				// verificando se a condicao sql esta completa
-				if ($campoBusca != '' && $stringBusca != '' && $operadorBusca != '') {
+				if ($campoBusca != '' && $operadorBusca != '') {
 					// setando condição SQL
 					if ($i === 0)	
 						$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = "{$campoBusca} {$operadorBusca} {$stringBusca}";
@@ -550,7 +550,7 @@ class Basico_OPController_CrudOPController
 	{
 		// inicializando variáveis
 		$paginaAtual = 1;
-		$limit = 10;
+		$limit = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA;
 
 		// verificando e recuperando página atual vinda do grid
 		if (isset($arrayParametrosCrud[self::JQGRID_VALOR_PAGE])) {
@@ -732,10 +732,10 @@ class Basico_OPController_CrudOPController
 			$larguraGrid += $larguraColuna;
 
 			// setando string colModel
-			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}}";
+			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, editable:true, editoptions:{size:10, type:'select'}}";
 
 			// verificando se não trata-se do último elemento
-			if (count($arrayAtributosModelo) !== $chave) {
+			if ($chave !== Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayAtributosModelo)) {
 				$stringColNames .= ', ';
 				$stringColModel .= ',';
 			}
@@ -762,7 +762,8 @@ class Basico_OPController_CrudOPController
 							multiselect: false,
 						    mtype: 'GET',
 							gridview: true,
-						    caption: 'CRUD {$nomeModelo}',
+							editurl:'/',
+							caption: 'CRUD {$nomeModelo}',
 						    serializeGridData: function (dados) {
 												return JSON.stringify(dados)
 
@@ -775,7 +776,7 @@ class Basico_OPController_CrudOPController
 				
 				$(function(){
 				
-					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{add:false,edit:false,del:false},{},{},{},{multipleSearch:true})
+					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{view: true},{height:'auto', width:'auto',reloadAfterSubmit:false},{height:'auto',reloadAfterSubmit:false},{reloadAfterSubmit:false},{multipleSearch:true});
 				});";
 		
 		// retornando script

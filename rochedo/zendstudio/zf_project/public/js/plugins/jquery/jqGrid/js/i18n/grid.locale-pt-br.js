@@ -19,8 +19,8 @@ $.extend($.jgrid,{
 	    caption: "Procurar...",
 	    Find: "Procurar",
 	    Reset: "Resetar",
-	    odata : ['equal', 'not equal', 'less', 'less or equal','greater','greater or equal', 'begins with','does not begin with','is in','is not in','ends with','does not end with','contains','does not contain'],
-	    groupOps: [	{ op: "AND", text: "all" },	{ op: "OR",  text: "any" }	],
+	    odata : ['igual', 'diferente', 'menor', 'menor ou igual','maior','maior ou igual', 'começa com','não começa com','está contido em','não está contido em','termina com','não termina com','contém','não contém', 'é nulo', 'não é nulo'],
+	    groupOps: [	{ op: "AND", text: "todas as condições" },	{ op: "OR",  text: "qualquer uma das condições" }	],
 		matchText: " iguala",
 		rulesText: " regras"
 	},
