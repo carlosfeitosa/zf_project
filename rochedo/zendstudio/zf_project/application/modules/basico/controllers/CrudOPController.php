@@ -58,6 +58,7 @@ class Basico_OPController_CrudOPController
 	const JQGRID_DEFAULT_LIMITE_POR_PAGINA = 15;
 	const JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA = '[15, 30, 45, 0]';
 	const JQGRID_MAX_STRING = 500;
+	const JQGRID_MAX_STRING_TRUNCATE = 15;
 
 	/**
 	 * Processa o array de parametros do crud
@@ -407,13 +408,22 @@ class Basico_OPController_CrudOPController
 		// loop para processar os objetos
 		foreach ($arrayObjetos as $chave => $objeto) {
 			// loop nos atributos transformáveis
-			foreach ($arrayAtributosTransformaveis as $chaveAtributo => $tipoAtributo) {
+			foreach ($arrayAtributosTransformaveis as $chaveAtributo => $arrayTipoAtributo) {
 				// recuperando o nome do atributo
 				$nomeAtributo = Basico_OPController_DBUtilOPController::retornaNomeAtributoCampo($chaveAtributo);
 
-				// verificando o tipo de transformação
-				if ('varchar' === $tipoAtributo) {
-					// transformando o valor do varchar
+				// verificando se trata-se do rowinfo
+				if ('rowinfo' !== $nomeAtributo) {
+					// escapando aspas
+					$objeto->$nomeAtributo = Basico_OPController_UtilOPController::trocaAspasDuplasPorAspasSimples($objeto->$nomeAtributo);
+
+					// verificando o tipo de transformação
+					if (('varchar' === $arrayTipoAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) and (self::JQGRID_MAX_STRING < $arrayTipoAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH])) {
+						// transformando o valor do varchar
+						$objeto->$nomeAtributo = substr($objeto->$nomeAtributo, 0, self::JQGRID_MAX_STRING_TRUNCATE) . '...';
+					}
+				} else {
+					// removendo o valor
 					$objeto->$nomeAtributo = '...';
 				}
 			}
@@ -440,11 +450,9 @@ class Basico_OPController_CrudOPController
 			// verificando o tipo do campo
 			switch ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
 				case 'varchar':
-					// verificando se o varchar é maior que o máximo permitido no grid
-					if ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH] > self::JQGRID_MAX_STRING) {
-						// adicionando atributo que deve ser modificado
-						$arrayRetorno[$chave] = $arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE];
-					}
+					// adicionando atributo que deve ser modificado
+					$arrayRetorno[$chave] = array(Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE => $arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE],
+												  Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH => $arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH]);
 				break;
 			}
 		}
@@ -644,7 +652,7 @@ class Basico_OPController_CrudOPController
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 */
-	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 400, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
+	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 330, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
 	{
 		// recuperando o nome da listagem e nome paginação
 		$nomeListagem  = "listagem-{$nomeModelo}";
@@ -747,16 +755,23 @@ class Basico_OPController_CrudOPController
 			// verificando o tipo do dado
 			switch ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
 				case 'varchar':
-					if ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH] >= self::JQGRID_MAX_STRING) {
-						$arrayResultado[$chave] = 25;
+					if ('rowinfo' === $chave) {
+						// setando a larguda da coluna para o caso do rowinfo
+						$arrayResultado[$chave] = 20;
+					} else if ($arrayValores[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH] >= self::JQGRID_MAX_STRING) {
+						// setando a largura da coluna para o caso do dado que será truncado por ser muito grande para ser exibido no grid
+						$arrayResultado[$chave] = 90;
 					} else {
+						// setando a largara da coluna para o caso do dado que será exibido integralmente
 						$arrayResultado[$chave] = 200;
 					}
 				break;
 				case 'timestamp':
+					// setando a largura para colunas tipo data/hora
 					$arrayResultado[$chave] = 120;
 				break;
 				default:
+					// setando a largura para o valor default
 					$arrayResultado[$chave] = 40;
 				break;
 			}

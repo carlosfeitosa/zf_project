@@ -643,6 +643,21 @@ class Basico_OPController_UtilOPController
 	}
 
 	/**
+	 * Retorna uma string trocando as aspas duplas por aspas simples
+	 * 
+	 * @param String $string
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 */
+	public static function trocaAspasDuplasPorAspasSimples($string)
+	{
+		// retornando o resultado da troca
+		return str_replace('"', "'", $string);
+	}
+
+	/**
 	 * Retorna uma string com o dolar ($) escapado para uso em javascript contido em um arquivo php
 	 * 
 	 * @param String $string

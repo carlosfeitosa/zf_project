@@ -175,6 +175,16 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 	{
 		return $this->_destinatarios;
 	}
+
+	/**
+	* Get destinatarios 
+	* 
+	* @return null|String
+	*/
+	public function getDestinatarios()
+	{
+		return $this->getDestinatariosString();
+	}
 	
 	/**
 	* Get destinatarios array
@@ -211,6 +221,16 @@ class Basico_Model_Mensagem extends Basico_AbstractModel_RochedoPersistentModelo
 	public function getDestinatariosNomesString()
 	{
 		return $this->_destinatariosNomes;
+	}
+
+	/**
+	* Get destinatariosNomes
+	* 
+	* @return null|String
+	*/
+	public function getDestinatariosNomes()
+	{
+		return $this->getDestinatariosNomesString();
 	}
 	
 	/**
