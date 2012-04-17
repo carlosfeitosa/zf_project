@@ -40,9 +40,12 @@ class Basico_OPController_CrudOPController
 	const JQGRID_VALOR_SORD = 'sord';
 	const JQGRID_VALOR_TOTAL_PAGES = 'total';
 	const JQGRID_VALOR_TOTAL_RECS = 'records';
-	const JQGRID_VALOR_SEARCH_FIELD = 'searchField';
-	const JQGRID_VALOR_SEARCH_STRING = 'searchString';
-	const JQGRID_VALOR_SEARCH_OPERATOR = 'searchOper';
+	const JQGRID_CHAVE_FILTROS = 'filters';
+	const JQGRID_VALOR_SEARCH_FIELD = 'field';
+	const JQGRID_VALOR_SEARCH_DATA = 'data';
+	const JQGRID_VALOR_SEARCH_GROUP_OPERATOR = 'groupOp';
+	const JQGRID_VALOR_SEARCH_RULES = 'rules';
+	const JQGRID_VALOR_SEARCH_OPERATOR = 'op';
 	const JQGRID_VALOR_SEARCH_OPERADOR_EQ = 'eq';
 	const JQGRID_VALOR_SEARCH_OPERADOR_NOT_EQ = 'ne';
 	const JQGRID_VALOR_SEARCH_OPERADOR_BEGIN_WITH = 'bw';
@@ -124,11 +127,22 @@ class Basico_OPController_CrudOPController
 	private static function processaArrayParametrosJQGrid(array &$arrayParametrosCrud)
 	{
 		// recuperando parametro do jqgrid
-		$stringJsonParametrosJqGrid = Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayParametrosCrud);
+		$stringJsonParametrosJqGrid  = Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayParametrosCrud);
 		
+		// completando a recuperacao dos parametros do jqGrid
+		if (isset($arrayParametrosCrud[$stringJsonParametrosJqGrid]) && is_array($arrayParametrosCrud[$stringJsonParametrosJqGrid])) {
+			// recuperando restante dos parametros do jqGrid
+			$stringJsonParametrosJqGrid .= Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayParametrosCrud[$stringJsonParametrosJqGrid]);
+			// corrigindo fechamento do json dos parametros
+			$stringJsonParametrosJqGrid .= "]}}";	
+		}
+		
+		// corrigindo string json
+		$stringJsonParametrosJqGrid = str_replace('"rules":', '"rules":[', str_replace('"{', '{', str_replace('\"', '"', $stringJsonParametrosJqGrid)));
+				
 		// transformando o array json em array php
 		$arrayParametrosJqGrid = Basico_OPController_UtilOPController::encodedStringToArray($stringJsonParametrosJqGrid);
-
+		
 		// setando o valor do limite
 		$arrayParametrosCrud[self::ATRIBUTO_LIMITE_CRUD] = $arrayParametrosJqGrid[self::JQGRID_VALOR_ROWS];
 		// calculando e setando o offset
@@ -137,18 +151,35 @@ class Basico_OPController_CrudOPController
 		$arrayParametrosCrud[self::ATRIBUTO_ORDENACAO_CRUD] = "{$arrayParametrosJqGrid[self::JQGRID_VALOR_SIDX]} {$arrayParametrosJqGrid[self::JQGRID_VALOR_SORD]}";
 		// setando a página
 		$arrayParametrosCrud[self::JQGRID_VALOR_PAGE] = $arrayParametrosJqGrid[self::JQGRID_VALOR_PAGE];
-
+		
 		// verificando se foi passado parametros de filtros
-		if ((isset($arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_FIELD])) and ('' !== $arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_FIELD])) {
+		if ((isset($arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS])) and ('' !== $arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS])) {
+			
 			// recuperando parametros de filtragem
-			$campoBusca    = $arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_FIELD];
-			$stringBusca   = $arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_STRING];
-			$operadorBusca = self::retornaOperadorSQLViaOperadorJQGrid($arrayParametrosJqGrid[self::JQGRID_VALOR_SEARCH_OPERATOR], $stringBusca);
+			$operadorGrupo   = $arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS][self::JQGRID_VALOR_SEARCH_GROUP_OPERATOR];
+			$regrasFiltragem = $arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS][self::JQGRID_VALOR_SEARCH_RULES];
+			
+			// inicializando variaveis
+			$i = 0;
+			
+			// loop para montar instrucoes da condicao sql
+			foreach ($regrasFiltragem as $regra) {
+								
+				$campoBusca      = $regra[self::JQGRID_VALOR_SEARCH_FIELD];
+				$stringBusca     = $regra[self::JQGRID_VALOR_SEARCH_DATA];
+				$operadorBusca   = self::retornaOperadorSQLViaOperadorJQGrid($regra[self::JQGRID_VALOR_SEARCH_OPERATOR], $stringBusca);
 
-			// setando condição SQL
-			$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = "{$campoBusca} {$operadorBusca} {$stringBusca}";
+				// setando condição SQL
+				if ($i === 0)	
+					$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = "{$campoBusca} {$operadorBusca} {$stringBusca}";
+				else
+					$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] .= " {$operadorGrupo} {$campoBusca} {$operadorBusca} {$stringBusca}";
+				
+				$i++;
+				
+			}
 		}
-
+				
 		// removendo parametros jqgrid do array de parametros do crud
 		unset($arrayParametrosCrud[$stringJsonParametrosJqGrid]);
 
@@ -171,6 +202,8 @@ class Basico_OPController_CrudOPController
 		// descobrindo o operador
 		switch ($operadorJQGrid) {
 			case self::JQGRID_VALOR_SEARCH_OPERADOR_EQ:
+				if (is_string($valor))
+					$valor = Basico_OPController_UtilOPController::retornaStringEntreCaracter($valor, "'");
 				return ' = ';
 				break;
 			case self::JQGRID_VALOR_SEARCH_OPERADOR_NOT_EQ:
@@ -718,6 +751,8 @@ class Basico_OPController_CrudOPController
 						    viewrecords: true,
 						    sortorder: 'asc',
 							multiselect: false,
+						    mtype: 'GET',
+							gridview: true,
 						    caption: 'CRUD {$nomeModelo}',
 						    serializeGridData: function (dados) {
 												return JSON.stringify(dados)
@@ -731,7 +766,7 @@ class Basico_OPController_CrudOPController
 				
 				$(function(){
 				
-					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{add:false,edit:false,del:false})
+					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{add:false,edit:false,del:false},{},{},{},{multipleSearch:true})
 				});";
 		
 		// retornando script
