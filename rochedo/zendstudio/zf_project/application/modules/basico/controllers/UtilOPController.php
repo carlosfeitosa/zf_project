@@ -923,13 +923,19 @@ class Basico_OPController_UtilOPController
    		// convertendo o objeto em array
    		$arrayObjeto = (array) $object;
 
+   		// loop para correção das chaves do array
+   		foreach ($arrayObjeto as $chave => $valor) {
+   			// motando array com as chaves corretas
+   			$arrayObjetoChavesCorrigidas[str_replace("\0*\0_", '', $chave)] = $valor;
+   		}
+
+   		// transformando o array sujo no array corrigido
+   		$arrayObjeto = $arrayObjetoChavesCorrigidas;
+
    		// verificando a necessidade de transformação de dados
    		if (count($arrayParametrosTransformacao)) {
    			// loop para transformar os valores
    			foreach ($arrayParametrosTransformacao as $atributo => $arrayTransformacao) {
-   				// transformando o nome do atributo
-   				$atributo = "\0*\0_" . $atributo;
-
    				// verificando o atributo de transformação
    				if ($arrayTransformacao['tipo_dado'] === 'timestamp') {
    					// transformando o dado
@@ -938,9 +944,72 @@ class Basico_OPController_UtilOPController
    			}
    		}
 
-		// retornando string codificada apartir de um objeto
-   		return json_encode($arrayObjeto, JSON_FORCE_OBJECT);
+   		// retornando string codificada apartir de um objeto
+   		return self::rochedoJsonEncode($arrayObjeto);
     }
+
+    /**
+     * Recebe um array e transforma em string json
+     * 
+     * @param Array $arrayDados
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     */
+    public static function rochedoJsonEncode(array $arrayDados)
+    {
+    	// inicializando variáveis
+    	$stringResposta = '';
+
+    	// verificando se o array possui elementos
+    	if (count($arrayDados)) {
+    		// loop para percorrer os elementos do array
+    		foreach ($arrayDados as $chave => $valor) {
+    			// verificando se a chave não é inteira
+    			if (!is_int($chave)) {
+	    			// colocando a chave do array na string de resposta 
+	    			$stringResposta .= self::retornaStringEntreCaracter($chave, '"') . ':';
+    			}
+
+    			// verificando se o valor é um array
+    			if (is_array($valor)) {
+    				// recuperando o valor do array
+    				$valor = '[' . self::rochedoJsonEncode($valor) . ']';
+	    			// colocando o valor do elemento
+    				$stringResposta .= $valor;
+    			} else if ((is_bool($valor)) and (true === $valor)) {
+    				// colocando o valor do elemento
+    				$stringResposta .= self::retornaStringEntreCaracter('true', '"');
+    			} else if ((is_bool($valor)) and (false === $valor)) {
+    				// colocando o valor do elemento
+    				$stringResposta .= self::retornaStringEntreCaracter('false', '"');
+    			} else {
+	    			// colocando o valor do elemento
+	    			$stringResposta .= self::retornaStringEntreCaracter($valor, '"');
+    			}
+
+    			// verificando se não é o ultimo elemento
+				if ($chave !== self::retornaChaveUltimoElementoArray($arrayDados)) {
+					// adicionando a vírgula
+					$stringResposta .= ',';
+				}
+
+    		}
+    	} else {
+    		// retornando vazio
+    		return "";
+    	}
+
+    	// verificando se a string de resposta precisa ganhar "{}"
+    	if (substr($stringResposta, 1, 1) === '{') {
+	    	// retornando a string
+	    	return $stringResposta;
+    	}
+
+    	// retornando a string
+    	return "{{$stringResposta}}";
+    } 
 
     /**
      * Retorna o checksum de um objeto passado por parametro
@@ -1829,7 +1898,7 @@ class Basico_OPController_UtilOPController
     public static function codificaArrayJson($array)
     {
 		// codificando e retornando a string JSON contendo o array de parametros
-		return Zend_Json::encode($array);
+		return self::rochedoJsonEncode($array);
     }
 
     /**

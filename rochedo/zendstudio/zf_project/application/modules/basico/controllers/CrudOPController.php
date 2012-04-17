@@ -128,7 +128,13 @@ class Basico_OPController_CrudOPController
 	{
 		// recuperando parametro do jqgrid
 		$stringJsonParametrosJqGrid  = Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayParametrosCrud);
-		
+
+		// verificando se o resultado da recuperação é um array json vindo do jqgrid
+		if (0 !== strpos($stringJsonParametrosJqGrid, '{"_search')) {
+			// parando a execução
+			return true;
+		}
+
 		// completando a recuperacao dos parametros do jqGrid
 		if (isset($arrayParametrosCrud[$stringJsonParametrosJqGrid]) && is_array($arrayParametrosCrud[$stringJsonParametrosJqGrid])) {
 			// recuperando restante dos parametros do jqGrid
