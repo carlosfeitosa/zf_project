@@ -174,14 +174,17 @@ class Basico_OPController_CrudOPController
 				$campoBusca      = $regra[self::JQGRID_VALOR_SEARCH_FIELD];
 				$stringBusca     = $regra[self::JQGRID_VALOR_SEARCH_DATA];
 				$operadorBusca   = self::retornaOperadorSQLViaOperadorJQGrid($regra[self::JQGRID_VALOR_SEARCH_OPERATOR], $stringBusca);
-
-				// setando condição SQL
-				if ($i === 0)	
-					$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = "{$campoBusca} {$operadorBusca} {$stringBusca}";
-				else
-					$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] .= " {$operadorGrupo} {$campoBusca} {$operadorBusca} {$stringBusca}";
 				
-				$i++;
+				// verificando se a condicao sql esta completa
+				if ($campoBusca != '' && $stringBusca != '' && $operadorBusca != '') {
+					// setando condição SQL
+					if ($i === 0)	
+						$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = "{$campoBusca} {$operadorBusca} {$stringBusca}";
+					else
+						$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] .= " {$operadorGrupo} {$campoBusca} {$operadorBusca} {$stringBusca}";
+					
+					$i++;
+				}
 				
 			}
 		}
