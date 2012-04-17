@@ -26,12 +26,14 @@ class Basico_OPController_CrudOPController
 	const ATRIBUTO_LIMITE_CRUD = "limite";
 	const ATRIBUTO_OFFSET_CRUD = "offset";
 	const ATRIBUTO_FORMATO_DADOS = 'formatoDados';
+	const ATRIBUTO_TIPO_GRID = 'tipoGrid';
 	const TIPO_LISTAR = "listar";
 	const TIPO_INSERIR = "inserir";
 	const TIPO_EDITAR = "editar";
 	const TIPO_SALVAR = "salvar";
 	const TIPO_EXCLUIR = "excluir";
 	const TIPO_DADOS = "dados";
+	const TIPO_GRID_JQGRID = 'jqgrid';
 	const FORMATO_DADOS_JSON = 'json';
 	const FORMATO_DADOS_XML = 'xml';
 	const JQGRID_VALOR_PAGE = 'page';
@@ -157,6 +159,8 @@ class Basico_OPController_CrudOPController
 		$arrayParametrosCrud[self::ATRIBUTO_ORDENACAO_CRUD] = "{$arrayParametrosJqGrid[self::JQGRID_VALOR_SIDX]} {$arrayParametrosJqGrid[self::JQGRID_VALOR_SORD]}";
 		// setando a página
 		$arrayParametrosCrud[self::JQGRID_VALOR_PAGE] = $arrayParametrosJqGrid[self::JQGRID_VALOR_PAGE];
+		// setando o tipo de grid
+		$arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID] = self::TIPO_GRID_JQGRID;
 		
 		// verificando se foi passado parametros de filtros
 		if ((isset($arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS])) and ('' !== $arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS])) {
@@ -170,7 +174,6 @@ class Basico_OPController_CrudOPController
 			
 			// loop para montar instrucoes da condicao sql
 			foreach ($regrasFiltragem as $regra) {
-								
 				$campoBusca      = $regra[self::JQGRID_VALOR_SEARCH_FIELD];
 				$stringBusca     = $regra[self::JQGRID_VALOR_SEARCH_DATA];
 				$operadorBusca   = self::retornaOperadorSQLViaOperadorJQGrid($regra[self::JQGRID_VALOR_SEARCH_OPERATOR], $stringBusca);
@@ -363,9 +366,12 @@ class Basico_OPController_CrudOPController
 		// recuperando atributos dos campos da tabela relacionada ao objeto
 		$arrayAtributosCamposTabelaDBObjeto = Basico_OPController_DBUtilOPController::retornaArrayAtributosTabelaBDObjeto($instanciaModelo);
 
-		// processando dados para exibição
-		self::processaDadosParaJQGrid($arrayObjetos, $arrayAtributosCamposTabelaDBObjeto);
-
+		// verificando se o resultado da recuperação é um array json vindo do jqgrid
+		if ((isset($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID])) and ($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID] === self::TIPO_GRID_JQGRID)) {
+			// processando dados para exibição
+			self::processaDadosParaJQGrid($arrayObjetos, $arrayAtributosCamposTabelaDBObjeto);
+		}
+		
 		// recuperando atributos timestamp para transformação
 		$arrayAtributosTimestamp = self::retornaAtributosTimestamp($arrayAtributosCamposTabelaDBObjeto);
 
