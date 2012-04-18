@@ -671,7 +671,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		} else if ($forceCreation) {
 			// instanciando e preparando o controlador de rowinfo
 			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-			$rowinfoOPController->prepareXml($rowinfoOPController, true);
+			$rowinfoOPController->prepareXml(new Basico_Model_Categoria(), true);
 
 			// montando array contendo chaves e valores a serem inseridos
 			$arrayCategoria = array();
