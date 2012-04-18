@@ -430,7 +430,7 @@ class Basico_OPController_CVCOPController
 			$objeto = Basico_OPController_PersistenceOPController::bdObjectFind($objeto, $idObjeto);
 
 			// retornando array com os atributos do objeto
-			return Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_TO_ARRAY_USANDO_BLACKLIST_ATRIBUTOS_SISTEMA);
+			return Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_RECURSIVO_TO_ARRAY_USANDO_BLACKLIST_ATRIBUTOS_SISTEMA);
 		}
 
 		return null;

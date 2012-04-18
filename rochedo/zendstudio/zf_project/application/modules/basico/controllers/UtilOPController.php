@@ -715,7 +715,7 @@ class Basico_OPController_UtilOPController
 	 * 
 	 * @return Array|null
 	 */
-	public static function objectToArray($objeto, array $blacklistAtributos = array())
+	public static function objectRecursiveToArray($objeto, array $blacklistAtributos = array())
 	{
 		// verificando se o parametro eh um objeto
 		if (!is_object($objeto))
@@ -881,12 +881,15 @@ class Basico_OPController_UtilOPController
     			return self::encodedStringToArray($valor);
     		break;
     		case CODIFICAR_OBJETO_TO_ARRAY:
-    			// retornando a codificacao de um objeto em array
-    			return self::objectToArray($valor);
+    			return self::objectToArray($valor, $arrayParametrosTransformacao);
     		break;
-    		case CODIFICAR_OBJETO_TO_ARRAY_USANDO_BLACKLIST_ATRIBUTOS_SISTEMA:
+    		case CODIFICAR_OBJETO_RECURSIVO_TO_ARRAY:
+    			// retornando a codificacao de um objeto em array
+    			return self::objectRecursiveToArray($valor);
+    		break;
+    		case CODIFICAR_OBJETO_RECURSIVO_TO_ARRAY_USANDO_BLACKLIST_ATRIBUTOS_SISTEMA:
     			// retornando a codificacao de um objeto em array, utilizando o blacklist de atributos do sistema
-    			return self::objectToArray($valor, self::retornaArrayBlackListObjetoAtributosSistema());
+    			return self::objectRecursiveToArray($valor, self::retornaArrayBlackListObjetoAtributosSistema());
     		break;
     		case CODIFICAR_ARRAY_TO_XML:
 				// retornando a codificacao de objetos em xml
@@ -925,16 +928,34 @@ class Basico_OPController_UtilOPController
     	// retornando o array codificado a partir da string codificada
     	return json_decode($encodedString, true);
     }
-    
+
     /**
-     * Converte um objeto em uma string codificada
+     * Converte um objeto um array
      * 
      * @param Object $object
      * @param Array $arrayParametrosTransformacao
      * 
      * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 18/04/2012
      */
-    public static function objectToEncodedString($object, $arrayParametrosTransformacao = array())
+    public static function objectToArray($object, $arrayParametrosTransformacao = array())
+    {
+    	// retornando objeto em array
+    	return self::objectToEncodedString($object, $arrayParametrosTransformacao, true);
+    }
+
+    /**
+     * Converte um objeto em uma string codificada
+     * 
+     * @param Object $object
+     * @param Array $arrayParametrosTransformacao
+     * @param Boolean $retornaArray
+     * 
+     * @return String
+     */
+    public static function objectToEncodedString($object, $arrayParametrosTransformacao = array(), $retornaArray = false)
     {
 		// verificando se o parametro eh um objeto
     	self::verificaVariavelRepresentaObjeto($object, true);
@@ -947,10 +968,16 @@ class Basico_OPController_UtilOPController
    		// convertendo o objeto em array
    		$arrayObjeto = (array) $object;
 
-   		// loop para correção das chaves do array
+  		// loop para correção das chaves do array
    		foreach ($arrayObjeto as $chave => $valor) {
    			// motando array com as chaves corretas
    			$arrayObjetoChavesCorrigidas[str_replace("\0*\0_", '', $chave)] = $valor;
+   		}
+
+   		// verificando se o array possui mapper
+   		if (array_key_exists('mapper', $arrayObjetoChavesCorrigidas)) {
+   			// removendo mapper do array
+   			unset($arrayObjetoChavesCorrigidas['mapper']);
    		}
 
    		// transformando o array sujo no array corrigido
@@ -966,6 +993,12 @@ class Basico_OPController_UtilOPController
    					$arrayObjeto[$atributo] = self::retornaZend_Date($arrayObjeto[$atributo], DEFAULT_DATABASE_DATETIME_FORMAT)->toString($arrayTransformacao['formato_saida']);
    				}
    			}
+   		}
+
+   		// verificando se deve retornar o array
+   		if ($retornaArray) {
+	   		// retornando string codificada apartir de um objeto
+	   		return $arrayObjeto;
    		}
 
    		// retornando string codificada apartir de um objeto

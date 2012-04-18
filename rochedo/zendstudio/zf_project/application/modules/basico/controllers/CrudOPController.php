@@ -418,7 +418,7 @@ class Basico_OPController_CrudOPController
 				// loop para transformar os objetos
 				foreach ($arrayObjetos as $objeto) {
 					// transformando objeto
-					$arrayObjetoArray[] = Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_TO_ARRAY);
+					$arrayObjetoArray[] = Basico_OPController_UtilOPController::codificar($objeto, CODIFICAR_OBJETO_TO_ARRAY, $arrayAtributosTimestamp);
 				}
 
 				// verificando o retorno do array de objetos
@@ -426,9 +426,11 @@ class Basico_OPController_CrudOPController
 					// setando um array vazio
 					$arrayObjetoArray = array();
 				}
-
-				// processando array de resultados para retornar no formato esperado pelo JqGrid
-				$arrayObjetoArray = self::retornaArrayDadosJqGrid($arrayObjetoArray, $arrayParametrosCrud, $quantidadeRegistros);
+								// verificando se o resultado da recuperação é um array json vindo do jqgrid
+				if ((isset($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID])) and ($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID] === self::TIPO_GRID_JQGRID)) {
+					// processando array de resultados para retornar no formato esperado pelo JqGrid
+					$arrayObjetoArray = self::retornaArrayDadosJqGrid($arrayObjetoArray, $arrayParametrosCrud, $quantidadeRegistros);
+				}
 
 				// transformando array em xml
 				$resultado = Basico_OPController_UtilOPController::codificar($arrayObjetoArray, CODIFICAR_ARRAY_TO_XML);
