@@ -621,6 +621,9 @@ class Basico_OPController_CrudOPController
 	 */
 	private static function retornaUrlRecuperacaoDados(array $arrayParametrosCrud)
 	{
+		// inicializando variaveis
+		$condicaoSQL = "";
+		
 		// verificando se foi passado uma condição SQL
 		if (isset($arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD])) {
 			// motando condicação SQL
@@ -628,6 +631,29 @@ class Basico_OPController_CrudOPController
 		}
 		// montando a url
 		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/administrador/crud/tipo/dados/tipoGrid/jqgrid/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}{$condicaoSQL}");
+
+		// retornando a url
+		return $urlRetorno;
+	}
+
+	
+	/**
+	 * Retorna a url de recuperação de dados para edição
+	 * 
+	 * @param array $arrayParametrosCrud
+	 * 
+	 * @return String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 18/04/2012
+	 */
+	private static function retornaUrlRecuperacaoDadosFormEdicaoJqGrid(array $arrayParametrosCrud)
+	{
+		// motando condicação SQL
+		$condicaoSQL = "/condicaoSql/id=";
+		
+		// montando a url
+		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}") . $condicaoSQL;
 
 		// retornando a url
 		return $urlRetorno;
@@ -652,7 +678,7 @@ class Basico_OPController_CrudOPController
 		// recuperando retorno
 		$arrayRetornoContent[] = self::retornaHTMLCrud($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]);
 		$arrayRetornoScripts[] = self::retornaJavaScriptCrud();
-		$arrayRetornoScripts[] = self::retornaJavaScriptInicalizacaoGridCrud($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD], self::retornaUrlRecuperacaoDados($arrayParametrosCrud), 'id');
+		$arrayRetornoScripts[] = self::retornaJavaScriptInicalizacaoGridCrud($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD], self::retornaUrlRecuperacaoDados($arrayParametrosCrud), self::retornaUrlRecuperacaoDadosFormEdicaoJqGrid($arrayParametrosCrud), 'id');
 
 		// inicializando array de resultados
 		$arrayResultado['content'] = $arrayRetornoContent;
@@ -696,6 +722,9 @@ class Basico_OPController_CrudOPController
 		// adicionando arquivo js do debug do jqGrid
 		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_DEBUG_FILE_PATH);
 		
+		// adicionando arquivo js do rochedo customizado para jqGrid
+		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_ROCHEDO_CUSTOM_JAVASCRIPT_FILE_PATH);
+		
 		return $scriptRetorno;
 	}
 
@@ -704,6 +733,7 @@ class Basico_OPController_CrudOPController
 	 * 
 	 * @param String $nomeModelo
 	 * @param String $urlRecuperacaoDados
+	 * @param String $urlRecuperacaoDadosFormEdicao
 	 * @param String $campoOrdenadorInicial 
 	 * @param String $tipoDados
 	 * @param Integer $alturaGrid
@@ -716,7 +746,7 @@ class Basico_OPController_CrudOPController
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 */
-	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 330, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
+	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $urlRecuperacaoDadosFormEdicao, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 330, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
 	{
 		// recuperando o nome da listagem e nome paginação
 		$nomeListagem  = "listagem-{$nomeModelo}";
@@ -738,9 +768,23 @@ class Basico_OPController_CrudOPController
 
 		// recuperando as larguras das colunas
 		$arrayLarguraColunas = self::retornaArrayLarguraColunasJQGridViaArrayAtributosCamposTabela($arrayAtributosCamposTabelaDBObjeto);
+
+		// recuperando array de detalhes do atributo
+		$arrayDetalhesAtributos = Basico_OPController_DBUtilOPController::retornaArrayAtributosTabelaBDObjeto($instanciaModelo);
+		
+		// recuperando array de atributos nao editaveis
+		$arrayAtributosNaoEditaveis = self::retornaArrayAtributosNaoEditaveis();
 		
 		// montando string serializada
 		foreach ($arrayAtributosModelo as $chave => $atributoModelo) {
+			// inicializando variaveis
+			$optionEditable         = "editable:true";
+			$optionElementRequired  = "required: true";
+			$optionElementType      = "text";
+			$optionElementSize      = 4;
+			$elementSelectOptions   = "";
+			$optionElementMaxLength = "";
+			
 			// setando string colNames
 			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
 
@@ -752,9 +796,69 @@ class Basico_OPController_CrudOPController
 
 			// somando a largura do grid
 			$larguraGrid += $larguraColuna;
+			
+			// recuperando array de detalhes do atributo
+			$arrayDetalhesAtributo = $arrayDetalhesAtributos[Basico_OPController_DBUtilOPController::retornaNomeCampoAtributo($atributoModelo)];
+
+			// se o atributo aceitar nulo
+			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE]) && $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE] == false) {
+				// recuperando tamanho do elemento
+				$optionElementRequired = "required: false";
+			}
+			
+			// verificando se o atributo é editavel
+			if (array_search($atributoModelo, $arrayAtributosNaoEditaveis) !== false) {
+				// setando atributo para nao editavel
+				$optionEditable = "editable: false, hidden: false";
+				$optionHidden = "";
+			}
+			
+			// determinando o tipo de elemento HTML a ser criado no form de edição
+			switch ($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
+				case 'int4':
+				case 'int8':
+				case 'varchar':
+				case 'timestamp':
+				case 'datetime':
+					// verificando se o atributo é uma chave estrangeira
+					if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK])) {
+						// se for chave estrangeira seta o tipo do elemento para select
+						$optionElementType = "select";
+						$elementSelectOptions = "";
+					}
+					break;
+				case 'bool':
+				case 'boolean':
+					$optionElementType = 'checkbox';
+					$elementSelectOptions = "value:{'Sim':'Não'},";
+					break;
+				case 'text' :
+					$optionElementType = 'textarea';
+					break;
+				default:
+					$optionElementType = "text";
+				break;
+			}
+			
+			// se o atributo tiver tamanho definido
+			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH])) {
+				
+				// recuperando tamanho do elemento
+				$optionElementSize      = (int) $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH];
+				$optionElementMaxLength = "maxlength: {$optionElementSize}";
+				
+				// se tamanho do campo maior que 50
+				if ($optionElementSize > 50) {
+					$optionElementSize = 50;
+					$optionElementType = 'textarea';
+				}
+			}	
+			
+			
+			//var_dump($arrayDetalhesAtributo); exit;
 
 			// setando string colModel
-			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, editable:true, editoptions:{size:10, type:'select'}}";
+			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, editoptions:{{$elementSelectOptions} size:{$optionElementSize}, type:'{$optionElementType}', {$optionElementMaxLength}}}";
 
 			// verificando se não trata-se do último elemento
 			if ($chave !== Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayAtributosModelo)) {
@@ -784,7 +888,7 @@ class Basico_OPController_CrudOPController
 							multiselect: false,
 						    mtype: 'GET',
 							gridview: true,
-							editurl:'/',
+							editurl:'',
 							caption: 'CRUD {$nomeModelo}',
 						    serializeGridData: function (dados) {
 												return JSON.stringify(dados)
@@ -798,7 +902,13 @@ class Basico_OPController_CrudOPController
 				
 				$(function(){
 				
-					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{view: true},{height:'auto', width:'auto',reloadAfterSubmit:false},{height:'auto',reloadAfterSubmit:false},{reloadAfterSubmit:false},{multipleSearch:true});
+					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{view: true, edit: true},
+												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');} ,reloadAfterSubmit:false}, // edit options
+												 {height:'auto',reloadAfterSubmit:false}, // add options
+												 {reloadAfterSubmit:false}, // delete options
+												 {multipleSearch:true}, // adicionando multiple search
+												 {closeOnEscape:true} // permitindo fechar dialog pressionando a tecla esc
+												 ); 
 				});";
 		
 		// retornando script
@@ -845,6 +955,21 @@ class Basico_OPController_CrudOPController
 		}
 
 		// retornando array de resultados
+		return $arrayResultado;
+	}
+	
+	/**
+	 * Retorna um array (Black List) com os atributos nao editaveis
+	 * 
+ 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ 	 * @since 18/04/2012
+	 */
+	private static function retornaArrayAtributosNaoEditaveis()
+	{
+		// montando array de atributos não editavéis
+		$arrayResultado = array('id', 'datahoraCriacao', 'datahoraUltimaAtualizacao', 'rowinfo');
+		
+		// retornando arra
 		return $arrayResultado;
 	}
 }

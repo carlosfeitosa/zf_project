@@ -105,6 +105,7 @@ define("DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO", "/js/rascunho.js");
 define("JQGRID_JAVASCRIPT_FILE_PATH", "/js/plugins/jquery/jqGrid/js/jquery.jqGrid.min.js");
 define("JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH", "/js/plugins/jquery/jqGrid/js/i18n/grid.locale-pt-br.js");
 define("JQGRID_JAVASCRIPT_DEBUG_FILE_PATH", "/js/plugins/jquery/jqGrid/js/grid.loader.js");
+define("JQGRID_ROCHEDO_CUSTOM_JAVASCRIPT_FILE_PATH", "/js/plugins/jquery/jqGrid/js/rochedo.custom.jqgrid.js");
 
 /*
  * CSS FILES
