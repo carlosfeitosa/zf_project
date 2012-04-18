@@ -913,7 +913,7 @@ class Basico_OPController_UtilOPController
     public static function arrayToXML(array $arrayDados, $rootNodeName = 'root')
     {
     	// retornando array convertido em xml
-    	return Basico_OPController_XmlOPController::array_to_xml($arrayDados, $rootNodeName);
+    	return Basico_OPController_XmlOPController::array_to_xml($arrayDados, $rootNodeName, null, null, false);
     }
 
     /**

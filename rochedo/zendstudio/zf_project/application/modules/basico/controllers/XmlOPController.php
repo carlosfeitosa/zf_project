@@ -136,9 +136,12 @@ final class Basico_OPController_XmlOPController
     * @param array $data
     * @param string $rootNodeName - what you want the root node to be - defaultsto data.
     * @param SimpleXMLElement $xml - should only be used recursively
+    * @param SimpleXMLElement $parentXml - should only be used recursively
+    * @param Boolean $useHtmlEntities
+    * 
     * @return string XML
     */
-    public static function array_to_xml($data, $rootNodeName = 'data', $xml=null, $parentXml=null)
+    public static function array_to_xml($data, $rootNodeName = 'data', $xml=null, $parentXml=null, $useHtmlEntities = true)
     {
 		// turn off compatibility mode as simple xml throws a wobbly if you don't.
         if (ini_get('zend.ze1_compatibility_mode') == 1) {
@@ -164,20 +167,25 @@ final class Basico_OPController_XmlOPController
                 	// Another exception if this is teh root node and is an array.  In this case we don't have a parent node to use so we must use the current node and not update the reference. 
                     if($parentXml == null) {
                     	$childXml = $xml->addChild($nodeName);
-                        self::array_to_xml($value, $nodeName, $childXml, $xml);
+                        self::array_to_xml($value, $nodeName, $childXml, $xml, $useHtmlEntities);
 					// If this is a array node then we want to add the item under the parent node instead of out current node. Also we have to update $xml to reflect the change.
                 	} else {
                     	$xml = $parentXml->addChild($nodeName);
-                        self::array_to_xml($value, $nodeName, $xml, $parentXml);
+                        self::array_to_xml($value, $nodeName, $xml, $parentXml, $useHtmlEntities);
                     }
 				} else {
                 	// For a normal attribute node just add it to the parent node.
                     $childXml = $xml->addChild($nodeName);
-                    self::array_to_xml($value, $nodeName, $childXml, $xml);
+                    self::array_to_xml($value, $nodeName, $childXml, $xml, $useHtmlEntities);
                 }
             // If not then it is a simple value and can be directly appended to the XML tree.
 			} else {
-            	$value = htmlentities($value);
+				// verificando se deve-se trata o valor com htmlentities
+				if ($useHtmlEntities) {
+					// procesando valor 
+					$value = htmlentities($value);
+				}
+            	
                 $xml->addChild($nodeName, $value);
             }
 		}
