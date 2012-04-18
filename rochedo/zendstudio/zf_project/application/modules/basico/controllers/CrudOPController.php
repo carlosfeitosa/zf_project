@@ -109,7 +109,7 @@ class Basico_OPController_CrudOPController
 
 		// verificando se foi passado o parametro formato dos dados
 		if (!isset($arrayParametrosCrud[self::ATRIBUTO_FORMATO_DADOS])) {
-			// setando o valor json
+			// setando o valor json como formato padrao
 			$arrayParametrosCrud[self::ATRIBUTO_FORMATO_DADOS] = self::FORMATO_DADOS_JSON;
 		}
 
@@ -159,8 +159,6 @@ class Basico_OPController_CrudOPController
 		$arrayParametrosCrud[self::ATRIBUTO_ORDENACAO_CRUD] = "{$arrayParametrosJqGrid[self::JQGRID_VALOR_SIDX]} {$arrayParametrosJqGrid[self::JQGRID_VALOR_SORD]}";
 		// setando a página
 		$arrayParametrosCrud[self::JQGRID_VALOR_PAGE] = $arrayParametrosJqGrid[self::JQGRID_VALOR_PAGE];
-		// setando o tipo de grid
-		$arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID] = self::TIPO_GRID_JQGRID;
 		
 		// verificando se foi passado parametros de filtros
 		if ((isset($arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS])) and ('' !== $arrayParametrosJqGrid[self::JQGRID_CHAVE_FILTROS])) {
@@ -324,8 +322,13 @@ class Basico_OPController_CrudOPController
 			break;
 			// recuperar dados de um objeto
 			case self::TIPO_DADOS:
-				// processando os parametros vindos do jqgrid
-				self::processaArrayParametrosJQGrid($arrayParametrosCrud);
+				// verificando o formato do grid
+				if ((isset($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID])) and (self::TIPO_GRID_JQGRID === $arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID])) {
+					// processando os parametros vindos do jqgrid
+					self::processaArrayParametrosJQGrid($arrayParametrosCrud);
+				}
+
+				// processando array de parametros do crud
 				self::processaArrayParametrosCrud($arrayParametrosCrud);
 
 				// retornando dados
@@ -399,8 +402,14 @@ class Basico_OPController_CrudOPController
 					$arrayObjetoJson = array();
 				}
 
-				// processando array de resultados para retornar no formato esperado pelo JqGrid
-				$arrayObjetoJson = self::retornaArrayDadosJqGrid($arrayObjetoJson, $arrayParametrosCrud, $quantidadeRegistros);
+				// verificando se o resultado da recuperação é um array json vindo do jqgrid
+				if ((isset($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID])) and ($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID] === self::TIPO_GRID_JQGRID)) {
+					// processando array de resultados para retornar no formato esperado pelo JqGrid
+					$arrayObjetoJson = self::retornaArrayDadosJqGrid($arrayObjetoJson, $arrayParametrosCrud, $quantidadeRegistros);
+				} else {
+					// colocando o array de resultados dentro de outro array
+					$arrayObjetoJson = array($arrayObjetoJson);
+				}
 
 				// transformando array em uma string json
 				$resultado = Basico_OPController_UtilOPController::limpaArrayJson(Basico_OPController_UtilOPController::codificaArrayJson($arrayObjetoJson));
@@ -610,8 +619,13 @@ class Basico_OPController_CrudOPController
 	 */
 	private static function retornaUrlRecuperacaoDados(array $arrayParametrosCrud)
 	{
+		// verificando se foi passado uma condição SQL
+		if (isset($arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD])) {
+			// motando condicação SQL
+			$condicaoSQL = "/condicaoSql/{$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD]}";
+		}
 		// montando a url
-		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}/condicaoSql/{$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD]}";
+		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/administrador/crud/tipo/dados/tipoGrid/jqgrid/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}{$condicaoSQL}");
 
 		// retornando a url
 		return $urlRetorno;

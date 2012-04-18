@@ -684,6 +684,30 @@ class Basico_OPController_UtilOPController
 	}
 
 	/**
+	 * Retorna uma string processada para json
+	 * 
+	 * @param String $string
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 18/04/2012
+	 */
+	public static function processaStringParaJson($string)
+	{
+		// inicializando variáveis
+		$resultado = $string;
+		// processando string
+		$resultado = self::escapaAspasDuplasPHP($resultado);
+		$resultado = str_replace("\r\n", "\n", $resultado);
+		$resultado = str_replace("\r", "\n", $resultado);
+		$resultado = str_replace("\n", "\\n", $resultado);
+
+		// retornando resultado
+		return $resultado;
+	}
+
+	/**
 	 * Retorna um array contendo os atributos de um objeto
 	 * 
 	 * @param Object $objeto
@@ -975,9 +999,9 @@ class Basico_OPController_UtilOPController
     			// verificando se o valor é um array
     			if (is_array($valor)) {
     				// recuperando o valor do array
-    				$valor = '[' . self::rochedoJsonEncode($valor) . ']';
+    				$valorArray = '[' . self::rochedoJsonEncode($valor) . ']';
 	    			// colocando o valor do elemento
-    				$stringResposta .= $valor;
+    				$stringResposta .= $valorArray;
     			} else if ((is_bool($valor)) and (true === $valor)) {
     				// colocando o valor do elemento
     				$stringResposta .= self::retornaStringEntreCaracter('true', '"');
@@ -986,7 +1010,7 @@ class Basico_OPController_UtilOPController
     				$stringResposta .= self::retornaStringEntreCaracter('false', '"');
     			} else {
 	    			// colocando o valor do elemento
-	    			$stringResposta .= self::retornaStringEntreCaracter($valor, '"');
+	    			$stringResposta .= self::retornaStringEntreCaracter(self::processaStringParaJson($valor), '"');
     			}
 
     			// verificando se não é o ultimo elemento
@@ -1002,7 +1026,7 @@ class Basico_OPController_UtilOPController
     	}
 
     	// verificando se a string de resposta precisa ganhar "{}"
-    	if (substr($stringResposta, 1, 1) === '{') {
+    	if ((substr($stringResposta, 1, 1) === '{') or ((1 === count($arrayDados)) and (isset($valorArray)))) {
 	    	// retornando a string
 	    	return $stringResposta;
     	}
@@ -1048,8 +1072,21 @@ class Basico_OPController_UtilOPController
      */
     public static function limpaArrayJson($arrayJson)
     {
+    	// inicializando variáveis
+    	$resultado = $arrayJson;
+
+    	// limpando o array
+    	$resultado = str_replace('\\\"', 'ASPAS_DUPLAS', $resultado);
+		$resultado = str_replace('\\', '', $resultado);
+		$resultado = str_replace('ASPAS_DUPLAS', '\\"', $resultado);
+		$resultado = str_replace(',"mapper":""', '', $resultado);
+		$resultado = str_replace('["', '[', $resultado);
+		$resultado = str_replace('"]', ']', $resultado);
+		$resultado = str_replace('"{', '{', $resultado);
+		$resultado = str_replace('}"', '}', $resultado);
+
     	// retornando o array limpo
-    	return str_replace('}"', '}', str_replace('"{', '{', str_replace('"]', ']', str_replace('["', '[', str_replace(',"mapper":null', '', str_replace('\\', '', str_replace('\u0000_' , '', str_replace('\u0000*', '', $arrayJson))))))));
+    	return $resultado;
     }
 
 	/**
