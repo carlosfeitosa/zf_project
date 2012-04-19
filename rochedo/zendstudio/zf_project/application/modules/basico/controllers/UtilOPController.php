@@ -1052,11 +1052,7 @@ class Basico_OPController_UtilOPController
 				if ($chave !== self::retornaChaveUltimoElementoArray($arrayDados)) {
 					// adicionando a vírgula
 					$stringResposta .= ',';
-				} else if (0 === $qntChaves) {
-					// adicionando "[" e "]"
-					return "[" . $stringResposta . "]";
 				}
-
     		}
     	} else {
     		// retornando vazio
@@ -1067,7 +1063,10 @@ class Basico_OPController_UtilOPController
     	if ((substr($stringResposta, 1, 1) === '{') or ((1 === count($arrayDados)) and (isset($valorArray)))) {
 	    	// retornando a string
 	    	return $stringResposta;
-    	}
+    	} else   if (0 === $qntChaves) {
+			// adicionando "[" e "]"
+			return "[" . $stringResposta . "]";
+		}
 
     	// retornando a string
     	return "{{$stringResposta}}";
