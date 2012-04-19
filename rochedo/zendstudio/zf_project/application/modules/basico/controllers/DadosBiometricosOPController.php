@@ -276,7 +276,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
   		$idTipoCategoriaDadosBiometricos = Basico_OPController_TipoCategoriaOPController::getInstance()->retornaIdTipoCategoriaPorNome('DADOS_BIOMETRICOS');
   		
   		// recuperando categoria dos dados biometricos
-  		$idCategoriaDadosBiometricos = Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('DADOS_BIOMETRICOS_PESSOA', $idTipoCategoriaDadosBiometricos, null, true);
+  		$idCategoriaDadosBiometricos = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('DADOS_BIOMETRICOS_PESSOA', $idTipoCategoriaDadosBiometricos, null, true);
   		
   		// recuperando o modelo de pessoa
   		$modeloPessoa = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaOPController');

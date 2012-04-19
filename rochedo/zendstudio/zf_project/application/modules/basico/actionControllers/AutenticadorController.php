@@ -26,7 +26,17 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 			$idCategoriaLogLogoff   = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_SUCESSO_DESAUTENTICACAO_USUARIO, true);
 			$mensagemLogLogoff      = LOG_MSG_SUCESSO_DESAUTENTICACAO_USUARIO;
 
-			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaUsuarioLogado)->id;
+			// recuperando objeto pessoa perfil usuario validado
+			$objPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilUsuarioValidadoPorIdPessoa($idPessoaUsuarioLogado);
+
+			// verificando se o objeto foi recuperado
+			if (is_object($objPessoaPerfilUsuarioValidado)) {
+				// recuperando o id
+				$idPessoaPerfilUsuarioValidado = $objPessoaPerfilUsuarioValidado->id;
+			} else {
+				// recuperando o id do sistema para efetuar logoff, no caso do usuario ter sido apagado do banco de dados enquanto sessao ativa
+				$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
+			}
 
 			// salvando o log de operacoes
 			Basico_OPController_LogOPController::salvarLogViaSQL($idPessoaPerfilUsuarioValidado, $idCategoriaLogLogoff, $mensagemLogLogoff);
@@ -36,7 +46,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		}
 
 		// redireciona para a pagina inicial do sistema
-		$this->_redirect();
+		$this->_redirect('/');
 	}
 
 	/**
