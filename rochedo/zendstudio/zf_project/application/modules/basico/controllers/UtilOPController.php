@@ -1021,12 +1021,12 @@ class Basico_OPController_UtilOPController
     		// verificando se trata-se de uma string
 	        if (is_string($item)) {
 	        	// transformando string
-	            $item = htmlentities($item);
+	            $item = self::processaStringParaJson(htmlentities($item));
 	        }
     	});
 
     	// retornando string json
-		return self::processaStringParaJson(html_entity_decode(Zend_Json::encode($arrayDados)));
+		return html_entity_decode(Zend_Json::encode($arrayDados));
     } 
 
     /**
