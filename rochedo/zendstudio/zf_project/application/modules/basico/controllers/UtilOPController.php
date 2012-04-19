@@ -1016,60 +1016,17 @@ class Basico_OPController_UtilOPController
      */
     public static function rochedoJsonEncode(array $arrayDados)
     {
-    	// inicializando variáveis
-    	$stringResposta = '';
-    	$qntChaves = 0;
+    	// loop para transformar os valores das string
+    	array_walk_recursive($arrayDados, function(&$item, $key) {
+    		// verificando se trata-se de uma string
+	        if (is_string($item)) {
+	        	// transformando string
+	            $item = htmlentities($item);
+	        }
+    	});
 
-    	// verificando se o array possui elementos
-    	if (count($arrayDados)) {
-    		// loop para percorrer os elementos do array
-    		foreach ($arrayDados as $chave => $valor) {
-    			// verificando se a chave não é inteira
-    			if (!is_int($chave)) {
-	    			// colocando a chave do array na string de resposta 
-	    			$stringResposta .= self::retornaStringEntreCaracter($chave, '"') . ':';
-	    			$qntChaves++;
-    			}
-
-    			// verificando se o valor é um array
-    			if (is_array($valor)) {
-    				// recuperando o valor do array
-    				$valorArray = '[' . self::rochedoJsonEncode($valor) . ']';
-	    			// colocando o valor do elemento
-    				$stringResposta .= $valorArray;
-    			} else if ((is_bool($valor)) and (true === $valor)) {
-    				// colocando o valor do elemento
-    				$stringResposta .= self::retornaStringEntreCaracter('true', '"');
-    			} else if ((is_bool($valor)) and (false === $valor)) {
-    				// colocando o valor do elemento
-    				$stringResposta .= self::retornaStringEntreCaracter('false', '"');
-    			} else {
-	    			// colocando o valor do elemento
-	    			$stringResposta .= self::retornaStringEntreCaracter(self::processaStringParaJson($valor), '"');
-    			}
-
-    			// verificando se não é o ultimo elemento
-				if ($chave !== self::retornaChaveUltimoElementoArray($arrayDados)) {
-					// adicionando a vírgula
-					$stringResposta .= ',';
-				}
-    		}
-    	} else {
-    		// retornando vazio
-    		return "";
-    	}
-
-    	// verificando se a string de resposta precisa ganhar "{}"
-    	if ((substr($stringResposta, 1, 1) === '{') or ((1 === count($arrayDados)) and (isset($valorArray)))) {
-	    	// retornando a string
-	    	return $stringResposta;
-    	} else   if (0 === $qntChaves) {
-			// adicionando "[" e "]"
-			return "[" . $stringResposta . "]";
-		}
-
-    	// retornando a string
-    	return "{{$stringResposta}}";
+    	// retornando string json
+		return html_entity_decode(Zend_Json::encode($arrayDados));
     } 
 
     /**
