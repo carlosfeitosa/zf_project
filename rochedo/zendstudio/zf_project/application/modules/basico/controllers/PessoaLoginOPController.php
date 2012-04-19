@@ -519,7 +519,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		$objLogin = $this->retornaObjetoLoginPorLogin($login);
 
 		// verificando se o objeto foi carregado
-		if ($objLogin->id) {
+		if ((is_object($objLogin)) and ($objLogin->id)) {
 			// instanciando controladores
 			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
 

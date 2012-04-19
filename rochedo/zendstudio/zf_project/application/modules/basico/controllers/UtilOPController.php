@@ -1018,6 +1018,7 @@ class Basico_OPController_UtilOPController
     {
     	// inicializando variáveis
     	$stringResposta = '';
+    	$qntChaves = 0;
 
     	// verificando se o array possui elementos
     	if (count($arrayDados)) {
@@ -1027,6 +1028,7 @@ class Basico_OPController_UtilOPController
     			if (!is_int($chave)) {
 	    			// colocando a chave do array na string de resposta 
 	    			$stringResposta .= self::retornaStringEntreCaracter($chave, '"') . ':';
+	    			$qntChaves++;
     			}
 
     			// verificando se o valor é um array
@@ -1050,6 +1052,9 @@ class Basico_OPController_UtilOPController
 				if ($chave !== self::retornaChaveUltimoElementoArray($arrayDados)) {
 					// adicionando a vírgula
 					$stringResposta .= ',';
+				} else if (0 === $qntChaves) {
+					// adicionando "[" e "]"
+					return "[" . $stringResposta . "]";
 				}
 
     		}
