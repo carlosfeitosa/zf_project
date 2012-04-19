@@ -1026,7 +1026,7 @@ class Basico_OPController_UtilOPController
     	});
 
     	// retornando string json
-		return html_entity_decode(Zend_Json::encode($arrayDados));
+		return self::processaStringParaJson(html_entity_decode(Zend_Json::encode($arrayDados)));
     } 
 
     /**
