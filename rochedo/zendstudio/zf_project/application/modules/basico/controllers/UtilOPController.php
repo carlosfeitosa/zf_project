@@ -1021,7 +1021,8 @@ class Basico_OPController_UtilOPController
     		// verificando se trata-se de uma string
 	        if (is_string($item)) {
 	        	// transformando string
-	            $item = self::processaStringParaJson(htmlentities($item));
+	            $item = htmlentities($item);
+	            $item = Basico_OPController_UtilOPController::escapaAspasDuplasPHP($item);
 	        }
     	});
 
