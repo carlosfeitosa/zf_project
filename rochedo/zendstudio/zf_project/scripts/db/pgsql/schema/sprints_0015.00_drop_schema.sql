@@ -1,0 +1,1 @@
+DROP SCHEMA IF EXISTS basico_dicionario_dados CASCADE;

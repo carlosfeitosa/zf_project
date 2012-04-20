@@ -27,11 +27,11 @@ class Basico_Model_LogMapper
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
+		$this->_arrayMapper['id']			   = 'id';
+		$this->_arrayMapper['idCategoria']	   = 'id_categoria';
 		$this->_arrayMapper['idAssocclPerfil'] = 'id_assoccl_perfil';
-		$this->_arrayMapper['datahoraEvento'] = 'datahora_evento';
-		$this->_arrayMapper['xml'] = 'xml'; 
+		$this->_arrayMapper['datahoraEvento']  = 'datahora_evento';
+		$this->_arrayMapper['xml']			   = 'xml'; 
 	}
 
    	/**

@@ -745,6 +745,7 @@ class Basico_OPController_CrudOPController
 	 * @return String
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 */
 	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $urlRecuperacaoDadosFormEdicao, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 330, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
 	{
@@ -777,88 +778,24 @@ class Basico_OPController_CrudOPController
 		
 		// montando string serializada
 		foreach ($arrayAtributosModelo as $chave => $atributoModelo) {
-			// inicializando variaveis
-			$optionEditable         = "editable:true";
-			$optionElementRequired  = "required: true";
-			$optionElementType      = "text";
-			$optionElementSize      = 4;
-			$elementSelectOptions   = "";
-			$optionElementMaxLength = "";
 			
 			// setando string colNames
 			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
 
 			// recuperando o nome do atributo no banco de dados
 			$nomeAtributoBD = Basico_OPController_DBUtilOPController::retornaNomeCampoAtributo($atributoModelo);
-
+			
 			// recuperando a largura da coluna
 			$larguraColuna = $arrayLarguraColunas[$nomeAtributoBD];
 
 			// somando a largura do grid
 			$larguraGrid += $larguraColuna;
 			
-			// recuperando array de detalhes do atributo
-			$arrayDetalhesAtributo = $arrayDetalhesAtributos[Basico_OPController_DBUtilOPController::retornaNomeCampoAtributo($atributoModelo)];
-
-			// se o atributo aceitar nulo
-			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE]) && $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE] == false) {
-				// recuperando tamanho do elemento
-				$optionElementRequired = "required: false";
-			}
+			// recuperando o modelo da coluna do atributo
+			$stringColModel .= self::retornaModeloColunaJqGrid($atributoModelo, $nomeAtributoBD, $larguraColuna, $arrayAtributosNaoEditaveis, $arrayDetalhesAtributos);
 			
-			// verificando se o atributo é editavel
-			if (array_search($atributoModelo, $arrayAtributosNaoEditaveis) !== false) {
-				// setando atributo para nao editavel
-				$optionEditable = "editable: false, hidden: false";
-				$optionHidden = "";
-			}
-			
-			// determinando o tipo de elemento HTML a ser criado no form de edição
-			switch ($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
-				case 'int4':
-				case 'int8':
-				case 'varchar':
-				case 'timestamp':
-				case 'datetime':
-					// verificando se o atributo é uma chave estrangeira
-					if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK])) {
-						// se for chave estrangeira seta o tipo do elemento para select
-						$optionElementType = "select";
-						$elementSelectOptions = "";
-					}
-					break;
-				case 'bool':
-				case 'boolean':
-					$optionElementType = 'checkbox';
-					$elementSelectOptions = "value:{'Sim':'Não'},";
-					break;
-				case 'text' :
-					$optionElementType = 'textarea';
-					break;
-				default:
-					$optionElementType = "text";
-				break;
-			}
-			
-			// se o atributo tiver tamanho definido
-			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH])) {
-				
-				// recuperando tamanho do elemento
-				$optionElementSize      = (int) $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH];
-				$optionElementMaxLength = "maxlength: {$optionElementSize}";
-				
-				// se tamanho do campo maior que 50
-				if ($optionElementSize > 50) {
-					$optionElementSize = 50;
-					$optionElementType = 'textarea';
-				}
-			}	
-			
-			
-			//var_dump($arrayDetalhesAtributo); exit;
-
 			// setando string colModel
-			$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, editoptions:{{$elementSelectOptions} size:{$optionElementSize}, type:'{$optionElementType}', {$optionElementMaxLength}}}";
+			//$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, edittype: '{$optionElementType}', editoptions:{{$optionRowsCols} {$elementSelectOptions} {$optionElementSize} {$optionElementMaxLength}}}";
 
 			// verificando se não trata-se do último elemento
 			if ($chave !== Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayAtributosModelo)) {
@@ -971,5 +908,95 @@ class Basico_OPController_CrudOPController
 		
 		// retornando arra
 		return $arrayResultado;
+	}
+	
+	/**
+	 * Retorna a string de modelo de coluna do atributo para montagem do jqGrid
+	 * 
+	 * @param String $nomeAtributo
+	 * @param String $nomeAtributoBD
+	 * @param int $larguraColuna
+	 * @param Array $arrayAtributosNaoEditaveis
+	 * @param Array $arrayDetalhesAtributos
+	 * 
+ 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ 	 * @since 19/04/2012
+ 	 */
+	public static function retornaModeloColunaJqGrid($nomeAtributo, $nomeAtributoBD, $larguraColuna, $arrayAtributosNaoEditaveis, $arrayDetalhesAtributos)
+	{
+		// inicializando variaveis
+		$optionEditable         = "editable:false";
+		$optionElementRequired  = "required: false";
+		$optionElementType      = "text";
+		$optionElementSize      = "size: 4,";
+		$elementSelectOptions   = "";
+		$optionElementMaxLength = "";
+		$optionRowsCols         = "";
+		
+		// recuperando array de detalhes do atributo
+		$arrayDetalhesAtributo = $arrayDetalhesAtributos[$nomeAtributoBD];
+		
+		// verificando se o atributo é editavel
+		if (array_search($nomeAtributo, $arrayAtributosNaoEditaveis) === false) {
+			// setando atributo para nao editavel
+			$optionEditable = "editable: true";
+			
+			// se o atributo aceitar nulo
+			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE]) && $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE] == true) {
+				// recuperando tamanho do elemento
+				$optionElementRequired = "required: false";
+			}
+		
+			// determinando o tipo de elemento HTML a ser criado no form de edição
+			switch ($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) {
+				case 'int4':
+				case 'int8':
+				case 'varchar':
+				case 'timestamp':
+				case 'datetime':
+					// verificando se o atributo é uma chave estrangeira
+					if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK])) {
+						// se for chave estrangeira seta o tipo do elemento para select
+						$optionElementType = "select";
+						$elementSelectOptions = "";
+					}
+					break;
+				case 'bool':
+				case 'boolean':
+					$optionElementType = "checkbox";
+					break;
+				case 'text' :
+					$optionElementType = "textarea";
+					$optionRowsCols    = 'rows: 3, cols: 50,';
+					break;
+				default:
+					$optionElementType = "text";
+				break;
+			}
+			
+			// se o atributo tiver tamanho definido
+			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH])) {
+				
+				$tamanhoCampo = (int) $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH];
+				
+				// recuperando tamanho do elemento
+				$optionElementSize      = 'size: ' . $tamanhoCampo . ',';
+				$optionElementMaxLength = "maxlength: " . $tamanhoCampo . ",";
+				
+				// se tamanho do campo maior que 50
+				if ($tamanhoCampo > 50) {
+					$optionElementSize = 'size: 50,';
+						
+					if ($tamanhoCampo > 200) {
+						$optionElementType = "textarea";
+						$optionRowsCols    = 'rows: 3, cols: 50,';
+					}
+				}
+			}
+		
+		}
+		
+		// montando e retornando array json com as propriedades da coluna e do campo para edicao do atributo do modelo para o jqGrid
+		return "{name: '{$nomeAtributo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, edittype: '{$optionElementType}', editoptions:{{$optionRowsCols} {$elementSelectOptions} {$optionElementSize} {$optionElementMaxLength}}}";
 	}
 }

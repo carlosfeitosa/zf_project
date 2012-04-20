@@ -27,21 +27,21 @@ class Basico_Model_ModuloMapper extends Basico_AbstractMapper_RochedoMapper impl
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idModuloPai'] = 'id_modulo_pai';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idModuloPai']				 = 'id_modulo_pai';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['nome']						 = 'nome';
+		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['versao'] = 'versao';
-		$this->_arrayMapper['path'] = 'path';
-		$this->_arrayMapper['instalado'] = 'instalado';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['dataDepreciacao'] = 'data_depreciacao';
-		$this->_arrayMapper['xmlAutoria'] = 'xml_autoria';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['versao']					 = 'versao';
+		$this->_arrayMapper['path']						 = 'path';
+		$this->_arrayMapper['instalado']				 = 'instalado';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['dataDepreciacao']			 = 'data_depreciacao';
+		$this->_arrayMapper['xmlAutoria']				 = 'xml_autoria';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

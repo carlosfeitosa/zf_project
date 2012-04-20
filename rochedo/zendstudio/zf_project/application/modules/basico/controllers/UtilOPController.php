@@ -701,7 +701,7 @@ class Basico_OPController_UtilOPController
 		$resultado = self::escapaAspasDuplasPHP($resultado);
 		$resultado = str_replace("\r\n", "\n", $resultado);
 		$resultado = str_replace("\r", "\n", $resultado);
-		$resultado = str_replace("\n", "\\n", $resultado);
+		$resultado = str_replace("\n", "<br>", $resultado);
 
 		// retornando resultado
 		return $resultado;

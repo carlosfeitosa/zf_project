@@ -27,13 +27,13 @@ class Basico_Model_CategoriaAssocChaveEstrangeiraMapper extends Basico_AbstractM
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idModulo'] = 'id_modulo';
+		$this->_arrayMapper['id'] 				 = 'id';
+		$this->_arrayMapper['idCategoria'] 		 = 'id_categoria';
+		$this->_arrayMapper['idModulo'] 		 = 'id_modulo';
 		$this->_arrayMapper['tabelaEstrangeira'] = 'tabela_estrangeira';
-		$this->_arrayMapper['campoEstrangeiro'] = 'campo_estrangeiro';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['campoEstrangeiro']  = 'campo_estrangeiro';
+		$this->_arrayMapper['datahoraCriacao'] 	 = 'datahora_criacao';
+		$this->_arrayMapper['rowinfo'] 		     = 'rowinfo'; 
 	}
 
    	/**

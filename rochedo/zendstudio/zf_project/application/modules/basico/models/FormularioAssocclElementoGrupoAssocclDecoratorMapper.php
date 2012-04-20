@@ -10,10 +10,112 @@
  */
 class Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id']	    	   = 'id';
+		$this->_arrayMapper['idGrupo']		   = 'id_grupo';
+		$this->_arrayMapper['idDecorator']	   = 'id_decorator';
+		$this->_arrayMapper['ordem']           = 'ordem';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['rowinfo']         = 'rowinfo'; 
+	}
+	
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_FormularioAssocclElementoGrupoAssocclDecorator if no instance registered
+     * 
+     * @return Zend_Db_Table_Abstract
+    */ 
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioAssocclElementoGrupoAssocclDecorator')
+    {
+    	// chamando método do pai
+        return parent::getDbTable($dbTable);
+    }
+    
+	/**
+     * Find a FormularioAssocclElementoGrupoAssocclDecorator entry by id
+     * 
+     * @param  int $id
+     * @param  Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator $object 
+     * 
+     * @return void
+     */
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
+    }
+
+	/**
+	 * Fetch all FormularioAssocclElementoGrupoAssocclDecorator entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator');
+	}
+	
+	/**
+	 * Fetch all FormularioAssocclElementoGrupoAssocclDecorator entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator', $where, $order, $count, $offset);
+	}
+    
+    /**
+     * Save a FormularioAssocclElementoGrupoAssocclDecorator entry
+     * 
+     * @param  Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator $object
+     * 
+     * @return void
+     */
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
+    }
+    
+	/**
+	* Delete a FormularioAssocclElementoGrupoAssocclDecorator entry
+	* 
+	* @param Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
+	}
+	
+	
+	
+    /**
+     * Get registered Zend_Db_Table instance
+     *
+     * Lazy loads FormularioAssocclElementoGrupoAssocclDecorator if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
      */
@@ -26,7 +128,7 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper extends 
      * Find a FormularioAssocclElementoGrupoAssocclDecorator entry by id
      * 
      * @param  int $id 
-     * @param  Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator $object 
+     * @param  FormularioAssocclElementoGrupoAssocclDecorator $object 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
@@ -45,7 +147,7 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper extends 
     }
     
     /**
-     * Fetch all FormulariosFormulariosElementosFormulariosElementosValidators entries
+     * Fetch all FormularioAssocclElementoGrupoAssocclDecorator entries
      * 
      * @return array
      */
@@ -55,7 +157,7 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper extends 
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator();
+            $entry = new Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorGrupoAssocclDecorator();
             $entry->setId($row->id)
         		->setIdGrupo($row->id_grupo)
                	->setIdDecorator($row->id_decorator)
@@ -79,7 +181,7 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper extends 
         $entries   = array();
         foreach ($resultSet as $row) 
         {
-            $entry = new Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator();
+            $entry = new Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorGrupoAssocclDecorator();
             $entry->setId($row->id)
         		->setIdGrupo($row->id_grupo)
                	->setIdDecorator($row->id_decorator)
@@ -93,7 +195,7 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper extends 
     }
     
     /**
-     * Save a FormularioAssocclElementoGrupoAssocclDecorator entry
+     * Save a FormularioAssocclElementoGrupoAssocclDecoratorGrupoAssocclDecorator entry
      * 
      * @param  Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator $object
      * @return void
@@ -117,7 +219,7 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecoratorMapper extends 
     }
     
     /**
-    * Delete a FormularioAssocclElementoGrupoAssocclDecorator entry
+    * Delete a FormularioAssocclElementoGrupoAssocclDecoratorGrupoAssocclDecorator entry
     * @param Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator $object
     * @return void
     */

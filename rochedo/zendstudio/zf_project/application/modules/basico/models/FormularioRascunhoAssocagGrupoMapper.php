@@ -27,12 +27,12 @@ class Basico_Model_FormularioRascunhoAssocagGrupoMapper extends Basico_AbstractM
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idAssocclPerfil'] = 'id_assoccl_perfil';
-		$this->_arrayMapper['forms'] = 'forms';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idAssocclPerfil']			 = 'id_assoccl_perfil';
+		$this->_arrayMapper['forms']					 = 'forms';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

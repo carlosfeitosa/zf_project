@@ -27,14 +27,14 @@ class Basico_Model_CategoriaAssocEventoAcaoMapper extends Basico_AbstractMapper_
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['tagAbertura'] = 'tag_abertura';
-		$this->_arrayMapper['tagFechamento'] = 'tag_fechamento';
-		$this->_arrayMapper['delimitador'] = 'delimitador';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id'] 						 = 'id';
+		$this->_arrayMapper['idCategoria'] 				 = 'id_categoria';
+		$this->_arrayMapper['tagAbertura'] 				 = 'tag_abertura';
+		$this->_arrayMapper['tagFechamento'] 			 = 'tag_fechamento';
+		$this->_arrayMapper['delimitador']     			 = 'delimitador';
+		$this->_arrayMapper['datahoraCriacao'] 			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo'] 					 = 'rowinfo'; 
 	}
 	
    	/**

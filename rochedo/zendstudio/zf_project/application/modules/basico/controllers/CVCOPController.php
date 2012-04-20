@@ -273,6 +273,7 @@ class Basico_OPController_CVCOPController
     	$modelCVC->idGenerico 			     = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
     	$modelCVC->objeto 				     = $objeto;
     	$modelCVC->checksum 			     = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
+    	$modelCVC->validadeInicio		     = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 		$modelCVC->datahoraCriacao		     = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 		$modelCVC->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 		

@@ -27,18 +27,18 @@ class Basico_Model_SequenciaAssocsqSequenciaAssocsqAcaoAplicacaoMapper extends B
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idSequencia'] = 'id_sequencia';
+		$this->_arrayMapper['id']							   = 'id';
+		$this->_arrayMapper['idCategoria']					   = 'id_categoria';
+		$this->_arrayMapper['idSequencia']				  	   = 'id_sequencia';
 		$this->_arrayMapper['idSequenciaAssocsqAcaoAplicacao'] = 'id_acao_aplicacao';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
-		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['passo'] = 'passo';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['nome']							   = 'nome';
+		$this->_arrayMapper['constanteTextual']				   = 'constante_textual';
+		$this->_arrayMapper['constanteTextualDescricao']	   = 'constante_textual_descricao';
+		$this->_arrayMapper['passo']						   = 'passo';
+		$this->_arrayMapper['ativo']						   = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']				   = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao']	   = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo']					 	   = 'rowinfo'; 
 	}
 
    	/**

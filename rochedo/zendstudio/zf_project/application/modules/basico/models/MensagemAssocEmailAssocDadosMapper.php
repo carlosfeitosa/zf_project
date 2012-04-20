@@ -27,19 +27,19 @@ class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMap
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idAssocEmail'] = 'id_assoc_email';
-		$this->_arrayMapper['destinatariosCopiaCarbonada'] = 'destinatarios_copia_carbonada';
-		$this->_arrayMapper['destinatariosCopiaCarbonadaNomes'] = 'destinatarios_copia_carbonada_nomes';
-		$this->_arrayMapper['destinatariosCopiaCarbonadaOculta'] = 'destinatarios_copia_carbonada_oculta';
+		$this->_arrayMapper['id']									  = 'id';
+		$this->_arrayMapper['idAssocEmail']							  = 'id_assoc_email';
+		$this->_arrayMapper['destinatariosCopiaCarbonada']			  = 'destinatarios_copia_carbonada';
+		$this->_arrayMapper['destinatariosCopiaCarbonadaNomes']	      = 'destinatarios_copia_carbonada_nomes';
+		$this->_arrayMapper['destinatariosCopiaCarbonadaOculta']	  = 'destinatarios_copia_carbonada_oculta';
 		$this->_arrayMapper['destinatariosCopiaCarbonadaOcultaNomes'] = 'destinatarios_copia_carbonada_oculta_nomes';
-		$this->_arrayMapper['responderPara'] = 'responder_para';
-		$this->_arrayMapper['prioridade'] = 'prioridade';
-		$this->_arrayMapper['solicitacaoConfirmacaoLeitura'] = 'solicitacao_confirm_leitura';
-		$this->_arrayMapper['datahoraConfirmacaoLeitura'] = 'datahora_confirmacao_leitura';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['responderPara']						  = 'responder_para';
+		$this->_arrayMapper['prioridade']							  = 'prioridade';
+		$this->_arrayMapper['solicitacaoConfirmacaoLeitura']		  = 'solicitacao_confirm_leitura';
+		$this->_arrayMapper['datahoraConfirmacaoLeitura']			  = 'datahora_confirmacao_leitura';
+		$this->_arrayMapper['datahoraCriacao']			 			  = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] 		  	  = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo']					 			  = 'rowinfo'; 
 	}
 
    	/**

@@ -27,12 +27,12 @@ class Basico_Model_AjudaAssocclLinkMapper extends Basico_AbstractMapper_RochedoM
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idAjuda'] = 'id_ajuda';
-		$this->_arrayMapper['idLink'] = 'id_link';
-		$this->_arrayMapper['ordem'] = 'ordem';
+		$this->_arrayMapper['id'] 			   = 'id';
+		$this->_arrayMapper['idAjuda']		   = 'id_ajuda';
+		$this->_arrayMapper['idLink'] 		   = 'id_link';
+		$this->_arrayMapper['ordem'] 		   = 'ordem';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']		   = 'rowinfo'; 
 	}	
 	
    	/**

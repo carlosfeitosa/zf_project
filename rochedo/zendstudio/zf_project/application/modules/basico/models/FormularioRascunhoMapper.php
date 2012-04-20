@@ -28,21 +28,21 @@ class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_Roched
 	{
 		// montando array de mapeamento
 		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idRascunhoPai'] = 'id_rascunho_pai';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idAssocclPerfil'] = 'id_assoccl_perfil';
-		$this->_arrayMapper['idAssocagGrupo'] = 'id_assocag_grupo';
+		$this->_arrayMapper['idRascunhoPai']			   = 'id_rascunho_pai';
+		$this->_arrayMapper['idCategoria']				   = 'id_categoria';
+		$this->_arrayMapper['idAssocclPerfil']			   = 'id_assoccl_perfil';
+		$this->_arrayMapper['idAssocagGrupo']			   = 'id_assocag_grupo';
 		$this->_arrayMapper['idAssocsqFormularioRascunho'] = 'id_assocsq_acao_aplicacao';
-		$this->_arrayMapper['idAssocVisaoOrigem'] = 'id_assoc_visao_origem';
-		$this->_arrayMapper['request'] = 'request';
-		$this->_arrayMapper['post'] = 'post';
-		$this->_arrayMapper['formAction'] = 'form_action';
-		$this->_arrayMapper['formName'] = 'form_name';
-		$this->_arrayMapper['actionOrigem'] = 'action_origem';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['idAssocVisaoOrigem']		   = 'id_assoc_visao_origem';
+		$this->_arrayMapper['request']					   = 'request';
+		$this->_arrayMapper['post']						   = 'post';
+		$this->_arrayMapper['formAction']				   = 'form_action';
+		$this->_arrayMapper['formName']					   = 'form_name';
+		$this->_arrayMapper['actionOrigem']				   = 'action_origem';
+		$this->_arrayMapper['ativo']					   = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']			   = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao']   = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo']					   = 'rowinfo'; 
 	}
 
    	/**

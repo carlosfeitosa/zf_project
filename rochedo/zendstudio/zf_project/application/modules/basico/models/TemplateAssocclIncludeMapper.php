@@ -27,12 +27,12 @@ class Basico_Model_TemplateAssocclIncludeMapper extends Basico_AbstractMapper_Ro
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idTemplate'] = 'id_template';
-		$this->_arrayMapper['idInclude'] = 'id_include';
-		$this->_arrayMapper['ordem'] = 'ordem';
+		$this->_arrayMapper['id']			   = 'id';
+		$this->_arrayMapper['idTemplate']	   = 'id_template';
+		$this->_arrayMapper['idInclude']	   = 'id_include';
+		$this->_arrayMapper['ordem']		   = 'ordem';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']		   = 'rowinfo'; 
 	}
 
    	/**

@@ -27,12 +27,12 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_Abstract
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idElemento'] = 'id_elemento';
-		$this->_arrayMapper['idFilter'] = 'id_filter';
-		$this->_arrayMapper['ordem'] = 'ordem';
+		$this->_arrayMapper['id']		  	   = 'id';
+		$this->_arrayMapper['idElemento'] 	   = 'id_elemento';
+		$this->_arrayMapper['idFilter']	  	   = 'id_filter';
+		$this->_arrayMapper['ordem']	 	   = 'ordem';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo'] 		   = 'rowinfo'; 
 	}
 
    	/**

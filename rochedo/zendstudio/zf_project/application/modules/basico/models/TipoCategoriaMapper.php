@@ -27,17 +27,17 @@ class Basico_Model_TipoCategoriaMapper extends Basico_AbstractMapper_RochedoMapp
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idTipoCategoriaPai'] = 'id_tipo_categoria_pai';
-		$this->_arrayMapper['nivel'] = 'nivel';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['id']				 		 = 'id';
+		$this->_arrayMapper['idTipoCategoriaPai']		 = 'id_tipo_categoria_pai';
+		$this->_arrayMapper['nivel']			 		 = 'nivel';
+		$this->_arrayMapper['nome']				 		 = 'nome';
+		$this->_arrayMapper['constanteTextual']	 		 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['codigo'] = 'codigo';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['codigo']					 = 'codigo';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

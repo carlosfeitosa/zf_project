@@ -1,19 +1,14 @@
 <?php
 /**
- * This is automatically generated file using the BOZA Framework generator
- * version 1.0
- */
- 
-/**
- * AcaoAplicacaoAssocclMetodoValidacaoAssocclMetodoValidacao data mapper
+ * AcaoAplicacaoAssocclMetodoValidacao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacaoAssocclMetodoValidacao
+ * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacao
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoAssocclMetodoValidacaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
 	/**
 	 * Mapeamento da classe
@@ -32,11 +27,11 @@ class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoAssocclMetodoValidacaoMapp
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idAcaoAplicacao'] = 'id_acao_aplicacao';
+		$this->_arrayMapper['id'] 				 = 'id';
+		$this->_arrayMapper['idAcaoAplicacao'] 	 = 'id_acao_aplicacao';
 		$this->_arrayMapper['idMetodoValidacao'] = 'id_metodo_validacao';
-		$this->_arrayMapper['idPerfil'] = 'id_perfil';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['idPerfil'] 		 = 'id_perfil';
+		$this->_arrayMapper['rowinfo'] 			 = 'rowinfo'; 
 	}
 
    	/**

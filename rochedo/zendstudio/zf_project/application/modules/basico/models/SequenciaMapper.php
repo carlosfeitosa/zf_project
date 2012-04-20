@@ -27,15 +27,15 @@ class Basico_Model_SequenciaMapper extends Basico_AbstractMapper_RochedoMapper i
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['nome']						 = 'nome';
+		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

@@ -27,19 +27,19 @@ class Basico_Model_MensagemMapper extends Basico_AbstractMapper_RochedoMapper im
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idGenericoProprietario'] = 'id_generico_proprietario';
-		$this->_arrayMapper['remetente'] = 'remetente';
-		$this->_arrayMapper['remetenteNome'] = 'remetente_nome';
-		$this->_arrayMapper['destinatarios'] = 'destinatarios';
-		$this->_arrayMapper['destinatariosNomes'] = 'destinatarios_nomes';
-		$this->_arrayMapper['assunto'] = 'assunto';
-		$this->_arrayMapper['mensagem'] = 'mensagem';
-		$this->_arrayMapper['datahoraEnvio'] = 'datahora_envio';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idGenericoProprietario']	 = 'id_generico_proprietario';
+		$this->_arrayMapper['remetente']				 = 'remetente';
+		$this->_arrayMapper['remetenteNome']			 = 'remetente_nome';
+		$this->_arrayMapper['destinatarios']			 = 'destinatarios';
+		$this->_arrayMapper['destinatariosNomes']		 = 'destinatarios_nomes';
+		$this->_arrayMapper['assunto']					 = 'assunto';
+		$this->_arrayMapper['mensagem']					 = 'mensagem';
+		$this->_arrayMapper['datahoraEnvio']			 = 'datahora_envio';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

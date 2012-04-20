@@ -27,23 +27,23 @@ class Basico_Model_FormularioElementoMapper extends Basico_AbstractMapper_Roched
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idComponente'] = 'id_componente';
-		$this->_arrayMapper['idAjuda'] = 'id_ajuda';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idComponente']				 = 'id_componente';
+		$this->_arrayMapper['idAjuda']					 = 'id_ajuda';
+		$this->_arrayMapper['nome']						 = 'nome';
+		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['constanteTextualLabel'] = 'constante_textual_label';
-		$this->_arrayMapper['element'] = 'element';
-		$this->_arrayMapper['elementName'] = 'element_name';
-		$this->_arrayMapper['elementAttribs'] = 'element_attribs';
-		$this->_arrayMapper['elementValueDefault'] = 'element_value_default';
-		$this->_arrayMapper['elementReloadable'] = 'element_reloadable';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['constanteTextualLabel']	 = 'constante_textual_label';
+		$this->_arrayMapper['element']					 = 'element';
+		$this->_arrayMapper['elementName']				 = 'element_name';
+		$this->_arrayMapper['elementAttribs']			 = 'element_attribs';
+		$this->_arrayMapper['elementValueDefault']		 = 'element_value_default';
+		$this->_arrayMapper['elementReloadable']		 = 'element_reloadable';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

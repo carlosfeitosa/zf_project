@@ -1,14 +1,14 @@
 <?php 
 /**
- * AcaoAplicacaoAssocclPerfilAssocclPerfil data mapper
+ * AcaoAplicacaoAssocclPerfil data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocclPerfilAssocclPerfil
+ * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocclPerfil
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocclPerfilAssocclPerfilMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_AcaoAplicacaoAssocclPerfilMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
 	/**
 	 * Mapeamento da classe
@@ -27,11 +27,11 @@ class Basico_Model_AcaoAplicacaoAssocclPerfilAssocclPerfilMapper extends Basico_
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['id'] 			   = 'id';
 		$this->_arrayMapper['idAcaoAplicacao'] = 'id_acao_aplicacao';
-		$this->_arrayMapper['idPerfil'] = 'id_perfil';
+		$this->_arrayMapper['idPerfil'] 	   = 'id_perfil';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo'] 		   = 'rowinfo'; 
 	}
 	
    	/**

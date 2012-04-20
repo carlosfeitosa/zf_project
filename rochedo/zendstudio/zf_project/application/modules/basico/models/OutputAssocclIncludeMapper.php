@@ -27,12 +27,12 @@ class Basico_Model_OutputAssocclIncludeMapper extends Basico_AbstractMapper_Roch
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idOutput'] = 'id_output';
-		$this->_arrayMapper['idInclude'] = 'id_include';
-		$this->_arrayMapper['ordem'] = 'ordem';
+		$this->_arrayMapper['id']			   = 'id';
+		$this->_arrayMapper['idOutput']		   = 'id_output';
+		$this->_arrayMapper['idInclude'] 	   = 'id_include';
+		$this->_arrayMapper['ordem']		   = 'ordem';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']		   = 'rowinfo'; 
 	}
 
    	/**

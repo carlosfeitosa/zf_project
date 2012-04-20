@@ -27,18 +27,18 @@ class Basico_Model_MensagemTemplateMapper extends Basico_AbstractMapper_RochedoM
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idGenericoProprietario'] = 'id_generico_proprietario';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idGenericoProprietario']	 = 'id_generico_proprietario';
+		$this->_arrayMapper['nome']						 = 'nome';
+		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['constanteTextualAssunto'] = 'constante_textual_assunto';
-		$this->_arrayMapper['constanteTextualMensagem'] = 'constante_textual_mensagem';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['constanteTextualAssunto']	 = 'constante_textual_assunto';
+		$this->_arrayMapper['constanteTextualMensagem']  = 'constante_textual_mensagem';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

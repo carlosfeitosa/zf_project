@@ -27,13 +27,13 @@ class Basico_Model_MensagemAssocclAssocclPessoaPerfilMapper extends Basico_Abstr
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idMensagem'] = 'id_mensagem';
-		$this->_arrayMapper['idAssocclPerfil'] = 'id_assoccl_perfil';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idMensagem']				 = 'id_mensagem';
+		$this->_arrayMapper['idAssocclPerfil']			 = 'id_assoccl_perfil';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

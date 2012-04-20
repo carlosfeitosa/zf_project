@@ -27,11 +27,11 @@ class Basico_Model_FormularioAssocclTemplateMapper extends Basico_AbstractMapper
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idTemplate'] = 'id_template';
-		$this->_arrayMapper['id_formulario'] = 'id_formulario';
+		$this->_arrayMapper['id'] 			   = 'id';
+		$this->_arrayMapper['idTemplate'] 	   = 'id_template';
+		$this->_arrayMapper['idFormulario']    = 'id_formulario';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']		   = 'rowinfo'; 
 	}
 
    	/**

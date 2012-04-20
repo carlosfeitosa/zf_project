@@ -27,11 +27,11 @@ class Basico_Model_TemplateAssocclOutputMapper extends Basico_AbstractMapper_Roc
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idTemplate'] = 'id_template';
-		$this->_arrayMapper['idOutput'] = 'id_output';
+		$this->_arrayMapper['id']			   = 'id';
+		$this->_arrayMapper['idTemplate'] 	   = 'id_template';
+		$this->_arrayMapper['idOutput']		   = 'id_output';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']		   = 'rowinfo'; 
 	}
 
    	/**

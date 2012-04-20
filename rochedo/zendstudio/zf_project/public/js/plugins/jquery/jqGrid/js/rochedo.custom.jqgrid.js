@@ -26,7 +26,7 @@ function carregaDadosFormEdicaoJqGrid(formObject, urlDadosForm) {
 				if (formObject[0][key]) {
 					// recuperando o tipo do elemento
 					var tipoElemento = formObject[0][key].type;
-
+					
 					// setando elemento de acordo com o seu tipo
 					if (tipoElemento == "checkbox") {
 						// verificando valor para marcar ou desmarcar o checkbox
@@ -36,7 +36,7 @@ function carregaDadosFormEdicaoJqGrid(formObject, urlDadosForm) {
 							formObject[0][key].checked = "";
 					}else{
 						// setando valor do elemento do tipo text
-						formObject[0][key].value = val;
+						formObject[0][key].value = val.replace(new RegExp('<br>', 'g'), '\n');
 					}
 				}
 			});
@@ -75,7 +75,7 @@ function carregaDadosFormEdicaoJqGridPaginator(wichbutton, formObject, rowid, ur
 						else
 							formObject[0][key].checked = "";
 					}else{
-						formObject[0][key].value = val;
+						formObject[0][key].value = val.replace(new RegExp('<br>', 'g'), '\n');
 					}
 				}
 			  });

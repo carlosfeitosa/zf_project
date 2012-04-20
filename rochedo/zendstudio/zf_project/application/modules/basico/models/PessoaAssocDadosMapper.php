@@ -27,18 +27,18 @@ class Basico_Model_PessoaAssocDadosMapper extends Basico_AbstractMapper_RochedoM
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idPessoa'] = 'id_pessoa';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['dataNascimento'] = 'data_nascimento';
+		$this->_arrayMapper['id']							  = 'id';
+		$this->_arrayMapper['idPessoa']						  = 'id_pessoa';
+		$this->_arrayMapper['nome']							  = 'nome';
+		$this->_arrayMapper['dataNascimento']				  = 'data_nascimento';
 		$this->_arrayMapper['constanteTextualPaisNascimento'] = 'constante_textual_pais_nasc';
-		$this->_arrayMapper['nomeUfNascimento'] = 'nome_uf_nascimento';
-		$this->_arrayMapper['nomeMunicipioNascimento'] = 'nome_municipio_nascimento';
-		$this->_arrayMapper['nomePai'] = 'nome_pai';
-		$this->_arrayMapper['nomeMae'] = 'nome_mae';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['nomeUfNascimento']				  = 'nome_uf_nascimento';
+		$this->_arrayMapper['nomeMunicipioNascimento']	 	  = 'nome_municipio_nascimento';
+		$this->_arrayMapper['nomePai']						  = 'nome_pai';
+		$this->_arrayMapper['nomeMae']						  = 'nome_mae';
+		$this->_arrayMapper['datahoraCriacao']				  = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao']	  = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo']						  = 'rowinfo'; 
 	}
 
    	/**

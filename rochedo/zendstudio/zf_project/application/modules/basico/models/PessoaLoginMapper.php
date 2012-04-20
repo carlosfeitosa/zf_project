@@ -27,26 +27,26 @@ class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idPessoa'] = 'id_pessoa';
-		$this->_arrayMapper['login'] = 'login';
-		$this->_arrayMapper['senha'] = 'senha';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['tentativasFalhas'] = 'tentativas_falhas';
-		$this->_arrayMapper['travado'] = 'travado';
-		$this->_arrayMapper['resetado'] = 'resetado';
-		$this->_arrayMapper['datahoraUltimoLogon'] = 'datahora_ultimo_logon';
-		$this->_arrayMapper['podeExpirar'] = 'pode_expirar';
-		$this->_arrayMapper['datahoraProximaExpiracao'] = 'datahora_proxima_expiracao';
-		$this->_arrayMapper['datahoraUltimaExpiracao'] = 'datahora_ultima_expiracao';
-		$this->_arrayMapper['datahoraExpiracaoSenha'] = 'datahora_expiracao_senha';
+		$this->_arrayMapper['id'] 							= 'id';
+		$this->_arrayMapper['idPessoa'] 					= 'id_pessoa';
+		$this->_arrayMapper['login'] 						= 'login';
+		$this->_arrayMapper['senha']				 		= 'senha';
+		$this->_arrayMapper['ativo'] 						= 'ativo';
+		$this->_arrayMapper['tentativasFalhas'] 			= 'tentativas_falhas';
+		$this->_arrayMapper['travado'] 						= 'travado';
+		$this->_arrayMapper['resetado'] 					= 'resetado';
+		$this->_arrayMapper['datahoraUltimoLogon']		 	= 'datahora_ultimo_logon';
+		$this->_arrayMapper['podeExpirar'] 					= 'pode_expirar';
+		$this->_arrayMapper['datahoraProximaExpiracao'] 	= 'datahora_proxima_expiracao';
+		$this->_arrayMapper['datahoraUltimaExpiracao'] 		= 'datahora_ultima_expiracao';
+		$this->_arrayMapper['datahoraExpiracaoSenha'] 		= 'datahora_expiracao_senha';
 		$this->_arrayMapper['datahoraUltimaTentativaFalha'] = 'datahora_ultima_tentativa_falha';
-		$this->_arrayMapper['datahoraUltimoReset'] = 'datahora_ultimo_reset';
-		$this->_arrayMapper['datahoraUltimaTrocaSenha'] = 'datahora_ultima_troca_senha';
-		$this->_arrayMapper['datahoraAceiteTermoUso'] = 'datahora_aceite_termo_uso';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['datahoraUltimoReset']		    = 'datahora_ultimo_reset';
+		$this->_arrayMapper['datahoraUltimaTrocaSenha']	 	= 'datahora_ultima_troca_senha';
+		$this->_arrayMapper['datahoraAceiteTermoUso']	 	= 'datahora_aceite_termo_uso';
+		$this->_arrayMapper['datahoraCriacao']			 	= 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] 	= 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo']					 	= 'rowinfo'; 
 	}
 
 	/**

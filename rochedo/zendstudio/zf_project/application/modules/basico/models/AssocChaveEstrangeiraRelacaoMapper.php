@@ -27,11 +27,11 @@ class Basico_Model_AssocChaveEstrangeiraRelacaoMapper extends Basico_AbstractMap
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['tabelaOrigem'] = 'tabela_origem';
-		$this->_arrayMapper['campoOrigem'] = 'campo_origem';
+		$this->_arrayMapper['id'] 			   = 'id';
+		$this->_arrayMapper['tabelaOrigem']    = 'tabela_origem';
+		$this->_arrayMapper['campoOrigem']     = 'campo_origem';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo'] 		   = 'rowinfo'; 
 	}
 	
    	/**

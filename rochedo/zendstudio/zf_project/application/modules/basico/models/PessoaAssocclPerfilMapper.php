@@ -27,13 +27,13 @@ class Basico_Model_PessoaAssocclPerfilMapper extends Basico_AbstractMapper_Roche
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idPessoa'] = 'id_pessoa';
-		$this->_arrayMapper['idPerfil'] = 'id_perfil';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idPessoa']					 = 'id_pessoa';
+		$this->_arrayMapper['idPerfil']					 = 'id_perfil';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
 	/**

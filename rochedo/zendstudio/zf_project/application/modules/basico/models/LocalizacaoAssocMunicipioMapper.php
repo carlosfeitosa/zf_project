@@ -27,17 +27,17 @@ class Basico_Model_LocalizacaoAssocMunicipioMapper extends Basico_AbstractMapper
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idMunicipioPai'] = 'id_municipio_pai';
-		$this->_arrayMapper['idEstado'] = 'id_estado';
-		$this->_arrayMapper['nivel'] = 'nivel';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['codigoDdd'] = 'codigo_ddd';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idMunicipioPai']			 = 'id_municipio_pai';
+		$this->_arrayMapper['idEstado']					 = 'id_estado';
+		$this->_arrayMapper['nivel']					 = 'nivel';
+		$this->_arrayMapper['nome']						 = 'nome';
+		$this->_arrayMapper['codigoDdd']				 = 'codigo_ddd';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

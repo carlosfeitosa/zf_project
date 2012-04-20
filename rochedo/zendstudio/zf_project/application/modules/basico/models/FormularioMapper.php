@@ -27,25 +27,25 @@ class Basico_Model_FormularioMapper extends Basico_AbstractMapper_RochedoMapper 
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idFormularioPai'] = 'id_formulario_pai';
-		$this->_arrayMapper['nivel'] = 'nivel';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idAjuda'] = 'id_ajuda';
-		$this->_arrayMapper['nome'] = 'nome';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idFormularioPai']			 = 'id_formulario_pai';
+		$this->_arrayMapper['nivel']					 = 'nivel';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idAjuda']					 = 'id_ajuda';
+		$this->_arrayMapper['nome']						 = 'nome';
+		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['formName'] = 'form_name';
-		$this->_arrayMapper['formMethod'] = 'form_method';
-		$this->_arrayMapper['formAction'] = 'form_action';
-		$this->_arrayMapper['formEnctype'] = 'form_enctype';
-		$this->_arrayMapper['formAttribs'] = 'form_attribs';
-		$this->_arrayMapper['ordem'] = 'ordem';
-		$this->_arrayMapper['permiteRascunho'] = 'permite_rascunho';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['formName']					 = 'form_name';
+		$this->_arrayMapper['formMethod']				 = 'form_method';
+		$this->_arrayMapper['formAction']				 = 'form_action';
+		$this->_arrayMapper['formEnctype']				 = 'form_enctype';
+		$this->_arrayMapper['formAttribs']				 = 'form_attribs';
+		$this->_arrayMapper['ordem']					 = 'ordem';
+		$this->_arrayMapper['permiteRascunho']			 = 'permite_rascunho';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

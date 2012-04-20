@@ -27,16 +27,16 @@ class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper impl
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idPerfilPadrao'] = 'id_perfil_padrao';
-		$this->_arrayMapper['idTelefoneDefault'] = 'id_telefone_default';
-		$this->_arrayMapper['idEmailDefault'] = 'id_email_default';
-		$this->_arrayMapper['idEnderecoDefault'] = 'id_endereco_default';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idPerfilPadrao']			 = 'id_perfil_padrao';
+		$this->_arrayMapper['idTelefoneDefault']		 = 'id_telefone_default';
+		$this->_arrayMapper['idEmailDefault']			 = 'id_email_default';
+		$this->_arrayMapper['idEnderecoDefault']		 = 'id_endereco_default';
 		$this->_arrayMapper['idEnderecoCorrespondencia'] = 'id_endereco_correspondencia';
-		$this->_arrayMapper['idLinkDefault'] = 'id_link_default';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['idLinkDefault']			 = 'id_link_default';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

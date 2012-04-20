@@ -24,12 +24,12 @@ class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Basico_AbstractMa
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idAssocclPessoaPerfil'] = 'id_assoccl_pessoa_perfil';
-		$this->_arrayMapper['assinaturaMensagemEmail'] = 'assinatura_mensagem_email';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id'] 						 = 'id';
+		$this->_arrayMapper['idAssocclPessoaPerfil']	 = 'id_assoccl_pessoa_perfil';
+		$this->_arrayMapper['assinaturaMensagemEmail']   = 'assinatura_mensagem_email';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo'] 					 = 'rowinfo'; 
 	}
 	
    	/**

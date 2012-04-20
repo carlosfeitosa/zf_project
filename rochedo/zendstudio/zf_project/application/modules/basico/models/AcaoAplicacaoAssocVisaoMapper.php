@@ -1,6 +1,6 @@
 <?php
 /**
- * AcaoAplicacaoAssocVisaoAssocVisao data mapper
+ * AcaoAplicacaoAssocVisao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocVisaoAssocVisao
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocVisaoAssocVisaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_AcaoAplicacaoAssocVisaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
 	/**
 	 * Mapeamento da classe
@@ -27,17 +27,17 @@ class Basico_Model_AcaoAplicacaoAssocVisaoAssocVisaoMapper extends Basico_Abstra
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idCategoria'] = 'id_categoria';
-		$this->_arrayMapper['idAcaoAplicacao'] = 'id_acao_aplicacao';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idAcaoAplicacao']			 = 'id_acao_aplicacao';
+		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['constanteTextualTitulo'] = 'constante_textual_titulo';
+		$this->_arrayMapper['constanteTextualTitulo']	 = 'constante_textual_titulo';
 		$this->_arrayMapper['constanteTextualSubtitulo'] = 'constante_textual_subtitulo';
-		$this->_arrayMapper['constanteTextualMensagem'] = 'constante_textual_mensagem';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['constanteTextualMensagem']	 = 'constante_textual_mensagem';
+		$this->_arrayMapper['datahoraCriacao'] 			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
 
    	/**

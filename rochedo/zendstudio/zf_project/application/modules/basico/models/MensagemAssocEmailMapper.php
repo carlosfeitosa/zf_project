@@ -27,13 +27,13 @@ class Basico_Model_MensagemAssocEmailMapper extends Basico_AbstractMapper_Roched
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['destinatariosCopiaCarbonada'] = 'destinatarios_copia_carbonada';
+		$this->_arrayMapper['id']							   = 'id';
+		$this->_arrayMapper['destinatariosCopiaCarbonada']	   = 'destinatarios_copia_carbonada';
 		$this->_arrayMapper['destinatariosCopiaCarbonadaCega'] = 'destinatarios_copia_carbonada_cega';
-		$this->_arrayMapper['responderPara'] = 'responder_para';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['responderPara']				   = 'responder_para';
+		$this->_arrayMapper['datahoraCriacao']				   = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao']	   = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo']						   = 'rowinfo'; 
 	}
 
    	/**

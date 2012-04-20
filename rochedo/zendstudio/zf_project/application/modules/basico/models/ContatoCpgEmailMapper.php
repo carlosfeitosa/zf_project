@@ -10,47 +10,65 @@
  */
 class Basico_Model_ContatoCpgEmailMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idGenericoProprietario']	 = 'id_generico_proprietario';
+		$this->_arrayMapper['nome']				 		 = 'nome';
+		$this->_arrayMapper['constanteTextual'] 		 = 'constante_textual';
+		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
+		$this->_arrayMapper['uniqueId'] 	 		 	 = 'unique_id';
+		$this->_arrayMapper['email'] 	 		 		 = 'email';
+		$this->_arrayMapper['descricao'] 	 	 		 = 'descricao';
+		$this->_arrayMapper['validado'] 	 			 = 'validado';
+		$this->_arrayMapper['ativo'] 				 	 = 'ativo';
+		$this->_arrayMapper['datahoraUltimaValidacao']   = 'datahora_ultima_validacao';
+		$this->_arrayMapper['datahoraCriacao']           = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo']                   = 'rowinfo'; 
+	}
+	
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_ContatoCpgEmail if no instance registered
      * 
-     * @return Basico_Model_DbTable_ContatoCpgEmail
-     */
+     * @return Zend_Db_Table_Abstract
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_ContatoCpgEmail')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
     
 	/**
-     * Find a Email entry by id
+     * Find a ContatoCpgEmail entry by id
      * 
-     * @param  int $id 
+     * @param  int $id
      * @param  Basico_Model_ContatoCpgEmail $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-                ->setIdCategoria($row->id_categoria)
-        		->setIdGenericoProprietario($row->id_generico_proprietario)
-                ->setNome($row->nome)
-                ->setConstanteTextual($row->constante_textual)
-                ->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setUniqueId($row->unique_id)
-				->setEmail($row->email)
-				->setDescricao($row->descricao)
-				->setValidado($row->validado)
-				->setAtivo($row->ativo)
-				->setDatahoraUltimaValidacao($row->datahora_ultima_validacao)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)	
-                ->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
 	/**
@@ -60,30 +78,8 @@ class Basico_Model_ContatoCpgEmailMapper extends Basico_AbstractMapper_RochedoMa
 	 */
 	public function fetchAll()
 	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_ContatoCpgEmail();
-			$entry->setId($row->id)
-                ->setIdCategoria($row->id_categoria)
-        		->setIdGenericoProprietario($row->id_generico_proprietario)
-                ->setNome($row->nome)
-                ->setConstanteTextual($row->constante_textual)
-                ->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setUniqueId($row->unique_id)
-				->setEmail($row->email)
-				->setDescricao($row->descricao)
-				->setValidado($row->validado)
-				->setAtivo($row->ativo)
-				->setDatahoraUltimaValidacao($row->datahora_ultima_validacao)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)	
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_ContatoCpgEmail');
 	}
 	
 	/**
@@ -93,72 +89,33 @@ class Basico_Model_ContatoCpgEmailMapper extends Basico_AbstractMapper_RochedoMa
 	 */
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_ContatoCpgEmail();
-			$entry->setId($row->id)
-                ->setIdCategoria($row->id_categoria)
-        		->setIdGenericoProprietario($row->id_generico_proprietario)
-                ->setNome($row->nome)
-                ->setConstanteTextual($row->constante_textual)
-                ->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setUniqueId($row->unique_id)
-				->setEmail($row->email)
-				->setDescricao($row->descricao)
-				->setValidado($row->validado)
-				->setAtivo($row->ativo)
-				->setDatahoraUltimaValidacao($row->datahora_ultima_validacao)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)	
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_ContatoCpgEmail', $where, $order, $count, $offset);
 	}
     
     /**
      * Save a ContatoCpgEmail entry
      * 
      * @param  Basico_Model_ContatoCpgEmail $object
+     * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
-    {   
-        $data = array(
-        			  'id_categoria'                => $object->getIdCategoria(),
-                      'id_generico_proprietario'    => $object->getIdGenericoProprietario(),
-                      'nome'                        => $object->getNome(),
-         			  'constante_textual'           => $object->getConstanteTextual(),
-        			  'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-    			 	  'unique_id'                   => $object->getUniqueId(),
-    				  'email'                       => $object->getEmail(),
-         			  'descricao'                   => $object->getDescricao(),
-    				  'validado'                    => $object->getValidado(),
-        			  'ativo'                       => $object->getAtivo(),
-    				  'datahora_ultima_validacao'   => $object->getDatahoraUltimaValidacao(),
-        			  'datahora_criacao'			=> $object->getDatahoraCriacao(),
-        			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-        			  'rowinfo'				        => $object->getRowinfo(),
-                    );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    {
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
 	/**
 	* Delete a ContatoCpgEmail entry
+	* 
 	* @param Basico_Model_ContatoCpgEmail $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
 	}
 }

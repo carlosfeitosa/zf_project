@@ -27,12 +27,12 @@ class Basico_Model_AcaoEventoAssocclIncludeMapper extends Basico_AbstractMapper_
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['idAcaoEvento'] = 'id_acao_evento';
-		$this->_arrayMapper['idInclude'] = 'id_include';
-		$this->_arrayMapper['ordem'] = 'ordem';
+		$this->_arrayMapper['id'] 			   = 'id';
+		$this->_arrayMapper['idAcaoEvento']    = 'id_acao_evento';
+		$this->_arrayMapper['idInclude'] 	   = 'id_include';
+		$this->_arrayMapper['ordem'] 		   = 'ordem';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']		   = 'rowinfo'; 
 	}
 	
    	/**

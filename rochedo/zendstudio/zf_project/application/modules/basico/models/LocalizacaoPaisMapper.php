@@ -27,15 +27,15 @@ class Basico_Model_LocalizacaoPaisMapper extends Basico_AbstractMapper_RochedoMa
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id'] = 'id';
-		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
-		$this->_arrayMapper['sigla'] = 'sigla';
-		$this->_arrayMapper['codigoDdi'] = 'codigo_ddi';
-		$this->_arrayMapper['codigoIso3166'] = 'codigo_iso3166';
-		$this->_arrayMapper['ativo'] = 'ativo';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['id']						 = 'id';
+		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
+		$this->_arrayMapper['sigla']					 = 'sigla';
+		$this->_arrayMapper['codigoDdi']				 = 'codigo_ddi';
+		$this->_arrayMapper['codigoIso3166']			 = 'codigo_iso3166';
+		$this->_arrayMapper['ativo']					 = 'ativo';
+		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
-		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+		$this->_arrayMapper['rowinfo']					 = 'rowinfo'; 
 	}
  
    	/**
