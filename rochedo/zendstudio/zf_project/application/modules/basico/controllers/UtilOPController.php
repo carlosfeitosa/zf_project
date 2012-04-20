@@ -972,6 +972,10 @@ class Basico_OPController_UtilOPController
    		foreach ($arrayObjeto as $chave => $valor) {
    			// motando array com as chaves corretas
    			$arrayObjetoChavesCorrigidas[str_replace("\0*\0_", '', $chave)] = $valor;
+
+   			// limpando a memória
+   			unset($chave);
+   			unset($valor);
    		}
 
    		// verificando se o array possui mapper
@@ -983,6 +987,9 @@ class Basico_OPController_UtilOPController
    		// transformando o array sujo no array corrigido
    		$arrayObjeto = $arrayObjetoChavesCorrigidas;
 
+   		// limpando memória
+   		unset($arrayObjetoChavesCorrigidas);
+
    		// verificando a necessidade de transformação de dados
    		if (count($arrayParametrosTransformacao)) {
    			// loop para transformar os valores
@@ -992,6 +999,10 @@ class Basico_OPController_UtilOPController
    					// transformando o dado
    					$arrayObjeto[$atributo] = self::retornaZend_Date($arrayObjeto[$atributo], DEFAULT_DATABASE_DATETIME_FORMAT)->toString($arrayTransformacao['formato_saida']);
    				}
+
+   				// limpando memória
+   				unset($atributo);
+   				unset($arrayTransformacao);
    			}
    		}
 

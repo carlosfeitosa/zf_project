@@ -176,14 +176,11 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
     	// recuperando o nome da tabela vinculada ao objeto
     	$tableName = Basico_OPController_DBUtilOPController::retornaTableNameObjeto($objeto);
 
-		// recuperando o id da categoria CVC
-		$idCategoriaCVC = $this->_categoriaOPController->retornaIdCategoriaCVC();
-
 		// recuperando objeto modulo do objeto
 		$idModulo = $this->_moduloOPController->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
 	
 		// recuperando a categoria chave estrangeira relacionada ao objeto
-		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_modulo = {$idModulo} and id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
+		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_modulo = {$idModulo} and id_categoria = {$this->_categoriaOPController->idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
 		
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($arrayCategoriasChaveEstrangeira[0])) {
@@ -200,7 +197,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 			
 			// cria relacao caso o haja o parametro para criacao de relacao
-			$modelCategoriaChaveEstrangeira->idCategoria = $idCategoriaCVC;
+			$modelCategoriaChaveEstrangeira->idCategoria = $this->_categoriaOPController->idCategoriaCVC;
 			$modelCategoriaChaveEstrangeira->idModulo = $idModulo;
 			$modelCategoriaChaveEstrangeira->tabelaEstrangeira = $tableName;
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
@@ -210,7 +207,6 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 
 			// limpando variáveis
 			unset($tableName);
-			unset($idCategoriaCVC);
 			unset($idModulo);
 			unset($arrayCategoriasChaveEstrangeira);
 

@@ -60,11 +60,15 @@ class Basico_OPController_DBUtilOPController
 		$tablePrimaryKey = $tableInfo['primary'];
 		$tablePrimaryKey = $tablePrimaryKey[1];
 
+		// recuperando o valor do atributo "pk" do objeto
+		$pkObjeto = $objeto->$tablePrimaryKey;
+
 		// limpando memória
 		unset($tableInfo);
+		unset($objeto);
 
 		// retornando o valor do id generico vindo do objeto
-		return $objeto->$tablePrimaryKey;
+		return $pkObjeto;
     }
 
     /**

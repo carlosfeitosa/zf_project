@@ -40,6 +40,12 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	private $_model;
 	
 	/**
+	 * 
+	 * @var Basico_Model_Categoria object
+	 */
+	public $idCategoriaCVC;
+	
+	/**
 	 * Construtor do Controlador Categoria
 	 * 
 	 * @return void
@@ -48,6 +54,9 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	{
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+
+		// recuperando objeto categoria cvc
+		$this->idCategoriaCVC = $this->retornaIdCategoriaCVC();
 
 		// inicializando o controlador
 		$this->init();
