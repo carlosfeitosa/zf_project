@@ -10,123 +10,103 @@
  */
 class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idElemento'] = 'id_elemento';
+		$this->_arrayMapper['idFilter'] = 'id_filter';
+		$this->_arrayMapper['ordem'] = 'ordem';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+   	/**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_FormulariosElementosFormulariosElementosFilters if no instance registered
+     * Lazy loads Basico_Model_DbTable_FormularioElementoAssocclFilter if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
-     */
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioElementoAssocclFilter')
     {
-    	return parent::getDbTable($dbTable);
+    	// chamando método do pai
+        return parent::getDbTable($dbTable);
     }
     
 	/**
-     * Find a Basico_Model_FormularioElementoAssocclFilter entry by id
+     * Find a FormularioElementoAssocclFilter entry by id
      * 
      * @param  int $id
-     * @param  Basico_Model_DbTable_FormularioElementoAssocclFilter $object
-     *  
+     * @param  Basico_Model_FormularioElementoAssocclFilter $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-               ->setIdElemento($row->id_elemento)
-               ->setIdFilter($row->id_filter)
-               ->setOrdem($row->ordem)
-               ->setDatahoraCriacao($row->datahora_criacao)
-               ->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
+
+	/**
+	 * Fetch all FormularioElementoAssocclFilter entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioElementoAssocclFilter');
+	}
+	
+	/**
+	 * Fetch all FormularioElementoAssocclFilter entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioElementoAssocclFilter', $where, $order, $count, $offset);
+	}
     
     /**
-     * Fetch all Basico_Model_DbTable_FormularioElementoAssocclFilter entries
+     * Save a FormularioElementoAssocclFilter entry
      * 
-     * @return array
-     */
-    public function fetchAll()
-    {
-        $resultSet = $this->getDbTable()->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_FormularioElementoAssocclFilter();
-            $entry->setId($row->id)
-            	   ->setIdElemento($row->id_elemento)
-				   ->setIdFilter($row->id_filter)
-				   ->setOrdem($row->ordem)
-				   ->setDatahoraCriacao($row->datahora_criacao)
-				   ->setRowinfo($row->rowinfo)
-				   ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
-    
-    /**
-     * Fetch all Basico_Model_FormularioElementoAssocclFilter entries
-     * 
-     * @return array
-     */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_FormularioElementoAssocclFilter();
-            $entry->setId($row->id)
-            	->setIdElemento($row->id_elemento)
-				->setIdFilter($row->id_filter)
-				->setOrdem($row->ordem)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
-    
-    /**
-     * Save a Basico_Model_FormularioElementoAssocclFilter entry
-     * 
-     * @param  Basico_Model_DbTable_FormularioElementoAssocclFilter $object
+     * @param  Basico_Model_FormularioElementoAssocclFilter $object
      * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-                'id_elemento' 		  => $object->getIdElemento(),
-                'id_filter'        	  => $object->getIdFilter(),
-        		'ordem'           	  => $object->getOrdem(),
-        		'datahora_criacao'	  => $object->getDatahoraCriacao(),
-        		'rowinfo'		   	  => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
-    /**
-    * Delete a Basico_Model_DbTable_FormularioElementoAssocclFilter entry
-    * 
-    * @param Basico_Model_DbTable_FormularioElementoAssocclFilter $object
-    * 
-    * @return void
-    */
-    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
+	/**
+	* Delete a FormularioElementoAssocclFilter entry
+	* 
+	* @param Basico_Model_FormularioElementoAssocclFilter $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
+	}
 }

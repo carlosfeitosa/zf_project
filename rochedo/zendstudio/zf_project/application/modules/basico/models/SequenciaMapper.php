@@ -10,19 +10,48 @@
  */
 class Basico_Model_SequenciaMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idCategoria'] = 'id_categoria';
+		$this->_arrayMapper['nome'] = 'nome';
+		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
+		$this->_arrayMapper['ativo'] = 'ativo';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_Sequencia if no instance registered
      * 
-     * @return Basico_Model_DbTable_Sequencia
-     */
+     * @return Zend_Db_Table_Abstract
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_Sequencia')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
-
-    /**
+    
+	/**
      * Find a Sequencia entry by id
      * 
      * @param  int $id
@@ -32,22 +61,10 @@ class Basico_Model_SequenciaMapper extends Basico_AbstractMapper_RochedoMapper i
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-				->setIdCategoria($row->id_categoria)
-				->setNome($row->nome)
-				->setConstateTextual($row->constante_textual)
-				->setConstateTextualDescricao($row->constante_textual_descricao)
-				->setAtivo($row->ativo)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
-    
+
 	/**
 	 * Fetch all Sequencia entries
 	 * 
@@ -55,26 +72,10 @@ class Basico_Model_SequenciaMapper extends Basico_AbstractMapper_RochedoMapper i
 	 */
 	public function fetchAll()
 	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Pessoa();
-			$entry->setId($row->id)
-				->setIdCategoria($row->id_categoria)
-				->setNome($row->nome)
-				->setConstateTextual($row->constante_textual)
-				->setConstateTextualDescricao($row->constante_textual_descricao)
-				->setAtivo($row->ativo)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_Sequencia');
 	}
-
+	
 	/**
 	 * Fetch all Sequencia entries
 	 * 
@@ -82,54 +83,23 @@ class Basico_Model_SequenciaMapper extends Basico_AbstractMapper_RochedoMapper i
 	 */
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Pessoa();
-			$entry->setId($row->id)
-				->setIdCategoria($row->id_categoria)
-				->setNome($row->nome)
-				->setConstateTextual($row->constante_textual)
-				->setConstateTextualDescricao($row->constante_textual_descricao)
-				->setAtivo($row->ativo)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_Sequencia', $where, $order, $count, $offset);
 	}
-
+    
     /**
      * Save a Sequencia entry
-     *
+     * 
      * @param  Basico_Model_Sequencia $object
      * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-        			  'id_categoria' => $object->getIdCategoria(),
-					  'Nome' => $object->getNome(),
-        			  'ConstanteTextual' => $object->getConstanteTextual(),
-        			  'ConstanteTextualDescricao' => $object->getConstanteTextualDescricao(),
-        			  'Ativo' =>  $object->getAtivo(),
-        			  'datahora_criacao' => $object->getDatahoraCriacao(),
-        			  'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                      'rowinfo'          => $object->getRowinfo(),
-                     );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
-
+    
 	/**
 	* Delete a Sequencia entry
 	* 
@@ -139,6 +109,7 @@ class Basico_Model_SequenciaMapper extends Basico_AbstractMapper_RochedoMapper i
 	*/
 	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
 	}
 }

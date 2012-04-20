@@ -10,44 +10,78 @@
  */
 class Basico_Model_LogMapper
 {
-    /**
-     * @var Zend_Db_Table_Abstract
-     */
-    protected $_dbTable;
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
 
-    /**
-     * Specify Zend_Db_Table instance to use for data operations
-     * 
-     * @param  Zend_Db_Table_Abstract $dbTable 
-     * 
-     * @return Basico_Model_LogMapper
-     */
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception(MSG_ERRO_TABLE_DATA_GATEWAY_INVALIDO);
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idCategoria'] = 'id_categoria';
+		$this->_arrayMapper['idAssocclPerfil'] = 'id_assoccl_perfil';
+		$this->_arrayMapper['datahoraEvento'] = 'datahora_evento';
+		$this->_arrayMapper['xml'] = 'xml'; 
+	}
 
-    /**
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_Log if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
-     */
-    public function getDbTable()
+    */ 
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_Log')
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Basico_Model_DbTable_Log');
-        }
-        return $this->_dbTable;
+    	// chamando método do pai
+        return parent::getDbTable($dbTable);
     }
+    
+	/**
+     * Find a Log entry by id
+     * 
+     * @param  int $id
+     * @param  Basico_Model_Log $object 
+     * 
+     * @return void
+     */
+    public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
+    }
+
+	/**
+	 * Fetch all Log entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_Log');
+	}
+	
+	/**
+	 * Fetch all Log entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_Log', $where, $order, $count, $offset);
+	}
     
     /**
      * Save a Log entry
@@ -56,21 +90,10 @@ class Basico_Model_LogMapper
      * 
      * @return void
      */
-    public function save(Basico_Model_Log $object)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-        		'id_categoria'      => $object->getIdCategoria(),
-        		'id_assoccl_perfil' => $object->getIdAssocclPerfil(),
-				'datahora_evento'   => $object->getDatahoraEvento(),
-				'xml'               => $object->getXml(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
 	/**
@@ -80,76 +103,9 @@ class Basico_Model_LogMapper
 	* 
 	* @return void
 	*/
-	public function delete(Basico_Model_Log $object)
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
-	}
-
-    /**
-     * Find a Log entry by id
-     * 
-     * @param  int $id 
-     * @param  Basico_Model_Log $object
-     * 
-     * @return void
-     */
-    public function find($id, Basico_Model_Log $object)
-    {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-        		->setIdCategoria($row->id_categoria)
-                ->setIdAssocclPerfil($row->id_assoccl_perfil)
-                ->setDatahoraEvento($row->datahora_evento)
-                ->setXml($row->xml);
-    }
-
-	/**
-	 * Fetch all log entries
-	 * 
-	 * @return array
-	 */
-	public function fetchAll()
-	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Log();
-			$entry->setId($row->id)
-        		->setIdCategoria($row->id_categoria)
-                ->setIdAssocclPerfil($row->id_assoccl_perfil)
-                ->setDatahoraEvento($row->datahora_evento)
-                ->setXml($row->xml)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
-	}
-
-	/**
-	 * Fetch all log entries
-	 * 
-	 * @return array
-	 */
-	public function fetchList($where=null, $order=null, $count=null, $offset=null)
-	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_Log();
-			$entry->setId($row->id)
-        		->setIdCategoria($row->id_categoria)
-                ->setIdAssocclPerfil($row->id_assoccl_perfil)
-                ->setDatahoraEvento($row->datahora_evento)
-                ->setXml($row->xml)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
 	}
 }

@@ -10,45 +10,63 @@
  */
 class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idAssocEmail'] = 'id_assoc_email';
+		$this->_arrayMapper['destinatariosCopiaCarbonada'] = 'destinatarios_copia_carbonada';
+		$this->_arrayMapper['destinatariosCopiaCarbonadaNomes'] = 'destinatarios_copia_carbonada_nomes';
+		$this->_arrayMapper['destinatariosCopiaCarbonadaOculta'] = 'destinatarios_copia_carbonada_oculta';
+		$this->_arrayMapper['destinatariosCopiaCarbonadaOcultaNomes'] = 'destinatarios_copia_carbonada_oculta_nomes';
+		$this->_arrayMapper['responderPara'] = 'responder_para';
+		$this->_arrayMapper['prioridade'] = 'prioridade';
+		$this->_arrayMapper['solicitacaoConfirmacaoLeitura'] = 'solicitacao_confirm_leitura';
+		$this->_arrayMapper['datahoraConfirmacaoLeitura'] = 'datahora_confirmacao_leitura';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_MensagemAssocEmailAssocDados if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
-     */
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_MensagemAssocEmailAssocDados')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
     
 	/**
      * Find a MensagemAssocEmailAssocDados entry by id
      * 
-     * @param  int $id 
+     * @param  int $id
      * @param  Basico_Model_MensagemAssocEmailAssocDados $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-				->setIdAssocEmail($row->id_assoc_email)
-				->setDestinatariosCopiaCarbonada($row->destinatarios_copia_carbonada)
-				->setDestinatariosCopiaCarbonadaNomes($row->destinatarios_copia_carbonada_nomes)
-				->setDestinatariosCopiaCarbonadaOculta($row->destinatarios_copia_carbonada_oculta)
-				->setDestinatariosCopiaCarbonadaOcultaNomes($row->destinatarios_copia_carbonada_oculta_nomes)
-				->setResponderPara($row->responderPara)
-                ->setPrioridade($row->prioridade)
-                ->setSolicitacaoConfirmacaoLeitura($row->solicitacao_confirm_leitura)
-                ->setDatahoraConfirmacaoLeitura($row->datahora_confirmacao_leitura)
-                ->setDatahoraCriacao($row->datahora_criacao)
-                ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
 	/**
@@ -58,29 +76,8 @@ class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMap
 	 */
 	public function fetchAll()
 	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_MensagemAssocEmailAssocDados();
-			$entry->setId($row->id)
-
-				->setIdAssocEmail($row->id_assoc_email)
-				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaNomes($row->destinatarios_copia_carbonada_nomes)
-				->setDestinatariosCopiaCarbonadaOculta($row->destinatarios_copia_carbonada_oculta)
-				->setDestinatariosCopiaCarbonadaOcultaNomes($row->destinatarios_copia_carbonada_oculta_nomes)
-				->setResponderPara($row->responderPara)
-                ->setPrioridade($row->prioridade)
-                ->setSolicitacaoConfirmacaoLeitura($row->solicitacao_confirm_leitura)
-                ->setDatahoraConfirmacaoLeitura($row->datahora_confirmacao_leitura)
-                ->setDatahoraCriacao($row->datahora_criacao)
-                ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_MensagemAssocEmailAssocDados');
 	}
 	
 	/**
@@ -90,70 +87,33 @@ class Basico_Model_MensagemAssocEmailAssocDadosMapper extends Basico_AbstractMap
 	 */
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_MensagemAssocEmailAssocDados();
-			$entry->setId($row->id)
-
-				->setIdAssocEmail($row->id_assoc_email)
-				->setDestinatariosCopiaCarbonada($row->destinatariosCopiaCarbonada)
-				->setDestinatariosCopiaCarbonadaNomes($row->destinatarios_copia_carbonada_nomes)
-				->setDestinatariosCopiaCarbonadaOculta($row->destinatarios_copia_carbonada_oculta)
-				->setDestinatariosCopiaCarbonadaOcultaNomes($row->destinatarios_copia_carbonada_oculta_nomes)
-				->setResponderPara($row->responderPara)
-                ->setPrioridade($row->prioridade)
-                ->setSolicitacaoConfirmacaoLeitura($row->solicitacao_confirm_leitura)
-                ->setDatahoraConfirmacaoLeitura($row->datahora_confirmacao_leitura)
-                ->setDatahoraCriacao($row->datahora_criacao)
-                ->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-                ->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_MensagemAssocEmailAssocDados', $where, $order, $count, $offset);
 	}
     
     /**
      * Save a MensagemAssocEmailAssocDados entry
      * 
      * @param  Basico_Model_MensagemAssocEmailAssocDados $object
+     * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-        		'id_assoc_email'                       		 => $object->getIdAssocEmail(),
-				'destinatarios_copia_carbonada'        		 => $object->getDestinatariosCopiaCarbonada(),
-        		'destinatarios_copia_carbonada_nomes'  		 => $object->getDestinatariosCopiaCarbonadaNomesString(),
-				'destinatarios_copia_carbonada_oculta' 		 => $object->getDestinatariosCopiaCarbonadaOculta(),
-        		'destinatarios_copia_carbonada_oculta_nomes' => $object->getDestinatariosCopiaCarbonadaOcultaNomesString(),
-				'responder_para'                       		 => $object->getResponderPara(),
-              	'prioridade'                           		 => $object->getPrioridade(),
-        		'solicitacao_confirm_leitura'          		 => $object->getSolicitacaoConfirmacaoLeitura(),
-        		'datahora_confirmacao_leitura'         		 => $object->getDatahoraConfirmacaoLeitura(),
-        		'datahora_criacao'                     		 => $object->getDatahoraCriacao(),
-        		'datahora_ultima_atualizacao'          		 => $object->getDatahoraUltimaAtualizacao(),
-        		'rowinfo'                              		 => $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
 	/**
 	* Delete a MensagemAssocEmailAssocDados entry
+	* 
 	* @param Basico_Model_MensagemAssocEmailAssocDados $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
 	}
 }

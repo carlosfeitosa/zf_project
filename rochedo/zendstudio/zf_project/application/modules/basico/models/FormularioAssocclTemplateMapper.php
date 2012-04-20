@@ -10,115 +10,102 @@
  */
 class Basico_Model_FormularioAssocclTemplateMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idTemplate'] = 'id_template';
+		$this->_arrayMapper['id_formulario'] = 'id_formulario';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_FormularioAssocclTemplate if no instance registered
      * 
-     * @return Basico_Model_DbTable_FormularioAssocclTemplate
-     */
+     * @return Zend_Db_Table_Abstract
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioAssocclTemplate')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
     
-    /**
-     * Save a LearningBasket entry
+	/**
+     * Find a FormularioAssocclTemplate entry by id
      * 
-     * @param  Basico_Model_FormularioAssocclTemplate $object
-     * @return void
-     */
-    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
-    {
-        $data = array(
-                'id_template' => $object->getIdTemplate(),
-                'id_formulario' => $object->getIdFormulario(),
-        		'datahora_criacao' => $object->getDataHoraCriacao(),
-                'rowinfo'    => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
-    }
-    
-    /**
-    * Delete a TemplateFormulario entry
-    * @param Basico_Model_TemplateFormulario $object
-    * @return void
-    */
-    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
-
-    /**
-     * Find a LearningBasket entry by id
-     * 
-     * @param  int $id 
+     * @param  int $id
      * @param  Basico_Model_FormularioAssocclTemplate $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-               ->setIdTemplate($row->id_template)
-               ->setIdFormulario($row->id_formulario)
-               ->setDatahoraCriacao($row->datahora_criacao)
-               ->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
-    /**
-     * Fetch all FormularioAssocclTemplate entries
-     * 
-     * @return array
-     */
-    public function fetchAll()
-    {
-        $resultSet = $this->getDbTable()->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_FormularioAssocclTemplate();
-            $entry->setId($row->id)
-                ->setIdTemplate($row->id_template)
-                ->setIdFormulario($row->id_formulario)
-                ->setDatahoraCriacao($row->datahora_criacao)
-                ->setRowinfo($row->rowinfo)
-                ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
+	/**
+	 * Fetch all FormularioAssocclTemplate entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclTemplate');
+	}
+	
+	/**
+	 * Fetch all FormularioAssocclTemplate entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclTemplate', $where, $order, $count, $offset);
+	}
     
     /**
-     * Fetch all learningbasket entries
+     * Save a FormularioAssocclTemplate entry
      * 
-     * @return array
+     * @param  Basico_Model_FormularioAssocclTemplate $object
+     * 
+     * @return void
      */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
+    public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_FormularioAssocclTemplate();
-            $entry->setId($row->id)
-                  ->setIdTemplate($row->id_template)
-                  ->setIdFormulario($row->id_formulario)
-                  ->setDatahoraCriacao($row->datahora_criacao)
-                  ->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
+    
+	/**
+	* Delete a FormularioAssocclTemplate entry
+	* 
+	* @param Basico_Model_FormularioAssocclTemplate $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
+	}
 }

@@ -10,133 +10,96 @@
  */
 class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idPessoa'] = 'id_pessoa';
+		$this->_arrayMapper['login'] = 'login';
+		$this->_arrayMapper['senha'] = 'senha';
+		$this->_arrayMapper['ativo'] = 'ativo';
+		$this->_arrayMapper['tentativasFalhas'] = 'tentativas_falhas';
+		$this->_arrayMapper['travado'] = 'travado';
+		$this->_arrayMapper['resetado'] = 'resetado';
+		$this->_arrayMapper['datahoraUltimoLogon'] = 'datahora_ultimo_logon';
+		$this->_arrayMapper['podeExpirar'] = 'pode_expirar';
+		$this->_arrayMapper['datahoraProximaExpiracao'] = 'datahora_proxima_expiracao';
+		$this->_arrayMapper['datahoraUltimaExpiracao'] = 'datahora_ultima_expiracao';
+		$this->_arrayMapper['datahoraExpiracaoSenha'] = 'datahora_expiracao_senha';
+		$this->_arrayMapper['datahoraUltimaTentativaFalha'] = 'datahora_ultima_tentativa_falha';
+		$this->_arrayMapper['datahoraUltimoReset'] = 'datahora_ultimo_reset';
+		$this->_arrayMapper['datahoraUltimaTrocaSenha'] = 'datahora_ultima_troca_senha';
+		$this->_arrayMapper['datahoraAceiteTermoUso'] = 'datahora_aceite_termo_uso';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_PessoaLogin if no instance registered
      * 
-     * @return Basico_Model_DbTable_PessoaLogin
-     */
+     * @return Zend_Db_Table_Abstract
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_PessoaLogin')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
-
-    /**
-     * Find a Login entry by id
+    
+	/**
+     * Find a PessoaLogin entry by id
      * 
-     * @param  int $id 
-     * @param  Basico_Model_PessoaLogin $object
+     * @param  int $id
+     * @param  Basico_Model_PessoaLogin $object 
      * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-               ->setIdPessoa($row->id_pessoa)
-			   ->setLogin($row->login)
-			   ->setSenha($row->senha)
-			   ->setAtivo($row->ativo)
-			   ->setTentativasFalhas($row->tentativas_falhas)
-			   ->setTravado($row->travado)
-			   ->setResetado($row->resetado)
-			   ->setDataHoraUltimoLogon($row->datahora_ultimo_logon)
-			   ->setPodeExpirar($row->pode_expirar)
-			   ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
-			   ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
-			   ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
-			   ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
-			   ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
-			   ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
-			   ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
-			   ->setDataHoraCriacao($row->datahora_criacao)
-			   ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-			   ->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
 	/**
-	 * Fetch all login entries
+	 * Fetch all PessoaLogin entries
 	 * 
 	 * @return array
 	 */
 	public function fetchAll()
 	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_PessoaLogin();
-			$entry->setId($row->id)
-			      ->setIdPessoa($row->id_pessoa)
-				  ->setLogin($row->login)
-				  ->setSenha($row->senha)
-				  ->setAtivo($row->ativo)
-				  ->setTentativasFalhas($row->tentativas_falhas)
-				  ->setTravado($row->travado)
-				  ->setResetado($row->resetado)
-				  ->setDataHoraUltimoLogon($row->datahora_ultimo_logon)
-				  ->setPodeExpirar($row->pode_expirar)
-				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
-				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
-				  ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
-				  ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
-			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
-			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
-			      ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
-			      ->setDataHoraCriacao($row->datahora_criacao)
-			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_PessoaLogin');
 	}
 	
 	/**
-	 * Fetch all login entries
+	 * Fetch all PessoaLogin entries
 	 * 
 	 * @return array
 	 */
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_PessoaLogin();
-			$entry->setId($row->id)
-			      ->setIdPessoa($row->id_pessoa)
-				  ->setLogin($row->login)
-				  ->setSenha($row->senha)
-				  ->setAtivo($row->ativo)
-				  ->setTentativasFalhas($row->tentativas_falhas)
-				  ->setTravado($row->travado)
-				  ->setResetado($row->resetado)
-				  ->setDataHoraUltimoLogon($row->datahora_ultimo_logon)
-				  ->setPodeExpirar($row->pode_expirar)
-				  ->setDataHoraProximaExpiracao($row->datahora_proxima_expiracao)
-				  ->setDataHoraUltimaExpiracao($row->datahora_ultima_expiracao)
-				  ->setDataHoraExpiracaoSenha($row->datahora_expiracao_senha)
-				  ->setDataHoraUltimaTentativaFalha($row->datahora_ultima_tentativa_falha)
-			      ->setDataHoraUltimoReset($row->datahora_ultimo_reset)
-			      ->setDataHoraUltimaTrocaSenha($row->datahora_ultima_troca_senha)
-			      ->setDataHoraAceiteTermoUso($row->datahora_aceite_termo_uso)
-			      ->setDataHoraCriacao($row->datahora_criacao)
-			      ->setDataHoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				  ->setRowinfo($row->rowinfo)
-				  ->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_PessoaLogin', $where, $order, $count, $offset);
 	}
-
+    
     /**
-     * Save a Login entry
+     * Save a PessoaLogin entry
      * 
      * @param  Basico_Model_PessoaLogin $object
      * 
@@ -144,38 +107,12 @@ class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-                      'id_pessoa'                       => $object->getIdPessoa(),
-    				  'login'                           => $object->getLogin(),
-    				  'senha'                           => $object->getSenha(),
-    				  'ativo'                           => $object->getAtivo(),
-    				  'tentativas_falhas'               => $object->getTentativasFalhas(),
-    				  'travado'                         => $object->getTravado(),
-    				  'resetado'  				        => $object->getResetado(),
-    				  'datahora_ultimo_logon'           => $object->getDataHoraUltimoLogon(),
-    				  'pode_expirar'  			        => $object->getPodeExpirar(),
-    				  'datahora_proxima_expiracao'      => $object->getDataHoraProximaExpiracao(),
-    				  'datahora_ultima_expiracao'       => $object->getDataHoraUltimaExpiracao(),
-        			  'datahora_expiracao_senha'        => $object->getDataHoraExpiracaoSenha(),
-                      'datahora_ultima_tentativa_falha' => $object->getDataHoraUltimaTentativaFalha(),
-                      'datahora_ultimo_reset'           => $object->getDataHoraUltimoReset(),
-                      'datahora_ultima_troca_senha'     => $object->getDataHoraUltimaTrocaSenha(),
-        			  'datahora_aceite_termo_uso'       => $object->getDataHoraAceiteTermoUso(),
-        			  'datahora_criacao'				=> $object->getDataHoraCriacao(),
-        			  'datahora_ultima_atualizacao'     => $object->getDataHoraUltimaAtualizacao(),
-                      'rowinfo'                         => $object->getRowinfo(),
-                    );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
 	/**
-	* Delete a Login entry
+	* Delete a PessoaLogin entry
 	* 
 	* @param Basico_Model_PessoaLogin $object
 	* 
@@ -183,6 +120,7 @@ class Basico_Model_PessoaLoginMapper extends Basico_AbstractMapper_RochedoMapper
 	*/
 	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
 	}
 }

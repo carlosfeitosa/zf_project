@@ -10,116 +10,102 @@
  */
 class Basico_Model_PerfilAssocclModuloMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idModulo'] = 'id_modulo';
+		$this->_arrayMapper['idPerfil'] = 'id_perfil';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_PerfilAssocclModulo if no instance registered
      * 
-     * @return Basico_Model_DbTable_PerfilAssocclModulo
-     */
+     * @return Zend_Db_Table_Abstract
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_PerfilAssocclModulo')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
-
-    /**
+    
+	/**
      * Find a PerfilAssocclModulo entry by id
      * 
-     * @param  int $id 
+     * @param  int $id
      * @param  Basico_Model_PerfilAssocclModulo $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-               ->setIdModulo($row->id_modulo)
-               ->setIdPerfil($row->id_perfil)
-               ->setDatahoraCriacao($row->datahora_criacao)               
-               ->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
-    /**
-     * Fetch all PerfilAssocclModulo entries
-     * 
-     * @return array
-     */
-    public function fetchAll()
-    {
-        $resultSet = $this->getDbTable()->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_PerfilAssocclModulo();
-            $entry->setId($row->id)
-                  ->setIdModulo($row->id_modulo)
-                  ->setIdPerfil($row->id_perfil)
-				  ->setDatahoraCriacao($row->datahora_criacao)                
-                  ->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
-    
-    /**
-     * Fetch all PerfilAssocclModulo entries
-     * 
-     * @return array
-     */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_PerfilAssocclModulo();
-            $entry->setId($row->id)
-                  ->setIdModulo($row->id_modulo)
-                  ->setIdPerfil($row->id_perfil)
-				  ->setDatahoraCriacao($row->datahora_criacao)                   
-                  ->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
+	/**
+	 * Fetch all PerfilAssocclModulo entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_PerfilAssocclModulo');
+	}
+	
+	/**
+	 * Fetch all PerfilAssocclModulo entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_PerfilAssocclModulo', $where, $order, $count, $offset);
+	}
     
     /**
      * Save a PerfilAssocclModulo entry
      * 
      * @param  Basico_Model_PerfilAssocclModulo $object
+     * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-                      'id_modulo' => $object->getIdModulo(),
-                      'id_perfil' => $object->getIdPerfil(),
-        		      'datahora_criacao' => $object->getDatahoraCriacao(),
-                      'rowinfo'=> $object->getRowinfo(),
-                     );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
-    /**
-    * Delete a PerfilAssocclModulo entry
-    * 
-    * @param Basico_Model_PerfilAssocclModulo $object
-    * @return void
-    */
-    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
+	/**
+	* Delete a PerfilAssocclModulo entry
+	* 
+	* @param Basico_Model_PerfilAssocclModulo $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
+	}
 }
