@@ -7,35 +7,56 @@
  */
 class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idAssocclPessoaPerfil'] = 'id_assoccl_pessoa_perfil';
+		$this->_arrayMapper['assinaturaMensagemEmail'] = 'assinatura_mensagem_email';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+	
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_AssocclPessoaPerfilAssocDados if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
-     */
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_AssocclPessoaPerfilAssocDados')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
-
+    
 	/**
      * Find a AssocclPessoaPerfilAssocDados entry by id
      * 
-     * @param  int $id 
+     * @param  int $id
      * @param  Basico_Model_AssocclPessoaPerfilAssocDados $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-				->setIdAssocclPessoaPerfil($row->id_assoccl_pessoa_perfil)
-				->setAssinaturaMensagemEmail($row->assinatura_mensagem_email);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
 	/**
@@ -45,20 +66,10 @@ class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Basico_AbstractMa
 	 */
 	public function fetchAll()
 	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_AssocclPessoaPerfilAssocDados();
-			$entry->setId($row->id)
-				->setIdAssocclPessoaPerfil($row->id_assoccl_pessoa_perfil)
-				->setAssinaturaMensagemEmail($row->assinatura_mensagem_email)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_AssocclPessoaPerfilAssocDados');
 	}
-
+	
 	/**
 	 * Fetch all AssocclPessoaPerfilAssocDados entries
 	 * 
@@ -66,48 +77,33 @@ class Basico_Model_AssocclPessoaPerfilAssocDadosMapper extends Basico_AbstractMa
 	 */
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_AssocclPessoaPerfilAssocDados();
-			$entry->setId($row->id)
-				->setIdAssocclPessoaPerfil($row->id_assoccl_pessoa_perfil)
-				->setAssinaturaMensagemEmail($row->assinatura_mensagem_email)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_AssocclPessoaPerfilAssocDados', $where, $order, $count, $offset);
 	}
     
     /**
      * Save a AssocclPessoaPerfilAssocDados entry
      * 
      * @param  Basico_Model_AssocclPessoaPerfilAssocDados $object
+     * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-			'id_assoccl_pessoa_perfil'  => $object->getIdAssocclPessoaPerfil(),		
-        	'assinatura_mensagem_email' => $object->getAssinaturaMensagemEmail(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
-
+    
 	/**
 	* Delete a AssocclPessoaPerfilAssocDados entry
+	* 
 	* @param Basico_Model_AssocclPessoaPerfilAssocDados $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
 	}
 }

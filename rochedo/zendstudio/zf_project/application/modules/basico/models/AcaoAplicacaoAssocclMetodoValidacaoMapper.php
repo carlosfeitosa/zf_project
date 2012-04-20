@@ -5,125 +5,112 @@
  */
  
 /**
- * AcaoAplicacaoAssocclMetodoValidacao data mapper
+ * AcaoAplicacaoAssocclMetodoValidacaoAssocclMetodoValidacao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacao
+ * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacaoAssocclMetodoValidacao
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoAssocclMetodoValidacaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idAcaoAplicacao'] = 'id_acao_aplicacao';
+		$this->_arrayMapper['idMetodoValidacao'] = 'id_metodo_validacao';
+		$this->_arrayMapper['idPerfil'] = 'id_perfil';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacao if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
-     */
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_AcaoAplicacaoAssocclMetodoValidacao')
     {
-       return parent::getDbTable($dbTable);
+    	// chamando método do pai
+        return parent::getDbTable($dbTable);
     }
-
+    
 	/**
-     * Find a LearningBasket entry by id
+     * Find a AcaoAplicacaoAssocclMetodoValidacao entry by id
      * 
-     * @param  int $id 
+     * @param  int $id
      * @param  Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-               ->setAcaoAplicacao($row->id_acao_aplicacao)
-               ->setMetodoValidacao($row->id_metodo_validacao)
-               ->setPerfil($row->id_perfil)
-               ->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
-    /**
-     * Fetch all Basico_Model_AcaoAplicacaoAssocclMetodoValidacao entries
-     * 
-     * @return array
-     */
-    public function fetchAll()
-    {
-        $resultSet = $this->getDbTable()->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_AcaoAplicacaoAssocclMetodoValidacao();
-            $entry->setId($row->id)
-                  ->setAcaoAplicacao($row->id_acao_aplicacao)
-                  ->setMetodoValidacao($row->id_metodo_validacao)
-                  ->setPerfil($row->id_perfil)
-                  ->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
+	/**
+	 * Fetch all AcaoAplicacaoAssocclMetodoValidacao entries
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_AcaoAplicacaoAssocclMetodoValidacao');
+	}
+	
+	/**
+	 * Fetch all AcaoAplicacaoAssocclMetodoValidacao entries
+	 * 
+	 * @return array
+	 */
+	public function fetchList($where=null, $order=null, $count=null, $offset=null)
+	{
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_AcaoAplicacaoAssocclMetodoValidacao', $where, $order, $count, $offset);
+	}
     
     /**
-     * Fetch all learningbasket entries
-     * 
-     * @return array
-     */
-    public function fetchList($where=null, $order=null, $count=null, $offset=null)
-    {
-        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-        $entries   = array();
-        foreach ($resultSet as $row) 
-        {
-            $entry = new Basico_Model_AcaoAplicacaoAssocclMetodoValidacao();
-            $entry->setId($row->id)
-                  ->setAcaoAplicacao($row->id_acao_aplicacao)
-                  ->setMetodoValidacao($row->id_metodo_validacao)
-                  ->setPerfil($row->id_perfil)
-                  ->setRowinfo($row->rowinfo)
-                  ->setMapper($this);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
-    
-    /**
-     * Save a LearningBasket entry
+     * Save a AcaoAplicacaoAssocclMetodoValidacao entry
      * 
      * @param  Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object
+     * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-                'id_acao_aplicacao'   => $object->getAcaoAplicacao(),
-                'id_metodo_validacao' => $object->getMetodoValidacao(),
-        		'id_perfil'           => $object->getPerfil(),
-        		'rowinfo'             => $object->getRowinfo(),
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
-    /**
-    * Delete a AcaoAplicacaoAssocclMetodoValidacao entry
-    * @param Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object
-    * @return void
-    */
-    public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
-    {
-        $this->getDbTable()->delete(array('id = ?' => $object->id));
-    }
+	/**
+	* Delete a AcaoAplicacaoAssocclMetodoValidacao entry
+	* 
+	* @param Basico_Model_AcaoAplicacaoAssocclMetodoValidacao $object
+	* 
+	* @return void
+	*/
+	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
+	}
 }

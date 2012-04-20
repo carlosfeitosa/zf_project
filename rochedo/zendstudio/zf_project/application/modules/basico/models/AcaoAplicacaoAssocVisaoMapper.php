@@ -1,53 +1,70 @@
 <?php
 /**
- * AcaoAplicacaoAssocVisao data mapper
+ * AcaoAplicacaoAssocVisaoAssocVisao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocVisao
+ * @uses       Basico_Model_DbTable_AcaoAplicacaoAssocVisaoAssocVisao
  * @subpackage Model
  */
-class Basico_Model_AcaoAplicacaoAssocVisaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_AcaoAplicacaoAssocVisaoAssocVisaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
-    /**
+	/**
+	 * Mapeamento da classe
+	 * 
+	 * @var Array'
+	 */
+	public $_arrayMapper = array();
+
+	/**
+	 * Constructor
+	 * 
+	 * @param  array|null $options 
+	 * 
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// montando array de mapeamento
+		$this->_arrayMapper['id'] = 'id';
+		$this->_arrayMapper['idCategoria'] = 'id_categoria';
+		$this->_arrayMapper['idAcaoAplicacao'] = 'id_acao_aplicacao';
+		$this->_arrayMapper['constanteTextual'] = 'constante_textual';
+		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
+		$this->_arrayMapper['constanteTextualTitulo'] = 'constante_textual_titulo';
+		$this->_arrayMapper['constanteTextualSubtitulo'] = 'constante_textual_subtitulo';
+		$this->_arrayMapper['constanteTextualMensagem'] = 'constante_textual_mensagem';
+		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
+		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
+		$this->_arrayMapper['rowinfo'] = 'rowinfo'; 
+	}
+
+   	/**
      * Get registered Zend_Db_Table instance
      *
      * Lazy loads Basico_Model_DbTable_AcaoAplicacaoAssocVisao if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
-     */
+    */ 
     public function getDbTable($dbTable = 'Basico_Model_DbTable_AcaoAplicacaoAssocVisao')
     {
+    	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
     
 	/**
      * Find a AcaoAplicacaoAssocVisao entry by id
      * 
-     * @param  int $id 
+     * @param  int $id
      * @param  Basico_Model_AcaoAplicacaoAssocVisao $object 
+     * 
      * @return void
      */
     public function find($id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-        $object->setId($row->id)
-
-				->setIdCategoria($row->id_categoria)
-				->setIdAcaoAplicacao($row->id_acao_aplicacao)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setConstanteTextualTitulo($row->constante_textual_titulo)
-				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
-				->setConstanteTextualMensagem($row->constante_textual_mensagem)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo);
+    	// chamando método do pai
+    	return $this->findAbstrato($this->_arrayMapper, $id, $object);
     }
 
 	/**
@@ -57,27 +74,8 @@ class Basico_Model_AcaoAplicacaoAssocVisaoMapper extends Basico_AbstractMapper_R
 	 */
 	public function fetchAll()
 	{
-		$resultSet = $this->getDbTable()->fetchAll();
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_AcaoAplicacaoAssocVisao();
-			$entry->setId($row->id)
-
-				->setIdCategoria($row->id_categoria)
-				->setIdAcaoAplicacao($row->id_acao_aplicacao)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setConstanteTextualTitulo($row->constante_textual_titulo)
-				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
-				->setConstanteTextualMensagem($row->constante_textual_mensagem)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_AcaoAplicacaoAssocVisao');
 	}
 	
 	/**
@@ -87,66 +85,33 @@ class Basico_Model_AcaoAplicacaoAssocVisaoMapper extends Basico_AbstractMapper_R
 	 */
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
-		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		foreach ($resultSet as $row) 
-		{
-			$entry = new Basico_Model_AcaoAplicacaoAssocVisao();
-			$entry->setId($row->id)
-
-				->setIdCategoria($row->id_categoria)
-				->setIdAcaoAplicacao($row->id_acao_aplicacao)
-				->setConstanteTextual($row->constante_textual)
-				->setConstanteTextualDescricao($row->constante_textual_descricao)
-				->setConstanteTextualTitulo($row->constante_textual_titulo)
-				->setConstanteTextualSubTitulo($row->constante_textual_subtitulo)
-				->setConstanteTextualMensagem($row->constante_textual_mensagem)
-				->setDatahoraCriacao($row->datahora_criacao)
-				->setDatahoraUltimaAtualizacao($row->datahora_ultima_atualizacao)
-				->setRowinfo($row->rowinfo)
-				->setMapper($this);
-			$entries[] = $entry;
-		}
-		return $entries;
+		// chamando método pai
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_AcaoAplicacaoAssocVisao', $where, $order, $count, $offset);
 	}
     
     /**
      * Save a AcaoAplicacaoAssocVisao entry
      * 
      * @param  Basico_Model_AcaoAplicacaoAssocVisao $object
+     * 
      * @return void
      */
     public function save(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
     {
-        $data = array(
-        		'id_categoria'                => $object->getIdCategoria(),
-				'id_acao_aplicacao'           => $object->getIdAcaoAplicacao(),
-				'constante_textual'           => $object->getConstanteTextual(),
-        		'constante_textual_descricao' => $object->getConstanteTextualDescricao(),
-        		'constante_textual_titulo'    => $object->getConstanteTextualTitulo(),
-        		'constante_textual_subtitulo' => $object->getConstanteTextualSubTitulo(),
-        		'constante_textual_mensagem'  => $object->getConstanteTextualMensagem(),
-				'datahora_criacao'            => $object->getDatahoraCriacao(),
-				'datahora_ultima_atualizacao' => $object->getDatahoraUltimaAtualizacao(),
-                'rowinfo'                     => $object->getRowinfo(),
-
-        );
-
-        if (null === ($id = $object->getId())) {
-            unset($data['id']);
-            $object->setId($this->getDbTable()->insert($data));
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+    	// chamando método pai
+    	return $this->saveAbstrato($this->_arrayMapper, $object);
     }
     
 	/**
 	* Delete a AcaoAplicacaoAssocVisao entry
+	* 
 	* @param Basico_Model_AcaoAplicacaoAssocVisao $object
+	* 
 	* @return void
 	*/
 	public function delete(Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
 	{
-    	$this->getDbTable()->delete(array('id = ?' => $object->id));
+		// chamando método pai
+    	$this->deleteAbstrato($this->_arrayMapper, $object);
 	}
 }
