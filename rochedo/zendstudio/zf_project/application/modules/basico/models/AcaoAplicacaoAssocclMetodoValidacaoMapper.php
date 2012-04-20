@@ -26,7 +26,7 @@ class Basico_Model_AcaoAplicacaoAssocclMetodoValidacaoMapper extends Basico_Abst
     {
        return parent::getDbTable($dbTable);
     }
-    
+
 	/**
      * Find a LearningBasket entry by id
      * 

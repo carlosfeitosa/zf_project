@@ -63,4 +63,166 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
         // retornando o dbTable
         return $this->_dbTable;
     }
+
+	/**
+     * Localiza uma tupla por id
+     *
+     * @param Array $arrayMapper
+     * @param int $id 
+     * @param Basico_AbstractModel_RochedoPersistentModeloGenerico $object
+     * 
+     * @return void
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 19/04/2012
+     */
+    public function findAbstrato(array $arrayMapper, $id, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+    	// recuperando objetos
+        $result = $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', get_class($object)))->find($id);
+
+        // verificando o resultado da recuperação
+        if (0 == count($result)) {
+            return;
+        }
+        // recuperando linha
+        $row = $result->current();
+
+        // limpando a memória
+        unset($result);
+
+        // loop para carregar os atributos do objeto
+        foreach ($arrayMapper as $atributo => $campo) {
+        	// recuperando método set do atributo
+        	$metodoAtributo = 'set' . ucfirst($atributo);
+
+        	// setando o valor no atributo
+        	$object->$metodoAtributo($row->$campo);			
+        }
+        
+        // limpando memória
+        unset($atributo);
+        unset($campo);
+        unset($row);
+    }
+
+	/**
+	 * Recupera todas as ocorrencias de um objeto
+	 *
+	 * @param array $arrayMapper
+	 * @param String $nomeModelo
+	 * @param String $where
+	 * @param String $order
+	 * @param Integer $count
+	 * @param Integer $offset
+	 * 
+	 * @return array
+	 * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 19/04/2012
+	 */
+	public function fetchListAbstrato(array $arrayMapper, $nomeModelo, $where=null, $order=null, $count=null, $offset=null)
+	{
+		// recuperando modelo
+		$modelo = new $nomeModelo();
+
+		// recuperando todas as ocorrencias do objeto
+		$resultSet = $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', $nomeModelo))->fetchAll($where=null, $order=null, $count=null, $offset=null);
+
+		// inicializando variáveis
+		$entries = array();
+
+		// loop para 
+		foreach ($resultSet as $row) 
+		{
+			// recuperando o modelo
+			$entry = $modelo;
+
+			// loop para carregar os atributos do objeto
+			foreach ($arrayMapper as $atributo => $campo) {
+				// carregando método de carga do atributo
+				$metodoAtributo = 'set' . ucfirst($atributo);
+
+				// carregando atributo
+				$entry->$metodoAtributo($row->$campo);
+
+				// limpando memória
+				unset($metodoAtributo);
+			}
+
+			// carregando aray de resultados
+			$entries[] = $entry;
+
+			// limpando memória
+			unset($atributo);
+			unset($campo);
+			unset($entry);
+		}
+
+		//limpando memória
+		unset($resultSet);
+		unset($modelo);
+		unset($row);
+
+		// retornando array de objetos
+		return $entries;
+	}
+
+    /**
+     * Salva um objeto
+     * 
+     * @param array $arrayMapper
+     * @param Basico_AbstractModel_RochedoPersistentModeloGenerico $object
+     * 
+     * @return void
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 19/04/2012
+     */
+    public function saveAbstrato(array $arrayMapper, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+    {
+    	// inicializando variáveis
+    	$data = array();
+
+    	// loop para montar array de dados
+    	foreach ($arrayMapper as $atributo => $campo) {
+    		// recuperando metodo de recuperação do atributo
+    		$metodoAtributo = 'get' . ucfirst($atributo);
+
+    		// motando array de dados
+    		$data[$campo] = $object->$metodoAtributo();
+
+    		// limpando memória
+    		unset($metodoAtributo);
+    	}
+
+    	// limpando memória
+    	unset($atributo);
+    	unset($campo);
+
+    	// verificando se o objeto possui id setado
+        if (null === ($id = $object->getId())) {
+        	// tirando o id do array
+            unset($data['id']);
+            // inserindo os dados e recuperando o id do objeto
+            $object->setId($this->getDbTable(str_replace('_Model_', '_Model_DbTable_', get_class($object)))->insert($data));
+        } else {
+        	// atualizando registro
+            $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', $nomeModelo))->update($data, array('id = ?' => $id));
+        }
+    }
+
+	/**
+	* Apaga um objeto
+	* 
+	* @param array $arrayMapper
+	* @param Basico_AbstractModel_RochedoPersistentModeloGenerico $object
+	* 
+	* @return void
+	*/
+	public function deleteAbstrato(array $arrayMapper, Basico_AbstractModel_RochedoPersistentModeloGenerico $object)
+	{
+		// apagando registro
+    	$this->getDbTable(str_replace('_Model_', '_Model_DbTable_', get_class($object)))->delete(array('id = ?' => $object->id));
+	}
 }
