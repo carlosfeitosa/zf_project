@@ -60,6 +60,9 @@ class Basico_OPController_DBUtilOPController
 		$tablePrimaryKey = $tableInfo['primary'];
 		$tablePrimaryKey = $tablePrimaryKey[1];
 
+		// limpando memória
+		unset($tableInfo);
+
 		// retornando o valor do id generico vindo do objeto
 		return $objeto->$tablePrimaryKey;
     }
@@ -153,6 +156,9 @@ class Basico_OPController_DBUtilOPController
 		// recuperando nome da tabela vinculada ao objeto
 		$tableName = $tableInfo['schema'] . "." . $tableInfo['name'];
 
+		// limpando variáveis
+		unset($tableInfo);
+
 		// retornando o nome da tabela
 		return $tableName;
     }
@@ -176,6 +182,9 @@ class Basico_OPController_DBUtilOPController
 
 		// recuperando o nome do campo da chave primaria da tabela vinculada ao objeto
 		$tablePrimaryKey = $tableInfo['primary'];
+
+		// limpando variáveis
+		unset($tableInfo);
 
 		// retorna o nome do campo da chave primaria
 		return $tablePrimaryKey[1];
@@ -286,7 +295,7 @@ class Basico_OPController_DBUtilOPController
 		        Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_RESET_DB_SUCESSO);
 		        // confirmando execucao dos scripts
 		        Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
-	
+
 		        return true;
 	    	}else{
 	    	    return false;

@@ -225,9 +225,16 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		// verificando se o objeto foi recuperado
 		if (isset($objsCategoria[0])) {
 			// verificando se a categoria esta ativa
-			if ($objsCategoria[0]->ativo == 1)
+			if ($objsCategoria[0]->ativo == 1) {
+				// recupernado objeto
+				$objetoCategoria = $objsCategoria[0];
+
+				// limpando variáveis
+				unset($objsCategoria);
+
 				// retornando objeto
-			   return $objsCategoria[0];
+			   return $objetoCategoria;
+			}
 			   	
 		    throw new Exception(MSG_ERRO_CATEGORIA_NAO_ATIVA);
 		    
@@ -498,8 +505,11 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		else
 			throw new Exception(MSG_ERRO_TIPO_CATEGORIA_CVC);
 
+		// limpando variáveis
+		unset($objTipoCategoriaCVC);
+
 		// recuperando o objeto categoria
-		$objCategoriaCVC = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(CATEGORIA_CVC, $objTipoCategoriaCVC[0]->id);
+		$objCategoriaCVC = $this->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(CATEGORIA_CVC, $idTipoCategoriaCVC);
 		
 		// checando se objeto foi recuperado
 		if (isset($objCategoriaCVC))
@@ -520,9 +530,16 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		$objCategoriaCVC = $this->retornaObjetoCategoriaCVC();
 		
 		// verificando se o objeto foi recuperado
-		if (isset($objCategoriaCVC))
+		if (isset($objCategoriaCVC)) {
+			// recuperando o valor do id da categoria cvc
+			$idCategoriaCVC = (Int) $objCategoriaCVC->id;
+
+			// limpando memória
+			unset($objCategoriaCVC);
+
 			// retornando o id do objeto
-			return (Int) $objCategoriaCVC->id;
+			return $idCategoriaCVC;
+		}
 
 		throw new Exception(MSG_ERRO_CATEGORIA_CVC);
 	}

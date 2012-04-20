@@ -127,7 +127,7 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
 		$modelo = new $nomeModelo();
 
 		// recuperando todas as ocorrencias do objeto
-		$resultSet = $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', $nomeModelo))->fetchAll($where=null, $order=null, $count=null, $offset=null);
+		$resultSet = $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', $nomeModelo))->fetchAll($where, $order, $count, $offset);
 
 		// inicializando variáveis
 		$entries = array();

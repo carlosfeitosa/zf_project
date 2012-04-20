@@ -16,6 +16,16 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 	 */
 	private static $_singleton;
+
+	/**
+	 * @var Basico_OPController_CategoriaOPController
+	 */
+	private $_categoriaOPController;
+
+	/**
+	 * @var Basico_OPController_ModuloOPController
+	 */
+	private $_moduloOPController;
 	
 	/**
 	 * @var Basico_Model_CategoriaAssocChaveEstrangeira
@@ -29,6 +39,12 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
      */
 	protected function __construct()
 	{
+		// instanciando o controlador de categorias
+		$this->_categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+
+		// instanciando o controlador de módulos
+		$this->_moduloOPController = Basico_OPController_ModuloOPController::getInstance();
+
 		// instanciando o modelo
 		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
 
@@ -123,7 +139,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			    	// atualizando o objeto
 		    		$this->_model = $objeto;
 		    	}else{
-                	throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO_EXISTE . " : " . $e->getMessage());	    		
+                	throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO_EXISTE);	    		
 		    	}    	
     	} catch (Exception $e) {
     		throw new Exception($e);
@@ -144,7 +160,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 */
 	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
-	       throw new Exception(LOG_MSG_DELETE_CATEGORIA_CHAVE_ESTRANGEIRA . " : " . $e->getMessage());	
+	       throw new Exception(LOG_MSG_DELETE_CATEGORIA_CHAVE_ESTRANGEIRA);	
 	}
 
     /**
@@ -157,25 +173,28 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
      */
     public function retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, $forceCreateRelationship = false)
     {
-    	// instanciando controladores
-    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-    	
     	// recuperando o nome da tabela vinculada ao objeto
     	$tableName = Basico_OPController_DBUtilOPController::retornaTableNameObjeto($objeto);
 
 		// recuperando o id da categoria CVC
-		$idCategoriaCVC = $categoriaOPController->retornaIdCategoriaCVC();
+		$idCategoriaCVC = $this->_categoriaOPController->retornaIdCategoriaCVC();
 
 		// recuperando objeto modulo do objeto
-		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
+		$idModulo = $this->_moduloOPController->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
 	
 		// recuperando a categoria chave estrangeira relacionada ao objeto
 		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_modulo = {$idModulo} and id_categoria = {$idCategoriaCVC} and tabela_estrangeira = '{$tableName}'", null, 1, 0);
 		
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($arrayCategoriasChaveEstrangeira[0])) {
+			// recuperando a relacao
+			$objetoCategoriaChaveEstrangeira = $arrayCategoriasChaveEstrangeira[0];
+
+			// limpando variáveis
+			unset($arrayCategoriasChaveEstrangeira);
+
 			// retornando a relacao
-			return $arrayCategoriasChaveEstrangeira[0];
+			return $objetoCategoriaChaveEstrangeira;
 		} else if ($forceCreateRelationship) {
 			// recuperando modelo vazio de categoria chave estrangeira
 			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
@@ -188,7 +207,13 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			
 			// salvando objeto
 			$this->salvarObjeto($modelCategoriaChaveEstrangeira);
-			
+
+			// limpando variáveis
+			unset($tableName);
+			unset($idCategoriaCVC);
+			unset($idModulo);
+			unset($arrayCategoriasChaveEstrangeira);
+
 			// retornando o objeto salvo 	
 			return $modelCategoriaChaveEstrangeira;
 		} else {
@@ -206,14 +231,11 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
      */
     public function retornaObjetoCategoriaChaveEstrangeiraPorModeloIdCategoria($objeto, $idCategoria, $forceCreateRelationship = false)
     {
-    	// instanciando controladores
-    	$categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-    	
     	// recuperando o nome da tabela vinculada ao objeto
     	$tableName = Basico_OPController_DBUtilOPController::retornaTableNameObjeto($objeto);
 
 		// recuperando objeto modulo do objeto
-		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
+		$idModulo = $this->_moduloOPController->retornaIdModuloPorNomeViaSQL(Basico_OPController_UtilOPController::retornaNomeModuloPorObjeto($objeto));
 	
 		// recuperando a categoria chave estrangeira relacionada ao objeto
 		$arrayCategoriasChaveEstrangeira = $this->_model->getMapper()->fetchList("id_modulo = {$idModulo} and id_categoria = {$idCategoria} and tabela_estrangeira = '{$tableName}'", null, 1, 0);

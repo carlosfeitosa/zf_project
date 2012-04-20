@@ -16,7 +16,14 @@ class Basico_OPController_CVCOPController
 	 * @var Basico_OPController_CVCOPController
 	 */
 	private static $_singleton;
-
+	/**
+	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
+	 */
+	private $_categoriaAssocChaveEstrangeiraOPController;
+	/**
+	 * @var Basico_OPController_RowinfoOPController
+	 */
+	private $_rowinfoOPController;
 	/**
 	 * @var Basico_Model_CVC
 	 */
@@ -34,6 +41,11 @@ class Basico_OPController_CVCOPController
 	 */
 	private function __construct()
 	{
+		// instanciando o controlador Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
+		$this->_categoriaAssocChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
+		// instanciando o controlador Basico_OPController_RowinfoOPController
+		$this->_rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
+
 		// instanciando o modelo
 		$this->_cvc = $this->retornaNovoObjetoCVC();
 
@@ -111,11 +123,18 @@ class Basico_OPController_CVCOPController
     	$arrayObjsCVC = $this->_cvc->getMapper()->fetchList("id_assoc_chave_estrangeira = {$idCategoriaChaveEstrangeira} and id_generico = {$idGenerico} and validade_termino is null", null, 1, 0);
     	
     	// verificando se a tupla existe
-    	if (isset($arrayObjsCVC[0]))
+    	if (isset($arrayObjsCVC[0])) {
+    		// recuperando o objeto CVC
+    		$objCVC = $arrayObjsCVC[0];
+
+    		// limpando variáveis
+    		unset($arrayObjsCVC);
+
     		// retornando objeto CVC
-    		return $arrayObjsCVC[0];
-    	else
-    		return null; 
+    		return $objCVC;
+    	} else {
+    		return null;
+    	} 
     }
 
     /**
@@ -132,7 +151,7 @@ class Basico_OPController_CVCOPController
     	// codificando objeto para comparacao
     	$objetoCodificado = Basico_OPController_UtilOPController::codificar($objeto);
     	// recuperando id da relacao de categoria chave estrangeira
-    	$categoriaChaveEstrangeira = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
+    	$categoriaChaveEstrangeira = $this->_categoriaAssocChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
     	// recuperando id generico do objeto
     	$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
     	
@@ -153,9 +172,6 @@ class Basico_OPController_CVCOPController
      */
     public function retornaUltimaVersao($objeto, $forceVersioning = false)
     {
-    	// instanciando controladores
-    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
-
     	// recuperando o valor do id generico vindo do objeto
 		$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
 
@@ -164,17 +180,26 @@ class Basico_OPController_CVCOPController
 			return null;
 
 		// recuperando a relacao categoria chave estrangeira
-		$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
+		$objCategoriaChaveEstrangeira = $this->_categoriaAssocChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
 
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($objCategoriaChaveEstrangeira)) {
 			// recuperando objeto CVC
 			$objCVC = $this->retornaObjUltimaVersao($objCategoriaChaveEstrangeira->id, $idGenerico);
 
+			// limpando variáveis
+			unset($objCategoriaChaveEstrangeira);
+
 			// verificando a tupla existe
 			if (isset($objCVC)) {
+				// recuperando a versao
+				$versao = $objCVC->versao;
+
+				// limpando variáveis
+				unset($objCVC);
+
 				// retorna versao da tupla
-				return $objCVC->versao;
+				return $versao;
 			} else if ($forceVersioning) {
 				// retorna a versao da tupla
 				return $this->versionar($objeto);
@@ -195,9 +220,6 @@ class Basico_OPController_CVCOPController
      */
     public function retornaChecksumObjeto($objeto)
     {
-    	// instanciando controladores
-    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
-
     	// recuperando o valor do id generico vindo do objeto
 		$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
 
@@ -206,7 +228,7 @@ class Basico_OPController_CVCOPController
 			return null;
 
 		// recuperando a relacao categoria chave estrangeira
-		$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
+		$objCategoriaChaveEstrangeira = $this->_categoriaAssocChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto);
 
 		// verificando se existe a relacao com categoria chave estrangeira
 		if (isset($objCategoriaChaveEstrangeira)) {
@@ -234,16 +256,20 @@ class Basico_OPController_CVCOPController
      */
     public function versionar($objeto)
     {
-    	// instanciando controladores
-    	$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
     	// instanciando o modelo de CVC
     	$modelCVC = $this->retornaNovoObjetoCVC();
 
     	// recuperando relacao categoria chave estrangeira
-    	$objCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
+    	$objCategoriaChaveEstrangeira = $this->_categoriaAssocChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
+
+    	// recuperando o id do objeto categoria chave estrangeira
+    	$idObjetoCategoriaChaveEstrangeira = $objCategoriaChaveEstrangeira->id;
+
+    	// limpando variáveis
+    	unset($objCategoriaChaveEstrangeira);
 
     	// preenchendo informacoes sobre o versionamento
-    	$modelCVC->idAssocChaveEstrangeira   = $objCategoriaChaveEstrangeira->id;
+    	$modelCVC->idAssocChaveEstrangeira   = $idObjetoCategoriaChaveEstrangeira;
     	$modelCVC->idGenerico 			     = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
     	$modelCVC->objeto 				     = $objeto;
     	$modelCVC->checksum 			     = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
@@ -272,12 +298,9 @@ class Basico_OPController_CVCOPController
     	// setando a versao no modelo
     	$modelCVC->versao = $versao;
 
-		// instanciando controlador de rowinfo
-		$rowInfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-
     	// preparando XML rowinfo
-		$rowInfoOPController->prepareXml($modelCVC, true);
-		$modelCVC->rowinfo = $rowInfoOPController->getXml();
+		$this->_rowinfoOPController->prepareXml($modelCVC, true);
+		$modelCVC->rowinfo = $this->_rowinfoOPController->getXml();
 
     	// salvando informacoes do versionamento
     	$modelCVC->getMapper()->save($modelCVC);
@@ -285,7 +308,10 @@ class Basico_OPController_CVCOPController
     	// adicionando o id do objeto manipulado no array de ids de objetos manipulados
     	$this->adicionaIdObjetoManipuladoArrayObjetosManipulados($modelCVC->id);
 
-    	return $modelCVC->versao;
+    	// limpando variáveis
+    	unset($modelCVC);
+
+    	return $versao;
     }
 
     /**
@@ -297,11 +323,8 @@ class Basico_OPController_CVCOPController
      */
     public function atualizaVersao($objeto)
     {
-    	// instanciando controladores
-		$categoriaChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
-
     	// recuperando id da relacao de categoria chave estrangeira
-    	$categoriaChaveEstrangeira = $categoriaChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
+    	$categoriaChaveEstrangeira = $this->_categoriaAssocChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
     	// recuperando id generico do objeto
     	$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
     	// recuperando objeto CVC contendo a ultima versao do objeto
@@ -465,7 +488,13 @@ class Basico_OPController_CVCOPController
 				// removendo elemento
 				unset($arrayNomesModelosSistema[$chaveObjetoNaoVersionavel]);
 			}
+
+			// limpando memória
+			unset($nomeObjetoNaoVersionavel);
 		}
+
+		// limpando variáveis
+		unset($arrayNomesObjetosNaoVersionais);
 
 		// iniciando transacao
 		Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -477,10 +506,10 @@ class Basico_OPController_CVCOPController
 				$modelo = new $nomeModelo();
 
 				// verificando se o modelo possui mapper
-				if ((property_exists($modelo, '_mapper')) and (method_exists($modelo, 'getMapper')) and (method_exists($modelo->getMapper(), 'fetchAll'))) {
+				if ((property_exists($modelo, '_mapper')) and (method_exists($modelo, 'getMapper'))) {
 					// recuperando os objetos
 					$objetos = $modelo->getMapper()->fetchAll();
-	
+
 					// verificando se houve recuperacao de objetos
 					if (count($objetos)) {
 						// loop para verificar se o objeto foi versionado
@@ -488,8 +517,16 @@ class Basico_OPController_CVCOPController
 							// versionando objetos nao versionados
 							$versaoObjeto = self::retornaUltimaVersao($objeto, true);
 						}
+
+						// limpando memória
+						unset($objeto);
 					}
 				}
+
+				// limpando modelo e objetos
+				unset($modelo);
+				unset($objetos);
+				unset($versaoObjeto);
 			} catch (Exception $e) {
 				// voltando a transacao
 				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);

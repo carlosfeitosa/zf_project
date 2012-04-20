@@ -2543,6 +2543,9 @@ class Basico_OPController_UtilOPController
     		// inicializando variaveis
     		$arrayResultado = array();
 
+			// montando array de filtros
+			$filterArray = array(self::retornaArrayFiltroArquivosOcultos(), self::retornaArrayFiltroExcludeMapperModels(), self::retornaArrayFiltroNomesArquivosPHP());
+
     		// loop para recuperar os modelos de cada modulo
     		foreach ($arrayNomesCaminhosModulos as $nomeModulo => $caminho) {
     			// recuperando o caminho da pasta contendo os modelos do modulo
@@ -2550,8 +2553,6 @@ class Basico_OPController_UtilOPController
 
     			// verificando se existe a pasta de modelos
     			if ((file_exists($caminho)) and (is_dir($caminho)) and (file_exists($caminhoModelos)) and (is_dir($caminhoModelos))) {
-					// montando array de filtros
-					$filterArray = array(self::retornaArrayFiltroArquivosOcultos(), self::retornaArrayFiltroExcludeMapperModels(), self::retornaArrayFiltroNomesArquivosPHP());
     				// recuperando os arquivos existentes dentro da pasta
     				$arrayNomesArquivos = self::retornaArrayArquivosCaminho($caminhoModelos, $filterArray);
 
@@ -2572,13 +2573,35 @@ class Basico_OPController_UtilOPController
 		    						// adicionando elemento ao array de resultados
 		    						$arrayResultado[] = $nomeModelo;
 		    					}
+
+		    					// limpando memória
+		    					unset($modelo);
 		    				} else {
+		    					// adicionando elemento ao array de resultados
 		    					$arrayResultado[] = $nomeModelo;
 		    				}
+
+		    				// limpando memória
+		    				unset($nomeModelo);
     					}
+
+    					// limpando memória
+    					unset($nomeArquivo);
     				}
+
+    				// limpando memória
+    				unset($arrayNomesArquivos);
     			}
+
+    			// limpando memória
+    			unset($caminhoModelos);
+    			unset($nomeModulo);
+    			unset($caminho);
     		}
+
+    		// limpando memória
+    		unset($arrayNomesCaminhosModulos);
+    		unset($filterArray);
 
     		// retornando o resultado
     		return $arrayResultado;
