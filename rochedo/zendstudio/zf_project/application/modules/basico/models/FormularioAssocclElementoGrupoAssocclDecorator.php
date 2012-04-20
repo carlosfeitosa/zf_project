@@ -58,7 +58,7 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator extends Basico
     }
 
     /**
-    * Set idAssocclElemento
+    * Set idInclude
     * 
     * @param int $idInclude
     * @return Basico_Model_DecoratorAssocclInclude

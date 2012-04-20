@@ -72,7 +72,7 @@ class Basico_Model_FormularioAssocclElementoAssocclFilterMapper extends Basico_A
 	public function fetchAll()
 	{
 		// chamando método pai
-		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclElemento');
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclElementoAssocclFilter');
 	}
 	
 	/**
@@ -83,7 +83,7 @@ class Basico_Model_FormularioAssocclElementoAssocclFilterMapper extends Basico_A
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
 		// chamando método pai
-		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclElemento', $where, $order, $count, $offset);
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FormularioAssocclElementoAssocclFilter', $where, $order, $count, $offset);
 	}
     
     /**

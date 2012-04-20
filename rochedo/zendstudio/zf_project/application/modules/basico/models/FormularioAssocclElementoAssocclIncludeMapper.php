@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_FormularioAssocclElementoAssocclInclude
  * @subpackage Model
  */
-class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPesquisa
+class Basico_Model_FormularioAssocclElementoAssocclIncludeMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
 	/**
 	 * Mapeamento da classe

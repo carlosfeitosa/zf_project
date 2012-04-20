@@ -1,6 +1,6 @@
 <?php
 /**
- * SequenciaAssocsqSequenciaAssocsqAcaoAplicacao data mapper
+ * SequenciaAssocsqAcaoAplicacao data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_SequenciaAssocsqSequenciaAssocsqAcaoAplicacao
  * @subpackage Model
  */
-class Basico_Model_SequenciaAssocsqSequenciaAssocsqAcaoAplicacaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_SequenciaAssocsqAcaoAplicacaoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
 	/**
 	 * Mapeamento da classe

@@ -10,7 +10,7 @@
 class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
-     * @var idAssocclElemento
+     * @var idElemento
      */
     protected $_idElemento;
     /**
