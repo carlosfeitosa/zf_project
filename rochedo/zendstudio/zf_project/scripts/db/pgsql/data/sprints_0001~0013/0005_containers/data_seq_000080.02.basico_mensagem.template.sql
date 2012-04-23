@@ -13,7 +13,7 @@
 INSERT INTO basico_mensagem.template (id_generico_proprietario, nome, constante_textual, ativo, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
 SELECT (SELECT p.id
         FROM basico.pessoa p
-        LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+        LEFT JOIN basico.perfil perf ON (p.id_perfil_default = perf.id)
         WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
 		'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT' AS nome,
 		'TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO' AS constante_textual,
@@ -30,7 +30,7 @@ AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 INSERT INTO basico_mensagem.template (id_generico_proprietario, nome, constante_textual, ativo, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
 SELECT (SELECT p.id
         FROM basico.pessoa p
-        LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+        LEFT JOIN basico.perfil perf ON (p.id_perfil_default = perf.id)
         WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
         'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT' AS nome,
         'VALIDACAO_USUARIO' AS constante_textual,        
@@ -46,7 +46,7 @@ AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 INSERT INTO basico_mensagem.template (id_generico_proprietario, nome, constante_textual, ativo, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
 SELECT (SELECT p.id
         FROM basico.pessoa p
-        LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+        LEFT JOIN basico.perfil perf ON (p.id_perfil_default = perf.id)
         WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
         'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT_REENVIO' AS nome,
         'VALIDACAO_USUARIO_PLAINTEXT_REENVIO' AS constante_textual,
@@ -61,7 +61,7 @@ AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 INSERT INTO basico_mensagem.template (id_generico_proprietario, nome, constante_textual, ativo, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
 SELECT (SELECT p.id
         FROM basico.pessoa p
-        LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+        LEFT JOIN basico.perfil perf ON (p.id_perfil_default = perf.id)
         WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
         'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_CONFIRMACAO_CADASTRO_PLAINTEXT' AS nome,
         'CONFIRMACAO_CADASTRO' AS constante_textual,
@@ -77,7 +77,7 @@ AND c.nome = 'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT';
 INSERT INTO basico_mensagem.template (id_generico_proprietario, nome, constante_textual, ativo, constante_textual_assunto, constante_textual_mensagem, id_categoria, datahora_criacao, rowinfo)
 SELECT (SELECT p.id
         FROM basico.pessoa p
-        LEFT JOIN basico.perfil perf ON (p.id_perfil_padrao = perf.id)
+        LEFT JOIN basico.perfil perf ON (p.id_perfil_default = perf.id)
         WHERE perf.nome = 'SISTEMA') AS id_generico_proprietario,
         'SISTEMA_MENSAGEM_EMAIL_TEMPLATE_PROBLEMAS_LOGIN_PLAINTEXT' AS nome,
         'PROBLEMAS_LOGIN' AS constante_textual,

@@ -186,8 +186,7 @@ class Basico_OPController_DBCheckOPController
 			            INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE i2 ON (i1.CONSTRAINT_NAME = i2.CONSTRAINT_NAME)
 			            WHERE i1.CONSTRAINT_TYPE = 'PRIMARY KEY') pt ON (pt.TABLE_NAME = pk.TABLE_NAME)
 			
-			WHERE pk.TABLE_SCHEMA {$concatenadorDB}'.'{$concatenadorDB} pk.TABLE_NAME = '{$nomeTabela}'
-		";
+			WHERE pk.TABLE_SCHEMA {$concatenadorDB}'.'{$concatenadorDB} pk.TABLE_NAME = '{$nomeTabela}'";
 
 		// retornando array contendo as tabelas que possuem dependencia com o objeto
 		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryDependenciasTabela);

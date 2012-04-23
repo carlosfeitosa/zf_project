@@ -215,7 +215,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 
 		// recuperando informacoes sobre a tabela pessoa
 		$arrayNomeCampoNome = array(self::nomeCampoIdModelo);
-		$condicaoSQL        = "id_perfil_padrao = '{$idPerfilSistema}'";
+		$condicaoSQL        = "id_perfil_default = '{$idPerfilSistema}'";
 
 		// recuperando um array contendo os nomes dos perfis relacionados a uma categoria
 		$arrayPessoa = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL(self::nomeTabelaModelo, $arrayNomeCampoNome, $condicaoSQL);

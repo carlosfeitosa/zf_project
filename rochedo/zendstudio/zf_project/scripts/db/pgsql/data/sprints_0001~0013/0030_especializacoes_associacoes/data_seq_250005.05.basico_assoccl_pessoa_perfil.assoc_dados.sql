@@ -15,4 +15,4 @@ INSERT into basico_assoccl_pessoa_perfil.assoc_dados (id_assoccl_pessoa_perfil, 
 SELECT pp.id, 'Equipe ROCHEDO project' AS assinatura_mensagem_email, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico_pessoa.assoccl_perfil pp
 LEFT JOIN basico.pessoa p ON (p.id = pp.id_pessoa)
-WHERE p.id_perfil_padrao = (SELECT id FROM basico.perfil WHERE nome = 'SISTEMA');
+WHERE p.id_perfil_default = (SELECT id FROM basico.perfil WHERE nome = 'SISTEMA');
