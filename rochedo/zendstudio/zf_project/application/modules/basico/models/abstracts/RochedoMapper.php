@@ -208,7 +208,7 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
             $object->setId($this->getDbTable(str_replace('_Model_', '_Model_DbTable_', get_class($object)))->insert($data));
         } else {
         	// atualizando registro
-            $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', $nomeModelo))->update($data, array('id = ?' => $id));
+            $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', get_class($object)))->update($data, array('id = ?' => $id));
         }
     }
 
