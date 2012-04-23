@@ -8,7 +8,7 @@
  * @uses       Basico_Model_DbTable_Log
  * @subpackage Model
  */
-class Basico_Model_LogMapper
+class Basico_Model_LogMapper extends Basico_AbstractMapper_RochedoMapper
 {
 	/**
 	 * Mapeamento da classe
