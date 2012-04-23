@@ -123,9 +123,6 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
 	 */
 	public function fetchListAbstrato(array $arrayMapper, $nomeModelo, $where=null, $order=null, $count=null, $offset=null)
 	{
-		// recuperando modelo
-		$modelo = new $nomeModelo();
-
 		// recuperando todas as ocorrencias do objeto
 		$resultSet = $this->getDbTable(str_replace('_Model_', '_Model_DbTable_', $nomeModelo))->fetchAll($where, $order, $count, $offset);
 
@@ -133,10 +130,9 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
 		$entries = array();
 
 		// loop para 
-		foreach ($resultSet as $row) 
-		{
+		foreach ($resultSet as $row) {
 			// recuperando o modelo
-			$entry = $modelo;
+			$entry = new $nomeModelo();
 
 			// loop para carregar os atributos do objeto
 			foreach ($arrayMapper as $atributo => $campo) {
@@ -161,7 +157,6 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
 
 		//limpando memória
 		unset($resultSet);
-		unset($modelo);
 		unset($row);
 
 		// retornando array de objetos
