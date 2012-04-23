@@ -1,5 +1,6 @@
 <?php
-require_once(APPLICATION_MODULES_PATH . "/basico/models/interfaces/RochedoPersistentModeloGenerico.php");  
+require_once(APPLICATION_MODULES_PATH . "/basico/models/interfaces/RochedoPersistentModeloGenerico.php");
+require_once(APPLICATION_MODULES_PATH . "/basico/models/abstracts/RochedoPersistentModeloGenerico.php");  
 /**
  * CpgToken model
  *
@@ -8,7 +9,7 @@ require_once(APPLICATION_MODULES_PATH . "/basico/models/interfaces/RochedoPersis
  * @uses       Basico_Model_CpgTokenMapper
  * @subpackage Model
  */
-class Basico_Model_CpgToken implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
+class Basico_Model_CpgToken extends Basico_AbstractModel_RochedoPersistentModeloGenerico implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
 	 * @var Basico_Model_CpgTokenMapper
