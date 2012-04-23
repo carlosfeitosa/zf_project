@@ -287,7 +287,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function retornaIdPerfilPadraoPorIdPessoa($idPessoa)
 	{
 		// retornando o id do perfil padrao da pessoa
-		return $this->retornaObjetoPorId($this->_model, $idPessoa)->idPerfilPadrao;
+		return $this->retornaObjetoPorId($this->_model, $idPessoa)->idPerfilDefault;
 	}
 
 	/**
@@ -324,7 +324,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 		// verificando se o objeto foi carregado
 		if ($object->id) {
 			// mudando atributo perfilPadrao
-			$object->idPerfilPadrao = $idPerfilPadrao;
+			$object->idPerfilDefault = $idPerfilPadrao;
 
 			// recuperando o id pessoa perfil usuario validado da pessoa
 			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);

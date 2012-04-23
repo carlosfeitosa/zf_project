@@ -12,7 +12,7 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
 	/**
 	 * @var Integer
 	 */
-	protected $_idPerfilPadrao;
+	protected $_idPerfilDefault;
 	/**
 	 * @var Integer
 	 */
@@ -35,25 +35,25 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
 	protected $_idLinkDefault;
 	
 	/**
-	* Set entry idPerfilPadrao
+	* Set entry idPerfilDefault
 	* 
-	* @param  int $idPerfilPadrao 
+	* @param  int $idPerfilDefault 
 	* @return Basico_Model_Pessoa
 	*/
-	public function setIdPerfilPadrao($idPerfilPadrao)
+	public function setIdPerfilDefault($idPerfilDefault)
 	{
-		$this->_idPerfilPadrao = Basico_OPController_UtilOPController::retornaValorTipado($idPerfilPadrao, TIPO_INTEIRO, true);
+		$this->_idPerfilDefault = Basico_OPController_UtilOPController::retornaValorTipado($idPerfilDefault, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Retrieve entry idPerfilPadrao
+	* Retrieve entry idPerfilDefault
 	* 
 	* @return null|int
 	*/
-	public function getIdPerfilPadrao()
+	public function getIdPerfilDefault()
 	{
-		return $this->_idPerfilPadrao;
+		return $this->_idPerfilDefault;
 	}
 
 	 /**
@@ -61,12 +61,12 @@ class Basico_Model_Pessoa extends Basico_AbstractModel_RochedoPersistentModeloDa
      * 
      * @return null|Basico_Model_Perfil
      */
-	public function getPerfilPadraoObject()
+	public function getPerfilDefaultObject()
 	{
 		// instanciando o modelo perfil
 		$model = new Basico_Model_Perfil();
 		// recuperando objeto
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idPerfilPadrao);
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idPerfilDefault);
         // retornando o objeto
         return $object;
 	}

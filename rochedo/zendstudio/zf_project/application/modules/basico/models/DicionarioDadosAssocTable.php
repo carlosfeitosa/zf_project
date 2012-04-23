@@ -19,6 +19,11 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
      * @var int
      */
     protected $_idSchema;
+    /**
+	 * Referencia a classe Basico_Model_DicionarioDadosFk
+     * @var int
+     */
+    protected $_idFkDefault;
 	/**
 	 * @var String
 	 */
@@ -47,6 +52,39 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
 	 * @var Boolean
 	 */
 	protected $_ativo;
+	
+	/**
+	* Set idCategoria
+	* 
+	* @param int $idCategoria 
+	* @return Basico_Model_DicionarioDadosAssocTable
+	*/
+	public function setIdCategoria($idCategoria)
+	{
+		$this->_idCategoria = Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idCategoria
+	* 
+	* @return null|int
+	*/
+	public function getIdCategoria()
+	{
+		return $this->_idCategoria;
+	}
+ 
+    /**
+     * Get Categoria object
+     * @return null|Categoria
+     */
+    public function getCategoriaObject()
+    {
+        $model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
 	
 	/**
 	* Set idSchema
@@ -78,6 +116,39 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
     {
         $model = new Basico_Model_DicionarioDadosSchema();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idSchema);
+        return $object;
+    }
+    
+	/**
+	* Set idFkDefault
+	* 
+	* @param int $idFkDefault 
+	* @return Basico_Model_DicionarioDadosAssocTable
+	*/
+	public function setIdFkDefault($idFkDefault)
+	{
+		$this->_idFkDefault = Basico_OPController_UtilOPController::retornaValorTipado($idFkDefault, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idFkDefault
+	* 
+	* @return null|int
+	*/
+	public function getIdFkDefault()
+	{
+		return $this->_idFkDefault;
+	}
+ 
+    /**
+     * Get FkDefault object
+     * @return null|FkDefault
+     */
+    public function getFkDefaultObject()
+    {
+        $model = new Basico_Model_DicionarioDadosFkDefault();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idFkDefault);
         return $object;
     }
     

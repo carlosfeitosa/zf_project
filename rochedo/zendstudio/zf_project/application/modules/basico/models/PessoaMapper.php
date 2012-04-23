@@ -28,7 +28,7 @@ class Basico_Model_PessoaMapper extends Basico_AbstractMapper_RochedoMapper impl
 	{
 		// montando array de mapeamento
 		$this->_arrayMapper['id']						 = 'id';
-		$this->_arrayMapper['idPerfilPadrao']			 = 'id_perfil_padrao';
+		$this->_arrayMapper['idPerfilDefault']			 = 'id_perfil_default';
 		$this->_arrayMapper['idTelefoneDefault']		 = 'id_telefone_default';
 		$this->_arrayMapper['idEmailDefault']			 = 'id_email_default';
 		$this->_arrayMapper['idEnderecoDefault']		 = 'id_endereco_default';

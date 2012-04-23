@@ -343,8 +343,6 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    	 	// recuperando array de parametros da ultima url
 		    	 	$arrayParametrosUltimoRequest = Basico_OPController_SessionOPController::retornaArrayParametrosUrlAtualPoolRequests();
 		    	 	
-		    	 	
-		    	 	
 		    	 	// recuperando id da acao_aplicacao responsavel por exibir o formulario
 		    	 	$idAcaoAplicacaoOrigem = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao'])->id;
 
