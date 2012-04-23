@@ -176,7 +176,7 @@ class Basico_OPController_DBSaveOPController
 				}
 
 				// limpando memória
-				inset($transacaoInicializada);
+				unset($transacaoInicializada);
 
 				return true;
 			}
