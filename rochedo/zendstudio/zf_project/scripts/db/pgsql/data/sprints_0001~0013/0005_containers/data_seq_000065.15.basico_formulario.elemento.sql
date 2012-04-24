@@ -1647,8 +1647,8 @@ SELECT c.id AS id_categoria, (SELECT a.id
                               LEFT join basico.categoria c ON (cp.id_categoria = c.id)
                               LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
                               WHERE t.nome = 'COMPONENTE'
-                              AND c.nome = 'COMPONENTE_DOJO'
-                              AND cp.nome = 'DOJO_PasswordTextBox') AS id_componente,
+                              AND c.nome = 'COMPONENTE_AJAXTERCEIROS'
+                              AND cp.nome = 'DOJO_PasswordTextBox_With_Checker') AS id_componente,
                               'FORM_FIELD_PASSWORD_TEXT_BOX_NOVA_SENHA' AS nome,
                               'FORM_FIELD_PASSWORD_TEXT_BOX_NOVA_SENHA' AS constante_textual, true AS ativo,
                               'FORM_FIELD_NOVA_SENHA' AS constante_textual_label,
