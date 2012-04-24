@@ -839,12 +839,12 @@ class Basico_OPController_CrudOPController
 				
 				$(function(){
 				
-					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{view: true, edit: true},
-												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');} ,reloadAfterSubmit:false}, // edit options
-												 {height:'auto',reloadAfterSubmit:false}, // add options
+					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{edit:true,add:true,del:true,search:true,view:true},
+												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');} ,reloadAfterSubmit:false, closeOnEscape:true}, // edit options
+												 {height:'auto', width:'auto', closeOnEscape:true, reloadAfterSubmit:false}, // add options
 												 {reloadAfterSubmit:false}, // delete options
 												 {multipleSearch:true}, // adicionando multiple search
-												 {closeOnEscape:true} // permitindo fechar dialog pressionando a tecla esc
+												 {closeOnEscape:true, width:550, beforeShowForm: function(formObject) { carregaDadosDialogViewJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) {carregaDadosDialogViewJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');}} // view options
 												 ); 
 				});";
 		

@@ -290,7 +290,6 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	 * @param String $nomeCategoria
 	 * @param Integer $idTipoCategoria
 	 * @param Integer $idCategoriaPai
-	 * @param Boolean $forceCreation
 	 * 
 	 * @return Integer|null
 	 */
@@ -441,7 +440,6 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$novaCategoria->idTipoCategoria = $idTipoCategoria;
 			$novaCategoria->ativo           = true;
 			$novaCategoria->nome            = $nomeCategoria;
-			//$novaCategoria->descricao       = DESCRICAO_CATEGORIA_CRIADA_POR_DEMANDA;
 
 			// salvando o objeto
 			$this->salvarObjeto($novaCategoria);
@@ -704,6 +702,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$arrayCategoria['id_tipo_categoria'] = Basico_OPController_TipoCategoriaOPController::retornaIdTipoCategoriaSistemaViaSQL();
 			$arrayCategoria['id_categoria_pai']  = self::retornaIdCategoriaLogViaSQL();
 			$arrayCategoria['nivel']             = 2;
+			$arrayCategoria['ativo']             = 'true';
 			$arrayCategoria['nome']              = Basico_OPController_UtilOPController::retornaStringEntreCaracter($nomeCategoriaLogAcaoControlador, "'");
 			$arrayCategoria['rowinfo']           = Basico_OPController_UtilOPController::retornaStringEntreCaracter($rowinfoOPController->getXml(), "'");
 

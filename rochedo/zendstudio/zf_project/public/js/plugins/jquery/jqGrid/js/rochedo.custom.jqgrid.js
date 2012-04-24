@@ -58,9 +58,9 @@ function carregaDadosFormEdicaoJqGrid(formObject, urlDadosForm) {
  */
 function carregaDadosFormEdicaoJqGridPaginator(wichbutton, formObject, rowid, urlDadosForm) {
 
-	if (formObject[0]['id_g'].value != "undefined") {
+	if (rowid != "undefined") {
 		// realizando requisicao ajax para recuperacao dos dados
-		$.getJSON(urlDadosForm + formObject[0]['id_g'].value, function(data) {
+		$.getJSON(urlDadosForm + rowid, function(data) {
 		  	
 			  // percorrendo o array json resultado da requisicao	
 			  $.each(data[0], function(key, val) {
@@ -82,4 +82,52 @@ function carregaDadosFormEdicaoJqGridPaginator(wichbutton, formObject, rowid, ur
 
 		});
 	}
+}
+
+/**
+ * Funcao que carrega os dados do dialog de visualização dos dados do jqGrid no momento da abertura do dialog
+ * 
+ * @param formObject - Objeto formulario 
+ * @param urlDadosForm - Url para recuperação dos dados
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ * @since 18/04/2012
+ */
+function carregaDadosDialogViewJqGrid(formObject, urlDadosForm) {
+	
+	if (formObject[0]['id_g'].value != "undefined") {
+		
+		// realizando requisicao ajax para recuperacao dos dados
+		$.getJSON(urlDadosForm + formObject[0]['id_g'].value, function(data) {
+		  		
+			// percorrendo o array json resultado da requisicao
+			$.each(data[0], function(key, val) {
+				$('#v_' + key).text(val.replace(new RegExp('<br>', 'g'), '\n'));
+			});
+	
+		});
+	}
+}
+
+/**
+ * Funcao que carrega os dados do dialog de visualização dos dados do jqGrid no momento do click nos botoes de navegação entre registros
+ * 
+ * @param wichbutton
+ * @param formObject
+ * @param rowid
+ * @param urlDadosForm
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ * @since 18/04/2012
+ */
+function carregaDadosDialogViewJqGridPaginator(wichbutton, formObject, rowid, urlDadosForm) {
+	// realizando requisicao ajax para recuperacao dos dados
+		$.getJSON(urlDadosForm + rowid, function(data) {
+		  		
+			// percorrendo o array json resultado da requisicao
+			$.each(data[0], function(key, val) {
+				$('#v_' + key).text(val.replace(new RegExp('<br>', 'g'), '\n'));
+			});
+	
+		});
 }
