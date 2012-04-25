@@ -106,6 +106,12 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     {
 		// adicionando plugin Jquery maskMoney
 		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/jquery/jquery-1.7.2.min.js"));
+		
+		// adicionando favicon/shortcut icon da aplicacao
+		$this->_view->headLink()->headLink(array('rel' => 'shortcut icon',
+                              					 'href' => $this->_view->baseUrl('favicon.ico'),
+                             					 'PREPEND'));
+		
 				
 		// setando variaveis
 		$applicationHttpHome = $this->_view->urlEncrypt($this->_view->url(array('controller'=>'index'), null, true));
