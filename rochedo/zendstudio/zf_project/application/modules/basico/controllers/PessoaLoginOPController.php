@@ -1306,7 +1306,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		$form->getElement('BasicoAceiteTermosUsoHtmlButtonCancelar')->setAttrib('onclick', "location.href='{$baseUrl}'");
 		
 		// recuperando a url do arquivo para montar link para download
-		$urlArquivoTermos = Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/fs/download/tipo/termos/fileName/termos.txt");
+		$urlArquivoTermos = Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/fs/download/tipo/termos/fileName/termo.txt");
 		
 		// setando link para download do termo de uso
 		$form->getElement('BasicoAceiteTermosUsoLinks')->setValue("<a href='$urlArquivoTermos'><img src='{$baseUrl}/images/icons/pdf.png'></a>");

@@ -23,7 +23,9 @@ class Basico_FsController extends Zend_Controller_Action
     	
     	$post = $this->getRequest()->getParams();
     	// enviando arquivo para download
-    	Basico_OPController_FSOPController::getInstance()->enviaArquivoDownload($post['tipo'], $post['fileName']);	 
+    	if (!Basico_OPController_FSOPController::getInstance()->enviaArquivoDownload($post['tipo'], $post['fileName'])) {
+    		throw new Exception("Erro ao enviar arquivo: Arquivo não encontrado.");
+    	}	 
     	
     }
     

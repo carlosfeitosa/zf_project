@@ -47,19 +47,25 @@ class Basico_OPController_FSOPController
 	{
 		// recuperando a url do arquivo
 		$filePath = PUBLIC_PATH . self::$_tipos[$tipo] . $nomeArquivo;
-		
-		// setando o cabecalho do response
-		header("Content-Type: application/save"); 
-		header("Content-Length:".filesize($filePath)); 
-		header('Content-Disposition: attachment; filename="' . $nomeArquivo . '"'); 
-		header("Content-Transfer-Encoding: binary");
-		header('Expires: 0'); 
-		header('Pragma: no-cache');
-		
-		// abrindo o arquivo e enviando
-		$arquivo = fopen($filePath, "r"); 
-		fpassthru($arquivo); 
-		fclose($arquivo);
-		 
+
+		if (is_file($filePath)) {
+			// setando o cabecalho do response
+			header("Content-Type: application/save"); 
+			header("Content-Length:".filesize($filePath)); 
+			header('Content-Disposition: attachment; filename="' . $nomeArquivo . '"'); 
+			header("Content-Transfer-Encoding: binary");
+			header('Expires: 0'); 
+			header('Cache-Control: must-revalidate'); 
+			header('Pragma: public');
+			
+			//limpando buffer
+			ob_clean();
+			flush();
+			
+			// abrindo o arquivo e enviando
+			readfile($filePath); 
+			exit;
+		}
+		return false;
 	}
 }
