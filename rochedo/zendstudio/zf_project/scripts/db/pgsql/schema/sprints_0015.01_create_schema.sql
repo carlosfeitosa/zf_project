@@ -22,7 +22,7 @@ CREATE SCHEMA basico_dicionario_dados;
 
 
 --
--- TOC entry 2530 (class 0 OID 0)
+-- TOC entry 2534 (class 0 OID 0)
 -- Dependencies: 40
 -- Name: SCHEMA basico_dicionario_dados; Type: COMMENT; Schema: -; Owner: -
 --
@@ -37,8 +37,8 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 386 (class 1259 OID 59278304)
--- Dependencies: 2480 2481 2482 2483 2484 2485 2486 2487 2488 2489 40
+-- TOC entry 382 (class 1259 OID 59309009)
+-- Dependencies: 2466 2467 2468 2469 2470 2471 2472 2473 2474 2475 40
 -- Name: assoc_field; Type: TABLE; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -71,8 +71,8 @@ CREATE TABLE assoc_field (
 
 
 --
--- TOC entry 385 (class 1259 OID 59278302)
--- Dependencies: 40 386
+-- TOC entry 381 (class 1259 OID 59309007)
+-- Dependencies: 382 40
 -- Name: assoc_field_id_seq; Type: SEQUENCE; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -85,8 +85,8 @@ CREATE SEQUENCE assoc_field_id_seq
 
 
 --
--- TOC entry 2531 (class 0 OID 0)
--- Dependencies: 385
+-- TOC entry 2535 (class 0 OID 0)
+-- Dependencies: 381
 -- Name: assoc_field_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -94,8 +94,8 @@ ALTER SEQUENCE assoc_field_id_seq OWNED BY assoc_field.id;
 
 
 --
--- TOC entry 384 (class 1259 OID 59278287)
--- Dependencies: 2473 2474 2475 2476 2477 2478 40
+-- TOC entry 384 (class 1259 OID 59309032)
+-- Dependencies: 2477 2478 2479 2480 2481 2482 40
 -- Name: assoc_table; Type: TABLE; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -121,7 +121,7 @@ CREATE TABLE assoc_table (
 
 
 --
--- TOC entry 383 (class 1259 OID 59278285)
+-- TOC entry 383 (class 1259 OID 59309030)
 -- Dependencies: 384 40
 -- Name: assoc_table_id_seq; Type: SEQUENCE; Schema: basico_dicionario_dados; Owner: -
 --
@@ -135,7 +135,7 @@ CREATE SEQUENCE assoc_table_id_seq
 
 
 --
--- TOC entry 2532 (class 0 OID 0)
+-- TOC entry 2536 (class 0 OID 0)
 -- Dependencies: 383
 -- Name: assoc_table_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dicionario_dados; Owner: -
 --
@@ -144,8 +144,8 @@ ALTER SEQUENCE assoc_table_id_seq OWNED BY assoc_table.id;
 
 
 --
--- TOC entry 382 (class 1259 OID 59278270)
--- Dependencies: 2466 2467 2468 2469 2470 2471 40
+-- TOC entry 380 (class 1259 OID 59308990)
+-- Dependencies: 2459 2460 2461 2462 2463 2464 40
 -- Name: assoccl_fk; Type: TABLE; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -169,8 +169,8 @@ CREATE TABLE assoccl_fk (
 
 
 --
--- TOC entry 381 (class 1259 OID 59278268)
--- Dependencies: 382 40
+-- TOC entry 379 (class 1259 OID 59308988)
+-- Dependencies: 380 40
 -- Name: assoccl_fk_id_seq; Type: SEQUENCE; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -183,8 +183,8 @@ CREATE SEQUENCE assoccl_fk_id_seq
 
 
 --
--- TOC entry 2533 (class 0 OID 0)
--- Dependencies: 381
+-- TOC entry 2537 (class 0 OID 0)
+-- Dependencies: 379
 -- Name: assoccl_fk_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -192,8 +192,8 @@ ALTER SEQUENCE assoccl_fk_id_seq OWNED BY assoccl_fk.id;
 
 
 --
--- TOC entry 380 (class 1259 OID 59278253)
--- Dependencies: 2459 2460 2461 2462 2463 2464 40
+-- TOC entry 386 (class 1259 OID 59309051)
+-- Dependencies: 2484 2485 2486 2487 2488 2489 40
 -- Name: schema; Type: TABLE; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -216,8 +216,8 @@ CREATE TABLE schema (
 
 
 --
--- TOC entry 379 (class 1259 OID 59278251)
--- Dependencies: 380 40
+-- TOC entry 385 (class 1259 OID 59309049)
+-- Dependencies: 386 40
 -- Name: schema_id_seq; Type: SEQUENCE; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -230,8 +230,8 @@ CREATE SEQUENCE schema_id_seq
 
 
 --
--- TOC entry 2534 (class 0 OID 0)
--- Dependencies: 379
+-- TOC entry 2538 (class 0 OID 0)
+-- Dependencies: 385
 -- Name: schema_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -239,8 +239,8 @@ ALTER SEQUENCE schema_id_seq OWNED BY schema.id;
 
 
 --
--- TOC entry 2479 (class 2604 OID 59278307)
--- Dependencies: 386 385 386
+-- TOC entry 2465 (class 2604 OID 59309012)
+-- Dependencies: 381 382 382
 -- Name: id; Type: DEFAULT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -248,7 +248,7 @@ ALTER TABLE ONLY assoc_field ALTER COLUMN id SET DEFAULT nextval('assoc_field_id
 
 
 --
--- TOC entry 2472 (class 2604 OID 59278290)
+-- TOC entry 2476 (class 2604 OID 59309035)
 -- Dependencies: 383 384 384
 -- Name: id; Type: DEFAULT; Schema: basico_dicionario_dados; Owner: -
 --
@@ -257,8 +257,8 @@ ALTER TABLE ONLY assoc_table ALTER COLUMN id SET DEFAULT nextval('assoc_table_id
 
 
 --
--- TOC entry 2465 (class 2604 OID 59278273)
--- Dependencies: 382 381 382
+-- TOC entry 2458 (class 2604 OID 59308993)
+-- Dependencies: 380 379 380
 -- Name: id; Type: DEFAULT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -266,8 +266,8 @@ ALTER TABLE ONLY assoccl_fk ALTER COLUMN id SET DEFAULT nextval('assoccl_fk_id_s
 
 
 --
--- TOC entry 2458 (class 2604 OID 59278256)
--- Dependencies: 379 380 380
+-- TOC entry 2483 (class 2604 OID 59309054)
+-- Dependencies: 385 386 386
 -- Name: id; Type: DEFAULT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -275,8 +275,8 @@ ALTER TABLE ONLY schema ALTER COLUMN id SET DEFAULT nextval('schema_id_seq'::reg
 
 
 --
--- TOC entry 2504 (class 2606 OID 59278284)
--- Dependencies: 382 382
+-- TOC entry 2497 (class 2606 OID 59309004)
+-- Dependencies: 380 380
 -- Name: assoccl_fk_pkey; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -285,18 +285,8 @@ ALTER TABLE ONLY assoccl_fk
 
 
 --
--- TOC entry 2520 (class 2606 OID 59278324)
--- Dependencies: 386 386 386
--- Name: ck_assoc_field; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY assoc_field
-    ADD CONSTRAINT ck_assoc_field UNIQUE (id_assoc_table, fieldname);
-
-
---
--- TOC entry 2522 (class 2606 OID 59278322)
--- Dependencies: 386 386
+-- TOC entry 2507 (class 2606 OID 59309027)
+-- Dependencies: 382 382
 -- Name: pk_assoc_field; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -305,7 +295,7 @@ ALTER TABLE ONLY assoc_field
 
 
 --
--- TOC entry 2512 (class 2606 OID 59278301)
+-- TOC entry 2517 (class 2606 OID 59309046)
 -- Dependencies: 384 384
 -- Name: pk_assoc_table; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
@@ -315,8 +305,8 @@ ALTER TABLE ONLY assoc_table
 
 
 --
--- TOC entry 2491 (class 2606 OID 59278267)
--- Dependencies: 380 380
+-- TOC entry 2521 (class 2606 OID 59309065)
+-- Dependencies: 386 386
 -- Name: pk_schema; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -325,8 +315,38 @@ ALTER TABLE ONLY schema
 
 
 --
--- TOC entry 2513 (class 1259 OID 59278370)
--- Dependencies: 386
+-- TOC entry 2509 (class 2606 OID 59309029)
+-- Dependencies: 382 382 382
+-- Name: un_assoc_field; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY assoc_field
+    ADD CONSTRAINT un_assoc_field UNIQUE (id_assoc_table, fieldname);
+
+
+--
+-- TOC entry 2519 (class 2606 OID 59309048)
+-- Dependencies: 384 384 384
+-- Name: un_assoc_table; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY assoc_table
+    ADD CONSTRAINT un_assoc_table UNIQUE (id_schema, tablename);
+
+
+--
+-- TOC entry 2499 (class 2606 OID 59309006)
+-- Dependencies: 380 380 380 380
+-- Name: un_assoccl_fk; Type: CONSTRAINT; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY assoccl_fk
+    ADD CONSTRAINT un_assoccl_fk UNIQUE (id_assoc_table, id_assoc_field, id_assoc_field_fk);
+
+
+--
+-- TOC entry 2500 (class 1259 OID 59309100)
+-- Dependencies: 382
 -- Name: assoc_field_constante_textual; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -334,8 +354,8 @@ CREATE INDEX assoc_field_constante_textual ON assoc_field USING btree (constante
 
 
 --
--- TOC entry 2514 (class 1259 OID 59278371)
--- Dependencies: 386
+-- TOC entry 2501 (class 1259 OID 59309101)
+-- Dependencies: 382
 -- Name: assoc_field_constante_textual_alias; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -343,8 +363,8 @@ CREATE INDEX assoc_field_constante_textual_alias ON assoc_field USING btree (con
 
 
 --
--- TOC entry 2515 (class 1259 OID 59278369)
--- Dependencies: 386
+-- TOC entry 2502 (class 1259 OID 59309099)
+-- Dependencies: 382
 -- Name: assoc_field_fieldname; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -352,8 +372,8 @@ CREATE INDEX assoc_field_fieldname ON assoc_field USING btree (fieldname);
 
 
 --
--- TOC entry 2516 (class 1259 OID 59278367)
--- Dependencies: 386
+-- TOC entry 2503 (class 1259 OID 59309097)
+-- Dependencies: 382
 -- Name: assoc_field_id; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -361,8 +381,8 @@ CREATE UNIQUE INDEX assoc_field_id ON assoc_field USING btree (id);
 
 
 --
--- TOC entry 2517 (class 1259 OID 59278368)
--- Dependencies: 386
+-- TOC entry 2504 (class 1259 OID 59309098)
+-- Dependencies: 382
 -- Name: assoc_field_id_assoc_table; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -370,8 +390,8 @@ CREATE INDEX assoc_field_id_assoc_table ON assoc_field USING btree (id_assoc_tab
 
 
 --
--- TOC entry 2518 (class 1259 OID 59278372)
--- Dependencies: 386
+-- TOC entry 2505 (class 1259 OID 59309102)
+-- Dependencies: 382
 -- Name: assoc_field_tipo; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -379,7 +399,7 @@ CREATE INDEX assoc_field_tipo ON assoc_field USING btree (tipo);
 
 
 --
--- TOC entry 2505 (class 1259 OID 59278365)
+-- TOC entry 2510 (class 1259 OID 59309107)
 -- Dependencies: 384
 -- Name: assoc_table_constante_textual; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
@@ -388,7 +408,7 @@ CREATE INDEX assoc_table_constante_textual ON assoc_table USING btree (constante
 
 
 --
--- TOC entry 2506 (class 1259 OID 59278366)
+-- TOC entry 2511 (class 1259 OID 59309108)
 -- Dependencies: 384
 -- Name: assoc_table_constante_textual_alias; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
@@ -397,7 +417,7 @@ CREATE INDEX assoc_table_constante_textual_alias ON assoc_table USING btree (con
 
 
 --
--- TOC entry 2507 (class 1259 OID 59278361)
+-- TOC entry 2512 (class 1259 OID 59309103)
 -- Dependencies: 384
 -- Name: assoc_table_id; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
@@ -406,7 +426,7 @@ CREATE UNIQUE INDEX assoc_table_id ON assoc_table USING btree (id);
 
 
 --
--- TOC entry 2508 (class 1259 OID 59278362)
+-- TOC entry 2513 (class 1259 OID 59309104)
 -- Dependencies: 384
 -- Name: assoc_table_id_categoria; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
@@ -415,7 +435,7 @@ CREATE INDEX assoc_table_id_categoria ON assoc_table USING btree (id_categoria);
 
 
 --
--- TOC entry 2509 (class 1259 OID 59278363)
+-- TOC entry 2514 (class 1259 OID 59309105)
 -- Dependencies: 384
 -- Name: assoc_table_id_schema; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
@@ -424,17 +444,17 @@ CREATE INDEX assoc_table_id_schema ON assoc_table USING btree (id_schema);
 
 
 --
--- TOC entry 2510 (class 1259 OID 59278364)
+-- TOC entry 2515 (class 1259 OID 59309106)
 -- Dependencies: 384
 -- Name: assoc_table_tablename; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX assoc_table_tablename ON assoc_table USING btree (tablename);
+CREATE INDEX assoc_table_tablename ON assoc_table USING btree (tablename);
 
 
 --
--- TOC entry 2497 (class 1259 OID 59278359)
--- Dependencies: 382
+-- TOC entry 2490 (class 1259 OID 59309095)
+-- Dependencies: 380
 -- Name: assoccl_fk_constante_textual; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -442,8 +462,8 @@ CREATE INDEX assoccl_fk_constante_textual ON assoccl_fk USING btree (constante_t
 
 
 --
--- TOC entry 2498 (class 1259 OID 59278360)
--- Dependencies: 382
+-- TOC entry 2491 (class 1259 OID 59309096)
+-- Dependencies: 380
 -- Name: assoccl_fk_constante_textual_alias; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -451,8 +471,8 @@ CREATE INDEX assoccl_fk_constante_textual_alias ON assoccl_fk USING btree (const
 
 
 --
--- TOC entry 2499 (class 1259 OID 59278355)
--- Dependencies: 382
+-- TOC entry 2492 (class 1259 OID 59309091)
+-- Dependencies: 380
 -- Name: assoccl_fk_id; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -460,8 +480,8 @@ CREATE UNIQUE INDEX assoccl_fk_id ON assoccl_fk USING btree (id);
 
 
 --
--- TOC entry 2500 (class 1259 OID 59278357)
--- Dependencies: 382
+-- TOC entry 2493 (class 1259 OID 59309093)
+-- Dependencies: 380
 -- Name: assoccl_fk_id_assoc_field; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -469,8 +489,8 @@ CREATE INDEX assoccl_fk_id_assoc_field ON assoccl_fk USING btree (id_assoc_field
 
 
 --
--- TOC entry 2501 (class 1259 OID 59278358)
--- Dependencies: 382
+-- TOC entry 2494 (class 1259 OID 59309094)
+-- Dependencies: 380
 -- Name: assoccl_fk_id_assoc_field_fk; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -478,8 +498,8 @@ CREATE INDEX assoccl_fk_id_assoc_field_fk ON assoccl_fk USING btree (id_assoc_fi
 
 
 --
--- TOC entry 2502 (class 1259 OID 59278356)
--- Dependencies: 382
+-- TOC entry 2495 (class 1259 OID 59309092)
+-- Dependencies: 380
 -- Name: assoccl_fk_id_assoc_table; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -487,8 +507,8 @@ CREATE INDEX assoccl_fk_id_assoc_table ON assoccl_fk USING btree (id_assoc_table
 
 
 --
--- TOC entry 2492 (class 1259 OID 59278353)
--- Dependencies: 380
+-- TOC entry 2522 (class 1259 OID 59309112)
+-- Dependencies: 386
 -- Name: schema_constante_textual; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -496,8 +516,8 @@ CREATE INDEX schema_constante_textual ON schema USING btree (constante_textual);
 
 
 --
--- TOC entry 2493 (class 1259 OID 59278354)
--- Dependencies: 380
+-- TOC entry 2523 (class 1259 OID 59309113)
+-- Dependencies: 386
 -- Name: schema_constante_textual_alias; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -505,8 +525,8 @@ CREATE INDEX schema_constante_textual_alias ON schema USING btree (constante_tex
 
 
 --
--- TOC entry 2494 (class 1259 OID 59278350)
--- Dependencies: 380
+-- TOC entry 2524 (class 1259 OID 59309109)
+-- Dependencies: 386
 -- Name: schema_id; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -514,8 +534,8 @@ CREATE UNIQUE INDEX schema_id ON schema USING btree (id);
 
 
 --
--- TOC entry 2495 (class 1259 OID 59278351)
--- Dependencies: 380
+-- TOC entry 2525 (class 1259 OID 59309110)
+-- Dependencies: 386
 -- Name: schema_id_modulo; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -523,8 +543,8 @@ CREATE INDEX schema_id_modulo ON schema USING btree (id_modulo);
 
 
 --
--- TOC entry 2496 (class 1259 OID 59278352)
--- Dependencies: 380
+-- TOC entry 2526 (class 1259 OID 59309111)
+-- Dependencies: 386
 -- Name: schema_schemaname; Type: INDEX; Schema: basico_dicionario_dados; Owner: -; Tablespace: 
 --
 
@@ -532,8 +552,8 @@ CREATE UNIQUE INDEX schema_schemaname ON schema USING btree (schemaname);
 
 
 --
--- TOC entry 2527 (class 2606 OID 59278335)
--- Dependencies: 384 386 2511
+-- TOC entry 2530 (class 2606 OID 59309081)
+-- Dependencies: 384 382 2516
 -- Name: fk_assoc_field_assoc_table; Type: FK CONSTRAINT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -542,8 +562,8 @@ ALTER TABLE ONLY assoc_field
 
 
 --
--- TOC entry 2526 (class 2606 OID 59278330)
--- Dependencies: 380 384 2490
+-- TOC entry 2531 (class 2606 OID 59309086)
+-- Dependencies: 2520 384 386
 -- Name: fk_assoc_table_schema; Type: FK CONSTRAINT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -552,8 +572,8 @@ ALTER TABLE ONLY assoc_table
 
 
 --
--- TOC entry 2525 (class 2606 OID 59278345)
--- Dependencies: 382 2521 386
+-- TOC entry 2527 (class 2606 OID 59309066)
+-- Dependencies: 382 380 2506
 -- Name: fk_assoccl_fk_assoc_field; Type: FK CONSTRAINT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -562,8 +582,8 @@ ALTER TABLE ONLY assoccl_fk
 
 
 --
--- TOC entry 2523 (class 2606 OID 59278325)
--- Dependencies: 2521 382 386
+-- TOC entry 2529 (class 2606 OID 59309076)
+-- Dependencies: 2506 380 382
 -- Name: fk_assoccl_fk_assoc_field_fk; Type: FK CONSTRAINT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -572,8 +592,8 @@ ALTER TABLE ONLY assoccl_fk
 
 
 --
--- TOC entry 2524 (class 2606 OID 59278340)
--- Dependencies: 2511 382 384
+-- TOC entry 2528 (class 2606 OID 59309071)
+-- Dependencies: 2516 384 380
 -- Name: fk_assoccl_fk_assoc_table; Type: FK CONSTRAINT; Schema: basico_dicionario_dados; Owner: -
 --
 
@@ -581,7 +601,7 @@ ALTER TABLE ONLY assoccl_fk
     ADD CONSTRAINT fk_assoccl_fk_assoc_table FOREIGN KEY (id_assoc_table) REFERENCES assoc_table(id);
 
 
--- Completed on 2012-04-24 09:19:32 BRT
+-- Completed on 2012-04-26 22:56:24 BRT
 
 --
 -- PostgreSQL database dump complete
