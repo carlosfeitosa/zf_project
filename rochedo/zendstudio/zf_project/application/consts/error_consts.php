@@ -56,6 +56,7 @@ define("MSG_ERRO_CATEGORIA_PERFIL_USUARIO", "Categoria de PERFIL_USUARIO não en
 define("MSG_ERRO_TIPO_CATEGORIA_CVC", "Tipo de categoria de CVC não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_CVC", "Categoria de CVC não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_LINGUAGEM", "Categoria da linguagem não encontrada no banco de dados");
+define("MSG_ERRO_CATEGORIA_TIPO_TABELA", "Categoria do tipo de tabela (dicionario de dados) não encontrada no banco de dados");
 
 /*
  * FORMULÁRIO

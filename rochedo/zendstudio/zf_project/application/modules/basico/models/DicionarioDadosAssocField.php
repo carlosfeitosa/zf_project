@@ -118,7 +118,7 @@ class Basico_Model_DicionarioDadosAssocField extends Basico_AbstractModel_Roched
 	* @param String $fieldName 
 	* @return Basico_Model_DicionarioDadosAssocField
 	*/
-	public function setFieldName($fieldName)
+	public function setFieldname($fieldName)
 	{
 		$this->_fieldname = Basico_OPController_UtilOPController::retornaValorTipado($fieldName, TIPO_STRING, true);
 		return $this;
@@ -129,7 +129,7 @@ class Basico_Model_DicionarioDadosAssocField extends Basico_AbstractModel_Roched
 	* 
 	* @return null|String
 	*/
-	public function getFieldName()
+	public function getFieldname()
 	{
 		return $this->_fieldname;
 	}

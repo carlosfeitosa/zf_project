@@ -11,6 +11,17 @@
 class Basico_OPController_PessoaLoginOPController extends Basico_AbstractController_RochedoPersistentOPController 
 {
 	/**
+	 * Instância do controlador Basico_OPController_PessoaLoginOPController.
+	 * @var Basico_OPController_PessoaLoginOPController
+	 */
+	private static $_singleton;
+	/**
+	 * Instância do modelo Basico_Model_PessoaLogin
+	 * @var Basico_Model_PessoaLogin
+	 */
+	protected $_model;
+
+	/**
 	 * Nome da tabela login
 	 * 
 	 * @var String
@@ -25,27 +36,14 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	const nomeCampoIdModelo = 'id';
 
 	/**
-	 * @var Basico_OPController_LoginOPController
-	 */
-	private static $_singleton;
-	
-	/**
-	 * @var Basico_Model_Login
-	 */
-	private $_model;
-	
-	/**
 	 * Contrutor do controlador Basico_OPController_LoginOPController
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-		
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -55,9 +53,26 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
 		return;
 	}
-	
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
+	{
+		return;
+	}
+
 	/**
 	 * Inicializa Controlador Login.
 	 * 
@@ -273,7 +288,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaObjetoLoginPorLogin($login)
 	{
 		// recuperando o array com o objeto login
-		$arrayObjsLogin = $this->retornaObjetosPorParametros($this->_model, "login = '{$login}'");
+		$arrayObjsLogin = $this->retornaObjetosPorParametros("login = '{$login}'");
 
 		// verificando o resultado da recuperacao
 		if ($arrayObjsLogin)
@@ -752,7 +767,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objLogin = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+			$objLogin = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (isset($objLogin[0]))
@@ -816,7 +831,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaIdLoginPorIdPessoa($idPessoa)
 	{
 		// recuperando o objeto login
-		$object = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+		$object = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 
 		// verificando o resultado da recuperacao do objeto
 		if (isset($object[0])) {
@@ -866,7 +881,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
     	$objetoPessoaPerfilSistema = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilSistema();
 
     	//recuperando o login do usuario master do sistema
-    	$objsLogin = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$objetoPessoaPerfilSistema->idPessoa}", null, 1, 0);
+    	$objsLogin = $this->retornaObjetosPorParametros("id_pessoa = {$objetoPessoaPerfilSistema->idPessoa}", null, 1, 0);
 
     	// verificando se o objeto foi recuperado com sucesso
     	if (isset($objsLogin[0]))    	
@@ -913,7 +928,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaVersaoObjetoLoginPorIdPessoa($idPessoa, $forceVersioning = false)
 	{
 		// recuperando objeto pessoa
-		$arrayObjects = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+		$arrayObjects = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (count($arrayObjects) > 0) {

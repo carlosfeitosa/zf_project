@@ -13,9 +13,15 @@
 class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Instância do controlador Basico_OPController_CategoriaAssocChaveEstrangeiraOPController.
 	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 	 */
 	private static $_singleton;
+	/**
+	 * Instância do modelo Basico_Model_CategoriaAssocChaveEstrangeira
+	 * @var Basico_Model_CategoriaAssocChaveEstrangeira
+	 */
+	protected $_model;
 
 	/**
 	 * @var Basico_OPController_CategoriaOPController
@@ -27,11 +33,6 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 */
 	private $_moduloOPController;
 	
-	/**
-	 * @var Basico_Model_CategoriaAssocChaveEstrangeira
-	 */
-	private $_model;
-	
     /**
      * Construtor do Controller
      * 
@@ -39,17 +40,8 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
      */
 	protected function __construct()
 	{
-		// instanciando o controlador de categorias
-		$this->_categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
-
-		// instanciando o controlador de módulos
-		$this->_moduloOPController = Basico_OPController_ModuloOPController::getInstance();
-
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 	
 	/**
@@ -59,6 +51,29 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
+	{
+		// instanciando o controlador de categorias
+		$this->_categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
+
+		// instanciando o controlador de módulos
+		$this->_moduloOPController = Basico_OPController_ModuloOPController::getInstance();
+
 		return;
 	}
 
@@ -93,7 +108,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 		$stringImplodidaArrayIdsCategoriasExclusao = implode(',', $arrayIdsCategoriasExclusao);
 
 		// recuperando todas as tuplas, excluindo as que possuem a categoria no array de exclusao passado por parametro
-		$objsCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros($this->_model, "id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
+		$objsCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
 		
 		// loop para recuperar o nome das tabelas
 		foreach($objsCategoriaChaveEstrangeira as $objCategoriaChaveEstrangeira) {
@@ -194,7 +209,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			return $objetoCategoriaChaveEstrangeira;
 		} else if ($forceCreateRelationship) {
 			// recuperando modelo vazio de categoria chave estrangeira
-			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModelo();
 			
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->idCategoria = $this->_categoriaOPController->idCategoriaCVC;
@@ -270,7 +285,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	public function retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
 	{
 		// recuperando todas as tuplas vinculadas a categoria passara por parametro
-		$objCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros($this->_model, "id_categoria = {$idCategoria}");
+		$objCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("id_categoria = {$idCategoria}");
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoriaChaveEstrangeira[0]))

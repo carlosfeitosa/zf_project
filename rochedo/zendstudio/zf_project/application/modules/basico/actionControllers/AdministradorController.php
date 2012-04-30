@@ -60,6 +60,9 @@ class Basico_AdministradorController extends Zend_Controller_Action
     		if (array_key_exists('id', $parametros)) {
     			// recuperando o id do modelo
     			$idModelo = (Int) $parametros['id'];
+    		} else {
+    			// setando o id do modelo para nulo
+    			$idModelo = null;
     		}
 
     		// verificando se o sistema deve regerar o checksum de um modelo especifico ou de todos

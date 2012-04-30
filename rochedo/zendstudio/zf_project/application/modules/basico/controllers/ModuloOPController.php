@@ -14,14 +14,15 @@
 class Basico_OPController_ModuloOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Instância do controlador Basico_OPController_ModuloOPController.
 	 * @var Basico_OPController_ModuloOPController
 	 */
 	private static $_singleton;
-
 	/**
+	 * Instância do modelo Basico_Model_Modulo
 	 * @var Basico_Model_Modulo
 	 */
-	private $_model;
+	protected $_model;
 
 	/**
 	 * Construtor do controlador Basico_OPController_ModuloOPController
@@ -30,11 +31,8 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -43,6 +41,23 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -155,7 +170,7 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 		$nomeModulo = strtoupper($nomeModulo);
 
 		// recuperando objeto
-		$objModulo = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeModulo}'", null, 1, 0);
+		$objModulo = $this->retornaObjetosPorParametros("nome = '{$nomeModulo}'", null, 1, 0);
 
 		// verificando resultado da recuperacao
 		if (isset($objModulo[0]))

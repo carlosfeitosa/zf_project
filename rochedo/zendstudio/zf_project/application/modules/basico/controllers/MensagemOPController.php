@@ -261,7 +261,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->retornaObjetosPorParametros("id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// recuperando o assunto
 		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());
@@ -328,7 +328,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->retornaObjetosPorParametros($this->_model, "id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->retornaObjetosPorParametros("id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// recuperando o assunto
 		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());

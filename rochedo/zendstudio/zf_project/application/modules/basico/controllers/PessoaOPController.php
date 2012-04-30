@@ -14,6 +14,17 @@
 class Basico_OPController_PessoaOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Instância do controlador Basico_OPController_PessoaOPController.
+	 * @var Basico_OPController_PessoaOPController
+	 */
+	private static $_singleton;
+	/**
+	 * Instância do modelo Basico_Model_Pessoa
+	 * @var Basico_Model_Pessoa
+	 */
+	protected $_model;
+
+	/**
 	 * Nome da tabela pessoa
 	 * 
 	 * @var String
@@ -28,29 +39,14 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	const nomeCampoIdModelo = 'id';
 
 	/**
-	 * Instância do Controlador Pessoa
-	 * @var Basico_OPController_PessoaOPController
-	 */
-	private static $_singleton;
-	
-	/**
-	 * Instância do Modelo Pessoa.
-	 * @var Basico_Model_Pessoa
-	 */
-	private $_model;
-	
-	/**
 	 * Construtor do Controlador Pessoa.
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -59,6 +55,23 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -194,7 +207,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 		// recuperando informacoes sobre o rowinfo master
 		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
 		// recuperando o objeto pessoa
-		$objsPessoaSistema = $this->retornaObjetosPorParametros($this->_model, "rowinfo = '{$rowinfoMaster}'", null, 1, 0);
+		$objsPessoaSistema = $this->retornaObjetosPorParametros("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado
 		if (isset($objsPessoaSistema[0]))

@@ -1026,4 +1026,185 @@ class Basico_OPController_DBUtilOPController
 
 		return 0;
 	}
+
+	/**
+	 * Retorna a quantidade de linhas de um determinado schema
+	 * 
+	 * @param String $schemaname
+	 * 
+	 * @return Integer
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	public static function retornaQuantidadeTabelasSchema($schemaname)
+	{
+		// verificando se nao foi passado o nome do schema
+		if (!$schemaname) {
+			// retornando zero
+			return 0;
+		}
+
+		// query para retornar a quantidade de tabelas em um schema
+		$queryRetornaQuantidadeTabelasSchema = "SELECT count(tables.table_name) AS total_tabelas_schema
+
+												FROM INFORMATION_SCHEMA.tables tables
+												
+												WHERE tables.table_catalog = 'rochedo_db'
+												AND tables.table_type = 'BASE TABLE'
+												AND tables.table_schema = ('{$schemaname}')";
+
+		// recuperando resultados
+		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRetornaQuantidadeTabelasSchema);
+
+		// verificando resultado
+		if (count($arrayResultados)) {
+			// retornando a quantidade de registros
+			return (int) $arrayResultados[0]['total_tabelas_schema'];
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Retorna a quantidade de campos de uma determinada tabela
+	 * 
+	 * @param String $schemaname
+	 * @param String $tablename
+	 * 
+	 * @return Integer
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	public static function retornaQuantidadeCamposTabela($schemaname, $tablename)
+	{
+		// verificando se nao foi passado o nome do schema ou tabela
+		if ((!$schemaname) or (!$tablename)) {
+			// retornando zero
+			return 0;
+		}
+
+		// query para retornar a quantidade de tabelas em um schema
+		$queryRetornaQuantidadeCamposTabelas = "SELECT count(fields.column_name) AS total_campos_tabelas
+				
+												FROM INFORMATION_SCHEMA.columns fields
+												LEFT JOIN INFORMATION_SCHEMA.tables tables ON (fields.table_schema = tables.table_schema AND
+												                                           fields.table_name = tables.table_name)
+												
+												WHERE tables.table_catalog = 'rochedo_db'
+												AND tables.table_type = 'BASE TABLE'
+												AND tables.table_schema = '$schemaname'
+												AND tables.table_name = '$tablename'";
+
+		// recuperando resultados
+		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRetornaQuantidadeCamposTabelas);
+
+		// verificando resultado
+		if (count($arrayResultados)) {
+			// retornando a quantidade de registros
+			return (int) $arrayResultados[0]['total_campos_tabelas'];
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Retorna uma string contendo os nomes dos check constraints de uma tabela
+	 * 
+	 * @param String $schemaname
+	 * @param String $tablename
+	 * 
+	 * @return String|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/04/2012
+	 */
+	public static function retornaCheckContraintsTabela($schemaname, $tablename)
+	{
+		// verificando se nao foi passado o nome do schema ou tabela
+		if ((!$schemaname) or (!$tablename)) {
+			// retornando nulo
+			return null;
+		}
+
+		// query para retornar as check constraint vinculadas a esta tabela
+		$queryCheckContraintsTabela = "SELECT tc.constraint_name, cc.check_clause
+
+									   FROM INFORMATION_SCHEMA.table_constraints tc
+									   LEFT JOIN INFORMATION_SCHEMA.check_constraints cc ON (tc.constraint_name = cc.constraint_name)
+
+									   WHERE tc.table_schema = '{$schemaname}'
+									   AND tc.table_name = '{$tablename}'";
+
+		// recuperando resultados
+		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryCheckContraintsTabela);
+
+		// verificando resultado
+		if (count($arrayResultados)) {
+			// inicializando variaveis
+			$retorno = "";
+
+			// loop para montar string de saida
+			foreach ($arrayResultados as $valor) {
+				// montando string
+				$retorno .= "{$valor['constraint_name']} ({$valor['check_clause']})" . QUEBRA_DE_LINHA;
+
+				// limpando memoria
+				unset($valor);
+			}
+
+			// limpando memoria
+			unset($arrayResultados);
+
+			// retornando a quantidade de registros
+			return $retorno;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Retorna um array contendo as proprietades dos campos da tabela/schema especificada
+	 * 
+	 * @param String $schemaname
+	 * @param String $tablename
+	 * @param String $fieldname
+	 * 
+	 * @return Array|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/04/2012
+	 */
+	public static function retornaArrayAtributosCampoTabela($schemaname, $tablename, $fieldname)
+	{
+		// verificando se nao foi passado o nome do schema ou tabela
+		if ((!$schemaname) or (!$tablename)) {
+			// retornando nulo
+			return null;
+		}
+
+		// query para recuperar os atributos do campo/tabela
+		$queryAtributosTabela = "SELECT c.column_name, c.column_default, c.is_nullable, c.udt_name AS type, c.character_maximum_length, c.numeric_precision, c.numeric_scale
+
+								 FROM INFORMATION_SCHEMA.columns c
+								
+								 WHERE c.table_schema = '{$schemaname}'
+								 AND c.table_name = '{$tablename}'
+								 AND c.column_name = '{$fieldname}'
+								
+								 ORDER BY c.ordinal_position";
+
+		// recuperando resultados
+		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryAtributosTabela);
+
+		// verificando resultado
+		if (count($arrayResultados)) {
+			// retornando array de resultados
+			return $arrayResultados[0];
+		}
+
+		// retornando null
+		return null;
+	}
 }

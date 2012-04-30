@@ -44,11 +44,8 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-		
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -57,6 +54,23 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -178,7 +192,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
 
 	    // recuperando o objeto pessoa perfil do sistema
-        $objPessoaPerfilSistema = $this->retornaObjetosPorParametros($this->_model, "id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
+        $objPessoaPerfilSistema = $this->retornaObjetosPorParametros("id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
         
         // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
         if (!$objPessoaPerfilSistema[0]->id)
@@ -274,7 +288,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	public function retornaObjetosPessoasPerfisPorIdPessoa($idPessoa)
 	{
 		// recuperando array de objetos Basico_Model_PessoaPefil
-		$objsPessoasPerfis = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = '{$idPessoa}'");
+		$objsPessoasPerfis = $this->retornaObjetosPorParametros("id_pessoa = '{$idPessoa}'");
 
 		// verificando se o objeto existe
 		if (count($objsPessoasPerfis) > 0)
@@ -364,7 +378,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$perfilUsuarioNaoValidado = $perfilOPController->retornaObjetoPerfilUsuarioNaoValidado();
 
 		// recuperando o objeto pessoa perfil de usuario nao validado
-    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
+    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfilPessoa[0])) {
@@ -394,7 +408,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$objPerfilUsuarioValidado = $perfilOPController->retornaObjetoPerfilUsuarioValidado();
 
 		// recuperando o objeto pessoa pefil
-    	$objPessoaPerfil = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
+    	$objPessoaPerfil = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfil[0])) {
@@ -459,7 +473,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$objPerfil = $perfilOPController->retornaObjetoPerfilPorIdPerfil($idPerfil);
 
 		// recuperando o objeto pessoa perfil
-    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
+    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
 
     	// verificando se o objeto foi recuperado
     	if (isset($objPessoaPerfilPessoa[0])) {

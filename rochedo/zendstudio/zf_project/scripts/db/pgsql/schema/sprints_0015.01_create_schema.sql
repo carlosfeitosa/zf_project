@@ -109,7 +109,7 @@ CREATE TABLE assoc_table (
     constante_textual_descricao character varying(200),
     constante_textual_alias character varying(200),
     quantidade_campos integer,
-    check_constraint character varying(1000),
+    check_constraint character varying(4000),
     ativo boolean DEFAULT false NOT NULL,
     datahora_criacao timestamp without time zone DEFAULT now() NOT NULL,
     datahora_ultima_atualizacao timestamp without time zone DEFAULT now() NOT NULL,

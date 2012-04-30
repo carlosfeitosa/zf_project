@@ -198,7 +198,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	private function retornaElementoPorNome($nomeElemento)
 	{
 		// recuperando array de resultados
-		$objsFormularioElemento = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeElemento}'");
+		$objsFormularioElemento = $this->retornaObjetosPorParametros("nome = '{$nomeElemento}'");
 
 		// verificando se o elemento foi recuperado
 		if (count($objsFormularioElemento) > 0)

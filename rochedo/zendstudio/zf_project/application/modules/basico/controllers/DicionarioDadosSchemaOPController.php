@@ -14,6 +14,17 @@
 class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Instância do controlador Basico_OPController_DicionarioDadosSchemaOPController.
+	 * @var Basico_OPController_DicionarioDadosSchemaOPController
+	 */
+	private static $_singleton;
+	/**
+	 * Instância do modelo Basico_Model_DicionarioDadosSchema
+	 * @var Basico_Model_DicionarioDadosSchema
+	 */
+	protected $_model;
+
+	/**
 	 * Nome da tabela DicionarioDadosSchema
 	 * 
 	 * @var String
@@ -28,29 +39,14 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	const nomeCampoIdModelo = 'id';
 
 	/**
-	 *  
-	 * @var Basico_OPController_DicionarioDadosSchemaOPController object
-	 */
-	private static $_singleton;
-	
-	/**
-	 * 
-	 * @var Basico_Model_DicionarioDadosSchema object
-	 */
-	private $_model;
-		
-	/**
 	 * Construtor do Controlador DicionarioDadosSchema
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -60,9 +56,26 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
 		return;
 	}
-	
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
+	{
+		return;
+	}
+
 	/**
 	 * Recupera a instancia do controlador Basico_OPController_DicionarioDadosSchemaOPController
 	 * 
@@ -78,7 +91,7 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 		// retornando instancia
 		return self::$_singleton;
 	}
-	
+
     /**
 	 * Salva o objeto DicionarioDadosSchema no banco de dados
 	 * 
@@ -91,15 +104,15 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	 * 
 	 * @return void
 	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	protected function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
 		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DicionarioDadosSchema', true);
 
 	    try {
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	if (!isset($idPessoaAssocclPerfilSave))
+	    		$idPessoaAssocclPerfilSave = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
@@ -113,7 +126,7 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	    	}
 
 			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idDicionarioDadosSchemaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaAssocclPerfilSave, $idDicionarioDadosSchemaLog, $mensagemLog);
 
 	    	// atualizando o objeto
     		$this->_model = $objeto;
@@ -123,7 +136,7 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
     		throw new Exception($e);
     	}
 	}
-	
+
      /**
 	 * Apaga o objeto DicionarioDadosSchema do banco de dados
 	 * 
@@ -136,25 +149,173 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	 * 
 	 * @return void
 	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	protected function apagarObjeto($objeto, $forceCascade = false, $idPessoaAssocclPerfilDelete = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
 		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DicionarioDadosSchema', true);
 
 		try {
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
+	    	if (!isset($idPessoaAssocclPerfilDelete))
+	    		$idPessoaAssocclPerfilDelete = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// recuperando informacoes de log
 	    	$idDicionarioDadosSchemaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DICIONARIO_DADOS_SCHEMA, true);
 	    	$mensagemLog    = LOG_MSG_DELETE_DICIONARIO_DADOS_SCHEMA;
 
 	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idDicionarioDadosSchemaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaAssocclPerfilDelete, $idDicionarioDadosSchemaLog, $mensagemLog);
 
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
+	}
+
+	/**
+	 * Salva um novo schema no dicionario de dados
+	 * 
+	 * @param Integer $idPessoaAssocclPerfil
+	 * @param Integer $idModulo
+	 * @param String $schemaname
+	 * @param String $constanteTextual
+	 * @param String $constanteTextualDescricao
+	 * @param String $constanteTextualAlias
+	 * @param Integer $quantidadeTabelas
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	public function criarNovoSchemaAtivo($idPessoaAssocclPerfilCreate, $idModulo, $schemaname, $constanteTextual, $quantidadeTabelas = null, $constanteTextualDescricao = null, $constanteTextualAlias = null)
+	{
+		// instanciando modelo
+		$this->initModel();
+
+		// atribuindo valores aos atributos
+		$this->_model->idModulo                  = $idModulo;
+		$this->_model->schemaname                = $schemaname;
+		$this->_model->constanteTextual          = $constanteTextual;
+		$this->_model->constanteTextualDescricao = $constanteTextualDescricao;
+		$this->_model->constanteTextualAlias     = $constanteTextualAlias;
+		$this->_model->quantidadeTabelas         = $quantidadeTabelas;
+		$this->_model->ativo                     = true;
+
+		// retornando o resultado do metodo de salvar o objeto
+		return $this->salvarObjeto($this->_model, null, $idPessoaAssocclPerfilCreate);
+	}
+
+	/**
+	 * Desativa um schema
+	 * 
+	 * @param Integer $idPessoaAssocclPerfilDeactivate
+	 * @param Integer $idModulo
+	 * @param String $schemaname
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	public function desativaSchema($idPessoaAssocclPerfilDeactivate, $idModulo, $schemaname)
+	{
+		// recuperando o objeto schema
+		$objetoSchema = $this->retornaObjetosPorParametros("id_modulo = {$idModulo} AND schemaname = '{$schemaname}'", null, 1, 0);
+
+		// recuperando a versao do objeto
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoSchema);
+
+		// desativando o schema
+		$objetoSchema->ativo = false;
+
+		// retornando o resultado do metodo de salvar o objeto
+		return $this->salvarObjeto($objetoSchema, $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+	}
+
+	/**
+	 * Atualiza a quantidade de tabelas de um schema
+	 * 
+	 * @param Integer $idPessoaAssocclPerfilUpdate
+	 * @param Integer $idModulo
+	 * @param String $schemaname
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 26/04/2012
+	 */
+	public function atualizaQuantidadeTabelasSchema($idPessoaAssocclPerfilUpdate, $schemaname)
+	{
+		// recuperando o objeto schema
+		$objetoSchema = $this->retornaObjetosPorParametros("schemaname = '{$schemaname}'", null, 1, 0);
+
+		// recuperando a versao do objeto
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoSchema);
+
+		// desativando o schema
+		$objetoSchema->quantidadeTabelas = Basico_OPController_DBUtilOPController::retornaQuantidadeTabelasSchema($schemaname);
+
+		// retornando o resultado do metodo de salvar o objeto
+		return $this->salvarObjeto($objetoSchema, $versaoObjeto, $idPessoaAssocclPerfilUpdate);
+	}
+
+	/**
+	 * Retorna o nome de um schema atraves de seu id
+	 * 
+	 * @param Integer $idSchema
+	 * 
+	 * @return String|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 26/04/2012
+	 */
+	public function retornaNomeSchemaPorId($idSchema)
+	{
+		// verificando se nao foi passado o id do schema
+		if ((!$idSchema) or (!is_int($idSchema))) {
+			// retornando nulo
+			return null;
+		}
+
+		// recuperando array com o resultado da recuperacao do nome do schema atraves do id
+		$arrayResultado = $this->retornaArrayDadosObjetoPorId($idSchema, array('schemaname'));
+
+		// verificando se nao houve recuperacao de resultado
+		if (!count($arrayResultado)) {
+			// retornando nulo
+			return null;
+		}
+
+		// retornando o nome do schema
+		return $arrayResultado['schemaname'];
+	}
+
+	/**
+	 * Retorna o id de um schema atraves do seu schemaname
+	 * 
+	 * @param String $schemaname
+	 * 
+	 * @return Integer|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 26/04/2012
+	 */
+	public function retornaIdSchemaPorSchemaname($schemaname)
+	{
+		// verificando se nao foi passado o nome do schema
+		if ((!$schemaname) or (!is_string($schemaname))) {
+			// retornando nulo
+			return null;
+		}
+
+		// recuperando array com o resultado da recuperacao do nome do schema atraves do id
+		$arrayResultado = $this->retornaArrayDadosObjetosPorParametros("schemaname = '{$schemaname}'", null, 1, 0, array('id'));
+
+		// verificando se nao houve recuperacao de resultado
+		if (!count($arrayResultado)) {
+			// retornando nulo
+			return null;
+		}
+
+		// retornando o nome do schema
+		return (int) $arrayResultado[0]['id'];
 	}
 }

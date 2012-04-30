@@ -168,7 +168,7 @@ class Basico_Model_DicionarioDadosSchema extends Basico_AbstractModel_RochedoPer
 	*/
 	public function setQuantidadeTabelas($quantidadeTabelas)
 	{
-		$this->_quantidadeTabelas = Basico_OPController_UtilOPController::retornaValorTipado($quantidadeTabelas, TIPO_BOOLEAN, true);
+		$this->_quantidadeTabelas = Basico_OPController_UtilOPController::retornaValorTipado($quantidadeTabelas, TIPO_INTEIRO, true);
 		return $this;
 	}
 

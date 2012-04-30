@@ -73,7 +73,7 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 		$idPessoaPerfilSistema = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 		
 		// recuperando o objeto dados pessoas perfis
-	    $objDadosPessoasPerfis = $this->retornaObjetosPorParametros($this->_model, "id_assoccl_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
+	    $objDadosPessoasPerfis = $this->retornaObjetosPorParametros("id_assoccl_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
 	    
 	    // verificando se o objeto foi recuperado
 		if (isset($objDadosPessoasPerfis[0]))

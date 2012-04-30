@@ -29,7 +29,7 @@ class Basico_Model_DicionarioDadosAssocFieldMapper extends Basico_AbstractMapper
 		// montando array de mapeamento
 		$this->_arrayMapper['id']						 = 'id';
 		$this->_arrayMapper['idAssocTable']				 = 'id_assoc_table';
-		$this->_arrayMapper['fieldName']				 = 'fieldname';
+		$this->_arrayMapper['fieldname']				 = 'fieldname';
 		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
 		$this->_arrayMapper['constanteTextualAlias']	 = 'constante_textual_alias';

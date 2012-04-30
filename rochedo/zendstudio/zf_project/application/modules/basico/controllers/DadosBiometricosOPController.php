@@ -157,7 +157,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 			// recuperando categoria de dados biometricos de pessoa
 			$categoriaDadosBiometricosPessoa = Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL('DADOS_BIOMETRICOS_PESSOA');
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->retornaObjetosPorParametros($this->_model, "id_generico_proprietario = {$idPessoa} AND id_categoria = {$categoriaDadosBiometricosPessoa}", null, 1, 0);
+			$objDadosBiometricos = $this->retornaObjetosPorParametros("id_generico_proprietario = {$idPessoa} AND id_categoria = {$categoriaDadosBiometricosPessoa}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosBiometricos[0]))
@@ -185,7 +185,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 			// recuperando o id da categoria DADOS_BIOMETRICOS PESSOA
 			$idCategoria = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('DADOS_BIOMETRICOS_PESSOA');
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->retornaObjetosPorParametros($this->_model, "id_generico_proprietario = {$idPessoa} AND id_categoria = {$idCategoria}", null, 1, 0);
+			$objDadosBiometricos = $this->retornaObjetosPorParametros("id_generico_proprietario = {$idPessoa} AND id_categoria = {$idCategoria}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosBiometricos[0])) {

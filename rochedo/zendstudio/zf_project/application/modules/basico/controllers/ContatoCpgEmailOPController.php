@@ -116,7 +116,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	private function retornaObjetoEmailPorEmail($email)
 	{
 		// recuperando objetos e-mail
-		$objsEmail = $this->retornaObjetosPorParametros($this->_model, "email = '{$email}'", null, 1, 0);
+		$objsEmail = $this->retornaObjetosPorParametros("email = '{$email}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
 		if (isset($objsEmail[0]))
@@ -169,7 +169,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	public function retornaIdProprietarioEmailPorIdEmail($idEmail)
 	{
 		// recuperando objetos e-mail
-		$objsEmail = $this->retornaObjetosPorParametros($this->_model, "id = '{$idEmail}'", null, 1, 0);
+		$objsEmail = $this->retornaObjetosPorParametros("id = '{$idEmail}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
 		if (isset($objsEmail[0]))
@@ -290,7 +290,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 
 		// buscando o e-mail do sistema
 		$idCategoriaEmailSistema = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_EMAIL);
-		$objEmailSistema = $this->retornaObjetosPorParametros($this->_model, "id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
+		$objEmailSistema = $this->retornaObjetosPorParametros("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
 		if (isset($objEmailSistema[0]))
@@ -318,7 +318,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			$idCategoriaEmailPrimario = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO);
 
 			// recuperando o email primario da pessoa passada
-			$objEmailPrimario = $this->retornaObjetosPorParametros($this->_model, "id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
+			$objEmailPrimario = $this->retornaObjetosPorParametros("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
 			
 			// checando se o email foi encontrado
 			if (isset($objEmailPrimario[0])) {

@@ -11,6 +11,17 @@
 class Basico_OPController_PerfilOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Instância do controlador Basico_OPController_PerfilOPController.
+	 * @var Basico_OPController_PerfilOPController
+	 */
+	private static $_singleton;
+	/**
+	 * Instância do modelo Basico_Model_Perfil
+	 * @var Basico_Model_Perfil
+	 */
+	protected $_model;
+
+	/**
 	 * Nome da tabela perfil
 	 * 
 	 * @var String
@@ -25,29 +36,14 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	const nomeCampoIdModelo = 'id';
 
 	/**
-	 * Instância do Controlador Perfil.
-	 * @var Basico_OPController_PerfilOPController
-	 */
-	private static $_singleton;
-
-	/**
-	 * Instância do Modelo Perfil.
-	 * @var Basico_Model_Perfil
-	 */
-	private $_model;
-
-	/**
 	 * Construtor do Controlador Basico_OPController_PerfilOPController
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -56,6 +52,23 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -165,7 +178,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	public function retornaObjetoPerfilPorNome($nomePerfil)
 	{
 		// recuperando array de perfis
-		$objPerfil = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomePerfil}'", null, 1, 0);
+		$objPerfil = $this->retornaObjetosPorParametros("nome = '{$nomePerfil}'", null, 1, 0);
 		
 		// verificando se existe o objeto
 		if (isset($objPerfil[0]))
@@ -382,7 +395,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	private function retornaObjetosPerfisPorIdCategoria($idCategoria)
 	{
 		// retornando objetos
-		return $this->retornaObjetosPorParametros($this->_model, "id_categoria = {$idCategoria}");
+		return $this->retornaObjetosPorParametros("id_categoria = {$idCategoria}");
 	}
 
 	/**

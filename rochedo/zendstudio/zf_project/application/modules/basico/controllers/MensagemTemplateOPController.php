@@ -136,7 +136,7 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	public function retornaIdMensagemTemplatePorNomeTemplateIdCategoria($nomeTemplate, $idCategoria)
 	{
 		// recuperando a template
-		$template = $this->retornaObjetosPorParametros($this->retornaNovoObjetoModeloPorNomeOPController(get_class($this)), "nome = '{$nomeTemplate}' AND id_categoria = {$idCategoria}");
+		$template = $this->retornaObjetosPorParametros("nome = '{$nomeTemplate}' AND id_categoria = {$idCategoria}");
 		
 		if ($template[0]) {
 			return $template[0]->id;

@@ -31,7 +31,7 @@ class Basico_Model_DicionarioDadosAssocTableMapper extends Basico_AbstractMapper
 		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
 		$this->_arrayMapper['idSchema']					 = 'id_schema';
 		$this->_arrayMapper['idFkDefault']			     = 'id_fk_default';
-		$this->_arrayMapper['tableName']				 = 'tablename';
+		$this->_arrayMapper['tablename']				 = 'tablename';
 		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
 		$this->_arrayMapper['constanteTextualAlias']	 = 'constante_textual_alias';

@@ -14,14 +14,15 @@
 class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Instância do controlador Basico_OPController_AcaoAplicacaoOPController.
 	 * @var Basico_OPController_AcaoAplicacaoOPController
 	 */
 	private static $_singleton;
-
 	/**
-	 * @var Basico_Model_AcaoAplicacao object
+	 * Instância do modelo Basico_Model_AcaoAplicacao.
+	 * @var Basico_Model_AcaoAplicacao
 	 */
-	private $_model;
+	protected $_model;
 
 	/**
 	 * Construtor do Controlador Acao Aplicacao
@@ -30,11 +31,8 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador Basico_OPController_AcaoAplicacaoOPController
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -43,6 +41,23 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -85,7 +100,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 
 		// retornando todas as acoes aplicacao ativas
-		return $this->retornaObjetosPorParametros($this->_model, "ativo = {$ativo}");
+		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 
 	/**
@@ -119,7 +134,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(false, true);
 		
 		// retornando todas as acoes aplicacao desativadas
-		return $this->retornaObjetosPorParametros($this->_model, "ativo = {$ativo}");
+		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 
 	/**
@@ -141,7 +156,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule)->id;
 
 		// recuperando objeto acao aplicacao
-		$objsAcaoAplicacao = $this->retornaObjetosPorParametros($this->_model, "id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
+		$objsAcaoAplicacao = $this->retornaObjetosPorParametros("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado com sucesso
 		if ($objsAcaoAplicacao[0]->id)

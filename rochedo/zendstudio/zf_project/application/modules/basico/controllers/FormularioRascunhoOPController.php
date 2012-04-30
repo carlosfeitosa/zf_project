@@ -173,7 +173,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		// verificando id passado
 		if ((Int) $idRascunhoPai > 0) {
 			// recuperando objetos rascunhos filhos
-			$objetosRascunhosFilhos = $this->retornaObjetosPorParametros('Basico_Model_FormularioRascunho', "id_rascunho_pai = {$idRascunhoPai}");
+			$objetosRascunhosFilhos = $this->retornaObjetosPorParametros("id_rascunho_pai = {$idRascunhoPai}");
 
 			// verificando se existem rascunhos filhos
 			if (count($objetosRascunhosFilhos) > 0)

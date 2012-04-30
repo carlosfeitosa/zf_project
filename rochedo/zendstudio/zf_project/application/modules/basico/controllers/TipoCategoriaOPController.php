@@ -15,6 +15,17 @@
 class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Instância do controlador Basico_OPController_TipoCategoriaOPController.
+	 * @var Basico_OPController_TipoCategoriaOPController
+	 */
+	private static $_singleton;
+	/**
+	 * Instância do modelo Basico_Model_TipoCategoria
+	 * @var Basico_Model_TipoCategoria
+	 */
+	protected $_model;
+
+	/**
 	 * Nome da tabela tipo categoria
 	 * 
 	 * @var String
@@ -30,15 +41,9 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 
 	/**
 	 * 
-	 * @var Basico_OPController_TipoCategoriaOPController
+	 * @var Basico_Model_Categoria object
 	 */
-	private static $_singleton;
-	
-	/**
-	 * 
-	 * @var Basico_Model_TipoCategoria
-	 */
-	private $_model;
+	public $idTipoCategoriaCVC;
 
 	/**
 	 * Carrega a variavel tipo categoria com um novo objeto Basico_Model_TipoCategoria
@@ -47,8 +52,8 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -57,6 +62,26 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
+		// recuperando o id do tipo categoria CVC
+		$this->idTipoCategoriaCVC = self::retornaIdTipoCategoriaCVCViaSQL();
+
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -166,7 +191,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	public function retornaIdTipoCategoriaPorNome($nomeTipoCategoria)
 	{
 		// recuperando os objetos tipo categoria
-		$objsTipoCategoria = $this->retornaObjetosPorParametros($this->_model, "nome = '{$nomeTipoCategoria}'", null, 1, 0);
+		$objsTipoCategoria = $this->retornaObjetosPorParametros("nome = '{$nomeTipoCategoria}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objsTipoCategoria[0]))
@@ -253,5 +278,27 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	{
 		// invocando o metodo que recupera o id do tipo categoria por nome
 		return self::retornaIdTipoCategoriaPorNomeViaSQL(TIPO_CATEGORIA_PERFIL);
+	}
+
+	/**
+	 * Retorna o id do tipo categoria CVC, via SQL
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdTipoCategoriaCVCViaSQL()
+	{
+		// invocando o metodo que recupera o id do tipo categoria por nome
+		return self::retornaIdTipoCategoriaPorNomeViaSQL(TIPO_CATEGORIA_CVC);
+	}
+
+	/**
+	 * Retorna o id do tipo categoria DICIONARIO_DADOS, via SQL
+	 * 
+	 * @return Integer|null
+	 */
+	public static function retornaIdTipoCategoriaDicionarioDadosViaSQL()
+	{
+		// invocando o metodo que recupera o id do tipo categoria por nome
+		return self::retornaIdTipoCategoriaPorNomeViaSQL(TIPO_CATEGORIA_DICIONARIO_DADOS);
 	}
 }

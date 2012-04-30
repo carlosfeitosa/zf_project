@@ -136,7 +136,7 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	public function checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo, $forceRelationship = false)
 	{
 		// recuperando objeto
-		$objsRelacaoCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros($this->_model, "tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
+		$objsRelacaoCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperando
 		if (isset($objsRelacaoCategoriaChaveEstrangeira[0]))

@@ -151,7 +151,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	public function retornaNomePessoaPorIdPessoa($idPessoa) 
 	{
 		// recuperando o objeto dados pessoais
-		$objDadosPessoais = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+		$objDadosPessoais = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado
 		if (isset($objDadosPessoais[0]))
@@ -173,7 +173,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 		// verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosPessoais = $this->retornaObjetosPorParametros($this->_model, "id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosPessoais = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosPessoais[0]))

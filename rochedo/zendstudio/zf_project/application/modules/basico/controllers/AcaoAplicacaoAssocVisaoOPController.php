@@ -79,7 +79,7 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 	public function retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacao)
 	{
 		// recuperando visao
-		$visao = $this->retornaObjetosPorParametros($this->_model, "id_acao_aplicacao = {$idAcaoAplicacao}");
+		$visao = $this->retornaObjetosPorParametros("id_acao_aplicacao = {$idAcaoAplicacao}");
 				
 		// verificando se visao foi recuperada
 		if (count($visao) > 0)
@@ -125,7 +125,7 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 
 		// retornando todas as acoes aplicacao ativas
-		return $this->retornaObjetosPorParametros($this->_model, "ativo = {$ativo}");
+		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 
 	/**
@@ -145,7 +145,7 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(false, true);
 		
 		// retornando todas as acoes aplicacao desativadas
-		return $this->retornaObjetosPorParametros($this->_model, "ativo = {$ativo}");
+		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 
 	/**

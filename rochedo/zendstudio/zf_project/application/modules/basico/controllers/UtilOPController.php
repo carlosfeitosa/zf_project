@@ -832,9 +832,8 @@ class Basico_OPController_UtilOPController
 
 		// filtrando o array para excluir elementos nao desejados
 		$returnArray = self::filtraArray($returnArray, $arrayFilter);
-		
-		array(ARRAY_FILTER_CHAVE_FILTRO => '.', ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_BEGIN);
 
+		// retornando array
 		return $returnArray;
 	}
 
@@ -855,6 +854,32 @@ class Basico_OPController_UtilOPController
 
 		// retornando um array contendo os atributos de objetos que estao relacionados ao sistema
 		return $arrayBlackListAtributosSistema;
+	}
+
+	/**
+	 * Retorna um array filtrado pela chaves constante no arrayChaves
+	 * 
+	 * @param array $array
+	 * @param array $arrayChaves
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/04/2012
+	 */
+	public static function retornaArrayFiltradoArrayChaves(array &$array, array $arrayChaves)
+	{
+		// verificando se foi passado um array de atributos para recuperação
+		if (count($arrayChaves)) {
+			// loop para limpar o array de resposta
+			foreach ($array as $chave => $valor) {
+				// procurando elemento dentro do array de resultados
+				if (false === array_search($chave, $arrayChaves)) {
+					// limpando elemento do array
+					unset($array[$chave]);
+				}
+			}
+		}
 	}
 
     /**
@@ -953,7 +978,7 @@ class Basico_OPController_UtilOPController
      * @param Array $arrayParametrosTransformacao
      * @param Boolean $retornaArray
      * 
-     * @return String
+     * @return String|array
      */
     public static function objectToEncodedString($object, $arrayParametrosTransformacao = array(), $retornaArray = false)
     {

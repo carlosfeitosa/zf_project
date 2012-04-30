@@ -27,7 +27,7 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
 	/**
 	 * @var String
 	 */
-	protected $_tableName;
+	protected $_tablename;
 	/**
 	 * @var String
 	 */
@@ -160,7 +160,7 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
 	*/
 	public function setTableName($tableName)
 	{
-		$this->_tableName = Basico_OPController_UtilOPController::retornaValorTipado($tableName, TIPO_STRING, true);
+		$this->_tablename = Basico_OPController_UtilOPController::retornaValorTipado($tableName, TIPO_STRING, true);
 		return $this;
 	}
 
@@ -171,7 +171,7 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
 	*/
 	public function getTableName()
 	{
-		return $this->_tableName;
+		return $this->_tablename;
 	}
      
 	/**

@@ -37,7 +37,13 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * 
 	 * @var Basico_Model_DicionarioDadosAssocField object
 	 */
-	private $_model;
+	protected $_model;
+
+	/**
+	 * 
+	 * @var Basico_OPController_DicionarioDadosAssocTableOPController
+	 */
+	protected $_dicionarioDadosAssocTableOPController;
 		
 	/**
 	 * Construtor do Controlador DicionarioDadosAssocField
@@ -46,11 +52,8 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -60,9 +63,29 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+
 		return;
 	}
-	
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/04/2012
+	 */
+	protected function initControllers()
+	{
+		// inicializando controladores utilizados por este controlador
+		$this->_dicionarioDadosAssocTableOPController = Basico_OPController_DicionarioDadosAssocTableOPController::getInstance();
+
+		return;
+	}
+
 	/**
 	 * Recupera a instancia do controlador Basico_OPController_DicionarioDadosAssocFieldOPController
 	 * 
@@ -91,7 +114,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * 
 	 * @return void
 	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
+	protected function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
 		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DicionarioDadosAssocField', true);
@@ -104,11 +127,11 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
 	    	if ($objeto->id != NULL) {
 	    		// carregando informacoes de log de atualizacao de registro
-	    		$idDicionarioDadosAssocFieldLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_Field, true);
+	    		$idDicionarioDadosAssocFieldLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD;
 	    	} else {
 	    		// carregando informacoes de log de novo registro
-	    		$idDicionarioDadosAssocFieldLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_Field, true);
+	    		$idDicionarioDadosAssocFieldLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, true);
 	    		$mensagemLog    = LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD;
 	    	}
 
@@ -136,7 +159,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * 
 	 * @return void
 	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
+	protected function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
 	{
 		// verificando se o objeto passado eh da instancia esperada
 		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DicionarioDadosAssocField', true);
@@ -156,5 +179,86 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
+	}
+
+	/**
+	 * Salva um novo campo no dicionario de dados
+	 * 
+	 * @param Integer $idPessoaAssocclPerfilCreate
+	 * @param Integer $idAssocTable
+	 * @param String $fieldname
+	 * @param String $tipo
+	 * @param Integer $tamanho
+	 * @param Integer $precisao
+	 * @param String $fkTabela
+	 * @param String $fkCampo
+	 * @param Boolean $indice
+	 * @param Boolean $unique
+	 * @param Boolean $nullable
+	 * @param String $valorDefault
+	 * @param Boolean $readonly
+	 * @param String $constanteTextual
+	 * @param String $checkConstraint
+	 * @param String $constanteTextualDescricao
+	 * @param String $constanteTextualAlias
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/04/2012
+	 */
+	public function criarNovoCampoAtivo($idPessoaAssocclPerfilCreate, $idAssocTable, $fieldname, $tipo, $tamanho, $precisao, $fkTabela, $fkCampo, $indice, $unique, $nullable, $valorDefault, $readonly, $constanteTextual, $checkConstraint = null, $constanteTextualDescricao = null, $constanteTextualAlias = null)
+	{
+		// instanciando modelo
+		$this->initModel();
+
+		// atribuindo valores aos atributos
+		$this->_model->idAssocTable              = $idAssocTable;
+		$this->_model->fieldname                 = $fieldname;
+		$this->_model->constanteTextual          = $constanteTextual;
+		$this->_model->constanteTextualDescricao = $constanteTextualDescricao;
+		$this->_model->constanteTextualAlias     = $constanteTextualAlias;
+		$this->_model->tipo          			 = $tipo;
+		$this->_model->tamanho           		 = $tamanho;
+		$this->_model->precisao           		 = $precisao;
+		$this->_model->fkTabela           		 = $fkTabela;
+		$this->_model->fkCampo           		 = $fkCampo;
+		$this->_model->indice           		 = $indice;
+		$this->_model->checkConstraint           = $checkConstraint;
+		$this->_model->unique           		 = $unique;
+		$this->_model->nullable           		 = $nullable;
+		$this->_model->valorDefault           	 = $valorDefault;
+		$this->_model->readonly           		 = $readonly;
+		$this->_model->ativo                     = true;
+
+		// retornando o resultado do metodo de salvar o objeto
+		return $this->salvarObjeto($this->_model, null, $idPessoaAssocclPerfilCreate);
+	}
+
+	/**
+	 * Desativa um campo
+	 * 
+	 * @param Integer $idPessoaAssocclPerfilDeactivate
+	 * @param Integer $idAssocTable
+	 * @param String $fieldname
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/04/2012
+	 */
+	public function desativaCampo($idPessoaAssocclPerfilDeactivate, $idAssocTable, $fieldname)
+	{
+		// recuperando o objeto schema
+		$objetoAssocField = $this->retornaObjetosPorParametros("id_table = {$idTable} AND fieldname = '{$fieldname}'", null, 1, 0);
+
+		// recuperando a versao do objeto
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoAssocField);
+
+		// desativando o schema
+		$objetoAssocField->ativo = false;
+
+		// retornando o resultado do metodo de salvar o objeto
+		return $this->salvarObjeto($objetoAssocField, $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
 	}
 }

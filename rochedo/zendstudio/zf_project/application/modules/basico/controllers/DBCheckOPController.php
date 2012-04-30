@@ -224,6 +224,35 @@ class Basico_OPController_DBCheckOPController
 		return $arrayResultado;
 	}
 
+	public static function retornaArrayRelacaoCampo($schemaname, $tablename, $fieldname)
+	{
+		// recuperando concatenador do banco de dados
+		$concatenadorDB = Basico_OPController_DBUtilOPController::retornaConcatenadorDB();
+
+		// query para recuperar relacao de chave estrangeira relacionada ao campo/tabela/schema
+		$queryRelacaoFKCampo = "SELECT fk.table_schema AS fk_schema, fk.table_name AS fk_table, fk.column_name AS fk_field
+
+								FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS c
+								INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE k ON (k.constraint_name = c.constraint_name)
+								INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE fk ON (c.unique_constraint_name = fk.constraint_name)
+								
+								WHERE k.table_schema = '{$schemaname}'
+								AND k.table_name = '{$tablename}'
+								AND k.column_name = '{$fieldname}'";
+
+		// recuperando relacao
+		$arrayResultadoRelacao = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryRelacaoFKCampo);
+
+		// verificando o resultado da recuperação
+		if (count($arrayResultadoRelacao)) {
+			// retornando array de resultados
+			return $arrayResultadoRelacao[0];
+		}
+
+		// retornando nulo
+		return null;
+	}
+
 	/**
 	 * Retorna um array contendo os ids das categorias e valores do objeto relacionados a categoria chave estrangeira
 	 * 
