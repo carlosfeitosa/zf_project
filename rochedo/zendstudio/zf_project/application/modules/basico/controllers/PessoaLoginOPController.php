@@ -288,12 +288,16 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaObjetoLoginPorLogin($login)
 	{
 		// recuperando o array com o objeto login
-		$arrayObjsLogin = $this->retornaObjetosPorParametros("login = '{$login}'");
+		$resultadoRecuperacaoObjetoLogin = $this->retornaObjetosPorParametros("login = '{$login}'");
 
 		// verificando o resultado da recuperacao
-		if ($arrayObjsLogin)
+		if (is_array($resultadoRecuperacaoObjetoLogin)) {
 			// retornando o objeto login
-			return $arrayObjsLogin[0];
+			return $resultadoRecuperacaoObjetoLogin[0];
+		} else if (is_object($resultadoRecuperacaoObjetoLogin)) { // verificando se trata-se de um objeto
+			// retornando o objeto login
+			return $resultadoRecuperacaoObjetoLogin;
+		}
 
 		return null;
 	}

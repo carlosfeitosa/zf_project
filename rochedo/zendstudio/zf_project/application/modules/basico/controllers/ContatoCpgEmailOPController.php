@@ -22,7 +22,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	 * 
 	 * @var Basico_Model_Email
 	 */
-	private $_model;
+	protected $_model;
 
 	/**
 	 * Construtor do Controlador Basico_OPController_EmailOPController
@@ -31,11 +31,8 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	 */
 	protected function __construct()
 	{
-		// instanciando modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -44,6 +41,23 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 30/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -365,13 +379,13 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
     public function retornaIdNovoObjetoEmail($email, $idGenericoProprietario, $idCategoria)
     {
     	// criando novo objeto email
-		$novoEmail = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		$novoEmail = $this->retornaNovoObjetoModelo();
 		// setando o idGenericoProprietario
         $novoEmail->idGenericoProprietario = $idGenericoProprietario;
         // setando o uniqueId 
         $novoEmail->uniqueId  			   = $this->retornaNovoUniqueIdEmail();
         // setando a categoria
-        $novoEmail->idCategoria 			   = $idCategoria;
+        $novoEmail->idCategoria 		   = $idCategoria;
         // setando o email
         $novoEmail->email     			   = $email;
         // setando o email como não validado

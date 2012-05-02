@@ -377,7 +377,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function retornaIdNovoObjetoPessoa()
 	{
 		// criando uma nova pessoa
-		$novaPessoa = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		$novaPessoa = $this->retornaNovoObjetoModelo();
         // salvando o novo objeto pessoa
         $this->salvarObjeto($novaPessoa);
         

@@ -36,7 +36,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 * Instância do Modelo PessoaPerfil
 	 * @var Basico_Model_PessoasPerfis
 	 */
-	private $_model;
+	protected $_model;
 
 	/**
 	 * Construtor do controlador PessoaPerfil
@@ -555,7 +555,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	public function retornaIdNovoObjetoPessoasPerfis($idPessoa, $idPerfil)
 	{
 		// criando o novo objeto pessoasPerfis
-		$novaPessoasPerfisNovaPessoa = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		$novaPessoasPerfisNovaPessoa = $this->retornaNovoObjetoModelo();
 		// setando a pessoa
 		$novaPessoasPerfisNovaPessoa->idPessoa = $idPessoa;
 		// setando o perfil

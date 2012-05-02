@@ -134,9 +134,6 @@ class Basico_OPController_DicionarioDadosOPController
 		// recuperando array de resultados
 		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($this->retornaQueryDiferenca());
 
-		// limpando memória
-		unset($queryDiferenca);
-
 		// verificando o resultado da recuperação
 		if (count($arrayResultado)) {
 			// loop para montar arrays para processamento

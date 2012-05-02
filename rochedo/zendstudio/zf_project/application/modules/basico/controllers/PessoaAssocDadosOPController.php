@@ -20,7 +20,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	/**
 	 * @var Basico_Model_DadosPessoais
 	 */
-	private $_model;
+	protected $_model;
 	
 	/**
 	 * Construtor do controlador Basico_OPController_DadosPessoaisOPController
@@ -29,11 +29,8 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -42,6 +39,23 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 30/04/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -196,7 +210,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	public function retornaIdNovoObjetoDadosPessoais($idPessoa, $nome)
 	{
 		// criando um novo obj DadosPessoais
-		$novoDadosPessoais = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		$novoDadosPessoais = $this->retornaNovoObjetoModelo();
 		// setando a pessoa
         $novoDadosPessoais->idPessoa = $idPessoa;
         // setando o nome

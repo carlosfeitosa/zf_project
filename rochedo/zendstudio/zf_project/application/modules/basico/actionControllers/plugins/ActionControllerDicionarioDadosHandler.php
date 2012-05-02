@@ -32,7 +32,7 @@ class Basico_Controller_Plugin_ActionControllerDicionarioDadosHandler extends Ze
 			return;
 		}
 
-		// controlando o request
+		// processando diferenças no dicionário de dados
 		Basico_OPController_DicionarioDadosOPController::getInstance()->processaDiferencaDicionarioDados();
 	}
 
@@ -47,11 +47,12 @@ class Basico_Controller_Plugin_ActionControllerDicionarioDadosHandler extends Ze
 	{
 		// retornando se o request deve ser processado
 		return (($this->_pluginAtivo) and
+				(!$this->verificaRequestSucessoResetaDb($request)) and
 				(!$this->verificaRequestResetaDb($request)));
 	}
 
 	/**
-	 * Verifica se o request esta relacionado a acao error do modulo default, controlador error
+	 * Verifica se o request esta relacionado a acao resetadb do modulo basico, controlador administrador
 	 * 
 	 * @param Zend_Controller_Request_Abstract $request
 	 * 
@@ -61,5 +62,18 @@ class Basico_Controller_Plugin_ActionControllerDicionarioDadosHandler extends Ze
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador error, acao error
 		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'administrador') and ($request->getActionName() === 'resetadb'));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a acao sucessoresetadb do modulo basico, controlador administrador
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 */
+	private function verificaRequestSucessoResetaDb(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador error, acao error
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'administrador') and ($request->getActionName() === 'sucessoresetadb'));
 	}
 }

@@ -15,7 +15,6 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	/**
 	 * Contrutor do controlador.
 	 * 
-	 * Neste metodo, deve-se instanciar o modelo $_model atraves do metodo retornaNovoObjetoModelo().
 	 * Deve-se tambem chamar o metodo init(), que deve inicializar o controlador.
 	 */
 	protected function __construct()
@@ -323,10 +322,10 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 		}
 
 		// recuperando objeto
-		$objeto = $this->_model->find($id);
+		$this->_model->find($id);
 
 		// verificando se o resultado nao foi carregado
-		if (!is_object($objeto)) {
+		if (!is_object($this->_model)) {
 			// retornando falso
 			return false;
 		}
@@ -334,7 +333,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 		// loop para atribuir os valores do objeto
 		foreach ($arrayAtributosValores as $atributo => $valor) {
 			// carregando os atributos do objeto
-			$objeto->$chave = $valor;
+			$this->_model->$chave = $valor;
 
 			// limpando memoria
 			unset($atributo);

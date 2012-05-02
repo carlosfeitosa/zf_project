@@ -234,10 +234,11 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	public function retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $idTipoCategoria = null, $idCategoriaPai = null)
 	{
 		// checando o tipo de categoria e condicionando query
-		if ((isset($idTipoCategoria)) and ($idTipoCategoria >= 1))
+		if ((isset($idTipoCategoria)) and ($idTipoCategoria >= 1)) {
 			$condicaoSQL = "nome = '{$nomeCategoria}' and id_tipo_categoria = {$idTipoCategoria}";
-		else
+		} else {
 			$condicaoSQL = "nome = '{$nomeCategoria}'";
+		}
 
 		// checando a categoria pai e condicionando query
 		if ((isset($idCategoriaPai)) and ($idCategoriaPai >= 1))
@@ -246,31 +247,26 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		// verificando se trata-se da categoria CVC
 		if ($nomeCategoria === CATEGORIA_CVC) {
 			// dando bypass nos metodos de checksum
-			$objsCategoria = $this->_model->getMapper()->fetchList($condicaoSQL, null, 1, 0);
+			$objetoCategoria = $this->_model->getMapper()->fetchList($condicaoSQL, null, 1, 0);
+			// verificando o resultado
+			if (is_array($objetoCategoria)) {
+				// transformando o resultado da recuperação
+				$objetoCategoria = $objetoCategoria[0];
+			}
 		} else {
 			// recuperando objeto categoria
-			$objsCategoria = $this->retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
+			$objetoCategoria = $this->retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
 		}
-		
-		// verificando se o objeto foi recuperado
-		if (isset($objsCategoria[0])) {
-			// verificando se a categoria esta ativa
-			if ($objsCategoria[0]->ativo == 1) {
-				// recupernado objeto
-				$objetoCategoria = $objsCategoria[0];
 
-				// limpando variáveis
-				unset($objsCategoria);
-
-				// retornando objeto
-			   return $objetoCategoria;
-			}
-			   	
-		    throw new Exception(MSG_ERRO_CATEGORIA_NAO_ATIVA);
-		    
-		} else {
-    	    return null;
+		// verificando se a categoria esta ativa
+		if ((is_object($objetoCategoria)) and (1 == $objetoCategoria->ativo)) {
+			// retornando objeto
+		   return $objetoCategoria;
+		} else if ((null === $objetoCategoria) or ((is_array($objetoCategoria)) and (!count($objetoCategoria)))) {
+			return null;
 		}
+
+	    throw new Exception(MSG_ERRO_CATEGORIA_NAO_ATIVA);
 	}
 
 	/**
