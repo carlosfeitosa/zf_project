@@ -347,33 +347,65 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	/**
 	 * Salva o objeto no banco de dados.
 	 * 
-	 * Este metodo deve verificar se trata-se de uma nova tupla ou atualizacao de registro para verificar a versao de update,
-	 * carregar as categorias de log de insert ou update e verificar se existe o id da pessoa perfil que esta realizando a operacao para
-	 * carregar o id da pessoa perfil sistema, se omisso.
-	 * 
 	 * Deve retornar um boolean indicando o sucesso na operacao.
 	 * 
-	 * @param Object $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer $idCategoriaLog - id da categoria de log da operacao
+	 * @param String $mensagemLog - mensagem de log
+	 * @param Integer $versaoUpdate - versao para update
+	 * @param Integer $idPessoaPerfilCriador - id do PessoaAssocclPerfil responsavel pelo save. Se for passado null eh assumido o perfil do sistema.
 	 * 
 	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 02/05/2012
 	 */
-	abstract protected function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null);
+	protected function salvarObjeto($idCategoriaLog, $mensagemLog, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
+	{
+	    try {
+    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaAssocclPerfilSave))
+	    		$idPessoaAssocclPerfilSave = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
+
+			// salvando o objeto através do controlador Save
+	    	Basico_OPController_PersistenceOPController::bdSave($this->_model, $versaoUpdate, $idPessoaAssocclPerfilSave, $idCategoriaLog, $mensagemLog);
+
+	    	// retornando sucesso
+			return true;
+    	} catch (Exception $e) {
+
+    		throw new Exception($e);
+    	}
+	}
 
 	/**
 	 * Apaga o objeto do banco de dados
-	 * 
-	 * Este metodo deve apagar o objeto do banco de dados.
-	 * Deve verificar o id da pessoa perfil que esta realizando a operacao para carregar o id da pessoa perfil se omisso.
-	 * 
+	 *  
 	 * Deve retornar um boolean indicando o sucesso na operacao.
 	 * 
-	 * @param Object $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
+	 * @param Integer $idCategoriaLog - id da categoria de log da operacao
+	 * @param String $mensagemLog - mensagem de log
+	 * @param Boolean $forceCascade - forca o delete em cascata
+	 * @param Integer $idPessoaAssocclPerfilDelete - id do PessoaAssocclPerfil que responsavel pelo delete. Se for passado null eh assumido o perfil do sistema.
 	 * 
 	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 02/05/2012
 	 */
-	abstract protected function apagarObjeto($objeto, $forceCascade = false, $idPessoaAssocclPerfilDelete = null);
+	protected function apagarObjeto($idCategoriaLog, $mensagemLog, $forceCascade = false, $idPessoaAssocclPerfilDelete = null)
+	{
+		try {
+			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
+	    	if (!isset($idPessoaAssocclPerfilDelete))
+	    		$idPessoaAssocclPerfilDelete = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
+
+	    	// apagando o objeto do bando de dados
+	    	Basico_OPController_PersistenceOPController::bdDelete($this->_model, $forceCascade, $idPessoaAssocclPerfilDelete, $idCategoriaLog, $mensagemLog);
+
+	    	// retornando sucesso
+	    	return true;
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
+	}
 }

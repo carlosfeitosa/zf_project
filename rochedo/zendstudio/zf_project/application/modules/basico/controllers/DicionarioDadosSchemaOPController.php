@@ -92,85 +92,6 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 		return self::$_singleton;
 	}
 
-    /**
-	 * Salva o objeto DicionarioDadosSchema no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_DicionarioDadosSchema $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	protected function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DicionarioDadosSchema', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaAssocclPerfilSave))
-	    		$idPessoaAssocclPerfilSave = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idDicionarioDadosSchemaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_SCHEMA, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_DICIONARIO_DADOS_SCHEMA;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idDicionarioDadosSchemaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_SCHEMA, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_DICIONARIO_DADOS_SCHEMA;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaAssocclPerfilSave, $idDicionarioDadosSchemaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-     /**
-	 * Apaga o objeto DicionarioDadosSchema do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_DicionarioDadosSchema $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	protected function apagarObjeto($objeto, $forceCascade = false, $idPessoaAssocclPerfilDelete = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DicionarioDadosSchema', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaAssocclPerfilDelete))
-	    		$idPessoaAssocclPerfilDelete = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idDicionarioDadosSchemaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DICIONARIO_DADOS_SCHEMA, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_DICIONARIO_DADOS_SCHEMA;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaAssocclPerfilDelete, $idDicionarioDadosSchemaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
-	}
-
 	/**
 	 * Salva um novo schema no dicionario de dados
 	 * 
@@ -202,7 +123,7 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 		$this->_model->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return $this->salvarObjeto($this->_model, null, $idPessoaAssocclPerfilCreate);
+		return parent::salvarObjeto(Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_SCHEMA, true), LOG_MSG_NOVO_DICIONARIO_DADOS_SCHEMA, null, $idPessoaAssocclPerfilCreate);
 	}
 
 	/**
@@ -220,16 +141,16 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	public function desativaSchema($idPessoaAssocclPerfilDeactivate, $idModulo, $schemaname)
 	{
 		// recuperando o objeto schema
-		$objetoSchema = $this->retornaObjetosPorParametros("id_modulo = {$idModulo} AND schemaname = '{$schemaname}'", null, 1, 0);
+		$this->_model = $this->retornaObjetosPorParametros("id_modulo = {$idModulo} AND schemaname = '{$schemaname}'", null, 1, 0);
 
 		// recuperando a versao do objeto
-		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoSchema);
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($this->_model);
 
 		// desativando o schema
-		$objetoSchema->ativo = false;
+		$this->_model->ativo = false;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return $this->salvarObjeto($objetoSchema, $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+		return parent::salvarObjeto(Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_SCHEMA, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_SCHEMA, $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
 	}
 
 	/**
@@ -245,16 +166,16 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	public function atualizaQuantidadeTabelasSchema($idPessoaAssocclPerfilUpdate, $schemaname)
 	{
 		// recuperando o objeto schema
-		$objetoSchema = $this->retornaObjetosPorParametros("schemaname = '{$schemaname}'", null, 1, 0);
+		$this->_model = $this->retornaObjetosPorParametros("schemaname = '{$schemaname}'", null, 1, 0);
 
 		// recuperando a versao do objeto
-		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoSchema);
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($this->_model);
 
 		// desativando o schema
-		$objetoSchema->quantidadeTabelas = Basico_OPController_DBUtilOPController::retornaQuantidadeTabelasSchema($schemaname);
+		$this->_model->quantidadeTabelas = Basico_OPController_DBUtilOPController::retornaQuantidadeTabelasSchema($schemaname);
 
 		// retornando o resultado do metodo de salvar o objeto
-		return $this->salvarObjeto($objetoSchema, $versaoObjeto, $idPessoaAssocclPerfilUpdate);
+		return parent::salvarObjeto(Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_SCHEMA, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_SCHEMA, $versaoObjeto, $idPessoaAssocclPerfilUpdate);
 	}
 
 	/**
