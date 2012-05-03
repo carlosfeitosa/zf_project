@@ -10,7 +10,7 @@
  * @since 13/03/2011
  */
 
-abstract class Basico_AbstractController_RochedoPersistentOPController
+abstract class Basico_AbstractController_RochedoPersistentOPController 
 {
 	/**
 	 * Contrutor do controlador.
@@ -322,7 +322,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 		}
 
 		// recuperando objeto
-		$this->_model->find($id);
+		$this->_model->find($idObjeto);
 
 		// verificando se o resultado nao foi carregado
 		if (!is_object($this->_model)) {
@@ -341,7 +341,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 		}
 
 		// retornando o resultado de salvar o objeto
-		$this->salvarObjeto($objeto, $versaoUpdate, $idPessoaAssocclPerfilUpdate);
+		$this->salvarObjeto($this->_model, $versaoUpdate, $idPessoaAssocclPerfilUpdate);
 	}
 
 	/**
