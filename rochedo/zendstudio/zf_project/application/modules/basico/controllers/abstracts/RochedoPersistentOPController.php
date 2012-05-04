@@ -87,7 +87,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	protected function retornaNomeClassePorObjeto($objeto)
 	{
 		// verificando se o parametro eh um objeto
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objeto, true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objeto, false, true);
 
 		// retornando o nome da classe
 		return get_class($objeto);
@@ -345,10 +345,62 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	}
 
 	/**
+	 * Verifica se o objeto passado como parametro é da mesma classe que o modelo instanciado no controlador
+	 * 
+	 * @param Object $objeto - objeto que deseja comparar com o objeto instanciado no controlador
+	 * @param Boolean $estouraExcessao - estoura excessão se a verificação falhar (default: true)
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 04/05/2012
+	 */
+	private function verificaClasseObjetoContraClasseObjetoControlador($objeto, $estouraExcessao = true)
+	{
+	    // verificando se o objeto é da mesma classe do objeto do controlador
+    	if (get_class($this->_model) !== get_class($objeto)) {
+    		// verificando se deve-se estourar excessao
+    		if ($estouraExcessao) {
+	    		// estourando excessao
+	    		throw new Exception(MSG_ERRO_OBJETO_NAO_ESPERADO_CONTROLADOR . ' (objeto: ' . get_class($objeto) . ' / controlador: ' . get_class($this) . ')');
+    		} else {
+    			// retornando fracasso
+    			return false;
+    		}
+    	}
+
+    	// retornando sucesso
+    	return true;
+	}
+
+	/**
+	 * Verifica se o objeto passado como parametro é identico ao objeto instanciado no controlador
+	 * 
+	 * @param Object $objeto
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 04/05/2012
+	 */
+	private function verificaObjetoIdenticoObjetoControlador($objeto)
+	{
+		// verificando se o objeto passado como parametro é idêntico ao objeto já instanciando no controlador
+	 	if ($this->_model === $objeto) {
+    		// retornando falha
+    		return true;
+	    }
+
+	    // retornando sucesso
+	    return false;
+	}
+
+	/**
 	 * Salva o objeto no banco de dados.
 	 * 
 	 * Deve retornar um boolean indicando o sucesso na operacao.
 	 * 
+	 * @param Object $objeto - objeto que deseja salvar
 	 * @param Integer $idCategoriaLog - id da categoria de log da operacao
 	 * @param String $mensagemLog - mensagem de log
 	 * @param Integer $versaoUpdate - versao para update
@@ -359,15 +411,23 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 02/05/2012
 	 */
-	protected function salvarObjeto($idCategoriaLog, $mensagemLog, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
+	protected function salvarObjeto($objeto, $idCategoriaLog, $mensagemLog, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
 	{
 	    try {
+	    	// verificando se o objeto é da mesma classe do objeto do controlador
+	    	$this->verificaClasseObjetoContraClasseObjetoControlador($objeto);
+	    	// verificando se o objeto passado como parametro é idêntico ao objeto já instanciando no controlador
+	    	if ($this->verificaObjetoIdenticoObjetoControlador($objeto)) {
+	    		// retornando falha
+	    		return false;
+	    	}
+
     		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaAssocclPerfilSave))
 	    		$idPessoaAssocclPerfilSave = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($this->_model, $versaoUpdate, $idPessoaAssocclPerfilSave, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaAssocclPerfilSave, $idCategoriaLog, $mensagemLog);
 
 	    	// retornando sucesso
 			return true;
@@ -382,6 +442,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 *  
 	 * Deve retornar um boolean indicando o sucesso na operacao.
 	 * 
+	 * @param Object $objeto - objeto que deseja apagar
 	 * @param Integer $idCategoriaLog - id da categoria de log da operacao
 	 * @param String $mensagemLog - mensagem de log
 	 * @param Boolean $forceCascade - forca o delete em cascata
@@ -392,15 +453,18 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 02/05/2012
 	 */
-	protected function apagarObjeto($idCategoriaLog, $mensagemLog, $forceCascade = false, $idPessoaAssocclPerfilDelete = null)
+	protected function apagarObjeto($objeto, $idCategoriaLog, $mensagemLog, $forceCascade = false, $idPessoaAssocclPerfilDelete = null)
 	{
 		try {
+	    	// verificando se o objeto é da mesma classe do objeto do controlador
+	    	$this->verificaClasseObjetoContraClasseObjetoControlador($objeto);
+
 			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
 	    	if (!isset($idPessoaAssocclPerfilDelete))
 	    		$idPessoaAssocclPerfilDelete = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($this->_model, $forceCascade, $idPessoaAssocclPerfilDelete, $idCategoriaLog, $mensagemLog);
+	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaAssocclPerfilDelete, $idCategoriaLog, $mensagemLog);
 
 	    	// retornando sucesso
 	    	return true;

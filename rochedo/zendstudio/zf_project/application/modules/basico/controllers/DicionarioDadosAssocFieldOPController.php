@@ -131,29 +131,29 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	public function criarNovoCampoAtivo($idPessoaAssocclPerfilCreate, $idAssocTable, $fieldname, $tipo, $tamanho, $precisao, $fkTabela, $fkCampo, $indice, $unique, $nullable, $valorDefault, $readonly, $constanteTextual, $checkConstraint = null, $constanteTextualDescricao = null, $constanteTextualAlias = null)
 	{
 		// instanciando modelo
-		$this->initModel();
+		$novoObjeto = $this->retornaNovoObjetoModelo();
 
 		// atribuindo valores aos atributos
-		$this->_model->idAssocTable              = $idAssocTable;
-		$this->_model->fieldname                 = $fieldname;
-		$this->_model->constanteTextual          = $constanteTextual;
-		$this->_model->constanteTextualDescricao = $constanteTextualDescricao;
-		$this->_model->constanteTextualAlias     = $constanteTextualAlias;
-		$this->_model->tipo          			 = $tipo;
-		$this->_model->tamanho           		 = $tamanho;
-		$this->_model->precisao           		 = $precisao;
-		$this->_model->fkTabela           		 = $fkTabela;
-		$this->_model->fkCampo           		 = $fkCampo;
-		$this->_model->indice           		 = $indice;
-		$this->_model->checkConstraint           = $checkConstraint;
-		$this->_model->unique           		 = $unique;
-		$this->_model->nullable           		 = $nullable;
-		$this->_model->valorDefault           	 = $valorDefault;
-		$this->_model->readonly           		 = $readonly;
-		$this->_model->ativo                     = true;
+		$novoObjeto->idAssocTable              = $idAssocTable;
+		$novoObjeto->fieldname                 = $fieldname;
+		$novoObjeto->constanteTextual          = $constanteTextual;
+		$novoObjeto->constanteTextualDescricao = $constanteTextualDescricao;
+		$novoObjeto->constanteTextualAlias     = $constanteTextualAlias;
+		$novoObjeto->tipo          			   = $tipo;
+		$novoObjeto->tamanho           		   = $tamanho;
+		$novoObjeto->precisao           	   = $precisao;
+		$novoObjeto->fkTabela           	   = $fkTabela;
+		$novoObjeto->fkCampo           		   = $fkCampo;
+		$novoObjeto->indice           		   = $indice;
+		$novoObjeto->checkConstraint           = $checkConstraint;
+		$novoObjeto->unique           		   = $unique;
+		$novoObjeto->nullable           	   = $nullable;
+		$novoObjeto->valorDefault              = $valorDefault;
+		$novoObjeto->readonly           	   = $readonly;
+		$novoObjeto->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto(Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, null, $idPessoaAssocclPerfilCreate);
+		return parent::salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, null, $idPessoaAssocclPerfilCreate);
 	}
 
 	/**
@@ -171,15 +171,21 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	public function desativaCampo($idPessoaAssocclPerfilDeactivate, $idAssocTable, $fieldname)
 	{
 		// recuperando o objeto schema
-		$this->_model = $this->retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
+		$objetoUpdate = $this->retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
+
+		// verificando se o objeto foi recuperado
+		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
+			// retornando falso
+			return false;
+		}
 
 		// recuperando a versao do objeto
-		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($this->_model);
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoUpdate);
 
 		// desativando o schema
-		$this->_model->ativo = false;
+		$objetoUpdate->ativo = false;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto(Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
 	}
 }

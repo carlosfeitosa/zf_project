@@ -983,7 +983,7 @@ class Basico_OPController_UtilOPController
     public static function objectToEncodedString($object, $arrayParametrosTransformacao = array(), $retornaArray = false)
     {
 		// verificando se o parametro eh um objeto
-    	self::verificaVariavelRepresentaObjeto($object, true);
+    	self::verificaVariavelRepresentaObjeto($object, false, true);
 
    		// verificando se o objeto possui mapper
    		if (property_exists($object, '_mapper'))
@@ -1118,7 +1118,7 @@ class Basico_OPController_UtilOPController
     public static function retornaChecksumObjeto($objeto)
     {
 	    // verificando se o parametro eh um objeto
-    	self::verificaVariavelRepresentaObjeto($objeto, true);
+    	self::verificaVariavelRepresentaObjeto($objeto, false, true);
 
 		// verificando se o objeto possui mapper
    		if (property_exists($objeto, '_mapper')) {
@@ -1593,15 +1593,19 @@ class Basico_OPController_UtilOPController
     /**
      * Verifica se o parametro passado representa um objeto
      * 
-     * @param Object $objeto
+     * @param Object $objeto - objeto que deseja verificar
+     * @param Boolean $verificaId - booleano para indicar se o método precisa verificar se o objeto possui id
      * @param Boolean $estouraException
      * 
      * @return Boolean
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 04/05/2012
      */
-    public static function verificaVariavelRepresentaObjeto($objeto, $estouraException = true)
+    public static function verificaVariavelRepresentaObjeto($objeto, $verificaId = false, $estouraException = true)
     {
     	// verificando se o parametro nao eh um objeto
-    	if (!is_object($objeto)) {
+    	if ((!is_object($objeto)) or (($verificaId) and (property_exists($objeto, 'id') and ($objeto->id)))) {
     		// verificando se o parametro de estouro de excecao foi setado para true
     		if ($estouraException)
     			// estourando excessao
@@ -1623,7 +1627,7 @@ class Basico_OPController_UtilOPController
     public static function verificaVariavelRepresentaInstancia($objeto, $classeInstancia, $estouraException = true)
     {
     	// verificando se o parametro eh um objeto
-    	self::verificaVariavelRepresentaObjeto($objeto, true);
+    	self::verificaVariavelRepresentaObjeto($objeto, false, true);
 
     	// verificando o objeto eh da instancia passada como parametro
     	$tempReturn = ($objeto instanceof $classeInstancia);
@@ -1646,7 +1650,7 @@ class Basico_OPController_UtilOPController
     public static function retornaNomeModuloPorObjeto($objeto)
     {
     	// verificando se o parametro eh um objeto
-    	self::verificaVariavelRepresentaObjeto($objeto, true);
+    	self::verificaVariavelRepresentaObjeto($objeto, false, true);
 
     	// recuperando o nome da classe
     	$nomeClasse = get_class($objeto);
@@ -1678,7 +1682,7 @@ class Basico_OPController_UtilOPController
     public static function retornaNomeModeloOPControllerPorObjetoOPController($objetoOPController)
     {
     	// verificando se o parametro eh um objeto
-    	self::verificaVariavelRepresentaObjeto($objetoOPController, true);
+    	self::verificaVariavelRepresentaObjeto($objetoOPController, false, true);
 
     	// recuperando o nome da classe
     	$nomeClasse = get_class($objetoOPController);

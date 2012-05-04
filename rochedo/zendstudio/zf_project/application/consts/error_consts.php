@@ -178,6 +178,7 @@ define("MSG_ERRO_EMAIL_CHECK_CONSTRAINT","Chave estrangeira do e-mail não confe
  */
 define("MSG_ERRO_NAO_OBJETO", "O parametro passado não é um objeto.");
 define("MSG_ERRO_ROWINFO_NAO_ENCONTRADO", "O objeto não possui o atributo 'rowinfo'.");
+define("MSG_ERRO_OBJETO_NAO_ESPERADO_CONTROLADOR", "O objeto não representa o objeto a qual o controlador faz referencia.");
 
 /*
  * TRADUTOR

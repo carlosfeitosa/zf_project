@@ -23,7 +23,7 @@ class Basico_OPController_DBOpenOPController
 	private static function verificaChecksumObjeto($objeto, $estouraExcessao = false)
 	{
 		// verificando se foi passado um objeto como parametro
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objeto, true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objeto, true, true);
 
 		// gerando o checksum do objeto
 		$checksumObjeto = Basico_OPController_UtilOPController::retornaChecksumObjeto($objeto);
@@ -57,7 +57,7 @@ class Basico_OPController_DBOpenOPController
 	public static function find($model, $id)
 	{
 		// verificando se foi passado um objeto como parametro
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, false, true);
 
 		// verificando se foi passado o id do objeto que se deseja localizar
 		if ((is_int($id)) and ($id > 0)) {
@@ -107,7 +107,7 @@ class Basico_OPController_DBOpenOPController
 	public static function fetchAll($model)
 	{
 		// verificando se foi passado um objeto como parametro
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, false, true);
 
 		// verificando se o mapper foi recuperado
 		if ($model->getMapper()) {
@@ -156,7 +156,7 @@ class Basico_OPController_DBOpenOPController
 	public static function fetchList($model, $where=null, $order=null, $count=null, $offset=null)
 	{
 		// verificando se foi passado um objeto como parametro
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, true);
+		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($model, false, true);
 
 		// verificando se o mapper foi recuperado
 		if ($model->getMapper()) {
