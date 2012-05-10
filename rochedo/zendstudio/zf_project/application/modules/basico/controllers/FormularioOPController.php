@@ -9,27 +9,43 @@
  * @author Carlos Feitosa (carlos.feitosa@rochedoproject.om)
  * 
  * @since 17/03/2011
+ * 
+ * @ultimasModificacoes 03/05/2012 - Adaptação ao novo paradigma dos controladores - João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ * 
  */
 class Basico_OPController_FormularioOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
-	 * Nome da tabela categoria
-	 * 
-	 * @var String
-	 */
-	const nomeTabelaModelo  = 'basico.formulario';
-
-	/**
 	 * Instância do Controlador Formulario
-	 * @var Basico_OPController_FormularioOPController
+	 * @var Basico_OPController_FormularioOPController object
 	 */
 	private static $_singleton;
-	
+
 	/**
 	 * Instância do Modelo Formulario.
 	 * @var Basico_Model_Formulario
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico.formulario
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico.formulario';
+	
+	/**
+	 * Nome do campo id da tabela basico.formulario
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+	
+	/**
+	 * 
+	 * @var Basico_OPController_FormularioElementoOPController
+	 */
+	protected $_formularioElementoOPController;
 	
 	/**
 	 * Construtor do Controlador Basico_OPController_FormularioOPController.
@@ -38,11 +54,8 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -52,6 +65,26 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 03/05/2012
+	 */
+	protected function initControllers()
+	{
+		// inicializando controladores utilizados por este controlador
+		$this->_formularioElementoOPController = Basico_OPController_FormularioElementoOPController::getInstance();
+
 		return;
 	}
 	
@@ -137,87 +170,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 
    		// retornando se foi recuperado elementos
    		return (count($arrayResultado) > 0);
-   	}
-
-   	/**
-	 * Salva o objeto formulario no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_Formulario $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Formulario', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_FORMULARIO, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_FORMULARIO, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_FORMULARIO;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-		
-
-	/**
-	 * Apaga o objeto dados pessoas perfis do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_DadosPessoasPerfis $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Formulario', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_FORMULARIO, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_FORMULARIO;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
-	}
+   	}   
 
 	/**
 	 * Retorna um array contendo todos os objetos de formularios existentes no sistema
@@ -226,21 +179,8 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	 */
 	public function retornaTodosObjsFormularios()
 	{
-		// inicalizando variaveis
-		$arrayReturn = array();
-
-		// recuperando todos os formularios do sistema, ordenados pelo nome
-		$objsFormulario = $this->retornaObjetosPorParametros(null, 'form_name');
-
-		// loop para recuperar apenas os formulario que nao sao sub formularios
-		foreach ($objsFormulario as $formularioObject) {
-			// verificando se o formulario nao eh do tipo sub formulario		
-			if (($formularioObject->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome == TIPO_CATEGORIA_FORMULARIO) and ($formularioObject->getCategoriaObject()->getRootCategoriaPaiObject()->nome != FORMULARIO_SUB_FORMULARIO))
-				$arrayReturn[] = $formularioObject;
-		}
-
-		// retornando array de objetos formulario
-		return $arrayReturn;
+		// retornando array de todos os objetos formulario
+		return parent::retornaArrayDadosTodosObjetos();
 	}
 
 	/**

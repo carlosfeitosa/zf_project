@@ -1,12 +1,12 @@
 <?php
 /**
- * Controlador Mascara
+ * Controlador Evento
  * 
  * Responsável pelas mascaras do sistema
  * 
  * @author João Vasconcelos (joao.vasconcelos@rochedoproject.com)
  * 
- * @uses Basico_Model_Mascara
+ * @uses Basico_Model_Evento
  * 
  * @since 21/03/2011
  */
@@ -14,36 +14,64 @@ class Basico_OPController_EventoOPController extends Basico_AbstractController_R
 {
 	/**
 	 * 
-	 * @var Basico_OPController_MascaraOPController
+	 * @var Basico_OPController_EventoOPController
 	 */
 	private static $_singleton;
 
 	/**
 	 * 
-	 * @var Basico_Model_Mascara
+	 * @var Basico_Model_Evento
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico.evento
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico.evento';
 
 	/**
-	 * Construtor do Controlador Basico_OPController_MascaraOPController
+	 * Nome do campo id da tabela basico.evento
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
+	 * Construtor do Controlador Basico_OPController_EventoOPController
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
-	 * Inicializacao do controlador Basico_OPController_MascaraOPController
+	 * Inicializacao do controlador Basico_OPController_EventoOPController
 	 * 
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/05/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -51,7 +79,7 @@ class Basico_OPController_EventoOPController extends Basico_AbstractController_R
 	/**
 	 * Retorna a instancia do controlador Mascara.
 	 * 
-	 * @return Basico_OPController_MascaraOPController
+	 * @return Basico_OPController_EventoOPController
 	 */
 	public static function getInstance()
 	{
@@ -63,86 +91,7 @@ class Basico_OPController_EventoOPController extends Basico_AbstractController_R
 		// retornando instancia
 		return self::$_singleton;
 	}
-
-	/**
-	 * Salva o objeto mascara no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_Mascara $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Evento', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_MASCARA, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_MASCARA;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_MASCARA, true);
-	    		$mensagemLog    = LOG_MSG_NOVA_MASCARA;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-	
-    /**
-	 * Apaga o objeto mascara do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_Mascara $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Evento', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_MASCARA, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_MASCARA;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
-	}
-	
+		
 	/**
 	 * Retorna um array onde a chave é o id do elemento e o valor é a mascara a ser aplicada
 	 * 

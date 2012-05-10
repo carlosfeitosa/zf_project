@@ -21,7 +21,20 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	/**
 	 * @var Basico_Model_Mensagem
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico_mensagem.template
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_mensagem.template';
+	/**
+	 * Nome do campo id da tabela basico_mensagem.template
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
 	
 	/**
 	 * Construtor do Controlador Mensagem
@@ -30,11 +43,8 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	 */
 	public function __construct()
 	{
-		// instanciando o modelo
-    	$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-    	
-    	// inicializando o controlador
-    	$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -43,6 +53,24 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 04/05/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -60,72 +88,6 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-
-	/**
-	 * Salva a mensagem e todos as suas dependencias.
-	 * 
-	 * @param Basico_Model_Mensagem $novaMensagem
-	 * @param Integer|null $versaoUpdate
-	 * @param Integer|null $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-    public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null) 
-    {
-    	// verificando se o objeto eh da instancia esperada
-    	Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_MensagemTemplate', true);
-
-	    try{
-	    	// instanciando controladores
-	    	$categoriaControllerController = Basico_OPController_ContatoCpgEmailOPController::getInstance();
-
-	    	// verifica se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// recuperando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_MENSAGEM, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_MENSAGEM;
-	    	} else {
-	    		// recuperando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_MENSAGEM, true);
-	    		$mensagemLog    = LOG_MSG_NOVA_MENSAGEM;
-	    	}
-
-	    	// salvando o objeto através do controlador Save
-			Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-			// atualizando o objeto	    		
-	    	$this->_model = $objeto;
-
-	    } catch (Exception $e) {
-	    	throw new Exception($e);
-	    }
-	}
-	
-	public function apagarObjeto($objeto, $forceCascade = false,$idPessoaPerfilCriador = NULL)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_MensagemTemplate', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_MENSAGEM, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_MENSAGEM;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 	
 	/**

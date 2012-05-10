@@ -22,7 +22,20 @@ class Basico_OPController_OutputOPController extends Basico_AbstractController_R
 	 * Instância do Modelo Output.
 	 * @var Basico_Model_Output
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico.output
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico.output';
+	/**
+	 * Nome do campo id da tabela basico.output
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
 	
 	/**
 	 * Construtor do Controlador Basico_OPController_OutputOPController.
@@ -76,85 +89,6 @@ class Basico_OPController_OutputOPController extends Basico_AbstractController_R
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-	
-	/**
-	 * Salva o objeto output no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_Output $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Output', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_OUTPUT, true);
-	    		$mensagemLog = LOG_MSG_UPDATE_OUTPUT;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_OUTPUT, true);
-	    		$mensagemLog = LOG_MSG_NOVO_OUTPUT;
-	    	}
-	    		
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto output do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_Output $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Output', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_OUTPUT, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_OUTPUT;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 
 	/**

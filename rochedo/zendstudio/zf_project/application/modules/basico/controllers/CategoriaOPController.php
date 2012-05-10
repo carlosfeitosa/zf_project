@@ -109,85 +109,6 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		return self::$_singleton;
 	}
 	
-    /**
-	 * Salva o objeto categoria no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_Categoria $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Categoria', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_CATEGORIA, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_CATEGORIA;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_CATEGORIA, true);
-	    		$mensagemLog    = LOG_MSG_NOVA_CATEGORIA;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-	
-     /**
-	 * Apaga o objeto categoria do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_Categoria $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Categoria', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_CATEGORIA, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_CATEGORIA;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
-	}
-	
 	/**
 	 * Retorna o objeto categoria carregado com os dados da categoria passada como parâmetro ou NULL se
 	 * ela não existir no banco.
@@ -459,7 +380,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$novaCategoria->nome            = $nomeCategoria;
 
 			// salvando o objeto
-			$this->salvarObjeto($novaCategoria);
+			parent::salvarObjeto($novaCategoria, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(LOG_NOVA_CATEGORIA), LOG_MSG_NOVA_CATEGORIA);
 
 			// retornando o id da categoria recem criada
 			return $novaCategoria;
@@ -667,7 +588,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$objCategoria->descricao     = DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR;
 
 			// salvando o objeto categoria
-			$this->salvarObjeto($objCategoria);
+			parent::salvarObjeto($objCategoria, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(LOG_NOVA_CATEGORIA), LOG_MSG_NOVA_CATEGORIA);
 
 			// retornando o id da categoria recem criada
 			return $this->_model->id;

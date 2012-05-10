@@ -14,19 +14,33 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 {
     /**
      * 
-     * @var Basico_OPController_DadosPessoasPerfisOPController
+     * @var Basico_OPController_AssocclPessoaPerfilAssocDadosOPController
      */
 	private static $_singleton;
 
 	/**
-	 * @var Basico_Model_DadosPessoasPerfis
+	 * @var Basico_Model_AssocclPessoaPerfilAssocDados
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico_assoccl_pessoa_perfil.assoc_dados
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_assoccl_pessoa_perfil.assoc_dados';
+	
+	/**
+	 * Nome do campo id da tabela basico_assoccl_pessoa_perfil.assoc_dados
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
 
     /**
-	 * Construtor do Controlador DadosPessoasPerfis
+	 * Construtor do Controlador Basico_OPController_AssocclPessoaPerfilAssocDadosOPController
 	 * 
-	 * @return Basico_Model_DadosPessoasPerfis
+	 * @return void
 	 */
 	protected function __construct()
 	{
@@ -38,7 +52,7 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_DadosPessoasPerfisOPController
+	 * Inicializa o controlador Basico_OPController_AssocclPessoaPerfilAssocDadosOPController
 	 * 
 	 * @return void
 	 */
@@ -47,10 +61,24 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 		return;
 	} 
 	
-    /**
-	 * Retorna a instancia do objeto Basico_OPController_DadosPessoasPerfisOPController
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
 	 * 
-	 * @return Basico_OPController_DadosPessoasPerfisOPController
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 03/05/2012
+	 */
+	protected function initControllers()
+	{
+		return;
+	}
+	
+    /**
+	 * Retorna a instancia do objeto Basico_OPController_AssocclPessoaPerfilAssocDadosOPController
+	 * 
+	 * @return Basico_OPController_AssocclPessoaPerfilAssocDadosOPController
 	 */
 	static public function getInstance() {
 		// checando singleton
@@ -82,84 +110,4 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
     	    
     	throw new Exception(MSG_ERRO_ASSINATURA_MENSAGEM_EMAIL_SISTEMA);
 	}
-	
-	/**
-	 * Salva o objeto dados pessoas perfis no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_DadosPessoasPerfis $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclPessoaPerfilAssocDados', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_PESSOAS_PERFIS, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_DADOS_PESSOAS_PERFIS;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_PESSOAS_PERFIS, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_DADOS_PESSOAS_PERFIS;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto dados pessoas perfis do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_DadosPessoasPerfis $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclPessoaPerfilAssocDados', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DADOS_PESSOAS_PERFIS, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_DADOS_PESSOAS_PERFIS;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
-	}
-	
 }

@@ -19,10 +19,51 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	private static $_singleton;
 	
 	/**
+	 * Nome da tabela basico_formulario.rascunho
 	 * 
-	 * @var Basico_Model_Rascunho
+	 * @var String
 	 */
-	private $_model;
+	const nomeTabelaModelo  = 'basico_formulario.rascunho';
+	
+	/**
+	 * Nome do campo id da tabela basico_formulario.rascunho
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+	
+	/**
+	 * 
+	 * @var Basico_Model_Formulario_Rascunho
+	 */
+	protected $_model;
+	
+	/**
+	 * 
+	 * @var Basico_OPController_SessionOPController
+	 */
+	protected $_sessionOPController;
+	/**
+	 * 
+	 * @var Basico_OPController_FormularioOPController
+	 */
+	protected $_formularioOPController;
+	/**
+	 * 
+	 * @var Basico_OPController_PessoaAssocclPerfilOPController
+	 */
+	protected $_pessoaAssocclPerfilOPController;
+	/**
+	 * 
+	 * @var Basico_OPController_AcaoAplicacaoOPController
+	 */
+	protected $_acaoAplicacaoOPController;
+	/**
+	 * 
+	 * @var Basico_OPController_AcaoAplicacaoAssocVisaoOPController
+	 */
+	protected $_acaoAplicacaoAssocVisaoOPController;
+	
 	
 	/**
 	 * Carrega a variavel model com um novo objeto Basico_Model_Rascunho
@@ -31,11 +72,8 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-		
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -45,6 +83,34 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 03/05/2012
+	 */
+	protected function initControllers()
+	{
+		// recuperando instancia do session opcontroller
+		$this->_sessionOPController = Basico_OPController_SessionOPController::getInstance();
+		// recuperando instancia do session opcontroller
+		$this->_formularioOPController = Basico_OPController_FormularioOPController::getInstance();
+		// recuperando instancia do pessoa assoccl perfil opcontroller
+		$this->_pessoaAssocclPerfilOPController = Basico_OPController_PessoaAssocclPerfilOPController::getInstance();
+		// recuperando instancia do pessoa assoccl perfil opcontroller
+		$this->_acaoAplicacaoOPController = Basico_OPController_AcaoAplicacaoOPController::getInstance();
+		// recuperando instancia do pessoa assoccl perfil opcontroller
+		$this->_acaoAplicacaoAssocVisaoOPController = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::getInstance();
+		
 		return;
 	}
 
@@ -65,101 +131,14 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	}
 	
 	/**
-	 * Salva o objeto rascunho no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_Rascunho $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioRascunho', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_RASCUNHO, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_RASCUNHO;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_RASCUNHO, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_RASCUNHO;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto rascunho do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_Rascunho $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioRascunho', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_RASCUNHO, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_RASCUNHO;
-
-	    	// apagando o objeto do bando de dados
-	    	return Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
-	}
-	
-	/**
 	 * Retorna o obj rascunho pelo id
 	 * 
 	 * @param Int $idRascunho
 	 * @return Basico_Model_Rascunho|false
 	 */
-	public function retornaObjetoRascunhoPorId($idRascunho) 
+	public function retornaDadosRascunhoPorId($idRascunho) 
 	{
-		if ($idRascunho > 0)
-			// recuperando objeto formulario
-			$objRascunho = $this->retornaObjetoPorId($this->_model, $idRascunho);
-			
-		if (is_object($objRascunho) and $objRascunho->id) {
-			return $objRascunho;
-		}else{
-			return false;
-		}
+		return parent::retornaArrayDadosObjetoPorId($idRascunho);
 	}
 	
 	/**
@@ -170,18 +149,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	 */
 	public function retornaObjetosRascunhosFilhos($idRascunhoPai)
 	{
-		// verificando id passado
-		if ((Int) $idRascunhoPai > 0) {
-			// recuperando objetos rascunhos filhos
-			$objetosRascunhosFilhos = $this->retornaObjetosPorParametros("id_rascunho_pai = {$idRascunhoPai}");
-
-			// verificando se existem rascunhos filhos
-			if (count($objetosRascunhosFilhos) > 0)
-				return $objetosRascunhosFilhos;
-			
-		}	
-		
-		return false;
+		return parent::retornaArrayDadosObjetosPorParametros("id_rascunho_pai = {$idRascunhoPai}");
 	}
 	
 	/**
@@ -204,6 +172,10 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	 * @param Array $arrayPost
 	 * @param Object $request
 	 * @param boolean $forceSave
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 04/05/2012
 	 */
 	public function salvarRascunho($request, $forceSave = false)
 	{
@@ -256,133 +228,47 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    		$idRascunho = $arrayPool[$formHash]['idRascunho'];
 		    	}
 				
-		    	
-		    	
-				// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
-		    	$objPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
-		    	 				
-		    	// setando idPessoaPerfilCriador
-		    	$idPessoaPerfilCriador = $objPessoaPerfil->id;
-		    	
 		    	// recuperando a categoria do rascunho
-		    	$idCategoriaRascunho = Basico_OPController_FormularioOPController::getInstance()->retornaIdCategoriaFormularioPorFormName($nomeForm);
-	
-		    	// recuperando ultimo rascunho pai da fila da sessao
-		    	$rascunhoPai = Basico_OPController_SessionOPController::getInstance()->retornaUltimoRascunhoPaiSessao();
-		    			    	   	
-		    	// verificando se existe rascunho 
-		    	if(isset($idRascunho)){ 
-		    		
-		    		// recuperando o objeto rascunho 
-		    	   	$objRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaObjetoRascunhoPorId($idRascunho);
-
-		    	   	// recuperando a ultima versão do rascunho 
-		    	   	$ultimaVersaoRasunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho); 
+		    	$idCategoriaRascunho = $this->_formularioOPController->retornaIdCategoriaFormularioPorFormName($nomeForm);
+			    	   	
+		    	// recuperando o id do maior pessoa perfil do usuario logado
+		    	$idAssocclPerfilCriador = $this->_pessoaAssocclPerfilOPController->retornaIdPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
 		    	
-		    	   	// decodificando JSON do post
-		    	   	$postRascunho = Zend_Json_Decoder::decode($objRascunho->post);
-		    	   
-		    	   	// atualizando o array post do rascunho
-		    	   	foreach ($arrayPost as $chavePost => $valorPost) {
-						$postRascunho[$chavePost] = $valorPost;
-					}
-					
-					// setando o nome do form no objeto rascunho
-					$objRascunho->formName = $arrayPost["formName"];
-		
-					// setando a acao do form no objeto rascunho
-					$objRascunho->formAction = $arrayPost["formAction"];
-					
-					// codificando e setando o array post do rascunho no objeto
-		    	 	$objRascunho->post = Zend_Json_Encoder::encode($postRascunho);
-		    	 	
-		    	 	// setando o request no rascunho
-		    	 	$objRascunho->request = $request;
-		    	 	
-		    	 	// setando a categoria do rascunho
-		    	 	$objRascunho->idCategoria = $idCategoriaRascunho;
-					
-		    	 	// setando datahora da ultima atualizacao
-		    	 	$objRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-		    	 	
-		    	 	// recuperando a ultima versão do rascunho 
-		    		$versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho);
+		    	// verificando se existe rascunho 
+		    	if(isset($idRascunho)){
 		    		
-		    	 	// executando update
-		    	 	$this->salvarObjeto($objRascunho, $versaoAtualRascunho, $idPessoaPerfilCriador);
+					$sucesso = self::atualizaRascunho($idRascunho, $idCategoriaRascunho, $idAssocclPerfilCriador, $arrayPost, $request);
 		
-		    	 	$sucesso = true;
-		    	   
 		    	} else{
-		    		// carregando novo objeto rascunho inserido
-		    	  	$objRascunho = $this->_model;
-					
-					// setando o nome do form no objeto rascunho
-					$objRascunho->formName = $arrayPost["formName"];
-		
-					// setando a acao do form no objeto rascunho
-					$objRascunho->formAction = $arrayPost["formAction"];
-					
-					// codificando e setando o array post do rascunho no objeto
-		    	 	$objRascunho->post = Zend_Json_Encoder::encode($arrayPost);
-		    	 	
-		    	 	// setando o request no rascunho
-		    	 	$objRascunho->request = $request;
-		    	 	
-		    	 	// setando o id da pessoa logada
-		    	 	$objRascunho->idAssocclPerfil = $objPessoaPerfil->id;
-		    	 	
-		    	 	// setando a categoria do rascunho
-		    	 	$objRascunho->idCategoria = $idCategoriaRascunho;
-		    	 	
-		    	 	// setando o actionOrigem com a url responsavel pela exibicao do formulario
-		    	 	$objRascunho->actionOrigem = Basico_OPController_SessionOPController::retornaUrlAtualPoolRequests();
-		    	 	
-		    	 	$objRascunho->ativo = true;
-		    	 	
-		    	 	// recuperando array de parametros da ultima url
+		    		
+		    		// recuperando ultimo rascunho pai da fila da sessao
+		    		$idRascunhoPai = $this->_sessionOPController->retornaUltimoRascunhoPaiSessao();
+
+		    		// recuperando array de parametros da ultima url
 		    	 	$arrayParametrosUltimoRequest = Basico_OPController_SessionOPController::retornaArrayParametrosUrlAtualPoolRequests();
 		    	 	
 		    	 	// recuperando id da acao_aplicacao responsavel por exibir o formulario
-		    	 	$idAcaoAplicacaoOrigem = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao'])->id;
+		    	 	$idAcaoAplicacaoOrigem = $this->_acaoAplicacaoOPController->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao'])->id;
 
 		    	 	// recuperando o id da visao de origem do rascunho
-		    	 	$idVisaoOrigem = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::getInstance()->retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacaoOrigem)->id;
+		    	 	$idVisaoOrigem = $this->_acaoAplicacaoAssocVisaoOPController->retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacaoOrigem)->id;
 		    	 			    	 	
 		    	 	// se a visao nao foi encontrado lança uma exceção
 		    	 	if (!$idVisaoOrigem)
 		    	 		throw new Exception("Id assoc visao origem não encontrado.");
-		    	 		
-		    	 	$objRascunho->idAssocVisaoOrigem = $idVisaoOrigem;
-		    	 	
-		    	 	// verificando se há rascunho pai na sessao 
-		    	 	if($rascunhoPai)
-			    	   // setando o rascunho pai
-					   $objRascunho->idRascunhoPai = $rascunhoPai;
-		    	 	
-		    	 	// setando datahora da ultima atualizacao    	 	
-		    	 	$objRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-
-		    	    // executando insert
-		    	   	$this->salvarObjeto($objRascunho, null, $idPessoaPerfilCriador);
-					
+		    		
+		    		// inserindo novo rascunho
+		    		self::insereRascunhoAtivo($arrayPost["formName"], $arrayPost["formAction"], $arrayPost, $request, $objPessoaPerfil->id, $idCategoriaRascunho, Basico_OPController_SessionOPController::retornaUrlAtualPoolRequests(), $idAcaoAplicacaoOrigem, $idVisaoOrigem, $idAssocclPerfilCriador, $idRascunhoPai);
+		    		
 		    	   	// verificando se forceSave foi setado
 		    	   	if($forceSave !== "false"){
 		    	   	   // registrando id do rascunho na sessao
-		    	   	   Basico_OPController_SessionOPController::getInstance()->registraRascunhoPaiSessao($objRascunho->id);
+		    	   	   $this->_sessionOPController->registraRascunhoPaiSessao($dadosRascunho->id);
 		    		}
-		    	   	// inserindo id do rascunho no pool de elementos ocultos
-		    	   	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('idRascunho' => $objRascunho->id));
 
 		    	    $sucesso = true;
 		    	}
 		
-		    	// recuperando a ultima versão do rascunho 
-		    	$versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objRascunho);
-		    	
-		    	// inserindo a versao atual do rascunho no pool de elementos ocultos
-		    	Basico_OPController_SessionOPController::getInstance()->registraPostPoolElementosOcultos($formHash, array('versaoObjetoRascunho' => $versaoAtualRascunho));
-		    	
 		    	return $sucesso;
 	    	}
 	    	
@@ -472,4 +358,126 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		return false;
 	}
 	
+	/**
+	 * Insere um novo rascunho ativo
+	 * 
+	 * @param String $formName
+	 * @param String $formAction
+	 * @param Array $arrayPost
+	 * @param String $request
+	 * @param Int $idAssocclPerfil
+	 * @param Int $idCategoria
+	 * @param String $actionOrigem
+	 * @param Int $idAcaoAplicacaoOrigem
+	 * @param Int $idAssocVisaoOrigem
+	 * @param Int $idAssocclPerfilCriador
+	 * @param Int $idRascunhoPai
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 08/05/2012
+	 */
+	private function insereRascunhoAtivo($formName, $formAction, $arrayPost, $request, $idAssocclPerfil, $idCategoria, $actionOrigem, $idAcaoAplicacaoOrigem, $idAssocVisaoOrigem, $idAssocclPerfilCriador, $idRascunhoPai = null)
+	{
+		// recuperando um novo modelo rascunho
+		$novoObjetoRascunho = $this->retornaNovoObjetoModelo();
+		
+		// setando valores no objeto rascunho
+		$novoObjetoRascunho->formName   			   = $formName;
+		$novoObjetoRascunho->formAction 			   = $formAction;
+		$novoObjetoRascunho->post       			   = Zend_Json_Encoder::encode($arrayPost);
+		$novoObjetoRascunho->request    			   = $request;
+		$novoObjetoRascunho->idAssocclPerfil 		   = $idAssocclPerfil;
+		$novoObjetoRascunho->idCategoria     		   = $idCategoria;
+		$novoObjetoRascunho->actionOrigem    		   = $actionOrigem;
+		$novoObjetoRascunho->ativo           		   = true;
+		$novoObjetoRascunho->idAssocVisaoOrigem 	   = $idVisaoOrigem;
+		$novoObjetoRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+
+		// verificando se há rascunho pai na sessao 
+    	if(null !== $idRascunhoPai)
+	    	// setando o rascunho pai
+			$novoObjetoRascunho->idRascunhoPai = $rascunhoPai;
+			
+		// executando insert
+    	parent::salvarObjeto($novoObjetoRascunho, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_RASCUNHO), LOG_MSG_NOVO_RASCUNHO, null, $idAssocclPerfilCriador);
+
+    	// inserindo id do rascunho no pool de elementos ocultos
+		$this->_sessionOPController->registraPostPoolElementosOcultos($formHash, array('idRascunho' => $dadosRascunho->id));
+    	
+    	// recuperando a ultima versão do rascunho 
+	    $versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($novoObjetoRascunho);
+	    	
+    	// inserindo a versao atual do rascunho no pool de elementos ocultos
+    	$this->_sessionOPController->registraPostPoolElementosOcultos($formHash, array('versaoObjetoRascunho' => $versaoAtualRascunho));
+    	
+    	// liberando memoria
+    	unset($novoObjetoRascunho);
+	}
+	
+	/**
+	 * Atualiza um objeto rascunho
+	 * 
+	 * @param int $idRascunho  - id do rascunho a ser atualizado
+	 * @param Int $idCategoria - categoria do rascunho
+	 * @param Int $idAssocclPerfilUpdate - id do assoccl_perfil do usuario responsavel pelo update
+	 * @param Array $arrayPost - array do post
+	 * @param String $request  - request feito pra salvar o rascunho
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 09/05/2012
+	 */
+	private function atualizaRascunho($idRascunho, $idCategoria, $idAssocclPerfilUpdate, $arrayPost, $request)
+	{
+		try {
+			// recuperando o objeto rascunho 
+	    	$objetoRascunho = $this->retornaObjetosPorParametros("id = {$idRascunho}");
+		    	
+	    	// decodificando JSON do atributo post do rascunho
+	    	$postRascunho = Zend_Json_Decoder::decode($objetoRascunho->post);
+	    	   
+	    	// atualizando o array post do rascunho
+	    	foreach ($arrayPost as $chavePost => $valorPost) {
+	    		// setando valor
+				$postRascunho[$chavePost] = $valorPost;
+				
+				// liberando a memoria
+				unset($chavePost);
+				unset($valorPost);
+			}
+			
+			// codificando e setando o array post do rascunho no objeto
+	    	$objetoRascunho->post = Zend_Json_Encoder::encode($postRascunho);
+	    	 	
+	    	// setando o request no rascunho
+	    	$objetoRascunho->request = $request;
+	    	 	
+	    	// setando a categoria do rascunho
+	    	$objetoRascunho->idCategoria = $idCategoria;
+			 	
+	    	// recuperando a ultima versão do rascunho 
+	    	$versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objetoRascunho);
+	    	
+	    	// executando update
+	    	parent::salvarObjeto($objetoRascunho, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_RASCUNHO), LOG_MSG_UPDATE_RASCUNHO, $versaoAtualRascunho, $idAssocclPerfilCriador);
+	    	
+	    	// recuperando a ultima versão do rascunho 
+		    $versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objetoRascunho);
+		    	
+	    	// inserindo a versao atual do rascunho no pool de elementos ocultos
+	    	$this->_sessionOPController->registraPostPoolElementosOcultos($formHash, array('versaoObjetoRascunho' => $versaoAtualRascunho));
+	    	
+	    	// limpando memoria
+	    	unset($objetoRascunho);
+	    	unset($versaoAtualRascunho);
+	    	
+	    	return true;
+	    	
+		}catch (Exception $e) {
+			return false;
+		}
+	}
 }

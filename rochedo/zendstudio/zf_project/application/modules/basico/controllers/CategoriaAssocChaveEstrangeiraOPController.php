@@ -22,6 +22,20 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 * @var Basico_Model_CategoriaAssocChaveEstrangeira
 	 */
 	protected $_model;
+	
+	/**
+	 * Nome da tabela basico_categoria.assoc_chave_estrangeira
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_categoria.assoc_chave_estrangeira';
+	
+	/**
+	 * Nome do campo id da tabela basico_categoria.assoc_chave_estrangeira
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
 
 	/**
 	 * @var Basico_OPController_CategoriaOPController
@@ -120,64 +134,6 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 		return $arrayNomeCampoTabelasCategoriaChaveEstrangeira;
 	}
 	
-	/**
-	 * Salva o objeto dados biometricos no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_CategoriaAssocChaveEstrangeira $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_CategoriaAssocChaveEstrangeira', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    		// verificando se trata-se de uma nova tupla
-		    	if ($objeto->id == NULL) {
-		       		// carregando informacoes de log de novo registro
-		    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_CATEGORIA_CHAVE_ESTRANGEIRA, true);
-		    		$mensagemLog    = LOG_MSG_NOVA_CATEGORIA_CHAVE_ESTRANGEIRA;
-   					
-		    		// salvando o objeto através do controlador Save
-			    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-			    	
-			    	// atualizando o objeto
-		    		$this->_model = $objeto;
-		    	}else{
-                	throw new Exception(MSG_ERRO_CATEGORIA_CHAVE_ESTRANGEIRA_CRIAR_RELACAO_EXISTE);	    		
-		    	}    	
-    	} catch (Exception $e) {
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto categoria chave estrangeira do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_CategoriaAssocChaveEstrangeira $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-	       throw new Exception(LOG_MSG_DELETE_CATEGORIA_CHAVE_ESTRANGEIRA);	
-	}
-
     /**
      * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
      * 
@@ -218,7 +174,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
 			
 			// salvando objeto
-			$this->salvarObjeto($modelCategoriaChaveEstrangeira);
+			parent::salvarObjeto($modelCategoriaChaveEstrangeira, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_CATEGORIA_CHAVE_ESTRANGEIRA), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
 
 			// limpando variáveis
 			unset($tableName);
@@ -266,7 +222,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
 			
 			// salvando objeto
-			$this->salvarObjeto($modelCategoriaChaveEstrangeira);
+			parent::salvarObjeto($modelCategoriaChaveEstrangeira, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_CATEGORIA_CHAVE_ESTRANGEIRA), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
 			
 			// retornando o objeto salvo 	
 			return $modelCategoriaChaveEstrangeira;

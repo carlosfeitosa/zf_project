@@ -14,44 +14,72 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 {
 	/**
 	 * 
-	 * @var Basico_OPController_DadosBiometricosOPController
+	 * @var Basico_OPController_DadosBiometricosAssocPessoaOPController
 	 */
 	private static $_singleton;
 	
 	/**
 	 * 
-	 * @var Basico_Model_DadosBiometricos
+	 * @var Basico_Model_DadosBiometricosAssocPessoa
 	 */
-	private $_model;
+	protected $_model;
 	
 	/**
-	 * Carrega a variavel dadosBiometricos com um novo objeto Basico_Model_DadosBiometricos
+	 * Nome da tabela basico_dados_biometricos.assoc_pessoa
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_dados_biometricos.assoc_pessoa';
+
+	/**
+	 * Nome do campo id da tabela basico_dados_biometricos.assoc_pessoa
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+	
+	/**
+	 * Construtor do controlador Basico_OPController_DadosBiometricosAssocPessoaOPController
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-		
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_DadosBiometricosOPController 
+	 * Inicializa o controlador Basico_OPController_DadosBiometricosAssocPessoaOPController 
 	 * 
 	 * @return void
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 03/05/2012
+	 */
+	protected function initControllers()
+	{
 		return;
 	}
 
 	/**
-	 * Recupera a instancia do controlador Basico_OPController_DadosBiometricosOPController
+	 * Recupera a instancia do controlador Basico_OPController_DadosBiometricosAssocPessoaOPController
 	 * 
-	 * @return Basico_OPController_DadosBiometricosOPController
+	 * @return Basico_OPController_DadosBiometricosAssocPessoaOPController
 	 */
 	static public function getInstance()
 	{
@@ -62,85 +90,6 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-	
-	/**
-	 * Salva o objeto dados biometricos no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_DadosBiometricos $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricosAssocPessoa', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_BIOMETRICOS_PESSOA, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_DADOS_BIOMETRICOS_PESSOA;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_BIOMETRICOS_PESSOA, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto dados biometricos do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_DadosBiometricos $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_DadosBiometricosAssocPessoa', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_DADOS_BIOMETRICOS_PESSOA, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_DADOS_BIOMETRICOS_PESSOA;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 	
 	/**
@@ -285,6 +234,6 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
    		
 		// salvando os dadosBiometricos
-    	$this->salvarObjeto($novoDadosBiometricos);
+    	parent::salvarObjeto($novoDadosBiometricos, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_DADOS_BIOMETRICOS_PESSOA), LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA);
     }
 }

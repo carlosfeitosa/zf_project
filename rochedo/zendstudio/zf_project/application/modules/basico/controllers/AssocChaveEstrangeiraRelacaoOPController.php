@@ -14,44 +14,72 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 {
 	/**
 	 * 
-	 * @var Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
+	 * @var Basico_OPController_AssocChaveEstrangeiraRelacaoOPController
 	 */
 	private static $_singleton;
 
 	/**
 	 * 
-	 * @var Basico_Model_RelacaoCategoriaChaveEstrangeira
+	 * @var Basico_Model_AssocChaveEstrangeiraRelacao
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico_categoria.assoc_chave_estrangeira_relacao
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_categoria.assoc_chave_estrangeira_relacao';
+	
+	/**
+	 * Nome do campo id da tabela basico_categoria.assoc_chave_estrangeira_relacao
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
 
 	/**
-	 * Construtor do Controlador Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
+	 * Construtor do Controlador Basico_OPController_AssocChaveEstrangeiraRelacaoOPController
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
+	 * Inicializa o controlador Basico_OPController_AssocChaveEstrangeiraRelacaoOPController
 	 * 
 	 * @return void
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 03/05/2012
+	 */
+	protected function initControllers()
+	{
 		return;
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController.
+	 * Inicializa o controlador Basico_OPController_AssocChaveEstrangeiraRelacaoOPController.
 	 * 
-	 * @return Basico_OPController_RelacaoCategoriaChaveEstrangeiraOPController
+	 * @return Basico_OPController_AssocChaveEstrangeiraRelacaoOPController
 	 */
 	public static function getInstance()
 	{
@@ -62,66 +90,6 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-
-	/**
-	 * Salva o objeto RelacaoCategoriaChaveEstrangeira no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_RelacaoCategoriaChaveEstrangeira $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocChaveEstrangeiraRelacao', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if (NULL === $objeto->id) {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA, true);
-	    		$mensagemLog    = LOG_MSG_NOVA_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA;
-	    	} else {
-	    		throw new Exception(MSG_ERRO_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA_EXISTE . " : " . "tabela origem: {$objeto->tabelaOrigem}/campo origem: {$objeto->campoOrigem}");
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-	
-     /**
-	 * Apaga o objeto categoria do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_Categoria $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		throw new Exception(LOG_MSG_DELETE_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA . " : " . "tabela origem: {$objeto->tabelaOrigem}/campo origem: {$objeto->campoOrigem}");
 	}
 
 	/**

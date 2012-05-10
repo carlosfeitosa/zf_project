@@ -14,52 +14,73 @@
 class Basico_OPController_FormularioAssocclElementoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
-	 * Nome da tabela FormularioFormularioElemento
-	 * 
-	 * @var String
-	 */
-	const nomeTabelaModelo  = 'basico_formulario.assoccl_elemento';
-
-	/**
-	 * Instância do Controlador FormularioFormularioElemento
-	 * @var Basico_OPController_FormularioFormularioElementoOPController
+	 * Instância do Controlador Basico_OPController_FormularioAssocclElementoOPController
+	 * @var Basico_OPController_FormularioAssocclElementoOPController
 	 */
 	private static $_singleton;
 	
 	/**
-	 * Instância do Modelo FormularioFormularioElemento.
-	 * @var Basico_Model_FormularioFormularioElemento
+	 * Instância do Modelo Basico_Model_FormularioAssocclElemento.
+	 * @var Basico_Model_FormularioAssocclElemento
 	 */
-	private $_model;
+	protected $_model;
 	
 	/**
-	 * Construtor do Controlador Basico_OPController_FormularioFormularioElementoOPController.
+	 * Nome da tabela basico_formulario.assoccl_elemento
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_formulario.assoccl_elemento';
+	
+	/**
+	 * Nome do campo id da tabela basico_formulario.assoccl_elemento
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+	
+	/**
+	 * Construtor do Controlador Basico_OPController_FormularioAssocclElementoOPController.
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_FormularioFormularioElementoOPController
+	 * Inicializa o controlador Basico_OPController_FormularioAssocclElementoOPController
 	 * 
 	 * @return void
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/05/2012
+	 */
+	protected function initControllers()
+	{
 		return;
 	}
 
 	/**
-	 * Retorna instância do Controlador FormularioFormularioElemento.
+	 * Retorna instância do Controlador Basico_OPController_FormularioAssocclElementoOPController.
 	 * 
-	 * @return Basico_OPController_FormularioFormularioElementoOPController
+	 * @return Basico_OPController_FormularioAssocclElementoOPController
 	 */
 	public static function getInstance()
 	{
@@ -233,84 +254,5 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 
 		// retornando array de objetos
 		return $objsFormularioFormularioElemento;
-	}
-
-	/**
-	 * Salva o objeto FormularioFormularioElemento no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_FormularioFormularioElemento $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioAssocclElemento', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_FORMULARIO_ELEMENTO, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_FORMULARIO_ELEMENTO;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_FORMULARIO_ELEMENTO, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_FORMULARIO_FORMULARIO_ELEMENTO;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-	
-     /**
-	 * Apaga o objeto FormularioFormularioElemento do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_FormularioFormularioElemento $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_FormularioAssocclElemento', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_FORMULARIO_ELEMENTO, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_FORMULARIO_FORMULARIO_ELEMENTO;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 }

@@ -14,45 +14,73 @@
 class Basico_OPController_FormularioAssocclElementoGrupoOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
-	 * Instância do Controlador GrupoFormularioElemento
-	 * @var Basico_OPController_GrupoFormularioElementoOPController
+	 * Instância do Controlador Basico_OPController_FormularioAssocclElementoGrupoOPController
+	 * @var Basico_OPController_FormularioAssocclElementoGrupoOPController
 	 */
 	private static $_singleton;
 	
 	/**
 	 * Instância do Modelo GrupoFormularioElemento.
-	 * @var Basico_Model_GrupoFormularioElemento
+	 * @var Basico_Model_FormularioAssocclElementoGrupo
 	 */
-	private $_model;
+	protected $_model;
 	
 	/**
-	 * Construtor do Controlador Basico_OPController_GrupoFormularioElementoOPController.
+	 * Nome da tabela basico_formulario_assoccl_elemento.grupo
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_form_assoccl_elemento.grupo';
+
+	/**
+	 * Nome do campo id da tabela basico_form_assoccl_elemento.grupo
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+	
+	/**
+	 * Construtor do Controlador Basico_OPController_FormularioAssocclElementoGrupoOPController.
 	 * 
 	 * @return void
 	 */
 	protected function __construct()
 	{
-		// instanciando modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_GrupoFormularioElementoOPController
+	 * Inicializa o controlador Basico_OPController_FormularioAssocclElementoGrupoOPController
 	 * 
 	 * @return void
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
 		return;
 	}
 	
 	/**
-	 * Retorna instância do Controlador GrupoFormularioElemento.
+	 * Inicializa os controladores utilizados pelo controlador
 	 * 
-	 * @return Basico_OPController_GrupoFormularioElementoOPController
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/05/2012
+	 */
+	protected function initControllers()
+	{
+		return;
+	}
+	
+	/**
+	 * Retorna instância do Controlador Basico_OPController_FormularioAssocclElementoGrupoOPController.
+	 * 
+	 * @return Basico_OPController_FormularioAssocclElementoGrupoOPController
 	 */
 	public static function getInstance()
 	{
@@ -63,84 +91,5 @@ class Basico_OPController_FormularioAssocclElementoGrupoOPController extends Bas
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-	
-	/**
-	 * Salva o objeto GrupoFormularioElemento no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_GrupoFormularioElemento $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclElementoGrupo', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_GRUPO_FORMULARIO_ELEMENTO, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_GRUPO_FORMULARIO_ELEMENTO;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_GRUPO_FORMULARIO_ELEMENTO;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-	
-     /**
-	 * Apaga o objeto GrupoFormularioElemento do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_GrupoFormularioElemento $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AssocclElementoGrupo', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_GRUPO_FORMULARIO_ELEMENTO, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_GRUPO_FORMULARIO_ELEMENTO;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 }

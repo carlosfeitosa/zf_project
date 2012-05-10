@@ -14,18 +14,32 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 {
 	/**
 	 * 
-	 * @var Basico_OPController_EmailOPController
+	 * @var Basico_OPController_ContatoCpgEmailOPController
 	 */
 	private static $_singleton;
 
 	/**
 	 * 
-	 * @var Basico_Model_Email
+	 * @var Basico_Model_ContatoCpgEmail
 	 */
 	protected $_model;
+	
+	/**
+	 * Nome da tabela basico_contato.cpg_email
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_contato.cpg_email';
 
 	/**
-	 * Construtor do Controlador Basico_OPController_EmailOPController
+	 * Nome do campo id da tabela basico_contato.cpg_email
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+
+	/**
+	 * Construtor do Controlador Basico_OPController_ContatoCpgEmailOPController
 	 * 
 	 * @return void
 	 */
@@ -36,7 +50,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	}
 
 	/**
-	 * Inicializacao do controlador Basico_OPController_EmailOPController
+	 * Inicializacao do controlador Basico_OPController_ContatoCpgEmailOPController
 	 * 
 	 * @return void
 	 */
@@ -65,7 +79,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	/**
 	 * Inicializa o controlador Email.
 	 * 
-	 * @return Basico_OPController_EmailOPController
+	 * @return Basico_OPController_ContatoCpgEmailOPController
 	 */
 	public static function getInstance()
 	{
@@ -212,86 +226,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 		else
 		    return NULL;
 	}
-
-	/**
-	 * Salva o objeto email no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_Email $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_ContatoCpgEmail', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_EMAIL, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_EMAIL;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_EMAIL, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_EMAIL;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
 	
-    /**
-	 * Apaga o objeto email do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_Email $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_ContatoCpgEmail', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_EMAIL, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_EMAIL;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
-	}
-
 	/**
 	 * Retorna o email do Sistema
 	 * 
@@ -393,7 +328,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
         // setando o email como nao ativo
         $novoEmail->ativo     			   = false;
         // salvando o objeto email
-        $this->salvarObjeto($novoEmail);
+        parent::salvarObjeto($novoEmail, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_EMAIL), LOG_MSG_NOVO_EMAIL);
 
         // retornando o id
         return $novoEmail->id;
@@ -431,7 +366,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	    $email->ativo    = 1;
 	    	
 	    // salvando o objeto e-mail no banco de dados
-	    $this->salvarObjeto($email, $versaoUpdateEmail);
+	    parent::salvarObjeto($email, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_EMAIL), LOG_MSG_UPDATE_EMAIL, $versaoUpdateEmail);
 
 	    return $email;
     }

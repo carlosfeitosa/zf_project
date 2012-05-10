@@ -14,6 +14,30 @@
 class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * @var Basico_OPController_AcaoAplicacaoAssocclPerfilOPController
+	 */
+	private static $_singleton;
+
+	/**
+	 * @var Basico_Model_AcaoAplicacaoAssocclPerfil object
+	 */
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico_acao_aplicacao.assoccl_perfil
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_acao_aplicacao.assoccl_perfil';
+	
+	/**
+	 * Nome do campo id da tabela basico_acao_aplicacao.assoccl_perfil
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
+	
+	/**
 	 * Construtor do Controlador Acao Aplicacao
 	 * 
 	 * @return void
@@ -43,8 +67,8 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 	 * (non-PHPdoc)
 	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
 	 * 
-	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
-	 * @since 25/04/2012
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 03/05/2012
 	 */
 	protected function initControllers()
 	{
@@ -89,84 +113,5 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 
 		// retornando array com os resultados
 		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQL);
-	}
-
-	/**
-	 * Salva o objeto acao aplicacao no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_AcoesAplicacaoPerfis $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcaoAplicacaoAssocclPerfil', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_ACOES_APLICACAO_PERFIS, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_ACOES_APLICACAO_PERFIS;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACOES_APLICACAO_PERFIS, true);
-	    		$mensagemLog    = LOG_MSG_NOVA_ACOES_APLICACAO_PERFIS;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto acao aplicao do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_AcoesAplicacaoPerfis $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcoesAplicacaoPerfis', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_ACOES_APLICACAO_PERFIS, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_ACOES_APLICACAO_PERFIS;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 }

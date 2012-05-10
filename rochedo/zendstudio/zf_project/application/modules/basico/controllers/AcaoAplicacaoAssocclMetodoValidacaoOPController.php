@@ -21,7 +21,21 @@ class Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController extend
 	/**
 	 * @var Basico_Model_AcaosAplicacaoMetodosValidacao object
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico_acao_aplicacao.assoccl_metodo_validacao
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico_acao_aplicacao.assoccl_metodo_validacao';
+	
+	/**
+	 * Nome do campo id da tabela basico_acao_aplicacao.assoccl_metodo_validacao
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
 
 	/**
 	 * Construtor do Controlador Acao Aplicacao
@@ -30,11 +44,8 @@ class Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController extend
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando o controlador Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -43,6 +54,23 @@ class Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController extend
 	 * @return void
 	 */
 	protected  function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 03/05/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -61,84 +89,5 @@ class Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController extend
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-
-	/**
-	 * Salva o objeto acao aplicacao no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_AcaosAplicacaoMetodosValidacao $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcaoAplicacaoAssocclMetodoValidacao', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_ACOES_APLICACAO_METODOS_VALIDACAO, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_ACOES_APLICACAO_METODOS_VALIDACAO;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO, true);
-	    		$mensagemLog    = LOG_MSG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto acao aplicao do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_AcaosAplicacaoMetodosValidacao $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_AcaoAplicacaoAssocclMetodoValidacao', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 }

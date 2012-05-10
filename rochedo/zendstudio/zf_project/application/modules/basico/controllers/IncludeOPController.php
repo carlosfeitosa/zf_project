@@ -13,13 +13,6 @@
 class Basico_OPController_IncludeOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
-	 * Nome da tabela categoria
-	 * 
-	 * @var String
-	 */
-	const nomeTabelaModelo  = 'basico.include';
-
-	/**
 	 * Instância do Controlador Formulario
 	 * 
 	 * @var Basico_OPController_IncludeOPController
@@ -27,11 +20,24 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractController_
 	private static $_singleton;
 
 	/**
-	 * Instância do Modelo Formulario.
+	 * Instância do Modelo Include.
 	 * 
-	 * @var Basico_Model_Formulario
+	 * @var Basico_Model_Include
 	 */
-	private $_model;
+	protected $_model;
+	
+	/**
+	 * Nome da tabela basico.include
+	 * 
+	 * @var String
+	 */
+	const nomeTabelaModelo  = 'basico.include';
+	/**
+	 * Nome do campo id da tabela basico.include
+	 * 
+	 * @var Array
+	 */
+	const nomeCampoIdModelo = 'id';
 
 	/**
 	 * Construtor do Controlador Basico_OPController_IncludeOPController.
@@ -40,11 +46,8 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractController_
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-
-		// inicializando controlador
-		$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -53,6 +56,24 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractController_
 	 * @return void
 	 */
 	protected function init()
+	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 04/05/2012
+	 */
+	protected function initControllers()
 	{
 		return;
 	}
@@ -71,85 +92,6 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractController_
 		}
 		// retornando instancia
 		return self::$_singleton;
-	}
-
-   	/**
-	 * Salva o objeto formulario no banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
-	 * 
-	 * @param Basico_Model_Include $objeto
-	 * @param Integer $versaoUpdate
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function salvarObjeto($objeto, $versaoUpdate = null, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Include', true);
-
-	    try {
-    		// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
-	    		// carregando informacoes de log de atualizacao de registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_INCLUDE, true);
-	    		$mensagemLog    = LOG_MSG_UPDATE_INCLUDE;
-	    	} else {
-	    		// carregando informacoes de log de novo registro
-	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_INCLUDE, true);
-	    		$mensagemLog    = LOG_MSG_NOVO_INCLUDE;
-	    	}
-
-			// salvando o objeto através do controlador Save
-	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-	    	// atualizando o objeto
-    		$this->_model = $objeto;
-
-    	} catch (Exception $e) {
-
-    		throw new Exception($e);
-    	}
-	}
-
-	/**
-	 * Apaga o objeto dados pessoas perfis do banco de dados
-	 * 
-	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
-	 * 
-	 * @param Basico_Model_Include $objeto
-	 * @param Boolean $forceCascade
-	 * @param Integer $idPessoaPerfilCriador
-	 * 
-	 * @return void
-	 */
-	public function apagarObjeto($objeto, $forceCascade = false, $idPessoaPerfilCriador = null)
-	{
-		// verificando se o objeto passado eh da instancia esperada
-		Basico_OPController_UtilOPController::verificaVariavelRepresentaInstancia($objeto, 'Basico_Model_Include', true);
-
-		try {
-			// verificando se a operacao esta sendo realizada por um usuario ou pelo sistema
-	    	if (!isset($idPessoaPerfilCriador))
-	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
-
-	    	// recuperando informacoes de log
-	    	$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_INCLUDE, true);
-	    	$mensagemLog    = LOG_MSG_DELETE_INCLUDE;
-
-	    	// apagando o objeto do bando de dados
-	    	Basico_OPController_PersistenceOPController::bdDelete($objeto, $forceCascade, $idPessoaPerfilCriador, $idCategoriaLog, $mensagemLog);
-
-		} catch (Exception $e) {
-			throw new Exception($e);
-		}
 	}
 
 	/**
