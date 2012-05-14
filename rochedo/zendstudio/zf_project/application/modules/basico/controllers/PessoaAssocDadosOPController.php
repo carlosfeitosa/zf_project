@@ -103,9 +103,9 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 		$objDadosPessoais = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado
-		if (isset($objDadosPessoais[0]))
+		if (is_object($objDadosPessoais))
 			// retorna o nome da pessoa
-    	    return $objDadosPessoais[0]->nome;
+    	    return $objDadosPessoais->nome;
 
 		throw new Exception(MSG_ERRO_NOME_PESSOA_NAO_ENCONTRADA_NO_SISTEMA);
 	}
@@ -125,9 +125,9 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 			$objDadosPessoais = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
-			if (isset($objDadosPessoais[0]))
+			if (is_object($objDadosPessoais))
 				// retorna o o objeto dados pessoais
-	    	    return $objDadosPessoais[0];
+	    	    return $objDadosPessoais;
 
 	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
 
@@ -151,7 +151,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
         // setando o nome
         $novoDadosPessoais->nome     = $nome;
         // salvando o objeto dadosPessoais
-        $this->salvarObjeto($novoDadosPessoais);
+        parent::salvarObjeto($novoDadosPessoais, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_PESSOAIS, true), LOG_MSG_NOVO_DADOS_PESSOAIS);
         
         // retornando o id
         return $novoDadosPessoais->id;
@@ -176,6 +176,6 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
     	$dadosPessoaisObj->dataNascimento = $arrayPost['BasicoCadastrarUsuarioValidadoDataNascimento'];
     	
     	// salvando os DadosPessoais
-    	$this->salvarObjeto($dadosPessoaisObj, (int) $arrayPost['versaoDadosPessoais']);
+    	parent::salvarObjeto($dadosPessoaisObj, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_PESSOAIS, true), LOG_MSG_NOVO_DADOS_PESSOAIS, (int) $arrayPost['versaoDadosPessoais']);
 	}
 }

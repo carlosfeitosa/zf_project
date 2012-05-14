@@ -303,8 +303,8 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
     	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
 
     	// verificando se o objeto foi recuperado
-    	if (isset($objPessoaPerfilPessoa[0])) {
-    		return $objPessoaPerfilPessoa[0];
+    	if (is_object($objPessoaPerfilPessoa)) {
+    		return $objPessoaPerfilPessoa;
     	}
 
     	throw new Exception(MSG_ERROR_PESSOAPERFIL_USUARIO_NAO_VALIDADO_NAO_ENCONTRADO);
@@ -333,9 +333,9 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
     	$objPessoaPerfil = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
 
     	// verificando se o objeto foi recuperado
-    	if (isset($objPessoaPerfil[0])) {
+    	if (is_object($objPessoaPerfil)) {
     		// retornando o objeto
-    		return $objPessoaPerfil[0];
+    		return $objPessoaPerfil;
     	}
     	
     	return NULL;
@@ -398,8 +398,8 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
     	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
 
     	// verificando se o objeto foi recuperado
-    	if (isset($objPessoaPerfilPessoa[0])) {
-    		return $objPessoaPerfilPessoa[0];
+    	if (is_object($objPessoaPerfilPessoa)) {
+    		return $objPessoaPerfilPessoa;
     	}
 
     	throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
@@ -436,7 +436,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 				throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
 
 			// salvando o objeto
-			$this->salvarObjeto($objPessoaPerfil, $versaoUpdate, $idPessoaPerfilCriador);
+			parent::salvarObjeto($objPessoaPerfil, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_PESSOAS_PERFIS, true), LOG_MSG_UPDATE_PESSOA_PERFIL, $versaoUpdate, $idPessoaPerfilCriador);
 
 			return true;
 		}
@@ -486,7 +486,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$novaPessoasPerfisNovaPessoa->ativo    = true;
 		
 		// salvando o objeto pessoasPefis
-		$this->salvarObjeto($novaPessoasPerfisNovaPessoa);
+		parent::salvarObjeto($novaPessoasPerfisNovaPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOAS_PERFIS), LOG_MSG_NOVA_PESSOA_PERFIL);
 		
 		return $novaPessoasPerfisNovaPessoa->id;
 	}

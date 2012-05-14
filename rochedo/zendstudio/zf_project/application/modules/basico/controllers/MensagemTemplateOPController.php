@@ -91,7 +91,7 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	}
 	
 	/**
-	 * Retorna o id da template buscando pelo nome passado
+	 * Retorna o id da template buscando pelo nome e categoria passados
 	 * 
 	 * @param String $nomeTemplate
 	 */
@@ -100,8 +100,36 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 		// recuperando a template
 		$template = $this->retornaObjetosPorParametros("nome = '{$nomeTemplate}' AND id_categoria = {$idCategoria}");
 		
-		if ($template[0]) {
-			return $template[0]->id;
+		if (is_object($template)) {
+			return $template->id;
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Retorna um array contendo as constantes textuais da template do id passado
+	 * 
+	 * @param Int $idMensagemTemplate
+	 * 
+	 * @return Array|null
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 10/05/2012
+	 */
+	public function retornaArrayConstantesTextuaisMensagemTemplatePorId($idMensagemTemplate)
+	{
+		// recuperando a template
+		$template = $this->retornaObjetosPorParametros("id = '{$idMensagemTemplate}'");
+		
+		// se o objeto for retornado
+		if (is_object($template)) {
+			// carregando constantes textuais no array resultado
+			$arrayResultado['constanteTextualAssunto']  = $template->constanteTextualAssunto;
+			$arrayResultado['constanteTextualMensagem'] = $template->constanteTextualMensagem;
+			
+			return $arrayResultado;
 		}
 		
 		return null;

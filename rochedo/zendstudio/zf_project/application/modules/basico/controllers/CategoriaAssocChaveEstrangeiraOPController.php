@@ -244,10 +244,66 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 		$objCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("id_categoria = {$idCategoria}");
 
 		// verificando se o objeto foi recuperado
-		if (isset($objCategoriaChaveEstrangeira[0]))
+		if (is_array($objCategoriaChaveEstrangeira))
 			//retornando o objeto
 			return $objCategoriaChaveEstrangeira[0];
 
-		return null;
+		// verificando se não é um objeto
+		if (!is_object($objCategoriaChaveEstrangeira))
+			return null;
+			
+		// retornando objeto	
+		return $objCategoriaChaveEstrangeira;
+    }
+
+    /**
+     * Retorna se uma categoria chave estrangeira existe para o id categoria
+     * 
+     * @param int $idCategoria
+     * 
+     * @author Carlos Feitosa
+     * 
+     * @since 10/05/2012
+     */
+    public function checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
+    {
+    	$this->_model = $this->retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria);
+
+    	if (is_object($this->_model)) {
+    		return true;
+    	} else {
+    		$this->initModel();
+    	}
+
+    	return false;
+    }
+    
+    /**
+     * Retorna um array contendo a tabela estrangeira e o campo estrangeiro da categoriaChaveEstrangeira pelo id da categoria passado
+     * 
+     * @param int $idCategoria - id da categoria da categoria chave estrangeira
+     * 
+     * @return Array|null
+     * 
+     * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * 
+     * @since 10/05/2012
+     */
+    public function retornaArrayTabelaEstrangeiraCampoEnstrangeiroPorIdCategoriaChaveEstrangeira($idCategoria)
+    {
+    	// recuperando objeto categoriaChaveEstrangeira pelo idCategoria
+    	$objetoCategoriaChaveEstrangeira = $this->retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria);
+    	
+    	// se o objeto for retornado
+    	if (null !== $objetoCategoriaChaveEstrangeira) {
+    		// carregando nome da tabela estrangeira e do campo estrangeiro no arrayResultado
+    		$arrayResultado['tabelaEstrangeira'] = $objetoCategoriaChaveEstrangeira->tabelaEstrangeira;
+    		$arrayResultado['campoEstrangeiro']  = $objetoCategoriaChaveEstrangeira->campoEstrangeiro;
+    		
+    		// retornando resultado
+    		return $arrayResultado;
+    	}
+    	
+    	return null;
     }
 }

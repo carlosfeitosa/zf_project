@@ -225,9 +225,9 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 		$objsFormulario = $this->retornaObjetosPorParametros("nome = '{$nomeFormulario}' and id_categoria = {$idCategoria}", null, 1, 0);
 
 		// verificando se o formulario foi recuperado
-		if (isset($objsFormulario[0])) {
+		if (is_object($objsFormulario)) {
 			// retornando o action do formulario
-			return $objsFormulario[0]->formAction;
+			return $objsFormulario->formAction;
 		}
 
 		return null;

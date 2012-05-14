@@ -124,12 +124,12 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	public function retornaUniqueIdEmail($email) 
 	{
 		// recuperando objetos e-mail
-		$arrayObjsEmail = self::retornaObjetoEmailPorEmail($email);
+		$arrayObjEmail = self::retornaObjetoEmailPorEmail($email);
 		
 		// verificando se o objeto foi recuperado/existe
-		if (isset($arrayObjsEmail[0]))
+		if (is_object($arrayObjEmail))
 			// retornando uniqueId
-    	    return $arrayObjsEmail[0]->uniqueId;
+    	    return $arrayObjEmail->uniqueId;
     	else
     	    return NULL;
 	}
@@ -144,12 +144,12 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	private function retornaObjetoEmailPorEmail($email)
 	{
 		// recuperando objetos e-mail
-		$objsEmail = $this->retornaObjetosPorParametros("email = '{$email}'", null, 1, 0);
+		$objEmail = $this->retornaObjetosPorParametros("email = '{$email}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
-		if (isset($objsEmail[0]))
+		if (is_object($objEmail))
 			// retornando objeto e-mail
-    	    return $objsEmail[0];
+    	    return $objEmail;
     	else
     	    return NULL;
 	}
@@ -197,12 +197,12 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	public function retornaIdProprietarioEmailPorIdEmail($idEmail)
 	{
 		// recuperando objetos e-mail
-		$objsEmail = $this->retornaObjetosPorParametros("id = '{$idEmail}'", null, 1, 0);
+		$objEmail = $this->retornaObjetosPorParametros("id = '{$idEmail}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
-		if (isset($objsEmail[0]))
+		if (is_object($objEmail))
 			// retornando o id generico do proprietario do objeto e-mail
-    	    return $objsEmail[0]->idGenericoProprietario;
+    	    return $objEmail->idGenericoProprietario;
     	else
     	    return NULL;
 	}
@@ -242,9 +242,9 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 		$objEmailSistema = $this->retornaObjetosPorParametros("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
-		if (isset($objEmailSistema[0]))
+		if (is_object($objEmailSistema))
 			// retornando o e-mail do sistema
-    	    return $objEmailSistema[0]->email;
+    	    return $objEmailSistema->email;
     	else
     	    return NULL;
 	}
@@ -270,9 +270,9 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			$objEmailPrimario = $this->retornaObjetosPorParametros("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
 			
 			// checando se o email foi encontrado
-			if (isset($objEmailPrimario[0])) {
+			if (is_object($objEmailPrimario)) {
 				// retornando o objeto
-				return $objEmailPrimario[0];
+				return $objEmailPrimario;
 			}
 		}
 		return false;
@@ -366,7 +366,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	    $email->ativo    = 1;
 	    	
 	    // salvando o objeto e-mail no banco de dados
-	    parent::salvarObjeto($email, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_EMAIL), LOG_MSG_UPDATE_EMAIL, $versaoUpdateEmail);
+	    parent::salvarObjeto($email, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_EMAIL, true), LOG_MSG_UPDATE_EMAIL, $versaoUpdateEmail);
 
 	    return $email;
     }

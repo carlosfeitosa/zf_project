@@ -39,6 +39,13 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	const nomeCampoIdModelo = 'id';
 	
 	/**
+	 * controlador de dadosBiometricos
+	 * 
+	 * @var Basico_OPController_DadosBiometricosOPController
+	 */
+	private $_dadosBiometricosOPController;
+	
+	/**
 	 * Construtor do controlador Basico_OPController_DadosBiometricosAssocPessoaOPController
 	 * 
 	 * @return void
@@ -73,6 +80,9 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	 */
 	protected function initControllers()
 	{
+		// inicializando controlador de dadosBiometricos
+		$this->_dadosBiometricosOPController = Basico_OPController_DadosBiometricosOPController::getInstance();
+		
 		return;
 	}
 
@@ -107,9 +117,9 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 			$objDadosBiometricosPessoa = $this->retornaObjetosPorParametros("id_dados_biometricos = {$idDadosBiometricos}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
-			if (isset($objDadosBiometricosPessoa[0]))
+			if (is_object($objDadosBiometricosPessoa))
 				// retorna o o objeto dados pessoais
-	    	    return $objDadosBiometricosPessoa[0];
+	    	    return $objDadosBiometricosPessoa;
 	    	    
 	    	throw new Exception(MSG_ERRO_DADOS_BIOMETRICOS_PESSOA_NAO_ENCONTRADO_NO_SISTEMA);
 	    	
@@ -169,7 +179,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
     	$ultimaVersaoDadosBiometricos = $arrayPostDadosBiometricos['versaoObjetoDadosBiometricos'];
 	    
     	// recuperando o objeto dados biometricos da pessoa
-    	$dadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
+    	$dadosBiometricos = $this->_dadosBiometricosOPController->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa);
     	
     	// carregando valores no objeto dadosBiometricos
     	// carregando o radio button do sexo
@@ -199,41 +209,75 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
     }
     
     /**
-     * Salva os dados biometricos atraves dos dados submetidos pelo form Basico_Form_CadastrarUsuarioValidado
+     * Salva o sexo da pessoa
      * 
-     * @param array $arrayPost
+     * @param int $idDadosBiometricos
+     * @param int $idPessoa
+     * @param int $sexo
+     * 
+     * @return Boolean
+     * 
+     * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * 
+     * @since 14/05/2012
      */
-    public function salvarDadosBiometricosViaFormCadastrarUsuarioValidado($arrayPost)
+    public function salvaSexoPessoa($idDadosBiometricos, $idPessoa, $sexo)
     {
-    	//criando dadosBiometricos do usuario
-  		$novoDadosBiometricos = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_DadosBiometricosOPController');
+    	// recuperando novo modelo de dadosBiometricosAssocPessoa
+   		$novoDadosBiometricosPessoa = $this->retornaNovoObjetoModelo();
    		
-  		// recuperando o tipo_categoria da categoria DADOS_BIOMETRICOS_PESSOA
-  		$idTipoCategoriaDadosBiometricos = Basico_OPController_TipoCategoriaOPController::retornaIdTipoCategoriaPorNome('DADOS_BIOMETRICOS');
-  		
-  		// recuperando categoria dos dados biometricos
-  		$idCategoriaDadosBiometricos = Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL('DADOS_BIOMETRICOS_PESSOA', $idTipoCategoriaDadosBiometricos);
-  		
-  		// recuperando o modelo de pessoa
-  		$modeloPessoa = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaOPController');
-  		
-  		// recuperando a categoria chave estrangeira da categoria DADOS_BIOMETRICOS_PESSOA
-  		$categoriaChaveEstrangeira = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance()->retornaObjetoCategoriaChaveEstrangeiraPorModeloIdCategoria($modeloPessoa, $idCategoriaDadosBiometricos, true);
-  		
-  		// setando a categoria dos dados biometricos
-  		$novoDadosBiometricos->idCategoria = $idCategoriaDadosBiometricos;
-  		
-   		// setando a pessoa dona dos dadosBiometricos
-   		$novoDadosBiometricos->idGenericoProprietario = $arrayPost['idPessoa'];
-   		   	
+   		// setando o id do dadosBiometricos
+   		$novoDadosBiometricosPessoa->idDadosBiometricos = $idDadosBiometricos;
    		
    		// setando o sexo
-   		if ($arrayPost['BasicoCadastrarUsuarioValidadoSexo'] == 0)
-   		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO;
-   		else if ($arrayPost['BasicoCadastrarUsuarioValidadoSexo'] == 1)
-		    $novoDadosBiometricos->sexo = FORM_RADIO_BUTTON_SEXO_OPTION_FEMININO;
+   		if ($sexo == 0)
+   		    $novoDadosBiometricosPessoa->idCategoriaSexo = Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('GENERO_MASCULINO');
+   		else if ($sexo == 1)
+		    $novoDadosBiometricosPessoa->idCategoriaSexo = Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('GENERO_FEMININO');
    		
-		// salvando os dadosBiometricos
-    	parent::salvarObjeto($novoDadosBiometricos, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_DADOS_BIOMETRICOS_PESSOA), LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA);
+		// salvando dadosBiometricosAssocPessoa
+		parent::salvarObjeto($novoDadosBiometricosPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_BIOMETRICOS_PESSOA), LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA, null, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa));
+    }
+    
+	/**
+     * Salva os dados biometricos da pessoa
+     * 
+     * @param Integer $idPessoa
+     * @param Array $arrayPost
+     * 
+     * @return Boolean
+     */
+    public function atualizaDadosBiometricosPessoa($idPessoa, $versaoObjetoDadosBiometricos, $sexo, $altura, $peso, $idCategoriaRaca, $idCategoriaTipoSanguineo, $historicoMedico)
+    {   
+    	// recuperando o id dos dados biometricos
+    	$idDadosBiometricos = $this->_dadosBiometricosOPController->retornaIdDadosBiometricosPorIdPessoa($idPessoa);
+    	// recuperando a especializacao de dados biometricos para pessoa
+	    $dadosBiometricosPessoa = Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->retornaObjetoDadosBiometricosPessoaPorIdDadosBiometricos($idDadosBiometricos);
+    	
+    	// carregando valores no objeto dadosBiometricos
+    	// carregando o radio button do sexo
+	    if ($sexo == 0)
+	        $dadosBiometricosPessoa->idCategoriaSexo = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('GENERO_MASCULINO');
+	    elseif($sexo == 1) 
+	        $dadosBiometricosPessoa->idCategoriaSexo = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('GENERO_FEMININO');
+
+        // carregando dados no objeto dados biometricos
+        if ($altura != "")
+        	$dadosBiometricosPessoa->altura               = $altura;
+        	
+        if ($peso != "")
+        	$dadosBiometricosPessoa->peso                 = $peso;
+
+        $dadosBiometricosPessoa->idCategoriaRaca          = $idCategoriaRaca;
+   	    $dadosBiometricosPessoa->idCategoriaTipoSanguineo = $idCategoriaTipoSanguineo;
+   	    $dadosBiometricosPessoa->historicoMedico          = $historicoMedico;    	
+   	    
+    	// recuperando o objeto PessoaPerfil UsuarioValidado do usuario logado
+    	$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
+
+    	// salvando o objeto dadosBiometricos
+    	parent::salvarObjeto($dadosBiometricosPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_BIOMETRICOS_PESSOA), LOG_MSG_UPDATE_DADOS_BIOMETRICOS_PESSOA, (int) $versaoObjetoDadosBiometricos, $idPessoaPerfilCriador);
+
+    	return true;
     }
 }

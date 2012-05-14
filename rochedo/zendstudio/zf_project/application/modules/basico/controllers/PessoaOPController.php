@@ -221,7 +221,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function retornaIdPerfilPadraoPorIdPessoa($idPessoa)
 	{
 		// retornando o id do perfil padrao da pessoa
-		return $this->retornaObjetoPorId($this->_model, $idPessoa)->idPerfilDefault;
+		return $this->retornaObjetosPorParametros("id = {$idPessoa}")->idPerfilDefault;
 	}
 
 	/**
@@ -235,7 +235,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function retornaVersaoObjetoPessoaPorIdPessoa($idPessoa, $forceVersioning = false)
 	{
 		// recuperando objeto pessoa
-		$object = $this->retornaObjetoPorId($this->_model, $idPessoa);
+		$object = $this->retornaObjetosPorParametros("id = {$idPessoa}");
 
 		// retornando a versao do objeto
 		return Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($object, $forceVersioning);

@@ -13,16 +13,65 @@
 class Basico_OPController_MensagemOPController extends Basico_AbstractController_RochedoPersistentOPController
 {
 	/**
+	 * Chave para o atributo id da mensagem
 	 * 
-	 * @var Basico_OPController_MensagemOPController
+	 * @var String
 	 */
-	private static $_singleton;
-	
+	const ARRAY_MENSAGEM_ATRIBUTO_ID = 'id';
 	/**
-	 * @var Basico_Model_Mensagem
+	 * Chave para o atributo enviada da mensagem
+	 * 
+	 * @var String
 	 */
-	protected $_model;
-	
+	const ARRAY_MENSAGEM_ATRIBUTO_DATAHORA_ENVIO = 'datahoraEnvio';
+	/**
+	 * Chave para o atributo remetente da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_REMETENTE = 'remetente';
+	/**
+	 * Chave para o atributo remetenteNome da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_REMETENTE_NOME = 'remetenteNome';
+	/**
+	 * Chave para o atributo destinatarios da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_DESTINATARIOS = 'destinatarios';
+	/**
+	 * Chave para o atributo destinatariosArray da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_DESTINATARIOS_ARRAY = 'destinatariosArray';
+	/**
+	 * Chave para o atributo destinatariosNomesArray da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_DESTINATARIOS_NOMES = 'destinatariosNomes';
+	/**
+	 * Chave para o atributo assunto da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_ASSUNTO = 'assunto';
+	/**
+	 * Chave para o atributo mensagem da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_MENSAGEM = 'mensagem';
+	/**
+	 * Chave para o atributo datahoraCriacao da mensagem
+	 * 
+	 * @var String
+	 */
+	const ARRAY_MENSAGEM_ATRIBUTO_DATAHORA_CRIACAO = 'datahoraCriacao';
 	/**
 	 * Nome da tabela basico.mensagem
 	 * 
@@ -35,6 +84,26 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 * @var Array
 	 */
 	const nomeCampoIdModelo = 'id';
+	
+	/**
+	 * 
+	 * @var Basico_OPController_MensagemOPController
+	 */
+	private static $_singleton;
+	
+	/**
+	 * @var Basico_Model_Mensagem
+	 */
+	protected $_model;
+	
+	/**
+	 * @var Basico_OPController_MensagemTemplateOPController
+	 */
+	private $_mensagemTemplateOPController;
+	/**
+	 * @var Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController
+	 */
+	private $_mensagemAssocclAssocclPessoaPerfilOPController;
 	
 	/**
 	 * Construtor do Controlador Mensagem
@@ -72,6 +141,11 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 */
 	protected function initControllers()
 	{
+		// inicializando controlador mensagemTemplate
+		$this->_mensagemTemplateOPController = Basico_OPController_MensagemTemplateOPController::getInstance();
+		// inicializando controlador mensagemAssocclAssocclPessoaPerfil
+		$this->_mensagemAssocclAssocclPessoaPerfilOPController = Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController::getInstance();
+		
 		return;
 	}
 	
@@ -98,7 +172,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 * @param integer $idPessoaRemetente 
 	 * @param array $arrayTagsValores
 	 * 
-	 * @return Basico_model_mensagem|null
+	 * @return Array|null
 	 */
 	public function retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagemTemplate, $idMensagemTemplate, array $arrayIdsPessoasDestinatarios, $idPessoaRemetente = null, array $arrayTagsValores = array())
 	{
@@ -111,31 +185,26 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		// recuperando a lingua do usuario
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 		
-		$modeloMensagemTemplate = $this->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_MensagemTemplateOPController');
-		
-		// carregando a mensagem template
-		$objMensagemTemplate = $this->retornaObjetoPorId($modeloMensagemTemplate, $idMensagemTemplate);
+		$arrayConstantesTextuaisTemplate = $this->_mensagemTemplateOPController->retornaArrayConstantesTextuaisMensagemTemplatePorId($idMensagemTemplate);
 		
 		// verificando se a mensagem foi carregada
-		if (!isset($objMensagemTemplate)){
+		if (null === $arrayConstantesTextuaisTemplate){
 			// retornando nulo
 			return null;
 		}
 		
 		// inicializando variaveis 
-		$modelMensagem = $this->retornaNovoObjetoModeloPorNomeOPController(get_class($this));
+		$modelMensagem = $this->retornaNovoObjetoModelo();
 		$arrayDestinatarios = array();
-		
-		
 		
 		// setando a categoria da mensagem
 		$modelMensagem->idCategoria = $idCategoriaMensagemTemplate;
 		
 		// carregando assunto da mensagem
-		$modelMensagem->assunto = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objMensagemTemplate->constanteTextualAssunto);
+		$modelMensagem->assunto = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayConstantesTextuaisTemplate['constanteTextualAssunto']);
 		
 		// carregando a mensagem
-		$modelMensagem->mensagem  = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($objMensagemTemplate->constanteTextualMensagem);
+		$modelMensagem->mensagem  = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayConstantesTextuaisTemplate['constanteTextualMensagem']);
 		
         // carregando a assinatura da mensagem
         $assinatura             = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
@@ -157,9 +226,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 
         // loop para carregar os nomes dos destinatarios
         foreach($arrayIdsPessoasDestinatarios as $idPessoaDestinatario){
-        	// recuperando o objeto Pessoa
-        	$objPessoaDestinatario = Basico_OPController_PessoaOPController::getInstance()->retornaObjetoPorId(Basico_OPController_PessoaOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_PessoaOPController'), $idPessoaDestinatario);
-        	
+        	// recuperando dados do destinatario
         	$nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoaDestinatario);
         	$emailPirmarioDestinatario = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPrimarioPessoa($idPessoaDestinatario);
         	
@@ -186,10 +253,10 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         $modelMensagem->datahoraCriacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
         
         // salvando a mensagem
-        $this->salvarObjeto($modelMensagem);
+        parent::salvarObjeto($modelMensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_MENSAGEM), LOG_MSG_NOVA_MENSAGEM);
         
         // retornando a mensagem
-		return $modelMensagem;
+		return Basico_OPController_UtilOPController::codificar($modelMensagem, CODIFICAR_OBJETO_TO_ARRAY);
 	}
 
     /**
@@ -335,71 +402,43 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 * @param Array $arrayIdsPessoasPerfisDestinatariosCopiaOculta 
 	 * 
 	 * @return Boolean
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 10/05/2012
 	 */
-	public function criaRelacaoPessoasPerfisMensagensCategoriasAssossiadas(Basico_Model_Mensagem $objMensagem, $idPessoaPerfilRemetente, array $arrayIdsPessoasPerfisDestinatarios, array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada = array(), array $arrayIdsPessoasPerfisDestinatariosCopiaOculta = array())
+	public function criaRelacaoPessoasPerfisMensagensCategoriasAssossiadas(array $dadosMensagem, $idPessoaPerfilRemetente, array $arrayIdsPessoasPerfisDestinatarios, array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada = array(), array $arrayIdsPessoasPerfisDestinatariosCopiaOculta = array())
 	{
 		// verificando se os parametros foram informados
-		if ((!$objMensagem->id) or (!$objMensagem->remetente) or (!count($objMensagem->destinatariosArray) > 0) or (!$idPessoaPerfilRemetente) or (!count($arrayIdsPessoasPerfisDestinatarios) > 0) or ($objMensagem->enviada)) {
+		if ((!$dadosMensagem[self::ARRAY_MENSAGEM_ATRIBUTO_ID]) or (!$dadosMensagem[self::ARRAY_MENSAGEM_ATRIBUTO_REMETENTE]) or (!count($dadosMensagem[self::ARRAY_MENSAGEM_ATRIBUTO_DESTINATARIOS]) > 0) or (!$idPessoaPerfilRemetente) or (!count($arrayIdsPessoasPerfisDestinatarios) > 0) or ($dadosMensagem[self::ARRAY_MENSAGEM_ATRIBUTO_DATAHORA_ENVIO] !== null)) {
 			// retornando falso e parando a execucao do metodo
 			return false;
 		}
-
-		// instanciando controladores
-		$pessoasPerfisMensagensCategoriaOPController = Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController::getInstance();
-
-		// recuperando modelos vazios 
-		$modeloPessoasPerfisMensagensCategoriasRemetente     = $pessoasPerfisMensagensCategoriaOPController->retornaNovoObjetoModeloPorNomeOPController($pessoasPerfisMensagensCategoriaOPController->retornaNomeClassePorObjeto($pessoasPerfisMensagensCategoriaOPController));
-		$modeloPessoasPerfisMensagensCategoriasDestinatarios = $pessoasPerfisMensagensCategoriaOPController->retornaNovoObjetoModeloPorNomeOPController($pessoasPerfisMensagensCategoriaOPController->retornaNomeClassePorObjeto($pessoasPerfisMensagensCategoriaOPController));
 
 		// iniciando bloco de tentativas
 		try {
 			// iniciando transacao
 			Basico_OPController_PersistenceOPController::bdControlaTransacao();
 
-			// setando atributos no modelo para remetente
-			$modeloPessoasPerfisMensagensCategoriasRemetente->idMensagem      = $objMensagem->id;
-			$modeloPessoasPerfisMensagensCategoriasRemetente->idCategoria     = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
-			$modeloPessoasPerfisMensagensCategoriasRemetente->idAssocclPerfil = $idPessoaPerfilRemetente;
-			// salvando objeto
-			$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoasPerfisMensagensCategoriasRemetente, null, $idPessoaPerfilRemetente);
+			// inserindo relacao de remetente
+			$this->_mensagemAssocclAssocclPessoaPerfilOPController->insereAssociacaoMensagemPessoaPerfil($dadosMensagem['id'], Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE), $idPessoaPerfilRemetente);
 
 			// loop para associar os destinatarios
 			foreach ($arrayIdsPessoasPerfisDestinatarios as $idPessoaPerfilDestinatario) {
-				// criando copia do modelo
-				$modeloPessoaPerfilMensagemCategoriaDestinatario = $modeloPessoasPerfisMensagensCategoriasDestinatarios;
-
-				// setando atributos no modelo para destinatario
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idMensagem      = $objMensagem->id;
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idCategoria     = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO);
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idAssocclPerfil = $idPessoaPerfilDestinatario;
-				// salvando objeto
-				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
+				// inserindo relacao de destinatario
+				$this->_mensagemAssocclAssocclPessoaPerfilOPController->insereAssociacaoMensagemPessoaPerfil($dadosMensagem['id'], Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO), $idPessoaPerfilDestinatario);	
 			}
 
 			// loop para associar os destinatarios em copia cabonada
 			foreach ($arrayIdsPessoasPerfisDestinatariosCopiaCarbonada as $idPessoaPerfilDestinatario) {
-				// criando copia do modelo
-				$modeloPessoaPerfilMensagemCategoriaDestinatario = $modeloPessoasPerfisMensagensCategoriasDestinatarios;
-
-				// setando atributos no modelo para destinatario
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idMensagem      = $objMensagem->id;
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idCategoria     = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA);
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idAssocclPerfil = $idPessoaPerfilDestinatario;
-				// salvando objeto
-				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
+				// inserindo relacao de destinatario copia carbonada
+				$this->_mensagemAssocclAssocclPessoaPerfilOPController->insereAssociacaoMensagemPessoaPerfil($dadosMensagem['id'], Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA), $idPessoaPerfilDestinatario);
 			}
 
 			// loop para associar os destinatarios em copia cabonada oculta
 			foreach ($arrayIdsPessoasPerfisDestinatariosCopiaOculta as $idPessoaPerfilDestinatario) {
-				// criando copia do modelo
-				$modeloPessoaPerfilMensagemCategoriaDestinatario = $modeloPessoasPerfisMensagensCategoriasDestinatarios;
-
-				// setando atributos no modelo para destinatario
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idMensagem      = $objMensagem->id;
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idCategoria     = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA_OCULTA);
-				$modeloPessoaPerfilMensagemCategoriaDestinatario->idAssocclPerfil = $idPessoaPerfilDestinatario;
-				// salvando objeto
-				$pessoasPerfisMensagensCategoriaOPController->salvarObjeto($modeloPessoaPerfilMensagemCategoriaDestinatario, null, $idPessoaPerfilRemetente);
+				// inserindo relacao de destinatario copia carbonada
+				$this->_mensagemAssocclAssocclPessoaPerfilOPController->insereAssociacaoMensagemPessoaPerfil($dadosMensagem['id'], Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_DESTINATARIO_COPIA_CARBONADA_OCULTA), $idPessoaPerfilDestinatario);
 			}
 
 			// salvando transacao
@@ -415,5 +454,32 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 			throw new Exception(MSG_ERRO_ASSOCIACAO_PESSOAS_PEFIS_MENSAGENS_CATEGORIAS_FALHOU . $e->getMessage());
 		}
 
+	}
+	
+	/**
+	 * Marca a mensagem como enviada e seta datahoraEnvio
+	 * 
+	 * @param Int $idMensagem
+	 */
+	public function marcarMensagemComoEnviada($idMensagem)
+	{
+		// recuperando o objeto mensagem para update
+		$this->_model = $this->retornaObjetosPorParametros("id = {$idMensagem}");
+
+		// se a mensagem foi recuperada
+		if (null !== $this->_model->id) {
+			// setando mensagem como enviada
+			$this->_model->datahoraEnvio = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+			
+            // recuperando a ultima versao do objeto
+            $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($this->_model);
+            
+            // Atualizando a mensagem
+            parent::salvarObjeto($this->_model, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_MENSAGEM), LOG_MSG_UPDATE_MENSAGEM, $ultimaVersaoMensagem);
+			
+            return true;            
+		}
+		
+		return false;
 	}
 }

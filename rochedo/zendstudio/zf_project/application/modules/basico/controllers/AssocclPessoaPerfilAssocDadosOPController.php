@@ -44,11 +44,8 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	 */
 	protected function __construct()
 	{
-		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
-		
-    	// inicializando o controlador
-    	$this->init();
+		// chamando construtor da classe pai
+		parent::__construct();
 	}
 
 	/**
@@ -58,6 +55,9 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	 */
 	protected function init()
 	{
+		// chamando inicializacao da classe pai
+		parent::init();
+		
 		return;
 	} 
 	
@@ -104,9 +104,9 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	    $objDadosPessoasPerfis = $this->retornaObjetosPorParametros("id_assoccl_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
 	    
 	    // verificando se o objeto foi recuperado
-		if (isset($objDadosPessoasPerfis[0]))
+		if (is_object($objDadosPessoasPerfis))
 			// retornando a assinatura de e-mail do sistema
-    	    return $objDadosPessoasPerfis[0]->assinaturaMensagemEmail;
+    	    return $objDadosPessoasPerfis->assinaturaMensagemEmail;
     	    
     	throw new Exception(MSG_ERRO_ASSINATURA_MENSAGEM_EMAIL_SISTEMA);
 	}

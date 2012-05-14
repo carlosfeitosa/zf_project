@@ -136,7 +136,7 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
 
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
-            $this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+            $this->_model = $this->retornaNovoObjetoModelo();
             
 			// setando os valores
 			$this->_model->tabelaOrigem = $nomeTabela;

@@ -526,10 +526,10 @@ class Basico_LoginController extends Zend_Controller_Action
             $idMensagemTemplate = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaIdMensagemTemplatePorNomeTemplateIdCategoria('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_VALIDACAO_USUARIO_PLAINTEXT', $idCategoriaMensagem);        									  
         									  
             // salvando e recuperando a mensagem para envio
-            $objNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagem, $idMensagemTemplate, array($idNovaPessoa), null, $arrayTagsValoresMensagem);
+            $arrayNovaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagem, $idMensagemTemplate, array($idNovaPessoa), null, $arrayTagsValoresMensagem);
             
 	        // enviando a mensagem
-	        Basico_OPController_MensageiroOPController::getInstance()->enviar($objNovaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idNovaPessoasPerfis));
+	        Basico_OPController_MensageiroOPController::getInstance()->enviar($arrayNovaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idNovaPessoasPerfis));
             
             // salvando a transacao
             Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);

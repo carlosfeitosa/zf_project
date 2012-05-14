@@ -102,11 +102,11 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 		$objPerfil = $this->retornaObjetosPorParametros("nome = '{$nomePerfil}'", null, 1, 0);
 		
 		// verificando se existe o objeto
-		if (isset($objPerfil[0]))
+		if (is_array($objPerfil))
 			// retornando o objeto
     	    return $objPerfil[0];
     	    
-    	return null;
+    	return $objPerfil;
 	}
 
 	/**
@@ -150,7 +150,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 		// verificando se o id do perfil foi passado
 		if ($idPerfil > 0) {
 			// recuperando o objeto
-			return $this->retornaObjetoPorId($this->_model, $idPerfil);
+			return $this->retornaObjetosPorParametros("id = {$idPerfil}");
 		}
 	}
 	

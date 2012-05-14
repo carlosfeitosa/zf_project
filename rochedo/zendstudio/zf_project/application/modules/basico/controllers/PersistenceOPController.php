@@ -401,7 +401,7 @@ class Basico_OPController_PersistenceOPController
     public static function bdChecaExistenciaRelacaoCategoriaChaveEstrangeira($idCategoria)
     {
     	// retornando o resultado do metodo "checaExistenciaRelacaoCategoriaChaveEstrangeira" no controlador "Basico_OPController_DBCheckOPController"
-    	return Basico_OPController_DBCheckOPController::checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria);
+    	return Basico_OPController_DBCheckOPController::getInstance()->checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria);
     }
 
     /**
@@ -418,7 +418,7 @@ class Basico_OPController_PersistenceOPController
     public static function bdChecaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem = null, $nomeCampoOrigem = null, $forceCreateRelationship = false)
     {
     	// retornando o resultado do metodo "checaExistenciaValorCategoriaChaveEstrangeira" no controlador "Basico_OPController_DBCheckOPController"
-    	return Basico_OPController_DBCheckOPController::checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem, $nomeCampoOrigem, $forceCreateRelationship);
+    	return Basico_OPController_DBCheckOPController::getInstance()->checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem, $nomeCampoOrigem, $forceCreateRelationship);
     }
 
      /**

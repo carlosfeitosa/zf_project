@@ -16,6 +16,8 @@ class Basico_OPController_MensageiroOPController
 	 * @var Zend_Mail 
 	 */
 	private $_mail;
+	
+	private $_mensagemOPController;
 
 	/**
 	 * Contrutor do controlador Basico_OPController_MensageiroOPController
@@ -38,7 +40,25 @@ class Basico_OPController_MensageiroOPController
 	 */
 	private function init()
 	{
-		
+		// inicializando controladores
+		$this->initControllers();
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 14/05/2012
+	 */
+	protected function initControllers()
+	{
+		// inicializando controlador de mensagem
+		$this->_mensagemOPController = Basico_OPController_MensagemOPController::getInstance();
+		return;
 	}
 	
 	/**
@@ -71,14 +91,14 @@ class Basico_OPController_MensageiroOPController
 	/**
 	 * Envia Mensagem
 	 * 
-	 * @param Basico_Model_Mensagem $mensagem
+	 * @param Array $dadosMensagem
 	 * 
 	 * @return void
 	 */
-    public function enviar(Basico_Model_Mensagem $mensagem, $idPessoaPerfilRemetente, array $arrayIdsPessoasPerfisDestinatarios, array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada = array(), array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonadaOculta = array()) {
+    public function enviar(array $dadosMensagem, $idPessoaPerfilRemetente, array $arrayIdsPessoasPerfisDestinatarios, array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada = array(), array $arrayIdsPessoasPerfisDestinatariosCopiaCarbonadaOculta = array()) {
 
     	// verificando se a mensagem foi enviada
-    	if($mensagem->enviada){
+    	if($dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_DATAHORA_ENVIO] !== null){
     		// interrompendo execucao do metodo e retornando falso
     		return false;
     	}
@@ -89,7 +109,7 @@ class Basico_OPController_MensageiroOPController
     		Basico_OPController_PersistenceOPController::bdControlaTransacao();
     		
     		// associando / verificando as pessoas envolvidas na mensagem
-			if(!Basico_OPController_MensagemOPController::getInstance()->criaRelacaoPessoasPerfisMensagensCategoriasAssossiadas($mensagem,  $idPessoaPerfilRemetente, $arrayIdsPessoasPerfisDestinatarios, $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada, $arrayIdsPessoasPerfisDestinatariosCopiaCarbonadaOculta)){
+			if(!$this->_mensagemOPController->criaRelacaoPessoasPerfisMensagensCategoriasAssossiadas($dadosMensagem,  $idPessoaPerfilRemetente, $arrayIdsPessoasPerfisDestinatarios, $arrayIdsPessoasPerfisDestinatariosCopiaCarbonada, $arrayIdsPessoasPerfisDestinatariosCopiaCarbonadaOculta)){
     		   // cancelando transacao
     		   Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
 	    	   
@@ -109,11 +129,11 @@ class Basico_OPController_MensageiroOPController
 			$this->_mail = $this->retornaNovoObjetoMail();
 
 	        // setando remetente
-	        $this->_mail->setFrom($mensagem->remetente, $mensagem->remetenteNome);
+	        $this->_mail->setFrom($dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_REMETENTE], $dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_REMETENTE_NOME]);
 	        
 	        // recuperando destinatarios
-	        $destinatarios = $mensagem->destinatariosArray;
-	        $destinatariosNomes = $mensagem->destinatariosNomesArray;
+	        $destinatarios = explode(',', $dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_DESTINATARIOS]);
+	        $destinatariosNomes = $dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_DESTINATARIOS_NOMES];
 	        
 	        $i = 0;
 	        // loop para adicionar destinatarios
@@ -124,21 +144,16 @@ class Basico_OPController_MensageiroOPController
 	        }
 	        
 	        // setando assunto
-	        $this->_mail->setSubject($mensagem->assunto);
+	        $this->_mail->setSubject($dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_ASSUNTO]);
 	        // setando corpo da mensagem
-	        $this->_mail->setBodyText($mensagem->mensagem);
+	        $this->_mail->setBodyText($dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_MENSAGEM]);
 	        // setando data da mensagem
-	        $this->_mail->setDate($mensagem->datahoraCriacao);
+	        $this->_mail->setDate($dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_DATAHORA_CRIACAO]);
 	        
 	        // enviando a mensagem
             $this->_mail->send($transport);
 
-            // atualizando a hora do envio da mensagem
-            $mensagem->datahoraEnvio = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-            // recuperando a ultima versao do objeto
-            $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($mensagem);
-            // Atualizando a mensagem
-            Basico_OPController_MensagemOPController::getInstance()->salvarObjeto($mensagem, $ultimaVersaoMensagem);
+            $this->_mensagemOPController->marcarMensagemComoEnviada($dadosMensagem[Basico_OPController_MensagemOPController::ARRAY_MENSAGEM_ATRIBUTO_ID]);
 
     		// salvando log de sucesso no envio de mensagem
     		Basico_OPController_LogOPController::salvarLogViaSQL(Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_EMAIL, true), LOG_MSG_EMAIL_SUCESSO);

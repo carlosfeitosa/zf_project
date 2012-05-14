@@ -90,4 +90,33 @@ class Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController extends
 		// retornando instancia
 		return self::$_singleton;
 	}
+	
+	/**
+	 * Insere a associacao de pessoa perfil com a mensagem (relaciona os envolvidos com o mensagem)
+	 * 
+	 * @param Int $idMensagem - id da mensagem a ser relacionada
+	 * @param Int $idCategoria - id da categoria do envolvido (ex: remetente, destinatario)
+	 * @param Int $idAssocclPerfil - id do assoccl_perfil da pessoa envolvida
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 10/05/2012
+	 */
+	public function insereAssociacaoMensagemPessoaPerfil($idMensagem, $idCategoria, $idAssocclPerfil)
+	{
+		// recuperando um novo modelo de mensagem assoccl assoccl pessoa perfil
+		$novoModelo = $this->retornaNovoObjetoModelo();
+		
+		// setando atributos no modelo para remetente
+		$novoModelo->idMensagem      = $idMensagem;
+		$novoModelo->idCategoria     = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(MENSAGEM_PESSOAS_ENVOLVIDAS_REMETENTE);
+		$novoModelo->idAssocclPerfil = $idAssocclPerfil;
+
+		// salvando objeto
+		parent::salvarObjeto($novoModelo, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS), LOG_MSG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA, null, $idAssocclPerfil);
+		
+		return true;
+	}
 }

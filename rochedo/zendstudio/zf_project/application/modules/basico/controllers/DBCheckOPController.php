@@ -6,6 +6,77 @@
 
 class Basico_OPController_DBCheckOPController
 {
+	/**
+	 * Instância do controlador Basico_OPController_DBCheckOPController.
+	 * @var Basico_OPController_DBCheckOPController
+	 */
+	private static $_singleton;
+	
+	/**
+	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
+	 */
+	private $_categoriaAssocChaveEstrangeiraOPController;
+	/**
+	 * @var Basico_OPController_AssocChaveEstrangeiraRelacaoOPController
+	 */
+	private $_assocChaveEstrangeiraRelacao;
+	
+	/**
+	 * Construtor do controlador Basico_OPController_DBCheckOPController
+	 * 
+	 */
+	protected function __construct()
+	{
+		$this->init();
+	}
+	
+	/**
+	 *  Inicializa o controlador Basico_OPController_DBCheckOPController
+	 * 
+	 * @return void
+	 */
+	protected function init()
+	{
+		// inicializando controladores auxiliares
+		$this->initControllers();
+		
+		return;
+	}
+	
+	/**
+	 * Inicializa os controladores utilizados pelo controlador
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/05/2012
+	 */
+	private function initControllers()
+	{
+		// instanciando controlador de categoria chave estrangeira
+		$this->_categoriaAssocChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
+		// instanciando controlador de assoc chave estrangeira relacao
+		$this->_assocChaveEstrangeiraRelacao               = Basico_OPController_AssocChaveEstrangeiraRelacaoOPController::getInstance();
+		
+	}
+	
+	/**
+	 * Inicializa Controlador DbCheck.
+	 * 
+	 * @return Basico_OPController_DBCheckOPController
+	 */
+	public static function getInstance()
+	{
+		// checando singleton
+		if(self::$_singleton == NULL){
+			// instanciando pela primeira vez
+			self::$_singleton = new Basico_OPController_DBCheckOPController();
+		}
+		// retornando instancia
+		return self::$_singleton;
+	}
+	
     /**
      * Checa a existencia da relacao categoria chave estrangeira
      * 
@@ -13,18 +84,9 @@ class Basico_OPController_DBCheckOPController
      * 
      * @return Boolean
      */
-    public static function checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
+    public function checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
     {
-        // instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_CategoriaAssocChaveEstrangeiraOPController');
-		// recuperando a tupla referente a categoria passada por parametro
-		$arrayCategoriaChaveEstrangeira = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelCategoriaChaveEstrangeira, "id_categoria = {$idCategoria}", null, 1, 0);
-
-		// verificando se existe a relacao da categoria com uma chave estrangeira
-		if (isset($arrayCategoriaChaveEstrangeira[0]))
-			return true;
-		else
-			return false;
+    	return $this->_categoriaAssocChaveEstrangeiraOPController->checaExistenciaRelacaoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria);
     }
 
     /**
@@ -38,23 +100,15 @@ class Basico_OPController_DBCheckOPController
      * 
      * @return Boolean
      */
-    public static function checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem = null, $nomeCampoOrigem = null, $forceCreateRelationship = false)
+    public function checaExistenciaValorCategoriaChaveEstrangeira($idCategoria, $valor, $nomeTabelaOrigem = null, $nomeCampoOrigem = null, $forceCreateRelationship = false)
     {
-    	// instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_CategoriaAssocChaveEstrangeiraOPController');
-		// recuperando a tupla referente a categoria passada por parametro
-		$arrayCategoriaChaveEstrangeira = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelCategoriaChaveEstrangeira, "id_categoria = {$idCategoria}", null, 1, 0);
-
-		// verificando se existe a relacao da categoria com uma chave estrangeira
-		if (!isset($arrayCategoriaChaveEstrangeira[0])){
-			
-			return false;
-		}
+    	// recuperando array com nome da tabela estrangeira e do campo estrangeiro
+    	$arrayTabelaCampoEstrangeiro = $this->_categoriaAssocChaveEstrangeiraOPController->retornaArrayTabelaEstrangeiraCampoEnstrangeiroPorIdCategoriaChaveEstrangeira($idCategoria);
 
 		// recuperando o nome da tabela estrangeira
-		$nomeTabelaEstrangeira  = $arrayCategoriaChaveEstrangeira[0]->tabelaEstrangeira;
+		$nomeTabelaEstrangeira  = $arrayTabelaCampoEstrangeiro['tabelaEstrangeira'];
 		// recuperando o nome do campo da tabela estrangeira
-		$campoTabelaEstrangeira = $arrayCategoriaChaveEstrangeira[0]->campoEstrangeiro;
+		$campoTabelaEstrangeira = $arrayTabelaCampoEstrangeiro['campoEstrangeiro'];
 
 		// verificando a existencia do valor passado por parametro na tabela estrangeira recuperada
 		$checkConstraint = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery("SELECT {$campoTabelaEstrangeira} FROM {$nomeTabelaEstrangeira} WHERE {$campoTabelaEstrangeira} = {$valor}");
@@ -62,12 +116,9 @@ class Basico_OPController_DBCheckOPController
 		// checando verificacao obteve sucesso
 		if ((isset($checkConstraint)) and ($checkConstraint != false)) {
 
-			// instanciando controlador de relacao categoria chave estrangeira
-			$controllerRelacaoCategoriaChaveEstrangeira = Basico_OPController_AssocChaveEstrangeiraRelacaoOPController::getInstance();
-
 			// verificando se a tabela/campo esta relacionada em relacao categoria chave estrangeira e se o sistema deve guardar a tabela origem
 			if (($nomeCampoOrigem) and ($nomeCampoOrigem))
-				return $controllerRelacaoCategoriaChaveEstrangeira->checaRelacaoCategoriaChaveEstrangeira($nomeTabelaOrigem, $nomeCampoOrigem, $forceCreateRelationship);
+				return $this->_assocChaveEstrangeiraRelacao->checaRelacaoCategoriaChaveEstrangeira($nomeTabelaOrigem, $nomeCampoOrigem, $forceCreateRelationship);
 			else
 				return true;
 

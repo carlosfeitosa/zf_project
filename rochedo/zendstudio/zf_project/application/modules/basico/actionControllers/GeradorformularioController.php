@@ -186,7 +186,7 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         	//$arrayNomeFormularios[0] = null;
             foreach ($objsFormulario as $formularioObject){
             	// recuperando id/nome dos formularios
-				$arrayNomeFormularios[$formularioObject->id] = $formularioObject->formName;
+				$arrayNomeFormularios[$formularioObject['id']] = $formularioObject['formName'];
             }
         }
         

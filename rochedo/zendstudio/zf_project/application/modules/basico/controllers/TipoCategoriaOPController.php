@@ -112,11 +112,11 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	public function retornaIdTipoCategoriaPorNome($nomeTipoCategoria)
 	{
 		// recuperando os objetos tipo categoria
-		$objsTipoCategoria = $this->retornaObjetosPorParametros("nome = '{$nomeTipoCategoria}'", null, 1, 0);
+		$objTipoCategoria = $this->retornaObjetosPorParametros("nome = '{$nomeTipoCategoria}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
-		if (isset($objsTipoCategoria[0]))
-			return $objsTipoCategoria[0]->id;
+		if (is_object($objTipoCategoria))
+			return $objTipoCategoria->id;
 
 		return null;
 	}
