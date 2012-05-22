@@ -108,18 +108,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * @param Integer $idPessoaAssocclPerfilCreate
 	 * @param Integer $idAssocTable
 	 * @param String $fieldname
-	 * @param String $tipo
-	 * @param Integer $tamanho
-	 * @param Integer $precisao
-	 * @param String $fkTabela
-	 * @param String $fkCampo
-	 * @param Boolean $indice
-	 * @param Boolean $unique
-	 * @param Boolean $nullable
-	 * @param String $valorDefault
-	 * @param Boolean $readonly
 	 * @param String $constanteTextual
-	 * @param String $checkConstraint
 	 * @param String $constanteTextualDescricao
 	 * @param String $constanteTextualAlias
 	 * 
@@ -128,7 +117,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 27/04/2012
 	 */
-	public function criarNovoCampoAtivo($idPessoaAssocclPerfilCreate, $idAssocTable, $fieldname, $tipo, $tamanho, $precisao, $fkTabela, $fkCampo, $indice, $unique, $nullable, $valorDefault, $readonly, $constanteTextual, $checkConstraint = null, $constanteTextualDescricao = null, $constanteTextualAlias = null)
+	public function criarNovoCampoAtivo($idPessoaAssocclPerfilCreate, $idAssocTable, $fieldname, $constanteTextual, $constanteTextualDescricao = null, $constanteTextualAlias = null)
 	{
 		// instanciando modelo
 		$novoObjeto = $this->retornaNovoObjetoModelo();
@@ -139,17 +128,6 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 		$novoObjeto->constanteTextual          = $constanteTextual;
 		$novoObjeto->constanteTextualDescricao = $constanteTextualDescricao;
 		$novoObjeto->constanteTextualAlias     = $constanteTextualAlias;
-		$novoObjeto->tipo          			   = $tipo;
-		$novoObjeto->tamanho           		   = $tamanho;
-		$novoObjeto->precisao           	   = $precisao;
-		$novoObjeto->fkTabela           	   = $fkTabela;
-		$novoObjeto->fkCampo           		   = $fkCampo;
-		$novoObjeto->indice           		   = $indice;
-		$novoObjeto->checkConstraint           = $checkConstraint;
-		$novoObjeto->unique           		   = $unique;
-		$novoObjeto->nullable           	   = $nullable;
-		$novoObjeto->valorDefault              = $valorDefault;
-		$novoObjeto->readonly           	   = $readonly;
 		$novoObjeto->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
@@ -187,5 +165,38 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 
 		// retornando o resultado do metodo de salvar o objeto
 		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+	}
+
+	/**
+	 * Ativa um campo
+	 * 
+	 * @param Integer $idPessoaAssocclPerfilActivate
+	 * @param Integer $idAssocTable
+	 * @param String $fieldname
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/05/2012
+	 */
+	public function AtivaCampo($idPessoaAssocclPerfilActivate, $idAssocTable, $fieldname)
+	{
+		// recuperando o objeto schema
+		$objetoUpdate = $this->retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
+
+		// verificando se o objeto foi recuperado
+		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando a versao do objeto
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoUpdate);
+
+		// desativando o schema
+		$objetoUpdate->ativo = true;
+
+		// retornando o resultado do metodo de salvar o objeto
+		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
 	}
 }

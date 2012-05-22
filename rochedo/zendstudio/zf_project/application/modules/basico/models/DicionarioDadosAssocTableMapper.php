@@ -36,7 +36,6 @@ class Basico_Model_DicionarioDadosAssocTableMapper extends Basico_AbstractMapper
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
 		$this->_arrayMapper['constanteTextualAlias']	 = 'constante_textual_alias';
 		$this->_arrayMapper['quantidadeCampos']			 = 'quantidade_campos';
-		$this->_arrayMapper['checkConstraint']			 = 'check_constraint';
 		$this->_arrayMapper['ativo']					 = 'ativo';
 		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';

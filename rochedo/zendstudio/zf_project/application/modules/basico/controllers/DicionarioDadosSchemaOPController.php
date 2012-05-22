@@ -160,6 +160,39 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	}
 
 	/**
+	 * Ativa um schema
+	 * 
+	 * @param Integer $idPessoaAssocclPerfilActivate
+	 * @param Integer $idModulo
+	 * @param String $schemaname
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/05/2012
+	 */
+	public function ativaSchema($idPessoaAssocclPerfilActivate, $idModulo, $schemaname)
+	{
+		// recuperando o objeto schema
+		$objetoUpdate = $this->retornaObjetosPorParametros("id_modulo = {$idModulo} AND schemaname = '{$schemaname}'", null, 1, 0);
+
+		// verificando se o objeto foi recuperado
+		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando a versao do objeto
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoUpdate);
+
+		// desativando o schema
+		$objetoUpdate->ativo = true;
+
+		// retornando o resultado do metodo de salvar o objeto
+		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_SCHEMA, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_SCHEMA . "(id_modulo = {$idModulo} | {$schemaname})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
+	}
+
+	/**
 	 * Atualiza a quantidade de tabelas de um schema
 	 * 
 	 * @param Integer $idPessoaAssocclPerfilUpdate

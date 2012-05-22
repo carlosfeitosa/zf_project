@@ -56,6 +56,8 @@ class Basico_OPController_DicionarioDadosOPController
 	{
 		// inicializando o controlador
 		$this->init();
+
+		return;
 	}
 
 	/**
@@ -65,13 +67,8 @@ class Basico_OPController_DicionarioDadosOPController
 	 */
 	protected function init()
 	{ 
-		// instanciando controladores utilzados pelo controlador
-		$this->_moduloOPController                    = Basico_OPController_ModuloOPController::getInstance();
-		$this->_cvcOPController                       = Basico_OPController_CVCOPController::getInstance();
-		$this->_dicionarioDadosSchemaOPController     = Basico_OPController_DicionarioDadosSchemaOPController::getInstance();
-		$this->_dicionarioDadosAssocTableOPController = Basico_OPController_DicionarioDadosAssocTableOPController::getInstance();
-		$this->_dicionarioDadosAssocFieldOPController = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance();
-		$this->_categoriaOPController				  = Basico_OPController_CategoriaOPController::getInstance();
+		// inicializando controladores
+		$this->initControllers();
 
 		return;
 	}
@@ -88,9 +85,12 @@ class Basico_OPController_DicionarioDadosOPController
 	protected function initControllers()
 	{
 		// instanciando controladores utilzados pelo controlador
-		$this->_moduloOPController                = Basico_OPController_ModuloOPController::getInstance();
-		$this->_cvcOPController                   = Basico_OPController_CVCOPController::getInstance();
-		$this->_dicionarioDadosSchemaOPController = Basico_OPController_DicionarioDadosSchemaOPController::getInstance();
+		$this->_moduloOPController                    = Basico_OPController_ModuloOPController::getInstance();
+		$this->_cvcOPController                       = Basico_OPController_CVCOPController::getInstance();
+		$this->_categoriaOPController				  = Basico_OPController_CategoriaOPController::getInstance();
+		$this->_dicionarioDadosSchemaOPController     = Basico_OPController_DicionarioDadosSchemaOPController::getInstance();
+		$this->_dicionarioDadosAssocTableOPController = Basico_OPController_DicionarioDadosAssocTableOPController::getInstance();
+		$this->_dicionarioDadosAssocFieldOPController = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance();
 
 		return;
 	}
@@ -238,7 +238,6 @@ class Basico_OPController_DicionarioDadosOPController
 				// limpando memória
 				unset($chave);
 				unset($arrayValores);
-				unset($arrayResultado);
 			}
 
 			// retornando sucesso
@@ -296,14 +295,11 @@ class Basico_OPController_DicionarioDadosOPController
 				// limpando memoria
 				unset($constCategoriaTipoTabela);
 
-				// recuperando check constraints da tabela
-				$checkconstraintsTabela = Basico_OPController_DBUtilOPController::retornaCheckContraintsTabela($nomeSchema, $arrayValores['nome']);
-
 				// verificando o tipo de operacao
 				switch ($arrayValores['operacao']) {
 					case 'insert':
 						// criando novo schema
-						$this->_dicionarioDadosAssocTableOPController->criarNovaTabelaAtiva($idPessoaAssocclPerfilSistema, $idCategoria, $idSchema, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA, $checkconstraintsTabela);
+						$this->_dicionarioDadosAssocTableOPController->criarNovaTabelaAtiva($idPessoaAssocclPerfilSistema, $idCategoria, $idSchema, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
 					break;
 					case 'update':
 						// desativando o schema
@@ -314,10 +310,8 @@ class Basico_OPController_DicionarioDadosOPController
 				// limpando memória
 				unset($chave);
 				unset($arrayValores);
-				unset($arrayResultado);
 				unset($idCategoria);
 				unset($idSchema);
-				unset($checkconstraintsTabela);
 
 				// incrementando o contador
 				$contador++;
@@ -326,6 +320,7 @@ class Basico_OPController_DicionarioDadosOPController
 			// limpando memoria
 			unset($nomeSchema);
 			unset($contador);
+			unset($idPessoaAssocclPerfilSistema);
 
 			// retornando sucesso
 			return true;
@@ -334,6 +329,7 @@ class Basico_OPController_DicionarioDadosOPController
 		// limpando memoria
 		unset($nomeSchema);
 		unset($contador);
+		unset($idPessoaAssocclPerfilSistema);
 
 		// retornando fracasso
 		return false;
@@ -387,50 +383,11 @@ class Basico_OPController_DicionarioDadosOPController
 				// recuperando id da tabela
 				$idAssocTable = $this->_dicionarioDadosAssocTableOPController->retornaIdTablePorIdSchemaTablename($idSchema, $arrayValores['nome_pai']);
 
-				// recuperando atributos da tabela
-				$arrayAtributosTabela = Basico_OPController_DBUtilOPController::retornaArrayAtributosCampoTabela($arrayValores['schema_name'], $arrayValores['nome_pai'], $arrayValores['nome']);
-
-				// carregando atributos do campo
-				$tipoCampo    = $arrayAtributosTabela['type'];
-				$precisao     = $arrayAtributosTabela['numeric_scale'];
-				$valorDefault = $arrayAtributosTabela['column_default'];
-				$readonly     = true;
-				// verificando o tipo do campo para carregar o tamanho
-				if ('varchar' === $tipoCampo) {
-					// carregando o tamanho do campo varchar
-					$tamanho = $arrayAtributosTabela['character_maximum_length'];
-				} else {
-					// carretando o tamanho do campo
-					$tamanho = $arrayAtributosTabela['numeric_precision'];
-				}
-				// verificando se o campo eh nullable
-				if ('NO' === $arrayAtributosTabela['is_nullable']) {
-					// setando para falso
-					$nullable = false;
-				} else {
-					// setando para verdadeiro
-					$nullable = true;
-				}
-				// recuperando relacao de fk, caso haja
-				$arrayRelacaoFKCampo = Basico_OPController_DBCheckOPController::retornaArrayRelacaoCampo($arrayValores['schema_name'], $arrayValores['nome_pai'], $arrayValores['nome']);
-				// verificando se o houver recuperacao de relacao
-				if (count($arrayRelacaoFKCampo)) {
-					// recuperando informacoes sobre o fk
-					$fkTabela = $arrayRelacaoFKCampo['fk_schema'] . "." . $arrayRelacaoFKCampo['fk_table'];
-					$fkCampo  = $arrayRelacaoFKCampo['fk_field'];
-				} else {
-					// setando informacoes sobre fk para nulo
-					$fkTabela = null;
-					$fkCampo  = null;
-				}
-				$indice = false;
-				$unique = false;
-
 				// verificando o tipo de operacao
 				switch ($arrayValores['operacao']) {
 					case 'insert':
 						// criando novo schema
-						$this->_dicionarioDadosAssocFieldOPController->criarNovoCampoAtivo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome'], $tipoCampo, $tamanho, $precisao, $fkTabela, $fkCampo, $indice, $unique, $nullable, $valorDefault, $readonly, CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+						$this->_dicionarioDadosAssocFieldOPController->criarNovoCampoAtivo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
 					break;
 					case 'update':
 						// desativando o schema
@@ -441,18 +398,7 @@ class Basico_OPController_DicionarioDadosOPController
 				// limpando memória
 				unset($chave);
 				unset($arrayValores);
-				unset($arrayResultado);
 				unset($idAssocTable);
-				unset($arrayAtributosTabela);
-				unset($tipoCampo);
-				unset($tamanho);
-				unset($precisao);
-				unset($valorDefault);
-				unset($readonly);
-				unset($nullable);
-				unset($arrayRelacaoFKCampo);
-				unset($fkTabela);
-				unset($fkCampo);
 
 				// atualizando contador
 				$contador++;
@@ -463,11 +409,17 @@ class Basico_OPController_DicionarioDadosOPController
 			unset($nomeSchema);
 			unset($contador);
 			unset($idSchema);
+			unset($idPessoaAssocclPerfilSistema);
 
 			// retornando sucesso
 			return true;
 		}
 
+		// limpando memoria
+		unset($nomeTabela);
+		unset($nomeSchema);
+		unset($contador);
+			
 		// retornando fracasso
 		return false;
 	}

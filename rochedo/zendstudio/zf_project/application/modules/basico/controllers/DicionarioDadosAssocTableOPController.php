@@ -113,7 +113,6 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	 * @param String $constanteTextualDescricao
 	 * @param String $constanteTextualAlias
 	 * @param Integer $quantidadeCampos
-	 * @param String $checkConstraint
 	 * @param Integer $idFkDefault
 	 * 
 	 * @return Boolean
@@ -121,7 +120,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	public function criarNovaTabelaAtiva($idPessoaAssocclPerfilCreate, $idCategoria, $idSchema, $tablename, $constanteTextual, $checkConstraint = null, $constanteTextualDescricao = null, $constanteTextualAlias = null, $quantidadeCampos = null, $idFkDefault = null)
+	public function criarNovaTabelaAtiva($idPessoaAssocclPerfilCreate, $idCategoria, $idSchema, $tablename, $constanteTextual, $constanteTextualDescricao = null, $constanteTextualAlias = null, $quantidadeCampos = null, $idFkDefault = null)
 	{
 		// instanciando modelo
 		$novoObjeto = $this->retornaNovoObjetoModelo();
@@ -135,7 +134,6 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$novoObjeto->constanteTextualDescricao = $constanteTextualDescricao;
 		$novoObjeto->constanteTextualAlias     = $constanteTextualAlias;
 		$novoObjeto->quantidadeCampos          = $quantidadeCampos;
-		$novoObjeto->checkConstraint           = $checkConstraint;
 		$novoObjeto->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
@@ -173,6 +171,39 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 
 		// retornando o resultado do metodo de salvar o objeto
 		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+	}
+
+	/**
+	 * Ativa uma tabela
+	 * 
+	 * @param Integer $idPessoaAssocclPerfilActivate
+	 * @param Integer $idSchema
+	 * @param String $tablename
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/05/2012
+	 */
+	public function ativaTabela($idPessoaAssocclPerfilActivate, $idSchema, $tablename)
+	{
+		// recuperando o objeto schema
+		$objetoUpdate = $this->retornaObjetosPorParametros("id_schema = {$idSchema} AND tablename = '{$tablename}'", null, 1, 0);
+
+		// verificando se o objeto foi recuperado
+		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando a versao do objeto
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objetoUpdate);
+
+		// desativando o schema
+		$objetoUpdate->ativo = true;
+
+		// retornando o resultado do metodo de salvar o objeto
+		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
 	}
 
 	/**

@@ -45,10 +45,6 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
 	 */
 	protected $_quantidadeCampos;
 	/**
-	 * @var String
-	 */
-	protected $_checkConstraint;
-	/**
 	 * @var Boolean
 	 */
 	protected $_ativo;
@@ -260,28 +256,6 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
 	public function getQuantidadeCampos()
 	{
 		return $this->_quantidadeCampos;
-	}
-	
-	/**
-	* Set checkConstraint
-	* 
-	* @param String $checkConstraint 
-	* @return Basico_Model_DicionarioDadosAssocTable
-	*/
-	public function setCheckConstraint($checkConstraint)
-	{
-		$this->_checkConstraint = Basico_OPController_UtilOPController::retornaValorTipado($checkConstraint, TIPO_STRING, true);
-		return $this;
-	}
-
-	/**
-	* Get checkConstraint
-	* 
-	* @return null|String
-	*/
-	public function getCheckConstraint()
-	{
-		return $this->_checkConstraint;
 	}
 	
 	/**
