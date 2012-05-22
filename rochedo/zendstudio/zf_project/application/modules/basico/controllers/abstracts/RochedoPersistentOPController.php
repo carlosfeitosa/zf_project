@@ -226,7 +226,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @param Integer $offset - retornar dados a partir da linha
 	 * @param array $arrayAtributosRetorno - array com os atributos que deseja retornar no array de resultados
 	 * 
-	 * @return Array
+	 * @return Array|null
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
@@ -253,6 +253,12 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 
 		// limpando memoria
 		unset($resultado);
+
+		// verificando se houve recuperação de resultado
+		if (!isset($arrayResultado)) {
+			// retornando nulo
+			return null;
+		}
 
 		// verificando se foi passado um array de atributos para recuperação
 		if (count($arrayAtributosRetorno)) {

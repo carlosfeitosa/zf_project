@@ -179,7 +179,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 22/05/2012
 	 */
-	public function AtivaCampo($idPessoaAssocclPerfilActivate, $idAssocTable, $fieldname)
+	public function ativaCampo($idPessoaAssocclPerfilActivate, $idAssocTable, $fieldname)
 	{
 		// recuperando o objeto schema
 		$objetoUpdate = $this->retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
@@ -198,5 +198,37 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 
 		// retornando o resultado do metodo de salvar o objeto
 		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
+	}
+
+	/**
+	 * Retorna o id de um campo atraves do id da tabela seu fieldname
+	 * 
+	 * @param Integer $idAssocTable
+	 * @param String $fieldname
+	 * 
+	 * @return Integer|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/05/2012
+	 */
+	public function retornaIdTablePorIdSchemaTablename($idAssocTable, $fieldname)
+	{
+		// verificando se nao foi passado o id do schema ou nome do schema
+		if (((!$idAssocTable) or (!is_int($idAssocTable))) or ((!$fieldname) or (!is_string($fieldname)))) {
+			// retornando nulo
+			return null;
+		}
+
+		// recuperando array com o resultado da recuperacao do nome do schema atraves do id
+		$arrayResultado = $this->retornaArrayDadosObjetosPorParametros("id_assoc_table = {$idAssocTable} and fieldname = '{$fieldname}'", null, 1, 0, array('id'));
+
+		// verificando se nao houve recuperacao de resultado
+		if (!count($arrayResultado)) {
+			// retornando nulo
+			return null;
+		}
+
+		// retornando o nome do schema
+		return (int) $arrayResultado[0]['id'];
 	}
 }

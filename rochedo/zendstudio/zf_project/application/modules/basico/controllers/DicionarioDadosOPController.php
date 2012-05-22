@@ -226,8 +226,14 @@ class Basico_OPController_DicionarioDadosOPController
 				// verificando o tipo de operacao
 				switch ($arrayValores['operacao']) {
 					case 'insert':
-						// criando novo schema
-						$this->_dicionarioDadosSchemaOPController->criarNovoSchemaAtivo($idPessoaAssocclPerfilSistema, $idModulo, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+						// verificando se já existe um schema desativado
+						if ($this->_dicionarioDadosSchemaOPController->retornaIdSchemaPorSchemaname($arrayValores['nome'])) {
+							// reativando schema
+							$this->_dicionarioDadosSchemaOPController->ativaSchema($idPessoaAssocclPerfilSistema, $idModulo, $arrayValores['nome']);
+						} else {
+							// criando novo schema
+							$this->_dicionarioDadosSchemaOPController->criarNovoSchemaAtivo($idPessoaAssocclPerfilSistema, $idModulo, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+						}
 					break;
 					case 'update':
 						// desativando o schema
@@ -298,11 +304,17 @@ class Basico_OPController_DicionarioDadosOPController
 				// verificando o tipo de operacao
 				switch ($arrayValores['operacao']) {
 					case 'insert':
-						// criando novo schema
-						$this->_dicionarioDadosAssocTableOPController->criarNovaTabelaAtiva($idPessoaAssocclPerfilSistema, $idCategoria, $idSchema, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+						// verificando se já existe a tabela para reativação
+						if ($this->_dicionarioDadosAssocTableOPController->retornaIdTablePorIdSchemaTablename($idSchema, $arrayValores['nome'])) {
+							// reativando tabela
+							$this->_dicionarioDadosAssocTableOPController->ativaTabela($idPessoaAssocclPerfilSistema, $idSchema, $arrayValores['nome']);
+						} else {
+							// criando nova tabela
+							$this->_dicionarioDadosAssocTableOPController->criarNovaTabelaAtiva($idPessoaAssocclPerfilSistema, $idCategoria, $idSchema, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+						}
 					break;
 					case 'update':
-						// desativando o schema
+						// desativando a tabela
 						$this->_dicionarioDadosAssocTableOPController->desativaTabela($idPessoaAssocclPerfilSistema, $idSchema, $arrayValores['nome']);
 					break;
 				}
@@ -386,11 +398,17 @@ class Basico_OPController_DicionarioDadosOPController
 				// verificando o tipo de operacao
 				switch ($arrayValores['operacao']) {
 					case 'insert':
-						// criando novo schema
-						$this->_dicionarioDadosAssocFieldOPController->criarNovoCampoAtivo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+						// verificando se já existe o campo para reativação
+						if ($this->_dicionarioDadosAssocFieldOPController->retornaIdTablePorIdSchemaTablename($idAssocTable, $arrayValores['nome'])) {
+							// reativando o campo
+							$this->_dicionarioDadosAssocFieldOPController->ativaCampo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome']);
+						} else {
+							// criando novo campo
+							$this->_dicionarioDadosAssocFieldOPController->criarNovoCampoAtivo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+						}
 					break;
 					case 'update':
-						// desativando o schema
+						// desativando o campo
 						$this->_dicionarioDadosAssocFieldOPController->desativaCampo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome']);
 					break;
 				}
