@@ -485,18 +485,18 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	public function marcarMensagemComoEnviada($idMensagem)
 	{
 		// recuperando o objeto mensagem para update
-		$this->_model = $this->retornaObjetosPorParametros("id = {$idMensagem}");
+		$mensagem = $this->retornaObjetosPorParametros("id = {$idMensagem}");
 
 		// se a mensagem foi recuperada
-		if (null !== $this->_model->id) {
+		if (null !== $mensagem->id) {
 			// setando mensagem como enviada
-			$this->_model->datahoraEnvio = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+			$mensagem->datahoraEnvio = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 			
             // recuperando a ultima versao do objeto
-            $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($this->_model);
+            $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($mensagem);
             
             // Atualizando a mensagem
-            parent::salvarObjeto($this->_model, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_MENSAGEM), LOG_MSG_UPDATE_MENSAGEM, $ultimaVersaoMensagem);
+            parent::salvarObjeto($mensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_MENSAGEM), LOG_MSG_UPDATE_MENSAGEM, $ultimaVersaoMensagem);
 			
             return true;            
 		}
