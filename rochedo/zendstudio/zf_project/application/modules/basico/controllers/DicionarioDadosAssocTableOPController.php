@@ -139,7 +139,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$novoObjeto->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE, null, $idPessoaAssocclPerfilCreate);
+		return parent::salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", null, $idPessoaAssocclPerfilCreate);
 	}
 
 	/**
@@ -172,7 +172,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$objetoUpdate->ativo = false;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
 	}
 
 	/**
@@ -202,14 +202,14 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		// recuperando o nome do schema
 		$schemaname = $this->_dicionarioDadosSchemaOPController->retornaNomeSchemaPorId($idSchema);
 
-		// desativando o schema
+		// atualizando a quantidade de campos da tabela
 		$objetoUpdate->quantidadeCampos = Basico_OPController_DBUtilOPController::retornaQuantidadeCamposTabela($schemaname, $tablename);
 
 		// limpando memória
 		unset($schemaname);
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, $versaoObjeto, $idPessoaAssocclPerfilUpdate);
+		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilUpdate);
 	}
 
 	/**

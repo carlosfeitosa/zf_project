@@ -1087,11 +1087,11 @@ class Basico_OPController_DBUtilOPController
 
 		// query para retornar a quantidade de tabelas em um schema
 		$queryRetornaQuantidadeCamposTabelas = "SELECT count(fields.column_name) AS total_campos_tabelas
-				
+
 												FROM INFORMATION_SCHEMA.columns fields
 												LEFT JOIN INFORMATION_SCHEMA.tables tables ON (fields.table_schema = tables.table_schema AND
 												                                           fields.table_name = tables.table_name)
-												
+
 												WHERE tables.table_catalog = 'rochedo_db'
 												AND tables.table_type = 'BASE TABLE'
 												AND tables.table_schema = '$schemaname'

@@ -178,6 +178,8 @@ class Basico_OPController_DicionarioDadosOPController
 
 			// setando o tempo de execucao do php
 			set_time_limit($tempoExecucaoPhp);
+			// setando o limite de memoria do php para o default
+			ini_set('memory_limit', $limiteMemoriaPhp);
 
 			// limpando memoria
 			unset($tempoExecucaoPhp);
@@ -189,6 +191,8 @@ class Basico_OPController_DicionarioDadosOPController
 
 		// setando o tempo de execucao do php
 		set_time_limit($tempoExecucaoPhp);
+		// setando o limite de memoria do php para o default
+		ini_set('memory_limit', $limiteMemoriaPhp);
 
 		// limpando memoria
 		unset($tempoExecucaoPhp);
@@ -359,7 +363,7 @@ class Basico_OPController_DicionarioDadosOPController
 
 			// loop para processar array
 			foreach ($arrayDados as $chave => $arrayValores) {
-				// verificando se houve troca de tabela/schema ou trata-se da ultima volta do loop
+				// verificando se houve troca de campo/tabela ou trata-se da ultima volta do loop
 				if ((('' !== $nomeTabela) and ($arrayValores['nome_pai'] !== $nomeTabela)) or (('' !== $nomeSchema) and ($arrayValores['schema_name'] !== $nomeSchema)) or (count($arrayDados) === ($contador + 1))) {
 					// verificando se trata-se de campo unico
 					if (1 === count($arrayDados)) {
