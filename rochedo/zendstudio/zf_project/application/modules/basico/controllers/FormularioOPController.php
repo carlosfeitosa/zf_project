@@ -286,8 +286,8 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 		$objFormulario = $this->retornaObjetosPorParametros("form_name = '{$formName}'");
 		
 		// se retornou um objeto retorna o id da categoria
-		if (count($objFormulario) > 0)
-			return $objFormulario[0]->idCategoria;
+		if (is_object($objFormulario))
+			return $objFormulario->idCategoria;
 			
 		return false;
 	}

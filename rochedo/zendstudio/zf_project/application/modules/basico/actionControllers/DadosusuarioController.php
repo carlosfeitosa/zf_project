@@ -461,12 +461,12 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 	    	// selecionando a aba do subform DadosBiometricos
 	    	$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
-
+	
 	    	// recuperando ultima versao do obj dadosBiometricos da pessoa
-	        $versaoObjetoDadosBiometricos = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao(Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->retornaObjetoDadosBiometricosPessoaPorIdDadosBiometricos(Basico_OPController_DadosBiometricosOPController::getInstance()->retornaObjetoDadosBiometricosPorIdPessoa($idPessoa)->id));
+	        $versaoObjetoDadosBiometricosAssocPessoa = Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->retornaUltimaVersaoObjetoDadosBiometricosAssocPessoaPorIdPessoa($idPessoa);
 
             // adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
-	        $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricos);
+	        $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricosAssocPessoa);
 
 	        // setando mensagem
 			$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("VIEW_MESSAGEM_SUCESSO_SALVAR_DADOS_BIOMETRICOS"));

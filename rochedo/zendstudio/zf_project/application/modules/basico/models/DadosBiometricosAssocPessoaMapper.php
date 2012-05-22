@@ -30,6 +30,7 @@ class Basico_Model_DadosBiometricosAssocPessoaMapper extends Basico_AbstractMapp
 		$this->_arrayMapper['id']						 = 'id';
 		$this->_arrayMapper['idDadosBiometricos']		 = 'id_dados_biometricos';
 		$this->_arrayMapper['idCategoriaSexo']			 = 'id_categoria_sexo';
+		$this->_arrayMapper['idCategoriaRaca']			 = 'id_categoria_raca';
 		$this->_arrayMapper['idCategoriaTipoSanguineo']  = 'id_categoria_tipo_sanguineo';
 		$this->_arrayMapper['altura'] 				     = 'altura';
 		$this->_arrayMapper['peso'] 	 				 = 'peso';

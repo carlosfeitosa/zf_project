@@ -173,9 +173,9 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		$objsAcaoAplicacao = $this->retornaObjetosPorParametros("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado com sucesso
-		if ($objsAcaoAplicacao[0]->id)
+		if (is_object($objsAcaoAplicacao))
 			// retornando o objeto
-			return $objsAcaoAplicacao[0];
+			return $objsAcaoAplicacao;
 
 		return null;
 	}

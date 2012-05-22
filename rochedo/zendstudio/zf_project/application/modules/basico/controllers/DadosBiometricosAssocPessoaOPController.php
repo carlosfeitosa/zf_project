@@ -211,6 +211,31 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 
     	// salvando o objeto dadosBiometricos
     	parent::salvarObjeto($dadosBiometricosPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_BIOMETRICOS_PESSOA, true), LOG_MSG_UPDATE_DADOS_BIOMETRICOS_PESSOA, (int) $versaoObjetoDadosBiometricos, $idPessoaPerfilCriador);
+    	
     	return true;
+    }
+    
+    /**
+     * Retorna a ultima versao do objeto dados biometricos assoc pessoa pelo o id 
+     * 
+     * @param Int $idPessoa
+     * 
+     * @return Int
+     * 
+     * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * 
+     * @since 22/05/2012
+     */
+    public function retornaUltimaVersaoObjetoDadosBiometricosAssocPessoaPorIdPessoa($idPessoa)
+    {
+    	// recuperando o id de dados biometricos
+	    $idDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaIdDadosBiometricosPorIdPessoa($idPessoa);
+    	
+	    // recuperando objeto dadosBiometricosAssocPessoa
+    	$dadosBiometricosPessoa = $this->retornaObjetosPorParametros("id_dados_biometricos = {$idDadosBiometricos}");
+    	
+    	if (is_object($dadosBiometricosPessoa))
+    		return Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosBiometricosPessoa);
+    		
     }
 }
