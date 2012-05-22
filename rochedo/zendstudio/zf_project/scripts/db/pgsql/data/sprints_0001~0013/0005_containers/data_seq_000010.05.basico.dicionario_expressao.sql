@@ -1431,8 +1431,7 @@ INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traduc
 SELECT c.id, 'MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO' AS constante_textual, '@tratamento @nomeUsuario,
  
  
-Recentemente recebemos uma solicitação de registro em nosso sistema,
-relacionado ao seu endereço de e-mail a qual esta mensagem foi enviada.
+Recentemente recebemos uma solicitação de registro em nosso sistema, relacionado ao seu endereço de e-mail a qual esta mensagem foi enviada.
 
 Caso você tenha feito esta solicitação, informamos que sua conta encontra-se ativa. Caso deseje recuperar sua senha, por favor tente "resetar" sua senha através do sistema ao invés de tentar registrar-se novamente.
 
@@ -8206,8 +8205,7 @@ INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traduc
 SELECT c.id, 'MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO' AS constante_textual, '@tratamento @nomeUsuario,
  
  
-We recently received a request for registration in our system,
-related to your e-mail to which this message was sent.
+We recently received a request for registration in our system, related to your e-mail to which this message was sent.
 
 If you made this request, we inform you that your account is active. If you want to recover your password, please try to "reset" your password through the system rather than trying to re-register.
 
