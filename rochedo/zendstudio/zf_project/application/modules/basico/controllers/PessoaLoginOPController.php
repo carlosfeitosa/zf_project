@@ -507,7 +507,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objLogin->rowinfo  = $rowinfoOPController->getXml();
 
 			// salvando o objeto
-			$this->salvarObjeto($objLogin, $versaoUpdate);
+			parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
 		}
 
 		return null;
@@ -1195,29 +1195,6 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagemConfirmacao, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfilDestinatario));
 	
         return $novaMensagemConfirmacao;
-        
-	}
-	
-	/**
-	 * Retorna a mensagem de aviso sobre tentativa de registro utilizando email primario de usuario do sistema
-	 * 
-	 * @param Int $idPessoa
-	 * @param String $emailPrimario
-	 */
-	public function retornaMensagemTentativaRegistroEmailPrimario($idPessoa, $emailPrimario)
-	{
-		// recuperando a template da mensagem
-		$novaMensagem = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa);
-		    	
-        // recuperando o nome do destinatario
-        $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
-	    // setando atributos da mensagem                     
-        $novaMensagem->destinatarios       = array($emailPrimario);
-        $novaMensagem->idCategoria           = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
-        // salvando objeto
-        Basico_OPController_MensagemTemplateOPController::getInstance()->salvarObjeto($novaMensagem);
-	
-        return $novaMensagem;
         
 	}
 	

@@ -253,10 +253,10 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function atualizaPerfilPadraoPessoa($idPessoa, $idPerfilPadrao, $versaoObjetoPessoa)
 	{
 		// recuperando o objeto pessoa
-		$object = $this->retornaObjetoPorId($this->_model, $idPessoa);
+		$object = $this->retornaObjetosPorParametros("id = {$idPessoa}");
 
 		// verificando se o objeto foi carregado
-		if ($object->id) {
+		if (isset($object->id)) {
 			// mudando atributo perfilPadrao
 			$object->idPerfilDefault = $idPerfilPadrao;
 
@@ -264,7 +264,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
 			// salvando o objeto
-			parent::salvarObjeto($object, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOA), LOG_MSG_NOVA_PESSOA, $versaoObjetoPessoa, $idPessoaPerfilUsuarioValidado);
+			parent::salvarObjeto($object, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_PESSOA, true), LOG_MSG_NOVA_PESSOA, $versaoObjetoPessoa, $idPessoaPerfilUsuarioValidado);
 
 			return true;
 		}

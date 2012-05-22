@@ -336,35 +336,30 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 */
     public function retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa) 
     {
-		// instanciando os controladores
-		$emailControllerController              = Basico_OPController_ContatoCpgEmailOPController::getInstance();
-		$categoriaControllerController          = Basico_OPController_CategoriaOPController::getInstance();
-		$loginControllerController              = Basico_OPController_PessoaLoginOPController::getInstance();
-		$dadosPessoaisControllerController      = Basico_OPController_PessoaAssocDadosOPController::getInstance();
-		$dadosBiometricosControllerController   = Basico_OPController_DadosBiometricosOPController::getInstance();
-		$dadosPessoasPerfisControllerController = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance();
-
 		// recuperando o objeto categoria email template validacao plain text reenvio
-		$objCategoriaMensagem = $categoriaControllerController->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT);
+		$idCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT');
 
 		// recuperando o sexo do usuario
-		$sexoUsuario    = $dadosBiometricosControllerController->retornaSexoPorIdPessoa($idPessoa);
+		$sexoUsuario    = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaSexoPorIdPessoa($idPessoa);
 
 		// recuperando o nome do destinatario
-		$nomeDestinatario = $dadosPessoaisControllerController->retornaNomePessoaPorIdPessoa($idPessoa);
+		$nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaNomePessoaPorIdPessoa($idPessoa);
 		
 		// recuperando a lingua do usuario
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->retornaObjetosPorParametros("id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$arrayMensagemTemplate = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaArrayConstantesTextuaisMensagemTemplatePorId($this->_mensagemTemplateOPController->retornaIdMensagemTemplatePorNomeTemplateIdCategoria('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT', $idCategoriaMensagem));		
 
+		// recuperando o novo objeto mensagem
+		$novaMensagem = $this->retornaNovoObjetoModelo();
+		
 		// recuperando o assunto
-		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());
+		$novaMensagem->setAssunto(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayMensagemTemplate['constanteTextualAssunto']));
 		// recuperando assinatura da mensagem
-		$assinatura            = $dadosPessoasPerfisControllerController->retornaAssinaturaMensagemEmailSistema();
+		$assinatura            = Basico_OPController_AssocclPessoaPerfilAssocDadosOPController::getInstance()->retornaAssinaturaMensagemEmailSistema();
 		// recuperando a mensagem
-		$corpoMensagemTemplate = $objMensagemTemplate[0]->getMensagem();
+		$corpoMensagemTemplate = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayMensagemTemplate['constanteTextualMensagem']);
 		
         // substituindo a tag de tratamento de acordo com o sexo do usuario
 		if ($sexoUsuario === FORM_RADIO_BUTTON_SEXO_OPTION_MASCULINO)
@@ -380,16 +375,42 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         $corpoMensagemTemplate = str_replace(MENSAGEM_TAG_SUPORTE_EMAIL, SUPPORT_EMAIL, $corpoMensagemTemplate);
         
         // carregando a mensagem no modelo
-        $this->_model->setMensagem($corpoMensagemTemplate);
+        $novaMensagem->setMensagem($corpoMensagemTemplate);
 		
 		// recuperando o endereco de e-mail do sistema
-		$emailSistema = $emailControllerController->retornaEmailSistema();
+		$emailSistema = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaEmailSistema();
 		// setando remetente
-		$this->_model->setRemetente($emailSistema);
-		$this->_model->setRemetenteNome(APPLICATION_NAME);
+		$novaMensagem->setRemetente($emailSistema);
+		$novaMensagem->setRemetenteNome(APPLICATION_NAME);
 		
 		// retornando a mensagem
-		return $this->_model;
+		return $novaMensagem;
+	}
+	
+	/**
+	 * Retorna a mensagem de aviso sobre tentativa de registro utilizando email primario de usuario do sistema
+	 * 
+	 * @param Int $idPessoa
+	 * @param String $emailPrimario
+	 */
+	public function retornaMensagemTentativaRegistroEmailPrimario($idPessoa, $emailPrimario)
+	{
+		// recuperando a template da mensagem
+		$novaMensagem = $this->retornaObjetoMensagemTemplateMensagemTentativaRegistroEmailPrimario($idPessoa);
+		    	
+        // recuperando o nome do destinatario
+        $nomeDestinatario = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($idPessoa)->nome;
+	    // setando atributos da mensagem                     
+        $novaMensagem->destinatarios = array($emailPrimario);
+        $novaMensagem->idCategoria   = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_REGISTRO_USUARIO_PLAINTEXT');
+        $novaMensagem->idGenericoProprietario = Basico_OPController_PessoaOPController::retornaIdPessoaSistemaViaSQL();
+        
+        // salvando objeto
+        parent::salvarObjeto($novaMensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_MENSAGEM), LOG_MSG_NOVA_MENSAGEM);
+	
+        // retornando array com modelo de mensagem
+        return Basico_OPController_UtilOPController::codificar($novaMensagem, CODIFICAR_OBJETO_TO_ARRAY);
+        
 	}
 
 	/**

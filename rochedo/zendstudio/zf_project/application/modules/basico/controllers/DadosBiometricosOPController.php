@@ -147,9 +147,9 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 			$dadosBiometricos = $this->retornaArrayDadosObjetosPorParametros("id_generico_proprietario = {$idPessoa} AND id_categoria = {$categoriaDadosBiometricosPessoa}", null, 1, 0, array('id'));
 
 			// verificando se o objeto foi recuperado
-			if (isset($dadosBiometricos['id']))
+			if (isset($dadosBiometricos[0]['id']))
 				// retorna o o objeto dados pessoais
-	    	    return $dadosBiometricos['id'];
+	    	    return $dadosBiometricos[0]['id'];
 	    	    
 	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
 	    	
@@ -215,8 +215,11 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractCo
 	    
 	    // recuperando a versao do objeto dados biometricos
     	$ultimaVersaoDadosBiometricos = $arrayPostDadosBiometricos['versaoObjetoDadosBiometricos'];
+    	
+    	// recuperando id dados biometricos
+    	$idDadosBiometricos = $this->retornaIdDadosBiometricosPorIdPessoa($idPessoa);
 	        	
-    	$this->_dadosBiometricosAssocPessoaOPController->atualizaDadosBiometricosPessoa($idPessoa, $versaoObjetoDadosBiometricos, $sexo, $altura, $peso, $idCategoriaRaca, $idCategoriaTipoSanguineo, $historicoMedico);
+    	$this->_dadosBiometricosAssocPessoaOPController->atualizaDadosBiometricosPessoa($idPessoa, $idDadosBiometricos, $ultimaVersaoDadosBiometricos, $sexo, $altura, $peso, $idCategoriaRaca, $idCategoriaTipoSanguineo, $historicoMedico);
 
     	return true;
     }

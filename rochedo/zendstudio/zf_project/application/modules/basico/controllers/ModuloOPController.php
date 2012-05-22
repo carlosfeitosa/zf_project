@@ -107,8 +107,8 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 		$objModulo = $this->retornaObjetosPorParametros("nome = '{$nomeModulo}'", null, 1, 0);
 
 		// verificando resultado da recuperacao
-		if (isset($objModulo[0]))
-			return $objModulo[0];
+		if (is_object($objModulo))
+			return $objModulo;
 
 		return null;
 	}

@@ -415,30 +415,14 @@ class Basico_OPController_ControleAcessoOPController
 				// recuperando o id do modulo
 				$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModuloRequest)->id;
 	
-				// recuperando um novo modelo de acao aplicacao
-				$modeloAcaoAplicacao = $acaoAplicacaoOpController->retornaNovoObjetoModeloPorNomeOPController($acaoAplicacaoOpController->retornaNomeClassePorObjeto($acaoAplicacaoOpController));
-	
-				// setando informacoes sobre a acao
-				$modeloAcaoAplicacao->idModulo   = $idModulo;
-				$modeloAcaoAplicacao->controller = $nomeControllerRequest;
-				$modeloAcaoAplicacao->action     = $nomeAcaoRequest;
-				$modeloAcaoAplicacao->ativo      = true;
-	
-				// salvando o acao aplicacao
-				$acaoAplicacaoOpController->salvarObjeto($modeloAcaoAplicacao);
+				// inserindo acao aplicacao e recuperando o id
+				$idAcaoAplicacao = $acaoAplicacaoOpController->insereAcaoAplicacaoAtivaRetornandoId($idModulo, $nomeControllerRequest, $nomeAcaoRequest);
 	
 				// recuperando o id do perfil de desenvolvedor
 				$idPerfilUsuarioDesenvolvedor = Basico_OPController_PerfilOPController::getInstance()->retornaIdPerfilUsuarioDesenvolvedor();
 	
-				// recuperando um novo modelo acoes aplicacao perfis
-				$modeloAcoesAplicacaoPerfis = $acoesAplicacaoPerfisOpController->retornaNovoObjetoModeloPorNomeOPController($acoesAplicacaoPerfisOpController->retornaNomeClassePorObjeto($acoesAplicacaoPerfisOpController));
-	
-				// setando informacoes sobre a vinculacao da nova acao com o perfil de desenvolvedor
-				$modeloAcoesAplicacaoPerfis->idPerfil        = $idPerfilUsuarioDesenvolvedor;
-				$modeloAcoesAplicacaoPerfis->idAcaoAplicacao = $modeloAcaoAplicacao->id;
-	
 				// salvando a vinculacao entre a nova acao e o perfil de desenvolvedor
-				$acoesAplicacaoPerfisOpController->salvarObjeto($modeloAcoesAplicacaoPerfis);
+				$acoesAplicacaoPerfisOpController->insereAcaoAplicacaoAssocclPerfil($idAcaoAplicacao, $idPerfilUsuarioDesenvolvedor);
 
 				// salvando a transacao
 				Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);

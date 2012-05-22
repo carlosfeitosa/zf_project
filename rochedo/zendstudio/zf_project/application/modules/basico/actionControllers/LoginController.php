@@ -399,7 +399,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	            	// enviando mensagem de aviso de tentativa de registro utilizando o email primario de usuario do sistema
 	            	
 	            	// setando e salvando mensagem
-			        $novaMensagem = Basico_OPController_PessoaLoginOPController::getInstance()->retornaMensagemTentativaRegistroEmailPrimario($idPessoa, $email);       
+			        $novaMensagem = Basico_OPController_MensagemOPController::getInstance()->retornaMensagemTentativaRegistroEmailPrimario($idPessoa, $email);       
 			             
 			        // enviando a mensagem
 			        Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));

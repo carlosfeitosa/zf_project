@@ -14,7 +14,7 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 {
 	/**
 	 * 
-	 * @var Basico_OPController_MensagemOPController
+	 * @var Basico_OPController_MensagemTempĺateOPController
 	 */
 	private static $_singleton;
 	
@@ -76,9 +76,9 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	}
 	
 	/**
-	 * Retorna o objeto da Classe MensagemController
+	 * Retorna o objeto da Classe MensagemTemplateController
 	 * 
-	 * @return Basico_OPController_MensagemOPController
+	 * @return Basico_OPController_MensagemTemplateOPController
 	 */
 	public static function getInstance() {
 		// checando o singleton

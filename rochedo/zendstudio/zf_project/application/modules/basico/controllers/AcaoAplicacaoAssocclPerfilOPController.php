@@ -114,4 +114,35 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 		// retornando array com os resultados
 		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQL);
 	}
+	
+	/**
+	 * Insere uma nova linha na tabela basico_acao_aplicacao.assoccl_perfil
+	 * 
+	 * @param Int $idAcaoAplicacao
+	 * @param Int $idPerfil
+	 * 
+	 * @return void
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 21/05/2012
+	 */
+	public function insereAcaoAplicacaoAssocclPerfil($idAcaoAplicacao, $idPerfil)
+	{
+		try {
+			// recuperando um novo modelo acoes aplicacao perfis
+			$modeloAcoesAplicacaoPerfis = $this->retornaNovoObjetoModelo();
+	
+			// setando informacoes sobre a vinculacao da nova acao com o perfil de desenvolvedor
+			$modeloAcoesAplicacaoPerfis->idPerfil        = $idPerfil;
+			$modeloAcoesAplicacaoPerfis->idAcaoAplicacao = $idAcaoAplicacao;
+	
+			// salvando a acao aplicacao assoccl perfil
+			parent::salvarObjeto($modeloAcoesAplicacaoPerfis, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACOES_APLICACAO_PERFIS, true), LOG_MSG_NOVA_ACOES_APLICACAO_PERFIS);
+			
+		} catch (Exception $e) {
+			// lançando erro
+			throw new Exception("Erro ao inserir acao aplicacao assoccl perfil: " . $e->getMessage());
+		}
+	}
 }

@@ -240,4 +240,41 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		// retornando resultado da verificacao
 		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'autenticador') and ($request->getActionName() === 'desautenticausuario'));
 	}
+	
+	/**
+	 * insere uma nova acao aplicacao ativa e retorna o id
+	 * 
+	 * @param Int $idModulo
+	 * @param String $nomeController
+	 * @param String $nomeAcao
+	 * 
+	 * @return Int
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 21/05/2012
+	 */
+	public function insereAcaoAplicacaoAtivaRetornandoId($idModulo, $nomeController, $nomeAcao)
+	{
+		try {
+			// recuperando um novo modelo de acao aplicacao
+			$modeloAcaoAplicacao = $this->retornaNovoObjetoModelo();
+	
+			// setando informacoes sobre a acao
+			$modeloAcaoAplicacao->idModulo   = $idModulo;
+			$modeloAcaoAplicacao->controller = $nomeController;
+			$modeloAcaoAplicacao->action     = $nomeAcao;
+			$modeloAcaoAplicacao->ativo      = true;
+	
+			// salvando o acao aplicacao
+			parent::salvarObjeto($modeloAcaoAplicacao, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACAO_APLICACAO, true), LOG_MSG_NOVA_ACAO_APLICACAO);
+			
+			// retornando id
+			return $modeloAcaoAplicacao->id;
+			
+		} catch (Exception $e) {
+			// lançando excessão
+			throw new Exception("Erro ao inserir acao aplicação: ". $e->getMessage());
+		}
+	}
 }
