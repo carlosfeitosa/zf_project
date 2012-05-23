@@ -442,7 +442,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objLogin->datahoraUltimaExpiracao = $objLogin->datahoraProximaExpiracao;
 
 			// salvando o objeto
-			Basico_OPController_PessoaLoginOPController::getInstance()->salvarObjeto($objLogin, $versaoObjeto);
+			self::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN, true), LOG_MSG_UPDATE_LOGIN, $versaoObjeto);
 		}
 
 		// retornando se o login esta expirado
@@ -463,9 +463,6 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 
 		// verificando se o objeto foi carregado
 		if ((is_object($objLogin) and ($objLogin->id))) {
-			// instanciando controladores
-			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-
 			// recuperando a ultima versao do objeto
 			$versaoUpdate = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin);
 
@@ -501,10 +498,6 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 					Basico_OPController_ControleAcessoOPController::adicionaIPHostsBanidosSistema($userIP, MSG_ERRO_TENTATIVAS_FALHAS_LOGIN_IP_BAN, Basico_OPController_UtilOPController::retornaDateTimeAtualZendDateObject()->toString(), Basico_OPController_UtilOPController::retornaDateTimeAtualZendDateObject()->addDate(1)->toString());
 				}
 			}
-
-			// preparando XML rowinfo
-			$rowinfoOPController->prepareXml($objLogin, true);
-			$objLogin->rowinfo  = $rowinfoOPController->getXml();
 
 			// salvando o objeto
 			parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);

@@ -92,7 +92,6 @@ class Basico_WebsiteController extends Zend_Controller_Action
 		
 				//instanciando o controlador de de ação  
 				$controladorWebsite = Basico_OPController_LinkOPController::getInstance();
-				$controladorRowInfo = Basico_OPController_RowinfoOPController::getInstance();
 				
 				// populando o modelo com a requisição do form
 				$novoWebsite->categoria=1;// $request->getParam('BasicoCadastrarWebsiteWebSiteTipo');
@@ -107,9 +106,6 @@ class Basico_WebsiteController extends Zend_Controller_Action
 				$novoWebsite->url = $url;
 				$novoWebsite->descricao = $request->getParam('BasicoCadastrarWebsiteWebSiteDescricao');
 				$novoWebsite->idGenericoProprietario = 1;
-				//preparando objeto no formato XML
-				$controladorRowInfo->prepareXml($novoWebsite, true);
-				$novoWebsite->rowinfo = $controladorRowInfo->getXml();
 
 				// verificando se a url é valida
 				if($urlValida){

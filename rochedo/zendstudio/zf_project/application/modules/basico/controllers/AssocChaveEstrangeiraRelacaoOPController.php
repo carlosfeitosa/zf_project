@@ -132,20 +132,15 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	{
 		// checando se a relacao existe
 		if (!self::checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo)) {
-			// instanciando controladores
-			$rowinfoOPController = Basico_OPController_RowinfoOPController::getInstance();
-
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
-            $this->_model = $this->retornaNovoObjetoModelo();
+            $novoModelo = $this->retornaNovoObjetoModelo();
             
 			// setando os valores
-			$this->_model->tabelaOrigem = $nomeTabela;
-			$this->_model->campoOrigem  = $nomeCampo;
-			$rowinfoOPController->prepareXml($this->_model, true);
-			$this->_model->rowinfo = $rowinfoOPController->getXml();
+			$novoModelo->tabelaOrigem = $nomeTabela;
+			$novoModelo->campoOrigem  = $nomeCampo;
 
 			// salvando o objeto
-			$this->salvarObjeto($this->_model, null, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL());
+			parent::salvarObjeto($novoModelo, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA, true), LOG_MSG_NOVA_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
 		}
 		return true;
 	}
