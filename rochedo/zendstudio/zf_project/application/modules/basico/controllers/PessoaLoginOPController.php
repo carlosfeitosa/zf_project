@@ -536,7 +536,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objLogin->travado = false;
 
 			// salvando o objeto
-			$this->salvarObjeto($objLogin, $versaoUpdate);
+			parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
 		}
 
 		return null;
