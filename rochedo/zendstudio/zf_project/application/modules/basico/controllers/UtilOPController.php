@@ -399,6 +399,22 @@ class Basico_OPController_UtilOPController
 	}
 
 	/**
+	 * Retorna um objeto Zend_Date com datetime atual no locale passado (ou default 'en_US')
+	 * 
+	 * @param String $locale
+	 * 
+	 * @return Zend_Date
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/05/2012
+	 */
+	public static function retornaDateTimeAtualZendDateObject($locale = DEFAULT_SYSTEM_DATETIME_LOCALE)
+	{
+		// retornando o objeto Zend_Date com o datetime atual
+		return Zend_Date::now($locale);
+	}
+
+	/**
 	 * Retorna um Zend_Date a partir de uma data e formato
 	 * 
 	 * @param String $stringDate

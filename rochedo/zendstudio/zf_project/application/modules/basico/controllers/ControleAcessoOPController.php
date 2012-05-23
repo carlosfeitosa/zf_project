@@ -614,7 +614,7 @@ class Basico_OPController_ControleAcessoOPController
 				$dataTerminoBanimento = strtotime($arrayINI[$ip]['termino']);
 
 				// verificando se ja foi ultrapassado o tempo do banimento
-				if ($dataTerminoBanimento < strtotime(Basico_OPController_UtilOPController::retornaDateTimeAtual()->toString())) {
+				if ($dataTerminoBanimento < strtotime(Basico_OPController_UtilOPController::retornaDateTimeAtual())) {
 					// retornando o resultado do desativando do banimento e parando a execucao
 					return self::removeIPHostsBanidosSistema($ip);
 				}

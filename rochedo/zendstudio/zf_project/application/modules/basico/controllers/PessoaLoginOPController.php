@@ -498,7 +498,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 				// verificando se a quantidade maxima de tentativas por IP foi atingida
 				if ($quantidadeTentativasFalhasPorIP >= QUANTIDADE_TENTATIVAS_LOGIN_IP_BAN_MAX) {
 					// banindo o IP por 1 dia
-					Basico_OPController_ControleAcessoOPController::adicionaIPHostsBanidosSistema($userIP, MSG_ERRO_TENTATIVAS_FALHAS_LOGIN_IP_BAN, Basico_OPController_UtilOPController::retornaDateTimeAtual()->toString(), Basico_OPController_UtilOPController::retornaDateTimeAtual()->addDate(1)->toString());
+					Basico_OPController_ControleAcessoOPController::adicionaIPHostsBanidosSistema($userIP, MSG_ERRO_TENTATIVAS_FALHAS_LOGIN_IP_BAN, Basico_OPController_UtilOPController::retornaDateTimeAtualZendDateObject()->toString(), Basico_OPController_UtilOPController::retornaDateTimeAtualZendDateObject()->addDate(1)->toString());
 				}
 			}
 
@@ -1131,7 +1131,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objCategoriaMensagem = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai(MENSAGEM_EMAIL_ALERTA_PROBLEMAS_LOGIN_PLAINTEXT);
 
 			// setando categoria da mensagem de alerta  
-			$modeloMensagemProblemaLogin->idCategoria = $objCategoriaMensagem->id;
+			$modeloMensagemProblemaLogin['idCategoria'] = $objCategoriaMensagem->id;
 			
 			// recuperando o id da pessoa perfil o destinatario
 			$idPessoaPerfilUsuarioValidadoDestinatario = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoaDestinatario);

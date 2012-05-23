@@ -496,11 +496,9 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
             $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($mensagem);
             
             // Atualizando a mensagem
-            parent::salvarObjeto($mensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_MENSAGEM), LOG_MSG_UPDATE_MENSAGEM, $ultimaVersaoMensagem);
-			
-            return true;            
+            return parent::salvarObjeto($mensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_MENSAGEM, true), LOG_MSG_UPDATE_MENSAGEM, $ultimaVersaoMensagem);            
 		}
-		
+
 		return false;
 	}
 }
