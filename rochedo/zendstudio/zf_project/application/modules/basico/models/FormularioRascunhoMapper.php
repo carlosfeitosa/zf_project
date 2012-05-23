@@ -32,7 +32,7 @@ class Basico_Model_FormularioRascunhoMapper extends Basico_AbstractMapper_Roched
 		$this->_arrayMapper['idCategoria']				   = 'id_categoria';
 		$this->_arrayMapper['idAssocclPerfil']			   = 'id_assoccl_perfil';
 		$this->_arrayMapper['idAssocagGrupo']			   = 'id_assocag_grupo';
-		$this->_arrayMapper['idAssocsqFormularioRascunho'] = 'id_assocsq_acao_aplicacao';
+		$this->_arrayMapper['idAssocsqAcaoAplicacao']      = 'id_assocsq_acao_aplicacao';
 		$this->_arrayMapper['idAssocVisaoOrigem']		   = 'id_assoc_visao_origem';
 		$this->_arrayMapper['request']					   = 'request';
 		$this->_arrayMapper['post']						   = 'post';

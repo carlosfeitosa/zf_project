@@ -237,7 +237,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    	// verificando se existe rascunho 
 		    	if(isset($idRascunho)){
 		    		
-					$sucesso = self::atualizaRascunho($idRascunho, $idCategoriaRascunho, $idAssocclPerfilCriador, $arrayPost, $request);
+					$sucesso = self::atualizaRascunho($idRascunho, $idCategoriaRascunho, $idAssocclPerfilCriador, $arrayPost, $request, $formHash);
 		
 		    	} else{
 		    		
@@ -258,14 +258,8 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    	 		throw new Exception("Id assoc visao origem não encontrado.");
 		    		
 		    		// inserindo novo rascunho
-		    		self::insereRascunhoAtivo($arrayPost["formName"], $arrayPost["formAction"], $arrayPost, $request, $objPessoaPerfil->id, $idCategoriaRascunho, Basico_OPController_SessionOPController::retornaUrlAtualPoolRequests(), $idAcaoAplicacaoOrigem, $idVisaoOrigem, $idAssocclPerfilCriador, $idRascunhoPai);
+		    		self::insereRascunhoAtivo($formHash, $arrayPost["formName"], $arrayPost["formAction"], $arrayPost, $request, $idAssocclPerfilCriador, $idCategoriaRascunho, Basico_OPController_SessionOPController::retornaUrlAtualPoolRequests(), $idAcaoAplicacaoOrigem, $idVisaoOrigem, $idAssocclPerfilCriador, $idRascunhoPai, $forceSave);
 		    		
-		    	   	// verificando se forceSave foi setado
-		    	   	if($forceSave !== "false"){
-		    	   	   // registrando id do rascunho na sessao
-		    	   	   $this->_sessionOPController->registraRascunhoPaiSessao($dadosRascunho->id);
-		    		}
-
 		    	    $sucesso = true;
 		    	}
 		
@@ -361,6 +355,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	/**
 	 * Insere um novo rascunho ativo
 	 * 
+	 * @param String $formHash
 	 * @param String $formName
 	 * @param String $formAction
 	 * @param Array $arrayPost
@@ -372,12 +367,13 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	 * @param Int $idAssocVisaoOrigem
 	 * @param Int $idAssocclPerfilCriador
 	 * @param Int $idRascunhoPai
+	 * @param Boolean $forceSave
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * 
 	 * @since 08/05/2012
 	 */
-	private function insereRascunhoAtivo($formName, $formAction, $arrayPost, $request, $idAssocclPerfil, $idCategoria, $actionOrigem, $idAcaoAplicacaoOrigem, $idAssocVisaoOrigem, $idAssocclPerfilCriador, $idRascunhoPai = null)
+	private function insereRascunhoAtivo($formHash, $formName, $formAction, $arrayPost, $request, $idAssocclPerfil, $idCategoria, $actionOrigem, $idAcaoAplicacaoOrigem, $idAssocVisaoOrigem, $idAssocclPerfilCriador, $idRascunhoPai = null, $forceSave = false)
 	{
 		// recuperando um novo modelo rascunho
 		$novoObjetoRascunho = $this->retornaNovoObjetoModelo();
@@ -391,25 +387,31 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		$novoObjetoRascunho->idCategoria     		   = $idCategoria;
 		$novoObjetoRascunho->actionOrigem    		   = $actionOrigem;
 		$novoObjetoRascunho->ativo           		   = true;
-		$novoObjetoRascunho->idAssocVisaoOrigem 	   = $idVisaoOrigem;
+		$novoObjetoRascunho->idAssocVisaoOrigem 	   = $idAssocVisaoOrigem;
 		$novoObjetoRascunho->datahoraUltimaAtualizacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 		// verificando se há rascunho pai na sessao 
     	if(null !== $idRascunhoPai)
 	    	// setando o rascunho pai
-			$novoObjetoRascunho->idRascunhoPai = $rascunhoPai;
+			$novoObjetoRascunho->idRascunhoPai = $idRascunhoPai;
 			
 		// executando insert
-    	parent::salvarObjeto($novoObjetoRascunho, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_RASCUNHO), LOG_MSG_NOVO_RASCUNHO, null, $idAssocclPerfilCriador);
+    	parent::salvarObjeto($novoObjetoRascunho, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_RASCUNHO, true), LOG_MSG_NOVO_RASCUNHO, null, $idAssocclPerfilCriador);
 
     	// inserindo id do rascunho no pool de elementos ocultos
-		$this->_sessionOPController->registraPostPoolElementosOcultos($formHash, array('idRascunho' => $dadosRascunho->id));
+		$this->_sessionOPController->registraPostPoolElementosOcultos($formHash, array('idRascunho' => $novoObjetoRascunho->id));
     	
     	// recuperando a ultima versão do rascunho 
 	    $versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($novoObjetoRascunho);
 	    	
     	// inserindo a versao atual do rascunho no pool de elementos ocultos
     	$this->_sessionOPController->registraPostPoolElementosOcultos($formHash, array('versaoObjetoRascunho' => $versaoAtualRascunho));
+    	
+		// verificando se forceSave foi setado
+    	if($forceSave !== "false"){
+    		// registrando id do rascunho na sessao
+    	   	$this->_sessionOPController->registraRascunhoPaiSessao($novoObjetoRascunho->id);
+    	}
     	
     	// liberando memoria
     	unset($novoObjetoRascunho);
@@ -430,7 +432,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	 * 
 	 * @since 09/05/2012
 	 */
-	private function atualizaRascunho($idRascunho, $idCategoria, $idAssocclPerfilUpdate, $arrayPost, $request)
+	private function atualizaRascunho($idRascunho, $idCategoria, $idAssocclPerfilUpdate, $arrayPost, $request, $formHash)
 	{
 		try {
 			// recuperando o objeto rascunho 
@@ -462,7 +464,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	    	$versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objetoRascunho);
 	    	
 	    	// executando update
-	    	parent::salvarObjeto($objetoRascunho, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_UPDATE_RASCUNHO), LOG_MSG_UPDATE_RASCUNHO, $versaoAtualRascunho, $idAssocclPerfilCriador);
+	    	parent::salvarObjeto($objetoRascunho, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_RASCUNHO, true), LOG_MSG_UPDATE_RASCUNHO, $versaoAtualRascunho, $idAssocclPerfilUpdate);
 	    	
 	    	// recuperando a ultima versão do rascunho 
 		    $versaoAtualRascunho = Basico_OPController_FormularioRascunhoOPController::getInstance()->retornaVersaoObjetoRascunhoPorObjetoRascunho($objetoRascunho);

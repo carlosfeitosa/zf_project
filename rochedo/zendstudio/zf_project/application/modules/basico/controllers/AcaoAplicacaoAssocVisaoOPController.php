@@ -110,9 +110,9 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 		$visao = $this->retornaObjetosPorParametros("id_acao_aplicacao = {$idAcaoAplicacao}");
 				
 		// verificando se visao foi recuperada
-		if (count($visao) > 0)
+		if (is_object($visao))
 			// retornando visao
-			return $visao[0];
+			return $visao;
 
 			
 		return false;
