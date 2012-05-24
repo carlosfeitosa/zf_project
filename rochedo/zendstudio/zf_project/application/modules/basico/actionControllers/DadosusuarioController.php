@@ -233,9 +233,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	// recuperando o subform Perfil
     	$subFormConta = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioConta');
 
-    	// recuperando conteudo do div de forca da senha
-    	$valorDivForcaSenha = $subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->getValue();
-
 		// recuperando a senha atual informada no formulario
 		$senhaAtual = $arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaSenhaAtual'];
 
@@ -262,9 +259,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				
 				// setando foco no primeiro elemento com erro
 				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
-
-				// recolocando o valor do div de forca da senha
-				$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
 
 				// setando os scripts na view
 				$this->view->scripts = $scripts;
@@ -295,9 +289,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				// setando foco no primeiro elemento com erro
 				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
 
-				// recolocando o valor do div de forca da senha
-				$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
-
 				// setando scripts na view
 				$this->view->scripts = $scripts;
 
@@ -315,8 +306,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// selecionando a aba do subform conta
 			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
 
-			// recolocando o valor do div de forca da senha
-			$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
 			// limpando as senhas digitadas
 			$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setValue(null);
 			$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setValue(null);
@@ -360,9 +349,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// setando foco no primeiro elemento com erro
 			$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
 
-			// recolocando o valor do div de forca da senha
-			$subFormConta->BasicoCadastrarDadosUsuarioContaPasswordStrengthChecker->setValue($valorDivForcaSenha);
-
 			// setando scripts na view
 			$this->view->scripts = $scripts;
 
@@ -386,6 +372,11 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 	    			// invocando excessao
 	    			throw new Exception(MSG_ERRO_DADOS_PESSOAIS_TROCA_SENHA);
 	    		}
+
+				// limpando as senhas digitadas
+				$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setValue(null);
+				$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setValue(null);
+				$subFormConta->BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha->setValue(null);
 	    	}
 
 	    	// setando o perfil padrao do usuario
@@ -808,9 +799,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 		// setando action do formulario
 		$formTrocaDeSenha->setAction($this->view->urlEncryptModuleControllerAction('basico', 'dadosusuario', 'trocarsenhaexpirada', null));
 
-    	// recuperando conteudo do div de forca da senha
-    	$valorDivForcaSenha = $formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->getValue();
-
 		// inicializando o formulario de troca de senha
 		self::carregaFormularioTrocaDeSenha($formTrocaDeSenha);
 
@@ -858,9 +846,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 					$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue(null);
 					$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue(null);
 
-					// recolocando o valor do div de forca da senha
-					$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
-	
 					// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
 					$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
 					// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
@@ -899,9 +884,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 						$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue(null);
 						$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue(null);
 	
-						// recolocando o valor do div de forca da senha
-						$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
-
 						// verificando se existe url para redirect
 						if ($urlRedirect) {
 							// adicionando hidden ao formulario contendo a url para redirecionamento
@@ -942,9 +924,6 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				}
 				
 			} else { // o formulario nao passou pela validacao
-				// recolocando o valor do div de forca da senha
-				$formTrocaDeSenha->BasicoTrocaDeSenhaPasswordStrengthChecker->setValue($valorDivForcaSenha);
-
 				// limpando os campos de senha
 				$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue(null);
 				$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setValue(null);

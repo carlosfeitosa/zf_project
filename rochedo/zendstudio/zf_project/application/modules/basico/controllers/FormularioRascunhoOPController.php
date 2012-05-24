@@ -285,13 +285,10 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		
 		// verificando o id passado
 		if (count($arrayPost) > 0) {
-
 			// recuperando o hash do formulario
 	    	foreach ($arrayPost as $key => $value) {
-	    		
 	    		// verificando se o valor do primeiro elemento e um array
 	    		if (is_array($value)) {
-	    			
 	    			// recuperando o nome do subform
 	    			$nomeSubForm = $key;
 	    			
@@ -302,14 +299,12 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    				break 2;	    		
 						}	
 	    			}
-	    				
 	    		}else{
 					if (strpos($key, "Csrf") !== false) {
 	    				$formHash = $value;
 	    				break;	    		
 					}	
 	    		}
-	    		
 	    	}
 	    	
 	    	// iniciando array pool
@@ -328,17 +323,16 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	    	if (isset($idRascunho)) {
 	
 				// recuperando objeto do modelo rascunho
-				$objModeloRascunho = $this->retornaNovoObjetoModeloPorNomeOPController(get_class($this));
+				$objModeloRascunho = $this->retornaNovoObjetoModelo();
 				
 				// recuperando objeto rascunho
-				$objetoRascunho = $this->retornaObjetoPorId($objModeloRascunho, $idRascunho);
+				$objetoRascunho = $this->retornaObjetosPorParametros("id = {$idCascunho}", null, 1, 0);
 	
 				// recuperando o objeto pessoas perfis do perfil padrao da pessoa logada
-			    $objPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
+			    $idPessoaPerfil = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilMaiorPerfilUsuarioSessaoPorRequest($request);
 				
 			    // excluindo rascunho em cascata
-				if ($this->apagarObjeto($objetoRascunho, true, $objPessoaPerfil->id)) {
-					
+				if (parent::apagarObjeto($objeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_RASCUNHO), LOG_MSG_DELETE_RASCUNHO, true, $idPessoaPerfil->id)) {
 					// removendo rascunho da lista de rascunhos pais da sessao
 					Basico_OPController_SessionOPController::getInstance()->removeRascunhoPaiSessao($idRascunho);
 					// removendo id do rascunho no pool de elementos ocultos

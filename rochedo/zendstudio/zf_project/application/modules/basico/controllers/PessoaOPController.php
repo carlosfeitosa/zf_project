@@ -256,17 +256,15 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 		$object = $this->retornaObjetosPorParametros("id = {$idPessoa}");
 
 		// verificando se o objeto foi carregado
-		if (isset($object->id)) {
+		if ((is_object($object)) and ($object->id)) {
 			// mudando atributo perfilPadrao
 			$object->idPerfilDefault = $idPerfilPadrao;
 
 			// recuperando o id pessoa perfil usuario validado da pessoa
 			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
-			// salvando o objeto
-			parent::salvarObjeto($object, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_PESSOA, true), LOG_MSG_NOVA_PESSOA, $versaoObjetoPessoa, $idPessoaPerfilUsuarioValidado);
-
-			return true;
+			// retornando o resultado do método de salvar o objeto
+			return parent::salvarObjeto($object, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_PESSOA, true), LOG_MSG_NOVA_PESSOA, $versaoObjetoPessoa, $idPessoaPerfilUsuarioValidado);
 		}
 
 		return false;

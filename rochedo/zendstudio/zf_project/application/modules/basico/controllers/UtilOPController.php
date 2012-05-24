@@ -2875,15 +2875,13 @@ class Basico_OPController_UtilOPController
 	 */
 	public static function processaZendDojoForm($form, $dojo)
 	{
-		
 		// declarando variavéis da função
 		$existeFormNoRequest = false;
 		$arrayScripts        = null;
 		$zendFormsMessages   = null;
 		$idResponseSource	 = null;
 		$return              = null;
-	
-		
+
 		// verifica se existe o formulário no idResquestSource.
 		if (isset($_REQUEST['idRequestSource']) and ($form->getName() == $_REQUEST['idRequestSource'])) {
 			// carrendo o id do formulário de resposta
@@ -2934,7 +2932,7 @@ class Basico_OPController_UtilOPController
 					foreach ($request as $keyRequest => $valueRequest) {
 						
 						// verificando se o valor do elemento enviado do request é diferente do valor existente no controller.
-						if ( ($elementoForm->getName() === $keyRequest) and ($elementoForm->getValue() !== $valueRequest) ) {
+						if (($elementoForm->getName() === $keyRequest) and ($elementoForm->getValue() != $valueRequest)) {
 							$idDijit = $prefixElementName . $elementoForm->getName();
 							$dijitParametros['value'] = $elementoForm->getValue();
 																									
