@@ -40,7 +40,7 @@ class Basico_Model_PessoaLogin extends Basico_AbstractModel_RochedoPersistentMod
 	/**
 	 * @var Date
 	 */
-	protected $_dataHoraUltimoLogon;
+	protected $_datahoraUltimoLogon;
 	/**
 	 * @var Boolean
 	 */
@@ -48,35 +48,35 @@ class Basico_Model_PessoaLogin extends Basico_AbstractModel_RochedoPersistentMod
 	/**
 	 * @var Date
 	 */
-	protected $_dataHoraProximaExpiracao;
+	protected $_datahoraProximaExpiracao;
 	/**
 	 * @var Date
 	 */
-	protected $_dataHoraUltimaExpiracao;
+	protected $_datahoraUltimaExpiracao;
 	/**
 	 * @var Date
 	 */
-	protected $_dataHoraExpiracaoSenha;
-	/**
-	 * 
-	 * @var Date
-	 */
-	protected $_dataHoraUltimaTentativaFalha;
+	protected $_datahoraExpiracaoSenha;
 	/**
 	 * 
 	 * @var Date
 	 */
-	protected $_dataHoraUltimoReset;
+	protected $_datahoraUltimaTentativaFalha;
 	/**
 	 * 
 	 * @var Date
 	 */
-	protected $_dataHoraUltimaTrocaSenha;
+	protected $_datahoraUltimoReset;
 	/**
 	 * 
 	 * @var Date
 	 */
-	protected $_dataHoraAceiteTermoUso;
+	protected $_datahoraUltimaTrocaSenha;
+	/**
+	 * 
+	 * @var Date
+	 */
+	protected $_datahoraAceiteTermoUso;
 	
 	/**
 	* Set id pessoa
@@ -244,25 +244,25 @@ class Basico_Model_PessoaLogin extends Basico_AbstractModel_RochedoPersistentMod
 	}
      
 	/**
-	* Set dataHoraUltimoLogon
+	* Set datahoraUltimoLogon
 	* 
-	* @param String $dataHoraUltimoLogon 
+	* @param String $datahoraUltimoLogon 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraUltimoLogon($dataHoraUltimoLogon)
+	public function setDatahoraUltimoLogon($datahoraUltimoLogon)
 	{
-		$this->_dataHoraUltimoLogon = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoLogon, TIPO_DATE, true);
+		$this->_datahoraUltimoLogon = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimoLogon, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraUltimoLogon
+	* Get datahoraUltimoLogon
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraUltimoLogon()
+	public function getDatahoraUltimoLogon()
 	{
-		return $this->_dataHoraUltimoLogon;
+		return $this->_datahoraUltimoLogon;
 	}
      
 	/**
@@ -288,157 +288,157 @@ class Basico_Model_PessoaLogin extends Basico_AbstractModel_RochedoPersistentMod
 	}
      
 	/**
-	* Set dataHoraProximaExpiracao
+	* Set datahoraProximaExpiracao
 	* 
-	* @param String $dataHoraProximaExpiracao 
+	* @param String $datahoraProximaExpiracao 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraProximaExpiracao($dataHoraProximaExpiracao)
+	public function setDatahoraProximaExpiracao($datahoraProximaExpiracao)
 	{
-		$this->_dataHoraProximaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraProximaExpiracao, TIPO_DATE, true);
+		$this->_datahoraProximaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraProximaExpiracao, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraProximaExpiracao
+	* Get datahoraProximaExpiracao
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraProximaExpiracao()
+	public function getDatahoraProximaExpiracao()
 	{
-		return $this->_dataHoraProximaExpiracao;
+		return $this->_datahoraProximaExpiracao;
 	}
      
 	/**
-	* Set dataHoraUltimaExpiracao
+	* Set datahoraUltimaExpiracao
 	* 
-	* @param String $dataHoraUltimaExpiracao 
+	* @param String $datahoraUltimaExpiracao 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraUltimaExpiracao($dataHoraUltimaExpiracao)
+	public function setDatahoraUltimaExpiracao($datahoraUltimaExpiracao)
 	{
-		$this->_dataHoraUltimaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaExpiracao, TIPO_DATE, true);
+		$this->_datahoraUltimaExpiracao = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaExpiracao, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraUltimaExpiracao
+	* Get datahoraUltimaExpiracao
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraUltimaExpiracao()
+	public function getDatahoraUltimaExpiracao()
 	{
-		return $this->_dataHoraUltimaExpiracao;
+		return $this->_datahoraUltimaExpiracao;
 	}
 
 	/**
-	* Set dataHoraExpiracaoSenha
+	* Set datahoraExpiracaoSenha
 	* 
-	* @param String $dataHoraExpiracaoSenha 
+	* @param String $datahoraExpiracaoSenha 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraExpiracaoSenha($dataHoraExpiracaoSenha)
+	public function setDatahoraExpiracaoSenha($datahoraExpiracaoSenha)
 	{
-		$this->_dataHoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraExpiracaoSenha, TIPO_DATE, true);
+		$this->_datahoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaValorTipado($datahoraExpiracaoSenha, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraExpiracaoSenha
+	* Get datahoraExpiracaoSenha
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraExpiracaoSenha()
+	public function getDatahoraExpiracaoSenha()
 	{
-		return $this->_dataHoraExpiracaoSenha;
+		return $this->_datahoraExpiracaoSenha;
 	}
 	
     /**
-	* Set dataHoraUltimaTentativaFalha
+	* Set datahoraUltimaTentativaFalha
 	* 
-	* @param String $dataHoraUltimaTentativaFalha 
+	* @param String $datahoraUltimaTentativaFalha 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraUltimaTentativaFalha($dataHoraUltimaTentativaFalha)
+	public function setDatahoraUltimaTentativaFalha($datahoraUltimaTentativaFalha)
 	{
-		$this->_dataHoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTentativaFalha, TIPO_DATE, true);
+		$this->_datahoraUltimaTentativaFalha = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaTentativaFalha, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraUltimaTentativaFalha
+	* Get datahoraUltimaTentativaFalha
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraUltimaTentativaFalha()
+	public function getDatahoraUltimaTentativaFalha()
 	{
-		return $this->_dataHoraUltimaTentativaFalha;
+		return $this->_datahoraUltimaTentativaFalha;
 	}
 	
     /**
-	* Set dataHoraUltimoReset
+	* Set datahoraUltimoReset
 	* 
-	* @param String $dataHoraUltimoReset 
+	* @param String $datahoraUltimoReset 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraUltimoReset($dataHoraUltimoReset)
+	public function setDatahoraUltimoReset($datahoraUltimoReset)
 	{
-		$this->_dataHoraUltimoReset = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimoReset, TIPO_DATE, true);
+		$this->_datahoraUltimoReset = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimoReset, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraUltimoReset
+	* Get datahoraUltimoReset
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraUltimoReset()
+	public function getDatahoraUltimoReset()
 	{
-		return $this->_dataHoraUltimoReset;
+		return $this->_datahoraUltimoReset;
 	}
 	
     /**
-	* Set dataHoraUltimaTrocaSenha
+	* Set datahoraUltimaTrocaSenha
 	* 
-	* @param String $dataHoraUltimaTrocaSenha 
+	* @param String $datahoraUltimaTrocaSenha 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraUltimaTrocaSenha($dataHoraUltimaTrocaSenha)
+	public function setDatahoraUltimaTrocaSenha($datahoraUltimaTrocaSenha)
 	{
-		$this->_dataHoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraUltimaTrocaSenha, TIPO_DATE, true);
+		$this->_datahoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaValorTipado($datahoraUltimaTrocaSenha, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraUltimaTrocaSenha
+	* Get datahoraUltimaTrocaSenha
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraUltimaTrocaSenha()
+	public function getDatahoraUltimaTrocaSenha()
 	{
-		return $this->_dataHoraUltimaTrocaSenha;
+		return $this->_datahoraUltimaTrocaSenha;
 	}
 
 	/**
-	* Set dataHoraAceiteTermoUso
+	* Set datahoraAceiteTermoUso
 	* 
-	* @param String $dataHoraAceiteTermoUso 
+	* @param String $datahoraAceiteTermoUso 
 	* @return Basico_Model_PessoaLogin
 	*/
-	public function setDataHoraAceiteTermoUso($dataHoraAceiteTermoUso)
+	public function setDatahoraAceiteTermoUso($datahoraAceiteTermoUso)
 	{
-		$this->_dataHoraAceiteTermoUso = Basico_OPController_UtilOPController::retornaValorTipado($dataHoraAceiteTermoUso, TIPO_DATE, true);
+		$this->_datahoraAceiteTermoUso = Basico_OPController_UtilOPController::retornaValorTipado($datahoraAceiteTermoUso, TIPO_DATE, true);
 		return $this;
 	}
 
 	/**
-	* Get dataHoraAceiteTermoUso
+	* Get datahoraAceiteTermoUso
 	* 
 	* @return null|String
 	*/
-	public function getDataHoraAceiteTermoUso()
+	public function getDatahoraAceiteTermoUso()
 	{
-		return $this->_dataHoraAceiteTermoUso;
+		return $this->_datahoraAceiteTermoUso;
 	}
 	
 	/**
