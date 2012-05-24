@@ -260,6 +260,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 				// setando foco no primeiro elemento com erro
 				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
 
+		    	// enviando script para o cliente para limpar o password strength checker
+		    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
+
 				// setando os scripts na view
 				$this->view->scripts = $scripts;
 
@@ -288,6 +291,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
 				// setando foco no primeiro elemento com erro
 				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+
+		    	// enviando script para o cliente para limpar o password strength checker
+		    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
 
 				// setando scripts na view
 				$this->view->scripts = $scripts;
@@ -321,6 +327,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 			// setando foco no primeiro elemento com erro
 			$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
 
+	    	// enviando script para o cliente para limpar o password strength checker
+	    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
+
 			// setando scripts na view
 			$this->view->scripts = $scripts;
 
@@ -348,6 +357,9 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
 
 			// setando foco no primeiro elemento com erro
 			$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+
+	    	// enviando script para o cliente para limpar o password strength checker
+	    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
 
 			// setando scripts na view
 			$this->view->scripts = $scripts;
@@ -501,7 +513,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     	}
 
     	// recuperando array de mensagens json sobre a forca da senha
-    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_PessoaLoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker();
 
     	// setando atributo do elemento nova senha
     	$subFormConta->BasicoCadastrarDadosUsuarioContaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker});"));
@@ -969,7 +981,7 @@ class Basico_DadosusuarioController extends Zend_Controller_Action
     private function carregaFormularioTrocaDeSenha(Basico_Form_TrocaDeSenha &$formTrocaDeSenha)
     {
     	// recuperando array de mensagens json sobre a forca da senha
-    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_PessoaLoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+    	$jsonMensagensPasswordStrengthChecker = Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker();
 
     	// setando atributo do elemento nova senha
     	$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->setAttribs(array('onKeyUp' => "chkPass(document.getElementById('BasicoTrocaDeSenhaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker})"));

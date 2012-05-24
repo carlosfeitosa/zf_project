@@ -139,7 +139,7 @@ class Basico_EmailController extends Zend_Controller_Action
 				$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
 				
 				// recuperando mensagem do componente password strenght checker
-				$mensagensPasswordStrenghtChecker = Basico_OPController_PessoaLoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker();
+				$mensagensPasswordStrenghtChecker = Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker();
 				
 	            //adicionando chamada a função do password strength checker para o campo senha
 			    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, {$mensagensPasswordStrenghtChecker})"));

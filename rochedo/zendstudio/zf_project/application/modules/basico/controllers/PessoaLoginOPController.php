@@ -656,27 +656,6 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	}
 	
 	/**
-	 * Retorna um array no formato Json possuindo as mensagens relacionadas ao componente passwordStrengthChecker.
-	 * 
-	 * @return Json
-	 */
-	public function retornaJsonMensagensPasswordStrengthChecker()
-	{
-		// carregando array com as mensagens utilizadas
-		$arrayMensagens = array('muito_fraca' => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
-		                        'fraca'       => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
-		                        'boa'         => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
-		                        'forte'       => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
-		                        'muito_forte' => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
-		                        'digite_senha'=> Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
-		                        'abaixo'      => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
-	                           );
-	                           
-	    // codificando o array e retornando-o.
-	    return str_replace('"', "'", Zend_Json::encode($arrayMensagens));
-	}
-	
-	/**
 	 * Retorna o login da pessoa passada
 	 * 
 	 * @param Int $idPessoa

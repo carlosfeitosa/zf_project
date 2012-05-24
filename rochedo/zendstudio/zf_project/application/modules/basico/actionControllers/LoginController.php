@@ -127,7 +127,7 @@ class Basico_LoginController extends Zend_Controller_Action
 		$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
 		
 		//adicionando chamada a função do password strength checker para o campo senha
-		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_PessoaLoginOPController::getInstance()->retornaJsonMensagensPasswordStrengthChecker() . ")"));
+		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker() . ")"));
 		
 		//adicionando multi-options para o radioButton sexo
 	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 1 => $this->view->tradutor('GENERO_FEMININO')));

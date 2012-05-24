@@ -2350,7 +2350,45 @@ class Basico_OPController_UtilOPController
     	// enviando javascript para setar os elementos com erro
     	return "<script type=\"text/javascript\">dojo.addOnLoad(function () {marcaElementosErro($arrayElementosErrorJson);});</script>";
     }
-    
+
+    /**
+     * Envia para o cliente uma chamada javascript para limpar o password strenght checker
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 24/05/2012
+     */
+    public static function limpaPasswordStrengthChecker()
+    {
+    	// recuperando array de mensagens json sobre a forca da senha
+    	$jsonMensagensPasswordStrengthChecker = self::retornaJsonMensagensPasswordStrengthChecker();
+
+    	// enviando javascript para limpar o passowrd strengh checker
+    	return "<script type=\"text/javascript\">dojo.addOnLoad(function () {chkPass(document.getElementById('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha').value, {$jsonMensagensPasswordStrengthChecker});});</script>";
+    }
+
+	/**
+	 * Retorna um array no formato Json possuindo as mensagens relacionadas ao componente passwordStrengthChecker.
+	 * 
+	 * @return Json
+	 */
+	static function retornaJsonMensagensPasswordStrengthChecker()
+	{
+		// carregando array com as mensagens utilizadas
+		$arrayMensagens = array('muito_fraca' => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FRACA'),
+		                        'fraca'       => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FRACA'),
+		                        'boa'         => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_BOA'),
+		                        'forte'       => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_FORTE'),
+		                        'muito_forte' => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_MUITO_FORTE'),
+		                        'digite_senha'=> Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_DIGITE_A_SENHA'),
+		                        'abaixo'      => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('PASSWORD_STRENGTH_CHECKER_MESSAGE_ABAIXO')
+	                           );
+	                           
+	    // codificando o array e retornando-o.
+	    return str_replace('"', "'", Zend_Json::encode($arrayMensagens));
+	}
+
     /**
      * Escreve uma instrução javascript passada como parametro para um evento tambem passado por parametro
      * 
