@@ -2887,57 +2887,68 @@ class Basico_OPController_UtilOPController
 			// carrendo o id do formulário de resposta
 			$idResponseSource = $_REQUEST['idRequestSource'];
 			$return['idResponseSource'] = $idResponseSource;
-			
+
+			// setando variáveis
 			$existeFormNoRequest = true;
 			$return['existeFormNoRequest'] = $existeFormNoRequest;
-								
+
 			// carrega array com as mensagens do form
 			$zendFormsMessages = Basico_OPController_UtilOPController::retornaZendFormMessages($form);
 			$return['zendFormsMessages'] = $zendFormsMessages;
-		} else {
-			
 		}
-		
+
 		// percorre todos os elementos do form
 		foreach ($form->getElements() as $elementoForm){
-			
+			// verifica se o elemento é do tipo javascript
 			if ($elementoForm->getType() == 'Rochedo_Form_Element_JavaScript') {
+				// recuperando javascript
 				$arrayScripts[] = $elementoForm->getValue();
 				$return['arrayScripts'] = $arrayScripts; 
 			}
-									
+
 			// verifica se o elemento e do tipo hash
 			if ($elementoForm->getType() == 'Zend_Form_Element_Hash') {
 				// renderizando elemento hash para ser gerado o novo valor do hash e id do elemento.
 				$elementoForm->render();
-				
+
+				// recuperando o nome do elemento (id)
 				$idDijit = $elementoForm->getId();
+				// recuperando o valor
 				$dijitParametros['value'] = $elementoForm->getValue();
-																						
+
+				// setando valor no elemento
 				$dojo->addDijit($idDijit, $dijitParametros);
-				
-			} else {
-			
-				if ($existeFormNoRequest) {
-		
-					if (is_subclass_of($form, 'Zend_Form_SubForm')) {
-						$request = $_REQUEST[$form->getName()];
-						$prefixElementName = $form->getName().'-';
-					} else {
-						$request = $_REQUEST;
-						$prefixElementName = '';
-					}
-					
-					// percorrendo o request em busca de elementos modificados.
-					foreach ($request as $keyRequest => $valueRequest) {
-						
-						// verificando se o valor do elemento enviado do request é diferente do valor existente no controller.
-						if (($elementoForm->getName() === $keyRequest) and ($elementoForm->getValue() != $valueRequest)) {
-							$idDijit = $prefixElementName . $elementoForm->getName();
+			} else if ($existeFormNoRequest) { // verificando se existe formulário no request
+				// verificand se trata-se de um subform
+				if (is_subclass_of($form, 'Zend_Form_SubForm')) {
+					// recuperando o nome do formulário
+					$request = $_REQUEST[$form->getName()];
+					// recuperando prefixo
+					$prefixElementName = $form->getName().'-';
+				} else {
+					// recuperando request
+					$request = $_REQUEST;
+					// recuperando prefixo
+					$prefixElementName = '';
+				}
+
+				// percorrendo o request em busca de elementos modificados.
+				foreach ($request as $keyRequest => $valueRequest) {
+					// verificando se o valor do elemento enviado do request é diferente do valor existente no formulário
+					if (($elementoForm->getName() === $keyRequest) and ($elementoForm->getValue() != $valueRequest)) {
+						// recuperando o nome do elemento
+						$idDijit = $prefixElementName . $elementoForm->getName();
+						// verificando se o elemento é do tipo Zend_Dojo_Form_Element_FilteringSelect
+						if ($elementoForm->getType() == 'Zend_Dojo_Form_Element_FilteringSelect') {
+							// recuperando o label do elemento
+							$dijitParametros['value'] = $elementoForm->getMultiOption($valueRequest);
+						} else {
+							// recuperando o valor do elemento
 							$dijitParametros['value'] = $elementoForm->getValue();
-																									
-							$dojo->addDijit($idDijit, $dijitParametros);
 						}
+
+						// setando o valor no elemento
+						$dojo->addDijit($idDijit, $dijitParametros);
 					}
 				}
 			}
