@@ -12,6 +12,14 @@
  */
 class Basico_OPController_SessionOPController
 {
+	/**
+	 * Constantes para utilização da sessão
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	const ATRIBUTO_POOL_SQL = "poolSql";
+
     /**
 	 * @var Basico_OPController_SessionOPController
 	 */
@@ -539,6 +547,99 @@ class Basico_OPController_SessionOPController
 			return $sessaoUsuario->$sessionChaveUltimoRequest;
 		}
 
+		return array();
+	}
+
+	/**
+	 * Registra um sql no pool de sqls
+	 * 
+	 * @param String $sql
+	 * 
+	 * @return void
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	public static function registraSqlPoolSql($sql)
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que será utilizado para guardar a informação
+		$chavePoolSql = self::ATRIBUTO_POOL_SQL;
+
+		// verificando se não existe a chave, dentro da sessão
+		if (!isset($sessaoUsuario->$chavePoolSql)) {
+			// adicionando elemento na sessão
+			$sessaoUsuario->$chavePoolSql = array($sql);
+		} else {
+			// recuperando array
+			$arrayPoolSql = $sessaoUsuario->$chavePoolSql;
+
+			// adicionando sql ao elemento da sessão
+			$arrayPoolSql[] = $sql;
+
+			// colocando o array na sessão
+			$sessaoUsuario->$chavePoolSql = $arrayPoolSql;
+		}
+
+		return;
+	}
+
+	/**
+	 * Limpa o pool de sqls
+	 * 
+	 * @return void
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	public static function limpaSqlPool()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que será utilizado para guardar a informação
+		$chavePoolSql = self::ATRIBUTO_POOL_SQL;
+
+		// verificando se existe a chave, dentro da sessão
+		if (isset($sessaoUsuario->$chavePoolSql)) {
+			// limpando elemento da sessão
+			unset($sessaoUsuario->$chavePoolSql);
+		}
+	}
+
+	/**
+	 * Recupera um array com os sqls do pool de sqls
+	 * 
+	 * @param Boolean $limpaPool
+	 * 
+	 * @return Array
+	 */
+	public static function recuperaPoolSql($limpaPool = false)
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que será utilizado para guardar a informação
+		$chavePoolSql = self::ATRIBUTO_POOL_SQL;
+
+		// verificando se existe a chave, dentro da sessão
+		if (isset($sessaoUsuario->$chavePoolSql)) {
+			// recupernado array
+			$arrayResultado = $sessaoUsuario->$chavePoolSql;
+
+			// verificando se é necessário limpar o pool
+			if ($limpaPool) {
+				// limpando o pool
+				self::limpaSqlPool();
+			}
+
+			// retornando array de sqls
+			return $arrayResultado;
+		}
+
+		// retornando array vazio
 		return array();
 	}
 

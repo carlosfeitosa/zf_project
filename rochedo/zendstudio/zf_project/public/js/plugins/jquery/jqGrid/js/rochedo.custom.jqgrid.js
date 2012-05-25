@@ -122,12 +122,52 @@ function carregaDadosDialogViewJqGrid(formObject, urlDadosForm) {
  */
 function carregaDadosDialogViewJqGridPaginator(wichbutton, formObject, rowid, urlDadosForm) {
 	// realizando requisicao ajax para recuperacao dos dados
-		$.getJSON(urlDadosForm + rowid, function(data) {
-		  		
-			// percorrendo o array json resultado da requisicao
-			$.each(data[0], function(key, val) {
-				$('#v_' + key).text(val.replace(new RegExp('<br>', 'g'), '\n'));
-			});
-	
+	$.getJSON(urlDadosForm + rowid, function(data) {
+	  		
+		// percorrendo o array json resultado da requisicao
+		$.each(data[0], function(key, val) {
+			$('#v_' + key).text(val.replace(new RegExp('<br>', 'g'), '\n'));
 		});
+
+	});
+}
+
+/**
+ * Função para processar a resposta do request de edição de um objeto
+ * 
+ * @param response
+ * @param postdata
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+ * @since 25/05/2012
+ */
+function processaRetornoEditJqGrid(response, postdata) {
+	// inicializando variáveis
+	var success = true;
+	var message = "";
+	// transformando o response em json
+	var json = eval('(' + response.responseText + ')');
+	// verificando se existe erro
+	if(json.errors) {
+		// marcando o retorno como erro
+		success = false;
+		// loop para setar as mensagens de erro
+		for(i=0; i < json.errors.length; i++) {
+			// setando as mensagens de erro
+			message += json.errors[i] + '<br/>';
+		}
+	}
+
+	// verificando se a requisição está marcada como sucesso
+	if (success) {
+		// recuperando array de scripts para execução
+		var arrayScripts = json.view.scripts;
+		// loop para processar os scripts
+		for (script in arrayScripts)	{
+			// Processando o script
+			processaScript(arrayScripts[script]);
+		}
+	}
+
+	return [success,message];
 }

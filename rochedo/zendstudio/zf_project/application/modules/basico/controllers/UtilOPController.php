@@ -700,6 +700,22 @@ class Basico_OPController_UtilOPController
 	}
 
 	/**
+	 * Retorna uma string com as aspas simples (') escapadas para uso em javascript
+	 * 
+	 * @param String $string
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	public static function escapaAspasSimplesPHP($string)
+	{
+		// retornando dolar escapado
+		return str_replace("'", "\'", $string);
+	}
+
+	/**
 	 * Retorna uma string processada para json
 	 * 
 	 * @param String $string
@@ -2250,6 +2266,28 @@ class Basico_OPController_UtilOPController
 
     	// retornando o resultado do metodo exibirDialogMensagem
     	return self::retornaJavaScriptDojoDialogMensagem($dialogId, $dialogTitle, $textoDialog, $exibirBotao);
+    }
+
+    /**
+     * Retorna uma string com a substituição de quebra de linha por uma nova quebra passada por parametro
+     * 
+     * @param String $string
+     * @param String $novaQuebraDeLinha
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 25/05/2012
+     */
+    public static function trocaQuebraDeLinha($string, $novaQuebraDeLinha = QUEBRA_DE_LINHA_HTML)
+    {
+    	// transformando a string
+    	$stringRetorno = str_replace(chr(13) . chr(10), $novaQuebraDeLinha, $string);
+    	$stringRetorno = str_replace(chr(13), $novaQuebraDeLinha, $stringRetorno);
+    	$stringRetorno = str_replace('\n', $novaQuebraDeLinha, $stringRetorno);
+
+    	// retornando string com a quebra de linha substituída
+    	return $stringRetorno;
     }
 
     /**

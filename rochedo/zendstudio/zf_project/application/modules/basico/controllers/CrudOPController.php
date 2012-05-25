@@ -14,7 +14,7 @@
 class Basico_OPController_CrudOPController
 {
 	/**
-	 * Constantes para utilizacação via parametros do crud
+	 * Constantes para utilização via parametros do crud
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 11/04/2012
@@ -850,13 +850,22 @@ class Basico_OPController_CrudOPController
 		// recuperando o id da pessoa logada perfil por request
 		$idPessoaPerfilUpdate = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
 
+		// limpando pool de sqls
+		Basico_OPController_SessionOPController::limpaSqlPool();
+
 		// salvando o objeto
 		$resultadoSalvarObjeto = Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoObjeto, $idPessoaPerfilUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_VIA_CRUD, true), LOG_MSG_UPDATE_CRUD . " ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
 
 		// verificando o resultado do método de salvar
 		if ($resultadoSalvarObjeto) {
+			// recuperando querys executadas e limpando o pool de sqls
+			$sqlsExecutados = Basico_OPController_UtilOPController::escapaAspasSimplesPHP(Basico_OPController_UtilOPController::processaStringParaJson(implode(';' . QUEBRA_DE_LINHA_HTML, Basico_OPController_SessionOPController::recuperaPoolSql(true))));
+
+			// montando scripts de resultado
+			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_TITULO_MESSAGEM_SUCESSO') . " {$arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD]} ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
+			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("alert('{$sqlsExecutados}');");
 			// retornando sucesso
-			return array('scripts' => array('alert("teste");'));
+			return array('scripts' => $arrayScripts);
 		}
 
 		// retornando fracasso
@@ -1045,7 +1054,7 @@ class Basico_OPController_CrudOPController
 				$(function(){
 				
 					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{edit:true,add:true,del:true,search:true,view:true},
-												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');}, reloadAfterSubmit:false, closeOnEscape:true, closeAfterEdit:true}, // edit options
+												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');}, reloadAfterSubmit:false, closeOnEscape:true, closeAfterEdit:true, afterSubmit: processaRetornoEditJqGrid}, // edit options
 												 {height:'auto', width:'auto', closeOnEscape:true, reloadAfterSubmit:false}, // add options
 												 {reloadAfterSubmit:false}, // delete options
 												 {multipleSearch:true}, // adicionando multiple search

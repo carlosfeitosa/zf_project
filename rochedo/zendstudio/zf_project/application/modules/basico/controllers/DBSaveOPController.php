@@ -61,7 +61,7 @@ class Basico_OPController_DBSaveOPController
 			if (!Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($mixed)) {
 
 				// salvando o objeto
-				if (self::saveObjectDbTable($mixed, true)) {
+				if (self::saveObjectDbTable($mixed, APPLICATION_ENABLE_POOL_SQL)) {
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
@@ -149,7 +149,7 @@ class Basico_OPController_DBSaveOPController
 			if ($ultimaVersao !== $versaoVersionamento) {
 
 				// salvando o objeto
-				if (self::saveObjectDbTable($mixed, true)) {
+				if (self::saveObjectDbTable($mixed, APPLICATION_ENABLE_POOL_SQL)) {
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
@@ -246,6 +246,9 @@ class Basico_OPController_DBSaveOPController
 			if ($utilizarProfiler) {
 				// recupernado a ultima query e desligando o profiler
 				$queryExecutada = $objeto->getMapper()->getDbTable()->recuperaUltimaQueryExecutada(false);
+
+				// salvando a query no pool de sqls
+				Basico_OPController_SessionOPController::registraSqlPoolSql($queryExecutada);
 			}
 
 			return true;
