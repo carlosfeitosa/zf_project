@@ -1036,7 +1036,7 @@ class Basico_OPController_UtilOPController
    			// loop para transformar os valores
    			foreach ($arrayParametrosTransformacao as $atributo => $arrayTransformacao) {
    				// verificando o atributo de transformação
-   				if ($arrayTransformacao['tipo_dado'] === 'timestamp') {
+   				if (($arrayTransformacao['tipo_dado'] === 'timestamp')) {
    					// transformando o dado
    					$arrayObjeto[$atributo] = self::retornaZend_Date($arrayObjeto[$atributo], DEFAULT_DATABASE_DATETIME_FORMAT)->toString($arrayTransformacao['formato_saida']);
    				}

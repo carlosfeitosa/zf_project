@@ -28,9 +28,9 @@ class Basico_OPController_CrudOPController
 	const ATRIBUTO_FORMATO_DADOS = 'formatoDados';
 	const ATRIBUTO_TIPO_GRID = 'tipoGrid';
 	const TIPO_LISTAR = "listar";
+	const TIPO_MODIFICAR = 'modificar';
 	const TIPO_INSERIR = "inserir";
 	const TIPO_EDITAR = "editar";
-	const TIPO_SALVAR = "salvar";
 	const TIPO_EXCLUIR = "excluir";
 	const TIPO_DADOS = "dados";
 	const TIPO_GRID_JQGRID = 'jqgrid';
@@ -64,9 +64,14 @@ class Basico_OPController_CrudOPController
 	const JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA = '[15, 30, 45, 0]';
 	const JQGRID_MAX_STRING = 500;
 	const JQGRID_MAX_STRING_TRUNCATE = 15;
+	const JQGRID_ATRIBUTO_TIPO_OPERACAO_MODIFICAR = 'oper';
+	const JQGRID_ATRIBUTO_ID_TIPO_OPERADOR_MODIFICAR = 'id';
+	const JQGRID_VALOR_OPERACAO_MODIFICAR_UPDATE = 'edit';
+	const JQGRID_VALOR_OPERACAO_MODIFICAR_INSERT = 'add';
+	const JQGRID_VALOR_OPERACAO_MODIFICAR_DELETE = 'del';
 
 	/**
-	 * Processa o array de parametros do crud
+	 * Processa o array de parametros do crud para listar dados
 	 * 
 	 * @param Array $arrayParametrosCrud
 	 * 
@@ -75,7 +80,7 @@ class Basico_OPController_CrudOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 11/04/2012
 	 */
-	private static function processaArrayParametrosCrud(&$arrayParametrosCrud)
+	private static function processaArrayParametrosCrudListarDados(array &$arrayParametrosCrud)
 	{
 		// verificando se foi passado o modelo do crud
 		if (!isset($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD])) {
@@ -113,6 +118,61 @@ class Basico_OPController_CrudOPController
 			$arrayParametrosCrud[self::ATRIBUTO_FORMATO_DADOS] = self::FORMATO_DADOS_JSON;
 		}
 
+		// retornando sucesso
+		return true;
+	}
+
+	/**
+	 * Processa o array de parametros do crud para modificar dados, via JqGrid
+	 * 
+	 * @param Array $arrayParametrosCrud
+	 * @param String $tipoOperacaoCrud
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	private static function processaArrayParametrosCrudModificarDadosJqGrid(array &$arrayParametrosCrud, &$tipoOperacaoCrud)
+	{
+		// verificando se foi passado o modelo do crud
+		if (!isset($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD])) {
+			// retornando fracasso
+			return false;
+		}
+
+		// verificando se foi passado o tipo de operação
+		if ((!isset($arrayParametrosCrud[self::JQGRID_ATRIBUTO_TIPO_OPERACAO_MODIFICAR])) and (!isset($arrayParametrosCrud[self::JQGRID_ATRIBUTO_ID_TIPO_OPERADOR_MODIFICAR]))) {
+			// retornando fracasso
+			return false;
+		}
+
+		// switch para transformar os parametros de acordo com o tipo de operaçao de modificação enviado pelo jqgrid
+		switch ($arrayParametrosCrud[self::JQGRID_ATRIBUTO_TIPO_OPERACAO_MODIFICAR]) {
+			case self::JQGRID_VALOR_OPERACAO_MODIFICAR_UPDATE:
+				// transformando o array de parametros
+				$arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD] = self::TIPO_EDITAR;
+				$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = self::JQGRID_ATRIBUTO_ID_TIPO_OPERADOR_MODIFICAR . '=' . $arrayParametrosCrud[self::JQGRID_ATRIBUTO_ID_TIPO_OPERADOR_MODIFICAR];
+			break;
+			case self::JQGRID_VALOR_OPERACAO_MODIFICAR_INSERT:
+				// transformando o array de parametros
+				$arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD] = self::TIPO_INSERIR;
+			break;
+			case self::JQGRID_VALOR_OPERACAO_MODIFICAR_DELETE:
+				// transformando o array de parametros
+				$arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD] = self::TIPO_EXCLUIR;
+				$arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD] = self::JQGRID_ATRIBUTO_ID_TIPO_OPERADOR_MODIFICAR . '=' . $arrayParametrosCrud[self::JQGRID_ATRIBUTO_ID_TIPO_OPERADOR_MODIFICAR];
+			break;
+		}
+
+		// limpando parametros
+		unset($arrayParametrosCrud[self::JQGRID_ATRIBUTO_TIPO_OPERACAO_MODIFICAR]);
+		unset($arrayParametrosCrud[self::JQGRID_ATRIBUTO_ID_TIPO_OPERADOR_MODIFICAR]);
+
+		// setando o tipo de operação crud
+		$tipoOperacaoCrud = $arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD];
+
+		// retornando sucesso
 		return true;
 	}
 
@@ -126,7 +186,7 @@ class Basico_OPController_CrudOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 16/04/2012
 	 */
-	private static function processaArrayParametrosJQGrid(array &$arrayParametrosCrud)
+	private static function processaArrayParametrosJQGridListarDados(array &$arrayParametrosCrud)
 	{
 		// recuperando parametro do jqgrid
 		$stringJsonParametrosJqGrid  = Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayParametrosCrud);
@@ -193,6 +253,7 @@ class Basico_OPController_CrudOPController
 		// removendo parametros jqgrid do array de parametros do crud
 		unset($arrayParametrosCrud[$stringJsonParametrosJqGrid]);
 
+		// retornando sucesso
 		return true;
 	}
 
@@ -270,6 +331,9 @@ class Basico_OPController_CrudOPController
 				return ' NOT IN ';
 				break;
 		}
+
+		// retornando vazio
+		return '';
 	}
 
 	/**
@@ -297,7 +361,11 @@ class Basico_OPController_CrudOPController
 		}
 
 		// processando os parametros
-		if ((self::TIPO_DADOS !== $tipoOperacaoCrud) and (!self::processaArrayParametrosCrud($arrayParametrosCrud))) {
+		if (((self::TIPO_DADOS !== $tipoOperacaoCrud) and (self::TIPO_MODIFICAR !== $tipoOperacaoCrud)) and (!self::processaArrayParametrosCrudListarDados($arrayParametrosCrud))) {
+			// retornando falso
+			return false;
+		} else if ((self::TIPO_MODIFICAR === $tipoOperacaoCrud) and (((array_key_exists(self::ATRIBUTO_TIPO_GRID, $arrayParametrosCrud) and (self::TIPO_GRID_JQGRID === $arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID]))) and 
+																	 (!self::processaArrayParametrosCrudModificarDadosJqGrid($arrayParametrosCrud, $tipoOperacaoCrud)))) {
 			// retornando falso
 			return false;
 		}
@@ -310,11 +378,8 @@ class Basico_OPController_CrudOPController
 			break;
 			// crud edição
 			case self::TIPO_EDITAR:
-			;
-			break;
-			// crud salvar
-			case self::TIPO_SALVAR:
-			;
+				// retornando o resultado do método de editar o objeto
+				return self::editarDados($arrayParametrosCrud);
 			break;
 			// crud excluir
 			case self::TIPO_EXCLUIR:
@@ -325,11 +390,11 @@ class Basico_OPController_CrudOPController
 				// verificando o formato do grid
 				if ((isset($arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID])) and (self::TIPO_GRID_JQGRID === $arrayParametrosCrud[self::ATRIBUTO_TIPO_GRID])) {
 					// processando os parametros vindos do jqgrid
-					self::processaArrayParametrosJQGrid($arrayParametrosCrud);
+					self::processaArrayParametrosJQGridListarDados($arrayParametrosCrud);
 				}
 
 				// processando array de parametros do crud
-				self::processaArrayParametrosCrud($arrayParametrosCrud);
+				self::processaArrayParametrosCrudListarDados($arrayParametrosCrud);
 
 				// retornando dados
 				return self::retornaDados($arrayParametrosCrud, $arrayParametrosCrud[self::ATRIBUTO_FORMATO_DADOS]);
@@ -338,9 +403,12 @@ class Basico_OPController_CrudOPController
 			case self::TIPO_LISTAR:
 			default:
 				// chamando método que monta o grid de listagem
-				return self::listar($arrayParametrosCrud);
+				return self::listarDados($arrayParametrosCrud);
 			break;
 		}
+
+		// retornando fracasso
+		return false;
 	}
 
 	/**
@@ -354,7 +422,7 @@ class Basico_OPController_CrudOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 11/04/2012
 	 */
-	private static function retornaDados($arrayParametrosCrud, $formato = self::FORMATO_DADOS_JSON)
+	private static function retornaDados(array $arrayParametrosCrud, $formato = self::FORMATO_DADOS_JSON)
 	{
 		// recuperando nome do controlador do modelo
 		$instanciaModelo = new $arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]();
@@ -652,11 +720,27 @@ class Basico_OPController_CrudOPController
 		// motando condicação SQL
 		$condicaoSQL = "/condicaoSql/id=";
 		
-		// montando a url
-		$urlRetorno = Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}") . $condicaoSQL;
+		// retornando a url
+		return Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/administrador/crud/tipo/dados/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}") . $condicaoSQL;
+	}
+
+	/**
+	 * Retorna a url de modificação de dados
+	 * 
+	 * @param array $arrayParametrosCrud
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 24/05/2012
+	 */
+	private static function retornaUrlModificacaoDadosFormEdicaoJqGrid(array $arrayParametrosCrud)
+	{
+		// recuperando atributos do grid jqgrid
+		$parametroTipoGridJqGrid = '/' . self::ATRIBUTO_TIPO_GRID . '/' . self::TIPO_GRID_JQGRID;
 
 		// retornando a url
-		return $urlRetorno;
+		return Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl("/basico/administrador/crud/tipo/modificar/modelo/{$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]}{$parametroTipoGridJqGrid}");
 	}
 
 	/**
@@ -669,7 +753,7 @@ class Basico_OPController_CrudOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 11/04/2012
 	 */
-	private static function listar(array $arrayParametrosCrud)
+	private static function listarDados(array $arrayParametrosCrud)
 	{
 		// inicializando variáveis
 		$arrayRetornoContent = array();
@@ -678,13 +762,135 @@ class Basico_OPController_CrudOPController
 		// recuperando retorno
 		$arrayRetornoContent[] = self::retornaHTMLCrud($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]);
 		$arrayRetornoScripts[] = self::retornaJavaScriptCrud();
-		$arrayRetornoScripts[] = self::retornaJavaScriptInicalizacaoGridCrud($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD], self::retornaUrlRecuperacaoDados($arrayParametrosCrud), self::retornaUrlRecuperacaoDadosFormEdicaoJqGrid($arrayParametrosCrud), 'id');
+		$arrayRetornoScripts[] = self::retornaJavaScriptInicalizacaoGridCrud($arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD], self::retornaUrlRecuperacaoDados($arrayParametrosCrud), self::retornaUrlRecuperacaoDadosFormEdicaoJqGrid($arrayParametrosCrud), self::retornaUrlModificacaoDadosFormEdicaoJqGrid($arrayParametrosCrud), 'id');
 
 		// inicializando array de resultados
 		$arrayResultado['content'] = $arrayRetornoContent;
 		$arrayResultado['scripts'] = $arrayRetornoScripts;
 		
 		return $arrayResultado;
+	}
+
+	/**
+	 * Retorna um objeto através dos parametros do crud
+	 * 
+	 * @param Array $arrayParametrosCrud
+	 * 
+	 * @return Object|false
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	private static function retornaObjetoViaParametrosCrud(array $arrayParametrosCrud)
+	{
+		// instanciando o modelo
+		$modelo = new $arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]();
+
+		// recuperando array objeto
+		$arrayObjeto = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelo, $arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD], null, 1, 0);
+
+		// limpando memória
+		unset($modelo);
+
+		// verificando o resultado da recuperação
+		if (count($arrayObjeto)) {
+			// recuperando objeto
+			$objeto = $arrayObjeto[0];
+			
+			// limpando memória
+			unset($arrayObjeto);
+
+			// retornando o objeto
+			return $objeto;
+		}
+
+		// limpando memória
+		unset($arrayObjeto);
+
+		// retornando fracasso
+		return false;
+	}
+
+	/**
+	 * Edita os dados de um objeto
+	 * 
+	 * @param array $arrayParametrosCrud
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	private static function editarDados(array $arrayParametrosCrud)
+	{
+		// recuperando objeto
+		$objeto = self::retornaObjetoViaParametrosCrud($arrayParametrosCrud);
+
+		// verificando o resultado da recuperação do objeto
+		if (!is_object($objeto)) {
+			// retornando fracasso
+			return false;
+		}
+
+		// recuperando a versão do objeto
+		$versaoObjeto = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objeto);
+
+		// recuperando atributos do objeto
+		$arrayAtributosObjeto = Basico_OPController_UtilOPController::retornaArrayAtributosGetObjeto($objeto);
+
+		// loop para atualizar os atributos do objeto
+		foreach ($arrayAtributosObjeto as $atributo) {
+			// verificando se o atributo existe no array de parametros do crud
+			if ((isset($arrayParametrosCrud[$atributo])) and ($objeto->$atributo != $arrayParametrosCrud[$atributo])) {
+				// setando valor no objeto
+				$objeto->$atributo = $arrayParametrosCrud[$atributo];
+			}
+		}
+
+		// recuperando o id da pessoa logada perfil por request
+		$idPessoaPerfilUpdate = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
+
+		// salvando o objeto
+		$resultadoSalvarObjeto = Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoObjeto, $idPessoaPerfilUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_VIA_CRUD, true), LOG_MSG_UPDATE_CRUD . " ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
+
+		// verificando o resultado do método de salvar
+		if ($resultadoSalvarObjeto) {
+			// retornando sucesso
+			return array('scripts' => array('alert("teste");'));
+		}
+
+		// retornando fracasso
+		return false;
+	}
+
+	/**
+	 * Cria um novo objeto
+	 * 
+	 * @param array $arrayParametrosCrud
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	private static function inserirDados(array $arrayParametrosCrud)
+	{
+		
+	}
+
+	/**
+	 * Apaga um objeto
+	 * 
+	 * @param array $arrayParametrosCrud
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 25/05/2012
+	 */
+	private static function apagarDados(array $arrayParametrosCrud)
+	{
+		
 	}
 
 	/**
@@ -734,6 +940,7 @@ class Basico_OPController_CrudOPController
 	 * @param String $nomeModelo
 	 * @param String $urlRecuperacaoDados
 	 * @param String $urlRecuperacaoDadosFormEdicao
+	 * @param String $urlModificarDados
 	 * @param String $campoOrdenadorInicial 
 	 * @param String $tipoDados
 	 * @param Integer $alturaGrid
@@ -746,8 +953,9 @@ class Basico_OPController_CrudOPController
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 24/05/2012
 	 */
-	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $urlRecuperacaoDadosFormEdicao, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 330, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
+	private static function retornaJavaScriptInicalizacaoGridCrud($nomeModelo, $urlRecuperacaoDados, $urlRecuperacaoDadosFormEdicao, $urlModificarDados, $campoOrdenadorInicial, $tipoDados = 'json', $alturaGrid = 330, $larguraGrid = 1000, $linhasPorPagina = self::JQGRID_DEFAULT_LIMITE_POR_PAGINA, $opcoesLinhasPorPagina = self::JQGRID_DEFAULT_OPCOES_LIMITE_POR_PAGINA, $arrayOperacoesPermitidas = array('add' => false, 'edit' => false, 'del' => false))
 	{
 		// recuperando o nome da listagem e nome paginação
 		$nomeListagem  = "listagem-{$nomeModelo}";
@@ -794,9 +1002,6 @@ class Basico_OPController_CrudOPController
 			// recuperando o modelo da coluna do atributo
 			$stringColModel .= self::retornaModeloColunaJqGrid($atributoModelo, $nomeAtributoBD, $larguraColuna, $arrayAtributosNaoEditaveis, $arrayDetalhesAtributos);
 			
-			// setando string colModel
-			//$stringColModel .= "{name: '{$atributoModelo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, edittype: '{$optionElementType}', editoptions:{{$optionRowsCols} {$elementSelectOptions} {$optionElementSize} {$optionElementMaxLength}}}";
-
 			// verificando se não trata-se do último elemento
 			if ($chave !== Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayAtributosModelo)) {
 				$stringColNames .= ', ';
@@ -825,7 +1030,7 @@ class Basico_OPController_CrudOPController
 							multiselect: false,
 						    mtype: 'GET',
 							gridview: true,
-							editurl:'',
+							editurl: '{$urlModificarDados}',
 							caption: 'CRUD {$nomeModelo}',
 						    serializeGridData: function (dados) {
 												return JSON.stringify(dados)
@@ -840,7 +1045,7 @@ class Basico_OPController_CrudOPController
 				$(function(){
 				
 					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{edit:true,add:true,del:true,search:true,view:true},
-												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');} ,reloadAfterSubmit:false, closeOnEscape:true}, // edit options
+												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');}, reloadAfterSubmit:false, closeOnEscape:true, closeAfterEdit:true}, // edit options
 												 {height:'auto', width:'auto', closeOnEscape:true, reloadAfterSubmit:false}, // add options
 												 {reloadAfterSubmit:false}, // delete options
 												 {multipleSearch:true}, // adicionando multiple search
@@ -922,10 +1127,10 @@ class Basico_OPController_CrudOPController
  	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
  	 * @since 19/04/2012
  	 */
-	public static function retornaModeloColunaJqGrid($nomeAtributo, $nomeAtributoBD, $larguraColuna, $arrayAtributosNaoEditaveis, $arrayDetalhesAtributos)
+	public static function retornaModeloColunaJqGrid($nomeAtributo, $nomeAtributoBD, $larguraColuna, array $arrayAtributosNaoEditaveis, array $arrayDetalhesAtributos)
 	{
 		// inicializando variaveis
-		$optionEditable         = "editable:false";
+		$optionEditable         = "editable: false";
 		$optionElementRequired  = "required: false";
 		$optionElementType      = "text";
 		$optionElementSize      = "size: 4,";
@@ -976,7 +1181,7 @@ class Basico_OPController_CrudOPController
 			
 			// se o atributo tiver tamanho definido
 			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH])) {
-				
+				// recuperando o tamanho do campo
 				$tamanhoCampo = (int) $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH];
 				
 				// recuperando tamanho do elemento
@@ -993,7 +1198,6 @@ class Basico_OPController_CrudOPController
 					}
 				}
 			}
-		
 		}
 		
 		// montando e retornando array json com as propriedades da coluna e do campo para edicao do atributo do modelo para o jqGrid
