@@ -2023,7 +2023,7 @@ class Basico_OPController_UtilOPController
      * 
      * @param Array $array
      * 
-     * @return Sting
+     * @return String
      */
     public static function codificaArrayJson($array)
     {

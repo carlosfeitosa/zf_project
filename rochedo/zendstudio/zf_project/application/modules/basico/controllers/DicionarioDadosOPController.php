@@ -399,7 +399,7 @@ class Basico_OPController_DicionarioDadosOPController
 				switch ($arrayValores['operacao']) {
 					case 'insert':
 						// verificando se já existe o campo para reativação
-						if ($this->_dicionarioDadosAssocFieldOPController->retornaIdTablePorIdSchemaTablename($idAssocTable, $arrayValores['nome'])) {
+						if ($this->_dicionarioDadosAssocFieldOPController->retornaIdFieldPorIdSchemaTablename($idAssocTable, $arrayValores['nome'])) {
 							// reativando o campo
 							$this->_dicionarioDadosAssocFieldOPController->ativaCampo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome']);
 						} else {

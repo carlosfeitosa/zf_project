@@ -37,7 +37,7 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 	 * 
 	 * @var Basico_Model_DicionarioDadosAssocclFk object
 	 */
-	private $_model;
+	protected $_model;
 		
 	/**
 	 * Construtor do Controlador DicionarioDadosAssocclFk
@@ -91,5 +91,67 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 		}
 		// retornando instancia
 		return self::$_singleton;
+	}
+	
+	/**
+	 * Retorna o id_assoc_field_fk
+	 * 
+	 * @param String $nomeSchema
+	 * @param String $nomeTabela
+	 * @param String $nomeCampo
+	 * 
+	 * @return array|null
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 25/05/2012
+	 */
+	public function retornaOptionsCampoFkPorNomeSchemaNomeTabelaNomeCampo($nomeSchema, $nomeTabela, $nomeCampo)
+	{
+		// verificando se os parametros foram passados
+		if ($nomeSchema == null || $nomeTabela == null || $nomeCampo == null)
+			throw new Exception("Parametros insuficientes para consulta de campo chave estrangeira.");
+		
+		// recuperando o id do schema
+		$idSchema = Basico_OPController_DicionarioDadosSchemaOPController::getInstance()->retornaIdSchemaPorSchemaname($nomeSchema);
+		// recuperando o id da tabela
+		$idTabela = Basico_OPController_DicionarioDadosAssocTableOPController::getInstance()->retornaIdTablePorIdSchemaTablename($idSchema, $nomeTabela);
+		// recuperando o id do campo
+		$idCampo  = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance()->retornaIdFieldPorIdSchemaTablename($idTabela, $nomeCampo);
+		
+		// recuperando o campo fk default da tabela
+		$idFkDefault = Basico_OPController_DicionarioDadosAssocTableOPController::getInstance()->retornaIdFkDefaultPorIdTable($idTabela);
+		
+		// verificando se utiliza o campo fk default da tabela
+		if (null != $idFkDefault)
+			// recuperando dados do campo fk default da tabela 
+			$arrayDadosCampoFk = $this->retornaArrayDadosObjetosPorParametros("id = {$idFkDefault}", null, null, null, array('idAssocFieldFk', 'metodoRecuperacao'));
+		else
+			// recuperando dados do campo fk
+			$arrayDadosCampoFk = $this->retornaArrayDadosObjetosPorParametros("id_assoc_table = {$idTabela} AND id_assoc_field = {$idCampo}", null, null, null, array('idAssocFieldFk', 'metodoRecuperacao'));
+		
+		// verificando se dados foram recuperados
+		if (null != $arrayDadosCampoFk) {
+			// recuperando o nome do campo fk
+			$nomeCampoFk = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance()->retornaFieldnamePorIdField($arrayDadosCampoFk[0]['idAssocFieldFk']);
+						
+			// recuperando dados para carregamento dos options do campo fk
+			$dadosOptionsCampoFk = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL($nomeSchema . "." . $nomeTabela, array($nomeCampo, $nomeCampoFk));
+			
+			$arrayResultado = array();
+			
+			// percorrendo os options para aplicar o metodo de recuperacao
+			foreach ($dadosOptionsCampoFk as $key => $option) {
+				// tratando metodo de recuperacao
+				$metodoRecuperacao = str_replace('@constanteTextual', $option['constante_textual'], $arrayDadosCampoFk[0]['metodoRecuperacao']);
+				// atribuindo retorno do metodo de recuperacao ao arrayResultado
+				$arrayResultado[$key] = Basico_OPController_UtilOPController::secureEval("return " . $metodoRecuperacao . ";");
+			}
+			
+			// retornando array
+			return $arrayResultado;
+		}
+		
+		return null;
 	}
 }

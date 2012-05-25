@@ -1163,7 +1163,21 @@ class Basico_OPController_CrudOPController
 					if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK])) {
 						// se for chave estrangeira seta o tipo do elemento para select
 						$optionElementType = "select";
-						$elementSelectOptions = "";
+						
+						// recuperando array de options do campo fk
+						$optionsCampoFk = Basico_OPController_DicionarioDadosAssocclFkOPController::getInstance()->retornaOptionsCampoFkPorNomeSchemaNomeTabelaNomeCampo($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK]['fk_schema'], $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK]['fk_table_name'], $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK]['fk_column_name']);
+						
+						// iniciando montagem da string com os options
+						$elementSelectOptions = " value: '";
+						
+						foreach ($optionsCampoFk as $chave => $valor) {
+							if (isset($optionsCampoFk[$chave + 1]))
+								$elementSelectOptions .= "{$chave}:{$valor};";
+							else
+								$elementSelectOptions .= "{$chave}:{$valor}";
+						}
+						
+						$elementSelectOptions .= "',";
 					}
 					break;
 				case 'bool':

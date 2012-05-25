@@ -211,7 +211,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 22/05/2012
 	 */
-	public function retornaIdTablePorIdSchemaTablename($idAssocTable, $fieldname)
+	public function retornaIdFieldPorIdSchemaTablename($idAssocTable, $fieldname)
 	{
 		// verificando se nao foi passado o id do schema ou nome do schema
 		if (((!$idAssocTable) or (!is_int($idAssocTable))) or ((!$fieldname) or (!is_string($fieldname)))) {
@@ -230,5 +230,30 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 
 		// retornando o nome do schema
 		return (int) $arrayResultado[0]['id'];
+	}
+	
+	/**
+	 * Retorna o fieldname pelo id do field passado
+	 * 
+	 * @param Int $idField
+	 * 
+	 * @return String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelso@rochedoframework.com)
+	 * 
+	 * @since 25/05/2012
+	 */
+	public function retornaFieldnamePorIdField($idField)
+	{
+		// recuperando dados do field
+		$dadosField = $this->retornaArrayDadosObjetosPorParametros("id = {$idField}", null, null, null, array('fieldname'));
+		
+		// verificando se os dados foram recuperados com sucesso
+		if (count($dadosField) > 0) {
+			// retornando fieldname
+			return $dadosField[0]['fieldname'];
+		}
+		
+		return null;
 	}
 }

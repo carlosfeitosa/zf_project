@@ -317,4 +317,28 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		// retornando o nome do schema
 		return (int) $arrayResultado[0]['id'];
 	}
+	
+	/**
+	 * Retorna o id do campo fk default pelo id da tabela passada
+	 * 
+	 * @param Int $idTable
+	 * 
+	 * @return Int|null
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 25/05/2012
+	 */
+	public function retornaIdFkDefaultPorIdTable($idTable)
+	{
+		// recuperando array com resultado de consulta
+		$arrayResultado = $this->retornaArrayDadosObjetosPorParametros("id = {$idTable}", null, null, null, array('idFkDefault'));
+		
+		// verificando se retornou resultado
+		if (null != $arrayResultado)
+			// retornando idFkDefault
+			return $arrayResultado[0]['idFkDefault'];
+		
+		return null;
+	}
 }
