@@ -140,7 +140,9 @@ define("LOG_MSG_DELETE_FORMULARIO", "Exclusao de formulario do banco de dados");
 define("LOG_MSG_UPDATE_INCLUDE", "Atualização de include no banco de dados.");
 define("LOG_MSG_NOVO_INCLUDE", "Novo include inserido no banco de dados.");
 define("LOG_MSG_DELETE_INCLUDE", "Exclusão de include do banco de dados");
-define("LOG_MSG_UPDATE_CRUD", "Atualização de modelo via crud");
+define("LOG_MSG_UPDATE_CRUD", "Atualização de objeto via crud");
+define("LOG_MSG_INSERT_CRUD", "Inserção de objeto via crud");
+define("LOG_MSG_DELETE_CRUD", "Exclusão de objeto via crud");
 
 
 /*

@@ -194,8 +194,8 @@ class Basico_OPController_DBSaveOPController
 				// limpando memória
 				unset($transacaoInicializada);
 
-				// retornando falso
-				return false;
+				// retornando sucesso
+				return true;
 			}
 
 		} catch (Exception $e) {

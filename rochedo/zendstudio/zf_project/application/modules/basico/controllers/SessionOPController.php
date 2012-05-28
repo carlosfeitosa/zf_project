@@ -562,6 +562,9 @@ class Basico_OPController_SessionOPController
 	 */
 	public static function registraSqlPoolSql($sql)
 	{
+		// adicionado ponto-e-vírgula (';') ao script
+		$sql.= ';';
+
 		// recuperando a sessao do usuario
 		$sessaoUsuario = self::registraSessaoUsuario();
 

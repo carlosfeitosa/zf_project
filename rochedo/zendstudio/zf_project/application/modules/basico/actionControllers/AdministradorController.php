@@ -207,6 +207,8 @@ class Basico_AdministradorController extends Zend_Controller_Action
     				if (isset($retornoCrud['content'])) {
     					// setando conteúdo na view
     					$this->view->content = $retornoCrud['content'];
+    					$this->view->content[] = 'SQL log:<br>';
+    					$this->view->content[] = Basico_OPController_UtilOPController::retornaTextAreaSqlCrud();
     				}
     				// verificando se foi retornando algum script
     				if (isset($retornoCrud['scripts'])) {

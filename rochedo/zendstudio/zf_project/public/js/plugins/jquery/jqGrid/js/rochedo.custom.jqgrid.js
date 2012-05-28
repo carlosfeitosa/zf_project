@@ -141,7 +141,7 @@ function carregaDadosDialogViewJqGridPaginator(wichbutton, formObject, rowid, ur
  * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
  * @since 25/05/2012
  */
-function processaRetornoEditJqGrid(response, postdata) {
+function processaRetornoJqGrid(response, postdata) {
 	// inicializando variáveis
 	var success = true;
 	var message = "";

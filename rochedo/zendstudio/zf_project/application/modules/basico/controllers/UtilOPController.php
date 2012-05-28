@@ -1052,7 +1052,7 @@ class Basico_OPController_UtilOPController
    			// loop para transformar os valores
    			foreach ($arrayParametrosTransformacao as $atributo => $arrayTransformacao) {
    				// verificando o atributo de transformação
-   				if (($arrayTransformacao['tipo_dado'] === 'timestamp')) {
+   				if (($arrayTransformacao['tipo_dado'] === 'timestamp') and isset($arrayObjeto[$atributo])) {
    					// transformando o dado
    					$arrayObjeto[$atributo] = self::retornaZend_Date($arrayObjeto[$atributo], DEFAULT_DATABASE_DATETIME_FORMAT)->toString($arrayTransformacao['formato_saida']);
    				}
@@ -3101,5 +3101,37 @@ class Basico_OPController_UtilOPController
 		end($array);
 		// retornando a chave do último elemento
 		return key($array);
+	}
+
+	/**
+	 * Retorna uma string contendo o código html para renderização de textarea para inserção do código SQL com as operações do crud
+	 * 
+	 * @return String 
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/05/2012
+	 */
+	public static function retornaTextAreaSqlCrud()
+	{
+		// retornando string
+		return "<textarea id='sqlCrud' style='width:100%;' readonly=true></textarea>";
+	}
+
+	/**
+	 * Retorna uma chamada javascript que adiciona um texto a um textArea
+	 * 
+	 * @param String $idTextArea
+	 * @param String $texto
+	 * @param String $separador
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/05/2012
+	 */
+	public static function retornaJavascriptAdicionarTextoTextArea($idTextArea, $texto, $separador = '\n\n')
+	{
+		// retornando javascript
+		return self::retornaJavaScriptEntreTagsScriptHtml("adicionaTextoElementoHtml('{$idTextArea}', '{$texto}', '{$separador}')");
 	}
 }

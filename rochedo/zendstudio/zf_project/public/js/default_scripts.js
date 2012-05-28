@@ -953,3 +953,29 @@ function timer(interval,callBack){
 	
 	}
 }
+
+/**
+ * Adiciona um texto a um elemento html
+ * 
+ * @param String idElemento
+ * @param String texto
+ * @param String separador
+ * 
+ * @return void
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+ * @since 27/05/2012
+ */
+function adicionaTextoElementoHtml(idElemento, texto, separador) {
+	// recuperando o valor atual do elemento
+	var valorAtual = $('#' + idElemento).val();
+
+	// verificando se o valor atual é vazio
+	if (valorAtual == '') {
+		// setando o valor do elemento com o conteúdo do valor atual
+		$('#' + idElemento).val(texto);
+	} else {
+		// setando o valor do elemento com o conteúdo do valor atual adicionado do novo valor
+		$('#' + idElemento).val(valorAtual + separador + texto);
+	}
+}

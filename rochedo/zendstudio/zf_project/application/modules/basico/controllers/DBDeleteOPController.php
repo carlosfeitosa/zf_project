@@ -32,7 +32,7 @@ class Basico_OPController_DBDeleteOPController
 
 			try {
 				// apagando registro
-				if (self::deleteObjectDbTable($objeto)) {
+				if (self::deleteObjectDbTable($objeto, APPLICATION_ENABLE_POOL_SQL)) {
 
 					// criando log de operacoes
 					if ((isset($idPessoaPerfil)) and (isset($idCategoriaLog)) and (isset($mensagemLog)))
@@ -70,7 +70,7 @@ class Basico_OPController_DBDeleteOPController
 	 * 
 	 * @return Boolean
 	 */
-	private function deleteCascata($objeto, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	private static function deleteCascata($objeto, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// inicializando variaveis
 		$tempReturn = false;
@@ -118,7 +118,7 @@ class Basico_OPController_DBDeleteOPController
 	 * 
 	 * @return Boolean
 	 */
-	private function deleteCascataCategoriaChaveEstrangeiraTabelaId($nomeTabela, $valorId, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	private static function deleteCascataCategoriaChaveEstrangeiraTabelaId($nomeTabela, $valorId, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// inicializando variaveis
 		$tempReturn = false;
@@ -198,7 +198,7 @@ class Basico_OPController_DBDeleteOPController
 	 * 
 	 * @return Boolean
 	 */
-	private function deleteCascataFKTabelaId($nomeTabela, $valorId, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	private static function deleteCascataFKTabelaId($nomeTabela, $valorId, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// inicializando variaveis
 		$tempReturn = false;
@@ -275,7 +275,7 @@ class Basico_OPController_DBDeleteOPController
 	 * 
 	 * @return Boolean
 	 */
-	private function deleteRegistroTabelaId($nomeTabela, $valorId, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
+	private static function deleteRegistroTabelaId($nomeTabela, $valorId, $idPessoaPerfil = null, $idCategoriaLog = null, $mensagemLog = null)
 	{
 		// inicializando variaveis
 		$nomeCampoId = TABLE_ID_FIELD;
@@ -298,10 +298,14 @@ class Basico_OPController_DBDeleteOPController
 	 * Apaga um objeto utilizando o delete do mapper (DbTable)
 	 * 
 	 * @param Object $objeto
+	 * @param Boolean $utilizarProfiler
 	 * 
 	 * @return true
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframeowork.com)
+	 * @since 27/05/2012
 	 */
-	private function deleteObjectDbTable($objeto)
+	private static function deleteObjectDbTable($objeto, $utilizarProfiler = false)
 	{
 		// verificando se foi passado um objeto, por parametro
 		if (!is_object($objeto))
@@ -310,8 +314,23 @@ class Basico_OPController_DBDeleteOPController
 		// verificando se objeto possui o metodo getMapper()->delete()
 		if ((method_exists($objeto, 'getMapper')) and (method_exists($objeto->getMapper(), 'delete'))) {
 
+			// verificando se é preciso ligar o profiler
+			if ($utilizarProfiler) {
+				// inicializando o profiler
+				$objeto->getMapper()->getDbTable()->habilitaProfiler();
+			}
+
 			// apagando o objeto
 			$objeto->getMapper()->delete($objeto);
+
+					// verificando se é preciso desligar o profiler
+			if ($utilizarProfiler) {
+				// recupernado a ultima query e desligando o profiler
+				$queryExecutada = $objeto->getMapper()->getDbTable()->recuperaUltimaQueryExecutada(false);
+
+				// salvando a query no pool de sqls
+				Basico_OPController_SessionOPController::registraSqlPoolSql($queryExecutada);
+			}
 
 			return true;
 		} else

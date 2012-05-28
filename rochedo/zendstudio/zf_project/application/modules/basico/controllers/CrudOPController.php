@@ -374,7 +374,8 @@ class Basico_OPController_CrudOPController
 		switch ($tipoOperacaoCrud) {
 			// crud inserção
 			case self::TIPO_INSERIR:
-			;
+				// retornando o resultado do método de inserir o objeto
+			  return self::inserirDados($arrayParametrosCrud);
 			break;
 			// crud edição
 			case self::TIPO_EDITAR:
@@ -383,7 +384,8 @@ class Basico_OPController_CrudOPController
 			break;
 			// crud excluir
 			case self::TIPO_EXCLUIR:
-			;
+				// retornando o resultado do método de excluir o objeto
+				return self::apagarDados($arrayParametrosCrud);
 			break;
 			// recuperar dados de um objeto
 			case self::TIPO_DADOS:
@@ -784,7 +786,7 @@ class Basico_OPController_CrudOPController
 	private static function retornaObjetoViaParametrosCrud(array $arrayParametrosCrud)
 	{
 		// instanciando o modelo
-		$modelo = new $arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]();
+		$modelo = self::retornaModeloViaParametrosCrud($arrayParametrosCrud);
 
 		// recuperando array objeto
 		$arrayObjeto = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelo, $arrayParametrosCrud[self::ATRIBUTO_CONDICAOSQL_CRUD], null, 1, 0);
@@ -809,6 +811,22 @@ class Basico_OPController_CrudOPController
 
 		// retornando fracasso
 		return false;
+	}
+
+	/**
+	 * Retorna um modelo através dos parametros do crud
+	 * 
+	 * @param array $arrayParametrosCrud
+	 * 
+	 * @return Object|false
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 28/05/2012
+	 */
+	private static function retornaModeloViaParametrosCrud(array $arrayParametrosCrud)
+	{
+		// retornando o modelo do crud
+		return new $arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]();
 	}
 
 	/**
@@ -863,7 +881,7 @@ class Basico_OPController_CrudOPController
 
 			// montando scripts de resultado
 			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_TITULO_MESSAGEM_SUCESSO') . " {$arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD]} ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
-			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("alert('{$sqlsExecutados}');");
+			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavascriptAdicionarTextoTextArea('sqlCrud', $sqlsExecutados);
 			// retornando sucesso
 			return array('scripts' => $arrayScripts);
 		}
@@ -884,7 +902,44 @@ class Basico_OPController_CrudOPController
 	 */
 	private static function inserirDados(array $arrayParametrosCrud)
 	{
-		
+		// recuperando o modelo
+		$modelo = self::retornaModeloViaParametrosCrud($arrayParametrosCrud);
+
+		// recuperando atributos do objeto
+		$arrayAtributosObjeto = Basico_OPController_UtilOPController::retornaArrayAtributosGetObjeto($modelo);
+
+		// loop para atualizar os atributos do objeto
+		foreach ($arrayAtributosObjeto as $atributo) {
+			// verificando se o atributo existe no array de parametros do crud
+			if ((isset($arrayParametrosCrud[$atributo])) and ($modelo->$atributo != $arrayParametrosCrud[$atributo])) {
+				// setando valor no objeto
+				$modelo->$atributo = $arrayParametrosCrud[$atributo];
+			}
+		}
+
+		// recuperando o id da pessoa logada perfil por request
+		$idPessoaPerfilInsert = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
+
+		// limpando pool de sqls
+		Basico_OPController_SessionOPController::limpaSqlPool();
+
+		// salvando o objeto
+		$resultadoSalvarObjeto = Basico_OPController_PersistenceOPController::bdSave($modelo, null, $idPessoaPerfilInsert, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_INSERT_VIA_CRUD, true), LOG_MSG_INSERT_CRUD . " ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
+
+		// verificando o resultado do método de salvar
+		if ($resultadoSalvarObjeto) {
+			// recuperando querys executadas e limpando o pool de sqls
+			$sqlsExecutados = Basico_OPController_UtilOPController::escapaAspasSimplesPHP(Basico_OPController_UtilOPController::processaStringParaJson(implode(';' . QUEBRA_DE_LINHA_HTML, Basico_OPController_SessionOPController::recuperaPoolSql(true))));
+
+			// montando scripts de resultado
+			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_TITULO_MESSAGEM_SUCESSO') . " {$arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD]} ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
+			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavascriptAdicionarTextoTextArea('sqlCrud', $sqlsExecutados);
+			// retornando sucesso
+			return array('scripts' => $arrayScripts);
+		}
+
+		// retornando fracasso
+		return false;
 	}
 
 	/**
@@ -899,7 +954,38 @@ class Basico_OPController_CrudOPController
 	 */
 	private static function apagarDados(array $arrayParametrosCrud)
 	{
-		
+		// recuperando objeto
+		$objeto = self::retornaObjetoViaParametrosCrud($arrayParametrosCrud);
+
+		// verificando o resultado da recuperação do objeto
+		if (!is_object($objeto)) {
+			// retornando fracasso
+			return false;
+		}
+
+		// recuperando o id da pessoa logada perfil por request
+		$idPessoaPerfilDelete = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilMaiorPerfilPorIdPessoaRequest(Basico_OPController_PessoaLoginOPController::retornaIdPessoaPorIdLoginViaSQL(Basico_OPController_PessoaLoginOPController::retornaIdLoginUsuarioSessao()), Basico_OPController_UtilOPController::retornaUserRequest());
+
+		// limpando pool de sqls
+		Basico_OPController_SessionOPController::limpaSqlPool();
+
+		// salvando o objeto
+		$resultadoSalvarObjeto = Basico_OPController_PersistenceOPController::bdDelete($objeto, false, $idPessoaPerfilDelete, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_DELETE_VIA_CRUD, true), LOG_MSG_DELETE_CRUD . " ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
+
+		// verificando o resultado do método de excluir
+		if ($resultadoSalvarObjeto) {
+			// recuperando querys executadas e limpando o pool de sqls
+			$sqlsExecutados = Basico_OPController_UtilOPController::escapaAspasSimplesPHP(Basico_OPController_UtilOPController::processaStringParaJson(implode(';' . QUEBRA_DE_LINHA_HTML, Basico_OPController_SessionOPController::recuperaPoolSql(true))));
+
+			// montando scripts de resultado
+			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('VIEW_TITULO_MESSAGEM_SUCESSO') . " {$arrayParametrosCrud[self::ATRIBUTO_TIPO_CRUD]} ({$arrayParametrosCrud[self::ATRIBUTO_MODELO_CRUD]})");
+			$arrayScripts[] = Basico_OPController_UtilOPController::retornaJavascriptAdicionarTextoTextArea('sqlCrud', $sqlsExecutados);
+			// retornando sucesso
+			return array('scripts' => $arrayScripts);
+		}
+
+		// retornando fracasso
+		return false;
 	}
 
 	/**
@@ -989,28 +1075,28 @@ class Basico_OPController_CrudOPController
 
 		// recuperando array de detalhes do atributo
 		$arrayDetalhesAtributos = Basico_OPController_DBUtilOPController::retornaArrayAtributosTabelaBDObjeto($instanciaModelo);
-		
+
 		// recuperando array de atributos nao editaveis
 		$arrayAtributosNaoEditaveis = self::retornaArrayAtributosNaoEditaveis();
-		
+
 		// montando string serializada
 		foreach ($arrayAtributosModelo as $chave => $atributoModelo) {
-			
+
 			// setando string colNames
 			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
 
 			// recuperando o nome do atributo no banco de dados
 			$nomeAtributoBD = Basico_OPController_DBUtilOPController::retornaNomeCampoAtributo($atributoModelo);
-			
+
 			// recuperando a largura da coluna
 			$larguraColuna = $arrayLarguraColunas[$nomeAtributoBD];
 
 			// somando a largura do grid
 			$larguraGrid += $larguraColuna;
-			
+
 			// recuperando o modelo da coluna do atributo
 			$stringColModel .= self::retornaModeloColunaJqGrid($atributoModelo, $nomeAtributoBD, $larguraColuna, $arrayAtributosNaoEditaveis, $arrayDetalhesAtributos);
-			
+
 			// verificando se não trata-se do último elemento
 			if ($chave !== Basico_OPController_UtilOPController::retornaChaveUltimoElementoArray($arrayAtributosModelo)) {
 				$stringColNames .= ', ';
@@ -1020,7 +1106,6 @@ class Basico_OPController_CrudOPController
 
 		// montando resposta
 		$retorno = "$(function(){
-					
 						$('#{$nomeListagem}').jqGrid({
 						   	url: '{$urlRecuperacaoDados}',
 							datatype: '{$tipoDados}',
@@ -1043,25 +1128,21 @@ class Basico_OPController_CrudOPController
 							caption: 'CRUD {$nomeModelo}',
 						    serializeGridData: function (dados) {
 												return JSON.stringify(dados)
-
 												},
-
 							jsonReader: {repeatitems: false, id: 'id'}
 						})
-						
 				});
-				
+
 				$(function(){
-				
 					$('#{$nomeListagem}').jqGrid('navGrid','#{$nomePaginacao}',{edit:true,add:true,del:true,search:true,view:true},
-												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');}, reloadAfterSubmit:false, closeOnEscape:true, closeAfterEdit:true, afterSubmit: processaRetornoEditJqGrid}, // edit options
-												 {height:'auto', width:'auto', closeOnEscape:true, reloadAfterSubmit:false}, // add options
-												 {reloadAfterSubmit:false}, // delete options
+												 {height:'auto', width:'auto', beforeShowForm: function(formObject) { carregaDadosFormEdicaoJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) { carregaDadosFormEdicaoJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');}, reloadAfterSubmit:false, closeOnEscape:true, closeAfterEdit:true, afterSubmit: processaRetornoJqGrid}, // edit options
+												 {height:'auto', width:'auto', closeOnEscape:true, reloadAfterSubmit:true, closeAfterAdd:true, afterSubmit: processaRetornoJqGrid}, // add options
+												 {reloadAfterSubmit:false, closeAfterEdit:true, afterSubmit: processaRetornoJqGrid}, // delete options
 												 {multipleSearch:true}, // adicionando multiple search
 												 {closeOnEscape:true, width:550, beforeShowForm: function(formObject) { carregaDadosDialogViewJqGrid(formObject, '{$urlRecuperacaoDadosFormEdicao}');}, afterclickPgButtons: function(wichbutton, formid, formObject) {carregaDadosDialogViewJqGridPaginator(wichbutton, formid, formObject, '{$urlRecuperacaoDadosFormEdicao}');}} // view options
 												 ); 
 				});";
-		
+
 		// retornando script
 		return Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml($retorno);
 	}

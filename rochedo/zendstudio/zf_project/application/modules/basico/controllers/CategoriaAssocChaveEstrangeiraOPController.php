@@ -133,7 +133,44 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 		// retornando o array de resultados
 		return $arrayNomeCampoTabelasCategoriaChaveEstrangeira;
 	}
-	
+
+	/**
+	 * Retorna um array contendo o id da categoria como chave e o valor do id como valor
+	 * 
+	 * @param String $nomeTabela
+	 * @param Mixed $valorId
+	 * 
+	 * @return Array|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 28/05/2012
+	 */
+	public function retornaArrayIdsCategoriaValorChaveEstrangeiraPorNomeTabelaId($nomeTabela, $valorId)
+	{
+		// inicianlizando variaveis
+		$arrayIdsCategoriaValorChaveEstrangeiraObjeto = array();
+
+		// recuperando array de categorias que nao devem ser relacionadas
+		$arrayIdsCategoriasNaoChecarRelacao = Basico_OPController_DBCheckOPController::retornaArrayIdsCategoriasNaoChecarRelacao();
+
+		// transformando array em string
+		$stringIdsCategoriasNaoChecarRelacao = implode(',', $arrayIdsCategoriasNaoChecarRelacao);
+
+		// recuperando array de objetos categoria chave estrangeira relacionados com a tabela do objeto
+		$arrayObjsCategoriaChaveEstrangeiraObjeto = $this->retornaObjetosPorParametros("tabela_estrangeira = '{$nomeTabela}' and id_categoria not in ({$stringIdsCategoriasNaoChecarRelacao})");
+
+		// recuperando ids de categoria chave estrangeira
+		foreach ($arrayObjsCategoriaChaveEstrangeiraObjeto as $objCategoriaChaveEsrtrangeiraObjeto) {
+			// verificando se o tipo de categoria do objeto e o tipo da categoria da categoria pai nao eh do tipo SISTEMA
+			if (($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaObject()->nome != APPLICATION_SYSTEM_PERFIL) and ($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome != APPLICATION_SYSTEM_PERFIL))
+				// carregando ids de categoria chave estrangeira e valor do id do objeto
+				$arrayIdsCategoriaValorChaveEstrangeiraObjeto[$objCategoriaChaveEsrtrangeiraObjeto->categoria] = $idTabela;
+		}
+
+		// retornando o array contendo os ids das categorias e valores do objeto a partir de categoria chave estrangeira
+		return $arrayIdsCategoriaValorChaveEstrangeiraObjeto;
+	}
+
     /**
      * Retorna o objeto Categoria Chave Estrangeira relacionada a um objeto
      * 

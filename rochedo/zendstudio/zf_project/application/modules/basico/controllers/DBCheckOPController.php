@@ -222,9 +222,9 @@ class Basico_OPController_DBCheckOPController
 		// query que verifica as dependencias de uma tabela
 		$queryDependenciasTabela = 
 		"
-			SELECT fk.TABLE_NAME AS {$fkTableColumnName},
+			SELECT fk.CONSTRAINT_SCHEMA {$concatenadorDB}'.'{$concatenadorDB} fk.TABLE_NAME AS {$fkTableColumnName},
 			       cu.COLUMN_NAME AS {$fkColumnColumnName},
-			       pk.TABLE_NAME AS {$pkTableColumnName},
+			       pk.CONSTRAINT_SCHEMA {$concatenadorDB}'.'{$concatenadorDB} pk.TABLE_NAME AS {$pkTableColumnName},
 			       pt.COLUMN_NAME AS {$pkColumnColumnName},
 			       c.CONSTRAINT_NAME AS {$constraintNameColumnName}
 			
@@ -335,34 +335,8 @@ class Basico_OPController_DBCheckOPController
 	 */
 	public static function retornaArrayIdsCategoriaValorChaveEstrangeiraPorNomeTabelaId($nomeTabela, $idTabela)
 	{
-		// inicianlizando variaveis
-		$arrayIdsCategoriaValorChaveEstrangeiraObjeto = array();
-
-		// instanciando controladores
-		$categoriaChaveEstrangeiraController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();
-
-		// instanciando modelo de categoria chave estrangeira
-		$modelCategoriaChaveEstrangeira = $categoriaChaveEstrangeiraController->retornaNovoObjetoModeloPorNomeOPController($categoriaChaveEstrangeiraController->retornaNomeClassePorObjeto($categoriaChaveEstrangeiraController));
-
-		// recuperando array de categorias que nao devem ser relacionadas
-		$arrayIdsCategoriasNaoChecarRelacao = self::retornaArrayIdsCategoriasNaoChecarRelacao();
-
-		// transformando array em string
-		$stringIdsCategoriasNaoChecarRelacao = implode(',', $arrayIdsCategoriasNaoChecarRelacao);
-
-		// recuperando array de objetos categoria chave estrangeira relacionados com a tabela do objeto
-		$arrayObjsCategoriaChaveEstrangeiraObjeto = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelCategoriaChaveEstrangeira, "tabela_estrangeira = '{$nomeTabela}' and id_categoria not in ({$stringIdsCategoriasNaoChecarRelacao})");
-
-		// recuperando ids de categoria chave estrangeira
-		foreach ($arrayObjsCategoriaChaveEstrangeiraObjeto as $objCategoriaChaveEsrtrangeiraObjeto) {
-			// verificando se o tipo de categoria do objeto e o tipo da categoria da categoria pai nao eh do tipo SISTEMA
-			if (($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaObject()->nome != APPLICATION_SYSTEM_PERFIL) and ($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome != APPLICATION_SYSTEM_PERFIL))
-				// carregando ids de categoria chave estrangeira e valor do id do objeto
-				$arrayIdsCategoriaValorChaveEstrangeiraObjeto[$objCategoriaChaveEsrtrangeiraObjeto->categoria] = $idTabela;
-		}
-
-		// retornando o array contendo os ids das categorias e valores do objeto a partir de categoria chave estrangeira
-		return $arrayIdsCategoriaValorChaveEstrangeiraObjeto;
+		// retornando array
+		return Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance()->retornaArrayIdsCategoriaValorChaveEstrangeiraPorNomeTabelaId($nomeTabela, $idTabela);
 	}
 
 	/**
@@ -439,7 +413,7 @@ class Basico_OPController_DBCheckOPController
 	 * 
 	 * @return Array
 	 */
-	private static function retornaArrayIdsCategoriasNaoChecarRelacao()
+	public static function retornaArrayIdsCategoriasNaoChecarRelacao()
 	{
 		// inicializando variaveis
 		$arrayIdsCategoriasNaoChecarRelacao = array();

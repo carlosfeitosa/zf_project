@@ -157,12 +157,12 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 		$arrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira = array();
 
 		// recuperando todas as tuplas
-		$objsRelacaoCategoriaChaveEstrangeira = $this->retornaTodosObjetos($this->_model);
+		$arrayTodasRelacaoCategoriaChaveEstrangeira = $this->retornaArrayDadosTodosObjetos(array('tabelaOrigem', 'campoOrigem'));
 
 		// loop para recuperar o nome das tabelas
-		foreach($objsRelacaoCategoriaChaveEstrangeira as $objRelacaoCategoriaChaveEstrangeira) {
+		foreach($arrayTodasRelacaoCategoriaChaveEstrangeira as $arrayRelacaoCategoriaChaveEstrangeira) {
 			// recupernado o nome das tabelas e colocando no array de resultados 
-			$arrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira[$objRelacaoCategoriaChaveEstrangeira->tabelaOrigem] = $objRelacaoCategoriaChaveEstrangeira->campoOrigem;
+			$arrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira[$arrayRelacaoCategoriaChaveEstrangeira['tabelaOrigem']] = $arrayRelacaoCategoriaChaveEstrangeira['campoOrigem'];
 		}
 
 		// retornando o array de resultados
