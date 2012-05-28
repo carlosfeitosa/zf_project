@@ -36,3 +36,30 @@ SELECT(SELECT ata.id
 		'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_ALIAS_BASICO_TIPO_CATEGORIA' AS constante_textual_alias,
 		true AS ativo,
 		'SYSTEM_STARTUP' AS rowinfo;
+		
+INSERT INTO basico_dicionario_dados.assoccl_fk (id_assoc_table, id_assoc_field, id_assoc_field_fk, metodo_recuperacao, 
+												constante_textual, constante_textual_alias, ativo, rowinfo)
+SELECT(SELECT ata.id 
+		FROM basico_dicionario_dados.assoc_table ata
+		LEFT JOIN basico_dicionario_dados.schema s ON (ata.id_schema = s.id)
+		WHERE tablename = 'categoria' 
+		AND s.schemaname = 'basico') AS id_assoc_table,
+		(SELECT af.id
+		FROM basico_dicionario_dados.assoc_field af
+		LEFT JOIN basico_dicionario_dados.assoc_table ata ON (af.id_assoc_table = ata.id)
+		LEFT JOIN basico_dicionario_dados.schema s ON (ata.id_schema = s.id)
+		WHERE af.fieldname = 'id' 
+		AND ata.tablename  = 'categoria'
+		AND s.schemaname   = 'basico') AS id_assoc_field,
+		(SELECT af.id
+		FROM basico_dicionario_dados.assoc_field af
+		LEFT JOIN basico_dicionario_dados.assoc_table ata ON (af.id_assoc_table = ata.id)
+		LEFT JOIN basico_dicionario_dados.schema s ON (ata.id_schema = s.id)
+		WHERE af.fieldname = 'nome' 
+		AND ata.tablename  = 'categoria'
+		AND s.schemaname   = 'basico') AS id_assoc_field,
+		NULL AS metodo_recuperacao,
+		'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_BASICO_CATEGORIA' AS constante_textual,
+		'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_ALIAS_BASICO_CATEGORIA' AS constante_textual_alias,
+		true AS ativo,
+		'SYSTEM_STARTUP' AS rowinfo;

@@ -137,15 +137,23 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 						
 			// recuperando dados para carregamento dos options do campo fk
 			$dadosOptionsCampoFk = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL($nomeSchema . "." . $nomeTabela, array($nomeCampo, $nomeCampoFk));
-			
-			$arrayResultado = array();
+		
+			// inserindo opção vazia
+			$arrayResultado = array('null' => '');
 			
 			// percorrendo os options para aplicar o metodo de recuperacao
-			foreach ($dadosOptionsCampoFk as $key => $option) {
-				// tratando metodo de recuperacao
-				$metodoRecuperacao = str_replace('@constanteTextual', $option['constante_textual'], $arrayDadosCampoFk[0]['metodoRecuperacao']);
-				// atribuindo retorno do metodo de recuperacao ao arrayResultado
-				$arrayResultado[$key] = Basico_OPController_UtilOPController::secureEval("return " . $metodoRecuperacao . ";");
+			foreach ($dadosOptionsCampoFk as $option) {
+				
+				// verificando se o metodo de recuperacao existe para este campo fk
+				if ($arrayDadosCampoFk[0]['metodoRecuperacao'] != "") {
+					// tratando metodo de recuperacao
+					$metodoRecuperacao = str_replace('@constanteTextual', $option[$nomeCampoFk], $arrayDadosCampoFk[0]['metodoRecuperacao']);
+					// atribuindo retorno do metodo de recuperacao ao arrayResultado
+					$arrayResultado[$option[$nomeCampo]] = Basico_OPController_UtilOPController::secureEval("return " . $metodoRecuperacao);
+				}else{
+					// setando valor do campo fk no array resultado
+					$arrayResultado[$option[$nomeCampo]] = $option[$nomeCampoFk];
+				}
 			}
 			
 			// retornando array

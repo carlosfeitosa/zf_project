@@ -1179,6 +1179,7 @@ class Basico_OPController_CrudOPController
 						// iniciando montagem da string com os options
 						$elementSelectOptions = " value: '";
 						
+						// loop para criar string com options do campo fk
 						foreach ($optionsCampoFk as $chave => $valor) {
 							if (isset($optionsCampoFk[$chave + 1]))
 								$elementSelectOptions .= "{$chave}:{$valor};";
@@ -1207,9 +1208,13 @@ class Basico_OPController_CrudOPController
 				// recuperando o tamanho do campo
 				$tamanhoCampo = (int) $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH];
 				
-				// recuperando tamanho do elemento
-				$optionElementSize      = 'size: ' . $tamanhoCampo . ',';
-				$optionElementMaxLength = "maxlength: " . $tamanhoCampo . ",";
+				// recuperando tamanho do elemento se o elemento nao for do tipo select
+				if ($elementSelectOptions == "") {
+					$optionElementSize      = 'size: ' . $tamanhoCampo . ',';
+					$optionElementMaxLength = "maxlength: " . $tamanhoCampo . ",";
+				}else{
+					$optionElementSize      = '';
+				}
 				
 				// se tamanho do campo maior que 50
 				if ($tamanhoCampo > 50) {
