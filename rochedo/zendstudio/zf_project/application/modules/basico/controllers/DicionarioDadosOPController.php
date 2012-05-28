@@ -231,8 +231,20 @@ class Basico_OPController_DicionarioDadosOPController
 							// reativando schema
 							$this->_dicionarioDadosSchemaOPController->ativaSchema($idPessoaAssocclPerfilSistema, $idModulo, $arrayValores['nome']);
 						} else {
+							// recuperando o nome da constante textual para localização
+							$constanteTextual = "DD_SCHEMA_" . strtoupper($arrayValores['nome']);
+
+							// verificando se a constante textual não existe no banco de dados
+							if (!Basico_OPController_DicionarioExpressaoOPController::verificaTraducaoExiste($constanteTextual)) {
+								// transformando o valor da constante textual para um valor de constante ainda não traduzida
+								$constanteTextual = CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA;
+							}
+
 							// criando novo schema
-							$this->_dicionarioDadosSchemaOPController->criarNovoSchemaAtivo($idPessoaAssocclPerfilSistema, $idModulo, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+							$this->_dicionarioDadosSchemaOPController->criarNovoSchemaAtivo($idPessoaAssocclPerfilSistema, $idModulo, $arrayValores['nome'], $constanteTextual);
+
+							// limpando memória
+							unset($constanteTextual);
 						}
 					break;
 					case 'update':
@@ -309,8 +321,17 @@ class Basico_OPController_DicionarioDadosOPController
 							// reativando tabela
 							$this->_dicionarioDadosAssocTableOPController->ativaTabela($idPessoaAssocclPerfilSistema, $idSchema, $arrayValores['nome']);
 						} else {
+							// recuperando o nome da constante textual para localização
+							$constanteTextual = "DD_SCHEMA_" . strtoupper($arrayValores['nome_pai']) . "_TABLE_" . strtoupper($arrayValores['nome']);
+
+							// verificando se a constante textual não existe no banco de dados
+							if (!Basico_OPController_DicionarioExpressaoOPController::verificaTraducaoExiste($constanteTextual)) {
+								// transformando o valor da constante textual para um valor de constante ainda não traduzida
+								$constanteTextual = CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA;
+							}
+
 							// criando nova tabela
-							$this->_dicionarioDadosAssocTableOPController->criarNovaTabelaAtiva($idPessoaAssocclPerfilSistema, $idCategoria, $idSchema, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+							$this->_dicionarioDadosAssocTableOPController->criarNovaTabelaAtiva($idPessoaAssocclPerfilSistema, $idCategoria, $idSchema, $arrayValores['nome'], $constanteTextual);
 						}
 					break;
 					case 'update':
@@ -403,8 +424,17 @@ class Basico_OPController_DicionarioDadosOPController
 							// reativando o campo
 							$this->_dicionarioDadosAssocFieldOPController->ativaCampo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome']);
 						} else {
+							// recuperando o nome da constante textual para localização
+							$constanteTextual = "DD_SCHEMA_" . strtoupper($arrayValores['schema_name']) . "_TABLE_" . strtoupper($arrayValores['nome_pai']) . "_FIELD_" . strtoupper($arrayValores['nome']);
+
+							// verificando se a constante textual não existe no banco de dados
+							if (!Basico_OPController_DicionarioExpressaoOPController::verificaTraducaoExiste($constanteTextual)) {
+								// transformando o valor da constante textual para um valor de constante ainda não traduzida
+								$constanteTextual = CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA;
+							}
+							
 							// criando novo campo
-							$this->_dicionarioDadosAssocFieldOPController->criarNovoCampoAtivo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome'], CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA);
+							$this->_dicionarioDadosAssocFieldOPController->criarNovoCampoAtivo($idPessoaAssocclPerfilSistema, $idAssocTable, $arrayValores['nome'], $constanteTextual);
 						}
 					break;
 					case 'update':

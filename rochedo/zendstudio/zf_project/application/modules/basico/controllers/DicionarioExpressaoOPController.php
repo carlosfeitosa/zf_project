@@ -172,6 +172,25 @@ class Basico_OPController_DicionarioExpressaoOPController
 	}
 
 	/**
+	 * Verifica se uma expressão existe no banco de dados
+	 * 
+	 * @param String $constanteTextual
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/05/2012
+	 */
+	public static function verificaTraducaoExiste($constanteTextual)
+	{
+		// recuperando informação
+		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL('basico.dicionario_expressao', array('id'), "constante_textual = '{$constanteTextual}'");
+
+		// retornando resultado da verificação
+		return (count($arrayResultado) > 0);
+	}
+
+	/**
 	 * Retorna um array de objetos Basico_Model_Categoria contendo as linguas ativas no sistema
 	 * 
 	 * @return null|Array
