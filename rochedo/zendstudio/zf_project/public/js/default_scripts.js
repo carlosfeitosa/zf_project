@@ -24,19 +24,16 @@ function validaString(inputObject, filterType)
 		                  'quotes':/['\''&'\"']/g, 
 		                  'notnumbers':/[^\d]/g
 		                 };
-	
+
 	var login_patterns = {'inicio' : /^[0-9\W_]+/g,
 		                  'fim'    : /[^a-zA-Z0-9@._]*$/g
 	                     };
-	
+
 	if (dijit.byId(inputObject.id).getValue() != "") {
-		
 		if (filterType == "login") {
-			
 			for (var i in login_patterns){
 				dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(login_patterns[i],''));
 			}
-			
 		}else{
 			
 		    dijit.byId(inputObject.id).attr('value', dijit.byId(inputObject.id).getValue().replace(generic_pattners[filterType],''));
@@ -91,7 +88,7 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 	// verificando se eh preciso setar o hidden urlRedirect
 	if (urlRedirect) {
 		hiddenUrlRedirect = document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0];
-		
+
 		// verificando se existe o elemento hidden urlRedirect
 		if (hiddenUrlRedirect)
 			// setando o valor do hidden
@@ -109,10 +106,9 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 
 function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements,formPai)
 {    
-	
 	// verificando se o formulario tem form pai 
 	if(formPai != null){
-		
+
 		// recuperando os elementos do tipo hashs 	
 		var hashElements = $(":input[id$='Csrf']");
 
@@ -217,7 +213,7 @@ function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle, rend
 
 	// verificando se o dialog foi recuperado
 	if (dialog) {
-		
+
 		// verificando se a mensagem de erro eh um array
 		if ((errorMessage instanceof Array) === false)
 			arrayErrorMessages[0] = errorMessage;
@@ -325,7 +321,7 @@ function recuperaElemento(nomeElemento)
 		// recuperando o elemento via DOM 
 		elemento = document.getElementsByName(nomeElemento)[0];
 	}
-	
+
 	return elemento;
 }
 
@@ -353,10 +349,10 @@ function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa
 	if (stringPesquisa != "") {
 
 		var urlRequest = urlMetodo + stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento; 
-		
+
 		// processando requisicao
 		var deferred = dojoRequestAjaxAbstract('get', {url: urlRequest, handleAs: 'text', idLoadingLocation: 'BasicoCadastrarUsuarioValidadoLoginDisponivel-element'});
-        
+
 		// Adicionando callback adicional 
 		deferred.addCallback(function(data) {
             //Replace newlines with nice HTML tags.
@@ -387,7 +383,7 @@ function adicionaMensagemErroZendDojoFormElement(elementName, errorMessage)
 {
 	// inicializando variaveis
 	var arrayErrorMessages = new Array();
-	
+
 	// recuperando elemento
 	element = dojo.byId(elementName);
 
@@ -398,7 +394,7 @@ function adicionaMensagemErroZendDojoFormElement(elementName, errorMessage)
 			arrayErrorMessages[0] = errorMessage;
 		else
 			arrayErrorMessages = errorMessage;
-		
+
 		// criando elemento ul
 		var elementUlErrorMessage = document.createElement('ul');
 		// setando o id da ul
@@ -428,13 +424,13 @@ function adicionaMensagemErroZendDojoFormElement(elementName, errorMessage)
 function limparMensagemErroZendDojoForm(formName)
 {
 	/* Limpando as mensagens dos elementos do formulários ou de todos os elementos da view */
-	
+
 	//verifica se o nome do formulario foi passada e se existe o formulario
 	if (formName && dojo.query('form[id="' + formName + '"]'))
 		parametro = 'form[id="' + formName + '"]';		
 	else
 		parametro = '';
-	
+
 	// busca todos os elementos de erros com className 'errors', do formulario passado ou de todos os formularios
 	var errors = dojo.query(parametro + ' .errors');
 
@@ -442,10 +438,8 @@ function limparMensagemErroZendDojoForm(formName)
     for (var i = 0; i < errors.length; i++) {
 		dojo._destroyElement(dojo.byId(errors[i]));
     }
-    
-    
     /* Limpando as mensagens do formulário ou de todos os formulários */ 
-    
+
     // busca todas as mensagens com o id='divContainerError'  
     var mensagens = dojo.query(parametro + ' #divContainerError');
     
@@ -454,7 +448,6 @@ function limparMensagemErroZendDojoForm(formName)
 		dojo._destroyElement(dojo.byId(mensagens[i]));
     }
 }
-
 
 /**
  * Função responsável por encontra a posição da primeira ocorrência de uma string.
@@ -467,7 +460,6 @@ function strpos (haystack, needle, offset) {
 	var i = (haystack + '').indexOf(needle, (offset || 0));
 	return i === -1 ? false : i;
 }
-
 
 /**
  * Função responsável por processar a resposta do servidor, em requisições ajax. 
@@ -482,25 +474,23 @@ function processaResponseDojoFormRequest(data)
 		console.warn("error!");	
 	}else{
 		console.debug('dados recebidos....: ', data);
-		
+
 		// Carregando os dados recebidos 
 		jsonResponse = data;
-		
+
 		// Percorrendo os módulos para adiciona-los.
         dojo.forEach(jsonResponse.view.modules, function(module)
         {
         	dojo.require(module);
             console.debug('... modulo carregado:', module);
         });
-        
+
 		// Limpando as mensagens de erros dos formulário.
 		limparMensagemErroZendDojoForm();
-		
+
 		// Percorrendo os elementos HTMLs
 		for (idElemento in jsonResponse.view.html)	{
-			
 			if (dojo.byId(idElemento)) {
-				
 				// Retorna os elementos filhos que estão na raiz do elemento pai
 				var elementosDestroy = dojo.query('>*', idElemento);
 
@@ -520,10 +510,10 @@ function processaResponseDojoFormRequest(data)
 						w.destroyRecursive();
 					}
 				});
-				
+
 				// Adicionando conteúdo ao elemento.
 				dojo.byId(idElemento).innerHTML = jsonResponse.view.html[idElemento];
-				
+
 				// verifica se existe scripts no html para serem processados
 				console.warn('verifica se existe scripts no html para serem processados');
 				//processaScript(jsonResponse.view.html[idElemento]);
@@ -531,25 +521,24 @@ function processaResponseDojoFormRequest(data)
 		}  
 	    
 		if (dojo.byId(jsonResponse.view.idResponseSource)) {
-			
 			// Recebendo as mensagens zendFormsMessages
 			zendFormsMessages = jsonResponse.view.zendFormsMessages;
-			
+
 			// Limpando as mensagens de erros no formulário.
 			limparMensagemErroZendDojoForm(jsonResponse.view.idResponseSource);
-			
+
 			// Verificando se existe mensagems zendFormsMessages.
 			if (zendFormsMessages.length != 0) {
-				
+
 				// Percorrendo as mensagens zendFormsMessages
 				for (form in zendFormsMessages)	{
-					
+
 					formulario = dijit.byId(form);
 					class_form = formulario.declaredClass;					
-					
+
 					// Percorrendo os formulários com as mensagens
 					for (nomeElementForm in zendFormsMessages[form]) {
-						
+
 						nomeElemento = form + '-' + nomeElementForm;
 						elementoFormulario = dojo.byId(nomeElemento);
 
@@ -558,13 +547,13 @@ function processaResponseDojoFormRequest(data)
 
 							mensagem = zendFormsMessages[form][nomeElementForm][mensagens];							
 							elemento = dojo.byId(nomeElementForm);
-							
+
 							// Verificando se o elemento é hidden Csrf existe.;
 							if (elemento != null && elemento.type == 'hidden' && strpos(elemento.name, 'Csrf', 0)) {
 								adicionaElementoMensagemErro(formulario.id, mensagem, 'Atenção', true);
 								continue;
 							}
-							
+
 							// Setando a mensagem de erro no elemento.
 							adicionaMensagemErroZendDojoFormElement('widget_' + nomeElementForm, mensagem);
 						}
@@ -573,20 +562,20 @@ function processaResponseDojoFormRequest(data)
 				
 			}
 		}
-		
+
 		// Parser dojo.
 		dojo.parser.parse();
-		
+
 		// Percorrendo os dijits.
 		dojo.forEach(jsonResponse.view.dijits, function(info, i) {
-			
+
         	var n = dojo.byId(info.id);
         	if (null != n) {
         		// Setando os atributos do dijit
             	dojo.attr(n, dojo.mixin({ id: info.id }, info.params));
         	}
         });
-		
+
 		// Percorrendo os scripts
 		scripts = jsonResponse.view.scripts;
 		console.debug('iniciando scripts...');
@@ -596,9 +585,7 @@ function processaResponseDojoFormRequest(data)
 			console.debug('script processado', scripts[script]);
 		}
 		console.debug('final scripts...');
-		
-		
-		
+
 		// Processando header
 		header = jsonResponse.view.header;
 		console.debug('iniciando header...');
@@ -700,7 +687,6 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 			timeout: timeOut,
             headers: headersValue,
 
-			
 			load: function(data,args){
 				console.debug('iniciando load function....');
 	            if (loadFunction != undefined) {
@@ -716,7 +702,7 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 				}
 				console.debug('Concluido load function....');
 			},
-			  	  
+
 			handle: function(error, ioargs) {
 				console.debug('iniciando handle function....');
 				var message = "";
@@ -749,14 +735,14 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 			    	var resultHandleFunctionData = eval(nomeFunctionHandleData);
 			    	console.debug('concluido handleFunctionData function...');
 				}
-			     
+
 			    // Desligando Loading...
 			    if (idLoadingLocation == undefined) {
 			    	underlay.hide();
 				} else {
 					dojo.byId(idLoadingLocation).innerHTML = "";
 				}
-			    
+
 			    console.debug('Concluido handle function....');
 			},
 			
@@ -780,11 +766,11 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 
 	method = method.toLowerCase();
 	switch(method) {
-	
+
 	case 'post':
 		return dojo.xhrPost(xhrArgs);
 		break;
-		
+
 	case 'get':
 		return dojo.xhrGet(xhrArgs);
 		break;
@@ -821,13 +807,11 @@ function processaHeaderLink(headerLink){
 		//Verifica se este e um bloco de script ou include para um arquivo de scripts
 		if (pos_href >=0){//Se encontrou um "src" dentro da tag script, esta e um include de um arquivo script
 			//Marca como sendo o inicio do nome do arquivo para depois do src
-			ini = pos_href + 6;
+			ini = pos_href + 7;
 			//Procura pelo ponto do nome da extencao do arquivo e marca para depois dele
-			fim = texto_pesquisa.indexOf('.', ini)+4;
+			fim = texto_pesquisa.indexOf('.css', ini)+4;
 			//Pega o nome do arquivo
 			codigo = headerLink.substring(ini,fim);
-			//Elimina do nome do arquivo os caracteres que possam ter sido pegos por engano
-			codigo = codigo.replace("=","").replace(" ","").replace("\"","").replace("\"","").replace("\'","").replace("\'","").replace(">","");
 			// Adiciona o arquivo de script ao objeto que sera adicionado ao documento
 			objLink.href = codigo;
 			
@@ -847,8 +831,6 @@ function processaHeaderLink(headerLink){
 		objLink = null;
 	}
 }
-
-
 
 /**
  * Função processa javacript
@@ -885,13 +867,11 @@ function processaScript(texto, processaScriptEvent){
 		//Verifica se este e um bloco de script ou include para um arquivo de scripts
 		if (pos_src < ini && pos_src >=0){//Se encontrou um "src" dentro da tag script, esta e um include de um arquivo script
 			//Marca como sendo o inicio do nome do arquivo para depois do src
-			ini = pos_src + 4;
+			ini = pos_src + 6;
 			//Procura pelo ponto do nome da extencao do arquivo e marca para depois dele
-			fim = texto_pesquisa.indexOf('.', ini)+4;
-			//Pega o nome do arquivo
+			fim = texto_pesquisa.indexOf('.js', ini)+3;
+			// Pega o nome do arquivo
 			codigo = texto.substring(ini,fim);
-			//Elimina do nome do arquivo os caracteres que possam ter sido pegos por engano
-			codigo = codigo.replace("=","").replace(" ","").replace("\"","").replace("\"","").replace("\'","").replace("\'","").replace(">","");
 			// Adiciona o arquivo de script ao objeto que sera adicionado ao documento
 			objScript.src = codigo;
 		}else{//Se nao encontrou um "src" dentro da tag script, esta e um bloco de codigo script
