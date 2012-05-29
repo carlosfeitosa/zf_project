@@ -548,7 +548,7 @@ function processaResponseDojoFormRequest(data)
 					class_form = formulario.declaredClass;					
 					
 					// Percorrendo os formulários com as mensagens
-					for (nomeElementForm in zendFormsMessages[form])	{
+					for (nomeElementForm in zendFormsMessages[form]) {
 						
 						nomeElemento = form + '-' + nomeElementForm;
 						elementoFormulario = dojo.byId(nomeElemento);
@@ -625,6 +625,7 @@ function processaResponseDojoFormRequest(data)
 					}
 				} else {
 					processaScript(header[item]);
+					console.debug('script processado', header[item]);
 				}
 				break;
 				

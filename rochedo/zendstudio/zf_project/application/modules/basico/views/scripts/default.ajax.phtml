@@ -39,7 +39,6 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 						foreach ($value->getSubForms() as $subForm) {						
 							
 							// processando formulario
-							//$dados = processaForm($subForm, $this->dojo());
 							$dados = Basico_OPController_UtilOPController::processaZendDojoForm($subForm, $this->dojo());
 
 							// carregando dados processados...
@@ -59,7 +58,6 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 						
 					} else {
 						// processando formulario
-						//$dados = processaForm($value, $this->dojo());
 						$dados = Basico_OPController_UtilOPController::processaZendDojoForm($value, $this->dojo());
 
 						if (isset($dados['existeFormNoRequest'])) {
