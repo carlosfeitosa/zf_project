@@ -498,7 +498,6 @@ class Basico_OPController_DicionarioDadosOPController
 				
 				WHERE schemas.catalog_name = 'rochedo_db'
 				AND schemas.schema_owner = 'rochedo_user'
-				AND schemas.schema_name not in ('basico_dicionario_dados')
 				AND schemarf.id IS NULL
 				
 				UNION ALL
@@ -526,7 +525,7 @@ class Basico_OPController_DicionarioDadosOPController
 				
 				WHERE tables.table_catalog = 'rochedo_db'
 				AND tables.table_type = 'BASE TABLE'
-				AND tables.table_schema not in ('pg_catalog', 'information_schema', 'basico_dicionario_dados')
+				AND tables.table_schema not in ('pg_catalog', 'information_schema')
 				AND tablerf.id IS NULL
 				
 				UNION
@@ -567,7 +566,7 @@ class Basico_OPController_DicionarioDadosOPController
 				
 				WHERE tables.table_catalog = 'rochedo_db'
 				AND tables.table_type = 'BASE TABLE'
-				AND tables.table_schema not in ('pg_catalog', 'information_schema', 'basico_dicionario_dados')
+				AND tables.table_schema not in ('pg_catalog', 'information_schema')
 				AND fieldrf.id IS NULL
 				
 				UNION

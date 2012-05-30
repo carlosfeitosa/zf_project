@@ -547,7 +547,9 @@ class Basico_OPController_CrudOPController
 					$objeto->$nomeAtributo = Basico_OPController_UtilOPController::trocaAspasDuplasPorAspasSimples($objeto->$nomeAtributo);
 
 					// verificando o tipo de transformação
-					if (('varchar' === $arrayTipoAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) and (self::JQGRID_MAX_STRING < $arrayTipoAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH])) {
+					if (('varchar' === $arrayTipoAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_DATATYPE]) and 
+						(self::JQGRID_MAX_STRING < $arrayTipoAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_LENGTH]) and 
+						(null != $objeto->$nomeAtributo)) {
 						// transformando o valor do varchar
 						$objeto->$nomeAtributo = substr($objeto->$nomeAtributo, 0, self::JQGRID_MAX_STRING_TRUNCATE) . '...';
 					}

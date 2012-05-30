@@ -243,8 +243,21 @@ class Basico_OPController_DBCheckOPController
 		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryDependenciasTabela);
 	}
 
+	/**
+	 * Retorna um array com as chaves estrangeira de uma tabela
+	 * 
+	 * @param String $nomeTabela
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 30/05/2012
+	 */
 	public static function retornaArrayChavesEstrangeirasPorNomeTabela($nomeTabela)
 	{
+		// inicializando variáveis
+		$arrayResultado = array();
+
 		// recuperando concatenador do banco de dados
 		$concatenadorDB = Basico_OPController_DBUtilOPController::retornaConcatenadorDB();
 
@@ -255,7 +268,7 @@ class Basico_OPController_DBCheckOPController
 						   FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS c
 						   INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE k ON (k.constraint_name = c.constraint_name)
 						   INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE fk ON (c.unique_constraint_name = fk.constraint_name)
-							
+
 						   WHERE k.table_schema {$concatenadorDB} '.' {$concatenadorDB} k.table_name = '{$nomeTabela}'";
 
 
@@ -275,6 +288,18 @@ class Basico_OPController_DBCheckOPController
 		return $arrayResultado;
 	}
 
+	/**
+	 * Retorna um array contendo a relação entre os campos fk 
+	 * 
+	 * @param String $schemaname
+	 * @param String $tablename
+	 * @param String $fieldname
+	 * 
+	 * @return Array|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 30/05/2012
+	 */
 	public static function retornaArrayRelacaoCampo($schemaname, $tablename, $fieldname)
 	{
 		// recuperando concatenador do banco de dados
