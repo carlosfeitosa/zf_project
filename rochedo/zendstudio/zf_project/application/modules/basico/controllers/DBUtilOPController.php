@@ -139,15 +139,18 @@ class Basico_OPController_DBUtilOPController
     	// retornando o nome do campo
     	return $nomeAtributo;
     }
-
-    /**
-     * Retorna o nome da tabela vinculada a um objeto
+    
+	/**
+     * Retorna o nome do schema da tabela vinculada a um objeto
      * 
      * @param Object $objeto
      * 
      * @return String
+     * 
+     * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * @since 27/05/2012
      */
-    public static function retornaTableNameObjeto($objeto)
+    public static function retornaSchemaNameObjeto($objeto)
     {
 	    //verificando se o parametro passado é um objeto
     	if (!is_object($objeto)) {
@@ -157,8 +160,40 @@ class Basico_OPController_DBUtilOPController
     	// recuperando informacoes sobre a tabela vinculada ao objeto
 		$tableInfo = $objeto->getMapper()->getDbTable()->info();
 
-		// recuperando nome da tabela vinculada ao objeto
-		$tableName = $tableInfo['schema'] . "." . $tableInfo['name'];
+		// recuperando nome do schema vinculado ao objeto
+		$schemaName = $tableInfo['schema'];
+
+		// limpando variáveis
+		unset($tableInfo);
+
+		// retornando o nome do schema
+		return $schemaName;
+    }
+
+    /**
+     * Retorna o nome da tabela vinculada a um objeto
+     * 
+     * @param Object $objeto
+     * @param Boolean $retornaSchema
+     * 
+     * @return String
+     */
+    public static function retornaTableNameObjeto($objeto, $retornaSchema = true)
+    {
+	    //verificando se o parametro passado é um objeto
+    	if (!is_object($objeto)) {
+    		throw new Exception(MSG_ERRO_NAO_OBJETO);
+    	}
+
+    	// recuperando informacoes sobre a tabela vinculada ao objeto
+		$tableInfo = $objeto->getMapper()->getDbTable()->info();
+
+		if ($retornaSchema)
+			// recuperando nome da tabela vinculada ao objeto
+			$tableName = $tableInfo['schema'] . "." . $tableInfo['name'];
+		else
+			// recuperando nome da tabela vinculada ao objeto
+			$tableName = $tableInfo['name'];
 
 		// limpando variáveis
 		unset($tableInfo);

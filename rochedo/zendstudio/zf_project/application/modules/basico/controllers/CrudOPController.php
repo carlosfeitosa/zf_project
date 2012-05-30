@@ -1074,6 +1074,12 @@ class Basico_OPController_CrudOPController
 		// recuperando atributos dos campos da tabela relacionada ao objeto
 		$arrayAtributosCamposTabelaDBObjeto = Basico_OPController_DBUtilOPController::retornaArrayAtributosTabelaBDObjeto($instanciaModelo);
 
+		$nomeSchema = Basico_OPController_DBUtilOPController::retornaSchemaNameObjeto($instanciaModelo);
+		
+		$nomeTabela = Basico_OPController_DBUtilOPController::retornaTableNameObjeto($instanciaModelo, false);
+		
+		//$dadosField = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance()->re
+		
 		// recuperando as larguras das colunas
 		$arrayLarguraColunas = self::retornaArrayLarguraColunasJQGridViaArrayAtributosCamposTabela($arrayAtributosCamposTabelaDBObjeto);
 
@@ -1267,13 +1273,17 @@ class Basico_OPController_CrudOPController
 						
 						// loop para criar string com options do campo fk
 						foreach ($optionsCampoFk as $chave => $valor) {
-							if (isset($optionsCampoFk[$chave + 1]))
-								$elementSelectOptions .= "{$chave}:{$valor};";
-							else
-								$elementSelectOptions .= "{$chave}:{$valor}";
+							// montando option com separador
+							$elementSelectOptions .= "{$chave}:{$valor};";
 						}
 						
+						// removendo ultimo separador da string de options
+						$elementSelectOptions = substr_replace($elementSelectOptions, '', -1, 1);						
+						
+						// finalizando string de options
 						$elementSelectOptions .= "',";
+						
+
 					}
 					break;
 				case 'bool':

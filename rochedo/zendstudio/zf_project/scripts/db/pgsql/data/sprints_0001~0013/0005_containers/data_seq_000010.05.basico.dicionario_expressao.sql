@@ -30,6 +30,69 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_BASICO_DICIONARIO_DADOS_ASSOCCL_FK_ID_ASSOC_FIELD_FK' AS constante_textual, 'Exibição do nome do campo fk' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_ALIAS_BASICO_DICIONARIO_DADOS_ASSOCCL_FK_ID_ASSOC_FIELD_FK' AS constante_textual, 'Nome do campo fk' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_BASICO_DICIONARIO_DADOS_SCHEMA' AS constante_textual, 'Exibição do nome do schema' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_ALIAS_BASICO_DICIONARIO_DADOS_SCHEMA' AS constante_textual, 'Nome do Schema' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_BASICO_DICIONARIO_DADOS_ASSOC_FIELD' AS constante_textual, 'Exibição do nome do campo' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_ALIAS_BASICO_DICIONARIO_DADOS_ASSOC_FIELD' AS constante_textual, 'Nome do Campo' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_BASICO_DICIONARIO_DADOS_ASSOC_TABLE' AS constante_textual, 'Exibição do nome da tabela' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_ALIAS_BASICO_DICIONARIO_DADOS_ASSOC_TABLE' AS constante_textual, 'Nome da Tabela' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_ALIAS_BASICO_CATEGORIA' AS constante_textual, 'Nome da categoria' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_BASICO_CATEGORIA' AS constante_textual, 'Exibição do nome de categoria' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)

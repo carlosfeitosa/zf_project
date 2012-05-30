@@ -136,7 +136,7 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 			$nomeCampoFk = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance()->retornaFieldnamePorIdField($arrayDadosCampoFk[0]['idAssocFieldFk']);
 						
 			// recuperando dados para carregamento dos options do campo fk
-			$dadosOptionsCampoFk = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL($nomeSchema . "." . $nomeTabela, array($nomeCampo, $nomeCampoFk));
+			$dadosOptionsCampoFk = Basico_OPController_PersistenceOPController::bdRetornaArrayDadosViaSQL($nomeSchema . "." . $nomeTabela, array($nomeCampo, $nomeCampoFk), null, array('id'));
 		
 			// inserindo opção vazia
 			$arrayResultado = array('null' => '');
@@ -149,7 +149,7 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 					// tratando metodo de recuperacao
 					$metodoRecuperacao = str_replace('@constanteTextual', $option[$nomeCampoFk], $arrayDadosCampoFk[0]['metodoRecuperacao']);
 					// atribuindo retorno do metodo de recuperacao ao arrayResultado
-					$arrayResultado[$option[$nomeCampo]] = Basico_OPController_UtilOPController::secureEval("return " . $metodoRecuperacao);
+					$arrayResultado[$option[$nomeCampo]] = Basico_OPController_UtilOPController::secureEval("return " . $metodoRecuperacao) . " (id = $option[$nomeCampo])";
 				}else{
 					// setando valor do campo fk no array resultado
 					$arrayResultado[$option[$nomeCampo]] = $option[$nomeCampoFk];

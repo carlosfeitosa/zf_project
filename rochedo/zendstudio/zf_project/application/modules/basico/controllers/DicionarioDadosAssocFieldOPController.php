@@ -213,13 +213,13 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 */
 	public function retornaIdFieldPorIdSchemaTablename($idAssocTable, $fieldname)
 	{
-		// verificando se nao foi passado o id do schema ou nome do schema
+		// verificando se nao foi passado o id da tabela ou nome do campo
 		if (((!$idAssocTable) or (!is_int($idAssocTable))) or ((!$fieldname) or (!is_string($fieldname)))) {
 			// retornando nulo
 			return null;
 		}
 
-		// recuperando array com o resultado da recuperacao do nome do schema atraves do id
+		// recuperando array com o resultado da recuperacao do id do campo
 		$arrayResultado = $this->retornaArrayDadosObjetosPorParametros("id_assoc_table = {$idAssocTable} and fieldname = '{$fieldname}'", null, 1, 0, array('id'));
 
 		// verificando se nao houve recuperacao de resultado
@@ -228,7 +228,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 			return null;
 		}
 
-		// retornando o nome do schema
+		// retornando o id do campo
 		return (int) $arrayResultado[0]['id'];
 	}
 	
@@ -239,7 +239,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * 
 	 * @return String
 	 * 
-	 * @author João Vasconcelos (joao.vasconcelso@rochedoframework.com)
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * 
 	 * @since 25/05/2012
 	 */
@@ -247,6 +247,34 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	{
 		// recuperando dados do field
 		$dadosField = $this->retornaArrayDadosObjetosPorParametros("id = {$idField}", null, null, null, array('fieldname'));
+		
+		// verificando se os dados foram recuperados com sucesso
+		if (count($dadosField) > 0) {
+			// retornando fieldname
+			return $dadosField[0]['fieldname'];
+		}
+		
+		return null;
+	}
+	
+	
+	/**
+	 * Retorna o dados do field por nome schema, nome tabela e nome campo
+	 * 
+	 * @param String $schema
+	 * @param String $tabela
+	 * @param String $campo
+	 * 
+	 * @return Array
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * 
+	 * @since 27/05/2012
+	 */
+	public function retornaFieldnamePorIdFieldasas($schema, $tabela, $campo)
+	{
+		// recuperando dados do field
+		$dadosField = Basico_OPController_DBUtilOPController::retornaArraySQLQuery("SELECT ");
 		
 		// verificando se os dados foram recuperados com sucesso
 		if (count($dadosField) > 0) {
