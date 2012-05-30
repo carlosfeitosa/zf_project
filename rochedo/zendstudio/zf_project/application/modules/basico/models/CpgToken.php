@@ -1,6 +1,6 @@
 <?php
-require_once(APPLICATION_MODULES_PATH . "/basico/models/interfaces/RochedoPersistentModeloGenerico.php");
-require_once(APPLICATION_MODULES_PATH . "/basico/models/abstracts/RochedoPersistentModeloGenerico.php");  
+require_once APPLICATION_MODULES_PATH . "/basico/models/interfaces/RochedoPersistentModeloGenerico.php";
+require_once APPLICATION_MODULES_PATH . "/basico/models/abstracts/RochedoPersistentModeloGenerico.php";  
 /**
  * CpgToken model
  *

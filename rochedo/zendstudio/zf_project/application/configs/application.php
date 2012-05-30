@@ -6,7 +6,7 @@
 /**
  * Requires
  */
-require_once(APPLICATION_PATH . "/consts/consts.php");
+require_once APPLICATION_PATH . "/consts/consts.php";
 
 /*
  * APPLICATION

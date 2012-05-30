@@ -10,7 +10,7 @@
  */
 
 // include dos controladores e modelos
-require_once(APPLICATION_PATH . "/modules/basico/models/Log.php");
+require_once APPLICATION_PATH . "/modules/basico/models/Log.php";
 
 /**
  * 

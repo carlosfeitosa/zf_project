@@ -4,8 +4,8 @@
  * 
  */
 
-require_once("DBUtilOPController.php");
-require_once("DBTransactionOPController.php");
+require_once "DBUtilOPController.php";
+require_once "DBTransactionOPController.php";
 
 class Basico_OPController_PersistenceOPController
 {

@@ -3,7 +3,7 @@
  * Arquivo para definição de constantes de Mensagens de erro do sistema.
  * 
  */
-require_once(APPLICATION_PATH . "/configs/application.php");
+require_once APPLICATION_PATH . "/configs/application.php";
 
 /*
  * APPLICATION
