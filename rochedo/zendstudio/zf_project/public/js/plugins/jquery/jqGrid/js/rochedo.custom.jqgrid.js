@@ -171,3 +171,21 @@ function processaRetornoJqGrid(response, postdata) {
 
 	return [success,message];
 }
+
+/**
+ * Verifica o retorno do método de recuperação de dados, antes iniciar o processamento
+ * 
+ * @param data
+ * @param status
+ * @param xhr
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+ * @since 30/05/2012
+ */
+function verificaDadosAntesProcessamento(data, status, xhr) {
+	// verificnado se a página foi recuperada
+	if (data.page == undefined) {
+		// processa o resultado via ajax rochedo
+		processaResponseDojoFormRequest(data);
+	}
+}

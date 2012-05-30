@@ -79,7 +79,7 @@ class Basico_AutenticadorController extends Zend_Controller_Action
 		
 		// enviado script para a view
 		$this->view->scripts = $scripts;
-    	
+
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
 	}

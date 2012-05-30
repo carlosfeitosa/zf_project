@@ -1130,6 +1130,7 @@ class Basico_OPController_CrudOPController
 							gridview: true,
 							editurl: '{$urlModificarDados}',
 							caption: 'CRUD {$nomeModelo}',
+							beforeProcessing: verificaDadosAntesProcessamento,
 						    serializeGridData: function (dados) {
 												return JSON.stringify(dados)
 												},
