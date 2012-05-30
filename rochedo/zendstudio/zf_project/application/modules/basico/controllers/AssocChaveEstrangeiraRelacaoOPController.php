@@ -107,11 +107,10 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 		$objsRelacaoCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperando
-		if (isset($objsRelacaoCategoriaChaveEstrangeira[0]))
+		if (is_object($objsRelacaoCategoriaChaveEstrangeira)) {
 
 			return true;
-		// verificando se deve criar relacao
-		else if ($forceRelationship) {
+		} else if ($forceRelationship) { // verificando se deve criar relacao
 
 			// retornando o resultado do metodo "criaRelacaoCategoriaChaveEstrangeira"
 			return $this->criaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo);

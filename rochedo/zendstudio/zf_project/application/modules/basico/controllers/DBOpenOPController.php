@@ -35,7 +35,7 @@ class Basico_OPController_DBOpenOPController
 			// verificando se eh preciso estourar uma excessao
 			if ($estouraExcessao) {
 				// estourando excessao
-				throw new Exception(MSG_ERRO_DATABASE_CHECKSUM_INVALIDO);
+				throw new Exception(MSG_ERRO_DATABASE_CHECKSUM_INVALIDO . '(' . get_class($objeto) . ')');
 			}
 
 			// retornando fracasso

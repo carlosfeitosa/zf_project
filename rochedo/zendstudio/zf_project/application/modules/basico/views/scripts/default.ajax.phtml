@@ -110,6 +110,9 @@ $header['title']  = $this->headTitle()->toString();
 $header['link']   = $this->headLink()->toString();
 $header['script'] = $this->headScript()->toString();
 
+// setando o headMenu
+$arrayHtmlElements['header'] = ($this->render('headerMenu.phtml'));
+
 // verificando se o ambiente é desenvolvimento.
 if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 	// setando o footer com o debug info.
