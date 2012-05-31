@@ -85,7 +85,7 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 	public static function getInstance()
 	{
 		// verificando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_DicionarioDadosAssocclFkOPController();
 		}

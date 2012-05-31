@@ -66,7 +66,7 @@ class Basico_OPController_CpgTokenOPController
 	static public function getInstance()
 	{
 		// checando singleton
-		if (self::$_singleton == NULL){
+		if (self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_CpgTokenOPController();
 		}
@@ -202,7 +202,7 @@ class Basico_OPController_CpgTokenOPController
     			$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 			// verificando se trata-se de uma nova tupla ou atualizacao
-			if ($objToken->id != NULL) {
+			if ($objToken->id != null) {
 				// carregando informacoes de log de atualizacao de registro
 				$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_TOKEN, true);
 				$mensagemLog    = LOG_MSG_UPDATE_TOKEN;

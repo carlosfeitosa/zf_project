@@ -67,7 +67,7 @@ class Basico_OPController_ControleAcessoOPController
 	public static function getInstance()
 	{
 		// verificando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_ControleAcessoOPController();
 		}
@@ -353,7 +353,7 @@ class Basico_OPController_ControleAcessoOPController
 										   WHERE m.nome = '{$nomeModuloRequest}'
 										   AND ap.controller = '{$nomeControllerRequest}'
 										   AND ap.action = '{$nomeAcaoRequest}'
-										   AND (({$idPerfil} is null) OR (apmv.id_perfil = {$idPerfil}) OR (apmv.id_perfil IS NULL))";
+										   AND (({$idPerfil} IS NULL) OR (apmv.id_perfil = {$idPerfil}) OR (apmv.id_perfil IS NULL))";
 
 		// recuperando array com os resultados
 		$arrayResultados = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($querySQLRetornaMetodoValidacao);

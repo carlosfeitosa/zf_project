@@ -70,7 +70,7 @@ class Basico_OPController_SequenciaOPController extends Basico_AbstractControlle
 	static public function getInstance()
 	{
 		// checando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_SequenciaOPController();
 		}

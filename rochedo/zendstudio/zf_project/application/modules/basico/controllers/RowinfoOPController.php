@@ -56,7 +56,7 @@ class Basico_OPController_RowinfoOPController
 	public static function getInstance()
 	{
 		// verificando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_RowinfoOPController();
 		}
@@ -83,7 +83,7 @@ class Basico_OPController_RowinfoOPController
 	public function getXml()
 	{
 		// retornando o resultado do metodo "geradorXmlGerarXml" na classe "Basico_OPController_GeradorOPController"
-		return Basico_OPController_GeradorOPController::geradorXmlGerarXml($this->_rowinfo, NULL, NULL, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
+		return Basico_OPController_GeradorOPController::geradorXmlGerarXml($this->_rowinfo, null, null, 'rowinfo', 'xml_data', 'rowinfo', 'agilfap2_desenv/public/xsd/rowinfo.xsd');
 	}
 	
 	/**

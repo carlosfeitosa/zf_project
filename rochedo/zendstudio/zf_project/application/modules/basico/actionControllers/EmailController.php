@@ -42,7 +42,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	$tokenObj = Basico_OPController_CpgTokenOPController::getInstance()->retornaObjetoTokenEmailPorToken($token);
 
     	// verificando se o objeto existe
-    	if ($tokenObj == NULL){
+    	if ($tokenObj == null){
     		// encaminhado para a ação de erro token invalido
     		return $this->_forward('errotokeninvalido');  
     	}
@@ -77,7 +77,7 @@ class Basico_EmailController extends Zend_Controller_Action
     	$dataHoraAtualUnixTimeStamp = Basico_OPController_UtilOPController::retornaTimestamp();
 
     	// verificando se o objeto existe
-    	if ($email != NULL) {
+    	if ($email != null) {
 			// checando expiracao do token
 	    	if ($dataHoraExpiracaoUnixTimeStamp < $dataHoraAtualUnixTimeStamp){
 	    		// encaminhado para a ação de token expirado

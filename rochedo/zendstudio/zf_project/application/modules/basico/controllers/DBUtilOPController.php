@@ -726,7 +726,7 @@ class Basico_OPController_DBUtilOPController
     	    return $arrayPastas;
     	}
 
-    	return NULL;
+    	return null;
     }
         
     /**
@@ -786,13 +786,13 @@ class Basico_OPController_DBUtilOPController
      * 
      * @return Array
      */
-    private static function retornaArrayFileNamesDbDataScriptsFiles($scriptsPath = NULL) 
+    private static function retornaArrayFileNamesDbDataScriptsFiles($scriptsPath = null) 
     {
        // inicializando variaveis
         $arrayFilters = array();
         
     	//recuperando o path dos arquivos de create do banco de dados.
-    	if ($scriptsPath == NULL)
+    	if ($scriptsPath == null)
             $scriptsPath = self::retornaDBDataScriptsPath();
 
 		// recuperando filtros

@@ -69,7 +69,7 @@ class Basico_OPController_DBCheckOPController
 	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_DBCheckOPController();
 		}
@@ -459,7 +459,7 @@ class Basico_OPController_DBCheckOPController
 	 * 
 	 * @return Boolean
 	 */
-	public static function checaDisponibilidadeString($nomeTabela, $nomeCampo, $stringPesquisa = NULL)
+	public static function checaDisponibilidadeString($nomeTabela, $nomeCampo, $stringPesquisa = null)
 	{
 		// query que verifica disponibilidade
 		$queryDisponibilidade = "SELECT {$nomeCampo} FROM {$nomeTabela} WHERE {$nomeCampo} = '{$stringPesquisa}'";

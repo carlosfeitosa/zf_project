@@ -28,7 +28,7 @@ class Basico_AdministradorController extends Zend_Controller_Action
     	}
     	else {
     		// setando subtitulo para vazio
-    	    $subtituloView = NULL;
+    	    $subtituloView = null;
     	}
 
 		$content = array();

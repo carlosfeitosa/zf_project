@@ -69,7 +69,7 @@ class Basico_OPController_MensageiroOPController
     public static function getInstance()
 	{
 		// checando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_MensageiroOPController();
 		}

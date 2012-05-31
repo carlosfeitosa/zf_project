@@ -84,7 +84,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	public static function getInstance()
 	{
 		// verificando singleton
-		if (self::$_singleton == NULL){
+		if (self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_ContatoCpgEmailOPController();
 		}
@@ -131,7 +131,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			// retornando uniqueId
     	    return $arrayObjEmail->uniqueId;
     	else
-    	    return NULL;
+    	    return null;
 	}
 
 	/**
@@ -151,7 +151,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			// retornando objeto e-mail
     	    return $objEmail;
     	else
-    	    return NULL;
+    	    return null;
 	}
 
     /**
@@ -171,7 +171,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			// retornando o id do objeto e-mail
     	    return $objEmail->id;
     	else
-    	    return NULL;
+    	    return null;
 	}
 
     /**
@@ -204,7 +204,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			// retornando o id generico do proprietario do objeto e-mail
     	    return $objEmail->idGenericoProprietario;
     	else
-    	    return NULL;
+    	    return null;
 	}
 
 	/**
@@ -224,7 +224,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			// retornando o atributo validado
 			return $objEmail->validado;
 		else
-		    return NULL;
+		    return null;
 	}
 	
 	/**
@@ -246,7 +246,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			// retornando o e-mail do sistema
     	    return $objEmailSistema->email;
     	else
-    	    return NULL;
+    	    return null;
 	}
 	
 	/**

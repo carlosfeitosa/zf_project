@@ -81,7 +81,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_PessoaLoginOPController();
 		}
@@ -931,10 +931,10 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
      * @param String $login
      * @param String $dataNascimento
      */
-    public static function retornaArraySugestoesLogin($login, $idPessoa, $nome = NULL, $dataNascimento = NULL)
+    public static function retornaArraySugestoesLogin($login, $idPessoa, $nome = null, $dataNascimento = null)
     {
     	// verificando se o nome foi passado
-    	if ($nome != NULL && trim($nome != "")) {
+    	if ($nome != null && trim($nome != "")) {
     		
 	    	// transformando cada nome em um elemento de uma array
 	    	$arrayNome = explode(' ', strtolower($nome));

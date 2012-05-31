@@ -83,7 +83,7 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 	public static function getInstance()
 	{
 		// verificando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_AcaoAplicacaoAssocVisaoOPController();
 		}

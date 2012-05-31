@@ -156,7 +156,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 */
 	public static function getInstance() {
 		// checando o singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_MensagemOPController();
 		}

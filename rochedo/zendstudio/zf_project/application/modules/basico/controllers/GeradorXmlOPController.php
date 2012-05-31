@@ -18,7 +18,7 @@ class Basico_OPController_GeradorXmlOPController
 	 * 
 	 * @return void
 	 */
-    public static function gerar($objeto, $domElement = NULL, $DOMDocument = NULL, $rootNamespace = NULL, $rootElement = NULL, $xsdNamespace = NULL, $xsdLocation = NULL)
+    public static function gerar($objeto, $domElement = null, $DOMDocument = null, $rootNamespace = null, $rootElement = null, $xsdNamespace = null, $xsdLocation = null)
     {
         if(is_null($DOMDocument)){
         	// instanciando a classe DOMDocument
@@ -133,7 +133,7 @@ class Basico_OPController_GeradorXmlOPController
 
         // limpando os atributos
         foreach($arrayChaves as $chave){
-            if ($arrayAtributosObjeto[$chave] != NULL)
+            if ($arrayAtributosObjeto[$chave] != null)
                 $arrayResultados[str_replace('_', '', strstr($chave, '_', false))] = $arrayAtributosObjeto[$chave];
         }
 

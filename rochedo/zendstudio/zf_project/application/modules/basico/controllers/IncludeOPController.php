@@ -86,7 +86,7 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractController_
 	public static function getInstance()
 	{
 		// checando singleton
-		if (self::$_singleton == NULL){
+		if (self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_IncludeOPController();
 		}
@@ -144,7 +144,7 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractController_
 									
 									WHERE f.form_name = '{$nomeFormulario}'
 									AND o.nome = '{$nomeOutput}'
-									AND i.ativo = TRUE
+									AND i.ativo = true
 									AND i.id IS NOT NULL
 									
 									GROUP BY c.nome, i.uri, fi.ordem, faeai.ordem, cai.ordem, tai.ordem, oai.ordem

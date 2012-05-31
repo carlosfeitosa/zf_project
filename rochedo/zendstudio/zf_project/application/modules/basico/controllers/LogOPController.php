@@ -86,7 +86,7 @@ class Basico_OPController_LogOPController
 	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_LogOPController();
 		}
@@ -268,7 +268,7 @@ class Basico_OPController_LogOPController
 													"eventDescription" => $modelo->xml,));
 
 			// retornando XML
-			return Basico_OPController_GeradorOPController::geradorXmlGerarXml($logXml, NULL, NULL, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');	
+			return Basico_OPController_GeradorOPController::geradorXmlGerarXml($logXml, null, null, 'log', 'xml_data', 'log', 'agilfap2_desenv/public/xsd/log_db.xsd');	
 		} catch (Exception $e) {
 			
 			throw new Exception($e);

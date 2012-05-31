@@ -384,7 +384,7 @@ class Basico_LoginController extends Zend_Controller_Action
 	        $emailParaValidacao = Basico_OPController_ContatoCpgEmailOPController::getInstance()->verificaEmailExistente($email);
 
 	        // checando o resultado da verificacao de existencia do e-mail
-	        if ($emailParaValidacao !== NULL){
+	        if ($emailParaValidacao !== null){
 
 	        	// recuperando parametros
 		        $idEmail           = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaIdEmailPorEmail($email);

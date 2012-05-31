@@ -101,7 +101,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	public static function getInstance()
 	{
 		// verificando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_CategoriaOPController();
 		}
@@ -117,7 +117,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	 * @param Integer $idTipoCategoria
 	 * @param Integer $idCategoriaPai
 	 * 
-	 * @return Basico_Model_Categoria or NULL
+	 * @return Basico_Model_Categoria or null
 	 */
 	public function retornaObjetoCategoriaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $idTipoCategoria = null, $idCategoriaPai = null)
 	{
@@ -138,7 +138,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		if (isset($objCategoria[0]))
 			// retornando o objeto
     	    return $objCategoria[0];
-    	return NULL;
+    	return null;
 	}
 	
     /**
@@ -150,7 +150,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	 * @param Integer $tipoCategoria
 	 * @param $idCategoriaPai
 	 * 
-	 * @return Basico_Model_Categoria|NULL
+	 * @return Basico_Model_Categoria|null
 	 */
 	public function retornaObjetoCategoriaAtivaPorNomeCategoriaIdTipoCategoriaCategoriaPai($nomeCategoria, $idTipoCategoria = null, $idCategoriaPai = null)
 	{

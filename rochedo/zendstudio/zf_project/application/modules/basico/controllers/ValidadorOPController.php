@@ -57,7 +57,7 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractControlle
 	public static function getInstance()
 	{
 		// checando singleton
-		if(self::$_singleton == NULL){
+		if(self::$_singleton == null){
 			// instanciando pela primeira vez
 			self::$_singleton = new Basico_OPController_ValidatorOPController();
 		}
@@ -88,7 +88,7 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractControlle
 	    		$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 
 	    	// verificando se trata-se de uma nova tupla ou atualizacao
-	    	if ($objeto->id != NULL) {
+	    	if ($objeto->id != null) {
 	    		// carregando informacoes de log de atualizacao de registro
 	    		$idCategoriaLog = Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR, true);
 	    		$mensagemLog    = LOG_MSG_UPDATE_FORMULARIO_ELEMENTO_VALIDADOR;
