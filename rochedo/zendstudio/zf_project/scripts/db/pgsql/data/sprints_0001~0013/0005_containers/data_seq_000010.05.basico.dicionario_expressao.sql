@@ -30,6 +30,13 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DD_SCHEMA_BASICO_TABLE_CATEGORIA_FIELD_ID_TIPO_CATEGORIA' AS constante_textual, 'Tipo Categoria (id)' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'CAMPO_EXIBICAO_CONSTANTE_TEXTUAL_BASICO_DICIONARIO_DADOS_ASSOCCL_FK_ID_ASSOC_FIELD_FK' AS constante_textual, 'Exibição do nome do campo fk' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)

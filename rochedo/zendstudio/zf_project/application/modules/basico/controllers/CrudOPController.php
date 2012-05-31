@@ -1074,11 +1074,19 @@ class Basico_OPController_CrudOPController
 		// recuperando atributos dos campos da tabela relacionada ao objeto
 		$arrayAtributosCamposTabelaDBObjeto = Basico_OPController_DBUtilOPController::retornaArrayAtributosTabelaBDObjeto($instanciaModelo);
 
+		// recuperando o nome do schema que o modelo ta relacionado
 		$nomeSchema = Basico_OPController_DBUtilOPController::retornaSchemaNameObjeto($instanciaModelo);
 		
+		// recuperando o nome da tabela que o modelo ta relacionado
 		$nomeTabela = Basico_OPController_DBUtilOPController::retornaTableNameObjeto($instanciaModelo, false);
 		
-		//$dadosField = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance()->re
+		// recuperando a constante textual que representa a tabela
+		$constanteTextualTabela = Basico_OPController_DicionarioDadosAssocTableOPController::getInstance()->retornaConstanteTextualTraduzidaTabelaPorNomeSchemaNomeTabela($nomeSchema, $nomeTabela);
+		
+		// recuperando titulos traduzidos das colunas
+		$arrayTitulosColunas = Basico_OPController_DicionarioDadosAssocFieldOPController::getInstance()->retornaTraducoesFieldsPorNomeSchemaNomeTabela($nomeSchema, $nomeTabela);
+		
+		//Basico_OPController_UtilOPController::print_debug($arrayTitulosColunas, true, false, true);
 		
 		// recuperando as larguras das colunas
 		$arrayLarguraColunas = self::retornaArrayLarguraColunasJQGridViaArrayAtributosCamposTabela($arrayAtributosCamposTabelaDBObjeto);
@@ -1092,18 +1100,28 @@ class Basico_OPController_CrudOPController
 		// montando string serializada
 		foreach ($arrayAtributosModelo as $chave => $atributoModelo) {
 
-			// setando string colNames
-			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($atributoModelo, "'");
-
 			// recuperando o nome do atributo no banco de dados
 			$nomeAtributoBD = Basico_OPController_DBUtilOPController::retornaNomeCampoAtributo($atributoModelo);
+			
+			// verificando se existe traducao para o titulo da coluna
+			// setando titulo da coluna
+			if (isset($arrayTitulosColunas[$nomeAtributoBD])) {
+				// setando traducao no titulo da coluna
+				$tituloColuna = $arrayTitulosColunas[$nomeAtributoBD];
+			}else{
+				// setando nome do campo no titulo da coluna
+				$tituloColuna = $atributoModelo;
+			}
+			
+			// setando string colNames
+			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($tituloColuna, "'");
 
 			// recuperando a largura da coluna
 			$larguraColuna = $arrayLarguraColunas[$nomeAtributoBD];
 
 			// somando a largura do grid
 			$larguraGrid += $larguraColuna;
-
+			
 			// recuperando o modelo da coluna do atributo
 			$stringColModel .= self::retornaModeloColunaJqGrid($atributoModelo, $nomeAtributoBD, $larguraColuna, $arrayAtributosNaoEditaveis, $arrayDetalhesAtributos);
 
@@ -1135,7 +1153,7 @@ class Basico_OPController_CrudOPController
 						    mtype: 'GET',
 							gridview: true,
 							editurl: '{$urlModificarDados}',
-							caption: 'CRUD {$nomeModelo}',
+							caption: 'CRUD {$constanteTextualTabela} ($nomeModelo)',
 							beforeProcessing: verificaDadosAntesProcessamento,
 						    serializeGridData: function (dados) {
 												return JSON.stringify(dados)

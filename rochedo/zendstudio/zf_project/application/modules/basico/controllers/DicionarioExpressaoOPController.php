@@ -203,4 +203,78 @@ class Basico_OPController_DicionarioExpressaoOPController
 		// retornando resultado da chamada ao metodo "retornaCategoriasLinguasAtivas" do controlador "CategoriaOPController"
 		return $categoriaOPController->retornaCategoriasLinguasAtivas();
 	}
+	
+	/**
+	 * Retorna um array de traducoes preservando as chaves do array passado 
+	 * 
+	 * @param array $arrayConstantesTextuais - array de chaves e valores (constantes textuais)
+	 * 
+	 * @return Array|null - array de chaves preservadas e valores traduzidos
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * 
+	 * @since 31/05/2012
+	 */
+	public static function retornaArrayTraducoesViaSql(array $arrayConstantesTextuais)
+	{
+		// verificando se existem constantes para traducao
+		if (count($arrayConstantesTextuais)) {
+			
+			// inicializando variaveis
+			$arrayRetorno = $arrayConstantesTextuais;
+			
+			// loop para transformar valores do array
+			foreach ($arrayRetorno as $chave => $constanteTextual) {
+				// setando valor do elemento do array entre aspas
+				$arrayRetorno[$chave] = Basico_OPController_UtilOPController::retornaStringEntreCaracter($constanteTextual, "'");
+				
+				// limpando memoria
+				unset($chave, $constanteTextual);
+			}
+			
+			// transformando valores do array em string
+			$stringConstantesTextuais = implode(',', $arrayRetorno);
+			
+			// recuperando a lingua do sistema
+			$linguaSistema = DEFAULT_SYSTEM_LANGUAGE;
+			
+			// montando query pra recuperar traducoes
+			$queryTraducoes = "SELECT de.constante_textual, de.traducao
+							   FROM basico.dicionario_expressao de
+							   LEFT JOIN basico.categoria c ON (de.id_categoria = c.id)
+							   LEFT JOIN basico.tipo_categoria tc ON (c.id_tipo_categoria = tc.id)
+							   WHERE de.constante_textual IN ({$stringConstantesTextuais})
+							   AND c.nome = '{$linguaSistema}'
+							   AND tc.nome = 'LINGUAGEM'";
+			
+			// recuperando resultado da query
+			$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryTraducoes);
+			
+			// limpando memoria
+			unset($stringConstantesTextuais, $queryTraducoes);
+			
+			// verificando resultado da query
+			if (count($arrayResultado)) {
+				// loop para setar traducoes no array de chaves preservadas
+				foreach ($arrayResultado as $arrayTraducoes) {
+	
+					// recuperando elementos para a traducao atual
+					$chavesElementosParaTraduzir = array_keys($arrayConstantesTextuais, $arrayTraducoes['constante_textual']);
+					
+					// percorrendo elementos para traduzir constantes textuais
+					foreach ($chavesElementosParaTraduzir as $chaveElemento) {
+						// setando traducao no array preservado
+						$arrayRetorno[$chaveElemento] = $arrayTraducoes['traducao'];
+					}
+					// limpando memoria
+					unset($arrayTraducoes);
+				}
+				
+				// retornando array de resultados
+				return $arrayRetorno; 
+			}
+		}
+		return null;
+	}
 }

@@ -341,4 +341,34 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		
 		return null;
 	}
+	
+	/**
+	 * Retorna a constante textual traduzida da tabela pelo nome do schema e nome da tabela
+	 * 
+	 * @param String $nomeSchema
+	 * @param String $nomeTabela
+	 * 
+	 * @return String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 31/05/2012
+	 */
+	public function retornaConstanteTextualTraduzidaTabelaPorNomeSchemaNomeTabela($nomeSchema, $nomeTabela)
+	{
+		// recuperando dados do field
+		$dadosField = Basico_OPController_DBUtilOPController::retornaArraySQLQuery("SELECT t.constante_textual
+																					FROM basico_dicionario_dados.assoc_table t
+																					LEFT JOIN basico_dicionario_dados.schema s ON (t.id_schema = s.id)
+																					WHERE s.schemaname = '{$nomeSchema}'
+																					AND t.tablename    = '{$nomeTabela}'
+																					");
+		
+		// verificando se os dados foram recuperados com sucesso
+		if (count($dadosField) > 0) {
+			// retornando fieldname
+			return Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($dadosField[0]['constante_textual']);
+		}
+		
+		return null;
+	}
 }

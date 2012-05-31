@@ -259,11 +259,11 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	
 	
 	/**
-	 * Retorna o dados do field por nome schema, nome tabela e nome campo
+	 * Retorna a constante textual traduzida do field por nome schema, nome tabela e nome campo
 	 * 
-	 * @param String $schema
-	 * @param String $tabela
-	 * @param String $campo
+	 * @param String $nomeSchema
+	 * @param String $nomeTabela
+	 * @param String $nomeCampo (optional)
 	 * 
 	 * @return Array
 	 * 
@@ -271,15 +271,43 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * 
 	 * @since 27/05/2012
 	 */
-	public function retornaFieldnamePorIdFieldasas($schema, $tabela, $campo)
+	public function retornaTraducoesFieldsPorNomeSchemaNomeTabela($nomeSchema, $nomeTabela, $nomeCampo = null)
 	{
-		// recuperando dados do field
-		$dadosField = Basico_OPController_DBUtilOPController::retornaArraySQLQuery("SELECT ");
+		// inicializando variaveis
+		$condicaoNomeCampo = "";
+		$arrayResultado = array();
 		
+		// verificando se o nome do campo foi passado
+		if (null != $nomeCampo) {
+			// setando condicao sql utilizando o nome do campo
+			$condicaoNomeCampo = "AND f.fieldname = '{$nomeCampo}'";
+		}
+		
+		$queryFields = "SELECT f.fieldname, f.constante_textual
+						FROM basico_dicionario_dados.assoc_field f
+						LEFT JOIN basico_dicionario_dados.assoc_table t ON (f.id_assoc_table = t.id)
+						LEFT JOIN basico_dicionario_dados.schema s ON (t.id_schema = s.id)
+						WHERE s.schemaname = '{$nomeSchema}'
+						AND t.tablename    = '{$nomeTabela}'
+						{$condicaoNomeCampo}";
+				
+		// recuperando dados do field
+		$dadosField = Basico_OPController_DBUtilOPController::retornaArraySQLQuery($queryFields);
+																					
 		// verificando se os dados foram recuperados com sucesso
 		if (count($dadosField) > 0) {
-			// retornando fieldname
-			return $dadosField[0]['fieldname'];
+
+			foreach ($dadosField as $field) {
+				
+				// verificando se a constante ja foi traduzida
+				if (CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA !== $field['constante_textual']) {
+					// retornando fieldname
+					$arrayResultado[$field['fieldname']] = $field['constante_textual'];
+				}
+			}
+			
+			// retornando resultado
+			return Basico_OPController_DicionarioExpressaoOPController::retornaArrayTraducoesViaSql($arrayResultado);
 		}
 		
 		return null;
