@@ -91,8 +91,8 @@ class Basico_EmailController extends Zend_Controller_Action
 	    	if (!isset($_POST['BasicoAceiteTermosUsoAceiteTermosUso'])) {
 
 	    		// carregando array do cabecalho da view
-				$content[] = '<h3>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO').'</h3>'; 
-				$content[] = '<h4>'.$this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO').'</h4>';
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO')); 
+				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
 					    
 				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
 					    
@@ -214,7 +214,7 @@ class Basico_EmailController extends Zend_Controller_Action
     public function errotokeninvalidoAction() 
     {
     	// carregando titulo, link para re-cadastro e mensagem
-        $content[] = $this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO);
+        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO));
     
 	    // enviado conteúdo para a view
 		$this->view->content = $content;
