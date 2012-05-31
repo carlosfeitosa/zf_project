@@ -36,7 +36,7 @@ function carregaDadosFormEdicaoJqGrid(formObject, urlDadosForm) {
 							formObject[0][key].checked = "";
 					}else{
 						// setando valor do elemento do tipo text
-						formObject[0][key].value = val.replace(new RegExp('<br>', 'g'), '\n');
+						formObject[0][key].value = substituiTodasOcorrenciasString('<br>', '\n', val);
 					}
 				}
 			});

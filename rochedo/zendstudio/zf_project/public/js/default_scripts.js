@@ -951,6 +951,9 @@ function adicionaTextoElementoHtml(idElemento, texto, separador) {
 	// recuperando o valor atual do elemento
 	var valorAtual = $('#' + idElemento).val();
 
+	// tratando quebras de linha do texto
+	texto = substituiTodasOcorrenciasString('<br>', '\n', texto);
+	
 	// verificando se o valor atual é vazio
 	if (valorAtual == '') {
 		// setando o valor do elemento com o conteúdo do valor atual
@@ -959,4 +962,20 @@ function adicionaTextoElementoHtml(idElemento, texto, separador) {
 		// setando o valor do elemento com o conteúdo do valor atual adicionado do novo valor
 		$('#' + idElemento).val(valorAtual + separador + texto);
 	}
+}
+
+/**
+ * Substitui todas as ocorrencias da string de busca pela string de replace
+ * 
+ * @param search
+ * @param replace
+ * 
+ * @return String
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ * @since 31/05/2012
+ */
+function substituiTodasOcorrenciasString(search, replace, string) {
+	// retornando string com substituicoes
+	return string.replace(new RegExp(search, 'g'), replace);
 }
