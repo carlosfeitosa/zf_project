@@ -61,10 +61,10 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -73,12 +73,12 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// inicializando controladores utilizados por este controlador
 		$this->_dicionarioDadosSchemaOPController = Basico_OPController_DicionarioDadosSchemaOPController::getInstance();
@@ -123,7 +123,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	public function criarNovaTabelaAtiva($idPessoaAssocclPerfilCreate, $idCategoria, $idSchema, $tablename, $constanteTextual, $constanteTextualDescricao = null, $constanteTextualAlias = null, $quantidadeCampos = null, $idFkDefault = null)
 	{
 		// instanciando modelo
-		$novoObjeto = $this->retornaNovoObjetoModelo();
+		$novoObjeto = $this->_retornaNovoObjetoModelo();
 
 		// atribuindo valores aos atributos
 		$novoObjeto->idCategoria               = $idCategoria;
@@ -137,7 +137,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$novoObjeto->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", null, $idPessoaAssocclPerfilCreate);
+		return parent::_salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", null, $idPessoaAssocclPerfilCreate);
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	public function desativaTabela($idPessoaAssocclPerfilDeactivate, $idSchema, $tablename)
 	{
 		// recuperando o objeto schema
-		$objetoUpdate = $this->retornaObjetosPorParametros("id_schema = {$idSchema} AND tablename = '{$tablename}'", null, 1, 0);
+		$objetoUpdate = $this->_retornaObjetosPorParametros("id_schema = {$idSchema} AND tablename = '{$tablename}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
@@ -170,7 +170,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$objetoUpdate->ativo = false;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
 	}
 
 	/**
@@ -188,7 +188,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	public function ativaTabela($idPessoaAssocclPerfilActivate, $idSchema, $tablename)
 	{
 		// recuperando o objeto schema
-		$objetoUpdate = $this->retornaObjetosPorParametros("id_schema = {$idSchema} AND tablename = '{$tablename}'", null, 1, 0);
+		$objetoUpdate = $this->_retornaObjetosPorParametros("id_schema = {$idSchema} AND tablename = '{$tablename}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
@@ -203,7 +203,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$objetoUpdate->ativo = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
 	}
 
 	/**
@@ -219,7 +219,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	public function atualizaQuantidadeCamposTabela($idPessoaAssocclPerfilUpdate, $idSchema, $tablename)
 	{
 		// recuperando o objeto schema
-		$objetoUpdate = $this->retornaObjetosPorParametros("id_schema = {$idSchema} AND tablename = '{$tablename}'", null, 1, 0);
+		$objetoUpdate = $this->_retornaObjetosPorParametros("id_schema = {$idSchema} AND tablename = '{$tablename}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
@@ -240,7 +240,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		unset($schemaname);
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilUpdate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilUpdate);
 	}
 
 	/**
@@ -306,7 +306,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		}
 
 		// recuperando array com o resultado da recuperacao do nome do schema atraves do id
-		$arrayResultado = $this->retornaArrayDadosObjetosPorParametros("id_schema = {$idSchema} and tablename = '{$tablename}'", null, 1, 0, array('id'));
+		$arrayResultado = $this->_retornaArrayDadosObjetosPorParametros("id_schema = {$idSchema} and tablename = '{$tablename}'", null, 1, 0, array('id'));
 
 		// verificando se nao houve recuperacao de resultado
 		if (!count($arrayResultado)) {
@@ -332,7 +332,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	public function retornaIdFkDefaultPorIdTable($idTable)
 	{
 		// recuperando array com resultado de consulta
-		$arrayResultado = $this->retornaArrayDadosObjetosPorParametros("id = {$idTable}", null, null, null, array('idFkDefault'));
+		$arrayResultado = $this->_retornaArrayDadosObjetosPorParametros("id = {$idTable}", null, null, null, array('idFkDefault'));
 		
 		// verificando se retornou resultado
 		if (null != $arrayResultado)

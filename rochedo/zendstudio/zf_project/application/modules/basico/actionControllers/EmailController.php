@@ -22,7 +22,7 @@ class Basico_EmailController extends Zend_Controller_Action
 	 * 
 	 * @see library/Zend/Controller/Zend_Controller_Action#init()
 	 */
-	public function init()
+	public function _init()
     {
     	// recuperando a requisicao
         $this->request = Zend_Controller_Front::getInstance()->getRequest();

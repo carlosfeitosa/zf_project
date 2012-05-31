@@ -54,10 +54,10 @@ class Basico_OPController_LinkOPController extends Basico_AbstractController_Roc
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -66,13 +66,13 @@ class Basico_OPController_LinkOPController extends Basico_AbstractController_Roc
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * 
 	 * @since 04/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}

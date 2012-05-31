@@ -53,10 +53,10 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -65,12 +65,12 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -104,7 +104,7 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractController_R
 		$nomeModulo = strtoupper($nomeModulo);
 
 		// recuperando objeto
-		$objModulo = $this->retornaObjetosPorParametros("nome = '{$nomeModulo}'", null, 1, 0);
+		$objModulo = $this->_retornaObjetosPorParametros("nome = '{$nomeModulo}'", null, 1, 0);
 
 		// verificando resultado da recuperacao
 		if (is_object($objModulo))

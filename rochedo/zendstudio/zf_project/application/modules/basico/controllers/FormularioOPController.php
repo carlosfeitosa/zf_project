@@ -63,10 +63,10 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -75,12 +75,12 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 03/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// inicializando controladores utilizados por este controlador
 		$this->_formularioElementoOPController = Basico_OPController_FormularioElementoOPController::getInstance();
@@ -116,7 +116,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
     public function existeFormulariosFilhosPorIdFormulario($idFormulario)
     {
 	   	// recuperando formularios filhos
-    	$objsFormulariosFilho = $this->retornaObjetosPorParametros("id_formulario_pai = {$idFormulario}");
+    	$objsFormulariosFilho = $this->_retornaObjetosPorParametros("id_formulario_pai = {$idFormulario}");
 
     	// retornando se existe(m) formulario(s) filho(s)
     	return (count($objsFormulariosFilho) > 0);
@@ -180,7 +180,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	public function retornaTodosObjsFormularios()
 	{
 		// retornando array de todos os objetos formulario
-		return parent::retornaArrayDadosTodosObjetos();
+		return parent::_retornaArrayDadosTodosObjetos();
 	}
 
 	/**
@@ -222,7 +222,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 			return null;
 
 		// recuperando o formulario
-		$objsFormulario = $this->retornaObjetosPorParametros("nome = '{$nomeFormulario}' and id_categoria = {$idCategoria}", null, 1, 0);
+		$objsFormulario = $this->_retornaObjetosPorParametros("nome = '{$nomeFormulario}' and id_categoria = {$idCategoria}", null, 1, 0);
 
 		// verificando se o formulario foi recuperado
 		if (is_object($objsFormulario)) {
@@ -263,7 +263,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 			$condicaoSQL = "form_name = '{$formName}'";
 	  
 		// recuperando objeto formulario
-		$objFormulario = $this->retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
+		$objFormulario = $this->_retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
  		
 	
 		// verificando se o objeto foi recuperado
@@ -283,7 +283,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractControll
 	public function retornaIdCategoriaFormularioPorFormName($formName)
 	{
 		// recuperando o obj formulario pelo formName passado
-		$objFormulario = $this->retornaObjetosPorParametros("form_name = '{$formName}'");
+		$objFormulario = $this->_retornaObjetosPorParametros("form_name = '{$formName}'");
 		
 		// se retornou um objeto retorna o id da categoria
 		if (is_object($objFormulario))

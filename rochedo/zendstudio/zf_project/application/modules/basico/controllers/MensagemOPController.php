@@ -121,10 +121,10 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -133,13 +133,13 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * 
 	 * @since 04/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// inicializando controlador mensagemTemplate
 		$this->_mensagemTemplateOPController = Basico_OPController_MensagemTemplateOPController::getInstance();
@@ -194,7 +194,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		}
 		
 		// inicializando variaveis 
-		$modelMensagem = $this->retornaNovoObjetoModelo();
+		$modelMensagem = $this->_retornaNovoObjetoModelo();
 		$arrayDestinatarios = array();
 		
 		// setando a categoria da mensagem
@@ -253,7 +253,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         $modelMensagem->datahoraCriacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
         
         // salvando a mensagem
-        parent::salvarObjeto($modelMensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_MENSAGEM), LOG_MSG_NOVA_MENSAGEM);
+        parent::_salvarObjeto($modelMensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_MENSAGEM), LOG_MSG_NOVA_MENSAGEM);
         
         // retornando a mensagem
 		return Basico_OPController_UtilOPController::codificar($modelMensagem, CODIFICAR_OBJETO_TO_ARRAY);
@@ -290,7 +290,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		$linguaUsuario = Basico_OPController_PessoaOPController::retornaLinguaUsuario();
 
 		// carregando a mensagem template
-		$objMensagemTemplate = $this->retornaObjetosPorParametros("id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
+		$objMensagemTemplate = $this->_retornaObjetosPorParametros("id_categoria in (SELECT id from basico.categoria WHERE nome = '{$objCategoriaMensagem->nome}_{$linguaUsuario}')", null, 1, 0);
 
 		// recuperando o assunto
 		$this->_model->setAssunto($objMensagemTemplate[0]->getAssunto());
@@ -352,7 +352,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 		$arrayMensagemTemplate = Basico_OPController_MensagemTemplateOPController::getInstance()->retornaArrayConstantesTextuaisMensagemTemplatePorId($this->_mensagemTemplateOPController->retornaIdMensagemTemplatePorNomeTemplateIdCategoria('SISTEMA_MENSAGEM_EMAIL_TEMPLATE_TENTATIVA_REGISTRO_UTILIZANDO_EMAIL_PRIMARIO_PLAINTEXT', $idCategoriaMensagem));		
 
 		// recuperando o novo objeto mensagem
-		$novaMensagem = $this->retornaNovoObjetoModelo();
+		$novaMensagem = $this->_retornaNovoObjetoModelo();
 		
 		// recuperando o assunto
 		$novaMensagem->setAssunto(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayMensagemTemplate['constanteTextualAssunto']));
@@ -406,7 +406,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
         $novaMensagem->idGenericoProprietario = Basico_OPController_PessoaOPController::retornaIdPessoaSistemaViaSQL();
         
         // salvando objeto
-        parent::salvarObjeto($novaMensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_MENSAGEM), LOG_MSG_NOVA_MENSAGEM);
+        parent::_salvarObjeto($novaMensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_MENSAGEM), LOG_MSG_NOVA_MENSAGEM);
 	
         // retornando array com modelo de mensagem
         return Basico_OPController_UtilOPController::codificar($novaMensagem, CODIFICAR_OBJETO_TO_ARRAY);
@@ -485,7 +485,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
 	public function marcarMensagemComoEnviada($idMensagem)
 	{
 		// recuperando o objeto mensagem para update
-		$mensagem = $this->retornaObjetosPorParametros("id = {$idMensagem}");
+		$mensagem = $this->_retornaObjetosPorParametros("id = {$idMensagem}");
 
 		// se a mensagem foi recuperada
 		if (null !== $mensagem->id) {
@@ -496,7 +496,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractController
             $ultimaVersaoMensagem    = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($mensagem);
             
             // Atualizando a mensagem
-            return parent::salvarObjeto($mensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_MENSAGEM, true), LOG_MSG_UPDATE_MENSAGEM, $ultimaVersaoMensagem);            
+            return parent::_salvarObjeto($mensagem, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_MENSAGEM, true), LOG_MSG_UPDATE_MENSAGEM, $ultimaVersaoMensagem);            
 		}
 
 		return false;

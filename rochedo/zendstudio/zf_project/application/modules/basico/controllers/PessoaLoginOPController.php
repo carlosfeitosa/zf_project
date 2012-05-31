@@ -51,10 +51,10 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -63,12 +63,12 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -209,7 +209,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaObjetoLoginPorLogin($login)
 	{
 		// recuperando o array com o objeto login
-		$resultadoRecuperacaoObjetoLogin = $this->retornaObjetosPorParametros("login = '{$login}'");
+		$resultadoRecuperacaoObjetoLogin = $this->_retornaObjetosPorParametros("login = '{$login}'");
 
 		// verificando o resultado da recuperacao
 		if (is_array($resultadoRecuperacaoObjetoLogin)) {
@@ -442,7 +442,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objLogin->datahoraUltimaExpiracao = $objLogin->datahoraProximaExpiracao;
 
 			// salvando o objeto
-			self::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN, true), LOG_MSG_UPDATE_LOGIN, $versaoObjeto);
+			self::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN, true), LOG_MSG_UPDATE_LOGIN, $versaoObjeto);
 		}
 
 		// retornando se o login esta expirado
@@ -500,7 +500,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			}
 
 			// salvando o objeto
-			parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
+			parent::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
 		}
 
 		return null;
@@ -529,7 +529,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objLogin->travado = false;
 
 			// salvando o objeto
-			parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
+			parent::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
 		}
 
 		return null;
@@ -556,7 +556,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objLogin->datahoraUltimoLogon = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 			// salvando o objeto
-			parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN, true), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
+			parent::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN, true), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
 		}
 	}
 
@@ -667,7 +667,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objLogin = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objLogin = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (is_object($objLogin))
@@ -731,7 +731,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaIdLoginPorIdPessoa($idPessoa)
 	{
 		// recuperando o objeto login
-		$object = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
+		$object = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 
 		// verificando o resultado da recuperacao do objeto
 		if (is_object($object)) {
@@ -781,7 +781,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
     	$objetoPessoaPerfilSistema = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaObjetoPessoaPerfilSistema();
 
     	//recuperando o login do usuario master do sistema
-    	$objsLogin = $this->retornaObjetosPorParametros("id_pessoa = {$objetoPessoaPerfilSistema->idPessoa}", null, 1, 0);
+    	$objsLogin = $this->_retornaObjetosPorParametros("id_pessoa = {$objetoPessoaPerfilSistema->idPessoa}", null, 1, 0);
 
     	// verificando se o objeto foi recuperado com sucesso
     	if (isset($objsLogin[0]))    	
@@ -828,7 +828,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function retornaVersaoObjetoLoginPorIdPessoa($idPessoa, $forceVersioning = false)
 	{
 		// recuperando objeto pessoa
-		$object = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
+		$object = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (is_object($object)) {
@@ -874,7 +874,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function alterarSenhaUsuario($idLogin, $novaSenhaNaoEncriptada, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario)
 	{
 		// recuperando o objeto login
-		$objLogin = $this->retornaObjetosPorParametros("id = {$idLogin}");
+		$objLogin = $this->_retornaObjetosPorParametros("id = {$idLogin}");
 
 		// verificando se o objeto foi recuperado
 		if (($objLogin->id) and ($versaoObjetoLoginUsuario) and ($idPessoaPerfilUsuario)) {
@@ -886,7 +886,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 			$objLogin->datahoraUltimaTrocaSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 			// retornando o resultado do metodo de salvar o login
-			parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN, true), LOG_MSG_UPDATE_LOGIN, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);
+			parent::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN, true), LOG_MSG_UPDATE_LOGIN, $versaoObjetoLoginUsuario, $idPessoaPerfilUsuario);
 
 			// retornando sucesso
 			return true;
@@ -907,7 +907,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		if (is_int($idPessoa)) {
 			
 			//recuperando o objLogin
-			$login = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}");
+			$login = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}");
 			
 			// verificando se retornou um login
 			if (is_object($login)) {
@@ -1223,7 +1223,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	public function salvarLoginViaFormCadastrarUsuarioValidado($arrayPost)
 	{
 		// criando o login do usuario
-    	$novoLogin = $this->retornaNovoObjetoModelo();
+    	$novoLogin = $this->_retornaNovoObjetoModelo();
     	// setando atributos do login do usuario 
     	$novoLogin->idPessoa               = $arrayPost['idPessoa'];
     	$novoLogin->tentativasFalhas       = 0;
@@ -1236,7 +1236,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
     	$novoLogin->datahoraAceiteTermoUso = $arrayPost['dataAceite'];
     	
     	// salvando o objeto login
-    	parent::salvarObjeto($novoLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_LOGIN), LOG_MSG_NOVO_LOGIN);
+    	parent::_salvarObjeto($novoLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_LOGIN), LOG_MSG_NOVO_LOGIN);
     	
     	return $novoLogin;
 	}
@@ -1258,7 +1258,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 		$objLogin->ativo = true;
 		
 		// salvando o login
-		parent::salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin));
+		parent::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin));
 	}
 
     /**
@@ -1298,7 +1298,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
             $idPessoaPerfilAdminUsuarioAdministrador = Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->retornaIdNovoObjetoPessoasPerfis($idPessoaAdmin, $idPerfilUsuarioAdministrador);
 	    	
 	    	// recuperando o modelo de login
-	    	$objLoginAdmin = $this->retornaNovoObjetoModelo();
+	    	$objLoginAdmin = $this->_retornaNovoObjetoModelo();
 	
 	    	// populando objeto
 	    	$objLoginAdmin->idPessoa         	   = $idPessoaAdmin;
@@ -1312,7 +1312,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractControl
 	    	$objLoginAdmin->datahoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 	    	// salvando o objeto login
-    		parent::salvarObjeto($objLoginAdmin, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_LOGIN), LOG_MSG_NOVO_LOGIN);
+    		parent::_salvarObjeto($objLoginAdmin, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_LOGIN), LOG_MSG_NOVO_LOGIN);
 
 			// salvando a transacao
 			Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);

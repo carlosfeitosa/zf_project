@@ -61,10 +61,10 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		// recuperando o id do tipo categoria CVC
 		$this->idTipoCategoriaCVC = self::retornaIdTipoCategoriaCVCViaSQL();
@@ -76,12 +76,12 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -112,7 +112,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractContr
 	public function retornaIdTipoCategoriaPorNome($nomeTipoCategoria)
 	{
 		// recuperando os objetos tipo categoria
-		$objTipoCategoria = $this->retornaObjetosPorParametros("nome = '{$nomeTipoCategoria}'", null, 1, 0);
+		$objTipoCategoria = $this->_retornaObjetosPorParametros("nome = '{$nomeTipoCategoria}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (is_object($objTipoCategoria))

@@ -53,10 +53,10 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -65,12 +65,12 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 03/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -131,14 +131,14 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 	{
 		try {
 			// recuperando um novo modelo acoes aplicacao perfis
-			$modeloAcoesAplicacaoPerfis = $this->retornaNovoObjetoModelo();
+			$modeloAcoesAplicacaoPerfis = $this->_retornaNovoObjetoModelo();
 	
 			// setando informacoes sobre a vinculacao da nova acao com o perfil de desenvolvedor
 			$modeloAcoesAplicacaoPerfis->idPerfil        = $idPerfil;
 			$modeloAcoesAplicacaoPerfis->idAcaoAplicacao = $idAcaoAplicacao;
 	
 			// salvando a acao aplicacao assoccl perfil
-			parent::salvarObjeto($modeloAcoesAplicacaoPerfis, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACOES_APLICACAO_PERFIS, true), LOG_MSG_NOVA_ACOES_APLICACAO_PERFIS);
+			parent::_salvarObjeto($modeloAcoesAplicacaoPerfis, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACOES_APLICACAO_PERFIS, true), LOG_MSG_NOVA_ACOES_APLICACAO_PERFIS);
 			
 		} catch (Exception $e) {
 			// lançando erro

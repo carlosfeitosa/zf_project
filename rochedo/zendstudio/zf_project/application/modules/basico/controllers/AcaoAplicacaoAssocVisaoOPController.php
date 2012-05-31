@@ -53,10 +53,10 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -65,12 +65,12 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 03/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -107,7 +107,7 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 	public function retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacao)
 	{
 		// recuperando visao
-		$visao = $this->retornaObjetosPorParametros("id_acao_aplicacao = {$idAcaoAplicacao}");
+		$visao = $this->_retornaObjetosPorParametros("id_acao_aplicacao = {$idAcaoAplicacao}");
 				
 		// verificando se visao foi recuperada
 		if (is_object($visao))
@@ -153,7 +153,7 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 
 		// retornando todas as acoes aplicacao ativas
-		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
+		return $this->_retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 
 	/**
@@ -173,6 +173,6 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(false, true);
 		
 		// retornando todas as acoes aplicacao desativadas
-		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
+		return $this->_retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 }

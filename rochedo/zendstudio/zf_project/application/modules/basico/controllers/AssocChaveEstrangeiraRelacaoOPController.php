@@ -54,10 +54,10 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -66,12 +66,12 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 03/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -104,7 +104,7 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	public function checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo, $forceRelationship = false)
 	{
 		// recuperando objeto
-		$objsRelacaoCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
+		$objsRelacaoCategoriaChaveEstrangeira = $this->_retornaObjetosPorParametros("tabela_origem = '{$nomeTabela}' and campo_origem = '{$nomeCampo}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperando
 		if (is_object($objsRelacaoCategoriaChaveEstrangeira)) {
@@ -132,14 +132,14 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 		// checando se a relacao existe
 		if (!self::checaRelacaoCategoriaChaveEstrangeira($nomeTabela, $nomeCampo)) {
 			// instanciando o um novo modelo de relacao categoria chave estrangeira
-            $novoModelo = $this->retornaNovoObjetoModelo();
+            $novoModelo = $this->_retornaNovoObjetoModelo();
             
 			// setando os valores
 			$novoModelo->tabelaOrigem = $nomeTabela;
 			$novoModelo->campoOrigem  = $nomeCampo;
 
 			// salvando o objeto
-			parent::salvarObjeto($novoModelo, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA, true), LOG_MSG_NOVA_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
+			parent::_salvarObjeto($novoModelo, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA, true), LOG_MSG_NOVA_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA);
 		}
 		return true;
 	}
@@ -156,7 +156,7 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 		$arrayNomeCampoTabelasRelacaoCategoriaChaveEstrangeira = array();
 
 		// recuperando todas as tuplas
-		$arrayTodasRelacaoCategoriaChaveEstrangeira = $this->retornaArrayDadosTodosObjetos(array('tabelaOrigem', 'campoOrigem'));
+		$arrayTodasRelacaoCategoriaChaveEstrangeira = $this->_retornaArrayDadosTodosObjetos(array('tabelaOrigem', 'campoOrigem'));
 
 		// loop para recuperar o nome das tabelas
 		foreach($arrayTodasRelacaoCategoriaChaveEstrangeira as $arrayRelacaoCategoriaChaveEstrangeira) {

@@ -65,10 +65,10 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		// recuperando objeto categoria cvc
 		$this->idCategoriaCVC = $this->retornaIdCategoriaCVC();
@@ -80,12 +80,12 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// instanciando os controladores utilizados pelo controlador
 		$this->_tipoCategoriaOPController = Basico_OPController_TipoCategoriaOPController::getInstance();
@@ -132,7 +132,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$condicaoSQL .= " and id_categoria_pai = {$idCategoriaPai}";
 
 		// recuperando objeto categoria
-		$objCategoria = $this->retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
+		$objCategoria = $this->_retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (isset($objCategoria[0]))
@@ -176,7 +176,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			}
 		} else {
 			// recuperando objeto categoria
-			$objetoCategoria = $this->retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
+			$objetoCategoria = $this->_retornaObjetosPorParametros($condicaoSQL, null, 1, 0);
 		}
 
 		// verificando se a categoria esta ativa
@@ -361,7 +361,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		// verificando se foi passado o id do tipo categoria, para criacao de categoria
 		if ($idTipoCategoria) {
 			// recuperando um novo modelo de categoria
-			$novaCategoria = $this->retornaNovoObjetoModelo();
+			$novaCategoria = $this->_retornaNovoObjetoModelo();
 
 			// verificando a categoria pai
 			if ($idCategoriaPai) {
@@ -369,7 +369,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 				$novaCategoria->idCategoriaPai = $idCategoriaPai;
 
 				// recuperando array contendo o nivel da categoria pai
-				$arrayAtributoNivelCategoriaPai = $this->retornaArrayDadosObjetoPorId($idCategoriaPai, array('nivel'));
+				$arrayAtributoNivelCategoriaPai = $this->_retornaArrayDadosObjetoPorId($idCategoriaPai, array('nivel'));
 
 				// setando o nivel da categoria filha
 				$novaCategoria->nivel = (int) $arrayAtributoNivelCategoriaPai['nivel'] + 1;
@@ -380,7 +380,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$novaCategoria->nome            = $nomeCategoria;
 
 			// salvando o objeto
-			parent::salvarObjeto($novaCategoria, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(LOG_NOVA_CATEGORIA), LOG_MSG_NOVA_CATEGORIA);
+			parent::_salvarObjeto($novaCategoria, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(LOG_NOVA_CATEGORIA), LOG_MSG_NOVA_CATEGORIA);
 
 			// retornando o id da categoria recem criada
 			return $novaCategoria;
@@ -491,7 +491,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$condicao = "id_tipo_categoria = {$idTipoCategoriaLinguagem} and ativo = 1";
 
 		// recuperando categorias de liguas ativas
-		$objsCategoriasLinguasAtivas = $this->retornaObjetosPorParametros($condicao);
+		$objsCategoriasLinguasAtivas = $this->_retornaObjetosPorParametros($condicao);
 		
 		// retornando o array de objetos contendo as categorias de linguas ativas
 		return $objsCategoriasLinguasAtivas;
@@ -577,7 +577,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		// verificando se foi passado o parametro que forca a criacao de uma nova categoria, caso ela nao exista
 		else if ($forceCreation) {
 			// recuperando um modelo vazio
-			$objCategoria = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+			$objCategoria = $this->retornaNovoObjetoModeloPorNomeOPController($this->_retornaNomeClassePorObjeto($this));
 
 			// carregando informacoes sobre a categoria
 			$objCategoria->tipoCategoria = Basico_OPController_TipoCategoriaOPController::getInstance()->retornaIdTipoCategoriaSistema();
@@ -588,7 +588,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 			$objCategoria->descricao     = DESCRICAO_LOG_CHAMADA_ACAO_CONTROLADOR;
 
 			// salvando o objeto categoria
-			parent::salvarObjeto($objCategoria, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(LOG_NOVA_CATEGORIA), LOG_MSG_NOVA_CATEGORIA);
+			parent::_salvarObjeto($objCategoria, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(LOG_NOVA_CATEGORIA), LOG_MSG_NOVA_CATEGORIA);
 
 			// retornando o id da categoria recem criada
 			return $this->_model->id;
@@ -852,7 +852,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		$idCategoriaTipoSanguineo = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('TIPO_SANGUINEO');
 		
 		// recuperando as categorias
-		$categoriasTiposSanguineos = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetosPorParametros("id_categoria_pai = {$idCategoriaTipoSanguineo}");
+		$categoriasTiposSanguineos = Basico_OPController_CategoriaOPController::getInstance()->_retornaObjetosPorParametros("id_categoria_pai = {$idCategoriaTipoSanguineo}");
 		
 		// adicionado opção Não Desejo Informar
 		self::adicionaOpcaoNaoDesejoInformar($arrayTiposSanguineosOptions);
@@ -879,7 +879,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractControlle
 		$idCategoriaRaca = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai('RACA_HUMANA');
 		
 		// recuperando as categorias
-		$categoriasRacas = Basico_OPController_CategoriaOPController::getInstance()->retornaObjetosPorParametros("id_categoria_pai = {$idCategoriaRaca}");
+		$categoriasRacas = Basico_OPController_CategoriaOPController::getInstance()->_retornaObjetosPorParametros("id_categoria_pai = {$idCategoriaRaca}");
 		
 		// adicionado opção Não Desejo Informar
 		self::adicionaOpcaoNaoDesejoInformar($arrayRacasOptions);

@@ -52,10 +52,10 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -64,13 +64,13 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * 
 	 * @since 04/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -98,7 +98,7 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	public function retornaIdMensagemTemplatePorNomeTemplateIdCategoria($nomeTemplate, $idCategoria)
 	{
 		// recuperando a template
-		$template = $this->retornaObjetosPorParametros("nome = '{$nomeTemplate}' AND id_categoria = {$idCategoria}");
+		$template = $this->_retornaObjetosPorParametros("nome = '{$nomeTemplate}' AND id_categoria = {$idCategoria}");
 		
 		if (is_object($template)) {
 			return $template->id;
@@ -121,7 +121,7 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractCo
 	public function retornaArrayConstantesTextuaisMensagemTemplatePorId($idMensagemTemplate)
 	{
 		// recuperando a template
-		$template = $this->retornaObjetosPorParametros("id = '{$idMensagemTemplate}'");
+		$template = $this->_retornaObjetosPorParametros("id = '{$idMensagemTemplate}'");
 		
 		// se o objeto for retornado
 		if (is_object($template)) {

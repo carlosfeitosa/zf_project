@@ -55,10 +55,10 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -67,12 +67,12 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 09/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -105,7 +105,7 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	public function retornaDecoratorObjectPorIdFormularioIdFormularioElementoOrdem($idFormulario, $idFormularioElemento, $ordem)
 	{		
 		// recuperando objeto
-		$objsFormularioFormularioElemento = $this->retornaObjetosPorParametros("id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and ordem = {$ordem}", null, 1, 0);
+		$objsFormularioFormularioElemento = $this->_retornaObjetosPorParametros("id_formulario = {$idFormulario} and id_formulario_elemento = {$idFormularioElemento} and ordem = {$ordem}", null, 1, 0);
 
 		// verificando o resultado da recuperacao do objeto
 		if (!isset($objsFormularioFormularioElemento[0]) or (!$objsFormularioFormularioElemento[0]->decorator))
@@ -131,7 +131,7 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 		$arrayReturn = array();
 
 		// recuperando objeto
-		$objsFormularioFormularioElemento = $this->retornaObjetosPorParametros("id_formulario = {$idFormulario}", "ordem");
+		$objsFormularioFormularioElemento = $this->_retornaObjetosPorParametros("id_formulario = {$idFormulario}", "ordem");
 
 		// verificando o resultado da recuperacao do objeto
 		if (count($objsFormularioFormularioElemento) > 0) {
@@ -250,7 +250,7 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	public function retornaObjetosFormularioFormularioElementoGrupoFormularioElemento(Basico_Model_Formulario $objFormulario)
 	{
 		// recuperando objetos
-		$objsFormularioFormularioElemento = $this->retornaObjetosPorParametros("id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
+		$objsFormularioFormularioElemento = $this->_retornaObjetosPorParametros("id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
 
 		// retornando array de objetos
 		return $objsFormularioFormularioElemento;

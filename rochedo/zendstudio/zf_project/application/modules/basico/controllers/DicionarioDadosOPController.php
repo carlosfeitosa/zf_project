@@ -55,7 +55,7 @@ class Basico_OPController_DicionarioDadosOPController
 	protected function __construct()
 	{
 		// inicializando o controlador
-		$this->init();
+		$this->_init();
 
 		return;
 	}
@@ -65,10 +65,10 @@ class Basico_OPController_DicionarioDadosOPController
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{ 
 		// inicializando controladores
-		$this->initControllers();
+		$this->_initControllers();
 
 		return;
 	}
@@ -77,12 +77,12 @@ class Basico_OPController_DicionarioDadosOPController
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// instanciando controladores utilzados pelo controlador
 		$this->_moduloOPController                    = Basico_OPController_ModuloOPController::getInstance();

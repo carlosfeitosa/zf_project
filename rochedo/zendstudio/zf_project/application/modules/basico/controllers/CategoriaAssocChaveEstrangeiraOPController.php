@@ -63,10 +63,10 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -75,12 +75,12 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// instanciando o controlador de categorias
 		$this->_categoriaOPController = Basico_OPController_CategoriaOPController::getInstance();
@@ -122,7 +122,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 		$stringImplodidaArrayIdsCategoriasExclusao = implode(',', $arrayIdsCategoriasExclusao);
 
 		// recuperando todas as tuplas, excluindo as que possuem a categoria no array de exclusao passado por parametro
-		$objsCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
+		$objsCategoriaChaveEstrangeira = $this->_retornaObjetosPorParametros("id_categoria not in ({$stringImplodidaArrayIdsCategoriasExclusao})");
 		
 		// loop para recuperar o nome das tabelas
 		foreach($objsCategoriaChaveEstrangeira as $objCategoriaChaveEstrangeira) {
@@ -157,7 +157,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 		$stringIdsCategoriasNaoChecarRelacao = implode(',', $arrayIdsCategoriasNaoChecarRelacao);
 
 		// recuperando array de objetos categoria chave estrangeira relacionados com a tabela do objeto
-		$arrayObjsCategoriaChaveEstrangeiraObjeto = $this->retornaObjetosPorParametros("tabela_estrangeira = '{$nomeTabela}' and id_categoria not in ({$stringIdsCategoriasNaoChecarRelacao})");
+		$arrayObjsCategoriaChaveEstrangeiraObjeto = $this->_retornaObjetosPorParametros("tabela_estrangeira = '{$nomeTabela}' and id_categoria not in ({$stringIdsCategoriasNaoChecarRelacao})");
 
 		// recuperando ids de categoria chave estrangeira
 		foreach ($arrayObjsCategoriaChaveEstrangeiraObjeto as $objCategoriaChaveEsrtrangeiraObjeto) {
@@ -202,7 +202,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			return $objetoCategoriaChaveEstrangeira;
 		} else if ($forceCreateRelationship) {
 			// recuperando modelo vazio de categoria chave estrangeira
-			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModelo();
+			$modelCategoriaChaveEstrangeira = $this->_retornaNovoObjetoModelo();
 			
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->idCategoria = $this->_categoriaOPController->idCategoriaCVC;
@@ -211,7 +211,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
 			
 			// salvando objeto
-			parent::salvarObjeto($modelCategoriaChaveEstrangeira, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_CATEGORIA_CHAVE_ESTRANGEIRA), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
+			parent::_salvarObjeto($modelCategoriaChaveEstrangeira, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_CATEGORIA_CHAVE_ESTRANGEIRA), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
 
 			// limpando variáveis
 			unset($tableName);
@@ -250,7 +250,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			return $arrayCategoriasChaveEstrangeira[0];
 		} else if ($forceCreateRelationship) {
 			// recuperando modelo vazio de categoria chave estrangeira
-			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+			$modelCategoriaChaveEstrangeira = $this->retornaNovoObjetoModeloPorNomeOPController($this->_retornaNomeClassePorObjeto($this));
 			
 			// cria relacao caso o haja o parametro para criacao de relacao
 			$modelCategoriaChaveEstrangeira->idCategoria = $idCategoria;
@@ -259,7 +259,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			$modelCategoriaChaveEstrangeira->campoEstrangeiro = Basico_OPController_DBUtilOPController::retornaPrimaryKeyObjeto($objeto);
 			
 			// salvando objeto
-			parent::salvarObjeto($modelCategoriaChaveEstrangeira, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_CATEGORIA_CHAVE_ESTRANGEIRA), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
+			parent::_salvarObjeto($modelCategoriaChaveEstrangeira, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_CATEGORIA_CHAVE_ESTRANGEIRA), LOG_MSG_CATEGORIA_CHAVE_ESTRANGEIRA);
 			
 			// retornando o objeto salvo 	
 			return $modelCategoriaChaveEstrangeira;
@@ -278,7 +278,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	public function retornaObjetoCategoriaChaveEstrangeiraPorIdCategoria($idCategoria)
 	{
 		// recuperando todas as tuplas vinculadas a categoria passara por parametro
-		$objCategoriaChaveEstrangeira = $this->retornaObjetosPorParametros("id_categoria = {$idCategoria}");
+		$objCategoriaChaveEstrangeira = $this->_retornaObjetosPorParametros("id_categoria = {$idCategoria}");
 
 		// verificando se o objeto foi recuperado
 		if (is_array($objCategoriaChaveEstrangeira))

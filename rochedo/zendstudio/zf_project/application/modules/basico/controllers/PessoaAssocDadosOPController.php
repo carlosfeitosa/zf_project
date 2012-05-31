@@ -52,10 +52,10 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -64,12 +64,12 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 30/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -100,7 +100,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	public function retornaNomePessoaPorIdPessoa($idPessoa) 
 	{
 		// recuperando o objeto dados pessoais
-		$objDadosPessoais = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
+		$objDadosPessoais = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado
 		if (is_object($objDadosPessoais))
@@ -122,7 +122,7 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 		// verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosPessoais = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosPessoais = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
 			if (is_object($objDadosPessoais))
@@ -145,13 +145,13 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
 	public function retornaIdNovoObjetoDadosPessoais($idPessoa, $nome)
 	{
 		// criando um novo obj DadosPessoais
-		$novoDadosPessoais = $this->retornaNovoObjetoModelo();
+		$novoDadosPessoais = $this->_retornaNovoObjetoModelo();
 		// setando a pessoa
         $novoDadosPessoais->idPessoa = $idPessoa;
         // setando o nome
         $novoDadosPessoais->nome     = $nome;
         // salvando o objeto dadosPessoais
-        parent::salvarObjeto($novoDadosPessoais, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_PESSOAIS, true), LOG_MSG_NOVO_DADOS_PESSOAIS);
+        parent::_salvarObjeto($novoDadosPessoais, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_PESSOAIS, true), LOG_MSG_NOVO_DADOS_PESSOAIS);
         
         // retornando o id
         return $novoDadosPessoais->id;
@@ -176,6 +176,6 @@ class Basico_OPController_PessoaAssocDadosOPController extends Basico_AbstractCo
     	$dadosPessoaisObj->dataNascimento = $arrayPost['BasicoCadastrarUsuarioValidadoDataNascimento'];
     	
     	// salvando os DadosPessoais
-    	parent::salvarObjeto($dadosPessoaisObj, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_PESSOAIS, true), LOG_MSG_NOVO_DADOS_PESSOAIS, (int) $arrayPost['versaoDadosPessoais']);
+    	parent::_salvarObjeto($dadosPessoaisObj, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_PESSOAIS, true), LOG_MSG_NOVO_DADOS_PESSOAIS, (int) $arrayPost['versaoDadosPessoais']);
 	}
 }

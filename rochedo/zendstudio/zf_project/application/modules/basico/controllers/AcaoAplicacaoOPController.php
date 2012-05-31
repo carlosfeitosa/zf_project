@@ -54,10 +54,10 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -66,12 +66,12 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -114,7 +114,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(true, true);
 
 		// retornando todas as acoes aplicacao ativas
-		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
+		return $this->_retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 
 	/**
@@ -148,7 +148,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		$ativo = Basico_OPController_PersistenceOPController::bdRetornaBoolean(false, true);
 		
 		// retornando todas as acoes aplicacao desativadas
-		return $this->retornaObjetosPorParametros("ativo = {$ativo}");
+		return $this->_retornaObjetosPorParametros("ativo = {$ativo}");
 	}
 
 	/**
@@ -170,7 +170,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule)->id;
 
 		// recuperando objeto acao aplicacao
-		$objsAcaoAplicacao = $this->retornaObjetosPorParametros("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
+		$objsAcaoAplicacao = $this->_retornaObjetosPorParametros("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado com sucesso
 		if (is_object($objsAcaoAplicacao))
@@ -258,7 +258,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 	{
 		try {
 			// recuperando um novo modelo de acao aplicacao
-			$modeloAcaoAplicacao = $this->retornaNovoObjetoModelo();
+			$modeloAcaoAplicacao = $this->_retornaNovoObjetoModelo();
 	
 			// setando informacoes sobre a acao
 			$modeloAcaoAplicacao->idModulo   = $idModulo;
@@ -267,7 +267,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractContr
 			$modeloAcaoAplicacao->ativo      = true;
 	
 			// salvando o acao aplicacao
-			parent::salvarObjeto($modeloAcaoAplicacao, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACAO_APLICACAO, true), LOG_MSG_NOVA_ACAO_APLICACAO);
+			parent::_salvarObjeto($modeloAcaoAplicacao, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_ACAO_APLICACAO, true), LOG_MSG_NOVA_ACAO_APLICACAO);
 			
 			// retornando id
 			return $modeloAcaoAplicacao->id;

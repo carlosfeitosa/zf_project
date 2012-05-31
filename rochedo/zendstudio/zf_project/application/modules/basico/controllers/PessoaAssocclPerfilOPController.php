@@ -53,10 +53,10 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -65,12 +65,12 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -114,7 +114,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	        throw new Exception(MSG_ERROR_PERFIL_SISTEMA_NAO_ENCONTRADO);
 
 	    // recuperando o objeto pessoa perfil do sistema
-        $objPessoaPerfilSistema = $this->retornaObjetosPorParametros("id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
+        $objPessoaPerfilSistema = $this->_retornaObjetosPorParametros("id_perfil = {$objPerfilSistema->id} and id_pessoa = {$idPessoaSistema}", null, 1, 0);
         
         // verificando se o objeto pessoa perfil do sistema foi recuperado/existe
         if (!$objPessoaPerfilSistema[0]->id)
@@ -210,7 +210,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	public function retornaObjetosPessoasPerfisPorIdPessoa($idPessoa)
 	{
 		// recuperando array de objetos Basico_Model_PessoaPefil
-		$objsPessoasPerfis = $this->retornaObjetosPorParametros("id_pessoa = '{$idPessoa}'");
+		$objsPessoasPerfis = $this->_retornaObjetosPorParametros("id_pessoa = '{$idPessoa}'");
 
 		// verificando se o objeto existe
 		if (count($objsPessoasPerfis) > 0)
@@ -300,7 +300,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$perfilUsuarioNaoValidado = $perfilOPController->retornaObjetoPerfilUsuarioNaoValidado();
 
 		// recuperando o objeto pessoa perfil de usuario nao validado
-    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
+    	$objPessoaPerfilPessoa = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$perfilUsuarioNaoValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (is_object($objPessoaPerfilPessoa)) {
@@ -330,7 +330,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$objPerfilUsuarioValidado = $perfilOPController->retornaObjetoPerfilUsuarioValidado();
 
 		// recuperando o objeto pessoa pefil
-    	$objPessoaPerfil = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
+    	$objPessoaPerfil = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfilUsuarioValidado->id}");
 
     	// verificando se o objeto foi recuperado
     	if (is_object($objPessoaPerfil)) {
@@ -395,7 +395,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$objPerfil = $perfilOPController->retornaObjetoPerfilPorIdPerfil($idPerfil);
 
 		// recuperando o objeto pessoa perfil
-    	$objPessoaPerfilPessoa = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
+    	$objPessoaPerfilPessoa = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa} and id_perfil = {$objPerfil->id}");
 
     	// verificando se o objeto foi recuperado
     	if (is_object($objPessoaPerfilPessoa)) {
@@ -436,7 +436,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 				throw new Exception(MSG_ERROR_PESSOAPERFIL_NAO_ENCONTRADO);
 
 			// salvando o objeto
-			parent::salvarObjeto($objPessoaPerfil, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_PESSOAS_PERFIS, true), LOG_MSG_UPDATE_PESSOA_PERFIL, $versaoUpdate, $idPessoaPerfilCriador);
+			parent::_salvarObjeto($objPessoaPerfil, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_PESSOAS_PERFIS, true), LOG_MSG_UPDATE_PESSOA_PERFIL, $versaoUpdate, $idPessoaPerfilCriador);
 
 			return true;
 		}
@@ -477,7 +477,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	public function retornaIdNovoObjetoPessoasPerfis($idPessoa, $idPerfil)
 	{
 		// criando o novo objeto pessoasPerfis
-		$novaPessoasPerfisNovaPessoa = $this->retornaNovoObjetoModelo();
+		$novaPessoasPerfisNovaPessoa = $this->_retornaNovoObjetoModelo();
 		// setando a pessoa
 		$novaPessoasPerfisNovaPessoa->idPessoa = $idPessoa;
 		// setando o perfil
@@ -486,7 +486,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 		$novaPessoasPerfisNovaPessoa->ativo    = true;
 		
 		// salvando o objeto pessoasPefis
-		parent::salvarObjeto($novaPessoasPerfisNovaPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOAS_PERFIS), LOG_MSG_NOVA_PESSOA_PERFIL);
+		parent::_salvarObjeto($novaPessoasPerfisNovaPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOAS_PERFIS), LOG_MSG_NOVA_PESSOA_PERFIL);
 		
 		return $novaPessoasPerfisNovaPessoa->id;
 	}

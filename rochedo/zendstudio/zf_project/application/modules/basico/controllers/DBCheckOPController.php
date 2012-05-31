@@ -35,7 +35,7 @@ class Basico_OPController_DBCheckOPController
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// inicializando controladores auxiliares
 		$this->initControllers();
@@ -47,12 +47,12 @@ class Basico_OPController_DBCheckOPController
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 10/05/2012
 	 */
-	private function initControllers()
+	private function _initControllers()
 	{
 		// instanciando controlador de categoria chave estrangeira
 		$this->_categoriaAssocChaveEstrangeiraOPController = Basico_OPController_CategoriaAssocChaveEstrangeiraOPController::getInstance();

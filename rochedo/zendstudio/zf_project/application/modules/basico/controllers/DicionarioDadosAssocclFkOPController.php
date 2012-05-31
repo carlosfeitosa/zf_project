@@ -55,10 +55,10 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -67,12 +67,12 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -125,10 +125,10 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 		// verificando se utiliza o campo fk default da tabela
 		if (null != $idFkDefault)
 			// recuperando dados do campo fk default da tabela 
-			$arrayDadosCampoFk = $this->retornaArrayDadosObjetosPorParametros("id = {$idFkDefault}", null, null, null, array('idAssocFieldFk', 'metodoRecuperacao'));
+			$arrayDadosCampoFk = $this->_retornaArrayDadosObjetosPorParametros("id = {$idFkDefault}", null, null, null, array('idAssocFieldFk', 'metodoRecuperacao'));
 		else
 			// recuperando dados do campo fk
-			$arrayDadosCampoFk = $this->retornaArrayDadosObjetosPorParametros("id_assoc_table = {$idTabela} AND id_assoc_field = {$idCampo}", null, null, null, array('idAssocFieldFk', 'metodoRecuperacao'));
+			$arrayDadosCampoFk = $this->_retornaArrayDadosObjetosPorParametros("id_assoc_table = {$idTabela} AND id_assoc_field = {$idCampo}", null, null, null, array('idAssocFieldFk', 'metodoRecuperacao'));
 		
 		// verificando se dados foram recuperados
 		if (null != $arrayDadosCampoFk) {

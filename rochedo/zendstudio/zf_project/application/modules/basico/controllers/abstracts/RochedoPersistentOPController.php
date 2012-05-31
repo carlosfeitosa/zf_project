@@ -15,12 +15,12 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	/**
 	 * Contrutor do controlador.
 	 * 
-	 * Deve-se tambem chamar o metodo init(), que deve inicializar o controlador.
+	 * Deve-se tambem chamar o metodo _init(), que deve inicializar o controlador.
 	 */
 	protected function __construct()
 	{
 		// inicializando o controlador
-		$this->init();
+		$this->_init();
 	}
 
 	/**
@@ -31,13 +31,13 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// inicializando modelo do controlador
-		$this->initModel();
+		$this->_initModel();
 
 		// inicializando controladores
-		$this->initControllers();
+		$this->_initControllers();
 	}
 
 	/**
@@ -48,10 +48,10 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initModel()
+	protected function _initModel()
 	{
 		// instanciando o modelo do controlador
-		$this->_model = $this->retornaNovoObjetoModelo();
+		$this->_model = $this->_retornaNovoObjetoModelo();
 	}
 
 	/**
@@ -62,7 +62,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	abstract protected function initControllers();
+	abstract protected function _initControllers();
 
 	/**
 	 * Recupera a instancia do controlador
@@ -84,7 +84,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * 
 	 * @return String
 	 */
-	protected function retornaNomeClassePorObjeto($objeto)
+	protected function _retornaNomeClassePorObjeto($objeto)
 	{
 		// verificando se o parametro eh um objeto
 		Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objeto, false, true);
@@ -100,7 +100,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * 
 	 * @return Object
 	 */
-	protected function retornaNovoObjetoModelo()
+	protected function _retornaNovoObjetoModelo()
 	{
 		// recuperando o nome do modelo relacionado ao controlador
 		$nomeObjetoModelo = Basico_OPController_UtilOPController::retornaNomeModeloOPControllerPorNomeOPController(get_class($this));
@@ -124,7 +124,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa)
 	 * @since 25/04/2012
 	 */
-	protected function retornaArrayDadosObjetoPorId($idObjeto, array $arrayAtributosRetorno = array())
+	protected function _retornaArrayDadosObjetoPorId($idObjeto, array $arrayAtributosRetorno = array())
 	{
 		// recuperando o objeto
 		$objeto = $this->retornaObjetoPorId($idObjeto);
@@ -167,7 +167,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function retornaArrayDadosTodosObjetos(array $arrayAtributosRetorno = array())
+	protected function _retornaArrayDadosTodosObjetos(array $arrayAtributosRetorno = array())
 	{
 		// recuperando todos os objetos
 		$arrayObjetos = $this->retornaTodosObjetos();
@@ -231,10 +231,10 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function retornaArrayDadosObjetosPorParametros($where=null, $order=null, $count=null, $offset=null, array $arrayAtributosRetorno = array())
+	protected function _retornaArrayDadosObjetosPorParametros($where=null, $order=null, $count=null, $offset=null, array $arrayAtributosRetorno = array())
 	{
 		// recuperando todos os objetos
-		$resultado = $this->retornaObjetosPorParametros($where, $order, $count, $offset);
+		$resultado = $this->_retornaObjetosPorParametros($where, $order, $count, $offset);
 
 		// verificando se o resultado eh um array
 		if (is_array($resultado)) {
@@ -291,7 +291,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * 
 	 * @return Array|null
 	 */
-	protected function retornaObjetosPorParametros($where=null, $order=null, $count=null, $offset=null)
+	protected function _retornaObjetosPorParametros($where=null, $order=null, $count=null, $offset=null)
 	{
 		// recuperando todos os objetos do modelo especificado atraves dos parametros passados
 		$arrayObjetos = Basico_OPController_PersistenceOPController::bdObjectFetchList($this->_model, $where, $order, $count, $offset);
@@ -319,7 +319,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function atualizaObjeto($idObjeto, $versaoUpdate, array $arrayAtributosValores, $idPessoaAssocclPerfilUpdate)
+	protected function _atualizaObjeto($idObjeto, $versaoUpdate, array $arrayAtributosValores, $idPessoaAssocclPerfilUpdate)
 	{
 		// verificando se nao foi passado o id do objeto ou o array de atributos e valores carregados
 		if ((!$idObjeto) or (count($arrayAtributosValores))) {
@@ -347,7 +347,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 		}
 
 		// retornando o resultado de salvar o objeto
-		$this->salvarObjeto($this->_model, $versaoUpdate, $idPessoaAssocclPerfilUpdate);
+		$this->_salvarObjeto($this->_model, $versaoUpdate, $idPessoaAssocclPerfilUpdate);
 	}
 
 	/**
@@ -417,7 +417,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 02/05/2012
 	 */
-	protected function salvarObjeto($objeto, $idCategoriaLog, $mensagemLog, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
+	protected function _salvarObjeto($objeto, $idCategoriaLog, $mensagemLog, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
 	{
 	    try {
 	    	// verificando se o objeto é da mesma classe do objeto do controlador
@@ -459,7 +459,7 @@ abstract class Basico_AbstractController_RochedoPersistentOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 02/05/2012
 	 */
-	protected function apagarObjeto($objeto, $idCategoriaLog, $mensagemLog, $forceCascade = false, $idPessoaAssocclPerfilDelete = null)
+	protected function _apagarObjeto($objeto, $idCategoriaLog, $mensagemLog, $forceCascade = false, $idPessoaAssocclPerfilDelete = null)
 	{
 		try {
 	    	// verificando se o objeto é da mesma classe do objeto do controlador

@@ -54,10 +54,10 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -66,12 +66,12 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -128,7 +128,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 		// recuperando informacoes sobre o rowinfo master
 		$rowinfoMaster = ROWINFO_SYSTEM_STARTUP_MASTER;
 		// recuperando o objeto pessoa
-		$objsPessoaSistema = $this->retornaObjetosPorParametros("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
+		$objsPessoaSistema = $this->_retornaObjetosPorParametros("rowinfo = '{$rowinfoMaster}'", null, 1, 0);
 
 		// verificando se o objeto foi carregado
 		if (isset($objsPessoaSistema[0]))
@@ -221,7 +221,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function retornaIdPerfilPadraoPorIdPessoa($idPessoa)
 	{
 		// retornando o id do perfil padrao da pessoa
-		return $this->retornaObjetosPorParametros("id = {$idPessoa}")->idPerfilDefault;
+		return $this->_retornaObjetosPorParametros("id = {$idPessoa}")->idPerfilDefault;
 	}
 
 	/**
@@ -235,7 +235,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function retornaVersaoObjetoPessoaPorIdPessoa($idPessoa, $forceVersioning = false)
 	{
 		// recuperando objeto pessoa
-		$object = $this->retornaObjetosPorParametros("id = {$idPessoa}");
+		$object = $this->_retornaObjetosPorParametros("id = {$idPessoa}");
 
 		// retornando a versao do objeto
 		return Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($object, $forceVersioning);
@@ -253,7 +253,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function atualizaPerfilPadraoPessoa($idPessoa, $idPerfilPadrao, $versaoObjetoPessoa)
 	{
 		// recuperando o objeto pessoa
-		$object = $this->retornaObjetosPorParametros("id = {$idPessoa}");
+		$object = $this->_retornaObjetosPorParametros("id = {$idPessoa}");
 
 		// verificando se o objeto foi carregado
 		if ((is_object($object)) and ($object->id)) {
@@ -264,7 +264,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 			$idPessoaPerfilUsuarioValidado = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
 			// retornando o resultado do método de salvar o objeto
-			return parent::salvarObjeto($object, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_PESSOA, true), LOG_MSG_NOVA_PESSOA, $versaoObjetoPessoa, $idPessoaPerfilUsuarioValidado);
+			return parent::_salvarObjeto($object, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVA_PESSOA, true), LOG_MSG_NOVA_PESSOA, $versaoObjetoPessoa, $idPessoaPerfilUsuarioValidado);
 		}
 
 		return false;
@@ -296,9 +296,9 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractController_R
 	public function retornaIdNovoObjetoPessoa()
 	{
 		// criando uma nova pessoa
-		$novaPessoa = $this->retornaNovoObjetoModelo();
+		$novaPessoa = $this->_retornaNovoObjetoModelo();
         // salvando o novo objeto pessoa
-        parent::salvarObjeto($novaPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOA), LOG_MSG_NOVA_PESSOA);
+        parent::_salvarObjeto($novaPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOA), LOG_MSG_NOVA_PESSOA);
         
         return $novaPessoa->id;
 	} 

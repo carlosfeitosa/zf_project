@@ -55,10 +55,10 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -67,12 +67,12 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 09/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -147,7 +147,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	private function retornaElementoPorNome($nomeElemento)
 	{
 		// recuperando array de resultados
-		$objsFormularioElemento = $this->retornaObjetosPorParametros("nome = '{$nomeElemento}'");
+		$objsFormularioElemento = $this->_retornaObjetosPorParametros("nome = '{$nomeElemento}'");
 
 		// verificando se o elemento foi recuperado
 		if (count($objsFormularioElemento) > 0)

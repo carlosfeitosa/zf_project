@@ -38,7 +38,7 @@ class Basico_OPController_MensageiroOPController
 	 * 
 	 * @return void
 	 */
-	private function init()
+	private function _init()
 	{
 		// inicializando controladores
 		$this->initControllers();
@@ -48,13 +48,13 @@ class Basico_OPController_MensageiroOPController
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * 
 	 * @since 14/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// inicializando controlador de mensagem
 		$this->_mensagemOPController = Basico_OPController_MensagemOPController::getInstance();

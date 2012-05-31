@@ -33,7 +33,7 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractControlle
 	protected function __construct()
 	{
 		// instanciando o modelo
-		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->retornaNomeClassePorObjeto($this));
+		$this->_model = $this->retornaNovoObjetoModeloPorNomeOPController($this->_retornaNomeClassePorObjeto($this));
 
 		// inicializando o controlador
 		$this->init();
@@ -44,7 +44,7 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractControlle
 	 *
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		return;
 	}
@@ -69,7 +69,7 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractControlle
 	 * Salva o objeto FormularioElementoValidator no banco de dados
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::salvarObjeto()
+	 * @see Basico_Abstract_RochedoPersistentOPController::_salvarObjeto()
 	 * 
 	 * @param Basico_Model_FormularioElementoValidator $objeto
 	 * @param Integer $versaoUpdate
@@ -114,7 +114,7 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractControlle
 	 * Apaga o objeto FormularioElementoValidator do banco de dados
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_Abstract_RochedoPersistentOPController::apagarObjeto()
+	 * @see Basico_Abstract_RochedoPersistentOPController::_apagarObjeto()
 	 * 
 	 * @param Basico_Model_FormularioElementoValidator $objeto
 	 * @param Boolean $forceCascade

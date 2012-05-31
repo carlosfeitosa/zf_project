@@ -54,10 +54,10 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -66,12 +66,12 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 03/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -104,7 +104,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	    // verificando se o id é valido
 		if ((Int) $idDadosBiometricos > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricosPessoa = $this->retornaObjetosPorParametros("id_dados_biometricos = {$idDadosBiometricos}", null, 1, 0);
+			$objDadosBiometricosPessoa = $this->_retornaObjetosPorParametros("id_dados_biometricos = {$idDadosBiometricos}", null, 1, 0);
 
 			// verificando se o objeto foi recuperado
 			if (is_object($objDadosBiometricosPessoa))
@@ -130,7 +130,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	    // verificando se o id é valido
 		if ((Int) $idPessoa > 0) {
 			// recuperando o objeto dados pessoais da pessoa
-			$objDadosBiometricos = $this->retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
+			$objDadosBiometricos = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
 			
 			// verificando se o objeto foi recuperado
 			if (isset($objDadosBiometricos[0]))
@@ -160,7 +160,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
     public function salvaSexoPessoa($idDadosBiometricos, $idPessoa, $sexo)
     {
     	// recuperando novo modelo de dadosBiometricosAssocPessoa
-   		$novoDadosBiometricosPessoa = $this->retornaNovoObjetoModelo();
+   		$novoDadosBiometricosPessoa = $this->_retornaNovoObjetoModelo();
    		
    		// setando o id do dadosBiometricos
    		$novoDadosBiometricosPessoa->idDadosBiometricos = $idDadosBiometricos;
@@ -172,7 +172,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 		    $novoDadosBiometricosPessoa->idCategoriaSexo = Basico_OPController_CategoriaOPController::retornaIdCategoriaPorNomeCategoriaIdTipoCategoriaViaSQL('GENERO_FEMININO');
    		
 		// salvando dadosBiometricosAssocPessoa
-		parent::salvarObjeto($novoDadosBiometricosPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_BIOMETRICOS_PESSOA), LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA, null, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa));
+		parent::_salvarObjeto($novoDadosBiometricosPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DADOS_BIOMETRICOS_PESSOA), LOG_MSG_NOVO_DADOS_BIOMETRICOS_PESSOA, null, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa));
     }
     
 	/**
@@ -210,7 +210,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
     	$idPessoaPerfilCriador = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilUsuarioValidadoPorIdPessoaViaSQL($idPessoa);
 
     	// salvando o objeto dadosBiometricos
-    	parent::salvarObjeto($dadosBiometricosPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_BIOMETRICOS_PESSOA, true), LOG_MSG_UPDATE_DADOS_BIOMETRICOS_PESSOA, (int) $versaoObjetoDadosBiometricos, $idPessoaPerfilCriador);
+    	parent::_salvarObjeto($dadosBiometricosPessoa, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DADOS_BIOMETRICOS_PESSOA, true), LOG_MSG_UPDATE_DADOS_BIOMETRICOS_PESSOA, (int) $versaoObjetoDadosBiometricos, $idPessoaPerfilCriador);
     	
     	return true;
     }
@@ -232,7 +232,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	    $idDadosBiometricos = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaIdDadosBiometricosPorIdPessoa($idPessoa);
     	
 	    // recuperando objeto dadosBiometricosAssocPessoa
-    	$dadosBiometricosPessoa = $this->retornaObjetosPorParametros("id_dados_biometricos = {$idDadosBiometricos}");
+    	$dadosBiometricosPessoa = $this->_retornaObjetosPorParametros("id_dados_biometricos = {$idDadosBiometricos}");
     	
     	if (is_object($dadosBiometricosPessoa))
     		return Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosBiometricosPessoa);

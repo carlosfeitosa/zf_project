@@ -61,10 +61,10 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -73,12 +73,12 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 27/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		// inicializando controladores utilizados por este controlador
 		$this->_dicionarioDadosAssocTableOPController = Basico_OPController_DicionarioDadosAssocTableOPController::getInstance();
@@ -120,7 +120,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	public function criarNovoCampoAtivo($idPessoaAssocclPerfilCreate, $idAssocTable, $fieldname, $constanteTextual, $constanteTextualDescricao = null, $constanteTextualAlias = null)
 	{
 		// instanciando modelo
-		$novoObjeto = $this->retornaNovoObjetoModelo();
+		$novoObjeto = $this->_retornaNovoObjetoModelo();
 
 		// atribuindo valores aos atributos
 		$novoObjeto->idAssocTable              = $idAssocTable;
@@ -131,7 +131,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 		$novoObjeto->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", null, $idPessoaAssocclPerfilCreate);
+		return parent::_salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", null, $idPessoaAssocclPerfilCreate);
 	}
 
 	/**
@@ -149,7 +149,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	public function desativaCampo($idPessoaAssocclPerfilDeactivate, $idAssocTable, $fieldname)
 	{
 		// recuperando o objeto schema
-		$objetoUpdate = $this->retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
+		$objetoUpdate = $this->_retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
@@ -164,7 +164,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 		$objetoUpdate->ativo = false;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
 	}
 
 	/**
@@ -182,7 +182,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	public function ativaCampo($idPessoaAssocclPerfilActivate, $idAssocTable, $fieldname)
 	{
 		// recuperando o objeto schema
-		$objetoUpdate = $this->retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
+		$objetoUpdate = $this->_retornaObjetosPorParametros("id_table = {$idAssocTable} AND fieldname = '{$fieldname}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado
 		if (!Basico_OPController_UtilOPController::verificaVariavelRepresentaObjeto($objetoUpdate, true, false)) {
@@ -197,7 +197,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 		$objetoUpdate->ativo = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_FIELD . "(id_assoctable = {$idAssocTable} | {$fieldname})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
 	}
 
 	/**
@@ -220,7 +220,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 		}
 
 		// recuperando array com o resultado da recuperacao do id do campo
-		$arrayResultado = $this->retornaArrayDadosObjetosPorParametros("id_assoc_table = {$idAssocTable} and fieldname = '{$fieldname}'", null, 1, 0, array('id'));
+		$arrayResultado = $this->_retornaArrayDadosObjetosPorParametros("id_assoc_table = {$idAssocTable} and fieldname = '{$fieldname}'", null, 1, 0, array('id'));
 
 		// verificando se nao houve recuperacao de resultado
 		if (!count($arrayResultado)) {
@@ -246,7 +246,7 @@ class Basico_OPController_DicionarioDadosAssocFieldOPController extends Basico_A
 	public function retornaFieldnamePorIdField($idField)
 	{
 		// recuperando dados do field
-		$dadosField = $this->retornaArrayDadosObjetosPorParametros("id = {$idField}", null, null, null, array('fieldname'));
+		$dadosField = $this->_retornaArrayDadosObjetosPorParametros("id = {$idField}", null, null, null, array('fieldname'));
 		
 		// verificando se os dados foram recuperados com sucesso
 		if (count($dadosField) > 0) {

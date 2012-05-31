@@ -51,10 +51,10 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 
 		return;
 	}
@@ -63,12 +63,12 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 25/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -99,7 +99,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	public function retornaObjetoPerfilPorNome($nomePerfil)
 	{
 		// recuperando array de perfis
-		$objPerfil = $this->retornaObjetosPorParametros("nome = '{$nomePerfil}'", null, 1, 0);
+		$objPerfil = $this->_retornaObjetosPorParametros("nome = '{$nomePerfil}'", null, 1, 0);
 		
 		// verificando se existe o objeto
 		if (is_array($objPerfil))
@@ -150,7 +150,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 		// verificando se o id do perfil foi passado
 		if ($idPerfil > 0) {
 			// recuperando o objeto
-			return $this->retornaObjetosPorParametros("id = {$idPerfil}");
+			return $this->_retornaObjetosPorParametros("id = {$idPerfil}");
 		}
 	}
 	
@@ -316,7 +316,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractController_R
 	private function retornaObjetosPerfisPorIdCategoria($idCategoria)
 	{
 		// retornando objetos
-		return $this->retornaObjetosPorParametros("id_categoria = {$idCategoria}");
+		return $this->_retornaObjetosPorParametros("id_categoria = {$idCategoria}");
 	}
 
 	/**

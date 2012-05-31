@@ -53,10 +53,10 @@ class Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController extends
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -65,13 +65,13 @@ class Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController extends
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * 
 	 * @since 04/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -107,7 +107,7 @@ class Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController extends
 	public function insereAssociacaoMensagemPessoaPerfil($idMensagem, $idCategoria, $idAssocclPerfil)
 	{
 		// recuperando um novo modelo de mensagem assoccl assoccl pessoa perfil
-		$novoModelo = $this->retornaNovoObjetoModelo();
+		$novoModelo = $this->_retornaNovoObjetoModelo();
 		
 		// setando atributos no modelo para remetente
 		$novoModelo->idMensagem      = $idMensagem;
@@ -115,7 +115,7 @@ class Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController extends
 		$novoModelo->idAssocclPerfil = $idAssocclPerfil;
 
 		// salvando objeto
-		parent::salvarObjeto($novoModelo, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS), LOG_MSG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA, null, $idAssocclPerfil);
+		parent::_salvarObjeto($novoModelo, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVA_PESSOAS_PERFIS_MENSAGENS_CATEGORIAS), LOG_MSG_NOVA_PESSOA_PERFIL_MENSAGEM_CATEGORIA, null, $idAssocclPerfil);
 		
 		return true;
 	}

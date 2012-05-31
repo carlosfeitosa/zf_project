@@ -54,10 +54,10 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	}
@@ -66,12 +66,12 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 30/04/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -144,7 +144,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	private function retornaObjetoEmailPorEmail($email)
 	{
 		// recuperando objetos e-mail
-		$objEmail = $this->retornaObjetosPorParametros("email = '{$email}'", null, 1, 0);
+		$objEmail = $this->_retornaObjetosPorParametros("email = '{$email}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
 		if (is_object($objEmail))
@@ -197,7 +197,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	public function retornaIdProprietarioEmailPorIdEmail($idEmail)
 	{
 		// recuperando objetos e-mail
-		$objEmail = $this->retornaObjetosPorParametros("id = '{$idEmail}'", null, 1, 0);
+		$objEmail = $this->_retornaObjetosPorParametros("id = '{$idEmail}'", null, 1, 0);
 
 		// verificando se o objeto foi recuperado/existe
 		if (is_object($objEmail))
@@ -239,7 +239,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 
 		// buscando o e-mail do sistema
 		$idCategoriaEmailSistema = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(SISTEMA_EMAIL);
-		$objEmailSistema = $this->retornaObjetosPorParametros("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
+		$objEmailSistema = $this->_retornaObjetosPorParametros("id_categoria = {$idCategoriaEmailSistema}", null, 1, 0);
 		
 		// verificando se o objeto foi recuperado/existe
 		if (is_object($objEmailSistema))
@@ -267,7 +267,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 			$idCategoriaEmailPrimario = $categoriaOPController->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(EMAIL_PRIMARIO);
 
 			// recuperando o email primario da pessoa passada
-			$objEmailPrimario = $this->retornaObjetosPorParametros("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
+			$objEmailPrimario = $this->_retornaObjetosPorParametros("id_generico_proprietario = {$idPessoa} and id_categoria = {$idCategoriaEmailPrimario}");
 			
 			// checando se o email foi encontrado
 			if (is_object($objEmailPrimario)) {
@@ -314,7 +314,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
     public function retornaIdNovoObjetoEmail($email, $idGenericoProprietario, $idCategoria)
     {
     	// criando novo objeto email
-		$novoEmail = $this->retornaNovoObjetoModelo();
+		$novoEmail = $this->_retornaNovoObjetoModelo();
 		// setando o idGenericoProprietario
         $novoEmail->idGenericoProprietario = $idGenericoProprietario;
         // setando o uniqueId 
@@ -328,7 +328,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
         // setando o email como nao ativo
         $novoEmail->ativo     			   = false;
         // salvando o objeto email
-        parent::salvarObjeto($novoEmail, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_EMAIL), LOG_MSG_NOVO_EMAIL);
+        parent::_salvarObjeto($novoEmail, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_EMAIL), LOG_MSG_NOVO_EMAIL);
 
         // retornando o id
         return $novoEmail->id;
@@ -366,7 +366,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractCon
 	    $email->ativo    = 1;
 	    	
 	    // salvando o objeto e-mail no banco de dados
-	    parent::salvarObjeto($email, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_EMAIL, true), LOG_MSG_UPDATE_EMAIL, $versaoUpdateEmail);
+	    parent::_salvarObjeto($email, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_EMAIL, true), LOG_MSG_UPDATE_EMAIL, $versaoUpdateEmail);
 
 	    return $email;
     }

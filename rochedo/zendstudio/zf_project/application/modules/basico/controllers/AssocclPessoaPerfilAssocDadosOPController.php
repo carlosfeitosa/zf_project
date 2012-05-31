@@ -53,10 +53,10 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	 * 
 	 * @return void
 	 */
-	protected function init()
+	protected function _init()
 	{
 		// chamando inicializacao da classe pai
-		parent::init();
+		parent::_init();
 		
 		return;
 	} 
@@ -65,12 +65,12 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 	 * Inicializa os controladores utilizados pelo controlador
 	 * 
 	 * (non-PHPdoc)
-	 * @see Basico_AbstractController_RochedoPersistentOPController::initControllers()
+	 * @see Basico_AbstractController_RochedoPersistentOPController::_initControllers()
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 03/05/2012
 	 */
-	protected function initControllers()
+	protected function _initControllers()
 	{
 		return;
 	}
@@ -101,7 +101,7 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
 		$idPessoaPerfilSistema = Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL();
 		
 		// recuperando o objeto dados pessoas perfis
-	    $objDadosPessoasPerfis = $this->retornaObjetosPorParametros("id_assoccl_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
+	    $objDadosPessoasPerfis = $this->_retornaObjetosPorParametros("id_assoccl_pessoa_perfil= {$idPessoaPerfilSistema}", null, 1, 0);
 	    
 	    // verificando se o objeto foi recuperado
 		if (is_object($objDadosPessoasPerfis))
