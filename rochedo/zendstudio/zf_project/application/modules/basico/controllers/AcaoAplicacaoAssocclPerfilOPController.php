@@ -11,7 +11,7 @@
  * @since 17/03/2011
  */
 
-class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * @var Basico_OPController_AcaoAplicacaoAssocclPerfilOPController

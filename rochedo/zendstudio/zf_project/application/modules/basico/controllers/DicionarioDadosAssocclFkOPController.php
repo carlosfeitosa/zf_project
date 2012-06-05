@@ -11,7 +11,7 @@
  * @since 23/04/2012
  */
 
-class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Nome da tabela DicionarioDadosAssocclFk

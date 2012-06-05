@@ -11,7 +11,7 @@
  * @since 21/03/2011
  * 
  */
-class Basico_OPController_FormularioAssocclElementoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormularioAssocclElementoOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Basico_OPController_FormularioAssocclElementoOPController

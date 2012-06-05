@@ -11,7 +11,7 @@
  * @since 23/04/2012
  */
 
-class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do controlador Basico_OPController_DicionarioDadosSchemaOPController.

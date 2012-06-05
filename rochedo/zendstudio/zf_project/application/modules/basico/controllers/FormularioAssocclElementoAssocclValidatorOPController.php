@@ -10,7 +10,7 @@
  * 
  * @since 21/03/2011
  */
-class Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController

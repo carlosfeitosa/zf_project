@@ -10,7 +10,7 @@
  * @since 23/03/2011
  */
 
-class Basico_LoginController extends Zend_Controller_Action
+class Basico_LoginController extends Basico_AbstractActionController_RochedoGenericActionController
 {	
     /**
 	 * Inicializa controlador Login
@@ -37,6 +37,20 @@ class Basico_LoginController extends Zend_Controller_Action
 						->initContext();
 		*/
     }
+
+    /**
+	 * Inicializa os controladores necessários para operação deste action controller
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractActionController_RochedoGenericActionController::_initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	protected function _initControllers()
+	{
+		return;
+	}
 
     /**
 	 * Retorna Formulário de Cadastro de Novo Usuario

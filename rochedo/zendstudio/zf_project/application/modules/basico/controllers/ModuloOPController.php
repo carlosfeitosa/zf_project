@@ -11,7 +11,7 @@
  * @since 21/03/2011
  * 
  */
-class Basico_OPController_ModuloOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_ModuloOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do controlador Basico_OPController_ModuloOPController.

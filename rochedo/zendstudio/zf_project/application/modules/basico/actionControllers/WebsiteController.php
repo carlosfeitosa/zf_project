@@ -5,7 +5,7 @@
  *
  */
 
-class Basico_WebsiteController extends Zend_Controller_Action
+class Basico_WebsiteController extends Basico_AbstractActionController_RochedoGenericActionController
 {
     /**
 	 * Inicializa controlador website 
@@ -14,7 +14,21 @@ class Basico_WebsiteController extends Zend_Controller_Action
     {
 		return;
     }
-	
+
+    /**
+	 * Inicializa os controladores necessários para operação deste action controller
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractActionController_RochedoGenericActionController::_initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	protected function _initControllers()
+	{
+		return;
+	}
+
    /**
 	 * Valida Formulário de cadastro de website.
 	 * 

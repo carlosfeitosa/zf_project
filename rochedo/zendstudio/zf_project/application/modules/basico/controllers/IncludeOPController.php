@@ -10,7 +10,7 @@
  * 
  * @since 02/04/2012
  */
-class Basico_OPController_IncludeOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_IncludeOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Formulario

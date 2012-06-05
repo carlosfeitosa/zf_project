@@ -7,8 +7,32 @@
  * @subpackage Controller
  */
 
-class Basico_AutenticadorController extends Zend_Controller_Action
+class Basico_AutenticadorController extends Basico_AbstractActionController_RochedoGenericActionController
 {
+    /**
+	 * Inicializa controlador de autenticação
+	 * 
+	 * @return void
+	 */
+	public function init()
+    {
+    	return;
+    }
+
+	/**
+	 * Inicializa os controladores necessários para operação deste action controller
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractActionController_RochedoGenericActionController::_initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	protected function _initControllers()
+	{
+		return;
+	}
+
 	/**
 	 * Desautentica o usuario logado 
 	 */

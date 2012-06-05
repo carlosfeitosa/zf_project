@@ -8,16 +8,10 @@
  * @subpackage Controller
  */
 
-class Basico_GeradorFormularioController extends Zend_Controller_Action
+class Basico_GeradorFormularioController extends Basico_AbstractActionController_RochedoGenericActionController
 {
     /**
-    * @var object
-    */
-    private $request;
-    
-        
-    /**
-     * Inicializa controlador GeradorFormulario
+     * Inicializa controlador do gerador de formulario
      */
     public function init()
     {
@@ -29,7 +23,20 @@ class Basico_GeradorFormularioController extends Zend_Controller_Action
         $this->view->content = $content;
     }
 
-    
+    /**
+	 * Inicializa os controladores necessários para operação deste action controller
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractActionController_RochedoGenericActionController::_initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	protected function _initControllers()
+	{
+		return;
+	}
+
     public function getAuthAdapter(array $params)
     {
 

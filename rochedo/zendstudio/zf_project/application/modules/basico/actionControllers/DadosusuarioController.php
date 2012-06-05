@@ -4,16 +4,32 @@
  * Controlador Dados do Usuario
  * 
  */
-class Basico_DadosusuarioController extends Zend_Controller_Action
+class Basico_DadosusuarioController extends Basico_AbstractActionController_RochedoGenericActionController
 {
-	/**
-	 * @see library/Zend/Controller/Zend_Controller_Action#init()
+    /**
+	 * Inicializa controlador de dados do usuário
+	 * 
+	 * @return void
 	 */
 	public function init()
     {
-		return;
+    	return;
     }
 
+	/**
+	 * Inicializa os controladores necessários para operação deste action controller
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractActionController_RochedoGenericActionController::_initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	protected function _initControllers()
+	{
+		return;
+	}
+	
     /**
      * Retorna uma nova instancia do formulario dados usuario
      * 

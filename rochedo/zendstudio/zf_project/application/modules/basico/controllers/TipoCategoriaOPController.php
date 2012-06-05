@@ -12,7 +12,7 @@
  * 
  */
 
-class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do controlador Basico_OPController_TipoCategoriaOPController.

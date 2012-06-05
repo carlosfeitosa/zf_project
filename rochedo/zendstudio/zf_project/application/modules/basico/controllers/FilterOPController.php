@@ -3,7 +3,7 @@
  * Controlador Filter.
  *
  */
-class Basico_OPController_FilterOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FilterOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Basico_OPController_FilterOPController

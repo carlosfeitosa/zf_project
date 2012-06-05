@@ -8,7 +8,7 @@
  * 
  * @since 23/03/2011
  */
-class Basico_OPController_PessoaLoginOPController extends Basico_AbstractController_RochedoPersistentOPController 
+class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPController_RochedoPersistentOPController 
 {
 	/**
 	 * Instância do controlador Basico_OPController_PessoaLoginOPController.

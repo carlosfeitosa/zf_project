@@ -13,7 +13,7 @@
  * @ultimasModificacoes 03/05/2012 - Adaptação ao novo paradigma dos controladores - João Vasconcelos (joao.vasconcelos@rochedoframework.com)
  * 
  */
-class Basico_OPController_FormularioOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormularioOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * Instância do Controlador Formulario

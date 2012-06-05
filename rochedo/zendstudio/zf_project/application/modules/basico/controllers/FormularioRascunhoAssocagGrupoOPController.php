@@ -10,7 +10,7 @@
  * 
  * @since 24/10/2011
  */
-class Basico_OPController_FormularioRascunhoAssocagGrupoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_FormularioRascunhoAssocagGrupoOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * 

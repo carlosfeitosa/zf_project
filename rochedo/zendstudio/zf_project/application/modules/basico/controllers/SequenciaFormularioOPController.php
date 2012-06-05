@@ -10,7 +10,7 @@
  * 
  * @since 24/10/2011
  */
-class Basico_OPController_SequenciaOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_SequenciaOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * 

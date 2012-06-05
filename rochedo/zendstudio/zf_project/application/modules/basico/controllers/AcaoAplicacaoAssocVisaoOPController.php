@@ -11,7 +11,7 @@
  * @since 10/04/2012
  */
 
-class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_AbstractController_RochedoPersistentOPController
+class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
 	 * @var Basico_OPController_AcaoAplicacaoAssocVisaoOPController

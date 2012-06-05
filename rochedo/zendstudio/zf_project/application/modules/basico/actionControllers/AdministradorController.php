@@ -1,8 +1,8 @@
 <?php
-class Basico_AdministradorController extends Zend_Controller_Action
+class Basico_AdministradorController extends Basico_AbstractActionController_RochedoGenericActionController
 {
     /**
-	 * Inicializa controlador Administrador
+	 * Inicializa controlador administrativo
 	 * 
 	 * @return void
 	 */
@@ -10,6 +10,20 @@ class Basico_AdministradorController extends Zend_Controller_Action
     {
     	return;
     }
+
+	/**
+	 * Inicializa os controladores necessários para operação deste action controller
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractActionController_RochedoGenericActionController::_initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	protected function _initControllers()
+	{
+		return;
+	}
     
     /**
      * Ação principal do controlador

@@ -1,32 +1,34 @@
 <?php
-
-/**
- * Controlador Email
- *
- */
-
 /**
  * Controlador Email
  * 
  * @uses Basico_Model_Email
  */
-class Basico_EmailController extends Zend_Controller_Action
+class Basico_EmailController extends Basico_AbstractActionController_RochedoGenericActionController
 {
     /**
-	* @var object
-	*/
-	private $request;
-	
-	/**
-	 * Função que inicializa o action controller
+	 * Inicializa controlador de controle de acesso
 	 * 
-	 * @see library/Zend/Controller/Zend_Controller_Action#init()
+	 * @return void
 	 */
-	public function _init()
+	public function init()
     {
-    	// recuperando a requisicao
-        $this->request = Zend_Controller_Front::getInstance()->getRequest();
+    	return;
     }
+
+	/**
+	 * Inicializa os controladores necessários para operação deste action controller
+	 * 
+	 * (non-PHPdoc)
+	 * @see Basico_AbstractActionController_RochedoGenericActionController::_initControllers()
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	protected function _initControllers()
+	{
+		return;
+	}
 
     /**
      * Valida um e-mail
