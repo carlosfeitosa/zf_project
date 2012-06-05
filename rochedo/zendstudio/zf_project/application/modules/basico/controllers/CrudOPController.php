@@ -1133,7 +1133,38 @@ class Basico_OPController_CrudOPController
 		}
 
 		// montando resposta
-		$retorno = "$(function(){
+		$retorno = "$(document).ready (function(){
+									    if ($.datepicker != null) {
+									    	$.datepicker.setDefaults({dateFormat: 'dd/mm/yy',
+									    		dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+									    		dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+									    		dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+									    		monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro', 'Outubro','Novembro','Dezembro'],
+									    		monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set', 'Out','Nov','Dez'],
+									    		nextText: 'Próximo',
+									    		prevText: 'Anterior',
+									    		changeMonth: true,
+									    		changeYear: true,
+									    		yearRange: '-100:+10',
+									    		minuteText: 'Minutos'
+									    	});
+									    	        
+									    }	
+									});
+									
+					$.timepicker.regional['br'] = {
+						timeText: 'Tempo',
+						hourText: 'Hora',
+						minuteText: 'Minuto',
+						secondText: 'Segundo',
+						millisecText: 'Milisegundo',
+						currentText: 'Agora',
+						closeText: 'Fechar',
+						ampm: false
+					};
+					$.timepicker.setDefaults($.timepicker.regional['br']);
+		
+					$(function(){
 						$('#{$nomeListagem}').jqGrid({
 						   	url: '{$urlRecuperacaoDados}',
 							datatype: '{$tipoDados}',
@@ -1256,6 +1287,7 @@ class Basico_OPController_CrudOPController
 		$elementSelectOptions   = "";
 		$optionElementMaxLength = "";
 		$optionRowsCols         = "";
+		$optionDataInit         = "";
 		
 		// recuperando array de detalhes do atributo
 		$arrayDetalhesAtributo = $arrayDetalhesAtributos[$nomeAtributoBD];
@@ -1276,8 +1308,6 @@ class Basico_OPController_CrudOPController
 				case 'int4':
 				case 'int8':
 				case 'varchar':
-				case 'timestamp':
-				case 'datetime':
 					// verificando se o atributo é uma chave estrangeira
 					if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK])) {
 						// se for chave estrangeira seta o tipo do elemento para select
@@ -1300,9 +1330,15 @@ class Basico_OPController_CrudOPController
 						
 						// finalizando string de options
 						$elementSelectOptions .= "',";
-						
-
 					}
+					break;
+				case 'timestamp':
+				case 'datetime':
+						// setando a funcao de inicializacao dos campos do tipo data
+						$optionDataInit = "dataInit:function (elem) { $(elem).datetimepicker({timeFormat: 'hh:mm:ss', 
+																							  showSecond: true, 
+																							  addSliderAccess: true, 
+																							  sliderAccessArgs: { touchonly: false }}); },";
 					break;
 				case 'bool':
 				case 'boolean':
@@ -1343,6 +1379,6 @@ class Basico_OPController_CrudOPController
 		}
 		
 		// montando e retornando array json com as propriedades da coluna e do campo para edicao do atributo do modelo para o jqGrid
-		return "{name: '{$nomeAtributo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, edittype: '{$optionElementType}', editoptions:{{$optionRowsCols} {$elementSelectOptions} {$optionElementSize} {$optionElementMaxLength}}}";
+		return "{name: '{$nomeAtributo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, edittype: '{$optionElementType}', editoptions:{{$optionRowsCols} {$optionDataInit} {$elementSelectOptions} {$optionElementSize} {$optionElementMaxLength}}}";
 	}
 }

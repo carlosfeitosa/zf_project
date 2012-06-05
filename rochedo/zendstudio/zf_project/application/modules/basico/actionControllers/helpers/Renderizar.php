@@ -104,8 +104,15 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
      */
     private function inicializaContextoHtml()
     {
-		// adicionando plugin Jquery maskMoney
-		$this->_view->headScript()->prependFile($this->_view->baseUrl("/js/jquery/jquery-1.7.2.min.js"));
+		// adicionando Jquery
+		$this->_view->headScript()->prependFile($this->_view->baseUrl(JQUERY_JAVASCRIPT_FILE_PATH));
+		
+		// adicionando plugin Jquery Datepicker
+		$this->_view->headScript()->appendFile($this->_view->baseUrl(JQUERY_UI_CUSTOM_JAVASCRIPT_FILE_PATH));
+		$this->_view->headScript()->appendFile($this->_view->baseUrl(JQUERY_SLIDER_ACCESS_JAVASCRIPT_FILE_PATH));
+		$this->_view->headScript()->appendFile($this->_view->baseUrl(JQUERY_DATETIMEPICKER_ADDON_JAVASCRIPT_FILE_PATH));
+		
+		$this->_view->headLink()->appendStylesheet($this->_view->baseUrl(JQUERY_DATETIMEPICKER_ADDON_CSS_FILE_PATH));
 		
 		// adicionando favicon/shortcut icon da aplicacao
 		$this->_view->headLink()->headLink(array('rel' => 'shortcut icon',
