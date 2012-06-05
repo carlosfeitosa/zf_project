@@ -231,7 +231,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							$urlSalvarRascunho = $this->_view->urlEncryptModuleControllerAction('basico', 'rascunho', 'salvar');
 							
 							// adicionando script para inicializacao do rascunho
-							$scriptInicializacaoRascunho = "<script type='text/javascript'>initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)')</script>";
+							$scriptInicializacaoRascunho = "<script type='text/javascript'> $(function() { initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)') });</script>";
 							// verificando se a view não possui scripts
 							if (!isset($this->_view->scripts)) {
 								// setando scripts da view
