@@ -15,6 +15,34 @@ define("APPLICATION_NAME", "Rochedo Project");
 define("APPLICATION_VERSION", "1.0");
 define("APPLICATION_TITLE", "ROCHEDO software");
 define("APPLICATION_CVC_USER_RESOLVE_CONFLICT", true);
+define("RESOURCE_TYPE_BASICO_PLUGINS", "plugins");
+define("RESOURCE_PATH_BASICO_PLUGINS", "actionControllers/plugins");
+define("RESOURCE_NAMESPACE_BASICO_PLUGINS", "Controller_Plugin");
+define("RESOURCE_TYPE_BASICO_CONTROLLERS_ABSTRACTS", "abstractsControllers");
+define("RESOURCE_PATH_BASICO_CONTROLLERS_ABSTRACTS", "controllers/abstracts");
+define("RESOURCE_NAMESPACE_BASICO_CONTROLLERS_ABSTRACTS", "AbstractController_");
+define("RESOURCE_TYPE_BASICO_OPCONTROLLERS", "OPControllers");
+define("RESOURCE_PATH_BASICO_OPCONTROLLERS", "controllers");
+define("RESOURCE_NAMESPACE_BASICO_OPCONTROLLERS", "OPController_");
+define("RESOURCE_TYPE_BASICO_MODELS_ABSTRACTS", "abstractsModels");
+define("RESOURCE_PATH_BASICO_MODELS_ABSTRACTS", "models/abstracts");
+define("RESOURCE_NAMESPACE_BASICO_MODELS_ABSTRACTS", "AbstractModel_");
+define("RESOURCE_TYPE_BASICO_MAPPERS_ABSTRACTS", "abstractsMappers");
+define("RESOURCE_PATH_BASICO_MAPPERS_ABSTRACTS", "models/abstracts");
+define("RESOURCE_NAMESPACE_BASICO_MAPPERS_ABSTRACTS", "AbstractMapper_");
+define("RESOURCE_TYPE_BASICO_MODELS_INTERFACES", "interfacesModels");
+define("RESOURCE_PATH_BASICO_MODELS_INTERFACES", "models/interfaces");
+define("RESOURCE_NAMESPACE_BASICO_MODELS_INTERFACES", "InterfaceModel_");
+define("RESOURCE_TYPE_BASICO_MAPPERS_INTERFACES", "interfacesMappers");
+define("RESOURCE_PATH_BASICO_MAPPERS_INTERFACES", "models/interfaces");
+define("RESOURCE_NAMESPACE_BASICO_MAPPERS_INTERFACES", "InterfaceMapper_");
+define("RESOURCE_TYPE_BASICO_DBTABLES_ABSTRACTS", "abstractsDbTables");
+define("RESOURCE_PATH_BASICO_DBTABLES_ABSTRACTS", "models/DbTable/abstracts");
+define("RESOURCE_NAMESPACE_BASICO_DBTABLES_ABSTRACTS", "AbstractDbTable_");
+define("INCLUDE_INCLUDE_ONCE", "include_once");
+define("INCLUDE_REQUIRE_ONCE", "require_once");
+define("INCLUDE_INCLUDE", "include");
+define("INCLUDE_REQUIRE", "require");
 
 // definições do rascunho
 define("APPLICATION_FORM_DRAFT", true);
@@ -45,6 +73,7 @@ define("SMTP_SERVER_HOST", "smtp.rochedoframework.com");
 define("SMTP_SERVER_PORT", 587);
 define("SMTP_USERNAME", "nao.responda@rochedoframework.com");
 define("SMTP_PASSWORD", "nao#respond@");
+define("EMAIL_CHARSET", "utf-8");
 
 // definições do captcha
 define("CAPTCHA_IMAGE_DIR", "/images/captcha/");
@@ -82,3 +111,37 @@ define("NUMERO_SUGESTOES_LOGIN_TOTAL", 6);
 define("NUMERO_SUGESTOES_LOGIN_UTILIZANDO_LOGIN", 2);
 define("NUMERO_SUGESTOES_LOGIN_UTILIZANDO_NOME", 2);
 define("NUMERO_SUGESTOES_LOGIN_UTILIZANDO_EMAIL", 2);
+
+// definições do gerador de formulários
+define("GENERATE_PERSISTENT_FORM_WITH_HASH_ELEMENT", true);
+
+// definições de autenticação
+define("AUTH_TABLE", "basico_pessoa.login");
+define("AUTH_IDENTITY_COLUMN", "login");
+define("AUTH_CREDENTIAL_COLUMN", "senha");
+define("AUTH_IDENTITY_ARRAY_KEY", "BasicoAutenticacaoUsuarioLogin");
+define("AUTH_CREDENTIAL_ARRAY_KEY", "BasicoAutenticacaoUsuarioSenha");
+define("AUTH_ID_LOGIN_SESSION_KEY", "AUTH_ID_LOGIN_SESSION_KEY");
+define("AUTH_KEEP_LOGGED_KEY", "BasicoAutenticacaoUsuarioLoginManterLogado");
+
+// definições de atributos
+define("ROWINFO_ATRIBUTE_NAME", "rowinfo");
+define("REQUEST_ACTION_KEY", "action");
+define("PROPRIEDADE_DATAHORA_CRIACAO", "datahoraCriacao");
+define("PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO", "datahoraUltimaAtualizacao");
+
+// definições de atributos de sessão
+define("SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP", "inicioProcessamentoMicrosegundosPHP");
+define("SESSION_POOL_REQUESTS_ARRAY", "poolRequestsArray");
+define("SESSION_POOL_PARAMETROS_URL_ARRAY", "poolParametrosUrlArray");
+define("SESSION_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");
+define("SESSION_FILA_RASCUNHO_PAI", "filaRascunhoPai");
+define("SESSION_POST_ULTIMO_REQUEST", "postUltimoRequest");
+define("SESSION_AUTHENTICATED_USER_IP", "authenticatedUserIp");
+
+// definições de atributos de controle de versão de objetos
+define("CVC_PARAM_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");
+define("CVC_PARAM_SOBRESCREVER_ATUALIZACAO", "sobrescreverAtualizacao");
+define("CVC_PARAM_CANCELAR", "cancelar");
+define("CVC_PARAM_NOME_OBJETO_EM_CONFLITO", "nomeObjetoEmConflito");
+define("CVC_PARAM_ID_OBJETO_EM_CONFLITO", "idObjetoEmConflito");

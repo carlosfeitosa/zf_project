@@ -2,12 +2,15 @@
 /**
  * Arquivo para definição de constantes de linguas do sistema.
  * 
+ * Este arquivo contem as definições das linguas que podem ser utilizadas pelo sistema
+ * 
+ * @package core
+ *
+ * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+ * @since 05/06/2012
  */
 
-
-/*
- * LINGUAS
- */
+// línguas
 define("LANGUAGE_AF",    "af");
 define("LANGUAGE_AR_AE", "ar-ae");
 define("LANGUAGE_AR_BH", "ar-bh");

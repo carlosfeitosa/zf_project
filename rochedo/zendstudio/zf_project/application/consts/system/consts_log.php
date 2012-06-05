@@ -1,11 +1,16 @@
 <?php
 /**
  * Arquivo para definição de constantes de log do sistema.
+ * 
+ * Este arquivo contem as definições das constantes de log
+ * 
+ * @package core
+ * 
+ * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+ * @since 05/06/2012
  */
 
-/*
- * PRIORIDADES
- */
+// definições de prioridades de log
 define("LOG_PRIORITY_EMERGENCIA", Zend_Log::EMERG);
 define("LOG_PRIORITY_ALERTA",     Zend_Log::ALERT);
 define("LOG_PRIORITY_CRITICO",    Zend_Log::CRIT);
@@ -15,14 +20,10 @@ define("LOG_PRIORITY_NOTICIA",    Zend_Log::NOTICE);
 define("LOG_PRIORITY_INFORMACAO", Zend_Log::INFO);
 define("LOG_PRIORITY_DEBUG",      Zend_Log::DEBUG);
 
-/*
- * FORMATO DO LOG
- */
+// definição de formato de log
 define("LOG_FORMAT", '[%timestamp% - %priorityName% (%priority%)]: %message%' . PHP_EOL);
 
-/*
- * MENSAGENS DE LOG
- */
+// definições de mensagens de log
 define("LOG_MSG_NOVA_PESSOA", "Nova pessoa inserida no banco de dados.");
 define("LOG_MSG_UPDATE_PESSOA", "Atualizacao de pessoa no banco de dados.");
 define("LOG_MSG_DELETE_PESSOA", "Exclusão de pessoa no banco de dados.");
@@ -115,11 +116,9 @@ define("LOG_MSG_DELETE_RACA", "Exclusao de raça no banco de dados.");
 define("LOG_MSG_NOVA_ACAO_APLICACAO", "Nova acao aplicacao inserida no banco de dados");
 define("LOG_MSG_UPDATE_ACAO_APLICACAO", "Atualizacao de acao aplicacao no banco de dados");
 define("LOG_MSG_DELETE_ACAO_APLICACAO", "Exclusao de acao aplicacao do banco de dados");
-
 define("LOG_MSG_NOVA_ACAO_APLICACAO_ASSOC_VISAO", "Nova acao aplicacao assoc visao inserida no banco de dados");
 define("LOG_MSG_UPDATE_ACAO_APLICACAO_ASSOC_VISAO", "Atualizacao de acao aplicacao assoc visao no banco de dados");
 define("LOG_MSG_DELETE_ACAO_APLICACAO_ASSOC_VISAO", "Exclusao de acao aplicacao assoc visao do banco de dados");
-
 define("LOG_MSG_NOVA_ACOES_APLICACAO_METODOS_VALIDACAO", "Nova associacao entre acao aplicacao e metodo validacao inserida no banco de dados");
 define("LOG_MSG_UPDATE_ACOES_APLICACAO_METODOS_VALIDACAO", "Atualizacao de associacao entre acao aplicacao e metodo validacao no banco de dados");
 define("LOG_MSG_DELETE_ACOES_APLICACAO_METODOS_VALIDACAO", "Exclusao de associacao entre acao aplicacao e metodo validacao no banco de dados");
@@ -143,11 +142,6 @@ define("LOG_MSG_DELETE_INCLUDE", "Exclusão de include do banco de dados");
 define("LOG_MSG_UPDATE_CRUD", "Atualização de objeto via crud");
 define("LOG_MSG_INSERT_CRUD", "Inserção de objeto via crud");
 define("LOG_MSG_DELETE_CRUD", "Exclusão de objeto via crud");
-
-
-/*
- * FORMULÁRIO
- */
 define("LOG_MSG_NOVO_FORMULARIO", "Novo formulario inserido no banco de dados.");
 define("LOG_MSG_UPDATE_FORMULARIO", "Atualizacao de formulario no banco de dados.");
 define("LOG_MSG_NOVO_GRUPO_FORMULARIO_ELEMENTO", "Novo grupo formulario elemento inserido no banco de dados.");
@@ -172,31 +166,17 @@ define("LOG_MSG_NOVO_FORMULARIO_TEMPLATE", "Novo formulario template inserido no
 define("LOG_MSG_EMAIL", "Operação de envio de e-mail.");
 define("LOG_MSG_EMAIL_SUCESSO", "Operação de envio de e-mail SUCESSO.");
 define("LOG_MSG_EMAIL_FALHA", "Operação de envio de e-mail FALHA: ");
-
 define("LOG_MSG_NOVA_SEQUENCIA_FORMULARIO", "Nova sequencia formulario inserida no banco de dados.");
 define("LOG_MSG_UPDATE_SEQUENCIA_FORMULARIO", "Atualização de sequencia formulario no banco de dados.");
 define("LOG_MSG_DELETE_SEQUENCIA_FORMULARIO", "Exclusão de sequencia formulario no banco de dados.");
-
-/**
- * RASCUNHO
- */
 define("LOG_MSG_NOVO_RASCUNHO", "Novo rascunho inserido no banco de dados.");
 define("LOG_MSG_UPDATE_RASCUNHO", "Atualização de rascunho no banco de dados.");
 define("LOG_MSG_DELETE_RASCUNHO", "Exclusão de rascunho no banco de dados.");
-
 define("LOG_MSG_NOVO_GRUPO_RASCUNHO", "Novo grupo rascunho inserido no banco de dados.");
 define("LOG_MSG_UPDATE_GRUPO_RASCUNHO", "Atualização de grupo rascunho no banco de dados.");
 define("LOG_MSG_DELETE_GRUPO_RASCUNHO", "Exclusão de grupo rascunho no banco de dados.");
-
-/*
- * OUTPUT
- */
 define("LOG_MSG_NOVO_OUTPUT", "Novo output inserido no banco de dados.");
 define("LOG_MSG_UPDATE_OUTPUT", "Atualizacao de output no banco de dados.");
-
-/*
- * RESET BANCO DE DADOS
- */
 define("LOG_MSG_RESET_DB_INICIO", "Início do reset do banco de dados.");
 define("LOG_MSG_RESET_DB_SUCESSO", "Banco de dados resetado com sucesso.");
 define("LOG_MSG_DROP_DB_INICIO", "Drop do banco de dados iniciado.");
@@ -210,7 +190,5 @@ define("LOG_MSG_CREATE_CVC_SUCESSO", "Criacao dos objetos nao versionados efetua
 define("LOG_MSG_CREATE_ADMIN_INICIO", "Criacao do usuario admin iniciado.");
 define("LOG_MSG_CREATE_ADMIN_SUCESSO", "Criacao do usuario admin efetuado com sucesso.");
 define("LOG_MSG_ERRO_EXECUCAO_SCRIPT", "Erro na execução do script.");
-
-// CHESKSUM
 define("LOG_MSG_TENTATIVA_REGERAR_CHECKSUM", "Iniciando tentativa de regerar checksum do modelo ");
 define("LOG_MSG_SUCESSO_REGERAR_CHECKSUM", "Sucesso ao regerar checksum do modelo ");

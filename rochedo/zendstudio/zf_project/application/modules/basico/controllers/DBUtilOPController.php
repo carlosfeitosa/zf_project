@@ -342,7 +342,7 @@ class Basico_OPController_DBUtilOPController
     	}catch (Exception $e) {
     		// voltando a transação
     		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
-    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . $e->getMessage());
+    		throw new Exception(MSG_ERRO_DB_EXECUCAO_SCRIPT . $e->getMessage());
     	}
     }
     
@@ -399,7 +399,7 @@ class Basico_OPController_DBUtilOPController
     		// voltando transação
     		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
     		// lançando erro
-    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
+    		throw new Exception(MSG_ERRO_DB_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
     }
 
@@ -437,7 +437,7 @@ class Basico_OPController_DBUtilOPController
     		// voltando transação
     		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
     		// lançando erro
-    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
+    		throw new Exception(MSG_ERRO_DB_EXECUCAO_SCRIPT . 'Arquivo: ' . $file . QUEBRA_DE_LINHA . $e->getMessage());
     	}
     }
     
@@ -490,7 +490,7 @@ class Basico_OPController_DBUtilOPController
 			else
 				$origemException = $path;
 
-    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . 'Arquivo/Caminho: ' . $origemException . QUEBRA_DE_LINHA . $e->getMessage());
+    		throw new Exception(MSG_ERRO_DB_EXECUCAO_SCRIPT . 'Arquivo/Caminho: ' . $origemException . QUEBRA_DE_LINHA . $e->getMessage());
     	}
     }
     
@@ -521,9 +521,9 @@ class Basico_OPController_DBUtilOPController
     		return false;
     	} catch(Exception $e) {
     		// salvando log do erro
-    		Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_ERRO_EXECUCAO_SCRIPT);
+    		Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_ERRO_DB_EXECUCAO_SCRIPT);
     		// lançando o erro
-    		throw new Exception(MSG_ERRO_EXECUCAO_SCRIPT . $e->getMessage());
+    		throw new Exception(MSG_ERRO_DB_EXECUCAO_SCRIPT . $e->getMessage());
 
             return false;
     	}

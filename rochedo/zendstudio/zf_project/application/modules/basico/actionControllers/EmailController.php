@@ -191,8 +191,8 @@ class Basico_EmailController extends Zend_Controller_Action
     public function errotokenexpiradoAction() 
     {
     	// carregando titulo, link para re-cadastro e mensagem
-        $tituloView            = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO));
-        $linkRecomecarCadastro = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor(LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO));
+        $tituloView            = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO'));
+        $linkRecomecarCadastro = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO'));
         $mensagemView          = "<br><a href='../login/cadastrarUsuarioNaoValidado/'>{$linkRecomecarCadastro}</a>";
         
         // carregando array com o cabecalho da view
@@ -214,7 +214,7 @@ class Basico_EmailController extends Zend_Controller_Action
     public function errotokeninvalidoAction() 
     {
     	// carregando titulo, link para re-cadastro e mensagem
-        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor(MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO));
+        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO'));
     
 	    // enviado conteúdo para a view
 		$this->view->content = $content;

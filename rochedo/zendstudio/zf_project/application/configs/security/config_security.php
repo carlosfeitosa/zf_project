@@ -12,6 +12,7 @@
 
 // definições de token inválido
 define("APPLICATION_INVALID_REQUEST_TOKEN_REDIRECT_TO_INDEX", true);
+
 // definições de checksum
 define("APPLICATION_DATABASE_MAKE_CHECKSUM", true);
 define("APPLICATION_DATABASE_CHECK_CHECKSUM", true);
@@ -30,9 +31,14 @@ define("TEMPO_EXPIRACAO_SESSAO_SEGUNDOS", 600);
 
 // definições para logon inválido
 define("QUANTIDADE_TENTATIVAS_FALHAS_MINIMA_ENVIO_MENSAGEM_ALERTA", 3);
+define("QUANTIDADE_TENTATIVAS_LOGIN_MAX", 5);
+define("QUANTIDADE_TENTATIVAS_LOGIN_IP_BAN_MAX", 10);
 
 // definições de e-mail
 define("FORM_VALIDATOR_EMAILADDRESS_CHECK_DEEP_MX", false);
 
 // definições de hosts banidos
 define("HOSTS_DENNY", APPLICATION_PATH . "/modules/basico/config/hosts_denny.ini");
+
+// definições de reset do banco de dados
+define("ADMIN_LOGIN_NAME_DATABASE_RESET", "admin");
