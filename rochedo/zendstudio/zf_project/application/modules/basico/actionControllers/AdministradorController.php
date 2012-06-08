@@ -277,4 +277,67 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
 			return;   		
     	}
     }
+
+    /**
+     * Ação para retornar o reflection de uma classe.
+     * 
+     * É esperado um parametro, via get, chamado "classe" onde o valor é o nome da classe que se deseja recuperar o reflection
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 08/06/2012
+     */
+    public function reflectionAction()
+    {
+    	// recuperando parametros
+    	$arrayParametros = $this->getRequest()->getParams();
+
+    	// verificando se foi passado o parametro da classe
+    	if ((array_key_exists('classe', $arrayParametros)) or ('' === $arrayParametros['classe'])) {
+    		// recuperando o nome da classe
+    		$nomeClasse = $arrayParametros['classe'];
+    		
+    		// verificando se a classe existe
+    		if (!class_exists($nomeClasse, true)) {
+	 	    	// setando o titulo da view
+		    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o reflection!');
+				// setando subtitulo da view
+	    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("A classe informada não existe.");
+	
+	    	    // setando o conteudo na view
+				$this->view->content = $content;
+	
+				// renderizando a view
+				$this->_helper->Renderizar->renderizar();
+	
+				return;
+    		}
+
+ 	    	// setando o titulo da view
+	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Reflection da classe ' . $nomeClasse);
+
+    		// recuperando o reflection da classe
+    		$content[] = Basico_OPController_ReflectionOPController::retornaReflectionClass($nomeClasse);
+
+    	    // setando o conteudo na view
+			$this->view->content = $content;
+
+			// renderizando a view
+			$this->_helper->Renderizar->renderizar();
+
+			return;
+    	} else {
+ 	    	// setando o titulo da view
+	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o reflection!');
+			// setando subtitulo da view
+    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Não foi informado a classe para recuperação do reflection.");
+
+    	    // setando o conteudo na view
+			$this->view->content = $content;
+
+			// renderizando a view
+			$this->_helper->Renderizar->renderizar();
+
+			return;
+    	}
+    }
 }

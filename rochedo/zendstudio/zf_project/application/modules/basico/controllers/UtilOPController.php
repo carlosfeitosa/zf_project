@@ -1439,8 +1439,8 @@ class Basico_OPController_UtilOPController
 							unset($array[array_search($valor, $array)]);
     					break;
     				case ARRAY_FILTER_INCLUDE_POSITION_END:
-    					// procurando pelo filtro no final do valor
-    					if (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) === false)
+    					// procurando pelo filtro no final do valor, se o tamanho do valor for menor que o tamanho do filtro
+    					if ((strlen($valor) < strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) or (strpos($valor, $filter[ARRAY_FILTER_CHAVE_FILTRO], strlen($valor) - strlen($filter[ARRAY_FILTER_CHAVE_FILTRO])) === false))
 							// incrementando array de resultados
 							unset($array[array_search($valor, $array)]);
     					break;
@@ -1526,6 +1526,19 @@ class Basico_OPController_UtilOPController
     {
     	// retornando array de resultados
     	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_EXCLUDE_POSITION_END);
+    }
+
+    /**
+     * Retorna um array contendo o filtro de inclusão de elementos terminados com a string passada como parametro
+     * 
+     * @param String $stringBusca
+     * 
+     * @return Array
+     */
+    public static function retornaArrayFiltroIncludeElementosTerminadasCom($stringBusca)
+    {
+    	// retornando array de resultados
+    	return array(ARRAY_FILTER_CHAVE_FILTRO => $stringBusca, ARRAY_FILTER_CHAVE_POSICAO => ARRAY_FILTER_INCLUDE_POSITION_END);
     }
 
     /**
@@ -3133,5 +3146,47 @@ class Basico_OPController_UtilOPController
 	{
 		// retornando javascript
 		return self::retornaJavaScriptEntreTagsScriptHtml("adicionaTextoElementoHtml('{$idTextArea}', '{$texto}', '{$separador}')");
+	}
+
+	/**
+	 * Retorna um html para cabeçalho da definição de um determinado método via reflection
+	 * 
+	 * @param String $nomeMetodo - nome do método
+	 * @param array $arrayMetaDadosAcaoAplicacaoVisao - array resultado do método retornaArrayMetaDadosVisaoPorNomeModuloNomeControlador do controlador de visão
+	 * 
+	 * @return String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 08/06/2012
+	 */
+	public static function retornaCabecalhoHtmlRefletionMethodViaMetodoArrayMetaDadosAcaoAplicacaoVisao($nomeMetodo, array $arrayMetaDadosAcaoAplicacaoVisao)
+	{
+		// recuperando variáveis
+		$traducaoAcao = $arrayMetaDadosAcaoAplicacaoVisao[str_replace('Action', '', $nomeMetodo)]['constanteTextualAcaoAplicacao'];
+		$traducaoAcaoDescricao = $arrayMetaDadosAcaoAplicacaoVisao[str_replace('Action', '', $nomeMetodo)]['constanteTextualDescricaoAcaoAplicacao'];
+
+		// montando cabeçaho
+		$cabecalho = "Nome da ação: <strong>{$nomeMetodo}</strong> ({$traducaoAcao})<br>";
+		$cabecalho.= "Descrição: {$traducaoAcaoDescricao}<br>";
+
+		// verificando se existe dados sobre a visão
+		if (array_key_exists('constanteTextualVisao', $arrayMetaDadosAcaoAplicacaoVisao[str_replace('Action', '', $nomeMetodo)])) {
+			// recuperando variáveis
+			$traducaoVisao = $arrayMetaDadosAcaoAplicacaoVisao[str_replace('Action', '', $nomeMetodo)]['constanteTextualVisao'];
+			$traducaoVisaoDescricao = $arrayMetaDadosAcaoAplicacaoVisao[str_replace('Action', '', $nomeMetodo)]['constanteTextualDescricaoVisao'];
+		
+			// adicionando dados ao cabeçalho
+			$cabecalho.= "Nome da visão: <strong>{$traducaoVisao}</strong><br>";
+			$cabecalho.= "Descrição: {$traducaoVisaoDescricao}<br>";
+		}
+
+		// adicionando final do cabeçalho
+		$cabecalho.= '<br>Reflection do método:<br>';
+
+		// limpando memória
+		unset($traducaoAcao, $traducaoAcaoDescricao, $traducaoVisao, $traducaoVisaoDescricao);
+
+		// retornando o cabeçalho
+		return $cabecalho;
 	}
 }

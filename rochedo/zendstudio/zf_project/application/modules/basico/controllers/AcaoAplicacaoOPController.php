@@ -240,7 +240,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractOPCon
 		// retornando resultado da verificacao
 		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'autenticador') and ($request->getActionName() === 'desautenticausuario'));
 	}
-	
+
 	/**
 	 * insere uma nova acao aplicacao ativa e retorna o id
 	 * 
@@ -276,5 +276,43 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractOPCon
 			// lançando excessão
 			throw new Exception("Erro ao inserir acao aplicação: ". $e->getMessage());
 		}
+	}
+
+	/**
+	 * Retorna os ids de ações aplicação através do nome do módulo e nome do controlador
+	 * 
+	 * @param String $nomeModulo - nome do módulo
+	 * @param String $nomeControlador - nome do controlador
+	 * 
+	 * @return Integer|null
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/06/2012
+	 */
+	public function retornaArrayIdConstantesTextuaisAcaoAplicacaoPorNomeModuloNomeControladorNomeAction($nomeModulo, $nomeControlador)
+	{
+		// recuperando o id do módulo através do nome
+		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNomeViaSQL($nomeModulo);
+
+		// verificando o resultado da recuperação do id do módulo
+		if ((null === $idModulo) or (null === $nomeControlador)) {
+			// retornando nulo
+			return null;
+		}
+
+		// recuperando o id e as constantes textuais da ação aplicacao
+		$arrayResultado = $this->_retornaArrayDadosObjetosPorParametros("id_modulo = {$idModulo} AND controller = '{$nomeControlador}' AND LOWER(action) <> 'metainfo'", null, null, null, array('id', 'constanteTextual', 'constanteTextualDescricao', 'action'));
+
+		// limpando memória
+		unset($idModulo);
+
+		// verificando o resultado da recuperação
+		if (count($arrayResultado)) {
+			// retornando o array de resultados
+			return $arrayResultado;
+		}
+
+		// retornando nulo
+		return null;
 	}
 }

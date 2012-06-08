@@ -127,6 +127,12 @@ class Basico_OPController_DicionarioExpressaoOPController
 	 */
 	public static function retornaTraducaoViaSQL($constanteTextual, $linguaDestino = DEFAULT_SYSTEM_LANGUAGE, $estourarExcessao = true)
 	{
+		// verificando se foi passado a string contendo a constanteTextual
+		if (!$constanteTextual) {
+			// retornando nulo
+			return null;
+		}
+
 		// montando query para recuperacao da traducao na lingua passada pelo usuario
 		$consultaSQL = "SELECT d.traducao
 						FROM basico.dicionario_expressao d
