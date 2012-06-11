@@ -65,6 +65,9 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 			// adicionando elementos ocultos no post
 			self::recuperaElementosOcultosPost($request);
+			
+			
+			
 		}
 
 		// inicializando variaveis
@@ -87,6 +90,9 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 			// registrando um array de parametros do request no pool de array de requests
 			Basico_OPController_SessionOPController::registraArrayParametrosUrlPoolRequests($request);
+			
+			// se a acao tiver uma visao vinculada registra a visao na sessao
+			Basico_OPController_SessionOPController::registraArrayUltimaVisao();
 			
 			// chamando o plugin de log
 			Basico_Controller_Plugin_ActionControllerLogHandler::processaLogRequest($request);
@@ -113,7 +119,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 		// recuperando o post
 		$arrayPost = $request->getPost();
-
+		
 		// loop para localizar o elemento CSRF dentro do post do form
 		foreach ($arrayPost as $chavePost => $valorPost) {
 			// verificando se nao trata-se de um subform
@@ -160,7 +166,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 			
 			// descarregando elementos relacionados com a chave
 			$arrayElementosOcultosChave = Basico_OPController_SessionOPController::descarregaPoolElementosOcultos($valorChaveCsrf);
-
+						
 			// verificando se o resultado
 			if ((is_array($arrayElementosOcultosChave)) and (count($arrayElementosOcultosChave))) {
 				
@@ -172,11 +178,12 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 					// adicionamento elementos ao array post
 					$arrayPost = array_merge($arrayPost, $arrayElementosOcultosChave);
 				}
+								
 				// setando o post no request
 				$request->setPost($arrayPost);
 			}
 		}
-
+		
 		return;
 	}
 

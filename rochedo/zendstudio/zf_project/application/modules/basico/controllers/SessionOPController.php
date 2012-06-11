@@ -440,9 +440,12 @@ class Basico_OPController_SessionOPController
 		// recuperando elementos
 		$arrayRetorno = self::recuperaElementosPoolElementosOcultos($chave);
 
-		// limpando elementos
-		self::limpaPoolElementosOcultos($chave);
-
+		// verificando se a requisicao é para o controlador rascunho
+		if (Zend_Controller_Front::getInstance()->getRequest()->getControllerName() !== 'rascunho') {
+			// se não for pro controlador rascunho ele limpa elementos ocultos
+			self::limpaPoolElementosOcultos($chave);
+		}
+		
 		// retornando array de elementos
 		return $arrayRetorno;
 	}
@@ -752,36 +755,40 @@ class Basico_OPController_SessionOPController
 
 		// recuperando o nome do atributo que sera utilizado para guardar a informacao
 		$sessionPoolParametrosUrlArray = SESSION_POOL_PARAMETROS_URL_ARRAY;
-		
-		// montando array de parametros da url
-		$arrayParametrosUrl = array('modulo'      => $request->getModuleName(),
-									'controlador' => $request->getControllerName(),
-									'acao'        => $request->getActionName(),
-									'parametros'  => $request->getParams()
-									);
-		
-		// verificando se o array ja existe na sessao
-		if (!isset($sessaoUsuario->$sessionPoolParametrosUrlArray)) {
-			// registrando array contendo a url passado por parametro
-			$sessaoUsuario->$sessionPoolParametrosUrlArray = array($arrayParametrosUrl);
-		} else {
-			// recuperando array pool requests
-			$arrayPoolRequests = $sessaoUsuario->$sessionPoolParametrosUrlArray;
 
-			// verificando se existe apenas um elemento no array
-			if (count($arrayPoolRequests) === 1) {
-				// incluindo mais um elemento no array que soh possui 1 elemento
-				$arrayPoolRequests[1] = $arrayParametrosUrl;
+		// verificando se o controlador e diferente do controlador de rascunho
+		if ($request->getControllerName() != 'rascunho') {
+			
+			// montando array de parametros da url
+			$arrayParametrosUrl = array('modulo'      => $request->getModuleName(),
+										'controlador' => $request->getControllerName(),
+										'acao'        => $request->getActionName(),
+										'parametros'  => $request->getParams()
+										);
+										
+			// verificando se o array ja existe na sessao
+			if (!isset($sessaoUsuario->$sessionPoolParametrosUrlArray)) {
+				// registrando array contendo a url passado por parametro
+				$sessaoUsuario->$sessionPoolParametrosUrlArray = array($arrayParametrosUrl);
 			} else {
-				// impurrando a pilha do array para incluir o novo elemento
-				$arrayPoolRequests[0] = $arrayPoolRequests[1];
-				$arrayPoolRequests[1] = $arrayParametrosUrl;
+				// recuperando array pool requests
+				$arrayPoolRequests = $sessaoUsuario->$sessionPoolParametrosUrlArray;
+	
+				// verificando se existe apenas um elemento no array
+				if (count($arrayPoolRequests) === 1) {
+					// incluindo mais um elemento no array que soh possui 1 elemento
+					$arrayPoolRequests[1] = $arrayParametrosUrl;
+				} else {
+					// impurrando a pilha do array para incluir o novo elemento
+					$arrayPoolRequests[0] = $arrayPoolRequests[1];
+					$arrayPoolRequests[1] = $arrayParametrosUrl;
+				}
+	
+				// salvando array na sessao
+				$sessaoUsuario->$sessionPoolParametrosUrlArray = $arrayPoolRequests;
 			}
-
-			// salvando array na sessao
-			$sessaoUsuario->$sessionPoolParametrosUrlArray = $arrayPoolRequests;
 		}
-
+		
 		return;
 	}
 	
@@ -982,5 +989,72 @@ class Basico_OPController_SessionOPController
 		Zend_Session::destroy();
 
 		return;
+	}
+	
+	/**
+	 * Registra um array com o id e a url da ultima visao chamada
+	 * 
+	 * @return void
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/06/2012
+	 */
+	public static function registraArrayUltimaVisao()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionArrayUltimaVisao = SESSION_ARRAY_ULTIMA_VISAO;
+		
+		// recuperando array de parametros da ultima url
+   	 	$arrayParametrosUltimoRequest = self::retornaArrayParametrosUrlAtualPoolRequests();
+    	 	
+   	 	// recuperando id da acao_aplicacao responsavel por exibir o formulario
+   	 	$idAcaoAplicacaoOrigem = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao'])->id;
+
+   	 	// recuperando a assoc visao
+   	 	$objAcaoAplicacaoAssocVisao = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::getInstance()->retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacaoOrigem);
+
+   	 	// verificando se existe uma visao vinculada a acao
+   	 	if ($objAcaoAplicacaoAssocVisao) {
+
+   	 		// verificando se a visao é diferente da que ja foi guardada
+   	 		if (!isset($sessaoUsuario->$sessionArrayUltimaVisao['id']) || ($objAcaoAplicacaoAssocVisao->id != $sessaoUsuario->$sessionArrayUltimaVisao['id'])) {
+		   	 	// montando array para guardar na sessao
+		   	 	$arrayUltimaVisao = array('id'  => $objAcaoAplicacaoAssocVisao->id,
+		   	 							  'url' => "{$arrayParametrosUltimoRequest['modulo']}/{$arrayParametrosUltimoRequest['controlador']}/{$arrayParametrosUltimoRequest['acao']}");
+		   	 	
+				// registrando a chave do post do ultimo request
+				$sessaoUsuario->$sessionArrayUltimaVisao = $arrayUltimaVisao;
+   	 		}
+   	 	}
+		return;
+	}
+	
+	/**
+	 * Retorna um array com o id e a url da ultima visao acessada
+	 * 
+	 * @return Array|null
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/06/2012
+	 */
+	public static function retornaArrayUltimaVisao()
+	{
+		// recuperando a sessao do usuario
+		$sessaoUsuario = self::registraSessaoUsuario();
+
+		// recuperando o nome do atributo que sera utilizado para guardar a informacao
+		$sessionArrayUltimaVisao = SESSION_ARRAY_ULTIMA_VISAO;
+
+		// verificando se o array ja existe na sessao
+		if (!isset($sessaoUsuario->$sessionArrayUltimaVisao)) {
+			// retornando "ainda nao registrado"
+			return "ainda não registrado";
+		}
+
+		// retornando a ultima (anterior) url chamada
+		return $sessaoUsuario->$sessionArrayUltimaVisao;
 	}
 }

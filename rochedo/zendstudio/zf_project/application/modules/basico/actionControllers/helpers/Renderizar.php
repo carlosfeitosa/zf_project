@@ -241,7 +241,8 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 								$this->_view->scripts[] = $scriptInicializacaoRascunho;
 							}
 						}
-					}					
+						
+					}				
 				}
 			}
 		}

@@ -202,7 +202,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 
     	// recuperando o post
     	$arrayPost = $this->getRequest()->getPost();
-
+    	    	
     	// recuperando o formulario de dados do usuario
     	$formDadosUsuario = $this->getFormDadosUsuario($arrayPost);
 
@@ -217,7 +217,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
     		// salvando dados da conta do usuario
     		$podeContinuar = $this->salvarDadosConta($idPessoa, $arrayPost, $formDadosUsuario);
     	}
-
+    	    	
     	// carregando formulário para a view
 		$content[] = $formDadosUsuario;
 
@@ -237,7 +237,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
      * 
      * @return Boolean|null
      */
-    private function salvarDadosConta($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
+    private function salvarDadosConta($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario)
     {
     	// inicializando array de javascripts de retorno para o cliente
     	$scripts = array();
@@ -451,7 +451,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
      * 
      * @return Boolean|null
      */
-    private function salvarDadosBiometricos($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario $formDadosUsuario)
+    private function salvarDadosBiometricos($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario)
     {
     	// inicializando array de javascripts de retorno para o cliente
     	$scripts = array();
@@ -462,9 +462,16 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 
     	// recuperando o subForm DadosBiometricos    
     	$subFormDadosBiometricos = $formDadosUsuario->getSubForm('CadastrarDadosUsuarioDadosBiometricos');
-
+    	
     	// validando o subForm
     	if (!$subFormDadosBiometricos->isValid($arrayPost)) {
+    		
+    		// recuperando ultima versao do obj dadosBiometricos da pessoa
+	        $versaoObjetoDadosBiometricosAssocPessoa = Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->retornaUltimaVersaoObjetoDadosBiometricosAssocPessoaPorIdPessoa($idPessoa);
+    		
+    		// adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
+	        $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricosAssocPessoa);
+    		
 			// enviando formulario com problemas
 			$this->view->content = array($formDadosUsuario);
 
@@ -760,7 +767,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 		    
 		    // recuperando ultima versao do obj dadosBiometricos da pessoa
 		    $versaoObjetoDadosBiometricosPessoa = Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($dadosBiometricosPessoa);
-		    
+		    		    
 		    $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricosPessoa);
 	    }
     }

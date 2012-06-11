@@ -244,15 +244,11 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 		    		// recuperando ultimo rascunho pai da fila da sessao
 		    		$idRascunhoPai = $this->_sessionOPController->retornaUltimoRascunhoPaiSessao();
 
-		    		// recuperando array de parametros da ultima url
-		    	 	$arrayParametrosUltimoRequest = Basico_OPController_SessionOPController::retornaArrayParametrosUrlAtualPoolRequests();
+		    		$arrayUltimaVisao = Basico_OPController_SessionOPController::retornaArrayUltimaVisao();
 		    	 	
-		    	 	// recuperando id da acao_aplicacao responsavel por exibir o formulario
-		    	 	$idAcaoAplicacaoOrigem = $this->_acaoAplicacaoOPController->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao'])->id;
-
 		    	 	// recuperando o id da visao de origem do rascunho
-		    	 	$idVisaoOrigem = $this->_acaoAplicacaoAssocVisaoOPController->retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacaoOrigem)->id;
-		    	 			    	 	
+		    	 	$idVisaoOrigem = $arrayUltimaVisao['id'];
+		    	 	
 		    	 	// se a visao nao foi encontrado lança uma exceção
 		    	 	if (!$idVisaoOrigem)
 		    	 		throw new Exception("Id assoc visao origem não encontrado.");

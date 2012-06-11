@@ -141,6 +141,7 @@ define("SESSION_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");
 define("SESSION_FILA_RASCUNHO_PAI", "filaRascunhoPai");
 define("SESSION_POST_ULTIMO_REQUEST", "postUltimoRequest");
 define("SESSION_AUTHENTICATED_USER_IP", "authenticatedUserIp");
+define("SESSION_ARRAY_ULTIMA_VISAO", "arrayUltimaVisao");
 
 // definições de atributos de controle de versão de objetos
 define("CVC_PARAM_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");

@@ -203,7 +203,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 			$chaveArrayPool = self::processaHash($form);
 			// localizando e processando os elementos ocultos
 			$elementosOcultos = self::processaElementosOcultos($form);
-
+			
 			// verificando se existe a $chaveArrayPool e elementos no array de elementos ocultos.
 			if (isset($chaveArrayPool) and count($elementosOcultos) > 0) {
 				// registrando elementos na sessão			
