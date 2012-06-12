@@ -137,6 +137,7 @@ define("PROPRIEDADE_DATAHORA_ULTIMA_ATUALIZACAO", "datahoraUltimaAtualizacao");
 // definições de atributos de sessão
 define("SESSION_INICIO_PROCESSESSAMENTO_MICROSEGUNDOS_PHP", "inicioProcessamentoMicrosegundosPHP");
 define("SESSION_POOL_REQUESTS_ARRAY", "poolRequestsArray");
+define("SESSION_POOL_REQUESTS_ARRAY_LIMIT", 20);
 define("SESSION_POOL_PARAMETROS_URL_ARRAY", "poolParametrosUrlArray");
 define("SESSION_CHAVE_POST_ULTIMO_REQUEST", "chavePostUltimoRequest");
 define("SESSION_FILA_RASCUNHO_PAI", "filaRascunhoPai");

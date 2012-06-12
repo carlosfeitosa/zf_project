@@ -671,17 +671,15 @@ class Basico_OPController_SessionOPController
 		} else {
 			// recuperando array pool requests
 			$arrayPoolRequests = $sessaoUsuario->$sessionPoolRequestsArray;
-
-			// verificando se existe apenas um elemento no array
-			if (count($arrayPoolRequests) === 1) {
-				// incluindo mais um elemento no array que soh possui 1 elemento
-				$arrayPoolRequests[1] = $url;
-			} else {
-				// impurrando a pilha do array para incluir o novo elemento
-				$arrayPoolRequests[0] = $arrayPoolRequests[1];
-				$arrayPoolRequests[1] = $url;
+			
+			// verificando se atingiu o limite do pool
+			if (count($arrayPoolRequests) >= SESSION_POOL_REQUESTS_ARRAY_LIMIT) {
+				array_pop($arrayPoolRequests);
 			}
-
+			
+			// adicionando url no inicio do array
+			array_unshift($arrayPoolRequests, $url);
+			
 			// salvando array na sessao
 			$sessaoUsuario->$sessionPoolRequestsArray = $arrayPoolRequests;
 		}
@@ -711,8 +709,12 @@ class Basico_OPController_SessionOPController
 		// recupeerando o array do pool de requests
 		$arrayPoolRequests = $sessaoUsuario->$sessionPoolRequestsArray;
 
-		// retornando a ultima (anterior) url chamada
-		return $arrayPoolRequests[0];
+		if (count($arrayPoolRequests) > 1)
+			// retornando a ultima (anterior) url chamada
+			return $arrayPoolRequests[1];
+		else
+			// retornando a ultima (anterior) url chamada
+			return $arrayPoolRequests[0];
 	}	
 	
 	/**
@@ -738,7 +740,7 @@ class Basico_OPController_SessionOPController
 		$arrayPoolRequests = $sessaoUsuario->$sessionPoolRequestsArray;
 
 		// retornando a ultima (anterior) url chamada
-		return $arrayPoolRequests[1];
+		return $arrayPoolRequests[0];
 	}
 	
 	/**
@@ -839,9 +841,14 @@ class Basico_OPController_SessionOPController
 
 		// recupeerando o array do pool de requests
 		$arrayPoolRequests = $sessaoUsuario->$sessionPoolParametrosUrlArray;
-
-		// retornando a ultima (anterior) url chamada
-		return $arrayPoolRequests[1];
+		
+		// verificando se tem mais de um elemento no pool
+		if (count($arrayPoolRequests) > 1)
+			// retornando a ultima (anterior) url chamada
+			return $arrayPoolRequests[1];
+		else
+			// retornando primeiro elemento
+			return $arrayPoolRequests[0];
 	}
 
 	/**

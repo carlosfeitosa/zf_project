@@ -471,9 +471,9 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
     		
     		// adicionando elemento hidden com o id da ultima versao do objeto dados biometricos da pessoa	    
 	        $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricosAssocPessoa);
-    		
+    			        
 			// enviando formulario com problemas
-			$this->view->content = array($formDadosUsuario);
+			//$this->view->content = array($formDadosUsuario);
 
     		// selecionando a aba do subform DadosBiometricos
 			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());

@@ -166,6 +166,10 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractOPCon
 
 	public function retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($nomeModule, $nomeController, $nomeAction)
 	{
+		// verificando se todos os parametros foram passados corretamente
+		if ($nomeModule == null || $nomeController == null || $nomeAction == null)
+			return null;
+		
 		// recuperando o id do modulo
 		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule)->id;
 
