@@ -145,6 +145,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 
 		// adicionando arquivos javascript padrao
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
+		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_AJAX_JAVASCRIPT_FILE_PATH));
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
 		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH));
 

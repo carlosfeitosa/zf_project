@@ -90,6 +90,7 @@ define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.rochedo");
 
 // definições de javascripts
 define("DEFAULT_JAVASCRIPT_FILE_PATH", "/js/default_scripts.js");
+define("DEFAULT_AJAX_JAVASCRIPT_FILE_PATH", "/js/ajax_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_FILE_PATH", "/js/default_masks_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH", "/js/plugins/maskMoney/jquery.maskMoney.js");
 define("DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO", "/js/rascunho.js");
