@@ -127,7 +127,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		$applicationHttpBaseUrl = $this->_view->baseUrl();
 
 		// sentando css messagePop
-		$this->_view->headLink()->appendStylesheet($this->_view->baseUrl('/js/plugins/dojo/messagePop/ui/resources/Error.css'));
+		$this->_view->headLink()->appendStylesheet($this->_view->baseUrl('/js/library/plugins/dojo/messagePop/ui/resources/Error.css'));
 		
 		// setando cabecalho
 		$this->_view->doctype('XHTML1_STRICT');
@@ -177,7 +177,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		                    // registrando path local do dojo
 		        			->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
 		                    // registrando o path do moludo messagePop
-		                    ->registerModulePath('messagePop', $applicationHttpBaseUrl.'/js/plugins/dojo/messagePop')
+		                    ->registerModulePath('messagePop', $applicationHttpBaseUrl.'/js/library/plugins/dojo/messagePop')
 		                    ->requireModule('messagePop.ui.Error');	
     }
 
