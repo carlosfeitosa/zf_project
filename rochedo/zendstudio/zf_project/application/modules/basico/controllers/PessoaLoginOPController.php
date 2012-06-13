@@ -714,7 +714,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 		$object = Basico_OPController_PersistenceOPController::bdObjectFind($this->_model, $idLogin);
 
 		// verificando se o objeto login foi recuperado
-		if ($object->id)
+		if (is_object($object))
 			// retornando o id da pessoa
 			return $object->idPessoa;
 
