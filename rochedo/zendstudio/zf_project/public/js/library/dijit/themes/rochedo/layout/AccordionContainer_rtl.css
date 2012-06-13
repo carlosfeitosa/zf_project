@@ -1,0 +1,7 @@
+.dijitRtl .rochedo .dijitAccordionArrow {
+	background-position: 0px top;
+}
+.dijitRtl .rochedo .dijitAccordionTitleSelected .dijitAccordionArrow {
+	
+	background-position: -15px top;
+}

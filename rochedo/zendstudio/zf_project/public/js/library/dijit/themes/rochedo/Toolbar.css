@@ -1,0 +1,56 @@
+.rochedo .dijitToolbar {
+	border-bottom: 1px solid #ccc;
+	background:#eaeaea url("images/titleBar.png") repeat-x top left;
+}
+.dj_ie6 .rochedo .dijitToolbar {
+	height: 10px;
+}
+.rochedo .dijitToolbar .dijitButtonNode,
+.rochedo .dijitToolbar .dijitComboButton .dijitButtonContents,
+.rochedo .dijitToolbar .dijitComboButton .dijitDownArrowButton {
+	background: none;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	font-size: 12px;
+}
+.rochedo .dijitToolbar .dijitButton,
+.rochedo .dijitToolbar .dijitToggleButton,
+.rochedo .dijitToolbar .dijitDropDownButton,
+.rochedo .dijitToolbar .dijitComboButton .dijitButtonContents,
+.rochedo .dijitToolbar .dijitComboButton .dijitDownArrowButton {
+	background: none;
+	padding: 1px;	
+}
+.rochedo .dijitToolbar .dijitButtonChecked,
+.rochedo .dijitToolbar .dijitToggleButtonChecked {
+	background-color:#ffeeb9;
+	border:1px solid #f7c95c;
+	padding: 0;
+}
+.rochedo .dijitToolbar .dijitButtonCheckedHover,
+.rochedo .dijitToolbar .dijitToggleButtonCheckedHover
+ {
+	background-color:#ffe284;
+	border:1px solid #f7c95c;
+	padding: 0;
+}
+.rochedo .dijitToolbar .dijitButtonHover,
+.rochedo .dijitToolbar .dijitToggleButtonHover,
+.rochedo .dijitToolbar .dijitDropDownButtonHover,
+.rochedo .dijitToolbar .dijitComboButton .dijitButtonContentsHover,
+.rochedo .dijitToolbar .dijitComboButton .dijitDownArrowButtonHover {
+	
+	border: 1px solid #f7c95c;
+	padding: 0;
+	background-color:#ffe284;
+}
+.rochedo .dijitToolbar label {
+	padding: 3px 3px 0 6px;
+}
+.dj_ie .rochedo .dijitToolbar .dijitComboButton .dijitButtonContentsFocused,
+.dj_ie .rochedo .dijitToolbar .dijitComboButton .dijitDownArrowButtonFocused {
+	
+	border: 1px #555 dotted !important;
+	padding: 0px;
+}

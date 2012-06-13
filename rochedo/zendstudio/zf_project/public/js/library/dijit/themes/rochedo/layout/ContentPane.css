@@ -1,0 +1,17 @@
+
+.rochedo .dijitContentPane {
+    padding: 0px;
+}
+.rochedo .dijitTabContainerTop-dijitContentPane,
+.rochedo .dijitTabContainerLeft-dijitContentPane,
+.rochedo .dijitTabContainerRight-dijitContentPane,
+.rochedo .dijitTabContainerBottom-dijitContentPane,
+.rochedo .dijitAccordionContainer-dijitContentPane {
+    background-color: #fff;
+    padding: 5px;
+}
+.rochedo .dijitSplitContainer-dijitContentPane,
+.rochedo .dijitBorderContainer-dijitContentPane {
+    background-color: #fff;		
+    padding: 5px;
+}

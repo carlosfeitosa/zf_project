@@ -1,0 +1,8 @@
+
+.dijitRtl .rochedo .dijitMenuItem .dijitMenuItemIcon {
+	padding-left: 3px;
+	padding-right: 0px;
+}
+.dijitRtl .rochedo .dijitMenuItem .dijitMenuExpand {
+	background-position: 0px top;
+}
