@@ -65,9 +65,6 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 
 			// adicionando elementos ocultos no post
 			self::recuperaElementosOcultosPost($request);
-			
-			
-			
 		}
 
 		// inicializando variaveis
