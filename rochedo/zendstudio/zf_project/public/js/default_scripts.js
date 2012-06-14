@@ -139,7 +139,7 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, f
         },
         error: function(error) {
         	// mostrando erro
-            dialog.setContent("Um erro aconteceu: " + error);
+            console.debug("Um erro aconteceu: " + error);
         }
     };
 
