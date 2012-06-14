@@ -223,8 +223,11 @@ class Basico_OPController_AutenticadorOPController
 			$onLoadValuesCallAndErrorMessage = ", '{$formAction}'";
 		}
 
+		// montando url de recuperação do dialog de autenticação
+		$urlDialogAutenticacao = Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('{$baseUrl}/basico/autenticador/dialogautenticacao');
+
 		// retornando o javascript que abre o dialog de login
-		return "<script language='javascript'>exibirDialogUrl('Basico_Form_AutenticacaoUsuario', '{$baseUrl}/basico/autenticador/dialogautenticacao', '{$tituloDialog}', '{$urlRedirect}', '{$baseUrl}'{$onLoadValuesCallAndErrorMessage})</script>";
+		return "<script language='javascript'>exibirDialogUrl('Basico_Form_AutenticacaoUsuario', $urlDialogAutenticacao, '{$tituloDialog}', '{$urlRedirect}', '{$baseUrl}'{$onLoadValuesCallAndErrorMessage})</script>";
 	}
 
 	/**

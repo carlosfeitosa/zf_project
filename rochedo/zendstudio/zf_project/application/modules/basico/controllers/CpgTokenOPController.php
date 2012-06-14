@@ -9,7 +9,7 @@
 require_once APPLICATION_PATH . "/modules/basico/models/CpgToken.php";
 
 /**
- * Basico_OPController_TokenOPController
+ * Basico_OPController_CpgTokenOPController
  * @author joao
  *
  */
@@ -17,7 +17,7 @@ class Basico_OPController_CpgTokenOPController
 {
 	/**
 	 * 
-	 * @var Basico_OPController_TokenOPController
+	 * @var Basico_OPController_CpgTokenOPController
 	 */
 	private static $_singleton;
     
@@ -46,7 +46,7 @@ class Basico_OPController_CpgTokenOPController
 	}
 
 	/**
-	 * Inicializa o controlador Basico_OPController_TokenOPController
+	 * Inicializa o controlador Basico_OPController_CpgTokenOPController
 	 * 
 	 * @return void;
 	 */
@@ -59,9 +59,9 @@ class Basico_OPController_CpgTokenOPController
 	}
 
 	/**
-	 * Recupera a instancia do controlador Basico_OPController_TokenOPController
+	 * Recupera a instancia do controlador Basico_OPController_CpgTokenOPController
 	 * 
-	 * @return Basico_OPController_TokenOPController
+	 * @return Basico_OPController_CpgTokenOPController
 	 */
 	static public function getInstance()
 	{
