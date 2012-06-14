@@ -24,7 +24,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		$xlsParametros = array('suffix' => 'xls', 'headers' => array('Content-Type' => 'application/xls'));
 		$plaintextParametros = array('suffix' => 'plaintext', 'headers' => array('Content-Type' => 'application/plaintext'));
 		$impressaoParametros = array('suffix' => 'impressao', 'headers' => array('Content-Type' => 'application/impressao'));
-
+        
 		/*
 		// adicionando os contextos e definindo as permissoes por acao
     	$this->_helper->contextSwitch()
@@ -81,18 +81,18 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	 */
 	private function validaForm(Basico_Form_CadastrarUsuarioNaoValidado $formEntrada)
 	{
-		// verificando se a requisicao foi enviada por post
+		// verificando se a requisicao eh foi enviada por post
 		if (!$this->getRequest()->isPost()) {
-
+			
 			// encaminhado para a ação do proprio formulario
-            $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', $formEntrada->getAction(), array(), true));
+            return $this->_forward($formEntrada->getName(), 'login', 'basico');
         }
-
+        
         // verificando se o formulario passou pela validacao
 		if (!$formEntrada->isValid($this->getRequest()->getPost())) {
 			// recuperando o formulario
             $this->view->content = array($formEntrada);
- 
+            
             return;
         }
         return true;
@@ -294,7 +294,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	        	// salvando dados do usuario
 	        	if ($this->salvarDadosUsuarioValidado($post, $formCadastrarUsuarioValidado)) {
 	        		// encaminhado para a ação sucessosalvarusuariovalidado
-	        		$this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'sucessosalvarusuariovalidado', array(), true));
+	        		return $this->_forward('sucessosalvarusuariovalidado', 'login', 'basico');
 	        	}
 	        	
     		}else{
@@ -310,10 +310,10 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		    	$this->view->content = $content;
 		    	
     		}
-
+		        
     		// renderizando a view
 	        $this->_helper->Renderizar->renderizar();
-
+	        
     	}catch(Exception $e){
     		// lançando o erro
 	        throw new Exception($e->getMessage());
@@ -419,7 +419,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 			        Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			            
 	            	// encaminhado para a ação erroemailvalidadoexistentenosistema
-	            	$this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', array(), true));
+	            	return $this->_forward('erroemailvalidadoexistentenosistema', 'login', 'basico');
 				}else {
 	            	// iniciando a transacao
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -458,7 +458,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 			            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
 		            	// encaminhado para a ação erroemailnaovalidadoexistentenosistema
-		            	$this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailnaovalidadoexistentenosistema', array(), true));	
+		            	return $this->_forward('erroemailnaovalidadoexistentenosistema', 'login', 'basico');	
 		            		                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
@@ -470,7 +470,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	        }
 	        else {
 	        	// encaminhado para a ação salvar usuario nao validado
-	            $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'salvarusuarionaovalidado', array(), true));
+	            return $this->_forward('salvarusuarionaovalidado', 'login', 'basico');
 	        }
         }       	
        	
@@ -556,7 +556,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
         }
 
         // encaminhado para a ação SucessoSalvarUsuarioNaoValidado
-	    $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'SucessoSalvarUsuarioNaoValidado', 'login', 'basico', array(), true));
+	    return $this->_forward('SucessoSalvarUsuarioNaoValidado', 'login', 'basico');
     }
     
     /**
