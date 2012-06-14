@@ -96,7 +96,7 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 	}
 
 	// verificando se eh preciso mudar a acao do formulario
-	if (formAction) {
+	if ((formAction) && (document.getElementsByTagName('form')[0] !== undefined)) {
 		document.getElementsByTagName('form')[0].action = formAction;
 	}
 
