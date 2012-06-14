@@ -328,10 +328,12 @@ function recuperaElemento(nomeElemento)
 function validateForm(formId, titulo, message, baseUrl) 
 {
 	// recuperando o formulario
-    var form = dojo.byId(formId);
+    var form = dijit.byId(formId);
 
+    console.debug(form);
+    
     // validando o formulario
-    if (!form == undefined && !form.validate()) 
+    if (!(form == undefined) && !form.validate()) 
     {
     	// mostando mensagem de erro ao tentar submeter o formulario
 	    showDialogAlert(formId, titulo, message, 1);

@@ -27,7 +27,7 @@ class Basico_OPController_DBCheckOPController
 	 */
 	protected function __construct()
 	{
-		$this->init();
+		$this->_init();
 	}
 	
 	/**

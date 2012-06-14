@@ -816,7 +816,7 @@ class Basico_OPController_SessionOPController
 		// recupeerando o array do pool de requests
 		$arrayPoolRequests = $sessaoUsuario->$sessionPoolParametrosUrlArray;
 
-		// retornando a ultima (anterior) url chamada
+		// retornando array com dados da ultima (anterior) url chamada
 		return $arrayPoolRequests[0];
 	}
 	
@@ -847,7 +847,7 @@ class Basico_OPController_SessionOPController
 			// retornando a ultima (anterior) url chamada
 			return $arrayPoolRequests[1];
 		else
-			// retornando primeiro elemento
+			// retornando url atual
 			return $arrayPoolRequests[0];
 	}
 

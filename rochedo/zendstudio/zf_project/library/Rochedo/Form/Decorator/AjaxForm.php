@@ -89,7 +89,7 @@ console.debug('funcao formBackgroundSubmit processada');
 		dojo.stopEvent(event);
 		
 		// validando o formulario
-		if (validateForm(this, '{$titulo}', '{$mensagem}')){
+		if (validateForm('{$this->getElement()->getName()}', '{$titulo}', '{$mensagem}')){
 			console.debug('formulario validado....');
 			
 			var deferred = dojoRequestAjaxAbstract('post', {$xhrArgs});
