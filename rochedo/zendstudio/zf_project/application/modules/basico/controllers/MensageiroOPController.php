@@ -30,7 +30,7 @@ class Basico_OPController_MensageiroOPController
 		$this->_mail = $this->retornaNovoObjetoMail();
 
 		// inicializando o controlador
-		$this->init();
+		$this->_init();
 	}
 
 	/**
@@ -41,7 +41,7 @@ class Basico_OPController_MensageiroOPController
 	private function _init()
 	{
 		// inicializando controladores
-		$this->initControllers();
+		$this->_initControllers();
 	}
 	
 	/**

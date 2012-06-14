@@ -38,7 +38,7 @@ class Basico_OPController_DBCheckOPController
 	protected function _init()
 	{
 		// inicializando controladores auxiliares
-		$this->initControllers();
+		$this->_initControllers();
 		
 		return;
 	}

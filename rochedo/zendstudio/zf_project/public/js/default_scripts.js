@@ -329,17 +329,18 @@ function validateForm(formId, titulo, message, baseUrl)
 {
 	// recuperando o formulario
     var form = dijit.byId(formId);
-
-    console.debug(form);
     
     // validando o formulario
     if (!(form == undefined) && !form.validate()) 
     {
     	// mostando mensagem de erro ao tentar submeter o formulario
 	    showDialogAlert(formId, titulo, message, 1);
-	    // desabilitando underlay
-	    underlay.hide();
-
+	    
+	    // verificando se o underlay esta setado
+	    if (underlay !== undefined) {
+		    // desabilitando underlay
+		    underlay.hide();
+	    }
         return false;
     }
 
