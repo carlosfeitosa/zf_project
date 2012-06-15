@@ -16,6 +16,13 @@ require_once APPLICATION_PATH . "/modules/basico/models/CpgToken.php";
 class Basico_OPController_CpgTokenOPController
 {
 	/**
+	 * Constante que define que o token é para validação de email
+	 * 
+	 * @var Int
+	 */
+	const EMAIL_VALIDACAO_USUARIO = 10;
+	
+	/**
 	 * 
 	 * @var Basico_OPController_CpgTokenOPController
 	 */
@@ -92,7 +99,7 @@ class Basico_OPController_CpgTokenOPController
      * 
      * @return String
      */
-	public function gerarTokenPorUrl($url)
+	public function gerarTokenPorUrl($url, $removeBaseUrl = false)
 	{
 		// registrando/recuperando o namespace do token na sessao
         $session = Basico_OPController_SessionOPController::registraSessaoToken();
@@ -118,8 +125,12 @@ class Basico_OPController_CpgTokenOPController
 	    // montando url
 	    $baseUrl = Basico_OPController_UtilOPController::retornaBaseUrl();
 	    
-	    // retornando url codificada
-        return $baseUrl . LINK_CONTROLADOR_TOKENS . $token;
+	    if (!$removeBaseUrl)
+		    // retornando url codificada
+	        return $baseUrl . LINK_CONTROLADOR_TOKENS . $token;
+	        
+	    // retornando url codificada sem o baseUrl
+	    return LINK_CONTROLADOR_TOKENS . $token;
 	}
 	
     /**
@@ -288,5 +299,57 @@ class Basico_OPController_CpgTokenOPController
         
         // retornando o id
         return $novoToken->id;
+	}
+	
+	/**
+	 * Retorna a operacao de validação a ser realizada
+	 * 
+	 * @param String $token
+	 * 
+	 * @return null|Int
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 15/06/2012
+	 */
+	public function retornaOperacaoValidacaoTokenPorIdCategoria($token)
+	{
+		// recuperando o objeto categoria relacionado ao token
+		$objCategoria = $this->retornaObjetoCategoriaTokenPorToken($token);
+		
+		// verificando se token é para validação de email de usuario
+		if ('MENSAGEM_EMAIL_VALIDACAO_USUARIO' === $objCategoria->getCategoriaPaiObject()->nome     &&
+			'MENSAGEM_EMAIL'                   === $objCategoria->getRootCategoriaPaiObject()->nome &&
+			'MENSAGEM'                         === $objCategoria->getTipoCategoriaObject()->nome) {
+			
+			// retornando constante com codigo da operacao
+			return self::EMAIL_VALIDACAO_USUARIO;
+		
+		}
+		
+		return null;
+		
+	}
+	
+	/**
+	 * Retorna o objeto categoria do token pelo token passado
+	 * 
+	 * @param String $token
+	 * 
+	 * @return Integer|null
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 15/06/2012
+	 */
+	private function retornaObjetoCategoriaTokenPorToken($token)
+	{
+		// recuperando objeto token
+		$objToken = Basico_OPController_PersistenceOPController::bdObjectFetchList($this->_token, "token = '{$token}'", null, 1, 0);
+
+		// verificando se o objeto do token existe
+		if (isset($objToken[0]))
+			// retornando id da categoria
+    	    return $objToken[0]->getCategoriaObject();
+
+    	return null;
 	}
 }

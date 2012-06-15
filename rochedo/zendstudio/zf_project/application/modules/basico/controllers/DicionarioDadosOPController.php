@@ -237,7 +237,7 @@ class Basico_OPController_DicionarioDadosOPController
 							// verificando se a constante textual não existe no banco de dados
 							if (!Basico_OPController_DicionarioExpressaoOPController::verificaTraducaoExiste($constanteTextual)) {
 								// transformando o valor da constante textual para um valor de constante ainda não traduzida
-								$constanteTextual = CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA;
+								$constanteTextual = 'CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA';
 							}
 
 							// criando novo schema
@@ -327,7 +327,7 @@ class Basico_OPController_DicionarioDadosOPController
 							// verificando se a constante textual não existe no banco de dados
 							if (!Basico_OPController_DicionarioExpressaoOPController::verificaTraducaoExiste($constanteTextual)) {
 								// transformando o valor da constante textual para um valor de constante ainda não traduzida
-								$constanteTextual = CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA;
+								$constanteTextual = 'CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA';
 							}
 
 							// criando nova tabela
@@ -430,7 +430,7 @@ class Basico_OPController_DicionarioDadosOPController
 							// verificando se a constante textual não existe no banco de dados
 							if (!Basico_OPController_DicionarioExpressaoOPController::verificaTraducaoExiste($constanteTextual)) {
 								// transformando o valor da constante textual para um valor de constante ainda não traduzida
-								$constanteTextual = CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA;
+								$constanteTextual = 'CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA';
 							}
 							
 							// criando novo campo

@@ -516,6 +516,6 @@ define("FORM_ACEITE_TERMOS_USO_TAG_STRING_CONFIRMACAO", "@stringConfirmacao");
 define("AJUDA_BUTTON_LABEL", "?"); 
 
 // definições de links do sistema
-define("LINK_VALIDACAO_USUARIO", "/basico/email/validarEmail/t/");
+define("LINK_VALIDACAO_USUARIO", "/basico/token/validate/t/");
 define("LINK_MEU_PERFIL", "/basico/dadosusuario/index/");
 define("LINK_CONTROLADOR_TOKENS", "/basico/token/decode/t/");

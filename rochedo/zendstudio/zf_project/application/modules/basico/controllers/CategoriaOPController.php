@@ -908,4 +908,10 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 		$arrayOpcoes[$categoriaNaoDesejoInformar->id] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($categoriaNaoDesejoInformar->constanteTextual);
 		
 	}
+	
+	
+	public static function retornaOperacaoValidacaoTokenPorIdCategoria($idCategoria)
+	{
+		
+	}
 }

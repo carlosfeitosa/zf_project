@@ -8,6 +8,11 @@
 * 								
 */
 
+INSERT into basico.acao_aplicacao (id_modulo, controller, action, ativo, rowinfo)
+SELECT m.id AS id_modulo, 'token' AS controller, 'validate' AS action, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.modulo m
+WHERE m.nome = 'BASICO';
+
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
 SELECT m.id AS id_modulo, 'email' AS controller, 'errotokeninvalido' AS action, 'ACAO_ERRO_TOKEN_INVALIDO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
@@ -149,7 +154,7 @@ FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'email' AS controller, 'validarEmail' AS action, 'ACAO_VALIDAR_EMAIL' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'email' AS controller, 'validaremail' AS action, 'ACAO_VALIDAR_EMAIL' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 

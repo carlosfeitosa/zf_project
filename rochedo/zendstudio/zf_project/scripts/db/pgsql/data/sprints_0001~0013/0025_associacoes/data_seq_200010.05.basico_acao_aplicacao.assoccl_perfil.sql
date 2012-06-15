@@ -9,6 +9,18 @@
 * 						01/02/2012 - criacao das acoes e vinculacoes com o perfil de administrador e desenvolvedor da acao "regerarchecksummodelo" no controlador "administrador";
 */
 
+INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM basico.perfil p
+        LEFT join basico.categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_PUBLICO') AS id_perfil,
+       (SELECT a.id
+        from basico.acao_aplicacao a
+        LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'token'
+        AND a.action = 'validate') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
@@ -411,7 +423,7 @@ SELECT (SELECT p.id
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'email'
-        AND a.action = 'validarEmail') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'validaremail') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id

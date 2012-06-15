@@ -38,7 +38,7 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
     public function validaremailAction()
     {
     	// recuperando o token da sessao
-    	$token = $this->request->getParam('t');
+    	$token = $this->getRequest()->getParam('t');
 
     	// recuperando o objeto token e-mail
     	$tokenObj = Basico_OPController_CpgTokenOPController::getInstance()->retornaObjetoTokenEmailPorToken($token);
@@ -46,7 +46,7 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
     	// verificando se o objeto existe
     	if ($tokenObj == null){
     		// encaminhado para a ação de erro token invalido
-    		return $this->_forward('errotokeninvalido');  
+    		return $this->_redirect($this->view->urlEncryptModuleControllerAction($this->view->url(array('module' => 'basico', 'controller' => 'token', 'action' => 'errotokeninvalido', null, true))));
     	}
     	
     	// recuperando o e-mail
@@ -70,7 +70,7 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
     	//verificando se o usuario possui o perfil de UsuarioValidado
     	if (Basico_OPController_PessoaAssocclPerfilOPController::getInstance()->possuiPerfilUsuarioValidadoPorEmail($email)) {
     		// encaminhado para a ação erroemailvalidadoexistentenosistema do loginController
-            return $this->_forward('erroemailvalidadoexistentenosistema');
+            return $this->_redirect($this->view->urlEncryptModuleControllerAction($this->view->url(array('module' => 'basico', 'controller' => 'email', 'action' => 'erroemailvalidadoexistentenosistema', null, true))));
     	}
     	
     	// recuperando data hora de expiracao
@@ -83,7 +83,7 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
 			// checando expiracao do token
 	    	if ($dataHoraExpiracaoUnixTimeStamp < $dataHoraAtualUnixTimeStamp){
 	    		// encaminhado para a ação de token expirado
-	    		return $this->_forward('errotokenexpirado');   		
+	    		return $this->_redirect($this->view->urlEncryptModuleControllerAction($this->view->url(array('module' => 'basico', 'controller' => 'token', 'action' => 'errotokenexpirado', null, true))));  		
 	    	}
 	    	
 	    	// recuperando o objeto pessoa do dono do email
@@ -183,45 +183,5 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
 		    	$this->_helper->Renderizar->renderizar();
 	    	}
     	}
-    }
-
-    /**
-     * Redireciona para view de Token Expirado
-     * 
-     * @return void
-     */
-    public function errotokenexpiradoAction() 
-    {
-    	// carregando titulo, link para re-cadastro e mensagem
-        $tituloView            = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO'));
-        $linkRecomecarCadastro = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO'));
-        $mensagemView          = "<br><a href='../login/cadastrarUsuarioNaoValidado/'>{$linkRecomecarCadastro}</a>";
-        
-        // carregando array com o cabecalho da view
-    	$content[] = $tituloView;
-    	$content[] = $mensagemView;
-    
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
-		// renderizando a view
-		$this->_helper->Renderizar->renderizar();
-    }    
-
-    /**
-     * Redireciona para a view de Token Invalido
-     * 
-     *  @return void
-     */
-    public function errotokeninvalidoAction() 
-    {
-    	// carregando titulo, link para re-cadastro e mensagem
-        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO'));
-    
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
-		// renderizando a view
-		$this->_helper->Renderizar->renderizar();
-    }    
+    }   
 }

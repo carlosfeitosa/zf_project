@@ -241,7 +241,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	private function verificaRequestTokenDecode(Zend_Controller_Request_Abstract $request)
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
-		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'token') and ($request->getActionName() === 'decode'));
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'token') and (($request->getActionName() === 'decode') || ($request->getActionName() === 'validate')));
 	}
 
 	/**

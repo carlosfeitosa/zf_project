@@ -116,6 +116,18 @@ class Basico_Model_Categoria extends Basico_AbstractModel_RochedoPersistentModel
 	}
 	
 	/**
+	* Get categoriaPai Object
+	* 
+	* @return null|Basico_Model_Categoria
+	*/
+	public function getCategoriaPaiObject()
+	{
+		$model = new Basico_Model_Categoria();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoriaPai);
+        return $object;
+	}
+	
+	/**
 	 * Get RootCategoriaPai Object
 	 * 
 	 * @return null|Basico_Model_Categoria
