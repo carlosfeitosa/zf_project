@@ -92,7 +92,7 @@ define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.rochedo");
 define("DEFAULT_JAVASCRIPT_FILE_PATH", "/js/default_scripts.js");
 define("DEFAULT_AJAX_JAVASCRIPT_FILE_PATH", "/js/ajax_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_FILE_PATH", "/js/default_masks_scripts.js");
-define("DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH", "/js/library/plugins/maskMoney/jquery.maskMoney.js");
+define("DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH", "/js/library/plugins/jquery/maskMoney/jquery.maskMoney.js");
 define("DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO", "/js/rascunho.js");
 define("JQGRID_JAVASCRIPT_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/jquery.jqGrid.min.js");
 define("JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/i18n/grid.locale-pt-br.js");
