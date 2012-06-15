@@ -419,7 +419,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 			        Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			            
 	            	// encaminhado para a ação erroemailvalidadoexistentenosistema
-	            	return $this->_forward('erroemailvalidadoexistentenosistema', 'login', 'basico');
+	            	return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', null, true));
 				}else {
 	            	// iniciando a transacao
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -458,8 +458,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 			            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
 		            	// encaminhado para a ação erroemailnaovalidadoexistentenosistema
-		            	return $this->_forward('erroemailnaovalidadoexistentenosistema', 'login', 'basico');	
-		            		                
+		            	return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailnaovalidadoexistentenosistema', null, true));	                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
 	            		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
@@ -467,10 +466,10 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	            		throw new Exception($e->getMessage());
 	            	}
 	           	}
-	        }
-	        else {
-	        	// encaminhado para a ação salvar usuario nao validado
-	            return $this->_forward('salvarusuarionaovalidado', 'login', 'basico');
+	        }else {
+	        	
+	        	// chamando metodo pra salvar um novo email de usuario
+	            $this->salvarUsuarioNaoValidado();
 	        }
         }       	
        	
@@ -492,7 +491,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	 * 
 	 * @return void
 	 */
-    public function salvarusuarionaovalidadoAction()
+    public function salvarUsuarioNaoValidado()
     {
         // iniciando transacao
         Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -556,7 +555,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
         }
 
         // encaminhado para a ação SucessoSalvarUsuarioNaoValidado
-	    return $this->_forward('SucessoSalvarUsuarioNaoValidado', 'login', 'basico');
+	    return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'SucessoSalvarUsuarioNaoValidado', null, true));
     }
     
     /**
