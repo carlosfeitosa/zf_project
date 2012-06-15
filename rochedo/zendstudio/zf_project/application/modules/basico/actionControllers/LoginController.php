@@ -152,7 +152,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
 		
 		// capturando a url do metodo que retorna se o login esta disponivel ou nao 
-	    $urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+	    $urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncryptModuleControllerAction('basico', 'login', 'verificadisponibilidadelogin'), "'");
 	    	
 	    // adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
 	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
@@ -189,9 +189,17 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		    		// recuperando o titulo do dialog
 			   		$tituloDialogSugestaoLogin = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
 			   		
+			   		// carregando array com parametros para montagem da url que carrega as sugestoes de login
+			   		$arrayParametros = array('stringPesquisa' => $arrayPost['BasicoCadastrarUsuarioValidadoLogin'],
+			   								 'idPessoa' => $arrayPost['idPessoa'],
+			   								 'nome' => $arrayPost['BasicoCadastrarUsuarioValidadoNome'],
+			   								 'dataNascimento' => $arrayPost['BasicoCadastrarUsuarioValidadoDataNascimento']);
+			   		// montando url para recuperacao das sugestoes de login
+			   		$urlSugestaoLogin = Basico_OPController_UtilOPController::retornaStringEntreCaracter($this->view->urlEncryptModuleControllerAction('basico', 'login', 'exibirformsugestaologin', $arrayParametros), "'");
+			   		
 			   		// escrevendo mensagem de login nao disponivel	
 					$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLoginDisponivel->setValue("<span style='color: red; font-weight: bold;'>" .
-							str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '/rochedo_project/public/basico/login/exibirformsugestaologin/stringPesquisa/" . $arrayPost['BasicoCadastrarUsuarioValidadoLogin'] . "/idPessoa/" . $arrayPost['idPessoa'] . "/nome/" . $arrayPost['BasicoCadastrarUsuarioValidadoNome'] . "/dataNascimento/" . $arrayPost['BasicoCadastrarUsuarioValidadoDataNascimento'] . "', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
+							str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', {$urlSugestaoLogin}, '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
 							"</span>");
 					
 					$content[] = $formCadastrarUsuarioValidado;
@@ -361,9 +369,17 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	    		// recuperando o titulo do dialog
 	    		$tituloDialogSugestaoLogin = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
 	    		
+	    		// carregando array com parametros para montagem da url que carrega as sugestoes de login
+		   		$arrayParametros = array('stringPesquisa' => $post['stringPesquisa'],
+		   								 'idPessoa' => $post['idPessoa'],
+		   								 'nome' => $post['nome'],
+		   								 'dataNascimento' => $post['dataNascimento']);
+		   		// montando url para recuperacao das sugestoes de login
+		   		$urlSugestaoLogin = Basico_OPController_UtilOPController::retornaStringEntreCaracter($this->view->urlEncryptModuleControllerAction('basico', 'login', 'exibirformsugestaologin', $arrayParametros), "'");
+	    		
 	    		// escrevendo mensagem de login nao disponivel	
 				echo "<span style='color: red; font-weight: bold;'>" .
-					 	str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', '/rochedo_project/public/basico/login/exibirformsugestaologin/stringPesquisa/" . $post['stringPesquisa'] . "/idPessoa/" . $post['idPessoa'] . "/nome/" . $post['nome'] . "/dataNascimento/" . $post['dataNascimento'] . "', '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
+					 	str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', {$urlSugestaoLogin}, '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
 				     "</span>";
 				
 			}else{
@@ -639,8 +655,8 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 			$form->getElement('BasicoSugestaoLoginSugestaoLogin')->addMultiOption($sugestaoLogin, $sugestaoLogin);
 		}
 		
-		// recuperando url da ação de verificar disponibilidade do login
-		$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+		// capturando a url do metodo que retorna se o login esta disponivel ou nao 
+	    $urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncryptModuleControllerAction('basico', 'login', 'verificadisponibilidadelogin'), "'");
 		
 		// setando atributo onclick do formulario
 		$form->BasicoSugestaoLoginEnviar->setAttribs(array('onClick' => "carregaSugestaoLogin({$urlMetodo});"));

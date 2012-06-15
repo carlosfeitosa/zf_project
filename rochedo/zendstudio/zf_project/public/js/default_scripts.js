@@ -351,7 +351,7 @@ function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa
 {	
 	if (stringPesquisa != "") {
 
-		var urlRequest = urlMetodo + stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento; 
+		var urlRequest = urlMetodo + '/stringPesquisa/' +stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento; 
 
 		// processando requisicao
 		var deferred = dojoRequestAjaxAbstract('get', {url: urlRequest, handleAs: 'text', idLoadingLocation: 'BasicoCadastrarUsuarioValidadoLoginDisponivel-element'});

@@ -133,7 +133,7 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
 		    	$content[] = $subtituloView;
 			    
 				// formando a url do metodo que verifica disponibilidade de login via json
-				$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_UtilOPController::retornaBaseUrl() . "/basico/login/verificadisponibilidadelogin/stringPesquisa/", "'");
+				$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncryptModuleControllerAction('basico', 'login', 'verificadisponibilidadelogin'), "'");
 	
 				// instanciando o formulario de cadastrar usuario validado
 				$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
