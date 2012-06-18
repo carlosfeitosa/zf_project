@@ -534,29 +534,54 @@ FROM basico.tipo_categoria t
 WHERE t.nome = 'SISTEMA';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'COMPONENTE_DOJO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'COMPONENTE_HTML' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'COMPONENTE';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'COMPONENTE_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, 'COMPONENTE_HTML_JAVASCRIPT' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'COMPONENTE';
 
-INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
-SELECT id, 'COMPONENTE_AJAXTERCEIROS' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria
-WHERE nome = 'COMPONENTE';
-
-INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, 'COMPONENTE_ROCHEDO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_DOJO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-WHERE t.nome = 'COMPONENTE';
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_HTML_JAVASCRIPT';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_HTML';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_AJAXTERCEIROS' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_HTML_JAVASCRIPT';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_ROCHEDO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_HTML';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_ROCHEDO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_HTML_JAVASCRIPT';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
-SELECT id AS id_tipo_categoria, 'CVC' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria
-WHERE nome = 'CVC';
+SELECT t.id AS id_tipo_categoria, 'CVC' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'CVC';
 
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'LOG_RELACAO_CATEGORIA_CHAVE_ESTRANGEIRA' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
