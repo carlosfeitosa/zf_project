@@ -140,25 +140,25 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
 	}
 	
 	/**
-	* Set componente
+	* Set idComponente
 	* 
-	* @param Int $componente 
+	* @param Int $idComponente 
 	* @return Basico_Model_Formulario
 	*/
-	public function setComponente($componente)
+	public function setIdComponente($idComponente)
 	{
-		$this->_componente = Basico_OPController_UtilOPController::retornaValorTipado($componente, TIPO_INTEIRO, true);
+		$this->_idComponente = Basico_OPController_UtilOPController::retornaValorTipado($idComponente, TIPO_INTEIRO, true);
 		return $this;
 	}
 
 	/**
-	* Get componente
+	* Get idComponente
 	* 
 	* @return null|Int
 	*/
-	public function getComponente()
+	public function getIdComponente()
 	{
-		return $this->_componente;
+		return $this->_idComponente;
 	}
 	
 	/**
