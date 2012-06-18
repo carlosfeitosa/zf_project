@@ -635,11 +635,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
      * Action para exibição do formulario de sugestao de login
      */
     public function exibirformsugestaologinAction()
-    {
-    	//desabilitando layout e render
-	    $this->_helper->layout()->disableLayout();
-	    $this->_helper->viewRenderer->setNoRender(true);
-	    
+    {	    
 	    // recuperando os parametros da requisicao
 	    $post = $this->getRequest()->getParams();
 	    
@@ -661,7 +657,12 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		// setando atributo onclick do formulario
 		$form->BasicoSugestaoLoginEnviar->setAttribs(array('onClick' => "carregaSugestaoLogin({$urlMetodo});"));
 		
+		// setando atributo onclick do formulario
+		//$form->BasicoSugestaoLoginFechar->setAttribs(array('onClick' => "hideDialog('Basico_Form_SugestaoLogin');"));
+		
 		// escrevendo o form
-    	echo $form;
+    	$this->view->content = array($form);
+    	
+    	$this->_helper->Renderizar->renderizar('default.html.phtml', true);
     }
 }

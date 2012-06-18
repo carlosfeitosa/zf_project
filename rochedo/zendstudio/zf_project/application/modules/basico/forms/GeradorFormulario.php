@@ -40,7 +40,7 @@ class Basico_Form_GeradorFormulario extends Zend_Dojo_Form
 
         //Formulários disponíveis        
         $elements[0] = $this->createElement('FilteringSelect', 'selectFormulario', array('style' => 'width: 400px;'));
-        $elements[0]->setAttribs(array('size' => 100, 'onChange' => "loading(); document.getElementById('GeradorFormulario').submit();"));
+        $elements[0]->setAttribs(array('size' => 100, 'onChange' => "if (this.value== '') return false; loading(); document.getElementById('GeradorFormulario').submit();"));
         $elements[0]->addValidator('NotEmpty');
         $elements[0]->addDecorator('Label', array('escape' => false));
         $elements[0]->setLabel($this->getView()->tradutor('FORM_FIELD_SELECT_FORMULARIO'));

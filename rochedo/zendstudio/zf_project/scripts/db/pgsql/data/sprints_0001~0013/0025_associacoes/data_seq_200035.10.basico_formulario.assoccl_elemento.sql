@@ -409,7 +409,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO'
         AND fe.nome = 'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN') AS id_elemento,
-        false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        false AS element_required, 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -426,7 +426,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_HTML'
         AND fe.nome = 'FORM_LINHA_HORIZONTAL') AS id_elemento,
-        false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        false AS element_required, 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -443,7 +443,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
         AND fe.nome = 'FORM_BUTTON') AS id_elemento,
-        false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        false AS element_required, 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id
@@ -460,7 +460,7 @@ SELECT (SELECT f.id
         WHERE t.nome = 'FORMULARIO'
         AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON'
         AND fe.nome = 'FORM_BUTTON_CLOSE_DIALOG') AS id_elemento,
-        false AS element_required, 5 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+        false AS element_required, 4 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario.assoccl_elemento (id_formulario, id_elemento, element_required, ordem, rowinfo)
 SELECT (SELECT f.id

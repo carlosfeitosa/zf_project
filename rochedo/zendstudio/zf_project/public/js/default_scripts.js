@@ -402,12 +402,14 @@ function carregaSugestaoLogin(urlMetodo) {
 	   }
 	}
 	
-	// setando valor do campo login
-	dijit.byId('BasicoCadastrarUsuarioValidadoLogin').setValue(radioValue);
-	// escondendo o dialog de sugestao
-	hideDialog('Basico_Form_SugestaoLogin');
-	// executando funcao para verificar a disponibilidade do login escolhido
-	verificaDisponibilidade('login', 'login', radioValue, dojo.byId('idPessoa').value, dojo.byId('BasicoCadastrarUsuarioValidadoNome').value, dojo.byId('BasicoCadastrarUsuarioValidadoDataNascimento').value, urlMetodo);
+	if (radioValue != null) {
+		// setando valor do campo login
+		dijit.byId('BasicoCadastrarUsuarioValidadoLogin').setValue(radioValue);
+		// escondendo o dialog de sugestao
+		hideDialog('Basico_Form_SugestaoLogin');
+		// executando funcao para verificar a disponibilidade do login escolhido
+		verificaDisponibilidade('login', 'login', radioValue, dojo.byId('idPessoa').value, dojo.byId('BasicoCadastrarUsuarioValidadoNome').value, dojo.byId('BasicoCadastrarUsuarioValidadoDataNascimento').value, urlMetodo);
+	}
 }
 
 /**

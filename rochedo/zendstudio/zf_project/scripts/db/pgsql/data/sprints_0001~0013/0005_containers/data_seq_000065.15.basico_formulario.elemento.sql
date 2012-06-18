@@ -1157,7 +1157,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_BUTTON';
 
 INSERT INTO basico_formulario.elemento(id_categoria, nome, constante_textual, ativo, id_componente, constante_textual_label,
-                                 element_name, element, rowinfo)
+                                 element_name, element_attribs, element, rowinfo)
 SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome,
 	   'NOME_FORM_BUTTON_CLOSE_DIALOG' AS constante_textual, true AS ativo,
 	   (SELECT cp.id
@@ -1167,8 +1167,9 @@ SELECT c.id AS id_categoria, 'FORM_BUTTON_CLOSE_DIALOG' AS nome,
         WHERE t.nome = 'COMPONENTE'
         AND c.nome = 'COMPONENTE_ZF'
         AND cp.nome = 'ZF_button') AS id_componente,
-       'FORM_BUTTON_CLOSE_DIALOG' AS constante_textual_label, 'fechar' AS element_name, 
-       '''fechar'', array(''onClick'' => ''hideDialog("@nomeForm");'')' AS element, 'SYSTEM_STARTUP' AS rowinfo
+       'FORM_BUTTON_CLOSE_DIALOG' AS constante_textual_label, 'fechar' AS element_name,
+       '''onClick'' => "hideDialog(\"@nomeForm\");"' AS element_attribs,
+       '''fechar''' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

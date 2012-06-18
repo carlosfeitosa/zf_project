@@ -63,13 +63,14 @@ class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
         $elements[5]->setOrder(5);
         $elements[5]->setRequired(false);
         $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));
+        $elements[5]->setAttribs(array('onClick' => "hideDialog('Basico_Form_SugestaoLogin');"));
         $elements[5]->removeDecorator('DtDdWrapper');
         $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_CLOSE_DIALOG') . '');
 
-        $elements[5] = $this->createElement('hash', 'BasicoSugestaoLoginCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
-        $elements[5]->setOrder(5);
-        $elements[5]->setRequired(false);
-        $elements[5]->removeDecorator('Label');
+        $elements[6] = $this->createElement('hash', 'BasicoSugestaoLoginCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
+        $elements[6]->setOrder(6);
+        $elements[6]->setRequired(false);
+        $elements[6]->removeDecorator('Label');
 
         // Removendo escapes das mensagens de erro dos elementos do formulario.
         Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);

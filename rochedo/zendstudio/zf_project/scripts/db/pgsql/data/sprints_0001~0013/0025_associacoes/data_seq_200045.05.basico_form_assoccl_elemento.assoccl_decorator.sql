@@ -377,7 +377,7 @@ SELECT (SELECT fcle.id
         LEFT JOIN basico_formulario.elemento e ON (e.id = fcle.id_elemento)
         WHERE f.nome = 'FORM_DIALOG_SUGESTAO_LOGIN'
         AND e.nome = 'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN'
-        AND fcle.ordem = 2) AS id_assoccl_elemento,
+        AND fcle.ordem = 1) AS id_assoccl_elemento,
        (SELECT d.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
@@ -395,7 +395,7 @@ SELECT (SELECT fcle.id
         LEFT JOIN basico_formulario.elemento e ON (e.id = fcle.id_elemento)
         WHERE f.nome = 'FORM_DIALOG_SUGESTAO_LOGIN'
         AND e.nome = 'FORM_LINHA_HORIZONTAL'
-        AND fcle.ordem = 3) AS id_assoccl_elemento,
+        AND fcle.ordem = 2) AS id_assoccl_elemento,
        (SELECT d.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
@@ -413,7 +413,7 @@ SELECT (SELECT fcle.id
         LEFT JOIN basico_formulario.elemento e ON (e.id = fcle.id_elemento)
         WHERE f.nome = 'FORM_DIALOG_SUGESTAO_LOGIN'
         AND e.nome = 'FORM_BUTTON'
-        AND fcle.ordem = 4) AS id_assoccl_elemento,
+        AND fcle.ordem = 3) AS id_assoccl_elemento,
        (SELECT d.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
@@ -431,7 +431,7 @@ SELECT (SELECT fcle.id
         LEFT JOIN basico_formulario.elemento e ON (e.id = fcle.id_elemento)
         WHERE f.nome = 'FORM_DIALOG_SUGESTAO_LOGIN'
         AND e.nome = 'FORM_BUTTON_CLOSE_DIALOG'
-        AND fcle.ordem = 5) AS id_assoccl_elemento,
+        AND fcle.ordem = 4) AS id_assoccl_elemento,
        (SELECT d.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
