@@ -30,6 +30,7 @@ class Basico_Model_FormularioMapper extends Basico_AbstractMapper_RochedoMapper 
 		$this->_arrayMapper['id']						 = 'id';
 		$this->_arrayMapper['idFormularioPai']			 = 'id_formulario_pai';
 		$this->_arrayMapper['nivel']					 = 'nivel';
+		$this->_arrayMapper['idComponente']				 = 'id_componente';
 		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
 		$this->_arrayMapper['idAjuda']					 = 'id_ajuda';
 		$this->_arrayMapper['nome']						 = 'nome';

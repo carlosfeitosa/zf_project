@@ -21,6 +21,10 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
 	/**
 	 * @var int
 	 */
+	protected $_idComponente;
+	/**
+	 * @var int
+	 */
 	protected $_idCategoria;
 	/**
      * @var int
@@ -133,6 +137,28 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
 	public function getNivel()
 	{
 		return $this->_nivel;
+	}
+	
+	/**
+	* Set componente
+	* 
+	* @param Int $componente 
+	* @return Basico_Model_Formulario
+	*/
+	public function setComponente($componente)
+	{
+		$this->_componente = Basico_OPController_UtilOPController::retornaValorTipado($componente, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get componente
+	* 
+	* @return null|Int
+	*/
+	public function getComponente()
+	{
+		return $this->_componente;
 	}
 	
 	/**
