@@ -908,7 +908,32 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 		$arrayOpcoes[$categoriaNaoDesejoInformar->id] = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($categoriaNaoDesejoInformar->constanteTextual);
 		
 	}
-	
+
+	/**
+	 * Verifica se a categoria do id passado por parametro é uma categoria para uso em formulários 
+	 * 
+	 * @param Integer $idCategoria - id da categoria que deseja verificar
+	 * 
+	 * @return Boolean - true se a categoria for uma categoria que pode ser utilziada em formulários ou false caso não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 19/06/2012
+	 */
+	public function verificaCategoriaFormularioPorIdCategoria($idCategoria)
+	{
+		// verificando se foi passado o parametro do id da categoria
+		if ((!$idCategoria) or (!is_int($idCategoria))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperandoo o objeto categoria
+		$objetoCategoria = $this->_retornaObjetosPorParametros("id = {$idCategoria}");
+
+		// retornando resultado da verificação
+		return ((Basico_OPController_TipoCategoriaOPController::TIPO_CATEGORIA_FORMULARIO === $objetoCategoria->getTipoCategoriaObject()->nome) and (Basico_OPController_TipoCategoriaOPController::TIPO_CATEGORIA_FORMULARIO === $objetoCategoria->getTipoCategoriaRootCategoriaPaiObject()->nome));
+	}
+
 	
 	public static function retornaOperacaoValidacaoTokenPorIdCategoria($idCategoria)
 	{

@@ -37,16 +37,6 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
 		return;
 	}
 
-    public function getAuthAdapter(array $params)
-    {
-
-    }
-
-    public function preDispatch()
-    {
-
-    }
-
     /**
      * Retorna Formulário de Geração de Formulários
      * 
@@ -99,7 +89,10 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
      * return void|forward
      */
     public function gerarformularioAction()
-    {        
+    {
+    	// recuperando o post
+    	$postFormulario = $this->getRequest()->getPost();
+
         // recuperando o objeto form gerador formulario
         $formGeradorFormulario = $this->getObjectFormGeradorFormulario();
 
@@ -110,18 +103,18 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
         $elements['selectFormulario']->setMultiOptions($this->retornaArrayNomeFormularios());
 
         // recuperando os dados dos elementos enviados no post do formulário
-        $formGeradorFormulario->populate($_POST);   	
+        $formGeradorFormulario->populate($postFormulario);   	
 
         // inicializando variaveis
         $idFormulario = 0;
 
         //verifica se existe valor no elemento selectFormulario enviado via post
-        if (isset($_POST['selectFormulario']) ) {
+        if (isset($postFormulario['selectFormulario']) ) {
         	// recuperando o id do formulario
-            $idFormulario = (int) $_POST['selectFormulario'];
+            $idFormulario = (int) $postFormulario['selectFormulario'];
 
             // definindo o conteúdo do elemento 'modulosFormulario' com o id e nome dos modelos do formulário
-            $arrayModulosFormulario = $this->retornaArrayNomesModulosFormulario($idFormulario);
+            $arrayModulosFormulario = $this->retornaArrayIdsNomesModulosFormulario($idFormulario);
 
             // verificando se existem modulos
             if ($arrayModulosFormulario) {
@@ -130,20 +123,18 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
         }
 
         // checando se foi utilizado o metodo post e se botao 'enviar' foi acionado
-        if ((isset($_POST['enviar'])) and ($formGeradorFormulario->isValid($_POST))) {
-        	// recuperando objeto formulario
-        	$modeloFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaObjetoPorId(Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_FormularioOPController'), $idFormulario);
-
+        if ((isset($postFormulario['enviar'])) and ($formGeradorFormulario->isValid($postFormulario))) {
             // verificando se foram selecionados modulos para exclusao da geracao
-            if (isset($_POST['excludeModulesNames'])){
+            if (isset($postFormulario['modulosFormulario'])){
             	// setando os modulos selecionados para exclusao
-            	$excludeModulesNames = $_POST['modulosFormulario'];
+            	$arrayExcludeModulesIds = $postFormulario['modulosFormulario'];
             }else{
-                $excludeModulesNames = null;            	
+            	// setando os modulos selecionado para exclusão para nulo
+                $arrayExcludeModulesIds = null;            	
             }
 
             // gerando os formulários
-            if (Basico_OPController_GeradorOPController::geradorFormularioGerarFormulario($modeloFormulario, $excludeModulesNames)) {
+            if (Basico_OPController_GeradorOPController::geradorFormularioGerarFormulario($idFormulario, $arrayExcludeModulesIds)) {
 
                 // carregando o titulo e subtitulo da view
                 $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO'));
@@ -173,66 +164,50 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
      * Retorna array contendo o par id/nome de todos os formulários
      * 
      * @return Array
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 18/06/2012
      */
-    public function retornaArrayNomeFormularios()
+    private function retornaArrayNomeFormularios()
     {
+    	// inicializando variáveis
+    	$arrayRetorno = array('' => '');
+
     	// inicializando controladores
     	$formularioOPController = Basico_OPController_FormularioOPController::getInstance();
 
-    	// inicializando variaveis
-    	$arrayNomeFormularios = array();
+    	// recuperando array de resultados
+    	$arrayIdsFormsNames = $formularioOPController->retornaArrayIdsFormsNamesTodosFormulariosOrdenadoPorFormName();
 
-        // recuperando array de objetos contendo todos os formularios
-        $objsFormulario = $formularioOPController->retornaTodosObjsFormularios();
+    	// loop para transformar os resultados do array
+    	foreach ($arrayIdsFormsNames as $chave => $arrayValores) {
+    		// montando array de resultados
+    		$arrayRetorno[$arrayValores['id']] = $arrayValores['formName'];
 
-        // adicionando elemento vazio, para forcar selecao
-        $arrayNomeFormularios[null] = '';
+    		// limpando memória
+    		unset($chave, $arrayValores);
+    	}
 
-        // verificando se o array foi recuperado
-        if ($objsFormulario) {
-        	//$arrayNomeFormularios[0] = null;
-            foreach ($objsFormulario as $formularioObject){
-            	// recuperando id/nome dos formularios
-				$arrayNomeFormularios[$formularioObject['id']] = $formularioObject['formName'];
-            }
-        }
-        
-        // retornando o array contendo o par id/nome dos formularios
-        return $arrayNomeFormularios;
+    	// limpando memória
+    	unset($arrayIdsFormsNames, $formularioOPController);
+
+        // retornando o array contendo o par id/formName
+        return $arrayRetorno;
     }
 
     /**
      * Retorna uma array contendo o par id/modulo de um formulário
      * 
-     * @param Integer $idFormulario
+     * @param Integer $idFormulario - id do formulário que deseja recuperar os ids e nomes dos módulos associados
      * 
-     * @return Array|false
+     * @return Array|false - array contendo os ids e nomes dos módulos ou false se não existir nenhum módulo associado
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 19/06/2012
      */
-    public function retornaArrayNomesModulosFormulario($idFormulario)
+    public function retornaArrayIdsNomesModulosFormulario($idFormulario)
     {
-    	// recuperando o modelo de formulario
-    	$modelFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaNovoObjetoModeloPorNomeOPController('Basico_OPController_FormularioOPController');
-    	
-       	// recuperando objeto formulario
-       	$modelFormulario = Basico_OPController_FormularioOPController::getInstance()->retornaObjetoPorId($modelFormulario, $idFormulario);
-
-    	// verificando se o formulario foi recuperado
-        if ((is_object($modelFormulario)) and ($modelFormulario->id)) {
-        	// recuperando modulos do formulario
-	        $arrayObjsModulosFormularioObjects = $modelFormulario->getModulosObjects();
-	        
-	        // verificando se houve recuperacao dos modulos
-	        if ($arrayObjsModulosFormularioObjects != null){
-	        	// loop para recuperar o nome dos modulos
-	            foreach ($arrayObjsModulosFormularioObjects as $moduloObject){
-	            	// setando o nome dos modulos
-	                $arrayModulos[$moduloObject->nome] = $moduloObject->nome;
-	            }
-	            
-	            // retornando array contendo os modulos associados ao fomulario
-	            return $arrayModulos;
-	        }
-        }
-        return false;
+    	// retornando array contendo os ids e nomes dos módulos associados ao formulário
+    	return Basico_OPController_FormularioOPController::getInstance()->retornaArrayIdsNomesModulosFormularioPorIdFormulario($idFormulario);
     }
 }

@@ -15,6 +15,12 @@
 class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
+	 * Constante que representa o tipo categoria FORMULARIO
+	 * @var String
+	 */
+	const TIPO_CATEGORIA_FORMULARIO = "FORMULARIO";
+
+	/**
 	 * Instância do controlador Basico_OPController_TipoCategoriaOPController.
 	 * @var Basico_OPController_TipoCategoriaOPController
 	 */

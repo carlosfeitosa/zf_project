@@ -52,28 +52,35 @@ class Basico_OPController_GeradorOPController
 	}
 
 	/**
-	 * Gera Formulário.
+	 * Gera um formulário
 	 * 
-	 * @param Object $objFormulario
-	 * @param String $classToExtends
-	 * @param String $excludeModulesNames
+	 * @param Integer $idFormulario - id do formulário que deseja gerar
+	 * @param Array $arrayExcludeIdModules - array contendo os ids dos módulos que não deseja gerar o formulário
 	 * 
 	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframewoek.com)
+	 * @since 18/06/2012
 	 */
-	public static function geradorFormularioGerarFormulario(Basico_Model_Formulario $objFormulario, array $excludeModulesNames = null)
+	public static function geradorFormularioGerarFormulario($idFormulario, array $arrayExcludeIdModules = null)
 	{
 		// retorna o resultado do metodo "gerar" da classe "Basico_OPController_GeradorFormularioOPController"
-		return Basico_OPController_GeradorFormularioOPController::gerar($objFormulario, $excludeModulesNames);
+		return Basico_OPController_GeradorFormularioOPController::getInstance()->gerarFormulario($idFormulario, $arrayExcludeIdModules);
 	}
 	
 	/**
 	 * Gera todos os formulario do sistema.
 	 * 
+	 * @param Array $arrayExcludeIdModules - array contendo os ids dos módulos que não deseja gerar o formulário
+	 * 
 	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframewoek.com)
+	 * @since 18/06/2012
 	 */
-	public static function geradorFormularioGerarTodosFormularios()
+	public static function geradorFormularioGerarTodosFormularios(array $arrayExcludeIdModules = null)
 	{
 		// retorna o resultado do metodo "gerarTodos" da classe "Basico_OPController_GeradorFormularioOPController"
-		return Basico_OPController_GeradorFormularioOPController::gerarTodos();
+		return Basico_OPController_GeradorFormularioOPController::getInstance()->gerarTodosFormulario($arrayExcludeIdModules);
 	}
 }

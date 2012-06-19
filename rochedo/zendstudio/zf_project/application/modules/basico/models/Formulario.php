@@ -482,38 +482,55 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
     }
 	
     /**
-     * Get modulo objects
-     * @return null|array
+     * Retorna uma array contendo os objetos módulo associados ao formulário
+     * 
+     * @param Array $excludeModulesIds - array contendo os ids dos módulos que não deseja recuperar
+     * 
+     * @return Array|null
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 19/06/2012
      */
-    public function getModulosObjects(array $excludeModulesNames = null)
+    public function getModulosObjects(array $arrayExcludeModulesIds = null)
     {
-        $modelModuloFormulario = new Basico_Model_FormularioAssocclModulo();
-        $arrayModulosFormulariosObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModuloFormulario, "id_formulario = {$this->_id}");
+    	// inicianlizando variáveis
+    	$stringIdsModulosExclude = '';
+    	$arrayIdsModulos = array();
+    	$stringIdsModulos = '';
+
+    	// instanciando modelos
+        $modelFormularioAssocclModulo = new Basico_Model_FormularioAssocclModulo();
         $modelModulo = new Basico_Model_Modulo();
-        
-        $arrayIdsModulos = array();
-        foreach ($arrayModulosFormulariosObjects as $moduloFormularioObject){
-            $arrayIdsModulos[] = $moduloFormularioObject->idModulo;
+
+        // verificando se foi passado um array contendo os ids dos módulos que deseja excluir da consulta
+        if (($arrayExcludeModulesIds) and (count($arrayExcludeModulesIds))) {
+        	// transformando o array em string
+        	$stringIdsModulosExclude =  " AND id_modulo NOT IN (" . implode(',', $arrayExcludeModulesIds) . ")";
         }
-        
-        $stringIdsModulos = implode(',', $arrayIdsModulos);
-        
-        for ($contador = 0; $contador <= count($excludeModulesNames)-1; $contador++)
-            $excludeModulesNames[$contador] = Basico_OPController_UtilOPController::retornaStringEntreCaracter($excludeModulesNames[$contador], "'"); 
-        
-        if ($excludeModulesNames)
-            $stringExcludeModulesNames = implode(',', $excludeModulesNames);
-        else
-            $stringExcludeModulesNames = null;
-        
-        if (($stringIdsModulos) and ($stringExcludeModulesNames)) 
-            $arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModulo, "id IN ({$stringIdsModulos}) and nome NOT IN ({$stringExcludeModulesNames})");
-        else if ($stringIdsModulos) 
-            $arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModulo, "id IN ({$stringIdsModulos})");
-        else
-            $arrayObjects = array();
-        
-        return $arrayObjects;
+
+        // recuperando array de objetos
+        $arrayFormularioAssocclModuloObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelFormularioAssocclModulo, "id_formulario = {$this->_id}{$stringIdsModulosExclude}");
+
+        // loop para recuperar os ids dos módulos
+        foreach ($arrayFormularioAssocclModuloObjects as $objetoFormularioAssocclModulo) {
+        	// recuperando o id do módulo
+			$arrayIdsModulos[] = $objetoFormularioAssocclModulo->idModulo;
+
+			// limpando memória
+			unset($objetoFormularioAssocclModulo);
+        }
+
+        // verificando se foram recuperados os ids dos módulos
+        if (count($arrayIdsModulos)) {
+        	// transformando o array em string
+        	$stringIdsModulos = implode(',', $arrayIdsModulos);
+        }
+
+        // limpando memória
+        unset($modelFormularioAssocclModulo, $stringIdsModulosExclude, $arrayFormularioAssocclModuloObjects, $arrayIdsModulos);
+
+		// retornando array de objetos modulos
+		return Basico_OPController_PersistenceOPController::bdObjectFetchList($modelModulo, "id IN ($stringIdsModulos)");
     }
 
     /**

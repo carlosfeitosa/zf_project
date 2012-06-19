@@ -177,10 +177,49 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * 
 	 * @return Array
 	 */
-	public function retornaTodosObjsFormularios()
+	private function retornaTodosObjsFormularios()
 	{
+		// recuperando array de retorno
+		$arrayRetorno = parent::_retornaArrayDadosTodosObjetos();
+
 		// retornando array de todos os objetos formulario
-		return parent::_retornaArrayDadosTodosObjetos();
+		return $arrayRetorno;
+	}
+
+	/**
+	 * Retorna um array contendo todos os atributos do formulário, através do id passado
+	 * 
+	 * @param Integer $idFormulario - id do formulário que deseja recuperar as informações
+	 * 
+	 * @return Array|false - array contendo todos os atributos do formulário ou falso caso não consiga recuperar as informações
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 19/06/2012
+	 */
+	public function retornaArrayDadosFormularioPorIdFormulario($idFormulario)
+	{
+		// verificando se foi passado o parametro do id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// retornando os atributos do objeto
+		return $this->_retornaArrayDadosObjetoPorId($idFormulario);
+	}
+
+	/**
+	 * Retorna um array contendo os ids e formNames de todos os formulários do sistema
+	 * 
+	 * @return Array
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 18/06/2012
+	 */
+	public function retornaArrayIdsFormsNamesTodosFormulariosOrdenadoPorFormName()
+	{
+		// retornando array com o resultado
+		return $this->_retornaArrayDadosObjetosPorParametros(null, 'form_name', null, null, array('id', 'formName'));
 	}
 
 	/**
@@ -290,6 +329,49 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 			return $objFormulario->idCategoria;
 			
 		return false;
+	}
+
+	/**
+	 * Retorna um array contendo os ids e nome dos módulos associados a um formulário
+	 * 
+	 * @param Integer $idFormulario - id do formulário que se deseja recuperar informações sobre os módulos associados
+	 * 
+	 * @return Array|false - array contendo os ids e nomes dos módulos associados ao formulário ou false caso não haja associação
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 19/06/2012
+	 */
+	public function retornaArrayIdsNomesModulosFormularioPorIdFormulario($idFormulario)
+	{
+		// verificando se foi passado o id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// recuperando o objeto formulario
+	 	$this->_model = $this->_retornaObjetosPorParametros("id = {$idFormulario}", null, 1, 0);
+
+	 	// recuperando os objetos módulos associados ao objeto formulário
+	 	$arrayModulosAssociadosFormulario = $this->_model->getModulosObjects();
+
+	 	// loop para montar a array de resposta
+	 	foreach ($arrayModulosAssociadosFormulario as $objetoModulo) {
+	 		// montando array de resultados
+	 		$arrayRetorno[$objetoModulo->id] = strtolower($objetoModulo->nome);
+
+	 		// limpando memória
+	 		unset($objetoModulo);
+	 	}
+
+	 	// limpando memória
+	 	unset($arrayModulosAssociadosFormulario);
+
+	 	// retornando array de resultados
+	 	return $arrayRetorno;
 	}
 
 	/**
