@@ -6,9 +6,19 @@
 * versao: 1.0 (POSTGRESQL 9.1.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 02/02/2012
-* ultimas modificacoes:
+* ultimas modificacoes: 20/06/2012 - Criação do script de insert do decorator AjaxForm (João Vasconcelos)
 * 								
 */
+
+INSERT INTO basico_formulario.decorator (id_categoria, nome, constante_textual, ativo, decorator, rowinfo)
+SELECT c.id AS id_categoria, 'DECORATOR_AJAX_FORM' AS nome, 'DECORATOR_AJAX_FORM' AS constante_textual,
+	   true AS ativo,
+       '''AjaxForm''' AS decorator, 
+       'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DECORATOR';
 
 INSERT INTO basico_formulario.decorator (id_categoria, nome, constante_textual, ativo, decorator, rowinfo)
 SELECT c.id AS id_categoria, 'DECORATOR_FORM_SUBMIT' AS nome, 'DECORATOR_FORM_SUBMIT' AS constante_textual,
